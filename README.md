@@ -2,6 +2,10 @@
 
 ## Pier-cap design notebook
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Pier_Cap_Design_Optimizer.ipynb)
+
+**From GitHub:** click **Open in Colab**, connect to a runtime, then choose **Runtime → Run all**. The first cell downloads this repository's `main` branch, installs the notebook's Colab dependencies and enables its custom widgets. Push the notebook, `pier_cap/` and `requirements-pier-cap-colab.txt` together before using the link. A standard CPU runtime is sufficient.
+
 Open **[Pier_Cap_Design_Optimizer.ipynb](Pier_Cap_Design_Optimizer.ipynb)** in JupyterLab or VS Code, select the project `.venv` Python kernel, and **Run All**. The notebook contains the live calculator, input widgets, reinforcement sections, pile/hoop drawings, capacity/stress plots, D/C register, bounded steel search, and case exports.
 
 On this computer the project environment is prepared. Run `Start-PierCap-Notebook.ps1` from PowerShell to launch JupyterLab. If your script execution policy prevents the launcher, use the direct command below; changing system policy is unnecessary.
@@ -45,7 +49,7 @@ Weight is a gross comparison estimate, excluding hooks, laps, anchorage, bends a
 - **Direct FB-MultiPier `.out`/`.xml`:** not implemented without a representative source file and verified mapping.
 - **Review exports:** saved in timestamped `exports/` subfolders; originals are not overwritten. The Blockpad exporter modifies only C005 in a new review copy, not other project data.
 
-GitHub renders saved static notebook output, not running widgets. In Colab, clone/download the whole repository and install requirements first, then run from the repository directory. Local Windows paths must be replaced with uploaded files. Colab execution has not been independently verified for this delivery.
+GitHub renders saved static notebook output, not running widgets. The Colab badge opens the notebook, and its setup cell obtains the supporting files automatically. Local Windows paths must be replaced with uploaded files. Download your case exports from Colab's Files panel before ending the runtime; they are stored in the temporary Colab environment. A second run reuses the checkout without overwriting it. To obtain a newer GitHub version, start a fresh runtime. If you use another branch or fork, update the badge target and the setup cell's `REPO_URL` / `REPO_REF` together. Private repositories require an authenticated checkout accessible to the Colab runtime. Hosted Colab execution has not been independently verified.
 
 ### Validation and Git
 

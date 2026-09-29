@@ -1,0 +1,8 @@
+# Runtime-only requirements. Colab already supplies the notebook server/kernel.
+ipywidgets>=8.1,<9
+plotly>=6,<7
+anywidget>=0.9,<1
+nbformat>=5.10,<6
+openpyxl>=3.1,<4
+lxml>=5,<7
+matplotlib>=3.9,<4
