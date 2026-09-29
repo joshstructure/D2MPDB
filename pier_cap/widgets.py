@@ -9,6 +9,7 @@ from .model import default_case,evaluate,INPUTS,GEOMETRY,formula_trace
 from .optimizer import search,SearchConfig,candidate_case,filter_candidates,candidate_dc,candidate_governing,governing_check,DC_SCOPES
 from .io import load_case,export_bundle,export_blockpad
 from .fbmp_widgets import XMLImportPanel
+from .widget_compat import Tab, Accordion
 from .source_status import upload_entries,source_html,import_receipt,receipt_html,notice_html
 from .visuals import section_figure,elevation_figure,hoop_figure,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html,spacing_html
 
@@ -48,7 +49,7 @@ class CapNotebook:
         self.clearance=W.BoundedFloatText(value=self.case['screening']['minimum_clear_in'],min=0,max=12,step=.25,description='Trial clear (in)',style={'description_width':'120px'},layout=W.Layout(width='260px'))
         self.clearance.observe(self._changed,names='value')
         self.input_tabs=self._inputs()
-        self.plot_tabs=W.Tab(children=[self.cage,self.results,W.VBox([self.register],layout=W.Layout(max_height='850px',overflow='auto')),W.VBox([self.trace],layout=W.Layout(max_height='750px',overflow='auto'))],layout=W.Layout(flex='1 1 650px',min_width='560px'))
+        self.plot_tabs=Tab(children=[self.cage,self.results,W.VBox([self.register],layout=W.Layout(max_height='850px',overflow='auto')),W.VBox([self.trace],layout=W.Layout(max_height='750px',overflow='auto'))],layout=W.Layout(flex='1 1 650px',min_width='560px'))
         for i,title in enumerate(['Live cage','Plots','Pass / D/C register','Equation trace']):self.plot_tabs.set_title(i,title)
         self.upload=W.FileUpload(accept='.json',multiple=False,description='Load case JSON')
         self.upload.observe(self._uploaded,names='value')
@@ -57,7 +58,7 @@ class CapNotebook:
         self.source_id=W.Text(description='Analysis ID',placeholder='Name of the new force analysis run',layout=W.Layout(width='430px'))
         self.source_confirm=W.Checkbox(value=False,description='I have supplied forces for the current geometry',indent=False,layout=W.Layout(width='420px'))
         stamp=W.Button(description='Record analyzed geometry',icon='check');stamp.on_click(self._stamp)
-        source=W.Accordion(children=[W.VBox([self.source_id,self.source_confirm,stamp,W.HTML('<small>Use after entering fresh analysis forces. Changing geometry alone does not rerun FB-MultiPier.</small>')])]);source.set_title(0,'Record a manually updated analysis case');source.selected_index=None
+        source=Accordion(children=[W.VBox([self.source_id,self.source_confirm,stamp,W.HTML('<small>Use after entering fresh analysis forces. Changing geometry alone does not rerun FB-MultiPier.</small>')])]);source.set_title(0,'Record a manually updated analysis case');source.selected_index=None
         self.search_panel=self._search_panel();self.export_panel=self._export_panel()
         self.xml_import=XMLImportPanel(self,LABELS)
         self.ui=W.VBox([W.HTML('<h2 style="color:#213649;margin-bottom:4px">Pier-cap design explorer</h2><p>Change an input → inspect the cage and checks → search practical steel → export a review case.</p>'),
@@ -84,10 +85,10 @@ class CapNotebook:
                     rows.append(W.HBox([control,W.HTML(html.escape(unit),layout=W.Layout(width='53px'))]))
                 if title=='Hoops and skin':rows.extend([self.clearance,W.HTML('<small>Clear-spacing screen is a trial assumption. Confirm code/aggregate/detailing requirements.</small>')])
                 panels.append(W.VBox(rows))
-            accordion=W.Accordion(children=panels)
+            accordion=Accordion(children=panels)
             for i,(title,_) in enumerate(sections):accordion.set_title(i,title)
             accordion.selected_index=0;tabs.append(accordion)
-        tab=W.Tab(children=tabs,layout=W.Layout(flex='0 0 360px',width='360px'))
+        tab=Tab(children=tabs,layout=W.Layout(flex='0 0 360px',width='360px'))
         for i,name in enumerate(GROUPS):tab.set_title(i,name)
         return tab
 

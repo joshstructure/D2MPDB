@@ -1,6 +1,8 @@
 """One-file upload, review and apply controls for the live cap notebook."""
 from copy import deepcopy
 import html
+from pathlib import Path
+from tempfile import TemporaryDirectory
 import ipywidgets as W
 from .fbmp import import_fbmp_xml
 from .model import INPUTS
@@ -16,8 +18,19 @@ class XMLImportPanel:
         self.filename = None
         self.base_snapshot = None
         self.applied_signature = None
-        self.upload = W.FileUpload(accept='.xml,.XML', multiple=False, description='Upload FBMP XML', layout=W.Layout(width='185px'))
-        self.upload.observe(self._uploaded, names='value')
+        self.upload_output = W.Output(layout=W.Layout(display='none'))
+        try:
+            from google.colab import files
+        except ImportError:
+            self.colab_files = None
+            self.upload = W.FileUpload(accept='.xml,.XML', multiple=False, description='Upload FBMP XML', layout=W.Layout(width='185px'))
+            self.upload.observe(self._uploaded, names='value')
+        else:
+            # Colab's FileUpload can show a file badge without delivering its
+            # binary buffers. Use Colab's supported transfer path in this UI.
+            self.colab_files = files
+            self.upload = W.Button(description='Upload FBMP XML', icon='upload', layout=W.Layout(width='185px'))
+            self.upload.on_click(self._colab_uploaded)
         self.refresh_button = W.Button(description='Refresh preview', disabled=True, icon='refresh')
         self.refresh_button.on_click(lambda _: self.stage(self.source, self.filename))
         self.apply_button = W.Button(description='Apply XML inputs', disabled=True, button_style='primary', icon='check')
@@ -28,9 +41,47 @@ class XMLImportPanel:
             W.HTML('<h3 style="margin-bottom:4px">New loads from FB-MultiPier</h3>'
                    '<p>Upload the solved XML → review the geometry and loads → Apply XML inputs → rerun your steel or section search.</p>'),
             W.HBox([self.upload, self.refresh_button, self.apply_button], layout=W.Layout(flex_flow='row wrap')),
-            self.status, self.preview,
+            self.upload_output, self.status, self.preview,
         ])
         app.case_listeners.append(self._case_changed)
+
+    def _colab_uploaded(self, button=None):
+        from IPython.display import clear_output
+        self.pending = None
+        self.source = None
+        self.applied_signature = None
+        self.app.import_receipt = None
+        self.app.import_notice.value = ''
+        self.preview.value = ''
+        self.apply_button.disabled = self.refresh_button.disabled = True
+        self.upload.disabled = True
+        self.status.value = notice_html('CHOOSE XML FILE',
+            'Click <b>Choose Files</b> above and select one solved FB-MultiPier XML. '
+            'The current calculation is unchanged until you apply the preview.','pending')
+        self.upload_output.layout.display = ''
+        try:
+            with self.upload_output:
+                clear_output(wait=True)
+                # Keep upload scratch files out of the project and preserve the
+                # original basename in the import audit.
+                with TemporaryDirectory(prefix='pier-cap-upload-') as folder:
+                    received = self.colab_files.upload(target_dir=folder)
+                clear_output(wait=False)
+            if not received:
+                self.status.value = notice_html('UPLOAD CANCELLED','No new XML inputs were applied.')
+                return
+            if len(received) != 1:
+                raise ValueError('Select exactly one solved XML file.')
+            filename, content = next(iter(received.items()))
+            filename = Path(filename).name
+            if Path(filename).suffix.lower() != '.xml':
+                raise ValueError('Select an FB-MultiPier .xml file.')
+            self.stage(bytes(content), filename)
+        except Exception as exc:
+            self._failed(exc)
+        finally:
+            self.upload_output.layout.display = 'none'
+            self.upload.disabled = False
 
     def _case_changed(self):
         if self.pending is not None and self.app.case != self.base_snapshot:

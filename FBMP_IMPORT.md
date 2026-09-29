@@ -1,6 +1,8 @@
 # One-file FB-MultiPier import
 
-Run the notebook, then use **Upload FBMP XML** in the live workbench. Select a solved XML, review the changed geometry/materials and governing force rows, and click **Apply XML inputs**. The drawings and checks update, and previous searches are invalidated. Rerun the steel/section search. Export a case JSON to preserve the inputs and complete import audit. The same upload control works without local Windows paths in Colab.
+Run the notebook, then use **Upload FBMP XML** in the live workbench. In Colab, click **Choose Files** when it appears. Select a solved XML, review the changed geometry/materials and governing force rows, and click **Apply XML inputs**. The drawings and checks update, and previous searches are invalidated. Rerun the steel/section search. Export a case JSON to preserve the inputs and complete import audit. Colab uses its native file transfer; local Jupyter uses the standard widget upload.
+
+Colab compatibility uses ipywidgets 7.7.1, Plotly 5.24.1 and a tab-title bridge. Setup stops if loaded and installed versions disagree. When upgrading a previous session, save the case and any unsaved notebook edits, restart the session, reload the browser page, and Run all. Restarting Python alone can leave stale browser widget views. The Colab XML upload, preview and Apply sequence was verified in Chrome with `Pier_MinTip.XML` on 2026-09-29.
 
 Changing the case after preview disables Apply. **Refresh preview** rebuilds the proposed import using the current trial reinforcement. Invalid uploads cannot leave an earlier valid import armed. Python users can call `pier_cap.fbmp.import_fbmp_xml(path_or_bytes, base=app.case)` and inspect its returned case before `app.load(...)`.
 

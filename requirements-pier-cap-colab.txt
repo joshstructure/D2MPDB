@@ -1,7 +1,8 @@
 # Runtime-only requirements. Colab already supplies the notebook server/kernel.
-ipywidgets>=8.1,<9
-plotly>=6,<7
-anywidget>=0.9,<1
+# Match Colab's preloaded widget protocol; v8 can render inert/blank controls.
+ipywidgets==7.7.1
+# Plotly 6's anywidget view failed to initialize in the tested Colab manager.
+plotly==5.24.1
 nbformat>=5.10,<6
 openpyxl>=3.1,<4
 lxml>=5,<7

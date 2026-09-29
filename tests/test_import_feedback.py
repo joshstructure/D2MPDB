@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 from types import SimpleNamespace
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, Mock
 from pier_cap.model import default_case
 from pier_cap.fbmp import import_fbmp_xml
 from pier_cap.source_status import upload_entries,source_signature
@@ -21,6 +21,16 @@ FIXTURE=ROOT/'tests/fixtures/fbmp_610_cap.xml'
 def upload(name,content):
     return {'name':name,'content':memoryview(content),'type':'application/octet-stream',
             'size':len(content),'last_modified':datetime.now(timezone.utc)}
+
+
+def receive_upload(widget,name,content):
+    """Deliver the actual synchronized fields for either widget protocol."""
+    if 'metadata' in widget.traits():
+        widget.set_state({'metadata':[{'name':name,'type':'application/octet-stream',
+                                      'size':len(content),'lastModified':0}],
+                          'data':[memoryview(content)],'_counter':widget._counter+1})
+    else:
+        widget.set_state({'value':[upload(name,content) | {'last_modified':0}]})
 
 
 class ImportFeedbackTests(unittest.TestCase):
@@ -40,7 +50,7 @@ class ImportFeedbackTests(unittest.TestCase):
         self.assertTrue(self.study.cage.options)
         before=deepcopy(self.app.case)
         panel=self.app.xml_import
-        panel.upload.value=(upload('Pier_MinTip.XML',FIXTURE.read_bytes()),)
+        receive_upload(panel.upload,'Pier_MinTip.XML',FIXTURE.read_bytes())
         self.assertIn('PREVIEW READY',panel.status.value)
         self.assertIn('NOT APPLIED',panel.status.value)
         self.assertEqual(self.app.case,before)
@@ -64,15 +74,15 @@ class ImportFeedbackTests(unittest.TestCase):
 
     def test_json_receipt_and_visible_failures(self):
         case=import_fbmp_xml(FIXTURE)
-        self.app.upload.value=(upload('new_case.json',json.dumps(case).encode()),)
+        receive_upload(self.app.upload,'new_case.json',json.dumps(case).encode())
         self.assertEqual(self.app.case,case)
         self.assertIn('new_case.json',self.app.import_notice.value)
         self.assertIn('SUCCESSFULLY',self.app.import_notice.value)
-        self.app.upload.value=(upload('broken.json',b'{broken'),)
+        receive_upload(self.app.upload,'broken.json',b'{broken')
         self.assertIn('CASE IMPORT FAILED',self.app.import_notice.value)
         self.assertEqual(self.app.case,case)
         panel=self.app.xml_import
-        panel.upload.value=(upload('wrong.xml',b'<wrong/>'),)
+        receive_upload(panel.upload,'wrong.xml',b'<wrong/>')
         self.assertIn('XML IMPORT FAILED',panel.status.value)
         self.assertIsNone(panel.pending)
         self.assertTrue(panel.apply_button.disabled)
@@ -84,7 +94,7 @@ class ImportFeedbackTests(unittest.TestCase):
     def test_upload_library_is_explicitly_separate(self):
         before=deepcopy(self.app.case)
         case=import_fbmp_xml(FIXTURE)
-        self.study.upload.value=(upload('analysis.json',json.dumps(case).encode()),)
+        receive_upload(self.study.upload,'analysis.json',json.dumps(case).encode())
         self.assertEqual(self.app.case,before)
         self.assertIn('ADDED TO LIBRARY',self.study.library_note.value)
         self.assertIn('does not replace',self.study.library_note.value)
@@ -142,3 +152,52 @@ class UploadDataTests(unittest.TestCase):
         a=default_case();b=deepcopy(a)
         b['inputs']['N_pile']=int(b['inputs']['N_pile'])
         self.assertEqual(source_signature(a),source_signature(b))
+
+
+class ColabNativeUploadTests(unittest.TestCase):
+    def setUp(self):
+        self.files=SimpleNamespace(upload=Mock())
+        with patch.dict('sys.modules', {'google.colab':SimpleNamespace(files=self.files)}):
+            self.app=CapNotebook()
+        self.addCleanup(self.app.close)
+        self.panel=self.app.xml_import
+
+    def test_native_transfer_previews_then_applies_without_binary_widget_messages(self):
+        before=deepcopy(self.app.case)
+        self.files.upload.side_effect=lambda target_dir: {
+            str(Path(target_dir)/'Pier_MinTip.XML'):FIXTURE.read_bytes()}
+        self.panel.upload.click()
+        self.assertEqual(self.app.case,before)
+        self.assertIn('PREVIEW READY',self.panel.status.value)
+        self.assertEqual(self.panel.pending['analysis']['xml_audit']['filename'],'Pier_MinTip.XML')
+        self.assertFalse(self.panel.upload.disabled)
+        self.assertEqual(self.panel.upload_output.layout.display,'none')
+        self.panel.apply_button.click()
+        self.assertEqual(self.app.case['inputs']['h'],36)
+        self.assertIn('LOADS IMPORTED SUCCESSFULLY',self.app.import_notice.value)
+        # Re-selecting the same file must still create a new preview.
+        self.panel.upload.click()
+        self.assertIsNotNone(self.panel.pending)
+        self.assertIn('PREVIEW READY',self.panel.status.value)
+
+    def test_cancel_or_failure_cannot_leave_an_earlier_preview_applicable(self):
+        before=deepcopy(self.app.case)
+        cases=[({},'UPLOAD CANCELLED'),
+               ({'a.xml':b'bad','b.xml':b'bad'},'exactly one'),
+               ({'a.txt':b'bad'},'.xml file'),
+               ({'a.xml':b'<wrong/>'},'XML IMPORT FAILED')]
+        for received,message in cases:
+            with self.subTest(message=message):
+                self.panel.stage(FIXTURE.read_bytes(),'old.xml')
+                self.assertIsNotNone(self.panel.pending)
+                self.files.upload.return_value=received
+                self.panel.upload.click()
+                self.assertIn(message,self.panel.status.value)
+                self.assertIsNone(self.panel.pending)
+                self.assertTrue(self.panel.apply_button.disabled)
+                self.assertFalse(self.panel.upload.disabled)
+                self.assertEqual(self.app.case,before)
+        self.files.upload.side_effect=RuntimeError('Transfer disconnected')
+        self.panel.upload.click()
+        self.assertIn('Transfer disconnected',self.panel.status.value)
+        self.assertFalse(self.panel.upload.disabled)

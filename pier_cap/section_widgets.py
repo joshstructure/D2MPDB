@@ -2,6 +2,7 @@
 from copy import deepcopy
 import html
 import ipywidgets as W
+from .widget_compat import Accordion
 import plotly.graph_objects as go
 
 from .model import evaluate
@@ -53,7 +54,7 @@ class SectionStudy:
         clear_library = W.Button(description='Clear analysis library')
         clear_library.on_click(self._clear_library)
         self.library_note = W.HTML('Current source case is available at its own section. No additional analysis cases loaded.')
-        library_panel = W.Accordion(children=[W.VBox([W.HBox([self.upload, clear_library]), self.library_note,
+        library_panel = Accordion(children=[W.VBox([W.HBox([self.upload, clear_library]), self.library_note,
                                   W.HTML('<small>Upload saved case JSON files containing actual forces and their matching geometry. Other project inputs must agree. A study export with fixed forces is not a new analysis. Distinct analyses at the same section are reported as a conflict.</small>')])])
         library_panel.set_title(0, 'Optional: analysis library for different sections')
         library_panel.selected_index = None
@@ -66,11 +67,11 @@ class SectionStudy:
         self.cheapest_button = W.Button(description='Select cheapest section + cage', icon='check', disabled=True, layout=W.Layout(width='280px'))
         self.cheapest_button.on_click(self._select_cheapest)
         self.cost_table = W.HTML()
-        self.cost_details = W.Accordion(children=[self.cost_table])
+        self.cost_details = Accordion(children=[self.cost_table])
         self.cost_details.set_title(0, 'All sections ranked by estimated cost')
         self.cost_details.selected_index = None
         self.cost_details.layout.display = 'none'
-        self.material_details = W.Accordion(children=[])
+        self.material_details = Accordion(children=[])
         self.material_details.layout.display = 'none'
         self.charts = W.HBox(layout=W.Layout(flex_flow='row wrap'))
         self.section = W.Dropdown(options=[], description='Section', layout=W.Layout(width='500px'))

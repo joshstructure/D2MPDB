@@ -89,8 +89,13 @@ class ColabSetupTests(unittest.TestCase):
             return real_run(args, **kwargs)
 
         scope = {'_test_url': self.remote.as_uri(), '_test_root': str(self.target)}
+        kernel = object()
+        scope['get_ipython'] = lambda: types.SimpleNamespace(kernel=kernel)
+        widget_runtime = types.SimpleNamespace(__version__='7.7.1', register_comm_target=Mock())
         try:
-            with patch.dict(sys.modules, {'google': google, 'google.colab': colab}), \
+            with patch.dict(sys.modules, {'google': google, 'google.colab': colab, 'ipywidgets': widget_runtime,
+                                        'plotly': types.SimpleNamespace(__version__='5.24.1')}), \
+                 patch('importlib.metadata.version', side_effect=lambda name:'7.7.1' if name=='ipywidgets' else '5.24.1'), \
                  patch('subprocess.run', side_effect=run), contextlib.redirect_stdout(io.StringIO()):
                 yield scope, pip_calls
         finally:
