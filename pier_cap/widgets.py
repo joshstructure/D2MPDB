@@ -6,7 +6,7 @@ import json
 import ipywidgets as W
 import plotly.graph_objects as go
 from .model import default_case,evaluate,INPUTS,GEOMETRY,formula_trace
-from .optimizer import search,SearchConfig,candidate_case
+from .optimizer import search,SearchConfig,candidate_case,filter_candidates,candidate_dc,candidate_governing,DC_SCOPES
 from .io import load_case,export_bundle,export_blockpad
 from .visuals import section_figure,elevation_figure,hoop_figure,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html
 
@@ -38,6 +38,7 @@ class CapNotebook:
     def __init__(self,case=None,export_root='exports'):
         self.case=deepcopy(case or default_case());self.export_root=Path(export_root)
         self.controls={};self.busy=False;self.search_result=None;self.current=None;self.figures=[];self.last_export=None
+        self.browsing=False;self.filtered_indices=[];self.alternative_figure=None
         self.banner=W.HTML();self.metrics=W.HTML();self.message=W.HTML()
         self.cage=W.VBox(layout=W.Layout(max_height='820px',overflow='auto'));self.results=W.VBox(layout=W.Layout(max_height='820px',overflow='auto'));self.register=W.HTML();self.trace=W.HTML()
         self.clearance=W.BoundedFloatText(value=self.case['screening']['minimum_clear_in'],min=0,max=12,step=.25,description='Trial clear (in)',style={'description_width':'120px'},layout=W.Layout(width='260px'))
@@ -89,7 +90,7 @@ class CapNotebook:
         if self.busy:return
         self.case['inputs']={n:w.value for n,w in self.controls.items()}
         self.case['screening']['minimum_clear_in']=self.clearance.value
-        self.search_result=None;self.candidates.options=[];self.apply_button.disabled=True;self.search_text.value='Inputs changed. Run the search to refresh alternatives.';self.alternative_output.children=[]
+        self._clear_search('Inputs changed. Run the search to refresh alternatives.')
         self.refresh()
 
     def refresh(self):
@@ -120,7 +121,7 @@ class CapNotebook:
             for n,w in self.controls.items():w.value=case['inputs'][n]
             self.clearance.value=case['screening']['minimum_clear_in']
         finally:self.busy=False
-        self.search_result=None;self.candidates.options=[];self.apply_button.disabled=True;self.alternative_output.children=[];self.search_text.value=''
+        self._clear_search()
         self.refresh()
 
     def _uploaded(self,change):
@@ -133,7 +134,7 @@ class CapNotebook:
         if not self.source_confirm.value or not self.source_id.value.strip():
             self.message.value='Enter the analysis ID and confirm that the entered forces were analyzed for the current geometry.';return
         self.case['analysis']={'id':self.source_id.value.strip(),'geometry':{k:self.case['inputs'][k] for k in GEOMETRY},'notes':'User recorded a manually updated force analysis in the notebook.'}
-        self.source_confirm.value=False;self.search_result=None;self.candidates.options=[];self.apply_button.disabled=True;self.alternative_output.children=[];self.refresh()
+        self.source_confirm.value=False;self._clear_search();self.refresh()
 
     def _search_panel(self):
         self.search_lists={}
@@ -143,28 +144,84 @@ class CapNotebook:
             w=W.SelectMultiple(options=options,value=value,rows=5,layout=W.Layout(width='112px'));self.search_lists[name]=w;boxes.append(W.VBox([W.HTML('<b>'+label+'</b>'),w]))
         self.objective=W.Dropdown(options=['Least steel','Simplest cage','Largest margin'],description='Rank by',layout=W.Layout(width='260px'))
         self.limit=W.BoundedIntText(value=10000,min=1,max=100000,description='Case limit',layout=W.Layout(width='230px'))
+        self.dc_limit=W.BoundedFloatText(value=1.0,min=.01,max=1.0,step=.05,description='Max D/C',layout=W.Layout(width='210px'))
+        self.dc_scope=W.Dropdown(options=[(label,key) for key,label in DC_SCOPES.items()],value='all',description='Apply target to',style={'description_width':'100px'},layout=W.Layout(width='310px'))
+        self.page_size=W.Dropdown(options=[20,50,100],value=20,description='Per page',layout=W.Layout(width='170px'))
+        self.page=W.BoundedIntText(value=1,min=1,max=1,description='Page',disabled=True,layout=W.Layout(width='150px'))
+        self.previous_page=W.Button(description='Previous',icon='chevron-left',disabled=True,layout=W.Layout(width='110px'))
+        self.next_page=W.Button(description='Next',icon='chevron-right',disabled=True,layout=W.Layout(width='90px'))
+        self.previous_page.on_click(lambda _:setattr(self.page,'value',max(1,self.page.value-1)))
+        self.next_page.on_click(lambda _:setattr(self.page,'value',min(self.page.max,self.page.value+1)))
+        for control in (self.objective,self.dc_limit,self.dc_scope,self.page_size):control.observe(self._filter_changed,names='value')
+        self.page.observe(self._page_changed,names='value')
         self.run_button=W.Button(description='Search steel layouts',button_style='primary',icon='search');self.run_button.on_click(self._run_search)
         self.progress=W.IntProgress(min=0,max=1,value=0,description='Search')
         self.search_text=W.HTML();self.candidates=W.Dropdown(options=[],description='Alternative',layout=W.Layout(width='90%'),style={'description_width':'80px'})
         self.apply_button=W.Button(description='Apply selected layout',disabled=True,icon='check');self.apply_button.on_click(self._apply)
         self.alternative_output=W.VBox()
         return W.VBox([W.HTML('<h3>Search practical steel</h3><p>Bounded enumeration: one continuous top row and bottom row, a common main bar size, one closed hoop and uniform spacing. Pile and bearing bottom cages match. Multirow / U-leg arrangements can be explored manually above. Hold Ctrl/Cmd to select several choices.</p>'),
-            W.HBox(boxes,layout=W.Layout(flex_flow='row wrap',grid_gap='10px')),W.HBox([self.objective,self.limit]),W.HBox([self.run_button,self.progress]),self.search_text,self.candidates,self.apply_button,self.alternative_output,
-            W.HTML('<small>Gross steel is a comparison estimate: full-length main/skin bars and hoops, excluding hooks, laps, anchorage and waste. Cage score = longitudinal bar count + 5 × distinct bar sizes. Largest margin minimizes the largest available D/C; missing checks stay pending. Search results are conditional candidates, not finalized designs.</small>')])
+            W.HBox(boxes,layout=W.Layout(flex_flow='row wrap',grid_gap='10px')),W.HBox([self.limit,self.run_button,self.progress],layout=W.Layout(flex_flow='row wrap')),
+            W.HTML('<h4>Browse every passing layout</h4><p>These are reinforcement layouts for the current force case. Set <b>Max D/C</b> to 0.90 for your margin target. Filtering, ranking and paging reuse the completed search.</p>'),
+            W.HBox([self.dc_limit,self.dc_scope,self.objective],layout=W.Layout(flex_flow='row wrap')),
+            W.HTML('<small><b>All available checks</b> includes spacing, minimum steel, strain and service checks. <b>Strength checks only</b> targets flexure, shear, combined shear/torsion steel and longitudinal steel; all other available checks must still pass. Missing Service III/fatigue checks stay pending. Largest margin ranks the selected D/C scope.</small>'),
+            self.search_text,W.HBox([self.previous_page,self.page,self.next_page,self.page_size],layout=W.Layout(flex_flow='row wrap')),self.candidates,self.apply_button,self.alternative_output,
+            W.HTML('<small>Gross steel is a comparison estimate: full-length main/skin bars and hoops, excluding hooks, laps, anchorage and waste. Cage score = longitudinal bar count + 5 × distinct bar sizes. Search results are conditional candidates, not finalized designs.</small>')])
+
+    def _close_alternative_plot(self):
+        if self.alternative_figure is not None:self.alternative_figure.close();self.alternative_figure=None
+        self.alternative_output.children=[]
+
+    def _clear_search(self,message=''):
+        self.search_result=None;self.filtered_indices=[];self.candidates.options=[];self.apply_button.disabled=True
+        self.page.value=1;self.page.max=1;self.page.disabled=True
+        self.previous_page.disabled=True;self.next_page.disabled=True;self.search_text.value=message
+        self._close_alternative_plot()
+
+    def _filter_changed(self,change):
+        if not self.browsing and self.search_result is not None:self._render_candidates(reset_page=True)
+
+    def _page_changed(self,change):
+        if not self.browsing and self.search_result is not None:self._render_candidates()
+
+    def _search_filter(self):
+        return {'max_dc':self.dc_limit.value,'scope':self.dc_scope.value,'objective':self.objective.value}
+
+    def _render_candidates(self,reset_page=False):
+        result=self.search_result
+        if result is None:return
+        options=self._search_filter();scope=options['scope'];target=options['max_dc']
+        indices=filter_candidates(result,**options);self.filtered_indices=indices
+        size=self.page_size.value;pages=max(1,(len(indices)+size-1)//size)
+        old_selected=self.candidates.value;self.browsing=True
+        try:
+            self.page.max=pages;self.page.value=1 if reset_page else min(self.page.value,pages)
+            self.page.disabled=not indices
+            start=(self.page.value-1)*size;shown=indices[start:start+size]
+            self.candidates.options=[(f'#{i+1}. {result.candidates[i].label} · {result.candidates[i].weight_lb:.0f} lb · filter D/C {candidate_dc(result.candidates[i],scope):.3f}',i) for i in shown]
+            if old_selected in shown:self.candidates.value=old_selected
+            self.previous_page.disabled=self.page.value<=1;self.next_page.disabled=self.page.value>=pages
+            self.apply_button.disabled=not shown
+        finally:self.browsing=False
+        extent=f'Showing {start+1:,}–{start+len(shown):,} of {len(indices):,} matches · page {self.page.value} of {pages}.' if shown else 'No layouts match this D/C filter.'
+        completeness='All listed combinations evaluated.' if result.exhaustive else 'Case limit reached; remaining combinations were not evaluated.'
+        self.search_text.value=f'<p><b>{result.passed:,} layouts pass the available checks and cage screen.</b> {len(indices):,} meet <b>{DC_SCOPES[scope]} ≤ {target:.3f}</b>. {extent}<br>{result.evaluated:,} / {result.total:,} combinations evaluated. {completeness} {result.elapsed:.1f} seconds. Every passing layout is retained and unit-checked. Candidate IDs stay fixed within this search.</p>'
+        if not shown and result.candidates:
+            best=min(result.candidates,key=lambda c:candidate_dc(c,scope))
+            self.search_text.value+=f'<p><b>Best available {DC_SCOPES[scope].lower()} D/C: {candidate_dc(best,scope):.6f}</b> · controlling check: {html.escape(candidate_governing(best,scope))}. No layout in the evaluated choices meets {target:.3f} for this scope.</p>'
+            if scope=='all':self.search_text.value+='<p>Spacing or minimum/detailing checks may set this floor. Adding main bars alone may not lower it. Strength-only filtering is a separate target; it does not mean every D/C is below your limit.</p>'
+        rows=''.join(f'<tr><td>{rank}</td><td>#{i+1}</td><td>{html.escape(c.label)}</td><td>{c.weight_lb:.0f}</td><td>{candidate_dc(c,scope):.4f}</td><td>{c.max_dc:.4f}</td><td>{html.escape(candidate_governing(c,scope))}</td></tr>' for rank,(i,c) in enumerate(((i,result.candidates[i]) for i in shown),start+1))
+        rejects='; '.join(f'{html.escape(k)}: {v}' for k,v in sorted(result.rejection_counts.items(),key=lambda t:-t[1])[:8])
+        self._close_alternative_plot()
+        self.alternative_figure=go.FigureWidget(alternatives_figure(result,indices,dc_scope=scope,max_dc=target))
+        self.alternative_output.children=[W.HTML('<table class="cap-table"><tr><th>Filtered rank</th><th>Candidate ID</th><th>Layout</th><th>Gross lb</th><th>Filter D/C</th><th>All-check D/C</th><th>Controls filter D/C</th></tr>'+rows+'</table>'),self.alternative_figure,W.HTML('<small>Rejection counts overlap: '+rejects+'</small>')]
 
     def _run_search(self,button):
-        self.run_button.disabled=True;self.apply_button.disabled=True;self.search_result=None;self.candidates.options=[];self.alternative_output.children=[]
+        self.run_button.disabled=True;self._clear_search('Searching and checking all passing layouts…')
         try:
             config=SearchConfig(**{n:tuple(w.value) for n,w in self.search_lists.items()},objective=self.objective.value,max_cases=self.limit.value)
             def update(n,total):self.progress.max=total;self.progress.value=n
             result=search(self.case,config,update);self.search_result=result
-            scope='All listed combinations evaluated.' if result.exhaustive else 'Case limit reached; remaining combinations were not evaluated.'
-            self.search_text.value=f'<p><b>{result.passed:,} candidates pass the available checks and cage screen</b> out of {result.evaluated:,} evaluated / {result.total:,} listed. {scope} {result.elapsed:.1f} seconds. Every retained candidate was rechecked with units. Service III/fatigue and detail-review status remain as shown above.</p>'
-            self.candidates.options=[(f'{i+1}. {c.label} · {c.weight_lb:.0f} lb · D/C {c.max_dc:.3f}',i) for i,c in enumerate(result.candidates)]
-            self.apply_button.disabled=not bool(result.candidates)
-            rejects='; '.join(f'{html.escape(k)}: {v}' for k,v in sorted(result.rejection_counts.items(),key=lambda t:-t[1])[:8])
-            rows=''.join(f'<tr><td>{i+1}</td><td>{html.escape(c.label)}</td><td>{c.weight_lb:.0f}</td><td>{c.max_dc:.3f}</td></tr>' for i,c in enumerate(result.candidates))
-            self.alternative_output.children=[go.FigureWidget(alternatives_figure(result)),W.HTML('<table class="cap-table"><tr><th>Rank</th><th>Layout</th><th>Gross lb</th><th>Max D/C</th></tr>'+rows+'</table><p><small>Rejection counts overlap: '+rejects+'</small></p>')]
+            self._render_candidates(reset_page=True)
         except Exception as exc:self.search_text.value='<b>Search stopped:</b> '+html.escape(str(exc))
         finally:self.run_button.disabled=False
 
@@ -176,24 +233,24 @@ class CapNotebook:
             self.case=chosen
             for n,w in self.controls.items():w.value=chosen['inputs'][n]
         finally:self.busy=False
-        self.refresh();self.message.value=f'Applied alternative {index+1}. Live drawings and checks now show that layout.'
+        self.refresh();self.message.value=f'Applied candidate #{index+1}. Live drawings and checks now show that layout.'
 
     def _export_panel(self):
         export=W.Button(description='Export current case + checks',icon='download',button_style='success');export.on_click(self._export)
         self.bpad_path=W.Text(placeholder='Full path to your C005 Live Design.bpad journal',description='C005 source',layout=W.Layout(width='95%'))
         patch=W.Button(description='Export a Blockpad review copy',icon='copy');patch.on_click(self._export_bpad)
-        return W.VBox([W.HTML('<h3>Save / reuse a selected case</h3><p>The JSON bundle is the single file to load next time. Exports include the D/C register, equation trace, Blockpad input assignments and search alternatives. Saved cases retain force-source geometry so stale forces stay visible.</p>'),export,self.bpad_path,patch])
+        return W.VBox([W.HTML('<h3>Save / reuse a selected case</h3><p>The JSON bundle is the single file to load next time. Exports include the D/C register, equation trace, Blockpad input assignments, all passing search alternatives and all current filter matches (every page). Saved cases retain force-source geometry so stale forces stay visible.</p>'),export,self.bpad_path,patch])
 
     def _export(self,button):
         try:
-            self.last_export=export_bundle(self.case,self.export_root,self.search_result)
+            self.last_export=export_bundle(self.case,self.export_root,self.search_result,search_filter=self._search_filter())
             self.message.value='<b>Saved review bundle:</b> '+html.escape(str(self.last_export.resolve()))
         except Exception as exc:self.message.value='<b>Export stopped:</b> '+html.escape(str(exc))
 
     def _export_bpad(self,button):
         try:
             if not self.bpad_path.value.strip():raise ValueError('Enter the path to the existing C005 Live Design journal.')
-            self.last_export=export_bundle(self.case,self.export_root,self.search_result)
+            self.last_export=export_bundle(self.case,self.export_root,self.search_result,search_filter=self._search_filter())
             path=export_blockpad(self.bpad_path.value.strip(),self.case,self.last_export/'C005 - Notebook Review.bpad')
             self.message.value='<b>New review copy:</b> '+html.escape(str(path.resolve()))+'<br>Open and recalculate in Blockpad. Other project sections are preserved. This export is not a design release.'
         except Exception as exc:self.message.value='<b>Blockpad export stopped:</b> '+html.escape(str(exc))

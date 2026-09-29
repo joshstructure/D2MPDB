@@ -3,7 +3,14 @@ from dataclasses import dataclass, asdict
 from collections import Counter
 from itertools import product
 from time import perf_counter
+from copy import deepcopy
+import math
 from .model import evaluate, set_inputs, analysis_match, validate_case
+
+DC_SCOPES={'all':'All available checks','strength':'Strength checks only'}
+OBJECTIVES=('Least steel','Simplest cage','Largest margin')
+STRENGTH_CHECKS={*(f'Chk_flex_{z}' for z in 'NPB'),*(f'Chk_shear_{z}' for z in 'GL'),
+    *(f'Chk_torsteel_{z}' for z in 'GL'),*(f'Chk_long_{z}' for z in 'NPB')}
 
 @dataclass(frozen=True)
 class SearchConfig:
@@ -16,7 +23,6 @@ class SearchConfig:
     skin_counts:tuple=(5,6,7)
     objective:str='Least steel'
     max_cases:int=10000
-    keep:int=20
 
 @dataclass
 class Candidate:
@@ -25,6 +31,9 @@ class Candidate:
     max_dc:float
     complexity:int
     label:str
+    strength_dc:float
+    governing_check:str
+    strength_governing_check:str
 
 @dataclass
 class SearchResult:
@@ -38,12 +47,44 @@ class SearchResult:
     elapsed:float
     exhaustive:bool
 
+def candidate_dc(candidate,scope='all'):
+    if scope not in DC_SCOPES:raise ValueError('Unknown D/C scope.')
+    return candidate.max_dc if scope=='all' else candidate.strength_dc
+
+def candidate_governing(candidate,scope='all'):
+    if scope not in DC_SCOPES:raise ValueError('Unknown D/C scope.')
+    return candidate.governing_check if scope=='all' else candidate.strength_governing_check
+
+def _rank_key(candidate,objective,scope='all'):
+    dc=candidate_dc(candidate,scope)
+    if objective=='Least steel':return (candidate.weight_lb,candidate.complexity,dc)
+    if objective=='Simplest cage':return (candidate.complexity,candidate.weight_lb,dc)
+    if objective=='Largest margin':return (dc,candidate.weight_lb,candidate.complexity)
+    raise ValueError('Unknown search objective.')
+
+def filter_candidates(result,max_dc=1.0,scope='all',objective=None):
+    """Return stable zero-based candidate IDs; filter/rank without a new search.
+
+    The complete passing population remains in result.candidates. The strength
+    scope covers flexure, shear, combined shear/torsion steel and longitudinal
+    steel only; every other available check must still pass for every candidate.
+    """
+    if isinstance(max_dc,bool) or not isinstance(max_dc,(float,int)) or not math.isfinite(max_dc) or not 0<max_dc<=1:
+        raise ValueError('Maximum D/C must be a finite number greater than 0 and at most 1.')
+    if scope not in DC_SCOPES:raise ValueError('Unknown D/C scope.')
+    objective=objective or result.config['objective']
+    if objective not in OBJECTIVES:raise ValueError('Unknown search objective.')
+    indices=[i for i,c in enumerate(result.candidates) if candidate_dc(c,scope)<=max_dc+1e-12]
+    return sorted(indices,key=lambda i:_rank_key(result.candidates[i],objective,scope))
+
+def _governing(e,keys=None):
+    return max((ch for ch in e.checks if isinstance(ch.ratio,(int,float)) and (keys is None or ch.key in keys)),key=lambda ch:ch.ratio)
+
 def search(case,config=None,progress=None):
     c=config or SearchConfig();validate_case(case)
     if analysis_match(case):raise ValueError('Geometry has changed. Import a matching analysis case before searching steel.')
-    if c.objective not in ('Least steel','Simplest cage','Largest margin'):raise ValueError('Unknown search objective.')
+    if c.objective not in OBJECTIVES:raise ValueError('Unknown search objective.')
     if not isinstance(c.max_cases,int) or not 1<=c.max_cases<=100000:raise ValueError('Search limit must be 1–100,000 cases.')
-    if not 1<=c.keep<=100:raise ValueError('Keep 1–100 candidates.')
     grids=(c.main_bars,c.top_counts,c.bottom_counts,c.hoop_bars,c.hoop_spacings,c.skin_bars,c.skin_counts)
     if any(not g for g in grids):raise ValueError('Select at least one value in every search list.')
     total=1
@@ -61,7 +102,8 @@ def search(case,config=None,progress=None):
             if e.eligible:
                 complexity=int(top+bottom+2*nskin+len({bar,hoop,skin})*5)
                 label=f'{top} #{bar} top / {bottom} #{bar} bottom · #{hoop} @ {spacing:g} in · {nskin} #{skin}/side'
-                good.append(Candidate(changes,e.weight_lb,e.max_dc,complexity,label))
+                overall=_governing(e);strength=_governing(e,STRENGTH_CHECKS)
+                good.append(Candidate(changes,e.weight_lb,e.max_dc,complexity,label,strength.ratio,overall.label,strength.label))
             else:
                 for ch in e.checks:
                     if 'FAIL' in ch.status:rejected[ch.label]+=1
@@ -70,17 +112,15 @@ def search(case,config=None,progress=None):
             # A malformed configuration is a rejected candidate, never a hidden pass.
             rejected['Invalid calculation / input']+=1
         if progress and (count%100==0 or count==min(total,c.max_cases)):progress(count,min(total,c.max_cases))
-    key={'Least steel':lambda r:(r.weight_lb,r.complexity,r.max_dc),
-         'Simplest cage':lambda r:(r.complexity,r.weight_lb,r.max_dc),
-         'Largest margin':lambda r:(r.max_dc,r.weight_lb,r.complexity)}[c.objective]
-    good.sort(key=key)
-    finalists=good[:c.keep]
-    # Recheck every returned candidate with dimensions, including every D/C guard.
-    for candidate in finalists:
+    good.sort(key=lambda candidate:_rank_key(candidate,c.objective))
+    # Retain and unit-check every passing candidate; paging is presentation only.
+    for candidate in good:
         checked=evaluate(set_inputs(case,**candidate.changes))
-        if not checked.eligible:raise RuntimeError('Scalar finalist failed the unit-aware recheck.')
-        if abs(candidate.max_dc-checked.max_dc)>1e-9:raise RuntimeError('Scalar and unit-aware D/C results differ.')
-    return SearchResult(asdict(c),case,finalists,total,count,len(good),dict(rejected),perf_counter()-start,count==total)
+        if not checked.eligible:raise RuntimeError('Scalar candidate failed the unit-aware recheck.')
+        if abs(candidate.max_dc-checked.max_dc)>1e-9 or abs(candidate.strength_dc-_governing(checked,STRENGTH_CHECKS).ratio)>1e-9:
+            raise RuntimeError('Scalar and unit-aware D/C results differ.')
+    return SearchResult(asdict(c),deepcopy(case),good,total,count,len(good),dict(rejected),perf_counter()-start,count==total)
 
 def candidate_case(result,index=0):
+    if isinstance(index,bool) or not isinstance(index,int) or not 0<=index<len(result.candidates):raise IndexError('Candidate ID is outside this search.')
     return set_inputs(result.base_case,**result.candidates[index].changes)

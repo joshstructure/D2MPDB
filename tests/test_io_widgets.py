@@ -39,6 +39,39 @@ class IOTests(unittest.TestCase):
             with self.assertRaises(ValueError):export_blockpad(source,case,output)
 
 class WidgetTests(unittest.TestCase):
+    def test_paging_filtering_and_applying_beyond_twenty(self):
+        from pier_cap.widgets import CapNotebook
+        from pier_cap.optimizer import search,SearchConfig,filter_candidates
+        r=search(default_case(),SearchConfig(main_bars=(7,8),top_counts=(6,8),bottom_counts=(6,8),hoop_bars=(5,),hoop_spacings=(6,8),skin_bars=(5,),skin_counts=(6,7)))
+        self.assertGreater(len(r.candidates),20)
+        app=CapNotebook()
+        try:
+            app.search_result=r;app._render_candidates(reset_page=True)
+            self.assertEqual(len(app.candidates.options),20);self.assertEqual(app.page.max,2)
+            app.next_page.click()
+            self.assertEqual(app.page.value,2);self.assertTrue(app.next_page.disabled)
+            self.assertEqual(app.candidates.options[0][1],20)
+            chosen=app.candidates.options[-1][1];app.candidates.value=chosen;app._apply(None)
+            for k,v in r.candidates[chosen].changes.items():self.assertEqual(app.case['inputs'][k],v)
+            app.dc_limit.value=.90
+            self.assertEqual(len(app.candidates.options),0);self.assertTrue(app.apply_button.disabled)
+            self.assertEqual(app.page.value,1);self.assertTrue(app.page.disabled)
+            self.assertIn('No layouts match',app.search_text.value);self.assertIn('Hoop spacing',app.search_text.value)
+            app.dc_scope.value='strength'
+            self.assertGreater(len(app.filtered_indices),0);self.assertFalse(app.apply_button.disabled)
+            self.assertIs(app.search_result,r)  # No rerun required.
+            app.objective.value='Largest margin'
+            self.assertEqual(app.filtered_indices,filter_candidates(r,.9,'strength','Largest margin'))
+            app.page_size.value=100
+            self.assertEqual(len(app.candidates.options),len(app.filtered_indices));self.assertEqual(app.page.max,1)
+            self.assertEqual(len(app.alternative_figure.data[0].x),len(app.filtered_indices))
+            app.controls['Mu_B'].value=500
+            self.assertIsNone(app.search_result);self.assertEqual(app.filtered_indices,[])
+            self.assertEqual(app.candidates.options,());self.assertIsNone(app.alternative_figure)
+        finally:
+            for f in app.figures:f.close()
+            app._close_alternative_plot();app.ui.close()
+
     def test_controls_recalculate_and_invalid_values_clear_results(self):
         from pier_cap.widgets import CapNotebook
         app=CapNotebook()
@@ -73,6 +106,7 @@ class WidgetTests(unittest.TestCase):
                 app._apply(None);self.assertTrue(app.current.eligible)
                 app._export(None);self.assertEqual(load_case(app.last_export/'selected_case.json'),app.case)
                 self.assertTrue((app.last_export/'alternatives.csv').exists())
+                self.assertTrue((app.last_export/'filtered_alternatives.csv').exists())
                 app.controls['Mu_B'].value=500
                 self.assertIsNone(app.search_result);self.assertTrue(app.apply_button.disabled)
             finally:

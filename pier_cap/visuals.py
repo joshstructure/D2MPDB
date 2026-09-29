@@ -5,6 +5,7 @@ from collections import defaultdict
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from .model import bar_positions,BAR_DIAMETER
+from .optimizer import candidate_dc,candidate_governing,DC_SCOPES
 
 BLUE='#1f5b91';TEAL='#167b75';AMBER='#d88822';RED='#bb3e39';INK='#213649';GREY='#b8c7d1'
 
@@ -93,16 +94,20 @@ def optional_service_figure(e):
     else:fig.add_annotation(x=.82,y=.5,xref='paper',yref='paper',text='PENDING<br>Confirm applicability and loads',showarrow=False,font=dict(color=AMBER,size=15))
     return theme(fig,'Optional service checks · inactive inputs do not establish a pass',350)
 
-def alternatives_figure(result):
+def alternatives_figure(result,indices=None,*,dc_scope='all',max_dc=1.0):
     fig=go.Figure()
-    if result.candidates:
-        fig.add_trace(go.Scatter(x=[c.weight_lb for c in result.candidates],y=[c.max_dc for c in result.candidates],mode='markers+text',
-            text=[str(i) for i in range(1,len(result.candidates)+1)],textposition='top center',
-            marker=dict(size=12,color=[c.complexity for c in result.candidates],colorscale='Teal',showscale=True,colorbar=dict(title='Cage score')),
-            customdata=[c.label for c in result.candidates],hovertemplate='Rank %{text}<br>%{customdata}<br>%{x:.0f} lb gross steel<br>Max D/C %{y:.3f}<extra></extra>'))
+    indices=list(range(len(result.candidates))) if indices is None else list(indices)
+    candidates=[result.candidates[i] for i in indices]
+    if candidates:
+        fig.add_trace(go.Scatter(x=[c.weight_lb for c in candidates],y=[candidate_dc(c,dc_scope) for c in candidates],mode='markers+text' if len(candidates)<=30 else 'markers',
+            text=[str(i+1) for i in indices],textposition='top center',
+            marker=dict(size=10,color=[c.complexity for c in candidates],colorscale='Teal',showscale=True,colorbar=dict(title='Cage score')),
+            customdata=[[i+1,c.label,c.max_dc,c.strength_dc,candidate_governing(c,dc_scope)] for i,c in zip(indices,candidates)],
+            hovertemplate='Candidate #%{customdata[0]}<br>%{customdata[1]}<br>%{x:.0f} lb gross steel<br>Filter D/C %{y:.4f}<br>All checks %{customdata[2]:.4f}; strength %{customdata[3]:.4f}<br>Controls: %{customdata[4]}<extra></extra>'))
     fig.add_hline(y=1,line_dash='dash',line_color=AMBER)
-    fig.update_xaxes(title='Estimated gross steel (lb; hooks/laps/waste excluded)');fig.update_yaxes(title='Maximum available D/C',range=[0,1.08])
-    return theme(fig,'Retained alternatives · lower and left is lighter with more margin',400)
+    if max_dc<1:fig.add_hline(y=max_dc,line_dash='dot',line_color=BLUE,annotation_text=f'Target {max_dc:.3f}')
+    fig.update_xaxes(title='Estimated gross steel (lb; hooks/laps/waste excluded)');fig.update_yaxes(title=DC_SCOPES[dc_scope]+' · D/C',range=[0,1.08])
+    return theme(fig,f'All {len(indices):,} filter matches · hover for candidate IDs and controlling checks',400)
 
 def checks_html(e):
     rows=[]

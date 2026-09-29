@@ -30,11 +30,21 @@ Keep the `pier_cap/` package beside the notebook. Supporting files organize reus
 1. Load a saved `selected_case.json`, or start with the supplied four-pile example.
 2. Review force-source geometry, loads, materials, assumptions and pending actions.
 3. Change bar counts/sizes/spacing and inspect the live drawings, stress plots and D/C register.
-4. Run **Search steel layouts**. The default list evaluates 1,944 combinations. Adjust allowed values and ranking objective as needed. Search is deterministic code and uses no AI calls.
-5. **Apply selected layout**. Every retained candidate is rechecked by the unit-aware calculator. Service III/fatigue and other unresolved scope remain explicit.
+4. Run **Search steel layouts**. The default list evaluates 1,944 combinations and retains **all 324 passing layouts**, each rechecked with units. Search is deterministic code and uses no AI calls.
+5. Set **Max D/C** (for example, `0.90`), choose **All available checks** or **Strength checks only**, and browse with **Page / Previous / Next** and **Per page** (20, 50 or 100). Filtering and ranking reuse the finished search. **Apply selected layout** loads the selected candidate ID into the live drawings/checks. Service III/fatigue and other unresolved scope remain explicit.
 6. Export the case/checks and optionally a new Blockpad C005 review copy. Recalculate that copy in Blockpad and reconcile narrative/source notes before final review.
 
 The initial JSON bundle and all input units are documented in `pier_cap/data/default_case.json` and `c005_formulas.json`. It carries analysis provenance with the force data. Changes to analysis geometry invalidate the force match and block the steel search until a corresponding analysis is supplied. An explicit manual analysis-record action is available after entering updated forces.
+
+### D/C margin and browsing all layouts
+
+The search results are steel layouts for the current force case, not additional analysis load combinations. The table and selection dropdown show one page; every passing result is retained. Candidate IDs stay fixed within a search even when the filter or ranking changes. The comparison plot includes every filter match, with the candidate ID and controlling check in its hover label.
+
+**All available checks** applies the target to the largest available ratio, including spacing, minimum reinforcement, strain and service criteria. **Strength checks only** applies it to flexure, shear, combined shear/torsion steel and longitudinal steel; every remaining available check must still pass at its original limit. The table displays both the filter D/C and all-check D/C so these targets cannot be confused. **Largest margin** ranks the selected scope.
+
+For the starting case and default search choices, **no layouts meet an all-check target of 0.90**: transverse hoop-leg spacing sets a minimum overall ratio of about **0.9821**. **210 layouts meet the strength-only target of 0.90**, while their other available checks still pass. The empty-results message reports the best available ratio and controlling check; it never silently relaxes your target. Filtering does not complete pending Service III/fatigue inputs.
+
+Programmatically, `filter_candidates(result, max_dc=0.90, scope="strength")` returns zero-based indices into the complete `result.candidates` list; `candidate_case(result, index)` retrieves one. Displayed candidate IDs are those indices plus one. The old `SearchConfig.keep` cap has been removed; use list slicing only for your own previews.
 
 ### Search and drawing limits
 
@@ -47,7 +57,7 @@ Weight is a gross comparison estimate, excluding hooks, laps, anchorage, bends a
 - **One-file reuse:** load the case JSON through the workbench upload control.
 - **Three-workbook converter:** notebook section 5 reads the supplied `Max_PierCap_*_Design` layouts, checks coordinates/headers and records governing rows/hashes. Confirm all exports belong to the same run. Nominal pile width and section dimensions remain declared project data.
 - **Direct FB-MultiPier `.out`/`.xml`:** not implemented without a representative source file and verified mapping.
-- **Review exports:** saved in timestamped `exports/` subfolders; originals are not overwritten. The Blockpad exporter modifies only C005 in a new review copy, not other project data.
+- **Review exports:** saved in timestamped `exports/` subfolders; originals are not overwritten. `alternatives.csv` includes every passing layout. `filtered_alternatives.csv` includes every current filter match, across all pages, with stable candidate IDs; `review.json` records the target, scope and matching count. The Blockpad exporter modifies only C005 in a new review copy, not other project data.
 
 GitHub renders saved static notebook output, not running widgets. The Colab badge opens the notebook, and its setup cell obtains the supporting files automatically. Local Windows paths must be replaced with uploaded files. Download your case exports from Colab's Files panel before ending the runtime; they are stored in the temporary Colab environment. A second run reuses the checkout without overwriting it. To obtain a newer GitHub version, start a fresh runtime. If you use another branch or fork, update the badge target and the setup cell's `REPO_URL` / `REPO_REF` together. Private repositories require an authenticated checkout accessible to the Colab runtime. Hosted Colab execution has not been independently verified.
 

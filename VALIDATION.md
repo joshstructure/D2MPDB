@@ -12,7 +12,9 @@
 
 ## Default search
 
-All 1,944 listed combinations are evaluated; 324 pass the available calculation checks and trial cage screen. Twenty ranked alternatives are retained. The leading least-gross-steel option within this list is six #6 top bars, eight #6 bottom bars, #4 hoops at 6 in, and seven #5 skin bars per side. Its comparison weight is approximately 1,025 lb versus 1,461 lb for the starting trial, with maximum available D/C 0.988095. This remains provisional with Service III/fatigue pending; it is not a released reinforcement design or a complete takeoff.
+All 1,944 listed combinations are evaluated; 324 pass the available calculation checks and trial cage screen. **All 324 are retained and unit-checked**; the UI pages them in groups of 20, 50 or 100. The leading least-gross-steel option within this list is six #6 top bars, eight #6 bottom bars, #4 hoops at 6 in, and seven #5 skin bars per side. Its comparison weight is approximately 1,025 lb versus 1,461 lb for the starting trial, with maximum available D/C 0.988095. This remains provisional with Service III/fatigue pending; it is not a released reinforcement design or a complete takeoff.
+
+The new margin filter finds zero default-search layouts at all-check D/C ≤ 0.90 (best overall D/C 0.982142857, governed by hoop spacing), and 210 at strength-only D/C ≤ 0.90. Tests cover inclusive numerical boundaries, invalid targets, reranking, selection beyond candidate 20, empty matches, page-size changes, all-match plot counts, clearing stale results, and full/filtered CSV exports across every page. Changing a filter never reruns the search or drops candidates from its complete population. The strength scope excludes service/minimum/detailing ratios from the margin target while retaining their original pass requirements.
 
 ## Files and presentation
 
@@ -22,4 +24,4 @@ All 1,944 listed combinations are evaluated; 324 pass the available calculation 
 - A browser session in local JupyterLab confirmed that the workbench renders, changing top row 2 from zero to four draws four new bars in both region views, and the cage-fit status updates. The static preview was rendered and visually inspected.
 - The local Python environment is prepared. The launcher scopes Jupyter runtime/configuration to this project, and Git ignores environment/runtime/export data. Existing bridge-geometry notebooks are unchanged.
 
-Reproduce the automated checks with `python -m unittest discover -s tests -v`. The suite contains 18 tests plus their parameterized cases/reference comparisons. Colab and VS Code frontend behavior have not been separately verified.
+Reproduce the automated checks with `python -m unittest discover -s tests -v`. The suite contains 22 tests plus their parameterized cases/reference comparisons. Colab and VS Code frontend behavior have not been separately verified.

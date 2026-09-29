@@ -3,7 +3,7 @@ import math
 import unittest
 from pier_cap.model import DATA,DEFINITIONS,default_case,evaluate,set_inputs,bar_positions,analysis_match
 from pier_cap.engine import Engine,Q,parse
-from pier_cap.optimizer import search,SearchConfig,candidate_case
+from pier_cap.optimizer import search,SearchConfig,candidate_case,filter_candidates,candidate_dc
 
 class CalculationTests(unittest.TestCase):
     @classmethod
@@ -134,11 +134,53 @@ class SearchTests(unittest.TestCase):
     def test_default_search(self):
         r=self.result
         self.assertEqual(r.total,1944);self.assertEqual(r.evaluated,1944);self.assertTrue(r.exhaustive)
-        self.assertGreater(r.passed,0);self.assertEqual(len(r.candidates),20)
+        self.assertEqual(r.passed,324);self.assertEqual(len(r.candidates),r.passed)
         self.assertEqual([c.weight_lb for c in r.candidates],sorted(c.weight_lb for c in r.candidates))
-        for i,c in enumerate(r.candidates):
+        for i in (0,20,len(r.candidates)-1):
             e=evaluate(candidate_case(r,i));self.assertTrue(e.eligible);self.assertIn('PENDING',e.status)
         self.assertEqual(default_case()['inputs']['n_N1'],8)
+    def test_filter_scopes_and_full_population(self):
+        r=self.result
+        self.assertEqual(len(filter_candidates(r)),324)
+        self.assertEqual(filter_candidates(r,.90,'all'),[])
+        ids=filter_candidates(r,.90,'strength')
+        self.assertEqual(len(ids),210)
+        self.assertTrue(any(i>=20 for i in ids))
+        self.assertTrue(all(r.candidates[i].strength_dc<=.90 and r.candidates[i].max_dc<=1 for i in ids))
+        self.assertEqual(len(r.candidates),324)  # Filtering must not discard the rest.
+        best=min(r.candidates,key=lambda c:c.max_dc)
+        self.assertAlmostEqual(best.max_dc,.9821428571428571)
+        self.assertEqual(best.governing_check,'Hoop spacing — global')
+    def test_filter_boundary_validation_and_reranking(self):
+        r=self.result;threshold=r.candidates[0].strength_dc
+        self.assertIn(0,filter_candidates(r,threshold,'strength'))
+        self.assertNotIn(0,filter_candidates(r,threshold-1e-8,'strength'))
+        for scope in ('all','strength'):
+            ids=filter_candidates(r,1,scope,'Largest margin')
+            ratios=[candidate_dc(r.candidates[i],scope) for i in ids]
+            self.assertEqual(ratios,sorted(ratios))
+        for target in (0,-1,1.1,float('nan'),float('inf'),True,'0.9'):
+            with self.subTest(target=target),self.assertRaises(ValueError):filter_candidates(r,target)
+        with self.assertRaises(ValueError):filter_candidates(r,scope='unknown')
+        with self.assertRaises(ValueError):filter_candidates(r,objective='unknown')
+        with self.assertRaises(IndexError):candidate_case(r,-1)
+        with self.assertRaises(IndexError):candidate_case(r,324)
+    def test_all_and_filtered_export_keep_every_page(self):
+        import csv,tempfile,json
+        from pathlib import Path
+        from pier_cap.io import export_bundle
+        with tempfile.TemporaryDirectory() as folder:
+            out=export_bundle(default_case(),folder,self.result,{'max_dc':.9,'scope':'strength','objective':'Largest margin'})
+            with (out/'alternatives.csv').open(encoding='utf-8-sig',newline='') as f:all_rows=list(csv.DictReader(f))
+            with (out/'filtered_alternatives.csv').open(encoding='utf-8-sig',newline='') as f:filtered=list(csv.DictReader(f))
+            self.assertEqual(len(all_rows),324);self.assertEqual(len(filtered),210)
+            self.assertEqual([int(r['Candidate ID']) for r in all_rows],list(range(1,325)))
+            expected=filter_candidates(self.result,.9,'strength','Largest margin')
+            self.assertEqual([int(r['Candidate ID']) for r in filtered],[i+1 for i in expected])
+            self.assertTrue(all(float(r['Filter D/C'])<=.9 for r in filtered))
+            metadata=json.loads((out/'review.json').read_text(encoding='utf-8'))
+            self.assertEqual(metadata['search']['filter']['matching_count'],210)
+            self.assertEqual(metadata['search']['filter']['scope'],'strength')
     def test_budget_and_determinism(self):
         c=SearchConfig(max_cases=20)
         a=search(default_case(),c);b=search(default_case(),c)
