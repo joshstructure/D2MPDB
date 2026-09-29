@@ -48,6 +48,12 @@ At a **0.97** target, **306** layouts meet the strength target and **zero** meet
 
 Programmatically, `filter_candidates(result, max_dc=0.90, scope="strength")` returns zero-based indices into the complete `result.candidates` list; `candidate_case(result, index)` retrieves one. Displayed candidate IDs are those indices plus one. The old `SearchConfig.keep` cap has been removed; use list slicing only for your own previews.
 
+### Cap cross-section study
+
+Notebook **Section 5** adds a width/depth grid around the existing steel search, a clickable section heatmap, concrete/steel tradeoff plot, all-cage selection, live previews, local grid refinement and study exports. The starting ranges are widths **44–52 in by 4 in** and depths **36–60 in by 6 in**. Change the strength target and optional unit rates without repeating calculations. Exact repeated section searches are cached within the runtime.
+
+Default **fixed-force sensitivity** keeps imported forces constant and retains their original source geometry. **Analysis-matched mode** uses uploaded case JSON files for the corresponding sections and leaves missing analyses visible. This does not run FB-MultiPier. Ordinary changed-geometry checks still require matching force inputs. Read [SECTION_STUDY.md](SECTION_STUDY.md) for force provenance, geometry screens, quantities, limits and exports.
+
 ### Search and drawing limits
 
 The automatic family uses one continuous top row and bottom row, a common main bar size, the same bottom layout at pile/bearing regions, one closed hoop and uniform spacing. Other layouts can be investigated manually. Bounded enumeration reports the evaluated/total counts and whether the list was exhausted; it does not claim a global optimum outside those choices.
@@ -57,7 +63,7 @@ Weight is a gross comparison estimate, excluding hooks, laps, anchorage, bends a
 ### Imports and exports
 
 - **One-file reuse:** load the case JSON through the workbench upload control.
-- **Three-workbook converter:** notebook section 5 reads the supplied `Max_PierCap_*_Design` layouts, checks coordinates/headers and records governing rows/hashes. Confirm all exports belong to the same run. Nominal pile width and section dimensions remain declared project data.
+- **Three-workbook converter:** notebook section 6 reads the supplied `Max_PierCap_*_Design` layouts, checks coordinates/headers and records governing rows/hashes. Confirm all exports belong to the same run. Nominal pile width and section dimensions remain declared project data.
 - **Direct FB-MultiPier `.out`/`.xml`:** not implemented without a representative source file and verified mapping.
 - **Review exports:** saved in timestamped `exports/` subfolders; originals are not overwritten. `alternatives.csv` includes every passing layout. `filtered_alternatives.csv` includes every current filter match, across all pages, with stable candidate IDs; `review.json` records the target, scope and matching count. The Blockpad exporter modifies only C005 in a new review copy, not other project data.
 

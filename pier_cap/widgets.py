@@ -39,6 +39,7 @@ class CapNotebook:
         self.case=deepcopy(case or default_case());self.export_root=Path(export_root)
         self.controls={};self.busy=False;self.search_result=None;self.current=None;self.figures=[];self.last_export=None
         self.browsing=False;self.filtered_indices=[];self.alternative_figure=None
+        self.case_listeners=[]
         self.banner=W.HTML();self.metrics=W.HTML();self.message=W.HTML()
         self.cage=W.VBox(layout=W.Layout(max_height='820px',overflow='auto'));self.results=W.VBox(layout=W.Layout(max_height='820px',overflow='auto'));self.register=W.HTML();self.trace=W.HTML()
         self.clearance=W.BoundedFloatText(value=self.case['screening']['minimum_clear_in'],min=0,max=12,step=.25,description='Trial clear (in)',style={'description_width':'120px'},layout=W.Layout(width='260px'))
@@ -92,6 +93,10 @@ class CapNotebook:
         self.case['screening']['minimum_clear_in']=self.clearance.value
         self._clear_search('Inputs changed. Run the search to refresh alternatives.')
         self.refresh()
+        self._notify_case_change()
+
+    def _notify_case_change(self):
+        for callback in self.case_listeners:callback()
 
     def refresh(self):
         self.source_label.value=f'<small><b>Case:</b> {html.escape(self.case["name"])} · <b>Force source:</b> {html.escape(self.case["analysis"]["id"])}</small>'
@@ -128,6 +133,7 @@ class CapNotebook:
         finally:self.busy=False
         self._clear_search()
         self.refresh()
+        self._notify_case_change()
 
     def _uploaded(self,change):
         if not self.upload.value:return
@@ -139,7 +145,9 @@ class CapNotebook:
         if not self.source_confirm.value or not self.source_id.value.strip():
             self.message.value='Enter the analysis ID and confirm that the entered forces were analyzed for the current geometry.';return
         self.case['analysis']={'id':self.source_id.value.strip(),'geometry':{k:self.case['inputs'][k] for k in GEOMETRY},'notes':'User recorded a manually updated force analysis in the notebook.'}
+        self.case.pop('section_study',None)
         self.source_confirm.value=False;self._clear_search();self.refresh()
+        self._notify_case_change()
 
     def _search_panel(self):
         self.search_lists={}
@@ -242,6 +250,7 @@ class CapNotebook:
             for n,w in self.controls.items():w.value=chosen['inputs'][n]
         finally:self.busy=False
         self.refresh();self.message.value=f'Applied candidate #{index+1}. Live drawings and checks now show that layout.'
+        self._notify_case_change()
 
     def _export_panel(self):
         export=W.Button(description='Export current case + checks',icon='download',button_style='success');export.on_click(self._export)

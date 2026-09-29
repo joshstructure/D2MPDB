@@ -130,6 +130,10 @@ def estimate_weight(e):
     count=math.ceil(max(0,length-2*p['C_s'])/min(p['s_G'],p['s_L']))+1
     return (longitudinal+count*p['n_loop']*hoop_length*BAR_AREA[p['Bar_v']])*490/1728
 
+def sectional_checks_pass(e):
+    """Numerical/detail screens only; analysis provenance is a separate gate."""
+    return not any('FAIL' in c.status for c in e.checks) and not e.issues
+
 def evaluate(case=None,fast=False):
     case=deepcopy(default_case() if case is None else case);validate_case(case)
     stale=analysis_match(case);overrides={}
@@ -151,7 +155,7 @@ def evaluate(case=None,fast=False):
     e=Evaluation(case,eng,checks,[],stale,False,'',max((c.ratio for c in checks if isinstance(c.ratio,(float,int))),default=0),0)
     e.issues=cage_issues(e);e.weight_lb=estimate_weight(e)
     failure=any('FAIL' in c.status for c in checks)
-    e.eligible=not failure and not stale and not e.issues
+    e.eligible=sectional_checks_pass(e) and not stale
     if stale:e.status='REIMPORT FORCES — changed analysis geometry: '+', '.join(stale)
     elif failure:e.status='CHECK FAILURES — revise the trial cage or section'
     elif e.issues:e.status='DETAILING SCREEN — review the drawn cage'

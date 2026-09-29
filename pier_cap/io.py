@@ -29,6 +29,7 @@ def input_formula(name,value):
 def export_bundle(case,root='exports',search_result=None,search_filter=None):
     e=evaluate(case)
     if search_result:
+        if search_result.force_mode!='matched':raise ValueError('Use the section-study exporter for fixed-force results; ordinary review searches require matching analysis.')
         from .optimizer import filter_candidates,candidate_dc,candidate_governing
         options=search_filter or {'max_dc':1.0,'scope':'all','objective':search_result.config['objective']}
         matching=filter_candidates(search_result,**options)
@@ -169,4 +170,5 @@ def import_workbooks(moment,shear,torsion,base=None,analysis_id=None,low_interva
     case['analysis']={'id':analysis_id or Path(moment).stem,'geometry':{k:p[k] for k in GEOMETRY},'workbook_audit':audit,
         'notes':'b/h, nominal pile width and end allowances are user-declared. Workbook coordinate matching cannot prove files share a run; confirm analysis ID. Independent design envelopes, not concurrent actions. Low interval defaults to global shear unless explicit labels are supplied.'}
     case['name']=case['analysis']['id'];validate_case(case);evaluate(case)
+    case.pop('section_study',None)  # These are newly imported analysis forces.
     return case

@@ -33,3 +33,9 @@ The optional D/C margin filter has two explicit scopes. The all-check scope take
 The workbench defaults to the strength target and labels the combined maximum **All-check utilization** to distinguish a spacing/detailing ratio from strength D/C. Both remain visible. The Python filter API retains its existing default all-check scope. The across-cap spacing floor and the original worksheet trace are documented in `DC_RATIO_REVIEW.md`; this presentation correction does not change engineering equations or approve the underlying source assumptions.
 
 The scalar engine and calculation port are tested against known mechanics and the saved C005 baseline. That validates the implementation, not the adequacy of every source engineering assumption.
+
+## Section studies
+
+The width/depth study has a dedicated fixed-force path that evaluates sectional screens without rewriting or clearing analysis-source geometry. Its retained cages can remain ineligible in the ordinary calculator because their section is stale. The ordinary steel search continues to reject stale geometry. The alternative analysis-matched mode evaluates only supplied, compatible section cases and never falls back to fixed forces.
+
+Pile-layout changes are outside this geometry study. Width is screened using the adopted nominal pile-edge allowance and any larger entered project minimum. Single-outer-hoop geometry remains a search limitation. The material frontier and optional entered-rate costs describe only explored candidates and gross quantities. No self-weight/stiffness rerun, new detailing method or automated FB-MultiPier analysis is introduced. Full behavior and export provenance are documented in `SECTION_STUDY.md`.

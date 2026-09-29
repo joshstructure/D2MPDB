@@ -5,7 +5,7 @@ from itertools import product
 from time import perf_counter
 from copy import deepcopy
 import math
-from .model import evaluate, set_inputs, analysis_match, validate_case
+from .model import evaluate, set_inputs, analysis_match, validate_case, sectional_checks_pass
 
 DC_SCOPES={'all':'All available checks','strength':'Strength checks only'}
 OBJECTIVES=('Least steel','Simplest cage','Largest margin')
@@ -46,6 +46,7 @@ class SearchResult:
     rejection_counts:dict
     elapsed:float
     exhaustive:bool
+    force_mode:str='matched'
 
 def candidate_dc(candidate,scope='all'):
     if scope not in DC_SCOPES:raise ValueError('Unknown D/C scope.')
@@ -86,8 +87,22 @@ def governing_check(e,scope='all'):
     return _governing(e,STRENGTH_CHECKS if scope=='strength' else None)
 
 def search(case,config=None,progress=None):
+    return _search(case,config,progress,section_sensitivity=False)
+
+def sensitivity_search(case,config=None,progress=None):
+    """Explicit fixed-force b/h study. Never changes the source analysis record.
+
+    A retained cage satisfies sectional screens, but may remain ineligible for
+    design because its changed section has not been analyzed.
+    """
+    return _search(case,config,progress,section_sensitivity=True)
+
+def _search(case,config,progress,section_sensitivity):
     c=config or SearchConfig();validate_case(case)
-    if analysis_match(case):raise ValueError('Geometry has changed. Import a matching analysis case before searching steel.')
+    stale=analysis_match(case)
+    if stale and (not section_sensitivity or set(stale)-{'b','h'}):
+        raise ValueError('Geometry has changed. Import a matching analysis case before searching steel. Fixed-force section studies allow only width/depth differences.')
+    def accepted(e):return sectional_checks_pass(e) if section_sensitivity else e.eligible
     if c.objective not in OBJECTIVES:raise ValueError('Unknown search objective.')
     if not isinstance(c.max_cases,int) or not 1<=c.max_cases<=100000:raise ValueError('Search limit must be 1–100,000 cases.')
     grids=(c.main_bars,c.top_counts,c.bottom_counts,c.hoop_bars,c.hoop_spacings,c.skin_bars,c.skin_counts)
@@ -104,7 +119,7 @@ def search(case,config=None,progress=None):
             'Bar_skin':skin,'n_skin':nskin,'Manual_spacing':False}
         try:
             e=evaluate(set_inputs(case,**changes),fast=True)
-            if e.eligible:
+            if accepted(e):
                 complexity=int(top+bottom+2*nskin+len({bar,hoop,skin})*5)
                 label=f'{top} #{bar} top / {bottom} #{bar} bottom · #{hoop} @ {spacing:g} in · {nskin} #{skin}/side'
                 overall=_governing(e);strength=_governing(e,STRENGTH_CHECKS)
@@ -121,10 +136,10 @@ def search(case,config=None,progress=None):
     # Retain and unit-check every passing candidate; paging is presentation only.
     for candidate in good:
         checked=evaluate(set_inputs(case,**candidate.changes))
-        if not checked.eligible:raise RuntimeError('Scalar candidate failed the unit-aware recheck.')
+        if not accepted(checked):raise RuntimeError('Scalar candidate failed the unit-aware recheck.')
         if abs(candidate.max_dc-checked.max_dc)>1e-9 or abs(candidate.strength_dc-_governing(checked,STRENGTH_CHECKS).ratio)>1e-9:
             raise RuntimeError('Scalar and unit-aware D/C results differ.')
-    return SearchResult(asdict(c),deepcopy(case),good,total,count,len(good),dict(rejected),perf_counter()-start,count==total)
+    return SearchResult(asdict(c),deepcopy(case),good,total,count,len(good),dict(rejected),perf_counter()-start,count==total,'fixed' if section_sensitivity else 'matched')
 
 def candidate_case(result,index=0):
     if isinstance(index,bool) or not isinstance(index,int) or not 0<=index<len(result.candidates):raise IndexError('Candidate ID is outside this search.')
