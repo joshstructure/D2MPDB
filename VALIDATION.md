@@ -1,4 +1,4 @@
-# Delivery verification · 2026-09-28
+# Delivery verification · 2026-09-29
 
 ## Calculation and workflow
 
@@ -33,4 +33,12 @@ Ten additional tests cover preservation of force-source geometry through screeni
 
 The complete notebook executed successfully with the new nine-section fixed-force example: 17,496 candidates evaluated, with six sections containing cages at strength D/C ≤ 0.90. Its static heatmap/frontier figure was visually inspected. In a live local JupyterLab browser session, clicking the 48 × 48 map point changed the section selector, and choosing a later cage updated the summary and drawing to eight top and eight bottom bars. A smaller 64-cage-per-section grid was used for that UI interaction check; the saved notebook example uses the full 1,944-cage grid at each section.
 
-Reproduce the automated checks with `python -m unittest discover -s tests -v`. The suite contains 39 tests plus their parameterized cases/reference comparisons. Colab and VS Code frontend behavior have not been separately verified.
+Reproduce the automated checks with `python -m unittest discover -s tests -v`. The suite contains 41 tests plus their parameterized cases/reference comparisons. Colab and VS Code frontend behavior have not been separately verified.
+
+## Cost breakdown and plot colors
+
+The 41-test suite passed after adding component costs, ranks and premiums. Independent synthetic quantities verify that increasing the steel rate can reverse the preferred section, equal totals retain tied first ranks, missing prices do not imply costs, invalid/extreme prices are rejected, and displayed bar components sum to the reported total. Tests also cover heatmap quantities and component labels, hover costs, excluded zero-rate items, selections beyond the first ten chart rows, repricing without a new search, preservation of a selected heavier cage, bar-click selection and CSV component/rank exports. The focused 12-test section suite passed again after final chart sizing changes.
+
+The full 18-cell notebook executed successfully with the final moment/shear palette and regenerated saved previews. Additional direct checks confirmed distinct blue moment and purple shear palettes in demand/capacity and D/C charts, with failed ratios remaining red. No engineering formulas or capacity values changed.
+
+A local JupyterLab session rendered the live comparison with sample UI-test rates and a nine-depth, 64-cage-per-section grid. The concrete/steel/forms cell-label control and full cost breakdown were visually checked; clicking the 48 × 54 in cell selected that section and its cost premium. The stacked cost chart, lowest-cost summary, labels and separate moment/shear color families were visually checked at desktop width. These sample rates are not project rates and were not written into the delivered notebook defaults.

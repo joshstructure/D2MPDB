@@ -8,8 +8,9 @@ from .model import evaluate
 from .optimizer import SearchConfig
 from .io import load_case
 from .sections import (SectionGrid, CostRates, SectionCache, dimension_values, run_section_study,
-                       section_rows, selected_section_case, export_section_study)
-from .section_visuals import section_heatmap, section_pareto, METRICS, study_label
+                       section_rows, selected_section_case, export_section_study, comparison_costs, cost_gap, ranked_cost_rows)
+from .section_visuals import (section_heatmap, section_pareto, section_cost_chart, cost_summary_html,
+                              cost_table_html, highlight_section, METRICS, COST_METRICS, study_label)
 from .visuals import section_figure, results_figure, checks_html, spacing_html
 
 
@@ -38,6 +39,8 @@ class SectionStudy:
         self.budget = W.BoundedIntText(value=100000, min=1, max=500000, description='Total case budget', style={'description_width': '135px'}, layout=W.Layout(width='270px'))
         self.target = W.BoundedFloatText(value=.9, min=.01, max=1, step=.05, description='Strength D/C ≤', style={'description_width': '125px'}, layout=W.Layout(width='245px'))
         self.metric = W.Dropdown(options=[(v, k) for k, v in METRICS.items()], value='steel_lb', description='Map color', layout=W.Layout(width='385px'))
+        self.cell_labels = W.Dropdown(options=[('Concrete + steel quantities', 'quantities'), ('Concrete / steel / forms costs', 'costs'), ('Hover only', 'none')],
+                                      value='quantities', description='Cell labels', layout=W.Layout(width='385px'))
         self.use_cost = W.Checkbox(value=False, description='Use my comparison unit rates', indent=False, layout=W.Layout(width='300px'))
         self.rates = [W.FloatText(value=0, description=label, style={'description_width': '140px'}, layout=W.Layout(width='255px'))
                       for label in ('Concrete / yd³', 'Steel / lb', 'Forms / ft²')]
@@ -57,6 +60,16 @@ class SectionStudy:
         self.progress = W.IntProgress(value=0, max=1, description='Sections')
         self.notice = W.HTML()
         self.summary = W.HTML()
+        self.cost_summary = W.HTML()
+        self.cheapest_button = W.Button(description='Select cheapest section + cage', icon='check', disabled=True, layout=W.Layout(width='280px'))
+        self.cheapest_button.on_click(self._select_cheapest)
+        self.cost_table = W.HTML()
+        self.cost_details = W.Accordion(children=[self.cost_table])
+        self.cost_details.set_title(0, 'All sections ranked by estimated cost')
+        self.cost_details.selected_index = None
+        self.cost_details.layout.display = 'none'
+        self.material_details = W.Accordion(children=[])
+        self.material_details.layout.display = 'none'
         self.charts = W.HBox(layout=W.Layout(flex_flow='row wrap'))
         self.section = W.Dropdown(options=[], description='Section', layout=W.Layout(width='500px'))
         self.cage = W.Dropdown(options=[], description='Cage', layout=W.Layout(width='95%'))
@@ -71,18 +84,19 @@ class SectionStudy:
         self.export_button = W.Button(description='Export section study', icon='download', disabled=True)
         self.export_button.on_click(self._export)
         self.ui = W.VBox([
-            W.HTML('<h2>Cap section & steel study</h2><p>Search width and depth around the reinforcement choices in the main calculator. Click a map marker to explore that section and every cage meeting your strength target.</p>'
+            W.HTML('<h2>Cap section & steel study</h2><p>Search width and depth around the reinforcement choices in the main calculator. Click a heatmap cell or cost bar to explore that section and every cage meeting your strength target.</p>'
                    '<p><b>Fixed-force sensitivity:</b> forces stay unchanged as geometry varies; self-weight and stiffness effects are not reanalyzed. <b>Analysis-matched mode:</b> only supplied matching force cases are evaluated. All results remain subject to pending checks and the source calculation scope.</p>'),
             *dimension_controls, W.HBox([self.min_width, self.min_depth, self.budget], layout=W.Layout(flex_flow='row wrap')),
             W.HTML('<small>Width is also screened against the pile width plus twice the adopted nominal edge allowance. Enter any larger bearing/project minimums above. Zero means no additional project minimum. The search retains the single-outer-hoop family; wider caps may need a different cage topology.</small>'),
             self.mode, library_panel, W.HBox([self.run_button, self.progress]), self.notice,
-            W.HBox([self.target, self.metric], layout=W.Layout(flex_flow='row wrap')), self.cost_controls,
-            self.summary, self.charts, self.section, self.cage, self.selection_info,
+            W.HBox([self.target, self.metric, self.cell_labels], layout=W.Layout(flex_flow='row wrap')), self.cost_controls,
+            self.summary, self.cost_summary, self.cheapest_button, self.charts, self.cost_details, self.material_details,
+            self.section, self.cage, self.selection_info,
             W.HBox([self.apply_button, self.refine_button, self.export_button], layout=W.Layout(flex_flow='row wrap')), self.preview,
         ])
         for control in [*(w for group in self.bounds.values() for w in group), self.mode, self.min_width, self.min_depth, self.budget]:
             control.observe(self._grid_changed, names='value')
-        for control in [self.target, self.metric, self.use_cost, *self.rates]:
+        for control in [self.target, self.metric, self.cell_labels, self.use_cost, *self.rates]:
             control.observe(self._view_changed, names='value')
         for control in [*self.app.search_lists.values(), self.app.limit]:
             control.observe(self._grid_changed, names='value')
@@ -111,6 +125,7 @@ class SectionStudy:
             self.rendering = False
         self.apply_button.disabled = self.export_button.disabled = self.refine_button.disabled = True
         self.summary.value = self.selection_info.value = ''
+        self._clear_cost_view()
         self._close_preview()
         self.notice.value = 'Inputs changed. Rerun the section study; unchanged calculations can be reused from the cache.'
 
@@ -119,8 +134,29 @@ class SectionStudy:
             self.invalidate()
 
     def _view_changed(self, change):
-        if not self.rendering and self.study is not None:
+        if self.rendering:
+            return
+        if change['owner'] is self.use_cost:
+            self.rendering = True
+            try:
+                if self.use_cost.value:
+                    self.metric.value = 'cost_premium_pct'
+                else:
+                    if self.metric.value in COST_METRICS:
+                        self.metric.value = 'steel_lb'
+                    if self.cell_labels.value == 'costs':
+                        self.cell_labels.value = 'quantities'
+            finally:
+                self.rendering = False
+        if self.study is not None:
             self._render()
+
+    def _clear_cost_view(self):
+        self.cost_summary.value = self.cost_table.value = ''
+        self.cheapest_button.disabled = True
+        self.cheapest_button.layout.display = 'none'
+        self.cost_details.layout.display = self.material_details.layout.display = 'none'
+        self.material_details.children = []
 
     def _rates(self):
         return CostRates(*(w.value for w in self.rates)).validate() if self.use_cost.value else None
@@ -168,39 +204,58 @@ class SectionStudy:
     def _render(self):
         try:
             rates = self._rates()
-            if self.metric.value == 'estimated_cost' and rates is None:
+            if (self.metric.value in COST_METRICS or self.cell_labels.value == 'costs') and rates is None:
                 raise ValueError('Enable comparison costs and enter your rates to color the map by cost.')
             self.rows = section_rows(self.study, self.target.value, rates)
             for figure in self.figures:
                 figure.close()
-            heat = go.FigureWidget(section_heatmap(self.study, self.rows, self.metric.value))
+            heat = go.FigureWidget(section_heatmap(self.study, self.rows, self.metric.value, self.cell_labels.value))
             pareto = go.FigureWidget(section_pareto(self.study, self.rows))
             heat.data[0].on_click(self._map_clicked)
             heat.data[1].on_click(self._map_clicked)
             for trace in pareto.data:
                 trace.on_click(self._pareto_clicked)
-            self.figures = [heat, pareto]
-            self.charts.children = [W.VBox([f], layout=W.Layout(flex='1 1 550px', min_width='400px')) for f in self.figures]
+            self._clear_cost_view()
+            if rates:
+                costs = go.FigureWidget(section_cost_chart(self.study, self.rows, self.section.value))
+                for trace in costs.data:
+                    trace.on_click(self._pareto_clicked)
+                self.figures = [heat, costs, pareto]
+                self.cost_summary.value = cost_summary_html(self.study, self.rows, rates)
+                self.cost_table.value = cost_table_html(self.rows)
+                self.cheapest_button.disabled = not bool(ranked_cost_rows(self.rows))
+                self.cheapest_button.layout.display = ''
+                self.cost_details.layout.display = self.material_details.layout.display = ''
+                self.material_details.children = [pareto]
+                self.material_details.set_title(0, 'Material tradeoff plot · quantities, not total cost')
+                self.material_details.selected_index = None
+            else:
+                self.figures = [heat, pareto]
+                self.cost_summary.value = '<p><b>To compare costs:</b> enable comparison unit rates above and enter concrete, steel and form rates. Quantities alone do not identify the cheapest section.</p>'
+            self.charts.children = [W.VBox([f], layout=W.Layout(flex='1 1 600px', min_width='600px')) for f in self.figures[:2]]
             matches = [r for r in self.rows if r['matches']]
             complete = 'All geometry points resolved within the listed search choices.' if self.study.exhaustive else 'Incomplete coverage: inspect partial searches, missing analysis or untested/error points.'
             self.summary.value = f'<p><b>{study_label(self.study)}</b><br>{len(matches)} / {len(self.rows)} sections have cages at strength D/C ≤ {self.target.value:.3f}. '
             self.summary.value += f'{self.study.evaluated:,} / {self.study.total:,} possible combinations evaluated; geometry screens can exclude whole sections. {complete}<br>'
             self.summary.value += f'Adopted minimum width screen: {self.study.minimum_width_in:g} in. Each colored point uses its lightest matching cage. The frontier covers the explored points, not every possible design.</p>'
             if matches:
-                metric = self.metric.value
+                metric = 'estimated_cost' if rates else self.metric.value
                 best = min(matches, key=lambda r: (r[metric], r['steel_lb']))
-                self.summary.value += f'<p><b>Lowest {html.escape(METRICS[metric].lower())} in this view:</b> {best["width_in"]:g} × {best["depth_in"]:g} in · {best[metric]:,.3f}. '
-                self.summary.value += 'This is a comparison candidate; pending service/fatigue and load-transfer/detail reviews remain.</p>'
+                if not rates:
+                    self.summary.value += f'<p><b>Lowest {html.escape(METRICS[metric].lower())} in this view:</b> {best["width_in"]:g} × {best["depth_in"]:g} in · {best[metric]:,.3f}. '
+                    self.summary.value += 'This is a comparison candidate; pending service/fatigue and load-transfer/detail reviews remain.</p>'
             old = self.section.value
+            old_cage = self.cage.value
             self.rendering = True
             try:
-                self.section.options = [(f'{r["width_in"]:g} × {r["depth_in"]:g} in · {r["matches"]} cages · {r["state"]}', r['point_id']) for r in self.rows]
+                ordered = ranked_cost_rows(self.rows) + [r for r in self.rows if r['estimated_cost'] is None] if rates else self.rows
+                self.section.options = [(self._section_label(r), r['point_id']) for r in ordered]
                 self.section.value = old if old is not None and 0 <= old < len(self.rows) else (best['point_id'] if matches else 0)
             finally:
                 self.rendering = False
             self.export_button.disabled = False
             self.refine_button.disabled = False
-            self._select_section()
+            self._select_section(old_cage if self.section.value == old else None)
         except Exception as exc:
             self.rows = []
             for figure in self.figures:
@@ -208,9 +263,25 @@ class SectionStudy:
             self.figures = []
             self.charts.children = []
             self.summary.value = '<b>View needs input:</b> ' + html.escape(str(exc))
+            self._clear_cost_view()
             self.selection_info.value = ''
             self.apply_button.disabled = self.export_button.disabled = self.refine_button.disabled = True
             self._close_preview()
+
+    @staticmethod
+    def _section_label(row):
+        label = f'{row["width_in"]:g} × {row["depth_in"]:g} in · {row["matches"]} cages'
+        if row['estimated_cost'] is not None:
+            gap = 'lowest cost' if row['lowest_cost'] else f'+{row["cost_premium_pct"]:.1f}%' if row['cost_premium_pct'] is not None else 'above zero baseline'
+            label = f'#{row["cost_rank"]} · ' + label + f' · {row["estimated_cost"]:,.2f} ({gap})'
+        return label + ' · ' + row['state']
+
+    def _select_cheapest(self, _):
+        if self.cheapest_button.disabled:
+            return
+        best = ranked_cost_rows(self.rows)[0]
+        self.section.value = best['point_id']
+        self.cage.value = best['candidate_id']
 
     def _map_clicked(self, trace, points, selector):
         if not points.xs or not points.ys:
@@ -228,7 +299,7 @@ class SectionStudy:
         if not self.rendering:
             self._select_section()
 
-    def _select_section(self):
+    def _select_section(self, preserve_cage=None):
         if self.study is None or self.section.value is None or not self.rows:
             return
         row = self.rows[self.section.value]
@@ -236,12 +307,19 @@ class SectionStudy:
         self.rendering = True
         try:
             self.cage.options = [(f'#{i+1} · {point.result.candidates[i].label} · {point.result.candidates[i].weight_lb:,.0f} lb · strength {point.result.candidates[i].strength_dc:.3f}', i) for i in row['candidate_ids']]
-            self.cage.value = row['candidate_ids'][0] if row['candidate_ids'] else None
+            self.cage.value = preserve_cage if preserve_cage in row['candidate_ids'] else row['candidate_ids'][0] if row['candidate_ids'] else None
         finally:
             self.rendering = False
         if self.figures:
-            self.figures[0].data[2].x = [point.width]
-            self.figures[0].data[2].y = [point.depth]
+            highlight_section(self.figures[0], self.study, self.rows, row['point_id'])
+            if self.use_cost.value and len(self.figures) == 3:
+                # Rebuild only this inexpensive chart to include a selected section outside the leading ten.
+                cost_figure = go.FigureWidget(section_cost_chart(self.study, self.rows, row['point_id']))
+                for trace in cost_figure.data:
+                    trace.on_click(self._pareto_clicked)
+                self.figures[1].close()
+                self.figures[1] = cost_figure
+                self.charts.children[1].children = [cost_figure]
         self._preview()
 
     def _cage_changed(self, change):
@@ -266,8 +344,13 @@ class SectionStudy:
         self.selection_info.value += f'Chosen cage: {candidate.weight_lb:,.0f} lb gross steel · {row["concrete_yd3"]:.3f} yd³ concrete · {row["form_ft2"]:.1f} ft² forms · strength D/C {candidate.strength_dc:.4f} · all-check utilization {candidate.max_dc:.4f}.<br>'
         rates = self._rates()
         if rates:
-            cost = row['concrete_yd3'] * rates.concrete_per_yd3 + candidate.weight_lb * rates.steel_per_lb + row['form_ft2'] * rates.form_per_ft2
-            self.selection_info.value += f'Chosen-cage comparison cost: {cost:,.2f}.<br>'
+            parts = comparison_costs(row['concrete_yd3'], candidate.weight_lb, row['form_ft2'], rates)
+            best = ranked_cost_rows(self.rows)[0]
+            extra, percent = cost_gap(parts['estimated_cost'], best['estimated_cost'])
+            comparison = 'Matches the lowest explored cost.' if extra == 0 else f'Adds {extra:,.2f}' + (f' ({percent:.1f}%)' if percent is not None else '') + ' versus the cheapest explored section/cage.'
+            self.selection_info.value += f'<b>Chosen-cage cost: {parts["estimated_cost"]:,.2f} per cap.</b> {comparison}<br>'
+            self.selection_info.value += f'Concrete {parts["concrete_cost"]:,.2f} + steel {parts["steel_cost"]:,.2f} + forms {parts["form_cost"]:,.2f}. '
+            self.selection_info.value += 'The map and ranking use each section’s lightest matching cage; this summary uses your selected cage.<br>'
         source = case['analysis']
         self.selection_info.value += f'Source analysis: {html.escape(source["id"])} · source section {source["geometry"]["b"]:g} × {source["geometry"]["h"]:g} in.<br><b>{html.escape(e.status)}</b></p>'
         if self.study.grid['force_mode'] == 'matched':

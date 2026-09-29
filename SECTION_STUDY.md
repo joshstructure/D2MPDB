@@ -7,7 +7,7 @@ Open `Pier_Cap_Design_Optimizer.ipynb`, Run all, and use **Section 5 — Search 
 1. Set steel choices in the existing main workbench. The section study uses those lists and its per-section case limit.
 2. Select geometry ranges, additional project minimum dimensions, and a total candidate budget. The grid is limited to 225 sections and the budget to 500,000 evaluations per run. Rejected or untested sections remain visible.
 3. Choose the force basis and run the study. Fixed-force sensitivity is the default. Analysis-matched mode requires a source case at each section; add actual analyzed case JSON files through the analysis-library uploader.
-4. Change the strength D/C target to filter completed results. The map colors the lightest target-matching cage at each section by steel, concrete, strength D/C or entered comparison cost. Click any map marker or tradeoff point, or use the section dropdown.
+4. Change the strength D/C target to filter completed results. Each heatmap cell shows **concrete volume and steel weight together**. Hover for quantities, the concrete/steel/forms cost breakdown, and differences from the cheapest explored match. Use **Cell labels** to show component costs instead. Dense grids use hover labels to avoid overlapping text. Click any cell or plot point, or use the section dropdown.
 5. Browse **all** matching cages in the cage selector. The selected cage's drawing, capacity plots, spacing breakdown and check register update together. The map still represents the lightest cage, and the selected-cage summary reports that selected cage's own weight and cost.
 6. **Refine around this section** restricts the bounds to neighboring coarse points and halves the increments. Press Run again. Identical section/case/search calculations are reused from an in-memory cache; changing target or prices only changes the view. Changing main case inputs, steel choices or grid parameters clears the old view.
 7. Load a selected case into the main calculator or export the study. Fixed-force selections retain the old analysis geometry; the ordinary steel optimizer still blocks changed geometry until corresponding analysis forces are supplied.
@@ -38,11 +38,19 @@ concrete yd³ × concrete rate + gross steel lb × steel rate + form ft² × for
 
 No market prices are supplied. Use consistent currency and an appropriate labor basis in your rates. A zero rate intentionally excludes that item. This is a comparison estimate rather than a takeoff or bid estimate. The concrete/steel Pareto frontier identifies points for which no explored point uses no more of either material and strictly less of one. It does not optimize formwork or construction effort. Partial searches produce an observed frontier only; even an exhaustive grid does not prove a global optimum outside its listed choices.
 
+### Reading the cost view
+
+Enable **Use my comparison unit rates** and enter rates. This switches the map to **Cost above cheapest (%)**: zero is the lowest estimated cost among explored target-matching cages. You can also color by total cost, steel, concrete or strength D/C. Cell labels independently show material quantities or concrete/steel/forms costs. A green cell outline marks the lowest cost; an amber dashed outline marks your selected section. The hover explains whether added concrete is offset by steel savings, including the quantity and cost differences from the cheapest section.
+
+The cost summary identifies the lowest-cost section, its total and component shares, and the next higher cost. Any zero-rate items are explicitly listed as excluded. The stacked bar chart ranks up to ten leading sections by total concrete + steel + forms cost, plus your selection if it is outside those ten. **All sections ranked by estimated cost** retains the entire priced population, with amounts and percentages above the cheapest, strength D/C and search status. The section selector follows the same cost order. Click a bar or use **Select cheapest section + cage** to inspect its lightest matching cage; this does not apply it to the main calculator.
+
+Changing rates or the strength target updates the view without running the search again. Your selected cage is preserved when it still meets the target. Its summary reports its own cost and premium above the cheapest explored section/cage. The map and ranking continue to use each section's lightest target-matching cage. The material-frontier graph remains in an expandable panel and is explicitly a quantity comparison, not a cost ranking. A partial study reports incomplete coverage; even a fully enumerated study does not imply a global or released design optimum.
+
 ## Outputs and reproducibility
 
 Each new timestamped export includes:
 
-- `sections.csv`: every geometry point, disposition/reason, target-match count, best matching cage, quantities, strength/all-check ratios, cost if entered, and observed material-frontier flag.
+- `sections.csv`: every geometry point, disposition/reason, target-match count, best matching cage, quantities, strength/all-check ratios, concrete/steel/forms and total costs if entered, cost rank and amount/percentage above the cheapest explored match, and observed material-frontier flag.
 - `all_section_cages.csv`: every retained cage at every calculated section, including whether it meets the current target. IDs here are explicitly zero-based.
 - `study.json`: the starting case, geometry and steel grids, limits, force mode, per-section analysis records/forces, target/rates, coverage and calculation-source hash.
 - `analysis_requests.json`: geometry records to obtain or confirm in analysis; fixed-force mode lists all explored sections conservatively.

@@ -234,6 +234,32 @@ def run_section_study(base_case, grid=None, steel_config=None, *, analyzed_cases
                               total, exhaustive, perf_counter() - started, minimum_width)
 
 
+def comparison_costs(concrete_yd3, steel_lb, form_ft2, rates):
+    """Gross comparison quantities at entered rates, in one user-chosen currency."""
+    rates.validate()
+    parts = {'concrete_cost': concrete_yd3 * rates.concrete_per_yd3,
+             'steel_cost': steel_lb * rates.steel_per_lb,
+             'form_cost': form_ft2 * rates.form_per_ft2}
+    parts['estimated_cost'] = sum(parts.values())
+    if not math.isfinite(parts['estimated_cost']):
+        raise ValueError('These rates overflow the cost calculation. Enter finite comparison costs.')
+    return parts
+
+
+def ranked_cost_rows(rows):
+    """All target-matching priced sections; IDs remain the original study IDs."""
+    return sorted((r for r in rows if r['matches'] and r['estimated_cost'] is not None),
+                  key=lambda r: (r['estimated_cost'], r['steel_lb'], r['point_id']))
+
+
+def cost_gap(cost, baseline):
+    difference = cost - baseline
+    if math.isclose(cost, baseline, rel_tol=1e-12, abs_tol=1e-9):
+        difference = 0.0
+    percent = difference / baseline * 100 if baseline > 0 else (0.0 if difference == 0 else None)
+    return difference, percent
+
+
 def section_rows(study, target=.9, rates=None):
     """Cheapest gross-steel target match per section; no new evaluations."""
     if isinstance(target, bool) or not isinstance(target, (float, int)) or not math.isfinite(target) or not 0 < target <= 1:
@@ -244,15 +270,23 @@ def section_rows(study, target=.9, rates=None):
     for i, p in enumerate(study.points):
         ids = filter_candidates(p.result, target, 'strength', 'Least steel') if p.result else []
         chosen = p.result.candidates[ids[0]] if ids else None
-        cost = None if chosen is None or rates is None else (
-            p.concrete_yd3 * rates.concrete_per_yd3 + chosen.weight_lb * rates.steel_per_lb + p.form_ft2 * rates.form_per_ft2)
+        costs = dict.fromkeys(('concrete_cost', 'steel_cost', 'form_cost', 'estimated_cost'))
+        if chosen is not None and rates is not None:
+            costs = comparison_costs(p.concrete_yd3, chosen.weight_lb, p.form_ft2, rates)
         rows.append({'point_id': i, 'width_in': p.width, 'depth_in': p.depth,
                      'state': p.state, 'reason': p.reason, 'matches': len(ids), 'candidate_ids': ids,
                      'candidate_id': ids[0] if ids else None, 'steel_lb': chosen.weight_lb if chosen else None,
                      'strength_dc': chosen.strength_dc if chosen else None, 'all_check_ratio': chosen.max_dc if chosen else None,
                      'layout': chosen.label if chosen else '', 'complexity': chosen.complexity if chosen else None,
-                     'concrete_yd3': p.concrete_yd3, 'form_ft2': p.form_ft2, 'estimated_cost': cost,
+                     'concrete_yd3': p.concrete_yd3, 'form_ft2': p.form_ft2, **costs,
+                     'cost_rank': None, 'cost_difference': None, 'cost_premium_pct': None, 'lowest_cost': False,
                      'force_mode': study.grid['force_mode'], 'pareto': False})
+    priced = ranked_cost_rows(rows)
+    for index, row in enumerate(priced):
+        row['cost_difference'], row['cost_premium_pct'] = cost_gap(row['estimated_cost'], priced[0]['estimated_cost'])
+        row['lowest_cost'] = row['cost_difference'] == 0
+        tied = index and cost_gap(row['estimated_cost'], priced[index - 1]['estimated_cost'])[0] == 0
+        row['cost_rank'] = priced[index - 1]['cost_rank'] if tied else index + 1
     # Material frontier among explored, target-matching results. Same-material ties are retained.
     feasible = sorted((r for r in rows if r['matches']), key=lambda r: (r['concrete_yd3'], r['steel_lb']))
     best_steel = math.inf

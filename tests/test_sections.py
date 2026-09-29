@@ -10,7 +10,7 @@ from unittest.mock import patch
 from pier_cap.model import default_case, evaluate, set_inputs, analysis_match
 from pier_cap.optimizer import SearchConfig, search, sensitivity_search
 from pier_cap.sections import (SectionGrid, CostRates, SectionCache, dimension_values, run_section_study,
-                               section_rows, selected_section_case, export_section_study)
+                               section_rows, selected_section_case, export_section_study, ranked_cost_rows)
 
 
 SMALL = SearchConfig(main_bars=(7, 8), top_counts=(6, 8), bottom_counts=(6, 8),
@@ -121,6 +121,57 @@ class SectionStudyTests(unittest.TestCase):
                             and (other['concrete_yd3'] < row['concrete_yd3'] or other['steel_lb'] < row['steel_lb']) for other in valid)
             self.assertEqual(row['pareto'], not dominated)
 
+    def test_cost_components_rank_reversal_ties_and_missing_prices(self):
+        # Synthetic quantities isolate economics from the mechanics search.
+        points = []
+        for depth, concrete, steel, forms in [(36, 10, 2000, 100), (48, 12, 1000, 120)]:
+            cage = SimpleNamespace(weight_lb=steel, strength_dc=.8, max_dc=.95, complexity=1, label='Test cage')
+            points.append(SimpleNamespace(width=48, depth=depth, state='EVALUATED', reason='', concrete_yd3=concrete,
+                                          form_ft2=forms, result=SimpleNamespace(candidates=[cage])))
+        study = SimpleNamespace(points=points, grid={'force_mode': 'fixed', 'widths': (48,), 'depths': (36, 48)}, exhaustive=True)
+        concrete_dominant = section_rows(study, rates=CostRates(1000, 1, 5))
+        self.assertEqual(ranked_cost_rows(concrete_dominant)[0]['depth_in'], 36)
+        a, b = concrete_dominant
+        self.assertEqual((a['concrete_cost'], a['steel_cost'], a['form_cost'], a['estimated_cost']), (10000, 2000, 500, 12500))
+        self.assertEqual(b['cost_difference'], 1100)
+        self.assertAlmostEqual(b['cost_premium_pct'], 8.8)
+        steel_dominant = section_rows(study, rates=CostRates(1000, 10, 5))
+        self.assertEqual(ranked_cost_rows(steel_dominant)[0]['depth_in'], 48)
+        tied = section_rows(study, rates=CostRates(500, 1, 0))
+        self.assertEqual([r['cost_rank'] for r in tied], [1, 1])
+        self.assertTrue(all(r['lowest_cost'] and r['cost_premium_pct'] == 0 for r in tied))
+        self.assertFalse(ranked_cost_rows(section_rows(study)))
+        self.assertFalse(ranked_cost_rows(section_rows(study, target=.7, rates=CostRates(1, 1, 1))))
+        with self.assertRaises(ValueError):
+            section_rows(study, rates=CostRates(1e308, 1, 1))
+
+    def test_heatmap_breakdown_and_cost_bar_values(self):
+        from pier_cap.section_visuals import section_heatmap, section_cost_chart, cost_summary_html, cost_table_html
+        rates = CostRates(500, 2, 30)
+        rows = section_rows(self.study, rates=rates)
+        best = ranked_cost_rows(rows)[0]
+        heat = section_heatmap(self.study, rows, 'cost_premium_pct')
+        i, j = self.grid.depths.index(best['depth_in']), self.grid.widths.index(best['width_in'])
+        self.assertEqual(heat.data[0].z[i][j], 0)
+        self.assertIn('yd³', heat.data[0].text[i][j])
+        self.assertIn('lb', heat.data[0].text[i][j])
+        self.assertIn('Steel cost:', heat.data[0].customdata[i][j])
+        self.assertIn(f'{best["estimated_cost"]:,.2f}', heat.data[0].customdata[i][j])
+        cost_labels = section_heatmap(self.study, rows, 'estimated_cost', 'costs')
+        self.assertIn(f'C {best["concrete_cost"]:,.0f}', cost_labels.data[0].text[i][j])
+        chart = section_cost_chart(self.study, rows)
+        for index, row in enumerate(ranked_cost_rows(rows)):
+            self.assertEqual(chart.data[0].customdata[index], row['point_id'])
+            self.assertAlmostEqual(sum(trace.x[index] for trace in chart.data[:3]), row['estimated_cost'])
+        self.assertIn('Lowest estimated cost', cost_summary_html(self.study, rows, rates))
+        self.assertIn('Steel cost', cost_table_html(rows))
+        self.assertIn('Zero-rate items excluded: steel, forms', cost_summary_html(self.study, section_rows(self.study, rates=CostRates(500, 0, 0)), CostRates(500, 0, 0)))
+        # Every point remains selectable beyond the ten leading bars.
+        many = [dict(best, point_id=k, width_in=44 + k, estimated_cost=best['estimated_cost'] + k, cost_rank=k + 1) for k in range(14)]
+        beyond = section_cost_chart(self.study, many, selected=13)
+        self.assertEqual(len(beyond.data[0].customdata), 11)
+        self.assertIn(13, beyond.data[0].customdata)
+
     def test_budget_and_bad_ranges_are_explicit(self):
         result = run_section_study(default_case(), SectionGrid(widths=(44, 48), depths=(48,), max_total_cases=3), SMALL)
         self.assertEqual(result.evaluated, 3)
@@ -142,7 +193,7 @@ class SectionStudyTests(unittest.TestCase):
         rows = section_rows(self.study)
         row = next(r for r in rows if r['matches'] and r['width_in'] != 48)
         with tempfile.TemporaryDirectory() as folder:
-            path = export_section_study(self.study, folder, selected=(row['point_id'], row['candidate_id']))
+            path = export_section_study(self.study, folder, rates=CostRates(500, 2, 30), selected=(row['point_id'], row['candidate_id']))
             case = json.loads((path / 'selected_case.json').read_text(encoding='utf-8'))
             self.assertEqual(case['analysis'], default_case()['analysis'])
             self.assertIn('REIMPORT', evaluate(case).status)
@@ -155,6 +206,11 @@ class SectionStudyTests(unittest.TestCase):
             self.assertTrue(all(r['Force mode'] == 'fixed' for r in cages))
             requests = json.loads((path / 'analysis_requests.json').read_text())
             self.assertEqual(len(requests), 9)
+            with (path / 'sections.csv').open(encoding='utf-8-sig', newline='') as f:
+                summaries = list(csv.DictReader(f))
+            winner = next(r for r in summaries if r['lowest_cost'] == 'True')
+            self.assertAlmostEqual(float(winner['estimated_cost']), sum(float(winner[k]) for k in ('concrete_cost', 'steel_cost', 'form_cost')))
+            self.assertEqual(float(winner['cost_premium_pct']), 0)
 
     def test_click_filter_apply_export_and_invalidation(self):
         from pier_cap.widgets import CapNotebook
@@ -180,12 +236,36 @@ class SectionStudyTests(unittest.TestCase):
             panel.use_cost.value = True
             self.assertTrue(panel.apply_button.disabled)
             panel.rates[0].value = 500
+            self.assertEqual(panel.metric.value, 'cost_premium_pct')
+            self.assertIn('Zero-rate items excluded: steel, forms', panel.cost_summary.value)
+            self.assertEqual(len(panel.figures), 3)
+            panel.rates[1].value = 2
+            panel.rates[2].value = 30
+            panel._select_cheapest(None)
+            best = ranked_cost_rows(panel.rows)[0]
+            self.assertEqual(panel.section.value, best['point_id'])
+            self.assertEqual(panel.cage.value, best['candidate_id'])
+            panel.cage.value = panel.rows[panel.section.value]['candidate_ids'][-1]
+            chosen = panel.cage.value
+            with patch('pier_cap.sections.sensitivity_search', side_effect=AssertionError('Repricing reran search')):
+                panel.rates[1].value = 3
+                panel.cell_labels.value = 'costs'
+            self.assertEqual(panel.cage.value, chosen)
+            self.assertIn('Chosen-cage cost', panel.selection_info.value)
+            trace = panel.figures[1].data[0]
+            panel._pareto_clicked(trace, SimpleNamespace(point_inds=[1]), None)
+            self.assertEqual(panel.section.value, trace.customdata[1])
             panel.metric.value = 'estimated_cost'
             self.assertFalse(panel.apply_button.disabled)
             with tempfile.TemporaryDirectory() as folder:
                 app.export_root = Path(folder)
                 panel._export(None)
                 self.assertTrue((panel.last_export / 'sections.csv').exists())
+            panel.use_cost.value = False
+            self.assertEqual(panel.metric.value, 'steel_lb')
+            self.assertEqual(panel.cell_labels.value, 'quantities')
+            self.assertEqual(len(panel.figures), 2)
+            self.assertTrue(panel.cheapest_button.disabled)
             # Refinement halves steps but waits for the explicit Run action.
             panel._refine(None)
             self.assertEqual(panel.bounds['width'][2].value, 2)

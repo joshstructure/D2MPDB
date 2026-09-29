@@ -8,6 +8,18 @@ from .model import bar_positions,BAR_DIAMETER
 from .optimizer import candidate_dc,candidate_governing,governing_check,DC_SCOPES
 
 BLUE='#1f5b91';TEAL='#167b75';AMBER='#d88822';RED='#bb3e39';INK='#213649';GREY='#b8c7d1'
+MOMENT='#2166ac';MOMENT_CAPACITY='#90bce4';SHEAR='#8250a0';SHEAR_CAPACITY='#c4a4d8'
+
+
+def check_family(check):
+    if check.key.startswith('Chk_flex_'):return 'Moment / flexure',MOMENT
+    if check.key.startswith('Chk_shear_'):return 'Shear',SHEAR
+    if check.key.startswith('Chk_torsteel_'):return 'Shear + torsion steel',AMBER
+    return 'Other checks','#86939f'
+
+
+def check_color(check):
+    return RED if check.ratio>1 or 'FAIL' in check.status else check_family(check)[1]
 
 def theme(fig,title,height=460):
     fig.update_layout(title=dict(text=title,font=dict(size=17)),template='plotly_white',height=height,
@@ -62,12 +74,12 @@ def hoop_figure(e):
 def results_figure(e):
     fig=make_subplots(rows=2,cols=2,subplot_titles=('Factored moment / resistance (kip-ft)','Service I steel stress (ksi)','Shear demand / resistance (kip)','Combined shear + torsion area (in²)'),vertical_spacing=.22,horizontal_spacing=.13)
     labels=['N · top','P · pile','B · bearing']
-    for prefix,name,color in [('Mu_','Demand',BLUE),('Mr_','Resistance',TEAL)]:fig.add_trace(go.Bar(x=labels,y=[e.value(prefix+z,'kip*ft') for z in 'NPB'],name='Moment '+name,marker_color=color),row=1,col=1)
-    fig.add_trace(go.Bar(x=labels,y=[e.value('fs_I_'+z,'ksi') for z in 'NPB'],name='Service I stress',marker_color=BLUE),row=1,col=2)
+    for prefix,name,color in [('Mu_','Demand',MOMENT),('Mr_','Resistance',MOMENT_CAPACITY)]:fig.add_trace(go.Bar(x=labels,y=[e.value(prefix+z,'kip*ft') for z in 'NPB'],name='Moment '+name,marker_color=color),row=1,col=1)
+    fig.add_trace(go.Bar(x=labels,y=[e.value('fs_I_'+z,'ksi') for z in 'NPB'],name='Service I stress',marker_color=TEAL),row=1,col=2)
     fig.add_hline(y=e.value('fs_I_limit','ksi'),line_color=AMBER,line_dash='dash',annotation_text='Stress limit',row=1,col=2)
-    for prefix,name,color in [('Vu_','Shear demand',BLUE),('Vr_','Shear resistance',TEAL)]:fig.add_trace(go.Bar(x=['Global','Low'],y=[e.value(prefix+z,'kip') for z in 'GL'],name=name,marker_color=color),row=2,col=1)
-    fig.add_trace(go.Bar(x=['Global','Low'],y=[e.value('Acomb_'+z,'in^2') for z in 'GL'],name='Combined area required',marker_color=BLUE),row=2,col=2)
-    fig.add_hline(y=e.value('Av','in^2'),line_color=AMBER,line_dash='dash',annotation_text='Area provided',row=2,col=2)
+    for prefix,name,color in [('Vu_','Shear demand',SHEAR),('Vr_','Shear resistance',SHEAR_CAPACITY)]:fig.add_trace(go.Bar(x=['Global','Low'],y=[e.value(prefix+z,'kip') for z in 'GL'],name=name,marker_color=color),row=2,col=1)
+    fig.add_trace(go.Bar(x=['Global','Low'],y=[e.value('Acomb_'+z,'in^2') for z in 'GL'],name='Combined area required',marker_color=AMBER),row=2,col=2)
+    fig.add_hline(y=e.value('Av','in^2'),line_color=INK,line_dash='dash',annotation_text='Area provided',row=2,col=2)
     theme(fig,'Current cage · capacity and stress response',620);fig.update_layout(barmode='group',legend=dict(font=dict(size=10),orientation='h',y=-.16))
     return fig
 
@@ -84,11 +96,15 @@ def spacing_html(e):
 def ratios_figure(e):
     checks=[c for c in e.checks if isinstance(c.ratio,(float,int))]
     fig=go.Figure(go.Bar(x=[c.ratio for c in checks],y=[c.label for c in checks],orientation='h',
-        marker_color=[RED if c.ratio>1 or 'FAIL' in c.status else TEAL for c in checks],
-        text=[f'{c.ratio:.3f}' for c in checks],textposition='outside',customdata=[c.basis for c in checks],hovertemplate='%{y}<br>Check ratio %{x:.4f}<br>%{customdata}<extra></extra>'))
+        marker_color=[check_color(c) for c in checks],showlegend=False,
+        text=[f'{c.ratio:.3f}' for c in checks],textposition='outside',customdata=[[c.basis,c.status] for c in checks],hovertemplate='%{y}<br>Check ratio %{x:.4f}<br>%{customdata[0]}<br>%{customdata[1]}<extra></extra>'))
+    families=dict(check_family(c) for c in checks)
+    if any(check_color(c)==RED for c in checks):families['Failed check']=RED
+    for name,color in families.items():
+        fig.add_trace(go.Scatter(x=[None],y=[None],mode='markers',marker=dict(color=color,size=10,symbol='square'),name=name,hoverinfo='skip'))
     fig.add_vline(x=1,line_color=AMBER,line_dash='dash',annotation_text='Check limit = 1')
     fig.update_yaxes(autorange='reversed');fig.update_xaxes(title='Check utilization · strength, minimum steel, spacing and service',range=[0,max(1.25,e.max_dc*1.15)])
-    theme(fig,'All available numerical comparisons',max(700,len(checks)*28));fig.update_layout(margin=dict(l=240,r=55,t=65,b=55))
+    theme(fig,'All available numerical comparisons',max(750,len(checks)*28+60));fig.update_layout(margin=dict(l=240,r=55,t=65,b=100),legend=dict(y=-.08,orientation='h',font=dict(size=10)))
     return fig
 
 def optional_service_figure(e):
@@ -144,11 +160,11 @@ def snapshot(e):
         x=e.value('E_CL')/12+i*p['S_pile'];ax.add_patch(Rectangle((x-p['D_pile']/24,-1.5),p['D_pile']/12,1.5,color=GREY))
     ax.set(xlim=(-1,length+1),ylim=(-2,depth+1),aspect='equal',title=f'Pile layout · {length:.3f} ft cap length',xlabel='Along cap (ft)')
     ax=axes[1,0];labels=list('NPB');xs=list(range(3))
-    ax.bar([x-.18 for x in xs],[e.value('Mu_'+z,'kip*ft') for z in labels],width=.36,color=BLUE,label='Demand')
-    ax.bar([x+.18 for x in xs],[e.value('Mr_'+z,'kip*ft') for z in labels],width=.36,color=TEAL,label='Resistance')
+    ax.bar([x-.18 for x in xs],[e.value('Mu_'+z,'kip*ft') for z in labels],width=.36,color=MOMENT,label='Demand')
+    ax.bar([x+.18 for x in xs],[e.value('Mr_'+z,'kip*ft') for z in labels],width=.36,color=MOMENT_CAPACITY,label='Resistance')
     ax.set(xticks=xs,xticklabels=labels,ylabel='kip-ft',title='Flexural strength');ax.legend(frameon=False)
     ax=axes[1,1];ch=sorted((c for c in e.checks if isinstance(c.ratio,(int,float))),key=lambda c:c.ratio,reverse=True)[:7]
-    ax.barh([c.label.replace(' — ',' / ') for c in ch],[c.ratio for c in ch],color=TEAL);ax.invert_yaxis();ax.axvline(1,color=AMBER,ls='--');ax.set(xlim=(0,max(1.15,e.max_dc*1.1)),title='Seven largest check ratios (includes detailing)',xlabel='Check utilization')
+    ax.barh([c.label.replace(' — ',' / ') for c in ch],[c.ratio for c in ch],color=[check_color(c) for c in ch]);ax.invert_yaxis();ax.axvline(1,color=AMBER,ls='--');ax.set(xlim=(0,max(1.15,e.max_dc*1.1)),title='Seven largest check ratios (includes detailing)',xlabel='Check utilization')
     for ax in axes.flat:ax.spines[['top','right']].set_visible(False)
     strength=governing_check(e,'strength')
     fig.suptitle(f'C005 · Strength D/C {strength.ratio:.3f} | All-check utilization {e.max_dc:.3f}\n'+e.status,fontsize=14,color=INK)

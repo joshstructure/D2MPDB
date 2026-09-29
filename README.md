@@ -52,6 +52,10 @@ Programmatically, `filter_candidates(result, max_dc=0.90, scope="strength")` ret
 
 Notebook **Section 5** adds a width/depth grid around the existing steel search, a clickable section heatmap, concrete/steel tradeoff plot, all-cage selection, live previews, local grid refinement and study exports. The starting ranges are widths **44–52 in by 4 in** and depths **36–60 in by 6 in**. Change the strength target and optional unit rates without repeating calculations. Exact repeated section searches are cached within the runtime.
 
+Heatmap cells show **concrete volume and steel weight together**, or their separate costs using the cell-label control. Entering comparison rates enables a **lowest-cost section summary**, a map of **percentage above the cheapest explored match**, a ranked stacked concrete/steel/forms cost chart and a complete ranked table. Hover shows the material and cost differences from the cheapest section. All costs use your entered rates; zero-rate items are labeled as excluded. The selected cage has its own cost comparison, even when it is heavier than the cage used for the map.
+
+Moment demand/capacity plots use blue shades; shear uses purple shades. The numerical D/C chart uses the same family colors, with orange for combined shear/torsion, gray for other checks, and red overriding the family color for a failed check. Values, labels and limits remain visible independently of color.
+
 Default **fixed-force sensitivity** keeps imported forces constant and retains their original source geometry. **Analysis-matched mode** uses uploaded case JSON files for the corresponding sections and leaves missing analyses visible. This does not run FB-MultiPier. Ordinary changed-geometry checks still require matching force inputs. Read [SECTION_STUDY.md](SECTION_STUDY.md) for force provenance, geometry screens, quantities, limits and exports.
 
 ### Search and drawing limits
