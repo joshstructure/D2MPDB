@@ -8,6 +8,7 @@ import plotly.graph_objects as go
 from .model import default_case,evaluate,INPUTS,GEOMETRY,formula_trace
 from .optimizer import search,SearchConfig,candidate_case,filter_candidates,candidate_dc,candidate_governing,governing_check,DC_SCOPES
 from .io import load_case,export_bundle,export_blockpad
+from .fbmp_widgets import XMLImportPanel
 from .visuals import section_figure,elevation_figure,hoop_figure,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html,spacing_html
 
 LABELS={'b':'Cap width','h':'Cap depth','C_t':'Top cover','C_b':'Bottom cover','C_s':'Side cover',
@@ -56,8 +57,9 @@ class CapNotebook:
         stamp=W.Button(description='Record analyzed geometry',icon='check');stamp.on_click(self._stamp)
         source=W.Accordion(children=[W.VBox([self.source_id,self.source_confirm,stamp,W.HTML('<small>Use after entering fresh analysis forces. Changing geometry alone does not rerun FB-MultiPier.</small>')])]);source.set_title(0,'Record a manually updated analysis case');source.selected_index=None
         self.search_panel=self._search_panel();self.export_panel=self._export_panel()
+        self.xml_import=XMLImportPanel(self,LABELS)
         self.ui=W.VBox([W.HTML('<h2 style="color:#213649;margin-bottom:4px">Pier-cap design explorer</h2><p>Change an input → inspect the cage and checks → search practical steel → export a review case.</p>'),
-            W.HBox([self.upload,reset]),self.source_label,source,self.banner,self.metrics,
+            W.HBox([self.upload,reset]),self.xml_import.ui,self.source_label,source,self.banner,self.metrics,
             W.HBox([self.input_tabs,self.plot_tabs],layout=W.Layout(display='flex',flex_flow='row wrap',align_items='flex-start',grid_gap='16px')),
             self.search_panel,self.export_panel,self.message],layout=W.Layout(width='100%'))
         self.refresh()

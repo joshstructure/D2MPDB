@@ -34,6 +34,8 @@ The workbench defaults to the strength target and labels the combined maximum **
 
 The scalar engine and calculation port are tested against known mechanics and the saved C005 baseline. That validates the implementation, not the adequacy of every source engineering assumption.
 
+Direct XML imports follow the limited scope in `FBMP_IMPORT.md`. They preserve governing source records, validate the cap chain and signed summary extrema, and recover pile-face/interior moments only for supported uniform-load segments. Positive bearing/span demands use a full-cap envelope, and the low interval uses global shear. This differs deliberately from a reduced bearing-only/low-zone workbook envelope. Axial/biaxial interaction remains outside the calculation. New imports reset Service III/fatigue readiness; imported analysis geometry is preserved by subsequent searches.
+
 ## Section studies
 
 The width/depth study has a dedicated fixed-force path that evaluates sectional screens without rewriting or clearing analysis-source geometry. Its retained cages can remain ineligible in the ordinary calculator because their section is stale. The ordinary steel search continues to reject stale geometry. The alternative analysis-matched mode evaluates only supplied, compatible section cases and never falls back to fixed forces.
