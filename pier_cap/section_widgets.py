@@ -7,6 +7,7 @@ import plotly.graph_objects as go
 from .model import evaluate
 from .optimizer import SearchConfig
 from .io import load_case
+from .source_status import source_html,upload_entries,notice_html
 from .sections import (SectionGrid, CostRates, SectionCache, dimension_values, run_section_study,
                        section_rows, selected_section_case, export_section_study, comparison_costs, cost_gap, ranked_cost_rows)
 from .section_visuals import (section_heatmap, section_pareto, section_cost_chart, cost_summary_html,
@@ -21,6 +22,7 @@ class SectionStudy:
         self.rows = []
         self.cache = SectionCache()
         self.library = {}
+        self.source_status = W.HTML()
         self.rendering = self.applying = False
         self.figures = []
         self.preview_figures = []
@@ -88,7 +90,7 @@ class SectionStudy:
                    '<p><b>Fixed-force sensitivity:</b> forces stay unchanged as geometry varies; self-weight and stiffness effects are not reanalyzed. <b>Analysis-matched mode:</b> only supplied matching force cases are evaluated. All results remain subject to pending checks and the source calculation scope.</p>'),
             *dimension_controls, W.HBox([self.min_width, self.min_depth, self.budget], layout=W.Layout(flex_flow='row wrap')),
             W.HTML('<small>Width is also screened against the pile width plus twice the adopted nominal edge allowance. Enter any larger bearing/project minimums above. Zero means no additional project minimum. The search retains the single-outer-hoop family; wider caps may need a different cage topology.</small>'),
-            self.mode, library_panel, W.HBox([self.run_button, self.progress]), self.notice,
+            self.source_status, self.mode, library_panel, W.HBox([self.run_button, self.progress]), self.notice,
             W.HBox([self.target, self.metric, self.cell_labels], layout=W.Layout(flex_flow='row wrap')), self.cost_controls,
             self.summary, self.cost_summary, self.cheapest_button, self.charts, self.cost_details, self.material_details,
             self.section, self.cage, self.selection_info,
@@ -101,6 +103,27 @@ class SectionStudy:
         for control in [*self.app.search_lists.values(), self.app.limit]:
             control.observe(self._grid_changed, names='value')
         self.app.case_listeners.append(self.invalidate)
+        self._refresh_source()
+
+    def _refresh_source(self):
+        note = ('The next fixed-force study uses these inputs at every trial section. Library uploads do not replace them.'
+                if self.mode.value == 'fixed' else
+                'Analysis-matched mode also uses the separate saved cases in the analysis library at their matching sections.')
+        self.source_status.value = source_html(self.app.case,'FORCE SOURCE FOR SECTION STUDY',note)
+
+    def rebind(self, app):
+        """Keep an already displayed study attached when its workbench cell reruns."""
+        if self.app is app:
+            return
+        if self.invalidate in self.app.case_listeners:
+            self.app.case_listeners.remove(self.invalidate)
+        for control in [*self.app.search_lists.values(), self.app.limit]:
+            control.unobserve(self._grid_changed,names='value')
+        self.app = app
+        self.app.case_listeners.append(self.invalidate)
+        for control in [*app.search_lists.values(), app.limit]:
+            control.observe(self._grid_changed,names='value')
+        self.invalidate()
 
     def _close_preview(self):
         for figure in self.preview_figures:
@@ -109,6 +132,7 @@ class SectionStudy:
         self.preview.children = []
 
     def invalidate(self):
+        self._refresh_source()
         if self.applying:
             return
         self.study = None
@@ -127,7 +151,8 @@ class SectionStudy:
         self.summary.value = self.selection_info.value = ''
         self._clear_cost_view()
         self._close_preview()
-        self.notice.value = 'Inputs changed. Rerun the section study; unchanged calculations can be reused from the cache.'
+        self.notice.value = notice_html('SECTION STUDY NEEDS A NEW RUN',
+            'Inputs changed. Previous plots and cage selections were cleared. Check the force source above, then click <b>Run section study</b>.','pending')
 
     def _grid_changed(self, change):
         if not self.rendering:
@@ -165,10 +190,12 @@ class SectionStudy:
         if not self.upload.value:
             return
         try:
-            loaded = {entry['name']: load_case(entry['content']) for entry in self.upload.value}
+            loaded = {entry['name']: load_case(entry['content']) for entry in upload_entries(self.upload.value)}
             self.library.update(loaded)
             self.invalidate()
-            self.library_note.value = '<b>Loaded:</b> ' + ', '.join(html.escape(name) for name in self.library)
+            self.library_note.value = notice_html('ANALYSIS CASES ADDED TO LIBRARY',
+                '<b>Loaded:</b> ' + ', '.join(html.escape(name) for name in self.library)+
+                '<br>This does not replace the main calculator loads. Select <b>Only analysis-matched cases</b> to use this library.','success')
         except Exception as exc:
             self.library_note.value = '<b>Import stopped:</b> ' + html.escape(str(exc))
 

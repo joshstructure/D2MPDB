@@ -1,0 +1,144 @@
+"""Imports must be visible and survive notebook-cell reruns in one runtime."""
+from copy import deepcopy
+from datetime import datetime,timezone
+import json
+from pathlib import Path
+from types import SimpleNamespace
+import unittest
+from unittest.mock import patch
+from pier_cap.model import default_case
+from pier_cap.fbmp import import_fbmp_xml
+from pier_cap.source_status import upload_entries,source_signature
+from pier_cap.widgets import CapNotebook
+from pier_cap.section_widgets import SectionStudy
+from pier_cap.sections import run_section_study,SectionGrid
+from pier_cap.optimizer import SearchConfig
+
+ROOT=Path(__file__).resolve().parent.parent
+FIXTURE=ROOT/'tests/fixtures/fbmp_610_cap.xml'
+
+
+def upload(name,content):
+    return {'name':name,'content':memoryview(content),'type':'application/octet-stream',
+            'size':len(content),'last_modified':datetime.now(timezone.utc)}
+
+
+class ImportFeedbackTests(unittest.TestCase):
+    def setUp(self):
+        self.app=CapNotebook()
+        self.study=SectionStudy(self.app)
+
+    def tearDown(self):
+        self.study.close()
+        self.app.close()
+
+    def test_xml_upload_preview_apply_receipt_and_study_invalidation(self):
+        one=SearchConfig(main_bars=(8,),top_counts=(8,),bottom_counts=(8,),hoop_bars=(5,),
+                         hoop_spacings=(8,),skin_bars=(5,),skin_counts=(6,))
+        self.study.study=run_section_study(self.app.case,SectionGrid(widths=(48,),depths=(48,)),one)
+        self.study._render()
+        self.assertTrue(self.study.cage.options)
+        before=deepcopy(self.app.case)
+        panel=self.app.xml_import
+        panel.upload.value=(upload('Pier_MinTip.XML',FIXTURE.read_bytes()),)
+        self.assertIn('PREVIEW READY',panel.status.value)
+        self.assertIn('NOT APPLIED',panel.status.value)
+        self.assertEqual(self.app.case,before)
+        self.assertNotIn('SUCCESSFULLY',self.app.import_notice.value)
+        panel.apply_button.click()
+        self.assertIn('XML APPLIED',panel.status.value)
+        self.assertIn('LOADS IMPORTED SUCCESSFULLY',self.app.import_notice.value)
+        self.assertIn('Pier_MinTip.XML',self.app.import_notice.value)
+        self.assertIn('UTC',self.app.import_notice.value)
+        for expected in ('48 × 36','183.15','287.44','209.52','34.16','Pier_MinTip.XML'):
+            self.assertIn(expected,self.app.source_label.value)
+            self.assertIn(expected,self.study.source_status.value)
+        self.assertIsNone(self.study.study)
+        self.assertEqual(self.study.cage.options,())
+        self.assertIn('NEEDS A NEW RUN',self.study.notice.value)
+        self.app.controls['n_N1'].value=6
+        self.assertIn('SUCCESSFULLY',self.app.import_notice.value)
+        self.app.controls['Mu_B'].value=500
+        self.assertIn('IMPORTED INPUTS HAVE CHANGED',self.app.import_notice.value)
+        self.assertNotIn('XML APPLIED',panel.status.value)
+
+    def test_json_receipt_and_visible_failures(self):
+        case=import_fbmp_xml(FIXTURE)
+        self.app.upload.value=(upload('new_case.json',json.dumps(case).encode()),)
+        self.assertEqual(self.app.case,case)
+        self.assertIn('new_case.json',self.app.import_notice.value)
+        self.assertIn('SUCCESSFULLY',self.app.import_notice.value)
+        self.app.upload.value=(upload('broken.json',b'{broken'),)
+        self.assertIn('CASE IMPORT FAILED',self.app.import_notice.value)
+        self.assertEqual(self.app.case,case)
+        panel=self.app.xml_import
+        panel.upload.value=(upload('wrong.xml',b'<wrong/>'),)
+        self.assertIn('XML IMPORT FAILED',panel.status.value)
+        self.assertIsNone(panel.pending)
+        self.assertTrue(panel.apply_button.disabled)
+        # Errors in the upload envelope itself used to escape before stage().
+        panel.upload=SimpleNamespace(value=[{'name':'missing_content.xml'}])
+        panel._uploaded(None)
+        self.assertIn('XML IMPORT FAILED',panel.status.value)
+
+    def test_upload_library_is_explicitly_separate(self):
+        before=deepcopy(self.app.case)
+        case=import_fbmp_xml(FIXTURE)
+        self.study.upload.value=(upload('analysis.json',json.dumps(case).encode()),)
+        self.assertEqual(self.app.case,before)
+        self.assertIn('ADDED TO LIBRARY',self.study.library_note.value)
+        self.assertIn('does not replace',self.study.library_note.value)
+        self.assertIn('Library uploads do not replace',self.study.source_status.value)
+
+    def test_workbench_rerun_preserves_case_and_rebinds_displayed_study(self):
+        case=import_fbmp_xml(FIXTURE)
+        self.app.load(case,import_name='Pier_MinTip.XML')
+        self.app.search_lists['top_counts'].value=(5,6)
+        self.app.dc_limit.value=.95
+        before=deepcopy(self.app.case)
+        old_app=self.app
+        notebook=json.loads((ROOT/'Pier_Cap_Design_Optimizer.ipynb').read_text(encoding='utf-8'))
+        context={'app':old_app,'section_app':self.study,'case':default_case(),'ROOT':ROOT,'CapNotebook':CapNotebook}
+        with patch.object(CapNotebook,'display'):
+            exec(''.join(notebook['cells'][6]['source']),context)
+        self.app=context['app']
+        self.assertIsNot(self.app,old_app)
+        self.assertEqual(self.app.case,before)
+        self.assertEqual(self.app.search_lists['top_counts'].value,(5,6))
+        self.assertEqual(self.app.dc_limit.value,.95)
+        self.assertIn('SUCCESSFULLY',self.app.import_notice.value)
+        self.assertIs(self.study.app,self.app)
+        self.assertNotIn(self.study.invalidate,old_app.case_listeners)
+        self.assertIn(self.study.invalidate,self.app.case_listeners)
+        self.app.controls['Mu_B'].value=400
+        self.assertIn('400',self.study.source_status.value)
+        self.assertIn('NEEDS A NEW RUN',self.study.notice.value)
+
+    def test_upgrading_a_live_older_study_does_not_close_it_twice(self):
+        notebook=json.loads((ROOT/'Pier_Cap_Design_Optimizer.ipynb').read_text(encoding='utf-8'))
+        # Earlier notebook instances have close() but no rebind() method.
+        old_study=self.study
+        legacy=SimpleNamespace(close=old_study.close)
+        context={'app':self.app,'section_app':legacy,'case':default_case(),'ROOT':ROOT,
+                 'CapNotebook':CapNotebook,'SectionStudy':SectionStudy}
+        with patch.object(CapNotebook,'display'),patch('builtins.print'):
+            exec(''.join(notebook['cells'][6]['source']),context)
+        self.app=context['app']
+        self.assertIsNone(context['section_app'])
+        with patch.object(SectionStudy,'display'):
+            exec(''.join(notebook['cells'][10]['source']),context)
+        self.study=context['section_app']
+        self.assertIs(self.study.app,self.app)
+
+
+class UploadDataTests(unittest.TestCase):
+    def test_both_upload_formats_and_numeric_signature_equivalence(self):
+        new=[{'name':'a.XML','content':b'xml'}]
+        old={'a.XML':{'metadata':{'name':'a.XML'},'content':b'xml'}}
+        for value in (new,old):
+            self.assertEqual(upload_entries(value)[0]['name'],'a.XML')
+            self.assertEqual(upload_entries(value)[0]['content'],b'xml')
+        with self.assertRaises(ValueError):upload_entries([{'name':'a.XML'}])
+        a=default_case();b=deepcopy(a)
+        b['inputs']['N_pile']=int(b['inputs']['N_pile'])
+        self.assertEqual(source_signature(a),source_signature(b))

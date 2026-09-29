@@ -4,6 +4,10 @@ Run the notebook, then use **Upload FBMP XML** in the live workbench. Select a s
 
 Changing the case after preview disables Apply. **Refresh preview** rebuilds the proposed import using the current trial reinforcement. Invalid uploads cannot leave an earlier valid import armed. Python users can call `pier_cap.fbmp.import_fbmp_xml(path_or_bytes, base=app.case)` and inspect its returned case before `app.load(...)`.
 
+The uploader shows each stage beside the button: **READING XML**, yellow **PREVIEW READY — NOT APPLIED**, then green **XML APPLIED** and **LOADS IMPORTED SUCCESSFULLY** after Apply. The receipt identifies the file and import time. The adjacent **ACTIVE FORCE SOURCE** card lists the analyzed dimensions and current strength M/V/T values. Errors in both the upload payload and XML parsing appear in red here. A file-count badge alone is not confirmation that the inputs were applied.
+
+The section-study controls repeat the active force summary. Applying XML or loading JSON clears earlier study results and requires **Run section study**. The optional analysis-library uploader confirms additions separately: it does not replace the main force case in fixed-force mode. Rerunning the main workbench cell preserves the current case, receipt and search choices in the same runtime, and reconnects an existing study to the new workbench instance. **Reset starting case** intentionally returns to the example. Save a JSON before ending or deleting a Colab runtime; in-memory preservation is not durable storage.
+
 ## Supported scope
 
 The initial reader is verified against `Pier_MinTip.XML`, FB-MultiPier **6.1.0**, English units, static AASHTO-LRFD combinations, one straight horizontal pile bent along global +X. It supports an equal-spaced single row of identical round or unrotated square piles, equal end cantilevers, and a uniform solid rectangular cap. Both strength and Service I results are required. Different versions, unknown units, incomplete combinations, dynamic results, tapered sections, unequal spacing and ambiguous geometry stop import rather than supplying guessed inputs. Native `.out` parsing is not implemented.

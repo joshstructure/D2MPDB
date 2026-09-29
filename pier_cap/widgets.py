@@ -9,6 +9,7 @@ from .model import default_case,evaluate,INPUTS,GEOMETRY,formula_trace
 from .optimizer import search,SearchConfig,candidate_case,filter_candidates,candidate_dc,candidate_governing,governing_check,DC_SCOPES
 from .io import load_case,export_bundle,export_blockpad
 from .fbmp_widgets import XMLImportPanel
+from .source_status import upload_entries,source_html,import_receipt,receipt_html,notice_html
 from .visuals import section_figure,elevation_figure,hoop_figure,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html,spacing_html
 
 LABELS={'b':'Cap width','h':'Cap depth','C_t':'Top cover','C_b':'Bottom cover','C_s':'Side cover',
@@ -41,6 +42,7 @@ class CapNotebook:
         self.controls={};self.busy=False;self.search_result=None;self.current=None;self.figures=[];self.last_export=None
         self.browsing=False;self.filtered_indices=[];self.alternative_figure=None
         self.case_listeners=[]
+        self.import_receipt=None;self.import_notice=W.HTML()
         self.banner=W.HTML();self.metrics=W.HTML();self.message=W.HTML()
         self.cage=W.VBox(layout=W.Layout(max_height='820px',overflow='auto'));self.results=W.VBox(layout=W.Layout(max_height='820px',overflow='auto'));self.register=W.HTML();self.trace=W.HTML()
         self.clearance=W.BoundedFloatText(value=self.case['screening']['minimum_clear_in'],min=0,max=12,step=.25,description='Trial clear (in)',style={'description_width':'120px'},layout=W.Layout(width='260px'))
@@ -59,7 +61,7 @@ class CapNotebook:
         self.search_panel=self._search_panel();self.export_panel=self._export_panel()
         self.xml_import=XMLImportPanel(self,LABELS)
         self.ui=W.VBox([W.HTML('<h2 style="color:#213649;margin-bottom:4px">Pier-cap design explorer</h2><p>Change an input → inspect the cage and checks → search practical steel → export a review case.</p>'),
-            W.HBox([self.upload,reset]),self.xml_import.ui,self.source_label,source,self.banner,self.metrics,
+            W.HBox([self.upload,reset]),self.xml_import.ui,self.import_notice,self.source_label,source,self.banner,self.metrics,
             W.HBox([self.input_tabs,self.plot_tabs],layout=W.Layout(display='flex',flex_flow='row wrap',align_items='flex-start',grid_gap='16px')),
             self.search_panel,self.export_panel,self.message],layout=W.Layout(width='100%'))
         self.refresh()
@@ -101,7 +103,8 @@ class CapNotebook:
         for callback in self.case_listeners:callback()
 
     def refresh(self):
-        self.source_label.value=f'<small><b>Case:</b> {html.escape(self.case["name"])} · <b>Force source:</b> {html.escape(self.case["analysis"]["id"])}</small>'
+        self.source_label.value=source_html(self.case)
+        self.import_notice.value=receipt_html(self.import_receipt,self.case)
         try:e=evaluate(self.case)
         except Exception as exc:
             self.current=None;self.banner.value=f'<div style="padding:14px;background:#ffe9e7;color:#9d302b"><b>INPUT ERROR</b><br>{html.escape(str(exc))}</div>'
@@ -126,10 +129,11 @@ class CapNotebook:
         rows=''.join(f'<tr><td>{html.escape(t["name"])}</td><td>{html.escape(t["formula"])}</td><td>{html.escape(str(t["value"]))}</td></tr>' for t in formula_trace(e))
         self.trace.value='<p>324 source definitions, including five helper functions. Live results below use explicit units.</p><table class="cap-table"><tr><th>Name</th><th>Equation</th><th>Value</th></tr>'+rows+'</table>'
 
-    def load(self,case):
+    def load(self,case,*,import_name=None):
         evaluate(case);self.busy=True
         try:
             self.case=deepcopy(case)
+            self.import_receipt=import_receipt(case,import_name) if import_name else None
             for n,w in self.controls.items():w.value=case['inputs'][n]
             self.clearance.value=case['screening']['minimum_clear_in']
         finally:self.busy=False
@@ -140,8 +144,13 @@ class CapNotebook:
     def _uploaded(self,change):
         if not self.upload.value:return
         try:
-            entry=self.upload.value[0];self.load(load_case(entry['content']));self.message.value='<b>Case loaded.</b>'
-        except Exception as exc:self.message.value='<b>Import stopped:</b> '+html.escape(str(exc))
+            self.import_receipt=None
+            self.import_notice.value=notice_html('READING CASE FILE','Checking the uploaded inputs…','pending')
+            entry=upload_entries(self.upload.value)[0]
+            self.load(load_case(entry['content']),import_name=entry['name'])
+            self.message.value='<b>Case loaded.</b>'
+        except Exception as exc:
+            self.import_notice.value=notice_html('CASE IMPORT FAILED',html.escape(str(exc))+'<br>Review the active force source below.','error')
 
     def _stamp(self,button):
         if not self.source_confirm.value or not self.source_id.value.strip():
@@ -278,3 +287,9 @@ class CapNotebook:
         from IPython.display import display
         display(self.ui)
         return self
+
+    def close(self):
+        for figure in self.figures:figure.close()
+        self._close_alternative_plot()
+        self.case_listeners.clear()
+        self.ui.close()

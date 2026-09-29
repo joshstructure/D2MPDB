@@ -4,6 +4,7 @@ import html
 import ipywidgets as W
 from .fbmp import import_fbmp_xml
 from .model import INPUTS
+from .source_status import upload_entries,notice_html,source_signature
 
 
 class XMLImportPanel:
@@ -14,13 +15,14 @@ class XMLImportPanel:
         self.source = None
         self.filename = None
         self.base_snapshot = None
+        self.applied_signature = None
         self.upload = W.FileUpload(accept='.xml,.XML', multiple=False, description='Upload FBMP XML', layout=W.Layout(width='185px'))
         self.upload.observe(self._uploaded, names='value')
         self.refresh_button = W.Button(description='Refresh preview', disabled=True, icon='refresh')
         self.refresh_button.on_click(lambda _: self.stage(self.source, self.filename))
         self.apply_button = W.Button(description='Apply XML inputs', disabled=True, button_style='primary', icon='check')
         self.apply_button.on_click(self.apply)
-        self.status = W.HTML()
+        self.status = W.HTML(notice_html('STEP 1 · SELECT XML','Choose a solved FB-MultiPier XML. A preview or an error will appear here.'))
         self.preview = W.HTML()
         self.ui = W.VBox([
             W.HTML('<h3 style="margin-bottom:4px">New loads from FB-MultiPier</h3>'
@@ -34,16 +36,35 @@ class XMLImportPanel:
         if self.pending is not None and self.app.case != self.base_snapshot:
             self.pending = None
             self.apply_button.disabled = True
-            self.status.value = '<b>Inputs changed after preview.</b> Refresh the preview to retain your latest trial steel and settings.'
+            self.status.value = notice_html('PREVIEW OUT OF DATE','Inputs changed after preview. Refresh the preview to retain your latest trial steel and settings.','pending')
             self.preview.value = ''
+        elif self.applied_signature is not None and self.applied_signature != source_signature(self.app.case):
+            self.applied_signature = None
+            self.status.value = notice_html('CURRENT INPUTS CHANGED','The earlier XML confirmation no longer describes the active inputs. Check the active force source below.','pending')
 
     def _uploaded(self, change):
         if self.upload.value:
-            entry = self.upload.value[0]
-            self.stage(bytes(entry['content']), entry['name'])
+            try:
+                self.app.import_receipt = None
+                self.app.import_notice.value = ''
+                self.status.value = notice_html('READING XML','Checking the uploaded file and its forces…','pending')
+                entry = upload_entries(self.upload.value)[0]
+                self.stage(bytes(entry['content']), entry['name'])
+            except Exception as exc:
+                self._failed(exc)
+
+    def _failed(self, exc):
+        self.pending = None
+        self.apply_button.disabled = True
+        self.preview.value = ''
+        self.status.value = notice_html('XML IMPORT FAILED',html.escape(str(exc))+'<br>No new XML inputs were applied. The active source is shown below.','error')
 
     def stage(self, source, filename=None):
         self.pending = None
+        self.applied_signature = None
+        self.app.import_receipt = None
+        self.app.import_notice.value = ''
+        self.status.value = notice_html('READING XML','Checking geometry, forces and load combinations…','pending')
         self.apply_button.disabled = True
         self.preview.value = ''
         self.source, self.filename = source, filename
@@ -54,9 +75,11 @@ class XMLImportPanel:
             self.preview.value = self._preview_html(proposed)
             self.pending = proposed
             self.apply_button.disabled = False
-            self.status.value = '<b>Preview ready. Current calculation is unchanged until you click Apply XML inputs.</b>'
+            self.status.value = notice_html('STEP 2 · PREVIEW READY — NOT APPLIED',
+                '<b>'+html.escape(proposed['analysis']['xml_audit']['filename'])+'</b> was read successfully. '
+                'Review the values below, then click <b>Apply XML inputs</b>. The current calculation still uses the active source shown below.','pending')
         except Exception as exc:
-            self.status.value = '<b>XML import stopped; current case is unchanged.</b> '+html.escape(str(exc))
+            self._failed(exc)
 
     def apply(self, button=None):
         if self.pending is None:
@@ -67,10 +90,16 @@ class XMLImportPanel:
         proposed = self.pending
         self.pending = None
         self.apply_button.disabled = True
-        self.app.load(proposed)
-        self.preview.value = ''
-        self.status.value = ('<b>Applied '+html.escape(proposed['analysis']['id'])+'.</b> '
-                             'Live drawings and checks are updated. Rerun searches for this new force case; export the JSON to save it.')
+        try:
+            self.app.load(proposed,import_name=proposed['analysis']['xml_audit']['filename'])
+            self.applied_signature = source_signature(proposed)
+            self.preview.value = ''
+            self.status.value = notice_html('STEP 3 · XML APPLIED',
+                'Applied <b>'+html.escape(proposed['analysis']['id'])+'</b>. '
+                'Live drawings and checks are updated. The green receipt and active force summary below confirm the loaded case.','success')
+        except Exception as exc:
+            self.status.value = notice_html('XML APPLY DID NOT FINISH',html.escape(str(exc))+
+                '<br>Check the active source below; do not assume the displayed results refreshed successfully.','error')
 
     def _preview_html(self, case):
         p, old = case['inputs'], self.app.case['inputs']
