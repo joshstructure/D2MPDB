@@ -3,7 +3,7 @@ import math
 import unittest
 from pier_cap.model import DATA,DEFINITIONS,default_case,evaluate,set_inputs,bar_positions,analysis_match
 from pier_cap.engine import Engine,Q,parse
-from pier_cap.optimizer import search,SearchConfig,candidate_case,filter_candidates,candidate_dc
+from pier_cap.optimizer import search,SearchConfig,candidate_case,filter_candidates,candidate_dc,governing_check
 
 class CalculationTests(unittest.TestCase):
     @classmethod
@@ -151,6 +151,26 @@ class SearchTests(unittest.TestCase):
         best=min(r.candidates,key=lambda c:c.max_dc)
         self.assertAlmostEqual(best.max_dc,.9821428571428571)
         self.assertEqual(best.governing_check,'Hoop spacing — global')
+    def test_strength_margin_is_separate_from_transverse_leg_spacing(self):
+        r=self.result
+        self.assertEqual(len(filter_candidates(r,.97,'strength')),306)
+        self.assertEqual(filter_candidates(r,.97,'all'),[])
+        best=min(r.candidates,key=lambda c:c.strength_dc)
+        self.assertAlmostEqual(best.strength_dc,.5470686401043962)
+        self.assertAlmostEqual(best.max_dc,(48-2*3-.75)/42)
+        baseline=evaluate(default_case())
+        tighter=evaluate(set_inputs(default_case(),s_G=6,s_L=6))
+        more_main=evaluate(set_inputs(default_case(),n_N1=10,n_P1=10,n_B1=10))
+        for e in (baseline,tighter,more_main):
+            # One outer #5 hoop stays 41.375 in across, regardless of main bars
+            # or the distance between successive hoops along the cap.
+            self.assertAlmostEqual(e.value('S_leg'),48-2*3-.625)
+            self.assertAlmostEqual(e.value('Sw_G'),42)
+            self.assertAlmostEqual(governing_check(e).ratio,41.375/42)
+            self.assertTrue(e.eligible)
+        self.assertLess(governing_check(tighter,'strength').ratio,governing_check(baseline,'strength').ratio)
+        self.assertIn('PENDING',tighter.status)
+        with self.assertRaises(ValueError):governing_check(baseline,'unknown')
     def test_filter_boundary_validation_and_reranking(self):
         r=self.result;threshold=r.candidates[0].strength_dc
         self.assertIn(0,filter_candidates(r,threshold,'strength'))

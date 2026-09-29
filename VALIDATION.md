@@ -16,6 +16,8 @@ All 1,944 listed combinations are evaluated; 324 pass the available calculation 
 
 The new margin filter finds zero default-search layouts at all-check D/C ≤ 0.90 (best overall D/C 0.982142857, governed by hoop spacing), and 210 at strength-only D/C ≤ 0.90. Tests cover inclusive numerical boundaries, invalid targets, reranking, selection beyond candidate 20, empty matches, page-size changes, all-match plot counts, clearing stale results, and full/filtered CSV exports across every page. Changing a filter never reruns the search or drops candidates from its complete population. The strength scope excludes service/minimum/detailing ratios from the margin target while retaining their original pass requirements.
 
+The focused 0.97-floor review reproduces 306 strength matches at 0.97 and zero all-check matches; minimum strength D/C is 0.547068640. An independent geometry check confirms that adding main bars or tightening successive hoops leaves the across-cap leg distance unchanged. Widget checks confirm the default strength scope, separate strength/all-check values, match counts, and the selected plot axis. The source equations and eligibility conditions are unchanged; see `DC_RATIO_REVIEW.md`.
+
 ## Files and presentation
 
 - The supplied moment, shear and torsion workbooks were read through the converter. It reproduces all nine force inputs and the four-pile / 5 ft spacing configuration. Source hashes and governing worksheet rows are recorded by the importer.
@@ -25,4 +27,4 @@ The new margin filter finds zero default-search layouts at all-check D/C ≤ 0.9
 - The local Python environment is prepared. The launcher scopes Jupyter runtime/configuration to this project, and Git ignores environment/runtime/export data. Existing bridge-geometry notebooks are unchanged.
 - Colab setup regression tests use disposable local Git remotes and actual shallow clones. They cover a fresh/repeated setup; updating an old checkout after its missing filter API has already been imported; preserving exports, tracked edits and local commits; failed fetches; wrong branches; and non-repository folders. Only Colab widget registration and dependency installation are simulated. Setup now refreshes supporting files, clears cached package imports, and checks the required search API before reporting readiness. These tests do not exercise GitHub authentication or the hosted Colab frontend.
 
-Reproduce the automated checks with `python -m unittest discover -s tests -v`. The suite contains 28 tests plus their parameterized cases/reference comparisons. Colab and VS Code frontend behavior have not been separately verified.
+Reproduce the automated checks with `python -m unittest discover -s tests -v`. The suite contains 29 tests plus their parameterized cases/reference comparisons. Colab and VS Code frontend behavior have not been separately verified.

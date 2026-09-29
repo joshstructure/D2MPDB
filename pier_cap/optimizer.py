@@ -80,6 +80,11 @@ def filter_candidates(result,max_dc=1.0,scope='all',objective=None):
 def _governing(e,keys=None):
     return max((ch for ch in e.checks if isinstance(ch.ratio,(int,float)) and (keys is None or ch.key in keys)),key=lambda ch:ch.ratio)
 
+def governing_check(e,scope='all'):
+    """Report the same controlling check used by the candidate filter."""
+    if scope not in DC_SCOPES:raise ValueError('Unknown D/C scope.')
+    return _governing(e,STRENGTH_CHECKS if scope=='strength' else None)
+
 def search(case,config=None,progress=None):
     c=config or SearchConfig();validate_case(case)
     if analysis_match(case):raise ValueError('Geometry has changed. Import a matching analysis case before searching steel.')

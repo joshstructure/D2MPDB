@@ -46,6 +46,10 @@ class WidgetTests(unittest.TestCase):
         self.assertGreater(len(r.candidates),20)
         app=CapNotebook()
         try:
+            self.assertEqual(app.dc_scope.value,'strength')
+            self.assertIn('Strength D/C',app.metrics.value);self.assertIn('0.832',app.metrics.value)
+            self.assertIn('All-check utilization',app.metrics.value);self.assertIn('0.985',app.metrics.value)
+            self.assertIn('41.375 in / 42.000 in',app.metrics.value)
             app.search_result=r;app._render_candidates(reset_page=True)
             self.assertEqual(len(app.candidates.options),20);self.assertEqual(app.page.max,2)
             app.next_page.click()
@@ -54,6 +58,10 @@ class WidgetTests(unittest.TestCase):
             chosen=app.candidates.options[-1][1];app.candidates.value=chosen;app._apply(None)
             for k,v in r.candidates[chosen].changes.items():self.assertEqual(app.case['inputs'][k],v)
             app.dc_limit.value=.90
+            self.assertGreater(len(app.filtered_indices),0)
+            self.assertEqual(app.alternative_figure.layout.yaxis.title.text,'Strength D/C')
+            self.assertIn('0 all-check matches',app.search_text.value)
+            app.dc_scope.value='all'
             self.assertEqual(len(app.candidates.options),0);self.assertTrue(app.apply_button.disabled)
             self.assertEqual(app.page.value,1);self.assertTrue(app.page.disabled)
             self.assertIn('No layouts match',app.search_text.value);self.assertIn('Hoop spacing',app.search_text.value)

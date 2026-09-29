@@ -30,4 +30,6 @@ Search candidates can only be described as passing **available checks and the tr
 
 The optional D/C margin filter has two explicit scopes. The all-check scope takes the maximum of all available numerical register ratios. The strength-only scope takes the maximum of flexural strength, shear strength/section bound, combined shear/torsion area and longitudinal steel ratios. It does not apply the tighter target to minimum reinforcement, tension strain, spacing, service/fatigue, skin or shrinkage ratios; those checks still retain their original pass requirements, and pending inputs stay pending. Ratios are filtered before display rounding. The scope and target are recorded with exported results.
 
+The workbench defaults to the strength target and labels the combined maximum **All-check utilization** to distinguish a spacing/detailing ratio from strength D/C. Both remain visible. The Python filter API retains its existing default all-check scope. The across-cap spacing floor and the original worksheet trace are documented in `DC_RATIO_REVIEW.md`; this presentation correction does not change engineering equations or approve the underlying source assumptions.
+
 The scalar engine and calculation port are tested against known mechanics and the saved C005 baseline. That validates the implementation, not the adequacy of every source engineering assumption.

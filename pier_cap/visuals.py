@@ -5,7 +5,7 @@ from collections import defaultdict
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from .model import bar_positions,BAR_DIAMETER
-from .optimizer import candidate_dc,candidate_governing,DC_SCOPES
+from .optimizer import candidate_dc,candidate_governing,governing_check,DC_SCOPES
 
 BLUE='#1f5b91';TEAL='#167b75';AMBER='#d88822';RED='#bb3e39';INK='#213649';GREY='#b8c7d1'
 
@@ -71,13 +71,23 @@ def results_figure(e):
     theme(fig,'Current cage · capacity and stress response',620);fig.update_layout(barmode='group',legend=dict(font=dict(size=10),orientation='h',y=-.16))
     return fig
 
+def spacing_html(e):
+    """Expose the two independent ratios hidden in each combined spacing check."""
+    rows=[]
+    for zone,label in [('G','Global'),('L','Low interval')]:
+        along=e.value('s_'+zone);along_limit=e.value('s_allow_'+zone)
+        across=e.value('S_leg');across_limit=e.value('Sw_'+zone)
+        for direction,actual,limit in [('Along cap',along,along_limit),('Across cap between legs',across,across_limit)]:
+            rows.append(f'<tr><td>{label}</td><td>{direction}</td><td>{actual:.3f}</td><td>{limit:.3f}</td><td>{actual/limit:.4f}</td></tr>')
+    return '<h4>Hoop spacing · two different directions</h4><p>Each hoop-spacing check uses the larger of these two ratios. Along-cap hoop spacing and across-cap leg spacing are independent dimensions.</p><table class="cap-table"><tr><th>Zone</th><th>Direction</th><th>Actual (in)</th><th>Allowed (in)</th><th>Spacing utilization</th></tr>'+''.join(rows)+'</table>'
+
 def ratios_figure(e):
     checks=[c for c in e.checks if isinstance(c.ratio,(float,int))]
     fig=go.Figure(go.Bar(x=[c.ratio for c in checks],y=[c.label for c in checks],orientation='h',
         marker_color=[RED if c.ratio>1 or 'FAIL' in c.status else TEAL for c in checks],
-        text=[f'{c.ratio:.3f}' for c in checks],textposition='outside',customdata=[c.basis for c in checks],hovertemplate='%{y}<br>D/C %{x:.4f}<br>%{customdata}<extra></extra>'))
-    fig.add_vline(x=1,line_color=AMBER,line_dash='dash',annotation_text='D/C = 1')
-    fig.update_yaxes(autorange='reversed');fig.update_xaxes(title='Demand / capacity (minimum criteria use required / provided)',range=[0,max(1.25,e.max_dc*1.15)])
+        text=[f'{c.ratio:.3f}' for c in checks],textposition='outside',customdata=[c.basis for c in checks],hovertemplate='%{y}<br>Check ratio %{x:.4f}<br>%{customdata}<extra></extra>'))
+    fig.add_vline(x=1,line_color=AMBER,line_dash='dash',annotation_text='Check limit = 1')
+    fig.update_yaxes(autorange='reversed');fig.update_xaxes(title='Check utilization · strength, minimum steel, spacing and service',range=[0,max(1.25,e.max_dc*1.15)])
     theme(fig,'All available numerical comparisons',max(700,len(checks)*28));fig.update_layout(margin=dict(l=240,r=55,t=65,b=55))
     return fig
 
@@ -106,7 +116,7 @@ def alternatives_figure(result,indices=None,*,dc_scope='all',max_dc=1.0):
             hovertemplate='Candidate #%{customdata[0]}<br>%{customdata[1]}<br>%{x:.0f} lb gross steel<br>Filter D/C %{y:.4f}<br>All checks %{customdata[2]:.4f}; strength %{customdata[3]:.4f}<br>Controls: %{customdata[4]}<extra></extra>'))
     fig.add_hline(y=1,line_dash='dash',line_color=AMBER)
     if max_dc<1:fig.add_hline(y=max_dc,line_dash='dot',line_color=BLUE,annotation_text=f'Target {max_dc:.3f}')
-    fig.update_xaxes(title='Estimated gross steel (lb; hooks/laps/waste excluded)');fig.update_yaxes(title=DC_SCOPES[dc_scope]+' · D/C',range=[0,1.08])
+    fig.update_xaxes(title='Estimated gross steel (lb; hooks/laps/waste excluded)');fig.update_yaxes(title='Strength D/C' if dc_scope=='strength' else 'All-check utilization (includes detailing)',range=[0,1.08])
     return theme(fig,f'All {len(indices):,} filter matches · hover for candidate IDs and controlling checks',400)
 
 def checks_html(e):
@@ -116,7 +126,7 @@ def checks_html(e):
         color=RED if 'FAIL' in c.status else AMBER if 'PENDING' in c.status or 'PROVISIONAL' in c.status else TEAL
         rows.append(f'<tr><td>{html.escape(c.label)}</td><td style="color:{color}">{html.escape(c.status)}</td><td><b>{ratio}</b></td><td>{html.escape(c.basis)}</td></tr>')
     extra='<p><b>Additional notebook gates:</b> '+html.escape('; '.join(e.issues) if e.issues else 'Drawn cage passes the entered trial clear-spacing screen.')+'</p><p><b>Combined notebook status:</b> '+html.escape(e.status)+'</p>'
-    return '<style>.cap-table{border-collapse:collapse;width:100%;font:12px Arial}.cap-table td,.cap-table th{padding:8px;border-bottom:1px solid #dce5ec;text-align:left}.cap-table th{background:#e7eef4;position:sticky;top:0}</style><table class="cap-table"><thead><tr><th>Check</th><th>Status</th><th>D/C</th><th>Ratio basis</th></tr></thead><tbody>'+''.join(rows)+'</tbody></table>'+extra
+    return '<style>.cap-table{border-collapse:collapse;width:100%;font:12px Arial}.cap-table td,.cap-table th{padding:8px;border-bottom:1px solid #dce5ec;text-align:left}.cap-table th{background:#e7eef4;position:sticky;top:0}</style><p>Strength rows show D/C; spacing rows show actual / allowed, and minimum-steel rows show required / provided. See each ratio basis.</p><table class="cap-table"><thead><tr><th>Check</th><th>Status</th><th>Check ratio</th><th>Ratio basis</th></tr></thead><tbody>'+''.join(rows)+'</tbody></table>'+extra
 
 def snapshot(e):
     """Static notebook output that also renders in GitHub's notebook preview."""
@@ -138,7 +148,8 @@ def snapshot(e):
     ax.bar([x+.18 for x in xs],[e.value('Mr_'+z,'kip*ft') for z in labels],width=.36,color=TEAL,label='Resistance')
     ax.set(xticks=xs,xticklabels=labels,ylabel='kip-ft',title='Flexural strength');ax.legend(frameon=False)
     ax=axes[1,1];ch=sorted((c for c in e.checks if isinstance(c.ratio,(int,float))),key=lambda c:c.ratio,reverse=True)[:7]
-    ax.barh([c.label.replace(' — ',' / ') for c in ch],[c.ratio for c in ch],color=TEAL);ax.invert_yaxis();ax.axvline(1,color=AMBER,ls='--');ax.set(xlim=(0,max(1.15,e.max_dc*1.1)),title='Seven largest available D/C ratios',xlabel='D/C')
+    ax.barh([c.label.replace(' — ',' / ') for c in ch],[c.ratio for c in ch],color=TEAL);ax.invert_yaxis();ax.axvline(1,color=AMBER,ls='--');ax.set(xlim=(0,max(1.15,e.max_dc*1.1)),title='Seven largest check ratios (includes detailing)',xlabel='Check utilization')
     for ax in axes.flat:ax.spines[['top','right']].set_visible(False)
-    fig.suptitle('C005 · Pier-cap design explorer\n'+e.status,fontsize=14,color=INK)
+    strength=governing_check(e,'strength')
+    fig.suptitle(f'C005 · Strength D/C {strength.ratio:.3f} | All-check utilization {e.max_dc:.3f}\n'+e.status,fontsize=14,color=INK)
     return fig

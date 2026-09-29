@@ -6,9 +6,9 @@ import json
 import ipywidgets as W
 import plotly.graph_objects as go
 from .model import default_case,evaluate,INPUTS,GEOMETRY,formula_trace
-from .optimizer import search,SearchConfig,candidate_case,filter_candidates,candidate_dc,candidate_governing,DC_SCOPES
+from .optimizer import search,SearchConfig,candidate_case,filter_candidates,candidate_dc,candidate_governing,governing_check,DC_SCOPES
 from .io import load_case,export_bundle,export_blockpad
-from .visuals import section_figure,elevation_figure,hoop_figure,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html
+from .visuals import section_figure,elevation_figure,hoop_figure,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html,spacing_html
 
 LABELS={'b':'Cap width','h':'Cap depth','C_t':'Top cover','C_b':'Bottom cover','C_s':'Side cover',
  'N_pile':'Number of piles','S_pile':'Pile spacing','D_pile':'Pile width','E_clear':'Actual edge clearance','E_detail':'Extra end allowance',
@@ -102,14 +102,19 @@ class CapNotebook:
         self.current=e;color='#fff3d9' if e.eligible else '#ffe9e7'
         extra='<br>'.join(html.escape(s) for s in e.issues)
         self.banner.value=f'<div style="padding:12px;background:{color};border-radius:6px"><b>{html.escape(e.status)}</b>{"<br>"+extra if extra else ""}<br><small>Sectional calculation only. D-regions, anchorage, pile heads, applicability and final detail review remain open.</small></div>'
-        items=[('Max available D/C',f'{e.max_dc:.3f}'),('Gross steel estimate',f'{e.weight_lb:,.0f} lb'),('Top steel area',f'{e.value("As_N"):.2f} in²'),('Top Service I stress',f'{e.value("fs_I_N"):.2f} ksi'),('Cap length',f'{e.value("L_cap")/12:.3f} ft'),('Nominal end extension',f'{e.value("E_end"):g} in')]
+        strength=governing_check(e,'strength');overall=governing_check(e)
+        items=[('Strength D/C',f'{strength.ratio:.3f}'),('All-check utilization',f'{e.max_dc:.3f}'),('Gross steel estimate',f'{e.weight_lb:,.0f} lb'),('Top steel area',f'{e.value("As_N"):.2f} in²'),('Top Service I stress',f'{e.value("fs_I_N"):.2f} ksi'),('Cap length',f'{e.value("L_cap")/12:.3f} ft'),('Nominal end extension',f'{e.value("E_end"):g} in')]
         self.metrics.value='<div style="display:flex;flex-wrap:wrap;gap:10px;margin:12px 0">'+''.join(f'<div style="padding:10px 18px;background:#eaf1f6;border-radius:5px"><small>{k}</small><br><b style="font-size:23px;color:#1f5b91">{v}</b></div>' for k,v in items)+'</div>'
+        self.metrics.value+=f'<p><b>Controls strength:</b> {html.escape(strength.label)}. <b>Controls all checks:</b> {html.escape(overall.label)}.<br><small>All-check utilization also includes spacing and minimum/detailing limits. It does not measure a single reserve against increased load.</small></p>'
+        if overall.key in ('Chk_spacing_G','Chk_spacing_L'):
+            zone=overall.key[-1];s=e.value('S_leg');limit=e.value('Sw_'+zone)
+            self.metrics.value+=f'<p><b>Across-cap hoop legs:</b> {s:.3f} in / {limit:.3f} in allowed = <b>{s/limit:.4f}</b>. Adding main bars or reducing along-cap hoop spacing leaves this across-cap distance unchanged.</p>'
         for old in self.figures:old.close()
         self.figures=[]
         def fw(fig):
             widget=go.FigureWidget(fig);self.figures.append(widget);widget.layout.autosize=True;return widget
         self.cage.children=[fw(section_figure(e,'B')),fw(section_figure(e,'P')),fw(elevation_figure(e)),fw(hoop_figure(e)),W.HTML('<small>Bar circles follow row counts, diameters and calculated positions. U legs are an inventory until their positions are defined. Only the outer hoop is drawn. Pile lengths and first hoop positions are symbolic.</small>')]
-        self.results.children=[fw(results_figure(e)),fw(optional_service_figure(e)),fw(ratios_figure(e)),W.HTML('<small>These plots compare imported force envelopes and sectional capacities. They are not a continuous moment/shear diagram or a rerun of FB-MultiPier.</small>')]
+        self.results.children=[fw(results_figure(e)),W.HTML(spacing_html(e)),fw(optional_service_figure(e)),fw(ratios_figure(e)),W.HTML('<small>These plots compare imported force envelopes and sectional capacities. They are not a continuous moment/shear diagram or a rerun of FB-MultiPier.</small>')]
         self.register.value=checks_html(e)
         rows=''.join(f'<tr><td>{html.escape(t["name"])}</td><td>{html.escape(t["formula"])}</td><td>{html.escape(str(t["value"]))}</td></tr>' for t in formula_trace(e))
         self.trace.value='<p>324 source definitions, including five helper functions. Live results below use explicit units.</p><table class="cap-table"><tr><th>Name</th><th>Equation</th><th>Value</th></tr>'+rows+'</table>'
@@ -145,7 +150,7 @@ class CapNotebook:
         self.objective=W.Dropdown(options=['Least steel','Simplest cage','Largest margin'],description='Rank by',layout=W.Layout(width='260px'))
         self.limit=W.BoundedIntText(value=10000,min=1,max=100000,description='Case limit',layout=W.Layout(width='230px'))
         self.dc_limit=W.BoundedFloatText(value=1.0,min=.01,max=1.0,step=.05,description='Max D/C',layout=W.Layout(width='210px'))
-        self.dc_scope=W.Dropdown(options=[(label,key) for key,label in DC_SCOPES.items()],value='all',description='Apply target to',style={'description_width':'100px'},layout=W.Layout(width='310px'))
+        self.dc_scope=W.Dropdown(options=[(DC_SCOPES[key],key) for key in ('strength','all')],value='strength',description='Apply target to',style={'description_width':'100px'},layout=W.Layout(width='310px'))
         self.page_size=W.Dropdown(options=[20,50,100],value=20,description='Per page',layout=W.Layout(width='170px'))
         self.page=W.BoundedIntText(value=1,min=1,max=1,description='Page',disabled=True,layout=W.Layout(width='150px'))
         self.previous_page=W.Button(description='Previous',icon='chevron-left',disabled=True,layout=W.Layout(width='110px'))
@@ -161,7 +166,7 @@ class CapNotebook:
         self.alternative_output=W.VBox()
         return W.VBox([W.HTML('<h3>Search practical steel</h3><p>Bounded enumeration: one continuous top row and bottom row, a common main bar size, one closed hoop and uniform spacing. Pile and bearing bottom cages match. Multirow / U-leg arrangements can be explored manually above. Hold Ctrl/Cmd to select several choices.</p>'),
             W.HBox(boxes,layout=W.Layout(flex_flow='row wrap',grid_gap='10px')),W.HBox([self.limit,self.run_button,self.progress],layout=W.Layout(flex_flow='row wrap')),
-            W.HTML('<h4>Browse every passing layout</h4><p>These are reinforcement layouts for the current force case. Set <b>Max D/C</b> to 0.90 for your margin target. Filtering, ranking and paging reuse the completed search.</p>'),
+            W.HTML('<h4>Browse every passing layout</h4><p>These are reinforcement layouts for the current force case. <b>Strength checks only</b> is the default margin target: set <b>Max D/C</b> to 0.90 to seek reserve in those checks. Filtering, ranking and paging reuse the completed search.</p>'),
             W.HBox([self.dc_limit,self.dc_scope,self.objective],layout=W.Layout(flex_flow='row wrap')),
             W.HTML('<small><b>All available checks</b> includes spacing, minimum steel, strain and service checks. <b>Strength checks only</b> targets flexure, shear, combined shear/torsion steel and longitudinal steel; all other available checks must still pass. Missing Service III/fatigue checks stay pending. Largest margin ranks the selected D/C scope.</small>'),
             self.search_text,W.HBox([self.previous_page,self.page,self.next_page,self.page_size],layout=W.Layout(flex_flow='row wrap')),self.candidates,self.apply_button,self.alternative_output,
@@ -205,15 +210,18 @@ class CapNotebook:
         extent=f'Showing {start+1:,}–{start+len(shown):,} of {len(indices):,} matches · page {self.page.value} of {pages}.' if shown else 'No layouts match this D/C filter.'
         completeness='All listed combinations evaluated.' if result.exhaustive else 'Case limit reached; remaining combinations were not evaluated.'
         self.search_text.value=f'<p><b>{result.passed:,} layouts pass the available checks and cage screen.</b> {len(indices):,} meet <b>{DC_SCOPES[scope]} ≤ {target:.3f}</b>. {extent}<br>{result.evaluated:,} / {result.total:,} combinations evaluated. {completeness} {result.elapsed:.1f} seconds. Every passing layout is retained and unit-checked. Candidate IDs stay fixed within this search.</p>'
+        strength_count=sum(c.strength_dc<=target+1e-12 for c in result.candidates)
+        all_count=sum(c.max_dc<=target+1e-12 for c in result.candidates)
+        self.search_text.value+=f'<p>At target {target:.3f}: <b>{strength_count:,} strength matches</b> · <b>{all_count:,} all-check matches</b>. The all-check target also tightens spacing and minimum/detailing criteria.</p>'
         if not shown and result.candidates:
             best=min(result.candidates,key=lambda c:candidate_dc(c,scope))
             self.search_text.value+=f'<p><b>Best available {DC_SCOPES[scope].lower()} D/C: {candidate_dc(best,scope):.6f}</b> · controlling check: {html.escape(candidate_governing(best,scope))}. No layout in the evaluated choices meets {target:.3f} for this scope.</p>'
             if scope=='all':self.search_text.value+='<p>Spacing or minimum/detailing checks may set this floor. Adding main bars alone may not lower it. Strength-only filtering is a separate target; it does not mean every D/C is below your limit.</p>'
-        rows=''.join(f'<tr><td>{rank}</td><td>#{i+1}</td><td>{html.escape(c.label)}</td><td>{c.weight_lb:.0f}</td><td>{candidate_dc(c,scope):.4f}</td><td>{c.max_dc:.4f}</td><td>{html.escape(candidate_governing(c,scope))}</td></tr>' for rank,(i,c) in enumerate(((i,result.candidates[i]) for i in shown),start+1))
+        rows=''.join(f'<tr><td>{rank}</td><td>#{i+1}</td><td>{html.escape(c.label)}</td><td>{c.weight_lb:.0f}</td><td>{candidate_dc(c,scope):.4f}</td><td>{c.strength_dc:.4f}</td><td>{c.max_dc:.4f}</td><td>{html.escape(candidate_governing(c,scope))}</td></tr>' for rank,(i,c) in enumerate(((i,result.candidates[i]) for i in shown),start+1))
         rejects='; '.join(f'{html.escape(k)}: {v}' for k,v in sorted(result.rejection_counts.items(),key=lambda t:-t[1])[:8])
         self._close_alternative_plot()
         self.alternative_figure=go.FigureWidget(alternatives_figure(result,indices,dc_scope=scope,max_dc=target))
-        self.alternative_output.children=[W.HTML('<table class="cap-table"><tr><th>Filtered rank</th><th>Candidate ID</th><th>Layout</th><th>Gross lb</th><th>Filter D/C</th><th>All-check D/C</th><th>Controls filter D/C</th></tr>'+rows+'</table>'),self.alternative_figure,W.HTML('<small>Rejection counts overlap: '+rejects+'</small>')]
+        self.alternative_output.children=[W.HTML('<table class="cap-table"><tr><th>Filtered rank</th><th>Candidate ID</th><th>Layout</th><th>Gross lb</th><th>Filter ratio</th><th>Strength D/C</th><th>All-check utilization</th><th>Controls filter</th></tr>'+rows+'</table>'),self.alternative_figure,W.HTML('<small>Rejection counts overlap: '+rejects+'</small>')]
 
     def _run_search(self,button):
         self.run_button.disabled=True;self._clear_search('Searching and checking all passing layouts…')

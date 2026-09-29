@@ -22,6 +22,7 @@ VERSION = "old"
 '''
 CURRENT_API = LEGACY_API + '''def filter_candidates(): pass
 def candidate_dc(): pass
+def governing_check(): pass
 VERSION = "new"
 '''
 
