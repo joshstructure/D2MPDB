@@ -1,0 +1,7 @@
+{
+  "source": "D2_I95_Project_Journal - C005 Live Design.bpad",
+  "source_sha256": "796d2b28cfb93bec8056a5fb9692f87e00f2d8c79b73d19ba09a802aa2b3c3f5",
+  "engineering_definitions": 324,
+  "floor_fix": "Normalize length by 1 in, floor with unitless multiplier, restore inches.",
+  "date": "2026-09-28"
+}

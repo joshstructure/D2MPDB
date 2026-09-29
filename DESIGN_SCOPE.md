@@ -1,0 +1,31 @@
+# Calculation scope and assumptions
+
+This is a port of the C005 live Blockpad calculation built from the original `20. Cap Design.xmcd`. It is not an independent certification of that method or an update to every current design-code provision. The source journal hash and conversion date are in `pier_cap/data/provenance.json`.
+
+## Starting case
+
+- Cap cross section: 48 × 48 in; cover: 3 in to the outside of the hoop.
+- Four nominal 20 in piles at 5 ft centers. Cap length is `(N−1)S + D + 2E` = 224 in.
+- Nominal end extension: 12 in, from adopted 9 in actual pile-face clearance plus 3 in location tolerance. C005 uses `min(3 in, D/6)` for tolerance and an editable extra detailing allowance. This is not a universal FDOT fixed end distance. Confirm governing project criteria and development/pile-head requirements.
+- Concrete 5.5 ksi; reinforcing yield strength 60 ksi; modulus 29,000 ksi. Strength reduction factors and source shear-method parameters remain editable and visible.
+- Strength moments: N 169.44, P 143.56, B 337.61 kip-ft. Service I moments: N 148.19, P 103.46, B 293.70 kip-ft.
+- Global / low-interval shear: 205.11 / 43.73 kip; torque: 33.83 kip-ft. These are independent worksheet envelopes. The interaction approach does not establish concurrency of actions.
+- Service III and fatigue remain pending until applicability and the actual corresponding loads are established. Zero placeholders are not supplied analyses.
+
+N denotes negative/top tension; P denotes the pile-positive region; B denotes the bearing-positive region. Global and low-interval shear checks remain separate. The converter defaults low shear to global if explicit interval stations are not supplied. Drawings do not invent interval extents or continuous force distributions.
+
+## Preserved source method
+
+The 324 definitions retain rectangular flexure, minimum reinforcement, tension strain, transformed cracked-section stresses/crack-control spacing, Service III and fatigue checks, sectional shear and spacing, torsion and combined steel, longitudinal tension, skin/shrinkage reinforcement and the mass-concrete trigger. Five definitions are helper functions. All equations/captions and their calculation units are included in the repository and notebook trace.
+
+The two `Floor` expressions normalize to inches, use a unitless multiplier, then restore inches. Notebook analysis-source comparisons are bound to the loaded case rather than permanently tied to four piles / 48 in dimensions. These substitutions are explicit in `model.py`; a Blockpad export writes corresponding comparisons into the review copy.
+
+## Additional notebook screens
+
+The unit-aware evaluator rejects incompatible dimensions, unsupported bars, malformed quantities and invalid values. The fast scalar search uses the same parsed expressions in inch/kip/radian units, and every retained candidate is rechecked by the unit-aware evaluator. The JSON importer accepts data, not executable formulas.
+
+The drawing uses computed row locations and bar diameters. A separate screen catches geometric overlap, bars outside the hoop interior and clear spacing below an editable trial threshold (initially 2 in). This threshold is a trial input, not a represented code minimum. Confirm governing bar-spacing, aggregate and construction requirements. Multiple-loop and U-leg topology are flagged as unresolved.
+
+Search candidates can only be described as passing **available checks and the trial cage screen**. A candidate does not complete D-region/strut-and-tie applicability, pile heads, anchorage/development, splices, hooks, axial/biaxial force interaction, confinement, construction tolerances, fatigue applicability, independent force concurrency, or final project/code review.
+
+The scalar engine and calculation port are tested against known mechanics and the saved C005 baseline. That validates the implementation, not the adequacy of every source engineering assumption.

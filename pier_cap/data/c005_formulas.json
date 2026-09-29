@@ -1,0 +1,2270 @@
+[
+  {
+    "formula": "b = BridgeGeometry_2Beam.PierCap_width to in",
+    "unit": "in",
+    "caption": "Cap cross-section width; live journal geometry.",
+    "input": true,
+    "name": "b"
+  },
+  {
+    "formula": "h = BridgeGeometry_2Beam.PierCap_ht to in",
+    "unit": "in",
+    "caption": "Cap depth; live 4 ft input governs the older 6 ft prose.",
+    "input": true,
+    "name": "h"
+  },
+  {
+    "formula": "C_t = PedBridge.Cap_cover to in",
+    "unit": "in",
+    "caption": "Clear top cover to the outside of the hoop.",
+    "input": true,
+    "name": "C_t"
+  },
+  {
+    "formula": "C_b = PedBridge.Cap_cover to in",
+    "unit": "in",
+    "caption": "Clear bottom cover to the outside of the hoop.",
+    "input": true,
+    "name": "C_b"
+  },
+  {
+    "formula": "C_s = PedBridge.Cap_cover to in",
+    "unit": "in",
+    "caption": "Clear side cover to the outside of the hoop.",
+    "input": true,
+    "name": "C_s"
+  },
+  {
+    "formula": "N_pile = 4",
+    "unit": null,
+    "caption": "Current Excel configuration; total piles in one equally spaced row.",
+    "input": true,
+    "name": "N_pile"
+  },
+  {
+    "formula": "S_pile = 5 ft",
+    "unit": "ft",
+    "caption": "Current Excel center-to-center pile spacing.",
+    "input": true,
+    "name": "S_pile"
+  },
+  {
+    "formula": "D_pile = 20 in",
+    "unit": "in",
+    "caption": "Nominal pile width along the cap; Excel faces are rounded to 0.83 ft from centers.",
+    "input": true,
+    "name": "D_pile"
+  },
+  {
+    "formula": "E_clear = 9 in",
+    "unit": "in",
+    "caption": "Minimum actual pile-face edge clearance adopted from the FHWA discussion of LRFD 10.7.1.2.",
+    "input": true,
+    "name": "E_clear"
+  },
+  {
+    "formula": "Tol_pile = Min(3 in, D_pile/6) to in",
+    "unit": "in",
+    "caption": "FDOT specified pile location tolerance; nominal end extension includes this allowance.",
+    "input": false,
+    "name": "Tol_pile"
+  },
+  {
+    "formula": "E_detail = 0 in",
+    "unit": "in",
+    "caption": "Additional end allowance for reinforcement, pile-head detailing or project-specific requirements.",
+    "input": true,
+    "name": "E_detail"
+  },
+  {
+    "formula": "E_end = E_clear + Tol_pile + E_detail to in",
+    "unit": "in",
+    "caption": "Nominal extension beyond the outer pile face; 12 in for the starting layout.",
+    "input": false,
+    "name": "E_end"
+  },
+  {
+    "formula": "E_CL = D_pile/2 + E_end to in",
+    "unit": "in",
+    "caption": "Outer pile centerline to cap end.",
+    "input": false,
+    "name": "E_CL"
+  },
+  {
+    "formula": "L_cap = (N_pile-1)*S_pile + D_pile + 2*E_end to ft",
+    "unit": "ft",
+    "caption": "Cap length along the pile row; 18 ft 8 in for the starting layout.",
+    "input": false,
+    "name": "L_cap"
+  },
+  {
+    "formula": "S_pile_min = 3*D_pile to ft",
+    "unit": "ft",
+    "caption": "Minimum spacing screen: SDG 3.5.4. Confirm actual pile type and governing project requirements.",
+    "input": false,
+    "name": "S_pile_min"
+  },
+  {
+    "formula": "fc = 5500 psi to ksi",
+    "unit": "ksi",
+    "caption": "Project cap concrete strength; imported starting material value.",
+    "input": true,
+    "name": "fc"
+  },
+  {
+    "formula": "fy = 60000 psi to ksi",
+    "unit": "ksi",
+    "caption": "Trial reinforcing yield strength.",
+    "input": true,
+    "name": "fy"
+  },
+  {
+    "formula": "Es = 29000 ksi",
+    "unit": "ksi",
+    "caption": "Source worksheet steel modulus.",
+    "input": true,
+    "name": "Es"
+  },
+  {
+    "formula": "phi_f = 0.9",
+    "unit": null,
+    "caption": "Flexure resistance factor inherited from source; tension-controlled assumption.",
+    "input": true,
+    "name": "phi_f"
+  },
+  {
+    "formula": "phi_v = 0.9",
+    "unit": null,
+    "caption": "Shear/torsion resistance factor inherited from source.",
+    "input": true,
+    "name": "phi_v"
+  },
+  {
+    "formula": "gamma_e = 1",
+    "unit": null,
+    "caption": "Crack-control exposure factor; FDOT exposure classification requires confirmation.",
+    "input": true,
+    "name": "gamma_e"
+  },
+  {
+    "formula": "gamma_fat = 1.75",
+    "unit": null,
+    "caption": "Source worksheet fatigue load factor; review with the applicable fatigue combination.",
+    "input": true,
+    "name": "gamma_fat"
+  },
+  {
+    "formula": "beta_v = 2",
+    "unit": null,
+    "caption": "Source simplified sectional shear parameter.",
+    "input": true,
+    "name": "beta_v"
+  },
+  {
+    "formula": "theta = 45 deg",
+    "unit": "deg",
+    "caption": "Source simplified concrete compression-field angle.",
+    "input": true,
+    "name": "theta"
+  },
+  {
+    "formula": "alpha_v = 90 deg",
+    "unit": "deg",
+    "caption": "Vertical stirrup angle.",
+    "input": true,
+    "name": "alpha_v"
+  },
+  {
+    "formula": "fpc = 0 psi to ksi",
+    "unit": "ksi",
+    "caption": "No favorable axial-compression/prestress credit in the torsion threshold.",
+    "input": true,
+    "name": "fpc"
+  },
+  {
+    "formula": "Chk_piles = If(And(N_pile >= 2, N_pile == Round(N_pile,0), S_pile >= S_pile_min, E_end-Tol_pile >= E_clear), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_piles"
+  },
+  {
+    "formula": "Status_layout = If(And(N_pile == 4, Abs(S_pile-5 ft) < 0.001 in, Abs(D_pile-20 in) < 0.001 in), \"SOURCE PILE LAYOUT\", \"REIMPORT ANALYSIS FORCES\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Status_layout"
+  },
+  {
+    "formula": "Status_section = If(And(Abs(b-4 ft) < 0.001 in, Abs(h-4 ft) < 0.001 in), \"SOURCE SECTION\", \"RECHECK MODEL SELF-WEIGHT / FORCES\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Status_section"
+  },
+  {
+    "formula": "Mu_N = 169.44 kip*ft",
+    "unit": "kip*ft",
+    "caption": "Factored strength moment magnitude. Strength K68, Pil 4 CL, combo 2.",
+    "input": true,
+    "name": "Mu_N"
+  },
+  {
+    "formula": "MI_N = 148.19 kip*ft",
+    "unit": "kip*ft",
+    "caption": "Service I moment magnitude. Service I K88, Pil 4 CL, combo 4.",
+    "input": true,
+    "name": "MI_N"
+  },
+  {
+    "formula": "Mu_P = 143.56 kip*ft",
+    "unit": "kip*ft",
+    "caption": "Factored strength moment magnitude. Strength K17, Pil 2 LF, combo 1.",
+    "input": true,
+    "name": "Mu_P"
+  },
+  {
+    "formula": "MI_P = 103.46 kip*ft",
+    "unit": "kip*ft",
+    "caption": "Service I moment magnitude. Service I K42/K85, Pil 3 RF, combo 4.",
+    "input": true,
+    "name": "MI_P"
+  },
+  {
+    "formula": "Mu_B = 337.61 kip*ft",
+    "unit": "kip*ft",
+    "caption": "Factored strength moment magnitude. Strength K16, Brg 1, combo 1.",
+    "input": true,
+    "name": "Mu_B"
+  },
+  {
+    "formula": "MI_B = 293.7 kip*ft",
+    "unit": "kip*ft",
+    "caption": "Service I moment magnitude. Service I K43, Brg 2, combo 4.",
+    "input": true,
+    "name": "MI_B"
+  },
+  {
+    "formula": "Vu_G = 205.11 kip",
+    "unit": "kip",
+    "caption": "Global factored |F22|: J24 Pil 3 RCL / J74 Pil 2 LCL; Strength I, combo 1.",
+    "input": true,
+    "name": "Vu_G"
+  },
+  {
+    "formula": "Vu_L = 43.73 kip",
+    "unit": "kip",
+    "caption": "Low-shear interval only: Pil 2 RCL through Pil 3 LCL; J78, Strength III, combo 2.",
+    "input": true,
+    "name": "Vu_L"
+  },
+  {
+    "formula": "Tu = 33.83 kip*ft",
+    "unit": "kip*ft",
+    "caption": "Global factored |torque|: N17:N19, Brg 1 R / Pil 2 LF / Pil 2 LCL; Strength III, combo 2.",
+    "input": true,
+    "name": "Tu"
+  },
+  {
+    "formula": "Ready_III = false",
+    "unit": null,
+    "caption": "Set true only after all three Service III moments have been entered.",
+    "input": true,
+    "name": "Ready_III"
+  },
+  {
+    "formula": "Ready_fatigue = false",
+    "unit": null,
+    "caption": "Set true only after applicability, load factor and six fatigue inputs have been established.",
+    "input": true,
+    "name": "Ready_fatigue"
+  },
+  {
+    "formula": "MIII_N = 0 kip*ft",
+    "unit": "kip*ft",
+    "caption": "PENDING — Service III moment for region N; FDOT 3.10.A outer-steel stress check.",
+    "input": true,
+    "name": "MIII_N"
+  },
+  {
+    "formula": "MDL_N = 0 kip*ft",
+    "unit": "kip*ft",
+    "caption": "PENDING — signed unfactored permanent moment in region N, tensile stress positive.",
+    "input": true,
+    "name": "MDL_N"
+  },
+  {
+    "formula": "DMLL_N = 0 kip*ft",
+    "unit": "kip*ft",
+    "caption": "PENDING — unfactored fatigue live-load moment range in region N.",
+    "input": true,
+    "name": "DMLL_N"
+  },
+  {
+    "formula": "MIII_P = 0 kip*ft",
+    "unit": "kip*ft",
+    "caption": "PENDING — Service III moment for region P; FDOT 3.10.A outer-steel stress check.",
+    "input": true,
+    "name": "MIII_P"
+  },
+  {
+    "formula": "MDL_P = 0 kip*ft",
+    "unit": "kip*ft",
+    "caption": "PENDING — signed unfactored permanent moment in region P, tensile stress positive.",
+    "input": true,
+    "name": "MDL_P"
+  },
+  {
+    "formula": "DMLL_P = 0 kip*ft",
+    "unit": "kip*ft",
+    "caption": "PENDING — unfactored fatigue live-load moment range in region P.",
+    "input": true,
+    "name": "DMLL_P"
+  },
+  {
+    "formula": "MIII_B = 0 kip*ft",
+    "unit": "kip*ft",
+    "caption": "PENDING — Service III moment for region B; FDOT 3.10.A outer-steel stress check.",
+    "input": true,
+    "name": "MIII_B"
+  },
+  {
+    "formula": "MDL_B = 0 kip*ft",
+    "unit": "kip*ft",
+    "caption": "PENDING — signed unfactored permanent moment in region B, tensile stress positive.",
+    "input": true,
+    "name": "MDL_B"
+  },
+  {
+    "formula": "DMLL_B = 0 kip*ft",
+    "unit": "kip*ft",
+    "caption": "PENDING — unfactored fatigue live-load moment range in region B.",
+    "input": true,
+    "name": "DMLL_B"
+  },
+  {
+    "formula": "Chk_loads = If(And(Mu_N >= 0 kip*ft, Mu_P >= 0 kip*ft, Mu_B >= 0 kip*ft, MI_N >= 0 kip*ft, MI_P >= 0 kip*ft, MI_B >= 0 kip*ft, Vu_G >= 0 kip, Vu_L >= 0 kip, Tu >= 0 kip*ft), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_loads"
+  },
+  {
+    "formula": "Bar_N1 = 8",
+    "unit": null,
+    "caption": "Top row 1 bar size.",
+    "input": true,
+    "name": "Bar_N1"
+  },
+  {
+    "formula": "Bar_N2 = 8",
+    "unit": null,
+    "caption": "Top row 2 bar size; valid even when count is zero.",
+    "input": true,
+    "name": "Bar_N2"
+  },
+  {
+    "formula": "Bar_N3 = 8",
+    "unit": null,
+    "caption": "Top row 3 bar size.",
+    "input": true,
+    "name": "Bar_N3"
+  },
+  {
+    "formula": "n_N1 = 8",
+    "unit": null,
+    "caption": "Top row 1 bar count.",
+    "input": true,
+    "name": "n_N1"
+  },
+  {
+    "formula": "n_N2 = 0",
+    "unit": null,
+    "caption": "Top row 2 bar count.",
+    "input": true,
+    "name": "n_N2"
+  },
+  {
+    "formula": "n_N3 = 0",
+    "unit": null,
+    "caption": "Top row 3 bar count.",
+    "input": true,
+    "name": "n_N3"
+  },
+  {
+    "formula": "Bar_pos = 8",
+    "unit": null,
+    "caption": "Bottom main bar size in both positive regions.",
+    "input": true,
+    "name": "Bar_pos"
+  },
+  {
+    "formula": "Bar_U = 8",
+    "unit": null,
+    "caption": "U-bar size; count the developed tension legs as in the source sheet.",
+    "input": true,
+    "name": "Bar_U"
+  },
+  {
+    "formula": "n_P1 = 8",
+    "unit": null,
+    "caption": "Pile-region bottom row 1 count.",
+    "input": true,
+    "name": "n_P1"
+  },
+  {
+    "formula": "n_P2 = 0",
+    "unit": null,
+    "caption": "Pile-region bottom row 2 count.",
+    "input": true,
+    "name": "n_P2"
+  },
+  {
+    "formula": "n_PU = 0",
+    "unit": null,
+    "caption": "Pile-region U-bar tension leg count.",
+    "input": true,
+    "name": "n_PU"
+  },
+  {
+    "formula": "n_B1 = 8",
+    "unit": null,
+    "caption": "Bearing-region bottom row 1 count.",
+    "input": true,
+    "name": "n_B1"
+  },
+  {
+    "formula": "n_B2 = 0",
+    "unit": null,
+    "caption": "Bearing-region bottom row 2 count.",
+    "input": true,
+    "name": "n_B2"
+  },
+  {
+    "formula": "n_BU = 0",
+    "unit": null,
+    "caption": "Bearing-region U-bar tension leg count.",
+    "input": true,
+    "name": "n_BU"
+  },
+  {
+    "formula": "Bar_v = 5",
+    "unit": null,
+    "caption": "Closed hoop bar size.",
+    "input": true,
+    "name": "Bar_v"
+  },
+  {
+    "formula": "n_loop = 1",
+    "unit": null,
+    "caption": "Number of effective closed shear loops; each supplies two vertical legs.",
+    "input": true,
+    "name": "n_loop"
+  },
+  {
+    "formula": "Bar_skin = 5",
+    "unit": null,
+    "caption": "Longitudinal skin bar size.",
+    "input": true,
+    "name": "Bar_skin"
+  },
+  {
+    "formula": "n_skin = 6",
+    "unit": null,
+    "caption": "Skin bar count on each side, excluding top/bottom main bars.",
+    "input": true,
+    "name": "n_skin"
+  },
+  {
+    "formula": "s_row = 4 in",
+    "unit": "in",
+    "caption": "Center-to-center vertical separation between main rows, measured from row 1.",
+    "input": true,
+    "name": "s_row"
+  },
+  {
+    "formula": "s_G = 8 in",
+    "unit": "in",
+    "caption": "Selected hoop spacing in the global-demand zone.",
+    "input": true,
+    "name": "s_G"
+  },
+  {
+    "formula": "s_L = 8 in",
+    "unit": "in",
+    "caption": "Selected hoop spacing only in the identified low-shear interval.",
+    "input": true,
+    "name": "s_L"
+  },
+  {
+    "formula": "Manual_spacing = false",
+    "unit": null,
+    "caption": "False uses idealized outer-row/skin spacing; true uses the four detailed spacing inputs below.",
+    "input": true,
+    "name": "Manual_spacing"
+  },
+  {
+    "formula": "SP_detail_N = 5.67857142857143 in",
+    "unit": "in",
+    "caption": "Actual detailed maximum spacing for N; active only when Manual_spacing is true.",
+    "input": true,
+    "name": "SP_detail_N"
+  },
+  {
+    "formula": "SP_detail_P = 5.67857142857143 in",
+    "unit": "in",
+    "caption": "Actual detailed maximum spacing for P; active only when Manual_spacing is true.",
+    "input": true,
+    "name": "SP_detail_P"
+  },
+  {
+    "formula": "SP_detail_B = 5.67857142857143 in",
+    "unit": "in",
+    "caption": "Actual detailed maximum spacing for B; active only when Manual_spacing is true.",
+    "input": true,
+    "name": "SP_detail_B"
+  },
+  {
+    "formula": "SP_detail_skin = 5.67857142857143 in",
+    "unit": "in",
+    "caption": "Actual detailed maximum spacing for skin; active only when Manual_spacing is true.",
+    "input": true,
+    "name": "SP_detail_skin"
+  },
+  {
+    "formula": "S_leg_detail = 41.375 in",
+    "unit": "in",
+    "caption": "Actual largest transverse spacing of effective hoop legs; used for multiple-loop details.",
+    "input": true,
+    "name": "S_leg_detail"
+  },
+  {
+    "formula": "Ab(k) = If(k == 3, 0.11 in^2, If(k == 4, 0.2 in^2, If(k == 5, 0.31 in^2, If(k == 6, 0.44 in^2, If(k == 7, 0.6 in^2, If(k == 8, 0.79 in^2, If(k == 9, 1 in^2, If(k == 10, 1.27 in^2, If(k == 11, 1.56 in^2, 0 in^2)))))))))",
+    "unit": null,
+    "caption": "US #3 through #11 bar properties copied from the source worksheet. Unsupported sizes fail the input check.",
+    "input": false,
+    "name": "Ab(k)"
+  },
+  {
+    "formula": "Db(k) = If(k == 3, 0.375 in, If(k == 4, 0.5 in, If(k == 5, 0.625 in, If(k == 6, 0.75 in, If(k == 7, 0.875 in, If(k == 8, 1 in, If(k == 9, 1.128 in, If(k == 10, 1.27 in, If(k == 11, 1.41 in, 0 in)))))))))",
+    "unit": null,
+    "caption": "US #3 through #11 bar properties copied from the source worksheet. Unsupported sizes fail the input check.",
+    "input": false,
+    "name": "Db(k)"
+  },
+  {
+    "formula": "ValidBar(k) = And(k >= 3, k <= 11, k == Round(k,0))",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "ValidBar(k)"
+  },
+  {
+    "formula": "ValidCount(k) = And(k >= 0, k == Round(k,0))",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "ValidCount(k)"
+  },
+  {
+    "formula": "d_vbar = Db(Bar_v) to in",
+    "unit": "in",
+    "caption": "Hoop diameter.",
+    "input": false,
+    "name": "d_vbar"
+  },
+  {
+    "formula": "As_N = n_N1*Ab(Bar_N1)+n_N2*Ab(Bar_N2)+n_N3*Ab(Bar_N3) to in^2",
+    "unit": "in^2",
+    "caption": "Negative flexural reinforcement area.",
+    "input": false,
+    "name": "As_N"
+  },
+  {
+    "formula": "As_P = (n_P1+n_P2)*Ab(Bar_pos)+n_PU*Ab(Bar_U) to in^2",
+    "unit": "in^2",
+    "caption": "Positive region P reinforcement area.",
+    "input": false,
+    "name": "As_P"
+  },
+  {
+    "formula": "As_B = (n_B1+n_B2)*Ab(Bar_pos)+n_BU*Ab(Bar_U) to in^2",
+    "unit": "in^2",
+    "caption": "Positive region B reinforcement area.",
+    "input": false,
+    "name": "As_B"
+  },
+  {
+    "formula": "Av = 2*n_loop*Ab(Bar_v) to in^2",
+    "unit": "in^2",
+    "caption": "Total effective transverse shear steel area per stirrup set.",
+    "input": false,
+    "name": "Av"
+  },
+  {
+    "formula": "As_side = n_skin*Ab(Bar_skin) to in^2",
+    "unit": "in^2",
+    "caption": "Skin steel area on one complete side; separate from the bar-property lookup.",
+    "input": false,
+    "name": "As_side"
+  },
+  {
+    "formula": "y_N1 = C_t+d_vbar+Db(Bar_N1)/2 to in",
+    "unit": "in",
+    "caption": "Top tension row 1 center measured from the top face.",
+    "input": false,
+    "name": "y_N1"
+  },
+  {
+    "formula": "y_N2 = y_N1+s_row to in",
+    "unit": "in",
+    "caption": "Top row 2 center; row spacing is center-to-center.",
+    "input": false,
+    "name": "y_N2"
+  },
+  {
+    "formula": "y_N3 = y_N1+2*s_row to in",
+    "unit": "in",
+    "caption": "Top row 3 center.",
+    "input": false,
+    "name": "y_N3"
+  },
+  {
+    "formula": "dc_N = (n_N1*Ab(Bar_N1)*y_N1+n_N2*Ab(Bar_N2)*y_N2+n_N3*Ab(Bar_N3)*y_N3)/Max(As_N,0.000001 in^2) to in",
+    "unit": "in",
+    "caption": "Top-steel centroid from the tension face; corrects the original bottom-cover/positive-bar reference.",
+    "input": false,
+    "name": "dc_N"
+  },
+  {
+    "formula": "y_pos1 = C_b+d_vbar+Db(Bar_pos)/2 to in",
+    "unit": "in",
+    "caption": "Bottom main row 1 center measured from the bottom face.",
+    "input": false,
+    "name": "y_pos1"
+  },
+  {
+    "formula": "y_pos2 = y_pos1+s_row to in",
+    "unit": "in",
+    "caption": "Bottom main row 2 center.",
+    "input": false,
+    "name": "y_pos2"
+  },
+  {
+    "formula": "y_U = C_b+d_vbar+Db(Bar_U)/2 to in",
+    "unit": "in",
+    "caption": "U-bar tension leg center; development and interference are separate checks.",
+    "input": false,
+    "name": "y_U"
+  },
+  {
+    "formula": "dc_P = (n_P1*Ab(Bar_pos)*y_pos1+n_P2*Ab(Bar_pos)*y_pos2+n_PU*Ab(Bar_U)*y_U)/Max(As_P,0.000001 in^2) to in",
+    "unit": "in",
+    "caption": "Region P bottom-steel centroid.",
+    "input": false,
+    "name": "dc_P"
+  },
+  {
+    "formula": "dc_B = (n_B1*Ab(Bar_pos)*y_pos1+n_B2*Ab(Bar_pos)*y_pos2+n_BU*Ab(Bar_U)*y_U)/Max(As_B,0.000001 in^2) to in",
+    "unit": "in",
+    "caption": "Region B bottom-steel centroid.",
+    "input": false,
+    "name": "dc_B"
+  },
+  {
+    "formula": "d_N = h-dc_N to in",
+    "unit": "in",
+    "caption": "Effective depth in region N.",
+    "input": false,
+    "name": "d_N"
+  },
+  {
+    "formula": "d_P = h-dc_P to in",
+    "unit": "in",
+    "caption": "Effective depth in region P.",
+    "input": false,
+    "name": "d_P"
+  },
+  {
+    "formula": "d_B = h-dc_B to in",
+    "unit": "in",
+    "caption": "Effective depth in region B.",
+    "input": false,
+    "name": "d_B"
+  },
+  {
+    "formula": "do_N = y_N1 to in",
+    "unit": "in",
+    "caption": "Extreme tension face to outer top bar center.",
+    "input": false,
+    "name": "do_N"
+  },
+  {
+    "formula": "do_P = If(n_PU > 0, Min(y_pos1,y_U), y_pos1) to in",
+    "unit": "in",
+    "caption": "Extreme tension face to outer bottom bar center.",
+    "input": false,
+    "name": "do_P"
+  },
+  {
+    "formula": "do_B = If(n_BU > 0, Min(y_pos1,y_U), y_pos1) to in",
+    "unit": "in",
+    "caption": "Extreme tension face to outer bottom bar center.",
+    "input": false,
+    "name": "do_B"
+  },
+  {
+    "formula": "SP_N_auto = (b-2*C_s-2*d_vbar-Db(Bar_N1))/Max(n_N1-1,1) to in",
+    "unit": "in",
+    "caption": "Idealized evenly spaced outer top row; use detailed override for irregular layouts.",
+    "input": false,
+    "name": "SP_N_auto"
+  },
+  {
+    "formula": "SP_P_auto = (b-2*C_s-2*d_vbar-Db(Bar_pos))/Max(n_P1-1,1) to in",
+    "unit": "in",
+    "caption": "Idealized outer bottom-row spacing; U-bar legs do not reduce this conservative spacing.",
+    "input": false,
+    "name": "SP_P_auto"
+  },
+  {
+    "formula": "SP_B_auto = (b-2*C_s-2*d_vbar-Db(Bar_pos))/Max(n_B1-1,1) to in",
+    "unit": "in",
+    "caption": "Idealized outer bottom-row spacing; U-bar legs do not reduce this conservative spacing.",
+    "input": false,
+    "name": "SP_B_auto"
+  },
+  {
+    "formula": "SP_skin_auto = (h-y_N1-y_pos1)/(n_skin+1) to in",
+    "unit": "in",
+    "caption": "Intermediate skin bars evenly distributed between top and bottom corner-bar levels.",
+    "input": false,
+    "name": "SP_skin_auto"
+  },
+  {
+    "formula": "SP_N = If(Manual_spacing, SP_detail_N, SP_N_auto) to in",
+    "unit": "in",
+    "caption": "Spacing used by the live checks.",
+    "input": false,
+    "name": "SP_N"
+  },
+  {
+    "formula": "SP_P = If(Manual_spacing, SP_detail_P, SP_P_auto) to in",
+    "unit": "in",
+    "caption": "Spacing used by the live checks.",
+    "input": false,
+    "name": "SP_P"
+  },
+  {
+    "formula": "SP_B = If(Manual_spacing, SP_detail_B, SP_B_auto) to in",
+    "unit": "in",
+    "caption": "Spacing used by the live checks.",
+    "input": false,
+    "name": "SP_B"
+  },
+  {
+    "formula": "SP_skin = If(Manual_spacing, SP_detail_skin, SP_skin_auto) to in",
+    "unit": "in",
+    "caption": "Spacing used by the live checks.",
+    "input": false,
+    "name": "SP_skin"
+  },
+  {
+    "formula": "S_leg = If(n_loop == 1, b-2*C_s-d_vbar, S_leg_detail) to in",
+    "unit": "in",
+    "caption": "Largest transverse leg spacing; multiple-loop spacing must follow the actual detail.",
+    "input": false,
+    "name": "S_leg"
+  },
+  {
+    "formula": "Chk_bars = If(And(ValidBar(Bar_N1), ValidBar(Bar_N2), ValidBar(Bar_N3), ValidBar(Bar_pos), ValidBar(Bar_U), ValidBar(Bar_v), ValidBar(Bar_skin)), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_bars"
+  },
+  {
+    "formula": "Chk_counts = If(And(ValidCount(n_N1), ValidCount(n_N2), ValidCount(n_N3), ValidCount(n_P1), ValidCount(n_P2), ValidCount(n_PU), ValidCount(n_B1), ValidCount(n_B2), ValidCount(n_BU), ValidCount(n_loop), ValidCount(n_skin), n_N1 >= 2, n_P1 >= 2, n_B1 >= 2, n_loop >= 1), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_counts"
+  },
+  {
+    "formula": "Chk_geometry = If(And(b > 0 in, h > 0 in, fc > 0 ksi, fy > 0 ksi, phi_f > 0, phi_f <= 1, phi_v > 0, phi_v <= 1, C_t > 0 in, C_b > 0 in, C_s > 0 in, s_row > 0 in, s_G > 0 in, s_L > 0 in, Min(d_N,d_P,d_B) > h/2, Min(SP_N,SP_P,SP_B,SP_skin,S_leg) > 0 in), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_geometry"
+  },
+  {
+    "formula": "alpha_1 = Max(0.75,0.85-0.02*Max(fc/(1 ksi)-10,0))",
+    "unit": null,
+    "caption": "Concrete stress-block factor; corrected lower bound applies to alpha_1.",
+    "input": false,
+    "name": "alpha_1"
+  },
+  {
+    "formula": "beta_1 = Max(0.65,0.85-0.05*Max(fc/(1 ksi)-4,0))",
+    "unit": null,
+    "caption": "Concrete equivalent block-depth factor.",
+    "input": false,
+    "name": "beta_1"
+  },
+  {
+    "formula": "fr = 0.24*Sqrt(fc/(1 ksi))*(1 ksi) to ksi",
+    "unit": "ksi",
+    "caption": "Source modulus of rupture, normal-weight concrete.",
+    "input": false,
+    "name": "fr"
+  },
+  {
+    "formula": "Ig = b*h^3/12 to in^4",
+    "unit": "in^4",
+    "caption": "Gross rectangular second moment of area.",
+    "input": false,
+    "name": "Ig"
+  },
+  {
+    "formula": "yt = h/2 to in",
+    "unit": "in",
+    "caption": "Gross extreme-fiber distance.",
+    "input": false,
+    "name": "yt"
+  },
+  {
+    "formula": "Mcr = fr*Ig/yt to kip*ft",
+    "unit": "kip*ft",
+    "caption": "Cracking moment.",
+    "input": false,
+    "name": "Mcr"
+  },
+  {
+    "formula": "Mmin_cr = 1.6*0.67*Mcr to kip*ft",
+    "unit": "kip*ft",
+    "caption": "Source minimum-reinforcement cracking target.",
+    "input": false,
+    "name": "Mmin_cr"
+  },
+  {
+    "formula": "a_N = As_N*fy/(alpha_1*fc*b) to in",
+    "unit": "in",
+    "caption": "Compression stress-block depth.",
+    "input": false,
+    "name": "a_N"
+  },
+  {
+    "formula": "c_N = a_N/beta_1 to in",
+    "unit": "in",
+    "caption": "Neutral-axis depth at nominal strength.",
+    "input": false,
+    "name": "c_N"
+  },
+  {
+    "formula": "Mn_N = As_N*fy*(d_N-a_N/2) to kip*ft",
+    "unit": "kip*ft",
+    "caption": "Nominal flexural resistance.",
+    "input": false,
+    "name": "Mn_N"
+  },
+  {
+    "formula": "Mr_N = phi_f*Mn_N to kip*ft",
+    "unit": "kip*ft",
+    "caption": "Factored flexural resistance.",
+    "input": false,
+    "name": "Mr_N"
+  },
+  {
+    "formula": "Asreq_N = Mu_N/(phi_f*fy*(d_N-a_N/2)) to in^2",
+    "unit": "in^2",
+    "caption": "Required area using the source fixed provided stress block.",
+    "input": false,
+    "name": "Asreq_N"
+  },
+  {
+    "formula": "Mmin_N = Min(Mmin_cr,1.33*Mu_N) to kip*ft",
+    "unit": "kip*ft",
+    "caption": "Minimum factored flexural resistance target.",
+    "input": false,
+    "name": "Mmin_N"
+  },
+  {
+    "formula": "Asmin_N = Mmin_N/(phi_f*fy*(d_N-a_N/2)) to in^2",
+    "unit": "in^2",
+    "caption": "Equivalent minimum area with the same fixed provided stress block.",
+    "input": false,
+    "name": "Asmin_N"
+  },
+  {
+    "formula": "DC_flex_N = Mu_N/Mr_N",
+    "unit": null,
+    "caption": "Factored flexural demand / resistance.",
+    "input": false,
+    "name": "DC_flex_N"
+  },
+  {
+    "formula": "DC_min_N = Mmin_N/Mr_N",
+    "unit": null,
+    "caption": "Minimum flexural target / resistance.",
+    "input": false,
+    "name": "DC_min_N"
+  },
+  {
+    "formula": "eps_t_N = 0.003*(d_N-c_N)/Max(c_N,0.000001 in)",
+    "unit": null,
+    "caption": "Strain screen for the adopted constant flexural resistance factor.",
+    "input": false,
+    "name": "eps_t_N"
+  },
+  {
+    "formula": "Chk_flex_N = If(And(Mr_N > 0 kip*ft, DC_flex_N <= 1, c_N < d_N), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_flex_N"
+  },
+  {
+    "formula": "Chk_min_N = If(And(Mr_N > 0 kip*ft, DC_min_N <= 1), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_min_N"
+  },
+  {
+    "formula": "Chk_strain_N = If(eps_t_N >= 0.005, \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "Applicability screen only: confirm the adopted φ against the governing code and reinforcing grade.",
+    "input": false,
+    "name": "Chk_strain_N"
+  },
+  {
+    "formula": "a_P = As_P*fy/(alpha_1*fc*b) to in",
+    "unit": "in",
+    "caption": "Compression stress-block depth.",
+    "input": false,
+    "name": "a_P"
+  },
+  {
+    "formula": "c_P = a_P/beta_1 to in",
+    "unit": "in",
+    "caption": "Neutral-axis depth at nominal strength.",
+    "input": false,
+    "name": "c_P"
+  },
+  {
+    "formula": "Mn_P = As_P*fy*(d_P-a_P/2) to kip*ft",
+    "unit": "kip*ft",
+    "caption": "Nominal flexural resistance.",
+    "input": false,
+    "name": "Mn_P"
+  },
+  {
+    "formula": "Mr_P = phi_f*Mn_P to kip*ft",
+    "unit": "kip*ft",
+    "caption": "Factored flexural resistance.",
+    "input": false,
+    "name": "Mr_P"
+  },
+  {
+    "formula": "Asreq_P = Mu_P/(phi_f*fy*(d_P-a_P/2)) to in^2",
+    "unit": "in^2",
+    "caption": "Required area using the source fixed provided stress block.",
+    "input": false,
+    "name": "Asreq_P"
+  },
+  {
+    "formula": "Mmin_P = Min(Mmin_cr,1.33*Mu_P) to kip*ft",
+    "unit": "kip*ft",
+    "caption": "Minimum factored flexural resistance target.",
+    "input": false,
+    "name": "Mmin_P"
+  },
+  {
+    "formula": "Asmin_P = Mmin_P/(phi_f*fy*(d_P-a_P/2)) to in^2",
+    "unit": "in^2",
+    "caption": "Equivalent minimum area with the same fixed provided stress block.",
+    "input": false,
+    "name": "Asmin_P"
+  },
+  {
+    "formula": "DC_flex_P = Mu_P/Mr_P",
+    "unit": null,
+    "caption": "Factored flexural demand / resistance.",
+    "input": false,
+    "name": "DC_flex_P"
+  },
+  {
+    "formula": "DC_min_P = Mmin_P/Mr_P",
+    "unit": null,
+    "caption": "Minimum flexural target / resistance.",
+    "input": false,
+    "name": "DC_min_P"
+  },
+  {
+    "formula": "eps_t_P = 0.003*(d_P-c_P)/Max(c_P,0.000001 in)",
+    "unit": null,
+    "caption": "Strain screen for the adopted constant flexural resistance factor.",
+    "input": false,
+    "name": "eps_t_P"
+  },
+  {
+    "formula": "Chk_flex_P = If(And(Mr_P > 0 kip*ft, DC_flex_P <= 1, c_P < d_P), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_flex_P"
+  },
+  {
+    "formula": "Chk_min_P = If(And(Mr_P > 0 kip*ft, DC_min_P <= 1), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_min_P"
+  },
+  {
+    "formula": "Chk_strain_P = If(eps_t_P >= 0.005, \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "Applicability screen only: confirm the adopted φ against the governing code and reinforcing grade.",
+    "input": false,
+    "name": "Chk_strain_P"
+  },
+  {
+    "formula": "a_B = As_B*fy/(alpha_1*fc*b) to in",
+    "unit": "in",
+    "caption": "Compression stress-block depth.",
+    "input": false,
+    "name": "a_B"
+  },
+  {
+    "formula": "c_B = a_B/beta_1 to in",
+    "unit": "in",
+    "caption": "Neutral-axis depth at nominal strength.",
+    "input": false,
+    "name": "c_B"
+  },
+  {
+    "formula": "Mn_B = As_B*fy*(d_B-a_B/2) to kip*ft",
+    "unit": "kip*ft",
+    "caption": "Nominal flexural resistance.",
+    "input": false,
+    "name": "Mn_B"
+  },
+  {
+    "formula": "Mr_B = phi_f*Mn_B to kip*ft",
+    "unit": "kip*ft",
+    "caption": "Factored flexural resistance.",
+    "input": false,
+    "name": "Mr_B"
+  },
+  {
+    "formula": "Asreq_B = Mu_B/(phi_f*fy*(d_B-a_B/2)) to in^2",
+    "unit": "in^2",
+    "caption": "Required area using the source fixed provided stress block.",
+    "input": false,
+    "name": "Asreq_B"
+  },
+  {
+    "formula": "Mmin_B = Min(Mmin_cr,1.33*Mu_B) to kip*ft",
+    "unit": "kip*ft",
+    "caption": "Minimum factored flexural resistance target.",
+    "input": false,
+    "name": "Mmin_B"
+  },
+  {
+    "formula": "Asmin_B = Mmin_B/(phi_f*fy*(d_B-a_B/2)) to in^2",
+    "unit": "in^2",
+    "caption": "Equivalent minimum area with the same fixed provided stress block.",
+    "input": false,
+    "name": "Asmin_B"
+  },
+  {
+    "formula": "DC_flex_B = Mu_B/Mr_B",
+    "unit": null,
+    "caption": "Factored flexural demand / resistance.",
+    "input": false,
+    "name": "DC_flex_B"
+  },
+  {
+    "formula": "DC_min_B = Mmin_B/Mr_B",
+    "unit": null,
+    "caption": "Minimum flexural target / resistance.",
+    "input": false,
+    "name": "DC_min_B"
+  },
+  {
+    "formula": "eps_t_B = 0.003*(d_B-c_B)/Max(c_B,0.000001 in)",
+    "unit": null,
+    "caption": "Strain screen for the adopted constant flexural resistance factor.",
+    "input": false,
+    "name": "eps_t_B"
+  },
+  {
+    "formula": "Chk_flex_B = If(And(Mr_B > 0 kip*ft, DC_flex_B <= 1, c_B < d_B), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_flex_B"
+  },
+  {
+    "formula": "Chk_min_B = If(And(Mr_B > 0 kip*ft, DC_min_B <= 1), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_min_B"
+  },
+  {
+    "formula": "Chk_strain_B = If(eps_t_B >= 0.005, \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "Applicability screen only: confirm the adopted φ against the governing code and reinforcing grade.",
+    "input": false,
+    "name": "Chk_strain_B"
+  },
+  {
+    "formula": "DC_flex_max = Max(DC_flex_N,DC_flex_P,DC_flex_B)",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "DC_flex_max"
+  },
+  {
+    "formula": "Ec = 120000*0.145^2*(fc/(1 ksi))^0.33*(1 ksi) to ksi",
+    "unit": "ksi",
+    "caption": "Source worksheet concrete modulus; 0.145 is its fixed normal-weight density input.",
+    "input": false,
+    "name": "Ec"
+  },
+  {
+    "formula": "n_mod = Round(Es/Ec,2)",
+    "unit": null,
+    "caption": "Modular ratio, rounded to two decimals as in the Mathcad source.",
+    "input": false,
+    "name": "n_mod"
+  },
+  {
+    "formula": "fs_I_limit = 0.8*fy to ksi",
+    "unit": "ksi",
+    "caption": "Source Service I steel stress limit; applicability held for fy ≥ 75 ksi.",
+    "input": false,
+    "name": "fs_I_limit"
+  },
+  {
+    "formula": "S_allow(fs,bs,cover) = If(fs > 0 ksi, 700*gamma_e/(bs*Max(fs/(1 ksi),0.000000001))*(1 in)-2*cover, 1000000 in)",
+    "unit": null,
+    "caption": "Crack-control maximum spacing; large value denotes no stress-driven spacing restriction at zero moment.",
+    "input": false,
+    "name": "S_allow(fs,bs,cover)"
+  },
+  {
+    "formula": "nAs_N = n_mod*As_N to in^2",
+    "unit": "in^2",
+    "caption": "Transformed reinforcing area.",
+    "input": false,
+    "name": "nAs_N"
+  },
+  {
+    "formula": "ccr_N = (-nAs_N+Sqrt(nAs_N^2+2*b*d_N*nAs_N))/b to in",
+    "unit": "in",
+    "caption": "Cracked neutral-axis depth.",
+    "input": false,
+    "name": "ccr_N"
+  },
+  {
+    "formula": "Icr_N = b*ccr_N^3/3+nAs_N*(d_N-ccr_N)^2 to in^4",
+    "unit": "in^4",
+    "caption": "Cracked transformed second moment of area.",
+    "input": false,
+    "name": "Icr_N"
+  },
+  {
+    "formula": "Ss_N = Icr_N/(d_N-ccr_N) to in^3",
+    "unit": "in^3",
+    "caption": "Section modulus to steel centroid.",
+    "input": false,
+    "name": "Ss_N"
+  },
+  {
+    "formula": "bs_N = 1+dc_N/(0.7*(h-dc_N))",
+    "unit": null,
+    "caption": "Source crack-control cover parameter.",
+    "input": false,
+    "name": "bs_N"
+  },
+  {
+    "formula": "fs_I_N = MI_N*n_mod/Ss_N to ksi",
+    "unit": "ksi",
+    "caption": "Service I steel stress at tension-steel centroid.",
+    "input": false,
+    "name": "fs_I_N"
+  },
+  {
+    "formula": "SI_N = S_allow(fs_I_N,bs_N,dc_N) to in",
+    "unit": "in",
+    "caption": "Service I allowable bar spacing.",
+    "input": false,
+    "name": "SI_N"
+  },
+  {
+    "formula": "fs_III_N = MIII_N*n_mod/Ss_N to ksi",
+    "unit": "ksi",
+    "caption": "Inactive until Ready_III; Service III centroid stress.",
+    "input": false,
+    "name": "fs_III_N"
+  },
+  {
+    "formula": "fo_III_N = MIII_N*n_mod*(h-ccr_N-do_N)/Icr_N to ksi",
+    "unit": "ksi",
+    "caption": "Inactive until Ready_III; Service III outer-bar stress.",
+    "input": false,
+    "name": "fo_III_N"
+  },
+  {
+    "formula": "SIII_N = S_allow(fs_III_N,bs_N,dc_N) to in",
+    "unit": "in",
+    "caption": "Inactive until Ready_III; Service III allowable spacing.",
+    "input": false,
+    "name": "SIII_N"
+  },
+  {
+    "formula": "Chk_I_N = If(And(fy < 75 ksi, fs_I_N <= fs_I_limit, SI_N > 0 in, SP_N <= SI_N), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_I_N"
+  },
+  {
+    "formula": "Chk_III_N = If(Ready_III, If(And(MIII_N >= 0 kip*ft, fo_III_N <= 24 ksi, SIII_N > 0 in, SP_N <= SIII_N), \"✓ PASS\", \"⊗ FAIL\"), \"PENDING\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_III_N"
+  },
+  {
+    "formula": "nAs_P = n_mod*As_P to in^2",
+    "unit": "in^2",
+    "caption": "Transformed reinforcing area.",
+    "input": false,
+    "name": "nAs_P"
+  },
+  {
+    "formula": "ccr_P = (-nAs_P+Sqrt(nAs_P^2+2*b*d_P*nAs_P))/b to in",
+    "unit": "in",
+    "caption": "Cracked neutral-axis depth.",
+    "input": false,
+    "name": "ccr_P"
+  },
+  {
+    "formula": "Icr_P = b*ccr_P^3/3+nAs_P*(d_P-ccr_P)^2 to in^4",
+    "unit": "in^4",
+    "caption": "Cracked transformed second moment of area.",
+    "input": false,
+    "name": "Icr_P"
+  },
+  {
+    "formula": "Ss_P = Icr_P/(d_P-ccr_P) to in^3",
+    "unit": "in^3",
+    "caption": "Section modulus to steel centroid.",
+    "input": false,
+    "name": "Ss_P"
+  },
+  {
+    "formula": "bs_P = 1+dc_P/(0.7*(h-dc_P))",
+    "unit": null,
+    "caption": "Source crack-control cover parameter.",
+    "input": false,
+    "name": "bs_P"
+  },
+  {
+    "formula": "fs_I_P = MI_P*n_mod/Ss_P to ksi",
+    "unit": "ksi",
+    "caption": "Service I steel stress at tension-steel centroid.",
+    "input": false,
+    "name": "fs_I_P"
+  },
+  {
+    "formula": "SI_P = S_allow(fs_I_P,bs_P,dc_P) to in",
+    "unit": "in",
+    "caption": "Service I allowable bar spacing.",
+    "input": false,
+    "name": "SI_P"
+  },
+  {
+    "formula": "fs_III_P = MIII_P*n_mod/Ss_P to ksi",
+    "unit": "ksi",
+    "caption": "Inactive until Ready_III; Service III centroid stress.",
+    "input": false,
+    "name": "fs_III_P"
+  },
+  {
+    "formula": "fo_III_P = MIII_P*n_mod*(h-ccr_P-do_P)/Icr_P to ksi",
+    "unit": "ksi",
+    "caption": "Inactive until Ready_III; Service III outer-bar stress.",
+    "input": false,
+    "name": "fo_III_P"
+  },
+  {
+    "formula": "SIII_P = S_allow(fs_III_P,bs_P,dc_P) to in",
+    "unit": "in",
+    "caption": "Inactive until Ready_III; Service III allowable spacing.",
+    "input": false,
+    "name": "SIII_P"
+  },
+  {
+    "formula": "Chk_I_P = If(And(fy < 75 ksi, fs_I_P <= fs_I_limit, SI_P > 0 in, SP_P <= SI_P), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_I_P"
+  },
+  {
+    "formula": "Chk_III_P = If(Ready_III, If(And(MIII_P >= 0 kip*ft, fo_III_P <= 24 ksi, SIII_P > 0 in, SP_P <= SIII_P), \"✓ PASS\", \"⊗ FAIL\"), \"PENDING\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_III_P"
+  },
+  {
+    "formula": "nAs_B = n_mod*As_B to in^2",
+    "unit": "in^2",
+    "caption": "Transformed reinforcing area.",
+    "input": false,
+    "name": "nAs_B"
+  },
+  {
+    "formula": "ccr_B = (-nAs_B+Sqrt(nAs_B^2+2*b*d_B*nAs_B))/b to in",
+    "unit": "in",
+    "caption": "Cracked neutral-axis depth.",
+    "input": false,
+    "name": "ccr_B"
+  },
+  {
+    "formula": "Icr_B = b*ccr_B^3/3+nAs_B*(d_B-ccr_B)^2 to in^4",
+    "unit": "in^4",
+    "caption": "Cracked transformed second moment of area.",
+    "input": false,
+    "name": "Icr_B"
+  },
+  {
+    "formula": "Ss_B = Icr_B/(d_B-ccr_B) to in^3",
+    "unit": "in^3",
+    "caption": "Section modulus to steel centroid.",
+    "input": false,
+    "name": "Ss_B"
+  },
+  {
+    "formula": "bs_B = 1+dc_B/(0.7*(h-dc_B))",
+    "unit": null,
+    "caption": "Source crack-control cover parameter.",
+    "input": false,
+    "name": "bs_B"
+  },
+  {
+    "formula": "fs_I_B = MI_B*n_mod/Ss_B to ksi",
+    "unit": "ksi",
+    "caption": "Service I steel stress at tension-steel centroid.",
+    "input": false,
+    "name": "fs_I_B"
+  },
+  {
+    "formula": "SI_B = S_allow(fs_I_B,bs_B,dc_B) to in",
+    "unit": "in",
+    "caption": "Service I allowable bar spacing.",
+    "input": false,
+    "name": "SI_B"
+  },
+  {
+    "formula": "fs_III_B = MIII_B*n_mod/Ss_B to ksi",
+    "unit": "ksi",
+    "caption": "Inactive until Ready_III; Service III centroid stress.",
+    "input": false,
+    "name": "fs_III_B"
+  },
+  {
+    "formula": "fo_III_B = MIII_B*n_mod*(h-ccr_B-do_B)/Icr_B to ksi",
+    "unit": "ksi",
+    "caption": "Inactive until Ready_III; Service III outer-bar stress.",
+    "input": false,
+    "name": "fo_III_B"
+  },
+  {
+    "formula": "SIII_B = S_allow(fs_III_B,bs_B,dc_B) to in",
+    "unit": "in",
+    "caption": "Inactive until Ready_III; Service III allowable spacing.",
+    "input": false,
+    "name": "SIII_B"
+  },
+  {
+    "formula": "Chk_I_B = If(And(fy < 75 ksi, fs_I_B <= fs_I_limit, SI_B > 0 in, SP_B <= SI_B), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_I_B"
+  },
+  {
+    "formula": "Chk_III_B = If(Ready_III, If(And(MIII_B >= 0 kip*ft, fo_III_B <= 24 ksi, SIII_B > 0 in, SP_B <= SIII_B), \"✓ PASS\", \"⊗ FAIL\"), \"PENDING\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_III_B"
+  },
+  {
+    "formula": "fs_I_max = Max(fs_I_N,fs_I_P,fs_I_B) to ksi",
+    "unit": "ksi",
+    "caption": "",
+    "input": false,
+    "name": "fs_I_max"
+  },
+  {
+    "formula": "Status_III = If(Ready_III, If(And(Chk_III_N == \"✓ PASS\", Chk_III_P == \"✓ PASS\", Chk_III_B == \"✓ PASS\"), \"✓ PASS\", \"⊗ FAIL\"), \"PENDING — three Service III moments\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Status_III"
+  },
+  {
+    "formula": "fmin_N = MDL_N*n_mod/Ss_N to ksi",
+    "unit": "ksi",
+    "caption": "Minimum stress, tensile positive.",
+    "input": false,
+    "name": "fmin_N"
+  },
+  {
+    "formula": "Df_N = gamma_fat*DMLL_N*n_mod/Ss_N to ksi",
+    "unit": "ksi",
+    "caption": "Factored live-load stress range.",
+    "input": false,
+    "name": "Df_N"
+  },
+  {
+    "formula": "FTH_N = 26 ksi-(22 ksi/fy)*fmin_N to ksi",
+    "unit": "ksi",
+    "caption": "Source straight-bar fatigue threshold.",
+    "input": false,
+    "name": "FTH_N"
+  },
+  {
+    "formula": "DC_fat_N = Df_N/Max(FTH_N,0.000001 ksi)",
+    "unit": null,
+    "caption": "Numerical ratio; threshold positivity is checked separately.",
+    "input": false,
+    "name": "DC_fat_N"
+  },
+  {
+    "formula": "Chk_fat_N = If(Ready_fatigue, If(And(DMLL_N >= 0 kip*ft, FTH_N > 0 ksi, DC_fat_N <= 1), \"✓ PASS\", \"⊗ FAIL\"), \"PENDING\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_fat_N"
+  },
+  {
+    "formula": "fmin_P = MDL_P*n_mod/Ss_P to ksi",
+    "unit": "ksi",
+    "caption": "Minimum stress, tensile positive.",
+    "input": false,
+    "name": "fmin_P"
+  },
+  {
+    "formula": "Df_P = gamma_fat*DMLL_P*n_mod/Ss_P to ksi",
+    "unit": "ksi",
+    "caption": "Factored live-load stress range.",
+    "input": false,
+    "name": "Df_P"
+  },
+  {
+    "formula": "FTH_P = 26 ksi-(22 ksi/fy)*fmin_P to ksi",
+    "unit": "ksi",
+    "caption": "Source straight-bar fatigue threshold.",
+    "input": false,
+    "name": "FTH_P"
+  },
+  {
+    "formula": "DC_fat_P = Df_P/Max(FTH_P,0.000001 ksi)",
+    "unit": null,
+    "caption": "Numerical ratio; threshold positivity is checked separately.",
+    "input": false,
+    "name": "DC_fat_P"
+  },
+  {
+    "formula": "Chk_fat_P = If(Ready_fatigue, If(And(DMLL_P >= 0 kip*ft, FTH_P > 0 ksi, DC_fat_P <= 1), \"✓ PASS\", \"⊗ FAIL\"), \"PENDING\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_fat_P"
+  },
+  {
+    "formula": "fmin_B = MDL_B*n_mod/Ss_B to ksi",
+    "unit": "ksi",
+    "caption": "Minimum stress, tensile positive.",
+    "input": false,
+    "name": "fmin_B"
+  },
+  {
+    "formula": "Df_B = gamma_fat*DMLL_B*n_mod/Ss_B to ksi",
+    "unit": "ksi",
+    "caption": "Factored live-load stress range.",
+    "input": false,
+    "name": "Df_B"
+  },
+  {
+    "formula": "FTH_B = 26 ksi-(22 ksi/fy)*fmin_B to ksi",
+    "unit": "ksi",
+    "caption": "Source straight-bar fatigue threshold.",
+    "input": false,
+    "name": "FTH_B"
+  },
+  {
+    "formula": "DC_fat_B = Df_B/Max(FTH_B,0.000001 ksi)",
+    "unit": null,
+    "caption": "Numerical ratio; threshold positivity is checked separately.",
+    "input": false,
+    "name": "DC_fat_B"
+  },
+  {
+    "formula": "Chk_fat_B = If(Ready_fatigue, If(And(DMLL_B >= 0 kip*ft, FTH_B > 0 ksi, DC_fat_B <= 1), \"✓ PASS\", \"⊗ FAIL\"), \"PENDING\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_fat_B"
+  },
+  {
+    "formula": "Status_fatigue = If(Ready_fatigue, If(And(Chk_fat_N == \"✓ PASS\", Chk_fat_P == \"✓ PASS\", Chk_fat_B == \"✓ PASS\"), \"✓ PASS\", \"⊗ FAIL\"), \"PENDING — applicability and fatigue loads\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Status_fatigue"
+  },
+  {
+    "formula": "dv = Max(0.9*Min(d_N,d_P,d_B),0.72*h,Min(d_N-a_N/2,d_P-a_P/2,d_B-a_B/2)) to in",
+    "unit": "in",
+    "caption": "Effective shear depth, using the source common-section envelope.",
+    "input": false,
+    "name": "dv"
+  },
+  {
+    "formula": "cot_theta = 1/Tan(theta)",
+    "unit": null,
+    "caption": "Compression-field cotangent.",
+    "input": false,
+    "name": "cot_theta"
+  },
+  {
+    "formula": "g_shear = (cot_theta+1/Tan(alpha_v))*Sin(alpha_v)",
+    "unit": null,
+    "caption": "Stirrup-angle coefficient.",
+    "input": false,
+    "name": "g_shear"
+  },
+  {
+    "formula": "Vn_limit = 0.25*fc*b*dv to kip",
+    "unit": "kip",
+    "caption": "Nominal section upper bound. Demand is never capped to this value.",
+    "input": false,
+    "name": "Vn_limit"
+  },
+  {
+    "formula": "Vc = 0.0316*beta_v*Sqrt(fc/(1 ksi))*(1 ksi)*b*dv to kip",
+    "unit": "kip",
+    "caption": "Nominal concrete shear resistance.",
+    "input": false,
+    "name": "Vc"
+  },
+  {
+    "formula": "Av_min_rate = 0.0316*Sqrt(fc/(1 ksi))*(1 ksi)*b/fy to in^2/in",
+    "unit": "in^2/in",
+    "caption": "Minimum transverse reinforcement per unit cap length.",
+    "input": false,
+    "name": "Av_min_rate"
+  },
+  {
+    "formula": "s_minsteel = Av/Av_min_rate to in",
+    "unit": "in",
+    "caption": "Spacing limit from minimum transverse reinforcement.",
+    "input": false,
+    "name": "s_minsteel"
+  },
+  {
+    "formula": "Vn_req_G = Vu_G/phi_v to kip",
+    "unit": "kip",
+    "caption": "Uncapped required nominal shear resistance.",
+    "input": false,
+    "name": "Vn_req_G"
+  },
+  {
+    "formula": "Vs_req_G = Max(0 kip,Vn_req_G-Vc) to kip",
+    "unit": "kip",
+    "caption": "Required nominal contribution of stirrups.",
+    "input": false,
+    "name": "Vs_req_G"
+  },
+  {
+    "formula": "Vs_G = Av*fy*dv*g_shear/s_G to kip",
+    "unit": "kip",
+    "caption": "Provided stirrup contribution at selected actual spacing.",
+    "input": false,
+    "name": "Vs_G"
+  },
+  {
+    "formula": "Vr_G = phi_v*Min(Vc+Vs_G,Vn_limit) to kip",
+    "unit": "kip",
+    "caption": "Factored shear resistance, including the section upper bound.",
+    "input": false,
+    "name": "Vr_G"
+  },
+  {
+    "formula": "vu_G = Vu_G/(phi_v*b*dv) to ksi",
+    "unit": "ksi",
+    "caption": "Factored shear stress normalized by resistance factor.",
+    "input": false,
+    "name": "vu_G"
+  },
+  {
+    "formula": "s_strength_G = If(Vs_req_G > 0 kip,Av*fy*dv*g_shear/Max(Vs_req_G,0.000001 kip),1000000 in) to in",
+    "unit": "in",
+    "caption": "Strength spacing limit; no division by zero when concrete alone exceeds demand.",
+    "input": false,
+    "name": "s_strength_G"
+  },
+  {
+    "formula": "s_code_G = If(vu_G < 0.125*fc,Min(0.8*dv,24 in),Min(0.4*dv,12 in)) to in",
+    "unit": "in",
+    "caption": "Source maximum stirrup spacing along the cap.",
+    "input": false,
+    "name": "s_code_G"
+  },
+  {
+    "formula": "s_allow_G = Min(s_strength_G,s_minsteel,s_code_G) to in",
+    "unit": "in",
+    "caption": "Governing calculated shear spacing limit; selected spacing is checked explicitly.",
+    "input": false,
+    "name": "s_allow_G"
+  },
+  {
+    "formula": "s_suggest_G = Floor(Min(s_allow_G,s_G)/(1 in),1)*(1 in) to in",
+    "unit": "in",
+    "caption": "Conservative whole-inch suggestion; zero means revise the reinforcing arrangement.",
+    "input": false,
+    "name": "s_suggest_G"
+  },
+  {
+    "formula": "Sw_G = If(vu_G < 0.08*Sqrt(fc/(1 ksi))*(1 ksi),42 in,If(vu_G < 0.16*Sqrt(fc/(1 ksi))*(1 ksi),Min(dv,24 in),Min(0.5*dv,12 in))) to in",
+    "unit": "in",
+    "caption": "Source transverse spacing limit between stirrup legs; mutually exclusive stress ranges.",
+    "input": false,
+    "name": "Sw_G"
+  },
+  {
+    "formula": "DC_shear_G = Vu_G/Vr_G",
+    "unit": null,
+    "caption": "Factored demand / resistance.",
+    "input": false,
+    "name": "DC_shear_G"
+  },
+  {
+    "formula": "Status_shearsteel_G = If(Vu_G > 0.5*phi_v*Vc,\"Required by source shear trigger\",\"Below source trigger; minimum/detailing steel retained\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Status_shearsteel_G"
+  },
+  {
+    "formula": "Chk_shear_G = If(And(Vr_G > 0 kip, DC_shear_G <= 1, Vn_req_G <= Vn_limit), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_shear_G"
+  },
+  {
+    "formula": "Chk_spacing_G = If(And(s_G <= s_allow_G, S_leg <= Sw_G), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_spacing_G"
+  },
+  {
+    "formula": "Vn_req_L = Vu_L/phi_v to kip",
+    "unit": "kip",
+    "caption": "Uncapped required nominal shear resistance.",
+    "input": false,
+    "name": "Vn_req_L"
+  },
+  {
+    "formula": "Vs_req_L = Max(0 kip,Vn_req_L-Vc) to kip",
+    "unit": "kip",
+    "caption": "Required nominal contribution of stirrups.",
+    "input": false,
+    "name": "Vs_req_L"
+  },
+  {
+    "formula": "Vs_L = Av*fy*dv*g_shear/s_L to kip",
+    "unit": "kip",
+    "caption": "Provided stirrup contribution at selected actual spacing.",
+    "input": false,
+    "name": "Vs_L"
+  },
+  {
+    "formula": "Vr_L = phi_v*Min(Vc+Vs_L,Vn_limit) to kip",
+    "unit": "kip",
+    "caption": "Factored shear resistance, including the section upper bound.",
+    "input": false,
+    "name": "Vr_L"
+  },
+  {
+    "formula": "vu_L = Vu_L/(phi_v*b*dv) to ksi",
+    "unit": "ksi",
+    "caption": "Factored shear stress normalized by resistance factor.",
+    "input": false,
+    "name": "vu_L"
+  },
+  {
+    "formula": "s_strength_L = If(Vs_req_L > 0 kip,Av*fy*dv*g_shear/Max(Vs_req_L,0.000001 kip),1000000 in) to in",
+    "unit": "in",
+    "caption": "Strength spacing limit; no division by zero when concrete alone exceeds demand.",
+    "input": false,
+    "name": "s_strength_L"
+  },
+  {
+    "formula": "s_code_L = If(vu_L < 0.125*fc,Min(0.8*dv,24 in),Min(0.4*dv,12 in)) to in",
+    "unit": "in",
+    "caption": "Source maximum stirrup spacing along the cap.",
+    "input": false,
+    "name": "s_code_L"
+  },
+  {
+    "formula": "s_allow_L = Min(s_strength_L,s_minsteel,s_code_L) to in",
+    "unit": "in",
+    "caption": "Governing calculated shear spacing limit; selected spacing is checked explicitly.",
+    "input": false,
+    "name": "s_allow_L"
+  },
+  {
+    "formula": "s_suggest_L = Floor(Min(s_allow_L,s_L)/(1 in),1)*(1 in) to in",
+    "unit": "in",
+    "caption": "Conservative whole-inch suggestion; zero means revise the reinforcing arrangement.",
+    "input": false,
+    "name": "s_suggest_L"
+  },
+  {
+    "formula": "Sw_L = If(vu_L < 0.08*Sqrt(fc/(1 ksi))*(1 ksi),42 in,If(vu_L < 0.16*Sqrt(fc/(1 ksi))*(1 ksi),Min(dv,24 in),Min(0.5*dv,12 in))) to in",
+    "unit": "in",
+    "caption": "Source transverse spacing limit between stirrup legs; mutually exclusive stress ranges.",
+    "input": false,
+    "name": "Sw_L"
+  },
+  {
+    "formula": "DC_shear_L = Vu_L/Vr_L",
+    "unit": null,
+    "caption": "Factored demand / resistance.",
+    "input": false,
+    "name": "DC_shear_L"
+  },
+  {
+    "formula": "Status_shearsteel_L = If(Vu_L > 0.5*phi_v*Vc,\"Required by source shear trigger\",\"Below source trigger; minimum/detailing steel retained\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Status_shearsteel_L"
+  },
+  {
+    "formula": "Chk_shear_L = If(And(Vr_L > 0 kip, DC_shear_L <= 1, Vn_req_L <= Vn_limit), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_shear_L"
+  },
+  {
+    "formula": "Chk_spacing_L = If(And(s_L <= s_allow_L, S_leg <= Sw_L), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_spacing_L"
+  },
+  {
+    "formula": "Ao_factor = 0.85",
+    "unit": null,
+    "caption": "Adopted effective torsion-area coefficient; original Mathcad coefficient was 1.0.",
+    "input": true,
+    "name": "Ao_factor"
+  },
+  {
+    "formula": "Ag = b*h to in^2",
+    "unit": "in^2",
+    "caption": "Gross concrete area.",
+    "input": false,
+    "name": "Ag"
+  },
+  {
+    "formula": "Pcp = 2*(b+h) to in",
+    "unit": "in",
+    "caption": "Gross concrete perimeter.",
+    "input": false,
+    "name": "Pcp"
+  },
+  {
+    "formula": "K_limit = 0.19*Sqrt(fc/(1 ksi))*(1 ksi) to ksi",
+    "unit": "ksi",
+    "caption": "Source flexural-stress boundary for axial-compression credit.",
+    "input": false,
+    "name": "K_limit"
+  },
+  {
+    "formula": "tstress = Max(Mu_N,Mu_P,Mu_B)*yt/Ig to ksi",
+    "unit": "ksi",
+    "caption": "Gross-section bending stress envelope.",
+    "input": false,
+    "name": "tstress"
+  },
+  {
+    "formula": "K_t = If(tstress > K_limit,1,Min(2,Sqrt(1+(fpc/(1 ksi))/(0.126*Sqrt(fc/(1 ksi))))))",
+    "unit": null,
+    "caption": "Source torsion threshold multiplier; starts at 1 with fpc = 0.",
+    "input": false,
+    "name": "K_t"
+  },
+  {
+    "formula": "Tcr = 0.126*Sqrt(fc/(1 ksi))*(1 ksi)*(Ag^2/Pcp)*K_t to kip*ft",
+    "unit": "kip*ft",
+    "caption": "Source nominal cracking torque.",
+    "input": false,
+    "name": "Tcr"
+  },
+  {
+    "formula": "T_threshold = 0.25*phi_v*Tcr to kip*ft",
+    "unit": "kip*ft",
+    "caption": "Torsion-investigation threshold.",
+    "input": false,
+    "name": "T_threshold"
+  },
+  {
+    "formula": "Aoh = (b-2*C_s-d_vbar)*(h-C_t-C_b-d_vbar) to in^2",
+    "unit": "in^2",
+    "caption": "Area enclosed by the centerline of the outer closed hoop.",
+    "input": false,
+    "name": "Aoh"
+  },
+  {
+    "formula": "Ao = Ao_factor*Aoh to in^2",
+    "unit": "in^2",
+    "caption": "Effective torsional shear-flow area.",
+    "input": false,
+    "name": "Ao"
+  },
+  {
+    "formula": "ph = 2*((b-2*C_s-d_vbar)+(h-C_t-C_b-d_vbar)) to in",
+    "unit": "in",
+    "caption": "Outer hoop centerline perimeter; top/bottom covers kept distinct.",
+    "input": false,
+    "name": "ph"
+  },
+  {
+    "formula": "Status_torsion = If(Tu <= T_threshold,\"Below investigation threshold\",\"TORSION DESIGN / DETAIL REVIEW REQUIRED\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Status_torsion"
+  },
+  {
+    "formula": "At_G = (Tu/phi_v)*s_G/(2*Ao*fy*cot_theta) to in^2",
+    "unit": "in^2",
+    "caption": "Required additional closed-hoop area per leg for the full torque envelope.",
+    "input": false,
+    "name": "At_G"
+  },
+  {
+    "formula": "Av_shear_G = Max(Av_min_rate*s_G,Vs_req_G*s_G/(fy*dv*g_shear)) to in^2",
+    "unit": "in^2",
+    "caption": "Shear portion includes minimum reinforcement.",
+    "input": false,
+    "name": "Av_shear_G"
+  },
+  {
+    "formula": "Acomb_G = Av_shear_G+2*At_G to in^2",
+    "unit": "in^2",
+    "caption": "Conservative combined shear and full torsion area screen.",
+    "input": false,
+    "name": "Acomb_G"
+  },
+  {
+    "formula": "Chk_torsteel_G = If(And(Ao > 0 in^2, Ao_factor > 0, Ao_factor <= 0.85, At_G <= Ab(Bar_v), Acomb_G <= Av), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_torsteel_G"
+  },
+  {
+    "formula": "Chk_tordetail_G = If(Tu <= T_threshold,\"NOT REQUIRED\", \"REVIEW CLOSED-HOOP DETAIL\")",
+    "unit": null,
+    "caption": "Exceeding the threshold cannot result in an unqualified completed-design PASS.",
+    "input": false,
+    "name": "Chk_tordetail_G"
+  },
+  {
+    "formula": "At_L = (Tu/phi_v)*s_L/(2*Ao*fy*cot_theta) to in^2",
+    "unit": "in^2",
+    "caption": "Required additional closed-hoop area per leg for the full torque envelope.",
+    "input": false,
+    "name": "At_L"
+  },
+  {
+    "formula": "Av_shear_L = Max(Av_min_rate*s_L,Vs_req_L*s_L/(fy*dv*g_shear)) to in^2",
+    "unit": "in^2",
+    "caption": "Shear portion includes minimum reinforcement.",
+    "input": false,
+    "name": "Av_shear_L"
+  },
+  {
+    "formula": "Acomb_L = Av_shear_L+2*At_L to in^2",
+    "unit": "in^2",
+    "caption": "Conservative combined shear and full torsion area screen.",
+    "input": false,
+    "name": "Acomb_L"
+  },
+  {
+    "formula": "Chk_torsteel_L = If(And(Ao > 0 in^2, Ao_factor > 0, Ao_factor <= 0.85, At_L <= Ab(Bar_v), Acomb_L <= Av), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_torsteel_L"
+  },
+  {
+    "formula": "Chk_tordetail_L = If(Tu <= T_threshold,\"NOT REQUIRED\", \"REVIEW CLOSED-HOOP DETAIL\")",
+    "unit": null,
+    "caption": "Exceeding the threshold cannot result in an unqualified completed-design PASS.",
+    "input": false,
+    "name": "Chk_tordetail_L"
+  },
+  {
+    "formula": "F_vt = cot_theta*Sqrt((Vu_G/phi_v)^2+(0.45*ph*Tu/(2*Ao*phi_v))^2) to kip",
+    "unit": "kip",
+    "caption": "Common additional longitudinal tension from shear and torque.",
+    "input": false,
+    "name": "F_vt"
+  },
+  {
+    "formula": "As_skin_eff = As_side to in^2",
+    "unit": "in^2",
+    "caption": "Half of the combined two-side skin steel.",
+    "input": false,
+    "name": "As_skin_eff"
+  },
+  {
+    "formula": "F_long_N = Mu_N/(phi_f*dv)+F_vt to kip",
+    "unit": "kip",
+    "caption": "Source longitudinal equilibrium form, with conservative zero shear-steel credit.",
+    "input": false,
+    "name": "F_long_N"
+  },
+  {
+    "formula": "As_add_N = Max(0 in^2,F_long_N/fy-As_N) to in^2",
+    "unit": "in^2",
+    "caption": "Supplementary longitudinal area needed beyond main flexural steel.",
+    "input": false,
+    "name": "As_add_N"
+  },
+  {
+    "formula": "DC_long_N = F_long_N/((As_N+As_skin_eff)*fy)",
+    "unit": null,
+    "caption": "Required longitudinal tension / available main-plus-effective-skin yield force.",
+    "input": false,
+    "name": "DC_long_N"
+  },
+  {
+    "formula": "Chk_long_N = If(And(F_long_N <= (As_N+As_skin_eff)*fy, As_add_N <= As_skin_eff), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_long_N"
+  },
+  {
+    "formula": "F_long_P = Mu_P/(phi_f*dv)+F_vt to kip",
+    "unit": "kip",
+    "caption": "Source longitudinal equilibrium form, with conservative zero shear-steel credit.",
+    "input": false,
+    "name": "F_long_P"
+  },
+  {
+    "formula": "As_add_P = Max(0 in^2,F_long_P/fy-As_P) to in^2",
+    "unit": "in^2",
+    "caption": "Supplementary longitudinal area needed beyond main flexural steel.",
+    "input": false,
+    "name": "As_add_P"
+  },
+  {
+    "formula": "DC_long_P = F_long_P/((As_P+As_skin_eff)*fy)",
+    "unit": null,
+    "caption": "Required longitudinal tension / available main-plus-effective-skin yield force.",
+    "input": false,
+    "name": "DC_long_P"
+  },
+  {
+    "formula": "Chk_long_P = If(And(F_long_P <= (As_P+As_skin_eff)*fy, As_add_P <= As_skin_eff), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_long_P"
+  },
+  {
+    "formula": "F_long_B = Mu_B/(phi_f*dv)+F_vt to kip",
+    "unit": "kip",
+    "caption": "Source longitudinal equilibrium form, with conservative zero shear-steel credit.",
+    "input": false,
+    "name": "F_long_B"
+  },
+  {
+    "formula": "As_add_B = Max(0 in^2,F_long_B/fy-As_B) to in^2",
+    "unit": "in^2",
+    "caption": "Supplementary longitudinal area needed beyond main flexural steel.",
+    "input": false,
+    "name": "As_add_B"
+  },
+  {
+    "formula": "DC_long_B = F_long_B/((As_B+As_skin_eff)*fy)",
+    "unit": null,
+    "caption": "Required longitudinal tension / available main-plus-effective-skin yield force.",
+    "input": false,
+    "name": "DC_long_B"
+  },
+  {
+    "formula": "Chk_long_B = If(And(F_long_B <= (As_B+As_skin_eff)*fy, As_add_B <= As_skin_eff), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_long_B"
+  },
+  {
+    "formula": "Skin_required = Max(d_N,d_P,d_B) >= 3 ft",
+    "unit": null,
+    "caption": "Source trigger based on maximum effective depth.",
+    "input": false,
+    "name": "Skin_required"
+  },
+  {
+    "formula": "As_skin_half = As_side/2 to in^2",
+    "unit": "in^2",
+    "caption": "Skin steel provided on one side over half the section depth.",
+    "input": false,
+    "name": "As_skin_half"
+  },
+  {
+    "formula": "d_pos_max = Max(d_P,d_B) to in",
+    "unit": "in",
+    "caption": "Governing positive-moment effective depth.",
+    "input": false,
+    "name": "d_pos_max"
+  },
+  {
+    "formula": "As_skin_P = If(Skin_required,Max(0 in^2,Min(0.012*(d_pos_max/(1 in)-30)*(1 in^2/ft)*(d_pos_max/2),Max(As_P,As_B)/4)),0 in^2) to in^2",
+    "unit": "in^2",
+    "caption": "Source required skin area on one tension half-side, positive bending.",
+    "input": false,
+    "name": "As_skin_P"
+  },
+  {
+    "formula": "As_skin_N = If(Skin_required,Max(0 in^2,Min(0.012*(d_N/(1 in)-30)*(1 in^2/ft)*(d_N/2),As_N/4)),0 in^2) to in^2",
+    "unit": "in^2",
+    "caption": "Source required skin area on one tension half-side, negative bending.",
+    "input": false,
+    "name": "As_skin_N"
+  },
+  {
+    "formula": "As_skin_req = Max(As_skin_N,As_skin_P) to in^2",
+    "unit": "in^2",
+    "caption": "Governing half-side skin area requirement.",
+    "input": false,
+    "name": "As_skin_req"
+  },
+  {
+    "formula": "s_skin_limit = Min(Min(d_N,d_P,d_B)/6,12 in) to in",
+    "unit": "in",
+    "caption": "Skin-steel maximum spacing when required.",
+    "input": false,
+    "name": "s_skin_limit"
+  },
+  {
+    "formula": "Ash_raw = 1.30*(b/(1 in))*(h/(1 in))/(2*((b+h)/(1 in))*(fy/(1 ksi)))*(1 in^2/ft) to in^2/ft",
+    "unit": "in^2/ft",
+    "caption": "Source shrinkage/temperature area rate.",
+    "input": false,
+    "name": "Ash_raw"
+  },
+  {
+    "formula": "Ash_req = Min(0.60 in^2/ft,Max(0.11 in^2/ft,Ash_raw)) to in^2/ft",
+    "unit": "in^2/ft",
+    "caption": "Required shrinkage rate after source lower and upper bounds.",
+    "input": false,
+    "name": "Ash_req"
+  },
+  {
+    "formula": "Ash_top = As_N/b to in^2/ft",
+    "unit": "in^2/ft",
+    "caption": "Top longitudinal rate.",
+    "input": false,
+    "name": "Ash_top"
+  },
+  {
+    "formula": "Ash_bottom = Min(As_P,As_B)/b to in^2/ft",
+    "unit": "in^2/ft",
+    "caption": "Minimum bottom longitudinal rate.",
+    "input": false,
+    "name": "Ash_bottom"
+  },
+  {
+    "formula": "Ash_side = As_side/h to in^2/ft",
+    "unit": "in^2/ft",
+    "caption": "Side longitudinal rate.",
+    "input": false,
+    "name": "Ash_side"
+  },
+  {
+    "formula": "Ash_hoop = Ab(Bar_v)/Max(s_G,s_L) to in^2/ft",
+    "unit": "in^2/ft",
+    "caption": "Outer-hoop rate per face, using the wider selected spacing.",
+    "input": false,
+    "name": "Ash_hoop"
+  },
+  {
+    "formula": "Ash_prov = Min(Ash_top,Ash_bottom,Ash_side,Ash_hoop) to in^2/ft",
+    "unit": "in^2/ft",
+    "caption": "Least supplied rate over surfaces and directions.",
+    "input": false,
+    "name": "Ash_prov"
+  },
+  {
+    "formula": "s_shrink_limit = If(Or(h > 36 in,b > 36 in),12 in,Min(18 in,3*h,3*b)) to in",
+    "unit": "in",
+    "caption": "Source maximum shrinkage/temperature spacing.",
+    "input": false,
+    "name": "s_shrink_limit"
+  },
+  {
+    "formula": "s_shrink = Max(SP_N,SP_P,SP_B,SP_skin,s_G,s_L) to in",
+    "unit": "in",
+    "caption": "Largest actual spacing; both positive regions and both shear zones are included.",
+    "input": false,
+    "name": "s_shrink"
+  },
+  {
+    "formula": "V_cap = b*h*L_cap to ft^3",
+    "unit": "ft^3",
+    "caption": "Homogeneous cap volume, without pile deductions.",
+    "input": false,
+    "name": "V_cap"
+  },
+  {
+    "formula": "A_surface = 2*(b*h+b*L_cap+h*L_cap) to ft^2",
+    "unit": "ft^2",
+    "caption": "All six cap surfaces, including underside and construction-joint faces.",
+    "input": false,
+    "name": "A_surface"
+  },
+  {
+    "formula": "VS_cap = V_cap/A_surface to ft",
+    "unit": "ft",
+    "caption": "Volume-to-surface-area ratio.",
+    "input": false,
+    "name": "VS_cap"
+  },
+  {
+    "formula": "Mass_required = And(Min(b,h,L_cap) > 3 ft,VS_cap > 1 ft)",
+    "unit": null,
+    "caption": "FDOT SDG 1.4.4.C.1 ordinary pile-cap screen.",
+    "input": false,
+    "name": "Mass_required"
+  },
+  {
+    "formula": "Status_mass = If(Mass_required,\"MASS CONCRETE PROVISIONS REQUIRED\",\"Regular concrete under ordinary pile-cap size criterion\")",
+    "unit": null,
+    "caption": "Straddle/integral-cap or other special component classifications need their separate SDG criteria.",
+    "input": false,
+    "name": "Status_mass"
+  },
+  {
+    "formula": "Chk_skin_area = If(Or(Not(Skin_required),As_skin_half >= As_skin_req), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_skin_area"
+  },
+  {
+    "formula": "Chk_skin_space = If(Or(Not(Skin_required),SP_skin <= s_skin_limit), \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_skin_space"
+  },
+  {
+    "formula": "Chk_shrink_area = If(Ash_prov >= Ash_req, \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_shrink_area"
+  },
+  {
+    "formula": "Chk_shrink_space = If(s_shrink <= s_shrink_limit, \"✓ PASS\", \"⊗ FAIL\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Chk_shrink_space"
+  },
+  {
+    "formula": "Group_inputs = And(Chk_piles == \"✓ PASS\", Chk_loads == \"✓ PASS\", Chk_bars == \"✓ PASS\", Chk_counts == \"✓ PASS\", Chk_geometry == \"✓ PASS\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Group_inputs"
+  },
+  {
+    "formula": "Group_flexure = And(Chk_flex_N == \"✓ PASS\", Chk_min_N == \"✓ PASS\", Chk_strain_N == \"✓ PASS\", Chk_flex_P == \"✓ PASS\", Chk_min_P == \"✓ PASS\", Chk_strain_P == \"✓ PASS\", Chk_flex_B == \"✓ PASS\", Chk_min_B == \"✓ PASS\", Chk_strain_B == \"✓ PASS\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Group_flexure"
+  },
+  {
+    "formula": "Group_service = And(Chk_I_N == \"✓ PASS\", Chk_I_P == \"✓ PASS\", Chk_I_B == \"✓ PASS\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Group_service"
+  },
+  {
+    "formula": "Group_shear = And(Chk_shear_G == \"✓ PASS\", Chk_shear_L == \"✓ PASS\", Chk_spacing_G == \"✓ PASS\", Chk_spacing_L == \"✓ PASS\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Group_shear"
+  },
+  {
+    "formula": "Group_torsion = And(Chk_torsteel_G == \"✓ PASS\", Chk_torsteel_L == \"✓ PASS\", Chk_long_N == \"✓ PASS\", Chk_long_P == \"✓ PASS\", Chk_long_B == \"✓ PASS\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Group_torsion"
+  },
+  {
+    "formula": "Group_ancillary = And(Chk_skin_area == \"✓ PASS\", Chk_skin_space == \"✓ PASS\", Chk_shrink_area == \"✓ PASS\", Chk_shrink_space == \"✓ PASS\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Group_ancillary"
+  },
+  {
+    "formula": "Known_checks_ok = And(Group_inputs,Group_flexure,Group_service,Group_shear,Group_torsion,Group_ancillary)",
+    "unit": null,
+    "caption": "Collector includes every currently populated numerical check.",
+    "input": false,
+    "name": "Known_checks_ok"
+  },
+  {
+    "formula": "Pending_checks_ok = And(Ready_III,Ready_fatigue,Chk_III_N == \"✓ PASS\",Chk_III_P == \"✓ PASS\",Chk_III_B == \"✓ PASS\",Chk_fat_N == \"✓ PASS\",Chk_fat_P == \"✓ PASS\",Chk_fat_B == \"✓ PASS\")",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Pending_checks_ok"
+  },
+  {
+    "formula": "Status_overall = If(Not(Known_checks_ok),\"PROVISIONAL — CHECK FAILURES\",If(Or(Not(Ready_III),Not(Ready_fatigue)),\"PROVISIONAL — SERVICE III / FATIGUE INPUTS PENDING\",If(Not(Pending_checks_ok),\"PROVISIONAL — SERVICE / FATIGUE FAILURE\",If(Or(Status_layout != \"SOURCE PILE LAYOUT\",Status_section != \"SOURCE SECTION\"),\"PROVISIONAL — RECONCILE MODEL / REIMPORT FORCES\",If(Tu > T_threshold,\"PROVISIONAL — TORSION DETAIL REVIEW REQUIRED\",\"SECTIONAL CHECKS PASS — DESIGN / DETAIL REVIEW REMAINS\")))))",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "Status_overall"
+  }
+]

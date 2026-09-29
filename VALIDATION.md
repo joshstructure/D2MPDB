@@ -1,0 +1,25 @@
+# Delivery verification · 2026-09-28
+
+## Calculation and workflow
+
+- Port contains 324 C005 source definitions: 319 variable expressions and five helper functions. All baseline variable results agree with the saved current C005 reference; the three original linked journal externals are explicit notebook inputs.
+- Independent scalar mechanics reproduce 43 reference quantities. Twenty-two engineering scenarios exercise load failures, zero demand, changed geometry, multiple rows, cover changes, U-leg area, service/fatigue readiness, failed fatigue thresholds, shear bounds, mass-concrete trigger and pending status.
+- Unit-aware and scalar engines agree across 12 changed reinforcement/service cases. Retained search candidates are each rechecked with units.
+- The 35-row register retains all 27 D/C expressions, including applicability/zero-denominator guards and pending values. The starting maximum available D/C is 0.985119 (transverse hoop-leg spacing).
+- Geometry provenance gates block a steel search with changed pile count/spacing/width, section dimensions or cap end allowances. JSON import rejects wrong units, unsupported inputs and malformed values.
+- Cage geometry responds to bar count/size changes, checks the hoop interior and trial clear spacing, and flags unresolved multiple-loop / U-leg positions.
+- Widget callbacks cover edit → recalculate, invalid input → clear stale results, search → apply → export, and invalidation of search alternatives after changing inputs.
+
+## Default search
+
+All 1,944 listed combinations are evaluated; 324 pass the available calculation checks and trial cage screen. Twenty ranked alternatives are retained. The leading least-gross-steel option within this list is six #6 top bars, eight #6 bottom bars, #4 hoops at 6 in, and seven #5 skin bars per side. Its comparison weight is approximately 1,025 lb versus 1,461 lb for the starting trial, with maximum available D/C 0.988095. This remains provisional with Service III/fatigue pending; it is not a released reinforcement design or a complete takeoff.
+
+## Files and presentation
+
+- The supplied moment, shear and torsion workbooks were read through the converter. It reproduces all nine force inputs and the four-pile / 5 ft spacing configuration. Source hashes and governing worksheet rows are recorded by the importer.
+- JSON round trips, non-overwriting exports and the Blockpad C005 patch are tested. An export of the full live journal preserves every non-C005 root element. This notebook's generated review copy has **not** been independently recalculated in native Blockpad; opening/recalculating the exported copy remains part of the documented handoff.
+- The notebook executes from top to bottom with zero error outputs. Static figure output is retained for GitHub preview; widget state is intentionally excluded from the saved file. Run All in Jupyter recreates the interactive controls.
+- A browser session in local JupyterLab confirmed that the workbench renders, changing top row 2 from zero to four draws four new bars in both region views, and the cage-fit status updates. The static preview was rendered and visually inspected.
+- The local Python environment is prepared. The launcher scopes Jupyter runtime/configuration to this project, and Git ignores environment/runtime/export data. Existing bridge-geometry notebooks are unchanged.
+
+Reproduce the automated checks with `python -m unittest discover -s tests -v`. The suite contains 18 tests plus their parameterized cases/reference comparisons. Colab and VS Code frontend behavior have not been separately verified.
