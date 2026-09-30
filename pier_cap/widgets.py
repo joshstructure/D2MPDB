@@ -14,7 +14,7 @@ from .widget_compat import Tab, Accordion
 from .source_status import upload_entries,source_html,import_receipt,receipt_html,notice_html
 from .force_audit import force_basis,FORCE_LABELS
 from .force_diagrams import ForceDiagramPanel
-from .visuals import section_figure,elevation_figure,hoop_figure,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html,spacing_html,side_steel_html
+from .visuals import section_figure,elevation_figure,hoop_figure,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html,spacing_html,side_steel_html,pile_head_help_html
 
 LABELS={'b':'Cap width','h':'Cap depth','C_t':'Top cover','C_b':'Bottom cover','C_s':'Side cover',
  'N_pile':'Number of piles','S_pile':'Pile spacing','D_pile':'Pile width','E_clear':'Actual edge clearance','E_detail':'Extra end allowance',
@@ -89,7 +89,7 @@ class CapNotebook:
                     control.description=label;control.style.description_width='174px';control.layout.width='285px'
                     rows.append(W.HBox([control,W.HTML(html.escape(unit),layout=W.Layout(width='53px'))]))
                 if title=='Hoops and side bars':rows.extend([self.clearance,W.HTML('<small>Clear-spacing screen is a trial assumption. Confirm code/aggregate/detailing requirements.</small>')])
-                if title=='Pile head':rows.append(W.HTML('<small>Enter the physical embedment above the cap underside and required clear gap, then confirm. Obstructed bottom rows split beside the pile, including the existing placement allowance. The central gap remains in pile service checks; bottom shrinkage spacing uses the between-pile row, as in Mathcad. U-bar positions and transitions between regional cages require detailing.</small>'))
+                if title=='Pile head':rows.append(W.HTML(pile_head_help_html()))
                 panels.append(W.VBox(rows))
             accordion=Accordion(children=panels)
             for i,(title,_) in enumerate(sections):accordion.set_title(i,title)

@@ -11,6 +11,39 @@ BLUE='#1f5b91';TEAL='#167b75';AMBER='#d88822';RED='#bb3e39';INK='#213649';GREY='
 MOMENT='#2166ac';MOMENT_CAPACITY='#90bce4';SHEAR='#8250a0';SHEAR_CAPACITY='#c4a4d8'
 
 
+def pile_head_help_html():
+    """Small input guide; symbolic dimensions, not a proposed pile-head detail."""
+    return '''<div style="max-width:336px;white-space:normal;line-height:1.4">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 336 224" role="img"
+     aria-label="Pile-head section: embedment is measured from the cap underside to the pile top. Clear gap is measured from the pile top to the outside surface of the bar."
+     style="display:block;width:100%;height:auto;background:#fff;border-radius:4px;font-family:Arial,sans-serif;font-size:12px">
+  <rect x="10" y="30" width="316" height="136" fill="#f2f5f7" stroke="#8ea5b5"/>
+  <text x="20" y="47" fill="#213649">Cap</text>
+  <rect x="138" y="105" width="72" height="112" fill="#bccbd6" stroke="#213649" stroke-width="1.5"/>
+  <text x="174" y="194" text-anchor="middle" fill="#213649">Pile</text>
+  <circle cx="174" cy="71" r="8" fill="#1f5b91"/>
+  <text x="174" y="53" text-anchor="middle" fill="#1f5b91">Bar</text>
+  <g fill="none" stroke="#167b75" stroke-width="1.3">
+    <path d="M174 79H249 M210 105H249" stroke-width=".8"/>
+    <path d="M242 79V105 M238 85L242 79L246 85 M238 99L242 105L246 99"/>
+  </g>
+  <text x="252" y="89" fill="#167b75">Clear gap</text>
+  <text x="252" y="103" fill="#167b75">to pile</text>
+  <g fill="none" stroke="#9b6012" stroke-width="1.3">
+    <path d="M95 105H138 M95 166H130" stroke-width=".8"/>
+    <path d="M102 105V166 M98 111L102 105L106 111 M98 160L102 166L106 160"/>
+  </g>
+  <text x="20" y="139" fill="#9b6012">Embedment</text>
+  <text x="16" y="185" fill="#213649">Cap underside</text>
+  <path d="M65 175V166" stroke="#213649" stroke-width=".8"/>
+  <text x="16" y="215" fill="#64748b" font-size="10">Schematic · not to scale</text>
+</svg>
+<p style="margin:4px 0"><b>Clear gap to pile:</b> minimum concrete clearance from the pile surface to the <b>outside of a longitudinal bar</b>, beside or above the pile—not to the bar center.<br>
+<b>Pile embedment:</b> height of the pile top above the cap underside.</p>
+<p style="margin:6px 0 0;font-size:12px">The horizontal pile-placement allowance is added separately. Enter the dimensions required by your pile-head detail, then confirm. Check actual bar positions in <b>Live cage</b>.</p>
+</div>'''
+
+
 def check_family(check):
     if check.key.startswith('Chk_flex_'):return 'Moment / flexure',MOMENT
     if check.key.startswith('Chk_shear_'):return 'Shear',SHEAR
