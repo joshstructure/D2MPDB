@@ -1,3 +1,11 @@
+# Current verification · 2026-09-30
+
+Independent positive regions add bar sizes, areas, centroids and physical pile-head geometry. The 103-test suite passed; 16 focused regional and notebook-rerun checks also passed with Colab's ipywidgets 7.7.1 / Plotly 5.24.1. The clean four-cell notebook executed successfully. In local JupyterLab, a native numeric-input change to seven pile bars updated the pile drawing while the between-pile drawing stayed at eight. All delivered outputs remain cleared. Legacy arithmetic regressions explicitly use a non-protruding pile fixture; their historical passing counts below are not the current project search results. Project pile embedment/clearance remain unconfirmed.
+
+The full supplied C005 journal export preserves every other report. Export checks cover independent table sizes/areas, removal of stale numeric caches, regional native graphics, the pile envelope, and repeat exports without duplication. Native Blockpad recalculation of the new regional graphics has not yet been verified. Bottom shrinkage spacing now explicitly follows original Mathcad region 38146 (`SP[2]`, between piles); pile-region service spacing remains checked across its actual central gap.
+
+The following records describe earlier revisions, including examples and saved previews since removed from the delivered notebook.
+
 # Delivery verification · 2026-09-29
 
 ## Calculation and workflow

@@ -5,7 +5,7 @@ import html
 import json
 import ipywidgets as W
 import plotly.graph_objects as go
-from .model import default_case,evaluate,INPUTS,GEOMETRY,formula_trace
+from .model import default_case,upgrade_case,evaluate,INPUTS,GEOMETRY,formula_trace
 from .optimizer import search,SearchConfig,candidate_case,filter_candidates,candidate_dc,candidate_governing,governing_check,DC_SCOPES
 from .io import load_case,export_bundle,export_blockpad
 from .fbmp_widgets import XMLImportPanel
@@ -18,10 +18,11 @@ from .visuals import section_figure,elevation_figure,hoop_figure,results_figure,
 
 LABELS={'b':'Cap width','h':'Cap depth','C_t':'Top cover','C_b':'Bottom cover','C_s':'Side cover',
  'N_pile':'Number of piles','S_pile':'Pile spacing','D_pile':'Pile width','E_clear':'Actual edge clearance','E_detail':'Extra end allowance',
+ 'Pile_embed':'Pile embedment','C_pile':'Clear gap to pile','Ready_pile':'Pile dimensions confirmed',
  'fc':"Concrete f′c",'fy':'Steel fy','Es':'Steel modulus',
  'Bar_N1':'Top row 1 bar','Bar_N2':'Top row 2 bar','Bar_N3':'Top row 3 bar','n_N1':'Top row 1 count','n_N2':'Top row 2 count','n_N3':'Top row 3 count',
- 'Bar_pos':'Bottom main bar','Bar_U':'U-leg bar','n_P1':'Pile bottom row 1','n_P2':'Pile bottom row 2','n_PU':'Pile U-leg count',
- 'n_B1':'Bearing bottom row 1','n_B2':'Bearing bottom row 2','n_BU':'Bearing U-leg count',
+ 'Bar_P':'Pile main bar','Bar_B':'Between-pile main bar','Bar_U':'U-leg bar','n_P1':'Pile bottom row 1','n_P2':'Pile bottom row 2','n_PU':'Pile U-leg count',
+ 'n_B1':'Between-pile row 1','n_B2':'Between-pile row 2','n_BU':'Between-pile U legs',
  'Bar_v':'Closed hoop bar','n_loop':'Effective hoop loops','Bar_skin':'Skin bar','n_skin':'Skin count per side',
  's_row':'Row center spacing','s_G':'Global hoop spacing','s_L':'Low hoop spacing',
  'Mu_N':'Envelope · negative','Mu_P':'Envelope · pile positive','Mu_B':'Envelope · bearing/span',
@@ -33,8 +34,8 @@ LABELS={'b':'Cap width','h':'Cap depth','C_t':'Top cover','C_b':'Bottom cover','
  'SP_detail_N':'Top spacing override','SP_detail_P':'Pile spacing override','SP_detail_B':'Bearing spacing override','SP_detail_skin':'Skin spacing override','S_leg_detail':'Inner leg spacing'}
 
 GROUPS={
- 'Steel': [('Top rows','Bar_N1 n_N1 Bar_N2 n_N2 Bar_N3 n_N3'),('Bottom rows','Bar_pos n_P1 n_P2 n_B1 n_B2'),('Hoops and skin','Bar_v n_loop s_G s_L Bar_skin n_skin s_row'),('U legs / spacing overrides','Bar_U n_PU n_BU Manual_spacing SP_detail_N SP_detail_P SP_detail_B SP_detail_skin S_leg_detail')],
- 'Geometry':[('Section and cover','b h C_t C_b C_s'),('Pile row and cap ends','N_pile S_pile D_pile E_clear E_detail')],
+ 'Steel': [('Top rows','Bar_N1 n_N1 Bar_N2 n_N2 Bar_N3 n_N3'),('Positive steel · at piles','Bar_P n_P1 n_P2'),('Positive steel · between piles','Bar_B n_B1 n_B2'),('Hoops and skin','Bar_v n_loop s_G s_L Bar_skin n_skin s_row'),('U legs / spacing overrides','Bar_U n_PU n_BU Manual_spacing SP_detail_N SP_detail_P SP_detail_B SP_detail_skin S_leg_detail')],
+ 'Geometry':[('Section and cover','b h C_t C_b C_s'),('Pile row and cap ends','N_pile S_pile D_pile E_clear E_detail'),('Pile head','Pile_embed C_pile Ready_pile')],
  'Loads':[('Combined strength envelopes','Mu_N Mu_P Mu_B Vu_G Vu_L Tu'),('Service I','MI_N MI_P MI_B')],
  'Pending':[('Service III','Ready_III MIII_N MIII_P MIII_B'),('Fatigue','Ready_fatigue MDL_N MDL_P MDL_B DMLL_N DMLL_P DMLL_B')],
  'Factors':[('Materials','fc fy Es'),('Design assumptions','phi_f phi_v gamma_e gamma_fat beta_v theta alpha_v fpc Ao_factor')]
@@ -42,7 +43,7 @@ GROUPS={
 
 class CapNotebook:
     def __init__(self,case=None,export_root='exports'):
-        self.case=deepcopy(case or default_case());self.export_root=Path(export_root)
+        self.case=upgrade_case(case or default_case());self.export_root=Path(export_root)
         self.controls={};self.busy=False;self.search_result=None;self.current=None;self.figures=[];self.last_export=None
         self.browsing=False;self.filtered_indices=[];self.alternative_figure=None
         self.case_listeners=[]
@@ -88,6 +89,7 @@ class CapNotebook:
                     control.description=label;control.style.description_width='174px';control.layout.width='285px'
                     rows.append(W.HBox([control,W.HTML(html.escape(unit),layout=W.Layout(width='53px'))]))
                 if title=='Hoops and skin':rows.extend([self.clearance,W.HTML('<small>Clear-spacing screen is a trial assumption. Confirm code/aggregate/detailing requirements.</small>')])
+                if title=='Pile head':rows.append(W.HTML('<small>Enter the physical embedment above the cap underside and required clear gap, then confirm. Obstructed bottom rows split beside the pile, including the existing placement allowance. The central gap remains in pile service checks; bottom shrinkage spacing uses the between-pile row, as in Mathcad. U-bar positions and transitions between regional cages require detailing.</small>'))
                 panels.append(W.VBox(rows))
             accordion=Accordion(children=panels)
             for i,(title,_) in enumerate(sections):accordion.set_title(i,title)
@@ -135,10 +137,10 @@ class CapNotebook:
         self.results.children=[fw(results_figure(e)),W.HTML(spacing_html(e)),fw(optional_service_figure(e)),fw(ratios_figure(e)),W.HTML('<small>These plots compare imported force envelopes and sectional capacities. They are not a continuous moment/shear diagram or a rerun of FB-MultiPier.</small>')]
         self.register.value=checks_html(e)
         rows=''.join(f'<tr><td>{html.escape(t["name"])}</td><td>{html.escape(t["formula"])}</td><td>{html.escape(str(t["value"]))}</td></tr>' for t in formula_trace(e))
-        self.trace.value='<p>324 source definitions, including five helper functions. Live results below use explicit units.</p><table class="cap-table"><tr><th>Name</th><th>Equation</th><th>Value</th></tr>'+rows+'</table>'
+        self.trace.value='<p>Live equations use independent pile and between-pile reinforcement.</p><table class="cap-table"><tr><th>Name</th><th>Equation</th><th>Value</th></tr>'+rows+'</table>'
 
     def load(self,case,*,import_name=None):
-        evaluate(case);self.busy=True
+        case=upgrade_case(case);evaluate(case);self.busy=True
         try:
             self.case=deepcopy(case)
             self.import_receipt=import_receipt(case,import_name) if import_name else None
@@ -172,7 +174,7 @@ class CapNotebook:
 
     def _search_panel(self):
         self.search_lists={}
-        configs=[('main_bars','Main bars',(5,6,7,8,9,10,11),(6,7,8,9)),('top_counts','Top counts',(4,5,6,7,8,9,10,12),(4,6,8)),('bottom_counts','Bottom counts',(4,5,6,7,8,9,10,12),(4,6,8)),('hoop_bars','Hoop bars',(3,4,5,6,7),(4,5,6)),('hoop_spacings','Spacing (in)',(4,5,6,7,8,9,10,12),(6,8,10)),('skin_bars','Skin bars',(3,4,5,6),(4,5)),('skin_counts','Skin / side',(4,5,6,7,8,9,10),(5,6,7))]
+        configs=[('main_bars','Top bars',(5,6,7,8,9,10,11),(6,7,8,9)),('top_counts','Top counts',(4,5,6,7,8,9,10,12),(4,6,8)),('pile_bars','Pile bars',(3,4,5,6,7,8,9,10,11),(6,7,8,9)),('pile_counts','Pile counts',(2,3,4,5,6,7,8,9,10,12),(4,6,8)),('span_bars','Between-pile bars',(3,4,5,6,7,8,9,10,11),(6,7,8,9)),('span_counts','Between-pile counts',(2,3,4,5,6,7,8,9,10,12),(4,6,8)),('hoop_bars','Hoop bars',(3,4,5,6,7),(4,5,6)),('hoop_spacings','Spacing (in)',(4,5,6,7,8,9,10,12),(6,8,10)),('skin_bars','Skin bars',(3,4,5,6),(4,5)),('skin_counts','Skin / side',(4,5,6,7,8,9,10),(5,6,7))]
         boxes=[]
         for name,label,options,value in configs:
             w=W.SelectMultiple(options=options,value=value,rows=5,layout=W.Layout(width='112px'));self.search_lists[name]=w;boxes.append(W.VBox([W.HTML('<b>'+label+'</b>'),w]))
@@ -193,13 +195,13 @@ class CapNotebook:
         self.search_text=W.HTML();self.candidates=W.Dropdown(options=[],description='Alternative',layout=W.Layout(width='90%'),style={'description_width':'80px'})
         self.apply_button=W.Button(description='Apply selected layout',disabled=True,icon='check');self.apply_button.on_click(self._apply)
         self.alternative_output=W.VBox()
-        return W.VBox([W.HTML('<h3>Search practical steel</h3><p>Bounded enumeration: one continuous top row and bottom row, a common main bar size, one closed hoop and uniform spacing. Pile and bearing bottom cages match. Multirow / U-leg arrangements can be explored manually above. Hold Ctrl/Cmd to select several choices.</p>'),
+        return W.VBox([W.HTML('<h3>Search practical steel</h3><p>Search top steel, pile-positive steel and between-pile positive steel with independent bar sizes and counts. One row per group, one closed hoop and uniform hoop spacing; multirow arrangements remain manual inputs. Hold Ctrl/Cmd to select several choices.</p>'),
             W.HBox(boxes,layout=W.Layout(flex_flow='row wrap',grid_gap='10px')),W.HBox([self.limit,self.run_button,self.progress],layout=W.Layout(flex_flow='row wrap')),
             W.HTML('<h4>Browse every passing layout</h4><p>These are reinforcement layouts for the current force case. <b>Strength checks only</b> is the default margin target: set <b>Max D/C</b> to 0.90 to seek reserve in those checks. Filtering, ranking and paging reuse the completed search.</p>'),
             W.HBox([self.dc_limit,self.dc_scope,self.objective],layout=W.Layout(flex_flow='row wrap')),
             W.HTML('<small><b>All available checks</b> includes spacing, minimum steel, strain and service checks. <b>Strength checks only</b> targets flexure, shear, combined shear/torsion steel and longitudinal steel; all other available checks must still pass. Missing Service III/fatigue checks stay pending. Largest margin ranks the selected D/C scope.</small>'),
             self.search_text,W.HBox([self.previous_page,self.page,self.next_page,self.page_size],layout=W.Layout(flex_flow='row wrap')),self.candidates,self.apply_button,self.alternative_output,
-            W.HTML('<small>Gross steel is a comparison estimate: full-length main/skin bars and hoops, excluding hooks, laps, anchorage and waste. Cage score = longitudinal bar count + 5 × distinct bar sizes. Search results are conditional candidates, not finalized designs.</small>')])
+            W.HTML('<small>Gross steel uses full cap lengths: equal-size positive cages share the larger count; different positive sizes count both sets. Regional cutoffs, laps, anchorage and waste are not priced. Cage score = longitudinal bar count + 5 × distinct bar sizes. Search results are conditional candidates, not finalized designs.</small>')])
 
     def _close_alternative_plot(self):
         if self.alternative_figure is not None:self.alternative_figure.close();self.alternative_figure=None

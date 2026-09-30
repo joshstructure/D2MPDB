@@ -12,11 +12,11 @@ This is a port of the C005 live Blockpad calculation built from the original `20
 - Global / low-interval shear: 205.11 / 43.73 kip; torque: 33.83 kip-ft. These are independent worksheet envelopes. The interaction approach does not establish concurrency of actions.
 - Service III and fatigue remain pending until applicability and the actual corresponding loads are established. Zero placeholders are not supplied analyses.
 
-N denotes negative/top tension; P denotes the pile-positive region; B denotes the bearing-positive region. Global and low-interval shear checks remain separate. The converter defaults low shear to global if explicit interval stations are not supplied. Drawings do not invent interval extents or continuous force distributions.
+N denotes negative/top tension; P denotes the pile-positive region; B denotes the between-pile positive region. Global and low-interval shear checks remain separate. The converter defaults low shear to global if explicit interval stations are not supplied. Drawings do not invent interval extents or continuous force distributions.
 
 ## Preserved source method
 
-The 324 definitions retain rectangular flexure, minimum reinforcement, tension strain, transformed cracked-section stresses/crack-control spacing, Service III and fatigue checks, sectional shear and spacing, torsion and combined steel, longitudinal tension, skin/shrinkage reinforcement and the mass-concrete trigger. Five definitions are helper functions. All equations/captions and their calculation units are included in the repository and notebook trace.
+The original 324 source definitions retain rectangular flexure, minimum reinforcement, tension strain, transformed cracked-section stresses/crack-control spacing, Service III and fatigue checks, sectional shear and spacing, torsion and combined steel, longitudinal tension, skin/shrinkage reinforcement and the mass-concrete trigger. Five definitions are helper functions. All equations/captions and their calculation units are included in the repository and notebook trace.
 
 The two `Floor` expressions normalize to inches, use a unitless multiplier, then restore inches. Notebook analysis-source comparisons are bound to the loaded case rather than permanently tied to four piles / 48 in dimensions. These substitutions are explicit in `model.py`; a Blockpad export writes corresponding comparisons into the review copy.
 
@@ -41,3 +41,13 @@ Direct XML imports follow the limited scope in `FBMP_IMPORT.md`. They preserve g
 The width/depth study has a dedicated fixed-force path that evaluates sectional screens without rewriting or clearing analysis-source geometry. Its retained cages can remain ineligible in the ordinary calculator because their section is stale. The ordinary steel search continues to reject stale geometry. The alternative analysis-matched mode evaluates only supplied, compatible section cases and never falls back to fixed forces.
 
 Pile-layout changes are outside this geometry study. Width is screened using the adopted nominal pile-edge allowance and any larger entered project minimum. Single-outer-hoop geometry remains a search limitation. The material frontier and optional entered-rate costs describe only explored candidates and gross quantities. No self-weight/stiffness rerun, new detailing method or automated FB-MultiPier analysis is introduced. Full behavior and export provenance are documented in `SECTION_STUDY.md`.
+
+## Independent positive regions and pile obstruction
+
+The current schema separates `Bar_P` and `Bar_B`, alongside the existing independent row counts. Each region has its own steel area, centroid, effective depth and flexural checks. Legacy cases migrate the common size to both inputs while preserving all load provenance.
+
+Physical pile embedment and bar-to-pile clear gap must be supplied and confirmed; zero placeholders are unconfirmed. The source Mathcad separates pile/between-pile reinforcement and labels between-pile U-bars, but does not establish those physical head dimensions. The explicit collision screen is a notebook extension. It uses a centered pile-width envelope enlarged by the existing horizontal placement allowance. It checks every drawn longitudinal bar, including skin steel.
+
+Rows retain the source cover/diameter/separation elevations. Rows obstructed by the head split beside the pile; a second row above it spans the section. The central gap remains in pile-region service checks. Shrinkage bottom spacing follows the original Mathcad `SP[2]`, the between-pile positive row (source region 38146). The original rectangular-section mechanics remain in use; this screen does not establish pile/cap load transfer, composite pile-section behavior, anchorage or bar transitions. The hoop outline does not establish actual hoop stations at the pile head.
+
+Different positive sizes count both full-length sets in the gross steel estimate; equal sizes use the larger area over the cap length. Regional cutoffs/transitions require a separate takeoff. Blockpad exports update C005 equations, regional table references and native live section graphics; collision and minimum drawn-spacing screening remain notebook checks and require re-export after editing the Blockpad cage.

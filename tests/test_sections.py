@@ -7,12 +7,13 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
-from pier_cap.model import default_case, evaluate, set_inputs, analysis_match
-from pier_cap.fbmp import import_fbmp_xml
+from pier_cap.model import evaluate, set_inputs, analysis_match
 from pier_cap.optimizer import SearchConfig, search, sensitivity_search
 from pier_cap.sections import (SectionGrid, CostRates, SectionCache, dimension_values, run_section_study,
                                section_rows, selected_section_case, export_section_study, ranked_cost_rows)
 
+
+from tests.case_fixtures import default_case, import_fbmp_xml
 
 SMALL = SearchConfig(main_bars=(7, 8), top_counts=(6, 8), bottom_counts=(6, 8),
                      hoop_bars=(5, 6), hoop_spacings=(6, 8), skin_bars=(5,), skin_counts=(6, 7))
@@ -264,7 +265,7 @@ class SectionStudyTests(unittest.TestCase):
     def test_click_filter_apply_export_and_invalidation(self):
         from pier_cap.widgets import CapNotebook
         from pier_cap.section_widgets import SectionStudy
-        app = CapNotebook()
+        app = CapNotebook(default_case())
         panel = SectionStudy(app)
         try:
             panel.study = self.study

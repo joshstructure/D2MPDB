@@ -1,18 +1,16 @@
 # Cap width/depth and steel study
 
-Open `Pier_Cap_Design_Optimizer.ipynb`, Run all, and use **Section 5 — Search cap width, depth and reinforcement**. The interactive study starts at widths 44, 48 and 52 in; depths 36, 42, 48, 54 and 60 in; and strength D/C ≤ 0.90. All bounds and increments are editable. These are exploration ranges, not approved project dimensions.
+Open `Pier_Cap_Design_Optimizer.ipynb`, Run all, and use **Cap section and steel study**. The interactive study starts at widths 44, 48 and 52 in; depths 36, 42, 48, 54 and 60 in; and strength D/C ≤ 0.90. All bounds and increments are editable. These are exploration ranges, not approved project dimensions.
 
 ## Workflow
 
-1. Set steel choices in the existing main workbench. The section study uses those lists and its per-section case limit.
+1. Confirm physical pile-head embedment and bar clearance under Geometry → Pile head. Set independent top, pile-positive and between-pile positive sizes and counts in the main workbench. The study uses those lists and its per-section case limit.
 2. Select geometry ranges, additional project minimum dimensions, and a total candidate budget. The grid is limited to 225 sections and the budget to 500,000 evaluations per run. Rejected or untested sections remain visible.
 3. Choose the force basis and run the study. Fixed-force sensitivity is the default. Analysis-matched mode requires a source case at each section; add actual analyzed case JSON files through the analysis-library uploader.
 4. Change the strength D/C target to filter completed results. Each heatmap cell shows **concrete volume and steel weight together**. Hover for quantities, the concrete/steel/forms cost breakdown, and differences from the cheapest explored match. Use **Cell labels** to show component costs instead. Dense grids use hover labels to avoid overlapping text. Click any cell or plot point, or use the section dropdown.
 5. Browse **all** matching cages in the cage selector. The selected cage's drawing, capacity plots, spacing breakdown and check register update together. The map still represents the lightest cage, and the selected-cage summary reports that selected cage's own weight and cost.
 6. **Refine around this section** restricts the bounds to neighboring coarse points and halves the increments. Press Run again. Identical section/case/search calculations are reused from an in-memory cache; changing target or prices only changes the view. Changing main case inputs, steel choices or grid parameters clears the old view.
 7. Load a selected case into the main calculator or export the study. Fixed-force selections retain the old analysis geometry; the ordinary steel optimizer still blocks changed geometry until corresponding analysis forces are supplied.
-
-The notebook also includes a static nine-section example for GitHub preview. Its cache can speed up overlapping interactive studies. Turn off `RUN_SECTION_EXAMPLE` when that example is no longer needed.
 
 ## Force provenance
 
@@ -28,9 +26,9 @@ The outer grid changes width and depth. Pile count, pile spacing, pile size, mat
 
 The transverse width screen is `pile width + 2 × (adopted actual clearance + pile-location tolerance)`, also respecting any larger entered project minimum. The starting inputs produce 44 in. The extra **longitudinal end allowance** (`E_detail`) affects cap length, not this side-clearance screen. For the supplied `Pier_MinTip.XML`, its 15.44 in end extension therefore does not require a 50.88 in cap width: the adopted side screen remains 44 in, or 48 in when the project minimum is set to 48 in. The live panel shows this calculation. This uses the existing project's adopted allowance, not a newly asserted universal FDOT rule. Enter other bearing/geometry requirements through the project minimums and review the actual detail. No new minimum depth rule is invented. If geometry limits exclude every section, the study explicitly reports that no steel candidates were evaluated.
 
-The inner search retains the existing common-main-bar, one-top-row, one-bottom-row, single-outer-hoop family. Additional hoop topology, bearing/load introduction, anchorage, pile-head details, D-region applicability and other stated source-method limits are not completed by this study. All candidate checks remain active. The strength target covers the existing strength subset; remaining checks keep their original pass thresholds. Service III/fatigue remain pending until actual inputs and applicability are established.
+The inner search uses independent top, pile-positive and between-pile positive sizes and counts, with one row per group and one outer hoop. Pile-region bars respect physical embedment, clear gap and existing placement allowance. Both positive cross sections appear in the selected-cage preview. Additional hoop topology, bearing/load introduction, anchorage, pile-head details, D-region applicability and other stated source-method limits are not completed by this study. All candidate checks remain active. The strength target covers the existing strength subset; remaining checks keep their original pass thresholds. Service III/fatigue remain pending until actual inputs and applicability are established.
 
-Concrete is gross `width × depth × cap length`, reported in yd³. Form area includes both side faces, both ends and the soffit, with no top, falsework or pile deductions. Steel uses the existing full-length gross estimate and excludes hooks, laps, anchorage, bends and waste. Optional comparison cost is:
+Concrete is gross `width × depth × cap length`, reported in yd³. Form area includes both side faces, both ends and the soffit, with no top, falsework or pile deductions. Steel uses a full-length gross estimate: equal-size positive cages share the larger area; different positive sizes count both full-length sets. It excludes regional cutoff/transition detailing, hooks, laps, anchorage, bends and waste. Optional comparison cost is:
 
 ```
 concrete yd³ × concrete rate + gross steel lb × steel rate + form ft² × form rate

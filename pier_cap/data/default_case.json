@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "name": "D2 I-95 · four piles at 5 ft",
   "inputs": {
     "b": 48.0,
@@ -49,7 +49,6 @@
     "n_N1": 8.0,
     "n_N2": 0.0,
     "n_N3": 0.0,
-    "Bar_pos": 8.0,
     "Bar_U": 8.0,
     "n_P1": 8.0,
     "n_P2": 0.0,
@@ -70,7 +69,12 @@
     "SP_detail_B": 5.67857142857143,
     "SP_detail_skin": 5.67857142857143,
     "S_leg_detail": 41.375,
-    "Ao_factor": 0.85
+    "Ao_factor": 0.85,
+    "Bar_P": 8.0,
+    "Bar_B": 8.0,
+    "Ready_pile": false,
+    "Pile_embed": 0,
+    "C_pile": 0
   },
   "analysis": {
     "id": "Pier_MinTip_Max supplied design workbooks",
@@ -142,7 +146,6 @@
     "n_N1": "unitless",
     "n_N2": "unitless",
     "n_N3": "unitless",
-    "Bar_pos": "unitless",
     "Bar_U": "unitless",
     "n_P1": "unitless",
     "n_P2": "unitless",
@@ -163,6 +166,11 @@
     "SP_detail_B": "in",
     "SP_detail_skin": "in",
     "S_leg_detail": "in",
-    "Ao_factor": "unitless"
+    "Ao_factor": "unitless",
+    "Bar_P": "unitless",
+    "Bar_B": "unitless",
+    "Ready_pile": "unitless",
+    "Pile_embed": "in",
+    "C_pile": "in"
   }
 }

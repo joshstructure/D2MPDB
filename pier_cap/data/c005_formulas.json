@@ -70,6 +70,27 @@
     "name": "Tol_pile"
   },
   {
+    "formula": "Ready_pile = false",
+    "unit": null,
+    "caption": "Confirm actual pile-head embedment and required bar-to-pile clearance before searching.",
+    "input": true,
+    "name": "Ready_pile"
+  },
+  {
+    "formula": "Pile_embed = 0 in",
+    "unit": "in",
+    "caption": "Physical pile penetration above the cap underside; not the analysis connection elevation.",
+    "input": true,
+    "name": "Pile_embed"
+  },
+  {
+    "formula": "C_pile = 0 in",
+    "unit": "in",
+    "caption": "Adopted clear distance between pile surface and reinforcing bar surface.",
+    "input": true,
+    "name": "C_pile"
+  },
+  {
     "formula": "E_detail = 0 in",
     "unit": "in",
     "caption": "Additional end allowance for reinforcement, pile-head detailing or project-specific requirements.",
@@ -392,10 +413,24 @@
     "name": "n_N3"
   },
   {
-    "formula": "Bar_pos = 8",
+    "formula": "Bar_P = 8",
     "unit": null,
-    "caption": "Bottom main bar size in both positive regions.",
+    "caption": "Pile-region bottom main bar size.",
     "input": true,
+    "name": "Bar_P"
+  },
+  {
+    "formula": "Bar_B = 8",
+    "unit": null,
+    "caption": "Between-pile bottom main bar size.",
+    "input": true,
+    "name": "Bar_B"
+  },
+  {
+    "formula": "Bar_pos = Bar_B",
+    "unit": null,
+    "caption": "Legacy trace alias for between-pile main bars; not an input.",
+    "input": false,
     "name": "Bar_pos"
   },
   {
@@ -429,21 +464,21 @@
   {
     "formula": "n_B1 = 8",
     "unit": null,
-    "caption": "Bearing-region bottom row 1 count.",
+    "caption": "Between-pile bottom row 1 count.",
     "input": true,
     "name": "n_B1"
   },
   {
     "formula": "n_B2 = 0",
     "unit": null,
-    "caption": "Bearing-region bottom row 2 count.",
+    "caption": "Between-pile bottom row 2 count.",
     "input": true,
     "name": "n_B2"
   },
   {
     "formula": "n_BU = 0",
     "unit": null,
-    "caption": "Bearing-region U-bar tension leg count.",
+    "caption": "Between-pile U-bar tension leg count.",
     "input": true,
     "name": "n_BU"
   },
@@ -581,14 +616,14 @@
     "name": "As_N"
   },
   {
-    "formula": "As_P = (n_P1+n_P2)*Ab(Bar_pos)+n_PU*Ab(Bar_U) to in^2",
+    "formula": "As_P = (n_P1+n_P2)*Ab(Bar_P)+n_PU*Ab(Bar_U) to in^2",
     "unit": "in^2",
     "caption": "Positive region P reinforcement area.",
     "input": false,
     "name": "As_P"
   },
   {
-    "formula": "As_B = (n_B1+n_B2)*Ab(Bar_pos)+n_BU*Ab(Bar_U) to in^2",
+    "formula": "As_B = (n_B1+n_B2)*Ab(Bar_B)+n_BU*Ab(Bar_U) to in^2",
     "unit": "in^2",
     "caption": "Positive region B reinforcement area.",
     "input": false,
@@ -637,16 +672,44 @@
     "name": "dc_N"
   },
   {
-    "formula": "y_pos1 = C_b+d_vbar+Db(Bar_pos)/2 to in",
+    "formula": "y_P1 = C_b+d_vbar+Db(Bar_P)/2 to in",
     "unit": "in",
-    "caption": "Bottom main row 1 center measured from the bottom face.",
+    "caption": "Pile-region first-row center above the cap underside; source cover/hoop/diameter basis.",
+    "input": false,
+    "name": "y_P1"
+  },
+  {
+    "formula": "y_P2 = y_P1+s_row to in",
+    "unit": "in",
+    "caption": "Pile-region bottom row 2 center.",
+    "input": false,
+    "name": "y_P2"
+  },
+  {
+    "formula": "y_B1 = C_b+d_vbar+Db(Bar_B)/2 to in",
+    "unit": "in",
+    "caption": "Between-pile bottom row 1 center.",
+    "input": false,
+    "name": "y_B1"
+  },
+  {
+    "formula": "y_B2 = y_B1+s_row to in",
+    "unit": "in",
+    "caption": "Between-pile bottom row 2 center.",
+    "input": false,
+    "name": "y_B2"
+  },
+  {
+    "formula": "y_pos1 = y_B1 to in",
+    "unit": "in",
+    "caption": "Legacy trace alias for between-pile outer row center.",
     "input": false,
     "name": "y_pos1"
   },
   {
-    "formula": "y_pos2 = y_pos1+s_row to in",
+    "formula": "y_pos2 = y_B2 to in",
     "unit": "in",
-    "caption": "Bottom main row 2 center.",
+    "caption": "Legacy trace alias for between-pile second row center.",
     "input": false,
     "name": "y_pos2"
   },
@@ -658,14 +721,14 @@
     "name": "y_U"
   },
   {
-    "formula": "dc_P = (n_P1*Ab(Bar_pos)*y_pos1+n_P2*Ab(Bar_pos)*y_pos2+n_PU*Ab(Bar_U)*y_U)/Max(As_P,0.000001 in^2) to in",
+    "formula": "dc_P = (n_P1*Ab(Bar_P)*y_P1+n_P2*Ab(Bar_P)*y_P2+n_PU*Ab(Bar_U)*y_U)/Max(As_P,0.000001 in^2) to in",
     "unit": "in",
     "caption": "Region P bottom-steel centroid.",
     "input": false,
     "name": "dc_P"
   },
   {
-    "formula": "dc_B = (n_B1*Ab(Bar_pos)*y_pos1+n_B2*Ab(Bar_pos)*y_pos2+n_BU*Ab(Bar_U)*y_U)/Max(As_B,0.000001 in^2) to in",
+    "formula": "dc_B = (n_B1*Ab(Bar_B)*y_B1+n_B2*Ab(Bar_B)*y_B2+n_BU*Ab(Bar_U)*y_U)/Max(As_B,0.000001 in^2) to in",
     "unit": "in",
     "caption": "Region B bottom-steel centroid.",
     "input": false,
@@ -700,14 +763,14 @@
     "name": "do_N"
   },
   {
-    "formula": "do_P = If(n_PU > 0, Min(y_pos1,y_U), y_pos1) to in",
+    "formula": "do_P = If(n_PU > 0, Min(y_P1,y_U), y_P1) to in",
     "unit": "in",
     "caption": "Extreme tension face to outer bottom bar center.",
     "input": false,
     "name": "do_P"
   },
   {
-    "formula": "do_B = If(n_BU > 0, Min(y_pos1,y_U), y_pos1) to in",
+    "formula": "do_B = If(n_BU > 0, Min(y_B1,y_U), y_B1) to in",
     "unit": "in",
     "caption": "Extreme tension face to outer bottom bar center.",
     "input": false,
@@ -721,21 +784,84 @@
     "name": "SP_N_auto"
   },
   {
-    "formula": "SP_P_auto = (b-2*C_s-2*d_vbar-Db(Bar_pos))/Max(n_P1-1,1) to in",
+    "formula": "Pile_left = (b-D_pile)/2-Tol_pile to in",
     "unit": "in",
-    "caption": "Idealized outer bottom-row spacing; U-bar legs do not reduce this conservative spacing.",
+    "caption": "Left edge of the pile footprint including horizontal placement tolerance.",
+    "input": false,
+    "name": "Pile_left"
+  },
+  {
+    "formula": "Pile_right = (b+D_pile)/2+Tol_pile to in",
+    "unit": "in",
+    "caption": "Right edge including horizontal placement tolerance.",
+    "input": false,
+    "name": "Pile_right"
+  },
+  {
+    "formula": "P_split1 = And(Ready_pile,y_P1-Db(Bar_P)/2 < Pile_embed+C_pile)",
+    "unit": null,
+    "caption": "Outer bottom row must pass beside the pile.",
+    "input": false,
+    "name": "P_split1"
+  },
+  {
+    "formula": "P_side_span = Pile_left-C_pile-Db(Bar_P)/2-(C_s+d_vbar+Db(Bar_P)/2) to in",
+    "unit": "in",
+    "caption": "Available bar-center span on either side of a centered pile.",
+    "input": false,
+    "name": "P_side_span"
+  },
+  {
+    "formula": "P_left_count = Floor((n_P1+1)/2,1)",
+    "unit": null,
+    "caption": "Total row count split between the two sides.",
+    "input": false,
+    "name": "P_left_count"
+  },
+  {
+    "formula": "P_right_count = n_P1-P_left_count",
+    "unit": null,
+    "caption": "",
+    "input": false,
+    "name": "P_right_count"
+  },
+  {
+    "formula": "P_pitch_left = If(Manual_spacing,SP_detail_P,P_side_span/Max(P_left_count-1,1)) to in",
+    "unit": "in",
+    "caption": "",
+    "input": false,
+    "name": "P_pitch_left"
+  },
+  {
+    "formula": "P_pitch_right = If(Manual_spacing,SP_detail_P,P_side_span/Max(P_right_count-1,1)) to in",
+    "unit": "in",
+    "caption": "",
+    "input": false,
+    "name": "P_pitch_right"
+  },
+  {
+    "formula": "P_center_gap = b-2*(C_s+d_vbar+Db(Bar_P)/2)-(P_left_count-1)*P_pitch_left-(P_right_count-1)*P_pitch_right to in",
+    "unit": "in",
+    "caption": "Center-to-center gap across the pile, retained in the pile-region service spacing checks.",
+    "input": false,
+    "name": "P_center_gap"
+  },
+  {
+    "formula": "SP_P_auto = If(P_split1,Max(P_center_gap,If(P_left_count>1,P_pitch_left,0 in),If(P_right_count>1,P_pitch_right,0 in)),(b-2*C_s-2*d_vbar-Db(Bar_P))/Max(n_P1-1,1)) to in",
+    "unit": "in",
+    "caption": "Largest actual outer-row center spacing, including the gap across the pile; not a uniform full-width row.",
     "input": false,
     "name": "SP_P_auto"
   },
   {
-    "formula": "SP_B_auto = (b-2*C_s-2*d_vbar-Db(Bar_pos))/Max(n_B1-1,1) to in",
+    "formula": "SP_B_auto = (b-2*C_s-2*d_vbar-Db(Bar_B))/Max(n_B1-1,1) to in",
     "unit": "in",
     "caption": "Idealized outer bottom-row spacing; U-bar legs do not reduce this conservative spacing.",
     "input": false,
     "name": "SP_B_auto"
   },
   {
-    "formula": "SP_skin_auto = (h-y_N1-y_pos1)/(n_skin+1) to in",
+    "formula": "SP_skin_auto = (h-y_N1-Min(y_P1,y_B1))/(n_skin+1) to in",
     "unit": "in",
     "caption": "Intermediate skin bars evenly distributed between top and bottom corner-bar levels.",
     "input": false,
@@ -749,7 +875,7 @@
     "name": "SP_N"
   },
   {
-    "formula": "SP_P = If(Manual_spacing, SP_detail_P, SP_P_auto) to in",
+    "formula": "SP_P = If(P_split1,SP_P_auto,If(Manual_spacing,SP_detail_P,SP_P_auto)) to in",
     "unit": "in",
     "caption": "Spacing used by the live checks.",
     "input": false,
@@ -777,7 +903,7 @@
     "name": "S_leg"
   },
   {
-    "formula": "Chk_bars = If(And(ValidBar(Bar_N1), ValidBar(Bar_N2), ValidBar(Bar_N3), ValidBar(Bar_pos), ValidBar(Bar_U), ValidBar(Bar_v), ValidBar(Bar_skin)), \"✓ PASS\", \"⊗ FAIL\")",
+    "formula": "Chk_bars = If(And(ValidBar(Bar_N1), ValidBar(Bar_N2), ValidBar(Bar_N3), ValidBar(Bar_P), ValidBar(Bar_B), ValidBar(Bar_U), ValidBar(Bar_v), ValidBar(Bar_skin)), \"✓ PASS\", \"⊗ FAIL\")",
     "unit": null,
     "caption": "",
     "input": false,
@@ -2135,9 +2261,9 @@
     "name": "s_shrink_limit"
   },
   {
-    "formula": "s_shrink = Max(SP_N,SP_P,SP_B,SP_skin,s_G,s_L) to in",
+    "formula": "s_shrink = Max(SP_N,SP_B,SP_skin,s_G,s_L) to in",
     "unit": "in",
-    "caption": "Largest actual spacing; both positive regions and both shear zones are included.",
+    "caption": "Mathcad uses SP[2] (between-pile positive row) for bottom shrinkage spacing, plus top, side and hoop spacing. Pile-region service spacing remains a separate check.",
     "input": false,
     "name": "s_shrink"
   },
@@ -2261,7 +2387,7 @@
     "name": "Pending_checks_ok"
   },
   {
-    "formula": "Status_overall = If(Not(Known_checks_ok),\"PROVISIONAL — CHECK FAILURES\",If(Or(Not(Ready_III),Not(Ready_fatigue)),\"PROVISIONAL — SERVICE III / FATIGUE INPUTS PENDING\",If(Not(Pending_checks_ok),\"PROVISIONAL — SERVICE / FATIGUE FAILURE\",If(Or(Status_layout != \"SOURCE PILE LAYOUT\",Status_section != \"SOURCE SECTION\"),\"PROVISIONAL — RECONCILE MODEL / REIMPORT FORCES\",If(Tu > T_threshold,\"PROVISIONAL — TORSION DETAIL REVIEW REQUIRED\",\"SECTIONAL CHECKS PASS — DESIGN / DETAIL REVIEW REMAINS\")))))",
+    "formula": "Status_overall = If(Not(Ready_pile),\"PILE-HEAD DETAIL INPUTS PENDING\",If(Not(Known_checks_ok),\"PROVISIONAL — CHECK FAILURES\",If(Or(Not(Ready_III),Not(Ready_fatigue)),\"PROVISIONAL — SERVICE III / FATIGUE INPUTS PENDING\",If(Not(Pending_checks_ok),\"PROVISIONAL — SERVICE / FATIGUE FAILURE\",If(Or(Status_layout != \"SOURCE PILE LAYOUT\",Status_section != \"SOURCE SECTION\"),\"PROVISIONAL — RECONCILE MODEL / REIMPORT FORCES\",If(Tu > T_threshold,\"PROVISIONAL — TORSION DETAIL REVIEW REQUIRED\",\"SECTIONAL CHECKS PASS — DESIGN / DETAIL REVIEW REMAINS\"))))))",
     "unit": null,
     "caption": "",
     "input": false,

@@ -3,8 +3,10 @@ from pathlib import Path
 import tempfile
 import unittest
 from lxml import etree as E
-from pier_cap.model import default_case,evaluate,DEFINITIONS,bar_positions
+from pier_cap.model import evaluate,DEFINITIONS,bar_positions
 from pier_cap.io import load_case,write_case,export_bundle,export_blockpad
+
+from tests.case_fixtures import default_case, import_fbmp_xml
 
 class IOTests(unittest.TestCase):
     def test_roundtrip_and_no_overwrite(self):
@@ -18,7 +20,7 @@ class IOTests(unittest.TestCase):
             self.assertTrue((output/'formula_trace.json').exists())
 
     def test_malformed_json_rejected(self):
-        for mutate in (lambda c:c['inputs'].update({'foreign_formula':'execute()'}),lambda c:c['inputs'].pop('Mu_B'),lambda c:c.update({'schema_version':2}),lambda c:c['analysis'].pop('geometry'),lambda c:c['units'].update({'fc':'psi'})):
+        for mutate in (lambda c:c['inputs'].update({'foreign_formula':'execute()'}),lambda c:c['inputs'].pop('Mu_B'),lambda c:c.update({'schema_version':99}),lambda c:c['analysis'].pop('geometry'),lambda c:c['units'].update({'fc':'psi'})):
             case=default_case();mutate(case)
             with self.assertRaises(ValueError):load_case(json.dumps(case).encode())
 
@@ -44,7 +46,7 @@ class WidgetTests(unittest.TestCase):
         from pier_cap.optimizer import search,SearchConfig,filter_candidates
         r=search(default_case(),SearchConfig(main_bars=(7,8),top_counts=(6,8),bottom_counts=(6,8),hoop_bars=(5,),hoop_spacings=(6,8),skin_bars=(5,),skin_counts=(6,7)))
         self.assertGreater(len(r.candidates),20)
-        app=CapNotebook()
+        app=CapNotebook(default_case())
         try:
             self.assertEqual(app.dc_scope.value,'strength')
             self.assertIn('Strength D/C',app.metrics.value);self.assertIn('0.832',app.metrics.value)
@@ -82,7 +84,7 @@ class WidgetTests(unittest.TestCase):
 
     def test_controls_recalculate_and_invalid_values_clear_results(self):
         from pier_cap.widgets import CapNotebook
-        app=CapNotebook()
+        app=CapNotebook(default_case())
         try:
             before=len(bar_positions(app.current));app.controls['n_N2'].value=4
             self.assertEqual(len(bar_positions(app.current)),before+4)
@@ -99,11 +101,14 @@ class WidgetTests(unittest.TestCase):
     def test_search_apply_export_widget_workflow(self):
         from pier_cap.widgets import CapNotebook
         with tempfile.TemporaryDirectory() as folder:
-            app=CapNotebook(export_root=folder)
+            app=CapNotebook(default_case(),export_root=folder)
             try:
                 app.search_lists['main_bars'].value=(8,)
                 app.search_lists['top_counts'].value=(8,)
-                app.search_lists['bottom_counts'].value=(8,)
+                app.search_lists['pile_counts'].value=(8,)
+                app.search_lists['span_counts'].value=(8,)
+                app.search_lists['pile_bars'].value=(8,)
+                app.search_lists['span_bars'].value=(8,)
                 app.search_lists['hoop_bars'].value=(5,)
                 app.search_lists['hoop_spacings'].value=(8,)
                 app.search_lists['skin_bars'].value=(5,)

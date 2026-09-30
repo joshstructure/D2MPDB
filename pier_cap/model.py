@@ -22,20 +22,40 @@ PILE_GEOMETRY=('N_pile','S_pile','D_pile','E_clear','E_detail')
 def default_case():
     return json.loads((DATA/'default_case.json').read_text(encoding='utf-8'))
 
-def set_inputs(case,**changes):
+def upgrade_case(case):
+    """Copy saved common-bar inputs into the independent positive-region schema."""
     result=deepcopy(case)
+    if result.get('schema_version')==1:
+        p=result.get('inputs',{});units=result.get('units',{})
+        if 'Bar_pos' not in p or 'Bar_pos' not in units:
+            raise ValueError('Legacy case is missing Bar_pos or its units.')
+        if {'Bar_P','Bar_B'} & (set(p)|set(units)):
+            raise ValueError('Legacy case mixes common and independent bar definitions.')
+        bar=p.pop('Bar_pos');unit=units.pop('Bar_pos')
+        p.update(Bar_P=bar,Bar_B=bar);units.update(Bar_P=unit,Bar_B=unit)
+        p.update(Ready_pile=False,Pile_embed=0,C_pile=0)
+        units.update(Ready_pile='unitless',Pile_embed='in',C_pile='in')
+        result['schema_version']=2
+    return result
+
+def set_inputs(case,**changes):
+    result=upgrade_case(case)
+    # Older scripts can still assign one common size explicitly.
+    if 'Bar_pos' in changes:
+        common=changes.pop('Bar_pos')
+        changes.setdefault('Bar_P',common);changes.setdefault('Bar_B',common)
     unknown=set(changes)-set(INPUTS)
     if unknown:raise ValueError(f'Unknown inputs: {sorted(unknown)}')
     result['inputs'].update(changes)
     return result
 
 def validate_case(case):
-    if case.get('schema_version')!=1:raise ValueError('Expected case schema_version 1.')
+    if case.get('schema_version')!=2:raise ValueError('Expected case schema_version 2; load older cases through load_case().')
     expected_units={n:d['unit'] or 'unitless' for n,d in INPUTS.items()}
     if case.get('units')!=expected_units:raise ValueError('Case units differ from the input schema. Use the units in default_case.json; convert values before importing.')
     p=case.get('inputs',{})
     if set(p)!=set(INPUTS):raise ValueError(f'Input names differ. Missing: {sorted(set(INPUTS)-set(p))}; unknown: {sorted(set(p)-set(INPUTS))}')
-    booleans={'Ready_III','Ready_fatigue','Manual_spacing'}
+    booleans={'Ready_III','Ready_fatigue','Ready_pile','Manual_spacing'}
     for n,v in p.items():
         if n in booleans:
             if type(v) is not bool:raise ValueError(f'{n} must be true or false.')
@@ -50,6 +70,7 @@ def validate_case(case):
     if not 0<p['theta']<90 or not 0<p['alpha_v']<180:raise ValueError('Use 0 < theta < 90 and 0 < alpha_v < 180 degrees.')
     if p['N_pile']<2 or min(p['n_N1'],p['n_P1'],p['n_B1'])<2 or p['n_loop']<1:raise ValueError('At least two piles, two bars in each outer row and one loop are required.')
     if p['b']<=2*p['C_s']+2*BAR_DIAMETER[p['Bar_v']] or p['h']<=p['C_t']+p['C_b']+2*BAR_DIAMETER[p['Bar_v']]:raise ValueError('Cover and hoops do not fit inside the cap.')
+    if p['Pile_embed']>p['h']:raise ValueError('Pile embedment exceeds the cap depth.')
     clearance=case.get('screening',{}).get('minimum_clear_in')
     if isinstance(clearance,bool) or not isinstance(clearance,(int,float)) or not math.isfinite(clearance) or clearance<0:raise ValueError('Screening clear spacing must be a finite nonnegative number.')
     analysis=case.get('analysis',{})
@@ -94,23 +115,37 @@ def bar_positions(e,region='B'):
     """Actual row counts/diameters. U bars have no invented developed positions."""
     p=e.case['inputs'];b=p['b'];h=p['h'];dv=BAR_DIAMETER[p['Bar_v']]
     bars=[]
-    def row(n,size,y,label,manual=None):
+    def row(n,size,y,label,manual=None,split=False):
         n=int(n);diam=BAR_DIAMETER[size]
         if n==0:return
         x0=p['C_s']+dv+diam/2
         pitch=(b-2*x0)/max(n-1,1)
         if manual and p['Manual_spacing']:pitch=p[manual]
-        for j in range(n):bars.append({'x':b/2+(j-(n-1)/2)*pitch,'y':y,'diameter':diam,'kind':label,'bar':int(size)})
+        xs=[b/2+(j-(n-1)/2)*pitch for j in range(n)]
+        if split:
+            left=(n+1)//2;right=n-left
+            span=e.value('Pile_left')-p['C_pile']-diam/2-x0
+            xs=[]
+            for count,sign,outer in ((left,1,x0),(right,-1,b-x0)):
+                step=p[manual] if manual and p['Manual_spacing'] else span/max(count-1,1)
+                xs.extend(outer+sign*j*step for j in range(count))
+        for x in xs:bars.append({'x':x,'y':y,'diameter':diam,'kind':label,'bar':int(size)})
     for k in (1,2,3):row(p[f'n_N{k}'],p[f'Bar_N{k}'],h-e.value(f'y_N{k}'),f'Top row {k}','SP_detail_N' if k==1 else None)
-    for k in (1,2):row(p[f'n_{region}{k}'],p['Bar_pos'],e.value(f'y_pos{k}'),f'Bottom row {k}',f'SP_detail_{region}' if k==1 else None)
+    for k in (1,2):
+        y=e.value(f'y_{region}{k}');size=p[f'Bar_{region}']
+        split=region=='P' and p['Ready_pile'] and y-BAR_DIAMETER[size]/2<p['Pile_embed']+p['C_pile']
+        row(p[f'n_{region}{k}'],size,y,f'Bottom row {k}',f'SP_detail_{region}' if k==1 else None,split)
     n=int(p['n_skin']);diam=BAR_DIAMETER[p['Bar_skin']]
-    pitch=e.value('SP_skin');mid=(h-e.value('y_N1')+e.value('y_pos1'))/2
+    bottom=e.value(f'y_{region}1');top=h-e.value('y_N1')
+    pitch=e.value('SP_skin') if p['Manual_spacing'] else (top-bottom)/(n+1)
+    mid=(top+bottom)/2
     for side in (p['C_s']+dv+diam/2,b-p['C_s']-dv-diam/2):
         for j in range(n):bars.append({'x':side,'y':mid+(j-(n-1)/2)*pitch,'diameter':diam,'kind':'Skin','bar':int(p['Bar_skin'])})
     return bars
 
 def cage_issues(e):
     p=e.case['inputs'];issues=[];clear=e.case['screening']['minimum_clear_in'];dv=BAR_DIAMETER[p['Bar_v']]
+    if not p['Ready_pile']:issues.append('Pile-head embedment and bar clearance are unconfirmed. Enter them under Geometry → Pile head before searching.')
     if p['n_PU'] or p['n_BU']:issues.append('U-leg positions/development are unresolved; drawn as an inventory only.')
     if p['n_loop']!=1:issues.append('Multiple-loop topology is unresolved; only the outer hoop is drawn.')
     for z in 'PB':
@@ -119,13 +154,23 @@ def cage_issues(e):
         if outside:issues.append(f'{z} section: bars extend outside the clear interior of the hoop.')
         minimum=min((math.hypot(a['x']-b['x'],a['y']-b['y'])-(a['diameter']+b['diameter'])/2 for i,a in enumerate(bars) for b in bars[i+1:]),default=math.inf)
         if minimum+1e-8<clear:issues.append(f'{z} section: minimum drawn clear spacing {minimum:.2f} in < trial screen {clear:g} in.')
+        if z=='P' and p['Ready_pile']:
+            for bar in bars:
+                dx=max(e.value('Pile_left')-bar['x'],0,bar['x']-e.value('Pile_right'))
+                dy=max(-bar['y'],0,bar['y']-p['Pile_embed'])
+                gap=math.hypot(dx,dy)-bar['diameter']/2
+                if gap+1e-8<p['C_pile']:
+                    issues.append('P section: a bar intersects the pile footprint or its required clearance, including placement tolerance.')
+                    break
     return issues
 
 def estimate_weight(e):
-    # Continuous top and largest bottom cage, uniform tighter hoop spacing.
+    # Equal-size positive cages share the larger count. Different sizes count
+    # both full-length sets until regional cutoff lengths are supplied.
     # Gross lengths only: no hooks, laps, bends, anchorage, waste or regional cutoffs.
     p=e.case['inputs'];length=e.value('L_cap');dv=BAR_DIAMETER[p['Bar_v']]
-    longitudinal=(e.value('As_N')+max(e.value('As_P'),e.value('As_B'))+2*e.value('As_side'))*length
+    bottom=max(e.value('As_P'),e.value('As_B')) if p['Bar_P']==p['Bar_B'] else e.value('As_P')+e.value('As_B')
+    longitudinal=(e.value('As_N')+bottom+2*e.value('As_side'))*length
     hoop_length=2*(p['b']-2*p['C_s']-dv+p['h']-p['C_t']-p['C_b']-dv)
     count=math.ceil(max(0,length-2*p['C_s'])/min(p['s_G'],p['s_L']))+1
     return (longitudinal+count*p['n_loop']*hoop_length*BAR_AREA[p['Bar_v']])*490/1728
@@ -135,7 +180,7 @@ def sectional_checks_pass(e):
     return not any('FAIL' in c.status for c in e.checks) and not e.issues
 
 def evaluate(case=None,fast=False):
-    case=deepcopy(default_case() if case is None else case);validate_case(case)
+    case=upgrade_case(default_case() if case is None else case);validate_case(case)
     stale=analysis_match(case);overrides={}
     for n,v in case['inputs'].items():
         u=INPUT_UNITS[n]
@@ -157,6 +202,7 @@ def evaluate(case=None,fast=False):
     failure=any('FAIL' in c.status for c in checks)
     e.eligible=sectional_checks_pass(e) and not stale
     if stale:e.status='REIMPORT FORCES — changed analysis geometry: '+', '.join(stale)
+    elif not case['inputs']['Ready_pile']:e.status='PILE-HEAD DETAIL INPUTS PENDING'
     elif failure:e.status='CHECK FAILURES — revise the trial cage or section'
     elif e.issues:e.status='DETAILING SCREEN — review the drawn cage'
     else:e.status=eng.get('Status_overall')

@@ -31,6 +31,14 @@ def section_figure(e,region='B'):
     p=e.case['inputs'];b=p['b'];h=p['h'];fig=go.Figure();dv=BAR_DIAMETER[p['Bar_v']]
     fig.add_shape(type='rect',x0=0,y0=0,x1=b,y1=h,line=dict(color=INK,width=2),fillcolor='#f2f5f7',layer='below')
     fig.add_shape(type='rect',x0=p['C_s']+dv/2,y0=p['C_b']+dv/2,x1=b-p['C_s']-dv/2,y1=h-p['C_t']-dv/2,line=dict(color=AMBER,width=3))
+    if region=='P' and p['Ready_pile']:
+        left=(b-p['D_pile'])/2;right=(b+p['D_pile'])/2
+        fig.add_shape(type='rect',x0=e.value('Pile_left')-p['C_pile'],x1=e.value('Pile_right')+p['C_pile'],y0=0,y1=p['Pile_embed']+p['C_pile'],line=dict(color=RED,dash='dot'),fillcolor='rgba(187,62,57,.06)',layer='below')
+        fig.add_shape(type='rect',x0=left,x1=right,y0=-3,y1=p['Pile_embed'],line=dict(color=INK,width=2),fillcolor='#b8c7d1',layer='below')
+        fig.add_annotation(x=b/2,y=p['Pile_embed']/2,text=f'Pile · {p["D_pile"]:g} in<br>embed {p["Pile_embed"]:g} in',showarrow=False,font=dict(size=10))
+        fig.add_annotation(x=b/2,y=-4.5,text='Dotted limit: bar clearance + pile placement allowance',showarrow=False,font=dict(size=9,color=RED))
+    elif region=='P':
+        fig.add_annotation(x=b/2,y=h/2,text='Pile-head dimensions pending<br>Bar clearance is not verified',showarrow=False,bgcolor='#fff3d9',font=dict(color=RED))
     groups=defaultdict(list)
     for bar in bar_positions(e,region):
         groups[bar['kind']].append(bar);r=bar['diameter']/2
@@ -44,7 +52,7 @@ def section_figure(e,region='B'):
         fig.add_annotation(x=b/2,y=-4,text=f"U-leg inventory: {p['n_'+region+'U']:g} #{p['Bar_U']:g}; positions unresolved",showarrow=False,font=dict(color=RED,size=11))
     fig.update_xaxes(title='Width (in)',range=[-3,b+3],constrain='domain',zeroline=False)
     fig.update_yaxes(title='Depth from bottom (in)',range=[-6,h+3],scaleanchor='x',scaleratio=1,zeroline=False)
-    title=('Pile / positive region' if region=='P' else 'Bearing region')+f' · {b:g} × {h:g} in'
+    title=('Positive steel · at pile' if region=='P' else 'Positive steel · between piles')+f' · {b:g} × {h:g} in'
     theme(fig,title,470);fig.update_layout(legend=dict(font=dict(size=10),orientation='h',y=-.2))
     return fig
 
@@ -73,7 +81,7 @@ def hoop_figure(e):
 
 def results_figure(e):
     fig=make_subplots(rows=2,cols=2,subplot_titles=('Factored moment / resistance (kip-ft)','Service I steel stress (ksi)','Shear demand / resistance (kip)','Combined shear + torsion area (in²)'),vertical_spacing=.22,horizontal_spacing=.13)
-    labels=['N · top','P · pile','B · bearing']
+    labels=['N · top','P · pile','B · between piles']
     for prefix,name,color in [('Mu_','Demand',MOMENT),('Mr_','Resistance',MOMENT_CAPACITY)]:fig.add_trace(go.Bar(x=labels,y=[e.value(prefix+z,'kip*ft') for z in 'NPB'],name='Moment '+name,marker_color=color),row=1,col=1)
     fig.add_trace(go.Bar(x=labels,y=[e.value('fs_I_'+z,'ksi') for z in 'NPB'],name='Service I stress',marker_color=TEAL),row=1,col=2)
     fig.add_hline(y=e.value('fs_I_limit','ksi'),line_color=AMBER,line_dash='dash',annotation_text='Stress limit',row=1,col=2)

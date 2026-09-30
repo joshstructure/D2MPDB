@@ -13,8 +13,8 @@ import hashlib
 import json
 import math
 
-from .model import GEOMETRY, analysis_match, evaluate, set_inputs, validate_case
-from .optimizer import SearchConfig, search, sensitivity_search, candidate_case, filter_candidates
+from .model import GEOMETRY, analysis_match, evaluate, set_inputs, validate_case, upgrade_case
+from .optimizer import SearchConfig, search, sensitivity_search, candidate_case, filter_candidates, layout_grids
 from .io import write_case
 
 FORCE_INPUTS = {
@@ -157,15 +157,17 @@ def _analysis_case(base, width, depth, analyzed_cases):
 
 
 def run_section_study(base_case, grid=None, steel_config=None, *, analyzed_cases=(), cache=None, progress=None):
+    base_case=upgrade_case(base_case)
     grid = grid or SectionGrid()
     steel = steel_config or SearchConfig()
     _validate_grid(grid)
     validate_case(base_case)
+    if not base_case['inputs']['Ready_pile']:
+        raise ValueError('Confirm pile-head embedment and bar clearance in the main calculator before running the section study.')
     if set(analysis_match(base_case)) - {'b', 'h'}:
         raise ValueError('The pile layout has changed. Supply matching pile-layout forces before studying cap sections.')
     # Validate the steel grid once even if every geometry is rejected before enumeration.
-    grids = (steel.main_bars, steel.top_counts, steel.bottom_counts, steel.hoop_bars,
-             steel.hoop_spacings, steel.skin_bars, steel.skin_counts)
+    grids = layout_grids(steel)
     if any(not values for values in grids):
         raise ValueError('Select at least one value in every steel search list.')
     if type(steel.max_cases) is not int or not 1 <= steel.max_cases <= 100000:
@@ -177,7 +179,7 @@ def run_section_study(base_case, grid=None, steel_config=None, *, analyzed_cases
     side_allowance = base_case['inputs']['E_clear'] + initial.value('Tol_pile')
     minimum_width = max(grid.minimum_width_in, base_case['inputs']['D_pile'] + 2 * side_allowance)
     length_ft = initial.value('L_cap') / 12
-    library = list(analyzed_cases)
+    library = [upgrade_case(case) for case in analyzed_cases]
     for case in library:
         validate_case(case)
     # The current case supplies exactly its own source section, never the rest of the grid.

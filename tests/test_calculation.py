@@ -1,17 +1,19 @@
 import json
 import math
 import unittest
-from pier_cap.model import DATA,DEFINITIONS,default_case,evaluate,set_inputs,bar_positions,analysis_match
+from pier_cap.model import DATA,DEFINITIONS,evaluate,set_inputs,bar_positions,analysis_match
 from pier_cap.engine import Engine,Q,parse
 from pier_cap.optimizer import search,SearchConfig,candidate_case,filter_candidates,candidate_dc,governing_check
 
+from tests.case_fixtures import default_case
+
 class CalculationTests(unittest.TestCase):
     @classmethod
-    def setUpClass(cls):cls.base=evaluate()
+    def setUpClass(cls):cls.base=evaluate(default_case())
 
     def test_all_saved_source_results(self):
         reference=json.loads((DATA/'baseline_reference.json').read_text(encoding='utf-8'))
-        self.assertEqual(len(DEFINITIONS),324)
+        self.assertEqual(len(DEFINITIONS),342)
         for name,expected in reference.items():
             if name not in self.base.engine.defs:continue  # Three linked journal externals are now explicit inputs.
             with self.subTest(name=name):

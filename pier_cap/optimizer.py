@@ -6,7 +6,7 @@ from time import perf_counter
 from copy import deepcopy
 import math
 import random
-from .model import evaluate, set_inputs, analysis_match, validate_case, sectional_checks_pass
+from .model import evaluate, set_inputs, analysis_match, validate_case, sectional_checks_pass, upgrade_case
 
 DC_SCOPES={'all':'All available checks','strength':'Strength checks only'}
 OBJECTIVES=('Least steel','Simplest cage','Largest margin')
@@ -43,6 +43,19 @@ class SearchConfig:
     skin_counts:tuple=(5,6,7)
     objective:str='Least steel'
     max_cases:int=10000
+    # None preserves explicitly legacy common-cage scripts. The notebook supplies
+    # all four independent domains, so its positive-region cages are never tied.
+    pile_bars:tuple=None
+    span_bars:tuple=None
+    pile_counts:tuple=None
+    span_counts:tuple=None
+
+
+def layout_grids(c):
+    common_counts=(None,) if c.pile_counts is not None and c.span_counts is not None else c.bottom_counts
+    independent=tuple((None,) if values is None else values for values in
+                      (c.pile_bars,c.span_bars,c.pile_counts,c.span_counts))
+    return (c.main_bars,c.top_counts,common_counts,c.hoop_bars,c.hoop_spacings,c.skin_bars,c.skin_counts,*independent)
 
 @dataclass
 class Candidate:
@@ -118,14 +131,16 @@ def sensitivity_search(case,config=None,progress=None):
     return _search(case,config,progress,section_sensitivity=True)
 
 def _search(case,config,progress,section_sensitivity):
-    c=config or SearchConfig();validate_case(case)
+    c=config or SearchConfig();case=upgrade_case(case);validate_case(case)
+    if not case['inputs']['Ready_pile']:
+        raise ValueError('Confirm pile-head embedment and bar clearance under Geometry → Pile head before searching.')
     stale=analysis_match(case)
     if stale and (not section_sensitivity or set(stale)-{'b','h'}):
         raise ValueError('Geometry has changed. Import a matching analysis case before searching steel. Fixed-force section studies allow only width/depth differences.')
     def accepted(e):return sectional_checks_pass(e) if section_sensitivity else e.eligible
     if c.objective not in OBJECTIVES:raise ValueError('Unknown search objective.')
     if not isinstance(c.max_cases,int) or not 1<=c.max_cases<=100000:raise ValueError('Search limit must be 1–100,000 cases.')
-    grids=(c.main_bars,c.top_counts,c.bottom_counts,c.hoop_bars,c.hoop_spacings,c.skin_bars,c.skin_counts)
+    grids=layout_grids(c)
     if any(not g for g in grids):raise ValueError('Select at least one value in every search list.')
     total=1
     for g in grids:total*=len(g)
@@ -135,17 +150,19 @@ def _search(case,config,progress,section_sensitivity):
     for key in ('xml_audit','workbook_audit'):
         trial_base['analysis'].pop(key,None)
     start=perf_counter();good=[];rejected=Counter();count=0
-    for bar,top,bottom,hoop,spacing,skin,nskin in bounded_layouts(grids,c.max_cases):
+    for bar,top,bottom,hoop,spacing,skin,nskin,pbar,bbar,pcount,bcount in bounded_layouts(grids,c.max_cases):
         count+=1
-        changes={'Bar_N1':bar,'Bar_N2':bar,'Bar_N3':bar,'Bar_pos':bar,
-            'n_N1':top,'n_N2':0,'n_N3':0,'n_P1':bottom,'n_B1':bottom,'n_P2':0,'n_B2':0,
+        pbar=bar if pbar is None else pbar;bbar=bar if bbar is None else bbar
+        pcount=bottom if pcount is None else pcount;bcount=bottom if bcount is None else bcount
+        changes={'Bar_N1':bar,'Bar_N2':bar,'Bar_N3':bar,'Bar_P':pbar,'Bar_B':bbar,
+            'n_N1':top,'n_N2':0,'n_N3':0,'n_P1':pcount,'n_B1':bcount,'n_P2':0,'n_B2':0,
             'n_PU':0,'n_BU':0,'Bar_v':hoop,'n_loop':1,'s_G':spacing,'s_L':spacing,
             'Bar_skin':skin,'n_skin':nskin,'Manual_spacing':False}
         try:
             e=evaluate(set_inputs(trial_base,**changes),fast=True)
             if accepted(e):
-                complexity=int(top+bottom+2*nskin+len({bar,hoop,skin})*5)
-                label=f'{top} #{bar} top / {bottom} #{bar} bottom · #{hoop} @ {spacing:g} in · {nskin} #{skin}/side'
+                complexity=int(top+max(pcount,bcount)+2*nskin+len({bar,pbar,bbar,hoop,skin})*5)
+                label=f'{top} #{bar} top / pile {pcount} #{pbar} / between {bcount} #{bbar} · #{hoop} @ {spacing:g} in · {nskin} #{skin}/side'
                 overall=_governing(e);strength=_governing(e,STRENGTH_CHECKS)
                 good.append(Candidate(changes,e.weight_lb,e.max_dc,complexity,label,strength.ratio,overall.label,strength.label))
             else:

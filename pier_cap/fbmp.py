@@ -8,7 +8,7 @@ from pathlib import Path
 import hashlib
 import math
 from lxml import etree as ET
-from .model import default_case, evaluate, validate_case, GEOMETRY
+from .model import upgrade_case, default_case, evaluate, validate_case, GEOMETRY
 
 
 def _require(condition, message):
@@ -205,7 +205,7 @@ def import_fbmp_xml(source, base=None, filename=None):
     bearings = {n.get('node_number') for n in model.findall('BEARING_LOCATIONS/BEARING_LOCATION')}
     _require(bearings and bearings.issubset(nodes), 'Bearing nodes are missing from the cap mesh.')
 
-    case = deepcopy(base or default_case())
+    case = upgrade_case(base or default_case())
     validate_case(case)
     p = case['inputs']
     tolerance = evaluate(case).value('Tol_pile')

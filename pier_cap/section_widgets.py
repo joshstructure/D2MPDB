@@ -438,7 +438,7 @@ class SectionStudy:
         self.selection_info.value += f'Source analysis: {html.escape(source["id"])} · source section {source["geometry"]["b"]:g} × {source["geometry"]["h"]:g} in.<br><b>{html.escape(e.status)}</b></p>'
         if self.study.grid['force_mode'] == 'matched':
             self.selection_info.value += '<small>Reusing forces over trial reinforcement assumes the analysis stiffness model permits it; geometry matching alone does not verify that assumption.</small>'
-        for figure in (section_figure(e, 'B'), results_figure(e)):
+        for figure in (section_figure(e, 'P'), section_figure(e, 'B'), results_figure(e)):
             self.preview_figures.append(go.FigureWidget(figure))
         self.preview.children = [*self.preview_figures, W.HTML(spacing_html(e)),
                                  W.VBox([W.HTML(checks_html(e))], layout=W.Layout(max_height='420px', overflow='auto'))]

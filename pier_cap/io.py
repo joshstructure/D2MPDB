@@ -7,18 +7,19 @@ import hashlib
 import io
 import json
 import re
-from .model import INPUTS,GEOMETRY,validate_case,evaluate,default_case,formula_trace
+from .model import INPUTS,DEFINITIONS,GEOMETRY,validate_case,evaluate,default_case,formula_trace,upgrade_case
 from .force_audit import strength_audit
 
 def load_case(source):
     if isinstance(source,(bytes,bytearray,memoryview)):data=json.loads(bytes(source).decode('utf-8-sig'))
     else:data=json.loads(Path(source).read_text(encoding='utf-8-sig'))
+    data=upgrade_case(data)
     validate_case(data)
     evaluate(data)
     return data
 
 def write_case(case,path):
-    validate_case(case);path=Path(path);path.parent.mkdir(parents=True,exist_ok=True)
+    case=upgrade_case(case);validate_case(case);path=Path(path);path.parent.mkdir(parents=True,exist_ok=True)
     with path.open('x',encoding='utf-8') as f:json.dump(case,f,indent=2,ensure_ascii=False,allow_nan=False)
     return path
 
@@ -28,7 +29,7 @@ def input_formula(name,value):
     return name+' = '+rhs
 
 def export_bundle(case,root='exports',search_result=None,search_filter=None):
-    e=evaluate(case)
+    e=evaluate(case);case=e.case
     if search_result:
         if search_result.force_mode!='matched':raise ValueError('Use the section-study exporter for fixed-force results; ordinary review searches require matching analysis.')
         from .optimizer import filter_candidates,candidate_dc,candidate_governing
@@ -89,7 +90,10 @@ def _blockpad_template(source):
     for el in report.iter('dynexp'):
         f=el.get('formula','')
         if ' = ' in f:found[f.split(' = ')[0]]=el
-    missing=(set(INPUTS)|{'Status_layout','Status_section'})-set(found)
+    added={'Bar_P','Bar_B','Ready_pile','Pile_embed','C_pile'}
+    required=set(INPUTS)-added
+    required|={'Bar_pos'} if 'Bar_P' not in found else {'Bar_P','Bar_B'}
+    missing=(required|{'Status_layout','Status_section'})-set(found)
     if missing:raise ValueError('C005 input definitions missing: '+', '.join(sorted(missing)))
     return tree,report,found
 
@@ -100,7 +104,7 @@ def validate_blockpad_source(source):
 def export_blockpad(source,case,destination):
     """Patch only C005 in a new copy, accepting local paths or uploaded bytes."""
     from lxml import etree as E
-    validate_case(case);e=evaluate(case);destination=Path(destination)
+    case=upgrade_case(case);validate_case(case);e=evaluate(case);destination=Path(destination)
     same_source=not isinstance(source,(bytes,bytearray,memoryview)) and Path(source).resolve()==destination.resolve()
     if destination.exists() or same_source:raise ValueError('Choose a new output filename; originals are never overwritten.')
     tree,report,found=_blockpad_template(source);root=tree.getroot()
@@ -109,7 +113,26 @@ def export_blockpad(source,case,destination):
         el=found[name];el.set('formula',formula)
         for child in list(el):el.remove(child)
         E.SubElement(el,'expbody').text=formula
-    for name,value in case['inputs'].items():replace(name,input_formula(name,value))
+    # Upgrade only C005 to the current equations. Older journals have one
+    # Bar_pos input; exported positive-region sizes must never be collapsed.
+    extra=E.Element('table',name='NotebookRegionalDefinitions',capture='False',colwidths='1:310.00, 2:600.00')
+    for definition in DEFINITIONS:
+        name=definition['name']
+        formula=input_formula(name,case['inputs'][name]) if definition['input'] else definition['formula']
+        if name in found:
+            replace(name,formula)
+        else:
+            row=E.SubElement(extra,'row')
+            label=E.SubElement(row,'textcell',capture='False')
+            E.SubElement(label,'paragraph',fontfamily='Times New Roman',fontsize='10').text=definition['caption'] or name
+            cell=E.SubElement(row,'textcell',capture='False')
+            paragraph=E.SubElement(cell,'paragraph',fontfamily='Times New Roman',fontsize='10')
+            exp=E.SubElement(paragraph,'dynexp',formula=formula)
+            E.SubElement(exp,'expbody').text=formula
+            found[name]=exp
+    if len(extra):report.insert(0,extra)
+    from .blockpad_regions import update_regional_views
+    update_regional_views(report)
     g=case['analysis']['geometry']
     def source_test(names):
         terms=[]
@@ -147,7 +170,7 @@ def export_blockpad(source,case,destination):
         if paragraph.text and paragraph.text.strip() == 'Strength':
             paragraph.text='Combined strength envelope'
     note=E.Element('paragraph',fontfamily='Times New Roman',fontsize='11',background='#FFF5DE')
-    note.text=f'NOTEBOOK REVIEW COPY — {case["name"]}. Analysis: {case["analysis"]["id"]}. {e.status}. C005 inputs now come from the exported case; other project sections are unchanged. Recalculate in Blockpad. Earlier narrative examples/source notes may describe the original model; reconcile them before finalizing.'
+    note.text=f'NOTEBOOK REVIEW COPY — {case["name"]}. Analysis: {case["analysis"]["id"]}. {e.status}. C005 inputs and equations match this notebook revision; other project sections are unchanged. Recalculate in Blockpad. Pile collision and cage-fit screening is a notebook check: rerun/export after changing reinforcement or pile-head dimensions. Current cage issues: {"; ".join(e.issues) or "none in the notebook screen"}. Earlier narrative examples/source notes may describe the original model; reconcile them before finalizing.'
     report.insert(0,note)
     assert other==[E.tostring(n) for n in root if n is not report]
     destination.parent.mkdir(parents=True,exist_ok=True)
@@ -162,7 +185,7 @@ def import_workbooks(moment,shear,torsion,base=None,analysis_id=None,low_interva
     station lists. Geometry b/h/nominal pile width remains user-declared.
     """
     import openpyxl
-    case=deepcopy(base or default_case());audit={};datasets={};coordinate_lists=[]
+    case=upgrade_case(base or default_case());audit={};datasets={};coordinate_lists=[]
     for kind,source in [('Moment',moment),('Shear',shear),('Torsion',torsion)]:
         path=Path(source);wb=openpyxl.load_workbook(path,read_only=True,data_only=True)
         try:

@@ -6,13 +6,13 @@ from pathlib import Path
 from types import SimpleNamespace
 import unittest
 from unittest.mock import patch, Mock
-from pier_cap.model import default_case
-from pier_cap.fbmp import import_fbmp_xml
 from pier_cap.source_status import upload_entries,source_signature
 from pier_cap.widgets import CapNotebook
 from pier_cap.section_widgets import SectionStudy, rebind_study, close_study
 from pier_cap.sections import run_section_study,SectionGrid
 from pier_cap.optimizer import SearchConfig
+
+from tests.case_fixtures import default_case, import_fbmp_xml
 
 ROOT=Path(__file__).resolve().parent.parent
 FIXTURE=ROOT/'tests/fixtures/fbmp_610_cap.xml'
@@ -35,7 +35,7 @@ def receive_upload(widget,name,content):
 
 class ImportFeedbackTests(unittest.TestCase):
     def setUp(self):
-        self.app=CapNotebook()
+        self.app=CapNotebook(default_case())
         self.study=SectionStudy(self.app)
 
     def tearDown(self):
@@ -208,7 +208,7 @@ class ColabNativeUploadTests(unittest.TestCase):
     def setUp(self):
         self.files=SimpleNamespace(upload=Mock())
         with patch.dict('sys.modules', {'google.colab':SimpleNamespace(files=self.files)}):
-            self.app=CapNotebook()
+            self.app=CapNotebook(default_case())
         self.addCleanup(self.app.close)
         self.panel=self.app.xml_import
 

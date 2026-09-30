@@ -3,5 +3,9 @@
   "source_sha256": "796d2b28cfb93bec8056a5fb9692f87e00f2d8c79b73d19ba09a802aa2b3c3f5",
   "engineering_definitions": 324,
   "floor_fix": "Normalize length by 1 in, floor with unitless multiplier, restore inches.",
-  "date": "2026-09-28"
+  "date": "2026-09-28",
+  "current_definitions": 342,
+  "regional_extension": "Independent pile/between-pile sizes and counts, explicit pile-head input readiness and longitudinal-bar interference screen.",
+  "regional_extension_date": "2026-09-30",
+  "bottom_shrinkage_spacing": "Original Mathcad region 38146: Spa.shrink.bot := SP[2], the between-pile positive row. Pile-region service spacing is still checked separately."
 }

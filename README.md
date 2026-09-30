@@ -37,10 +37,10 @@ Keep the `pier_cap/` package beside the notebook. Supporting files organize reus
 
 ### Recommended workflow
 
-1. Load a saved `selected_case.json`, or start with the supplied four-pile example.
-2. Review force-source geometry, loads, materials, assumptions and pending actions.
-3. Change bar counts/sizes/spacing and inspect the live drawings, stress plots and D/C register.
-4. Run **Search steel layouts**. The default list evaluates 1,944 combinations and retains **all 324 passing layouts**, each rechecked with units. Search is deterministic code and uses no AI calls.
+1. Import the current FB-MultiPier XML or load a saved `selected_case.json`.
+2. Review the force source and dimensions. Under **Geometry → Pile head**, enter physical embedment and required clear gap, confirm the dimensions.
+3. Set independent sizes and counts under **Steel → Positive steel · at piles** and **Positive steel · between piles**. Inspect both cross sections, stress plots and the D/C register.
+4. Select the independent top, pile and between-pile sizes/counts, then run **Search steel layouts**. Every retained layout is rechecked with units. The search reports its evaluated and total combinations; a case limit samples the full grid reproducibly. It uses no AI calls.
 5. Set **Max D/C** (for example, `0.90`). The workbench defaults to **Strength checks only** for this margin target; choose **All available checks** if you also want to tighten spacing and other detailing ratios. Browse with **Page / Previous / Next** and **Per page** (20, 50 or 100). Filtering and ranking reuse the finished search. **Apply selected layout** loads the selected candidate ID into the live drawings/checks. Service III/fatigue and other unresolved scope remain explicit.
 6. Export the case/checks and optionally a new Blockpad C005 review copy. Recalculate that copy in Blockpad and reconcile narrative/source notes before final review.
 
@@ -52,9 +52,7 @@ The search results are steel layouts for the current force case, not additional 
 
 **All available checks** applies the target to the largest available ratio, including spacing, minimum reinforcement, strain and service criteria. **Strength checks only** applies it to flexure, shear, combined shear/torsion steel and longitudinal steel; every remaining available check must still pass at its original limit. The table displays both the filter D/C and all-check D/C so these targets cannot be confused. **Largest margin** ranks the selected scope.
 
-For the starting case and default search choices, **no layouts meet an all-check target of 0.90**: transverse hoop-leg spacing sets a minimum overall ratio of about **0.9821**. **210 layouts meet the strength-only target of 0.90**, while their other available checks still pass. The empty-results message reports the best available ratio and controlling check; it never silently relaxes your target. Filtering does not complete pending Service III/fatigue inputs.
-
-At a **0.97** target, **306** layouts meet the strength target and **zero** meet the all-check target. The live summary now separates **Strength D/C** from **All-check utilization**, and the search shows both match counts. The **Plots** tab breaks hoop spacing into its along-cap and across-cap components. See [the focused D/C floor review](DC_RATIO_REVIEW.md) for the original Mathcad trace and the explicit `41.25 / 42 = 0.98214` spacing calculation. A strength target is not a general multiplier for how much the loads can be increased.
+An empty-results message reports the best available ratio and governing check without relaxing the target. Spacing checks can control even when strength ratios are low. The **Plots** tab separates along-cap hoop spacing from across-cap leg spacing. Filtering does not complete pending Service III/fatigue inputs.
 
 Programmatically, `filter_candidates(result, max_dc=0.90, scope="strength")` returns zero-based indices into the complete `result.candidates` list; `candidate_case(result, index)` retrieves one. Displayed candidate IDs are those indices plus one. The old `SearchConfig.keep` cap has been removed; use list slicing only for your own previews.
 
@@ -70,14 +68,18 @@ Default **fixed-force sensitivity** keeps imported forces constant and retains t
 
 ### Search and drawing limits
 
-The automatic family uses one continuous top row and bottom row, a common main bar size, the same bottom layout at pile/bearing regions, one closed hoop and uniform spacing. Other layouts can be investigated manually. Bounded enumeration reports the evaluated/total counts and whether the list was exhausted; it does not claim a global optimum outside those choices.
+The automatic family uses independently selected top, pile-positive and between-pile positive bar sizes and counts, one row in each group, one closed hoop and uniform spacing. Additional rows remain manual inputs. The study uses the same independent choices. A bounded search does not establish an optimum outside the explored combinations.
 
-Weight is a gross comparison estimate, excluding hooks, laps, anchorage, bends and waste. The cage-fit screen checks drawn bar positions against the hoop interior and an editable trial clear spacing. It is not a complete detailing check. Multiple loops and U-leg positions are unresolved in the source inputs and cannot silently pass the search.
+The pile-region cross section reserves the nominal centered pile width plus the existing horizontal placement allowance. Obstructed bottom rows split beside that envelope. Row elevations retain the source cover, hoop diameter, bar diameter and row separation; a second row that clears the head can extend across the section. The between-pile section has its own bar sizes, counts and effective depth. The central gap remains in pile-region service spacing checks. Bottom shrinkage spacing uses the between-pile row, matching original Mathcad `Spa.shrink.bot := SP[2]`; top, side and hoop spacing remain included.
+
+Pile embedment and bar-to-pile clearance are required project inputs: Mathcad and the FBMP XML do not establish them. Their zero placeholders are unconfirmed, and searches stop until they are confirmed. Existing saved cases migrate their common positive bar size into both regions and preserve their loads. The source Mathcad has separate positive-region counts and between-pile U-bars; the explicit obstruction screen and independent sizes extend that calculation.
+
+Weight is a gross comparison estimate: equal-size positive cages use the larger area over the full length; different sizes count both full-length sets. Regional transitions, cutoffs, hooks, laps, anchorage, bends and waste require a detailing takeoff. The screen checks drawn longitudinal bars against the hoop interior, trial bar spacing and the pile envelope. The hoop outline is a cross-section guide; actual hoop stations around pile heads remain a detailing task. Multiple loops and U-leg positions remain unresolved.
 
 ### Imports and exports
 
 - **One-file reuse:** load the case JSON through the workbench upload control.
-- **Three-workbook converter:** notebook section 6 reads the supplied `Max_PierCap_*_Design` layouts, checks coordinates/headers and records governing rows/hashes. Confirm all exports belong to the same run. Nominal pile width and section dimensions remain declared project data.
+- **Three-workbook converter:** `import_workbooks` reads the supplied `Max_PierCap_*_Design` layouts, checks coordinates/headers and records governing rows/hashes. Confirm all exports belong to the same run. Nominal pile width and section dimensions remain declared project data.
 - **New loads from one XML:** use **Upload FBMP XML → review preview → Apply XML inputs** in the live workbench, then rerun the search. Supports the reviewed FB-MultiPier 6.1.0 static, English-unit, uniform pile-bent layout. Geometry/materials and strength/Service I envelopes come from the same source; trial steel is retained. See [FBMP_IMPORT.md](FBMP_IMPORT.md) for supported models, force signs, station recovery and audit details. `.out` parsing remains unsupported.
 - **Review exports:** saved in timestamped `exports/` subfolders; originals are not overwritten. `alternatives.csv` includes every passing layout. `filtered_alternatives.csv` includes every current filter match, across all pages, with stable candidate IDs; `review.json` records the target, scope and matching count. For Blockpad, use **Upload Blockpad journal → Choose Files (Colab) → Export a Blockpad review copy**. Wait for **JOURNAL READY** before exporting. Colab downloads the new `.bpad`; **Download last .bpad copy** retries the download. Windows paths are only usable by a notebook running on Windows. The exporter uses the current main calculator case, modifies only C005 in a new review copy, and preserves other project data.
 
@@ -93,7 +95,7 @@ GitHub renders saved static notebook output, not running widgets. The Colab badg
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-Regression checks cover the 324 imported definitions, independent mechanics, force/geometry gates, invalid inputs, unit-aware vs. scalar search, cage geometry, imports/exports and widgets. The notebook is also executed from top to bottom during delivery verification. See `VALIDATION.md` for recorded results.
+Regression checks cover the original Mathcad mechanics, independent positive regions, pile clearance, independent mechanics, force/geometry gates, invalid inputs, unit-aware vs. scalar search, cage geometry, imports/exports and widgets. The notebook is also executed from top to bottom during delivery verification. See `VALIDATION.md` for recorded results.
 
 Commit the notebook, `pier_cap/`, tests, requirements, launcher and documentation together. `.gitignore` excludes the environment, exports, caches and runtime data. No commit or push is performed automatically.
 

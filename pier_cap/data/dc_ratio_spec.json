@@ -147,7 +147,7 @@
   "Chk_shrink_space": {
     "label": "Shrinkage reinforcement spacing",
     "formula": "If(s_shrink_limit > 0 in,s_shrink/s_shrink_limit,\"INVALID\")",
-    "basis": "Largest actual spacing / allowable shrinkage spacing."
+    "basis": "Largest source surface spacing / allowable shrinkage spacing; bottom uses the between-pile row (Mathcad SP[2])."
   },
   "Status_III": {
     "label": "Service III \u2014 all regions",
