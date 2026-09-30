@@ -9,6 +9,7 @@ from .model import default_case,evaluate,INPUTS,GEOMETRY,formula_trace
 from .optimizer import search,SearchConfig,candidate_case,filter_candidates,candidate_dc,candidate_governing,governing_check,DC_SCOPES
 from .io import load_case,export_bundle,export_blockpad
 from .fbmp_widgets import XMLImportPanel
+from .blockpad_widgets import BlockpadExportPanel
 from .widget_compat import Tab, Accordion
 from .source_status import upload_entries,source_html,import_receipt,receipt_html,notice_html
 from .visuals import section_figure,elevation_figure,hoop_figure,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html,spacing_html
@@ -266,9 +267,9 @@ class CapNotebook:
 
     def _export_panel(self):
         export=W.Button(description='Export current case + checks',icon='download',button_style='success');export.on_click(self._export)
-        self.bpad_path=W.Text(placeholder='Full path to your C005 Live Design.bpad journal',description='C005 source',layout=W.Layout(width='95%'))
-        patch=W.Button(description='Export a Blockpad review copy',icon='copy');patch.on_click(self._export_bpad)
-        return W.VBox([W.HTML('<h3>Save / reuse a selected case</h3><p>The JSON bundle is the single file to load next time. Exports include the D/C register, equation trace, Blockpad input assignments, all passing search alternatives and all current filter matches (every page). Saved cases retain force-source geometry so stale forces stay visible.</p>'),export,self.bpad_path,patch])
+        self.blockpad_export=BlockpadExportPanel(self)
+        self.bpad_path=self.blockpad_export.path
+        return W.VBox([W.HTML('<h3>Save / reuse a selected case</h3><p>The JSON bundle is the single file to load next time. Exports include the D/C register, equation trace, Blockpad input assignments, all passing search alternatives and all current filter matches (every page). Saved cases retain force-source geometry so stale forces stay visible.</p>'),export,self.blockpad_export.ui])
 
     def _export(self,button):
         try:
@@ -277,12 +278,7 @@ class CapNotebook:
         except Exception as exc:self.message.value='<b>Export stopped:</b> '+html.escape(str(exc))
 
     def _export_bpad(self,button):
-        try:
-            if not self.bpad_path.value.strip():raise ValueError('Enter the path to the existing C005 Live Design journal.')
-            self.last_export=export_bundle(self.case,self.export_root,self.search_result,search_filter=self._search_filter())
-            path=export_blockpad(self.bpad_path.value.strip(),self.case,self.last_export/'C005 - Notebook Review.bpad')
-            self.message.value='<b>New review copy:</b> '+html.escape(str(path.resolve()))+'<br>Open and recalculate in Blockpad. Other project sections are preserved. This export is not a design release.'
-        except Exception as exc:self.message.value='<b>Blockpad export stopped:</b> '+html.escape(str(exc))
+        self.blockpad_export.export(button)
 
     def display(self):
         from IPython.display import display

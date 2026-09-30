@@ -58,21 +58,40 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
     (path/'review.json').write_text(json.dumps(manifest,indent=2,ensure_ascii=False),encoding='utf-8')
     return path
 
-def export_blockpad(source,case,destination):
-    """Patch only C005 in a new copy; do not overwrite the user's project file."""
+def _blockpad_template(source):
+    """Read a local path or uploaded bytes without resolving external XML data."""
     from lxml import etree as E
-    validate_case(case);e=evaluate(case);source=Path(source);destination=Path(destination)
-    if destination.exists() or source.resolve()==destination.resolve():raise ValueError('Choose a new output filename; originals are never overwritten.')
     parser=E.XMLParser(resolve_entities=False,no_network=True)
-    tree=E.parse(str(source),parser);root=tree.getroot();report=tree.find("report[@name='PierCapDesign']")
-    if report is None:raise ValueError('This exporter requires the C005 Live Design journal with report name PierCapDesign.')
-    other=[E.tostring(n) for n in root if n is not report]
+    if isinstance(source,(bytes,bytearray,memoryview)):
+        tree=E.parse(io.BytesIO(bytes(source)),parser)
+    else:
+        source=Path(source)
+        if not source.is_file():
+            raise FileNotFoundError('This notebook cannot find the source journal. In Colab, use Upload Blockpad journal; a Windows path is not accessible from the Colab runtime.')
+        tree=E.parse(str(source),parser)
+    reports=tree.findall("report[@name='PierCapDesign']")
+    if len(reports)!=1:raise ValueError('This exporter requires exactly one C005 Live Design report named PierCapDesign.')
+    report=reports[0]
     found={}
     for el in report.iter('dynexp'):
         f=el.get('formula','')
         if ' = ' in f:found[f.split(' = ')[0]]=el
-    missing=set(INPUTS)-set(found)
+    missing=(set(INPUTS)|{'Status_layout','Status_section'})-set(found)
     if missing:raise ValueError('C005 input definitions missing: '+', '.join(sorted(missing)))
+    return tree,report,found
+
+def validate_blockpad_source(source):
+    """Confirm that a journal contains the required C005 module before export."""
+    _blockpad_template(source)
+
+def export_blockpad(source,case,destination):
+    """Patch only C005 in a new copy, accepting local paths or uploaded bytes."""
+    from lxml import etree as E
+    validate_case(case);e=evaluate(case);destination=Path(destination)
+    same_source=not isinstance(source,(bytes,bytearray,memoryview)) and Path(source).resolve()==destination.resolve()
+    if destination.exists() or same_source:raise ValueError('Choose a new output filename; originals are never overwritten.')
+    tree,report,found=_blockpad_template(source);root=tree.getroot()
+    other=[E.tostring(n) for n in root if n is not report]
     def replace(name,formula):
         el=found[name];el.set('formula',formula)
         for child in list(el):el.remove(child)
