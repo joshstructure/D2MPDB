@@ -172,7 +172,10 @@ def run_section_study(base_case, grid=None, steel_config=None, *, analyzed_cases
         raise ValueError('Per-section steel limit must be between 1 and 100,000.')
     total_per_section = math.prod(len(values) for values in grids)
     initial = evaluate(base_case)
-    minimum_width = max(grid.minimum_width_in, base_case['inputs']['D_pile'] + 2 * initial.value('E_end'))
+    # E_detail / E_end describe the longitudinal cap ends. An imported longer
+    # cantilever must not silently enlarge the transverse pile-edge screen.
+    side_allowance = base_case['inputs']['E_clear'] + initial.value('Tol_pile')
+    minimum_width = max(grid.minimum_width_in, base_case['inputs']['D_pile'] + 2 * side_allowance)
     length_ft = initial.value('L_cap') / 12
     library = list(analyzed_cases)
     for case in library:

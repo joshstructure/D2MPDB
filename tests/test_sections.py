@@ -8,6 +8,7 @@ import unittest
 from unittest.mock import patch
 
 from pier_cap.model import default_case, evaluate, set_inputs, analysis_match
+from pier_cap.fbmp import import_fbmp_xml
 from pier_cap.optimizer import SearchConfig, search, sensitivity_search
 from pier_cap.sections import (SectionGrid, CostRates, SectionCache, dimension_values, run_section_study,
                                section_rows, selected_section_case, export_section_study, ranked_cost_rows)
@@ -56,6 +57,54 @@ class SectionStudyTests(unittest.TestCase):
         wide = next(p for p in self.study.points if (p.width, p.depth) == (52, 48))
         self.assertEqual(wide.result.passed, 0)
         self.assertGreater(wide.result.rejection_counts['Hoop spacing — global'], 0)
+
+    def test_imported_longitudinal_extension_does_not_enlarge_width_screen(self):
+        case = import_fbmp_xml(Path(__file__).parent / 'fixtures/fbmp_610_cap.xml')
+        original = deepcopy(case)
+        self.assertAlmostEqual(evaluate(case).value('E_end'), 15.44)
+        for mode in ('fixed', 'matched'):
+            with self.subTest(mode=mode):
+                study = run_section_study(case, SectionGrid(widths=(44, 48), depths=(36,),
+                    minimum_width_in=48, force_mode=mode), SMALL)
+                self.assertEqual(study.minimum_width_in, 48)
+                self.assertEqual(study.points[0].state, 'GEOMETRY SCREEN')
+                self.assertEqual(study.points[1].state, 'EVALUATED')
+                self.assertEqual(study.evaluated, 64)
+                result = study.points[1].result
+                self.assertEqual(result.candidates, search(case, SMALL).candidates)
+                self.assertEqual(result.base_case['analysis'], original['analysis'])
+                self.assertAlmostEqual(evaluate(result.base_case).value('L_cap'), 230.88)
+        self.assertEqual(case, original)
+        adopted = run_section_study(case, SectionGrid(widths=(44,), depths=(36,)), SMALL)
+        self.assertEqual(adopted.minimum_width_in, 44)
+        self.assertEqual(adopted.points[0].state, 'EVALUATED')
+        larger = set_inputs(case, E_clear=11, E_detail=1.44)
+        larger['analysis']['geometry'].update(E_clear=11, E_detail=1.44)
+        screened = run_section_study(larger, SectionGrid(widths=(44, 48), depths=(36,)), SMALL)
+        self.assertEqual(screened.minimum_width_in, 48)
+        self.assertEqual(screened.points[0].state, 'GEOMETRY SCREEN')
+        self.assertEqual(screened.points[1].state, 'EVALUATED')
+
+    def test_all_screened_study_explains_zero_evaluations(self):
+        from pier_cap.widgets import CapNotebook
+        from pier_cap.section_widgets import SectionStudy
+        app = CapNotebook(import_fbmp_xml(Path(__file__).parent / 'fixtures/fbmp_610_cap.xml'))
+        panel = SectionStudy(app)
+        try:
+            panel.bounds['width'][0].value = panel.bounds['width'][1].value = 48
+            panel.min_width.value = 52
+            with patch('pier_cap.sections.sensitivity_search', side_effect=AssertionError('Screened geometry searched')):
+                panel._run(None)
+            self.assertIn('Transverse width screen: 52 in', panel.width_screen.value)
+            self.assertIn('longitudinal end allowance 3.44 in', panel.width_screen.value)
+            self.assertIn('NO STEEL CANDIDATES EVALUATED', panel.notice.value)
+            self.assertIn('Requires width ≥ 52 in', panel.notice.value)
+            self.assertIn('no reinforcement search was performed', panel.summary.value)
+            self.assertEqual(panel.study.evaluated, 0)
+            self.assertTrue(panel.apply_button.disabled)
+        finally:
+            panel.close()
+            app.close()
 
     def test_matched_mode_never_substitutes_fixed_forces(self):
         grid = SectionGrid(widths=(44, 48), depths=(48,), force_mode='matched')

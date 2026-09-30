@@ -6,6 +6,8 @@
 
 Open **[FBMP_Envelope_Extractor.ipynb](FBMP_Envelope_Extractor.ipynb)**, choose **Runtime → Run all**, and upload an analyzed FB-MultiPier XML. The tool extracts moment M2/M3, shear V2/V3, and torsion envelopes with governing cases, member filters, plots, and CSV/ZIP downloads. All code is embedded in this notebook.
 
+**Strength and Service tables appear directly in the notebook after upload**, with each exact limit state kept separate. They show minimum, maximum, absolute maximum, units, and governing case/combination for all five components. Separate **Download Strength CSV** and **Download Service CSV** buttons export the same rows. The supplied XML includes **Service I: load case 11, combination 4**.
+
 The reported FBMP summary and original XML element-end envelopes remain separately labeled, with source discrepancies flagged. See [the extractor guide](FBMP_ENVELOPE_EXTRACTOR.md). The Colab link becomes available after the notebook is pushed to `main`.
 
 ## Pier-cap design notebook

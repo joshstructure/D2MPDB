@@ -24,6 +24,7 @@ class SectionStudy:
         self.cache = SectionCache()
         self.library = {}
         self.source_status = W.HTML()
+        self.width_screen = W.HTML()
         self.rendering = self.applying = False
         self.figures = []
         self.preview_figures = []
@@ -90,7 +91,8 @@ class SectionStudy:
             W.HTML('<h2>Cap section & steel study</h2><p>Search width and depth around the reinforcement choices in the main calculator. Click a heatmap cell or cost bar to explore that section and every cage meeting your strength target.</p>'
                    '<p><b>Fixed-force sensitivity:</b> forces stay unchanged as geometry varies; self-weight and stiffness effects are not reanalyzed. <b>Analysis-matched mode:</b> only supplied matching force cases are evaluated. All results remain subject to pending checks and the source calculation scope.</p>'),
             *dimension_controls, W.HBox([self.min_width, self.min_depth, self.budget], layout=W.Layout(flex_flow='row wrap')),
-            W.HTML('<small>Width is also screened against the pile width plus twice the adopted nominal edge allowance. Enter any larger bearing/project minimums above. Zero means no additional project minimum. The search retains the single-outer-hoop family; wider caps may need a different cage topology.</small>'),
+            self.width_screen,
+            W.HTML('<small>Enter any larger bearing/project minimums above. Zero means no additional project minimum. The search retains the single-outer-hoop family; wider caps may need a different cage topology.</small>'),
             self.source_status, self.mode, library_panel, W.HBox([self.run_button, self.progress]), self.notice,
             W.HBox([self.target, self.metric, self.cell_labels], layout=W.Layout(flex_flow='row wrap')), self.cost_controls,
             self.summary, self.cost_summary, self.cheapest_button, self.charts, self.cost_details, self.material_details,
@@ -111,6 +113,15 @@ class SectionStudy:
                 if self.mode.value == 'fixed' else
                 'Analysis-matched mode also uses the separate saved cases in the analysis library at their matching sections.')
         self.source_status.value = source_html(self.app.case,'FORCE SOURCE FOR SECTION STUDY',note)
+        p = self.app.case['inputs']
+        tolerance = evaluate(self.app.case).value('Tol_pile')
+        width = max(self.min_width.value, p['D_pile'] + 2 * (p['E_clear'] + tolerance))
+        self.width_screen.value = (
+            f'<p><b>Transverse width screen: {width:g} in.</b> '
+            f'Maximum of project minimum {self.min_width.value:g} in and '
+            f'pile {p["D_pile"]:g} + 2 × (adopted clearance {p["E_clear"]:g} + location tolerance {tolerance:g}) in.'
+            f'<br>Extra longitudinal end allowance {p["E_detail"]:g} in affects cap length only; '
+            'it is not added to the side clearance.</p>')
 
     def rebind(self, app):
         """Keep an already displayed study attached when its workbench cell reruns."""
@@ -223,6 +234,11 @@ class SectionStudy:
             self.study = run_section_study(deepcopy(self.app.case), grid, steel, analyzed_cases=list(self.library.values()),
                                            cache=self.cache, progress=progress)
             self.notice.value = f'Study completed in {self.study.elapsed:.1f} s. {self.study.new_evaluations:,} new evaluations; {sum(p.cache_hit for p in self.study.points)} section searches reused.'
+            if self.study.evaluated == 0:
+                reasons = '<br>'.join(html.escape(reason) for reason in dict.fromkeys(p.reason for p in self.study.points))
+                self.notice.value = notice_html('NO STEEL CANDIDATES EVALUATED',
+                    'Every section was skipped before the steel search. ' + reasons +
+                    '<br>Review the width/depth ranges, project minimums and force mode above.', 'pending')
             self._render()
         except Exception as exc:
             self.notice.value = '<b>Study stopped:</b> ' + html.escape(str(exc))
@@ -262,7 +278,14 @@ class SectionStudy:
                 self.cost_summary.value = '<p><b>To compare costs:</b> enable comparison unit rates above and enter concrete, steel and form rates. Quantities alone do not identify the cheapest section.</p>'
             self.charts.children = [W.VBox([f], layout=W.Layout(flex='1 1 600px', min_width='600px')) for f in self.figures[:2]]
             matches = [r for r in self.rows if r['matches']]
-            complete = 'All geometry points resolved within the listed search choices.' if self.study.exhaustive else 'Incomplete coverage: inspect partial searches, missing analysis or untested/error points.'
+            screened = sum(p.state == 'GEOMETRY SCREEN' for p in self.study.points)
+            if screened == len(self.study.points):
+                complete = 'All sections excluded by geometry limits; no reinforcement search was performed.'
+            else:
+                complete = ('All eligible sections fully searched within the listed steel choices.' if self.study.exhaustive else
+                            'Incomplete coverage: inspect partial searches, missing analysis or untested/error points.')
+                if screened:
+                    complete += f' {screened} sections excluded by geometry limits.'
             self.summary.value = f'<p><b>{study_label(self.study)}</b><br>{len(matches)} / {len(self.rows)} sections have cages at strength D/C ≤ {self.target.value:.3f}. '
             self.summary.value += f'{self.study.evaluated:,} / {self.study.total:,} possible combinations evaluated; geometry screens can exclude whole sections. {complete}<br>'
             self.summary.value += f'Adopted minimum width screen: {self.study.minimum_width_in:g} in. Each colored point uses its lightest matching cage. The frontier covers the explored points, not every possible design.</p>'
