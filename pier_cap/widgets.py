@@ -14,7 +14,7 @@ from .widget_compat import Tab, Accordion
 from .source_status import upload_entries,source_html,import_receipt,receipt_html,notice_html
 from .force_audit import force_basis,FORCE_LABELS
 from .force_diagrams import ForceDiagramPanel
-from .visuals import section_figure,elevation_figure,hoop_figure,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html,spacing_html
+from .visuals import section_figure,elevation_figure,hoop_figure,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html,spacing_html,side_steel_html
 
 LABELS={'b':'Cap width','h':'Cap depth','C_t':'Top cover','C_b':'Bottom cover','C_s':'Side cover',
  'N_pile':'Number of piles','S_pile':'Pile spacing','D_pile':'Pile width','E_clear':'Actual edge clearance','E_detail':'Extra end allowance',
@@ -23,7 +23,7 @@ LABELS={'b':'Cap width','h':'Cap depth','C_t':'Top cover','C_b':'Bottom cover','
  'Bar_N1':'Top row 1 bar','Bar_N2':'Top row 2 bar','Bar_N3':'Top row 3 bar','n_N1':'Top row 1 count','n_N2':'Top row 2 count','n_N3':'Top row 3 count',
  'Bar_P':'Pile main bar','Bar_B':'Between-pile main bar','Bar_U':'U-leg bar','n_P1':'Pile bottom row 1','n_P2':'Pile bottom row 2','n_PU':'Pile U-leg count',
  'n_B1':'Between-pile row 1','n_B2':'Between-pile row 2','n_BU':'Between-pile U legs',
- 'Bar_v':'Closed hoop bar','n_loop':'Effective hoop loops','Bar_skin':'Skin bar','n_skin':'Skin count per side',
+ 'Bar_v':'Closed hoop bar','n_loop':'Effective hoop loops','Bar_skin':'Side-face bar','n_skin':'Bars per side',
  's_row':'Row center spacing','s_G':'Global hoop spacing','s_L':'Low hoop spacing',
  'Mu_N':'Envelope · negative','Mu_P':'Envelope · pile positive','Mu_B':'Envelope · bearing/span',
  'MI_N':'Service I · negative','MI_P':'Service I · pile positive','MI_B':'Service I · bearing positive',
@@ -34,7 +34,7 @@ LABELS={'b':'Cap width','h':'Cap depth','C_t':'Top cover','C_b':'Bottom cover','
  'SP_detail_N':'Top spacing override','SP_detail_P':'Pile spacing override','SP_detail_B':'Bearing spacing override','SP_detail_skin':'Skin spacing override','S_leg_detail':'Inner leg spacing'}
 
 GROUPS={
- 'Steel': [('Top rows','Bar_N1 n_N1 Bar_N2 n_N2 Bar_N3 n_N3'),('Positive steel · at piles','Bar_P n_P1 n_P2'),('Positive steel · between piles','Bar_B n_B1 n_B2'),('Hoops and skin','Bar_v n_loop s_G s_L Bar_skin n_skin s_row'),('U legs / spacing overrides','Bar_U n_PU n_BU Manual_spacing SP_detail_N SP_detail_P SP_detail_B SP_detail_skin S_leg_detail')],
+ 'Steel': [('Top rows','Bar_N1 n_N1 Bar_N2 n_N2 Bar_N3 n_N3'),('Positive steel · at piles','Bar_P n_P1 n_P2'),('Positive steel · between piles','Bar_B n_B1 n_B2'),('Hoops and side bars','Bar_v n_loop s_G s_L Bar_skin n_skin s_row'),('U legs / spacing overrides','Bar_U n_PU n_BU Manual_spacing SP_detail_N SP_detail_P SP_detail_B SP_detail_skin S_leg_detail')],
  'Geometry':[('Section and cover','b h C_t C_b C_s'),('Pile row and cap ends','N_pile S_pile D_pile E_clear E_detail'),('Pile head','Pile_embed C_pile Ready_pile')],
  'Loads':[('Combined strength envelopes','Mu_N Mu_P Mu_B Vu_G Vu_L Tu'),('Service I','MI_N MI_P MI_B')],
  'Pending':[('Service III','Ready_III MIII_N MIII_P MIII_B'),('Fatigue','Ready_fatigue MDL_N MDL_P MDL_B DMLL_N DMLL_P DMLL_B')],
@@ -88,7 +88,7 @@ class CapNotebook:
                     label=LABELS.get(n,n.replace('_',' '));unit=meta['unit'] or ''
                     control.description=label;control.style.description_width='174px';control.layout.width='285px'
                     rows.append(W.HBox([control,W.HTML(html.escape(unit),layout=W.Layout(width='53px'))]))
-                if title=='Hoops and skin':rows.extend([self.clearance,W.HTML('<small>Clear-spacing screen is a trial assumption. Confirm code/aggregate/detailing requirements.</small>')])
+                if title=='Hoops and side bars':rows.extend([self.clearance,W.HTML('<small>Clear-spacing screen is a trial assumption. Confirm code/aggregate/detailing requirements.</small>')])
                 if title=='Pile head':rows.append(W.HTML('<small>Enter the physical embedment above the cap underside and required clear gap, then confirm. Obstructed bottom rows split beside the pile, including the existing placement allowance. The central gap remains in pile service checks; bottom shrinkage spacing uses the between-pile row, as in Mathcad. U-bar positions and transitions between regional cages require detailing.</small>'))
                 panels.append(W.VBox(rows))
             accordion=Accordion(children=panels)
@@ -133,7 +133,7 @@ class CapNotebook:
         self.figures=[]
         def fw(fig):
             widget=go.FigureWidget(fig);self.figures.append(widget);widget.layout.autosize=True;return widget
-        self.cage.children=[fw(section_figure(e,'B')),fw(section_figure(e,'P')),fw(elevation_figure(e)),fw(hoop_figure(e)),W.HTML('<small>Bar circles follow row counts, diameters and calculated positions. U legs are an inventory until their positions are defined. Only the outer hoop is drawn. Pile lengths and first hoop positions are symbolic.</small>')]
+        self.cage.children=[W.HTML(side_steel_html(e)),fw(section_figure(e,'B')),fw(section_figure(e,'P')),fw(elevation_figure(e)),fw(hoop_figure(e)),W.HTML('<small>Bar circles follow row counts, diameters and calculated positions. U legs are an inventory until their positions are defined. Only the outer hoop is drawn. Pile lengths and first hoop positions are symbolic.</small>')]
         self.results.children=[fw(results_figure(e)),W.HTML(spacing_html(e)),fw(optional_service_figure(e)),fw(ratios_figure(e)),W.HTML('<small>These plots compare imported force envelopes and sectional capacities. They are not a continuous moment/shear diagram or a rerun of FB-MultiPier.</small>')]
         self.register.value=checks_html(e)
         rows=''.join(f'<tr><td>{html.escape(t["name"])}</td><td>{html.escape(t["formula"])}</td><td>{html.escape(str(t["value"]))}</td></tr>' for t in formula_trace(e))
@@ -174,7 +174,7 @@ class CapNotebook:
 
     def _search_panel(self):
         self.search_lists={}
-        configs=[('main_bars','Top bars',(5,6,7,8,9,10,11),(6,7,8,9)),('top_counts','Top counts',(4,5,6,7,8,9,10,12),(4,6,8)),('pile_bars','Pile bars',(3,4,5,6,7,8,9,10,11),(6,7,8,9)),('pile_counts','Pile counts',(2,3,4,5,6,7,8,9,10,12),(4,6,8)),('span_bars','Between-pile bars',(3,4,5,6,7,8,9,10,11),(6,7,8,9)),('span_counts','Between-pile counts',(2,3,4,5,6,7,8,9,10,12),(4,6,8)),('hoop_bars','Hoop bars',(3,4,5,6,7),(4,5,6)),('hoop_spacings','Spacing (in)',(4,5,6,7,8,9,10,12),(6,8,10)),('skin_bars','Skin bars',(3,4,5,6),(4,5)),('skin_counts','Skin / side',(4,5,6,7,8,9,10),(5,6,7))]
+        configs=[('main_bars','Top bars',(5,6,7,8,9,10,11),(6,7,8,9)),('top_counts','Top counts',(4,5,6,7,8,9,10,12),(4,6,8)),('pile_bars','Pile bars',(3,4,5,6,7,8,9,10,11),(6,7,8,9)),('pile_counts','Pile counts',(2,3,4,5,6,7,8,9,10,12),(4,6,8)),('span_bars','Between-pile bars',(3,4,5,6,7,8,9,10,11),(6,7,8,9)),('span_counts','Between-pile counts',(2,3,4,5,6,7,8,9,10,12),(4,6,8)),('hoop_bars','Hoop bars',(3,4,5,6,7),(4,5,6)),('hoop_spacings','Spacing (in)',(4,5,6,7,8,9,10,12),(6,8,10)),('skin_bars','Side bars',(3,4,5,6),(4,5)),('skin_counts','Bars / side',tuple(range(11)),SearchConfig().skin_counts)]
         boxes=[]
         for name,label,options,value in configs:
             w=W.SelectMultiple(options=options,value=value,rows=5,layout=W.Layout(width='112px'));self.search_lists[name]=w;boxes.append(W.VBox([W.HTML('<b>'+label+'</b>'),w]))
@@ -244,6 +244,8 @@ class CapNotebook:
         strength_count=sum(c.strength_dc<=target+1e-12 for c in result.candidates)
         all_count=sum(c.max_dc<=target+1e-12 for c in result.candidates)
         self.search_text.value+=f'<p>At target {target:.3f}: <b>{strength_count:,} strength matches</b> · <b>{all_count:,} all-check matches</b>. The all-check target also tightens spacing and minimum/detailing criteria.</p>'
+        zero_count=sum(result.candidates[i].changes['n_skin']==0 for i in indices)
+        self.search_text.value+=f'<p><b>{zero_count:,} matching layouts without side bars.</b> Least steel ranks total main, side and hoop weight. A depth-based skin exemption does not waive shrinkage/temperature or longitudinal-tension checks.</p>'
         if not shown and result.candidates:
             best=min(result.candidates,key=lambda c:candidate_dc(c,scope))
             self.search_text.value+=f'<p><b>Best available {DC_SCOPES[scope].lower()} D/C: {candidate_dc(best,scope):.6f}</b> · controlling check: {html.escape(candidate_governing(best,scope))}. No layout in the evaluated choices meets {target:.3f} for this scope.</p>'

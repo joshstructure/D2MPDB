@@ -132,8 +132,8 @@ class CalculationTests(unittest.TestCase):
 
 class SearchTests(unittest.TestCase):
     @classmethod
-    def setUpClass(cls):cls.result=search(default_case())
-    def test_default_search(self):
+    def setUpClass(cls):cls.result=search(default_case(),SearchConfig(skin_counts=(5,6,7)))
+    def test_legacy_search_grid(self):
         r=self.result
         self.assertEqual(r.total,1944);self.assertEqual(r.evaluated,1944);self.assertTrue(r.exhaustive)
         self.assertEqual(r.passed,324);self.assertEqual(len(r.candidates),r.passed)

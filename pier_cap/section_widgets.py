@@ -13,7 +13,7 @@ from .sections import (SectionGrid, CostRates, SectionCache, dimension_values, r
                        section_rows, selected_section_case, export_section_study, comparison_costs, cost_gap, ranked_cost_rows)
 from .section_visuals import (section_heatmap, section_pareto, section_cost_chart, cost_summary_html,
                               cost_table_html, highlight_section, METRICS, COST_METRICS, study_label)
-from .visuals import section_figure, results_figure, checks_html, spacing_html
+from .visuals import section_figure, results_figure, checks_html, spacing_html, side_steel_html
 
 
 def _detach_study(study):
@@ -436,6 +436,7 @@ class SectionStudy:
             self.selection_info.value += 'The map and ranking use each section’s lightest matching cage; this summary uses your selected cage.<br>'
         source = case['analysis']
         self.selection_info.value += f'Source analysis: {html.escape(source["id"])} · source section {source["geometry"]["b"]:g} × {source["geometry"]["h"]:g} in.<br><b>{html.escape(e.status)}</b></p>'
+        self.selection_info.value += side_steel_html(e)
         if self.study.grid['force_mode'] == 'matched':
             self.selection_info.value += '<small>Reusing forces over trial reinforcement assumes the analysis stiffness model permits it; geometry matching alone does not verify that assumption.</small>'
         for figure in (section_figure(e, 'P'), section_figure(e, 'B'), results_figure(e)):

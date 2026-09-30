@@ -4,7 +4,7 @@ import html
 from collections import defaultdict
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-from .model import bar_positions,BAR_DIAMETER
+from .model import bar_positions,BAR_DIAMETER,side_reinforcement
 from .optimizer import candidate_dc,candidate_governing,governing_check,DC_SCOPES
 
 BLUE='#1f5b91';TEAL='#167b75';AMBER='#d88822';RED='#bb3e39';INK='#213649';GREY='#b8c7d1'
@@ -46,7 +46,8 @@ def section_figure(e,region='B'):
         fig.add_shape(type='circle',x0=bar['x']-r,y0=bar['y']-r,x1=bar['x']+r,y1=bar['y']+r,line=dict(color=color,width=1),fillcolor=color)
     for label,bars in groups.items():
         color=TEAL if label=='Skin' else BLUE
-        fig.add_trace(go.Scatter(x=[v['x'] for v in bars],y=[v['y'] for v in bars],mode='markers',name=f'{label}: {len(bars)} bars',
+        display_label='Side bars' if label=='Skin' else label
+        fig.add_trace(go.Scatter(x=[v['x'] for v in bars],y=[v['y'] for v in bars],mode='markers',name=f'{display_label}: {len(bars)} bars',
             marker=dict(size=8,color=color,opacity=.15),text=[f"#{v['bar']} · diameter {v['diameter']:g} in" for v in bars],hovertemplate='%{text}<br>x=%{x:.2f}, y=%{y:.2f} in<extra>%{fullData.name}</extra>'))
     if p['n_'+region+'U']:
         fig.add_annotation(x=b/2,y=-4,text=f"U-leg inventory: {p['n_'+region+'U']:g} #{p['Bar_U']:g}; positions unresolved",showarrow=False,font=dict(color=RED,size=11))
@@ -90,6 +91,19 @@ def results_figure(e):
     fig.add_hline(y=e.value('Av','in^2'),line_color=INK,line_dash='dash',annotation_text='Area provided',row=2,col=2)
     theme(fig,'Current cage · capacity and stress response',620);fig.update_layout(barmode='group',legend=dict(font=dict(size=10),orientation='h',y=-.16))
     return fig
+
+def side_steel_html(e):
+    info=side_reinforcement(e);p=e.case['inputs']
+    supplied=f'{p["n_skin"]:g} #{p["Bar_skin"]:g} per side' if p['n_skin'] else 'no side bars'
+    rule='required' if info['depth_required'] else 'not required'
+    failures=info['zero_side_failures']
+    outcome=('fails '+', '.join(html.escape(c.label) for c in failures)+'.' if failures else
+             'passes the side-steel-related checks; other checks and cage fit still apply.')
+    return (f'<p><b>Side-face reinforcement: {supplied}.</b> Depth-based skin rule: <b>{rule}</b>.<br>'
+            'These bars also count toward shrinkage/temperature and longitudinal-tension checks, '
+            'but are not included in flexural resistance.<br>'
+            f'<b>Zero side bars, other inputs unchanged:</b> {outcome}</p>')
+
 
 def spacing_html(e):
     """Expose the two independent ratios hidden in each combined spacing check."""

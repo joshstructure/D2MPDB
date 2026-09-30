@@ -210,3 +210,17 @@ def evaluate(case=None,fast=False):
 
 def formula_trace(e):
     return [{'name':d['name'],'formula':d['formula'],'value':e.engine.text(e.engine.get(d['name']),d['unit'],5),'note':d['caption']} for d in DEFINITIONS if '(' not in d['name']]
+
+
+def side_reinforcement(e):
+    """Explain side steel using the existing equations, without changing gates.
+
+    The depth-triggered skin check is separate from shrinkage/temperature and
+    longitudinal tension. A zero-side counterfactual keeps all other inputs.
+    Its failures explain this cage, not every possible reinforcement layout.
+    """
+    without=e if e.case['inputs']['n_skin']==0 else evaluate(set_inputs(e.case,n_skin=0),fast=True)
+    keys={'Chk_skin_area','Chk_skin_space','Chk_shrink_area','Chk_shrink_space',
+          'Chk_long_N','Chk_long_P','Chk_long_B'}
+    return {'depth_required':bool(e.value('Skin_required')),
+            'zero_side_failures':[c for c in without.checks if c.key in keys and 'FAIL' in c.status]}

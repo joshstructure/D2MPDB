@@ -40,7 +40,7 @@ class SearchConfig:
     hoop_bars:tuple=(4,5,6)
     hoop_spacings:tuple=(6,8,10)
     skin_bars:tuple=(4,5)
-    skin_counts:tuple=(5,6,7)
+    skin_counts:tuple=tuple(range(8))
     objective:str='Least steel'
     max_cases:int=10000
     # None preserves explicitly legacy common-cage scripts. The notebook supplies
@@ -55,7 +55,18 @@ def layout_grids(c):
     common_counts=(None,) if c.pile_counts is not None and c.span_counts is not None else c.bottom_counts
     independent=tuple((None,) if values is None else values for values in
                       (c.pile_bars,c.span_bars,c.pile_counts,c.span_counts))
-    return (c.main_bars,c.top_counts,common_counts,c.hoop_bars,c.hoop_spacings,c.skin_bars,c.skin_counts,*independent)
+    # A zero-side cage is identical for every unused side-bar size. Evaluate it
+    # once, so extra size choices do not consume the bounded search budget.
+    sides=tuple((bar,n) for bar in c.skin_bars for n in c.skin_counts
+                if n or bar==c.skin_bars[0])
+    return (c.main_bars,c.top_counts,common_counts,c.hoop_bars,c.hoop_spacings,sides,*independent)
+
+
+def cage_complexity(changes):
+    sizes={changes[key] for key in ('Bar_N1','Bar_P','Bar_B','Bar_v')}
+    if changes['n_skin']:sizes.add(changes['Bar_skin'])
+    return int(changes['n_N1']+max(changes['n_P1'],changes['n_B1'])
+               +2*changes['n_skin']+5*len(sizes))
 
 @dataclass
 class Candidate:
@@ -150,8 +161,9 @@ def _search(case,config,progress,section_sensitivity):
     for key in ('xml_audit','workbook_audit'):
         trial_base['analysis'].pop(key,None)
     start=perf_counter();good=[];rejected=Counter();count=0
-    for bar,top,bottom,hoop,spacing,skin,nskin,pbar,bbar,pcount,bcount in bounded_layouts(grids,c.max_cases):
+    for bar,top,bottom,hoop,spacing,side,pbar,bbar,pcount,bcount in bounded_layouts(grids,c.max_cases):
         count+=1
+        skin,nskin=side
         pbar=bar if pbar is None else pbar;bbar=bar if bbar is None else bbar
         pcount=bottom if pcount is None else pcount;bcount=bottom if bcount is None else bcount
         changes={'Bar_N1':bar,'Bar_N2':bar,'Bar_N3':bar,'Bar_P':pbar,'Bar_B':bbar,
@@ -161,8 +173,9 @@ def _search(case,config,progress,section_sensitivity):
         try:
             e=evaluate(set_inputs(trial_base,**changes),fast=True)
             if accepted(e):
-                complexity=int(top+max(pcount,bcount)+2*nskin+len({bar,pbar,bbar,hoop,skin})*5)
-                label=f'{top} #{bar} top / pile {pcount} #{pbar} / between {bcount} #{bbar} · #{hoop} @ {spacing:g} in · {nskin} #{skin}/side'
+                complexity=cage_complexity(changes)
+                side_label=f'{nskin} #{skin}/side' if nskin else 'no side bars'
+                label=f'{top} #{bar} top / pile {pcount} #{pbar} / between {bcount} #{bbar} · #{hoop} @ {spacing:g} in · {side_label}'
                 overall=_governing(e);strength=_governing(e,STRENGTH_CHECKS)
                 good.append(Candidate(changes,e.weight_lb,e.max_dc,complexity,label,strength.ratio,overall.label,strength.label))
             else:
