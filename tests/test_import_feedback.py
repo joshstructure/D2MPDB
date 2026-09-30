@@ -10,7 +10,7 @@ from pier_cap.model import default_case
 from pier_cap.fbmp import import_fbmp_xml
 from pier_cap.source_status import upload_entries,source_signature
 from pier_cap.widgets import CapNotebook
-from pier_cap.section_widgets import SectionStudy
+from pier_cap.section_widgets import SectionStudy, rebind_study, close_study
 from pier_cap.sections import run_section_study,SectionGrid
 from pier_cap.optimizer import SearchConfig
 
@@ -123,6 +123,56 @@ class ImportFeedbackTests(unittest.TestCase):
         self.app.controls['Mu_B'].value=400
         self.assertIn('400',self.study.source_status.value)
         self.assertIn('NEEDS A NEW RUN',self.study.notice.value)
+
+    def test_notebook_upgrade_recovers_replaced_methods_and_partial_detachment(self):
+        # Reproduce an old live instance after its methods were replaced. The
+        # registered callbacks still contain the original function objects.
+        class ReloadedStudy(SectionStudy):
+            def _grid_changed(self, change):
+                return super()._grid_changed(change)
+
+            def invalidate(self):
+                return super().invalidate()
+
+        original_app = self.app
+        first_control = next(iter(original_app.search_lists.values()))
+        first_control.unobserve(self.study._grid_changed, names='value')
+        unrelated = Mock()
+        original_app.limit.observe(unrelated, names='value')
+        original_app.case_listeners.append(unrelated)
+        self.study.__class__ = ReloadedStudy
+        # This is the exact failure in the previous notebook's rebind method.
+        with self.assertRaises(ValueError):
+            original_app.limit.unobserve(self.study._grid_changed, names='value')
+        notebook=json.loads((ROOT/'Pier_Cap_Design_Optimizer.ipynb').read_text(encoding='utf-8'))
+        context={'app':self.app,'section_app':self.study,'case':default_case(),'ROOT':ROOT}
+        with patch.object(CapNotebook,'display'):
+            exec(''.join(next(c for c in notebook['cells'] if c.get('id') == '7447e4cc')['source']),context)
+        self.app=context['app']
+        self.assertIs(self.study.app,self.app)
+        for control in [*original_app.search_lists.values(),original_app.limit]:
+            handlers=control._trait_notifiers.get('value',{}).get('change',())
+            self.assertFalse(any(getattr(h,'__self__',None) is self.study for h in handlers))
+        self.assertIn(unrelated,original_app.limit._trait_notifiers['value']['change'])
+        # Running the study cell must also use current cleanup on an old object.
+        with patch('IPython.display.display'):
+            exec(''.join(next(c for c in notebook['cells'] if c.get('id') == '509fc7f9')['source']),context)
+        old_study=self.study
+        self.study=context['section_app']
+        close_study(old_study)
+        self.assertIs(self.study.app,self.app)
+        self.assertIn(self.study.invalidate,self.app.case_listeners)
+
+    def test_rebind_and_close_are_safe_when_repeated_and_preserve_other_listeners(self):
+        unrelated=Mock()
+        self.app.case_listeners.append(unrelated)
+        rebind_study(self.study,self.app)
+        rebind_study(self.study,self.app)
+        self.assertEqual(self.app.case_listeners.count(self.study.invalidate),1)
+        self.assertIn(unrelated,self.app.case_listeners)
+        close_study(self.study)
+        close_study(self.study)
+        self.assertIn(unrelated,self.app.case_listeners)
 
     def test_upgrading_a_live_older_study_does_not_close_it_twice(self):
         notebook=json.loads((ROOT/'Pier_Cap_Design_Optimizer.ipynb').read_text(encoding='utf-8'))

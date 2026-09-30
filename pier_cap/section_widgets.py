@@ -16,6 +16,43 @@ from .section_visuals import (section_heatmap, section_pareto, section_cost_char
 from .visuals import section_figure, results_figure, checks_html, spacing_html
 
 
+def _detach_study(study):
+    """Remove this instance's actual subscriptions, including pre-reload methods.
+
+    Rebuilding a bound method after a class/module update does not identify the
+    callback already registered with traitlets. Inspect only this study's own
+    subscriptions; other listeners on the workbench must remain attached.
+    """
+    app = study.app
+    app.case_listeners[:] = [handler for handler in app.case_listeners
+                            if getattr(handler, '__self__', None) is not study]
+    for control in [*app.search_lists.values(), app.limit]:
+        handlers = control._trait_notifiers.get('value', {}).get('change', ())
+        for handler in tuple(handlers):
+            if getattr(handler, '__self__', None) is study:
+                control.unobserve(handler, names='value')
+
+
+def rebind_study(study, app):
+    """Reconnect even an older live study using the current cleanup routine."""
+    _detach_study(study)
+    study.app = app
+    app.case_listeners.append(study.invalidate)
+    for control in [*app.search_lists.values(), app.limit]:
+        control.observe(study._grid_changed, names='value')
+    study.invalidate()
+
+
+def close_study(study):
+    """Close once; safe after a partial rerun or an earlier cleanup."""
+    if getattr(study, '_closed', False):
+        return
+    _detach_study(study)
+    study.invalidate()
+    study.ui.close()
+    study._closed = True
+
+
 class SectionStudy:
     def __init__(self, app):
         self.app = app
@@ -127,15 +164,7 @@ class SectionStudy:
         """Keep an already displayed study attached when its workbench cell reruns."""
         if self.app is app:
             return
-        if self.invalidate in self.app.case_listeners:
-            self.app.case_listeners.remove(self.invalidate)
-        for control in [*self.app.search_lists.values(), self.app.limit]:
-            control.unobserve(self._grid_changed,names='value')
-        self.app = app
-        self.app.case_listeners.append(self.invalidate)
-        for control in [*app.search_lists.values(), app.limit]:
-            control.observe(self._grid_changed,names='value')
-        self.invalidate()
+        rebind_study(self, app)
 
     def _close_preview(self):
         for figure in self.preview_figures:
@@ -454,12 +483,7 @@ class SectionStudy:
             self.notice.value = '<b>Export stopped:</b> ' + html.escape(str(exc))
 
     def close(self):
-        if self.invalidate in self.app.case_listeners:
-            self.app.case_listeners.remove(self.invalidate)
-        for control in [*self.app.search_lists.values(), self.app.limit]:
-            control.unobserve(self._grid_changed, names='value')
-        self.invalidate()
-        self.ui.close()
+        close_study(self)
 
     def display(self):
         from IPython.display import display
