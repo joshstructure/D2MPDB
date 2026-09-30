@@ -196,7 +196,9 @@ class SectionStudy:
         self.material_details.children = []
 
     def _rates(self):
-        return CostRates(*(w.value for w in self.rates)).validate() if self.use_cost.value else None
+        if not self.use_cost.value:return None
+        try:return CostRates(*(w.value for w in self.rates)).validate()
+        except ValueError:return None
 
     def _uploaded(self, change):
         if not self.upload.value:
@@ -248,12 +250,12 @@ class SectionStudy:
     def _render(self):
         try:
             rates = self._rates()
-            if (self.metric.value in COST_METRICS or self.cell_labels.value == 'costs') and rates is None:
-                raise ValueError('Enable comparison costs and enter your rates to color the map by cost.')
+            metric=self.metric.value if rates or self.metric.value not in COST_METRICS else 'steel_lb'
+            labels=self.cell_labels.value if rates or self.cell_labels.value!='costs' else 'quantities'
             self.rows = section_rows(self.study, self.target.value, rates)
             for figure in self.figures:
                 figure.close()
-            heat = go.FigureWidget(section_heatmap(self.study, self.rows, self.metric.value, self.cell_labels.value))
+            heat = go.FigureWidget(section_heatmap(self.study, self.rows, metric, labels))
             pareto = go.FigureWidget(section_pareto(self.study, self.rows))
             heat.data[0].on_click(self._map_clicked)
             heat.data[1].on_click(self._map_clicked)
@@ -275,7 +277,8 @@ class SectionStudy:
                 self.material_details.selected_index = None
             else:
                 self.figures = [heat, pareto]
-                self.cost_summary.value = '<p><b>To compare costs:</b> enable comparison unit rates above and enter concrete, steel and form rates. Quantities alone do not identify the cheapest section.</p>'
+                self.cost_summary.value = ('<p><b>Cost comparison needs rates.</b> Showing material quantities and all available cages. Enter nonnegative rates with at least one positive value; no new search is needed.</p>' if self.use_cost.value else
+                    '<p>Optional: enter comparison rates to rank sections by cost.</p>')
             self.charts.children = [W.VBox([f], layout=W.Layout(flex='1 1 600px', min_width='600px')) for f in self.figures[:2]]
             matches = [r for r in self.rows if r['matches']]
             screened = sum(p.state == 'GEOMETRY SCREEN' for p in self.study.points)
@@ -290,7 +293,7 @@ class SectionStudy:
             self.summary.value += f'{self.study.evaluated:,} / {self.study.total:,} possible combinations evaluated; geometry screens can exclude whole sections. {complete}<br>'
             self.summary.value += f'Adopted minimum width screen: {self.study.minimum_width_in:g} in. Each colored point uses its lightest matching cage. The frontier covers the explored points, not every possible design.</p>'
             if matches:
-                metric = 'estimated_cost' if rates else self.metric.value
+                metric = 'estimated_cost' if rates else metric
                 best = min(matches, key=lambda r: (r[metric], r['steel_lb']))
                 if not rates:
                     self.summary.value += f'<p><b>Lowest {html.escape(METRICS[metric].lower())} in this view:</b> {best["width_in"]:g} × {best["depth_in"]:g} in · {best[metric]:,.3f}. '

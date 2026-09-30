@@ -16,7 +16,7 @@ The reported FBMP summary and original XML element-end envelopes remain separate
 
 **From GitHub:** click **Open in Colab**, connect to a runtime, then choose **Runtime → Run all**. The first cell downloads this repository's `main` branch, installs the notebook's Colab dependencies and enables its custom widgets. Push the notebook, `pier_cap/` and `requirements-pier-cap-colab.txt` together before using the link. A standard CPU runtime is sufficient.
 
-Open **[Pier_Cap_Design_Optimizer.ipynb](Pier_Cap_Design_Optimizer.ipynb)** in JupyterLab or VS Code, select the project `.venv` Python kernel, and **Run All**. The notebook contains the live calculator, input widgets, reinforcement sections, pile/hoop drawings, capacity/stress plots, D/C register, bounded steel search, and case exports.
+Open **[Pier_Cap_Design_Optimizer.ipynb](Pier_Cap_Design_Optimizer.ipynb)** in JupyterLab or VS Code, select the project `.venv` Python kernel, and **Run All**. The notebook contains only brief instructions, setup, the live workbench, and the cap study. It has no automatic example searches, snapshots, saved outputs, or embedded repair modules. The workbench contains the live calculator, input widgets, reinforcement sections, pile/hoop drawings, capacity/stress plots, D/C register, bounded steel search, and case exports.
 
 On this computer the project environment is prepared. Run `Start-PierCap-Notebook.ps1` from PowerShell to launch JupyterLab. If your script execution policy prevents the launcher, use the direct command below; changing system policy is unnecessary.
 
@@ -60,7 +60,7 @@ Programmatically, `filter_candidates(result, max_dc=0.90, scope="strength")` ret
 
 ### Cap cross-section study
 
-Notebook **Section 5** adds a width/depth grid around the existing steel search, a clickable section heatmap, concrete/steel tradeoff plot, all-cage selection, live previews, local grid refinement and study exports. The starting ranges are widths **44–52 in by 4 in** and depths **36–60 in by 6 in**. Change the strength target and optional unit rates without repeating calculations. Exact repeated section searches are cached within the runtime.
+The notebook’s **Cap section and steel study** adds a width/depth grid around the existing steel search, a clickable section heatmap, concrete/steel tradeoff plot, all-cage selection, live previews, local grid refinement and study exports. The starting ranges are widths **44–52 in by 4 in** and depths **36–60 in by 6 in**. Change the strength target and optional unit rates without repeating calculations. Exact repeated section searches are cached within the runtime.
 
 Heatmap cells show **concrete volume and steel weight together**, or their separate costs using the cell-label control. Entering comparison rates enables a **lowest-cost section summary**, a map of **percentage above the cheapest explored match**, a ranked stacked concrete/steel/forms cost chart and a complete ranked table. Hover shows the material and cost differences from the cheapest section. All costs use your entered rates; zero-rate items are labeled as excluded. The selected cage has its own cost comparison, even when it is heavier than the cage used for the map.
 
@@ -96,3 +96,5 @@ GitHub renders saved static notebook output, not running widgets. The Colab badg
 Regression checks cover the 324 imported definitions, independent mechanics, force/geometry gates, invalid inputs, unit-aware vs. scalar search, cage geometry, imports/exports and widgets. The notebook is also executed from top to bottom during delivery verification. See `VALIDATION.md` for recorded results.
 
 Commit the notebook, `pier_cap/`, tests, requirements, launcher and documentation together. `.gitignore` excludes the environment, exports, caches and runtime data. No commit or push is performed automatically.
+
+Limited steel searches use a repeatable sample across the full selected grid; complete searches still evaluate every combination. Enabling cost comparison with incomplete rates keeps the study cages and quantity plots visible until valid rates are entered. XML import opens the Force diagrams tab automatically.

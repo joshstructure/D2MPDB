@@ -206,6 +206,16 @@ class SearchTests(unittest.TestCase):
         a=search(default_case(),c);b=search(default_case(),c)
         self.assertFalse(a.exhaustive);self.assertEqual(a.evaluated,20)
         self.assertEqual(a.candidates,b.candidates);self.assertEqual(a.rejection_counts,b.rejection_counts)
+    def test_limited_search_samples_the_full_grid_without_duplicates(self):
+        from pier_cap.optimizer import bounded_layouts
+        from itertools import product
+        grids=(tuple(range(7)),tuple(range(8)),tuple(range(8)),tuple(range(5)))
+        sampled=list(bounded_layouts(grids,100))
+        self.assertEqual(sampled,list(bounded_layouts(grids,100)))
+        self.assertEqual(len(sampled),len(set(sampled)))
+        self.assertEqual({x[0] for x in sampled},set(grids[0]))
+        self.assertEqual({x[-1] for x in sampled},set(grids[-1]))
+        self.assertEqual(list(bounded_layouts(((1,2),(3,4)),10)),list(product((1,2),(3,4))))
     def test_empty_or_failed_domain(self):
         with self.assertRaises(ValueError):search(default_case(),SearchConfig(main_bars=()))
         case=set_inputs(default_case(),Mu_B=10000)

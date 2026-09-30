@@ -283,7 +283,9 @@ class SectionStudyTests(unittest.TestCase):
             panel.target.value = .97
             self.assertIs(panel.study, self.study)
             panel.use_cost.value = True
-            self.assertTrue(panel.apply_button.disabled)
+            self.assertFalse(panel.apply_button.disabled)
+            self.assertIn("Cost comparison needs rates", panel.cost_summary.value)
+            self.assertEqual(len(panel.figures), 2)
             panel.rates[0].value = 500
             self.assertEqual(panel.metric.value, 'cost_premium_pct')
             self.assertIn('Zero-rate items excluded: steel, forms', panel.cost_summary.value)

@@ -11,7 +11,7 @@ class ColabStartupTests(unittest.TestCase):
     def run_widget_setup(self, loaded, installed, plot_loaded='5.24.1', plot_installed='5.24.1'):
         notebook = json.loads((Path(__file__).resolve().parent.parent /
                                'Pier_Cap_Design_Optimizer.ipynb').read_text(encoding='utf-8'))
-        tree = ast.parse(''.join(notebook['cells'][2]['source']))
+        tree = ast.parse(''.join(next(c for c in notebook['cells'] if c.get('id') == 'a1e54f80')['source']))
         colab = next(node for node in tree.body if isinstance(node, ast.If)
                      and isinstance(node.test, ast.Name) and node.test.id == 'IN_COLAB')
         start = next(i for i, node in enumerate(colab.body)

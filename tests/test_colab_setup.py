@@ -46,7 +46,7 @@ class ColabSetupTests(unittest.TestCase):
         self.commit('old API')
         self.old_revision = self.git(self.remote, 'rev-parse', 'HEAD')
         notebook = json.loads(NOTEBOOK.read_text(encoding='utf-8'))
-        self.source = ''.join(notebook['cells'][2]['source']).split('from IPython.display import display, HTML')[0]
+        self.source = ''.join(next(c for c in notebook['cells'] if c.get('id') == 'a1e54f80')['source']).split('from IPython.display import display, HTML')[0]
         self.source = self.source.replace(
             'REPO_URL = "https://github.com/joshstructure/D2MPDB.git"',
             'REPO_URL = _test_url',

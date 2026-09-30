@@ -5,10 +5,30 @@ from itertools import product
 from time import perf_counter
 from copy import deepcopy
 import math
+import random
 from .model import evaluate, set_inputs, analysis_match, validate_case, sectional_checks_pass
 
 DC_SCOPES={'all':'All available checks','strength':'Strength checks only'}
 OBJECTIVES=('Least steel','Simplest cage','Largest margin')
+
+
+def bounded_layouts(grids, limit):
+    """Enumerate a complete grid, or sample its full extent reproducibly.
+
+    A truncated Cartesian prefix can spend the entire budget on small main
+    bars. Sampling without replacement gives the other choices a chance too.
+    This remains a bounded search, not a guarantee of an optimum.
+    """
+    total=math.prod(len(g) for g in grids)
+    if total <= limit:
+        yield from product(*grids)
+        return
+    for ordinal in random.Random(0).sample(range(total),limit):
+        values=[]
+        for grid in reversed(grids):
+            ordinal,index=divmod(ordinal,len(grid))
+            values.append(grid[index])
+        yield tuple(reversed(values))
 STRENGTH_CHECKS={*(f'Chk_flex_{z}' for z in 'NPB'),*(f'Chk_shear_{z}' for z in 'GL'),
     *(f'Chk_torsteel_{z}' for z in 'GL'),*(f'Chk_long_{z}' for z in 'NPB')}
 
@@ -109,16 +129,20 @@ def _search(case,config,progress,section_sensitivity):
     if any(not g for g in grids):raise ValueError('Select at least one value in every search list.')
     total=1
     for g in grids:total*=len(g)
+    # The saved force audit is immutable provenance, not a calculation input.
+    # Avoid copying hundreds of XML records twice per trial cage.
+    trial_base=deepcopy(case)
+    for key in ('xml_audit','workbook_audit'):
+        trial_base['analysis'].pop(key,None)
     start=perf_counter();good=[];rejected=Counter();count=0
-    for bar,top,bottom,hoop,spacing,skin,nskin in product(*grids):
-        if count>=c.max_cases:break
+    for bar,top,bottom,hoop,spacing,skin,nskin in bounded_layouts(grids,c.max_cases):
         count+=1
         changes={'Bar_N1':bar,'Bar_N2':bar,'Bar_N3':bar,'Bar_pos':bar,
             'n_N1':top,'n_N2':0,'n_N3':0,'n_P1':bottom,'n_B1':bottom,'n_P2':0,'n_B2':0,
             'n_PU':0,'n_BU':0,'Bar_v':hoop,'n_loop':1,'s_G':spacing,'s_L':spacing,
             'Bar_skin':skin,'n_skin':nskin,'Manual_spacing':False}
         try:
-            e=evaluate(set_inputs(case,**changes),fast=True)
+            e=evaluate(set_inputs(trial_base,**changes),fast=True)
             if accepted(e):
                 complexity=int(top+bottom+2*nskin+len({bar,hoop,skin})*5)
                 label=f'{top} #{bar} top / {bottom} #{bar} bottom · #{hoop} @ {spacing:g} in · {nskin} #{skin}/side'

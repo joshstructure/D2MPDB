@@ -54,7 +54,7 @@ class CapNotebook:
         self.input_tabs=self._inputs()
         self.force_diagrams=ForceDiagramPanel()
         self.plot_tabs=Tab(children=[self.cage,self.results,W.VBox([self.register],layout=W.Layout(max_height='850px',overflow='auto')),W.VBox([self.trace],layout=W.Layout(max_height='750px',overflow='auto')),self.force_diagrams.ui],layout=W.Layout(flex='1 1 650px',min_width='560px'))
-        for i,title in enumerate(['Live cage','Plots','Pass / D/C register','Equation trace','Force diagrams']):self.plot_tabs.set_title(i,title)
+        for i,title in enumerate(['Live cage','Plots','D/C checks','Equations','Force diagrams']):self.plot_tabs.set_title(i,title)
         self.upload=W.FileUpload(accept='.json',multiple=False,description='Load case JSON')
         self.upload.observe(self._uploaded,names='value')
         reset=W.Button(description='Reset starting case',icon='undo');reset.on_click(lambda _:self.load(default_case()))
@@ -147,6 +147,8 @@ class CapNotebook:
         finally:self.busy=False
         self._clear_search()
         self.refresh()
+        if import_name and case['analysis'].get('xml_audit',{}).get('end_records'):
+            self.plot_tabs.selected_index=4
         self._notify_case_change()
 
     def _uploaded(self,change):
@@ -235,7 +237,7 @@ class CapNotebook:
             self.apply_button.disabled=not shown
         finally:self.browsing=False
         extent=f'Showing {start+1:,}–{start+len(shown):,} of {len(indices):,} matches · page {self.page.value} of {pages}.' if shown else 'No layouts match this D/C filter.'
-        completeness='All listed combinations evaluated.' if result.exhaustive else 'Case limit reached; remaining combinations were not evaluated.'
+        completeness='All listed combinations evaluated.' if result.exhaustive else 'Case limit reached: a reproducible sample across the full selected range was evaluated. Other combinations remain untested.'
         self.search_text.value=f'<p><b>{result.passed:,} layouts pass the available checks and cage screen.</b> {len(indices):,} meet <b>{DC_SCOPES[scope]} ≤ {target:.3f}</b>. {extent}<br>{result.evaluated:,} / {result.total:,} combinations evaluated. {completeness} {result.elapsed:.1f} seconds. Every passing layout is retained and unit-checked. Candidate IDs stay fixed within this search.</p>'
         strength_count=sum(c.strength_dc<=target+1e-12 for c in result.candidates)
         all_count=sum(c.max_dc<=target+1e-12 for c in result.candidates)
@@ -244,6 +246,11 @@ class CapNotebook:
             best=min(result.candidates,key=lambda c:candidate_dc(c,scope))
             self.search_text.value+=f'<p><b>Best available {DC_SCOPES[scope].lower()} D/C: {candidate_dc(best,scope):.6f}</b> · controlling check: {html.escape(candidate_governing(best,scope))}. No layout in the evaluated choices meets {target:.3f} for this scope.</p>'
             if scope=='all':self.search_text.value+='<p>Spacing or minimum/detailing checks may set this floor. Adding main bars alone may not lower it. Strength-only filtering is a separate target; it does not mean every D/C is below your limit.</p>'
+        if not result.candidates:
+            common='; '.join(f'{html.escape(k)} ({v:,})' for k,v in sorted(result.rejection_counts.items(),key=lambda item:-item[1])[:3])
+            self.search_text.value+=f'<p><b>No passing cages in the evaluated layouts.</b> Most frequent failures: {common}. '+('Increase the case limit or narrow the selected ranges; untested layouts may still pass.' if not result.exhaustive else 'Revise the listed steel choices or review the governing checks.')+'</p>'
+            self._close_alternative_plot()
+            return
         rows=''.join(f'<tr><td>{rank}</td><td>#{i+1}</td><td>{html.escape(c.label)}</td><td>{c.weight_lb:.0f}</td><td>{candidate_dc(c,scope):.4f}</td><td>{c.strength_dc:.4f}</td><td>{c.max_dc:.4f}</td><td>{html.escape(candidate_governing(c,scope))}</td></tr>' for rank,(i,c) in enumerate(((i,result.candidates[i]) for i in shown),start+1))
         rejects='; '.join(f'{html.escape(k)}: {v}' for k,v in sorted(result.rejection_counts.items(),key=lambda t:-t[1])[:8])
         self._close_alternative_plot()
