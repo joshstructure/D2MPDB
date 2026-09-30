@@ -34,21 +34,77 @@ def _detach_study(study):
 
 
 def rebind_study(study, app):
-    """Reconnect even an older live study using the current cleanup routine."""
+    """Return a study using this package generation and the current workbench.
+
+    Clearing sys.modules does not replace a live object's methods or their
+    globals. An old study must be rebuilt, not given a newer-schema app and
+    allowed to call its retained evaluator and button callbacks.
+    """
+    if not isinstance(study, SectionStudy) or getattr(study, '_closed', False):
+        return rebuild_study(study, app)
     _detach_study(study)
     study.app = app
     app.case_listeners.append(study.invalidate)
     for control in [*app.search_lists.values(), app.limit]:
         control.observe(study._grid_changed, names='value')
     study.invalidate()
+    return study
+
+
+def rebuild_study(study, app):
+    """Recreate controls while preserving inputs, not old results or caches."""
+    settings = None
+    if study is not None:
+        settings = {
+            'bounds': {name: [w.value for w in group] for name, group in study.bounds.items()},
+            'controls': {name: getattr(study, name).value for name in
+                         ('mode', 'min_width', 'min_depth', 'budget', 'target', 'metric', 'cell_labels', 'use_cost')},
+            'rates': [w.value for w in study.rates],
+            'library': deepcopy(study.library),
+            'library_note': study.library_note.value,
+        }
+    replacement = SectionStudy(app)
+    try:
+        if settings is not None:
+            replacement.rendering = True
+            try:
+                for name, values in settings['bounds'].items():
+                    for control, value in zip(replacement.bounds[name], values):
+                        control.value = value
+                for name, value in settings['controls'].items():
+                    getattr(replacement, name).value = value
+                for control, value in zip(replacement.rates, settings['rates']):
+                    control.value = value
+                replacement.library = settings['library']
+                replacement.library_note.value = settings['library_note']
+            finally:
+                replacement.rendering = False
+            replacement.invalidate()
+    except Exception:
+        close_study(replacement)
+        raise
+    # Only retire the prior controls after the replacement is ready.
+    if study is not None:
+        close_study(study)
+    return replacement
 
 
 def close_study(study):
-    """Close once; safe after a partial rerun or an earlier cleanup."""
+    """Close once without evaluating an old or partially rebound case."""
     if getattr(study, '_closed', False):
         return
     _detach_study(study)
-    study.invalidate()
+    study.rendering = True
+    for name in ('figures', 'preview_figures'):
+        for figure in getattr(study, name, ()):
+            figure.close()
+        setattr(study, name, [])
+    study.study = None
+    study.rows = []
+    for name in ('run_button', 'apply_button', 'export_button', 'refine_button', 'cheapest_button'):
+        control = getattr(study, name, None)
+        if control is not None:
+            control.disabled = True
     study.ui.close()
     study._closed = True
 
@@ -162,9 +218,9 @@ class SectionStudy:
 
     def rebind(self, app):
         """Keep an already displayed study attached when its workbench cell reruns."""
-        if self.app is app:
-            return
-        rebind_study(self, app)
+        if self.app is app and not getattr(self, '_closed', False):
+            return self
+        return rebind_study(self, app)
 
     def _close_preview(self):
         for figure in self.preview_figures:
