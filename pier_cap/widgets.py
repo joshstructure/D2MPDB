@@ -16,6 +16,15 @@ from .force_audit import force_basis,FORCE_LABELS
 from .force_diagrams import ForceDiagramPanel
 from .visuals import section_figure,elevation_figure,hoop_figure,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html,spacing_html,side_steel_html,pile_head_help_html
 
+UNIT_NAMES={'in':'inches','ft':'feet','kip':'kips','kip*ft':'kip-feet','ksi':'ksi (kips per square inch)','deg':'degrees'}
+
+
+def input_tooltip(name, caption=None):
+    unit=INPUTS[name]['unit']
+    prefix=f'Input units: {UNIT_NAMES.get(unit,unit)}. ' if unit else ''
+    return prefix+(INPUTS[name]['caption'] if caption is None else caption)
+
+
 LABELS={'b':'Cap width','h':'Cap depth','C_t':'Top cover','C_b':'Bottom cover','C_s':'Side cover',
  'N_pile':'Number of piles','S_pile':'Pile spacing','D_pile':'Pile width','E_clear':'Actual edge clearance','E_detail':'Extra end allowance',
  'Pile_embed':'Pile embedment','C_pile':'Clear gap to pile','Ready_pile':'Pile dimensions confirmed',
@@ -66,7 +75,7 @@ class CapNotebook:
         source=Accordion(children=[W.VBox([self.source_id,self.source_confirm,stamp,W.HTML('<small>Use after entering fresh analysis forces. Changing geometry alone does not rerun FB-MultiPier.</small>')])]);source.set_title(0,'Record a manually updated analysis case');source.selected_index=None
         self.search_panel=self._search_panel();self.export_panel=self._export_panel()
         self.xml_import=XMLImportPanel(self,LABELS)
-        self.ui=W.VBox([W.HTML('<h2 style="color:#213649;margin-bottom:4px">Pier-cap design explorer</h2><p>Change an input → inspect the cage and checks → search practical steel → export a review case.</p>'),
+        self.ui=W.VBox([W.HTML('<style>.cap-input .widget-label{white-space:normal!important;text-overflow:clip!important;line-height:1.25!important;height:auto!important;text-align:left!important;align-self:center}</style><h2 style="color:#213649;margin-bottom:4px">Pier-cap design explorer</h2><p>Change an input → inspect the cage and checks → search practical steel → export a review case.</p>'),
             W.HBox([self.upload,reset]),self.xml_import.ui,self.import_notice,self.source_label,source,self.banner,self.metrics,
             W.HBox([self.input_tabs,self.plot_tabs],layout=W.Layout(display='flex',flex_flow='row wrap',align_items='flex-start',grid_gap='16px')),
             self.search_panel,self.export_panel,self.message],layout=W.Layout(width='100%'))
@@ -84,10 +93,13 @@ class CapNotebook:
                     elif n.startswith('Bar_'):control=W.Dropdown(options=[(f'#{i}',i) for i in range(3,12)],value=int(value),layout=W.Layout(width='105px'))
                     elif n.startswith('n_') or n=='N_pile':control=W.BoundedIntText(value=int(value),min=0,max=200,layout=W.Layout(width='105px'))
                     else:control=W.FloatText(value=value,step=.25,layout=W.Layout(width='105px'))
-                    control.tooltip=meta['caption'];control.observe(self._changed,names='value');self.controls[n]=control
-                    label=LABELS.get(n,n.replace('_',' '));unit=meta['unit'] or ''
-                    control.description=label;control.style.description_width='174px';control.layout.width='285px'
-                    rows.append(W.HBox([control,W.HTML(html.escape(unit),layout=W.Layout(width='53px'))]))
+                    control.tooltip=input_tooltip(n);control.observe(self._changed,names='value');self.controls[n]=control
+                    label=LABELS.get(n,n.replace('_',' '))
+                    unit=meta['unit'] or ('unitless' if isinstance(control,W.FloatText) else '')
+                    control.description=label+(f' ({unit.replace("*","-")})' if unit else '')
+                    control.style.description_width='190px';control.layout.width='calc(100% - 4px)';control.layout.max_width='336px'
+                    control.layout.min_height='34px';control.layout.height='auto';control.add_class('cap-input')
+                    rows.append(control)
                 if title=='Hoops and side bars':rows.extend([self.clearance,W.HTML('<small>Clear-spacing screen is a trial assumption. Confirm code/aggregate/detailing requirements.</small>')])
                 if title=='Pile head':rows.append(W.HTML(pile_head_help_html()))
                 panels.append(W.VBox(rows))
@@ -113,7 +125,7 @@ class CapNotebook:
         self.source_label.value=source_html(self.case)
         self.force_diagrams.refresh(self.case)
         for key in FORCE_LABELS:
-            self.controls[key].tooltip=force_basis(self.case,key)
+            self.controls[key].tooltip=input_tooltip(key,force_basis(self.case,key))
         self.import_notice.value=receipt_html(self.import_receipt,self.case)
         try:e=evaluate(self.case)
         except Exception as exc:
@@ -177,7 +189,14 @@ class CapNotebook:
         configs=[('main_bars','Top bars',(5,6,7,8,9,10,11),(6,7,8,9)),('top_counts','Top counts',(4,5,6,7,8,9,10,12),(4,6,8)),('pile_bars','Pile bars',(3,4,5,6,7,8,9,10,11),(6,7,8,9)),('pile_counts','Pile counts',(2,3,4,5,6,7,8,9,10,12),(4,6,8)),('span_bars','Between-pile bars',(3,4,5,6,7,8,9,10,11),(6,7,8,9)),('span_counts','Between-pile counts',(2,3,4,5,6,7,8,9,10,12),(4,6,8)),('hoop_bars','Hoop bars',(3,4,5,6,7),(4,5,6)),('hoop_spacings','Spacing (in)',(4,5,6,7,8,9,10,12),(6,8,10)),('skin_bars','Side bars',(3,4,5,6),(4,5)),('skin_counts','Bars / side',tuple(range(11)),SearchConfig().skin_counts)]
         boxes=[]
         for name,label,options,value in configs:
-            w=W.SelectMultiple(options=options,value=value,rows=5,layout=W.Layout(width='112px'));self.search_lists[name]=w;boxes.append(W.VBox([W.HTML('<b>'+label+'</b>'),w]))
+            if name.endswith('_bars'):
+                options=[(f'#{v}',v) for v in options]
+                hint='US reinforcing bar size designation (#), not a length.'
+            elif name=='hoop_spacings':
+                options=[(f'{v:g} in',v) for v in options]
+                hint='Hoop spacing in inches.'
+            else:hint='Number of bars (count).'
+            w=W.SelectMultiple(options=options,value=value,rows=5,tooltip=hint,layout=W.Layout(width='112px'));self.search_lists[name]=w;boxes.append(W.VBox([W.HTML('<b>'+label+'</b>'),w]))
         self.objective=W.Dropdown(options=['Least steel','Simplest cage','Largest margin'],description='Rank by',layout=W.Layout(width='260px'))
         self.limit=W.BoundedIntText(value=10000,min=1,max=100000,description='Case limit',layout=W.Layout(width='230px'))
         self.dc_limit=W.BoundedFloatText(value=1.0,min=.01,max=1.0,step=.05,description='Max D/C',layout=W.Layout(width='210px'))

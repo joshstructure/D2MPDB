@@ -120,7 +120,7 @@ class SideSteelWidgetTests(unittest.TestCase):
 
     def test_old_default_search_is_upgraded_but_new_deliberate_choices_survive(self):
         notebook=json.loads((ROOT/'Pier_Cap_Design_Optimizer.ipynb').read_text(encoding='utf-8'))
-        source=''.join(notebook['cells'][2]['source'])
+        source=''.join(next(c for c in notebook['cells'] if c.get('id')=='7447e4cc')['source'])
         def rerun():
             context={'app':self.app,'section_app':self.study,'case':default_case(),'ROOT':ROOT}
             with patch.object(CapNotebook,'display'):

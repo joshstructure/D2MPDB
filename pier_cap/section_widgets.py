@@ -125,22 +125,24 @@ class SectionStudy:
         self.bounds = {}
         dimension_controls = []
         for axis, title, values in [('width', 'Width (in)', (44, 52, 4)), ('depth', 'Depth (in)', (36, 60, 6))]:
-            controls = [W.FloatText(value=value, description=label, layout=W.Layout(width='180px'), style={'description_width': '50px'})
+            controls = [W.FloatText(value=value, description=f'{label} (in)', tooltip=f'{axis.title()} {label.lower()}, in inches.', layout=W.Layout(width='180px'), style={'description_width': '70px'})
                         for label, value in zip(('From', 'To', 'Step'), values)]
             self.bounds[axis] = controls
             dimension_controls.append(W.HBox([W.HTML(f'<b>{title}</b>', layout=W.Layout(width='100px')), *controls], layout=W.Layout(flex_flow='row wrap')))
         self.mode = W.Dropdown(options=[('Sensitivity · fixed forces', 'fixed'), ('Only analysis-matched cases', 'matched')],
                                value='fixed', description='Forces', layout=W.Layout(width='350px'))
-        self.min_width = W.FloatText(value=0, description='Project min width (in)', style={'description_width': '155px'}, layout=W.Layout(width='270px'))
-        self.min_depth = W.FloatText(value=0, description='Project min depth (in)', style={'description_width': '155px'}, layout=W.Layout(width='270px'))
+        self.min_width = W.FloatText(value=0, description='Project min width (in)', tooltip='Project minimum cap width, in inches.', style={'description_width': '165px'}, layout=W.Layout(width='280px'))
+        self.min_depth = W.FloatText(value=0, description='Project min depth (in)', tooltip='Project minimum cap depth, in inches.', style={'description_width': '165px'}, layout=W.Layout(width='280px'))
         self.budget = W.BoundedIntText(value=100000, min=1, max=500000, description='Total case budget', style={'description_width': '135px'}, layout=W.Layout(width='270px'))
         self.target = W.BoundedFloatText(value=.9, min=.01, max=1, step=.05, description='Strength D/C ≤', style={'description_width': '125px'}, layout=W.Layout(width='245px'))
         self.metric = W.Dropdown(options=[(v, k) for k, v in METRICS.items()], value='steel_lb', description='Map color', layout=W.Layout(width='385px'))
         self.cell_labels = W.Dropdown(options=[('Concrete + steel quantities', 'quantities'), ('Concrete / steel / forms costs', 'costs'), ('Hover only', 'none')],
                                       value='quantities', description='Cell labels', layout=W.Layout(width='385px'))
         self.use_cost = W.Checkbox(value=False, description='Use my comparison unit rates', indent=False, layout=W.Layout(width='300px'))
-        self.rates = [W.FloatText(value=0, description=label, style={'description_width': '140px'}, layout=W.Layout(width='255px'))
-                      for label in ('Concrete / yd³', 'Steel / lb', 'Forms / ft²')]
+        self.rates = [W.FloatText(value=0, description=label, tooltip=hint, style={'description_width': '190px'}, layout=W.Layout(width='305px'))
+                      for label,hint in (('Concrete (currency/yd³)','Cost in your currency per cubic yard of concrete.'),
+                                         ('Steel (currency/lb)','Cost in your currency per pound of reinforcing steel.'),
+                                         ('Forms (currency/ft²)','Cost in your currency per square foot of formwork.'))]
         self.cost_controls = W.VBox([self.use_cost, W.HBox(self.rates, layout=W.Layout(flex_flow='row wrap')),
                                     W.HTML('<small>Use one currency consistently. No prices are assumed. Zero excludes an item. Quantities are gross: steel excludes hooks/laps/waste; forms include sides, ends and soffit. The material frontier does not include formwork or labor tradeoffs.</small>')])
         self.upload = W.FileUpload(accept='.json', multiple=True, description='Add analyzed cases')

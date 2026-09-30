@@ -47,7 +47,7 @@ class LiveUpgradeTests(unittest.TestCase):
                 current=importlib.import_module('pier_cap.section_widgets')
                 self.assertIsNot(current.SectionStudy,SectionStudy)
                 with patch('IPython.display.display'):
-                    exec(''.join(nb['cells'][2]['source']),context)
+                    exec(''.join(next(c for c in nb['cells'] if c.get('id')=='7447e4cc')['source']),context)
                 rebuilt=context['section_app']
                 self.assertIsInstance(rebuilt,current.SectionStudy)
                 self.assertIsNot(rebuilt,study)
@@ -67,7 +67,7 @@ class LiveUpgradeTests(unittest.TestCase):
                 self.assertIn('NEEDS A NEW RUN',rebuilt.notice.value)
                 # A full Run all continues through the study cell and its buttons.
                 with patch('IPython.display.display'):
-                    exec(''.join(nb['cells'][3]['source']),context)
+                    exec(''.join(next(c for c in nb['cells'] if c.get('id')=='509fc7f9')['source']),context)
                 active=context['section_app']
                 self.assertEqual([w.value for w in active.bounds['depth']],[36,42,6])
                 self.assertEqual(active.library,rebuilt.library)
