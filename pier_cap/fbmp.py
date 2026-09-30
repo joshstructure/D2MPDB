@@ -63,6 +63,25 @@ def _moment_at(mi, mj, vi, vj, length_ft, t):
     return mi + (mj-mi)*t + .5*(vi-vj)*length_ft*t*(1-t)
 
 
+def _moment_envelope(records, prefix):
+    governing = {}
+    for suffix, subset, sign in [('N',records,-1),('P',[r for r in records if r['pile_station']],1),('B',records,1)]:
+        _require(bool(subset), f'Missing {prefix}_{suffix} stations.')
+        winner = max(subset,key=lambda r:sign*r['moment'])
+        # Recovered interior values are rounded outward to 0.01 kip-ft.
+        value = math.ceil(max(0,sign*winner['moment'])*100-1e-7)/100
+        governing[prefix+'_'+suffix] = dict(winner, adopted=value)
+    return governing
+
+
+def _strength_envelope(records, ends):
+    governing = _moment_envelope(records, 'Mu')
+    for key,field in [('Vu_G','shear'),('Tu','torque')]:
+        winner = max(ends,key=lambda r:abs(r[field]))
+        governing[key] = dict(winner, adopted=abs(winner[field]))
+    return governing
+
+
 def import_fbmp_xml(source, base=None, filename=None):
     """Return a proposed case without changing base or writing any files.
 
@@ -267,22 +286,20 @@ def import_fbmp_xml(source, base=None, filename=None):
     _require(_close(torque,expected,.025), 'Member torque disagrees with the FB summary.')
     comparisons['absolute torque'] = dict(extracted=torque,summary=expected)
 
-    governing = {}
-    for prefix, state in [('Mu','STRENGTH-'),('MI','SERVICE-I')]:
-        selected = [r for r in records if (r['state'].startswith(state) if prefix == 'Mu' else r['state'] == state)]
-        for suffix, subset, sign in [('N',selected,-1),('P',[r for r in selected if r['pile_station']],1),('B',selected,1)]:
-            _require(bool(subset), f'Missing {prefix}_{suffix} stations.')
-            winner = max(subset,key=lambda r:sign*r['moment'])
-            value = max(0,sign*winner['moment'])
-            key = prefix+'_'+suffix
-            # Recovered interior values are rounded outward to 0.01 kip-ft.
-            p[key] = math.ceil(value*100-1e-7)/100
-            governing[key] = dict(winner, adopted=p[key])
+    strength_records = [r for r in records if r['state'].startswith('STRENGTH-')]
     strength_ends = [r for r in end_records if r['state'].startswith('STRENGTH-')]
-    for key,field in [('Vu_G','shear'),('Tu','torque')]:
-        winner = max(strength_ends,key=lambda r:abs(r[field]))
-        p[key] = abs(winner[field])
-        governing[key] = dict(winner, adopted=p[key])
+    governing = _strength_envelope(strength_records, strength_ends)
+    governing.update(_moment_envelope([r for r in records if r['state'] == 'SERVICE-I'], 'MI'))
+    for key,row in governing.items():
+        p[key] = row['adopted']
+    # Retain each limit state's envelope, including non-governing states. Use
+    # the same recovered stations as the combined design envelope.
+    strength_envelopes = {
+        state: dict(combinations=[k for k,v in combinations.items() if v == state],
+                    governing=_strength_envelope([r for r in strength_records if r['state'] == state],
+                                                 [r for r in strength_ends if r['state'] == state]))
+        for state in dict.fromkeys(r['state'] for r in strength_records)
+    }
     p['Vu_L'] = p['Vu_G']
     governing['Vu_L'] = dict(governing['Vu_G'], basis='Global shear used until a low-shear zone is explicitly established.')
     for key in ('Ready_III','Ready_fatigue'):
@@ -309,7 +326,8 @@ def import_fbmp_xml(source, base=None, filename=None):
                                 cantilever_centerline_in=cantilever,pile_centers_in=centers,
                                 bearing_stations_in=sorted({nodes[n][0] for n in bearings}),
                                 maximum_equilibrium_residual_kip_ft=max_equilibrium_error,
-                                summary_checks=comparisons,governing=governing,notes=notes,
+                                summary_checks=comparisons,governing=governing,
+                                strength_envelopes=strength_envelopes,notes=notes,
                                 outside_calc_maxima={field:max(abs(r[field]) for r in end_records) for field in ('axial','weak_moment','lateral_shear')},
                                 end_records=end_records))
     case.pop('section_study',None)

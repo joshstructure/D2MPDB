@@ -153,6 +153,7 @@ class XMLImportPanel:
                 '<br>Check the active source below; do not assume the displayed results refreshed successfully.','error')
 
     def _preview_html(self, case):
+        from .force_audit import strength_html
         p, old = case['inputs'], self.app.case['inputs']
         audit = case['analysis']['xml_audit']
         def table(keys, force=False):
@@ -189,7 +190,7 @@ class XMLImportPanel:
             '<div><h4>Force envelopes</h4>'+table(['Mu_N','Mu_P','Mu_B','MI_N','MI_P','MI_B','Vu_G','Vu_L','Tu'],True)+'</div></div>'
             f'<p><b>Checked:</b> {audit["cap_element_count"]} cap members; signed moment/shear extrema and absolute torque match the XML cap summary. '
             f'Combinations: {html.escape(combos)}.</p>'
-            '<details><summary><b>Import basis and remaining checks</b></summary><ul>'+notes+'</ul>'
+            + strength_html(case) + '<details><summary><b>Import basis and remaining checks</b></summary><ul>'+notes+'</ul>'
             f'<p>Outside-calculation envelope magnitudes: axial {outside["axial"]:g} kip; '
             f'weak-axis moment {outside["weak_moment"]:g} kip-ft; lateral shear {outside["lateral_shear"]:g} kip.</p>'
             f'<p>SHA256: <code>{audit["sha256"]}</code>. Governing member ends and source metadata travel with the saved JSON.</p>'

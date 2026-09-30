@@ -12,6 +12,8 @@ from .fbmp_widgets import XMLImportPanel
 from .blockpad_widgets import BlockpadExportPanel
 from .widget_compat import Tab, Accordion
 from .source_status import upload_entries,source_html,import_receipt,receipt_html,notice_html
+from .force_audit import force_basis,FORCE_LABELS
+from .force_diagrams import ForceDiagramPanel
 from .visuals import section_figure,elevation_figure,hoop_figure,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html,spacing_html
 
 LABELS={'b':'Cap width','h':'Cap depth','C_t':'Top cover','C_b':'Bottom cover','C_s':'Side cover',
@@ -22,7 +24,7 @@ LABELS={'b':'Cap width','h':'Cap depth','C_t':'Top cover','C_b':'Bottom cover','
  'n_B1':'Bearing bottom row 1','n_B2':'Bearing bottom row 2','n_BU':'Bearing U-leg count',
  'Bar_v':'Closed hoop bar','n_loop':'Effective hoop loops','Bar_skin':'Skin bar','n_skin':'Skin count per side',
  's_row':'Row center spacing','s_G':'Global hoop spacing','s_L':'Low hoop spacing',
- 'Mu_N':'Strength · negative','Mu_P':'Strength · pile positive','Mu_B':'Strength · bearing positive',
+ 'Mu_N':'Envelope · negative','Mu_P':'Envelope · pile positive','Mu_B':'Envelope · bearing/span',
  'MI_N':'Service I · negative','MI_P':'Service I · pile positive','MI_B':'Service I · bearing positive',
  'Vu_G':'Global shear','Vu_L':'Low interval shear','Tu':'Torque magnitude',
  'Ready_III':'Service III loads ready','Ready_fatigue':'Fatigue loads ready','Manual_spacing':'Override bar spacing',
@@ -33,7 +35,7 @@ LABELS={'b':'Cap width','h':'Cap depth','C_t':'Top cover','C_b':'Bottom cover','
 GROUPS={
  'Steel': [('Top rows','Bar_N1 n_N1 Bar_N2 n_N2 Bar_N3 n_N3'),('Bottom rows','Bar_pos n_P1 n_P2 n_B1 n_B2'),('Hoops and skin','Bar_v n_loop s_G s_L Bar_skin n_skin s_row'),('U legs / spacing overrides','Bar_U n_PU n_BU Manual_spacing SP_detail_N SP_detail_P SP_detail_B SP_detail_skin S_leg_detail')],
  'Geometry':[('Section and cover','b h C_t C_b C_s'),('Pile row and cap ends','N_pile S_pile D_pile E_clear E_detail')],
- 'Loads':[('Strength envelopes','Mu_N Mu_P Mu_B Vu_G Vu_L Tu'),('Service I','MI_N MI_P MI_B')],
+ 'Loads':[('Combined strength envelopes','Mu_N Mu_P Mu_B Vu_G Vu_L Tu'),('Service I','MI_N MI_P MI_B')],
  'Pending':[('Service III','Ready_III MIII_N MIII_P MIII_B'),('Fatigue','Ready_fatigue MDL_N MDL_P MDL_B DMLL_N DMLL_P DMLL_B')],
  'Factors':[('Materials','fc fy Es'),('Design assumptions','phi_f phi_v gamma_e gamma_fat beta_v theta alpha_v fpc Ao_factor')]
 }
@@ -50,8 +52,9 @@ class CapNotebook:
         self.clearance=W.BoundedFloatText(value=self.case['screening']['minimum_clear_in'],min=0,max=12,step=.25,description='Trial clear (in)',style={'description_width':'120px'},layout=W.Layout(width='260px'))
         self.clearance.observe(self._changed,names='value')
         self.input_tabs=self._inputs()
-        self.plot_tabs=Tab(children=[self.cage,self.results,W.VBox([self.register],layout=W.Layout(max_height='850px',overflow='auto')),W.VBox([self.trace],layout=W.Layout(max_height='750px',overflow='auto'))],layout=W.Layout(flex='1 1 650px',min_width='560px'))
-        for i,title in enumerate(['Live cage','Plots','Pass / D/C register','Equation trace']):self.plot_tabs.set_title(i,title)
+        self.force_diagrams=ForceDiagramPanel()
+        self.plot_tabs=Tab(children=[self.cage,self.results,W.VBox([self.register],layout=W.Layout(max_height='850px',overflow='auto')),W.VBox([self.trace],layout=W.Layout(max_height='750px',overflow='auto')),self.force_diagrams.ui],layout=W.Layout(flex='1 1 650px',min_width='560px'))
+        for i,title in enumerate(['Live cage','Plots','Pass / D/C register','Equation trace','Force diagrams']):self.plot_tabs.set_title(i,title)
         self.upload=W.FileUpload(accept='.json',multiple=False,description='Load case JSON')
         self.upload.observe(self._uploaded,names='value')
         reset=W.Button(description='Reset starting case',icon='undo');reset.on_click(lambda _:self.load(default_case()))
@@ -106,6 +109,9 @@ class CapNotebook:
 
     def refresh(self):
         self.source_label.value=source_html(self.case)
+        self.force_diagrams.refresh(self.case)
+        for key in FORCE_LABELS:
+            self.controls[key].tooltip=force_basis(self.case,key)
         self.import_notice.value=receipt_html(self.import_receipt,self.case)
         try:e=evaluate(self.case)
         except Exception as exc:
@@ -286,6 +292,7 @@ class CapNotebook:
         return self
 
     def close(self):
+        self.force_diagrams.close()
         for figure in self.figures:figure.close()
         self._close_alternative_plot()
         self.case_listeners.clear()

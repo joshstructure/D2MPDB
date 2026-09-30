@@ -20,6 +20,14 @@ Only geometry, cap f′c/fy/Es and supported demands are replaced. Trial steel, 
 
 ## Force conventions and recovery
 
+### Diagrams over the analyzed cap
+
+The live workbench's **Force diagrams** tab aligns moment (blue), signed shear (purple), and torsion magnitude (orange) with an elevation of the analyzed cap, pile centers, and bearings. The plot menu selects an individual combination, one limit-state envelope, or the combined strength envelope. Horizontal distances start at the left cap edge. Pile lengths are schematic.
+
+The curves use the retained XML member ends, the verified moment recovery below, linear member shear, and member torsion magnitudes. Interior moment extrema and intersections between combination curves are included. Separate member sides remain separate at force jumps; hover text identifies the governing combination, member, and raw end moment where available. No continuous force diagram is inferred from the older scalar workbook envelopes.
+
+Trial geometry, reinforcement, and manual scalar-load edits do not rerun or alter the imported analysis curves. A notice identifies geometry/load differences. Review bundles include an offline interactive `force_diagrams.html` with the same selections.
+
 The BSI-authored [FB-MultiPier manual, sections 4.2.5 and 4.13](https://studylib.net/doc/28088488/fb-multipier) distinguishes raw element forces in XML/OUT from the sign-adjusted design displays. For the validated +X cap chain, use `M_I = raw M3_I`, `M_J = −raw M3_J`, `V_I = −raw shear2_I`, `V_J = raw shear2_J`. Positive M means bottom tension. Torsion enters as magnitude only. The separate XML summary provides an additional source-specific cross-check; the older manual alone does not establish the 6.1 XML schema.
 
 For each prismatic segment, a quadratic moment profile is reconstructed from the two end moments and shear difference. With `t = distance / length` and length L in feet:
@@ -38,6 +46,20 @@ Before using this expression, `Mj − Mi = (Vi + Vj)L/2` must hold within printe
 | Tu | Largest absolute strength torque |
 
 Recovered moments are rounded outward to 0.01 kip-ft. If a sign has no demand, its adopted envelope is zero. Combinations are already factored by FB-MultiPier; the importer does not apply load factors a second time. Strength envelopes are independent, not a simultaneous vector at one station. Only exact `SERVICE-I` labels supply Service I demands. `STRENGTH-III` never supplies Service III. Previous Service III/fatigue values are cleared and their readiness remains pending. Other result limit states are retained in the source audit but do not populate these checks.
+
+### Strength I versus the combined strength envelope
+
+Every imported `STRENGTH-*` combination participates in the design envelope. The notebook preview, active-source card and section-study source card show each strength limit state's envelope, the combined envelope, and the current calculator inputs. Expand the governing-source table to see the combination and member/station for each demand. Manually edited demands are marked as edited rather than attributed to the old source.
+
+For the supplied `Pier_MinTip.XML`, combination 1 is Strength I; combinations 2 and 3 are Strength III; combination 4 is Service I:
+
+| Limit state | M− magnitude (kip-ft) | M+ pile (kip-ft) | M+ bearing/span (kip-ft) | Shear magnitude (kip) | Torque magnitude (kip-ft) |
+|---|---:|---:|---:|---:|---:|
+| Strength I | 182.10 | 90.45 | 287.44 | 209.52 | 4.75 |
+| Strength III | 183.15 | 50.61 | 279.73 | 168.62 | 34.16 |
+| Combined design envelope | 183.15 | 90.45 | 287.44 | 209.52 | 34.16 |
+
+Strength I was already included; these labels and audit tables do not change the adopted forces or equations. The calculation does **not** run separate simultaneous-force checks for each combination. Blockpad review copies contain the same source tables as a clearly dated-by-export snapshot; subsequent edits in Blockpad do not rewrite that snapshot. Review bundles also contain `strength_loads.csv` and `strength_governing.csv`. Older saved JSON cases retain their governing records but need their XML reimported to populate the per-state table; states or non-governing values are never inferred from the combined maxima.
 
 Axial force, weak-axis bending and lateral shear are not mapped into this calculation's strong-axis flexure/shear/torsion method. Their envelope magnitudes are shown in the preview and audit. Full interaction, convergence, anchorage and the existing pending design checks still require review.
 

@@ -110,7 +110,7 @@ class ImportFeedbackTests(unittest.TestCase):
         notebook=json.loads((ROOT/'Pier_Cap_Design_Optimizer.ipynb').read_text(encoding='utf-8'))
         context={'app':old_app,'section_app':self.study,'case':default_case(),'ROOT':ROOT,'CapNotebook':CapNotebook}
         with patch.object(CapNotebook,'display'):
-            exec(''.join(notebook['cells'][6]['source']),context)
+            exec(''.join(next(c for c in notebook['cells'] if c.get('id') == '7447e4cc')['source']),context)
         self.app=context['app']
         self.assertIsNot(self.app,old_app)
         self.assertEqual(self.app.case,before)
@@ -132,11 +132,11 @@ class ImportFeedbackTests(unittest.TestCase):
         context={'app':self.app,'section_app':legacy,'case':default_case(),'ROOT':ROOT,
                  'CapNotebook':CapNotebook,'SectionStudy':SectionStudy}
         with patch.object(CapNotebook,'display'),patch('builtins.print'):
-            exec(''.join(notebook['cells'][6]['source']),context)
+            exec(''.join(next(c for c in notebook['cells'] if c.get('id') == '7447e4cc')['source']),context)
         self.app=context['app']
         self.assertIsNone(context['section_app'])
-        with patch.object(SectionStudy,'display'):
-            exec(''.join(notebook['cells'][10]['source']),context)
+        with patch('IPython.display.display'):
+            exec(''.join(next(c for c in notebook['cells'] if c.get('id') == '509fc7f9')['source']),context)
         self.study=context['section_app']
         self.assertIs(self.study.app,self.app)
 

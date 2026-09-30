@@ -45,6 +45,21 @@ class FBMPTests(unittest.TestCase):
         self.assertEqual(audit['governing']['MI_P']['x_in'],130)
         self.assertEqual(len(audit['sha256']),64)
 
+    def test_strength_i_and_three_audits_match_combined_envelope(self):
+        case = import_fbmp_xml(FIXTURE)
+        audit = case['analysis']['xml_audit']
+        expected = {'STRENGTH-I': [182.10,90.45,287.44,209.52,4.75],
+                    'STRENGTH-III': [183.15,50.61,279.73,168.62,34.16]}
+        keys = ['Mu_N','Mu_P','Mu_B','Vu_G','Tu']
+        for state,values in expected.items():
+            self.assertEqual([audit['strength_envelopes'][state]['governing'][k]['adopted'] for k in keys],values)
+        self.assertEqual(audit['strength_envelopes']['STRENGTH-I']['combinations'],['1'])
+        self.assertEqual(audit['strength_envelopes']['STRENGTH-III']['combinations'],['2','3'])
+        for key in keys:
+            self.assertEqual(case['inputs'][key],max(v['governing'][key]['adopted'] for v in audit['strength_envelopes'].values()))
+        self.assertEqual(audit['governing']['Mu_B']['state'],'STRENGTH-I')
+        self.assertEqual(audit['governing']['Tu']['state'],'STRENGTH-III')
+
     def test_service_three_is_not_service_one_and_pending_reset(self):
         def mutate(root):
             combo = deepcopy(root.find('MODEL_INFO/LOAD_COMBINATION'))
@@ -81,6 +96,7 @@ class FBMPTests(unittest.TestCase):
         case = import_fbmp_xml(changed(mutate))
         self.assertEqual(case['inputs']['Mu_B'],333.34)
         self.assertEqual(case['analysis']['xml_audit']['governing']['Mu_B']['x_in'],70)
+        self.assertEqual(case['analysis']['xml_audit']['strength_envelopes']['STRENGTH-I']['governing']['Mu_B']['adopted'],333.34)
 
     def test_extra_members_are_not_cap_forces(self):
         def mutate(root):

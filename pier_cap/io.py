@@ -8,6 +8,7 @@ import io
 import json
 import re
 from .model import INPUTS,GEOMETRY,validate_case,evaluate,default_case,formula_trace
+from .force_audit import strength_audit
 
 def load_case(source):
     if isinstance(source,(bytes,bytearray,memoryview)):data=json.loads(bytes(source).decode('utf-8-sig'))
@@ -41,6 +42,18 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
         for c in e.checks:w.writerow([c.label,c.status,c.ratio,c.basis])
     (path/'blockpad_inputs.txt').write_text('\n'.join(input_formula(k,v) for k,v in case['inputs'].items())+'\n',encoding='utf-8')
     (path/'formula_trace.json').write_text(json.dumps(formula_trace(e),indent=2,ensure_ascii=False),encoding='utf-8')
+    if case['analysis'].get('xml_audit',{}).get('end_records'):
+        from .force_diagrams import cap_force_figure,diagram_notice
+        import html
+        fig=cap_force_figure(case)
+        page=fig.to_html(full_html=True,include_plotlyjs=True)
+        page=page.replace('<body>','<body><p style="font:14px Arial;margin:20px">'+html.escape(diagram_notice(case))+'</p>',1)
+        (path/'force_diagrams.html').write_text(page,encoding='utf-8')
+    audit=strength_audit(case)
+    for filename,headers,rows in [('strength_loads.csv',audit['headers'],audit['rows']),
+                                  ('strength_governing.csv',audit['provenance_headers'],audit['provenance'])]:
+        with (path/filename).open('w',newline='',encoding='utf-8-sig') as f:
+            w=csv.writer(f);w.writerow(headers);w.writerows(rows)
     manifest={'status':e.status,'cage_issues':e.issues,'stale_geometry':e.stale,'max_dc':e.max_dc,'estimated_gross_steel_lb':e.weight_lb,
         'limitations':'Sectional checks only. Service III/fatigue readiness, D-regions, anchorage, pile-head and full code/detail review remain explicit. Gross steel excludes hooks/laps/waste; hoops conservatively use tighter spacing over the full cap.',
         'case_sha256':hashlib.sha256((path/'selected_case.json').read_bytes()).hexdigest()}
@@ -106,6 +119,33 @@ def export_blockpad(source,case,destination):
         return 'And('+','.join(terms)+')'
     replace('Status_layout','Status_layout = If('+source_test(('N_pile','S_pile','D_pile','E_clear','E_detail'))+',"SOURCE PILE LAYOUT","REIMPORT ANALYSIS FORCES")')
     replace('Status_section','Status_section = If('+source_test(('b','h'))+',"SOURCE SECTION","RECHECK MODEL SELF-WEIGHT / FORCES")')
+    # Replace our prior audit when re-exporting a review copy, without changing
+    # any other project report or the C005 calculation equations.
+    for old in list(report):
+        if old.get('name') in ('NotebookStrengthAudit','NotebookStrengthControllers','NotebookStrengthBasis'):
+            report.remove(old)
+    audit=strength_audit(case)
+    def audit_table(name,headers,rows,widths):
+        table=E.Element('table',name=name,capture='False',colwidths=', '.join(f'{i}:{w:.2f}' for i,w in enumerate(widths,1)))
+        last=chr(ord('A')+len(headers)-1)
+        E.SubElement(table,'stylerule',range=f'A1:{last}{len(rows)+1}',fontfamily='Times New Roman',fontsize='9',
+                     border='Border("AllSides", "Solid", 0.5, "#7189A6"); Border("BetweenRows", "Solid", 0.4, "#7189A6");')
+        E.SubElement(table,'stylerule',range=f'A1:{last}1',background='#DCE7F3',fontweight='bold')
+        for ri,values in enumerate([headers]+rows):
+            row=E.SubElement(table,'row')
+            for ci,value in enumerate(values):
+                cell=E.SubElement(row,'textcell',name=f'{name}R{ri}C{ci}',capture='False')
+                E.SubElement(cell,'paragraph',fontfamily='Times New Roman',fontsize='9',spacingafter='3',spacingbefore='3').text=str(value)
+        return table
+    basis=E.Element('paragraph',name='NotebookStrengthBasis',fontfamily='Times New Roman',fontsize='10')
+    basis.text='STRENGTH LOAD AUDIT — snapshot at export. '+ ' '.join(audit['notes'])+' If loads are edited in Blockpad, this source audit remains the import snapshot.'
+    report.insert(0,basis)
+    report.insert(1,audit_table('NotebookStrengthAudit',audit['headers'],audit['rows'],[180,100,100,100,100,100]))
+    report.insert(2,audit_table('NotebookStrengthControllers',audit['provenance_headers'],audit['provenance'],[150,70,460]))
+    # Clarify the original input-table heading where present.
+    for paragraph in report.iter('paragraph'):
+        if paragraph.text and paragraph.text.strip() == 'Strength':
+            paragraph.text='Combined strength envelope'
     note=E.Element('paragraph',fontfamily='Times New Roman',fontsize='11',background='#FFF5DE')
     note.text=f'NOTEBOOK REVIEW COPY — {case["name"]}. Analysis: {case["analysis"]["id"]}. {e.status}. C005 inputs now come from the exported case; other project sections are unchanged. Recalculate in Blockpad. Earlier narrative examples/source notes may describe the original model; reconcile them before finalizing.'
     report.insert(0,note)

@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 import html
 import json
 from .model import GEOMETRY
+from .force_audit import strength_html
 
 
 IMPORTED_INPUTS = (*GEOMETRY, 'fc', 'fy', 'Es', 'Mu_N', 'Mu_P', 'Mu_B',
@@ -44,8 +45,7 @@ def source_html(case, title='ACTIVE FORCE SOURCE', note=''):
     g = a['geometry']
     body = (f'<b>{html.escape(a["id"])}</b><br>'
             f'Analyzed cap: <b>{g["b"]:g} × {g["h"]:g} in</b> · {g["N_pile"]:g} piles at {g["S_pile"]:g} ft centers<br>'
-            f'Current strength inputs: M− <b>{p["Mu_N"]:g}</b> · M+ pile <b>{p["Mu_P"]:g}</b> · '
-            f'M+ bearing/span <b>{p["Mu_B"]:g} kip-ft</b> · V <b>{p["Vu_G"]:g} kip</b> · T <b>{p["Tu"]:g} kip-ft</b>')
+            + strength_html(case))
     if note:
         body += '<br>'+html.escape(note)
     return notice_html(title, body)
