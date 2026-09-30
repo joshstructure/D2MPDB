@@ -40,3 +40,9 @@ The starting cage's strength D/C is 0.831656 and its all-check utilization is 0.
 ## Notebook corrections
 
 The workbench now defaults to the strength target, shows separate strength and all-check summary values, displays both match counts at the selected target, and provides a live table for the two spacing directions. The detailed register and all-check filter remain available. The calculation equations, source loads, candidate eligibility, and Python API's existing default all-check scope are unchanged.
+
+## Longitudinal steel with zero side bars
+
+Each longitudinal row now reports `F_long / ((As_main + As_skin_eff) * fy)`, including when the side-bar count is zero. Main bars on that region's flexural tension side remain credited. The register also shows required area, main area, effective side area and any remaining shortfall, all in in². The existing longitudinal equilibrium equations, effective-side credit and pass/fail conditions are unchanged. Separate skin and shrinkage checks still apply.
+
+Previously a positive shortfall with zero side bars produced the misleading text `NO STEEL`, hiding the numerical ratio from plots and maximum D/C summaries. With side bars, the old register used the larger of total D/C and supplemental area required / effective side area. For nonnegative main/side areas, those comparisons have the same pass/fail boundary, and total D/C is already the larger for passing cases. Thus this correction changes failure reporting without changing passing candidates or their margins. Blockpad exports also refresh the longitudinal rows in the original four-column D/C table.

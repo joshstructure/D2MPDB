@@ -198,6 +198,13 @@ def evaluate(case=None,fast=False):
         if isinstance(ratio,(float,int)) and not math.isfinite(ratio):raise ValueError('Nonfinite D/C: '+key)
         checks.append(Check(key,s['label'],eng.get(key),ratio,s['basis']))
     e=Evaluation(case,eng,checks,[],stale,False,'',max((c.ratio for c in checks if isinstance(c.ratio,(float,int))),default=0),0)
+    for check in checks:
+        if check.key.startswith('Chk_long_'):
+            region=check.key[-1]
+            required=e.value('F_long_'+region,'kip')/case['inputs']['fy']
+            main=e.value('As_'+region,'in^2');side=e.value('As_skin_eff','in^2')
+            check.basis+=(f' Required {required:.3f} in²; credited main {main:.3f} + side {side:.3f}'
+                          f' = {main+side:.3f} in²; shortfall {max(0,required-main-side):.3f} in².')
     e.issues=cage_issues(e);e.weight_lb=estimate_weight(e)
     failure=any('FAIL' in c.status for c in checks)
     e.eligible=sectional_checks_pass(e) and not stale

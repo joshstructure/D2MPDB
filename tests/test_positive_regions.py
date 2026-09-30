@@ -173,7 +173,7 @@ class PositiveRegionTests(unittest.TestCase):
             notebook=json.loads((ROOT/'Pier_Cap_Design_Optimizer.ipynb').read_text())
             context={'app':app,'ROOT':ROOT}
             with patch.object(CapNotebook,'display'):
-                exec(''.join(next(c for c in notebook['cells'] if c['id']=='7447e4cc')['source']),context)
+                exec(''.join(next(c for c in notebook['cells'] if c.get('id')=='7447e4cc')['source']),context)
             app=context['app']
             self.assertEqual(app.case,upgrade_case(legacy_case()))
             for name in ('pile_counts','span_counts'):self.assertEqual(app.search_lists[name].value,(6,8))

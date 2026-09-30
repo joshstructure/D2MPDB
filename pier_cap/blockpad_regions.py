@@ -1,10 +1,22 @@
 """Upgrade the existing C005 reinforcement table and native live section plots."""
 import re
 from lxml import etree as E
-from .model import DEFINITIONS
+from .model import DEFINITIONS,SPEC
 
 
 def update_regional_views(report):
+    # The original four-column D/C table embeds expressions separately from
+    # the calculation definitions. Refresh these too when exporting an old journal.
+    for row in report.iter('row'):
+        cells=[cell for cell in row if cell.tag in ('c','textcell')]
+        if len(cells)!=4:continue
+        key=cells[1].get('formula','')
+        if key not in ('Chk_long_N','Chk_long_P','Chk_long_B'):continue
+        if cells[2].tag!='c' or cells[3].tag!='textcell':continue
+        cells[2].set('formula',SPEC[key]['formula'])
+        for child in list(cells[2]):cells[2].remove(child)
+        for child in list(cells[3]):cells[3].remove(child)
+        E.SubElement(cells[3],'paragraph',fontfamily='Times New Roman',fontsize='10').text=SPEC[key]['basis']
     # Preserve the journal's tables, but bind each row to its own bar size.
     for row in report.iter('row'):
         names=[e.get('formula','').split(' = ')[0] for e in row.iter('dynexp')]

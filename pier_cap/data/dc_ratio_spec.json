@@ -46,8 +46,8 @@
   },
   "Chk_long_N": {
     "label": "Longitudinal steel \u2014 N",
-    "formula": "If(And((As_N+As_skin_eff)*fy > 0 kip,As_skin_eff >= 0 in^2),If(As_skin_eff > 0 in^2,Max(DC_long_N,As_add_N/As_skin_eff),If(As_add_N <= 0 in^2,DC_long_N,\"NO STEEL\")),\"INVALID\")",
-    "basis": "Larger of total tension / yield resistance and extra area required / effective skin area."
+    "formula": "If(And((As_N+As_skin_eff)*fy > 0 kip,As_skin_eff >= 0 in^2),DC_long_N,\"INVALID\")",
+    "basis": "Moment + shear/torsion tension / yield resistance of this region's main bars plus effective side steel (half of both side faces)."
   },
   "Chk_flex_P": {
     "label": "Flexural strength \u2014 P",
@@ -71,8 +71,8 @@
   },
   "Chk_long_P": {
     "label": "Longitudinal steel \u2014 P",
-    "formula": "If(And((As_P+As_skin_eff)*fy > 0 kip,As_skin_eff >= 0 in^2),If(As_skin_eff > 0 in^2,Max(DC_long_P,As_add_P/As_skin_eff),If(As_add_P <= 0 in^2,DC_long_P,\"NO STEEL\")),\"INVALID\")",
-    "basis": "Larger of total tension / yield resistance and extra area required / effective skin area."
+    "formula": "If(And((As_P+As_skin_eff)*fy > 0 kip,As_skin_eff >= 0 in^2),DC_long_P,\"INVALID\")",
+    "basis": "Moment + shear/torsion tension / yield resistance of this region's main bars plus effective side steel (half of both side faces)."
   },
   "Chk_flex_B": {
     "label": "Flexural strength \u2014 B",
@@ -96,8 +96,8 @@
   },
   "Chk_long_B": {
     "label": "Longitudinal steel \u2014 B",
-    "formula": "If(And((As_B+As_skin_eff)*fy > 0 kip,As_skin_eff >= 0 in^2),If(As_skin_eff > 0 in^2,Max(DC_long_B,As_add_B/As_skin_eff),If(As_add_B <= 0 in^2,DC_long_B,\"NO STEEL\")),\"INVALID\")",
-    "basis": "Larger of total tension / yield resistance and extra area required / effective skin area."
+    "formula": "If(And((As_B+As_skin_eff)*fy > 0 kip,As_skin_eff >= 0 in^2),DC_long_B,\"INVALID\")",
+    "basis": "Moment + shear/torsion tension / yield resistance of this region's main bars plus effective side steel (half of both side faces)."
   },
   "Chk_shear_G": {
     "label": "Shear \u2014 global",
