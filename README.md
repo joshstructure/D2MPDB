@@ -12,7 +12,13 @@ The reported FBMP summary and original XML element-end envelopes remain separate
 
 ## Cap and pile design notebook
 
+**Portable one-file edition:** [Cap_and_Pile_Design.ipynb](Cap_and_Pile_Design.ipynb) includes the calculation package. Open it in Colab and choose **Runtime → Run all**.
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Cap_and_Pile_Design.ipynb)
+
 The notebook now handles the shared sectional workflow for **pier and end-bent caps on a single pile row**. A new **FBMP pile review** section sits above the reinforcement controls and includes pile-head compression/uplift, governing results by limit state, displacement/force/D/C/stress profiles, section properties, minimum-tip trial review and a geotechnical handoff. The same applied XML supplies the cap and pile results; an independent pile-only XML upload is also available. Minimum-tip trial history is entered separately. See [Pile review](PILE_REVIEW.md) for the workbook mapping, supported geometry, calculation basis, downloads and limitations.
+
+**Repository-backed edition:**
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Pier_Cap_Design_Optimizer.ipynb)
 
