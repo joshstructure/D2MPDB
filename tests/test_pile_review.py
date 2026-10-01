@@ -130,18 +130,20 @@ class TrialTests(unittest.TestCase):
 
     def test_reference_and_row_order(self):
         rows=parse_trials((FIXTURES/'pile_minimum_tip_reference.csv').read_text())
-        result=evaluate_trials(rows,accepted_embedment=32.74,reference_elevation=24.5)
+        result=evaluate_trials(rows,reference_elevation=24.5)
         self.assertAlmostEqual(result['proposed_embedment_ft'],32.74)
         self.assertAlmostEqual(result['required_embedment_ft'],37.74)
         self.assertAlmostEqual(result['tip_elevation_ft'],-13.24)
-        self.assertEqual(result,evaluate_trials(list(reversed(rows)),accepted_embedment=32.74,reference_elevation=24.5))
+        self.assertEqual(result['critical_embedment_ft'],32.74)
+        self.assertEqual(result['selection_mode'],'automatic')
+        self.assertEqual(result,evaluate_trials(list(reversed(rows)),reference_elevation=24.5))
 
-    def test_isolated_flat_point_after_unstable_jump_cannot_govern(self):
+    def test_shallowest_qualifying_pair_matches_spreadsheet_min_formula(self):
         result=evaluate_trials(self.rows([(50,1),(40,1.05),(30,2),(20,2.01)]))
-        self.assertEqual(result['proposed_embedment_ft'],50)
+        self.assertEqual(result['critical_embedment_ft'],30)
         self.assertIsNone(result['tip_elevation_ft'])
 
-    def test_small_delta_is_not_an_adopted_tip_and_two_series_must_be_valid(self):
+    def test_each_series_needs_a_qualifying_pair(self):
         a=self.rows([(50,1),(40,1.01)])
         b=[dict(r,series='B') for r in self.rows([(60,1),(50,2)])]
         r=evaluate_trials(a+b)
@@ -162,11 +164,36 @@ class TrialTests(unittest.TestCase):
             reference_elevation=20,mode='lesser')
         self.assertEqual(r['extension_ft'],2)
 
-    def test_nonconvergence_and_dc_failure_prevent_candidate(self):
+    def test_dc_and_convergence_remain_separate_from_spreadsheet_delta_formula(self):
         for update in [dict(converged=False),dict(dc=1.1)]:
             rows=self.rows([(50,1),(40,1.01)])
             rows[1].update(update)
-            self.assertIsNone(evaluate_trials(rows)['proposed_embedment_ft'])
+            result = evaluate_trials(rows)
+            self.assertEqual(result['critical_embedment_ft'],50)
+            self.assertFalse(result['rows'][0]['analysis_ok'])
+
+    def test_inclusive_point_one_and_no_qualifying_pair(self):
+        r=evaluate_trials(self.rows([(30,1),(20,1.1),(10,2)]),reference_elevation=100)
+        self.assertEqual(r['critical_embedment_ft'],30)
+        self.assertEqual(r['tip_elevation_ft'],65)
+        self.assertEqual(r['rows'][0]['next_embedment_ft'],20)
+        self.assertEqual(r['rows'][0]['next_displacement_in'],1.1)
+        for rows in [self.rows([(30,1),(20,1.100001)]),self.rows([(30,1)])]:
+            r=evaluate_trials(rows,reference_elevation=100)
+            self.assertIsNone(r['critical_embedment_ft'])
+            self.assertIsNone(r['tip_elevation_ft'])
+
+    def test_extension_methods_and_governing_series_are_automatic(self):
+        rows=self.rows([(20,1),(10,1.01)])
+        for mode, added in [('lesser',4),('fixed',5),('fraction',4)]:
+            r=evaluate_trials(rows,mode=mode,reference_elevation=24.5)
+            self.assertEqual(r['extension_ft'],added)
+            self.assertEqual(r['tip_elevation_ft'],24.5-20-added)
+        deep=self.rows([(50,1),(40,1.01)])
+        self.assertEqual(evaluate_trials(deep,mode='fraction')['extension_ft'],10)
+        self.assertEqual(evaluate_trials(self.rows([(25,1),(20,1.01)]))['extension_ft'],5)
+        r=evaluate_trials(rows+[dict(v,series='B') for v in deep])
+        self.assertEqual(r['critical_embedment_ft'],50)
 
     def test_duplicate_or_missing_rows_are_not_silent(self):
         with self.assertRaises(ValueError):evaluate_trials(self.rows([(10,1),(10,2)]))

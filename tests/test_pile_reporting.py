@@ -80,6 +80,8 @@ class PileReportingTests(unittest.TestCase):
         self.assertTrue(any('Δ limit = 0.1 in' in a.text for a in trials.layout.annotations))
         self.assertGreater(trials.layout.yaxis2.range[1], .1)
         self.assertGreater(trials.layout.yaxis3.range[1], 1)
+        self.assertTrue(any('Lcrit = 50 ft' in a.text for a in trials.layout.annotations))
+        self.assertEqual(len([s for s in trials.layout.shapes if s.x0 == 50 and s.x1 == 50]),3)
 
     def test_factored_head_loads_in_tons_exclude_service_and_retain_ties(self):
         review = deepcopy(self.review)
@@ -100,11 +102,12 @@ class PileReportingTests(unittest.TestCase):
             r['state'] = 'SERVICE-I'
         self.assertIsNone(geotech_section_and_loads(review)[1][0]['short_tons'])
 
-    def test_selected_trials_never_substitute_candidate_or_interpolate(self):
+    def test_handoff_uses_automatic_critical_and_never_interpolates(self):
         rows = parse_trials('1,2,4,50,1\n2,3,1,40,1.01')
         result = evaluate_trials(rows)
-        with self.assertRaisesRegex(ValueError,'Select a critical'):
-            selected_trial_handoff(self.review,result,basis='Example')
+        self.assertEqual(selected_trial_handoff(self.review,result)['trials'][0]['embedment_ft'],50)
+        with self.assertRaisesRegex(ValueError,'No critical embedment'):
+            selected_trial_handoff(self.review,evaluate_trials(rows[:1]))
         result = evaluate_trials(rows, accepted_embedment=45)
         report = selected_trial_handoff(self.review,result,basis='Example')
         self.assertIsNone(report['trials'][0]['displacement_in'])
@@ -126,16 +129,18 @@ class HandoffWidgetTests(unittest.TestCase):
 
     def select_trials(self):
         self.panel.trial_text.value = (FIXTURES/'pile_minimum_tip_reference.csv').read_text()
-        self.panel.accepted.value = '32.74'
         self.panel.reference.value = '24.5'
         self.panel.cutoff.value = '40'
-        self.panel.trial_basis.value = 'Reviewed example selection'
         self.panel.trial_label.value = 'Separate workbook reference trials'
 
     def test_handoff_update_and_download_callbacks_make_short_report(self):
         self.select_trials()
         self.panel.handoff_refresh.click()
         self.assertIn('HANDOFF READY',self.panel.handoff_status.value)
+        self.assertTrue(self.panel.accepted.disabled)
+        self.assertEqual(self.panel.accepted.value,'32.740')
+        self.assertEqual(self.panel.trial_basis.value,'')
+        self.assertNotIn('engineering critical',self.panel.trial_summary.value)
         self.assertIn('-13.240 ft',self.panel.handoff.value)
         self.assertIn('Short tons',self.panel.handoff.value)
         self.assertNotIn('EA (kip)',self.panel.handoff.value)
@@ -183,6 +188,22 @@ class HandoffWidgetTests(unittest.TestCase):
             self.panel.save_handoff(folder)
             self.assertTrue((Path(folder)/'geotech_handoff.html').exists())
         self.assertIn('PROFILE INPUT NEEDS REVIEW',self.panel.reported.value)
+
+    def test_old_manual_depth_is_recomputed_and_new_state_has_no_depth_input(self):
+        self.select_trials()
+        state=self.panel.snapshot()
+        self.assertEqual(state['schema_version'],3)
+        self.assertNotIn('accepted',state['controls'])
+        state['schema_version']=2
+        state['controls']['accepted']='999'
+        self.panel.restore(state)
+        self.assertEqual(self.panel.accepted.value,'32.740')
+        self.assertAlmostEqual(self.panel.trial_result['tip_elevation_ft'],-13.24)
+        self.panel.extension_mode.value='fraction'
+        self.assertEqual(self.panel.accepted.value,'')
+        self.panel.run_trials.click()
+        self.assertAlmostEqual(self.panel.trial_result['extension_ft'],6.548)
+        self.assertAlmostEqual(self.panel.trial_result['tip_elevation_ft'],-14.788)
 
 
 if __name__ == '__main__':

@@ -337,11 +337,19 @@ def parse_trials(text):
     return result
 
 
-def evaluate_trials(rows, tolerance=.1, extension=5, fraction=.2, mode='fixed', reference_elevation=None,
+def evaluate_trials(rows, tolerance=.1, extension=5, fraction=.2, mode='lesser', reference_elevation=None,
                     cutoff_elevation=None, accepted_embedment=None, round_feet=False):
+    """Match Min Tip Paste: min embedment whose next shallower Δ <= limit.
+
+    accepted_embedment is retained only for callers of the older Python API;
+    notebook controls always use the automatic calculation.
+    """
     for value, label in [(tolerance, 'Displacement tolerance'), (extension, 'Extension'), (fraction, 'Fraction')]:
         require(math.isfinite(value) and value >= 0, f'{label} must be nonnegative.')
-    require(mode in ('fixed', 'lesser'), 'Choose fixed extension or lesser of extension and fraction.')
+    require(mode in ('fixed', 'fraction', 'lesser'), 'Choose fixed, percentage, or the lesser extension.')
+    for value in (reference_elevation, cutoff_elevation):
+        require(value is None or math.isfinite(value), 'Elevations must be finite.')
+    require(bool(rows), 'Paste trial rows first.')
     grouped = defaultdict(list)
     for r in rows:
         grouped[r['series']].append(r)
@@ -358,11 +366,16 @@ def evaluate_trials(rows, tolerance=.1, extension=5, fraction=.2, mode='fixed', 
             delta = abs(abs(r['displacement_in'])-abs(shallower['displacement_in'])) if shallower else None
             valid = r['converged'] is not False and (shallower is None or shallower['converged'] is not False)
             valid = valid and (r['dc'] is None or r['dc'] <= 1) and (shallower is None or shallower['dc'] is None or shallower['dc'] <= 1)
-            passes = delta is not None and delta <= tolerance and valid
+            # The spreadsheet selects by displacement change alone. Supplied
+            # D/C and convergence remain separate review results, not a hidden
+            # change to its L-critical equation.
+            passes = delta is not None and (delta <= tolerance or math.isclose(delta, tolerance, rel_tol=0, abs_tol=1e-12))
             stable = stable and passes
-            if stable:
+            if passes:
                 candidate = r['embedment_ft']
             r.update(delta_in=delta, passes=passes, stable_from_deepest=stable,
+                     analysis_ok=valid, next_embedment_ft=shallower['embedment_ft'] if shallower else None,
+                     next_displacement_in=shallower['displacement_in'] if shallower else None,
                      interval_ft=r['embedment_ft']-shallower['embedment_ft'] if shallower else None)
             details.append(r)
         groups.append(dict(series=name, candidate_ft=candidate, points=len(ordered),
@@ -370,8 +383,9 @@ def evaluate_trials(rows, tolerance=.1, extension=5, fraction=.2, mode='fixed', 
     proposed = max(g['candidate_ft'] for g in groups) if groups and all(g['candidate_ft'] is not None for g in groups) else None
     if accepted_embedment is not None:
         require(math.isfinite(accepted_embedment) and accepted_embedment > 0, 'Accepted critical embedment must be positive.')
-    critical = accepted_embedment
-    added = None if critical is None else (extension if mode == 'fixed' else min(extension, fraction*critical))
+    critical = proposed if accepted_embedment is None else accepted_embedment
+    added = None if critical is None else (extension if mode == 'fixed' else
+            fraction*critical if mode == 'fraction' else min(extension, fraction*critical))
     required = None if critical is None else critical+added
     tip = None if required is None or reference_elevation is None else reference_elevation-required
     length = None if tip is None or cutoff_elevation is None else cutoff_elevation-tip
@@ -382,9 +396,14 @@ def evaluate_trials(rows, tolerance=.1, extension=5, fraction=.2, mode='fixed', 
         # Compute the whole-foot length to the adopted rounded tip, so the two
         # displayed quantities remain compatible with a fractional cutoff datum.
         length = math.ceil(cutoff_elevation-tip) if length is not None else None
+    for r in details:
+        r['critical_trial'] = r['embedment_ft'] == critical
     return dict(rows=details, groups=groups, proposed_embedment_ft=proposed, accepted_embedment_ft=critical,
+                critical_embedment_ft=critical, selection_mode='automatic' if accepted_embedment is None else 'legacy override',
+                extension_mode=mode, tolerance_in=tolerance,
                 extension_ft=added, required_embedment_ft=required, tip_elevation_ft=tip, total_length_ft=length,
-                basis='Adjacent absolute displacement changes, continuous from deepest trial; candidate requires engineering selection.')
+                basis=f'Shallowest trial with absolute displacement change to the next shallower trial <= {tolerance:g} in; '
+                      'maximum critical embedment across separate series.')
 
 
 def csv_text(rows):

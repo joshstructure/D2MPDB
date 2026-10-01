@@ -185,6 +185,12 @@ def trial_figure(result, tolerance):
         values = [0, limit] + [v for t in fig.data if t.yaxis == f'y{col}' for v in t.y if v is not None]
         pad = max((max(values)-min(values))*.12, .01)
         fig.update_yaxes(range=[min(values)-pad, max(values)+pad], row=1, col=col)
+    critical = result.get('critical_embedment_ft', result.get('accepted_embedment_ft'))
+    if critical is not None:
+        for col in (1, 2, 3):
+            fig.add_vline(x=critical, row=1, col=col, line_dash='dash', line_color='#6a4197',
+                          exclude_empty_subplots=False, **(dict(annotation_text=f'Lcrit = {critical:g} ft',
+                          annotation_position='bottom right') if col == 1 else {}))
     for col in (1, 2, 3):
         fig.update_xaxes(title_text='Embedment (ft)', row=1, col=col)
     fig.update_yaxes(title_text='in', row=1, col=1)
@@ -249,29 +255,33 @@ class PileReviewPanel:
         self.tolerance = W.FloatText(value=.1, description='Δ limit (in)')
         self.extension = W.FloatText(value=5, description='Extension (ft)')
         self.fraction = W.FloatText(value=.2, description='Fraction')
-        self.extension_mode = W.Dropdown(options=[('Fixed extension','fixed'), ('Lesser of extension / fraction','lesser')],
+        self.extension_mode = W.Dropdown(options=[('Lesser of fixed / percentage','lesser'), ('Fixed extension','fixed'),
+                                                  ('Percentage of Lcrit','fraction')],
                                          description='Method', layout=W.Layout(width='360px'))
         self.reference = W.Text(description='Ground EL (ft)', placeholder='Design ground/scour datum', layout=W.Layout(width='330px'))
-        self.accepted = W.Text(description='Critical (ft)', placeholder='Selected critical embedment', layout=W.Layout(width='330px'))
+        self.accepted = W.Text(description='Lcrit (ft)', placeholder='Calculated from trials', disabled=True, layout=W.Layout(width='330px'))
         self.rounding = W.Checkbox(value=False, description='Round tip down / total length up to whole feet', indent=False)
-        self.trial_basis = W.Text(description='Basis', placeholder='Project criteria / engineering selection', layout=W.Layout(width='600px'))
+        self.trial_basis = W.Text(description='Trial notes', placeholder='Optional project notes', layout=W.Layout(width='600px'))
         self.nominal_weight = W.Text(description='Weight (lb/ft)', placeholder='Nominal / supplied, optional', layout=W.Layout(width='330px'))
         self.nominal_diameter = W.Text(description='Nominal OD (in)', placeholder='Pipe geotechnical diameter', layout=W.Layout(width='330px'))
         self.toe = W.Dropdown(options=['Unknown','Open','Closed','Not applicable'],description='Pile toe')
         self.geotech_notes = W.Textarea(description='Project notes',placeholder='Scour, downdrag, driving / test criteria, resistance basis',layout=W.Layout(width='100%',height='90px'))
         for w in [self.nominal_weight,self.nominal_diameter,self.toe,self.geotech_notes]:
             w.observe(lambda _: self.refresh_handoff() if not self.busy else None,names='value')
-        self.run_trials = W.Button(description='Evaluate trials', button_style='primary', icon='line-chart', disabled=True)
-        self.trial_status = W.HTML('<p>Paste trial rows above to enable Evaluate trials. The XML contains one solved pile length.</p>')
+        self.run_trials = W.Button(description='Calculate minimum tip', button_style='primary', icon='line-chart', disabled=True,
+                                   layout=W.Layout(width='220px'))
+        self.trial_status = W.HTML('<p>Paste trial rows above to enable Calculate minimum tip. The XML contains one solved pile length.</p>')
         self.run_trials.on_click(self._trials)
         for w in [self.trial_text, self.trial_label, self.tolerance, self.extension, self.fraction, self.extension_mode,
-                  self.reference, self.accepted, self.rounding, self.trial_basis]:
+                  self.reference, self.rounding, self.trial_basis]:
             w.observe(self._trials_changed, names='value')
         self.trial_template = W.Button(description='Download CSV template', icon='download', layout=W.Layout(width='210px'))
         self.trial_template.on_click(self._template)
         trials = W.VBox([W.HTML('<p>Paste the five workbook columns (trial, combination, pile, embedment in ft, displacement in in), '
             'or upload the CSV template. A single solved XML does not contain the shortened-pile trial history. '
-            'Each row is the governing result for that embedment. Use <b>series</b> for separate studies; combination and pile may change as governors change.</p>'),
+            'Each row is the governing result for that embedment. Use <b>series</b> for separate studies; combination and pile may change as governors change. '
+            '<b>Lcrit is calculated automatically</b> from Δ ≤ 0.1 in (editable below). The default added embedment is '
+            'the lesser of 5 ft and 20% of Lcrit (fraction 0.20).</p>'),
             W.HBox([self.trial_upload, self.trial_template]), self.trial_label, self.trial_text,
             W.HBox([self.tolerance, self.extension, self.fraction], layout=W.Layout(flex_flow='row wrap')),
             self.extension_mode, W.HBox([self.reference, self.accepted], layout=W.Layout(flex_flow='row wrap')),
@@ -283,7 +293,8 @@ class PileReviewPanel:
                        'Click a pile in the legend to hide or show its curves on every plot.</p>'), self.profile_output, self.reported]),
             W.VBox([self.section_output, self.properties, manual]), trials,
             W.VBox([W.HTML('<p>Share pile section information, minimum tip elevation and maximum factored loads in short tons. '
-                'Choose the critical embedment and record its basis in Minimum tip, then update or download here.</p>'),
+                'Paste trials and enter the design ground / scour elevation in Minimum tip, then update or download here. '
+                'Critical embedment and minimum tip are calculated automatically.</p>'),
                 W.HBox([self.nominal_weight,self.nominal_diameter,self.toe],layout=W.Layout(flex_flow='row wrap')),
                 self.geotech_notes, W.HBox([self.handoff_refresh, self.handoff_export], layout=W.Layout(flex_flow='row wrap')),
                 self.handoff_status, self.handoff_download_output, self.handoff])])
@@ -353,7 +364,7 @@ class PileReviewPanel:
             self.toe.value = 'Unknown'
             self.trial_result = None; self.trial_summary.value = ''; self.trial_output.children = []
             self.run_trials.disabled = True
-            self.trial_status.value = '<p>Paste trial rows above to enable Evaluate trials. The XML contains one solved pile length.</p>'
+            self.trial_status.value = '<p>Paste trial rows above to enable Calculate minimum tip. The XML contains one solved pile length.</p>'
             self.combo.options = [(c+' · '+s, c) for c, s in review['combinations'].items()]
             self.combo.value = next((c for c, s in review['combinations'].items() if s == 'SERVICE-I'), next(iter(review['combinations'])))
             self.piles.set_piles(review['piles'])
@@ -494,6 +505,7 @@ class PileReviewPanel:
         if self.busy:
             return
         self.trial_result = None
+        self.accepted.value = ''
         self.handoff_status.value = ''
         self.trial_output.children = []
         old_figure = self.figures.pop('trials', None)
@@ -501,12 +513,13 @@ class PileReviewPanel:
             old_figure.close()
         self.trial_summary.value = ''
         self.run_trials.disabled = not bool(self.trial_text.value.strip())
-        self.trial_status.value = ('<p>Trial inputs changed. Click Evaluate trials to update the plots and results.</p>'
-            if self.trial_text.value.strip() else '<p>Paste trial rows above to enable Evaluate trials. The XML contains one solved pile length.</p>')
+        self.trial_status.value = ('<p>Trial inputs changed. Click Calculate minimum tip to update the plots and results.</p>'
+            if self.trial_text.value.strip() else '<p>Paste trial rows above to enable Calculate minimum tip. The XML contains one solved pile length.</p>')
         self.refresh_handoff()
 
     def _trials(self, _=None):
         self.trial_result = None
+        self.accepted.value = ''
         self.trial_error = ''
         self.trial_output.children = []
         self.trial_summary.value = ''
@@ -514,15 +527,21 @@ class PileReviewPanel:
         self.trial_status.value = notice_html('EVALUATING TRIALS', 'Reading the pasted table…', 'pending')
         try:
             rows = parse_trials(self.trial_text.value)
-            accepted = self.optional(self.accepted)
-            require(accepted is None or bool(self.trial_basis.value.strip()), 'Record the basis for the selected critical embedment.')
             result = evaluate_trials(rows, self.tolerance.value, self.extension.value, self.fraction.value,
-                self.extension_mode.value, self.optional(self.reference), self.optional(self.cutoff), accepted, self.rounding.value)
+                self.extension_mode.value, self.optional(self.reference), self.optional(self.cutoff), round_feet=self.rounding.value)
             self.trial_result = result
-            p = result['proposed_embedment_ft']
-            self.trial_summary.value = '<p><b>Displacement-change candidate: '+(f'{p:.3f} ft' if p is not None else 'Unavailable')+'</b>. '
-            self.trial_summary.value += 'The candidate follows the stable sequence from the deepest trial. Select the engineering critical embedment to calculate an adopted tip; a small Δ alone does not establish stability.</p>'
-            self.trial_summary.value += table([dict(item=k, value=result[k]) for k in ['accepted_embedment_ft','extension_ft','required_embedment_ft','tip_elevation_ft','total_length_ft']], [('item','Result'), ('value','ft')])
+            p = result['critical_embedment_ft']
+            self.accepted.value = f'{p:.3f}' if p is not None else ''
+            self.trial_summary.value = '<p><b>Calculated critical embedment, Lcrit: '+(f'{p:.3f} ft' if p is not None else 'Unavailable')+'</b>.</p>'
+            self.trial_summary.value += '<p>'+html.escape(result['basis'])+'</p>'
+            labels = [('critical_embedment_ft','Critical embedment, Lcrit'), ('extension_ft','Added embedment'),
+                      ('required_embedment_ft','Required embedment'), ('tip_elevation_ft','Minimum tip elevation'),
+                      ('total_length_ft','Total pile length')]
+            self.trial_summary.value += table([dict(item=label, value=result[k]) for k, label in labels], [('item','Result'), ('value','ft')])
+            if p is None:
+                self.trial_summary.value += '<p>No qualifying adjacent trial pair in one or more series. Add or check trial results; no minimum tip is calculated.</p>'
+            elif self.optional(self.reference) is None:
+                self.trial_summary.value += '<p>Enter design ground / scour elevation to calculate minimum tip elevation.</p>'
             if any(r['converged'] is None for r in rows):
                 self.trial_summary.value += '<p>Some trial convergence results are not supplied.</p>'
             if any(r['dc'] is None for r in rows):
@@ -531,7 +550,10 @@ class PileReviewPanel:
             if len(intervals)>1:
                 self.trial_summary.value += '<p>Trial spacing varies. The Δ criterion depends on that spacing; inspect the plotted intervals.</p>'
             self.trial_summary.value += table(result['rows'], [('series','Series'), ('trial','Trial'), ('combination','Combo'), ('pile','Pile'),
-                ('embedment_ft','Embedment (ft)'), ('interval_ft','Step (ft)'), ('delta_in','Δ (in)'), ('stable_from_deepest','Stable sequence')])
+                ('embedment_ft','Embedment (ft)'), ('next_embedment_ft','Next shallower (ft)'), ('delta_in','Δ (in)'),
+                ('passes','Δ ≤ limit'), ('critical_trial','Governing Lcrit'), ('dc','D/C'), ('converged','Converged')])
+            if any(not r['analysis_ok'] for r in result['rows'] if r['critical_trial']):
+                self.trial_summary.value += '<p>The governing trial pair has a supplied D/C or convergence failure. Lcrit follows the displacement-change formula; these checks are reported separately.</p>'
             self._figure('trials', self.trial_output, trial_figure(result, self.tolerance.value))
             self.trial_status.value = notice_html('TRIALS EVALUATED',
                 f'{len(rows)} rows · {len(result["groups"])} series. Plots and calculations are below.', 'success')
@@ -554,7 +576,7 @@ class PileReviewPanel:
                 ground=self.optional(self.reference), cutoff=self.optional(self.cutoff),
                 basis=self.trial_basis.value, notes=self.geotech_notes.value)
         if require_selected:
-            require(selected is not None, 'Select a critical embedment and enter its basis in Minimum tip, then update selected results.')
+            require(selected is not None, 'No critical embedment meets the displacement-change limit. Check the trials in Minimum tip.')
             require(self.trial_result['tip_elevation_ft'] is not None,
                     'Enter the design ground / scour elevation in Minimum tip to calculate minimum tip elevation.')
             require(all(r['short_tons'] is not None for r in loads), 'No strength / extreme-event pile-head loads are available.')
@@ -563,7 +585,7 @@ class PileReviewPanel:
     def handoff_html(self, data):
         result = self.trial_result
         tip = result['tip_elevation_ft'] if data['selected'] else None
-        tip_text = f'{tip:.3f} ft' if tip is not None else 'Not selected — complete Minimum tip and click Update selected results.'
+        tip_text = f'{tip:.3f} ft' if tip is not None else 'Not calculated — enter trial results and ground / scour elevation in Minimum tip.'
         markup = '<h3>Geotechnical handoff</h3>'+table(data['section'], [('item','Pile information'), ('value','Value')], scroll=False)
         markup += '<p><b>Minimum tip elevation: '+html.escape(tip_text)+'</b></p>'
         if tip is not None:
@@ -577,8 +599,11 @@ class PileReviewPanel:
             markup += '<p><b>Project notes:</b> '+html.escape(self.geotech_notes.value).replace('\n','<br>')+'</p>'
         markup += '<p>Section / loads: '+html.escape(self.review['filename'])+'.</p>'
         if data['selected']:
-            markup += '<p>Tip selection: '+html.escape(self.trial_label.value.strip() or 'Pasted trials — source not named')+'. '
-            markup += html.escape(self.trial_basis.value)+'</p>'
+            markup += '<p>Tip calculation: '+html.escape(self.trial_label.value.strip() or 'Pasted trials — source not named')+'. '
+            markup += html.escape(result['basis'])
+            if self.trial_basis.value.strip():
+                markup += ' '+html.escape(self.trial_basis.value)
+            markup += '</p>'
         return markup
 
     def refresh_handoff(self):
@@ -636,13 +661,17 @@ class PileReviewPanel:
 
     def snapshot(self):
         controls = ['combo','piles','cutoff','use_override','material','circular','trial_text','trial_label','tolerance','extension','fraction',
-                    'extension_mode','reference','accepted','rounding','trial_basis','nominal_weight','nominal_diameter','toe','geotech_notes']
-        return dict(schema_version=2, review=deepcopy(self.review), controls={k:getattr(self,k).value for k in controls},
+                    'extension_mode','reference','rounding','trial_basis','nominal_weight','nominal_diameter','toe','geotech_notes']
+        return dict(schema_version=3, review=deepcopy(self.review), controls={k:getattr(self,k).value for k in controls},
                     override={k:w.value for k,w in self.override.items()})
 
     def restore(self, state):
-        require(state.get('schema_version') in (1, 2) and isinstance(state.get('review'), dict), 'Unsupported pile review file.')
+        require(state.get('schema_version') in (1, 2, 3) and isinstance(state.get('review'), dict), 'Unsupported pile review file.')
         state = deepcopy(state)
+        # Old manually entered depths are outputs under the automatic workflow.
+        # Recompute them from saved trials instead of adopting a stale value.
+        if state['schema_version'] in (1, 2):
+            state.get('controls', {}).pop('accepted', None)
         old_pile = state.get('controls', {}).pop('pile', None)
         if old_pile is not None:
             require(old_pile == 'auto' or old_pile in state['review']['piles'], 'Unknown selected pile.')

@@ -1,4 +1,4 @@
-"""Stress comparisons and a concise handoff of engineering-selected trials."""
+"""Stress comparisons and a concise handoff of calculated minimum-tip results."""
 import math
 from .pile_review import elastic_profile, pile_heads, require
 
@@ -99,20 +99,20 @@ def geotech_section_and_loads(review, nominal_weight=None, nominal_diameter=None
 
 def selected_trial_handoff(review, result, *, source='', ground=None, cutoff=None, basis='', notes=''):
     """Only exact trial matches supply analysis results; never interpolate them."""
-    require(result is not None, 'Evaluate trials in Minimum tip first, or click Update selected results here.')
+    require(result is not None, 'Calculate the trials in Minimum tip first, or click Update selected results here.')
     accepted = result['accepted_embedment_ft']
-    require(accepted is not None, 'Select a critical embedment and enter its basis in Minimum tip first.')
-    require(bool(basis.strip()), 'Record the basis for the selected critical embedment.')
+    require(accepted is not None, 'No critical embedment meets the displacement-change limit. Check the trial results.')
     selection = [dict(item=label, value=value) for label, value in [
         ('Trial source', source.strip() or 'Pasted trials — source not named'),
-        ('Selected critical embedment (ft)', accepted),
+        ('Calculated critical embedment (ft)', accepted),
         ('Added embedment (ft)', result['extension_ft']),
         ('Required embedment below design ground / scour (ft)', result['required_embedment_ft']),
         ('Design ground / scour elevation (ft)', ground),
         ('Cutoff elevation (ft)', cutoff),
         ('Adopted minimum tip elevation (ft)', result['tip_elevation_ft']),
         ('Selected total pile length (ft)', result['total_length_ft']),
-        ('Selection basis', basis.strip())]]
+        ('Calculation basis', result['basis']),
+        ('Project notes for trial study', basis.strip() or 'None')]]
     trials = []
     for group in result['groups']:
         match = next((r for r in result['rows'] if r['series'] == group['series'] and
@@ -135,8 +135,10 @@ def selected_trial_handoff(review, result, *, source='', ground=None, cutoff=Non
                 flags.append('D/C not supplied')
             elif match['dc'] > 1:
                 flags.append('D/C exceeds 1')
-            if not match['stable_from_deepest']:
-                flags.append('Outside displacement-change candidate sequence')
+            if not match['passes']:
+                flags.append('Displacement-change limit not met at this trial')
+            if not match.get('analysis_ok', True) and match['converged'] is not False and (match['dc'] is None or match['dc'] <= 1):
+                flags.append('Next shallower trial has a supplied D/C / convergence failure')
             row['status'] = '; '.join(flags) or 'Within supplied trial criteria'
         trials.append(row)
     return dict(selection=selection, trials=trials, notes=notes.strip(),

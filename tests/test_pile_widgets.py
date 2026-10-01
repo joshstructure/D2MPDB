@@ -42,8 +42,7 @@ class PileWidgetTests(unittest.TestCase):
         self.panel._trials()
         self.assertAlmostEqual(self.panel.trial_result['proposed_embedment_ft'],32.74)
         self.assertIsNone(self.panel.trial_result['tip_elevation_ft'])
-        self.panel.accepted.value='32.74';self.panel.reference.value='24.5'
-        self.panel.trial_basis.value='Reviewed workbook trial selection'
+        self.panel.reference.value='24.5'
         self.panel._trials()
         self.assertAlmostEqual(self.panel.trial_result['tip_elevation_ft'],-13.24)
         self.panel.extension.value=4
@@ -57,8 +56,7 @@ class PileWidgetTests(unittest.TestCase):
         self.panel.set_review(self.review)
         self.panel.combo.value='2';self.panel.piles.value=('1','3')
         self.panel.trial_text.value=(FIXTURES/'pile_minimum_tip_reference.csv').read_text()
-        self.panel.accepted.value='32.74';self.panel.reference.value='24.5'
-        self.panel.trial_basis.value='Engineer-selected example'
+        self.panel.reference.value='24.5'
         state=self.panel.snapshot()
         self.panel.set_review(self.review)
         self.panel.restore(state)
@@ -71,7 +69,7 @@ class PileWidgetTests(unittest.TestCase):
             self.assertEqual(self.panel.piles.value,('1','3'))
             self.assertIn('uplift_kip',(Path(folder)/'pile_heads.csv').read_text(encoding='utf-8-sig'))
             self.assertIn('Geotechnical handoff',(Path(folder)/'pile_review.html').read_text(encoding='utf-8'))
-            self.panel.accepted.value='bad'
+            self.panel.reference.value='bad'
             with self.assertRaises(ValueError):self.panel.save_bundle(Path(folder)/'invalid')
 
     def test_cap_type_and_cap_changes_do_not_change_pile_forces(self):
