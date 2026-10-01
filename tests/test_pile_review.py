@@ -6,7 +6,7 @@ import math
 import unittest
 from lxml import etree as E
 from pier_cap.pile_review import (import_pile_xml, elastic_profile, pile_heads,
-                                 governors, parse_trials, evaluate_trials)
+                                 governors, parse_trials, evaluate_trials, section_from_xml)
 
 FIXTURES = Path(__file__).parent/'fixtures'
 XML = FIXTURES/'fbmp_610_piles.xml'
@@ -73,6 +73,25 @@ class PileResultTests(unittest.TestCase):
         r = elastic_profile(review,section)[0]
         self.assertAlmostEqual(r['stress_max_ksi'],3.4)
         self.assertAlmostEqual(r['stress_min_ksi'],-13.4)
+
+    def test_symmetric_strand_rows_use_group_orientation_and_exported_prestress(self):
+        root = E.parse(str(FIXTURES/'fbmp_end_bent_section.xml')).getroot()
+        section = section_from_xml(root)
+        self.assertEqual(section['issues'], [])
+        points = [p for g in section['groups'] for p in g['points']]
+        expected = {(x,y) for y in (-5.5,5.5) for x in (-5.5,-2.75,0,2.75,5.5)}
+        expected |= {(x,y) for x in (-5.5,5.5) for y in (-2.75,0,2.75)}
+        self.assertEqual(set(points), expected)
+        self.assertEqual(len(points), 16)
+        # XML prints .15 in² per strand; never silently replace it by .153.
+        self.assertEqual(section['prestress_kip'], 16*.15*140)
+        profile = elastic_profile({'forces':[dict(axial_tension_kip=-100,m2=30,m3=40,v2=0,v3=0)]}, section)[0]
+        self.assertAlmostEqual(profile['stress_max_ksi'], (-100-336)/324 + 12*70/972)
+        # A genuinely eccentric or uninterpretable arrangement still needs review.
+        root.find('STEEL_GROUPS/BAR_GROUP/PRESTRESS').text = '100'
+        self.assertIn('Eccentric', ';'.join(section_from_xml(root)['issues']))
+        root.find('STEEL_GROUPS/BAR_GROUP/ORIENTATION').text = '99'
+        self.assertIn('Unknown prestressing', ';'.join(section_from_xml(root)['issues']))
 
     def test_sixty_concrete_stress_stations_match_workbook(self):
         fixture=json.loads((FIXTURES/'pile_workbook_reference.json').read_text())

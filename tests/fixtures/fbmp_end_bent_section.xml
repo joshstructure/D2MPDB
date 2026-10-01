@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='utf-8'?>
+<SEGMENT number="1" pileset="1">
+					<DIMENSIONS type="Rectangular" embed_hpile="no">
+						<WIDTH units="in">18.00</WIDTH>
+						<DEPTH units="in">18.00</DEPTH>
+						<TW units="in">0.00000</TW>
+						<TF units="in">0.00000</TF>
+						<ORIENTATION>0</ORIENTATION>
+						<VOID_TYPE>None</VOID_TYPE>
+						<VOID_DIA units="in">0.00000</VOID_DIA>
+						<VOID_WIDTH units="in">0.00000</VOID_WIDTH>
+						<VOID_DEPTH units="in">0.00000</VOID_DEPTH>
+						<HWIDTH units="in">0.00000</HWIDTH>
+						<HDEPTH units="in">0.00000</HDEPTH>
+						<HTW units="in">0.00000</HTW>
+						<HTF units="in">0.00000</HTF>
+						<HORIENTATION>0</HORIENTATION>
+						<SHELL_THICK units="in">0.00000</SHELL_THICK>
+						<SHEAR_STEEL>spiral</SHEAR_STEEL>
+						<LENGTH units="in">1080.00</LENGTH>
+					</DIMENSIONS>
+					<MATERIAL_PROPS>
+						<FPC units="ksi">6.00</FPC>
+						<E_CONCRETE units="ksi">4557.00</E_CONCRETE>
+						<FY_MILD units="ksi">0.00000</FY_MILD>
+						<E_STEEL units="ksi">0.00000</E_STEEL>
+						<FY_PS units="ksi">270.00</FY_PS>
+						<E_PS units="ksi">28500.00</E_PS>
+						<FY_HPILE units="ksi">0.00000</FY_HPILE>
+						<E_HPILE units="ksi">0.00000</E_HPILE>
+						<FY_SHELL units="ksi">0.00000</FY_SHELL>
+						<E_SHELL units="ksi">0.00000</E_SHELL>
+					</MATERIAL_PROPS>
+					<GROSS_SECTION_PROPS>
+						<AREA units="in^2">324.00</AREA>
+						<EMODULUS units="ksi">4557.00</EMODULUS>
+						<INERTIA2 units="in^4">8748.00</INERTIA2>
+						<INERTIA3 units="in^4">8748.00</INERTIA3>
+						<SHEAR_MODULUS units="ksi">1898.75</SHEAR_MODULUS>
+						<TORSIONAL_INERTIA units="in^4">14780.60</TORSIONAL_INERTIA>
+						<UNIT_WEIGHT units="k/in^3">0.86806E-04</UNIT_WEIGHT>
+					</GROSS_SECTION_PROPS>
+					<STEEL_GROUPS>
+						<BAR_GROUP number="1">
+							<BARS>5</BARS>
+							<LAYER_DIA units="in">0.00000</LAYER_DIA>
+							<COORD_2 units="in">5.50</COORD_2>
+							<COORD_3 units="in">5.50</COORD_3>
+							<BAR_AREA units="in^2">0.15</BAR_AREA>
+							<PRESTRESS units="ksi">140.00</PRESTRESS>
+							<ORIENTATION>2</ORIENTATION>
+						</BAR_GROUP>
+						<BAR_GROUP number="2">
+							<BARS>5</BARS>
+							<LAYER_DIA units="in">0.00000</LAYER_DIA>
+							<COORD_2 units="in">5.50</COORD_2>
+							<COORD_3 units="in">-5.50</COORD_3>
+							<BAR_AREA units="in^2">0.15</BAR_AREA>
+							<PRESTRESS units="ksi">140.00</PRESTRESS>
+							<ORIENTATION>2</ORIENTATION>
+						</BAR_GROUP>
+						<BAR_GROUP number="3">
+							<BARS>3</BARS>
+							<LAYER_DIA units="in">0.00000</LAYER_DIA>
+							<COORD_2 units="in">5.50</COORD_2>
+							<COORD_3 units="in">2.75</COORD_3>
+							<BAR_AREA units="in^2">0.15</BAR_AREA>
+							<PRESTRESS units="ksi">140.00</PRESTRESS>
+							<ORIENTATION>3</ORIENTATION>
+						</BAR_GROUP>
+						<BAR_GROUP number="4">
+							<BARS>3</BARS>
+							<LAYER_DIA units="in">0.00000</LAYER_DIA>
+							<COORD_2 units="in">-5.50</COORD_2>
+							<COORD_3 units="in">2.75</COORD_3>
+							<BAR_AREA units="in^2">0.15</BAR_AREA>
+							<PRESTRESS units="ksi">140.00</PRESTRESS>
+							<ORIENTATION>3</ORIENTATION>
+						</BAR_GROUP>
+					</STEEL_GROUPS>
+					<STRESS-STRAIN_CURVES>
+						<CONCRETE>
+							<POINT number="1">
+								<STRESS units="ksi">-4.33</STRESS>
+								<STRAIN>-0.38000E-02</STRAIN>
+							</POINT>
+							<POINT number="2">
+								<STRESS units="ksi">-5.10</STRESS>
+								<STRAIN>-0.22383E-02</STRAIN>
+							</POINT>
+							<POINT number="3">
+								<STRESS units="ksi">-5.00</STRESS>
+								<STRAIN>-0.19186E-02</STRAIN>
+							</POINT>
+							<POINT number="4">
+								<STRESS units="ksi">-4.68</STRESS>
+								<STRAIN>-0.15988E-02</STRAIN>
+							</POINT>
+							<POINT number="5">
+								<STRESS units="ksi">-4.16</STRESS>
+								<STRAIN>-0.12790E-02</STRAIN>
+							</POINT>
+							<POINT number="6">
+								<STRESS units="ksi">-3.43</STRESS>
+								<STRAIN>-0.95928E-03</STRAIN>
+							</POINT>
+							<POINT number="7">
+								<STRESS units="ksi">-2.50</STRESS>
+								<STRAIN>-0.63952E-03</STRAIN>
+							</POINT>
+							<POINT number="8">
+								<STRESS units="ksi">-1.46</STRESS>
+								<STRAIN>-0.31976E-03</STRAIN>
+							</POINT>
+							<POINT number="9">
+								<STRESS units="ksi">0.00000</STRESS>
+								<STRAIN>0.00000</STRAIN>
+							</POINT>
+							<POINT number="10">
+								<STRESS units="ksi">0.60</STRESS>
+								<STRAIN>0.13158E-03</STRAIN>
+							</POINT>
+							<POINT number="11">
+								<STRESS units="ksi">0.30</STRESS>
+								<STRAIN>0.30000E-03</STRAIN>
+							</POINT>
+							<POINT number="12">
+								<STRESS units="ksi">0.00000</STRESS>
+								<STRAIN>0.20000E-02</STRAIN>
+							</POINT>
+							<POINT number="13">
+								<STRESS units="ksi">0.00000</STRESS>
+								<STRAIN>0.50000E-02</STRAIN>
+							</POINT>
+						</CONCRETE>
+						<PRESTRESSING_STEEL>
+							<POINT number="1">
+								<STRESS units="ksi">-267.84</STRESS>
+								<STRAIN>-0.03</STRAIN>
+							</POINT>
+							<POINT number="2">
+								<STRESS units="ksi">-267.84</STRESS>
+								<STRAIN>-0.03</STRAIN>
+							</POINT>
+							<POINT number="3">
+								<STRESS units="ksi">-266.67</STRESS>
+								<STRAIN>-0.02</STRAIN>
+							</POINT>
+							<POINT number="4">
+								<STRESS units="ksi">-262.59</STRESS>
+								<STRAIN>-0.01</STRAIN>
+							</POINT>
+							<POINT number="5">
+								<STRESS units="ksi">-257.70</STRESS>
+								<STRAIN>-0.01</STRAIN>
+							</POINT>
+							<POINT number="6">
+								<STRESS units="ksi">-245.10</STRESS>
+								<STRAIN>-0.86000E-02</STRAIN>
+							</POINT>
+							<POINT number="7">
+								<STRESS units="ksi">0.00000</STRESS>
+								<STRAIN>0.00000</STRAIN>
+							</POINT>
+							<POINT number="8">
+								<STRESS units="ksi">245.10</STRESS>
+								<STRAIN>0.86000E-02</STRAIN>
+							</POINT>
+							<POINT number="9">
+								<STRESS units="ksi">257.70</STRESS>
+								<STRAIN>0.01</STRAIN>
+							</POINT>
+							<POINT number="10">
+								<STRESS units="ksi">262.59</STRESS>
+								<STRAIN>0.01</STRAIN>
+							</POINT>
+							<POINT number="11">
+								<STRESS units="ksi">266.67</STRESS>
+								<STRAIN>0.02</STRAIN>
+							</POINT>
+							<POINT number="12">
+								<STRESS units="ksi">267.84</STRESS>
+								<STRAIN>0.03</STRAIN>
+							</POINT>
+							<POINT number="13">
+								<STRESS units="ksi">267.84</STRESS>
+								<STRAIN>0.03</STRAIN>
+							</POINT>
+						</PRESTRESSING_STEEL>
+					</STRESS-STRAIN_CURVES>
+				</SEGMENT>
+			

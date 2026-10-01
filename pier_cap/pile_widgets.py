@@ -8,6 +8,7 @@ import json
 import math
 import zipfile
 import ipywidgets as W
+from traitlets import Tuple
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from .pile_review import (import_pile_xml, elastic_profile, pile_heads, governors,
@@ -29,35 +30,83 @@ def table(rows, columns):
             + ''.join('<tr>'+''.join('<td style="padding:6px;border-bottom:1px solid #dde3e8">'+value(r.get(key))+'</td>' for key, _ in columns)+'</tr>' for r in rows)+'</table></div>')
 
 
-def profile_figure(review, combo, pile, cutoff=None, section=None):
-    rows = [r for r in review['forces'] if r['combination'] == combo and r['pile'] == pile]
-    disp = [r for r in review['displacements'] if r['combination'] == combo and r['pile'] == pile]
-    stress = [r for r in elastic_profile(review, section) if r['combination'] == combo and r['pile'] == pile]
+class PileSelector(W.VBox):
+    """Ordinary checkbox widgets: select multiple piles without modifier keys."""
+    value = Tuple()
+
+    def __init__(self):
+        self.checks = {}
+        self.syncing = False
+        super().__init__()
+        self.observe(self._sync, names='value')
+
+    def set_piles(self, piles):
+        for control in self.checks.values():
+            control.close()
+        self.checks = {p: W.Checkbox(description='Pile '+p, indent=False,
+                                   layout=W.Layout(width='110px')) for p in piles}
+        for control in self.checks.values():
+            control.observe(self._checked, names='value')
+        self.children = [W.HBox(list(self.checks.values()), layout=W.Layout(flex_flow='row wrap'))]
+        self.value = tuple(piles)
+        self._sync()
+
+    def _checked(self, _):
+        if not self.syncing:
+            self.value = tuple(p for p, w in self.checks.items() if w.value)
+
+    def _sync(self, _=None):
+        self.syncing = True
+        try:
+            for p, control in self.checks.items():
+                control.value = p in self.value
+        finally:
+            self.syncing = False
+
+
+def profile_figure(review, combo, piles, cutoff=None, section=None):
+    piles = [piles] if isinstance(piles, str) else list(piles)
+    require(all(p in review['piles'] for p in piles), 'Unknown pile selection.')
+    stress_rows = elastic_profile(review, section)
     fig = make_subplots(rows=1, cols=5, shared_yaxes=True, horizontal_spacing=.045,
                         subplot_titles=['Displacement', 'Moment magnitude', 'Axial', 'FBMP D/C', 'Elastic stress'])
-    def add(data, key, name, color, col, absolute=False):
+    def add(data, key, name, color, col, pile, dash='solid', absolute=False):
         y = [r['distance_ft'] if cutoff is None else cutoff-r['vertical_ft'] for r in data]
+        name = 'Pile '+pile+' · '+name
         fig.add_trace(go.Scatter(x=[abs(r[key]) if absolute and r[key] is not None else r[key] for r in data], y=y,
-            name=name, mode='lines+markers', marker=dict(size=3), line=dict(color=color, width=2),
+            name='Pile '+pile, legendgroup=pile, showlegend=col == 1 and dash == 'solid',
+            mode='lines+markers', marker=dict(size=3), line=dict(color=color, width=2, dash=dash),
             customdata=[[r.get('element', ''), r.get('side', ''), r['node']] for r in data],
             hovertemplate=name+' = %{x:.4g}<br>Vertical position = %{y:.3f} ft<br>Element %{customdata[0]} %{customdata[1]} · node %{customdata[2]}<extra></extra>'), row=1, col=col)
-    add(disp, 'dx', 'DX', '#2769a6', 1)
-    add(disp, 'dy', 'DY', '#d27b24', 1)
-    add(rows, 'm2', '|M2|', '#4379b0', 2, True)
-    add(rows, 'm3', '|M3|', '#8c5bb0', 2, True)
-    add(rows, 'axial_tension_kip', 'Axial tension +', '#427e68', 3)
-    add(rows, 'model_dc', 'Model D/C', '#635ba7', 4)
+    colors = ['#2769a6', '#d27b24', '#427e68', '#8c5bb0', '#c14456', '#00868b', '#766239', '#b14796']
+    for pile in piles:
+        color = colors[list(review['piles']).index(pile) % len(colors)]
+        rows = [r for r in review['forces'] if r['combination'] == combo and r['pile'] == pile]
+        disp = [r for r in review['displacements'] if r['combination'] == combo and r['pile'] == pile]
+        stress = [r for r in stress_rows if r['combination'] == combo and r['pile'] == pile]
+        add(disp, 'dx', 'DX', color, 1, pile)
+        add(disp, 'dy', 'DY', color, 1, pile, 'dash')
+        add(rows, 'm2', '|M2|', color, 2, pile, absolute=True)
+        add(rows, 'm3', '|M3|', color, 2, pile, 'dash', absolute=True)
+        add(rows, 'axial_tension_kip', 'Axial tension +', color, 3, pile)
+        add(rows, 'model_dc', 'Model D/C', color, 4, pile)
+        if stress:
+            add(stress, 'stress_max_ksi', 'Maximum stress', color, 5, pile)
+            add(stress, 'stress_min_ksi', 'Minimum stress', color, 5, pile, 'dash')
     fig.add_vline(x=1, line_dash='dash', line_color='#ba4343', row=1, col=4)
-    if stress:
-        add(stress, 'stress_max_ksi', 'Maximum stress', '#b74949', 5)
-        add(stress, 'stress_min_ksi', 'Minimum stress', '#246396', 5)
+    if not piles:
+        fig.add_annotation(text='Select one or more piles above to draw the profiles.', x=.5, y=.5,
+                           xref='paper', yref='paper', showarrow=False)
+    elif not stress_rows:
+        fig.add_annotation(text='Stress unavailable<br>See section explanation below', x=0, y=.5,
+                           xref='x5 domain', yref='y5 domain', showarrow=False, font=dict(color='#a43e36'))
     fig.update_yaxes(autorange='reversed' if cutoff is None else True)
     fig.update_yaxes(title_text='Distance along pile (ft)' if cutoff is None else 'Project elevation (ft)', row=1, col=1)
     for col, unit in enumerate(['in', 'kip-ft', 'kip', 'ratio', 'ksi'], 1):
         fig.update_xaxes(title_text=unit, zeroline=True, zerolinecolor='#aab5c0', row=1, col=col)
     fig.update_layout(template='plotly_white', height=610, margin=dict(t=95, l=65, r=20, b=90),
-        title=dict(text=f'Pile {html.escape(pile)} · combination {html.escape(combo)} · {html.escape(review["combinations"][combo])}', font=dict(size=17)),
-        legend=dict(orientation='h', y=-.16), font=dict(family='Arial', size=11))
+        title=dict(text=f'{"Pile " if len(piles)==1 else "Piles "}{html.escape(", ".join(piles))} · combination {html.escape(combo)} · {html.escape(review["combinations"][combo])}', font=dict(size=17)),
+        legend=dict(orientation='h', y=-.16, groupclick='togglegroup'), font=dict(family='Arial', size=11))
     return fig
 
 
@@ -88,11 +137,10 @@ def section_figure(section):
         fig.add_annotation(x=0,y=0,text='Section outline unavailable for this shape',showarrow=False)
     points=[]
     for g in s.get('groups',[]):
-        if g['bars']==1:
-            points.append((g['c2'],g['c3']))
+        points.extend(g.get('points', [(g['c2'],g['c3'])] if g['bars']==1 else []))
     if points:
         fig.add_trace(go.Scatter(x=[p[0] for p in points],y=[p[1] for p in points],mode='markers',
-            name='Individual reinforcement coordinates',marker=dict(size=8,color='#354253')))
+            name='Reinforcement coordinates',marker=dict(size=8,color='#354253')))
     fig.update_xaxes(title_text='Local 2 (in)',range=[-w*.7,w*.7])
     fig.update_yaxes(title_text='Local 3 (in)',range=[-h*.7,h*.7],scaleanchor='x',scaleratio=1)
     fig.update_layout(template='plotly_white',height=350,title='Analyzed pile section · printed dimensions',
@@ -132,14 +180,20 @@ class PileReviewPanel:
         self.upload_output = W.Output(layout=W.Layout(display='none'))
         self.message = W.HTML()
         self.combo = W.Dropdown(description='Combination', layout=W.Layout(width='350px'))
-        self.pile = W.Dropdown(description='Pile', layout=W.Layout(width='230px'))
+        self.piles = PileSelector()
+        self.all_piles = W.Button(description='All piles', layout=W.Layout(width='110px'))
+        self.no_piles = W.Button(description='Clear', layout=W.Layout(width='90px'))
+        self.governing_pile = W.Button(description='Highest model D/C', layout=W.Layout(width='180px'))
+        self.all_piles.on_click(lambda _: setattr(self.piles, 'value', tuple(self.review['piles']) if self.review else ()))
+        self.no_piles.on_click(lambda _: setattr(self.piles, 'value', ()))
+        self.governing_pile.on_click(lambda _: setattr(self.piles, 'value', (self.selected_pile(),)) if self.review else None)
         self.cutoff = W.Text(description='Cutoff EL (ft)', placeholder='Optional project datum', layout=W.Layout(width='320px'))
         self.export = W.Button(description='Download pile review', icon='download', disabled=True, layout=W.Layout(width='200px'))
         self.export.on_click(self._export)
-        self.upload = self._uploader('Review pile XML', '.xml,.XML', self._import)
+        self.upload = self._uploader('Separate pile XML', '.xml,.XML', self._import)
         self.restore_upload = self._uploader('Load pile review', '.json', self._restore_file)
         self.combo.observe(self._selection_changed, names='value')
-        self.pile.observe(self._selection_changed, names='value')
+        self.piles.observe(self._selection_changed, names='value')
         self.cutoff.observe(self._selection_changed, names='value')
         self.use_override = W.Checkbox(value=False, description='Use confirmed manual elastic properties', indent=False)
         self.material = W.Dropdown(options=['steel', 'concrete'], description='Material')
@@ -172,7 +226,8 @@ class PileReviewPanel:
         self.geotech_notes = W.Textarea(description='Project notes',placeholder='Scour, downdrag, driving / test criteria, resistance basis',layout=W.Layout(width='100%',height='90px'))
         for w in [self.nominal_weight,self.nominal_diameter,self.toe,self.geotech_notes]:
             w.observe(lambda _: self.refresh_handoff() if not self.busy else None,names='value')
-        self.run_trials = W.Button(description='Evaluate trials', button_style='primary', icon='line-chart')
+        self.run_trials = W.Button(description='Evaluate trials', button_style='primary', icon='line-chart', disabled=True)
+        self.trial_status = W.HTML('<p>Paste trial rows above to enable Evaluate trials. The XML contains one solved pile length.</p>')
         self.run_trials.on_click(self._trials)
         for w in [self.trial_text, self.trial_label, self.tolerance, self.extension, self.fraction, self.extension_mode,
                   self.reference, self.accepted, self.rounding, self.trial_basis]:
@@ -185,18 +240,24 @@ class PileReviewPanel:
             W.HBox([self.trial_upload, self.trial_template]), self.trial_label, self.trial_text,
             W.HBox([self.tolerance, self.extension, self.fraction], layout=W.Layout(flex_flow='row wrap')),
             self.extension_mode, W.HBox([self.reference, self.accepted], layout=W.Layout(flex_flow='row wrap')),
-            self.trial_basis, self.rounding, self.run_trials, self.trial_summary, self.trial_output])
+            self.trial_basis, self.rounding, self.run_trials, self.trial_status, self.trial_output, self.trial_summary])
         self.tabs = Tab(children=[W.VBox([self.summary, self.head_output]),
-            W.VBox([W.HBox([self.combo, self.pile], layout=W.Layout(flex_flow='row wrap')), self.profile_output, self.reported]),
+            W.VBox([self.combo, W.HTML('<b>Compare piles</b> · check any combination of piles; colors stay the same on every plot.'),
+                self.piles, W.HBox([self.all_piles, self.no_piles, self.governing_pile]),
+                W.HTML('<p>Solid: DX / |M2| / maximum stress. Dashed: DY / |M3| / minimum stress. '
+                       'Click a pile in the legend to hide or show its curves on every plot.</p>'), self.profile_output, self.reported]),
             W.VBox([self.section_output, self.properties, manual]), trials,
             W.VBox([W.HTML('<p>Optional project information for the geotechnical handoff. These entries do not change analyzed stiffness or forces.</p>'),
                 W.HBox([self.nominal_weight,self.nominal_diameter,self.toe],layout=W.Layout(flex_flow='row wrap')),self.geotech_notes,self.handoff])])
         for i, name in enumerate(['Pile loads', 'Profiles and stresses', 'Pile section', 'Minimum tip', 'Geotech handoff']):
             self.tabs.set_title(i, name)
+        separate = Accordion(children=[W.VBox([W.HTML('<p>The shared XML upload above supplies both sections. '
+            'Use this only to review a different pile analysis.</p>'), self.upload])])
+        separate.set_title(0, 'Optional separate pile analysis'); separate.selected_index = None
         self.ui = W.VBox([W.HTML('<h2 style="color:#213649">1. FBMP pile review</h2><p>Review pile behavior and the minimum-tip study before selecting cap reinforcement.</p>'),
-            W.HBox([self.upload, self.restore_upload, self.export], layout=W.Layout(flex_flow='row wrap')),
+            W.HBox([self.restore_upload, self.export], layout=W.Layout(flex_flow='row wrap')), separate,
             self.upload_output, self.notice, self.source_match, self.cutoff, self.tabs, self.message])
-        self.notice.value = notice_html('PILE RESULTS NOT LOADED', 'Applying a complete cap XML also loads its pile review. Use Review pile XML for an independent foundation run.')
+        self.notice.value = notice_html('PILE RESULTS NOT LOADED', 'Upload FBMP XML once above to load pile results and preview cap inputs.')
         self.app.case_listeners.append(self.refresh_match)
 
     def _uploader(self, label, accept, callback):
@@ -252,10 +313,11 @@ class PileReviewPanel:
             self.nominal_weight.value = self.nominal_diameter.value = self.geotech_notes.value = ''
             self.toe.value = 'Unknown'
             self.trial_result = None; self.trial_summary.value = ''; self.trial_output.children = []
+            self.run_trials.disabled = True
+            self.trial_status.value = '<p>Paste trial rows above to enable Evaluate trials. The XML contains one solved pile length.</p>'
             self.combo.options = [(c+' · '+s, c) for c, s in review['combinations'].items()]
             self.combo.value = next((c for c, s in review['combinations'].items() if s == 'SERVICE-I'), next(iter(review['combinations'])))
-            self.pile.options = [('Auto · highest model D/C', 'auto')]+[('Pile '+p, p) for p in review['piles']]
-            self.pile.value = 'auto'
+            self.piles.set_piles(review['piles'])
             s = review['section']
             self.material.value = s['kind']; self.circular.value = s['circular']
             for k, w in self.override.items():
@@ -279,7 +341,7 @@ class PileReviewPanel:
             'fc_ksi':'Concrete strength (ksi)','prestress_kip':'Prestress force (kip)','circular':'Circular bending model',
             'tensile_peak_ksi':'Model concrete tensile peak (ksi)','modeled_weight_lb_ft':'Modeled weight (lb/ft)','source':'Property source'}
         self.properties.value = table([dict(property=labels[k], value=v) for k, v in s.items() if k in labels], [('property','Property'), ('value','Model value')])
-        self.properties.value += '<p>'+html.escape('; '.join(s['issues']) or 'Elastic section properties are available.')+'</p><p>Stress uses exported A and I; printed dimensions may be rounded. Only individually specified reinforcement coordinates are drawn.</p>'
+        self.properties.value += '<p>'+html.escape('; '.join(s['issues']) or 'Elastic section properties are available.')+'</p><p>Stress uses exported A and I; printed dimensions may be rounded. Individual bars and supported rectangular bar groups are drawn from the XML.</p>'
         self.message.value = ''
         self.refresh_match(); self.refresh_profiles(); self.refresh_handoff()
 
@@ -332,8 +394,7 @@ class PileReviewPanel:
         self.refresh_handoff()
 
     def selected_pile(self):
-        if self.pile.value != 'auto':
-            return self.pile.value
+        """Governing pile for the shortcut and migration of older saved reviews."""
         rows = [r for r in self.review['forces'] if r['combination'] == self.combo.value and r['model_dc'] is not None]
         return max(rows, key=lambda r:r['model_dc'])['pile'] if rows else next(iter(self.review['piles']))
 
@@ -342,14 +403,14 @@ class PileReviewPanel:
             return
         try:
             s = self.section()
-            self._figure('profiles', self.profile_output, profile_figure(self.review, self.combo.value, self.selected_pile(), self.optional(self.cutoff), s))
+            self._figure('profiles', self.profile_output, profile_figure(self.review, self.combo.value, self.piles.value, self.optional(self.cutoff), s))
             rows = [r for r in self.review['reported_stresses'] if r['combination'] == self.combo.value]
             self.reported.value = '<h4>FBMP reported material stress extrema · all piles in selected combination</h4>'+table(rows,
                 [('description','Material / extreme'), ('stress_ksi','Stress (ksi)'), ('pile','Pile'), ('segment','Segment')])
-            prof = [r for r in elastic_profile(self.review, s) if r['combination'] == self.combo.value and r['pile'] == self.selected_pile()]
+            prof = [r for r in elastic_profile(self.review, s) if r['combination'] == self.combo.value and r['pile'] in self.piles.value]
             if prof:
                 high, low = max(r['stress_max_ksi'] for r in prof), min(r['stress_min_ksi'] for r in prof)
-                self.reported.value += f'<p>Selected pile elastic range: <b>{low:.4g} to {high:.4g} ksi</b>. Tension positive. '
+                self.reported.value += f'<p>Selected piles elastic range: <b>{low:.4g} to {high:.4g} ksi</b>. Tension positive. '
                 if s['kind'] == 'steel':
                     ratios = [r['elastic_yield_ratio'] for r in prof if r['elastic_yield_ratio'] is not None]
                     self.reported.value += f'Peak elastic stress/Fy: <b>{max(ratios):.4g}</b>.' if ratios else 'Steel Fy is unavailable.'
@@ -357,7 +418,7 @@ class PileReviewPanel:
                     self.reported.value += 'Gross-section elastic screen with concentric prestress. '
                     self.reported.value += f'Model concrete tensile peak: {s["tensile_peak_ksi"]:.4g} ksi.' if s.get('tensile_peak_ksi') else 'Model tensile peak unavailable.'
                 self.reported.value += '</p>'
-            else:
+            elif self.piles.value:
                 self.reported.value += '<p>Elastic stress profile unavailable: '+html.escape('; '.join(s.get('issues', [])))+'</p>'
             self.reported.value += ('<p>Both element ends are retained. Moment plots show magnitudes; original signed values are in the export. '
                 'Elastic stress/Fy is not an LRFD pile resistance check. XML does not report OUT cracking warnings or convergence status.</p>')
@@ -377,12 +438,21 @@ class PileReviewPanel:
             return
         self.trial_result = None
         self.trial_output.children = []
-        self.trial_summary.value = '<p>Trial inputs changed. Evaluate trials to update the result.</p>' if self.trial_text.value.strip() else ''
+        old_figure = self.figures.pop('trials', None)
+        if old_figure is not None:
+            old_figure.close()
+        self.trial_summary.value = ''
+        self.run_trials.disabled = not bool(self.trial_text.value.strip())
+        self.trial_status.value = ('<p>Trial inputs changed. Click Evaluate trials to update the plots and results.</p>'
+            if self.trial_text.value.strip() else '<p>Paste trial rows above to enable Evaluate trials. The XML contains one solved pile length.</p>')
         self.refresh_handoff()
 
     def _trials(self, _=None):
         self.trial_result = None
         self.trial_output.children = []
+        self.trial_summary.value = ''
+        self.run_trials.disabled = True
+        self.trial_status.value = notice_html('EVALUATING TRIALS', 'Reading the pasted table…', 'pending')
         try:
             rows = parse_trials(self.trial_text.value)
             accepted = self.optional(self.accepted)
@@ -404,8 +474,14 @@ class PileReviewPanel:
             self.trial_summary.value += table(result['rows'], [('series','Series'), ('trial','Trial'), ('combination','Combo'), ('pile','Pile'),
                 ('embedment_ft','Embedment (ft)'), ('interval_ft','Step (ft)'), ('delta_in','Δ (in)'), ('stable_from_deepest','Stable sequence')])
             self._figure('trials', self.trial_output, trial_figure(result, self.tolerance.value))
+            self.trial_status.value = notice_html('TRIALS EVALUATED',
+                f'{len(rows)} rows · {len(result["groups"])} series. Plots and calculations are below.', 'success')
         except Exception as exc:
-            self.trial_summary.value = notice_html('TRIALS NEED REVIEW', html.escape(str(exc)), 'error')
+            self.trial_result = None
+            self.trial_summary.value = ''
+            self.trial_status.value = notice_html('TRIALS NEED REVIEW', html.escape(str(exc)), 'error')
+        finally:
+            self.run_trials.disabled = not bool(self.trial_text.value.strip())
         self.refresh_handoff()
 
     def refresh_handoff(self):
@@ -441,21 +517,28 @@ class PileReviewPanel:
             'Modeled weight is not assumed to be nominal pile weight.</p>')
 
     def snapshot(self):
-        controls = ['combo','pile','cutoff','use_override','material','circular','trial_text','trial_label','tolerance','extension','fraction',
+        controls = ['combo','piles','cutoff','use_override','material','circular','trial_text','trial_label','tolerance','extension','fraction',
                     'extension_mode','reference','accepted','rounding','trial_basis','nominal_weight','nominal_diameter','toe','geotech_notes']
-        return dict(schema_version=1, review=deepcopy(self.review), controls={k:getattr(self,k).value for k in controls},
+        return dict(schema_version=2, review=deepcopy(self.review), controls={k:getattr(self,k).value for k in controls},
                     override={k:w.value for k,w in self.override.items()})
 
     def restore(self, state):
-        require(state.get('schema_version') == 1 and isinstance(state.get('review'), dict), 'Unsupported pile review file.')
+        require(state.get('schema_version') in (1, 2) and isinstance(state.get('review'), dict), 'Unsupported pile review file.')
+        state = deepcopy(state)
+        old_pile = state.get('controls', {}).pop('pile', None)
+        if old_pile is not None:
+            require(old_pile == 'auto' or old_pile in state['review']['piles'], 'Unknown selected pile.')
+            state['controls']['piles'] = list(state['review']['piles']) if old_pile == 'auto' else [old_pile]
         validate_saved_review(state['review'])
         allowed=self.snapshot()['controls']
         for k,value in state.get('controls',{}).items():
             require(k in allowed, 'Unknown pile review control.')
             expected=type(allowed[k])
-            if k in ('combo','pile'):
-                options=state['review']['combinations'] if k=='combo' else {'auto':None,**state['review']['piles']}
-                require(value in options, f'Unknown selected {k}.')
+            if k == 'combo':
+                require(value in state['review']['combinations'], 'Unknown selected combination.')
+            elif k == 'piles':
+                require(isinstance(value, (list, tuple)) and all(isinstance(p, str) and p in state['review']['piles'] for p in value)
+                        and len(set(value)) == len(value), 'Unknown or duplicate selected piles.')
             elif expected in (float,int):
                 require(type(value) in (float,int) and math.isfinite(value), f'Invalid {k}.')
             else:
@@ -467,7 +550,7 @@ class PileReviewPanel:
         try:
             for k, value in state.get('controls', {}).items():
                 require(k in self.snapshot()['controls'], 'Unknown pile review control.')
-                getattr(self, k).value = value
+                getattr(self, k).value = tuple(value) if k == 'piles' else value
             for k, value in state.get('override', {}).items():
                 self.override[k].value = value
         finally:
@@ -505,7 +588,7 @@ class PileReviewPanel:
             (folder/name).write_text(csv_text(rows), encoding='utf-8-sig')
         parts = [head_figure(self.review).to_html(full_html=False, include_plotlyjs=True),
                  section_figure(self.review['section']).to_html(full_html=False, include_plotlyjs=False),
-                 profile_figure(self.review, self.combo.value, self.selected_pile(), self.optional(self.cutoff), s).to_html(full_html=False, include_plotlyjs=False)]
+                 profile_figure(self.review, self.combo.value, self.piles.value, self.optional(self.cutoff), s).to_html(full_html=False, include_plotlyjs=False)]
         if self.trial_result:
             parts.append(trial_figure(self.trial_result, self.tolerance.value).to_html(full_html=False, include_plotlyjs=False))
         (folder/'pile_review.html').write_text('<!doctype html><html><head><meta charset="utf-8"><title>Pile review</title></head><body style="font-family:Arial">'

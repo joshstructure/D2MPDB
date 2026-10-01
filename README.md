@@ -16,7 +16,9 @@ The reported FBMP summary and original XML element-end envelopes remain separate
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Cap_and_Pile_Design.ipynb)
 
-The notebook now handles the shared sectional workflow for **pier and end-bent caps on a single pile row**. A new **FBMP pile review** section sits above the reinforcement controls and includes pile-head compression/uplift, governing results by limit state, displacement/force/D/C/stress profiles, section properties, minimum-tip trial review and a geotechnical handoff. The same applied XML supplies the cap and pile results; an independent pile-only XML upload is also available. Minimum-tip trial history is entered separately. See [Pile review](PILE_REVIEW.md) for the workbook mapping, supported geometry, calculation basis, downloads and limitations.
+The notebook now handles the shared sectional workflow for **pier and end-bent caps on a single pile row**. A new **FBMP pile review** section sits above the reinforcement controls and includes pile-head compression/uplift, governing results by limit state, displacement/force/D/C/stress profiles, section properties, minimum-tip trial review and a geotechnical handoff. Upload the XML once: pile results load immediately, and the cap preview is applied with **Apply XML inputs**. Check multiple piles to overlay their profiles with consistent colors. An optional separate pile upload is available for a different run. Minimum-tip trial history is pasted separately, with or without Excel column headings; the button reports success or a specific input error. See [Pile review](PILE_REVIEW.md) for the workbook mapping, supported geometry, calculation basis, downloads and limitations.
+
+When supporting code changes, run `python scripts/build_portable_notebook.py` to refresh the portable notebook before pushing.
 
 **Repository-backed edition:**
 

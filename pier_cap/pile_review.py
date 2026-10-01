@@ -10,6 +10,7 @@ import hashlib
 import io
 import json
 import math
+import re
 from lxml import etree as ET
 
 FIELDS = {'axial': ('AXIAL', 'kip'), 'v2': ('SHEAR-2', 'kip'),
@@ -75,7 +76,7 @@ def section_from_xml(segment):
         issues.append('Circular width and depth differ.')
     groups = []
     pp = 0.0
-    eccentric = False
+    prestress_moments = [0.0, 0.0]
     for g in segment.findall('STEEL_GROUPS/BAR_GROUP'):
         bars = number(g, 'BARS')
         a = number(g, 'BAR_AREA', 'in^2')
@@ -83,14 +84,32 @@ def section_from_xml(segment):
         c2, c3 = number(g, 'COORD_2', 'in'), number(g, 'COORD_3', 'in')
         layer = number(g, 'LAYER_DIA', 'in', True) or 0
         pp += bars*a*prestress
-        groups.append(dict(bars=bars, area=a, prestress=prestress, c2=c2, c3=c3, layer=layer))
-        if bars != 1 and prestress and layer == 0:
-            eccentric = True  # Group orientation is not an individual strand coordinate.
-    if pp:
-        eccentric = eccentric or abs(sum(g['bars']*g['area']*g['prestress']*g['c2'] for g in groups if not g['layer'])) > .001
-        eccentric = eccentric or abs(sum(g['bars']*g['area']*g['prestress']*g['c3'] for g in groups if not g['layer'])) > .001
-    if eccentric:
-        issues.append('Eccentric/grouped prestress: confirm a concentric approximation or use a separate section analysis.')
+        orientation = number(g, 'ORIENTATION', optional=True)
+        require(bars >= 1 and bars.is_integer(), 'Bar-group count must be a positive integer.')
+        # FBMP uses starting coordinates, not the centroid of a rectangular
+        # group: bars run uniformly to the opposite corner along axis 2 or 3.
+        # See the FBMP manual, Full Cross Section / Custom Allocation Methods.
+        points = []
+        centroid = None
+        if bars == 1 and layer == 0:
+            points = [(c2, c3)]
+            centroid = (c2, c3)
+        elif layer > 0 and bars > 1:
+            centroid = (0.0, 0.0)  # Uniform circular layer, centered on section.
+        elif layer == 0 and bars > 1 and shape in ('Rectangular', 'Circular') and orientation in (2, 3):
+            points = [(c2*(1-2*i/(bars-1)), c3) if orientation == 2 else
+                      (c2, c3*(1-2*i/(bars-1))) for i in range(int(bars))]
+            centroid = (0.0, c3) if orientation == 2 else (c2, 0.0)
+        if prestress:
+            if centroid is None:
+                issues.append('Unknown prestressing group arrangement: supply verified elastic properties.')
+            else:
+                for axis in (0, 1):
+                    prestress_moments[axis] += bars*a*prestress*centroid[axis]
+        groups.append(dict(bars=bars, area=a, prestress=prestress, c2=c2, c3=c3, layer=layer,
+                           orientation=orientation, points=points))
+    if any(abs(moment) > .001 for moment in prestress_moments):
+        issues.append('Eccentric prestress: confirm a concentric approximation or use a separate section analysis.')
     if not concrete and (fy is None or fy <= 0):
         issues.append('Steel Fy is unavailable; stress/Fy cannot be calculated.')
     curve = [number(p, 'STRESS', 'ksi') for p in segment.findall('STRESS-STRAIN_CURVES/CONCRETE/POINT')]
@@ -267,13 +286,17 @@ def governors(review):
 
 def parse_trials(text):
     """Header CSV/TSV or the workbook's five pasted columns; no row caps."""
-    lines = [line.strip() for line in text.strip().splitlines() if line.strip()]
+    lines = [line for line in text.strip('\r\n ').splitlines() if line.strip()]
     require(lines, 'Paste trial rows first.')
     delimiter = '\t' if '\t' in lines[0] else ','
     rows = list(csv.reader(lines, delimiter=delimiter))
-    header = [c.strip().lower() for c in rows[0]]
+    aliases = {'trial': 'trial', 'trialnumber': 'trial', 'loadcomb': 'combination', 'loadcombination': 'combination',
+               'combination': 'combination', 'pile': 'pile', 'pilenumber': 'pile',
+               'embedmentft': 'embedment_ft', 'displacementin': 'displacement_in'}
+    header = [aliases.get(re.sub(r'[^a-z0-9]', '', c.lower()), c.strip().lower()) for c in rows[0]]
     has_header = 'embedment_ft' in header
     if has_header:
+        require(len(set(header)) == len(header), 'Trial table contains duplicate column headers.')
         require({'trial', 'combination', 'pile', 'embedment_ft', 'displacement_in'} <= set(header),
                 'Required headers: trial, combination, pile, embedment_ft, displacement_in.')
         data = [dict(zip(header, r)) for r in rows[1:]]
@@ -282,14 +305,17 @@ def parse_trials(text):
         require(all(len(r) == 5 for r in rows), 'Paste five columns: trial, combination, pile, embedment_ft, displacement_in; or use the CSV template.')
         data = [dict(zip(['trial', 'combination', 'pile', 'embedment_ft', 'displacement_in'], r)) for r in rows]
     result = []
-    for row in data:
+    for row_index, row in enumerate(data, 2 if has_header else 1):
         for key in ('trial', 'combination', 'pile'):
             require(bool(row.get(key, '').strip()), f'Missing trial {key}.')
         parsed = {k: row[k].strip() for k in ('trial', 'combination', 'pile')}
         parsed.update(series=row.get('series', 'Envelope').strip() or 'Envelope')
         for key in ('embedment_ft', 'displacement_in', 'dc', 'dx_in', 'dy_in', 'iterations', 'tolerance_kip'):
             value = row.get(key, '').strip()
-            parsed[key] = float(value) if value else None
+            try:
+                parsed[key] = float(value) if value else None
+            except ValueError:
+                raise ValueError(f'Row {row_index}: {key} must be a number; found {value!r}. Paste the five trial columns, with or without their headers.') from None
             require(parsed[key] is None or math.isfinite(parsed[key]), f'Trial {key} must be finite.')
         require(parsed['embedment_ft'] is not None and parsed['embedment_ft'] > 0 and parsed['displacement_in'] is not None,
                 'Each trial needs positive embedment and a displacement.')
