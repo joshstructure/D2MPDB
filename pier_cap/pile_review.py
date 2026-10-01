@@ -112,13 +112,17 @@ def section_from_xml(segment):
         issues.append('Eccentric prestress: confirm a concentric approximation or use a separate section analysis.')
     if not concrete and (fy is None or fy <= 0):
         issues.append('Steel Fy is unavailable; stress/Fy cannot be calculated.')
-    curve = [number(p, 'STRESS', 'ksi') for p in segment.findall('STRESS-STRAIN_CURVES/CONCRETE/POINT')]
+    curve = [(number(p, 'STRESS', 'ksi'), number(p, 'STRAIN'))
+             for p in segment.findall('STRESS-STRAIN_CURVES/CONCRETE/POINT')]
+    tensile = [(stress, strain) for stress, strain in curve if stress > 0 and strain > 0]
+    peak = max((stress for stress, strain in tensile), default=None)
+    peak_strain = min((strain for stress, strain in tensile if stress == peak), default=None)
     weight = number(props, 'UNIT_WEIGHT', 'k/in^3', True)
     return dict(kind=kind, shape=shape, width_in=width, depth_in=depth, shell_in=shell,
                 area_in2=area, i2_in4=i2, i3_in4=i3, s2_in3=i2/(depth/2),
                 s3_in3=i3/(width/2), modulus_ksi=modulus, fy_ksi=fy if not concrete else None,
                 fc_ksi=fc, prestress_kip=pp, circular=circular, groups=groups,
-                tensile_peak_ksi=max(curve) if curve and max(curve) > 0 else None,
+                tensile_peak_ksi=peak, tensile_peak_strain=peak_strain,
                 modeled_weight_lb_ft=weight*area*12000 if weight is not None else None,
                 issues=issues, source='XML exported gross section properties')
 
@@ -208,11 +212,14 @@ def import_pile_xml(source, filename=None):
         for item in step.findall('PILE_STRAINS/MAX_ITEM'):
             name = item.get('item', '')
             if 'strain in ' in name:
-                pending = name
-            elif name == 'corresponding stress' and pending:
+                pending = item
+            elif name == 'corresponding stress' and pending is not None:
                 pile = item.findtext('PILE')
                 if pile in coords:  # Pile 0 denotes an absent material, not zero stress.
-                    reported.append(dict(common, pile=pile, description=pending.replace('strain', 'stress'),
+                    require(pending.findtext('PILE') == pile and pending.findtext('SEGMENT') == item.findtext('SEGMENT'),
+                            'Reported strain and corresponding stress refer to different locations.')
+                    reported.append(dict(common, pile=pile, description=pending.get('item').replace('strain', 'stress'),
+                        strain=number(pending, 'ITEM_VALUE', 'in/in'),
                         stress_ksi=number(item, 'ITEM_VALUE', 'ksi'), segment=item.findtext('SEGMENT')))
                 pending = None
     require(seen == set(definitions), 'Some defined combinations have no pile results.')
@@ -421,4 +428,14 @@ def validate_saved_review(review):
     for key in ('area_in2','i2_in4','i3_in4','s2_in3','s3_in3','width_in','depth_in','modulus_ksi'):
         value=section.get(key)
         require(type(value) in (int,float) and math.isfinite(value) and value>0, f'Invalid section {key}.')
+    for key in ('tensile_peak_ksi', 'tensile_peak_strain'):
+        value = section.get(key)
+        require(value is None or (type(value) in (int, float) and math.isfinite(value) and value > 0), f'Invalid section {key}.')
+    for row in review['reported_stresses']:
+        require(row.get('combination') in review['combinations'] and row.get('pile') in review['piles'],
+                'Reported stress has an unknown pile or combination.')
+        for key in ('stress_ksi', 'strain'):
+            value = row.get(key)
+            require((key == 'strain' and value is None) or
+                    (type(value) in (int, float) and math.isfinite(value)), f'Invalid reported {key}.')
     return review

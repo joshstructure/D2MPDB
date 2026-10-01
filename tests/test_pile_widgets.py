@@ -117,7 +117,8 @@ class PileWidgetTests(unittest.TestCase):
         self.assertEqual(len(stress), 8)
         self.assertTrue(all(len(t.x) > 0 for t in stress))
         self.assertEqual(len(self.panel.figures['section'].data[0].x), 16)
-        self.assertNotIn('unavailable', self.panel.reported.value.lower().split('XML does')[0])
+        self.assertNotIn('Elastic stress profile unavailable', self.panel.reported.value)
+        self.assertIn('Model tensile peak (ksi)', self.panel.reported.value)
 
     def test_trial_button_paste_headers_success_failure_and_stale_result(self):
         self.assertTrue(self.panel.run_trials.disabled)

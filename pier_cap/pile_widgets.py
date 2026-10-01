@@ -16,16 +16,18 @@ from .pile_review import (import_pile_xml, elastic_profile, pile_heads, governor
 from .source_status import upload_entries, notice_html
 from .widget_compat import Tab, Accordion
 from .model import analysis_match
+from .pile_reporting import (stress_limits, elastic_stress_checks, reported_cracking_check,
+                             selected_trial_handoff, geotech_section_and_loads)
 
 
-def table(rows, columns):
+def table(rows, columns, scroll=True):
     def value(v):
         if v is None:
             return 'Unavailable'
         if isinstance(v, float):
             return f'{v:,.4g}'
         return html.escape(str(v))
-    return ('<div style="overflow:auto;max-height:380px"><table style="border-collapse:collapse;width:100%">'
+    return ('<div'+(' style="overflow:auto;max-height:380px"' if scroll else '')+'><table style="border-collapse:collapse;width:100%">'
             '<tr>'+''.join('<th style="text-align:left;padding:7px;background:#eaf1f6">'+html.escape(label)+'</th>' for _, label in columns)+'</tr>'
             + ''.join('<tr>'+''.join('<td style="padding:6px;border-bottom:1px solid #dde3e8">'+value(r.get(key))+'</td>' for key, _ in columns)+'</tr>' for r in rows)+'</table></div>')
 
@@ -64,6 +66,24 @@ class PileSelector(W.VBox):
             self.syncing = False
 
 
+def profile_limit_lines(fig, col, limits):
+    """Keep limits visible even when every demand is much smaller."""
+    axis = 'x' + (str(col) if col > 1 else '')
+    values = [float(v) for t in fig.data if t.xaxis == axis for v in t.x if v is not None]
+    for i, (value, label) in enumerate(limits):
+        fig.add_vline(x=value, row=1, col=col, line_dash='dot', line_color='#ad3535',
+                      exclude_empty_subplots=False)
+        fig.add_annotation(x=value, y=.04 if i == 0 else .52, xref=axis, yref=f'y{col} domain',
+                           text=f'{label} = {value:g}'+(' ksi' if col == 5 else ''), textangle=-90,
+                           showarrow=False, xanchor='right', yanchor='bottom',
+                           font=dict(color='#922626', size=10), bgcolor='rgba(255,255,255,.85)')
+        values.append(value)
+    if values:
+        lo, hi = min(values), max(values)
+        pad = max((hi-lo)*.08, .02)
+        fig.update_xaxes(range=[lo-pad, hi+pad], row=1, col=col)
+
+
 def profile_figure(review, combo, piles, cutoff=None, section=None):
     piles = [piles] if isinstance(piles, str) else list(piles)
     require(all(p in review['piles'] for p in piles), 'Unknown pile selection.')
@@ -93,7 +113,9 @@ def profile_figure(review, combo, piles, cutoff=None, section=None):
         if stress:
             add(stress, 'stress_max_ksi', 'Maximum stress', color, 5, pile)
             add(stress, 'stress_min_ksi', 'Minimum stress', color, 5, pile, 'dash')
-    fig.add_vline(x=1, line_dash='dash', line_color='#ba4343', row=1, col=4)
+    profile_limit_lines(fig, 4, [(1, 'D/C limit')])
+    if stress_rows:
+        profile_limit_lines(fig, 5, stress_limits(section or review['section']))
     if not piles:
         fig.add_annotation(text='Select one or more piles above to draw the profiles.', x=.5, y=.5,
                            xref='paper', yref='paper', showarrow=False)
@@ -157,8 +179,12 @@ def trial_figure(result, tolerance):
                 name=group['series'], legendgroup=group['series'], showlegend=col == 1, mode='lines+markers',
                 customdata=[[r['trial'], r['combination'], r['pile'], str(r['converged'])] for r in data],
                 hovertemplate='Embedment %{x:.3f} ft<br>Value %{y:.4g}<br>Trial %{customdata[0]} · combo %{customdata[1]} · pile %{customdata[2]}<br>Converged: %{customdata[3]}<extra></extra>'), row=1, col=col)
-    fig.add_hline(y=tolerance, row=1, col=2, line_dash='dash', line_color='#b74949')
-    fig.add_hline(y=1, row=1, col=3, line_dash='dash', line_color='#b74949')
+    for col, limit, label in [(2, tolerance, f'Δ limit = {tolerance:g} in'), (3, 1, 'D/C limit = 1')]:
+        fig.add_hline(y=limit, row=1, col=col, line_dash='dot', line_color='#b74949',
+                      annotation_text=label, annotation_position='top right', exclude_empty_subplots=False)
+        values = [0, limit] + [v for t in fig.data if t.yaxis == f'y{col}' for v in t.y if v is not None]
+        pad = max((max(values)-min(values))*.12, .01)
+        fig.update_yaxes(range=[min(values)-pad, max(values)+pad], row=1, col=col)
     for col in (1, 2, 3):
         fig.update_xaxes(title_text='Embedment (ft)', row=1, col=col)
     fig.update_yaxes(title_text='in', row=1, col=1)
@@ -173,10 +199,19 @@ class PileReviewPanel:
         self.app, self.review, self.figures = app, None, {}
         self.busy = False
         self.trial_result = None
+        self.trial_error = ''
         self.notice, self.summary, self.source_match = W.HTML(), W.HTML(), W.HTML()
         self.head_output, self.profile_output, self.trial_output = W.VBox(), W.VBox(), W.VBox()
         self.section_output = W.VBox()
         self.reported, self.properties, self.handoff, self.trial_summary = W.HTML(), W.HTML(), W.HTML(), W.HTML()
+        self.handoff_status = W.HTML()
+        self.download_output, self.handoff_download_output = W.Output(), W.Output()
+        self.handoff_refresh = W.Button(description='Update selected results', icon='refresh', disabled=True,
+                                        layout=W.Layout(width='210px'))
+        self.handoff_export = W.Button(description='Download geotech handoff', icon='download', disabled=True,
+                                       layout=W.Layout(width='230px'))
+        self.handoff_refresh.on_click(self._update_handoff)
+        self.handoff_export.on_click(self._export_handoff)
         self.upload_output = W.Output(layout=W.Layout(display='none'))
         self.message = W.HTML()
         self.combo = W.Dropdown(description='Combination', layout=W.Layout(width='350px'))
@@ -247,8 +282,11 @@ class PileReviewPanel:
                 W.HTML('<p>Solid: DX / |M2| / maximum stress. Dashed: DY / |M3| / minimum stress. '
                        'Click a pile in the legend to hide or show its curves on every plot.</p>'), self.profile_output, self.reported]),
             W.VBox([self.section_output, self.properties, manual]), trials,
-            W.VBox([W.HTML('<p>Optional project information for the geotechnical handoff. These entries do not change analyzed stiffness or forces.</p>'),
-                W.HBox([self.nominal_weight,self.nominal_diameter,self.toe],layout=W.Layout(flex_flow='row wrap')),self.geotech_notes,self.handoff])])
+            W.VBox([W.HTML('<p>Share pile section information, minimum tip elevation and maximum factored loads in short tons. '
+                'Choose the critical embedment and record its basis in Minimum tip, then update or download here.</p>'),
+                W.HBox([self.nominal_weight,self.nominal_diameter,self.toe],layout=W.Layout(flex_flow='row wrap')),
+                self.geotech_notes, W.HBox([self.handoff_refresh, self.handoff_export], layout=W.Layout(flex_flow='row wrap')),
+                self.handoff_status, self.handoff_download_output, self.handoff])])
         for i, name in enumerate(['Pile loads', 'Profiles and stresses', 'Pile section', 'Minimum tip', 'Geotech handoff']):
             self.tabs.set_title(i, name)
         separate = Accordion(children=[W.VBox([W.HTML('<p>The shared XML upload above supplies both sections. '
@@ -256,8 +294,9 @@ class PileReviewPanel:
         separate.set_title(0, 'Optional separate pile analysis'); separate.selected_index = None
         self.ui = W.VBox([W.HTML('<h2 style="color:#213649">1. FBMP pile review</h2><p>Review pile behavior and the minimum-tip study before selecting cap reinforcement.</p>'),
             W.HBox([self.restore_upload, self.export], layout=W.Layout(flex_flow='row wrap')), separate,
-            self.upload_output, self.notice, self.source_match, self.cutoff, self.tabs, self.message])
+            self.upload_output, self.notice, self.source_match, self.cutoff, self.tabs, self.message, self.download_output])
         self.notice.value = notice_html('PILE RESULTS NOT LOADED', 'Upload FBMP XML once above to load pile results and preview cap inputs.')
+        self.refresh_handoff()
         self.app.case_listeners.append(self.refresh_match)
 
     def _uploader(self, label, accept, callback):
@@ -325,6 +364,8 @@ class PileReviewPanel:
         finally:
             self.busy = False
         self.export.disabled = False
+        self.handoff_refresh.disabled = self.handoff_export.disabled = False
+        self.handoff_status.value = ''
         self.notice.value = notice_html('PILE RESULTS LOADED',
             '<b>'+html.escape(review['filename'])+'</b> · '+str(len(review['piles']))+' piles · '+str(len(review['combinations']))+
             ' combinations · '+str(len(review['forces']))+' element ends. SHA256 '+review['sha256'][:12])
@@ -339,7 +380,8 @@ class PileReviewPanel:
             'shell_in':'Shell thickness (in)','area_in2':'Area (in²)','i2_in4':'I2 (in⁴)','i3_in4':'I3 (in⁴)',
             's2_in3':'S2 (in³)','s3_in3':'S3 (in³)','modulus_ksi':'Elastic modulus (ksi)','fy_ksi':'Steel Fy (ksi)',
             'fc_ksi':'Concrete strength (ksi)','prestress_kip':'Prestress force (kip)','circular':'Circular bending model',
-            'tensile_peak_ksi':'Model concrete tensile peak (ksi)','modeled_weight_lb_ft':'Modeled weight (lb/ft)','source':'Property source'}
+            'tensile_peak_ksi':'Model concrete tensile peak (ksi)','tensile_peak_strain':'Model cracking-peak strain (in/in)',
+            'modeled_weight_lb_ft':'Modeled weight (lb/ft)','source':'Property source'}
         self.properties.value = table([dict(property=labels[k], value=v) for k, v in s.items() if k in labels], [('property','Property'), ('value','Model value')])
         self.properties.value += '<p>'+html.escape('; '.join(s['issues']) or 'Elastic section properties are available.')+'</p><p>Stress uses exported A and I; printed dimensions may be rounded. Individual bars and supported rectangular bar groups are drawn from the XML.</p>'
         self.message.value = ''
@@ -405,7 +447,22 @@ class PileReviewPanel:
             s = self.section()
             self._figure('profiles', self.profile_output, profile_figure(self.review, self.combo.value, self.piles.value, self.optional(self.cutoff), s))
             rows = [r for r in self.review['reported_stresses'] if r['combination'] == self.combo.value]
-            self.reported.value = '<h4>FBMP reported material stress extrema · all piles in selected combination</h4>'+table(rows,
+            concrete = s['kind'] == 'concrete'
+            self.reported.value = '<h4>'+('Cracking screen' if concrete else 'Elastic yield screen')+' · selected piles</h4>'
+            self.reported.value += table(elastic_stress_checks(self.review, self.combo.value, self.piles.value, s),
+                [('pile','Pile'), ('stress_min_ksi','Min stress (ksi)'), ('stress_max_ksi','Max stress (ksi)'),
+                 ('limit_ksi','Model tensile peak (ksi)' if concrete else 'Fy (ksi)'), ('ratio','Tension / peak' if concrete else '|Stress| / Fy'),
+                 ('result','Comparison'), ('node','Governing node')])
+            if self.review['section']['kind'] == 'concrete':
+                self.reported.value += '<h4>FBMP concrete cracking-strain check · all piles in selected combination</h4>'
+                self.reported.value += table(reported_cracking_check(self.review, self.combo.value),
+                    [('pile','Governing pile'), ('segment','Segment'), ('strain','Max strain (in/in)'),
+                     ('peak_strain','Model peak strain (in/in)'), ('stress_ksi','Corresponding stress (ksi)'), ('result','Comparison')])
+                self.reported.value += ('<p>The red model cracking line comes from the XML concrete tensile curve. '
+                    'Zero marks decompression. The elastic screen uses gross section properties; the FBMP strain comparison uses the original nonlinear run, '
+                    'including any tension softening. Neither comparison establishes prior cracking history. '
+                    '<b>Code service stress allowables are not supplied by this XML and are not evaluated here.</b></p>')
+            self.reported.value += '<h4>FBMP reported material stress extrema · all piles in selected combination</h4>'+table(rows,
                 [('description','Material / extreme'), ('stress_ksi','Stress (ksi)'), ('pile','Pile'), ('segment','Segment')])
             prof = [r for r in elastic_profile(self.review, s) if r['combination'] == self.combo.value and r['pile'] in self.piles.value]
             if prof:
@@ -437,6 +494,7 @@ class PileReviewPanel:
         if self.busy:
             return
         self.trial_result = None
+        self.handoff_status.value = ''
         self.trial_output.children = []
         old_figure = self.figures.pop('trials', None)
         if old_figure is not None:
@@ -449,6 +507,7 @@ class PileReviewPanel:
 
     def _trials(self, _=None):
         self.trial_result = None
+        self.trial_error = ''
         self.trial_output.children = []
         self.trial_summary.value = ''
         self.run_trials.disabled = True
@@ -478,43 +537,102 @@ class PileReviewPanel:
                 f'{len(rows)} rows · {len(result["groups"])} series. Plots and calculations are below.', 'success')
         except Exception as exc:
             self.trial_result = None
+            self.trial_error = str(exc)
             self.trial_summary.value = ''
             self.trial_status.value = notice_html('TRIALS NEED REVIEW', html.escape(str(exc)), 'error')
         finally:
             self.run_trials.disabled = not bool(self.trial_text.value.strip())
         self.refresh_handoff()
 
+    def handoff_data(self, require_selected=False):
+        require(self.review is not None, 'Load pile results first.')
+        section, loads = geotech_section_and_loads(self.review, self.optional(self.nominal_weight),
+                                                   self.optional(self.nominal_diameter), self.toe.value)
+        selected = None
+        if self.trial_result and self.trial_result['accepted_embedment_ft'] is not None:
+            selected = selected_trial_handoff(self.review, self.trial_result, source=self.trial_label.value,
+                ground=self.optional(self.reference), cutoff=self.optional(self.cutoff),
+                basis=self.trial_basis.value, notes=self.geotech_notes.value)
+        if require_selected:
+            require(selected is not None, 'Select a critical embedment and enter its basis in Minimum tip, then update selected results.')
+            require(self.trial_result['tip_elevation_ft'] is not None,
+                    'Enter the design ground / scour elevation in Minimum tip to calculate minimum tip elevation.')
+            require(all(r['short_tons'] is not None for r in loads), 'No strength / extreme-event pile-head loads are available.')
+        return dict(section=section, loads=loads, selected=selected)
+
+    def handoff_html(self, data):
+        result = self.trial_result
+        tip = result['tip_elevation_ft'] if data['selected'] else None
+        tip_text = f'{tip:.3f} ft' if tip is not None else 'Not selected — complete Minimum tip and click Update selected results.'
+        markup = '<h3>Geotechnical handoff</h3>'+table(data['section'], [('item','Pile information'), ('value','Value')], scroll=False)
+        markup += '<p><b>Minimum tip elevation: '+html.escape(tip_text)+'</b></p>'
+        if tip is not None:
+            markup += f'<p>Design ground / scour elevation: {self.optional(self.reference):.3f} ft. '
+            if result['total_length_ft'] is not None:
+                markup += f'Selected total length: {result["total_length_ft"]:.3f} ft; cutoff elevation: {self.optional(self.cutoff):.3f} ft. '
+            markup += '</p>'
+        markup += table(data['loads'], [('load','Pile-head design load'), ('short_tons','Short tons'), ('governing','Governing record')], scroll=False)
+        markup += '<p>1 short ton = 2 kip. Envelopes use strength and extreme-event combinations from the loaded XML; service and fatigue combinations are excluded.</p>'
+        if self.geotech_notes.value.strip():
+            markup += '<p><b>Project notes:</b> '+html.escape(self.geotech_notes.value).replace('\n','<br>')+'</p>'
+        markup += '<p>Section / loads: '+html.escape(self.review['filename'])+'.</p>'
+        if data['selected']:
+            markup += '<p>Tip selection: '+html.escape(self.trial_label.value.strip() or 'Pasted trials — source not named')+'. '
+            markup += html.escape(self.trial_basis.value)+'</p>'
+        return markup
+
     def refresh_handoff(self):
         if self.review is None:
             self.handoff.value = '<p>Load pile results to prepare the handoff.</p>'
             return
-        s = self.review['section']
-        rows = [dict(item='Analyzed section', value=f'{s["shape"]} {s["width_in"]:g} × {s["depth_in"]:g} in, {s["kind"]}'),
-                dict(item='Analysis area (in²)', value=s['area_in2']), dict(item='Elastic modulus (ksi)', value=s['modulus_ksi']),
-                dict(item='EA (kip)', value=s['area_in2']*s['modulus_ksi']), dict(item='I2 / I3 (in⁴)',value=f'{s["i2_in4"]:g} / {s["i3_in4"]:g}'),
-                dict(item='Modeled weight (lb/ft)',value=s['modeled_weight_lb_ft']),
-                dict(item='Analyzed pile lengths (ft)',value='; '.join(f'P{p}: {v["length_ft"]:.3f}' for p,v in self.review['piles'].items()))]
-        for g in governors(self.review):
-            if g['metric'] in ('Head compression (kip)', 'Head uplift (kip)', 'Any-depth compression (kip)'):
-                rows.append(dict(item=g['state']+' · '+g['metric'], value=g['value']))
         try:
-            weight,diameter=self.optional(self.nominal_weight),self.optional(self.nominal_diameter)
-            require(weight is None or weight>0,'Nominal weight must be positive or blank.')
-            require(diameter is None or diameter>0,'Nominal diameter must be positive or blank.')
-            rows.extend([dict(item='Supplied nominal weight (lb/ft)',value=weight),
-                dict(item='Supplied nominal OD (in)',value=diameter),dict(item='Pile toe condition',value=self.toe.value),
-                dict(item='Nominal weight / analyzed area (lb/ft³)',value=weight*144/s['area_in2'] if weight is not None else None),
-                dict(item='Project notes',value=self.geotech_notes.value or 'Not supplied')])
+            self.handoff.value = self.handoff_html(self.handoff_data())
         except ValueError as exc:
-            rows.append(dict(item='Geotechnical input error',value=str(exc)))
-        self.handoff.value = '<h4>Geotechnical handoff</h4>'+table(rows, [('item','Item'), ('value','Value')])
-        if self.trial_result:
-            self.handoff.value += table([dict(item=k, value=self.trial_result[k]) for k in ['accepted_embedment_ft','required_embedment_ft','tip_elevation_ft','total_length_ft']], [('item','Selected trial result'), ('value','ft')])
-        else:
-            self.handoff.value += '<p>Minimum-tip study: no current evaluated result.</p>'
-        self.handoff.value += ('<p>Compression and uplift are factored combination demands. 1 short ton = 2 kip. '
-            'Nominal geotechnical resistance, Davisson capacity curves, downdrag/scour conditions, nominal steel weight, toe condition and driving criteria require separate project inputs. '
-            'Modeled weight is not assumed to be nominal pile weight.</p>')
+            self.handoff.value = notice_html('HANDOFF INPUT NEEDS REVIEW', html.escape(str(exc)), 'error')
+
+    def _update_handoff(self, _=None):
+        self._trials()
+        try:
+            require(self.trial_result is not None, self.trial_error or 'Fix the trial inputs in Minimum tip.')
+            self.handoff_data(require_selected=True)
+            self.handoff_status.value = notice_html('HANDOFF READY', 'Section, minimum tip and factored loads are updated below.', 'success')
+        except ValueError as exc:
+            self.handoff_status.value = notice_html('HANDOFF NEEDS INPUT', html.escape(str(exc)), 'error')
+
+    def save_handoff(self, folder):
+        self._trials()
+        require(self.trial_result is not None, self.trial_error or 'Fix the trial inputs in Minimum tip before downloading the handoff.')
+        data = self.handoff_data(require_selected=True)
+        folder = Path(folder); folder.mkdir(parents=True, exist_ok=True)
+        self._write_handoff(folder, data)
+        return folder
+
+    def _write_handoff(self, folder, data):
+        (folder/'geotech_handoff.html').write_text('<!doctype html><html><head><meta charset="utf-8"><title>Geotechnical handoff</title>'
+            '<style>body{font:14px Arial;max-width:1000px;margin:30px auto;color:#203040}td,th{vertical-align:top}p{line-height:1.4}'
+            '@media print{body{margin:0;font-size:11pt}tr{break-inside:avoid}}</style></head><body>'
+            +self.handoff_html(data)+'</body></html>', encoding='utf-8')
+        (folder/'factored_pile_loads_tons.csv').write_text(csv_text(data['loads']), encoding='utf-8-sig')
+        (folder/'pile_section.csv').write_text(csv_text(data['section']), encoding='utf-8-sig')
+        if data['selected']:
+            for name, rows in [('selected_trial_results.csv', data['selected']['trials']), ('minimum_tip_selection.csv', data['selected']['selection'])]:
+                (folder/name).write_text(csv_text(rows), encoding='utf-8-sig')
+
+    def _export_handoff(self, _=None):
+        self.handoff_export.disabled = True
+        self.handoff_status.value = notice_html('PREPARING HANDOFF', 'Updating selected results…', 'pending')
+        try:
+            folder = self.app.export_root/datetime.now(timezone.utc).strftime('geotech-handoff-%Y%m%d-%H%M%S-%f')
+            self.save_handoff(folder)
+            path = folder.with_suffix('.zip')
+            with zipfile.ZipFile(path, 'w', zipfile.ZIP_DEFLATED) as z:
+                for file in folder.iterdir():
+                    z.write(file, file.name)
+            self._download(path, self.handoff_status, self.handoff_download_output)
+        except Exception as exc:
+            self.handoff_status.value = notice_html('HANDOFF NOT DOWNLOADED', html.escape(str(exc)), 'error')
+        finally:
+            self.handoff_export.disabled = self.review is None
 
     def snapshot(self):
         controls = ['combo','piles','cutoff','use_override','material','circular','trial_text','trial_label','tolerance','extension','fraction',
@@ -580,12 +698,15 @@ class PileReviewPanel:
         datasets = {'pile_heads.csv':pile_heads(self.review), 'pile_forces.csv':self.review['forces'],
                     'pile_displacements.csv':self.review['displacements'], 'pile_governors.csv':governors(self.review),
                     'reported_stresses.csv':self.review['reported_stresses'], 'reported_pile_summary.csv':self.review['reported_summary'],
-                    'elastic_stresses.csv':elastic_profile(self.review, s)}
+                    'elastic_stresses.csv':elastic_profile(self.review, s),
+                    'elastic_stress_checks.csv':elastic_stress_checks(self.review, self.combo.value, self.piles.value, s),
+                    'model_cracking_check.csv':reported_cracking_check(self.review, self.combo.value)}
         if self.trial_result:
             datasets['minimum_tip_trials.csv'] = self.trial_result['rows']
             (folder/'minimum_tip_result.json').write_text(json.dumps(self.trial_result, indent=2, allow_nan=False), encoding='utf-8')
         for name, rows in datasets.items():
             (folder/name).write_text(csv_text(rows), encoding='utf-8-sig')
+        self._write_handoff(folder, self.handoff_data())
         parts = [head_figure(self.review).to_html(full_html=False, include_plotlyjs=True),
                  section_figure(self.review['section']).to_html(full_html=False, include_plotlyjs=False),
                  profile_figure(self.review, self.combo.value, self.piles.value, self.optional(self.cutoff), s).to_html(full_html=False, include_plotlyjs=False)]
@@ -597,14 +718,24 @@ class PileReviewPanel:
             + self.trial_summary.value + self.handoff.value + '<p>'+'<br>'.join(html.escape(n) for n in self.review['notes'])+'</p></body></html>', encoding='utf-8')
         return folder
 
-    def _download(self, path):
+    def _download(self, path, status=None, output=None):
+        status = self.message if status is None else status
+        output = self.download_output if output is None else output
+        from IPython.display import clear_output, display, FileLink
         try:
             from google.colab import files
         except ImportError:
-            self.message.value = '<p>Saved: '+html.escape(str(path.resolve()))+'</p>'
+            with output:
+                clear_output(wait=True)
+                display(FileLink(str(path)))
+            status.value = '<p>Saved: '+html.escape(str(path.resolve()))+'</p>'
         else:
-            files.download(str(path))
-            self.message.value = '<p>Download prepared: '+html.escape(path.name)+'</p>'
+            # Colab download JavaScript must be captured in a visible Output
+            # widget when invoked by a widget callback.
+            with output:
+                clear_output(wait=True)
+                files.download(str(path))
+            status.value = '<p>Download prepared: '+html.escape(path.name)+'</p>'
 
     def _export(self, _=None):
         try:
