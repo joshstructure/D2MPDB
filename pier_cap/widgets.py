@@ -6,7 +6,7 @@ import json
 import ipywidgets as W
 import plotly.graph_objects as go
 from .model import default_case,upgrade_case,evaluate,INPUTS,GEOMETRY,formula_trace
-from .optimizer import search,SearchConfig,candidate_case,filter_candidates,candidate_dc,candidate_governing,governing_check,DC_SCOPES
+from .optimizer import search,SearchConfig,candidate_case,filter_candidates,candidate_dc,candidate_governing,governing_check,DC_SCOPES,same_design_basis
 from .io import load_case,export_bundle,export_blockpad
 from .fbmp_widgets import XMLImportPanel
 from .blockpad_widgets import BlockpadExportPanel
@@ -114,7 +114,7 @@ class CapNotebook:
         if self.busy:return
         self.case['inputs']={n:w.value for n,w in self.controls.items()}
         self.case['screening']['minimum_clear_in']=self.clearance.value
-        self._clear_search('Inputs changed. Run the search to refresh alternatives.')
+        self._update_search_basis()
         self.refresh()
         self._notify_case_change()
 
@@ -159,7 +159,7 @@ class CapNotebook:
             for n,w in self.controls.items():w.value=case['inputs'][n]
             self.clearance.value=case['screening']['minimum_clear_in']
         finally:self.busy=False
-        self._clear_search()
+        self._update_search_basis()
         self.refresh()
         if import_name and case['analysis'].get('xml_audit',{}).get('end_records'):
             self.plot_tabs.selected_index=4
@@ -211,7 +211,7 @@ class CapNotebook:
         self.page.observe(self._page_changed,names='value')
         self.run_button=W.Button(description='Search steel layouts',button_style='primary',icon='search');self.run_button.on_click(self._run_search)
         self.progress=W.IntProgress(min=0,max=1,value=0,description='Search')
-        self.search_text=W.HTML();self.candidates=W.Dropdown(options=[],description='Alternative',layout=W.Layout(width='90%'),style={'description_width':'80px'})
+        self.search_text=W.HTML();self.search_notice=W.HTML();self.candidates=W.Dropdown(options=[],description='Alternative',layout=W.Layout(width='90%'),style={'description_width':'80px'})
         self.apply_button=W.Button(description='Apply selected layout',disabled=True,icon='check');self.apply_button.on_click(self._apply)
         self.alternative_output=W.VBox()
         return W.VBox([W.HTML('<h3>Search practical steel</h3><p>Search top steel, pile-positive steel and between-pile positive steel with independent bar sizes and counts. One row per group, one closed hoop and uniform hoop spacing; multirow arrangements remain manual inputs. Hold Ctrl/Cmd to select several choices.</p>'),
@@ -219,7 +219,7 @@ class CapNotebook:
             W.HTML('<h4>Browse every passing layout</h4><p>These are reinforcement layouts for the current force case. <b>Strength checks only</b> is the default margin target: set <b>Max D/C</b> to 0.90 to seek reserve in those checks. Filtering, ranking and paging reuse the completed search.</p>'),
             W.HBox([self.dc_limit,self.dc_scope,self.objective],layout=W.Layout(flex_flow='row wrap')),
             W.HTML('<small><b>All available checks</b> includes spacing, minimum steel, strain and service checks. <b>Strength checks only</b> targets flexure, shear, combined shear/torsion steel and longitudinal steel; all other available checks must still pass. Missing Service III/fatigue checks stay pending. Largest margin ranks the selected D/C scope.</small>'),
-            self.search_text,W.HBox([self.previous_page,self.page,self.next_page,self.page_size],layout=W.Layout(flex_flow='row wrap')),self.candidates,self.apply_button,self.alternative_output,
+            self.search_notice,self.search_text,W.HBox([self.previous_page,self.page,self.next_page,self.page_size],layout=W.Layout(flex_flow='row wrap')),self.candidates,self.apply_button,self.alternative_output,
             W.HTML('<small>Gross steel uses full cap lengths: equal-size positive cages share the larger count; different positive sizes count both sets. Regional cutoffs, laps, anchorage and waste are not priced. Cage score = longitudinal bar count + 5 × distinct bar sizes. Search results are conditional candidates, not finalized designs.</small>')])
 
     def _close_alternative_plot(self):
@@ -227,10 +227,19 @@ class CapNotebook:
         self.alternative_output.children=[]
 
     def _clear_search(self,message=''):
+        self.search_notice.value=''
         self.search_result=None;self.filtered_indices=[];self.candidates.options=[];self.apply_button.disabled=True
         self.page.value=1;self.page.max=1;self.page.disabled=True
         self.previous_page.disabled=True;self.next_page.disabled=True;self.search_text.value=message
         self._close_alternative_plot()
+
+    def _update_search_basis(self):
+        if self.search_result is not None and same_design_basis(self.search_result.base_case,self.case):
+            self.search_notice.value=notice_html('COMPLETED SEARCH RETAINED',
+                'Live reinforcement edits do not change the saved candidates or their checks. '
+                'Filters and selections are kept. Apply a layout to restore its saved reinforcement and spacing.','success')
+        else:
+            self._clear_search('Design inputs changed. Run the search to refresh alternatives.')
 
     def _filter_changed(self,change):
         if not self.browsing and self.search_result is not None:self._render_candidates(reset_page=True)
@@ -253,7 +262,7 @@ class CapNotebook:
             self.page.disabled=not indices
             start=(self.page.value-1)*size;shown=indices[start:start+size]
             self.candidates.options=[(f'#{i+1}. {result.candidates[i].label} · {result.candidates[i].weight_lb:.0f} lb · filter D/C {candidate_dc(result.candidates[i],scope):.3f}',i) for i in shown]
-            if old_selected in shown:self.candidates.value=old_selected
+            if shown:self.candidates.value=old_selected if old_selected in shown else shown[0]
             self.previous_page.disabled=self.page.value<=1;self.next_page.disabled=self.page.value>=pages
             self.apply_button.disabled=not shown
         finally:self.browsing=False
@@ -292,13 +301,15 @@ class CapNotebook:
 
     def _apply(self,button):
         if self.search_result is None or self.candidates.value is None:return
+        if not same_design_basis(self.search_result.base_case,self.case):
+            self._update_search_basis();return
         result=self.search_result;index=self.candidates.value;chosen=candidate_case(result,index)
         self.busy=True
         try:
             self.case=chosen
             for n,w in self.controls.items():w.value=chosen['inputs'][n]
         finally:self.busy=False
-        self.refresh();self.message.value=f'Applied candidate #{index+1}. Live drawings and checks now show that layout.'
+        self.refresh();self._update_search_basis();self.message.value=f'Applied candidate #{index+1}. Live drawings and checks now show that layout.'
         self._notify_case_change()
 
     def _export_panel(self):

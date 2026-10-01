@@ -59,7 +59,10 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
         'limitations':'Sectional checks only. Service III/fatigue readiness, D-regions, anchorage, pile-head and full code/detail review remain explicit. Gross steel excludes hooks/laps/waste; hoops conservatively use tighter spacing over the full cap.',
         'case_sha256':hashlib.sha256((path/'selected_case.json').read_bytes()).hexdigest()}
     if search_result:
+        write_case(search_result.base_case,path/'search_base_case.json')
         manifest['search']={k:getattr(search_result,k) for k in ('config','total','evaluated','passed','elapsed','exhaustive','rejection_counts')}
+        manifest['search']['base_case_file']='search_base_case.json'
+        manifest['search']['basis']='Completed search inputs; candidate checks do not describe manual edits to selected_case.json.'
         manifest['search']['filter']={**options,'matching_count':len(matching)}
         with (path/'alternatives.csv').open('w',newline='',encoding='utf-8-sig') as f:
             w=csv.writer(f);w.writerow(['Candidate ID','Layout','Estimated gross steel (lb)','All-check D/C','Strength D/C','All-check governing check','Strength governing check','Complexity score'])

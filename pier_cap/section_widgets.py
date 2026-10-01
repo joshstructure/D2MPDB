@@ -6,7 +6,7 @@ from .widget_compat import Accordion
 import plotly.graph_objects as go
 
 from .model import evaluate
-from .optimizer import SearchConfig
+from .optimizer import SearchConfig,same_design_basis
 from .io import load_case
 from .source_status import source_html,upload_entries,notice_html
 from .sections import (SectionGrid, CostRates, SectionCache, dimension_values, run_section_study,
@@ -112,6 +112,7 @@ def close_study(study):
 class SectionStudy:
     def __init__(self, app):
         self.app = app
+        self._observed_case = deepcopy(app.case)
         self.study = None
         self.rows = []
         self.cache = SectionCache()
@@ -230,10 +231,22 @@ class SectionStudy:
         self.preview_figures = []
         self.preview.children = []
 
-    def invalidate(self):
-        self._refresh_source()
+    def invalidate(self, *, force=False):
+        previous = self._observed_case
+        self._observed_case = deepcopy(self.app.case)
         if self.applying:
+            self._refresh_source()
             return
+        if not force and self.study is not None and same_design_basis(previous,self.app.case):
+            self.notice.value = notice_html('COMPLETED SECTION STUDY RETAINED',
+                'Live reinforcement edits do not change the saved section/cage results. '
+                'Plots, filters and selections are kept. Load a selected case to restore its saved section and reinforcement.','success')
+            return
+        try:
+            self._refresh_source()
+        except (ValueError,ZeroDivisionError,OverflowError) as exc:
+            self.source_status.value = notice_html('INPUTS NEED CORRECTION',html.escape(str(exc)),'error')
+            self.width_screen.value = ''
         self.study = None
         self.rows = []
         for figure in self.figures:
@@ -255,7 +268,7 @@ class SectionStudy:
 
     def _grid_changed(self, change):
         if not self.rendering:
-            self.invalidate()
+            self.invalidate(force=True)
 
     def _view_changed(self, change):
         if self.rendering:
@@ -293,7 +306,7 @@ class SectionStudy:
         try:
             loaded = {entry['name']: load_case(entry['content']) for entry in upload_entries(self.upload.value)}
             self.library.update(loaded)
-            self.invalidate()
+            self.invalidate(force=True)
             self.library_note.value = notice_html('ANALYSIS CASES ADDED TO LIBRARY',
                 '<b>Loaded:</b> ' + ', '.join(html.escape(name) for name in self.library)+
                 '<br>This does not replace the main calculator loads. Select <b>Only analysis-matched cases</b> to use this library.','success')
@@ -304,10 +317,10 @@ class SectionStudy:
         self.library.clear()
         self.upload.value = ()
         self.library_note.value = 'No additional analysis cases loaded. Current source case remains available at its own section.'
-        self.invalidate()
+        self.invalidate(force=True)
 
     def _run(self, _):
-        self.invalidate()
+        self.invalidate(force=True)
         self.run_button.disabled = True
         try:
             grid = SectionGrid(widths=dimension_values(*(w.value for w in self.bounds['width'])),
@@ -528,7 +541,7 @@ class SectionStudy:
                 step.value = increment / 2
         finally:
             self.rendering = False
-        self.invalidate()
+        self.invalidate(force=True)
         self.notice.value = 'Ranges narrowed around the selected section and steps halved. Press Run section study to evaluate the finer grid; matching cached calculations will be reused.'
 
     def _export(self, _):

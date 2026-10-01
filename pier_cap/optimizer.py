@@ -11,6 +11,30 @@ from .model import evaluate, set_inputs, analysis_match, validate_case, sectiona
 DC_SCOPES={'all':'All available checks','strength':'Strength checks only'}
 OBJECTIVES=('Least steel','Simplest cage','Largest margin')
 
+# Editing a live trial cage does not erase a completed search. Those results
+# retain their original reinforcement and spacing assumptions; applying a
+# candidate restores its entire saved case. All other design inputs must match.
+REINFORCEMENT_INPUTS={
+    'Bar_N1','Bar_N2','Bar_N3','Bar_P','Bar_B','Bar_U','Bar_v','Bar_skin',
+    'n_N1','n_N2','n_N3','n_P1','n_P2','n_PU','n_B1','n_B2','n_BU','n_loop','n_skin',
+    's_row','s_G','s_L','Manual_spacing','SP_detail_N','SP_detail_P','SP_detail_B',
+    'SP_detail_skin','S_leg_detail',
+}
+
+
+def same_design_basis(a,b):
+    """True when only the live reinforcement (or descriptive metadata) differs.
+
+    This permits browsing the completed search, not reusing its metrics for the
+    edited cage. Loads, analysis provenance, geometry, materials, readiness and
+    the clear-spacing screen remain part of the comparison.
+    """
+    def basis(case):
+        case=upgrade_case(case)
+        return ({k:v for k,v in case['inputs'].items() if k not in REINFORCEMENT_INPUTS},
+                case['analysis'],case['screening'],case['units'],case['schema_version'])
+    return basis(a)==basis(b)
+
 
 def bounded_layouts(grids, limit):
     """Enumerate a complete grid, or sample its full extent reproducibly.
