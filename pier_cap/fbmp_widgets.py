@@ -5,6 +5,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import ipywidgets as W
 from .fbmp import import_fbmp_xml
+from .pile_review import import_pile_xml
 from .model import INPUTS
 from .source_status import upload_entries,notice_html,source_signature
 
@@ -14,6 +15,7 @@ class XMLImportPanel:
         self.app = app
         self.labels = labels
         self.pending = None
+        self.pending_piles = None
         self.source = None
         self.filename = None
         self.base_snapshot = None
@@ -112,6 +114,7 @@ class XMLImportPanel:
 
     def stage(self, source, filename=None):
         self.pending = None
+        self.pending_piles = None
         self.applied_signature = None
         self.app.import_receipt = None
         self.app.import_notice.value = ''
@@ -125,6 +128,10 @@ class XMLImportPanel:
             self.base_snapshot = deepcopy(self.app.case)
             self.preview.value = self._preview_html(proposed)
             self.pending = proposed
+            try:
+                self.pending_piles = import_pile_xml(source, filename)
+            except (ValueError, TypeError, KeyError) as exc:
+                self.preview.value += '<p><b>Pile review unavailable:</b> '+html.escape(str(exc))+'</p>'
             self.apply_button.disabled = False
             self.status.value = notice_html('STEP 2 · PREVIEW READY — NOT APPLIED',
                 '<b>'+html.escape(proposed['analysis']['xml_audit']['filename'])+'</b> was read successfully. '
@@ -139,10 +146,14 @@ class XMLImportPanel:
             self._case_changed()
             return
         proposed = self.pending
+        piles = self.pending_piles
         self.pending = None
+        self.pending_piles = None
         self.apply_button.disabled = True
         try:
             self.app.load(proposed,import_name=proposed['analysis']['xml_audit']['filename'])
+            if piles is not None:
+                self.app.pile_review.set_review(piles)
             self.applied_signature = source_signature(proposed)
             self.preview.value = ''
             self.status.value = notice_html('STEP 3 · XML APPLIED',

@@ -9,6 +9,7 @@ from .model import default_case,upgrade_case,evaluate,INPUTS,GEOMETRY,formula_tr
 from .optimizer import search,SearchConfig,candidate_case,filter_candidates,candidate_dc,candidate_governing,governing_check,DC_SCOPES,same_design_basis
 from .io import load_case,export_bundle,export_blockpad
 from .fbmp_widgets import XMLImportPanel
+from .pile_widgets import PileReviewPanel
 from .blockpad_widgets import BlockpadExportPanel
 from .widget_compat import Tab, Accordion
 from .source_status import upload_entries,source_html,import_receipt,receipt_html,notice_html
@@ -74,12 +75,20 @@ class CapNotebook:
         stamp=W.Button(description='Record analyzed geometry',icon='check');stamp.on_click(self._stamp)
         source=Accordion(children=[W.VBox([self.source_id,self.source_confirm,stamp,W.HTML('<small>Use after entering fresh analysis forces. Changing geometry alone does not rerun FB-MultiPier.</small>')])]);source.set_title(0,'Record a manually updated analysis case');source.selected_index=None
         self.search_panel=self._search_panel();self.export_panel=self._export_panel()
+        self.pile_review=PileReviewPanel(self)
         self.xml_import=XMLImportPanel(self,LABELS)
-        self.ui=W.VBox([W.HTML('<style>.cap-input .widget-label{white-space:normal!important;text-overflow:clip!important;line-height:1.25!important;height:auto!important;text-align:left!important;align-self:center}</style><h2 style="color:#213649;margin-bottom:4px">Pier-cap design explorer</h2><p>Change an input → inspect the cage and checks → search practical steel → export a review case.</p>'),
-            W.HBox([self.upload,reset]),self.xml_import.ui,self.import_notice,self.source_label,source,self.banner,self.metrics,
+        self.cap_type=W.Dropdown(options=['Pier pile cap','End-bent pile cap'],value=self.case.get('cap_type','Pier pile cap'),description='Cap type',layout=W.Layout(width='330px'))
+        self.cap_type.observe(self._cap_type_changed,names='value')
+        self.ui=W.VBox([W.HTML('<style>.cap-input .widget-label{white-space:normal!important;text-overflow:clip!important;line-height:1.25!important;height:auto!important;text-align:left!important;align-self:center}</style><h2 style="color:#213649;margin-bottom:4px">Cap and pile design explorer</h2><p>Review the FBMP pile results → inspect the cap cage and checks → search practical steel → export a review case.</p>'),
+            self.cap_type,W.HTML('<p>Shared sectional workflow for pier and end-bent caps supported directly on a single pile row. The cap type labels the case; it does not add loads or change the design method. Backwall/wingwall, earth-pressure load generation, footing/column caps and strut-and-tie design are outside this calculation.</p>'),
+            W.HBox([self.upload,reset]),self.xml_import.ui,self.import_notice,self.pile_review.ui,
+            W.HTML('<h2 style="color:#213649">2. Cap reinforcement and steel optimization</h2>'),self.source_label,source,self.banner,self.metrics,
             W.HBox([self.input_tabs,self.plot_tabs],layout=W.Layout(display='flex',flex_flow='row wrap',align_items='flex-start',grid_gap='16px')),
             self.search_panel,self.export_panel,self.message],layout=W.Layout(width='100%'))
         self.refresh()
+
+    def _cap_type_changed(self,change):
+        if not self.busy:self.case['cap_type']=change['new']
 
     def _inputs(self):
         tabs=[]
@@ -158,6 +167,7 @@ class CapNotebook:
             self.import_receipt=import_receipt(case,import_name) if import_name else None
             for n,w in self.controls.items():w.value=case['inputs'][n]
             self.clearance.value=case['screening']['minimum_clear_in']
+            self.cap_type.value=case.get('cap_type','Pier pile cap')
         finally:self.busy=False
         self._update_search_basis()
         self.refresh()
@@ -304,6 +314,7 @@ class CapNotebook:
         if not same_design_basis(self.search_result.base_case,self.case):
             self._update_search_basis();return
         result=self.search_result;index=self.candidates.value;chosen=candidate_case(result,index)
+        if 'cap_type' in self.case:chosen['cap_type']=self.case['cap_type']
         self.busy=True
         try:
             self.case=chosen
@@ -321,6 +332,8 @@ class CapNotebook:
     def _export(self,button):
         try:
             self.last_export=export_bundle(self.case,self.export_root,self.search_result,search_filter=self._search_filter())
+            if self.pile_review.review is not None:
+                self.pile_review.save_bundle(self.last_export/'pile_review')
             self.message.value='<b>Saved review bundle:</b> '+html.escape(str(self.last_export.resolve()))
         except Exception as exc:self.message.value='<b>Export stopped:</b> '+html.escape(str(exc))
 
@@ -333,6 +346,7 @@ class CapNotebook:
         return self
 
     def close(self):
+        self.pile_review.close()
         self.force_diagrams.close()
         for figure in self.figures:figure.close()
         self._close_alternative_plot()

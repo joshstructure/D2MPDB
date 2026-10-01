@@ -10,7 +10,9 @@ Open **[FBMP_Envelope_Extractor.ipynb](FBMP_Envelope_Extractor.ipynb)**, choose 
 
 The reported FBMP summary and original XML element-end envelopes remain separately labeled, with source discrepancies flagged. See [the extractor guide](FBMP_ENVELOPE_EXTRACTOR.md). The Colab link becomes available after the notebook is pushed to `main`.
 
-## Pier-cap design notebook
+## Cap and pile design notebook
+
+The notebook now handles the shared sectional workflow for **pier and end-bent caps on a single pile row**. A new **FBMP pile review** section sits above the reinforcement controls and includes pile-head compression/uplift, governing results by limit state, displacement/force/D/C/stress profiles, section properties, minimum-tip trial review and a geotechnical handoff. The same applied XML supplies the cap and pile results; an independent pile-only XML upload is also available. Minimum-tip trial history is entered separately. See [Pile review](PILE_REVIEW.md) for the workbook mapping, supported geometry, calculation basis, downloads and limitations.
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Pier_Cap_Design_Optimizer.ipynb)
 
