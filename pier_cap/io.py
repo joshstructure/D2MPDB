@@ -31,8 +31,9 @@ def input_formula(name,value):
 def export_bundle(case,root='exports',search_result=None,search_filter=None):
     e=evaluate(case);case=e.case
     if search_result:
-        if search_result.force_mode!='matched':raise ValueError('Use the section-study exporter for fixed-force results; ordinary review searches require matching analysis.')
-        from .optimizer import filter_candidates,candidate_dc,candidate_governing
+        if search_result.force_mode not in ('matched','fixed'):raise ValueError('Unknown search force mode.')
+        from .optimizer import filter_candidates,candidate_dc,candidate_governing,same_design_basis
+        if not same_design_basis(search_result.base_case,case):raise ValueError('Search inputs no longer match this case. Run steel search again before exporting alternatives.')
         options=search_filter or {'max_dc':1.0,'scope':'all','objective':search_result.config['objective']}
         matching=filter_candidates(search_result,**options)
     path=Path(root)/datetime.now(timezone.utc).strftime('case-%Y%m%d-%H%M%S-%f')
@@ -60,18 +61,30 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
         'case_sha256':hashlib.sha256((path/'selected_case.json').read_bytes()).hexdigest()}
     if search_result:
         write_case(search_result.base_case,path/'search_base_case.json')
-        manifest['search']={k:getattr(search_result,k) for k in ('config','total','evaluated','passed','elapsed','exhaustive','rejection_counts')}
+        manifest['search']={k:getattr(search_result,k) for k in ('config','total','evaluated','passed','elapsed','exhaustive','rejection_counts','force_mode')}
         manifest['search']['base_case_file']='search_base_case.json'
         manifest['search']['basis']='Completed search inputs; candidate checks do not describe manual edits to selected_case.json.'
+        if search_result.force_mode=='fixed':
+            manifest['search']['basis']+=' Width/depth trial with current forces held unchanged. Self-weight and stiffness changes were not reanalyzed; original analysis geometry is retained.'
+            g=case['analysis']['geometry'];p=case['inputs']
+            (path/'trial_geometry.txt').write_text(
+                'CAP WIDTH / DEPTH TRIAL — FORCES UNCHANGED\n'
+                f'Force source: {case["analysis"]["id"]}\n'
+                f'Analyzed section: {g["b"]:g} x {g["h"]:g} in\n'
+                f'Trial section: {p["b"]:g} x {p["h"]:g} in\n'
+                'The steel search uses the current load envelopes for the trial cap size.\n'
+                'Self-weight and stiffness effects have not been reanalyzed.\n'
+                'Passing sectional checks do not make this a new FBMP analysis.\n',encoding='utf-8')
         manifest['search']['filter']={**options,'matching_count':len(matching)}
+        mode_label='Fixed forces — width/depth trial' if search_result.force_mode=='fixed' else 'Matching analyzed geometry'
         with (path/'alternatives.csv').open('w',newline='',encoding='utf-8-sig') as f:
-            w=csv.writer(f);w.writerow(['Candidate ID','Layout','Estimated gross steel (lb)','All-check D/C','Strength D/C','All-check governing check','Strength governing check','Complexity score'])
-            for i,c in enumerate(search_result.candidates,1):w.writerow([i,c.label,c.weight_lb,c.max_dc,c.strength_dc,c.governing_check,c.strength_governing_check,c.complexity])
+            w=csv.writer(f);w.writerow(['Candidate ID','Layout','Estimated gross steel (lb)','All-check D/C','Strength D/C','All-check governing check','Strength governing check','Complexity score','Force basis'])
+            for i,c in enumerate(search_result.candidates,1):w.writerow([i,c.label,c.weight_lb,c.max_dc,c.strength_dc,c.governing_check,c.strength_governing_check,c.complexity,mode_label])
         with (path/'filtered_alternatives.csv').open('w',newline='',encoding='utf-8-sig') as f:
-            w=csv.writer(f);w.writerow(['Filtered rank','Candidate ID','Layout','Estimated gross steel (lb)','Filter D/C','All-check D/C','Strength D/C','Controls filter D/C','D/C scope','D/C target'])
+            w=csv.writer(f);w.writerow(['Filtered rank','Candidate ID','Layout','Estimated gross steel (lb)','Filter D/C','All-check D/C','Strength D/C','Controls filter D/C','D/C scope','D/C target','Force basis'])
             for rank,i in enumerate(matching,1):
                 c=search_result.candidates[i]
-                w.writerow([rank,i+1,c.label,c.weight_lb,candidate_dc(c,options['scope']),c.max_dc,c.strength_dc,candidate_governing(c,options['scope']),options['scope'],options['max_dc']])
+                w.writerow([rank,i+1,c.label,c.weight_lb,candidate_dc(c,options['scope']),c.max_dc,c.strength_dc,candidate_governing(c,options['scope']),options['scope'],options['max_dc'],mode_label])
     (path/'review.json').write_text(json.dumps(manifest,indent=2,ensure_ascii=False),encoding='utf-8')
     return path
 

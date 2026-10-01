@@ -5,8 +5,8 @@ import html
 import json
 import ipywidgets as W
 import plotly.graph_objects as go
-from .model import default_case,upgrade_case,evaluate,INPUTS,GEOMETRY,formula_trace
-from .optimizer import search,SearchConfig,candidate_case,filter_candidates,candidate_dc,candidate_governing,governing_check,DC_SCOPES,same_design_basis
+from .model import default_case,upgrade_case,evaluate,INPUTS,GEOMETRY,formula_trace,analysis_match,sectional_checks_pass
+from .optimizer import search,sensitivity_search,SearchConfig,candidate_case,filter_candidates,candidate_dc,candidate_governing,governing_check,DC_SCOPES,same_design_basis
 from .io import load_case,export_bundle,export_blockpad
 from .fbmp_widgets import XMLImportPanel
 from .pile_widgets import PileReviewPanel
@@ -132,6 +132,7 @@ class CapNotebook:
 
     def refresh(self):
         self.source_label.value=source_html(self.case)
+        self._refresh_search_force_notice()
         self.force_diagrams.refresh(self.case)
         for key in FORCE_LABELS:
             self.controls[key].tooltip=input_tooltip(key,force_basis(self.case,key))
@@ -140,9 +141,12 @@ class CapNotebook:
         except Exception as exc:
             self.current=None;self.banner.value=f'<div style="padding:14px;background:#ffe9e7;color:#9d302b"><b>INPUT ERROR</b><br>{html.escape(str(exc))}</div>'
             self.metrics.value='';self.cage.children=[];self.results.children=[];self.register.value='';self.trace.value='';return
-        self.current=e;color='#fff3d9' if e.eligible else '#ffe9e7'
+        self.current=e
+        trial_section=self._search_force_mode()=='fixed'
+        color='#fff3d9' if e.eligible or (trial_section and sectional_checks_pass(e)) else '#ffe9e7'
+        status='TRIAL CAP SIZE — checks use current forces; changed self-weight and stiffness are not reanalyzed' if trial_section else e.status
         extra='<br>'.join(html.escape(s) for s in e.issues)
-        self.banner.value=f'<div style="padding:12px;background:{color};border-radius:6px"><b>{html.escape(e.status)}</b>{"<br>"+extra if extra else ""}<br><small>Sectional calculation only. D-regions, anchorage, pile heads, applicability and final detail review remain open.</small></div>'
+        self.banner.value=f'<div style="padding:12px;background:{color};border-radius:6px"><b>{html.escape(status)}</b>{"<br>"+extra if extra else ""}<br><small>Sectional calculation only. D-regions, anchorage, pile heads, applicability and final detail review remain open.</small></div>'
         strength=governing_check(e,'strength');overall=governing_check(e)
         items=[('Strength D/C',f'{strength.ratio:.3f}'),('All-check utilization',f'{e.max_dc:.3f}'),('Gross steel estimate',f'{e.weight_lb:,.0f} lb'),('Top steel area',f'{e.value("As_N"):.2f} in²'),('Top Service I stress',f'{e.value("fs_I_N"):.2f} ksi'),('Cap length',f'{e.value("L_cap")/12:.3f} ft'),('Nominal end extension',f'{e.value("E_end"):g} in')]
         self.metrics.value='<div style="display:flex;flex-wrap:wrap;gap:10px;margin:12px 0">'+''.join(f'<div style="padding:10px 18px;background:#eaf1f6;border-radius:5px"><small>{k}</small><br><b style="font-size:23px;color:#1f5b91">{v}</b></div>' for k,v in items)+'</div>'
@@ -220,12 +224,14 @@ class CapNotebook:
         for control in (self.objective,self.dc_limit,self.dc_scope,self.page_size):control.observe(self._filter_changed,names='value')
         self.page.observe(self._page_changed,names='value')
         self.run_button=W.Button(description='Search steel layouts',button_style='primary',icon='search');self.run_button.on_click(self._run_search)
+        self.search_force_notice=W.HTML()
         self.progress=W.IntProgress(min=0,max=1,value=0,description='Search')
         self.search_text=W.HTML();self.search_notice=W.HTML();self.candidates=W.Dropdown(options=[],description='Alternative',layout=W.Layout(width='90%'),style={'description_width':'80px'})
         self.apply_button=W.Button(description='Apply selected layout',disabled=True,icon='check');self.apply_button.on_click(self._apply)
         self.alternative_output=W.VBox()
         return W.VBox([W.HTML('<h3>Search practical steel</h3><p>Search top steel, pile-positive steel and between-pile positive steel with independent bar sizes and counts. One row per group, one closed hoop and uniform hoop spacing; multirow arrangements remain manual inputs. Hold Ctrl/Cmd to select several choices.</p>'),
-            W.HBox(boxes,layout=W.Layout(flex_flow='row wrap',grid_gap='10px')),W.HBox([self.limit,self.run_button,self.progress],layout=W.Layout(flex_flow='row wrap')),
+            W.HBox(boxes,layout=W.Layout(flex_flow='row wrap',grid_gap='10px')),self.search_force_notice,
+            W.HBox([self.limit,self.run_button,self.progress],layout=W.Layout(flex_flow='row wrap')),
             W.HTML('<h4>Browse every passing layout</h4><p>These are reinforcement layouts for the current force case. <b>Strength checks only</b> is the default margin target: set <b>Max D/C</b> to 0.90 to seek reserve in those checks. Filtering, ranking and paging reuse the completed search.</p>'),
             W.HBox([self.dc_limit,self.dc_scope,self.objective],layout=W.Layout(flex_flow='row wrap')),
             W.HTML('<small><b>All available checks</b> includes spacing, minimum steel, strain and service checks. <b>Strength checks only</b> targets flexure, shear, combined shear/torsion steel and longitudinal steel; all other available checks must still pass. Missing Service III/fatigue checks stay pending. Largest margin ranks the selected D/C scope.</small>'),
@@ -235,6 +241,26 @@ class CapNotebook:
     def _close_alternative_plot(self):
         if self.alternative_figure is not None:self.alternative_figure.close();self.alternative_figure=None
         self.alternative_output.children=[]
+
+    def _search_force_mode(self):
+        changed=analysis_match(self.case)
+        return 'fixed' if changed and set(changed)<={'b','h'} else 'matched'
+
+    def _refresh_search_force_notice(self):
+        changed=analysis_match(self.case)
+        if self._search_force_mode()=='fixed':
+            p=self.case['inputs'];g=self.case['analysis']['geometry']
+            self.search_force_notice.value=notice_html('TRIAL CAP SIZE · FORCES UNCHANGED',
+                f'Analyzed section: {g["b"]:g} × {g["h"]:g} in. Trial section: {p["b"]:g} × {p["h"]:g} in. '
+                'Search steel layouts will check the new size using the current load envelopes. '
+                'Self-weight and stiffness changes need an updated FBMP analysis for the final size.','pending')
+        elif changed:
+            labels=', '.join(LABELS.get(k,k) for k in changed)
+            self.search_force_notice.value=notice_html('PILE LAYOUT / CAP ENDS NEED MATCHING FORCES',
+                html.escape(labels)+': these changes need a matching analysis before steel search. '
+                'Width and depth changes alone can be explored with the current forces.','pending')
+        else:
+            self.search_force_notice.value=''
 
     def _clear_search(self,message=''):
         self.search_notice.value=''
@@ -279,6 +305,8 @@ class CapNotebook:
         extent=f'Showing {start+1:,}–{start+len(shown):,} of {len(indices):,} matches · page {self.page.value} of {pages}.' if shown else 'No layouts match this D/C filter.'
         completeness='All listed combinations evaluated.' if result.exhaustive else 'Case limit reached: a reproducible sample across the full selected range was evaluated. Other combinations remain untested.'
         self.search_text.value=f'<p><b>{result.passed:,} layouts pass the available checks and cage screen.</b> {len(indices):,} meet <b>{DC_SCOPES[scope]} ≤ {target:.3f}</b>. {extent}<br>{result.evaluated:,} / {result.total:,} combinations evaluated. {completeness} {result.elapsed:.1f} seconds. Every passing layout is retained and unit-checked. Candidate IDs stay fixed within this search.</p>'
+        if result.force_mode=='fixed':
+            self.search_text.value='<p><b>Trial cap size using unchanged forces.</b> These layouts pass sectional checks at the trial width/depth; the original analyzed geometry remains recorded.</p>'+self.search_text.value
         strength_count=sum(c.strength_dc<=target+1e-12 for c in result.candidates)
         all_count=sum(c.max_dc<=target+1e-12 for c in result.candidates)
         self.search_text.value+=f'<p>At target {target:.3f}: <b>{strength_count:,} strength matches</b> · <b>{all_count:,} all-check matches</b>. The all-check target also tightens spacing and minimum/detailing criteria.</p>'
@@ -301,10 +329,12 @@ class CapNotebook:
 
     def _run_search(self,button):
         self.run_button.disabled=True;self._clear_search('Searching and checking all passing layouts…')
+        self.progress.value=0
         try:
             config=SearchConfig(**{n:tuple(w.value) for n,w in self.search_lists.items()},objective=self.objective.value,max_cases=self.limit.value)
             def update(n,total):self.progress.max=total;self.progress.value=n
-            result=search(self.case,config,update);self.search_result=result
+            run=sensitivity_search if self._search_force_mode()=='fixed' else search
+            result=run(self.case,config,update);self.search_result=result
             self._render_candidates(reset_page=True)
         except Exception as exc:self.search_text.value='<b>Search stopped:</b> '+html.escape(str(exc))
         finally:self.run_button.disabled=False

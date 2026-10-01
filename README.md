@@ -54,7 +54,7 @@ Keep the `pier_cap/` package beside the notebook. Supporting files organize reus
 5. Set **Max D/C** (for example, `0.90`). The workbench defaults to **Strength checks only** for this margin target; choose **All available checks** if you also want to tighten spacing and other detailing ratios. Browse with **Page / Previous / Next** and **Per page** (20, 50 or 100). Filtering and ranking reuse the finished search. **Apply selected layout** loads the selected candidate ID into the live drawings/checks. Service III/fatigue and other unresolved scope remain explicit.
 6. Export the case/checks and optionally a new Blockpad C005 review copy. Recalculate that copy in Blockpad and reconcile narrative/source notes before final review.
 
-The initial JSON bundle and all input units are documented in `pier_cap/data/default_case.json` and `c005_formulas.json`. It carries analysis provenance with the force data. Changes to analysis geometry invalidate the force match and block the steel search until a corresponding analysis is supplied. An explicit manual analysis-record action is available after entering updated forces.
+The initial JSON bundle and all input units are documented in `pier_cap/data/default_case.json` and `c005_formulas.json`. It carries analysis provenance with the force data. Changing **cap width or depth** lets you run **Search steel layouts** again with the current forces held constant. The notebook labels these as trial-size results, preserves the original analyzed geometry, and supports filtering, applying and exporting the layouts. Changes to self-weight and stiffness need an updated FBMP analysis for the final size. Changes to pile layout or cap ends still require matching analysis forces before searching. An explicit manual analysis-record action is available after entering updated forces.
 
 ### D/C margin and browsing all layouts
 
@@ -76,7 +76,7 @@ Heatmap cells show **concrete volume and steel weight together**, or their separ
 
 Moment demand/capacity plots use blue shades; shear uses purple shades. The numerical D/C chart uses the same family colors, with orange for combined shear/torsion, gray for other checks, and red overriding the family color for a failed check. Values, labels and limits remain visible independently of color.
 
-Default **fixed-force sensitivity** keeps imported forces constant and retains their original source geometry. **Analysis-matched mode** uses uploaded case JSON files for the corresponding sections and leaves missing analyses visible. This does not run FB-MultiPier. Ordinary changed-geometry checks still require matching force inputs. Read [SECTION_STUDY.md](SECTION_STUDY.md) for force provenance, geometry screens, quantities, limits and exports.
+Default **fixed-force sensitivity** keeps imported forces constant and retains their original source geometry. **Analysis-matched mode** uses uploaded case JSON files for the corresponding sections and leaves missing analyses visible. This does not run FB-MultiPier. Applying a width/depth trial to the main calculator also lets you continue its steel search with the current forces; a matching analysis is still needed for the final size. Read [SECTION_STUDY.md](SECTION_STUDY.md) for force provenance, geometry screens, quantities, limits and exports.
 
 ### Search and drawing limits
 
