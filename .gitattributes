@@ -1,0 +1,9 @@
+# Native BPAD whitespace and cached data must survive checkout unchanged.
+*.bpad -text
+*.pdf binary
+standards/*.txt -text
+# Task and support-file fingerprints must also survive checkout unchanged.
+tasks/** -text
+workflow/** -text
+tools/*.py text eol=lf
+tests/test_bpad_workflow.py text eol=lf

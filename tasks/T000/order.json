@@ -1,0 +1,18 @@
+{
+  "id": "T000",
+  "kind": "workflow_bootstrap",
+  "objective": "Establish task-driven native BPAD workflow without engineering changes.",
+  "source_sha256": "5611bee7a1b517f798521029bb9965f3c756941e564280fd8a37d09f81b7dfcd",
+  "deliverables": [
+    "exact baseline",
+    "reference resource copy",
+    "registered isolated tasks",
+    "lossless inspector and assembler",
+    "dependency/scope/conflict gates",
+    "native-review promotion gate",
+    "task-generation prompt",
+    "behavioral tests"
+  ],
+  "helper_implementation": "complete",
+  "native_review": "pending"
+}

@@ -1,0 +1,39 @@
+test_actual_supplied_journal_roundtrips_without_serializing (test_bpad_workflow.WorkflowTests.test_actual_supplied_journal_roundtrips_without_serializing) ... ok
+test_assembly_does_not_change_current_and_requires_review (test_bpad_workflow.WorkflowTests.test_assembly_does_not_change_current_and_requires_review) ... ok
+test_changed_evidence_blocks_promotion (test_bpad_workflow.WorkflowTests.test_changed_evidence_blocks_promotion) ... ok
+test_changed_external_results_rejected (test_bpad_workflow.WorkflowTests.test_changed_external_results_rejected) ... ok
+test_changed_standard_or_assumption_rejected (test_bpad_workflow.WorkflowTests.test_changed_standard_or_assumption_rejected) ... ok
+test_component_import_rejects_native_work_overwrite (test_bpad_workflow.WorkflowTests.test_component_import_rejects_native_work_overwrite) ... ok
+test_duplicate_id_rejected (test_bpad_workflow.WorkflowTests.test_duplicate_id_rejected) ... ok
+test_entities_and_path_escape_rejected (test_bpad_workflow.WorkflowTests.test_entities_and_path_escape_rejected) ... ok
+test_external_resource_edit_rejected (test_bpad_workflow.WorkflowTests.test_external_resource_edit_rejected) ... ok
+test_lock_prevents_second_integrator (test_bpad_workflow.WorkflowTests.test_lock_prevents_second_integrator) ... ok
+test_lossless_roundtrip_including_entities_empty_tags_and_comments (test_bpad_workflow.WorkflowTests.test_lossless_roundtrip_including_entities_empty_tags_and_comments) ... ok
+test_missing_pdf_blocks_promotion (test_bpad_workflow.WorkflowTests.test_missing_pdf_blocks_promotion) ... ok
+test_modified_base_rejected (test_bpad_workflow.WorkflowTests.test_modified_base_rejected) ... ok
+test_modified_candidate_cannot_reuse_review (test_bpad_workflow.WorkflowTests.test_modified_candidate_cannot_reuse_review) ... ok
+test_new_broken_link_rejected (test_bpad_workflow.WorkflowTests.test_new_broken_link_rejected) ... ok
+test_new_dependency_requires_contract (test_bpad_workflow.WorkflowTests.test_new_dependency_requires_contract) ... ok
+test_new_native_error_rejected (test_bpad_workflow.WorkflowTests.test_new_native_error_rejected) ... ok
+test_out_of_scope_edit_rejected (test_bpad_workflow.WorkflowTests.test_out_of_scope_edit_rejected) ... ok
+test_plan_only_folder_is_retained_during_registration (test_bpad_workflow.WorkflowTests.test_plan_only_folder_is_retained_during_registration) ... ok
+test_prerequisite_blocks_assembly (test_bpad_workflow.WorkflowTests.test_prerequisite_blocks_assembly) ... ok
+test_promotion_rechecks_current_revision (test_bpad_workflow.WorkflowTests.test_promotion_rechecks_current_revision) ... ok
+test_reference_import_and_portable_candidate_preserve_pdf_and_formulas (test_bpad_workflow.WorkflowTests.test_reference_import_and_portable_candidate_preserve_pdf_and_formulas) ... ok
+test_rejected_native_import_keeps_working_copy (test_bpad_workflow.WorkflowTests.test_rejected_native_import_keeps_working_copy) ... ok
+test_removed_published_output_rejected (test_bpad_workflow.WorkflowTests.test_removed_published_output_rejected) ... ok
+test_reviewed_exact_revision_promotes_with_backup (test_bpad_workflow.WorkflowTests.test_reviewed_exact_revision_promotes_with_backup) ... ok
+test_same_component_conflict_rejected_and_work_preserved (test_bpad_workflow.WorkflowTests.test_same_component_conflict_rejected_and_work_preserved) ... ok
+test_stale_numeric_dependency_rejected (test_bpad_workflow.WorkflowTests.test_stale_numeric_dependency_rejected) ... ok
+test_tampered_task_order_rejected (test_bpad_workflow.WorkflowTests.test_tampered_task_order_rejected) ... ok
+test_tracked_proposal_restores_ignored_working_copy (test_bpad_workflow.WorkflowTests.test_tracked_proposal_restores_ignored_working_copy) ... ok
+test_two_independent_task_results_merge_without_lost_update (test_bpad_workflow.WorkflowTests.test_two_independent_task_results_merge_without_lost_update) ... ok
+test_unrelated_accepted_change_is_retained (test_bpad_workflow.WorkflowTests.test_unrelated_accepted_change_is_retained) ... ok
+test_unreviewed_dependency_coverage_defaults_to_every_component (test_bpad_workflow.WorkflowTests.test_unreviewed_dependency_coverage_defaults_to_every_component) ... ok
+test_unreviewed_external_analysis_blocks_promotion (test_bpad_workflow.WorkflowTests.test_unreviewed_external_analysis_blocks_promotion) ... ok
+test_wrapper_change_and_topology_change_rejected (test_bpad_workflow.WorkflowTests.test_wrapper_change_and_topology_change_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 34 tests in 2.549s
+
+OK

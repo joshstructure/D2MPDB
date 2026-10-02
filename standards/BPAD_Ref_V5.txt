@@ -1,0 +1,1435 @@
+================================================================================
+  BLOCKPAD XML REFERENCE GUIDE — v11
+  Reviewer-oriented layout standard added 2026-09-11
+  C002 strategy/execution formatting clarified 2026-09-23
+  Unit normalization syntax clarified 2026-09-28
+  For use by AI assistants when building Blockpad calculation documents
+================================================================================
+
+Blockpad is a structural/engineering calculation software. It saves documents as
+UTF-8 XML files (version 1.8), including native .bpad files. Preserve the
+native .bpad extension when editing an existing journal.
+
+Use Section 16 as the default layout standard for new calculations and
+formatting revisions. Explicit project/user requirements take precedence.
+The filename BPAD_Ref_V3.txt is retained for existing project-source links.
+Section 16.9 records the complete C002 strategy-to-execution presentation pattern.
+
+All code references use "LRFD" (not "AASHTO"). Equation references use the
+format: (LRFD Eq. ####) or (AISC360 Eq. ####) depending on the code prescribed. 
+
+Greek characters must be actual Unicode characters
+(e.g., φ, λ, π, β, α), never spelled-out English names.
+
+================================================================================
+  1. DOCUMENT SKELETON
+================================================================================
+
+The complete canonical skeleton is shown below. Key structural rules:
+
+  - Global <stylerule> blocks for heading levels and AnyTableCell conditional
+    formatting appear BEFORE the <report> element, at the document level.
+  - The global AnyTableCell stylerules define conditional formatting for PASS/FAIL
+    cells. They MUST be at the document level to take effect.
+  - The "Required Input" AnyEquation stylerule is defined INSIDE <report>.
+  - Library.Scripts is the sixth required include.
+  - bordermargin on <report> should be "0, 0, 0, 0" (not equal to margin).
+
+<?xml version="1.0" encoding="utf-8"?>
+<document version="1.8">
+
+  <!-- Document-level global stylerules — heading hierarchy -->
+  <stylerule applytoall="True" type="Heading1"
+             fontfamily="Times New Roman" fontweight="bold" fontsize="16"
+             textdecoration="underline" horzalign="Center" spacingafter="4" />
+  <stylerule applytoall="True" type="Heading2"
+             fontfamily="Times New Roman" fontweight="bold" fontsize="14"
+             leftindent="0.25 in" spacingafter="4" />
+  <stylerule applytoall="True" type="Heading3"
+             fontfamily="Times New Roman" fontweight="bold" fontsize="12"
+             leftindent="18" spacingafter="4" />
+  <stylerule applytoall="True" type="Heading4"
+             fontfamily="Times New Roman" fontweight="bold" fontsize="11"
+             leftindent="35" spacingafter="4" />
+  <stylerule applytoall="True" type="RegularParagraph"
+             fontfamily="Times New Roman" fontsize="11" leftindent="0.25 in" 
+	     spacingafter="4"/>
+  <stylerule applytoall="True" type="lines" linecolor="#FF0000" linepattern="Solid" linethickness="0.5; frame" />
+  <stylerule name="Sm. Sch. Text" type="Any" textcolor="#FF0000" fontsize="4" fillcolor="#F6F6F6" />
+  <stylerule applytoall="True" type="arrowlines" linecolor="#FF0000" linepattern="Solid" linethickness="0.5; frame" />
+  <stylerule name="" type="lineardim" linecolor="#FF0000" linepattern="Solid" linethickness="1; frame" applytoall="True" />
+  <stylerule type="Any" name="Sm. Sch. Dim" fontsize="4" textcolor="#FF0000" linecolor="#FF0000" linethickness="0.25" />
+
+  <!-- AnyTableCell conditional formatting — MUST be document-level -->
+  <stylerule applytoall="True" type="AnyTableCell" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" />
+  <stylerule applytoall="True" type="AnyTableCell"
+             fontfamily="Times New Roman" fontsize="11" />
+  <stylerule applytoall="True" type="AnyTableCell"
+             condition="&quot;✓ PASS&quot;" background="#ABDB92" />
+  <stylerule applytoall="True" type="AnyTableCell"
+             condition="&quot;⊗ FAIL&quot;" background="#EF3429" />
+  <stylerule applytoall="True" type="AnyTableCell"
+             condition="&quot;✓ All Checks Pass&quot;" background="#ABDB92" />
+  <stylerule applytoall="True" type="AnyTableCell"
+             condition="&quot;⊗ There are FAILURES&quot;" background="#EF3429" />
+
+  <!-- Named dynexp display style -->
+  <stylerule name="Result only" type="dynexp"
+             showformula="False" showidentifier="False"
+             showresult="True" showsteps="false" mathlayout="off" />
+
+  <!-- Library includes -->
+  <include target="Library.DateTime" />
+  <include target="Library.Math" />
+  <include target="Library.Logic" />
+  <include target="Library.Lookup" />
+  <include target="Library.Text" />
+  <include target="Library.Scripts" />
+
+  <report title="Report Title Here" name="R1"
+          margin="48,48,48,48" collapsemargins="False" bordermargin="0, 0, 0, 0">
+
+    <!-- Report-level stylerules -->
+    <stylerule applytoall="True" type="Outline2" leftindent="0.25 in" />
+    <stylerule type="AnyEquation" name="Required Input" texthighlight="#F7E6B9" />
+
+    ... content goes here ...
+
+  </report>
+</document>
+
+Always include all six Library includes. The report element wraps all visible
+content and must include standard print margins as shown above.
+
+================================================================================
+  2. PROJECT INFO BLOCK AND DESIGN SUMMARY
+================================================================================
+
+Open with project information and the calculation title, followed by a brief
+overview, solution/load-path schematic, and live summary appropriate to the
+task. Keep the overview inside the main calculation report, not a separate
+module. Add a Table of Contents for long reports when useful and supported;
+do not insert a placeholder TOC block. See Section 16.
+
+--------------------------------------------------------------------------------
+  2.1  Project Information Header
+--------------------------------------------------------------------------------
+
+Use a bold/underlined label paragraph followed by metadata lines with tab stops:
+
+  <paragraph fontfamily="Times New Roman" fontsize="11" fontweight="bold"
+             textdecoration="underline" spacingafter="4">
+    PROJECT INFORMATION:
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4">
+    Designed By:
+    <break type="tab" />
+    JAT
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4">
+    Dated:
+    <break type="tab" />
+    <dynexp formula="Today()" style="Result only" />
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4">
+    Project No.:
+    <break type="tab" />
+    1025001.00
+  </paragraph>
+
+The Today() formula keeps the date live and always current when the document
+is opened.
+
+--------------------------------------------------------------------------------
+  2.2  Table of Contents
+--------------------------------------------------------------------------------
+
+Insert a TOC block after the design summary but before the first technical
+section heading. Headings must have id attributes paired with
+<paragraphlabel numbergroup="heading"> for the TOC to index them.
+
+  <block name="TOC_1" definition="Library.Docs.TableOfContents">
+    ... TOC parameters per Library.Docs documentation ...
+  </block>
+
+================================================================================
+  3. SUMMARY OF CHECKS — HIDDEN COLLECTOR PATTERN
+================================================================================
+
+For documents with many individual checks, use a hidden section to collect all
+check variables into a list, then drive the overall PASS/FAIL from that list
+using the Any() function. This avoids long And() chains in the summary table.
+
+Step 1 — Each check assigns its result to a named variable as normal:
+  <dynexp formula="Chk_ty = If(DC_ty &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)"
+          style="Result only" ...>
+
+Step 2 — Hidden collector section just before the summary table:
+  <section name="LogicCollector" capture="False" hide="true">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0">
+      <dynexp formula="Checks = [Chk_ty, Chk_tf, Chk_bs, Chk_comp]" />
+    </paragraph>
+  </section>
+
+Step 3 — Overall result cell in the summary table uses Any():
+  <c capture="False"
+     formula="If(Any(Checks, ==&quot;⊗ FAIL&quot;), &quot;⊗ There are FAILURES&quot;, &quot;✓ All Checks Pass&quot;)">
+    <textvalue>✓ All Checks Pass</textvalue>
+  </c>
+
+The Any(list, condition) function returns true if any element in the list
+satisfies the condition. This is cleaner than And(Chk_a=="✓ PASS",
+Chk_b=="✓ PASS", ...) when there are many checks.
+
+Note: The existing And()-based pattern (Snippet Library, Section 12) remains
+valid for documents with a small number of checks. Use the collector pattern
+when there are five or more checks to avoid unwieldy formula strings.
+
+================================================================================
+  4. HEADINGS — SECTIONS AND SUB-SECTIONS
+================================================================================
+
+Use <heading> for numbered technical sections and subsections. Short labels
+inside colored boxes, such as GEOMETRY OUTPUTS or PRESSURE APPROACH, may use
+bold <paragraph> elements; they are not separate numbered sections.
+
+Automatic numbering is applied with <paragraphlabel> inside the heading.
+The visual appearance of each level is controlled by the global Heading1–Heading4
+stylerules defined at the document level (see Section 1). Do not add redundant
+font attributes directly on <heading> elements.
+
+Heading level mapping:
+  <heading>           ->  Heading1  (Level 0: main sections,  e.g. "1. INPUTS")
+  <heading level="1"> ->  Heading2  (Level 1: sub-sections,   e.g. "1.1. Material Properties")
+  <heading level="2"> ->  Heading3  (Level 2: sub-sub-sections)
+  <heading level="3"> ->  Heading4  (Level 3: minor divisions)
+
+Level 0 — Main Sections:
+  <heading>
+    <paragraphlabel numbergroup="heading">1.</paragraphlabel>
+    INPUTS
+  </heading>
+
+Level 1 — Sub-sections:
+  <heading level="1">
+    <paragraphlabel numbergroup="heading">1.1.</paragraphlabel>
+    Material Properties
+  </heading>
+
+Level 2 — Sub-sub-sections:
+  <heading level="2">
+    <paragraphlabel numbergroup="heading">1.1.1.</paragraphlabel>
+    Compression Flange
+  </heading>
+
+Level 3 — Minor divisions:
+  <heading level="3">
+    <paragraphlabel numbergroup="heading">1.1.1.1.</paragraphlabel>
+    X-Axis
+  </heading>
+
+END OF SECTION SPACING — CRITICAL RULE:
+  The last paragraph element before a new section heading must have
+  spacingafter="12" to provide adequate visual separation between sections.
+
+================================================================================
+  5. PARAGRAPH ELEMENT
+================================================================================
+
+Basic paragraph:
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="12">
+    Text content here.
+  </paragraph>
+
+Common paragraph attributes:
+  fontfamily="Times New Roman"     Always use Times New Roman
+  fontsize="11"                    Body text size
+  fontweight="bold"                Makes text bold
+  fontunderline="True"             Underlines text
+  textdecoration="underline"       Also needed for underline (use BOTH attributes)
+  fontstyle="italic"               Italics
+  horzalign="Center"               Center alignment
+  spacingafter="0|2|4|6|8|12"     Space after paragraph in points
+  spacingbefore="4"                Space before paragraph
+  level="1"                        Indentation level (1, 2, 3...)
+
+Empty paragraph (blank line):
+  <paragraph fontfamily="Times New Roman" fontsize="11" />
+
+--------------------------------------------------------------------------------
+  5.1  Inline Text Formatting with <span>
+--------------------------------------------------------------------------------
+
+Keep paragraph text and inline elements compact, with no indentation or source
+newlines that could appear in the rendered paragraph. Use &#160; (nonbreaking
+space) at inline element boundaries where a normal space may be stripped.
+Do not require <span> to occupy its own source line. Section 5.3 governs.
+
+  <paragraph fontfamily="Times New Roman" fontsize="11">Per&#160;<span fontweight="bold">LRFD Section 3.6.1.1.1</span>, the number of design lanes...</paragraph>
+
+For calculation layouts, prefer a bold label on its own line followed by short
+bullets over a bold inline label attached to a long paragraph.
+
+--------------------------------------------------------------------------------
+  5.2  Tab Stop / Column Alignment
+--------------------------------------------------------------------------------
+
+  <break type="tab" />
+  Use this inline within a paragraph to jump to the next tab stop. Useful for
+  aligning reference codes or check results to the right of a formula line.
+
+--------------------------------------------------------------------------------
+  5.3  Whitespace and Newlines Inside Paragraph Elements — CRITICAL RULE
+--------------------------------------------------------------------------------
+
+Do NOT add newlines or indentation inside a <paragraph> element's text content.
+Blockpad renders literal whitespace (newlines, leading spaces, tabs) that appears
+between XML tags as visible line breaks and spaces in the output. The text content
+and all inline child elements (<span>, <break />, <dynexp>) must be written
+compactly with no newlines inside the paragraph.
+
+  WRONG — newlines and indentation inside paragraph (renders as line breaks):
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">
+      This calculation checks local force effects on the HSS14×14×5/8 chord at the
+      welded T-connection where a branch frames in perpendicular to the chord face.
+      Checks are performed per&#160;
+      <span fontweight="bold">AISC 360-22 Chapter K</span>
+      &#160;and&#160;
+      <span fontweight="bold">Chapter J</span>
+      . The weld design is performed separately.
+    </paragraph>
+
+  CORRECT — all text content on one line, no internal newlines:
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">This calculation checks local force effects on the HSS14×14×5/8 chord at the welded T-connection where a branch frames in perpendicular to the chord face. Checks are performed per&#160;<span fontweight="bold">AISC 360-22 Chapter K</span>&#160;and&#160;<span fontweight="bold">Chapter J</span>. The weld design is performed separately.</paragraph>
+
+This applies to ALL paragraph content including:
+  - Pure narrative/discussion text
+  - Paragraphs containing <span> elements
+  - Paragraphs containing <break type="tab" /> elements
+  - Any paragraph that does not contain a <dynexp> child
+
+Exception — paragraphs containing <dynexp>:
+  The <dynexp> element and its child elements (<expbody>, <expstep>, <expresult>)
+  MAY be written across multiple lines for readability, since Blockpad evaluates
+  the formula and renders only the computed result — it does not render the
+  internal XML whitespace of a dynexp block as visible text.
+
+================================================================================
+  6. DYNAMIC EXPRESSIONS (dynexp) — THE CORE OF BLOCKPAD
+================================================================================
+
+dynexp is the key element. It defines a formula, shows calculation steps,
+and displays a result. Blockpad evaluates these live.
+
+Full syntax:
+  <dynexp mathlayout="on"
+          formula="variable_name = expression"
+          showsteps="True"
+          seplines="True"
+          showformula="False"
+          style="Required Input">
+    <expbody>variable_name = expression</expbody>
+    <expstep> = intermediate step with substituted values</expstep>
+    <expresult> = final result with units</expresult>
+  </dynexp>
+
+Key attributes:
+  mathlayout="on"          Always include; enables math rendering
+  formula="..."            The actual formula Blockpad evaluates; use variable
+                           names defined earlier in the document
+  showsteps="True"         Show the expstep substitution line
+  showsteps="False"        Hide substitution steps; formula/result visibility
+                           is controlled separately by showformula/showresult
+  seplines="True"          Each part on its own line (use for long expressions)
+  seplines="False"         Body/step/result on one line (use for short expressions)
+  showformula="False"      Hide the formula name line
+  style="Result only"      Hide formulas and identifiers; show only the final
+                           computed result text — use for all PASS/FAIL checks
+  style="Required Input"   Highlights the input in pale amber (#F7E6B9) — use for all
+                           user input variables that must be set before running
+
+Child elements:
+  <expbody>...</expbody>
+    Displayed as the left-hand side / formula label.
+
+  <expstep>...</expstep>
+    Substituted values shown as an intermediate step.
+    CRITICAL: USE VARIABLE NAMES, NOT HARD-CODED NUMBERS.
+    Write "= φ_f * Mn" not "= 0.90 * 1200". This ensures steps update
+    automatically when inputs change.
+
+  <expresult>...</expresult>
+    The final result shown. Always include units here.
+
+Unit Conversions in Formulas:
+  Use the "to" keyword in the formula to enforce an output unit format.
+  Example — decimal feet to feet-and-inches:
+    <dynexp mathlayout="on" formula="CR = 22.875 ft to ft in">
+      <expbody>CR = 22.875 ft to ft in</expbody>
+      <expresult> = 22ft 10.5in</expresult>
+    </dynexp>
+
+Unit Normalization / Nondimensionalization — CRITICAL:
+  A bare unit symbol is NOT a scalar quantity in Blockpad. When a code equation
+  requires a dimensional variable to be converted to a dimensionless numerical
+  ratio, divide by an explicit quantity of one unit. Likewise, when attaching a
+  unit to a dimensionless expression, multiply by an explicit one-unit quantity.
+
+  REQUIRED syntax:
+    L/(1 ft)       -> dimensionless numerical value of L in feet
+    h/(1 in)       -> dimensionless numerical value of h in inches
+    θ/(1 deg)      -> dimensionless numerical value of θ in degrees
+    x*(1 in)       -> applies inches to a dimensionless expression x
+
+  DO NOT use:
+    L/ft           <- invalid / unreliable unit stripping
+    h/in           <- invalid / unreliable unit stripping
+    θ/deg          <- invalid / unreliable unit stripping
+    x*in           <- do not use a bare unit as the multiplier
+
+  Use parentheses around the one-unit quantity after division so operator
+  precedence is unambiguous: L/(1 ft), not L/1 ft. Apply the same syntax in
+  formula="...", <expbody>, and <expstep> so the displayed equation matches the
+  executable equation.
+
+  Example — empirical equation whose coefficients expect L and H in feet, S in
+  degrees, and whose result is inches:
+    N = (8 + 0.02*(L/(1 ft)) + 0.08*(H/(1 ft)))
+        * (1 + 0.000125*(S/(1 deg))^2) * (1 in)
+
+================================================================================
+  7. FORMATTING RULES
+================================================================================
+
+--------------------------------------------------------------------------------
+  7.1  Fonts
+--------------------------------------------------------------------------------
+
+Always use Times New Roman for all text.
+  Body text:    fontsize="11"
+  Table body:   fontsize="10" (or fontsize="8" for very dense tables)
+
+--------------------------------------------------------------------------------
+  7.2  Report Title (top of document)
+--------------------------------------------------------------------------------
+
+  <paragraph fontfamily="Times New Roman" fontweight="bold" fontsize="16"
+             fontunderline="True" textdecoration="underline"
+             horzalign="Center" spacingafter="6">
+    AASHTO LRFD BDS — RECTANGULAR HSS MEMBER DESIGN
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="12" />
+
+--------------------------------------------------------------------------------
+  7.3  Body Paragraphs with Formula + Description (CRITICAL — 8.5x11 Rule)
+--------------------------------------------------------------------------------
+
+On 8.5x11 pages, long descriptions following a formula will not fit on the
+same line as the equation. Always split into two consecutive paragraphs:
+
+  1. The dynexp paragraph uses spacingafter="0".
+  2. The description paragraph immediately below uses spacingafter="4" or "8".
+  3. Text describing or labeling the formula must NEVER appear before the
+     dynexp in the same paragraph.
+  4. All equation references must use the format: (LRFD Eq. ####).
+     Do not write "AASHTO."
+
+EXCEPTION — Short inputs that fit on one line:
+  For simple input assignments (e.g., F_y = 50 ksi), the description CAN appear
+  on the same line after a <break type="tab" /> without a second paragraph:
+
+  <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4">
+    <dynexp formula="F_y = 50 ksi" showsteps="false" style="Required Input">
+      <expbody>F_y = 50 ksi</expbody>
+    </dynexp>
+    <break type="tab" />
+    Yield Strength — ASTM A500 Gr. 50 (LRFD 6.4.2)
+  </paragraph>
+
+Two-paragraph pattern for longer formulas:
+  <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="0">
+    <dynexp mathlayout="on" formula="L_span = 80 ft">
+      <expbody>L_span = 80 ft</expbody>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="8">
+    Simple span length (ahead and back spans equal) — used for influence line
+    ordinates (LRFD Eq. 3.6.1.1.1-1)
+  </paragraph>
+
+DISCUSSION AND VARIABLE LISTS — REVIEWER-ORIENTED DEFAULT:
+
+Break explanations into short, complete bullets grouped under meaningful
+labels. Use numbered lists only for ordered solution steps. Keep one variable
+and its definition per bullet. Use native math for variables and put equations
+on their own lines. Do not preserve a long narrative merely because Blockpad
+can wrap it; do not split a single sentence into disconnected fragments.
+See Section 16 for boxed layouts and exact native XML patterns.
+
+--------------------------------------------------------------------------------
+  7.4  No XML Comments
+--------------------------------------------------------------------------------
+
+Do not use XML comment blocks (<!-- -->) for section dividers, labels, or
+any other purpose in calculation documents. XML comments with decorative
+box-drawing characters (===, ---) cause Blockpad crashes.
+
+================================================================================
+  8. CONCLUSIONS AND PASS/FAIL CHECKS — CRITICAL RULE
+================================================================================
+
+NEVER add static text statements about conclusions based on calculations
+(e.g., "The section is compact," "The member is adequate"). Such statements
+become incorrect when inputs change.
+
+ALL conclusion statements must be live If() expressions with style="Result only"
+so that the formula code is hidden and only the result string is displayed.
+
+PASS/FAIL STRING CONVENTION — CRITICAL:
+  Use the following exact Unicode strings. The global AnyTableCell stylerules
+  in the document skeleton are keyed to these exact strings. Any deviation will
+  break the conditional color formatting.
+
+    Pass string:          "✓ PASS"                  (U+2713 CHECK MARK)
+    Fail string:          "⊗ FAIL"                  (U+2297 CIRCLED TIMES)
+    Overall pass:         "✓ All Checks Pass"
+    Overall fail:         "⊗ There are FAILURES"
+
+  Do NOT use "✗ FAIL" (U+2717 BALLOT X) — the stylerules are not keyed to it.
+  Do NOT use valueformat="TrueFalse(...)".
+
+Standard PASS/FAIL check (body paragraph):
+  <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="8">
+    <dynexp formula="Check_Flexure_x = If(DC_flex_x&lt;=1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)"
+            style="Result only" showresult="True" showidentifier="False" showformula="False">
+      <expbody>Check_Flexure_x = If(DC_flex_x&lt;=1, "✓ PASS", "⊗ FAIL")</expbody>
+    </dynexp>
+  </paragraph>
+
+Combined overall check — compare each sub-check's string result using And(),
+NOT numeric D/C ratios. This ensures the overall reflects the displayed state:
+  <dynexp formula="Check_All = If(And(Chk_web==&quot;✓ PASS&quot;, Chk_flex==&quot;✓ PASS&quot;), &quot;✓ All Checks Pass&quot;, &quot;⊗ There are FAILURES&quot;)"
+          style="Result only" showresult="True" showidentifier="False" showformula="False">
+    <expbody>Check_All = If(And(Chk_web=="✓ PASS", Chk_flex=="✓ PASS"), "✓ All Checks Pass", "⊗ There are FAILURES")</expbody>
+  </dynexp>
+
+Note on XML escaping in formula attribute:
+  &lt;  encodes <  (less-than)
+  &gt;  encodes >  (greater-than)
+  &quot; encodes "  (double-quote)
+  Escape XML-reserved characters in attributes AND text nodes as required.
+  In <expbody> text, escape & and <; quotes need escaping in attributes.
+
+================================================================================
+  9. LIVE vs. HARD-CODED — CRITICAL RULE
+================================================================================
+
+ALL calculated values must use dynexp variable references. Never hard-code
+numbers in narrative text or expstep tags that will become stale when inputs
+change.
+
+  WRONG (hard-coded in description):
+    <paragraph ...>φ_f · Mn = 1,080 kip·ft, which exceeds Mu = 870 kip·ft.</paragraph>
+
+  CORRECT (live references only):
+    <paragraph ... spacingafter="0">
+      <dynexp formula="Check_Flexure_x = If(DC_flex_x&lt;=1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)"
+              style="Result only" ...>
+        <expbody>...</expbody>
+      </dynexp>
+    </paragraph>
+
+================================================================================
+  10. USER-INPUT DROPDOWNS — valuefield
+================================================================================
+
+When the user must choose between a discrete set of options (e.g., axis of
+bending, load type, material grade, stiffener presence), use a <valuefield>
+inline in a body paragraph. This renders as an interactive dropdown in Blockpad
+and assigns the selected value to a named variable that downstream dynexp
+formulas can reference.
+
+Use valuefield ONLY for discrete selection. For continuous numeric inputs,
+use a dynexp with style="Required Input" instead.
+
+Syntax — string options:
+  <valuefield
+    valuedef="FromOptionsOrValue(null, [&quot;Option A&quot;, &quot;Option B&quot;, &quot;Option C&quot;])"
+    name="VariableName">
+    <textvalue>Option A</textvalue>    (default/cached selection)
+  </valuefield>
+
+Syntax — boolean toggle:
+  <valuefield
+    valuedef="FromOptionsOrValue(null, [true; false])"
+    name="VariableName">
+    <bool>False</bool>                 (default/cached selection)
+  </valuefield>
+
+Usage notes:
+  - name="" is the variable name referenced in downstream formulas.
+  - The content inside <valuefield> is the cached default; Blockpad updates it
+    when the user makes a selection.
+  - String lists use commas and XML-escaped quotes:
+      [&quot;Tension&quot;, &quot;Compression&quot;]
+  - Boolean lists use semicolons (no quotes):
+      [true; false]
+  - Place the valuefield inline in a paragraph following a descriptive label
+    so the calc reads naturally: "Axial load type: [dropdown]"
+  - Use &#160; before the valuefield to ensure a space between the label text
+    and the dropdown widget.
+
+Example — discrete string options:
+  <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4">
+    Axial load type:&#160;
+    <valuefield valuedef="FromOptionsOrValue(null, [&quot;Tension&quot;, &quot;Compression&quot;])"
+                name="Axial_load_type">
+      <textvalue>Compression</textvalue>
+    </valuefield>
+  </paragraph>
+
+Example — boolean toggle:
+  <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="12">
+    Longitudinal stiffeners present?&#160;
+    <valuefield valuedef="FromOptionsOrValue(null, [true; false])"
+                name="Long_Stiff_Present">
+      <bool>False</bool>
+    </valuefield>
+  </paragraph>
+
+Example — referencing the valuefield result in a downstream formula:
+  <dynexp formula="phi_Pn = If(Axial_load_type == &quot;Compression&quot;, φ_c * Pn, φ_y * Ag * F_y)">
+    <expbody>phi_Pn = If(Axial_load_type == "Compression", φ_c · Pn, φ_y · Ag · F_y)</expbody>
+    <expresult> = ### kip</expresult>
+  </dynexp>
+
+================================================================================
+  11. TABLES
+================================================================================
+
+--------------------------------------------------------------------------------
+  11.1  Cell Type Hierarchy — CRITICAL RULE
+--------------------------------------------------------------------------------
+
+Always prefer <c> (value cell) over <textcell> (multiline cell) for ALL table
+cells. Conditional background formatting (the AnyTableCell stylerules) only
+fires on <c> cells — NOT on <textcell>. Using <textcell> for PASS/FAIL cells
+will silently break the green/red highlighting.
+
+  USE <c> for:
+    Static text labels:
+      <c capture="False"><textvalue>Label Text</textvalue></c>
+
+    Static numbers:
+      <c capture="False"><num>1.25</num></c>
+
+    Live formula result (displays computed value):
+      <c capture="False" formula="DC_flex_x"><num>0.82</num></c>
+
+    PASS/FAIL result (formula evaluates to the string; cached in textvalue):
+      <c capture="False" formula="Check_Flexure_x"><textvalue>✓ PASS</textvalue></c>
+
+    Overall summary cell:
+      <c capture="False" formula="If(And(...), &quot;✓ All Checks Pass&quot;, &quot;⊗ There are FAILURES&quot;)">
+        <textvalue>✓ All Checks Pass</textvalue>
+      </c>
+
+    Header reference cell (brings a named variable into table scope):
+      <c name="VarName" showidentifier="True" showresult="False" mathlayout="on">
+        <bool>True</bool>
+      </c>
+
+    Cell displaying variable name rather than its computed value:
+      <c formula="P_DC" showresult="False" showformula="True"><num>120 kip</num></c>
+
+  USE <textcell> ONLY for:
+    Cells requiring multi-paragraph rich text (e.g., wrapped label headers
+    with subscripts, superscripts, or multiple lines of formatted text).
+    Do NOT use <textcell> for any cell that participates in conditional
+    color formatting.
+
+--------------------------------------------------------------------------------
+  11.2  Table Structure
+--------------------------------------------------------------------------------
+
+Tables are wrapped in <embed> and use <table>, <row>, and <c> elements.
+Borders are set via a <stylerule range="..."> block inside the table.
+
+Full-width table with range-based borders:
+  <embed spacingafter="12">
+    <table title="Table Name" name="TableName" capture="False"
+           colwidths="1:200, 2:100, 3:100, 4:120">
+      <stylerule range="A1:D5"
+        border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#000000&quot;);
+                Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 1, &quot;#000000&quot;);
+                Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 1, &quot;#000000&quot;);" />
+      <row>
+        <c capture="False" fontweight="bold" background="#D4D4D4">
+          <textvalue>Header</textvalue>
+        </c>
+      </row>
+      <row>
+        <c capture="False"><textvalue>Data</textvalue></c>
+      </row>
+    </table>
+  </embed>
+
+--------------------------------------------------------------------------------
+  11.3  Range-Based Alignment in Tables
+--------------------------------------------------------------------------------
+
+Prefer <stylerule range="..."> inside the table for alignment rather than
+repeating horzalign/vertalign on every <c> cell. This keeps cell markup lean
+and makes bulk alignment changes easy.
+
+  <stylerule range="A1:F1" horzalign="Center" vertalign="Center" />
+  <stylerule range="B2:F10" horzalign="Center" vertalign="Center" />
+  <stylerule range="A2:A10" horzalign="Left" vertalign="Top" />
+
+Apply inline cell-level attributes only when a single cell needs an exception
+to the range rule (e.g., one cell with a different background or font size).
+
+--------------------------------------------------------------------------------
+  11.4  Header Rows That Pull Variables into Table Scope
+--------------------------------------------------------------------------------
+
+Some complex tables use a header-row pattern where <c> cells with name="" and
+a <bool>True</bool> body bring named variables from the document scope into the
+table for use in row-formula cells (e.g., "C2*D2+E2*F2" style expressions).
+These cells display the variable identifier as the column header.
+
+  <c name="γ_DC" showidentifier="True" showresult="False" mathlayout="on">
+    <bool>True</bool>
+  </c>
+
+This is the standard pattern for load combination tables where each data row
+computes a factored result using cell references like C2*D2 + E2*F2.
+
+================================================================================
+  12. NAMING CONVENTIONS
+================================================================================
+
+Variables in dynexp formulas must follow standard structural engineering notation.
+  - Subscripts are denoted by an underscore: P_u, M_u, F_y, A_g
+  - Greek characters must be actual Unicode characters — NEVER the spelled-out
+    English name:
+      USE:  φ_f, λ_f, π, β, α, γ
+      NOT:  phi_f, lambda_f, pi, beta, alpha, gamma
+  - Use _gov suffix for governing (maximum) values: Pu_gov, Mu_gov, Vu_gov
+  - Use _comp, _flex, _tens, _shear suffixes for check-specific D/C ratios
+  - Use _x and _y suffixes for axis-specific quantities: DC_flex_x, Check_Flexure_y
+
+================================================================================
+  13. SNIPPET LIBRARY — READY-TO-USE PATTERNS
+================================================================================
+
+--- Report title block ---
+<paragraph fontfamily="Times New Roman" fontweight="bold" fontsize="16"
+           fontunderline="True" textdecoration="underline"
+           horzalign="Center" spacingafter="6">
+  AASHTO LRFD BDS — RECTANGULAR HSS MEMBER DESIGN
+</paragraph>
+<paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="12" />
+
+--- Main section heading (Level 0 -> Heading1) ---
+<heading>
+  <paragraphlabel numbergroup="heading">1.</paragraphlabel>
+  INPUTS
+</heading>
+
+--- Sub-section heading (Level 1 -> Heading2) ---
+<heading level="1">
+  <paragraphlabel numbergroup="heading">1.1.</paragraphlabel>
+  Material Properties
+</heading>
+
+--- Sub-sub-section heading (Level 2 -> Heading3) ---
+<heading level="2">
+  <paragraphlabel numbergroup="heading">1.1.1.</paragraphlabel>
+  Compression Flange
+</heading>
+
+--- Required input, short form (single-line with tab) ---
+<paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4">
+  <dynexp formula="F_y = 50 ksi" showsteps="false" style="Required Input">
+    <expbody>F_y = 50 ksi</expbody>
+  </dynexp>
+  <break type="tab" />
+  Yield Strength — ASTM A500 Gr. 50 (LRFD 6.4.2)
+</paragraph>
+
+--- Calculated value with substitution steps ---
+<paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="0">
+  <dynexp mathlayout="on" formula="M_u = 1.25*DC + 1.75*LL"
+          showsteps="True" seplines="True">
+    <expbody>M_u = 1.25·DC + 1.75·LL</expbody>
+    <expstep> = 1.25·DC + 1.75·LL</expstep>
+    <expresult> = ### kip·ft</expresult>
+  </dynexp>
+</paragraph>
+<paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="8">
+  Strength I factored moment demand (LRFD Eq. 3.4.1-1)
+</paragraph>
+
+--- PASS/FAIL check (Result only style) ---
+<paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="8">
+  <dynexp formula="Check_Flexure_x = If(DC_flex_x&lt;=1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)"
+          style="Result only" showresult="True" showidentifier="False" showformula="False">
+    <expbody>Check_Flexure_x = If(DC_flex_x&lt;=1, "✓ PASS", "⊗ FAIL")</expbody>
+  </dynexp>
+</paragraph>
+
+--- Combined overall PASS/FAIL ---
+<paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="12">
+  <dynexp formula="Check_All = If(And(Chk_web==&quot;✓ PASS&quot;, Chk_flex==&quot;✓ PASS&quot;, Chk_comp==&quot;✓ PASS&quot;), &quot;✓ All Checks Pass&quot;, &quot;⊗ There are FAILURES&quot;)"
+          style="Result only" showresult="True" showidentifier="False" showformula="False">
+    <expbody>Check_All = If(And(Chk_web=="✓ PASS", Chk_flex=="✓ PASS", Chk_comp=="✓ PASS"), "✓ All Checks Pass", "⊗ There are FAILURES")</expbody>
+  </dynexp>
+</paragraph>
+
+--- User-input dropdown (discrete string options) ---
+<paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4">
+  Axial load type:&#160;
+  <valuefield valuedef="FromOptionsOrValue(null, [&quot;Tension&quot;, &quot;Compression&quot;])"
+              name="Axial_load_type">
+    <textvalue>Compression</textvalue>
+  </valuefield>
+</paragraph>
+
+--- User-input boolean toggle ---
+<paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="12">
+  Longitudinal stiffeners present?&#160;
+  <valuefield valuedef="FromOptionsOrValue(null, [true; false])"
+              name="Long_Stiff_Present">
+    <bool>False</bool>
+  </valuefield>
+</paragraph>
+
+--- Inline bold reference ---
+<paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="8">
+  Per&#160;
+  <span fontweight="bold">LRFD Section 6.12.2.2.2</span>
+  , the nominal flexural resistance shall be based on...
+</paragraph>
+
+--- End-of-section spacing example ---
+<paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="12">
+  Last paragraph before next section heading.
+</paragraph>
+<heading>
+  <paragraphlabel numbergroup="heading">2.</paragraphlabel>
+  NEXT MAJOR SECTION
+</heading>
+
+--- Summary table with PASS/FAIL conditional formatting ---
+<embed spacingafter="12">
+  <table title="Summary of Checks" name="SummaryTable" capture="False"
+         colwidths="1:220, 2:100, 3:100, 4:100">
+    <stylerule range="A1:D5"
+      border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#000000&quot;);
+              Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 1, &quot;#000000&quot;);
+              Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 1, &quot;#000000&quot;);" />
+    <stylerule range="A1:D1" horzalign="Center" vertalign="Center" />
+    <stylerule range="B2:D5" horzalign="Center" vertalign="Center" />
+    <row>
+      <c capture="False" fontweight="bold" background="#D4D4D4"><textvalue>Check</textvalue></c>
+      <c capture="False" fontweight="bold" background="#D4D4D4"><textvalue>D/C Ratio</textvalue></c>
+      <c capture="False" fontweight="bold" background="#D4D4D4"><textvalue>Limit</textvalue></c>
+      <c capture="False" fontweight="bold" background="#D4D4D4"><textvalue>Result</textvalue></c>
+    </row>
+    <row>
+      <c capture="False"><textvalue>Flexure — X-Axis</textvalue></c>
+      <c capture="False" formula="DC_flex_x"><num>0.82</num></c>
+      <c capture="False"><num>1.0</num></c>
+      <c capture="False" formula="Check_Flexure_x"><textvalue>✓ PASS</textvalue></c>
+    </row>
+    <row>
+      <c capture="False"><textvalue>Shear — X-Axis</textvalue></c>
+      <c capture="False" formula="DC_shear_x"><num>0.55</num></c>
+      <c capture="False"><num>1.0</num></c>
+      <c capture="False" formula="Check_Shear_x"><textvalue>✓ PASS</textvalue></c>
+    </row>
+    <row>
+      <c capture="False"><textvalue>Compression</textvalue></c>
+      <c capture="False" formula="DC_comp"><num>0.91</num></c>
+      <c capture="False"><num>1.0</num></c>
+      <c capture="False" formula="Check_Compression"><textvalue>✓ PASS</textvalue></c>
+    </row>
+    <row>
+      <c capture="False" fontweight="bold"><textvalue>OVERALL</textvalue></c>
+      <c capture="False"><textvalue></textvalue></c>
+      <c capture="False"><textvalue></textvalue></c>
+      <c capture="False" formula="If(And(Check_Flexure_x==&quot;✓ PASS&quot;, Check_Shear_x==&quot;✓ PASS&quot;, Check_Compression==&quot;✓ PASS&quot;), &quot;✓ All Checks Pass&quot;, &quot;⊗ There are FAILURES&quot;)">
+        <textvalue>✓ All Checks Pass</textvalue>
+      </c>
+    </row>
+  </table>
+</embed>
+
+================================================================================
+  14. DESIGN CODE DISCIPLINE — CRITICAL RULE
+================================================================================
+
+When writing engineering calculations that reference a specific design code,
+ALL rules below apply without exception.
+
+--------------------------------------------------------------------------------
+  14.1  Code Version Is Binding
+--------------------------------------------------------------------------------
+
+The calculation document declares a specific code edition (e.g., "LRFD 10th
+Edition 2024"). Every equation, variable name, symbol, resistance factor, and
+limit used in the calc MUST come from that exact edition. Different editions can
+use entirely different methods, variable names, and numerical values.
+
+Do NOT assume continuity between editions. Always verify against the specific
+edition cited.
+
+--------------------------------------------------------------------------------
+  14.2  Never Substitute General Knowledge for Code Text
+--------------------------------------------------------------------------------
+
+General structural engineering training knowledge MUST NOT be used to fill gaps
+or supply equations when a specific code has been provided.
+
+Prohibited behaviors:
+  - Using a variable from a different edition of the same code
+  - Using a variable from a different code altogether
+  - Deriving equations from first principles and presenting them as code equations
+    when the provided code text uses a different form
+  - Assuming a formula from memory when the provided document contains the
+    authoritative text
+
+When in doubt: stop, read the provided code document, and use only what appears
+there. Do not proceed from memory.
+
+--------------------------------------------------------------------------------
+  14.3  Verify Every Variable and Equation Against the Provided Text
+--------------------------------------------------------------------------------
+
+This verification applies to formulas represented as code provisions.
+Project geometry, equilibrium, integration, and load-transfer relationships
+may use clearly defined project variables; identify them as derived equations
+or modeling assumptions, not as quoted code equations.
+
+Before writing any dynexp formula in a calc:
+  1. Identify which article/equation number the formula corresponds to.
+  2. Confirm that exact equation exists in the provided code document.
+  3. Confirm every variable name used in the formula is defined in that article
+     or its referenced definitions.
+  4. If a variable is NOT present in the provided code document, it does not
+     belong in the calc — regardless of whether it appears in other codes or
+     editions.
+
+Example of what went wrong and why it is prohibited:
+
+  WRONG (LRFD 10th Ed. calc — Q factor from older editions):
+    Fcr = Q * Fy * 0.658^(Q * Fy / Fe)     <- Q, Fcr, Fe not in 10th Ed.
+
+  RIGHT (LRFD 10th Ed. calc):
+    Po = Fy * Ag                            <- Art. 6.9.4.1.1 definition
+    Pe = (pi^2 * E * Ag) / KLr^2           <- (LRFD Eq. 6.9.4.1.2-1)
+    Pn = If(Po/Pe <= 2.25,                  <- (LRFD Eq. 6.9.4.1.1-1)
+             0.658^(Po/Pe) * Po,
+             0.877 * Pe)                    <- (LRFD Eq. 6.9.4.1.1-2)
+
+--------------------------------------------------------------------------------
+  14.4  Resistance Factors — Read from the Provided Code, Not from Memory
+--------------------------------------------------------------------------------
+
+Resistance factors (φ) are edition-specific and load-type-specific. Never
+assume a φ value from memory or from a different code.
+
+  Example:
+    WRONG:  φ_c = 0.90   <- correct for AISC LRFD / some earlier editions,
+                            but NOT for bare steel in LRFD 10th Ed.
+    RIGHT:  φ_c = 0.95   <- LRFD 10th Ed. Art. 6.5.4.2, axial compression
+
+Always cite the specific article number in the description line.
+
+--------------------------------------------------------------------------------
+  14.5  When the Code Is Silent — Label the Gap Explicitly
+--------------------------------------------------------------------------------
+
+When a calc must use a method from a secondary reference because the primary
+code does not address it:
+  - Label the check clearly in the calc body and summary table with the actual
+    reference used (e.g., "AISC 360 §H3").
+  - Add a warning note indicating the primary code gap.
+  - Do NOT silently apply the secondary-code method without attribution.
+
+--------------------------------------------------------------------------------
+  14.6  Workflow When a Code Document Is Provided
+--------------------------------------------------------------------------------
+
+  1. READ the relevant articles from the provided document before writing any
+     equations.
+  2. Identify the exact equation numbers and variable definitions for every
+     design check to be performed.
+  3. Write equations using only the variable names from the provided text.
+  4. After writing, cross-check: does every symbol in every dynexp formula
+     appear in the provided code document? If not, flag and correct it.
+  5. Never skip step 1 in reliance on training knowledge, even for codes that
+     appear familiar.
+================================================================================
+  14.7  Confirmed Available Functions
+================================================================================
+
+The following functions are confirmed available in Blockpad and should be used
+in preference to workarounds. They are case sensitive so it must be "Sqrt()" not
+"sqrt()" e.g.:
+
+  Sqrt(x)         Square root — use instead of x^0.5
+  Min(a, b)       Minimum of two values
+  Max(a, b)       Maximum of two values
+
+Basic logic functions
+Not()	Returns true if given false, and false if given true.
+Not(0 > 100)  = true
+Not("A"=="A")  = false
+And()	Returns true if all inputs are true, and false if any are false.
+And(100 > 0, 0 > -100)  = true
+And("A"=="A", "A"=="B")  = false
+Or()	Returns true if any inputs are true, and false if none are true.
+Or(100 < 0, 0 < -100)  = false
+Or("A"=="A", "A"=="B")  = true
+Xor()	Returns true if there are an odd number of true inputs.
+Xor(100 > 0, 0 > -100)  = false
+Xor("A"=="A", "A"=="B")  = true
+  Or(A, B, ...)   Logical OR — function form, same pattern as And(A, B, ...)
+  And(A,B,...) Logical AND
+
+List inspection function:
+  Any(list, condition)
+    Returns true if any element in list satisfies condition.
+    Used with the hidden collector pattern (Section 3) to drive overall
+    PASS/FAIL without a long And() chain.
+    Example: Any(Checks, =="⊗ FAIL")  -> true if any check failed
+
+================================================================================
+  14.8  Flagging OCR Uncertainty in Calculations
+================================================================================
+
+When a source document equation cannot be read with confidence due to OCR
+corruption, the calc must flag it explicitly rather than silently implement
+a best-guess formula. Use the following pattern:
+
+  1. Insert a highlighted warning paragraph immediately before the affected
+     dynexp using style="Required Input" on a plain paragraph. Since
+     style="Required Input" only applies to dynexp elements, use the
+     texthighlight attribute directly on the paragraph instead:
+
+     <paragraph fontfamily="Times New Roman" fontsize="11" fontweight="bold"
+                fontstyle="italic" level="1" spacingafter="4"
+                texthighlight="#FFD700">
+       ⚠ OCR WARNING: Equation X.X.X.X-# could not be verified from the
+       provided source. Formula below is based on [describe basis, e.g.
+       "ASCE 1971 simplified form per code commentary"]. Verify against
+       a clean copy of the specification before use.
+     </paragraph>
+
+  2. The dynexp for the uncertain equation follows immediately after,
+     formatted normally.
+
+  3. In the summary table, flag the affected check description cell with
+     background="#FFD700" directly on the <c> element:
+
+     <c capture="False" background="#FFD700">
+       <textvalue>Prying Action — ⚠ Verify Eq. 6.13.2.10.4-1</textvalue>
+     </c>
+
+  4. The yellow highlight (#FFD700) is the standard OCR warning color.
+     Do not use it for any other purpose.
+
+Convention summary:
+  OCR warning color:   #FFD700  (amber/yellow)
+  Warning prefix:      ⚠ OCR WARNING:
+  Scope:               Warning paragraph + affected <c> description cell
+  Required action:     Engineer must verify equation before use
+================================================================================
+  15. KNOWN GOTCHAS / THINGS THAT CRASH BLOCKPAD
+================================================================================
+
+- XML comment blocks <!-- ... --> with decorative box-drawing characters
+  cause crashes. Never use them. Use proper paragraph elements only.
+
+- Do not put XML comments of any kind inside <table> or <embed> elements.
+
+- Boolean AND syntax: Must be And(A, B, C) — the function form.
+  Do NOT use (A And B And C) — this fails.
+
+- The <expresult> tag is a display cache, not the calculation source. Preserve
+  it during formatting-only edits. After changing equations, refresh or omit
+  unsupported caches; never knowingly deliver stale results as verified.
+
+- Special characters in formula="" attributes must be XML-escaped:
+    <  ->  &lt;
+    >  ->  &gt;
+    "  ->  &quot;
+    &  ->  &amp;
+
+- The stylerule range in tables must match the actual row count.
+  If the table has 12 rows and 5 columns, use range="A1:E12" not "A1:E11".
+
+- colwidths values are in approximate pixel units. Adjust to match content width.
+  A typical full-width table total is around 520 units.
+
+- AnyTableCell conditional formatting only fires on <c> cells — NEVER on
+  <textcell>. Placing a PASS/FAIL formula in a <textcell> will silently produce
+  no color highlight regardless of the cell value.
+
+- Global heading (Heading1–Heading4) and AnyTableCell stylerules MUST be placed
+  at the document level (before <include> and <report>). Placing them inside
+  <report> may prevent them from applying correctly.
+
+- valuefield option lists use semicolons for booleans ([true; false]) and
+  commas for string lists ([&quot;A&quot;, &quot;B&quot;]). Mixing these up
+  causes the dropdown to fail silently.
+
+- PASS/FAIL conditional formatting is keyed to exact string matches:
+  "✓ PASS" and "⊗ FAIL". Using any other characters (e.g., "✗ FAIL") will
+  not trigger the background color.
+
+- Not using case sensitive functions causes errors. The functions should be like
+ "Sqrt()" not "sqrt()"
+
+- Never strip or attach units with a bare unit token inside an executable formula.
+  Use explicit one-unit quantities: L/(1 ft), h/(1 in), θ/(1 deg), and x*(1 in).
+  Parenthesize the divisor quantity. Expressions such as L/ft, θ/deg, or x*in
+  can fail even when the intended dimensional algebra is obvious.
+
+================================================================================
+  16. REVIEWER-ORIENTED CALCULATION LAYOUT — DEFAULT STANDARD
+================================================================================
+
+Purpose: reproduce the clear, schematic-led calculation format developed for
+D2_I95_Project_Journal_Fence_Wind_Updated.bpad (approved layout, September 2026).
+Reuse its presentation patterns, not its project dimensions, code choices,
+pressures, factors, load paths, or cached results. Each new calculation requires
+its own engineering basis. The XML patterns below are the portable reference;
+they must remain usable without access to that project journal.
+
+16.1  Document and section sequence
+
+1. Project identification, calculation title, applicable editions and scope.
+2. Brief overview within the main calculation report: what is being determined
+   and how the major steps connect. A compact native flow diagram is useful.
+3. Live result summary where appropriate; identify its limit state and case.
+4. Numbered technical sections, progressing from simple geometry to equations,
+   combined results, application, and checks.
+
+Within a technical section, use this default order, omitting redundant items:
+- Short purpose/inputs/output box, when it adds context.
+- Relevant native schematic near the top, before detailed mathematics.
+- Short explanation or ordered solution steps.
+- Inputs with units, meanings, source/basis, and live cross-report references.
+- Native equations, one per paragraph, with compact code references.
+- Output table or one-variable-per-bullet output list.
+- Concise downstream application and equilibrium checks where relevant.
+
+Do not create an overview-only module. Do not include "HOW TO READ", reading
+routes, or directions to examine the shaded box first. Do not add an INTRO
+header row above Objective/Inputs/Output. The visual structure should explain
+itself. Existing useful modules should not be merged merely for aesthetics.
+
+16.2  Three visual categories
+
+Category                 Body fill   Header fill  Border
+Discussion/explanation   #F1F5FA     #DCE7F3      #7189A6
+Inputs                   #FFF8E9     #F7E6B9      #A78638
+Outputs                  #EFF7F1     #DCECE0      #6A9075
+
+- Use pale blue discussion boxes, pale amber input boxes/tables, and pale green
+  output boxes/tables. Keep body text dark and readable.
+- Use meaningful headings and thin borders, so color is not the only cue.
+- Green output shading does NOT mean a design passes. Actual PASS/FAIL remains
+  a live check, with the exact strings and conditional formatting in Section 8.
+- Preserve dedicated warning styling; do not use warning yellow #FFD700 as the
+  normal input background.
+- Apply input/output shading to table bodies and stronger shading to headers.
+  Do not blanket-fill PASS/FAIL cells in a way that masks conditional colors.
+- Box short coherent groups rather than every sentence or the entire report.
+  Do not force a long derivation into one unbreakable table cell.
+- Use <c> for numeric results and checks. Use <textcell> for rich-text boxes
+  containing paragraphs or inline native math. Both table and textcell must
+  have capture="False" when they are presentation containers only.
+- Keep primary calculation definitions in their original report scope when
+  applying formatting. Boxes may reference those variables without redefining
+  them. Never change scope accidentally by wrapping content.
+
+16.3  Type, spacing, and pages
+
+- Times New Roman: body 11; ordinary tables 10–11; main title about 16.
+- Bold headings and short labels; normal-weight explanatory sentences.
+- Typical list paragraph spacingafter="7".
+- Standalone equation: spacingbefore="6", spacingafter="12"; split long
+  equations/steps rather than shrinking text excessively.
+- Boxes: embed spacingbefore="8", spacingafter="12"; headings immediately
+  preceding result tables may use spacingafter="4".
+- Start with colwidths totaling about 520, then check the actual page layout.
+- Set all report/spreadsheet print margins to 0.5 inch on every side.
+  Native page coordinates are 96 units/inch: margin="48,48,48,48".
+  For letter portrait, pagesize="816,1056". Keep bordermargin="0,0,0,0".
+  Preserve requested landscape orientation; do not resize unrelated pages.
+- Keep section headings with following content; inspect page breaks and tables
+  at print scale. A well-formed XML file is not proof of good pagination.
+
+16.4  Native math in explanations and lists
+
+Do not use plain underscore strings or a Cambria Math font change as a
+substitute for native Blockpad math. Use a dynexp with mathlayout="on".
+
+For an existing variable, show its formula/reference and hide its numerical
+result. This displays the name with math subscripts without a new assignment:
+
+<paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="7">•&#160;<dynexp formula="L_trib" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False"><expbody>L_trib</expbody></dynexp>&#160;— Tributary length contributing load to the support.</paragraph>
+
+Prerequisite: L_trib is already defined in the same accessible report scope.
+For another report, use the actual qualified name, e.g. Geometry.L_trib, in BOTH
+formula and expbody. Never invent a reference solely to typeset a symbol.
+
+- One variable per bullet; group lists under labels such as GEOMETRY OUTPUTS
+  and PRESSURES FOR LOAD INTEGRATION. Avoid comma-separated symbol inventories.
+- Keep each actual equation on its own line. Where an explanation needs an
+  existing equation, move the original definition safely or reference it;
+  never copy an assignment into the same scope and create duplicate names.
+- Identify the representative case when using a case-specific equation to
+  explain a repeated method. Keep all other cases live and accessible.
+- For a genuinely general relationship, a native function may be used:
+  M_residual(M_cap, F, z) = M_cap - F*z
+  Do not instantiate undefined symbols as if they were numerical variables.
+- Blockpad has static equations for symbolic exposition, but use their XML
+  only after verifying the serialization from a native sample/documentation.
+  Do not invent static-equation tags or disable calculation with guessed flags.
+- Use Sqrt(), not sqrt(). Use real Unicode Greek symbols and normal Blockpad
+  operators in formulas. Fonts alone do not create fractions/subscripts.
+
+16.5  Reusable native box pattern
+
+This example references an existing L_trib. Replace names with unique names in
+new documents. Put each paragraph in a separate row when useful for pagination.
+Use the palette above for corresponding input/output boxes.
+
+<embed spacingbefore="8" spacingafter="12">
+  <table name="MethodBox1" capture="False" colwidths="1:520">
+    <stylerule range="A1:A3" background="#F1F5FA" fontfamily="Times New Roman" fontsize="11" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;);" />
+    <stylerule range="A1" background="#DCE7F3" fontweight="bold" />
+    <row><textcell name="MethodBox1Title" capture="False"><paragraph fontfamily="Times New Roman" fontsize="11" fontweight="bold" spacingafter="7">SUPPORT LOAD APPROACH</paragraph></textcell></row>
+    <row><textcell name="MethodBox1Step" capture="False"><paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• Integrate distributed loading over the contributing length.</paragraph></textcell></row>
+    <row><textcell name="MethodBox1Variable" capture="False"><paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">•&#160;<dynexp formula="L_trib" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False"><expbody>L_trib</expbody></dynexp>&#160;— Tributary length at the support.</paragraph></textcell></row>
+  </table>
+</embed>
+
+Optional opening context table: only three rows, Objective / Inputs / Output;
+no INTRO row. Color the rows with the corresponding body fills. Use the
+actual table dimensions in style ranges. Keep all labels concise.
+
+16.6  Native schematic construction and clearance rules
+
+- Use editable native canvases, lines, arrowlines, circles, planecontainers,
+  and lineardim objects, based on a known-good serialized sample.
+- Show the geometry, force directions, reference point, moment arms, axes,
+  angles, tributary extent, and support assumptions relevant to the section.
+  Use separate section/elevation/plan views when a combined view gets crowded.
+- Use a compact native flow diagram for dependencies/solution approach where
+  it speeds comprehension. Do not add a diagram merely to decorate the page.
+- Start with a 6.5-inch-wide canvas; adjust height to suit the view and page.
+- Dark gray geometry; blue dimensions; red forces; muted gray construction
+  lines. Use labels and arrowheads as well as color.
+- Dimensions must reference live parameters with qualified formulas. Native
+  drawing proportions may remain schematic; label NOT TO SCALE.
+- Reserve a caption band and footer band. Keep dimensions out of the caption.
+- Dimension text occupies a rectangle, not a point. Allow for units, decimals,
+  font ascent/descent, arrowheads, and extension lines. Do not place text at
+  the start of a leader where the leader crosses the lettering.
+- For tiny dimensions such as wire diameter, place the dimension in dedicated
+  whitespace, or use a separate detail/callout. Do not squeeze its value into
+  the gap between closely spaced lines.
+- Aim for at least one text-height clearance from unrelated objects. Start
+  leaders just outside the label's bounding box and end on the intended part.
+- Move support labels clear of dimension extension lines; keep center labels
+  clear of radial arrows and axis lines. Keep moment arrows clear of labels.
+- Diagram force directions must agree with defined axes. If arrows only show
+  distributed loading schematically, state that concisely near the diagram.
+- Check EVERY schematic after edits, not only the reported overlap.
+
+Live native dimension pattern (prerequisite: Geometry.L_span exists):
+
+<lineardim startpoint="0.8,1.2,0" endpoint="3.8,1.2,0" pointondimline="2.3,0.6,0" formula="Geometry.L_span" linecolor="#1766A0" textcolor="#1766A0" linethickness="0.7" fontsize="9" />
+
+Use this inside an existing canvas with its required geometry include. Refresh
+any numerical dimension caches from the actual calculation, never the exemplar.
+
+16.7  Live dependency and engineering integrity rules
+
+- One authoritative definition per input; downstream values use live references.
+  Never copy another module's current numeric result as a new constant.
+- Reuse presentation independently from engineering. Verify applicable policy,
+  code edition, factors, coefficients, geometry and pressure model for each job.
+- Distinguish code equations, derived equilibrium, and modeling assumptions.
+  Cite actual code articles/assumptions without recounting the authoring process.
+- Show meaningful limit-state and case labels, units, factors, and load/reference
+  locations in output tables. State whether results are factored.
+- Preserve simultaneous force/moment sets. Independent maximum components do
+  not constitute a concurrent load case. Label envelopes as summaries only.
+- For node loads, account for load transfer to the stated reference point and
+  residual couples. Apply each resultant once; avoid double-counting loads or
+  eccentricity moments. Map signs/axes to the actual analysis model.
+- Keep numerical repeated-case derivations in collapsed sections if helpful,
+  while keeping assumptions, representative equations, and results visible.
+- Calculation-based adequacy statements must remain live. Do not imply that
+  bookkeeping checks establish member, connection, or foundation capacity.
+- Deliver a finished calculation: no authoring history, import narration,
+  assistant instructions, or unverified promises inside the report.
+
+16.8  Efficient reproduction and verification workflow
+
+1. Read this guide and identify the actual latest journal/template version.
+2. Use the patterns above, or copy a small approved native layout block. Assign
+   unique names; remove old project-specific formulas/caches from any template.
+3. Define the new task's geometry, scope, load path, code basis, inputs and output
+   contract before adding detail. Keep source references live.
+4. Build overview and schematics first, then lists, native equations, and tables.
+5. Apply the three-category palette and half-inch margins consistently.
+6. Parse the XML. Verify names, formula references, table ranges, capture flags,
+   and required includes. Search for plain underscore-variable lists and stale
+   narrative numbers; distinguish ordinary file paths/code citations from math.
+7. For formatting-only edits, compare original formula/expbody/result payloads,
+   input values, downstream references, and unrelated resources before/after.
+   Moving a definition requires checking that its scope stays equivalent.
+8. For engineering changes, check units, representative hand calculations,
+   equilibrium, load combinations, and affected downstream results. Refresh
+   caches and perform native recalculation when available.
+9. Inspect all schematic layouts and printed pages for clipping, leader/text
+   collisions, crowded dimensions, heading breaks and oversized table cells.
+   A custom preview is a layout approximation, not a native Blockpad render.
+10. Save the revised native calculation and report actual verification limits.
+    Never claim native recalculation or pagination verification unless done.
+
+Fastest reliable reuse: this reference plus small native XML patterns, with an
+approved calculation as a visual example. A future clean starter .bpad can
+package these blocks, but must have fresh names and no inherited project
+engineering values. Do not use an entire prior project's load model as a blank
+calculation template.
+
+16.9  C002 strategy-to-execution presentation pattern
+
+The C002 reviewer format includes more than the three-category palette. For a
+new calculation using that format, carry across the complete presentation
+system below. Adapt the number and subjects of the steps to the new calculation;
+do not inherit the exemplar's engineering or force every calculation into the
+same number of steps.
+
+Opening page
+- Use a left-aligned project title (Times New Roman, bold, about 16) followed
+  by a distinct calculation title (bold, about 14), design basis and scope.
+- Place an applicable live provisional/release status prominently beneath the
+  project title. Preserve any existing live conclusion; do not type its result
+  into a static warning paragraph.
+- Follow CALCULATION OVERVIEW with a three-row Objective / Inputs / Output
+  context table, a compact editable solution-flow diagram when useful, and a
+  live result summary. Identify the limit states and whether the summary is an
+  envelope or a concurrent case. Do not add reading-route instructions.
+- Keep summary-table quantities as formula references. Use the native number
+  format below for readable precision; do not round the stored calculation or
+  replace a formula with its displayed number.
+
+Design basis and strategy
+- Use DESIGN BASIS AND ASSUMPTIONS, then CALCULATION STRATEGY.
+- Give each technical step a numbered strategy entry, a short explanation of
+  its task, and an internal link to its corresponding execution entry.
+- Keep a concise DESIGN BASIS QUICK REFERENCE with links to the applicable
+  embedded code pages or authoritative source. Reuse only the layout from C002;
+  preserve the new calculation's independently established design basis.
+- Strategy and execution numbering must agree. A top navigation link may point
+  to the first strategy entry; do not create a separate overview report.
+
+Technical execution
+- Start with CALCULATION EXECUTION and the actual step range.
+- Introduce each step with a blue label: STEP n OF N | Descriptive title.
+  Use Times New Roman, bold, 12, textcolor="#1766A0", and
+  texthighlight="#EDF3F8", with keepwithnext="True". The label links back to
+  the matching strategy entry. Use a smaller 9-point version at logical equation
+  groups or continuations so a long derivation retains its step identity.
+- Place a compact basis/source line and an Objective / Inputs / Output table
+  at the beginning of the step when they add useful context. The context table
+  has exactly those three rows; no INTRO row.
+- Put the relevant native schematic before the explanatory key and equations.
+- Use concise GEOMETRY KEY, INPUT KEY, EQUILIBRIUM KEY or OUTPUT KEY boxes.
+  Each bullet contains one native dynexp variable reference and its meaning,
+  as in Section 16.4. Label case-specific keys with the representative case.
+- Group equations under short descriptive labels. Put each equation on its
+  own line, followed by a short visible bold meaning/caption. Extended source
+  or derivation notes may remain collapsed. Do not hide all variable meanings
+  in collapsed notes and leave an unexplained block of equations.
+- Keep a displayed equation with its immediate caption. For this captioned
+  form, spacingbefore="5", spacingafter="0" on the equation and
+  spacingafter="4" on the caption follow C002. For an uncaptioned standalone
+  equation, use the spacing in Section 16.3.
+- Use meaningful labels above result tables. Preserve the input/output colors,
+  clear case labels and units, native PASS/FAIL formatting and downstream
+  application notes. Do not use color or an unlabeled number as a conclusion.
+
+Portable strategy and execution links
+
+This example assumes a report named NewCalc. Change all names and IDs together.
+Both sections are presentation containers and must remain capture="False".
+The actual equations can remain siblings in the original report scope.
+
+<section name="StrategyStep01" capture="False" hide="false">
+  <paragraph id="paragraphstrategy01" fontfamily="Times New Roman" fontsize="11" fontweight="bold" spacingbefore="9" spacingafter="5" keepwithnext="True">1. Define the model.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="6">• Establish the geometry and reference point used by the calculation.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="9" fontweight="bold" textcolor="#1766A0" spacingafter="9"><link address="#NewCalc.StrategyWork01;paragraphwork01">Go to Step 1: Define the model</link></paragraph>
+</section>
+
+<section name="StrategyWork01" capture="False" hide="false">
+  <paragraph id="paragraphwork01" fontfamily="Times New Roman" fontsize="12" fontweight="bold" textcolor="#1766A0" texthighlight="#EDF3F8" spacingbefore="12" spacingafter="4" keepwithnext="True"><link address="#NewCalc.StrategyStep01;paragraphstrategy01">STEP 1 OF N | Define the model</link></paragraph>
+</section>
+
+Replace N with the actual step count before saving. Preserve any existing
+heading/bookmark IDs that other links use. Give every strategy section,
+execution section, table, drawing and collapsed note section a unique name.
+
+Portable three-row context table
+
+<embed spacingbefore="8" spacingafter="12">
+  <table name="Step01Context" capture="False" colwidths="1:90, 2:430">
+    <stylerule range="A1:B3" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CCD9E5&quot;);" />
+    <stylerule range="A1:A3" fontweight="bold" />
+    <stylerule range="A1:B1" background="#F1F5FA" />
+    <stylerule range="A2:B2" background="#FFF8E9" />
+    <stylerule range="A3:B3" background="#EFF7F1" />
+    <row><c capture="False"><textvalue>Objective</textvalue></c><c capture="False"><textvalue>Define the model reference and geometry.</textvalue></c></row>
+    <row><c capture="False"><textvalue>Inputs</textvalue></c><c capture="False"><textvalue>Live project geometry and source criteria.</textvalue></c></row>
+    <row><c capture="False"><textvalue>Output</textvalue></c><c capture="False"><textvalue>Consistent geometry for the following equations.</textvalue></c></row>
+  </table>
+</embed>
+
+Readable native result precision
+
+Apply to the actual table range, while leaving conditional checks unmasked:
+
+<stylerule range="A1:C5" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" />
+
+Use the project's requested precision if different. This changes presentation
+only; original formula, expbody, expresult and num contents remain unchanged.
+
+Acceptance check for matching the C002 presentation
+- Compare opening hierarchy, strategy links, blue execution/continuation
+  labels, context boxes, schematics, variable keys, visible equation captions,
+  table labels/number formatting, and collapsed extended notes. Matching the
+  palette alone is not sufficient.
+- Verify every new internal link resolves to the intended report, section and
+  paragraph. Check the actual step count and preserve pre-existing bookmarks.
+- Confirm unique presentation-container names, valid table ranges and live
+  references for all new symbol-key bullets.
+- For formatting-only work, compare every original computational payload and
+  its capturing scope before/after; new formula elements should only reference
+  existing variables for presentation. Preserve unrelated modules/resources.
+- Inspect every edited schematic and available page preview. An approximate
+  preview does not establish native Blockpad pagination or recalculation.
+
+
+================================================================================
+  END OF REFERENCE
+================================================================================

@@ -1,5 +1,14 @@
 # D2MPDB notebooks
 
+## Native Blockpad journal workflow
+
+The journal workflow is documented in [workflow/README.md](workflow/README.md).
+It preserves the supplied version 36 BPAD and supports isolated task copies,
+dependency and conflict checks, lossless assembly, and evidence-gated promotion.
+Use [the task-order prompt](prompts/create-task-order.md) to begin a journal task.
+The initial reference-path candidate awaits native Blockpad review; the imported
+journal has not been represented as a validated engineering revision.
+
 ## Standalone FBMP envelope extractor
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/FBMP_Envelope_Extractor.ipynb)

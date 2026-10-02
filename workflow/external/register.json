@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "status": "unverified_imported_analysis_provenance",
+  "journal_modules_requiring_provenance_review": [
+    "report:FBMPPier",
+    "report:FBMPEndBent",
+    "report:FoundationModeling",
+    "report:PierCapDesign",
+    "report:PierWallFins",
+    "spreadsheet:FBMPMinTip"
+  ],
+  "results": [],
+  "required_result_fields": [
+    "result_id",
+    "input_file_sha256",
+    "output_file_sha256",
+    "journal_revision_sha256",
+    "upstream_component_sha256",
+    "assumptions_and_conventions",
+    "reviewer",
+    "currency_disposition"
+  ],
+  "rule": "Any candidate change requires external-analysis review. No imported result is automatically current. Files and this register are fingerprinted in task contracts."
+}

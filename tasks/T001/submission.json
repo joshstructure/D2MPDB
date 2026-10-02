@@ -1,0 +1,22 @@
+{
+  "summary": "Replace 31 machine-specific PDF paths with References/filename. No engineering or native payload changes.",
+  "published_outputs": [],
+  "assumptions_and_conventions": [
+    "The user confirmed version 30 has the correct reference PDF set."
+  ],
+  "downstream_impact": [
+    "PDF link portability; no numerical dependency or formula changes"
+  ],
+  "external_analysis": "No analysis files changed. Imported analysis provenance remains unverified.",
+  "checks_performed": [
+    "Exact PDF byte copies",
+    "All source filenames found",
+    "Only xref components modified",
+    "All report, spreadsheet, embedded resource and style bytes preserved"
+  ],
+  "open_items": [
+    "Native Blockpad PDF display and navigation review",
+    "Inherited three citation links",
+    "Inherited 110 cached error entries"
+  ]
+}

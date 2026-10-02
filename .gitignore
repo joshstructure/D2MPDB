@@ -6,3 +6,11 @@ exports/
 .jupyter-runtime/
 .validation/
 
+# BPAD task copies and regenerated builds; contracts and receipts stay tracked.
+generated/
+tasks/*/base.bpad
+tasks/*/working.bpad
+tasks/*/References/
+tasks/*/components/
+workflow/integration.lock
+workflow/history/*/previous.bpad

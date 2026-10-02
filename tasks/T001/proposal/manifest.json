@@ -1,0 +1,130 @@
+{
+  "task": "T001",
+  "base_sha256": "5611bee7a1b517f798521029bb9965f3c756941e564280fd8a37d09f81b7dfcd",
+  "components": {
+    "xref:ReferencePDF01": {
+      "file": "000.xml",
+      "sha256": "4b5a2a3c187b709abed921f96178b3517da306db72d2e4c7b7e0a8ae59f4c48c"
+    },
+    "xref:ReferencePDF02": {
+      "file": "001.xml",
+      "sha256": "990379ed29b968c03fa937b0083eccbb8846729d6a7c85fcaf46d33787cb53a7"
+    },
+    "xref:ReferencePDF03": {
+      "file": "002.xml",
+      "sha256": "dd2699a5543a91f59035de9c31e714aa506cddc35b19d184d3a1ac686331047d"
+    },
+    "xref:ReferencePDF04": {
+      "file": "003.xml",
+      "sha256": "12f2bee18457f0827a129e978d343601e384c714dd524de6274b3b8804fc4215"
+    },
+    "xref:ReferencePDF05": {
+      "file": "004.xml",
+      "sha256": "1630dc3c46b8a72f44a33981e0b11b08d3845f50e0aacbfa1e42ced89eaec863"
+    },
+    "xref:ReferencePDF06": {
+      "file": "005.xml",
+      "sha256": "91e842093d1bfaace1226a795910b14a3079da32f1a6896344027d5db364ec88"
+    },
+    "xref:ReferencePDF07": {
+      "file": "006.xml",
+      "sha256": "9fd69389b5fd396262ddd873eca57479691ea6a4ec55494ba98c142af470a7bc"
+    },
+    "xref:ReferencePDF08": {
+      "file": "007.xml",
+      "sha256": "594ed194ab566f7ff9bd60608fba414115fd3d0439235e896b2c11e7b1a07f47"
+    },
+    "xref:ReferencePDF09": {
+      "file": "008.xml",
+      "sha256": "60e4d5e34d211c21b373f28aec8677d0a965ceef5ad3e3dbbad779745ccda9de"
+    },
+    "xref:ReferencePDF10": {
+      "file": "009.xml",
+      "sha256": "02c14b8271dfd3b58a6c2c8a6b8d53fe1ede8d6ff1aa687a20c6d09a705723c6"
+    },
+    "xref:ReferencePDF11": {
+      "file": "010.xml",
+      "sha256": "c18332a6b99cf2a8e45821949e348b7b292a703b5a47b70a31fac5068ec696f1"
+    },
+    "xref:ReferencePDF12": {
+      "file": "011.xml",
+      "sha256": "d41adedc2d0e95cb40de9fe8ae6725873ad62b1ff216033871d4987643b9df67"
+    },
+    "xref:ReferencePDF13": {
+      "file": "012.xml",
+      "sha256": "067a0a2d47295889b908e31236fb5f1480a52cc4f3f5b23a82e78691f5f0ba70"
+    },
+    "xref:ReferencePDF14": {
+      "file": "013.xml",
+      "sha256": "112eced54d3752d8e8216aa912fe386797884b9f6b1a80f91a713a91e8f0b2d1"
+    },
+    "xref:ReferencePDF15": {
+      "file": "014.xml",
+      "sha256": "bff790d990a5e4b4415bea456e72e8aa760bb8283a4274e7867cc793f19058be"
+    },
+    "xref:ReferencePDF16": {
+      "file": "015.xml",
+      "sha256": "37b2e2189c0bbede6a12b724975bc759f558e25c8838af763a06783f5be0955e"
+    },
+    "xref:ReferencePDF17": {
+      "file": "016.xml",
+      "sha256": "e0698d12b43ce2867590c4013a4f0edbc61b593c45bde2ba56f69e2c727aa83a"
+    },
+    "xref:ReferencePDF18": {
+      "file": "017.xml",
+      "sha256": "909b27da67ccef8f9e9b4f98d4744923832178fa7b984e5d89c1ded53e69a59a"
+    },
+    "xref:ReferencePDF19": {
+      "file": "018.xml",
+      "sha256": "8c26b636c9db26a0c3027d5857b84ae23f1c2c231d6c08a81547616c5c247b07"
+    },
+    "xref:ReferencePDF20": {
+      "file": "019.xml",
+      "sha256": "3c22c5d64184f51fd9c5181275a13bd5ff09cc7183c1652ccb9121ac4ad36f76"
+    },
+    "xref:ReferencePDF21": {
+      "file": "020.xml",
+      "sha256": "fecb22a3b3b6ef897d095718ffccfabe09b2054f2df5fea9aa7550a05b6eb7fd"
+    },
+    "xref:ReferencePDF22": {
+      "file": "021.xml",
+      "sha256": "2215786213d265a9c7d2b299260eef5767293fae913b2734bb8177a4aef0c999"
+    },
+    "xref:ReferencePDF23": {
+      "file": "022.xml",
+      "sha256": "4398e877734d95e4277b0b3efa77b4643fe80c9db755210629ef3a5bd3d9e0f6"
+    },
+    "xref:ReferencePDF24": {
+      "file": "023.xml",
+      "sha256": "b626a1a0a8c8417aad9e7296fa56d66bc90d73a461e9102de9fa46c78367d2dc"
+    },
+    "xref:ReferencePDF25": {
+      "file": "024.xml",
+      "sha256": "8063dcc80c146ee915e3686f97d4a3236f6663d60408ce4c3569d803356e8186"
+    },
+    "xref:ReferencePDF26": {
+      "file": "025.xml",
+      "sha256": "d0c948062c1477db5e0362beabb8d370bd6960cbf989b3cda5b91f253ddd2de0"
+    },
+    "xref:ReferencePDF27": {
+      "file": "026.xml",
+      "sha256": "b83fdbad8db4ae89491eb83f70a3b680e581facf864961fc6d2296f6a08bb937"
+    },
+    "xref:ReferencePDF28": {
+      "file": "027.xml",
+      "sha256": "ba27469a18df9e9a9fddf546382a1095682727a58c861d3869513650815ebcfd"
+    },
+    "xref:ReferencePDF29": {
+      "file": "028.xml",
+      "sha256": "e964185f5d3ffb51a1c4bccca2e9a5e855c77e475334c1a298813ecd28520354"
+    },
+    "xref:ReferencePDF30": {
+      "file": "029.xml",
+      "sha256": "e76e99155a65002fb0624717799f7af731eae8a275d3db20d611b3add75d9cb0"
+    },
+    "xref:ReferencePDF31": {
+      "file": "030.xml",
+      "sha256": "f168176cd6b3248857654e8e76f57fab0b44b9d74aa80700de5f01b51e2265f6"
+    }
+  }
+}

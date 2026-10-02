@@ -1,0 +1,258 @@
+GetRefs
+Prompt-ID: GetRefs
+Version: 1.9
+Revision-Date: 2026-09-24
+Status: CURRENT
+Filename: NON-AUTHORITATIVE (Project may rename this file, e.g. GetRefs (3).txt)
+
+AUTHORITATIVE PROMPT RESOLUTION
+This section controls which GetRefs instructions are executed and is not superseded
+by workflow updates later in this file.
+
+- Whenever the user says "execute prompt GetRefs", first search the current Project
+  sources for GetRefs prompt candidates and read their headers before beginning
+  substantive execution. Treat the trigger as "resolve latest canonical GetRefs,
+  reload it, confirm version, then execute it."
+- Resolve the prompt by CONTENT METADATA, not by exact filename. A Project-renamed
+  file such as GetRefs (3).txt is fully valid when its header contains:
+      Prompt-ID: GetRefs
+      Status: CURRENT
+      Version: <version>
+      Revision-Date: <date>
+- Search candidates by both filename resemblance (for example GetRefs, GetRefs (3),
+  or similar) and the internal marker "Prompt-ID: GetRefs". The internal Prompt-ID
+  is authoritative; filename numbering, extensions, and upload collision suffixes
+  do not determine which prompt is current.
+- Among candidates with Prompt-ID: GetRefs and Status: CURRENT, select the highest
+  semantic Version number. If Version numbers tie, select the latest Revision-Date.
+  This allows older Project copies that still say CURRENT to coexist without causing
+  the wrong version to execute.
+- If two or more candidates share the same highest Version and Revision-Date but
+  contain materially different instructions, stop and ask the user to resolve the
+  ambiguity. If they are substantively identical duplicates, either may be used.
+- Never select a file marked ARCHIVE, SUPERSEDED, or anything other than CURRENT
+  unless the user explicitly promotes that copy for the present run.
+- Do not execute GetRefs from memory, cached conversation context, prior run text,
+  or an older versioned/archive copy when a CURRENT Project source is available.
+- Prefer Project sources over conversation downloads or Library copies. A conversation
+  attachment or other copy may replace the Project source only when the user explicitly
+  identifies that copy as the new canonical prompt for the run.
+- After resolving and loading the prompt, report the loaded version and revision date
+  at the start of the run, for example: "Executing GetRefs v1.4, revised 2026-09-21."
+- If no Prompt-ID: GetRefs file marked CURRENT can be found, search legacy GetRefs-like
+  filenames for an older header and report that fallback explicitly. If precedence
+  still cannot be established, stop and ask the user rather than silently guessing.
+- When this canonical prompt is intentionally revised, increment Version, update
+  Revision-Date as needed, retain Prompt-ID: GetRefs and Status: CURRENT, and keep
+  older snapshots clearly marked or named as archival.
+
+TRIGGER
+When the user says "execute prompt GetRefs", execute this workflow for the
+specified calculation. This is an instruction to perform the work, not merely
+describe it. Optional invocation:
+  Execute prompt GetRefs for [calculation filename], module [module name].
+Use the current calculation/module if the conversation identifies it clearly.
+If the target is ambiguous, ask which calculation and module(s) to process.
+The authoritative prompt-resolution rules above must be completed on every run;
+never skip resolving and reloading the latest CURRENT Prompt-ID: GetRefs source
+because GetRefs was executed previously.
+
+
+OBJECTIVE
+Create or update individual one-page external reference PDFs in a single
+References subfolder beside the calculation BPAD. Name each PDF by its actual
+code provision or reference-section title, e.g. SDG 2.4.1.A.pdf.
+Keep searchable/vector source content and highlights. Insert each PDF natively
+without forced image dimensions. Provide editable BPAD usage notes and backlinks.
+Link every in-scope citation, including headings and hidden sections, to its
+matching native paragraph anchor. Deliver the BPAD and References folder together.
+
+THIS VERSION SUPERSEDES THE SINGLE-PDF DISPLAY WORKFLOW
+The three-page single-PDF prototype worked, but the user reported that the
+31-page production insert displayed only nine pages and drifted against sidebars.
+The user selected individual one-page PDFs on 2026-09-24. Do not return to a
+single tall PDF display, embedded code-page PNGs, or absolute external paths.
+Use exactly one reference module per calculation and one General References
+catch-all module for references outside calculations and the overall index.
+The user rejected one module per PDF page. Retain individual one-page external
+PDFs, but group their native insertions and sidebars into calculation modules.
+This is a portable folder-based package, not a self-contained BPAD.
+Desktop Blockpad verification remains required.
+
+1. ESTABLISH SCOPE AND PRESERVE LIVE CALCULATIONS
+- Resolve this canonical prompt using the header rules above. Read the current
+  BPAD_Ref source and relevant file/PDF workflows.
+- Treat .bpad as XML. Use the latest user-authorized journal. Preserve its identity
+  and version history; never replace a newer journal with an older working copy.
+- Inventory selected calculations and their actual upstream/downstream references.
+  Distinguish active calculations from archived, superseded, or unused reports.
+- Preserve all formulas, capture/scope behavior, inputs, units, cached expression
+  bodies/steps/results, live references, and unrelated schematics/resources.
+  A reference update does not authorize changing engineering assumptions.
+- Before removing an old reference module, check for live tables/equations inside
+  it. Retain them in a suitable calculation location, preserve their dependencies,
+  and update any namespace references if relocation would otherwise break them.
+- Retain a baseline and a source-page/citation/destination map for validation.
+
+2. RESOLVE SOURCES AND MAP CITATIONS
+- Inspect headings, section titles, narrative, tables, equation explanations,
+  existing links, and references visible in images. Do not stop at the first
+  visible citation or exclude hidden sections.
+- Obtain the actual accessible code/contract PDF pages. Read supplied local
+  attachments directly where instructed. Prefer available project sources.
+- Record code title, edition/interims, article/table/equation/figure, source PDF
+  page, printed page, calculation report, current section, and actual variables.
+- Distinguish the RFQ adoption rule and project amendments from the base code.
+  Do not silently adopt a newer edition or reuse an old applicability statement.
+- Check inherited usage notes against the current journal. Correct old calculation
+  aliases, obsolete section names, and statements that a now-implemented check is
+  absent. Do not repeat old numerical results as current project inputs.
+- Preserve meaningful citation/input mismatches and QC qualifications as concise
+  scope/review notes. Do not change the calculation to conceal them.
+- A screenshot is not a verified source PDF. If that is the only material available,
+  identify the limitation and seek the user's acceptance or missing source.
+- Complete useful work with available sources; do not fabricate missing code text.
+
+3. BUILD INDIVIDUAL SOURCE-PAGE PDFS
+- Use each distinct source page once when the edition and content are identical.
+  Consolidate highlights and backlinks when several calculations use that page.
+- Each PDF must contain exactly one physical page. Preserve source text, vectors,
+  original images, printed page numbers, edition identifiers, tables, footnotes,
+  copyright notices, and surrounding code context.
+- Preserve existing verified highlights; avoid duplicate dark highlights.
+  Baked vector highlight appearances are allowed when needed for reliable display.
+  Do not rasterize source pages to achieve insertion or split them into screenshots.
+- Put every excerpt PDF in References beside the BPAD. Derive filenames from the
+  reference-section title. Replace Windows-invalid filename characters with words
+  or hyphens. Include distinguishing provision/table labels and, when necessary,
+  edition or printed-page suffixes to prevent collisions. Do not use generic
+  Page01 filenames or overwrite a different source page with a matching title.
+- Ordinary letter pages are 612 x 792 PDF points. Preserve source scale and pad
+  shorter pages where appropriate; use matching report geometry for other sizes.
+- Keep the native BPAD reference index and source-page-to-filename mapping current.
+
+4. USE RELATIVE PATHS AND GROUP REFERENCE MODULES BY CALCULATION
+- Keep one xref per external one-page PDF, e.g.:
+  <xref name="ReferencePDF03" path="References\SDG 2.4.1.A.pdf"/>
+- Use folder-plus-filename paths relative to the BPAD; no absolute drive paths.
+- Create exactly one reference report per calculation (e.g. CodeReferencesC001)
+  and one catch-all report (CodeReferencesGeneral) for references used outside
+  the calculations, unassigned references, and the overall reference index.
+- Do NOT create one top-level report/module per PDF page. Use named sections
+  within the appropriate calculation reference report for the individual pages.
+- Assign pages from actual incoming citations and validated backlink usage.
+  Shared pages appear in every applicable calculation module, but reuse the
+  same external PDF/xref. Do not duplicate PDF files or embed their bytes.
+- References used in non-calculation modules belong in the catch-all even if
+  also used in a calculation. All pages must have a discoverable destination.
+- Preserve native image insertion without width/height. Use a separate bounded
+  PDF display rectangle for each page; never one tall multipage PDF insertion.
+- For letter excerpts use a 12.5 x 11 inch report (pagesize="1200,1056"), zero
+  margins, unit="in", collapsemargins="False". Each floating PDF rectangle is
+  8.5 inches wide and 11 inches high. Place it at its assigned report-page origin
+  (y = 11 times the zero-based page index). Its textbox has a native image source
+  pointing to the one-page PDF, with no explicit image dimensions.
+- Use the PAGE-BREAK FORMAT FROM THE USER-CORRECTED C003 reference report.
+  The authoritative example is the C003 - References module in the uploaded
+  D2_I95_Project_Journal_Reference_Page_Breaks(1).bpad, confirmed by the user.
+  Put this exact report-local style rule before the float/section content in
+  EVERY calculation-reference and General-reference report:
+
+  <stylerule applytoall="True" type="AnySection" pagebreakafter="break"/>
+
+- This rule applies Page Break After to each complete sidebar section. Keep it
+  LOCAL to reference reports; do not add it at document level or to calculation
+  reports, whose explanatory sections have different pagination requirements.
+- Preserve lowercase pagebreakafter="break" as saved in the working example.
+  Do not substitute the earlier unverified capitalized value "Break". When
+  migrating prior reference modules, change their existing before/after break
+  values from "Break" to "break" to match the user-corrected template exactly.
+- Keep the template's existing module-level separator paragraph between sections:
+  <paragraph fontfamily="Times New Roman" fontsize="1" spacingbefore="0"
+             spacingafter="0" pagebreakafter="break">&#160;</paragraph>
+  Do not rely on these separators alone: the failed v1.8 revision omitted the
+  AnySection rule. Preserve BOTH elements of the user-confirmed arrangement.
+- Do not remove or optimize away settings in a user-confirmed working template
+  merely because they appear redundant. Preserve incidental user edits in that
+  template module. Copy only the relevant pagination rule/settings elsewhere.
+- Keep one normal-flow named sidebar section per excerpt, existing unique anchor
+  IDs, paragraph links, PDF positions, and one-page PDF inserts unchanged.
+  The General index remains before its first reference, with its existing break
+  separator changed to the same lowercase value.
+- When a supplied example works, compare its actual XML and copy the relevant
+  settings instead of inferring them from UI labels or earlier guessed syntax.
+  Record what was user-confirmed versus what was checked only by XML inspection.
+  Check dense sidebars/index fit and full-set native pagination when available.
+- Remove old per-page modules and retarget all citations, related references,
+  backlinks, index entries, and self-links. Preserve unrelated journal content.
+
+5. AUTHOR EDITABLE SIDEBARS AND UNIQUE NORMAL-FLOW ANCHORS
+- Keep the approved native sidebar styling and actual calculation use notes,
+  code edition/printed/source pages, scope qualifications and return links.
+- Anchor paragraphs stay in ordinary report flow, never floating textboxes.
+- Use Times New Roman, normally size 11 body and size 10 metadata/backlinks;
+  keep the green anchor and light heading backgrounds. For the geometry above,
+  sidebar leftindent="8.65 in" and rightindent="0.25 in".
+- When a shared excerpt appears in multiple reports, assign distinct paragraph
+  IDs to each copy. Route each calculation's citations to its own reference
+  module. Related-code links prefer the current module when the target exists
+  there; otherwise link to an actual target in another applicable module.
+- Keep all useful cross-calculation backlinks. Do not freeze computed project
+  results into usage notes or alter engineering assumptions during this work.
+- Do not use estimated transparent spacers or keep-with-next chains to align
+  the complete document. Check each page's independent PDF placement against
+  its sidebar and account for any overflow before claiming native alignment.
+
+6. LINK EVERY IN-SCOPE REFERENCE, INCLUDING SECTIONS
+- Use the user-verified native same-file paragraph-link address:
+
+  #CodeReferencesC004.CodePage02;paragraphprojectcoderef02C004
+
+- Convert the citation text itself into a link, including citations in section
+  headings, strategy/design-basis text, tables and hidden equation notes.
+  Preserve text, equations, formatting and semantic meaning.
+- Separate compound citations where the provisions are on different pages;
+  for example, give Tables 3.4.1-1 and 3.4.1-2 their own correct destinations.
+- Distinguish Table versus Equation numbers, suffixes, article letters and
+  commentary. Never truncate a citation at a hyphen or guess by numeric similarity.
+- Replace obsolete general website links with the available source-page anchor.
+  Retain unrelated external links outside the update scope.
+- Use complete report/section paths and paragraph IDs for backlinks as well.
+  If an equation explanation is hidden, prefer a visible associated heading or
+  execution-step paragraph as the return destination.
+- Preserve existing IDs where practical. When consolidating modules, rewrite
+  every affected link and check actual destinations; do not leave orphan aliases.
+
+7. VALIDATE AND DELIVER
+- Parse the final XML. Resolve every changed link to the actual report, named
+  section chain, and paragraph ID. Verify unique IDs and all sidebar backlinks.
+- Confirm every reference report has the exact local AnySection rule above and
+  lowercase break values. Compare the user-corrected C003 module with the output
+  to confirm it was preserved, including existing separators and personal edits.
+- Confirm every reference xref resolves to References plus a valid PDF filename,
+  every PDF has exactly one page, and each applicable module has one native insertion of each of its reference pages.
+- Ensure no PDF image has forced dimensions, no giant shared PDF container remains,
+  and no code-page raster resources or obsolete reference paths remain.
+- Compare formulas, inputs, expression/cache payloads, units, and unrelated
+  report content/resources with the baseline. Changes to references must not
+  change engineering calculations.
+- Compare split PDF text and rendered appearance to the verified source pages.
+  Inspect representative pages, including dense tables, highlights, and the last.
+- Package the BPAD at the ZIP root with References as a child folder, plus these
+  updated instructions and a short extraction/read-me file. Extract to a fresh
+  folder; verify all relative paths and compare extracted bytes with the outputs.
+  Use a standard ZIP and check its central directory and CRCs after saving.
+- If Blockpad is available, verify all excerpts, native zoom quality, sidebar fit,
+  citation navigation, backlinks, and print/export. Otherwise explicitly state
+  that XML/PDF checks do not establish desktop Blockpad rendering behavior.
+- Preserve existing Library identities for the revised journal, instructions,
+  and package. The package retains all individual PDFs together; do not require
+  the user to download or organize 31 loose files individually.
+- Report unrelated inherited broken links separately; do not invent targets.
+
+EXPECTED RESULT
+The BPAD and its References subfolder move together without path edits. All
+in-scope citations lead to the matching individual excerpt and editable usage
+sidebar in the appropriate calculation module, with working return links.
+There is one reference module per calculation and one catch-all, while all
+external excerpt PDFs stay in one portable References subfolder.

@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "default": "all_components_until_reviewed",
+  "discovery": "Native expression references are inspection hints, not a complete Blockpad parser or an engineering dependency model.",
+  "modules": {}
+}

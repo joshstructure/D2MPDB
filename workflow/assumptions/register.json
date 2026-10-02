@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "status": "inventory_required_per_engineering_task",
+  "rule": "The journal remains the owner of engineering values. This file records ownership and review status, never duplicate values.",
+  "items_to_resolve": [
+    "Support fixity and load paths",
+    "Axes, signs, elevation datum and reference points",
+    "Bearing-to-node mapping and concurrent load cases",
+    "Whether transferred loads are factored",
+    "Adopted design basis and applicability",
+    "FB-MultiPier input/output identity and geometry compatibility"
+  ]
+}

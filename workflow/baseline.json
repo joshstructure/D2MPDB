@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "imported": "2026-10-02T17:18:29.928772+00:00",
+  "source_file": "C:\\Users\\joshs\\Downloads\\D2_I95_Project_Journal (36).bpad",
+  "canonical_file": "journal/D2_I95_Project_Journal.bpad",
+  "sha256": "5611bee7a1b517f798521029bb9965f3c756941e564280fd8a37d09f81b7dfcd",
+  "source_bytes": 32859223,
+  "byte_identical_to_supplied_source": true,
+  "starting_git_commit": "a375f652ad40e5f07f33842cc30807f55ef2bd5a",
+  "status": "imported_baseline_native_and_engineering_review_not_performed",
+  "module_count": 36,
+  "top_level_components": 275,
+  "formula_count": 4497,
+  "embedded_resources": 184,
+  "reference_pdfs": 31,
+  "cached_error_entries": 110,
+  "inherited_structural_issues": {
+    "report:LoadCombinations: unresolved link #CodeReferences.CodePage42;paragraphcoderef42": 2,
+    "report:LoadCombinations: unresolved link #CodeReferences.CodePage14;paragraphcoderef14": 1
+  },
+  "guides": {
+    "BPAD_Ref_V5.txt": "146f185dd0ae2c55e3a38b150624ea2880f83ec62851b267934aba1215606a2a",
+    "GetRefs.txt": "ab3294bd3e721ad15a1997532c1fe6b3201fe6294a0af6a10eee1b4169a1d2f5"
+  },
+  "reference_source_confirmation": "User confirmed in this chat that the version 30 References folder is the correct set."
+}
