@@ -56,26 +56,8 @@ def add_section(fig,e,run):
 
 
 def layout_3d(e):
-    fig=go.Figure();p=e.case['inputs'];L=e.value('L_cap');runs={r['id']:r for r in e.case['transverse_detail']['runs']};seen=set()
-    for bar in scheduled_bars(e.case):
-        run=runs[bar['run']];pts=bar_shape(e,run)['points']
-        fig.add_trace(go.Scatter3d(x=[bar['station_in']]*len(pts),y=[pt[0] for pt in pts],z=[pt[1] for pt in pts],mode='lines',
-            name=f'{run["id"]}: {NAMES[run["kind"]]} #{run["bar"]}',legendgroup=run['id'],showlegend=run['id'] not in seen,
-            line=dict(color=COLORS[run['kind']],width=5),hovertemplate=f'{html.escape(bar["id"])} · #{bar["bar"]}<br>Station {bar["station_in"]/12:.3f} ft<br>Across %{{y:.2f}} in; elevation %{{z:.2f}} in<extra></extra>'))
-        seen.add(run['id'])
-    def box(x0,x1,y0,y1,z0,z1,name,color,opacity):
-        fig.add_trace(go.Mesh3d(x=[x0,x1,x1,x0,x0,x1,x1,x0],y=[y0,y0,y1,y1,y0,y0,y1,y1],z=[z0,z0,z0,z0,z1,z1,z1,z1],
-            i=[0,0,4,4,0,0,1,1,2,2,3,3],j=[1,2,5,6,1,5,2,6,3,7,0,4],k=[2,3,6,7,5,4,6,5,7,6,4,7],
-            color=color,opacity=opacity,name=name,showlegend=False,hoverinfo='name'))
-    box(0,L,0,p['b'],0,p['h'],'Cap','#bdcbd5',.08)
-    for i in range(int(p['N_pile'])):
-        x=e.value('E_CL')+i*p['S_pile']*12;d=p['D_pile']/2
-        box(x-d,x+d,p['b']/2-d,p['b']/2+d,-12,p['Pile_embed'],f'Pile {i+1}','#72899b',.6)
-    fig.update_layout(title='3D VIEW · hoops and open-bottom U-bars',height=580,template='plotly_white',
-        margin=dict(l=0,r=0,t=60,b=20),legend=dict(orientation='h',y=-.04,font=dict(size=10)),hoverlabel=dict(namelength=-1),
-        scene=dict(xaxis_title='Along cap (in)',yaxis_title='Across cap (in)',zaxis_title='Above underside (in)',aspectmode='data',
-                   camera=dict(eye=dict(x=1.3,y=-1.8,z=.9))))
-    return fig
+    from .cage_3d import layout_3d as full_cage
+    return full_cage(e)
 
 
 def response_figure(e):

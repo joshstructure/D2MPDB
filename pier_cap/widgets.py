@@ -17,6 +17,8 @@ from .force_audit import force_basis,FORCE_LABELS
 from .force_diagrams import ForceDiagramPanel
 from .transverse_widgets import TransversePanel
 from .transverse import enabled as actual_transverse
+from .pile_visual_widgets import PileAppearancePanel
+from .cage_3d import layout_3d
 from .visuals import section_figure,elevation_figure,reinforcement_plan_figure,reinforcement_summary_html,clear_spacing_html,hoop_figure,hoop_explanation_html,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html,spacing_html,side_steel_html,pile_head_help_html
 
 UNIT_NAMES={'in':'inches','ft':'feet','kip':'kips','kip*ft':'kip-feet','ksi':'ksi (kips per square inch)','deg':'degrees'}
@@ -29,7 +31,7 @@ def input_tooltip(name, caption=None):
 
 
 LABELS={'b':'Cap width','h':'Cap depth','C_t':'Top cover','C_b':'Bottom cover','C_s':'Side cover',
- 'N_pile':'Number of piles','S_pile':'Pile spacing','D_pile':'Pile width','E_clear':'Actual edge clearance','E_detail':'Extra end allowance',
+ 'N_pile':'Number of piles','S_pile':'Pile spacing','D_pile':'Pile width / OD','E_clear':'Actual edge clearance','E_detail':'Extra end allowance',
  'Pile_embed':'Pile embedment','C_pile':'Clear gap to pile','Ready_pile':'Pile dimensions confirmed',
  'fc':"Concrete f′c",'fy':'Steel fy','Es':'Steel modulus',
  'Bar_N1':'Top row 1 bar','Bar_N2':'Top row 2 bar','Bar_N3':'Top row 3 bar','n_N1':'Top row 1 count','n_N2':'Top row 2 count','n_N3':'Top row 3 count',
@@ -66,6 +68,7 @@ class CapNotebook:
         self.aggregate=W.BoundedFloatText(value=self.case['screening']['aggregate_in'],min=.125,max=6,step=.125,description='Max aggregate (in)',style={'description_width':'170px'},layout=W.Layout(width='300px'))
         self.aggregate_confirmed=W.Checkbox(value=self.case['screening']['aggregate_confirmed'],description='Aggregate size confirmed',indent=False)
         for control in (self.clearance,self.aggregate,self.aggregate_confirmed):control.observe(self._changed,names='value')
+        self.pile_appearance=PileAppearancePanel(self)
         self.input_tabs=self._inputs()
         self.transverse_panel=TransversePanel(self)
         self.force_diagrams=ForceDiagramPanel()
@@ -122,7 +125,7 @@ class CapNotebook:
                 if title=='Advanced · cross-section spacing':rows.insert(0,W.HTML('<p>Override the automatic spacing of longitudinal bars <b>within the cross section</b>. The checkbox activates top, continuous-bottom, added-row and side-bar spacing overrides. It does not add bars or change along-cap hoop pitch. <b>Inner leg spacing</b> is used separately when effective hoop loops exceed one; multiple-loop positions remain unresolved.</p>'))
                 if title=='ADDITIONAL steel · between piles':rows.insert(0,W.HTML('<p><b>These counts are ADDITIONAL, not totals.</b> Continuous bottom bars stay in place. Total span steel = continuous bars + these added bars. Enter 0 for no added bars. The bar size here applies only to the added steel. Standard 90° hooks are drawn at the span ends; anchorage remains a separate check.</p>'))
                 if title=='Continuous bottom steel · at piles':rows.insert(0,W.HTML('<p>These bottom bars continue through every pile and span to the cap end-cover planes. Their transverse positions stay fixed. End anchorage and splices require review.</p>'))
-                if title=='Pile head':rows.append(W.HTML(pile_head_help_html()))
+                if title=='Pile head':rows.extend([W.HTML(pile_head_help_html()),self.pile_appearance.ui])
                 panels.append(W.VBox(rows))
             accordion=Accordion(children=panels)
             for i,(title,_) in enumerate(sections):accordion.set_title(i,title)
@@ -157,6 +160,7 @@ class CapNotebook:
             self.current=None;self.banner.value=f'<div style="padding:14px;background:#ffe9e7;color:#9d302b"><b>INPUT ERROR</b><br>{html.escape(str(exc))}</div>'
             self.metrics.value='';self.cage.children=[];self.results.children=[];self.register.value='';self.trace.value='';return
         self.current=e
+        self.pile_appearance.sync()
         trial_section=self._search_force_mode()=='fixed'
         color='#fff3d9' if e.eligible or (trial_section and sectional_checks_pass(e)) else '#ffe9e7'
         status='TRIAL CAP SIZE — checks use current forces; changed self-weight and stiffness are not reanalyzed' if trial_section else e.status
@@ -175,7 +179,8 @@ class CapNotebook:
             widget=go.FigureWidget(fig);self.figures.append(widget);widget.layout.autosize=True;return widget
         selected=self.transverse_panel.selected_run_id
         footer=('Every transverse station is drawn. Pink U-bars are open downward; the section shows the selected run of that shape, or the first run of that shape. Bend / tail fit and pile conflicts are screened; development, closure and 3D congestion at longitudinal hook ends require review.' if actual_transverse(self.case) else 'Dashed transverse shapes are reference illustrations. Set the actual hoops and open-bottom U-bars in the editor above.')
-        self.cage.children=[W.HTML(reinforcement_summary_html(e)),W.HTML(side_steel_html(e)),fw(section_figure(e,'B',selected)),fw(section_figure(e,'P',selected)),fw(reinforcement_plan_figure(e)),fw(elevation_figure(e)),W.HTML(hoop_explanation_html(e)),fw(hoop_figure(e)),W.HTML(clear_spacing_html(e)),W.HTML('<small>'+footer+' Pile lengths below the cap are schematic.</small>')]
+        self.cage.children=[W.HTML(reinforcement_summary_html(e)),W.HTML(side_steel_html(e)),fw(layout_3d(e)),fw(section_figure(e,'B',selected)),fw(section_figure(e,'P',selected)),fw(reinforcement_plan_figure(e)),fw(elevation_figure(e)),W.HTML(hoop_explanation_html(e)),
+            *([fw(hoop_figure(e))] if not actual_transverse(self.case) else []),W.HTML(clear_spacing_html(e)),W.HTML('<small>'+footer+' Pile lengths below the cap are schematic. The 3D cage uses bar centerlines; displayed line thickness is for visibility.</small>')]
         self.results.children=[fw(results_figure(e)),W.HTML(spacing_html(e)),fw(optional_service_figure(e)),fw(ratios_figure(e)),W.HTML('<small>These plots compare imported force envelopes and sectional capacities. They are not a continuous moment/shear diagram or a rerun of FB-MultiPier.</small>')]
         self.register.value=checks_html(e)
         rows=''.join(f'<tr><td>{html.escape(t["name"])}</td><td>{html.escape(t["formula"])}</td><td>{html.escape(str(t["value"]))}</td></tr>' for t in formula_trace(e))
@@ -192,6 +197,7 @@ class CapNotebook:
             self.aggregate_confirmed.value=case['screening']['aggregate_confirmed']
             self.cap_type.value=case.get('cap_type','Pier pile cap')
             self.transverse_panel.sync()
+            self.pile_appearance.sync()
         finally:self.busy=False
         self._update_search_basis()
         self.refresh()
@@ -365,11 +371,13 @@ class CapNotebook:
             self._update_search_basis();return
         result=self.search_result;index=self.candidates.value;chosen=candidate_case(result,index)
         if 'cap_type' in self.case:chosen['cap_type']=self.case['cap_type']
+        if 'pile_visual' in self.case:chosen['pile_visual']=deepcopy(self.case['pile_visual'])
         self.busy=True
         try:
             self.case=chosen
             for n,w in self.controls.items():w.value=chosen['inputs'][n]
             self.transverse_panel.sync()
+            self.pile_appearance.sync()
         finally:self.busy=False
         self.refresh();self._update_search_basis();self.message.value=f'Applied candidate #{index+1}. Live drawings and checks now show that layout.'
         self._notify_case_change()

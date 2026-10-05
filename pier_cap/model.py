@@ -7,6 +7,7 @@ import math
 from .engine import Engine, ScalarEngine, Q, parse
 from .detailing import required_clear,spacing_records,hook_paths,layer_alignment
 from .transverse import enabled as actual_transverse,validate_detail,transverse_checks,transverse_issues,bar_shape,run_summary
+from .pile_visual import validate_pile_visual
 
 DATA=Path(__file__).parent/'data'
 DEFINITIONS=json.loads((DATA/'c005_formulas.json').read_text(encoding='utf-8'))
@@ -101,6 +102,7 @@ def validate_case(case):
     if not isinstance(analysis.get('id'),str) or not analysis['id'].strip():raise ValueError('An analysis case ID is required.')
     g=analysis.get('geometry',{})
     if set(g)!=set(GEOMETRY) or any(isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v) for v in g.values()):raise ValueError('Analysis geometry must record all seven geometry inputs.')
+    validate_pile_visual(case)
     return case
 
 def analysis_match(case):

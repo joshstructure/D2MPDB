@@ -10,6 +10,7 @@ import hashlib
 import math
 from lxml import etree as ET
 from .model import upgrade_case, default_case, evaluate, validate_case, GEOMETRY
+from .pile_visual import appearance_from_xml
 
 
 def _require(condition, message):
@@ -335,6 +336,7 @@ def import_fbmp_xml(source, base=None, filename=None):
         'Axial force, weak-axis bending and lateral shear remain outside the existing sectional calculation; their maxima are recorded in the audit. Analysis convergence, anchorage and full design review remain separate.',
     ]
     case['name'] = Path(filename).stem+' — XML analysis'
+    case['pile_visual']=appearance_from_xml(pile_sections[0],f'FBMP XML: {Path(filename).name} · SHA256 {digest[:12]}')
     case['analysis'] = dict(id=f'{Path(filename).name} · SHA256 {digest[:12]}',
                             geometry={k:p[k] for k in GEOMETRY}, notes=' '.join(notes),
                             xml_audit=dict(filename=Path(filename).name,sha256=digest,version=version,
