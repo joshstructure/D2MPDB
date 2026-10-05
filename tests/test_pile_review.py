@@ -138,6 +138,17 @@ class TrialTests(unittest.TestCase):
         self.assertEqual(result['selection_mode'],'automatic')
         self.assertEqual(result,evaluate_trials(list(reversed(rows)),reference_elevation=24.5))
 
+    def test_driven_pile_default_adds_five_even_below_twenty_five(self):
+        rows = self.rows([(20,1),(15,1.05)])
+        result = evaluate_trials(rows)
+        self.assertEqual(result['critical_embedment_ft'], 20)
+        self.assertEqual(result['extension_mode'], 'fixed')
+        self.assertEqual(result['extension_ft'], 5)
+        self.assertEqual(result['required_embedment_ft'], 25)
+        self.assertIsNone(result['tip_elevation_ft'])
+        self.assertEqual(evaluate_trials(rows,reference_elevation=21.5)['tip_elevation_ft'], -3.5)
+        self.assertEqual(evaluate_trials(rows,mode='lesser')['required_embedment_ft'], 24)
+
     def test_shallowest_qualifying_pair_matches_spreadsheet_min_formula(self):
         result=evaluate_trials(self.rows([(50,1),(40,1.05),(30,2),(20,2.01)]))
         self.assertEqual(result['critical_embedment_ft'],30)

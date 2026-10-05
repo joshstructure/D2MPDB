@@ -228,7 +228,8 @@ class PileReviewPanel:
         self.all_piles.on_click(lambda _: setattr(self.piles, 'value', tuple(self.review['piles']) if self.review else ()))
         self.no_piles.on_click(lambda _: setattr(self.piles, 'value', ()))
         self.governing_pile.on_click(lambda _: setattr(self.piles, 'value', (self.selected_pile(),)) if self.review else None)
-        self.cutoff = W.Text(description='Cutoff EL (ft)', placeholder='Optional project datum', layout=W.Layout(width='320px'))
+        self.cutoff = W.Text(description='Cutoff EL (ft)', placeholder='Optional project datum', continuous_update=False,
+                             layout=W.Layout(width='320px'))
         self.export = W.Button(description='Download pile review', icon='download', disabled=True, layout=W.Layout(width='200px'))
         self.export.on_click(self._export)
         self.upload = self._uploader('Separate pile XML', '.xml,.XML', self._import)
@@ -255,10 +256,12 @@ class PileReviewPanel:
         self.tolerance = W.FloatText(value=.1, description='Δ limit (in)')
         self.extension = W.FloatText(value=5, description='Extension (ft)')
         self.fraction = W.FloatText(value=.2, description='Fraction')
-        self.extension_mode = W.Dropdown(options=[('Lesser of fixed / percentage','lesser'), ('Fixed extension','fixed'),
-                                                  ('Percentage of Lcrit','fraction')],
-                                         description='Method', layout=W.Layout(width='360px'))
-        self.reference = W.Text(description='Ground EL (ft)', placeholder='Design ground/scour datum', layout=W.Layout(width='330px'))
+        self.extension_mode = W.Dropdown(options=[('Fixed addition to Lcrit','fixed'),
+                                                  ('Shaft/reference: lesser of fixed / percentage','lesser'),
+                                                  ('Percentage of Lcrit','fraction')], value='fixed',
+                                         description='Method', layout=W.Layout(width='410px'))
+        self.reference = W.Text(description='Ground EL (ft)', placeholder='Required for tip elevation', continuous_update=False,
+                                layout=W.Layout(width='330px'))
         self.accepted = W.Text(description='Lcrit (ft)', placeholder='Calculated from trials', disabled=True, layout=W.Layout(width='330px'))
         self.rounding = W.Checkbox(value=False, description='Round tip down / total length up to whole feet', indent=False)
         self.trial_basis = W.Text(description='Trial notes', placeholder='Optional project notes', layout=W.Layout(width='600px'))
@@ -280,12 +283,16 @@ class PileReviewPanel:
         trials = W.VBox([W.HTML('<p>Paste the five workbook columns (trial, combination, pile, embedment in ft, displacement in in), '
             'or upload the CSV template. A single solved XML does not contain the shortened-pile trial history. '
             'Each row is the governing result for that embedment. Use <b>series</b> for separate studies; combination and pile may change as governors change. '
-            '<b>Lcrit is calculated automatically</b> from Δ ≤ 0.1 in (editable below). The default added embedment is '
-            'the lesser of 5 ft and 20% of Lcrit (fraction 0.20).</p>'),
+            '<b>Lcrit is calculated automatically</b> from Δ ≤ 0.1 in (editable below). '
+            '<b>Required embedment = Lcrit + 5 ft</b> by default; Lcrit itself remains unchanged. '
+            '<b>Tip elevation = design ground/scour elevation − required embedment.</b> '
+            'Enter Ground EL to calculate the elevation. Cutoff EL is only needed for total pile length. '
+            'The 5-ft default follows January 2026 FDOT SDG 3.5.9.B.4 for driven piles; '
+            'check any greater required penetration and Service-limit deflections separately.</p>'),
             W.HBox([self.trial_upload, self.trial_template]), self.trial_label, self.trial_text,
             W.HBox([self.tolerance, self.extension, self.fraction], layout=W.Layout(flex_flow='row wrap')),
             self.extension_mode, W.HBox([self.reference, self.accepted], layout=W.Layout(flex_flow='row wrap')),
-            self.trial_basis, self.rounding, self.run_trials, self.trial_status, self.trial_output, self.trial_summary])
+            self.trial_basis, self.rounding, self.run_trials, self.trial_status, self.trial_summary, self.trial_output])
         self.tabs = Tab(children=[W.VBox([self.summary, self.head_output]),
             W.VBox([self.combo, W.HTML('<b>Compare piles</b> · check any combination of piles; colors stay the same on every plot.'),
                 self.piles, W.HBox([self.all_piles, self.no_piles, self.governing_pile]),
@@ -443,7 +450,7 @@ class PileReviewPanel:
             return
         self.refresh_profiles()
         if _ is not None and _.get('owner') is self.cutoff:
-            self._trials_changed()
+            self._trials_changed(_)
         self.refresh_handoff()
 
     def selected_pile(self):
@@ -505,6 +512,7 @@ class PileReviewPanel:
         if self.busy:
             return
         self.trial_result = None
+        self.trial_error = ''
         self.accepted.value = ''
         self.handoff_status.value = ''
         self.trial_output.children = []
@@ -513,6 +521,11 @@ class PileReviewPanel:
             old_figure.close()
         self.trial_summary.value = ''
         self.run_trials.disabled = not bool(self.trial_text.value.strip())
+        # Recalculate datum/allowance changes immediately. Editing the actual
+        # trial table still requires Calculate so partial pastes are not used.
+        if self.trial_text.value.strip() and _ is not None and _.get('owner') is not self.trial_text:
+            self._trials()
+            return
         self.trial_status.value = ('<p>Trial inputs changed. Click Calculate minimum tip to update the plots and results.</p>'
             if self.trial_text.value.strip() else '<p>Paste trial rows above to enable Calculate minimum tip. The XML contains one solved pile length.</p>')
         self.refresh_handoff()
@@ -540,8 +553,21 @@ class PileReviewPanel:
             self.trial_summary.value += table([dict(item=label, value=result[k]) for k, label in labels], [('item','Result'), ('value','ft')])
             if p is None:
                 self.trial_summary.value += '<p>No qualifying adjacent trial pair in one or more series. Add or check trial results; no minimum tip is calculated.</p>'
-            elif self.optional(self.reference) is None:
-                self.trial_summary.value += '<p>Enter design ground / scour elevation to calculate minimum tip elevation.</p>'
+            else:
+                self.trial_summary.value += (f'<p><b>Required embedment = {p:.3f} + '
+                    f'{result["extension_ft"]:.3f} = {result["required_embedment_ft"]:.3f} ft.</b> '
+                    'The added embedment is included here, not in Lcrit.</p>')
+                ground = self.optional(self.reference)
+                if ground is None:
+                    self.trial_summary.value += '<p><b>Enter Ground EL (ft)</b> — design ground / scour elevation is required for minimum tip elevation. The added and required embedments above are already calculated.</p>'
+                else:
+                    raw_tip = ground-result['required_embedment_ft']
+                    self.trial_summary.value += (f'<p><b>Tip elevation = {ground:.3f} − '
+                        f'{result["required_embedment_ft"]:.3f} = {raw_tip:.3f} ft.</b></p>')
+                    if self.rounding.value:
+                        self.trial_summary.value += f'<p>Adopted whole-foot tip elevation: {result["tip_elevation_ft"]:.0f} ft (rounded downward).</p>'
+                if self.extension_mode.value == 'lesser':
+                    self.trial_summary.value += '<p>Lesser-of method selected (shaft/reference procedure). Choose Fixed addition to Lcrit with Extension = 5 ft for the current driven-pile default.</p>'
             if any(r['converged'] is None for r in rows):
                 self.trial_summary.value += '<p>Some trial convergence results are not supplied.</p>'
             if any(r['dc'] is None for r in rows):
@@ -555,8 +581,16 @@ class PileReviewPanel:
             if any(not r['analysis_ok'] for r in result['rows'] if r['critical_trial']):
                 self.trial_summary.value += '<p>The governing trial pair has a supplied D/C or convergence failure. Lcrit follows the displacement-change formula; these checks are reported separately.</p>'
             self._figure('trials', self.trial_output, trial_figure(result, self.tolerance.value))
-            self.trial_status.value = notice_html('TRIALS EVALUATED',
-                f'{len(rows)} rows · {len(result["groups"])} series. Plots and calculations are below.', 'success')
+            if p is None:
+                missing = ', '.join(g['series'] for g in result['groups'] if g['candidate_ft'] is None)
+                self.trial_status.value = notice_html('NO QUALIFYING TRIAL PAIR',
+                    'Check trial results in: '+html.escape(missing)+'. No critical embedment or tip elevation can be calculated.', 'pending')
+            elif self.optional(self.reference) is None:
+                self.trial_status.value = notice_html('TRIALS EVALUATED — GROUND ELEVATION NEEDED',
+                    'Lcrit and added embedment are calculated. Enter Ground EL (ft) to finish the minimum tip elevation.', 'pending')
+            else:
+                self.trial_status.value = notice_html('MINIMUM TIP CALCULATED',
+                    f'{len(rows)} rows · {len(result["groups"])} series. Tip elevation = {result["tip_elevation_ft"]:.3f} ft.', 'success')
         except Exception as exc:
             self.trial_result = None
             self.trial_error = str(exc)

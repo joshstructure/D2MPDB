@@ -337,10 +337,12 @@ def parse_trials(text):
     return result
 
 
-def evaluate_trials(rows, tolerance=.1, extension=5, fraction=.2, mode='lesser', reference_elevation=None,
+def evaluate_trials(rows, tolerance=.1, extension=5, fraction=.2, mode='fixed', reference_elevation=None,
                     cutoff_elevation=None, accepted_embedment=None, round_feet=False):
     """Match Min Tip Paste: min embedment whose next shallower Δ <= limit.
 
+    The default required embedment is Lcrit + 5 ft. Legacy percentage methods
+    remain explicit options. A ground/scour datum is needed only for elevation.
     accepted_embedment is retained only for callers of the older Python API;
     notebook controls always use the automatic calculation.
     """

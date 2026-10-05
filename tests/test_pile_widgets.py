@@ -36,21 +36,56 @@ class PileWidgetTests(unittest.TestCase):
         self.assertEqual(self.panel.figures['profiles'].data[0].y[0],40)
         self.assertAlmostEqual(self.panel.figures['profiles'].data[0].y[-1],-35)
 
-    def test_trial_edits_clear_old_result_and_new_run_clears_trial_assumptions(self):
+    def test_allowance_edits_recalculate_and_new_run_clears_trial_assumptions(self):
         self.panel.set_review(self.review)
         self.panel.trial_text.value=(FIXTURES/'pile_minimum_tip_reference.csv').read_text()
         self.panel._trials()
         self.assertAlmostEqual(self.panel.trial_result['proposed_embedment_ft'],32.74)
         self.assertIsNone(self.panel.trial_result['tip_elevation_ft'])
         self.panel.reference.value='24.5'
-        self.panel._trials()
         self.assertAlmostEqual(self.panel.trial_result['tip_elevation_ft'],-13.24)
         self.panel.extension.value=4
-        self.assertIsNone(self.panel.trial_result)
-        self.assertEqual(self.panel.trial_output.children,())
+        self.assertAlmostEqual(self.panel.trial_result['tip_elevation_ft'],-12.24)
+        self.assertTrue(self.panel.trial_output.children)
         self.panel.set_review(self.review)
         self.assertEqual(self.panel.trial_text.value,'')
         self.assertEqual(self.panel.reference.value,'')
+
+    def test_missing_ground_keeps_five_foot_addition_and_datum_change_finishes_tip(self):
+        self.panel.set_review(self.review)
+        self.panel.trial_text.value = '1,2,4,20,1\n2,2,4,15,1.05'
+        self.panel.run_trials.click()
+        self.assertEqual(self.panel.accepted.value, '20.000')
+        self.assertEqual(self.panel.extension_mode.value, 'fixed')
+        self.assertEqual(self.panel.trial_result['extension_ft'], 5)
+        self.assertEqual(self.panel.trial_result['required_embedment_ft'], 25)
+        self.assertIsNone(self.panel.trial_result['tip_elevation_ft'])
+        self.assertIn('20.000 + 5.000 = 25.000', self.panel.trial_summary.value)
+        self.assertIn('GROUND ELEVATION NEEDED', self.panel.trial_status.value)
+        # Ground elevation commits update the calculation without another click.
+        self.panel.reference.value = '21.5'
+        self.assertEqual(self.panel.trial_result['tip_elevation_ft'], -3.5)
+        self.assertIn('21.500 − 25.000 = -3.500', self.panel.trial_summary.value)
+        self.assertIn('MINIMUM TIP CALCULATED', self.panel.trial_status.value)
+        self.panel.reference.value = '0'
+        self.assertEqual(self.panel.trial_result['tip_elevation_ft'], -25)
+        self.panel.reference.value = '-1.5'
+        self.panel.rounding.value = True
+        self.assertEqual(self.panel.trial_result['tip_elevation_ft'], -27)
+        self.panel.cutoff.value = '40.5'
+        self.assertEqual(self.panel.trial_result['total_length_ft'], 68)
+        self.panel.reference.value = ''
+        self.assertIsNone(self.panel.trial_result['tip_elevation_ft'])
+        self.assertEqual(self.panel.trial_result['required_embedment_ft'], 25)
+        self.assertIn('GROUND ELEVATION NEEDED', self.panel.trial_status.value)
+
+    def test_no_qualifying_pair_explains_missing_critical_depth(self):
+        self.panel.trial_text.value = '1,2,4,20,1\n2,2,4,15,2'
+        self.panel.reference.value = '21.5'
+        self.panel.run_trials.click()
+        self.assertEqual(self.panel.accepted.value, '')
+        self.assertIsNone(self.panel.trial_result['required_embedment_ft'])
+        self.assertIn('NO QUALIFYING TRIAL PAIR', self.panel.trial_status.value)
 
     def test_restore_and_export_recalculate_and_retain_provenance(self):
         self.panel.set_review(self.review)

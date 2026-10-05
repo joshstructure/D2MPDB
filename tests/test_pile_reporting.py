@@ -200,10 +200,18 @@ class HandoffWidgetTests(unittest.TestCase):
         self.assertEqual(self.panel.accepted.value,'32.740')
         self.assertAlmostEqual(self.panel.trial_result['tip_elevation_ft'],-13.24)
         self.panel.extension_mode.value='fraction'
-        self.assertEqual(self.panel.accepted.value,'')
-        self.panel.run_trials.click()
+        self.assertEqual(self.panel.accepted.value,'32.740')
         self.assertAlmostEqual(self.panel.trial_result['extension_ft'],6.548)
         self.assertAlmostEqual(self.panel.trial_result['tip_elevation_ft'],-14.788)
+
+    def test_saved_legacy_extension_is_preserved_and_labeled(self):
+        self.select_trials()
+        state = self.panel.snapshot()
+        state['controls']['extension_mode'] = 'lesser'
+        self.panel.restore(state)
+        self.assertEqual(self.panel.extension_mode.value, 'lesser')
+        self.assertIn('Lesser-of method selected (shaft/reference procedure)', self.panel.trial_summary.value)
+        self.assertAlmostEqual(self.panel.trial_result['tip_elevation_ft'], -13.24)
 
 
 if __name__ == '__main__':
