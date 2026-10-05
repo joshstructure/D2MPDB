@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "name": "D2 I-95 · four piles at 5 ft",
   "inputs": {
     "b": 48.0,
@@ -53,8 +53,8 @@
     "n_P1": 8.0,
     "n_P2": 0.0,
     "n_PU": 0.0,
-    "n_B1": 8.0,
-    "n_B2": 0.0,
+    "n_B1": 0,
+    "n_B2": 0,
     "n_BU": 0.0,
     "Bar_v": 5.0,
     "n_loop": 1.0,
@@ -96,7 +96,10 @@
   },
   "screening": {
     "minimum_clear_in": 2.0,
-    "notes": "User-adjustable trial cage spacing screen; confirm governing code, aggregate size and detailing."
+    "notes": "Project construction minimum supplements AASHTO minima. Confirm nominal maximum aggregate size from the concrete mix.",
+    "aggregate_in": 0.75,
+    "aggregate_confirmed": false,
+    "code_basis": "AASHTO LRFD BDS 5.10.3 / 5.10.2; FDOT SDM 2026 4.3.2 and 4.3.4; contract criteria govern"
   },
   "units": {
     "b": "in",

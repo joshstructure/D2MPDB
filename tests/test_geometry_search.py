@@ -15,7 +15,7 @@ from tests.case_fixtures import default_case
 
 def small_search(app):
     choices=dict(main_bars=(8,),top_counts=(8,),pile_bars=(8,),span_bars=(8,),
-                 pile_counts=(8,),span_counts=(8,),hoop_bars=(5,),hoop_spacings=(8,),
+                 pile_counts=(8,),span_counts=(0,),hoop_bars=(5,),hoop_spacings=(8,),
                  skin_bars=(5,),skin_counts=(6,7))
     for name, values in choices.items():
         app.search_lists[name].value=values

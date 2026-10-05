@@ -104,7 +104,7 @@ class SideSteelWidgetTests(unittest.TestCase):
     def test_search_and_study_show_actual_side_steel_reason(self):
         self.assertEqual(self.app.search_lists['skin_counts'].value,tuple(range(8)))
         self.assertEqual(self.app.search_lists['skin_counts'].options,tuple(range(11)))
-        self.assertIn('Shrinkage reinforcement area',self.app.cage.children[0].value)
+        self.assertIn('Shrinkage reinforcement area',self.app.cage.children[1].value)
         self.app.search_result=search(self.app.case,SMALL)
         self.app._render_candidates()
         self.assertIn('0 matching layouts without side bars',self.app.search_text.value)
@@ -115,7 +115,7 @@ class SideSteelWidgetTests(unittest.TestCase):
         self.assertIn('not required',self.study.selection_info.value)
         self.assertIn('Shrinkage reinforcement area',self.study.selection_info.value)
         self.app.controls['n_skin'].value=0
-        self.assertIn('no side bars',self.app.cage.children[0].value)
+        self.assertIn('no side bars',self.app.cage.children[1].value)
         self.assertFalse(self.app.current.eligible)
 
     def test_old_default_search_is_upgraded_but_new_deliberate_choices_survive(self):

@@ -4,7 +4,7 @@ from lxml import etree as E
 from .model import DEFINITIONS,SPEC
 
 
-def update_regional_views(report):
+def update_regional_views(report,evaluation=None):
     # The original four-column D/C table embeds expressions separately from
     # the calculation definitions. Refresh these too when exporting an old journal.
     for row in report.iter('row'):
@@ -88,3 +88,21 @@ def update_regional_views(report):
         E.SubElement(canvas,'planecontainer',name='NotebookPileNotice',origin='.15,4.02,0',
             dir='1,0,0',normal='0,0,1',fontfamily='Times New Roman',fontsize='7',textcolor='#BB3E39',
             formula='If(PierCapDesign.Ready_pile,"Pile outline + placement/clearance envelope; hoop stations require detailing","PILE-HEAD DIMENSIONS PENDING — verify cage in notebook")')
+        if evaluation is not None:
+            # The old uniform B-row formula cannot represent the fixed continuous
+            # cage plus gap-filled additions. Export the checked positions, and
+            # explicitly label this geometry snapshot rather than a live layout.
+            from .model import bar_positions
+            for node in list(canvas):
+                if 'GfxRowX' in node.get('formula','') or node.get('name','').startswith('NotebookDetailSnapshot'):
+                    canvas.remove(node)
+            for region,offset in [('P','.30'),('B','3.68')]:
+                for i,bar in enumerate(bar_positions(evaluation,region)):
+                    radius=f'{bar["diameter"]/2:.12g}*GfxScale'
+                    x=f'{offset}+{bar["x"]:.12g}*GfxScale';y=f'.90+{bar["y"]:.12g}*GfxScale'
+                    E.SubElement(canvas,'plot',name=f'NotebookDetailSnapshot{region}{i}',
+                        formula=qualify(f'PlotLines(GfxRowX(1,{x},{x},{radius}),GfxRowY(1,{y},{y},{radius}))'),
+                        linecolor='#D88822' if bar['additional'] else '#188565' if bar['kind']=='Skin' else '#1766A0',linethickness='1.6')
+            notice=E.SubElement(canvas,'planecontainer',name='NotebookDetailSnapshotNotice',origin='.15,4.22,0',
+                dir='1,0,0',normal='0,0,1',fontfamily='Times New Roman',fontsize='7',textcolor='#BB3E39')
+            E.SubElement(notice,'textvalue').text='CAGE GEOMETRY SNAPSHOT: blue continuous + orange ADDITIONAL span bars. Re-export after input edits. Spacing / hook checks are in notebook checks.csv.'

@@ -25,7 +25,7 @@ NEW_INPUTS={'Bar_P','Bar_B','Ready_pile','Pile_embed','C_pile'}
 
 def head_case(**changes):
     return set_inputs(default_case(),**(dict(Ready_pile=True,Pile_embed=12,
-        C_pile=1.5,n_skin=7,n_P1=4)|changes))
+        C_pile=1.5,n_skin=7,n_P1=4,n_B1=4)|changes))
 
 
 def legacy_case():
@@ -42,16 +42,19 @@ class PositiveRegionTests(unittest.TestCase):
         e=evaluate(case);p=case['inputs']
         for region,size,n1,n2 in [('P',9,4,2),('B',7,8,1)]:
             with self.subTest(region=region):
-                area=(n1+n2)*BAR_AREA[size]
+                added_area=(n1+n2)*BAR_AREA[size]
+                area=added_area+(e.value('As_P') if region=='B' else 0)
                 y1=p['C_b']+BAR_DIAMETER[p['Bar_v']]+BAR_DIAMETER[size]/2
-                dc=(n1*y1+n2*(y1+p['s_row']))/(n1+n2)
+                moment=BAR_AREA[size]*(n1*y1+n2*(y1+p['s_row']))
+                if region=='B':moment+=e.value('As_P')*e.value('dc_P')
+                dc=moment/area
                 a=area*p['fy']/(.85*p['fc']*p['b'])
                 self.assertAlmostEqual(e.value('As_'+region),area)
                 self.assertAlmostEqual(e.value('dc_'+region),dc)
                 self.assertAlmostEqual(e.value('Mr_'+region),p['phi_f']*area*p['fy']*(p['h']-dc-a/2))
         changed=evaluate(set_inputs(case,Bar_P=10,n_P1=6))
         for name in ('As_B','dc_B','Mr_B','SP_B','fs_I_B'):
-            self.assertEqual(e.value(name),changed.value(name))
+            self.assertNotEqual(e.value(name),changed.value(name))
         self.assertNotEqual(e.value('Mr_P'),changed.value('Mr_P'))
         fast=evaluate(case,fast=True)
         for name in ('As_P','As_B','dc_P','dc_B','Mr_P','Mr_B','SP_P','SP_B'):
@@ -66,7 +69,7 @@ class PositiveRegionTests(unittest.TestCase):
             self.assertTrue(b['x']+b['diameter']/2<=e.value('Pile_left')-1.5+1e-9 or
                             b['x']-b['diameter']/2>=e.value('Pile_right')+1.5-1e-9)
         self.assertTrue(any(e.value('Pile_left')<b['x']<e.value('Pile_right')
-                            for b in bar_positions(e,'B') if b['kind']=='Bottom row 1'))
+                            for b in bar_positions(e,'B') if b['kind']=='Added span row 1'))
         first=sorted(b['x'] for b in bars if b['kind']=='Bottom row 1')
         self.assertAlmostEqual(e.value('SP_P'),max(b-a for a,b in zip(first,first[1:])))
         self.assertAlmostEqual(e.value('s_shrink'),max(e.value(n) for n in ('SP_N','SP_B','SP_skin','s_G','s_L')))
@@ -113,7 +116,7 @@ class PositiveRegionTests(unittest.TestCase):
 
     def test_search_and_section_study_vary_both_sizes_and_counts(self):
         config=SearchConfig(main_bars=(8,),top_counts=(8,),pile_bars=(8,9),
-            span_bars=(7,8),pile_counts=(4,6),span_counts=(6,8),hoop_bars=(5,),
+            span_bars=(7,8),pile_counts=(4,6),span_counts=(2,4),hoop_bars=(5,),
             hoop_spacings=(8,),skin_bars=(5,),skin_counts=(7,))
         result=search(head_case(),config)
         self.assertEqual(result.total,16);self.assertTrue(result.exhaustive)
@@ -131,7 +134,7 @@ class PositiveRegionTests(unittest.TestCase):
     def test_different_positive_sizes_have_no_free_steel_in_cost(self):
         e=evaluate(head_case(Bar_P=9,n_P1=6,Bar_B=8,n_B1=8))
         shared=evaluate(set_inputs(e.case,Bar_P=8))
-        difference=(e.value('As_P')+e.value('As_B')-max(shared.value('As_P'),shared.value('As_B')))*e.value('L_cap')*490/1728
+        difference=(e.value('As_P')-shared.value('As_P'))*(e.value('L_cap')-2*e.case['inputs']['C_s'])*490/1728
         self.assertAlmostEqual(e.weight_lb-shared.weight_lb,difference)
 
     def test_drawings_and_widgets_keep_regions_separate(self):
@@ -139,11 +142,11 @@ class PositiveRegionTests(unittest.TestCase):
         try:
             before=app.current.value('As_B')
             app.controls['Bar_P'].value=9;app.controls['n_P1'].value=4
-            self.assertEqual(app.current.value('As_B'),before)
+            self.assertGreater(app.current.value('As_B'),before)
             self.assertAlmostEqual(app.current.value('As_P'),4)
             self.assertIn('pile_bars',app.search_lists);self.assertIn('span_counts',app.search_lists)
             for name,values in dict(main_bars=(8,),top_counts=(8,),pile_bars=(9,),
-                pile_counts=(4,),span_bars=(8,),span_counts=(8,),hoop_bars=(5,),
+                pile_counts=(4,),span_bars=(8,),span_counts=(4,),hoop_bars=(5,),
                 hoop_spacings=(8,),skin_bars=(5,),skin_counts=(7,)).items():
                 app.search_lists[name].value=values
             study.bounds['width'][0].value=study.bounds['width'][1].value=48
@@ -176,7 +179,8 @@ class PositiveRegionTests(unittest.TestCase):
                 exec(''.join(next(c for c in notebook['cells'] if c.get('id')=='7447e4cc')['source']),context)
             app=context['app']
             self.assertEqual(app.case,upgrade_case(legacy_case()))
-            for name in ('pile_counts','span_counts'):self.assertEqual(app.search_lists[name].value,(6,8))
+            self.assertEqual(app.search_lists['pile_counts'].value,(6,8))
+            self.assertEqual(app.search_lists['span_counts'].value,(0,2,4))
             for name in ('pile_bars','span_bars'):self.assertEqual(app.search_lists[name].value,(7,9))
         finally:
             app.close()
@@ -220,8 +224,9 @@ class PositiveRegionTests(unittest.TestCase):
                 plots=[node.get('formula') for node in tree.iter('plot')]
                 self.assertFalse(any('Bar_pos' in formula or 'y_pos' in formula for formula in plots))
                 self.assertTrue(any('PierCapDesign.Pile_embed' in formula for formula in plots))
-                self.assertTrue(any('PierCapDesign.P_side_span' in formula for formula in plots))
-                self.assertTrue(any('PierCapDesign.SP_detail_P' in formula for formula in plots))
+                snapshots=[node for node in tree.iter('plot') if node.get('name','').startswith('NotebookDetailSnapshot')]
+                self.assertEqual(len(snapshots),len(bar_positions(evaluate(case),'P'))+len(bar_positions(evaluate(case),'B')))
+                self.assertTrue(any('CAGE GEOMETRY SNAPSHOT' in (t.text or '') for t in tree.iter('textvalue')))
                 if first_plots is None:first_plots=plots
                 else:self.assertEqual(plots,first_plots)
 

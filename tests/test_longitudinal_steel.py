@@ -15,7 +15,7 @@ from tests.test_blockpad_export import journal
 
 
 def trial(count=4, side=0):
-    return set_inputs(default_case(),n_N1=count,n_P1=count,n_B1=count,n_skin=side)
+    return set_inputs(default_case(),n_N1=count,n_P1=count,n_B1=0,n_skin=side)
 
 
 class LongitudinalSteelTests(unittest.TestCase):

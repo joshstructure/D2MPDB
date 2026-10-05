@@ -25,107 +25,107 @@
     "basis": "Geometry, materials, factors, covers and spacings must be valid."
   },
   "Chk_flex_N": {
-    "label": "Flexural strength \u2014 N",
+    "label": "Flexural strength — N",
     "formula": "If(Mr_N > 0 kip*ft,DC_flex_N,\"INVALID\")",
     "basis": "Factored moment / factored flexural resistance."
   },
   "Chk_min_N": {
-    "label": "Minimum flexural steel \u2014 N",
+    "label": "Minimum flexural steel — N",
     "formula": "If(Mr_N > 0 kip*ft,DC_min_N,\"INVALID\")",
     "basis": "Minimum required moment resistance / provided resistance."
   },
   "Chk_strain_N": {
-    "label": "Tension strain screen \u2014 N",
+    "label": "Tension strain screen — N",
     "formula": "If(eps_t_N > 0,0.005/eps_t_N,\"INVALID\")",
     "basis": "Required minimum strain (0.005) / calculated tension strain."
   },
   "Chk_I_N": {
-    "label": "Service I \u2014 N",
+    "label": "Service I — N",
     "formula": "If(And(fs_I_limit > 0 ksi,SI_N > 0 in),Max(fs_I_N/fs_I_limit,SP_N/SI_N),\"INVALID\")",
     "basis": "Larger of steel stress / limit and actual bar spacing / allowable spacing."
   },
   "Chk_long_N": {
-    "label": "Longitudinal steel \u2014 N",
+    "label": "Longitudinal steel — N",
     "formula": "If(And((As_N+As_skin_eff)*fy > 0 kip,As_skin_eff >= 0 in^2),DC_long_N,\"INVALID\")",
     "basis": "Moment + shear/torsion tension / yield resistance of this region's main bars plus effective side steel (half of both side faces)."
   },
   "Chk_flex_P": {
-    "label": "Flexural strength \u2014 P",
+    "label": "Flexural strength — P",
     "formula": "If(Mr_P > 0 kip*ft,DC_flex_P,\"INVALID\")",
     "basis": "Factored moment / factored flexural resistance."
   },
   "Chk_min_P": {
-    "label": "Minimum flexural steel \u2014 P",
+    "label": "Minimum flexural steel — P",
     "formula": "If(Mr_P > 0 kip*ft,DC_min_P,\"INVALID\")",
     "basis": "Minimum required moment resistance / provided resistance."
   },
   "Chk_strain_P": {
-    "label": "Tension strain screen \u2014 P",
+    "label": "Tension strain screen — P",
     "formula": "If(eps_t_P > 0,0.005/eps_t_P,\"INVALID\")",
     "basis": "Required minimum strain (0.005) / calculated tension strain."
   },
   "Chk_I_P": {
-    "label": "Service I \u2014 P",
+    "label": "Service I — P",
     "formula": "If(And(fs_I_limit > 0 ksi,SI_P > 0 in),Max(fs_I_P/fs_I_limit,SP_P/SI_P),\"INVALID\")",
     "basis": "Larger of steel stress / limit and actual bar spacing / allowable spacing."
   },
   "Chk_long_P": {
-    "label": "Longitudinal steel \u2014 P",
+    "label": "Longitudinal steel — P",
     "formula": "If(And((As_P+As_skin_eff)*fy > 0 kip,As_skin_eff >= 0 in^2),DC_long_P,\"INVALID\")",
     "basis": "Moment + shear/torsion tension / yield resistance of this region's main bars plus effective side steel (half of both side faces)."
   },
   "Chk_flex_B": {
-    "label": "Flexural strength \u2014 B",
+    "label": "Flexural strength — B",
     "formula": "If(Mr_B > 0 kip*ft,DC_flex_B,\"INVALID\")",
     "basis": "Factored moment / factored flexural resistance."
   },
   "Chk_min_B": {
-    "label": "Minimum flexural steel \u2014 B",
+    "label": "Minimum flexural steel — B",
     "formula": "If(Mr_B > 0 kip*ft,DC_min_B,\"INVALID\")",
     "basis": "Minimum required moment resistance / provided resistance."
   },
   "Chk_strain_B": {
-    "label": "Tension strain screen \u2014 B",
+    "label": "Tension strain screen — B",
     "formula": "If(eps_t_B > 0,0.005/eps_t_B,\"INVALID\")",
     "basis": "Required minimum strain (0.005) / calculated tension strain."
   },
   "Chk_I_B": {
-    "label": "Service I \u2014 B",
+    "label": "Service I — B",
     "formula": "If(And(fs_I_limit > 0 ksi,SI_B > 0 in),Max(fs_I_B/fs_I_limit,SP_B/SI_B),\"INVALID\")",
-    "basis": "Larger of steel stress / limit and actual bar spacing / allowable spacing."
+    "basis": "Larger of steel stress / limit and nominal combined-row average pitch / allowable. Maximum actual drawn pitch is checked separately by the notebook."
   },
   "Chk_long_B": {
-    "label": "Longitudinal steel \u2014 B",
+    "label": "Longitudinal steel — B",
     "formula": "If(And((As_B+As_skin_eff)*fy > 0 kip,As_skin_eff >= 0 in^2),DC_long_B,\"INVALID\")",
     "basis": "Moment + shear/torsion tension / yield resistance of this region's main bars plus effective side steel (half of both side faces)."
   },
   "Chk_shear_G": {
-    "label": "Shear \u2014 global",
+    "label": "Shear — global",
     "formula": "If(And(Vr_G > 0 kip,Vn_limit > 0 kip),Max(DC_shear_G,Vn_req_G/Vn_limit),\"INVALID\")",
     "basis": "Larger of shear / resistance and nominal demand / section upper bound."
   },
   "Chk_spacing_G": {
-    "label": "Hoop spacing \u2014 global",
+    "label": "Hoop spacing — global",
     "formula": "If(And(s_allow_G > 0 in,Sw_G > 0 in),Max(s_G/s_allow_G,S_leg/Sw_G),\"INVALID\")",
     "basis": "Larger of along-cap spacing / limit and transverse leg spacing / limit."
   },
   "Chk_torsteel_G": {
-    "label": "Shear + torsion steel \u2014 global",
+    "label": "Shear + torsion steel — global",
     "formula": "If(And(Ab(Bar_v) > 0 in^2,Av > 0 in^2,Ao > 0 in^2),Max(At_G/Ab(Bar_v),Acomb_G/Av),\"INVALID\")",
     "basis": "Larger of torsion area per leg / provided leg area and combined area / provided area."
   },
   "Chk_shear_L": {
-    "label": "Shear \u2014 low interval",
+    "label": "Shear — low interval",
     "formula": "If(And(Vr_L > 0 kip,Vn_limit > 0 kip),Max(DC_shear_L,Vn_req_L/Vn_limit),\"INVALID\")",
     "basis": "Larger of shear / resistance and nominal demand / section upper bound."
   },
   "Chk_spacing_L": {
-    "label": "Hoop spacing \u2014 low interval",
+    "label": "Hoop spacing — low interval",
     "formula": "If(And(s_allow_L > 0 in,Sw_L > 0 in),Max(s_L/s_allow_L,S_leg/Sw_L),\"INVALID\")",
     "basis": "Larger of along-cap spacing / limit and transverse leg spacing / limit."
   },
   "Chk_torsteel_L": {
-    "label": "Shear + torsion steel \u2014 low interval",
+    "label": "Shear + torsion steel — low interval",
     "formula": "If(And(Ab(Bar_v) > 0 in^2,Av > 0 in^2,Ao > 0 in^2),Max(At_L/Ab(Bar_v),Acomb_L/Av),\"INVALID\")",
     "basis": "Larger of torsion area per leg / provided leg area and combined area / provided area."
   },
@@ -150,12 +150,12 @@
     "basis": "Largest source surface spacing / allowable shrinkage spacing; bottom uses the between-pile row (Mathcad SP[2])."
   },
   "Status_III": {
-    "label": "Service III \u2014 all regions",
+    "label": "Service III — all regions",
     "formula": "If(Ready_III,If(And(Min(SIII_N,SIII_P,SIII_B) > 0 in,Min(MIII_N,MIII_P,MIII_B) >= 0 kip*ft),Max(fo_III_N/(24 ksi),SP_N/SIII_N,fo_III_P/(24 ksi),SP_P/SIII_P,fo_III_B/(24 ksi),SP_B/SIII_B),\"INVALID\"),\"PENDING\")",
     "basis": "Largest outer-bar stress / 24 ksi or actual / allowable spacing across N, P and B."
   },
   "Status_fatigue": {
-    "label": "Fatigue \u2014 all regions",
+    "label": "Fatigue — all regions",
     "formula": "If(Ready_fatigue,If(And(Min(FTH_N,FTH_P,FTH_B) > 0 ksi,Min(DMLL_N,DMLL_P,DMLL_B) >= 0 kip*ft),Max(DC_fat_N,DC_fat_P,DC_fat_B),\"INVALID\"),\"PENDING\")",
     "basis": "Largest factored stress range / fatigue threshold across N, P and B."
   },

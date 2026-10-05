@@ -15,7 +15,7 @@ from .widget_compat import Tab, Accordion
 from .source_status import upload_entries,source_html,import_receipt,receipt_html,notice_html
 from .force_audit import force_basis,FORCE_LABELS
 from .force_diagrams import ForceDiagramPanel
-from .visuals import section_figure,elevation_figure,hoop_figure,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html,spacing_html,side_steel_html,pile_head_help_html
+from .visuals import section_figure,elevation_figure,reinforcement_plan_figure,reinforcement_summary_html,clear_spacing_html,hoop_figure,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html,spacing_html,side_steel_html,pile_head_help_html
 
 UNIT_NAMES={'in':'inches','ft':'feet','kip':'kips','kip*ft':'kip-feet','ksi':'ksi (kips per square inch)','deg':'degrees'}
 
@@ -31,8 +31,8 @@ LABELS={'b':'Cap width','h':'Cap depth','C_t':'Top cover','C_b':'Bottom cover','
  'Pile_embed':'Pile embedment','C_pile':'Clear gap to pile','Ready_pile':'Pile dimensions confirmed',
  'fc':"Concrete f′c",'fy':'Steel fy','Es':'Steel modulus',
  'Bar_N1':'Top row 1 bar','Bar_N2':'Top row 2 bar','Bar_N3':'Top row 3 bar','n_N1':'Top row 1 count','n_N2':'Top row 2 count','n_N3':'Top row 3 count',
- 'Bar_P':'Pile main bar','Bar_B':'Between-pile main bar','Bar_U':'U-leg bar','n_P1':'Pile bottom row 1','n_P2':'Pile bottom row 2','n_PU':'Pile U-leg count',
- 'n_B1':'Between-pile row 1','n_B2':'Between-pile row 2','n_BU':'Between-pile U legs',
+ 'Bar_P':'Continuous bottom bar','Bar_B':'ADDED span bar size','Bar_U':'U-leg bar','n_P1':'Continuous row 1 count','n_P2':'Continuous row 2 count','n_PU':'Pile U-leg count',
+ 'n_B1':'ADDITIONAL row 1 count','n_B2':'ADDITIONAL row 2 count','n_BU':'Between-pile U legs',
  'Bar_v':'Closed hoop bar','n_loop':'Effective hoop loops','Bar_skin':'Side-face bar','n_skin':'Bars per side',
  's_row':'Row center spacing','s_G':'Global hoop spacing','s_L':'Low hoop spacing',
  'Mu_N':'Envelope · negative','Mu_P':'Envelope · pile positive','Mu_B':'Envelope · bearing/span',
@@ -41,10 +41,10 @@ LABELS={'b':'Cap width','h':'Cap depth','C_t':'Top cover','C_b':'Bottom cover','
  'Ready_III':'Service III loads ready','Ready_fatigue':'Fatigue loads ready','Manual_spacing':'Override bar spacing',
  'phi_f':'Flexural resistance factor','phi_v':'Shear resistance factor','gamma_e':'Exposure factor','gamma_fat':'Fatigue load factor',
  'beta_v':'Shear β','theta':'Compression angle θ','alpha_v':'Hoop angle α','fpc':'Precompression','Ao_factor':'Effective torsion area factor',
- 'SP_detail_N':'Top spacing override','SP_detail_P':'Pile spacing override','SP_detail_B':'Bearing spacing override','SP_detail_skin':'Skin spacing override','S_leg_detail':'Inner leg spacing'}
+ 'SP_detail_N':'Top spacing override','SP_detail_P':'Pile spacing override','SP_detail_B':'Added row pitch override','SP_detail_skin':'Skin spacing override','S_leg_detail':'Inner leg spacing'}
 
 GROUPS={
- 'Steel': [('Top rows','Bar_N1 n_N1 Bar_N2 n_N2 Bar_N3 n_N3'),('Positive steel · at piles','Bar_P n_P1 n_P2'),('Positive steel · between piles','Bar_B n_B1 n_B2'),('Hoops and side bars','Bar_v n_loop s_G s_L Bar_skin n_skin s_row'),('U legs / spacing overrides','Bar_U n_PU n_BU Manual_spacing SP_detail_N SP_detail_P SP_detail_B SP_detail_skin S_leg_detail')],
+ 'Steel': [('Top rows','Bar_N1 n_N1 Bar_N2 n_N2 Bar_N3 n_N3'),('Continuous bottom steel · at piles','Bar_P n_P1 n_P2'),('ADDITIONAL steel · between piles','Bar_B n_B1 n_B2'),('Hoops and side bars','Bar_v n_loop s_G s_L Bar_skin n_skin s_row'),('U legs / spacing overrides','Bar_U n_PU n_BU Manual_spacing SP_detail_N SP_detail_P SP_detail_B SP_detail_skin S_leg_detail')],
  'Geometry':[('Section and cover','b h C_t C_b C_s'),('Pile row and cap ends','N_pile S_pile D_pile E_clear E_detail'),('Pile head','Pile_embed C_pile Ready_pile')],
  'Loads':[('Combined strength envelopes','Mu_N Mu_P Mu_B Vu_G Vu_L Tu'),('Service I','MI_N MI_P MI_B')],
  'Pending':[('Service III','Ready_III MIII_N MIII_P MIII_B'),('Fatigue','Ready_fatigue MDL_N MDL_P MDL_B DMLL_N DMLL_P DMLL_B')],
@@ -60,8 +60,10 @@ class CapNotebook:
         self.import_receipt=None;self.import_notice=W.HTML()
         self.banner=W.HTML();self.metrics=W.HTML();self.message=W.HTML()
         self.cage=W.VBox(layout=W.Layout(max_height='820px',overflow='auto'));self.results=W.VBox(layout=W.Layout(max_height='820px',overflow='auto'));self.register=W.HTML();self.trace=W.HTML()
-        self.clearance=W.BoundedFloatText(value=self.case['screening']['minimum_clear_in'],min=0,max=12,step=.25,description='Trial clear (in)',style={'description_width':'120px'},layout=W.Layout(width='260px'))
-        self.clearance.observe(self._changed,names='value')
+        self.clearance=W.BoundedFloatText(value=self.case['screening']['minimum_clear_in'],min=0,max=12,step=.25,description='Project min clear (in)',style={'description_width':'120px'},layout=W.Layout(width='260px'))
+        self.aggregate=W.BoundedFloatText(value=self.case['screening']['aggregate_in'],min=.125,max=6,step=.125,description='Max aggregate (in)',style={'description_width':'170px'},layout=W.Layout(width='300px'))
+        self.aggregate_confirmed=W.Checkbox(value=self.case['screening']['aggregate_confirmed'],description='Aggregate size confirmed',indent=False)
+        for control in (self.clearance,self.aggregate,self.aggregate_confirmed):control.observe(self._changed,names='value')
         self.input_tabs=self._inputs()
         self.force_diagrams=ForceDiagramPanel()
         self.plot_tabs=Tab(children=[self.cage,self.results,W.VBox([self.register],layout=W.Layout(max_height='850px',overflow='auto')),W.VBox([self.trace],layout=W.Layout(max_height='750px',overflow='auto')),self.force_diagrams.ui],layout=W.Layout(flex='1 1 650px',min_width='560px'))
@@ -109,7 +111,9 @@ class CapNotebook:
                     control.style.description_width='190px';control.layout.width='calc(100% - 4px)';control.layout.max_width='336px'
                     control.layout.min_height='34px';control.layout.height='auto';control.add_class('cap-input')
                     rows.append(control)
-                if title=='Hoops and side bars':rows.extend([self.clearance,W.HTML('<small>Clear-spacing screen is a trial assumption. Confirm code/aggregate/detailing requirements.</small>')])
+                if title=='Hoops and side bars':rows.extend([self.clearance,self.aggregate,self.aggregate_confirmed,W.HTML('<small>AASHTO LRFD BDS + FDOT policy. The larger of the code minimum and project minimum governs. Confirm aggregate from the mix design. Hoop zone limits and pile-head arrangement require a separate detail.</small>')])
+                if title=='ADDITIONAL steel · between piles':rows.insert(0,W.HTML('<p><b>These counts are ADDITIONAL, not totals.</b> Continuous bottom bars stay in place. Total span steel = continuous bars + these added bars. Enter 0 for no added bars. The bar size here applies only to the added steel. Standard 90° hooks are drawn at the span ends; anchorage remains a separate check.</p>'))
+                if title=='Continuous bottom steel · at piles':rows.insert(0,W.HTML('<p>These bottom bars continue through every pile and span to the cap end-cover planes. Their transverse positions stay fixed. End anchorage and splices require review.</p>'))
                 if title=='Pile head':rows.append(W.HTML(pile_head_help_html()))
                 panels.append(W.VBox(rows))
             accordion=Accordion(children=panels)
@@ -123,6 +127,8 @@ class CapNotebook:
         if self.busy:return
         self.case['inputs']={n:w.value for n,w in self.controls.items()}
         self.case['screening']['minimum_clear_in']=self.clearance.value
+        self.case['screening']['aggregate_in']=self.aggregate.value
+        self.case['screening']['aggregate_confirmed']=self.aggregate_confirmed.value
         self._update_search_basis()
         self.refresh()
         self._notify_case_change()
@@ -158,7 +164,7 @@ class CapNotebook:
         self.figures=[]
         def fw(fig):
             widget=go.FigureWidget(fig);self.figures.append(widget);widget.layout.autosize=True;return widget
-        self.cage.children=[W.HTML(side_steel_html(e)),fw(section_figure(e,'B')),fw(section_figure(e,'P')),fw(elevation_figure(e)),fw(hoop_figure(e)),W.HTML('<small>Bar circles follow row counts, diameters and calculated positions. U legs are an inventory until their positions are defined. Only the outer hoop is drawn. Pile lengths and first hoop positions are symbolic.</small>')]
+        self.cage.children=[W.HTML(reinforcement_summary_html(e)),W.HTML(side_steel_html(e)),fw(section_figure(e,'B')),fw(section_figure(e,'P')),fw(reinforcement_plan_figure(e)),fw(elevation_figure(e)),fw(hoop_figure(e)),W.HTML(clear_spacing_html(e)),W.HTML('<small>Bar circles use actual diameters and positions. Pile embedment is to scale; pile lengths below the cap are schematic. U-leg positions, first hoop and hoop-zone limits remain unresolved.</small>')]
         self.results.children=[fw(results_figure(e)),W.HTML(spacing_html(e)),fw(optional_service_figure(e)),fw(ratios_figure(e)),W.HTML('<small>These plots compare imported force envelopes and sectional capacities. They are not a continuous moment/shear diagram or a rerun of FB-MultiPier.</small>')]
         self.register.value=checks_html(e)
         rows=''.join(f'<tr><td>{html.escape(t["name"])}</td><td>{html.escape(t["formula"])}</td><td>{html.escape(str(t["value"]))}</td></tr>' for t in formula_trace(e))
@@ -171,6 +177,8 @@ class CapNotebook:
             self.import_receipt=import_receipt(case,import_name) if import_name else None
             for n,w in self.controls.items():w.value=case['inputs'][n]
             self.clearance.value=case['screening']['minimum_clear_in']
+            self.aggregate.value=case['screening']['aggregate_in']
+            self.aggregate_confirmed.value=case['screening']['aggregate_confirmed']
             self.cap_type.value=case.get('cap_type','Pier pile cap')
         finally:self.busy=False
         self._update_search_basis()
@@ -200,7 +208,7 @@ class CapNotebook:
 
     def _search_panel(self):
         self.search_lists={}
-        configs=[('main_bars','Top bars',(5,6,7,8,9,10,11),(6,7,8,9)),('top_counts','Top counts',(4,5,6,7,8,9,10,12),(4,6,8)),('pile_bars','Pile bars',(3,4,5,6,7,8,9,10,11),(6,7,8,9)),('pile_counts','Pile counts',(2,3,4,5,6,7,8,9,10,12),(4,6,8)),('span_bars','Between-pile bars',(3,4,5,6,7,8,9,10,11),(6,7,8,9)),('span_counts','Between-pile counts',(2,3,4,5,6,7,8,9,10,12),(4,6,8)),('hoop_bars','Hoop bars',(3,4,5,6,7),(4,5,6)),('hoop_spacings','Spacing (in)',(4,5,6,7,8,9,10,12),(6,8,10)),('skin_bars','Side bars',(3,4,5,6),(4,5)),('skin_counts','Bars / side',tuple(range(11)),SearchConfig().skin_counts)]
+        configs=[('main_bars','Top bars',(5,6,7,8,9,10,11),(6,7,8,9)),('top_counts','Top counts',(4,5,6,7,8,9,10,12),(4,6,8)),('pile_bars','Pile bars',(3,4,5,6,7,8,9,10,11),(6,7,8,9)),('pile_counts','Pile counts',(2,3,4,5,6,7,8,9,10,12),(4,6,8)),('span_bars','ADDED span bars',(3,4,5,6,7,8,9,10,11),(6,7,8,9)),('span_counts','ADDED span counts',(0,1,2,3,4,5,6,7,8,9,10,12),(0,2,4)),('hoop_bars','Hoop bars',(3,4,5,6,7),(4,5,6)),('hoop_spacings','Spacing (in)',(4,5,6,7,8,9,10,12),(6,8,10)),('skin_bars','Side bars',(3,4,5,6),(4,5)),('skin_counts','Bars / side',tuple(range(11)),SearchConfig().skin_counts)]
         boxes=[]
         for name,label,options,value in configs:
             if name.endswith('_bars'):
@@ -229,14 +237,14 @@ class CapNotebook:
         self.search_text=W.HTML();self.search_notice=W.HTML();self.candidates=W.Dropdown(options=[],description='Alternative',layout=W.Layout(width='90%'),style={'description_width':'80px'})
         self.apply_button=W.Button(description='Apply selected layout',disabled=True,icon='check');self.apply_button.on_click(self._apply)
         self.alternative_output=W.VBox()
-        return W.VBox([W.HTML('<h3>Search practical steel</h3><p>Search top steel, pile-positive steel and between-pile positive steel with independent bar sizes and counts. One row per group, one closed hoop and uniform hoop spacing; multirow arrangements remain manual inputs. Hold Ctrl/Cmd to select several choices.</p>'),
+        return W.VBox([W.HTML('<h3>Search practical steel</h3><p>Search top steel, continuous bottom steel and ADDITIONAL between-pile steel with independent sizes and counts. Span counts add to the continuous count; zero means no extra bars. One row per group, one closed hoop and uniform hoop spacing; multirow arrangements remain manual inputs. Hold Ctrl/Cmd to select several choices.</p>'),
             W.HBox(boxes,layout=W.Layout(flex_flow='row wrap',grid_gap='10px')),self.search_force_notice,
             W.HBox([self.limit,self.run_button,self.progress],layout=W.Layout(flex_flow='row wrap')),
             W.HTML('<h4>Browse every passing layout</h4><p>These are reinforcement layouts for the current force case. <b>Strength checks only</b> is the default margin target: set <b>Max D/C</b> to 0.90 to seek reserve in those checks. Filtering, ranking and paging reuse the completed search.</p>'),
             W.HBox([self.dc_limit,self.dc_scope,self.objective],layout=W.Layout(flex_flow='row wrap')),
             W.HTML('<small><b>All available checks</b> includes spacing, minimum steel, strain and service checks. <b>Strength checks only</b> targets flexure, shear, combined shear/torsion steel and longitudinal steel; all other available checks must still pass. Missing Service III/fatigue checks stay pending. Largest margin ranks the selected D/C scope.</small>'),
             self.search_notice,self.search_text,W.HBox([self.previous_page,self.page,self.next_page,self.page_size],layout=W.Layout(flex_flow='row wrap')),self.candidates,self.apply_button,self.alternative_output,
-            W.HTML('<small>Gross steel uses full cap lengths: equal-size positive cages share the larger count; different positive sizes count both sets. Regional cutoffs, laps, anchorage and waste are not priced. Cage score = longitudinal bar count + 5 × distinct bar sizes. Search results are conditional candidates, not finalized designs.</small>')])
+            W.HTML('<small>Gross steel counts continuous bars once and adds each drawn span bar including its two hook bends and tails. End anchorage, laps, hoop bends and waste are not priced. Cage score = longitudinal bar count + 5 × distinct bar sizes. Search results are conditional candidates, not finalized designs.</small>')])
 
     def _close_alternative_plot(self):
         if self.alternative_figure is not None:self.alternative_figure.close();self.alternative_figure=None

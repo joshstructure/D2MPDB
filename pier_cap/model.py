@@ -5,6 +5,7 @@ from pathlib import Path
 import json
 import math
 from .engine import Engine, ScalarEngine, Q, parse
+from .detailing import required_clear,spacing_records,hook_paths,layer_alignment
 
 DATA=Path(__file__).parent/'data'
 DEFINITIONS=json.loads((DATA/'c005_formulas.json').read_text(encoding='utf-8'))
@@ -20,10 +21,10 @@ GEOMETRY=('N_pile','S_pile','D_pile','b','h','E_clear','E_detail')
 PILE_GEOMETRY=('N_pile','S_pile','D_pile','E_clear','E_detail')
 
 def default_case():
-    return json.loads((DATA/'default_case.json').read_text(encoding='utf-8'))
+    return upgrade_case(json.loads((DATA/'default_case.json').read_text(encoding='utf-8')))
 
 def upgrade_case(case):
-    """Copy saved common-bar inputs into the independent positive-region schema."""
+    """Copy saved inputs into the continuous-plus-additional steel schema."""
     result=deepcopy(case)
     if result.get('schema_version')==1:
         p=result.get('inputs',{});units=result.get('units',{})
@@ -36,6 +37,24 @@ def upgrade_case(case):
         p.update(Ready_pile=False,Pile_embed=0,C_pile=0)
         units.update(Ready_pile='unitless',Pile_embed='in',C_pile='in')
         result['schema_version']=2
+    if result.get('schema_version')==2:
+        p=result['inputs']
+        if any(p.get(n) not in BAR_AREA for n in ('Bar_P','Bar_B')):
+            raise ValueError('Saved case needs supported continuous and span bar sizes before conversion.')
+        if any(isinstance(p.get(n),bool) or not isinstance(p.get(n),(int,float)) or not math.isfinite(p[n]) or p[n]<0 or p[n]!=int(p[n])
+               for n in ('n_P1','n_P2','n_B1','n_B2')):
+            raise ValueError('Saved case needs nonnegative whole row counts before conversion.')
+        former={f'n_B{k}':p[f'n_B{k}'] for k in (1,2)}
+        for k in (1,2):
+            missing=p[f'n_B{k}']*BAR_AREA[p['Bar_B']]-p[f'n_P{k}']*BAR_AREA[p['Bar_P']]
+            p[f'n_B{k}']=max(0,math.ceil(missing/BAR_AREA[p['Bar_B']]-1e-10))
+        result['schema_version']=3
+        result['reinforcement_migration']={'former_span_totals':former,
+            'note':'Older span counts were totals in independent regional cages. Each row now keeps the continuous Bar_P steel and adds enough Bar_B bars to meet or exceed its former span area, rounded up to whole bars (minimum zero). Review combined area, centroid and fit, especially for mixed sizes or former span totals below the continuous steel.'}
+    screen=result.setdefault('screening',{})
+    screen.setdefault('aggregate_in',0.75)
+    screen.setdefault('aggregate_confirmed',False)
+    screen.setdefault('code_basis','AASHTO LRFD BDS 5.10.3 / 5.10.2; FDOT SDM 2026 4.3.2 and 4.3.4; contract criteria govern')
     return result
 
 def set_inputs(case,**changes):
@@ -50,7 +69,7 @@ def set_inputs(case,**changes):
     return result
 
 def validate_case(case):
-    if case.get('schema_version')!=2:raise ValueError('Expected case schema_version 2; load older cases through load_case().')
+    if case.get('schema_version')!=3:raise ValueError('Expected case schema_version 3; load older cases through load_case().')
     expected_units={n:d['unit'] or 'unitless' for n,d in INPUTS.items()}
     if case.get('units')!=expected_units:raise ValueError('Case units differ from the input schema. Use the units in default_case.json; convert values before importing.')
     p=case.get('inputs',{})
@@ -68,11 +87,14 @@ def validate_case(case):
     for n in ('b','h','fc','fy','Es','C_t','C_b','C_s','s_row','s_G','s_L','D_pile','S_pile','phi_f','phi_v','beta_v','gamma_e','gamma_fat','Ao_factor'):
         if p[n]<=0:raise ValueError(f'{n} must be greater than zero.')
     if not 0<p['theta']<90 or not 0<p['alpha_v']<180:raise ValueError('Use 0 < theta < 90 and 0 < alpha_v < 180 degrees.')
-    if p['N_pile']<2 or min(p['n_N1'],p['n_P1'],p['n_B1'])<2 or p['n_loop']<1:raise ValueError('At least two piles, two bars in each outer row and one loop are required.')
+    if p['N_pile']<2 or min(p['n_N1'],p['n_P1'])<2 or p['n_loop']<1:raise ValueError('At least two piles, two top and continuous bottom bars and one loop are required. Added span bars may be zero.')
     if p['b']<=2*p['C_s']+2*BAR_DIAMETER[p['Bar_v']] or p['h']<=p['C_t']+p['C_b']+2*BAR_DIAMETER[p['Bar_v']]:raise ValueError('Cover and hoops do not fit inside the cap.')
     if p['Pile_embed']>p['h']:raise ValueError('Pile embedment exceeds the cap depth.')
     clearance=case.get('screening',{}).get('minimum_clear_in')
     if isinstance(clearance,bool) or not isinstance(clearance,(int,float)) or not math.isfinite(clearance) or clearance<0:raise ValueError('Screening clear spacing must be a finite nonnegative number.')
+    aggregate=case['screening'].get('aggregate_in')
+    if isinstance(aggregate,bool) or not isinstance(aggregate,(int,float)) or not math.isfinite(aggregate) or aggregate<=0:raise ValueError('Maximum aggregate size must be a positive finite number in inches.')
+    if type(case['screening'].get('aggregate_confirmed')) is not bool:raise ValueError('Aggregate confirmation must be true or false.')
     analysis=case.get('analysis',{})
     if not isinstance(analysis.get('id'),str) or not analysis['id'].strip():raise ValueError('An analysis case ID is required.')
     g=analysis.get('geometry',{})
@@ -112,7 +134,11 @@ class Evaluation:
         return v
 
 def bar_positions(e,region='B'):
-    """Actual row counts/diameters. U bars have no invented developed positions."""
+    """P bars are continuous. B counts are ADDITIONAL bars in each bottom layer.
+
+    Extras use Bar_B and fill the largest remaining clear intervals; existing
+    continuous bars never move between sections. U bars remain unresolved.
+    """
     p=e.case['inputs'];b=p['b'];h=p['h'];dv=BAR_DIAMETER[p['Bar_v']]
     bars=[]
     def row(n,size,y,label,manual=None,split=False):
@@ -129,18 +155,38 @@ def bar_positions(e,region='B'):
             for count,sign,outer in ((left,1,x0),(right,-1,b-x0)):
                 step=p[manual] if manual and p['Manual_spacing'] else span/max(count-1,1)
                 xs.extend(outer+sign*j*step for j in range(count))
-        for x in xs:bars.append({'x':x,'y':y,'diameter':diam,'kind':label,'bar':int(size)})
+        for x in xs:bars.append({'x':x,'y':y,'diameter':diam,'kind':label,'layer':label,'bar':int(size),'additional':False})
     for k in (1,2,3):row(p[f'n_N{k}'],p[f'Bar_N{k}'],h-e.value(f'y_N{k}'),f'Top row {k}','SP_detail_N' if k==1 else None)
     for k in (1,2):
-        y=e.value(f'y_{region}{k}');size=p[f'Bar_{region}']
-        split=region=='P' and p['Ready_pile'] and y-BAR_DIAMETER[size]/2<p['Pile_embed']+p['C_pile']
-        row(p[f'n_{region}{k}'],size,y,f'Bottom row {k}',f'SP_detail_{region}' if k==1 else None,split)
+        y=e.value(f'y_P{k}');size=p['Bar_P']
+        split=p['Ready_pile'] and y-BAR_DIAMETER[size]/2<p['Pile_embed']+p['C_pile']
+        label=f'Bottom row {k}'
+        row(p[f'n_P{k}'],size,y,label,'SP_detail_P' if k==1 else None,split)
+        if region=='B':
+            extra=int(p[f'n_B{k}'])
+            diameter=BAR_DIAMETER[p['Bar_B']];x0=p['C_s']+dv+diameter/2
+            if p['Manual_spacing'] and k==1:
+                xs=[b/2+(j-(extra-1)/2)*p['SP_detail_B'] for j in range(extra)]
+            else:
+                existing=sorted((v for v in bars if v['layer']==label),key=lambda v:v['x'])
+                edges=[(p['C_s']+dv,p['C_s']+dv)]+[(v['x']-v['diameter']/2,v['x']+v['diameter']/2) for v in existing]+[(b-p['C_s']-dv,b-p['C_s']-dv)]
+                slots=[dict(left=a[1],right=c[0],n=0) for a,c in zip(edges,edges[1:])]
+                for _ in range(extra):
+                    slot=max(slots,key=lambda v:(v['right']-v['left']-(v['n']+1)*diameter)/(v['n']+2))
+                    slot['n']+=1
+                xs=[]
+                for slot in slots:
+                    gap=(slot['right']-slot['left']-slot['n']*diameter)/(slot['n']+1)
+                    xs.extend(slot['left']+gap+diameter/2+j*(gap+diameter) for j in range(slot['n']))
+            for x in xs:
+                bars.append({'x':x,'y':e.value(f'y_B{k}'),'diameter':diameter,'kind':f'Added span row {k}',
+                    'layer':label,'bar':int(p['Bar_B']),'additional':True})
     n=int(p['n_skin']);diam=BAR_DIAMETER[p['Bar_skin']]
-    bottom=e.value(f'y_{region}1');top=h-e.value('y_N1')
+    bottom=e.value('y_P1');top=h-e.value('y_N1')
     pitch=e.value('SP_skin') if p['Manual_spacing'] else (top-bottom)/(n+1)
     mid=(top+bottom)/2
     for side in (p['C_s']+dv+diam/2,b-p['C_s']-dv-diam/2):
-        for j in range(n):bars.append({'x':side,'y':mid+(j-(n-1)/2)*pitch,'diameter':diam,'kind':'Skin','bar':int(p['Bar_skin'])})
+        for j in range(n):bars.append({'x':side,'y':mid+(j-(n-1)/2)*pitch,'diameter':diam,'kind':'Skin','layer':'Skin','bar':int(p['Bar_skin']),'additional':False})
     return bars
 
 def cage_issues(e):
@@ -152,8 +198,9 @@ def cage_issues(e):
         bars=bar_positions(e,z)
         outside=any(v['x']-v['diameter']/2<p['C_s']+dv-1e-6 or v['x']+v['diameter']/2>p['b']-p['C_s']-dv+1e-6 or v['y']-v['diameter']/2<p['C_b']+dv-1e-6 or v['y']+v['diameter']/2>p['h']-p['C_t']-dv+1e-6 for v in bars)
         if outside:issues.append(f'{z} section: bars extend outside the clear interior of the hoop.')
-        minimum=min((math.hypot(a['x']-b['x'],a['y']-b['y'])-(a['diameter']+b['diameter'])/2 for i,a in enumerate(bars) for b in bars[i+1:]),default=math.inf)
-        if minimum+1e-8<clear:issues.append(f'{z} section: minimum drawn clear spacing {minimum:.2f} in < trial screen {clear:g} in.')
+        for r in spacing_records(e,z,bars):
+            if r['status']=='FAIL':issues.append(f"{z} section {r['label']}: clear spacing {r['actual']:.2f} in < required {r['required']:.2f} in.")
+        issues.extend(f'{z} section: {problem}' for problem in layer_alignment(bars))
         if z=='P' and p['Ready_pile']:
             for bar in bars:
                 dx=max(e.value('Pile_left')-bar['x'],0,bar['x']-e.value('Pile_right'))
@@ -165,15 +212,88 @@ def cage_issues(e):
     return issues
 
 def estimate_weight(e):
-    # Equal-size positive cages share the larger count. Different sizes count
-    # both full-length sets until regional cutoff lengths are supplied.
-    # Gross lengths only: no hooks, laps, bends, anchorage, waste or regional cutoffs.
+    # Continuous bars plus each explicitly drawn hooked span supplement.
     p=e.case['inputs'];length=e.value('L_cap');dv=BAR_DIAMETER[p['Bar_v']]
-    bottom=max(e.value('As_P'),e.value('As_B')) if p['Bar_P']==p['Bar_B'] else e.value('As_P')+e.value('As_B')
-    longitudinal=(e.value('As_N')+bottom+2*e.value('As_side'))*length
+    longitudinal=(e.value('As_N')+e.value('As_P')+2*e.value('As_side'))*max(0,length-2*p['C_s'])
+    for path in hook_paths(e,bar_positions(e,'B')):
+        longitudinal+=BAR_AREA[path['bar']['bar']]*(max(0,path['straight'])+math.pi*path['radius']+2*path['tail'])
     hoop_length=2*(p['b']-2*p['C_s']-dv+p['h']-p['C_t']-p['C_b']-dv)
     count=math.ceil(max(0,length-2*p['C_s'])/min(p['s_G'],p['s_L']))+1
     return (longitudinal+count*p['n_loop']*hoop_length*BAR_AREA[p['Bar_v']])*490/1728
+
+
+def detailing_checks(e):
+    checks=[];p=e.case['inputs']
+    for region in 'PB':
+        bars=bar_positions(e,region)
+        for i,r in enumerate(spacing_records(e,region,bars)):
+            checks.append(Check(f'Chk_clear_{region}_{i}',f"{region} clear spacing · {r['label']}",r['status'],r['ratio'],
+                f"{r['basis']}: actual {r['actual']:.3f} in; required {r['required']:.3f} in. Ratio = required / actual; contact/overlap fails. AASHTO LRFD 5.10.3 plus project minimum."))
+        aligned=not layer_alignment(bars)
+        checks.append(Check('Chk_alignment_'+region,region+' layer alignment','PASS' if aligned else 'FAIL',0 if aligned else 2,
+            'AASHTO LRFD 5.10.3.1.3: align bars vertically for layers separated by at most 6 in.'))
+        xs=sorted(b['x'] for b in bars if b['layer']=='Bottom row 1')
+        pitch=max((b-a for a,b in zip(xs,xs[1:])),default=0)
+        for state,enabled in [('I',True),('III',p['Ready_III'])]:
+            if not enabled:continue
+            limit=e.value('S'+state+'_'+region)
+            checks.append(Check(f'Chk_drawn_{state}_{region}',f'{region} actual row spacing · Service {state}',
+                'PASS' if limit>0 and pitch<=limit+1e-8 else 'FAIL',pitch/max(limit,1e-6),
+                f'Maximum actual center spacing {pitch:.3f} in / service limit {limit:.3f} in; includes the gap across the pile.'))
+        if region=='B':
+            limit=e.value('s_shrink_limit')
+            checks.append(Check('Chk_drawn_shrink_B','B actual row spacing · shrinkage','PASS' if pitch<=limit+1e-8 else 'FAIL',pitch/limit,
+                f'Maximum actual bottom-row center spacing {pitch:.3f} in / shrinkage limit {limit:.3f} in.'))
+    for z in 'GL':
+        actual=p['s_'+z]-BAR_DIAMETER[p['Bar_v']];required=required_clear(e,BAR_DIAMETER[p['Bar_v']])
+        checks.append(Check('Chk_hoop_clear_'+z,'Hoop minimum clear spacing · '+z,'PASS' if actual>=required else 'FAIL',required/max(actual,1e-6),
+            f'Pitch minus hoop diameter: {actual:.3f} in; conservative parallel-bar minimum {required:.3f} in. Maximum hoop pitch is checked separately.'))
+        across=p['b']-2*p['C_s']-BAR_DIAMETER[p['Bar_v']];limit=e.value('Sw_'+z)
+        checks.append(Check('Chk_drawn_hoop_legs_'+z,'Actual outer-hoop leg spacing · '+z,'PASS' if across<=limit else 'FAIL',across/limit,
+            f'Drawn outer leg centers {across:.3f} in / limit {limit:.3f} in. A spacing override does not create undrawn inner legs.'))
+    paths=hook_paths(e,bar_positions(e,'B'))
+    if paths:
+        top=max(t['top']+t['bar']['diameter']/2 for t in paths)
+        limit=p['h']-p['C_t']-BAR_DIAMETER[p['Bar_v']]
+        fit=min(t['straight'] for t in paths)>=0 and top<=limit+1e-8
+        checks.append(Check('Chk_hook_fit','90° span hooks · fit','PASS' if fit else 'FAIL',max(top/limit,2 if min(t['straight'] for t in paths)<0 else 0),
+            'General bars: inside bend diameter 6db (#3–8), 8db (#9–11); straight tail 12db. Hook turns up outside the pile clearance envelope.'))
+        continuous=bar_positions(e,'P')
+        worst=0;min_gap=math.inf;req_at_worst=0
+        # A hook traverses the entire vertical interval at fixed transverse x;
+        # continuous bars occupy every along-cap station, so this distance is exact.
+        for t in paths:
+            a=t['bar']
+            for b in continuous:
+                dy=max(a['y']-b['y'],0,b['y']-t['top'])
+                gap=math.hypot(a['x']-b['x'],dy)-(a['diameter']+b['diameter'])/2
+                req=required_clear(e,max(a['diameter'],b['diameter']))
+                ratio=req/max(gap,1e-6)
+                if ratio>worst:worst=ratio;min_gap=gap;req_at_worst=req
+        checks.append(Check('Chk_hook_cage','Span hooks · clearance to continuous cage','PASS' if min_gap+1e-8>=req_at_worst else 'FAIL',worst,
+            f'Minimum hook-to-continuous-bar clear gap {min_gap:.3f} in; required {req_at_worst:.3f} in.'))
+        unique=[t for t in paths if t['span']==1]
+        minimum=math.inf;required=0
+        for i,a in enumerate(unique):
+            for b in unique[i+1:]:
+                # Equal-size added bars use the same bend radius and end station.
+                # Vertical tails expose clashes between hooks in different layers.
+                dy=max(a['bar']['y']+a['radius']-b['top'],b['bar']['y']+b['radius']-a['top'],0)
+                gap=math.hypot(a['bar']['x']-b['bar']['x'],dy)-(a['bar']['diameter']+b['bar']['diameter'])/2
+                if gap<minimum:minimum=gap;required=required_clear(e,a['bar']['diameter'])
+        if math.isfinite(minimum):
+            checks.append(Check('Chk_hook_pairs','Added hooks · mutual tail clearance','PASS' if minimum+1e-8>=required else 'FAIL',required/max(minimum,1e-6),
+                f'Clear distance between vertical hook tails {minimum:.3f} in; required {required:.3f} in.'))
+        checks.append(Check('Status_hook_development','Span hook development / cutoff','PENDING','PENDING',
+            'Bend dimensions alone do not establish anchorage. Verify critical section, required ldh, cutoff extension and confinement; hooks beside a pile are not assumed developed into it.'))
+    checks.append(Check('Status_continuous_anchorage','Continuous bars · end anchorage / splices','PENDING','PENDING',
+        'Continuous bars run between end-cover planes. End development and any required splices remain a detailing review.'))
+    checks.append(Check('Status_pile_hoops','Hoop zones / pile-head arrangement','PENDING','PENDING',
+        'First hoop and global/low zone limits are unspecified. Full-depth hoops cannot pass through embedded pile heads; resolve local hoops and shear reinforcement at each pile.'))
+    confirmed=e.case['screening']['aggregate_confirmed']
+    checks.append(Check('Status_aggregate','Aggregate size / spacing basis','PASS' if confirmed else 'PENDING','N/A' if confirmed else 'PENDING',
+        f"Maximum aggregate {e.case['screening']['aggregate_in']:g} in. {e.case['screening']['code_basis']}."))
+    return checks
 
 def sectional_checks_pass(e):
     """Numerical/detail screens only; analysis provenance is a separate gate."""
@@ -205,6 +325,8 @@ def evaluate(case=None,fast=False):
             main=e.value('As_'+region,'in^2');side=e.value('As_skin_eff','in^2')
             check.basis+=(f' Required {required:.3f} in²; credited main {main:.3f} + side {side:.3f}'
                           f' = {main+side:.3f} in²; shortfall {max(0,required-main-side):.3f} in².')
+    checks.extend(detailing_checks(e))
+    e.max_dc=max(c.ratio for c in checks if isinstance(c.ratio,(float,int)))
     e.issues=cage_issues(e);e.weight_lb=estimate_weight(e)
     failure=any('FAIL' in c.status for c in checks)
     e.eligible=sectional_checks_pass(e) and not stale
@@ -212,7 +334,7 @@ def evaluate(case=None,fast=False):
     elif not case['inputs']['Ready_pile']:e.status='PILE-HEAD DETAIL INPUTS PENDING'
     elif failure:e.status='CHECK FAILURES — revise the trial cage or section'
     elif e.issues:e.status='DETAILING SCREEN — review the drawn cage'
-    else:e.status=eng.get('Status_overall')
+    else:e.status=eng.get('Status_overall')+' · ANCHORAGE / DETAILING PENDING'
     return e
 
 def formula_trace(e):

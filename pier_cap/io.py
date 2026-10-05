@@ -42,6 +42,19 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
     with (path/'checks.csv').open('w',newline='',encoding='utf-8-sig') as f:
         w=csv.writer(f);w.writerow(['Check','Status','D/C','Basis'])
         for c in e.checks:w.writerow([c.label,c.status,c.ratio,c.basis])
+    from .model import bar_positions
+    from .detailing import spacing_records
+    with (path/'rebar_clear_spacing.csv').open('w',newline='',encoding='utf-8-sig') as f:
+        w=csv.writer(f);w.writerow(['Region','Bars','Actual clear (in)','Required clear (in)','Status'])
+        for region in 'PB':
+            for r in spacing_records(e,region,bar_positions(e,region)):
+                w.writerow([region,r['label'],r['actual'],r['required'],r['status']])
+    from .visuals import section_figure,reinforcement_plan_figure,elevation_figure,hoop_figure,reinforcement_summary_html,clear_spacing_html
+    parts=['<!doctype html><html><head><meta charset="utf-8"><title>Cap reinforcement detail review</title><style>.cap-table{border-collapse:collapse;width:100%}.cap-table td,.cap-table th{padding:8px;border-bottom:1px solid #dce5ec;text-align:left}.cap-table th{background:#e7eef4}</style></head><body style="font:14px Arial;max-width:1200px;margin:auto">',reinforcement_summary_html(e)]
+    for i,fig in enumerate([section_figure(e,'P'),section_figure(e,'B'),reinforcement_plan_figure(e),elevation_figure(e),hoop_figure(e)]):
+        parts.append(fig.to_html(full_html=False,include_plotlyjs=(i==0)))
+    parts.extend([clear_spacing_html(e),'</body></html>'])
+    (path/'reinforcement_detail.html').write_text('\n'.join(parts),encoding='utf-8')
     (path/'blockpad_inputs.txt').write_text('\n'.join(input_formula(k,v) for k,v in case['inputs'].items())+'\n',encoding='utf-8')
     (path/'formula_trace.json').write_text(json.dumps(formula_trace(e),indent=2,ensure_ascii=False),encoding='utf-8')
     if case['analysis'].get('xml_audit',{}).get('end_records'):
@@ -57,7 +70,7 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
         with (path/filename).open('w',newline='',encoding='utf-8-sig') as f:
             w=csv.writer(f);w.writerow(headers);w.writerows(rows)
     manifest={'status':e.status,'cage_issues':e.issues,'stale_geometry':e.stale,'max_dc':e.max_dc,'estimated_gross_steel_lb':e.weight_lb,
-        'limitations':'Sectional checks only. Service III/fatigue readiness, D-regions, anchorage, pile-head and full code/detail review remain explicit. Gross steel excludes hooks/laps/waste; hoops conservatively use tighter spacing over the full cap.',
+        'limitations':'Sectional checks only. Service III/fatigue readiness, D-regions, hook development/cutoffs, end anchorage, pile-head hoops and full code/detail review remain explicit. Steel includes drawn span-hook bends/tails; excludes laps, end anchorage, hoop bends and waste. Hoop quantity uses tighter spacing over the full cap; stationing is unresolved.',
         'case_sha256':hashlib.sha256((path/'selected_case.json').read_bytes()).hexdigest()}
     if search_result:
         write_case(search_result.base_case,path/'search_base_case.json')
@@ -148,7 +161,7 @@ def export_blockpad(source,case,destination):
             found[name]=exp
     if len(extra):report.insert(0,extra)
     from .blockpad_regions import update_regional_views
-    update_regional_views(report)
+    update_regional_views(report,e)
     g=case['analysis']['geometry']
     def source_test(names):
         terms=[]
@@ -186,7 +199,7 @@ def export_blockpad(source,case,destination):
         if paragraph.text and paragraph.text.strip() == 'Strength':
             paragraph.text='Combined strength envelope'
     note=E.Element('paragraph',fontfamily='Times New Roman',fontsize='11',background='#FFF5DE')
-    note.text=f'NOTEBOOK REVIEW COPY — {case["name"]}. Analysis: {case["analysis"]["id"]}. {e.status}. C005 inputs and equations match this notebook revision; other project sections are unchanged. Recalculate in Blockpad. Pile collision and cage-fit screening is a notebook check: rerun/export after changing reinforcement or pile-head dimensions. Current cage issues: {"; ".join(e.issues) or "none in the notebook screen"}. Earlier narrative examples/source notes may describe the original model; reconcile them before finalizing.'
+    note.text=f'NOTEBOOK REVIEW COPY — {case["name"]}. Analysis: {case["analysis"]["id"]}. {e.status}. C005 inputs and equations match this notebook revision; other project sections are unchanged. Recalculate in Blockpad. Cage drawings are labeled geometry snapshots; re-export after any input changes. Pile collision, minimum spacing, hook fit and cage-fit screening are notebook checks: rerun/export after changing reinforcement or pile-head dimensions. Current cage issues: {"; ".join(e.issues) or "none in the notebook screen"}. Earlier narrative examples/source notes may describe the original model; reconcile them before finalizing.'
     report.insert(0,note)
     assert other==[E.tostring(n) for n in root if n is not report]
     destination.parent.mkdir(parents=True,exist_ok=True)

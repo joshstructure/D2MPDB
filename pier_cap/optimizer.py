@@ -67,8 +67,8 @@ class SearchConfig:
     skin_counts:tuple=tuple(range(8))
     objective:str='Least steel'
     max_cases:int=10000
-    # None preserves explicitly legacy common-cage scripts. The notebook supplies
-    # all four independent domains, so its positive-region cages are never tied.
+    # The common-cage API means continuous bottom steel with zero added bars.
+    # The notebook supplies independent domains; span_counts are ADDITIONAL.
     pile_bars:tuple=None
     span_bars:tuple=None
     pile_counts:tuple=None
@@ -87,9 +87,10 @@ def layout_grids(c):
 
 
 def cage_complexity(changes):
-    sizes={changes[key] for key in ('Bar_N1','Bar_P','Bar_B','Bar_v')}
+    sizes={changes[key] for key in ('Bar_N1','Bar_P','Bar_v')}
+    if changes['n_B1']:sizes.add(changes['Bar_B'])
     if changes['n_skin']:sizes.add(changes['Bar_skin'])
-    return int(changes['n_N1']+max(changes['n_P1'],changes['n_B1'])
+    return int(changes['n_N1']+(changes['n_P1']+changes['n_B1'])
                +2*changes['n_skin']+5*len(sizes))
 
 @dataclass
@@ -189,7 +190,7 @@ def _search(case,config,progress,section_sensitivity):
         count+=1
         skin,nskin=side
         pbar=bar if pbar is None else pbar;bbar=bar if bbar is None else bbar
-        pcount=bottom if pcount is None else pcount;bcount=bottom if bcount is None else bcount
+        pcount=bottom if pcount is None else pcount;bcount=0 if bcount is None else bcount
         changes={'Bar_N1':bar,'Bar_N2':bar,'Bar_N3':bar,'Bar_P':pbar,'Bar_B':bbar,
             'n_N1':top,'n_N2':0,'n_N3':0,'n_P1':pcount,'n_B1':bcount,'n_P2':0,'n_B2':0,
             'n_PU':0,'n_BU':0,'Bar_v':hoop,'n_loop':1,'s_G':spacing,'s_L':spacing,
@@ -199,7 +200,7 @@ def _search(case,config,progress,section_sensitivity):
             if accepted(e):
                 complexity=cage_complexity(changes)
                 side_label=f'{nskin} #{skin}/side' if nskin else 'no side bars'
-                label=f'{top} #{bar} top / pile {pcount} #{pbar} / between {bcount} #{bbar} · #{hoop} @ {spacing:g} in · {side_label}'
+                label=f'{top} #{bar} top / pile continuous {pcount} #{pbar} / between +{bcount} #{bbar} · #{hoop} @ {spacing:g} in · {side_label}'
                 overall=_governing(e);strength=_governing(e,STRENGTH_CHECKS)
                 good.append(Candidate(changes,e.weight_lb,e.max_dc,complexity,label,strength.ratio,overall.label,strength.label))
             else:

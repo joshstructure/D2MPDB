@@ -106,7 +106,7 @@ class WidgetTests(unittest.TestCase):
                 app.search_lists['main_bars'].value=(8,)
                 app.search_lists['top_counts'].value=(8,)
                 app.search_lists['pile_counts'].value=(8,)
-                app.search_lists['span_counts'].value=(8,)
+                app.search_lists['span_counts'].value=(0,)
                 app.search_lists['pile_bars'].value=(8,)
                 app.search_lists['span_bars'].value=(8,)
                 app.search_lists['hoop_bars'].value=(5,)

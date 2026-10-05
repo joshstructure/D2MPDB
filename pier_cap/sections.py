@@ -23,7 +23,7 @@ FORCE_INPUTS = {
 }
 ENGINE_SHA = hashlib.sha256(b''.join(
     (Path(__file__).parent / name).read_bytes() for name in (
-        'engine.py', 'model.py', 'optimizer.py', 'sections.py', 'data/c005_formulas.json', 'data/dc_ratio_spec.json')
+        'engine.py', 'model.py', 'detailing.py', 'optimizer.py', 'sections.py', 'data/c005_formulas.json', 'data/dc_ratio_spec.json')
 )).hexdigest()
 
 
@@ -356,7 +356,7 @@ def export_section_study(study, root='exports', *, target=.9, rates=None, select
                 'analysis_records': [{'point_id': i, 'analysis': p.result.base_case['analysis'],
                                      'forces': {k: p.result.base_case['inputs'][k] for k in FORCE_INPUTS}}
                                     for i, p in enumerate(study.points) if p.result],
-                'limitations': 'Bounded single-outer-hoop family. Fixed mode holds all forces constant and does not update cap self-weight or stiffness in analysis. Matched mode checks declared geometry; it is not independent verification of the force model. Steel excludes hooks/laps/waste; concrete is gross; forms include sides, ends and soffit. Pending checks remain pending. Pareto frontier covers only explored candidates.'}
+                'limitations': 'Bounded single-outer-hoop family. Fixed mode holds all forces constant and does not update cap self-weight or stiffness in analysis. Matched mode checks declared geometry; it is not independent verification of the force model. Steel includes drawn span hooks; excludes end anchorage/laps/hoop bends/waste; concrete is gross; forms include sides, ends and soffit. Pending checks remain pending. Pareto frontier covers only explored candidates.'}
     (path / 'study.json').write_text(json.dumps(manifest, indent=2, ensure_ascii=False, allow_nan=False), encoding='utf-8')
     if chosen:
         write_case(chosen, path / 'selected_case.json')

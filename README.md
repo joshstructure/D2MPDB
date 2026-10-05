@@ -58,7 +58,7 @@ Keep the `pier_cap/` package beside the notebook. Supporting files organize reus
 
 1. Import the current FB-MultiPier XML or load a saved `selected_case.json`.
 2. Review the force source and dimensions. Under **Geometry → Pile head**, enter physical embedment and required clear gap, confirm the dimensions.
-3. Set independent sizes and counts under **Steel → Positive steel · at piles** and **Positive steel · between piles**. Inspect both cross sections, stress plots and the D/C register.
+3. Set continuous bottom steel under **Steel → Continuous bottom steel · at piles**, and extra bars under **ADDITIONAL steel · between piles**. Between-pile counts mean added bars, never totals; zero adds no steel. Inspect both cross sections, stress plots and the D/C register.
 4. Select the independent top, pile and between-pile sizes/counts, then run **Search steel layouts**. Every retained layout is rechecked with units. The search reports its evaluated and total combinations; a case limit samples the full grid reproducibly. It uses no AI calls.
 5. Set **Max D/C** (for example, `0.90`). The workbench defaults to **Strength checks only** for this margin target; choose **All available checks** if you also want to tighten spacing and other detailing ratios. Browse with **Page / Previous / Next** and **Per page** (20, 50 or 100). Filtering and ranking reuse the finished search. **Apply selected layout** loads the selected candidate ID into the live drawings/checks. Service III/fatigue and other unresolved scope remain explicit.
 6. Export the case/checks and optionally a new Blockpad C005 review copy. Recalculate that copy in Blockpad and reconcile narrative/source notes before final review.
@@ -89,15 +89,15 @@ Default **fixed-force sensitivity** keeps imported forces constant and retains t
 
 ### Search and drawing limits
 
-The automatic family uses independently selected top, pile-positive and between-pile positive bar sizes and counts, one row in each group, one closed hoop and uniform spacing. Additional rows remain manual inputs. The study uses the same independent choices. A bounded search does not establish an optimum outside the explored combinations.
+The automatic family uses independently selected top, pile-positive and between-pile positive bar sizes and counts, one row of continuous and added bottom bars, one closed hoop and uniform spacing. Additional rows remain manual inputs. The study uses the same independent choices. A bounded search does not establish an optimum outside the explored combinations.
 
 **Side bars:** the search includes zero through seven bars per side by default; select counts through ten in **Bars / side**. Zero is evaluated once per remaining layout, regardless of the unused side-bar size. **Least steel** includes main, side and hoop steel in its weight. The live cage and section-study preview show whether the depth-based skin rule applies and which side-steel checks fail with zero side bars. In the current calculation, shrinkage/temperature area is required on each face even when the depth-based skin rule does not apply; side bars also contribute to the longitudinal-tension checks, but not flexural resistance. The search keeps these checks active. Rerunning an older workbench expands its former default side counts to include the smaller choices; later deliberate selections are preserved.
 
-The pile-region cross section reserves the nominal centered pile width plus the existing horizontal placement allowance. Obstructed bottom rows split beside that envelope. Row elevations retain the source cover, hoop diameter, bar diameter and row separation; a second row that clears the head can extend across the section. The between-pile section has its own bar sizes, counts and effective depth. The central gap remains in pile-region service spacing checks. Bottom shrinkage spacing uses the between-pile row, matching original Mathcad `Spa.shrink.bot := SP[2]`; top, side and hoop spacing remain included.
+The pile-region cross section reserves the nominal centered pile width plus the existing horizontal placement allowance. Obstructed bottom rows split beside that envelope. Row elevations retain the source cover, hoop diameter, bar diameter and row separation; a second row that clears the head can extend across the section. The between-pile section retains every continuous bar at the same transverse position, then adds the requested span bars into the available gaps. Its effective depth uses the combined area-weighted centroid. The central gap remains in pile-region service spacing checks. Bottom shrinkage spacing uses the between-pile row, matching original Mathcad `Spa.shrink.bot := SP[2]`; top, side and hoop spacing remain included.
 
 Pile embedment and bar-to-pile clearance are required project inputs: Mathcad and the FBMP XML do not establish them. Their zero placeholders are unconfirmed, and searches stop until they are confirmed. Existing saved cases migrate their common positive bar size into both regions and preserve their loads. The source Mathcad has separate positive-region counts and between-pile U-bars; the explicit obstruction screen and independent sizes extend that calculation.
 
-Weight is a gross comparison estimate: equal-size positive cages use the larger area over the full length; different sizes count both full-length sets. Regional transitions, cutoffs, hooks, laps, anchorage, bends and waste require a detailing takeoff. The screen checks drawn longitudinal bars against the hoop interior, trial bar spacing and the pile envelope. The hoop outline is a cross-section guide; actual hoop stations around pile heads remain a detailing task. Multiple loops and U-leg positions remain unresolved.
+Weight counts continuous bars once over the clear cap length and adds every drawn span bar, including its 90-degree hook bends and 12db tails. End anchorage, laps, hoop bends and waste remain outside the comparison estimate. The screen checks drawn longitudinal bars against the hoop interior, minimum clear bar spacing and the pile envelope. The hoop outline is a cross-section guide; actual hoop stations around pile heads remain a detailing task. Multiple loops and U-leg positions remain unresolved.
 
 ### Imports and exports
 
@@ -125,3 +125,56 @@ Regression checks cover the original Mathcad mechanics, independent positive reg
 Commit the notebook, `pier_cap/`, tests, requirements, launcher and documentation together. `.gitignore` excludes the environment, exports, caches and runtime data. No commit or push is performed automatically.
 
 Limited steel searches use a repeatable sample across the full selected grid; complete searches still evaluate every combination. Enabling cost comparison with incomplete rates keeps the study cages and quantity plots visible until valid rates are entered. XML import opens the Force diagrams tab automatically.
+
+
+### Rebar continuity and minimum spacing (October 2026)
+
+**Between-pile counts are ADDITIONAL.** Four continuous #8 bars plus four added
+#7 bars means eight bars in the span, with combined area `4 × 0.79 + 4 × 0.60`.
+Changing a continuous bar changes both pile and span capacity. Zero added bars
+keeps the continuous cage everywhere. The inputs, tooltips, search labels and live
+summary all state this convention. Schema-1/2 saved cases convert former total
+counts once by crediting continuous steel area per row and rounding any remaining
+area up to whole additional bars, with a visible migration notice. Review the combined area for mixed sizes or smaller former span totals.
+The old common-cage programmatic search uses zero added bars; independent
+`span_counts` now always means additional counts.
+
+Minimum-spacing checks use actual diameters and drawn positions, report actual
+and required clear distance and fail crowded cages in both the live register and
+steel search. The AASHTO cast-in-place same-layer minimum is the greatest of
+1.5 bar diameters, 1.5 times maximum coarse aggregate size, and 1.5 in. Multilayer
+clearance uses the larger of one bar diameter and 1 in, with vertical alignment
+checked when layer clearance is at most 6 in. A larger entered project minimum
+also applies. The 0.75 in aggregate placeholder is **unconfirmed** until changed
+or confirmed from the mix design; its pending status remains visible.
+
+Basis: AASHTO LRFD BDS 5.10.3.1.1 and 5.10.3.1.3, referenced by
+[FDOT 2026 Structures Detailing Manual 4.3.2](https://www.fdot.gov/Structures/StructuresManual/CurrentRelease).
+SDM 4.3.4 calls for fit/clearance calculations and drawings; 4.3.7 covers section
+representation. General 90-degree hook geometry follows LRFD 5.10.2: 6db inside
+bend diameter through #8, 8db for #9–11, and a 12db straight tail. Applicable
+contract criteria, fabrication tolerances, cover and full FDOT detailing review
+remain project responsibilities. The notebook does not apply drilled-shaft
+spacing rules to a cast-in-place cap.
+
+The plan and elevation share the section coordinates. Blue steel is continuous;
+orange steel is additional in each clear span, turning up outside the pile
+placement/clearance envelope. Hook fit and clashes with the continuous cage and
+other hook tails are screened. **Standard bend geometry is not proof of
+anchorage:** required development from the critical section, cutoff extension,
+end development and splices remain pending. Multiple loops and U-leg topology
+remain unresolved. Pile embedment is drawn to the entered height above the cap
+underside; the below-cap pile length is schematic.
+
+The hoop plot separates along-cap center pitch and clear gap from across-cap leg
+spacing, with numerical limits. Global and low-shear samples are not an invented
+station schedule: interval boundaries and first-hoop station are unavailable.
+Full-depth hoops through an embedded pile head conflict geometrically, so a
+separate pile-head hoop arrangement remains pending. A manual leg-spacing
+number cannot override the actual outer-hoop width check.
+
+Case exports include `rebar_clear_spacing.csv` and a self-contained interactive
+`reinforcement_detail.html`. Blockpad review copies contain current numerical
+formulas and a clearly labeled cage-position snapshot; re-export the geometry
+after changing inputs there. Notebook-only spacing/hook checks must also be
+rerun; native Blockpad engineering review is not implied by an export.

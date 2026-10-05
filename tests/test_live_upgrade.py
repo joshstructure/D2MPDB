@@ -73,7 +73,7 @@ class LiveUpgradeTests(unittest.TestCase):
                 self.assertEqual(active.library,rebuilt.library)
                 self.assertEqual(active.target.value,.95)
                 choices={'main_bars':(8,),'top_counts':(8,),'pile_bars':(8,),
-                         'pile_counts':(8,),'span_bars':(8,),'span_counts':(8,),
+                         'pile_counts':(8,),'span_bars':(8,),'span_counts':(0,),
                          'hoop_bars':(5,),'hoop_spacings':(8,),
                          'skin_bars':(5,),'skin_counts':(6,)}
                 for name,values in choices.items():

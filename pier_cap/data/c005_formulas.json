@@ -415,14 +415,14 @@
   {
     "formula": "Bar_P = 8",
     "unit": null,
-    "caption": "Pile-region bottom main bar size.",
+    "caption": "Continuous bottom bars; same positions at piles and between piles.",
     "input": true,
     "name": "Bar_P"
   },
   {
     "formula": "Bar_B = 8",
     "unit": null,
-    "caption": "Between-pile bottom main bar size.",
+    "caption": "Size of the additional span bars; continuous bars retain Bar_P.",
     "input": true,
     "name": "Bar_B"
   },
@@ -462,16 +462,16 @@
     "name": "n_PU"
   },
   {
-    "formula": "n_B1 = 8",
+    "formula": "n_B1 = 0",
     "unit": null,
-    "caption": "Between-pile bottom row 1 count.",
+    "caption": "ADDITIONAL span bars in this layer, beyond continuous Bar_P bars. Total span count = n_P + n_B. Zero adds no bars.",
     "input": true,
     "name": "n_B1"
   },
   {
     "formula": "n_B2 = 0",
     "unit": null,
-    "caption": "Between-pile bottom row 2 count.",
+    "caption": "ADDITIONAL span bars in this layer, beyond continuous Bar_P bars. Total span count = n_P + n_B. Zero adds no bars.",
     "input": true,
     "name": "n_B2"
   },
@@ -623,9 +623,9 @@
     "name": "As_P"
   },
   {
-    "formula": "As_B = (n_B1+n_B2)*Ab(Bar_B)+n_BU*Ab(Bar_U) to in^2",
+    "formula": "As_B = As_P+(n_B1+n_B2)*Ab(Bar_B)+n_BU*Ab(Bar_U) to in^2",
     "unit": "in^2",
-    "caption": "Positive region B reinforcement area.",
+    "caption": "Combined span steel: continuous pile bars plus additional span bars and unresolved added U-leg inventory.",
     "input": false,
     "name": "As_B"
   },
@@ -728,9 +728,9 @@
     "name": "dc_P"
   },
   {
-    "formula": "dc_B = (n_B1*Ab(Bar_B)*y_B1+n_B2*Ab(Bar_B)*y_B2+n_BU*Ab(Bar_U)*y_U)/Max(As_B,0.000001 in^2) to in",
+    "formula": "dc_B = (As_P*dc_P+n_B1*Ab(Bar_B)*y_B1+n_B2*Ab(Bar_B)*y_B2+n_BU*Ab(Bar_U)*y_U)/Max(As_B,0.000001 in^2) to in",
     "unit": "in",
-    "caption": "Region B bottom-steel centroid.",
+    "caption": "Area-weighted centroid of continuous plus additional span steel.",
     "input": false,
     "name": "dc_B"
   },
@@ -770,7 +770,7 @@
     "name": "do_P"
   },
   {
-    "formula": "do_B = If(n_BU > 0, Min(y_B1,y_U), y_B1) to in",
+    "formula": "do_B = If(n_BU > 0,Min(do_P,y_B1,y_U),If(n_B1 > 0,Min(do_P,y_B1),do_P)) to in",
     "unit": "in",
     "caption": "Extreme tension face to outer bottom bar center.",
     "input": false,
@@ -854,14 +854,14 @@
     "name": "SP_P_auto"
   },
   {
-    "formula": "SP_B_auto = (b-2*C_s-2*d_vbar-Db(Bar_B))/Max(n_B1-1,1) to in",
+    "formula": "SP_B_auto = (b-2*C_s-2*d_vbar-Max(Db(Bar_P),If(n_B1 > 0,Db(Bar_B),Db(Bar_P))))/Max(n_P1+n_B1-1,1) to in",
     "unit": "in",
-    "caption": "Idealized outer bottom-row spacing; U-bar legs do not reduce this conservative spacing.",
+    "caption": "Nominal average pitch of combined span row. Actual maximum drawn pitch is additionally checked in the notebook.",
     "input": false,
     "name": "SP_B_auto"
   },
   {
-    "formula": "SP_skin_auto = (h-y_N1-Min(y_P1,y_B1))/(n_skin+1) to in",
+    "formula": "SP_skin_auto = (h-y_N1-y_P1)/(n_skin+1) to in",
     "unit": "in",
     "caption": "Intermediate skin bars evenly distributed between top and bottom corner-bar levels.",
     "input": false,
@@ -910,7 +910,7 @@
     "name": "Chk_bars"
   },
   {
-    "formula": "Chk_counts = If(And(ValidCount(n_N1), ValidCount(n_N2), ValidCount(n_N3), ValidCount(n_P1), ValidCount(n_P2), ValidCount(n_PU), ValidCount(n_B1), ValidCount(n_B2), ValidCount(n_BU), ValidCount(n_loop), ValidCount(n_skin), n_N1 >= 2, n_P1 >= 2, n_B1 >= 2, n_loop >= 1), \"✓ PASS\", \"⊗ FAIL\")",
+    "formula": "Chk_counts = If(And(ValidCount(n_N1), ValidCount(n_N2), ValidCount(n_N3), ValidCount(n_P1), ValidCount(n_P2), ValidCount(n_PU), ValidCount(n_B1), ValidCount(n_B2), ValidCount(n_BU), ValidCount(n_loop), ValidCount(n_skin), n_N1 >= 2, n_P1 >= 2, n_loop >= 1), \"✓ PASS\", \"⊗ FAIL\")",
     "unit": null,
     "caption": "",
     "input": false,
