@@ -8,15 +8,58 @@ from pier_cap.model import default_case, evaluate
 
 
 FIXTURE = Path(__file__).parent/'fixtures'/'fbmp_610_cap.xml'
+ROUNDED_FIXTURE = FIXTURE.with_name('fbmp_610_cap_rounded_cantilever.xml')
 
 
-def changed(mutator):
-    root = E.parse(str(FIXTURE)).getroot()
+def changed(mutator, fixture=FIXTURE):
+    root = E.parse(str(fixture)).getroot()
     mutator(root)
     return E.tostring(root)
 
 
 class FBMPTests(unittest.TestCase):
+    def test_rounded_foot_label_uses_solved_node_geometry(self):
+        # Actual 25-in cantilevers are printed as 2.08 ft (24.96 in).
+        case = import_fbmp_xml(ROUNDED_FIXTURE)
+        audit = case['analysis']['xml_audit']
+        self.assertEqual(audit['cantilever_node_offsets_in'], [25,25])
+        self.assertEqual(audit['cantilever_centerline_in'], 25)
+        self.assertAlmostEqual(audit['reported_cantilever_centerline_in'], 24.96)
+        self.assertAlmostEqual(audit['cantilever_rounding_tolerance_in'], .07)
+        self.assertEqual(audit['nominal_end_extension_in'], 15)
+        self.assertEqual(case['inputs']['E_detail'], 3)
+        result = evaluate(case)
+        self.assertEqual(result.value('L_cap'), 230)
+        self.assertEqual(result.stale, [])
+        self.assertEqual(case['inputs']['Mu_B'], 384.91)
+        self.assertEqual(case['inputs']['Vu_G'], 227.17)
+        self.assertEqual(case['inputs']['Tu'], 29.61)
+        self.assertTrue(all(v['extracted']==v['summary'] for v in audit['summary_checks'].values()))
+
+    def test_precise_cantilever_label_still_imports(self):
+        data = changed(lambda r:setattr(r.find('.//CANTILEVER_LENGTH'),'text','2.0833333333'),
+                       ROUNDED_FIXTURE)
+        case = import_fbmp_xml(data)
+        self.assertEqual(evaluate(case).value('L_cap'), 230)
+        self.assertAlmostEqual(case['analysis']['xml_audit']['cantilever_rounding_tolerance_in'], .021)
+
+    def test_cantilever_rounding_does_not_hide_real_label_mismatch(self):
+        # Reject old geometry metadata, errors beyond rounding, and a precise
+        # 24.96-in declaration. Coarsening the text must not loosen the bound.
+        for text in ('2.12','2.09','2.08000','2'):
+            with self.subTest(text=text), self.assertRaisesRegex(ValueError, 'Cap ends disagree'):
+                import_fbmp_xml(changed(lambda r:setattr(r.find('.//CANTILEVER_LENGTH'),'text',text),
+                                        ROUNDED_FIXTURE))
+
+    def test_cantilever_rounding_does_not_hide_asymmetric_mesh(self):
+        # Both ends separately fit the 2.08-ft rounding interval, but they do
+        # not describe equal cantilevers within the coordinate tolerance.
+        def mutate(root):
+            root.find('.//PIER_GEOMETRY/NODAL_COORDINATES/NODE[@node_number="5"]/COORDINATES/X').text='-24.99'
+            root.find('.//PIER_GEOMETRY/NODAL_COORDINATES/NODE[@node_number="20"]/COORDINATES/X').text='205.02'
+        with self.assertRaisesRegex(ValueError, 'not symmetric'):
+            import_fbmp_xml(changed(mutate, ROUNDED_FIXTURE))
+
     def test_known_run_values_signs_geometry_and_provenance(self):
         base = default_case()
         base['inputs']['n_N1'] = 7
@@ -148,6 +191,23 @@ class FBMPTests(unittest.TestCase):
 
 
 class ImportWidgetTests(unittest.TestCase):
+    def test_rounded_cantilever_preview_and_apply(self):
+        from pier_cap.widgets import CapNotebook
+        app = CapNotebook()
+        try:
+            before = deepcopy(app.case)
+            app.xml_import.stage(ROUNDED_FIXTURE)
+            self.assertEqual(app.case, before)
+            self.assertFalse(app.xml_import.apply_button.disabled)
+            self.assertEqual(app.xml_import.pending['inputs']['E_detail'], 3)
+            app.xml_import.apply_button.click()
+            self.assertEqual(app.current.value('L_cap'), 230)
+            self.assertEqual(app.case['inputs']['Mu_B'], 384.91)
+            self.assertIn('Applied', app.xml_import.status.value)
+        finally:
+            for fig in app.figures:fig.close()
+            app.ui.close()
+
     def test_preview_apply_invalid_upload_and_changed_inputs(self):
         from pier_cap.widgets import CapNotebook
         from pier_cap.section_widgets import SectionStudy

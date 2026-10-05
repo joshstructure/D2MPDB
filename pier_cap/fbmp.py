@@ -4,6 +4,7 @@ See FBMP_IMPORT.md for supported geometry, I/J signs and station recovery.
 This reader deliberately rejects unverified formats instead of guessing axes.
 """
 from copy import deepcopy
+from decimal import Decimal
 from pathlib import Path
 import hashlib
 import math
@@ -191,7 +192,13 @@ def import_fbmp_xml(source, base=None, filename=None):
     diameter = _number(pd, 'WIDTH', 'in')
     _require(diameter > 0 and _close(diameter,_number(pd,'DEPTH','in')) and _number(pd,'ORIENTATION') == 0,
              'Only round or unrotated square piles are supported.')
-    cantilever = _number(model, 'CANTILEVER_LENGTH', 'ft')*12
+    reported_cantilever = _number(model, 'CANTILEVER_LENGTH', 'ft')*12
+    # FBMP 6.1 prints this field to .01 ft, but node X coordinates to .01 in.
+    # Permit half a printed foot increment plus the rounding of two X values.
+    # More precise fields get a tighter bound; coarse text cannot widen it.
+    exponent = Decimal(_text(model, 'CANTILEVER_LENGTH')).as_tuple().exponent
+    printed_step_ft = 10.0**min(-2, exponent)
+    cantilever_tolerance = max(.021, printed_step_ft*12/2+.01)
     nc = _integer(model, 'NUM_ELEMENTS_PER_CANTILEVER')
     ns = _integer(model, 'NUM_ELEMENTS_PER_SPAN')
     cap_count = 2*nc+(count-1)*ns
@@ -199,8 +206,18 @@ def import_fbmp_xml(source, base=None, filename=None):
     _require(len(ordered) == cap_count+1, 'Cap node count does not match the bent mesh definition.')
     xs = [nodes[key][0] for key in ordered]
     _require(all(b-a > .001 for a,b in zip(xs,xs[1:])), 'Duplicate/reversed cap stations.')
-    _require(_close(centers[0]-xs[0],cantilever) and _close(xs[-1]-centers[-1],cantilever),
-             'Cap ends disagree with the specified symmetric cantilever length.')
+    left_cantilever = centers[0]-xs[0]
+    right_cantilever = xs[-1]-centers[-1]
+    _require(_close(left_cantilever, right_cantilever),
+             'Cap ends are not symmetric about the outer pile centers.')
+    _require(all(_close(end, reported_cantilever, cantilever_tolerance+1e-9)
+                 for end in (left_cantilever, right_cantilever)),
+             f'Cap ends disagree with the specified symmetric cantilever length: '
+             f'node offsets {left_cantilever:g}/{right_cantilever:g} in versus '
+             f'{reported_cantilever:g} in from CANTILEVER_LENGTH '
+             f'(export-rounding tolerance {cantilever_tolerance:g} in).')
+    # The solved mesh is the dimensional basis, not the lower-precision label.
+    cantilever = (left_cantilever+right_cantilever)/2
     _require(all(_close(xs[nc+i*ns],x) for i,x in enumerate(centers)), 'Pile stations disagree with bent mesh ordering.')
     bearings = {n.get('node_number') for n in model.findall('BEARING_LOCATIONS/BEARING_LOCATION')}
     _require(bearings and bearings.issubset(nodes), 'Bearing nodes are missing from the cap mesh.')
@@ -314,6 +331,7 @@ def import_fbmp_xml(source, base=None, filename=None):
         'Low-interval shear is set to global shear; no low-shear zone is inferred.',
         'Trial reinforcement, covers and design factors are retained. Service III and fatigue are reset to pending (STRENGTH-III is not SERVICE-III).',
         'End geometry is the analyzed nominal extension. Existing actual-clearance and 3 in tolerance allowances are retained; the remainder is extra end allowance.',
+        'Cantilever dimensions are recovered from cap-end/pile-center coordinates. The printed length field is checked with its export-rounding tolerance; both values are retained in the audit.',
         'Axial force, weak-axis bending and lateral shear remain outside the existing sectional calculation; their maxima are recorded in the audit. Analysis convergence, anchorage and full design review remain separate.',
     ]
     case['name'] = Path(filename).stem+' — XML analysis'
@@ -324,6 +342,9 @@ def import_fbmp_xml(source, base=None, filename=None):
                                 cap_element_count=cap_count,excluded_elements_per_case=excluded_counts,
                                 cap_length_ft=(xs[-1]-xs[0])/12,nominal_end_extension_in=nominal_extension,
                                 cantilever_centerline_in=cantilever,pile_centers_in=centers,
+                                reported_cantilever_centerline_in=reported_cantilever,
+                                cantilever_rounding_tolerance_in=cantilever_tolerance,
+                                cantilever_node_offsets_in=[left_cantilever,right_cantilever],
                                 bearing_stations_in=sorted({nodes[n][0] for n in bearings}),
                                 maximum_equilibrium_residual_kip_ft=max_equilibrium_error,
                                 summary_checks=comparisons,governing=governing,

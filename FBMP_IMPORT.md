@@ -18,6 +18,8 @@ The source's first two bent section records describe the cantilever and center c
 
 Only geometry, cap f′c/fy/Es and supported demands are replaced. Trial steel, covers, clear-spacing screen and design factors are retained. The analyzed cap dimensions become the source geometry; later edits continue to trigger the existing stale-force checks. The XML's modeled steel/stiffness is not a new reinforcement design. Changing trial steel does not rerun FB-MultiPier's stiffness analysis.
 
+**Cantilever export rounding:** FBMP 6.1 can print a 25-in cantilever as `2.08 ft`, while its cap-end and pile-center coordinates retain `25.00 in`. The importer uses the node offsets for geometry and checks the printed length with a precision-specific tolerance: half its printed increment (at most 0.005 ft), plus 0.01 in for the two coordinate rounding errors, with the existing 0.021-in coordinate-check floor. Thus the usual two-decimal foot label has a 0.07-in comparison bound. Left/right symmetry is checked separately at 0.021 in; genuine geometry conflicts are still rejected. The audit preserves both the printed length and the adopted node offsets. The corrected 25-in geometry imports as 15-in pile-face clearance and a 230-in cap, not as the 229.92-in length implied by taking `2.08 ft` literally. The regression fixture `tests/fixtures/fbmp_610_cap_rounded_cantilever.xml` retains a reduced, anonymized excerpt of that solved export.
+
 ## Force conventions and recovery
 
 ### Diagrams over the analyzed cap

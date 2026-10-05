@@ -1,0 +1,2956 @@
+<?xml version='1.0' encoding='utf-8'?>
+<FB-MULTIPIER_MODEL_DATA>
+  <PROJECT_INFO>
+    <VERSION_NUMBER>6.1.0</VERSION_NUMBER>
+    <PROJECT_NAME>Rounded cantilever regression</PROJECT_NAME>
+  </PROJECT_INFO>
+  <CONTROL_INFO>
+    <UNITS>English</UNITS>
+    <MAX_ITERATIONS>450</MAX_ITERATIONS>
+    <TOLERANCE units="kip">0.50</TOLERANCE>
+    <SOIL_BEHAVIOR>0</SOIL_BEHAVIOR>
+    <TIP_SPRING_OPTION>0</TIP_SPRING_OPTION>
+    <STIFFNESS>Secant</STIFFNESS>
+    <PIERS>1</PIERS>
+    <ANALYSIS>Static</ANALYSIS>
+    <DESIGN_CODE>AASHTO-LRFD</DESIGN_CODE>
+  </CONTROL_INFO>
+  <MODEL_INFO>
+    <SUBSTRUCTURE number="1">
+      <PILE_GEOMETRY>
+				<SEGMENT number="1" pileset="1">
+					<DIMENSIONS type="Circular" embed_hpile="no">
+						<WIDTH units="in">20.00</WIDTH>
+						<DEPTH units="in">20.00</DEPTH>
+						<TW units="in">0.00000</TW>
+						<TF units="in">0.00000</TF>
+						<ORIENTATION>0</ORIENTATION>
+						<VOID_TYPE>None</VOID_TYPE>
+						<VOID_DIA units="in">0.00000</VOID_DIA>
+						<VOID_WIDTH units="in">0.00000</VOID_WIDTH>
+						<VOID_DEPTH units="in">0.00000</VOID_DEPTH>
+						<HWIDTH units="in">0.00000</HWIDTH>
+						<HDEPTH units="in">0.00000</HDEPTH>
+						<HTW units="in">0.00000</HTW>
+						<HTF units="in">0.00000</HTF>
+						<HORIENTATION>0</HORIENTATION>
+						<SHELL_THICK units="in">0.48</SHELL_THICK>
+						<SHEAR_STEEL>spiral</SHEAR_STEEL>
+						<LENGTH units="in">900.00</LENGTH>
+					</DIMENSIONS>
+					<MATERIAL_PROPS>
+						<FPC units="ksi">0.00000</FPC>
+						<E_CONCRETE units="ksi">0.00000</E_CONCRETE>
+						<FY_MILD units="ksi">0.00000</FY_MILD>
+						<E_STEEL units="ksi">0.00000</E_STEEL>
+						<FY_PS units="ksi">0.00000</FY_PS>
+						<E_PS units="ksi">0.00000</E_PS>
+						<FY_HPILE units="ksi">60.00</FY_HPILE>
+						<E_HPILE units="ksi">29000.00</E_HPILE>
+						<FY_SHELL units="ksi">60.00</FY_SHELL>
+						<E_SHELL units="ksi">29000.00</E_SHELL>
+					</MATERIAL_PROPS>
+					<GROSS_SECTION_PROPS>
+						<AREA units="in^2">29.14</AREA>
+						<EMODULUS units="ksi">29000.00</EMODULUS>
+						<INERTIA2 units="in^4">1389.26</INERTIA2>
+						<INERTIA3 units="in^4">1389.26</INERTIA3>
+						<SHEAR_MODULUS units="ksi">11153.85</SHEAR_MODULUS>
+						<TORSIONAL_INERTIA units="in^4">2778.52</TORSIONAL_INERTIA>
+						<UNIT_WEIGHT units="k/in^3">0.37037E-03</UNIT_WEIGHT>
+					</GROSS_SECTION_PROPS>
+					<STEEL_GROUPS>
+					</STEEL_GROUPS>
+					<STRESS-STRAIN_CURVES>
+						<H-PILE_STEEL>
+							<POINT number="1">
+								<STRESS units="ksi">-60.00</STRESS>
+								<STRAIN>-0.10</STRAIN>
+							</POINT>
+							<POINT number="2">
+								<STRESS units="ksi">-60.00</STRESS>
+								<STRAIN>-0.20690E-02</STRAIN>
+							</POINT>
+							<POINT number="3">
+								<STRESS units="ksi">60.00</STRESS>
+								<STRAIN>0.20690E-02</STRAIN>
+							</POINT>
+							<POINT number="4">
+								<STRESS units="ksi">60.00</STRESS>
+								<STRAIN>0.10</STRAIN>
+							</POINT>
+						</H-PILE_STEEL>
+						<SHELL_STEEL>
+							<POINT number="1">
+								<STRESS units="ksi">-60.00</STRESS>
+								<STRAIN>-0.10</STRAIN>
+							</POINT>
+							<POINT number="2">
+								<STRESS units="ksi">-60.00</STRESS>
+								<STRAIN>-0.20690E-02</STRAIN>
+							</POINT>
+							<POINT number="3">
+								<STRESS units="ksi">60.00</STRESS>
+								<STRAIN>0.20690E-02</STRAIN>
+							</POINT>
+							<POINT number="4">
+								<STRESS units="ksi">60.00</STRESS>
+								<STRAIN>0.10</STRAIN>
+							</POINT>
+						</SHELL_STEEL>
+					</STRESS-STRAIN_CURVES>
+				</SEGMENT>
+			</PILE_GEOMETRY>
+			<PILE_GROUP>
+        <PILES>4</PILES>
+        <PILE_COORDINATES>
+					<PILE number="1">
+						<POINT number="1">
+							<X units="in">0.00000</X>
+							<Y units="in">0.00000</Y>
+							<Z units="in">-497.01</Z>
+						</POINT>
+						</PILE>
+					<PILE number="2">
+						<POINT number="1">
+							<X units="in">60.00</X>
+							<Y units="in">0.00000</Y>
+							<Z units="in">-497.01</Z>
+						</POINT>
+						</PILE>
+					<PILE number="3">
+						<POINT number="1">
+							<X units="in">120.00</X>
+							<Y units="in">0.00000</Y>
+							<Z units="in">-497.01</Z>
+						</POINT>
+						</PILE>
+					<PILE number="4">
+						<POINT number="1">
+							<X units="in">180.00</X>
+							<Y units="in">0.00000</Y>
+							<Z units="in">-497.01</Z>
+						</POINT>
+						</PILE>
+				</PILE_COORDINATES>
+			</PILE_GROUP>
+      <PIER_GEOMETRY>
+				<MODELING>
+					<STRUCTURE_TYPE>PILE BENT          </STRUCTURE_TYPE>
+					<NUM_COLUMNS>4</NUM_COLUMNS>
+					<NUM_ELEMENTS_PER_SPAN>3</NUM_ELEMENTS_PER_SPAN>
+					<CANTILEVER_LENGTH units="ft">2.08</CANTILEVER_LENGTH>
+					<NUM_ELEMENTS_PER_CANTILEVER>5</NUM_ELEMENTS_PER_CANTILEVER>
+					<BEARING_LOCATIONS number_of_rows="2">
+						<BEARING_LOCATION number="1L" node_number="11"/>
+						<BEARING_LOCATION number="2L" node_number="14"/>
+						<BEARING_LOCATION number="1R" node_number="11"/>
+						<BEARING_LOCATION number="2R" node_number="14"/>
+					</BEARING_LOCATIONS>
+					<COLUMN_TAPER>no</COLUMN_TAPER>
+					<CANTILEVER_TAPER>no</CANTILEVER_TAPER>
+					<BEAM_TAPER>no</BEAM_TAPER>
+				</MODELING>
+				<NODAL_COORDINATES>
+					<NODE node_number="5" location="Pier">
+						<BOUNDARY_CONDITIONS>
+							<X>A</X>
+							<Y>A</Y>
+							<Z>A</Z>
+							<XX>A</XX>
+							<YY>A</YY>
+							<ZZ>A</ZZ>
+						</BOUNDARY_CONDITIONS>
+						<COORDINATES>
+							<X units="in">-25.00</X>
+							<Y units="in">0.00000</Y>
+							<Z units="in">-497.01</Z>
+						</COORDINATES>
+					</NODE>
+					<NODE node_number="6" location="Pier">
+						<BOUNDARY_CONDITIONS>
+							<X>A</X>
+							<Y>A</Y>
+							<Z>A</Z>
+							<XX>A</XX>
+							<YY>A</YY>
+							<ZZ>A</ZZ>
+						</BOUNDARY_CONDITIONS>
+						<COORDINATES>
+							<X units="in">-20.00</X>
+							<Y units="in">0.00000</Y>
+							<Z units="in">-497.01</Z>
+						</COORDINATES>
+					</NODE>
+					<NODE node_number="7" location="Pier">
+						<BOUNDARY_CONDITIONS>
+							<X>A</X>
+							<Y>A</Y>
+							<Z>A</Z>
+							<XX>A</XX>
+							<YY>A</YY>
+							<ZZ>A</ZZ>
+						</BOUNDARY_CONDITIONS>
+						<COORDINATES>
+							<X units="in">-15.00</X>
+							<Y units="in">0.00000</Y>
+							<Z units="in">-497.01</Z>
+						</COORDINATES>
+					</NODE>
+					<NODE node_number="8" location="Pier">
+						<BOUNDARY_CONDITIONS>
+							<X>A</X>
+							<Y>A</Y>
+							<Z>A</Z>
+							<XX>A</XX>
+							<YY>A</YY>
+							<ZZ>A</ZZ>
+						</BOUNDARY_CONDITIONS>
+						<COORDINATES>
+							<X units="in">-10.00</X>
+							<Y units="in">0.00000</Y>
+							<Z units="in">-497.01</Z>
+						</COORDINATES>
+					</NODE>
+					<NODE node_number="9" location="Pier">
+						<BOUNDARY_CONDITIONS>
+							<X>A</X>
+							<Y>A</Y>
+							<Z>A</Z>
+							<XX>A</XX>
+							<YY>A</YY>
+							<ZZ>A</ZZ>
+						</BOUNDARY_CONDITIONS>
+						<COORDINATES>
+							<X units="in">-5.00</X>
+							<Y units="in">0.00000</Y>
+							<Z units="in">-497.01</Z>
+						</COORDINATES>
+					</NODE>
+					<NODE node_number="10" location="Pier">
+						<BOUNDARY_CONDITIONS>
+							<X>A</X>
+							<Y>A</Y>
+							<Z>A</Z>
+							<XX>A</XX>
+							<YY>A</YY>
+							<ZZ>A</ZZ>
+						</BOUNDARY_CONDITIONS>
+						<COORDINATES>
+							<X units="in">20.00</X>
+							<Y units="in">0.00000</Y>
+							<Z units="in">-497.01</Z>
+						</COORDINATES>
+					</NODE>
+					<NODE node_number="11" location="Pier">
+						<BOUNDARY_CONDITIONS>
+							<X>A</X>
+							<Y>A</Y>
+							<Z>A</Z>
+							<XX>A</XX>
+							<YY>A</YY>
+							<ZZ>A</ZZ>
+						</BOUNDARY_CONDITIONS>
+						<COORDINATES>
+							<X units="in">38.50</X>
+							<Y units="in">0.00000</Y>
+							<Z units="in">-497.01</Z>
+						</COORDINATES>
+					</NODE>
+					<NODE node_number="12" location="Pier">
+						<BOUNDARY_CONDITIONS>
+							<X>A</X>
+							<Y>A</Y>
+							<Z>A</Z>
+							<XX>A</XX>
+							<YY>A</YY>
+							<ZZ>A</ZZ>
+						</BOUNDARY_CONDITIONS>
+						<COORDINATES>
+							<X units="in">80.00</X>
+							<Y units="in">0.00000</Y>
+							<Z units="in">-497.01</Z>
+						</COORDINATES>
+					</NODE>
+					<NODE node_number="13" location="Pier">
+						<BOUNDARY_CONDITIONS>
+							<X>A</X>
+							<Y>A</Y>
+							<Z>A</Z>
+							<XX>A</XX>
+							<YY>A</YY>
+							<ZZ>A</ZZ>
+						</BOUNDARY_CONDITIONS>
+						<COORDINATES>
+							<X units="in">100.00</X>
+							<Y units="in">0.00000</Y>
+							<Z units="in">-497.01</Z>
+						</COORDINATES>
+					</NODE>
+					<NODE node_number="14" location="Pier">
+						<BOUNDARY_CONDITIONS>
+							<X>A</X>
+							<Y>A</Y>
+							<Z>A</Z>
+							<XX>A</XX>
+							<YY>A</YY>
+							<ZZ>A</ZZ>
+						</BOUNDARY_CONDITIONS>
+						<COORDINATES>
+							<X units="in">141.49</X>
+							<Y units="in">0.00000</Y>
+							<Z units="in">-497.01</Z>
+						</COORDINATES>
+					</NODE>
+					<NODE node_number="15" location="Pier">
+						<BOUNDARY_CONDITIONS>
+							<X>A</X>
+							<Y>A</Y>
+							<Z>A</Z>
+							<XX>A</XX>
+							<YY>A</YY>
+							<ZZ>A</ZZ>
+						</BOUNDARY_CONDITIONS>
+						<COORDINATES>
+							<X units="in">160.00</X>
+							<Y units="in">0.00000</Y>
+							<Z units="in">-497.01</Z>
+						</COORDINATES>
+					</NODE>
+					<NODE node_number="16" location="Pier">
+						<BOUNDARY_CONDITIONS>
+							<X>A</X>
+							<Y>A</Y>
+							<Z>A</Z>
+							<XX>A</XX>
+							<YY>A</YY>
+							<ZZ>A</ZZ>
+						</BOUNDARY_CONDITIONS>
+						<COORDINATES>
+							<X units="in">185.00</X>
+							<Y units="in">0.00000</Y>
+							<Z units="in">-497.01</Z>
+						</COORDINATES>
+					</NODE>
+					<NODE node_number="17" location="Pier">
+						<BOUNDARY_CONDITIONS>
+							<X>A</X>
+							<Y>A</Y>
+							<Z>A</Z>
+							<XX>A</XX>
+							<YY>A</YY>
+							<ZZ>A</ZZ>
+						</BOUNDARY_CONDITIONS>
+						<COORDINATES>
+							<X units="in">190.00</X>
+							<Y units="in">0.00000</Y>
+							<Z units="in">-497.01</Z>
+						</COORDINATES>
+					</NODE>
+					<NODE node_number="18" location="Pier">
+						<BOUNDARY_CONDITIONS>
+							<X>A</X>
+							<Y>A</Y>
+							<Z>A</Z>
+							<XX>A</XX>
+							<YY>A</YY>
+							<ZZ>A</ZZ>
+						</BOUNDARY_CONDITIONS>
+						<COORDINATES>
+							<X units="in">195.00</X>
+							<Y units="in">0.00000</Y>
+							<Z units="in">-497.01</Z>
+						</COORDINATES>
+					</NODE>
+					<NODE node_number="19" location="Pier">
+						<BOUNDARY_CONDITIONS>
+							<X>A</X>
+							<Y>A</Y>
+							<Z>A</Z>
+							<XX>A</XX>
+							<YY>A</YY>
+							<ZZ>A</ZZ>
+						</BOUNDARY_CONDITIONS>
+						<COORDINATES>
+							<X units="in">200.00</X>
+							<Y units="in">0.00000</Y>
+							<Z units="in">-497.01</Z>
+						</COORDINATES>
+					</NODE>
+					<NODE node_number="20" location="Pier">
+						<BOUNDARY_CONDITIONS>
+							<X>A</X>
+							<Y>A</Y>
+							<Z>A</Z>
+							<XX>A</XX>
+							<YY>A</YY>
+							<ZZ>A</ZZ>
+						</BOUNDARY_CONDITIONS>
+						<COORDINATES>
+							<X units="in">205.00</X>
+							<Y units="in">0.00000</Y>
+							<Z units="in">-497.01</Z>
+						</COORDINATES>
+					</NODE>
+					<NODE node_number="157" location="Bearing 1L">
+						<BOUNDARY_CONDITIONS>
+							<X>A</X>
+							<Y>A</Y>
+							<Z>A</Z>
+							<XX>A</XX>
+							<YY>A</YY>
+							<ZZ>A</ZZ>
+						</BOUNDARY_CONDITIONS>
+						<COORDINATES>
+							<X units="in">38.50</X>
+							<Y units="in">-10.50</Y>
+							<Z units="in">-497.01</Z>
+						</COORDINATES>
+					</NODE>
+					<NODE node_number="158" location="Bearing 2L">
+						<BOUNDARY_CONDITIONS>
+							<X>A</X>
+							<Y>A</Y>
+							<Z>A</Z>
+							<XX>A</XX>
+							<YY>A</YY>
+							<ZZ>A</ZZ>
+						</BOUNDARY_CONDITIONS>
+						<COORDINATES>
+							<X units="in">141.49</X>
+							<Y units="in">-10.50</Y>
+							<Z units="in">-497.01</Z>
+						</COORDINATES>
+					</NODE>
+					<NODE node_number="159" location="Bearing 1R">
+						<BOUNDARY_CONDITIONS>
+							<X>A</X>
+							<Y>A</Y>
+							<Z>A</Z>
+							<XX>A</XX>
+							<YY>A</YY>
+							<ZZ>A</ZZ>
+						</BOUNDARY_CONDITIONS>
+						<COORDINATES>
+							<X units="in">38.50</X>
+							<Y units="in">10.14</Y>
+							<Z units="in">-497.01</Z>
+						</COORDINATES>
+					</NODE>
+					<NODE node_number="160" location="Bearing 2R">
+						<BOUNDARY_CONDITIONS>
+							<X>A</X>
+							<Y>A</Y>
+							<Z>A</Z>
+							<XX>A</XX>
+							<YY>A</YY>
+							<ZZ>A</ZZ>
+						</BOUNDARY_CONDITIONS>
+						<COORDINATES>
+							<X units="in">141.49</X>
+							<Y units="in">10.14</Y>
+							<Z units="in">-497.01</Z>
+						</COORDINATES>
+					</NODE>
+				</NODAL_COORDINATES>
+				<CROSS-SECTIONS>
+					<SEGMENT number="2">
+					<DIMENSIONS type="Rectangular" embed_hpile="no">
+						<WIDTH units="in">48.00</WIDTH>
+						<DEPTH units="in">36.00</DEPTH>
+						<TW units="in">0.00000</TW>
+						<TF units="in">0.00000</TF>
+						<ORIENTATION>0</ORIENTATION>
+						<VOID_TYPE>None</VOID_TYPE>
+						<VOID_DIA units="in">0.00000</VOID_DIA>
+						<VOID_WIDTH units="in">0.00000</VOID_WIDTH>
+						<VOID_DEPTH units="in">0.00000</VOID_DEPTH>
+						<HWIDTH units="in">0.00000</HWIDTH>
+						<HDEPTH units="in">0.00000</HDEPTH>
+						<HTW units="in">0.00000</HTW>
+						<HTF units="in">0.00000</HTF>
+						<HORIENTATION>0</HORIENTATION>
+						<SHELL_THICK units="in">0.48</SHELL_THICK>
+						<SHEAR_STEEL>spiral</SHEAR_STEEL>
+					</DIMENSIONS>
+					<MATERIAL_PROPS>
+						<FPC units="ksi">5.50</FPC>
+						<E_CONCRETE units="ksi">4415.00</E_CONCRETE>
+						<FY_MILD units="ksi">60.00</FY_MILD>
+						<E_STEEL units="ksi">29000.00</E_STEEL>
+						<FY_PS units="ksi">0.00000</FY_PS>
+						<E_PS units="ksi">0.00000</E_PS>
+						<FY_HPILE units="ksi">0.00000</FY_HPILE>
+						<E_HPILE units="ksi">0.00000</E_HPILE>
+						<FY_SHELL units="ksi">0.00000</FY_SHELL>
+						<E_SHELL units="ksi">0.00000</E_SHELL>
+					</MATERIAL_PROPS>
+					<GROSS_SECTION_PROPS>
+						<AREA units="in^2">1728.00</AREA>
+						<EMODULUS units="ksi">4415.00</EMODULUS>
+						<INERTIA2 units="in^4">331776.00</INERTIA2>
+						<INERTIA3 units="in^4">186624.00</INERTIA3>
+						<SHEAR_MODULUS units="ksi">1839.58</SHEAR_MODULUS>
+						<TORSIONAL_INERTIA units="in^4">404581.27</TORSIONAL_INERTIA>
+						<UNIT_WEIGHT units="k/in^3">0.86806E-04</UNIT_WEIGHT>
+					</GROSS_SECTION_PROPS>
+					<STEEL_GROUPS>
+						<BAR_GROUP number="1">
+							<BARS>5</BARS>
+							<LAYER_DIA units="in">0.00000</LAYER_DIA>
+							<COORD_2 units="in">-14.56</COORD_2>
+							<COORD_3 units="in">-20.56</COORD_3>
+							<BAR_AREA units="in^2">0.60</BAR_AREA>
+							<PRESTRESS units="ksi">0.00000</PRESTRESS>
+							<ORIENTATION>2</ORIENTATION>
+						</BAR_GROUP>
+						<BAR_GROUP number="2">
+							<BARS>5</BARS>
+							<LAYER_DIA units="in">0.00000</LAYER_DIA>
+							<COORD_2 units="in">-14.56</COORD_2>
+							<COORD_3 units="in">20.56</COORD_3>
+							<BAR_AREA units="in^2">0.60</BAR_AREA>
+							<PRESTRESS units="ksi">0.00000</PRESTRESS>
+							<ORIENTATION>2</ORIENTATION>
+						</BAR_GROUP>
+						<BAR_GROUP number="3">
+							<BARS>3</BARS>
+							<LAYER_DIA units="in">0.00000</LAYER_DIA>
+							<COORD_2 units="in">-14.56</COORD_2>
+							<COORD_3 units="in">-10.28</COORD_3>
+							<BAR_AREA units="in^2">0.60</BAR_AREA>
+							<PRESTRESS units="ksi">0.00000</PRESTRESS>
+							<ORIENTATION>3</ORIENTATION>
+						</BAR_GROUP>
+						<BAR_GROUP number="4">
+							<BARS>3</BARS>
+							<LAYER_DIA units="in">0.00000</LAYER_DIA>
+							<COORD_2 units="in">14.56</COORD_2>
+							<COORD_3 units="in">-10.28</COORD_3>
+							<BAR_AREA units="in^2">0.60</BAR_AREA>
+							<PRESTRESS units="ksi">0.00000</PRESTRESS>
+							<ORIENTATION>3</ORIENTATION>
+						</BAR_GROUP>
+					</STEEL_GROUPS>
+					<STRESS-STRAIN_CURVES>
+						<CONCRETE>
+							<POINT number="1">
+								<STRESS units="ksi">-3.97</STRESS>
+								<STRAIN>-0.38000E-02</STRAIN>
+							</POINT>
+							<POINT number="2">
+								<STRESS units="ksi">-4.67</STRESS>
+								<STRAIN>-0.21178E-02</STRAIN>
+							</POINT>
+							<POINT number="3">
+								<STRESS units="ksi">-4.58</STRESS>
+								<STRAIN>-0.18152E-02</STRAIN>
+							</POINT>
+							<POINT number="4">
+								<STRESS units="ksi">-4.29</STRESS>
+								<STRAIN>-0.15127E-02</STRAIN>
+							</POINT>
+							<POINT number="5">
+								<STRESS units="ksi">-3.82</STRESS>
+								<STRAIN>-0.12102E-02</STRAIN>
+							</POINT>
+							<POINT number="6">
+								<STRESS units="ksi">-3.15</STRESS>
+								<STRAIN>-0.90762E-03</STRAIN>
+							</POINT>
+							<POINT number="7">
+								<STRESS units="ksi">-2.29</STRESS>
+								<STRAIN>-0.60508E-03</STRAIN>
+							</POINT>
+							<POINT number="8">
+								<STRESS units="ksi">-1.34</STRESS>
+								<STRAIN>-0.30254E-03</STRAIN>
+							</POINT>
+							<POINT number="9">
+								<STRESS units="ksi">0.00000</STRESS>
+								<STRAIN>0.00000</STRAIN>
+							</POINT>
+							<POINT number="10">
+								<STRESS units="ksi">0.58</STRESS>
+								<STRAIN>0.13158E-03</STRAIN>
+							</POINT>
+							<POINT number="11">
+								<STRESS units="ksi">0.29</STRESS>
+								<STRAIN>0.30000E-03</STRAIN>
+							</POINT>
+							<POINT number="12">
+								<STRESS units="ksi">0.00000</STRESS>
+								<STRAIN>0.20000E-02</STRAIN>
+							</POINT>
+							<POINT number="13">
+								<STRESS units="ksi">0.00000</STRESS>
+								<STRAIN>0.50000E-02</STRAIN>
+							</POINT>
+						</CONCRETE>
+						<MILD_STEEL>
+							<POINT number="1">
+								<STRESS units="ksi">-60.00</STRESS>
+								<STRAIN>-0.10</STRAIN>
+							</POINT>
+							<POINT number="2">
+								<STRESS units="ksi">-60.00</STRESS>
+								<STRAIN>-0.20690E-02</STRAIN>
+							</POINT>
+							<POINT number="3">
+								<STRESS units="ksi">60.00</STRESS>
+								<STRAIN>0.20690E-02</STRAIN>
+							</POINT>
+							<POINT number="4">
+								<STRESS units="ksi">60.00</STRESS>
+								<STRAIN>0.10</STRAIN>
+							</POINT>
+						</MILD_STEEL>
+					</STRESS-STRAIN_CURVES>
+					</SEGMENT>
+					<SEGMENT number="3">
+					<DIMENSIONS type="Rectangular" embed_hpile="no">
+						<WIDTH units="in">48.00</WIDTH>
+						<DEPTH units="in">36.00</DEPTH>
+						<TW units="in">0.00000</TW>
+						<TF units="in">0.00000</TF>
+						<ORIENTATION>0</ORIENTATION>
+						<VOID_TYPE>None</VOID_TYPE>
+						<VOID_DIA units="in">0.00000</VOID_DIA>
+						<VOID_WIDTH units="in">0.00000</VOID_WIDTH>
+						<VOID_DEPTH units="in">0.00000</VOID_DEPTH>
+						<HWIDTH units="in">0.00000</HWIDTH>
+						<HDEPTH units="in">0.00000</HDEPTH>
+						<HTW units="in">0.00000</HTW>
+						<HTF units="in">0.00000</HTF>
+						<HORIENTATION>0</HORIENTATION>
+						<SHELL_THICK units="in">0.48</SHELL_THICK>
+						<SHEAR_STEEL>spiral</SHEAR_STEEL>
+					</DIMENSIONS>
+					<MATERIAL_PROPS>
+						<FPC units="ksi">5.50</FPC>
+						<E_CONCRETE units="ksi">4415.00</E_CONCRETE>
+						<FY_MILD units="ksi">60.00</FY_MILD>
+						<E_STEEL units="ksi">29000.00</E_STEEL>
+						<FY_PS units="ksi">0.00000</FY_PS>
+						<E_PS units="ksi">0.00000</E_PS>
+						<FY_HPILE units="ksi">0.00000</FY_HPILE>
+						<E_HPILE units="ksi">0.00000</E_HPILE>
+						<FY_SHELL units="ksi">0.00000</FY_SHELL>
+						<E_SHELL units="ksi">0.00000</E_SHELL>
+					</MATERIAL_PROPS>
+					<GROSS_SECTION_PROPS>
+						<AREA units="in^2">1728.00</AREA>
+						<EMODULUS units="ksi">4415.00</EMODULUS>
+						<INERTIA2 units="in^4">331776.00</INERTIA2>
+						<INERTIA3 units="in^4">186624.00</INERTIA3>
+						<SHEAR_MODULUS units="ksi">1839.58</SHEAR_MODULUS>
+						<TORSIONAL_INERTIA units="in^4">404581.27</TORSIONAL_INERTIA>
+						<UNIT_WEIGHT units="k/in^3">0.86806E-04</UNIT_WEIGHT>
+					</GROSS_SECTION_PROPS>
+					<STEEL_GROUPS>
+						<BAR_GROUP number="1">
+							<BARS>5</BARS>
+							<LAYER_DIA units="in">0.00000</LAYER_DIA>
+							<COORD_2 units="in">-14.56</COORD_2>
+							<COORD_3 units="in">-20.56</COORD_3>
+							<BAR_AREA units="in^2">0.60</BAR_AREA>
+							<PRESTRESS units="ksi">0.00000</PRESTRESS>
+							<ORIENTATION>2</ORIENTATION>
+						</BAR_GROUP>
+						<BAR_GROUP number="2">
+							<BARS>5</BARS>
+							<LAYER_DIA units="in">0.00000</LAYER_DIA>
+							<COORD_2 units="in">-14.56</COORD_2>
+							<COORD_3 units="in">20.56</COORD_3>
+							<BAR_AREA units="in^2">0.60</BAR_AREA>
+							<PRESTRESS units="ksi">0.00000</PRESTRESS>
+							<ORIENTATION>2</ORIENTATION>
+						</BAR_GROUP>
+						<BAR_GROUP number="3">
+							<BARS>3</BARS>
+							<LAYER_DIA units="in">0.00000</LAYER_DIA>
+							<COORD_2 units="in">-14.56</COORD_2>
+							<COORD_3 units="in">-10.28</COORD_3>
+							<BAR_AREA units="in^2">0.60</BAR_AREA>
+							<PRESTRESS units="ksi">0.00000</PRESTRESS>
+							<ORIENTATION>3</ORIENTATION>
+						</BAR_GROUP>
+						<BAR_GROUP number="4">
+							<BARS>3</BARS>
+							<LAYER_DIA units="in">0.00000</LAYER_DIA>
+							<COORD_2 units="in">14.56</COORD_2>
+							<COORD_3 units="in">-10.28</COORD_3>
+							<BAR_AREA units="in^2">0.60</BAR_AREA>
+							<PRESTRESS units="ksi">0.00000</PRESTRESS>
+							<ORIENTATION>3</ORIENTATION>
+						</BAR_GROUP>
+					</STEEL_GROUPS>
+					<STRESS-STRAIN_CURVES>
+						<CONCRETE>
+							<POINT number="1">
+								<STRESS units="ksi">-3.97</STRESS>
+								<STRAIN>-0.38000E-02</STRAIN>
+							</POINT>
+							<POINT number="2">
+								<STRESS units="ksi">-4.67</STRESS>
+								<STRAIN>-0.21178E-02</STRAIN>
+							</POINT>
+							<POINT number="3">
+								<STRESS units="ksi">-4.58</STRESS>
+								<STRAIN>-0.18152E-02</STRAIN>
+							</POINT>
+							<POINT number="4">
+								<STRESS units="ksi">-4.29</STRESS>
+								<STRAIN>-0.15127E-02</STRAIN>
+							</POINT>
+							<POINT number="5">
+								<STRESS units="ksi">-3.82</STRESS>
+								<STRAIN>-0.12102E-02</STRAIN>
+							</POINT>
+							<POINT number="6">
+								<STRESS units="ksi">-3.15</STRESS>
+								<STRAIN>-0.90762E-03</STRAIN>
+							</POINT>
+							<POINT number="7">
+								<STRESS units="ksi">-2.29</STRESS>
+								<STRAIN>-0.60508E-03</STRAIN>
+							</POINT>
+							<POINT number="8">
+								<STRESS units="ksi">-1.34</STRESS>
+								<STRAIN>-0.30254E-03</STRAIN>
+							</POINT>
+							<POINT number="9">
+								<STRESS units="ksi">0.00000</STRESS>
+								<STRAIN>0.00000</STRAIN>
+							</POINT>
+							<POINT number="10">
+								<STRESS units="ksi">0.58</STRESS>
+								<STRAIN>0.13158E-03</STRAIN>
+							</POINT>
+							<POINT number="11">
+								<STRESS units="ksi">0.29</STRESS>
+								<STRAIN>0.30000E-03</STRAIN>
+							</POINT>
+							<POINT number="12">
+								<STRESS units="ksi">0.00000</STRESS>
+								<STRAIN>0.20000E-02</STRAIN>
+							</POINT>
+							<POINT number="13">
+								<STRESS units="ksi">0.00000</STRESS>
+								<STRAIN>0.50000E-02</STRAIN>
+							</POINT>
+						</CONCRETE>
+						<MILD_STEEL>
+							<POINT number="1">
+								<STRESS units="ksi">-60.00</STRESS>
+								<STRAIN>-0.10</STRAIN>
+							</POINT>
+							<POINT number="2">
+								<STRESS units="ksi">-60.00</STRESS>
+								<STRAIN>-0.20690E-02</STRAIN>
+							</POINT>
+							<POINT number="3">
+								<STRESS units="ksi">60.00</STRESS>
+								<STRAIN>0.20690E-02</STRAIN>
+							</POINT>
+							<POINT number="4">
+								<STRESS units="ksi">60.00</STRESS>
+								<STRAIN>0.10</STRAIN>
+							</POINT>
+						</MILD_STEEL>
+					</STRESS-STRAIN_CURVES>
+					</SEGMENT>
+					<SEGMENT number="4">
+					<DIMENSIONS type="Rectangular" embed_hpile="no">
+						<WIDTH units="in">36.00</WIDTH>
+						<DEPTH units="in">20.52</DEPTH>
+						<TW units="in">0.00000</TW>
+						<TF units="in">0.00000</TF>
+						<ORIENTATION>0</ORIENTATION>
+						<VOID_TYPE>None</VOID_TYPE>
+						<VOID_DIA units="in">0.00000</VOID_DIA>
+						<VOID_WIDTH units="in">0.00000</VOID_WIDTH>
+						<VOID_DEPTH units="in">0.00000</VOID_DEPTH>
+						<HWIDTH units="in">0.00000</HWIDTH>
+						<HDEPTH units="in">0.00000</HDEPTH>
+						<HTW units="in">0.00000</HTW>
+						<HTF units="in">0.00000</HTF>
+						<HORIENTATION>0</HORIENTATION>
+						<SHELL_THICK units="in">0.48</SHELL_THICK>
+						<SHEAR_STEEL>spiral</SHEAR_STEEL>
+					</DIMENSIONS>
+					<MATERIAL_PROPS>
+						<FPC units="ksi">6.00</FPC>
+						<E_CONCRETE units="ksi">4415.00</E_CONCRETE>
+						<FY_MILD units="ksi">60.00</FY_MILD>
+						<E_STEEL units="ksi">29000.00</E_STEEL>
+						<FY_PS units="ksi">0.00000</FY_PS>
+						<E_PS units="ksi">0.00000</E_PS>
+						<FY_HPILE units="ksi">0.00000</FY_HPILE>
+						<E_HPILE units="ksi">0.00000</E_HPILE>
+						<FY_SHELL units="ksi">0.00000</FY_SHELL>
+						<E_SHELL units="ksi">0.00000</E_SHELL>
+					</MATERIAL_PROPS>
+					<GROSS_SECTION_PROPS>
+						<AREA units="in^2">738.72</AREA>
+						<EMODULUS units="ksi">4415.00</EMODULUS>
+						<INERTIA2 units="in^4">79781.76</INERTIA2>
+						<INERTIA3 units="in^4">25921.09</INERTIA3>
+						<SHEAR_MODULUS units="ksi">1839.58</SHEAR_MODULUS>
+						<TORSIONAL_INERTIA units="in^4">66766.58</TORSIONAL_INERTIA>
+						<UNIT_WEIGHT units="k/in^3">0.57870E-06</UNIT_WEIGHT>
+					</GROSS_SECTION_PROPS>
+					<STEEL_GROUPS>
+						<BAR_GROUP number="1">
+							<BARS>2</BARS>
+							<LAYER_DIA units="in">0.00000</LAYER_DIA>
+							<COORD_2 units="in">7.26</COORD_2>
+							<COORD_3 units="in">15.00</COORD_3>
+							<BAR_AREA units="in^2">0.44</BAR_AREA>
+							<PRESTRESS units="ksi">0.00000</PRESTRESS>
+							<ORIENTATION>3</ORIENTATION>
+						</BAR_GROUP>
+						<BAR_GROUP number="2">
+							<BARS>2</BARS>
+							<LAYER_DIA units="in">0.00000</LAYER_DIA>
+							<COORD_2 units="in">-7.26</COORD_2>
+							<COORD_3 units="in">15.00</COORD_3>
+							<BAR_AREA units="in^2">0.44</BAR_AREA>
+							<PRESTRESS units="ksi">0.00000</PRESTRESS>
+							<ORIENTATION>3</ORIENTATION>
+						</BAR_GROUP>
+					</STEEL_GROUPS>
+					<STRESS-STRAIN_CURVES>
+						<CONCRETE>
+							<POINT number="1">
+								<STRESS units="ksi">-4.33</STRESS>
+								<STRAIN>-0.38000E-02</STRAIN>
+							</POINT>
+							<POINT number="2">
+								<STRESS units="ksi">-5.10</STRESS>
+								<STRAIN>-0.23103E-02</STRAIN>
+							</POINT>
+							<POINT number="3">
+								<STRESS units="ksi">-5.00</STRESS>
+								<STRAIN>-0.19803E-02</STRAIN>
+							</POINT>
+							<POINT number="4">
+								<STRESS units="ksi">-4.68</STRESS>
+								<STRAIN>-0.16502E-02</STRAIN>
+							</POINT>
+							<POINT number="5">
+								<STRESS units="ksi">-4.16</STRESS>
+								<STRAIN>-0.13202E-02</STRAIN>
+							</POINT>
+							<POINT number="6">
+								<STRESS units="ksi">-3.43</STRESS>
+								<STRAIN>-0.99013E-03</STRAIN>
+							</POINT>
+							<POINT number="7">
+								<STRESS units="ksi">-2.50</STRESS>
+								<STRAIN>-0.66009E-03</STRAIN>
+							</POINT>
+							<POINT number="8">
+								<STRESS units="ksi">-1.46</STRESS>
+								<STRAIN>-0.33004E-03</STRAIN>
+							</POINT>
+							<POINT number="9">
+								<STRESS units="ksi">0.00000</STRESS>
+								<STRAIN>0.00000</STRAIN>
+							</POINT>
+							<POINT number="10">
+								<STRESS units="ksi">0.58</STRESS>
+								<STRAIN>0.13158E-03</STRAIN>
+							</POINT>
+							<POINT number="11">
+								<STRESS units="ksi">0.29</STRESS>
+								<STRAIN>0.30000E-03</STRAIN>
+							</POINT>
+							<POINT number="12">
+								<STRESS units="ksi">0.00000</STRESS>
+								<STRAIN>0.20000E-02</STRAIN>
+							</POINT>
+							<POINT number="13">
+								<STRESS units="ksi">0.00000</STRESS>
+								<STRAIN>0.50000E-02</STRAIN>
+							</POINT>
+						</CONCRETE>
+						<MILD_STEEL>
+							<POINT number="1">
+								<STRESS units="ksi">-60.00</STRESS>
+								<STRAIN>-0.10</STRAIN>
+							</POINT>
+							<POINT number="2">
+								<STRESS units="ksi">-60.00</STRESS>
+								<STRAIN>-0.20690E-02</STRAIN>
+							</POINT>
+							<POINT number="3">
+								<STRESS units="ksi">60.00</STRESS>
+								<STRAIN>0.20690E-02</STRAIN>
+							</POINT>
+							<POINT number="4">
+								<STRESS units="ksi">60.00</STRESS>
+								<STRAIN>0.10</STRAIN>
+							</POINT>
+						</MILD_STEEL>
+					</STRESS-STRAIN_CURVES>
+					</SEGMENT>
+					<SEGMENT number="5">
+					<DIMENSIONS type="Rectangular" embed_hpile="no">
+						<WIDTH units="in">36.00</WIDTH>
+						<DEPTH units="in">60.00</DEPTH>
+						<TW units="in">0.00000</TW>
+						<TF units="in">0.00000</TF>
+						<ORIENTATION>0</ORIENTATION>
+						<VOID_TYPE>None</VOID_TYPE>
+						<VOID_DIA units="in">0.00000</VOID_DIA>
+						<VOID_WIDTH units="in">0.00000</VOID_WIDTH>
+						<VOID_DEPTH units="in">0.00000</VOID_DEPTH>
+						<HWIDTH units="in">0.00000</HWIDTH>
+						<HDEPTH units="in">0.00000</HDEPTH>
+						<HTW units="in">0.00000</HTW>
+						<HTF units="in">0.00000</HTF>
+						<HORIENTATION>0</HORIENTATION>
+						<SHELL_THICK units="in">0.48</SHELL_THICK>
+						<SHEAR_STEEL>spiral</SHEAR_STEEL>
+					</DIMENSIONS>
+					<MATERIAL_PROPS>
+						<FPC units="ksi">6.00</FPC>
+						<E_CONCRETE units="ksi">4415.00</E_CONCRETE>
+						<FY_MILD units="ksi">60.00</FY_MILD>
+						<E_STEEL units="ksi">29000.00</E_STEEL>
+						<FY_PS units="ksi">0.00000</FY_PS>
+						<E_PS units="ksi">0.00000</E_PS>
+						<FY_HPILE units="ksi">0.00000</FY_HPILE>
+						<E_HPILE units="ksi">0.00000</E_HPILE>
+						<FY_SHELL units="ksi">0.00000</FY_SHELL>
+						<E_SHELL units="ksi">0.00000</E_SHELL>
+					</MATERIAL_PROPS>
+					<GROSS_SECTION_PROPS>
+						<AREA units="in^2">2160.00</AREA>
+						<EMODULUS units="ksi">4415.00</EMODULUS>
+						<INERTIA2 units="in^4">233280.00</INERTIA2>
+						<INERTIA3 units="in^4">648000.00</INERTIA3>
+						<SHEAR_MODULUS units="ksi">1839.58</SHEAR_MODULUS>
+						<TORSIONAL_INERTIA units="in^4">584303.15</TORSIONAL_INERTIA>
+						<UNIT_WEIGHT units="k/in^3">0.86806E-04</UNIT_WEIGHT>
+					</GROSS_SECTION_PROPS>
+					<STEEL_GROUPS>
+						<BAR_GROUP number="1">
+							<BARS>2</BARS>
+							<LAYER_DIA units="in">0.00000</LAYER_DIA>
+							<COORD_2 units="in">7.26</COORD_2>
+							<COORD_3 units="in">15.00</COORD_3>
+							<BAR_AREA units="in^2">0.44</BAR_AREA>
+							<PRESTRESS units="ksi">0.00000</PRESTRESS>
+							<ORIENTATION>3</ORIENTATION>
+						</BAR_GROUP>
+						<BAR_GROUP number="2">
+							<BARS>2</BARS>
+							<LAYER_DIA units="in">0.00000</LAYER_DIA>
+							<COORD_2 units="in">-7.26</COORD_2>
+							<COORD_3 units="in">15.00</COORD_3>
+							<BAR_AREA units="in^2">0.44</BAR_AREA>
+							<PRESTRESS units="ksi">0.00000</PRESTRESS>
+							<ORIENTATION>3</ORIENTATION>
+						</BAR_GROUP>
+					</STEEL_GROUPS>
+					<STRESS-STRAIN_CURVES>
+						<CONCRETE>
+							<POINT number="1">
+								<STRESS units="ksi">-4.33</STRESS>
+								<STRAIN>-0.38000E-02</STRAIN>
+							</POINT>
+							<POINT number="2">
+								<STRESS units="ksi">-5.10</STRESS>
+								<STRAIN>-0.23103E-02</STRAIN>
+							</POINT>
+							<POINT number="3">
+								<STRESS units="ksi">-5.00</STRESS>
+								<STRAIN>-0.19803E-02</STRAIN>
+							</POINT>
+							<POINT number="4">
+								<STRESS units="ksi">-4.68</STRESS>
+								<STRAIN>-0.16502E-02</STRAIN>
+							</POINT>
+							<POINT number="5">
+								<STRESS units="ksi">-4.16</STRESS>
+								<STRAIN>-0.13202E-02</STRAIN>
+							</POINT>
+							<POINT number="6">
+								<STRESS units="ksi">-3.43</STRESS>
+								<STRAIN>-0.99013E-03</STRAIN>
+							</POINT>
+							<POINT number="7">
+								<STRESS units="ksi">-2.50</STRESS>
+								<STRAIN>-0.66009E-03</STRAIN>
+							</POINT>
+							<POINT number="8">
+								<STRESS units="ksi">-1.46</STRESS>
+								<STRAIN>-0.33004E-03</STRAIN>
+							</POINT>
+							<POINT number="9">
+								<STRESS units="ksi">0.00000</STRESS>
+								<STRAIN>0.00000</STRAIN>
+							</POINT>
+							<POINT number="10">
+								<STRESS units="ksi">0.58</STRESS>
+								<STRAIN>0.13158E-03</STRAIN>
+							</POINT>
+							<POINT number="11">
+								<STRESS units="ksi">0.29</STRESS>
+								<STRAIN>0.30000E-03</STRAIN>
+							</POINT>
+							<POINT number="12">
+								<STRESS units="ksi">0.00000</STRESS>
+								<STRAIN>0.20000E-02</STRAIN>
+							</POINT>
+							<POINT number="13">
+								<STRESS units="ksi">0.00000</STRESS>
+								<STRAIN>0.50000E-02</STRAIN>
+							</POINT>
+						</CONCRETE>
+						<MILD_STEEL>
+							<POINT number="1">
+								<STRESS units="ksi">-60.00</STRESS>
+								<STRAIN>-0.10</STRAIN>
+							</POINT>
+							<POINT number="2">
+								<STRESS units="ksi">-60.00</STRESS>
+								<STRAIN>-0.20690E-02</STRAIN>
+							</POINT>
+							<POINT number="3">
+								<STRESS units="ksi">60.00</STRESS>
+								<STRAIN>0.20690E-02</STRAIN>
+							</POINT>
+							<POINT number="4">
+								<STRESS units="ksi">60.00</STRESS>
+								<STRAIN>0.10</STRAIN>
+							</POINT>
+						</MILD_STEEL>
+					</STRESS-STRAIN_CURVES>
+					</SEGMENT>
+				</CROSS-SECTIONS>
+				<PIER_MEMBER_CONNECTIVITY>
+				</PIER_MEMBER_CONNECTIVITY>
+			</PIER_GEOMETRY>
+			<LOAD_CASE_DATA>
+        <LOAD_VALUES>
+          <NODAL_LOAD/>
+        </LOAD_VALUES>
+      </LOAD_CASE_DATA>
+    </SUBSTRUCTURE>
+  </MODEL_INFO>
+  <MODEL_INFO>
+    <LOAD_COMBINATION number="1" limitstate="STRENGTH-I">
+      <DC>1.25</DC>
+      <LL1>1.75</LL1>
+      <IM1>1.75</IM1>
+      <BR1>1.75</BR1>
+      <WS1>0.00000</WS1>
+      <WS2>0.00000</WS2>
+      <WS3>0.00000</WS3>
+    </LOAD_COMBINATION>
+    <LOAD_COMBINATION number="2" limitstate="STRENGTH-III">
+      <DC>1.25</DC>
+      <LL1>0.00000</LL1>
+      <IM1>0.00000</IM1>
+      <BR1>0.00000</BR1>
+      <WS1>1.00</WS1>
+      <WS2>0.00000</WS2>
+      <WS3>0.00000</WS3>
+    </LOAD_COMBINATION>
+    <LOAD_COMBINATION number="3" limitstate="STRENGTH-III">
+      <DC>1.25</DC>
+      <LL1>0.00000</LL1>
+      <IM1>0.00000</IM1>
+      <BR1>0.00000</BR1>
+      <WS1>0.00000</WS1>
+      <WS2>1.00</WS2>
+      <WS3>0.00000</WS3>
+    </LOAD_COMBINATION>
+    <LOAD_COMBINATION number="4" limitstate="SERVICE-I">
+      <DC>1.00</DC>
+      <LL1>1.00</LL1>
+      <IM1>1.00</IM1>
+      <BR1>1.00</BR1>
+      <WS1>0.00000</WS1>
+      <WS2>0.00000</WS2>
+      <WS3>1.00</WS3>
+    </LOAD_COMBINATION>
+  </MODEL_INFO>
+  <MODEL_INFO>
+    <SUBSTRUCTURE number="1">
+      <LOAD_CASE_RESULTS>
+				<LOAD_CASE number="8" combination="1" limitstate="STRENGTH-I">
+					<TIME_STEP number="1">
+						<PILE_DISPLACEMENTS>
+							<PILE number="1">
+								<NODE number="1" node_number="1">
+									<DX units="in">0.06</DX>
+									<DY units="in">-0.06</DY>
+									<DZ units="in">0.60</DZ>
+									<RX units="rad">-0.28506E-03</RX>
+									<RY units="rad">-0.33123E-03</RY>
+									<RZ units="rad">-0.11850E-04</RZ>
+								</NODE>
+								</PILE>
+							<PILE number="2">
+								<NODE number="1" node_number="2">
+									<DX units="in">0.06</DX>
+									<DY units="in">-0.06</DY>
+									<DZ units="in">0.61</DZ>
+									<RX units="rad">-0.28620E-03</RX>
+									<RY units="rad">-0.17123E-03</RY>
+									<RZ units="rad">-0.11826E-04</RZ>
+								</NODE>
+								</PILE>
+							<PILE number="3">
+								<NODE number="1" node_number="3">
+									<DX units="in">0.06</DX>
+									<DY units="in">-0.06</DY>
+									<DZ units="in">0.63</DZ>
+									<RX units="rad">-0.28619E-03</RX>
+									<RY units="rad">-0.18311E-03</RY>
+									<RZ units="rad">-0.11777E-04</RZ>
+								</NODE>
+								</PILE>
+							<PILE number="4">
+								<NODE number="1" node_number="4">
+									<DX units="in">0.06</DX>
+									<DY units="in">-0.06</DY>
+									<DZ units="in">0.63</DZ>
+									<RX units="rad">-0.28506E-03</RX>
+									<RY units="rad">-0.23092E-04</RY>
+									<RZ units="rad">-0.11751E-04</RZ>
+								</NODE>
+								</PILE>
+						</PILE_DISPLACEMENTS>
+						<STRUCTURE_INTERNAL_FORCES>
+							<PIER_CAP>
+								<ELEMENT number="1" elem_number="1">
+									<STRUCTURE_ELEMENT_I_END node_i="5">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">3.75</SHEAR-2>
+										<SHEAR-3 units="kip">-0.59572E-09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.00000</MOMENT-2>
+										<MOMENT-3 units="kip-ft">0.16621E-08</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="6">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-4.69</SHEAR-2>
+										<SHEAR-3 units="kip">0.59572E-09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.47597E-09</MOMENT-2>
+										<MOMENT-3 units="kip-ft">1.76</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="2" elem_number="2">
+									<STRUCTURE_ELEMENT_I_END node_i="6">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">4.69</SHEAR-2>
+										<SHEAR-3 units="kip">0.95588E-09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.12559E-09</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-1.76</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="7">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-5.62</SHEAR-2>
+										<SHEAR-3 units="kip">-0.95588E-09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.00000</MOMENT-2>
+										<MOMENT-3 units="kip-ft">3.91</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.55693E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="3" elem_number="3">
+									<STRUCTURE_ELEMENT_I_END node_i="7">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">5.62</SHEAR-2>
+										<SHEAR-3 units="kip">0.25038E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.11801E-09</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-3.91</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.55693E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="8">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-6.56</SHEAR-2>
+										<SHEAR-3 units="kip">-0.25038E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.10062E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">6.45</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.91893E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="4" elem_number="4">
+									<STRUCTURE_ELEMENT_I_END node_i="8">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">6.56</SHEAR-2>
+										<SHEAR-3 units="kip">0.35989E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.12595E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-6.45</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.91893E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="9">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-7.50</SHEAR-2>
+										<SHEAR-3 units="kip">-0.35989E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.27590E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">9.37</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="5" elem_number="5">
+									<STRUCTURE_ELEMENT_I_END node_i="9">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">7.50</SHEAR-2>
+										<SHEAR-3 units="kip">0.57298E-09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.25076E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-9.37</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="1">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-8.44</SHEAR-2>
+										<SHEAR-3 units="kip">-0.57298E-09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.27458E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">12.70</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="6" elem_number="6">
+									<STRUCTURE_ELEMENT_I_END node_i="1">
+										<AXIAL units="kip">8.90</AXIAL>
+										<SHEAR-2 units="kip">-130.88</SHEAR-2>
+										<SHEAR-3 units="kip">-0.02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.77448E-03</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-23.36</MOMENT-3>
+										<TORQUE units="kip-ft">-4.22</TORQUE>
+										<FAILURE-RATIO>0.02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="10">
+										<AXIAL units="kip">-8.90</AXIAL>
+										<SHEAR-2 units="kip">127.13</SHEAR-2>
+										<SHEAR-3 units="kip">0.02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.03</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-191.64</MOMENT-3>
+										<TORQUE units="kip-ft">-4.22</TORQUE>
+										<FAILURE-RATIO>0.26</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="7" elem_number="7">
+									<STRUCTURE_ELEMENT_I_END node_i="10">
+										<AXIAL units="kip">8.90</AXIAL>
+										<SHEAR-2 units="kip">-127.13</SHEAR-2>
+										<SHEAR-3 units="kip">-0.02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.03</MOMENT-2>
+										<MOMENT-3 units="kip-ft">191.64</MOMENT-3>
+										<TORQUE units="kip-ft">-4.22</TORQUE>
+										<FAILURE-RATIO>0.26</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="11">
+										<AXIAL units="kip">-8.90</AXIAL>
+										<SHEAR-2 units="kip">123.66</SHEAR-2>
+										<SHEAR-3 units="kip">0.02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.06</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-384.91</MOMENT-3>
+										<TORQUE units="kip-ft">-4.22</TORQUE>
+										<FAILURE-RATIO>0.53</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="8" elem_number="8">
+									<STRUCTURE_ELEMENT_I_END node_i="11">
+										<AXIAL units="kip">8.90</AXIAL>
+										<SHEAR-2 units="kip">223.10</SHEAR-2>
+										<SHEAR-3 units="kip">-0.02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.06</MOMENT-2>
+										<MOMENT-3 units="kip-ft">384.91</MOMENT-3>
+										<TORQUE units="kip-ft">4.29</TORQUE>
+										<FAILURE-RATIO>0.53</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="2">
+										<AXIAL units="kip">-8.90</AXIAL>
+										<SHEAR-2 units="kip">-227.14</SHEAR-2>
+										<SHEAR-3 units="kip">0.02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.10</MOMENT-2>
+										<MOMENT-3 units="kip-ft">18.51</MOMENT-3>
+										<TORQUE units="kip-ft">4.29</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="9" elem_number="9">
+									<STRUCTURE_ELEMENT_I_END node_i="2">
+										<AXIAL units="kip">10.06</AXIAL>
+										<SHEAR-2 units="kip">-5.65</SHEAR-2>
+										<SHEAR-3 units="kip">-0.13442E-02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.10</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-18.36</MOMENT-3>
+										<TORQUE units="kip-ft">0.27606E-02</TORQUE>
+										<FAILURE-RATIO>0.99379E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="12">
+										<AXIAL units="kip">-10.06</AXIAL>
+										<SHEAR-2 units="kip">1.90</SHEAR-2>
+										<SHEAR-3 units="kip">0.13442E-02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.10</MOMENT-2>
+										<MOMENT-3 units="kip-ft">12.06</MOMENT-3>
+										<TORQUE units="kip-ft">0.27606E-02</TORQUE>
+										<FAILURE-RATIO>0.48195E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="10" elem_number="10">
+									<STRUCTURE_ELEMENT_I_END node_i="12">
+										<AXIAL units="kip">10.06</AXIAL>
+										<SHEAR-2 units="kip">-1.90</SHEAR-2>
+										<SHEAR-3 units="kip">-0.13442E-02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.10</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-12.06</MOMENT-3>
+										<TORQUE units="kip-ft">0.27606E-02</TORQUE>
+										<FAILURE-RATIO>0.48195E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="13">
+										<AXIAL units="kip">-10.06</AXIAL>
+										<SHEAR-2 units="kip">-1.85</SHEAR-2>
+										<SHEAR-3 units="kip">0.13442E-02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.10</MOMENT-2>
+										<MOMENT-3 units="kip-ft">12.01</MOMENT-3>
+										<TORQUE units="kip-ft">0.27606E-02</TORQUE>
+										<FAILURE-RATIO>0.48023E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="11" elem_number="11">
+									<STRUCTURE_ELEMENT_I_END node_i="13">
+										<AXIAL units="kip">10.06</AXIAL>
+										<SHEAR-2 units="kip">1.85</SHEAR-2>
+										<SHEAR-3 units="kip">-0.13442E-02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.10</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-12.01</MOMENT-3>
+										<TORQUE units="kip-ft">0.27606E-02</TORQUE>
+										<FAILURE-RATIO>0.48023E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="3">
+										<AXIAL units="kip">-10.06</AXIAL>
+										<SHEAR-2 units="kip">-5.60</SHEAR-2>
+										<SHEAR-3 units="kip">0.13442E-02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.10</MOMENT-2>
+										<MOMENT-3 units="kip-ft">18.21</MOMENT-3>
+										<TORQUE units="kip-ft">0.27606E-02</TORQUE>
+										<FAILURE-RATIO>0.97828E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="12" elem_number="12">
+									<STRUCTURE_ELEMENT_I_END node_i="3">
+										<AXIAL units="kip">8.90</AXIAL>
+										<SHEAR-2 units="kip">-227.17</SHEAR-2>
+										<SHEAR-3 units="kip">0.02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.10</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-18.35</MOMENT-3>
+										<TORQUE units="kip-ft">-4.29</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="14">
+										<AXIAL units="kip">-8.90</AXIAL>
+										<SHEAR-2 units="kip">223.14</SHEAR-2>
+										<SHEAR-3 units="kip">-0.02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.07</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-384.91</MOMENT-3>
+										<TORQUE units="kip-ft">-4.29</TORQUE>
+										<FAILURE-RATIO>0.53</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="13" elem_number="13">
+									<STRUCTURE_ELEMENT_I_END node_i="14">
+										<AXIAL units="kip">8.90</AXIAL>
+										<SHEAR-2 units="kip">123.62</SHEAR-2>
+										<SHEAR-3 units="kip">0.02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.07</MOMENT-2>
+										<MOMENT-3 units="kip-ft">384.91</MOMENT-3>
+										<TORQUE units="kip-ft">4.23</TORQUE>
+										<FAILURE-RATIO>0.53</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="15">
+										<AXIAL units="kip">-8.90</AXIAL>
+										<SHEAR-2 units="kip">-127.09</SHEAR-2>
+										<SHEAR-3 units="kip">-0.02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.03</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-191.56</MOMENT-3>
+										<TORQUE units="kip-ft">4.23</TORQUE>
+										<FAILURE-RATIO>0.26</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="14" elem_number="14">
+									<STRUCTURE_ELEMENT_I_END node_i="15">
+										<AXIAL units="kip">8.90</AXIAL>
+										<SHEAR-2 units="kip">127.09</SHEAR-2>
+										<SHEAR-3 units="kip">0.02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.03</MOMENT-2>
+										<MOMENT-3 units="kip-ft">191.56</MOMENT-3>
+										<TORQUE units="kip-ft">4.23</TORQUE>
+										<FAILURE-RATIO>0.26</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="4">
+										<AXIAL units="kip">-8.90</AXIAL>
+										<SHEAR-2 units="kip">-130.84</SHEAR-2>
+										<SHEAR-3 units="kip">-0.02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.38069E-03</MOMENT-2>
+										<MOMENT-3 units="kip-ft">23.38</MOMENT-3>
+										<TORQUE units="kip-ft">4.23</TORQUE>
+										<FAILURE-RATIO>0.02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="15" elem_number="15">
+									<STRUCTURE_ELEMENT_I_END node_i="4">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-8.44</SHEAR-2>
+										<SHEAR-3 units="kip">0.29340E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.31684E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-12.70</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="16">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">7.50</SHEAR-2>
+										<SHEAR-3 units="kip">-0.29340E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.23556E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">9.37</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="16" elem_number="16">
+									<STRUCTURE_ELEMENT_I_END node_i="16">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-7.50</SHEAR-2>
+										<SHEAR-3 units="kip">0.13806E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.22283E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-9.37</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="17">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">6.56</SHEAR-2>
+										<SHEAR-3 units="kip">-0.13806E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.20627E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">6.45</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.91893E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="17" elem_number="17">
+									<STRUCTURE_ELEMENT_I_END node_i="17">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-6.56</SHEAR-2>
+										<SHEAR-3 units="kip">0.32005E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.22224E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-6.45</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.91893E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="18">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">5.62</SHEAR-2>
+										<SHEAR-3 units="kip">-0.32005E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.83264E-09</MOMENT-2>
+										<MOMENT-3 units="kip-ft">3.91</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.55693E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="18" elem_number="18">
+									<STRUCTURE_ELEMENT_I_END node_i="18">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-5.62</SHEAR-2>
+										<SHEAR-3 units="kip">0.35570E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.97846E-09</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-3.91</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.55693E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="19">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">4.69</SHEAR-2>
+										<SHEAR-3 units="kip">-0.35570E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.21616E-09</MOMENT-2>
+										<MOMENT-3 units="kip-ft">1.76</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="19" elem_number="19">
+									<STRUCTURE_ELEMENT_I_END node_i="19">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-4.69</SHEAR-2>
+										<SHEAR-3 units="kip">-0.12096E-09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.26004E-09</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-1.76</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="20">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">3.75</SHEAR-2>
+										<SHEAR-3 units="kip">0.12096E-09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.20964E-09</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-0.21475E-09</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="20" elem_number="20">
+									<STRUCTURE_ELEMENT_I_END node_i="124">
+										<AXIAL units="kip">-0.18</AXIAL>
+										<SHEAR-2 units="kip">-5.56</SHEAR-2>
+										<SHEAR-3 units="kip">-0.27111E-02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.54277E-02</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-13.52</MOMENT-3>
+										<TORQUE units="kip-ft">-0.22575E-02</TORQUE>
+										<FAILURE-RATIO>0.18</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="90">
+										<AXIAL units="kip">0.18</AXIAL>
+										<SHEAR-2 units="kip">5.52</SHEAR-2>
+										<SHEAR-3 units="kip">0.27111E-02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.81277E-02</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-14.18</MOMENT-3>
+										<TORQUE units="kip-ft">-0.22575E-02</TORQUE>
+										<FAILURE-RATIO>0.18</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								</PIER_CAP>
+						</STRUCTURE_INTERNAL_FORCES>
+					</TIME_STEP>
+				</LOAD_CASE>
+				<LOAD_CASE number="9" combination="2" limitstate="STRENGTH-III">
+					<TIME_STEP number="1">
+						<PILE_DISPLACEMENTS>
+							<PILE number="1">
+								<NODE number="1" node_number="1">
+									<DX units="in">1.54</DX>
+									<DY units="in">3.16</DY>
+									<DZ units="in">0.08</DZ>
+									<RX units="rad">0.01</RX>
+									<RY units="rad">-0.42227E-02</RY>
+									<RZ units="rad">0.99647E-03</RZ>
+								</NODE>
+								</PILE>
+							<PILE number="2">
+								<NODE number="1" node_number="2">
+									<DX units="in">1.54</DX>
+									<DY units="in">3.22</DY>
+									<DZ units="in">0.34</DZ>
+									<RX units="rad">0.01</RX>
+									<RY units="rad">-0.41334E-02</RY>
+									<RZ units="rad">0.99312E-03</RZ>
+								</NODE>
+								</PILE>
+							<PILE number="3">
+								<NODE number="1" node_number="3">
+									<DX units="in">1.54</DX>
+									<DY units="in">3.28</DY>
+									<DZ units="in">0.58</DZ>
+									<RX units="rad">0.01</RX>
+									<RY units="rad">-0.41496E-02</RY>
+									<RZ units="rad">0.98995E-03</RZ>
+								</NODE>
+								</PILE>
+							<PILE number="4">
+								<NODE number="1" node_number="4">
+									<DX units="in">1.54</DX>
+									<DY units="in">3.34</DY>
+									<DZ units="in">0.83</DZ>
+									<RX units="rad">0.01</RX>
+									<RY units="rad">-0.40209E-02</RY>
+									<RZ units="rad">0.98645E-03</RZ>
+								</NODE>
+								</PILE>
+						</PILE_DISPLACEMENTS>
+						<STRUCTURE_INTERNAL_FORCES>
+							<PIER_CAP>
+								<ELEMENT number="1" elem_number="1">
+									<STRUCTURE_ELEMENT_I_END node_i="5">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">3.75</SHEAR-2>
+										<SHEAR-3 units="kip">-0.85565E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.61215E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">0.00000</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="6">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-4.69</SHEAR-2>
+										<SHEAR-3 units="kip">0.85565E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.76252E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">1.76</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="2" elem_number="2">
+									<STRUCTURE_ELEMENT_I_END node_i="6">
+										<AXIAL units="kip">-0.46566E-09</AXIAL>
+										<SHEAR-2 units="kip">4.69</SHEAR-2>
+										<SHEAR-3 units="kip">0.17462E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.24593E-07</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-1.76</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="7">
+										<AXIAL units="kip">0.46566E-09</AXIAL>
+										<SHEAR-2 units="kip">-5.62</SHEAR-2>
+										<SHEAR-3 units="kip">-0.17462E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.10419E-07</MOMENT-2>
+										<MOMENT-3 units="kip-ft">3.91</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.55693E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="3" elem_number="3">
+									<STRUCTURE_ELEMENT_I_END node_i="7">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">5.62</SHEAR-2>
+										<SHEAR-3 units="kip">-0.59372E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.28211E-07</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-3.91</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.55693E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="8">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-6.56</SHEAR-2>
+										<SHEAR-3 units="kip">0.59372E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.42957E-07</MOMENT-2>
+										<MOMENT-3 units="kip-ft">6.45</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.91893E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="4" elem_number="4">
+									<STRUCTURE_ELEMENT_I_END node_i="8">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">6.56</SHEAR-2>
+										<SHEAR-3 units="kip">-0.13475E-06</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.62447E-07</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-6.45</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.91893E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="9">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-7.50</SHEAR-2>
+										<SHEAR-3 units="kip">0.13475E-06</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.13343E-06</MOMENT-2>
+										<MOMENT-3 units="kip-ft">9.37</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="5" elem_number="5">
+									<STRUCTURE_ELEMENT_I_END node_i="9">
+										<AXIAL units="kip">0.46566E-09</AXIAL>
+										<SHEAR-2 units="kip">7.50</SHEAR-2>
+										<SHEAR-3 units="kip">-0.65949E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.10844E-06</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-9.37</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="1">
+										<AXIAL units="kip">-0.46566E-09</AXIAL>
+										<SHEAR-2 units="kip">-8.44</SHEAR-2>
+										<SHEAR-3 units="kip">0.65949E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.16061E-06</MOMENT-2>
+										<MOMENT-3 units="kip-ft">12.70</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="6" elem_number="6">
+									<STRUCTURE_ELEMENT_I_END node_i="1">
+										<AXIAL units="kip">-7.29</AXIAL>
+										<SHEAR-2 units="kip">-62.95</SHEAR-2>
+										<SHEAR-3 units="kip">3.48</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.03</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-12.97</MOMENT-3>
+										<TORQUE units="kip-ft">28.58</TORQUE>
+										<FAILURE-RATIO>0.03</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="10">
+										<AXIAL units="kip">7.29</AXIAL>
+										<SHEAR-2 units="kip">59.20</SHEAR-2>
+										<SHEAR-3 units="kip">-3.48</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-5.77</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-88.83</MOMENT-3>
+										<TORQUE units="kip-ft">28.58</TORQUE>
+										<FAILURE-RATIO>0.14</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="7" elem_number="7">
+									<STRUCTURE_ELEMENT_I_END node_i="10">
+										<AXIAL units="kip">-7.29</AXIAL>
+										<SHEAR-2 units="kip">-59.20</SHEAR-2>
+										<SHEAR-3 units="kip">3.48</SHEAR-3>
+										<MOMENT-2 units="kip-ft">5.77</MOMENT-2>
+										<MOMENT-3 units="kip-ft">88.83</MOMENT-3>
+										<TORQUE units="kip-ft">28.58</TORQUE>
+										<FAILURE-RATIO>0.14</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="11">
+										<AXIAL units="kip">7.29</AXIAL>
+										<SHEAR-2 units="kip">55.73</SHEAR-2>
+										<SHEAR-3 units="kip">-3.48</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-11.13</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-177.41</MOMENT-3>
+										<TORQUE units="kip-ft">28.58</TORQUE>
+										<FAILURE-RATIO>0.27</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="8" elem_number="8">
+									<STRUCTURE_ELEMENT_I_END node_i="11">
+										<AXIAL units="kip">18.69</AXIAL>
+										<SHEAR-2 units="kip">154.22</SHEAR-2>
+										<SHEAR-3 units="kip">-3.02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">11.78</MOMENT-2>
+										<MOMENT-3 units="kip-ft">273.87</MOMENT-3>
+										<TORQUE units="kip-ft">-29.61</TORQUE>
+										<FAILURE-RATIO>0.36</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="2">
+										<AXIAL units="kip">-18.69</AXIAL>
+										<SHEAR-2 units="kip">-158.26</SHEAR-2>
+										<SHEAR-3 units="kip">3.02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-6.37</MOMENT-2>
+										<MOMENT-3 units="kip-ft">6.11</MOMENT-3>
+										<TORQUE units="kip-ft">-29.61</TORQUE>
+										<FAILURE-RATIO>0.34681E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="9" elem_number="9">
+									<STRUCTURE_ELEMENT_I_END node_i="2">
+										<AXIAL units="kip">5.67</AXIAL>
+										<SHEAR-2 units="kip">3.70</SHEAR-2>
+										<SHEAR-3 units="kip">0.04</SHEAR-3>
+										<MOMENT-2 units="kip-ft">6.37</MOMENT-2>
+										<MOMENT-3 units="kip-ft">0.11</MOMENT-3>
+										<TORQUE units="kip-ft">-0.84</TORQUE>
+										<FAILURE-RATIO>0.19659E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="12">
+										<AXIAL units="kip">-5.67</AXIAL>
+										<SHEAR-2 units="kip">-7.45</SHEAR-2>
+										<SHEAR-3 units="kip">-0.04</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-6.43</MOMENT-2>
+										<MOMENT-3 units="kip-ft">9.19</MOMENT-3>
+										<TORQUE units="kip-ft">-0.84</TORQUE>
+										<FAILURE-RATIO>0.57162E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="10" elem_number="10">
+									<STRUCTURE_ELEMENT_I_END node_i="12">
+										<AXIAL units="kip">5.67</AXIAL>
+										<SHEAR-2 units="kip">7.45</SHEAR-2>
+										<SHEAR-3 units="kip">0.04</SHEAR-3>
+										<MOMENT-2 units="kip-ft">6.43</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-9.19</MOMENT-3>
+										<TORQUE units="kip-ft">-0.84</TORQUE>
+										<FAILURE-RATIO>0.57162E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="13">
+										<AXIAL units="kip">-5.67</AXIAL>
+										<SHEAR-2 units="kip">-11.20</SHEAR-2>
+										<SHEAR-3 units="kip">-0.04</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-6.49</MOMENT-2>
+										<MOMENT-3 units="kip-ft">24.74</MOMENT-3>
+										<TORQUE units="kip-ft">-0.84</TORQUE>
+										<FAILURE-RATIO>0.03</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="11" elem_number="11">
+									<STRUCTURE_ELEMENT_I_END node_i="13">
+										<AXIAL units="kip">5.67</AXIAL>
+										<SHEAR-2 units="kip">11.20</SHEAR-2>
+										<SHEAR-3 units="kip">0.04</SHEAR-3>
+										<MOMENT-2 units="kip-ft">6.49</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-24.74</MOMENT-3>
+										<TORQUE units="kip-ft">-0.84</TORQUE>
+										<FAILURE-RATIO>0.03</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="3">
+										<AXIAL units="kip">-5.67</AXIAL>
+										<SHEAR-2 units="kip">-14.95</SHEAR-2>
+										<SHEAR-3 units="kip">-0.04</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-6.55</MOMENT-2>
+										<MOMENT-3 units="kip-ft">46.53</MOMENT-3>
+										<TORQUE units="kip-ft">-0.84</TORQUE>
+										<FAILURE-RATIO>0.06</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="12" elem_number="12">
+									<STRUCTURE_ELEMENT_I_END node_i="3">
+										<AXIAL units="kip">-7.69</AXIAL>
+										<SHEAR-2 units="kip">-170.98</SHEAR-2>
+										<SHEAR-3 units="kip">2.73</SHEAR-3>
+										<MOMENT-2 units="kip-ft">6.55</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-41.27</MOMENT-3>
+										<TORQUE units="kip-ft">27.98</TORQUE>
+										<FAILURE-RATIO>0.07</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="14">
+										<AXIAL units="kip">7.69</AXIAL>
+										<SHEAR-2 units="kip">166.95</SHEAR-2>
+										<SHEAR-3 units="kip">-2.73</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-11.45</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-261.35</MOMENT-3>
+										<TORQUE units="kip-ft">27.98</TORQUE>
+										<FAILURE-RATIO>0.39</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="13" elem_number="13">
+									<STRUCTURE_ELEMENT_I_END node_i="14">
+										<AXIAL units="kip">18.29</AXIAL>
+										<SHEAR-2 units="kip">116.04</SHEAR-2>
+										<SHEAR-3 units="kip">-3.76</SHEAR-3>
+										<MOMENT-2 units="kip-ft">12.09</MOMENT-2>
+										<MOMENT-3 units="kip-ft">357.82</MOMENT-3>
+										<TORQUE units="kip-ft">-28.38</TORQUE>
+										<FAILURE-RATIO>0.48</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="15">
+										<AXIAL units="kip">-18.29</AXIAL>
+										<SHEAR-2 units="kip">-119.51</SHEAR-2>
+										<SHEAR-3 units="kip">3.76</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-6.29</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-176.17</MOMENT-3>
+										<TORQUE units="kip-ft">-28.38</TORQUE>
+										<FAILURE-RATIO>0.22</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="14" elem_number="14">
+									<STRUCTURE_ELEMENT_I_END node_i="15">
+										<AXIAL units="kip">18.29</AXIAL>
+										<SHEAR-2 units="kip">119.51</SHEAR-2>
+										<SHEAR-3 units="kip">-3.76</SHEAR-3>
+										<MOMENT-2 units="kip-ft">6.29</MOMENT-2>
+										<MOMENT-3 units="kip-ft">176.17</MOMENT-3>
+										<TORQUE units="kip-ft">-28.38</TORQUE>
+										<FAILURE-RATIO>0.22</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="4">
+										<AXIAL units="kip">-18.29</AXIAL>
+										<SHEAR-2 units="kip">-123.26</SHEAR-2>
+										<SHEAR-3 units="kip">3.76</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.01</MOMENT-2>
+										<MOMENT-3 units="kip-ft">26.13</MOMENT-3>
+										<TORQUE units="kip-ft">-28.38</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="15" elem_number="15">
+									<STRUCTURE_ELEMENT_I_END node_i="4">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-8.44</SHEAR-2>
+										<SHEAR-3 units="kip">-0.99360E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.16040E-06</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-12.70</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="16">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">7.50</SHEAR-2>
+										<SHEAR-3 units="kip">0.99360E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.11630E-06</MOMENT-2>
+										<MOMENT-3 units="kip-ft">9.37</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="16" elem_number="16">
+									<STRUCTURE_ELEMENT_I_END node_i="16">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-7.50</SHEAR-2>
+										<SHEAR-3 units="kip">-0.14523E-06</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.14525E-06</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-9.37</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="17">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">6.56</SHEAR-2>
+										<SHEAR-3 units="kip">0.14523E-06</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.10687E-06</MOMENT-2>
+										<MOMENT-3 units="kip-ft">6.45</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.91893E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="17" elem_number="17">
+									<STRUCTURE_ELEMENT_I_END node_i="17">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-6.56</SHEAR-2>
+										<SHEAR-3 units="kip">-0.76136E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.11744E-06</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-6.45</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.91893E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="18">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">5.62</SHEAR-2>
+										<SHEAR-3 units="kip">0.76136E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.63136E-07</MOMENT-2>
+										<MOMENT-3 units="kip-ft">3.91</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.55693E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="18" elem_number="18">
+									<STRUCTURE_ELEMENT_I_END node_i="18">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-5.62</SHEAR-2>
+										<SHEAR-3 units="kip">-0.13201E-06</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.70567E-07</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-3.91</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.55693E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="19">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">4.69</SHEAR-2>
+										<SHEAR-3 units="kip">0.13201E-06</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.20567E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">1.76</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="19" elem_number="19">
+									<STRUCTURE_ELEMENT_I_END node_i="19">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-4.69</SHEAR-2>
+										<SHEAR-3 units="kip">-0.16764E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.86341E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-1.76</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="20">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">3.75</SHEAR-2>
+										<SHEAR-3 units="kip">0.16764E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.25999E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">0.76326E-09</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="20" elem_number="20">
+									<STRUCTURE_ELEMENT_I_END node_i="124">
+										<AXIAL units="kip">-2.61</AXIAL>
+										<SHEAR-2 units="kip">-8.69</SHEAR-2>
+										<SHEAR-3 units="kip">-0.34</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.52</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-23.17</MOMENT-3>
+										<TORQUE units="kip-ft">0.66</TORQUE>
+										<FAILURE-RATIO>0.33</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="90">
+										<AXIAL units="kip">2.61</AXIAL>
+										<SHEAR-2 units="kip">8.66</SHEAR-2>
+										<SHEAR-3 units="kip">0.34</SHEAR-3>
+										<MOMENT-2 units="kip-ft">2.20</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-20.22</MOMENT-3>
+										<TORQUE units="kip-ft">0.66</TORQUE>
+										<FAILURE-RATIO>0.29</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								</PIER_CAP>
+						</STRUCTURE_INTERNAL_FORCES>
+					</TIME_STEP>
+				</LOAD_CASE>
+				<LOAD_CASE number="10" combination="3" limitstate="STRENGTH-III">
+					<TIME_STEP number="1">
+						<PILE_DISPLACEMENTS>
+							<PILE number="1">
+								<NODE number="1" node_number="1">
+									<DX units="in">1.46</DX>
+									<DY units="in">-0.04</DY>
+									<DZ units="in">0.07</DZ>
+									<RX units="rad">-0.19035E-03</RX>
+									<RY units="rad">-0.41276E-02</RY>
+									<RZ units="rad">0.33098E-06</RZ>
+								</NODE>
+								</PILE>
+							<PILE number="2">
+								<NODE number="1" node_number="2">
+									<DX units="in">1.46</DX>
+									<DY units="in">-0.04</DY>
+									<DZ units="in">0.31</DZ>
+									<RX units="rad">-0.19144E-03</RX>
+									<RY units="rad">-0.40536E-02</RY>
+									<RZ units="rad">0.33419E-06</RZ>
+								</NODE>
+								</PILE>
+							<PILE number="3">
+								<NODE number="1" node_number="3">
+									<DX units="in">1.46</DX>
+									<DY units="in">-0.04</DY>
+									<DZ units="in">0.56</DZ>
+									<RX units="rad">-0.19247E-03</RX>
+									<RY units="rad">-0.40702E-02</RY>
+									<RZ units="rad">0.36760E-06</RZ>
+								</NODE>
+								</PILE>
+							<PILE number="4">
+								<NODE number="1" node_number="4">
+									<DX units="in">1.46</DX>
+									<DY units="in">-0.04</DY>
+									<DZ units="in">0.80</DZ>
+									<RX units="rad">-0.19205E-03</RX>
+									<RY units="rad">-0.39406E-02</RY>
+									<RZ units="rad">0.39769E-06</RZ>
+								</NODE>
+								</PILE>
+						</PILE_DISPLACEMENTS>
+						<STRUCTURE_INTERNAL_FORCES>
+							<PIER_CAP>
+								<ELEMENT number="1" elem_number="1">
+									<STRUCTURE_ELEMENT_I_END node_i="5">
+										<AXIAL units="kip">-0.46566E-09</AXIAL>
+										<SHEAR-2 units="kip">3.75</SHEAR-2>
+										<SHEAR-3 units="kip">-0.78519E-09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.00000</MOMENT-2>
+										<MOMENT-3 units="kip-ft">0.00000</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="6">
+										<AXIAL units="kip">0.46566E-09</AXIAL>
+										<SHEAR-2 units="kip">-4.69</SHEAR-2>
+										<SHEAR-3 units="kip">0.78519E-09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.19779E-09</MOMENT-2>
+										<MOMENT-3 units="kip-ft">1.76</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="2" elem_number="2">
+									<STRUCTURE_ELEMENT_I_END node_i="6">
+										<AXIAL units="kip">-0.46566E-09</AXIAL>
+										<SHEAR-2 units="kip">4.69</SHEAR-2>
+										<SHEAR-3 units="kip">0.84894E-09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.33502E-09</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-1.76</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="7">
+										<AXIAL units="kip">0.46566E-09</AXIAL>
+										<SHEAR-2 units="kip">-5.62</SHEAR-2>
+										<SHEAR-3 units="kip">-0.84894E-09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.00000</MOMENT-2>
+										<MOMENT-3 units="kip-ft">3.91</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.55693E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="3" elem_number="3">
+									<STRUCTURE_ELEMENT_I_END node_i="7">
+										<AXIAL units="kip">0.46566E-09</AXIAL>
+										<SHEAR-2 units="kip">5.62</SHEAR-2>
+										<SHEAR-3 units="kip">0.10381E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.28547E-09</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-3.91</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.55693E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="8">
+										<AXIAL units="kip">-0.46566E-09</AXIAL>
+										<SHEAR-2 units="kip">-6.56</SHEAR-2>
+										<SHEAR-3 units="kip">-0.10381E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.67081E-09</MOMENT-2>
+										<MOMENT-3 units="kip-ft">6.45</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.91893E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="4" elem_number="4">
+									<STRUCTURE_ELEMENT_I_END node_i="8">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">6.56</SHEAR-2>
+										<SHEAR-3 units="kip">0.19602E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.77831E-09</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-6.45</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.91893E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="9">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-7.50</SHEAR-2>
+										<SHEAR-3 units="kip">-0.19602E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.15478E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">9.37</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="5" elem_number="5">
+									<STRUCTURE_ELEMENT_I_END node_i="9">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">7.50</SHEAR-2>
+										<SHEAR-3 units="kip">0.14404E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.15749E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-9.37</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="1">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-8.44</SHEAR-2>
+										<SHEAR-3 units="kip">-0.14404E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.19724E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">12.70</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="6" elem_number="6">
+									<STRUCTURE_ELEMENT_I_END node_i="1">
+										<AXIAL units="kip">-8.00</AXIAL>
+										<SHEAR-2 units="kip">-52.34</SHEAR-2>
+										<SHEAR-3 units="kip">-0.09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.21904E-02</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-12.23</MOMENT-3>
+										<TORQUE units="kip-ft">-2.72</TORQUE>
+										<FAILURE-RATIO>0.03</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="10">
+										<AXIAL units="kip">8.00</AXIAL>
+										<SHEAR-2 units="kip">48.59</SHEAR-2>
+										<SHEAR-3 units="kip">0.09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.16</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-71.89</MOMENT-3>
+										<TORQUE units="kip-ft">-2.72</TORQUE>
+										<FAILURE-RATIO>0.12</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="7" elem_number="7">
+									<STRUCTURE_ELEMENT_I_END node_i="10">
+										<AXIAL units="kip">-8.00</AXIAL>
+										<SHEAR-2 units="kip">-48.59</SHEAR-2>
+										<SHEAR-3 units="kip">-0.09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.16</MOMENT-2>
+										<MOMENT-3 units="kip-ft">71.89</MOMENT-3>
+										<TORQUE units="kip-ft">-2.72</TORQUE>
+										<FAILURE-RATIO>0.12</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="11">
+										<AXIAL units="kip">8.00</AXIAL>
+										<SHEAR-2 units="kip">45.13</SHEAR-2>
+										<SHEAR-3 units="kip">0.09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.31</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-144.12</MOMENT-3>
+										<TORQUE units="kip-ft">-2.72</TORQUE>
+										<FAILURE-RATIO>0.22</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="8" elem_number="8">
+									<STRUCTURE_ELEMENT_I_END node_i="11">
+										<AXIAL units="kip">17.98</AXIAL>
+										<SHEAR-2 units="kip">139.01</SHEAR-2>
+										<SHEAR-3 units="kip">-0.09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.34</MOMENT-2>
+										<MOMENT-3 units="kip-ft">240.58</MOMENT-3>
+										<TORQUE units="kip-ft">1.74</TORQUE>
+										<FAILURE-RATIO>0.31</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="2">
+										<AXIAL units="kip">-17.98</AXIAL>
+										<SHEAR-2 units="kip">-143.04</SHEAR-2>
+										<SHEAR-3 units="kip">0.09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.17</MOMENT-2>
+										<MOMENT-3 units="kip-ft">12.14</MOMENT-3>
+										<TORQUE units="kip-ft">1.74</TORQUE>
+										<FAILURE-RATIO>0.53012E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="9" elem_number="9">
+									<STRUCTURE_ELEMENT_I_END node_i="2">
+										<AXIAL units="kip">5.05</AXIAL>
+										<SHEAR-2 units="kip">1.35</SHEAR-2>
+										<SHEAR-3 units="kip">-0.10</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.17</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-6.24</MOMENT-3>
+										<TORQUE units="kip-ft">-1.07</TORQUE>
+										<FAILURE-RATIO>0.24890E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="12">
+										<AXIAL units="kip">-5.05</AXIAL>
+										<SHEAR-2 units="kip">-5.10</SHEAR-2>
+										<SHEAR-3 units="kip">0.10</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.01</MOMENT-2>
+										<MOMENT-3 units="kip-ft">11.60</MOMENT-3>
+										<TORQUE units="kip-ft">-1.07</TORQUE>
+										<FAILURE-RATIO>0.78301E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="10" elem_number="10">
+									<STRUCTURE_ELEMENT_I_END node_i="12">
+										<AXIAL units="kip">5.05</AXIAL>
+										<SHEAR-2 units="kip">5.10</SHEAR-2>
+										<SHEAR-3 units="kip">-0.10</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.01</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-11.60</MOMENT-3>
+										<TORQUE units="kip-ft">-1.07</TORQUE>
+										<FAILURE-RATIO>0.78301E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="13">
+										<AXIAL units="kip">-5.05</AXIAL>
+										<SHEAR-2 units="kip">-8.85</SHEAR-2>
+										<SHEAR-3 units="kip">0.10</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.15</MOMENT-2>
+										<MOMENT-3 units="kip-ft">23.22</MOMENT-3>
+										<TORQUE units="kip-ft">-1.07</TORQUE>
+										<FAILURE-RATIO>0.02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="11" elem_number="11">
+									<STRUCTURE_ELEMENT_I_END node_i="13">
+										<AXIAL units="kip">5.05</AXIAL>
+										<SHEAR-2 units="kip">8.85</SHEAR-2>
+										<SHEAR-3 units="kip">-0.10</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.15</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-23.22</MOMENT-3>
+										<TORQUE units="kip-ft">-1.07</TORQUE>
+										<FAILURE-RATIO>0.02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="3">
+										<AXIAL units="kip">-5.05</AXIAL>
+										<SHEAR-2 units="kip">-12.60</SHEAR-2>
+										<SHEAR-3 units="kip">0.10</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.31</MOMENT-2>
+										<MOMENT-3 units="kip-ft">41.09</MOMENT-3>
+										<TORQUE units="kip-ft">-1.07</TORQUE>
+										<FAILURE-RATIO>0.05</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="12" elem_number="12">
+									<STRUCTURE_ELEMENT_I_END node_i="3">
+										<AXIAL units="kip">-7.95</AXIAL>
+										<SHEAR-2 units="kip">-168.11</SHEAR-2>
+										<SHEAR-3 units="kip">-0.07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.31</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-36.22</MOMENT-3>
+										<TORQUE units="kip-ft">-3.96</TORQUE>
+										<FAILURE-RATIO>0.07</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="14">
+										<AXIAL units="kip">7.95</AXIAL>
+										<SHEAR-2 units="kip">164.08</SHEAR-2>
+										<SHEAR-3 units="kip">0.07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.43</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-261.25</MOMENT-3>
+										<TORQUE units="kip-ft">-3.96</TORQUE>
+										<FAILURE-RATIO>0.39</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="13" elem_number="13">
+									<STRUCTURE_ELEMENT_I_END node_i="14">
+										<AXIAL units="kip">18.03</AXIAL>
+										<SHEAR-2 units="kip">115.91</SHEAR-2>
+										<SHEAR-3 units="kip">-0.07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.22</MOMENT-2>
+										<MOMENT-3 units="kip-ft">357.72</MOMENT-3>
+										<TORQUE units="kip-ft">2.89</TORQUE>
+										<FAILURE-RATIO>0.48</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="15">
+										<AXIAL units="kip">-18.03</AXIAL>
+										<SHEAR-2 units="kip">-119.38</SHEAR-2>
+										<SHEAR-3 units="kip">0.07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.11</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-176.27</MOMENT-3>
+										<TORQUE units="kip-ft">2.89</TORQUE>
+										<FAILURE-RATIO>0.22</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="14" elem_number="14">
+									<STRUCTURE_ELEMENT_I_END node_i="15">
+										<AXIAL units="kip">18.03</AXIAL>
+										<SHEAR-2 units="kip">119.38</SHEAR-2>
+										<SHEAR-3 units="kip">-0.07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.11</MOMENT-2>
+										<MOMENT-3 units="kip-ft">176.27</MOMENT-3>
+										<TORQUE units="kip-ft">2.89</TORQUE>
+										<FAILURE-RATIO>0.22</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="4">
+										<AXIAL units="kip">-18.03</AXIAL>
+										<SHEAR-2 units="kip">-123.13</SHEAR-2>
+										<SHEAR-3 units="kip">0.07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.27193E-02</MOMENT-2>
+										<MOMENT-3 units="kip-ft">25.81</MOMENT-3>
+										<TORQUE units="kip-ft">2.89</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="15" elem_number="15">
+									<STRUCTURE_ELEMENT_I_END node_i="4">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-8.44</SHEAR-2>
+										<SHEAR-3 units="kip">0.22138E-09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.19695E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-12.70</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="16">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">7.50</SHEAR-2>
+										<SHEAR-3 units="kip">-0.22138E-09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.16489E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">9.37</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="16" elem_number="16">
+									<STRUCTURE_ELEMENT_I_END node_i="16">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-7.50</SHEAR-2>
+										<SHEAR-3 units="kip">0.84410E-09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.17197E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-9.37</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="17">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">6.56</SHEAR-2>
+										<SHEAR-3 units="kip">-0.84410E-09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.12171E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">6.45</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.91893E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="17" elem_number="17">
+									<STRUCTURE_ELEMENT_I_END node_i="17">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-6.56</SHEAR-2>
+										<SHEAR-3 units="kip">0.18210E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.12087E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-6.45</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.91893E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="18">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">5.62</SHEAR-2>
+										<SHEAR-3 units="kip">-0.18210E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.68700E-09</MOMENT-2>
+										<MOMENT-3 units="kip-ft">3.91</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.55693E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="18" elem_number="18">
+									<STRUCTURE_ELEMENT_I_END node_i="18">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-5.62</SHEAR-2>
+										<SHEAR-3 units="kip">0.14666E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.84907E-09</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-3.91</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.55693E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="19">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">4.69</SHEAR-2>
+										<SHEAR-3 units="kip">-0.14666E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.16451E-09</MOMENT-2>
+										<MOMENT-3 units="kip-ft">1.76</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="19" elem_number="19">
+									<STRUCTURE_ELEMENT_I_END node_i="19">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-4.69</SHEAR-2>
+										<SHEAR-3 units="kip">0.53373E-09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.00000</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-1.76</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="20">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">3.75</SHEAR-2>
+										<SHEAR-3 units="kip">-0.53373E-09</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.00000</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-0.28447E-09</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="20" elem_number="20">
+									<STRUCTURE_ELEMENT_I_END node_i="124">
+										<AXIAL units="kip">-2.64</AXIAL>
+										<SHEAR-2 units="kip">-8.26</SHEAR-2>
+										<SHEAR-3 units="kip">-0.34820E-02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.73932E-02</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-22.02</MOMENT-3>
+										<TORQUE units="kip-ft">0.03</TORQUE>
+										<FAILURE-RATIO>0.31</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="90">
+										<AXIAL units="kip">2.64</AXIAL>
+										<SHEAR-2 units="kip">8.23</SHEAR-2>
+										<SHEAR-3 units="kip">0.34820E-02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.02</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-19.21</MOMENT-3>
+										<TORQUE units="kip-ft">0.03</TORQUE>
+										<FAILURE-RATIO>0.28</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								</PIER_CAP>
+						</STRUCTURE_INTERNAL_FORCES>
+					</TIME_STEP>
+				</LOAD_CASE>
+				<LOAD_CASE number="11" combination="4" limitstate="SERVICE-I">
+					<TIME_STEP number="1">
+						<PILE_DISPLACEMENTS>
+							<PILE number="1">
+								<NODE number="1" node_number="1">
+									<DX units="in">0.74</DX>
+									<DY units="in">1.14</DY>
+									<DZ units="in">0.18</DZ>
+									<RX units="rad">0.39945E-02</RX>
+									<RY units="rad">-0.22134E-02</RY>
+									<RZ units="rad">0.32427E-03</RZ>
+								</NODE>
+								</PILE>
+							<PILE number="2">
+								<NODE number="1" node_number="2">
+									<DX units="in">0.74</DX>
+									<DY units="in">1.15</DY>
+									<DZ units="in">0.31</DZ>
+									<RX units="rad">0.39988E-02</RX>
+									<RY units="rad">-0.21124E-02</RY>
+									<RZ units="rad">0.32269E-03</RZ>
+								</NODE>
+								</PILE>
+							<PILE number="3">
+								<NODE number="1" node_number="3">
+									<DX units="in">0.74</DX>
+									<DY units="in">1.17</DY>
+									<DZ units="in">0.43</DZ>
+									<RX units="rad">0.39982E-02</RX>
+									<RY units="rad">-0.21236E-02</RY>
+									<RZ units="rad">0.32131E-03</RZ>
+								</NODE>
+								</PILE>
+							<PILE number="4">
+								<NODE number="1" node_number="4">
+									<DX units="in">0.74</DX>
+									<DY units="in">1.19</DY>
+									<DZ units="in">0.56</DZ>
+									<RX units="rad">0.39935E-02</RX>
+									<RY units="rad">-0.19927E-02</RY>
+									<RZ units="rad">0.31968E-03</RZ>
+								</NODE>
+								</PILE>
+						</PILE_DISPLACEMENTS>
+						<STRUCTURE_INTERNAL_FORCES>
+							<PIER_CAP>
+								<ELEMENT number="1" elem_number="1">
+									<STRUCTURE_ELEMENT_I_END node_i="5">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">3.00</SHEAR-2>
+										<SHEAR-3 units="kip">0.22585E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.44311E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">0.24892E-09</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="6">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-3.75</SHEAR-2>
+										<SHEAR-3 units="kip">-0.22585E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.88621E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">1.41</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="2" elem_number="2">
+									<STRUCTURE_ELEMENT_I_END node_i="6">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">3.75</SHEAR-2>
+										<SHEAR-3 units="kip">-0.29526E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.44723E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-1.41</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="7">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-4.50</SHEAR-2>
+										<SHEAR-3 units="kip">0.29526E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.39775E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">3.12</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.44554E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="3" elem_number="3">
+									<STRUCTURE_ELEMENT_I_END node_i="7">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">4.50</SHEAR-2>
+										<SHEAR-3 units="kip">-0.56229E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.93617E-09</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-3.12</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.44554E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="8">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-5.25</SHEAR-2>
+										<SHEAR-3 units="kip">0.56229E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.18010E-07</MOMENT-2>
+										<MOMENT-3 units="kip-ft">5.16</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.73514E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="4" elem_number="4">
+									<STRUCTURE_ELEMENT_I_END node_i="8">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">5.25</SHEAR-2>
+										<SHEAR-3 units="kip">-0.32611E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.23259E-07</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-5.16</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.73514E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="9">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-6.00</SHEAR-2>
+										<SHEAR-3 units="kip">0.32611E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.42904E-07</MOMENT-2>
+										<MOMENT-3 units="kip-ft">7.50</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="5" elem_number="5">
+									<STRUCTURE_ELEMENT_I_END node_i="9">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">6.00</SHEAR-2>
+										<SHEAR-3 units="kip">-0.17666E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.40236E-07</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-7.50</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="1">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-6.75</SHEAR-2>
+										<SHEAR-3 units="kip">0.17666E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.53638E-07</MOMENT-2>
+										<MOMENT-3 units="kip-ft">10.16</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="6" elem_number="6">
+									<STRUCTURE_ELEMENT_I_END node_i="1">
+										<AXIAL units="kip">-0.22</AXIAL>
+										<SHEAR-2 units="kip">-77.49</SHEAR-2>
+										<SHEAR-3 units="kip">1.66</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.01</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-14.35</MOMENT-3>
+										<TORQUE units="kip-ft">16.64</TORQUE>
+										<FAILURE-RATIO>0.02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="10">
+										<AXIAL units="kip">0.22</AXIAL>
+										<SHEAR-2 units="kip">74.49</SHEAR-2>
+										<SHEAR-3 units="kip">-1.66</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-2.75</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-112.30</MOMENT-3>
+										<TORQUE units="kip-ft">16.64</TORQUE>
+										<FAILURE-RATIO>0.16</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="7" elem_number="7">
+									<STRUCTURE_ELEMENT_I_END node_i="10">
+										<AXIAL units="kip">-0.22</AXIAL>
+										<SHEAR-2 units="kip">-74.49</SHEAR-2>
+										<SHEAR-3 units="kip">1.66</SHEAR-3>
+										<MOMENT-2 units="kip-ft">2.75</MOMENT-2>
+										<MOMENT-3 units="kip-ft">112.30</MOMENT-3>
+										<TORQUE units="kip-ft">16.64</TORQUE>
+										<FAILURE-RATIO>0.16</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="11">
+										<AXIAL units="kip">0.22</AXIAL>
+										<SHEAR-2 units="kip">71.72</SHEAR-2>
+										<SHEAR-3 units="kip">-1.66</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-5.31</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-224.98</MOMENT-3>
+										<TORQUE units="kip-ft">16.64</TORQUE>
+										<FAILURE-RATIO>0.32</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="8" elem_number="8">
+									<STRUCTURE_ELEMENT_I_END node_i="11">
+										<AXIAL units="kip">12.70</AXIAL>
+										<SHEAR-2 units="kip">157.03</SHEAR-2>
+										<SHEAR-3 units="kip">-1.57</SHEAR-3>
+										<MOMENT-2 units="kip-ft">5.64</MOMENT-2>
+										<MOMENT-3 units="kip-ft">272.97</MOMENT-3>
+										<TORQUE units="kip-ft">-17.38</TORQUE>
+										<FAILURE-RATIO>0.37</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="2">
+										<AXIAL units="kip">-12.70</AXIAL>
+										<SHEAR-2 units="kip">-160.25</SHEAR-2>
+										<SHEAR-3 units="kip">1.57</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-2.82</MOMENT-2>
+										<MOMENT-3 units="kip-ft">11.31</MOMENT-3>
+										<TORQUE units="kip-ft">-17.38</TORQUE>
+										<FAILURE-RATIO>0.49430E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="9" elem_number="9">
+									<STRUCTURE_ELEMENT_I_END node_i="2">
+										<AXIAL units="kip">6.90</AXIAL>
+										<SHEAR-2 units="kip">-1.24</SHEAR-2>
+										<SHEAR-3 units="kip">-0.24879E-02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">2.82</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-8.45</MOMENT-3>
+										<TORQUE units="kip-ft">-0.61</TORQUE>
+										<FAILURE-RATIO>0.36507E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="12">
+										<AXIAL units="kip">-6.90</AXIAL>
+										<SHEAR-2 units="kip">-1.76</SHEAR-2>
+										<SHEAR-3 units="kip">0.24879E-02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-2.82</MOMENT-2>
+										<MOMENT-3 units="kip-ft">8.89</MOMENT-3>
+										<TORQUE units="kip-ft">-0.61</TORQUE>
+										<FAILURE-RATIO>0.38507E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="10" elem_number="10">
+									<STRUCTURE_ELEMENT_I_END node_i="12">
+										<AXIAL units="kip">6.90</AXIAL>
+										<SHEAR-2 units="kip">1.76</SHEAR-2>
+										<SHEAR-3 units="kip">-0.24879E-02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">2.82</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-8.89</MOMENT-3>
+										<TORQUE units="kip-ft">-0.61</TORQUE>
+										<FAILURE-RATIO>0.38507E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="13">
+										<AXIAL units="kip">-6.90</AXIAL>
+										<SHEAR-2 units="kip">-4.76</SHEAR-2>
+										<SHEAR-3 units="kip">0.24879E-02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-2.81</MOMENT-2>
+										<MOMENT-3 units="kip-ft">14.33</MOMENT-3>
+										<TORQUE units="kip-ft">-0.61</TORQUE>
+										<FAILURE-RATIO>0.89694E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="11" elem_number="11">
+									<STRUCTURE_ELEMENT_I_END node_i="13">
+										<AXIAL units="kip">6.90</AXIAL>
+										<SHEAR-2 units="kip">4.76</SHEAR-2>
+										<SHEAR-3 units="kip">-0.24879E-02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">2.81</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-14.33</MOMENT-3>
+										<TORQUE units="kip-ft">-0.61</TORQUE>
+										<FAILURE-RATIO>0.89694E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="3">
+										<AXIAL units="kip">-6.90</AXIAL>
+										<SHEAR-2 units="kip">-7.76</SHEAR-2>
+										<SHEAR-3 units="kip">0.24879E-02</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-2.81</MOMENT-2>
+										<MOMENT-3 units="kip-ft">24.77</MOMENT-3>
+										<TORQUE units="kip-ft">-0.61</TORQUE>
+										<FAILURE-RATIO>0.02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="12" elem_number="12">
+									<STRUCTURE_ELEMENT_I_END node_i="3">
+										<AXIAL units="kip">-0.13</AXIAL>
+										<SHEAR-2 units="kip">-175.00</SHEAR-2>
+										<SHEAR-3 units="kip">1.45</SHEAR-3>
+										<MOMENT-2 units="kip-ft">2.81</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-22.38</MOMENT-3>
+										<TORQUE units="kip-ft">16.17</TORQUE>
+										<FAILURE-RATIO>0.03</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="14">
+										<AXIAL units="kip">0.13</AXIAL>
+										<SHEAR-2 units="kip">171.78</SHEAR-2>
+										<SHEAR-3 units="kip">-1.45</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-5.40</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-288.16</MOMENT-3>
+										<TORQUE units="kip-ft">16.17</TORQUE>
+										<FAILURE-RATIO>0.41</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="13" elem_number="13">
+									<STRUCTURE_ELEMENT_I_END node_i="14">
+										<AXIAL units="kip">12.79</AXIAL>
+										<SHEAR-2 units="kip">108.46</SHEAR-2>
+										<SHEAR-3 units="kip">-1.78</SHEAR-3>
+										<MOMENT-2 units="kip-ft">5.72</MOMENT-2>
+										<MOMENT-3 units="kip-ft">336.15</MOMENT-3>
+										<TORQUE units="kip-ft">-16.57</TORQUE>
+										<FAILURE-RATIO>0.46</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="15">
+										<AXIAL units="kip">-12.79</AXIAL>
+										<SHEAR-2 units="kip">-111.23</SHEAR-2>
+										<SHEAR-3 units="kip">1.78</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-2.97</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-166.74</MOMENT-3>
+										<TORQUE units="kip-ft">-16.57</TORQUE>
+										<FAILURE-RATIO>0.21</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="14" elem_number="14">
+									<STRUCTURE_ELEMENT_I_END node_i="15">
+										<AXIAL units="kip">12.79</AXIAL>
+										<SHEAR-2 units="kip">111.23</SHEAR-2>
+										<SHEAR-3 units="kip">-1.78</SHEAR-3>
+										<MOMENT-2 units="kip-ft">2.97</MOMENT-2>
+										<MOMENT-3 units="kip-ft">166.74</MOMENT-3>
+										<TORQUE units="kip-ft">-16.57</TORQUE>
+										<FAILURE-RATIO>0.21</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="4">
+										<AXIAL units="kip">-12.79</AXIAL>
+										<SHEAR-2 units="kip">-114.23</SHEAR-2>
+										<SHEAR-3 units="kip">1.78</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.42161E-03</MOMENT-2>
+										<MOMENT-3 units="kip-ft">21.15</MOMENT-3>
+										<TORQUE units="kip-ft">-16.57</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="15" elem_number="15">
+									<STRUCTURE_ELEMENT_I_END node_i="4">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-6.75</SHEAR-2>
+										<SHEAR-3 units="kip">-0.26441E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.58921E-07</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-10.16</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="16">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">6.00</SHEAR-2>
+										<SHEAR-3 units="kip">0.26441E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.51038E-07</MOMENT-2>
+										<MOMENT-3 units="kip-ft">7.50</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="16" elem_number="16">
+									<STRUCTURE_ELEMENT_I_END node_i="16">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-6.00</SHEAR-2>
+										<SHEAR-3 units="kip">-0.21726E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.45019E-07</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-7.50</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.01</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="17">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">5.25</SHEAR-2>
+										<SHEAR-3 units="kip">0.21726E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.34139E-07</MOMENT-2>
+										<MOMENT-3 units="kip-ft">5.16</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.73514E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="17" elem_number="17">
+									<STRUCTURE_ELEMENT_I_END node_i="17">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-5.25</SHEAR-2>
+										<SHEAR-3 units="kip">-0.99390E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.30139E-07</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-5.16</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.73514E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="18">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">4.50</SHEAR-2>
+										<SHEAR-3 units="kip">0.99390E-08</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.29128E-07</MOMENT-2>
+										<MOMENT-3 units="kip-ft">3.12</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.44554E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="18" elem_number="18">
+									<STRUCTURE_ELEMENT_I_END node_i="18">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-4.50</SHEAR-2>
+										<SHEAR-3 units="kip">-0.46974E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.21209E-07</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-3.12</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.44554E-02</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="19">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">3.75</SHEAR-2>
+										<SHEAR-3 units="kip">0.46974E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.22847E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">1.41</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="19" elem_number="19">
+									<STRUCTURE_ELEMENT_I_END node_i="19">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">-3.75</SHEAR-2>
+										<SHEAR-3 units="kip">-0.18452E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.63980E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-1.41</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="20">
+										<AXIAL units="kip">0.00000</AXIAL>
+										<SHEAR-2 units="kip">3.00</SHEAR-2>
+										<SHEAR-3 units="kip">0.18452E-07</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.28619E-08</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-0.78249E-09</MOMENT-3>
+										<TORQUE units="kip-ft">0.00000</TORQUE>
+										<FAILURE-RATIO>0.00000</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								<ELEMENT number="20" elem_number="20">
+									<STRUCTURE_ELEMENT_I_END node_i="124">
+										<AXIAL units="kip">-1.29</AXIAL>
+										<SHEAR-2 units="kip">-6.50</SHEAR-2>
+										<SHEAR-3 units="kip">-0.11</SHEAR-3>
+										<MOMENT-2 units="kip-ft">-0.18</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-16.74</MOMENT-3>
+										<TORQUE units="kip-ft">0.17</TORQUE>
+										<FAILURE-RATIO>0.23</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_I_END>
+									<STRUCTURE_ELEMENT_J_END node_j="90">
+										<AXIAL units="kip">1.29</AXIAL>
+										<SHEAR-2 units="kip">6.47</SHEAR-2>
+										<SHEAR-3 units="kip">0.11</SHEAR-3>
+										<MOMENT-2 units="kip-ft">0.73</MOMENT-2>
+										<MOMENT-3 units="kip-ft">-15.69</MOMENT-3>
+										<TORQUE units="kip-ft">0.17</TORQUE>
+										<FAILURE-RATIO>0.22</FAILURE-RATIO>
+									</STRUCTURE_ELEMENT_J_END>
+								</ELEMENT>
+								</PIER_CAP>
+						</STRUCTURE_INTERNAL_FORCES>
+					</TIME_STEP>
+				</LOAD_CASE>
+			</LOAD_CASE_RESULTS>
+		</SUBSTRUCTURE>
+  </MODEL_INFO>
+  <MODEL_INFO>
+    <SUBSTRUCTURE number="1">
+      <OUTPUT_SUMMARY>
+        <STRUCTURE_PIER_CAP_MAX>
+					<MAX_ITEM item="max axial force">
+						<ITEM_VALUE units="kip">8.00</ITEM_VALUE>
+						<LOAD_CASE>10</LOAD_CASE>
+						<COMBINATION>3</COMBINATION>
+					</MAX_ITEM>
+					<MAX_ITEM item="min axial force">
+						<ITEM_VALUE units="kip">-18.69</ITEM_VALUE>
+						<LOAD_CASE>9</LOAD_CASE>
+						<COMBINATION>2</COMBINATION>
+					</MAX_ITEM>
+					<MAX_ITEM item="max shear in 2 direction">
+						<ITEM_VALUE units="kip">227.17</ITEM_VALUE>
+						<LOAD_CASE>8</LOAD_CASE>
+						<COMBINATION>1</COMBINATION>
+					</MAX_ITEM>
+					<MAX_ITEM item="min shear in 2 direction">
+						<ITEM_VALUE units="kip">-227.14</ITEM_VALUE>
+						<LOAD_CASE>8</LOAD_CASE>
+						<COMBINATION>1</COMBINATION>
+					</MAX_ITEM>
+					<MAX_ITEM item="max shear in 3 direction">
+						<ITEM_VALUE units="kip">3.76</ITEM_VALUE>
+						<LOAD_CASE>9</LOAD_CASE>
+						<COMBINATION>2</COMBINATION>
+					</MAX_ITEM>
+					<MAX_ITEM item="min shear in 3 direction">
+						<ITEM_VALUE units="kip">-3.48</ITEM_VALUE>
+						<LOAD_CASE>9</LOAD_CASE>
+						<COMBINATION>2</COMBINATION>
+					</MAX_ITEM>
+					<MAX_ITEM item="max torque">
+						<ITEM_VALUE units="kip-ft">29.61</ITEM_VALUE>
+						<LOAD_CASE>9</LOAD_CASE>
+						<COMBINATION>2</COMBINATION>
+					</MAX_ITEM>
+					<MAX_ITEM item="min torque">
+						<ITEM_VALUE units="kip-ft">-29.61</ITEM_VALUE>
+						<LOAD_CASE>9</LOAD_CASE>
+						<COMBINATION>2</COMBINATION>
+					</MAX_ITEM>
+					<MAX_ITEM item="max moment about 2 axis">
+						<ITEM_VALUE units="kip-ft">12.09</ITEM_VALUE>
+						<LOAD_CASE>9</LOAD_CASE>
+						<COMBINATION>2</COMBINATION>
+					</MAX_ITEM>
+					<MAX_ITEM item="min moment about 2 axis">
+						<ITEM_VALUE units="kip-ft">-0.43</ITEM_VALUE>
+						<LOAD_CASE>10</LOAD_CASE>
+						<COMBINATION>3</COMBINATION>
+					</MAX_ITEM>
+					<MAX_ITEM item="max moment about 3 axis">
+						<ITEM_VALUE units="kip-ft">384.91</ITEM_VALUE>
+						<LOAD_CASE>8</LOAD_CASE>
+						<COMBINATION>1</COMBINATION>
+					</MAX_ITEM>
+					<MAX_ITEM item="min moment about 3 axis">
+						<ITEM_VALUE units="kip-ft">-46.53</ITEM_VALUE>
+						<LOAD_CASE>9</LOAD_CASE>
+						<COMBINATION>2</COMBINATION>
+					</MAX_ITEM>
+				</STRUCTURE_PIER_CAP_MAX>
+			</OUTPUT_SUMMARY>
+    </SUBSTRUCTURE>
+  </MODEL_INFO>
+</FB-MULTIPIER_MODEL_DATA>
