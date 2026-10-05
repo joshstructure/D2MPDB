@@ -27,7 +27,13 @@ The reported FBMP summary and original XML element-end envelopes remain separate
 
 The notebook now handles the shared sectional workflow for **pier and end-bent caps on a single pile row**. A new **FBMP pile review** section sits above the reinforcement controls and includes pile-head compression/uplift, governing results by limit state, displacement/force/D/C/stress profiles, section properties, minimum-tip trial review and a geotechnical handoff. Upload the XML once: pile results load immediately, and the cap preview is applied with **Apply XML inputs**. Check multiple piles to overlay their profiles with consistent colors. An optional separate pile upload is available for a different run. Minimum-tip trial history is pasted separately, with or without Excel column headings; the button reports success or a specific input error. See [Pile review](PILE_REVIEW.md) for the workbook mapping, supported geometry, calculation basis, downloads and limitations.
 
-When supporting code changes, run `python scripts/build_portable_notebook.py` to refresh the portable notebook before pushing.
+When supporting code changes, run `python scripts/build_portable_notebook.py` to refresh the portable notebook before pushing. Use `--preserve-outputs` to retain a saved run and widget state; this does not rerun calculations or refresh its saved figures.
+
+**Reading the reinforcement views:** Plan looks down on the bottom bars; side elevation looks along the pile row; cross sections look end-on through the cap. Purple dashed lines in elevation are a short hoop-pitch illustration. Actual first-hoop stations, spacing-zone boundaries and pile-head hoop details are not inputs in the current tool, so stationing remains pending. The hoop view includes a readable size/pitch table and side-elevation samples plus one end-on hoop outline. `#6 @ 9 in c/c` means a No. 6 hoop at 9-inch center spacing, not six hoops.
+
+**Overall (G) and lower-shear interval (L)** are separate shear checks, not vertical positions. The XML importer uses overall shear for both until a lower-shear interval is established. Identical shear and pitch inputs share one sample drawing; differing inputs show two samples, without assigning them to cap stations.
+
+**Additional bars, U legs and overrides:** Added between-pile bars supplement continuous bottom bars and include their drawn end hooks. Separate U-leg counts add steel area in the legacy calculation but have unresolved positions/development; do not count the added bars' hooks again as U legs. The advanced spacing checkbox changes longitudinal-bar spacing across the section, not along-cap hoop pitch. Inner leg spacing is used separately for more than one effective hoop loop; that topology remains unresolved.
 
 **Repository-backed edition:**
 

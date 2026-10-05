@@ -4,7 +4,7 @@ import math
 import unittest
 from pier_cap.model import default_case,set_inputs,evaluate,bar_positions,upgrade_case,BAR_AREA,BAR_DIAMETER
 from pier_cap.detailing import required_clear,spacing_records,standard_hook,hook_paths
-from pier_cap.visuals import elevation_figure,hoop_figure,section_figure,reinforcement_summary_html
+from pier_cap.visuals import elevation_figure,hoop_figure,hoop_explanation_html,section_figure,reinforcement_summary_html
 from pier_cap.optimizer import search,SearchConfig
 from pier_cap.widgets import CapNotebook,LABELS
 
@@ -122,6 +122,38 @@ class RebarDetailingTests(unittest.TestCase):
             app.search_result=result;app.aggregate.value=1
             self.assertIsNone(app.search_result)
         finally:app.close()
+
+    def test_elevation_hoop_sample_uses_pitch_without_claiming_full_stationing(self):
+        e=evaluate(case(Bar_v=6,s_G=9,s_L=12))
+        f=elevation_figure(e)
+        trace=next(t for t in f.data if t.name.startswith('Hoop sample:'))
+        stations=list(trace.x[::3])
+        self.assertGreaterEqual(len(stations),2)
+        self.assertTrue(all(abs((b-a)*12-9)<1e-8 for a,b in zip(stations,stations[1:])))
+        self.assertGreater(stations[0]*12,e.value('E_CL')+10)
+        self.assertLess(stations[-1]*12,e.value('E_CL')+60-10)
+        self.assertEqual(trace.line.dash,'dash')
+        self.assertIn('Illustrative position',trace.hovertemplate)
+        self.assertIn('SIDE ELEVATION',f.layout.title.text)
+        self.assertEqual(check(e,'Status_pile_hoops').status,'PENDING')
+
+    def test_identical_hoop_checks_share_sample_but_different_checks_do_not(self):
+        e=evaluate(case(Bar_v=6,s_G=9,s_L=9,Vu_G=218.27,Vu_L=218.27))
+        f=hoop_figure(e)
+        text=' '.join(a.text for a in f.layout.annotations)
+        self.assertIn('#6 @ 9 in c/c',text)
+        self.assertIn('8.250 in clear',text)
+        self.assertIn('same inputs',text)
+        self.assertEqual(f.layout.yaxis2.scaleanchor,'x2')
+        self.assertIn('#6 @ 9 in c/c',f.data[0].hovertemplate)
+        self.assertIn('<extra></extra>',f.data[0].hovertemplate)
+        help=hoop_explanation_html(e)
+        self.assertIn('Both shear inputs are identical',help)
+        self.assertIn('no inputs for the first hoop',help)
+        for changes in ({'Vu_L':100},{'s_L':12}):
+            different=hoop_figure(evaluate(set_inputs(e.case,**changes)))
+            self.assertEqual(different.layout.yaxis3.scaleanchor,'x3')
+            self.assertNotIn('same inputs',' '.join(a.text for a in different.layout.annotations))
 
     def test_scalar_and_unit_results_and_aggregate_validation(self):
         c=case(Bar_P=9,Bar_B=7);a=evaluate(c);b=evaluate(c,fast=True)

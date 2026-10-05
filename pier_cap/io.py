@@ -49,9 +49,10 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
         for region in 'PB':
             for r in spacing_records(e,region,bar_positions(e,region)):
                 w.writerow([region,r['label'],r['actual'],r['required'],r['status']])
-    from .visuals import section_figure,reinforcement_plan_figure,elevation_figure,hoop_figure,reinforcement_summary_html,clear_spacing_html
+    from .visuals import section_figure,reinforcement_plan_figure,elevation_figure,hoop_figure,hoop_explanation_html,reinforcement_summary_html,clear_spacing_html
     parts=['<!doctype html><html><head><meta charset="utf-8"><title>Cap reinforcement detail review</title><style>.cap-table{border-collapse:collapse;width:100%}.cap-table td,.cap-table th{padding:8px;border-bottom:1px solid #dce5ec;text-align:left}.cap-table th{background:#e7eef4}</style></head><body style="font:14px Arial;max-width:1200px;margin:auto">',reinforcement_summary_html(e)]
     for i,fig in enumerate([section_figure(e,'P'),section_figure(e,'B'),reinforcement_plan_figure(e),elevation_figure(e),hoop_figure(e)]):
+        if i==4:parts.append(hoop_explanation_html(e))
         parts.append(fig.to_html(full_html=False,include_plotlyjs=(i==0)))
     parts.extend([clear_spacing_html(e),'</body></html>'])
     (path/'reinforcement_detail.html').write_text('\n'.join(parts),encoding='utf-8')

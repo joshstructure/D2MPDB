@@ -15,7 +15,7 @@ from .widget_compat import Tab, Accordion
 from .source_status import upload_entries,source_html,import_receipt,receipt_html,notice_html
 from .force_audit import force_basis,FORCE_LABELS
 from .force_diagrams import ForceDiagramPanel
-from .visuals import section_figure,elevation_figure,reinforcement_plan_figure,reinforcement_summary_html,clear_spacing_html,hoop_figure,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html,spacing_html,side_steel_html,pile_head_help_html
+from .visuals import section_figure,elevation_figure,reinforcement_plan_figure,reinforcement_summary_html,clear_spacing_html,hoop_figure,hoop_explanation_html,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html,spacing_html,side_steel_html,pile_head_help_html
 
 UNIT_NAMES={'in':'inches','ft':'feet','kip':'kips','kip*ft':'kip-feet','ksi':'ksi (kips per square inch)','deg':'degrees'}
 
@@ -34,17 +34,17 @@ LABELS={'b':'Cap width','h':'Cap depth','C_t':'Top cover','C_b':'Bottom cover','
  'Bar_P':'Continuous bottom bar','Bar_B':'ADDED span bar size','Bar_U':'U-leg bar','n_P1':'Continuous row 1 count','n_P2':'Continuous row 2 count','n_PU':'Pile U-leg count',
  'n_B1':'ADDITIONAL row 1 count','n_B2':'ADDITIONAL row 2 count','n_BU':'Between-pile U legs',
  'Bar_v':'Closed hoop bar','n_loop':'Effective hoop loops','Bar_skin':'Side-face bar','n_skin':'Bars per side',
- 's_row':'Row center spacing','s_G':'Global hoop spacing','s_L':'Low hoop spacing',
+ 's_row':'Row center spacing','s_G':'Overall hoop pitch (G)','s_L':'Lower-shear hoop pitch (L)',
  'Mu_N':'Envelope · negative','Mu_P':'Envelope · pile positive','Mu_B':'Envelope · bearing/span',
  'MI_N':'Service I · negative','MI_P':'Service I · pile positive','MI_B':'Service I · bearing positive',
- 'Vu_G':'Global shear','Vu_L':'Low interval shear','Tu':'Torque magnitude',
+ 'Vu_G':'Overall shear (G)','Vu_L':'Lower-shear interval (L)','Tu':'Torque magnitude',
  'Ready_III':'Service III loads ready','Ready_fatigue':'Fatigue loads ready','Manual_spacing':'Override bar spacing',
  'phi_f':'Flexural resistance factor','phi_v':'Shear resistance factor','gamma_e':'Exposure factor','gamma_fat':'Fatigue load factor',
  'beta_v':'Shear β','theta':'Compression angle θ','alpha_v':'Hoop angle α','fpc':'Precompression','Ao_factor':'Effective torsion area factor',
  'SP_detail_N':'Top spacing override','SP_detail_P':'Pile spacing override','SP_detail_B':'Added row pitch override','SP_detail_skin':'Skin spacing override','S_leg_detail':'Inner leg spacing'}
 
 GROUPS={
- 'Steel': [('Top rows','Bar_N1 n_N1 Bar_N2 n_N2 Bar_N3 n_N3'),('Continuous bottom steel · at piles','Bar_P n_P1 n_P2'),('ADDITIONAL steel · between piles','Bar_B n_B1 n_B2'),('Hoops and side bars','Bar_v n_loop s_G s_L Bar_skin n_skin s_row'),('U legs / spacing overrides','Bar_U n_PU n_BU Manual_spacing SP_detail_N SP_detail_P SP_detail_B SP_detail_skin S_leg_detail')],
+ 'Steel': [('Top rows','Bar_N1 n_N1 Bar_N2 n_N2 Bar_N3 n_N3'),('Continuous bottom steel · at piles','Bar_P n_P1 n_P2'),('ADDITIONAL steel · between piles','Bar_B n_B1 n_B2'),('Hoops and side bars','Bar_v n_loop s_G s_L Bar_skin n_skin s_row'),('Extra U-leg inventory · unresolved','Bar_U n_PU n_BU'),('Advanced · cross-section spacing','Manual_spacing SP_detail_N SP_detail_P SP_detail_B SP_detail_skin S_leg_detail')],
  'Geometry':[('Section and cover','b h C_t C_b C_s'),('Pile row and cap ends','N_pile S_pile D_pile E_clear E_detail'),('Pile head','Pile_embed C_pile Ready_pile')],
  'Loads':[('Combined strength envelopes','Mu_N Mu_P Mu_B Vu_G Vu_L Tu'),('Service I','MI_N MI_P MI_B')],
  'Pending':[('Service III','Ready_III MIII_N MIII_P MIII_B'),('Fatigue','Ready_fatigue MDL_N MDL_P MDL_B DMLL_N DMLL_P DMLL_B')],
@@ -59,7 +59,7 @@ class CapNotebook:
         self.case_listeners=[]
         self.import_receipt=None;self.import_notice=W.HTML()
         self.banner=W.HTML();self.metrics=W.HTML();self.message=W.HTML()
-        self.cage=W.VBox(layout=W.Layout(max_height='820px',overflow='auto'));self.results=W.VBox(layout=W.Layout(max_height='820px',overflow='auto'));self.register=W.HTML();self.trace=W.HTML()
+        self.cage=W.VBox();self.results=W.VBox();self.register=W.HTML();self.trace=W.HTML()
         self.clearance=W.BoundedFloatText(value=self.case['screening']['minimum_clear_in'],min=0,max=12,step=.25,description='Project min clear (in)',style={'description_width':'120px'},layout=W.Layout(width='260px'))
         self.aggregate=W.BoundedFloatText(value=self.case['screening']['aggregate_in'],min=.125,max=6,step=.125,description='Max aggregate (in)',style={'description_width':'170px'},layout=W.Layout(width='300px'))
         self.aggregate_confirmed=W.Checkbox(value=self.case['screening']['aggregate_confirmed'],description='Aggregate size confirmed',indent=False)
@@ -111,7 +111,11 @@ class CapNotebook:
                     control.style.description_width='190px';control.layout.width='calc(100% - 4px)';control.layout.max_width='336px'
                     control.layout.min_height='34px';control.layout.height='auto';control.add_class('cap-input')
                     rows.append(control)
-                if title=='Hoops and side bars':rows.extend([self.clearance,self.aggregate,self.aggregate_confirmed,W.HTML('<small>AASHTO LRFD BDS + FDOT policy. The larger of the code minimum and project minimum governs. Confirm aggregate from the mix design. Hoop zone limits and pile-head arrangement require a separate detail.</small>')])
+                if title=='Hoops and side bars':
+                    rows.insert(0,W.HTML('<p><b>G = overall shear check; L = lower-shear interval check.</b> L is not the bottom of the cap. The XML importer initially uses the same shear for both. Pitch is measured along the cap, center to center. First-hoop and zone stations are not inputs in this tool.</p>'))
+                    rows.extend([self.clearance,self.aggregate,self.aggregate_confirmed,W.HTML('<small>AASHTO LRFD BDS + FDOT policy. The larger of the code minimum and project minimum governs. Confirm aggregate from the mix design. Hoop zone limits and pile-head arrangement require a separate detail.</small>')])
+                if title=='Extra U-leg inventory · unresolved':rows.insert(0,W.HTML('<p>These are <b>extra reinforcing legs</b> from the legacy sectional calculation. Counts add steel area, but positions and development are unresolved, so a nonzero count triggers a detailing issue. <b>Do not enter the end hooks of the ADDITIONAL span bars here:</b> those hooks are already part of the drawn bars. Zero means no separate U-leg inventory.</p>'))
+                if title=='Advanced · cross-section spacing':rows.insert(0,W.HTML('<p>Override the automatic spacing of longitudinal bars <b>within the cross section</b>. The checkbox activates top, continuous-bottom, added-row and side-bar spacing overrides. It does not add bars or change along-cap hoop pitch. <b>Inner leg spacing</b> is used separately when effective hoop loops exceed one; multiple-loop positions remain unresolved.</p>'))
                 if title=='ADDITIONAL steel · between piles':rows.insert(0,W.HTML('<p><b>These counts are ADDITIONAL, not totals.</b> Continuous bottom bars stay in place. Total span steel = continuous bars + these added bars. Enter 0 for no added bars. The bar size here applies only to the added steel. Standard 90° hooks are drawn at the span ends; anchorage remains a separate check.</p>'))
                 if title=='Continuous bottom steel · at piles':rows.insert(0,W.HTML('<p>These bottom bars continue through every pile and span to the cap end-cover planes. Their transverse positions stay fixed. End anchorage and splices require review.</p>'))
                 if title=='Pile head':rows.append(W.HTML(pile_head_help_html()))
@@ -164,7 +168,7 @@ class CapNotebook:
         self.figures=[]
         def fw(fig):
             widget=go.FigureWidget(fig);self.figures.append(widget);widget.layout.autosize=True;return widget
-        self.cage.children=[W.HTML(reinforcement_summary_html(e)),W.HTML(side_steel_html(e)),fw(section_figure(e,'B')),fw(section_figure(e,'P')),fw(reinforcement_plan_figure(e)),fw(elevation_figure(e)),fw(hoop_figure(e)),W.HTML(clear_spacing_html(e)),W.HTML('<small>Bar circles use actual diameters and positions. Pile embedment is to scale; pile lengths below the cap are schematic. U-leg positions, first hoop and hoop-zone limits remain unresolved.</small>')]
+        self.cage.children=[W.HTML(reinforcement_summary_html(e)),W.HTML(side_steel_html(e)),fw(section_figure(e,'B')),fw(section_figure(e,'P')),fw(reinforcement_plan_figure(e)),fw(elevation_figure(e)),W.HTML(hoop_explanation_html(e)),fw(hoop_figure(e)),W.HTML(clear_spacing_html(e)),W.HTML('<small>Bar circles use actual diameters and positions. Pile embedment is to scale; pile lengths below the cap are schematic. Purple dashed hoops show a short pitch sample only. U-leg positions, actual first hoop and hoop-zone limits require a separate detail.</small>')]
         self.results.children=[fw(results_figure(e)),W.HTML(spacing_html(e)),fw(optional_service_figure(e)),fw(ratios_figure(e)),W.HTML('<small>These plots compare imported force envelopes and sectional capacities. They are not a continuous moment/shear diagram or a rerun of FB-MultiPier.</small>')]
         self.register.value=checks_html(e)
         rows=''.join(f'<tr><td>{html.escape(t["name"])}</td><td>{html.escape(t["formula"])}</td><td>{html.escape(str(t["value"]))}</td></tr>' for t in formula_trace(e))

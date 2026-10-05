@@ -8,9 +8,10 @@ import re
 import zipfile
 
 
-def build(repo):
+def build(repo, *, preserve_outputs=False):
     path = repo / 'Cap_and_Pile_Design.ipynb'
-    notebook = json.loads(path.read_text(encoding='utf-8'))
+    original_text = path.read_text(encoding='utf-8')
+    notebook = json.loads(original_text)
     buffer = io.BytesIO()
     files = sorted([*repo.glob('pier_cap/*.py'), *repo.glob('pier_cap/data/*.json'),
                     repo/'requirements-pier-cap-colab.txt'])
@@ -30,15 +31,23 @@ def build(repo):
         raise ValueError('Expected exactly one package and revision in the portable setup cell.')
     setup['source'] = source.splitlines(keepends=True)
     setup['metadata'].update(cellView='form')
-    for cell in notebook['cells']:
-        if cell['cell_type'] == 'code':
-            cell['outputs'] = []
-            cell['execution_count'] = None
-    notebook['metadata'].pop('widgets', None)
+    if not preserve_outputs:
+        notebook['cells'] = [cell for cell in notebook['cells'] if not cell.get('metadata', {}).get('saved_run_annotation')]
+        for cell in notebook['cells']:
+            if cell['cell_type'] == 'code':
+                cell['outputs'] = []
+                cell['execution_count'] = None
+        notebook['metadata'].pop('widgets', None)
     notebook['metadata'].setdefault('colab', {})['name'] = path.name
-    path.write_text(json.dumps(notebook, indent=1, ensure_ascii=False)+'\n', encoding='utf-8')
+    indent_match = re.search(r'^([ \t]+)"cells":', original_text, flags=re.M)
+    indent = len(indent_match.group(1)) if preserve_outputs and indent_match else 1
+    path.write_text(json.dumps(notebook, indent=indent, ensure_ascii=False)+'\n', encoding='utf-8')
     print(f'Updated {path.name}: {len(files)} supporting files, package {digest[:12]}')
 
 
 if __name__ == '__main__':
-    build(Path(__file__).resolve().parents[1])
+    import argparse
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--preserve-outputs',action='store_true',help='Keep the saved run and widget state; saved output is not a fresh execution of the new package.')
+    args=parser.parse_args()
+    build(Path(__file__).resolve().parents[1],preserve_outputs=args.preserve_outputs)

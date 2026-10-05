@@ -9,6 +9,7 @@ from .detailing import spacing_records,hook_paths,standard_hook,required_clear
 from .optimizer import candidate_dc,candidate_governing,governing_check,DC_SCOPES
 
 BLUE='#1f5b91';TEAL='#167b75';AMBER='#d88822';RED='#bb3e39';INK='#213649';GREY='#b8c7d1'
+HOOP='#7952a3'
 MOMENT='#2166ac';MOMENT_CAPACITY='#90bce4';SHEAR='#8250a0';SHEAR_CAPACITY='#c4a4d8'
 
 
@@ -58,13 +59,13 @@ def check_color(check):
 def theme(fig,title,height=460):
     fig.update_layout(title=dict(text=title,font=dict(size=17)),template='plotly_white',height=height,
         font=dict(family='Arial',size=12,color=INK),margin=dict(l=50,r=25,t=65,b=45),
-        paper_bgcolor='#ffffff',plot_bgcolor='#ffffff',legend=dict(orientation='h',y=-.12),hoverlabel=dict(bgcolor='white'))
+        paper_bgcolor='#ffffff',plot_bgcolor='#ffffff',legend=dict(orientation='h',y=-.12),hoverlabel=dict(bgcolor='white',namelength=-1,align='left'))
     return fig
 
 def section_figure(e,region='B'):
     p=e.case['inputs'];b=p['b'];h=p['h'];fig=go.Figure();dv=BAR_DIAMETER[p['Bar_v']]
     fig.add_shape(type='rect',x0=0,y0=0,x1=b,y1=h,line=dict(color=INK,width=2),fillcolor='#f2f5f7',layer='below')
-    fig.add_shape(type='rect',x0=p['C_s']+dv/2,y0=p['C_b']+dv/2,x1=b-p['C_s']-dv/2,y1=h-p['C_t']-dv/2,line=dict(color=AMBER,width=3))
+    fig.add_shape(type='rect',x0=p['C_s']+dv/2,y0=p['C_b']+dv/2,x1=b-p['C_s']-dv/2,y1=h-p['C_t']-dv/2,line=dict(color=HOOP,width=3))
     if region=='P' and p['Ready_pile']:
         left=(b-p['D_pile'])/2;right=(b+p['D_pile'])/2
         fig.add_shape(type='rect',x0=e.value('Pile_left')-p['C_pile'],x1=e.value('Pile_right')+p['C_pile'],y0=0,y1=p['Pile_embed']+p['C_pile'],line=dict(color=RED,dash='dot'),fillcolor='rgba(187,62,57,.06)',layer='below')
@@ -94,7 +95,7 @@ def section_figure(e,region='B'):
         fig.add_annotation(x=b/2,y=-4,text=f"U-leg inventory: {p['n_'+region+'U']:g} #{p['Bar_U']:g}; positions unresolved",showarrow=False,font=dict(color=RED,size=11))
     fig.update_xaxes(title='Width (in)',range=[-3,b+3],constrain='domain',zeroline=False)
     fig.update_yaxes(title='Depth from bottom (in)',range=[-6,h+3],scaleanchor='x',scaleratio=1,zeroline=False)
-    title=('Positive steel · at pile' if region=='P' else 'Positive steel · between piles')+f' · {b:g} × {h:g} in'
+    title=('Cross section · at pile' if region=='P' else 'Cross section · between piles')+f' · {b:g} × {h:g} in'
     theme(fig,title,520);fig.update_layout(legend=dict(font=dict(size=10),orientation='h',y=-.2),margin=dict(t=90,b=110))
     return fig
 
@@ -107,7 +108,8 @@ def reinforcement_summary_html(e):
         f'{continuous} continuous #{p["Bar_P"]:g} + {extra} added #{p["Bar_B"]:g} = <b>{continuous+extra} bottom bars in the span</b> '
         '(excluding any unresolved U-leg inventory).<br>'
         f'At piles: <b>{e.value("As_P"):.3f} in²</b>. Between piles: <b>{e.value("As_B"):.3f} in² combined</b>. '
-        'Blue bars continue through the full cap; orange bars are additional span bars with 90° hooks.<br>'
+        'Blue bars continue through the full cap; orange bars are additional span bars with 90° hooks. '
+        'Purple marks the hoop outline / pitch samples; the outline at a pile is not a resolved pile-head detail.<br>'
         'Hook fit is checked; development, cutoff lengths, end anchorage and pile-head hoop arrangement remain pending.</p>'+note)
 
 
@@ -131,6 +133,21 @@ def elevation_figure(e):
     for j,x in enumerate(centers,1):
         fig.add_shape(type='rect',x0=(x-D/2)/12,x1=(x+D/2)/12,y0=-18,y1=p['Pile_embed'],fillcolor='#b8c7d1',line=dict(color=INK),layer='below')
         fig.add_annotation(x=x/12,y=-10,text=f'P{j}',showarrow=False)
+    # A short pitch illustration, deliberately not a full-cap station schedule.
+    # Its center is arbitrary; actual first-hoop and zone stations are not inputs.
+    dv=BAR_DIAMETER[p['Bar_v']];pitch=p['s_G']
+    inset=D/2+e.value('Tol_pile')+p['C_pile']+dv/2
+    left=centers[0]+inset;right=centers[1]-inset
+    count=min(5,math.floor((right-left)/pitch)+1)
+    if count>=2:
+        start=(left+right-(count-1)*pitch)/2
+        stations=[start+i*pitch for i in range(count)]
+        fig.add_trace(go.Scatter(x=[v for x in stations for v in (x/12,x/12,None)],
+            y=[v for _ in stations for v in (p['C_b']+dv/2,h-p['C_t']-dv/2,None)],
+            mode='lines',name=f'Hoop sample: #{p["Bar_v"]:g} @ {pitch:g} in c/c',
+            line=dict(color=HOOP,width=3,dash='dash'),
+            hovertemplate=f'<b>Hoop sample · side elevation</b><br>#{p["Bar_v"]:g} @ {pitch:g} in center to center<br>Overall check (G)<br>Illustrative position; stationing pending<extra></extra>'))
+        fig.add_annotation(x=(left+right)/24,y=h+2,text='Hoop sample',showarrow=False,font=dict(color=HOOP,size=10))
     fig.add_shape(type='line',x0=0,x1=L/12,y0=0,y1=0,line=dict(color=INK,dash='dash'))
     continuous=bar_positions(e,'P');groups=defaultdict(list)
     for bar in continuous:groups[(bar['kind'],bar['y'],bar['bar'])].append(bar)
@@ -157,8 +174,11 @@ def elevation_figure(e):
     fig.add_annotation(x=0,y=1.10,xref='paper',yref='paper',text=note,showarrow=False,xanchor='left',font=dict(size=11,color=RED if hook_failure else AMBER))
     fig.update_xaxes(title='Along cap (ft)',range=[-1,L/12+1],zeroline=False)
     fig.update_yaxes(title='Elevation above cap underside (in)',range=[-22,h+5],scaleanchor='x',scaleratio=1/12,zeroline=False)
-    theme(fig,'Reinforcement elevation · full cap',470)
-    fig.update_layout(legend=dict(orientation='h',y=-.3,font=dict(size=10)),margin=dict(t=90,b=170))
+    theme(fig,'SIDE ELEVATION · looking along the pile row',540)
+    fig.add_annotation(x=0,y=1.23,xref='paper',yref='paper',xanchor='left',showarrow=False,
+        text='Purple dashed lines = hoop pitch sample only.<br>Actual first hoop, zone limits and pile-head layout remain pending.',
+        align='left',font=dict(size=11,color=HOOP))
+    fig.update_layout(legend=dict(orientation='h',y=-.3,font=dict(size=10)),margin=dict(t=130,b=170))
     return fig
 
 
@@ -180,33 +200,62 @@ def reinforcement_plan_figure(e):
         fig.add_trace(go.Scatter(x=[t['left']/12,t['right']/12],y=[b['x'],b['x']],mode='lines+markers',name=key+' added / hooks up',legendgroup='extra'+key,showlegend=show,
             marker=dict(symbol='triangle-up',size=6),line=dict(color=AMBER,width=2),hovertemplate=f'Added #{b["bar"]}<br>Across cap {b["x"]:.3f} in<extra></extra>'))
     fig.update_xaxes(title='Along cap (ft)',range=[-1,L/12+1]);fig.update_yaxes(title='Across cap (in)',range=[-3,p['b']+3],scaleanchor='x',scaleratio=1/12)
-    theme(fig,'Bottom reinforcement plan · continuous + added',370)
+    theme(fig,'PLAN VIEW · bottom bars viewed from above',370)
     fig.update_layout(legend=dict(y=-.35,font=dict(size=10)),margin=dict(b=110))
     return fig
 
 
+def hoop_explanation_html(e):
+    p=e.case['inputs']
+    same=math.isclose(p['Vu_G'],p['Vu_L'],abs_tol=1e-8,rel_tol=0)
+    rows=''.join(f'<tr><td>{label}</td><td>{p["Vu_"+z]:.2f} kip</td>'
+        f'<td><b>#{p["Bar_v"]:g} @ {p["s_"+z]:g} in c/c</b></td>'
+        f'<td>{p["s_"+z]-BAR_DIAMETER[p["Bar_v"]]:.3f} in</td></tr>'
+        for z,label in [('G','Overall (G; formerly Global)'),('L','Lower-shear interval (L)')])
+    return ('<h4>How to read the hoops</h4><p><b>Overall (G)</b> uses the overall cap shear envelope. '
+        '<b>Lower-shear interval (L)</b> is a separate check for a region with a justified smaller shear demand. '
+        'The L label refers to shear demand, not a lower elevation or bottom reinforcement.</p>'
+        +('<p><b>Both shear inputs are identical in this case.</b> The XML importer copies overall shear into L until a lower-shear interval is established.</p>' if same else
+          '<p>The two shear inputs differ. The location and extent of the lower-shear interval still need to be established separately.</p>')
+        +'<table class="cap-table"><tr><th>Check</th><th>Shear input</th><th>Hoop size / pitch</th><th>Clear gap</th></tr>'+rows+'</table>'
+        '<p><b>#6 @ 9 in</b>, for example, means a No. 6 bar at 9-inch center-to-center spacing; it does not mean six hoops. '
+        'The side-elevation samples show successive hoops edge-on. The cross section shows the shape of one hoop.</p>'
+        '<p><b>Why stationing is pending:</b> the current tool accepts pitch only. It has no inputs for the first hoop station '
+        'or the start/end stations of spacing zones. You have not missed a required field. Samples illustrate spacing, '
+        'not construction locations. Hoop placement and the local reinforcement around embedded pile heads require a separate detail.</p>')
+
+
 def hoop_figure(e):
     p=e.case['inputs'];dv=BAR_DIAMETER[p['Bar_v']]
-    fig=make_subplots(rows=1,cols=2,column_widths=[.63,.37],subplot_titles=('Along cap · spacing samples','Across cap · hoop legs'),horizontal_spacing=.13)
-    for z,y,name in [('G',1,'Global'),('L',0,'Low interval')]:
-        s=p['s_'+z];limit=e.value('s_allow_'+z);clear=s-dv;minimum=required_clear(e,dv)
-        color=RED if s>limit or clear<minimum else AMBER
-        xs=[i*s for i in range(min(12,math.floor(48/s))+1)]
-        fig.add_trace(go.Scatter(x=[v for x in xs for v in (x,x,None)],y=[v for _ in xs for v in (y-.17,y+.17,None)],mode='lines',name=f'{name}: #{p["Bar_v"]:g} @ {s:g} in',line=dict(color=color,width=4)),row=1,col=1)
-        fig.add_annotation(x=s/2,y=y+.26,text=f'{s:g} in c/c · {clear:.3f} in clear',showarrow=False,row=1,col=1)
-        fig.add_annotation(x=48,y=y-.30,text=f'Max pitch {limit:.2f} in | min clear {minimum:.2f} in',xanchor='right',showarrow=False,font=dict(size=10,color=color),row=1,col=1)
+    same=all(math.isclose(p[n+'G'],p[n+'L'],abs_tol=1e-8,rel_tol=0) for n in ('s_','Vu_'))
+    samples=[('G','Overall + lower-shear checks · same inputs')] if same else [('G','Overall check (G)'),('L','Lower-shear interval check (L)')]
+    nr=len(samples)+1
+    titles=[name+'<br>SIDE ELEVATION SAMPLE' for _,name in samples]+['CROSS SECTION · one hoop viewed end-on']
+    fig=make_subplots(rows=nr,cols=1,subplot_titles=titles,vertical_spacing=.19 if same else .14)
     x0=p['C_s']+dv/2;x1=p['b']-x0;y0=p['C_b']+dv/2;y1=p['h']-p['C_t']-dv/2
-    fig.add_trace(go.Scatter(x=[x0,x1,x1,x0,x0],y=[y0,y0,y1,y1,y0],mode='lines',line=dict(color=AMBER,width=3),showlegend=False,hoverinfo='skip'),row=1,col=2)
+    for row,(z,name) in enumerate(samples,1):
+        s=p['s_'+z];limit=e.value('s_allow_'+z);clear=s-dv;minimum=required_clear(e,dv)
+        color=RED if s>limit or clear<minimum else HOOP
+        length=max(48,2*s);xs=[i*s for i in range(min(12,math.floor(length/s))+1)]
+        fig.add_shape(type='rect',x0=0,x1=length,y0=0,y1=p['h'],fillcolor='#eef3f7',line=dict(color=GREY),layer='below',row=row,col=1)
+        fig.add_trace(go.Scatter(x=[v for x in xs for v in (x,x,None)],y=[v for _ in xs for v in (y0,y1,None)],
+            mode='lines',name=f'{name}: #{p["Bar_v"]:g} @ {s:g} in c/c',line=dict(color=color,width=4),showlegend=False,
+            hovertemplate=f'<b>#{p["Bar_v"]:g} @ {s:g} in c/c</b><br>{name}<br>Clear gap {clear:.3f} in<br>Illustrative sample; not cap stations<extra></extra>'),row=row,col=1)
+        fig.add_annotation(x=length/2,y=p['h']+6,text=f'<b>#{p["Bar_v"]:g} @ {s:g} in c/c</b> · {clear:.3f} in clear',showarrow=False,font=dict(color=color,size=12),row=row,col=1)
+        fig.add_trace(go.Scatter(x=[0,s],y=[y1/2,y1/2],mode='lines+markers',line=dict(color=INK),marker=dict(symbol='line-ns',size=12),
+            showlegend=False,hovertemplate=f'Pitch: {s:g} in center to center<extra></extra>'),row=row,col=1)
+        fig.add_annotation(x=length/2,y=-9,text=f'Max pitch {limit:.2f} in · min clear gap {minimum:.2f} in',showarrow=False,font=dict(size=11),row=row,col=1)
+        fig.update_xaxes(title='Distance along illustrative sample (in)',range=[-3,length+3],row=row,col=1)
+        fig.update_yaxes(title='Above underside (in)',range=[-12,p['h']+13],row=row,col=1)
+    fig.add_shape(type='rect',x0=0,x1=p['b'],y0=0,y1=p['h'],fillcolor='#eef3f7',line=dict(color=INK),layer='below',row=nr,col=1)
+    fig.add_trace(go.Scatter(x=[x0,x1,x1,x0,x0],y=[y0,y0,y1,y1,y0],mode='lines',line=dict(color=HOOP,width=4),showlegend=False,
+        hovertemplate=f'One #{p["Bar_v"]:g} outer hoop<br>Nominal cross-section outline<extra></extra>'),row=nr,col=1)
     actual=x1-x0;limit=min(e.value('Sw_G'),e.value('Sw_L'))
-    fig.add_annotation(x=p['b']/2,y=p['h']/2,text=f'Leg centers<br>{actual:.3f} in<br>Allowed ≤ {limit:.3f} in',showarrow=False,font=dict(color=RED if actual>limit else INK),row=1,col=2)
-    fig.update_xaxes(title='Distance along sample (in)',range=[-2,50],row=1,col=1)
-    fig.update_yaxes(tickvals=[0,1],ticktext=['Low','Global'],range=[-.55,1.6],showgrid=False,row=1,col=1)
-    fig.update_xaxes(title='Across cap (in)',range=[0,p['b']],row=1,col=2)
-    fig.update_yaxes(title='Height (in)',range=[0,p['h']],row=1,col=2)
-    theme(fig,'Hoop spacing · pitch, clear gap, and leg spacing',410)
-    fig.add_annotation(x=0,y=-.45,xref='paper',yref='paper',xanchor='left',yanchor='top',showarrow=False,font=dict(size=11,color=RED),
-        align='left',text='Spacing samples: zone limits and first hoop are unspecified.<br>Full hoops conflict with embedded pile heads;<br>local pile-head hoop detail remains pending.')
-    fig.update_layout(margin=dict(b=160),legend=dict(y=-.25))
+    fig.add_annotation(x=p['b']/2,y=p['h']/2,text=f'Across-cap leg centers<br><b>{actual:.3f} in</b><br>Allowed ≤ {limit:.3f} in',showarrow=False,font=dict(color=RED if actual>limit else INK),row=nr,col=1)
+    fig.update_xaxes(title='Across cap (in)',range=[-3,p['b']+3],constrain='domain',row=nr,col=1)
+    fig.update_yaxes(title='Above underside (in)',range=[-3,p['h']+3],scaleanchor=f'x{nr}',scaleratio=1,row=nr,col=1)
+    theme(fig,'HOOPS · side elevation sample and cross section',780 if same else 1080)
+    fig.update_layout(showlegend=False,margin=dict(l=65,r=35,t=100,b=65),hovermode='closest')
     return fig
 
 
@@ -216,8 +265,8 @@ def results_figure(e):
     for prefix,name,color in [('Mu_','Demand',MOMENT),('Mr_','Resistance',MOMENT_CAPACITY)]:fig.add_trace(go.Bar(x=labels,y=[e.value(prefix+z,'kip*ft') for z in 'NPB'],name='Moment '+name,marker_color=color),row=1,col=1)
     fig.add_trace(go.Bar(x=labels,y=[e.value('fs_I_'+z,'ksi') for z in 'NPB'],name='Service I stress',marker_color=TEAL),row=1,col=2)
     fig.add_hline(y=e.value('fs_I_limit','ksi'),line_color=AMBER,line_dash='dash',annotation_text='Stress limit',row=1,col=2)
-    for prefix,name,color in [('Vu_','Shear demand',SHEAR),('Vr_','Shear resistance',SHEAR_CAPACITY)]:fig.add_trace(go.Bar(x=['Global','Low'],y=[e.value(prefix+z,'kip') for z in 'GL'],name=name,marker_color=color),row=2,col=1)
-    fig.add_trace(go.Bar(x=['Global','Low'],y=[e.value('Acomb_'+z,'in^2') for z in 'GL'],name='Combined area required',marker_color=AMBER),row=2,col=2)
+    for prefix,name,color in [('Vu_','Shear demand',SHEAR),('Vr_','Shear resistance',SHEAR_CAPACITY)]:fig.add_trace(go.Bar(x=['Overall (G)','Lower-shear (L)'],y=[e.value(prefix+z,'kip') for z in 'GL'],name=name,marker_color=color),row=2,col=1)
+    fig.add_trace(go.Bar(x=['Overall (G)','Lower-shear (L)'],y=[e.value('Acomb_'+z,'in^2') for z in 'GL'],name='Combined area required',marker_color=AMBER),row=2,col=2)
     fig.add_hline(y=e.value('Av','in^2'),line_color=INK,line_dash='dash',annotation_text='Area provided',row=2,col=2)
     theme(fig,'Current cage · capacity and stress response',620);fig.update_layout(barmode='group',legend=dict(font=dict(size=10),orientation='h',y=-.16))
     return fig
@@ -238,7 +287,7 @@ def side_steel_html(e):
 def spacing_html(e):
     """Expose the two independent ratios hidden in each combined spacing check."""
     rows=[]
-    for zone,label in [('G','Global'),('L','Low interval')]:
+    for zone,label in [('G','Overall (G)'),('L','Lower-shear interval (L)')]:
         along=e.value('s_'+zone);along_limit=e.value('s_allow_'+zone)
         across=e.value('S_leg');across_limit=e.value('Sw_'+zone)
         for direction,actual,limit in [('Along cap',along,along_limit),('Across cap between legs',across,across_limit)]:

@@ -289,7 +289,7 @@ def detailing_checks(e):
     checks.append(Check('Status_continuous_anchorage','Continuous bars · end anchorage / splices','PENDING','PENDING',
         'Continuous bars run between end-cover planes. End development and any required splices remain a detailing review.'))
     checks.append(Check('Status_pile_hoops','Hoop zones / pile-head arrangement','PENDING','PENDING',
-        'First hoop and global/low zone limits are unspecified. Full-depth hoops cannot pass through embedded pile heads; resolve local hoops and shear reinforcement at each pile.'))
+        'This tool accepts hoop pitch, not first-hoop or spacing-zone stations. Samples are illustrative; establish actual stations and local reinforcement around embedded pile heads in a separate detail.'))
     confirmed=e.case['screening']['aggregate_confirmed']
     checks.append(Check('Status_aggregate','Aggregate size / spacing basis','PASS' if confirmed else 'PENDING','N/A' if confirmed else 'PENDING',
         f"Maximum aggregate {e.case['screening']['aggregate_in']:g} in. {e.case['screening']['code_basis']}."))
