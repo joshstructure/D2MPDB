@@ -149,7 +149,8 @@ class RebarDetailingTests(unittest.TestCase):
         self.assertIn('<extra></extra>',f.data[0].hovertemplate)
         help=hoop_explanation_html(e)
         self.assertIn('Both shear inputs are identical',help)
-        self.assertIn('no inputs for the first hoop',help)
+        self.assertIn('Create starting layout',help)
+        self.assertIn('has not enabled its actual transverse layout',help)
         for changes in ({'Vu_L':100},{'s_L':12}):
             different=hoop_figure(evaluate(set_inputs(e.case,**changes)))
             self.assertEqual(different.layout.yaxis3.scaleanchor,'x3')

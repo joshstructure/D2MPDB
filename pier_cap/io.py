@@ -39,6 +39,12 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
     path=Path(root)/datetime.now(timezone.utc).strftime('case-%Y%m%d-%H%M%S-%f')
     path.mkdir(parents=True,exist_ok=False)
     write_case(case,path/'selected_case.json')
+    from .transverse import enabled as actual_transverse,scheduled_bars,bar_shape,shape_issues
+    if actual_transverse(case):
+        with (path/'transverse_bar_schedule.csv').open('w',newline='',encoding='utf-8-sig') as f:
+            writer=csv.DictWriter(f,fieldnames=['id','run','kind','bar','zone','station_in']);writer.writeheader();writer.writerows(scheduled_bars(case))
+        shapes=[dict(run=r,geometry=bar_shape(e,r),issues=shape_issues(e,r)) for r in case['transverse_detail']['runs']]
+        (path/'transverse_shapes.json').write_text(json.dumps(shapes,indent=2,ensure_ascii=False),encoding='utf-8')
     with (path/'checks.csv').open('w',newline='',encoding='utf-8-sig') as f:
         w=csv.writer(f);w.writerow(['Check','Status','D/C','Basis'])
         for c in e.checks:w.writerow([c.label,c.status,c.ratio,c.basis])
@@ -56,7 +62,8 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
         parts.append(fig.to_html(full_html=False,include_plotlyjs=(i==0)))
     parts.extend([clear_spacing_html(e),'</body></html>'])
     (path/'reinforcement_detail.html').write_text('\n'.join(parts),encoding='utf-8')
-    (path/'blockpad_inputs.txt').write_text('\n'.join(input_formula(k,v) for k,v in case['inputs'].items())+'\n',encoding='utf-8')
+    prefix=('UNIFORM-CAGE REFERENCE ONLY. Actual hoop/U runs are in selected_case.json and transverse_bar_schedule.csv; these scalar inputs do not represent their topology.\n\n' if actual_transverse(case) else '')
+    (path/'blockpad_inputs.txt').write_text(prefix+'\n'.join(input_formula(k,v) for k,v in case['inputs'].items())+'\n',encoding='utf-8')
     (path/'formula_trace.json').write_text(json.dumps(formula_trace(e),indent=2,ensure_ascii=False),encoding='utf-8')
     if case['analysis'].get('xml_audit',{}).get('end_records'):
         from .force_diagrams import cap_force_figure,diagram_notice
@@ -73,6 +80,8 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
     manifest={'status':e.status,'cage_issues':e.issues,'stale_geometry':e.stale,'max_dc':e.max_dc,'estimated_gross_steel_lb':e.weight_lb,
         'limitations':'Sectional checks only. Service III/fatigue readiness, D-regions, hook development/cutoffs, end anchorage, pile-head hoops and full code/detail review remain explicit. Steel includes drawn span-hook bends/tails; excludes laps, end anchorage, hoop bends and waste. Hoop quantity uses tighter spacing over the full cap; stationing is unresolved.',
         'case_sha256':hashlib.sha256((path/'selected_case.json').read_bytes()).hexdigest()}
+    if actual_transverse(case):
+        manifest['limitations']='Actual station schedule and entered bar geometry are exported. Weight includes U bends/tails and closed hoop outlines, but excludes hoop closure extensions, laps and waste. Actual adjacent-station shear is conditional on developed legs and verified force zones. U-bars have no closed-hoop torsion credit. Reference equations are labeled separately. Anchorage, D-regions and full 3D congestion remain review items.'
     if search_result:
         write_case(search_result.base_case,path/'search_base_case.json')
         manifest['search']={k:getattr(search_result,k) for k in ('config','total','evaluated','passed','elapsed','exhaustive','rejection_counts','force_mode')}
@@ -135,6 +144,8 @@ def export_blockpad(source,case,destination):
     """Patch only C005 in a new copy, accepting local paths or uploaded bytes."""
     from lxml import etree as E
     case=upgrade_case(case);validate_case(case);e=evaluate(case);destination=Path(destination)
+    if case.get('transverse_detail',{}).get('enabled'):
+        raise ValueError('The Blockpad scalar template cannot represent actual hoop/U stations and open-bottom topology. Export the case JSON and full review bundle to retain the complete detail.')
     same_source=not isinstance(source,(bytes,bytearray,memoryview)) and Path(source).resolve()==destination.resolve()
     if destination.exists() or same_source:raise ValueError('Choose a new output filename; originals are never overwritten.')
     tree,report,found=_blockpad_template(source);root=tree.getroot()

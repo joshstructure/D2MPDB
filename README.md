@@ -29,11 +29,15 @@ The notebook now handles the shared sectional workflow for **pier and end-bent c
 
 When supporting code changes, run `python scripts/build_portable_notebook.py` to refresh the portable notebook before pushing. Use `--preserve-outputs` to retain a saved run and widget state; this does not rerun calculations or refresh its saved figures.
 
-**Reading the reinforcement views:** Plan looks down on the bottom bars; side elevation looks along the pile row; cross sections look end-on through the cap. Purple dashed lines in elevation are a short hoop-pitch illustration. Actual first-hoop stations, spacing-zone boundaries and pile-head hoop details are not inputs in the current tool, so stationing remains pending. The hoop view includes a readable size/pitch table and side-elevation samples plus one end-on hoop outline. `#6 @ 9 in c/c` means a No. 6 hoop at 9-inch center spacing, not six hoops.
+**Actual hoops and pile U-bars:** Above the live cage, choose **Create starting layout**. This creates editable bar runs from the current overall pitch: closed hoops clear of the pile envelopes and inverted transverse U-bars at the piles, **open at the bottom**. Select a run; set its bar size, first station and end limit (feet from the left cap end), pitch (inches), and end geometry; then click **Apply bar run**. The count and actual last station are shown explicitly. The last bar stays on the entered pitch rather than being stretched to the end limit. Add/remove runs as needed. The starting layout is a proposal, with development unconfirmed; it never replaces existing runs. Geometry changes leave entered stations intact so conflicts can be reviewed.
+
+**Reading the reinforcement views:** Plan looks down from above; side elevation shows transverse bars edge-on; cross sections look across the cap. With the actual layout enabled, every entered station appears in plan, elevation and a rotatable 3D view. Purple is a closed hoop; pink is an inverted U with independently terminating ends beside the pile. Selecting a run updates the section for that bar shape. `3 × #6 @ 9 in` means three No. 6 bars at 9-inch center spacing. When actual layout is disabled, dashed shapes and short pitch samples remain clearly labeled reference illustrations; stationing stays pending until the actual layout is entered.
+
+**U ends and calculation scope:** Choose straight legs, 90°, 135° or 180° ends, an inside bend diameter, straight tail length, leg inset and end elevation. Dimensions control the drawing; they do not calculate development length. Record the checked drawing/calculation under **Checked detail** before confirming development; changing the run or design inputs makes that confirmation pending again. Bar/pile, cover and longitudinal-bar overlaps are screened. The 3D view shows transverse bars and piles; congestion with longitudinal hook ends and hoop closures remains a separate review. Adjacent-station shear screens and plots use the weaker vertical two-leg area and larger adjacent G/L demand, with anchorage explicitly conditional. Open U-bars receive no closed-hoop torsion credit and do not increase longitudinal flexural area. Uniform-cage equations are labeled reference; an actual layout is not reported as a finalized passing design.
 
 **Overall (G) and lower-shear interval (L)** are separate shear checks, not vertical positions. The XML importer uses overall shear for both until a lower-shear interval is established. Identical shear and pitch inputs share one sample drawing; differing inputs show two samples, without assigning them to cap stations.
 
-**Additional bars, U legs and overrides:** Added between-pile bars supplement continuous bottom bars and include their drawn end hooks. Separate U-leg counts add steel area in the legacy calculation but have unresolved positions/development; do not count the added bars' hooks again as U legs. The advanced spacing checkbox changes longitudinal-bar spacing across the section, not along-cap hoop pitch. Inner leg spacing is used separately for more than one effective hoop loop; that topology remains unresolved.
+**Additional bars, U legs and overrides:** Added between-pile bars supplement continuous bottom bars and include their drawn end hooks. The new transverse U-bar runs are independent of those bars. Legacy U-leg counts add longitudinal steel area but have unresolved positions/development; do not enter transverse U-bars or added-bar hooks in those counts. The advanced spacing checkbox changes longitudinal-bar spacing across the section, not along-cap transverse pitch. Inner leg spacing is used separately for more than one effective hoop loop; that topology remains unresolved.
 
 **Repository-backed edition:**
 
@@ -95,7 +99,7 @@ Default **fixed-force sensitivity** keeps imported forces constant and retains t
 
 ### Search and drawing limits
 
-The automatic family uses independently selected top, pile-positive and between-pile positive bar sizes and counts, one row of continuous and added bottom bars, one closed hoop and uniform spacing. Additional rows remain manual inputs. The study uses the same independent choices. A bounded search does not establish an optimum outside the explored combinations.
+The automatic family uses independently selected top, pile-positive and between-pile positive bar sizes and counts, one row of continuous and added bottom bars, one closed hoop and uniform spacing. Additional rows remain manual inputs. The study uses the same independent choices. A bounded search does not establish an optimum outside the explored combinations. Search stops while the actual transverse layout is enabled because the search family cannot represent its topology. Disable the actual layout to search a reference cage, then re-enable and review the saved runs. JSON and review-bundle exports preserve the actual detail and include a per-bar CSV schedule, shape coordinates and drawings. The scalar Blockpad exporter stops for an enabled actual layout instead of silently omitting it.
 
 **Side bars:** the search includes zero through seven bars per side by default; select counts through ten in **Bars / side**. Zero is evaluated once per remaining layout, regardless of the unused side-bar size. **Least steel** includes main, side and hoop steel in its weight. The live cage and section-study preview show whether the depth-based skin rule applies and which side-steel checks fail with zero side bars. In the current calculation, shrinkage/temperature area is required on each face even when the depth-based skin rule does not apply; side bars also contribute to the longitudinal-tension checks, but not flexural resistance. The search keeps these checks active. Rerunning an older workbench expands its former default side counts to include the smaller choices; later deliberate selections are preserved.
 
@@ -103,11 +107,12 @@ The pile-region cross section reserves the nominal centered pile width plus the 
 
 Pile embedment and bar-to-pile clearance are required project inputs: Mathcad and the FBMP XML do not establish them. Their zero placeholders are unconfirmed, and searches stop until they are confirmed. Existing saved cases migrate their common positive bar size into both regions and preserve their loads. The source Mathcad has separate positive-region counts and between-pile U-bars; the explicit obstruction screen and independent sizes extend that calculation.
 
-Weight counts continuous bars once over the clear cap length and adds every drawn span bar, including its 90-degree hook bends and 12db tails. End anchorage, laps, hoop bends and waste remain outside the comparison estimate. The screen checks drawn longitudinal bars against the hoop interior, minimum clear bar spacing and the pile envelope. The hoop outline is a cross-section guide; actual hoop stations around pile heads remain a detailing task. Multiple loops and U-leg positions remain unresolved.
+Weight counts continuous bars once over the clear cap length and adds every drawn span bar, including its 90-degree hook bends and 12db tails. With an actual transverse layout it counts the entered hoop outlines and U-bar centerlines, including U bends and tails. Hoop closure extensions, end anchorage not explicitly drawn, laps and waste remain outside the estimate. With actual layout disabled, the original uniform-hoop quantity estimate is retained. The screen checks drawn longitudinal bars against the reference hoop interior, minimum clear bar spacing and the pile envelope, and separately screens the actual transverse shapes. Multiple nested hoop loops and legacy longitudinal U-leg positions remain unresolved.
 
 ### Imports and exports
 
 - **One-file reuse:** load the case JSON through the workbench upload control.
+- **Save the JSON on your computer:** **Export case + checks** writes a timestamped runtime bundle and, in Colab, requests a browser download of `selected_case.json`. **Download saved JSON** retries that same snapshot; **Download full bundle ZIP** includes all files, including any pile review. In local Jupyter, click the generated download link. The panel shows the absolute runtime path separately from the browser download. A Colab `/content/` path is temporary remote storage, not your computer or Google Drive. Opening the notebook on another computer does not transfer these runtime files. To choose a destination for each download in Chrome, enable **Settings → Downloads → Ask where to save each file before downloading**; otherwise use the browser Downloads list to find the saved file. Re-export after changing inputs.
 - **Three-workbook converter:** `import_workbooks` reads the supplied `Max_PierCap_*_Design` layouts, checks coordinates/headers and records governing rows/hashes. Confirm all exports belong to the same run. Nominal pile width and section dimensions remain declared project data.
 - **New loads from one XML:** use **Upload FBMP XML → review preview → Apply XML inputs** in the live workbench, then rerun the search. Supports the reviewed FB-MultiPier 6.1.0 static, English-unit, uniform pile-bent layout. Geometry/materials and strength/Service I envelopes come from the same source; trial steel is retained. See [FBMP_IMPORT.md](FBMP_IMPORT.md) for supported models, force signs, station recovery and audit details. `.out` parsing remains unsupported.
 - **Review exports:** saved in timestamped `exports/` subfolders; originals are not overwritten. `alternatives.csv` includes every passing layout. `filtered_alternatives.csv` includes every current filter match, across all pages, with stable candidate IDs; `review.json` records the target, scope and matching count. For Blockpad, use **Upload Blockpad journal → Choose Files (Colab) → Export a Blockpad review copy**. Wait for **JOURNAL READY** before exporting. Colab downloads the new `.bpad`; **Download last .bpad copy** retries the download. Windows paths are only usable by a notebook running on Windows. The exporter uses the current main calculator case, modifies only C005 in a new review copy, and preserves other project data.
@@ -168,16 +173,16 @@ orange steel is additional in each clear span, turning up outside the pile
 placement/clearance envelope. Hook fit and clashes with the continuous cage and
 other hook tails are screened. **Standard bend geometry is not proof of
 anchorage:** required development from the critical section, cutoff extension,
-end development and splices remain pending. Multiple loops and U-leg topology
-remain unresolved. Pile embedment is drawn to the entered height above the cap
+end development and splices remain pending. Multiple loops and legacy longitudinal
+U-leg topology remain unresolved. Pile embedment is drawn to the entered height above the cap
 underside; the below-cap pile length is schematic.
 
-The hoop plot separates along-cap center pitch and clear gap from across-cap leg
-spacing, with numerical limits. Global and low-shear samples are not an invented
-station schedule: interval boundaries and first-hoop station are unavailable.
-Full-depth hoops through an embedded pile head conflict geometrically, so a
-separate pile-head hoop arrangement remains pending. A manual leg-spacing
-number cannot override the actual outer-hoop width check.
+The transverse editor separates along-cap center pitch from the shape across the
+cap. Actual runs replace reference samples when enabled. Full-depth closed hoops
+through an embedded pile head are flagged as conflicts; the pile-zone shape is an
+inverted U with independently developed ends and no bottom crossbar. Overall (G)
+and lower-shear (L) identify force inputs, not elevations. A manual leg-spacing
+number cannot create an undrawn inner leg or override the actual outer-leg width.
 
 Case exports include `rebar_clear_spacing.csv` and a self-contained interactive
 `reinforcement_detail.html`. Blockpad review copies contain current numerical

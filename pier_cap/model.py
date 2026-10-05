@@ -6,6 +6,7 @@ import json
 import math
 from .engine import Engine, ScalarEngine, Q, parse
 from .detailing import required_clear,spacing_records,hook_paths,layer_alignment
+from .transverse import enabled as actual_transverse,validate_detail,transverse_checks,transverse_issues,bar_shape,run_summary
 
 DATA=Path(__file__).parent/'data'
 DEFINITIONS=json.loads((DATA/'c005_formulas.json').read_text(encoding='utf-8'))
@@ -69,6 +70,7 @@ def set_inputs(case,**changes):
     return result
 
 def validate_case(case):
+    validate_detail(case)
     if case.get('schema_version')!=3:raise ValueError('Expected case schema_version 3; load older cases through load_case().')
     expected_units={n:d['unit'] or 'unitless' for n,d in INPUTS.items()}
     if case.get('units')!=expected_units:raise ValueError('Case units differ from the input schema. Use the units in default_case.json; convert values before importing.')
@@ -219,7 +221,10 @@ def estimate_weight(e):
         longitudinal+=BAR_AREA[path['bar']['bar']]*(max(0,path['straight'])+math.pi*path['radius']+2*path['tail'])
     hoop_length=2*(p['b']-2*p['C_s']-dv+p['h']-p['C_t']-p['C_b']-dv)
     count=math.ceil(max(0,length-2*p['C_s'])/min(p['s_G'],p['s_L']))+1
-    return (longitudinal+count*p['n_loop']*hoop_length*BAR_AREA[p['Bar_v']])*490/1728
+    transverse=count*p['n_loop']*hoop_length*BAR_AREA[p['Bar_v']]
+    if actual_transverse(e.case):
+        transverse=sum(r['count']*bar_shape(e,r)['length_in']*BAR_AREA[r['bar']] for r in run_summary(e.case))
+    return (longitudinal+transverse)*490/1728
 
 
 def detailing_checks(e):
@@ -288,8 +293,9 @@ def detailing_checks(e):
             'Bend dimensions alone do not establish anchorage. Verify critical section, required ldh, cutoff extension and confinement; hooks beside a pile are not assumed developed into it.'))
     checks.append(Check('Status_continuous_anchorage','Continuous bars · end anchorage / splices','PENDING','PENDING',
         'Continuous bars run between end-cover planes. End development and any required splices remain a detailing review.'))
-    checks.append(Check('Status_pile_hoops','Hoop zones / pile-head arrangement','PENDING','PENDING',
-        'This tool accepts hoop pitch, not first-hoop or spacing-zone stations. Samples are illustrative; establish actual stations and local reinforcement around embedded pile heads in a separate detail.'))
+    if not actual_transverse(e.case):
+        checks.append(Check('Status_pile_hoops','Hoop zones / pile-head arrangement','PENDING','PENDING',
+            'Actual layout is not enabled. Use Actual hoops and pile U-bars to enter bar sizes, first stations, end limits and pitch. Reference samples do not establish construction locations.'))
     confirmed=e.case['screening']['aggregate_confirmed']
     checks.append(Check('Status_aggregate','Aggregate size / spacing basis','PASS' if confirmed else 'PENDING','N/A' if confirmed else 'PENDING',
         f"Maximum aggregate {e.case['screening']['aggregate_in']:g} in. {e.case['screening']['code_basis']}."))
@@ -326,8 +332,15 @@ def evaluate(case=None,fast=False):
             check.basis+=(f' Required {required:.3f} in²; credited main {main:.3f} + side {side:.3f}'
                           f' = {main+side:.3f} in²; shortfall {max(0,required-main-side):.3f} in².')
     checks.extend(detailing_checks(e))
+    if actual_transverse(case):
+        for check in checks:
+            if check.key.startswith(('Chk_shear_','Chk_spacing_','Chk_torsteel_','Chk_long_','Chk_hoop_clear_','Chk_drawn_hoop_legs_','Chk_shrink_')) or check.key=='Status_overall':
+                check.label+=' · uniform reference'
+                check.basis+=' Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout.'
+                check.status='REFERENCE';check.ratio='N/A'
+        checks.extend(transverse_checks(e))
     e.max_dc=max(c.ratio for c in checks if isinstance(c.ratio,(float,int)))
-    e.issues=cage_issues(e);e.weight_lb=estimate_weight(e)
+    e.issues=cage_issues(e)+transverse_issues(e);e.weight_lb=estimate_weight(e)
     failure=any('FAIL' in c.status for c in checks)
     e.eligible=sectional_checks_pass(e) and not stale
     if stale:e.status='REIMPORT FORCES — changed analysis geometry: '+', '.join(stale)
@@ -335,6 +348,9 @@ def evaluate(case=None,fast=False):
     elif failure:e.status='CHECK FAILURES — revise the trial cage or section'
     elif e.issues:e.status='DETAILING SCREEN — review the drawn cage'
     else:e.status=eng.get('Status_overall')+' · ANCHORAGE / DETAILING PENDING'
+    if actual_transverse(case):
+        e.eligible=False
+        if not stale and not failure and not e.issues:e.status='ACTUAL TRANSVERSE LAYOUT · LOCAL FORCE / ANCHORAGE REVIEW PENDING'
     return e
 
 def formula_trace(e):

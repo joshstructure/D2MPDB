@@ -6,6 +6,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from .model import bar_positions,BAR_DIAMETER,side_reinforcement
 from .detailing import spacing_records,hook_paths,standard_hook,required_clear
+from .transverse import enabled as actual_transverse
 from .optimizer import candidate_dc,candidate_governing,governing_check,DC_SCOPES
 
 BLUE='#1f5b91';TEAL='#167b75';AMBER='#d88822';RED='#bb3e39';INK='#213649';GREY='#b8c7d1'
@@ -48,7 +49,7 @@ def pile_head_help_html():
 
 def check_family(check):
     if check.key.startswith('Chk_flex_'):return 'Moment / flexure',MOMENT
-    if check.key.startswith('Chk_shear_'):return 'Shear',SHEAR
+    if check.key.startswith(('Chk_shear_','Chk_actual_shear_')):return 'Shear',SHEAR
     if check.key.startswith('Chk_torsteel_'):return 'Shear + torsion steel',AMBER
     return 'Other checks','#86939f'
 
@@ -62,10 +63,24 @@ def theme(fig,title,height=460):
         paper_bgcolor='#ffffff',plot_bgcolor='#ffffff',legend=dict(orientation='h',y=-.12),hoverlabel=dict(bgcolor='white',namelength=-1,align='left'))
     return fig
 
-def section_figure(e,region='B'):
+def section_figure(e,region='B',run_id=None):
     p=e.case['inputs'];b=p['b'];h=p['h'];fig=go.Figure();dv=BAR_DIAMETER[p['Bar_v']]
     fig.add_shape(type='rect',x0=0,y0=0,x1=b,y1=h,line=dict(color=INK,width=2),fillcolor='#f2f5f7',layer='below')
-    fig.add_shape(type='rect',x0=p['C_s']+dv/2,y0=p['C_b']+dv/2,x1=b-p['C_s']-dv/2,y1=h-p['C_t']-dv/2,line=dict(color=HOOP,width=3))
+    actual=actual_transverse(e.case)
+    if not actual:
+        # Reference geometry at a pile must never depict a bottom leg through it.
+        xs=[p['C_s']+dv/2,p['C_s']+dv/2,b-p['C_s']-dv/2,b-p['C_s']-dv/2]
+        ys=[p['C_b']+dv/2,h-p['C_t']-dv/2,h-p['C_t']-dv/2,p['C_b']+dv/2]
+        if region=='B':xs.append(xs[0]);ys.append(ys[0])
+        fig.add_trace(go.Scatter(x=xs,y=ys,mode='lines',line=dict(color=HOOP,width=3,dash='dash'),
+            name='Reference shape · actual layout not set',hoverinfo='name'))
+    else:
+        from .transverse_visuals import add_section
+        kind='pile_u' if region=='P' else 'hoop'
+        runs=[r for r in e.case['transverse_detail']['runs'] if r['kind']==kind]
+        run=next((r for r in runs if r['id']==run_id),runs[0] if runs else None)
+        if run:add_section(fig,e,run)
+        else:fig.add_annotation(x=b/2,y=h/2,text='No '+('pile U-bar' if region=='P' else 'hoop')+' run entered',showarrow=False)
     if region=='P' and p['Ready_pile']:
         left=(b-p['D_pile'])/2;right=(b+p['D_pile'])/2
         fig.add_shape(type='rect',x0=e.value('Pile_left')-p['C_pile'],x1=e.value('Pile_right')+p['C_pile'],y0=0,y1=p['Pile_embed']+p['C_pile'],line=dict(color=RED,dash='dot'),fillcolor='rgba(187,62,57,.06)',layer='below')
@@ -104,12 +119,13 @@ def reinforcement_summary_html(e):
     p=e.case['inputs'];continuous=int(p['n_P1']+p['n_P2']);extra=int(p['n_B1']+p['n_B2'])
     migration=e.case.get('reinforcement_migration',{})
     note=('<p style="color:#9b6012"><b>Saved-case conversion:</b> '+html.escape(migration['note'])+'</p>') if migration else ''
+    transverse_note=('Purple = actual closed hoops; pink = actual open-bottom pile U-bars. Select a run in the editor to inspect its section.<br>' if actual_transverse(e.case) else 'Purple dashed shapes / pitch samples are reference geometry; use Actual hoops and pile U-bars to set construction stations.<br>')
     return (f'<p><b>Between-pile inputs are ADDITIONAL steel.</b> '
         f'{continuous} continuous #{p["Bar_P"]:g} + {extra} added #{p["Bar_B"]:g} = <b>{continuous+extra} bottom bars in the span</b> '
         '(excluding any unresolved U-leg inventory).<br>'
         f'At piles: <b>{e.value("As_P"):.3f} in²</b>. Between piles: <b>{e.value("As_B"):.3f} in² combined</b>. '
         'Blue bars continue through the full cap; orange bars are additional span bars with 90° hooks. '
-        'Purple marks the hoop outline / pitch samples; the outline at a pile is not a resolved pile-head detail.<br>'
+        +transverse_note+
         'Hook fit is checked; development, cutoff lengths, end anchorage and pile-head hoop arrangement remain pending.</p>'+note)
 
 
@@ -139,7 +155,7 @@ def elevation_figure(e):
     inset=D/2+e.value('Tol_pile')+p['C_pile']+dv/2
     left=centers[0]+inset;right=centers[1]-inset
     count=min(5,math.floor((right-left)/pitch)+1)
-    if count>=2:
+    if count>=2 and not actual_transverse(e.case):
         start=(left+right-(count-1)*pitch)/2
         stations=[start+i*pitch for i in range(count)]
         fig.add_trace(go.Scatter(x=[v for x in stations for v in (x/12,x/12,None)],
@@ -148,6 +164,9 @@ def elevation_figure(e):
             line=dict(color=HOOP,width=3,dash='dash'),
             hovertemplate=f'<b>Hoop sample · side elevation</b><br>#{p["Bar_v"]:g} @ {pitch:g} in center to center<br>Overall check (G)<br>Illustrative position; stationing pending<extra></extra>'))
         fig.add_annotation(x=(left+right)/24,y=h+2,text='Hoop sample',showarrow=False,font=dict(color=HOOP,size=10))
+    if actual_transverse(e.case):
+        from .transverse_visuals import add_projection
+        add_projection(fig,e,'elevation')
     fig.add_shape(type='line',x0=0,x1=L/12,y0=0,y1=0,line=dict(color=INK,dash='dash'))
     continuous=bar_positions(e,'P');groups=defaultdict(list)
     for bar in continuous:groups[(bar['kind'],bar['y'],bar['bar'])].append(bar)
@@ -174,9 +193,9 @@ def elevation_figure(e):
     fig.add_annotation(x=0,y=1.10,xref='paper',yref='paper',text=note,showarrow=False,xanchor='left',font=dict(size=11,color=RED if hook_failure else AMBER))
     fig.update_xaxes(title='Along cap (ft)',range=[-1,L/12+1],zeroline=False)
     fig.update_yaxes(title='Elevation above cap underside (in)',range=[-22,h+5],scaleanchor='x',scaleratio=1/12,zeroline=False)
-    theme(fig,'SIDE ELEVATION · looking along the pile row',540)
+    theme(fig,'SIDE ELEVATION · along the cap length',540)
     fig.add_annotation(x=0,y=1.23,xref='paper',yref='paper',xanchor='left',showarrow=False,
-        text='Purple dashed lines = hoop pitch sample only.<br>Actual first hoop, zone limits and pile-head layout remain pending.',
+        text=('Every purple / pink line is an entered bar station.<br>Pile U-bars are open at the bottom; see cross section / 3D.' if actual_transverse(e.case) else 'Purple dashed lines = hoop pitch sample only.<br>Set actual stations in Actual hoops and pile U-bars.'),
         align='left',font=dict(size=11,color=HOOP))
     fig.update_layout(legend=dict(orientation='h',y=-.3,font=dict(size=10)),margin=dict(t=130,b=170))
     return fig
@@ -199,13 +218,19 @@ def reinforcement_plan_figure(e):
         b=t['bar'];key=b['layer'];show=key not in seen;seen.add(key)
         fig.add_trace(go.Scatter(x=[t['left']/12,t['right']/12],y=[b['x'],b['x']],mode='lines+markers',name=key+' added / hooks up',legendgroup='extra'+key,showlegend=show,
             marker=dict(symbol='triangle-up',size=6),line=dict(color=AMBER,width=2),hovertemplate=f'Added #{b["bar"]}<br>Across cap {b["x"]:.3f} in<extra></extra>'))
+    if actual_transverse(e.case):
+        from .transverse_visuals import add_projection
+        add_projection(fig,e,'plan')
     fig.update_xaxes(title='Along cap (ft)',range=[-1,L/12+1]);fig.update_yaxes(title='Across cap (in)',range=[-3,p['b']+3],scaleanchor='x',scaleratio=1/12)
-    theme(fig,'PLAN VIEW · bottom bars viewed from above',370)
+    theme(fig,'PLAN VIEW · '+('transverse steel + bottom bars' if actual_transverse(e.case) else 'bottom bars')+' viewed from above',430)
     fig.update_layout(legend=dict(y=-.35,font=dict(size=10)),margin=dict(b=110))
     return fig
 
 
 def hoop_explanation_html(e):
+    if actual_transverse(e.case):
+        from .transverse_visuals import schedule_html
+        return schedule_html(e)
     p=e.case['inputs']
     same=math.isclose(p['Vu_G'],p['Vu_L'],abs_tol=1e-8,rel_tol=0)
     rows=''.join(f'<tr><td>{label}</td><td>{p["Vu_"+z]:.2f} kip</td>'
@@ -220,12 +245,15 @@ def hoop_explanation_html(e):
         +'<table class="cap-table"><tr><th>Check</th><th>Shear input</th><th>Hoop size / pitch</th><th>Clear gap</th></tr>'+rows+'</table>'
         '<p><b>#6 @ 9 in</b>, for example, means a No. 6 bar at 9-inch center-to-center spacing; it does not mean six hoops. '
         'The side-elevation samples show successive hoops edge-on. The cross section shows the shape of one hoop.</p>'
-        '<p><b>Why stationing is pending:</b> the current tool accepts pitch only. It has no inputs for the first hoop station '
-        'or the start/end stations of spacing zones. You have not missed a required field. Samples illustrate spacing, '
-        'not construction locations. Hoop placement and the local reinforcement around embedded pile heads require a separate detail.</p>')
+        '<p><b>Why stationing is pending:</b> this case has not enabled its actual transverse layout. '
+        'Use <b>Actual hoops and pile U-bars → Create starting layout</b>, then edit the first bar, end limit, pitch and end geometry for each run. '
+        'These reference samples illustrate spacing only.</p>')
 
 
 def hoop_figure(e):
+    if actual_transverse(e.case):
+        from .transverse_visuals import layout_3d
+        return layout_3d(e)
     p=e.case['inputs'];dv=BAR_DIAMETER[p['Bar_v']]
     same=all(math.isclose(p[n+'G'],p[n+'L'],abs_tol=1e-8,rel_tol=0) for n in ('s_','Vu_'))
     samples=[('G','Overall + lower-shear checks · same inputs')] if same else [('G','Overall check (G)'),('L','Lower-shear interval check (L)')]
@@ -260,6 +288,9 @@ def hoop_figure(e):
 
 
 def results_figure(e):
+    if actual_transverse(e.case):
+        from .transverse_visuals import response_figure
+        return response_figure(e)
     fig=make_subplots(rows=2,cols=2,subplot_titles=('Factored moment / resistance (kip-ft)','Service I steel stress (ksi)','Shear demand / resistance (kip)','Combined shear + torsion area (in²)'),vertical_spacing=.22,horizontal_spacing=.13)
     labels=['N · top','P · pile','B · between piles']
     for prefix,name,color in [('Mu_','Demand',MOMENT),('Mr_','Resistance',MOMENT_CAPACITY)]:fig.add_trace(go.Bar(x=labels,y=[e.value(prefix+z,'kip*ft') for z in 'NPB'],name='Moment '+name,marker_color=color),row=1,col=1)
@@ -268,7 +299,7 @@ def results_figure(e):
     for prefix,name,color in [('Vu_','Shear demand',SHEAR),('Vr_','Shear resistance',SHEAR_CAPACITY)]:fig.add_trace(go.Bar(x=['Overall (G)','Lower-shear (L)'],y=[e.value(prefix+z,'kip') for z in 'GL'],name=name,marker_color=color),row=2,col=1)
     fig.add_trace(go.Bar(x=['Overall (G)','Lower-shear (L)'],y=[e.value('Acomb_'+z,'in^2') for z in 'GL'],name='Combined area required',marker_color=AMBER),row=2,col=2)
     fig.add_hline(y=e.value('Av','in^2'),line_color=INK,line_dash='dash',annotation_text='Area provided',row=2,col=2)
-    theme(fig,'Current cage · capacity and stress response',620);fig.update_layout(barmode='group',legend=dict(font=dict(size=10),orientation='h',y=-.16))
+    theme(fig,('UNIFORM-CAGE REFERENCE · actual U/hoop checks are in D/C checks' if actual_transverse(e.case) else 'Current cage · capacity and stress response'),620);fig.update_layout(barmode='group',legend=dict(font=dict(size=10),orientation='h',y=-.16))
     return fig
 
 def side_steel_html(e):
@@ -285,6 +316,12 @@ def side_steel_html(e):
 
 
 def spacing_html(e):
+    if actual_transverse(e.case):
+        from .transverse import scheduled_bars
+        bars=scheduled_bars(e.case)
+        pitches=[b['station_in']-a['station_in'] for a,b in zip(bars,bars[1:])]
+        return ('<p><b>Actual transverse spacing:</b> '+(f'{len(bars)} bars; largest adjacent pitch {max(pitches):.3f} in, including transitions between runs.' if pitches else 'Enter at least two bars to check adjacent spacing.')+
+            ' Every adjacent interval is checked in the D/C tab using the weaker two-leg area and larger adjacent shear demand. End development and force-zone applicability remain review items.</p>')
     """Expose the two independent ratios hidden in each combined spacing check."""
     rows=[]
     for zone,label in [('G','Overall (G)'),('L','Lower-shear interval (L)')]:

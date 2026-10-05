@@ -32,7 +32,7 @@ def same_design_basis(a,b):
     def basis(case):
         case=upgrade_case(case)
         return ({k:v for k,v in case['inputs'].items() if k not in REINFORCEMENT_INPUTS},
-                case['analysis'],case['screening'],case['units'],case['schema_version'])
+                case['analysis'],case['screening'],case['units'],case['schema_version'],case.get('transverse_detail'))
     return basis(a)==basis(b)
 
 
@@ -153,7 +153,8 @@ def _governing(e,keys=None):
 def governing_check(e,scope='all'):
     """Report the same controlling check used by the candidate filter."""
     if scope not in DC_SCOPES:raise ValueError('Unknown D/C scope.')
-    return _governing(e,STRENGTH_CHECKS if scope=='strength' else None)
+    keys=STRENGTH_CHECKS|{c.key for c in e.checks if c.key.startswith('Chk_actual_shear_')}
+    return _governing(e,keys if scope=='strength' else None)
 
 def search(case,config=None,progress=None):
     return _search(case,config,progress,section_sensitivity=False)
@@ -168,6 +169,8 @@ def sensitivity_search(case,config=None,progress=None):
 
 def _search(case,config,progress,section_sensitivity):
     c=config or SearchConfig();case=upgrade_case(case);validate_case(case)
+    if case.get('transverse_detail',{}).get('enabled'):
+        raise ValueError('Steel search generates uniform closed-hoop cages. Disable the actual transverse layout to search a reference cage; your entered runs remain saved. Re-enable and review those runs afterward.')
     if not case['inputs']['Ready_pile']:
         raise ValueError('Confirm pile-head embedment and bar clearance under Geometry → Pile head before searching.')
     stale=analysis_match(case)

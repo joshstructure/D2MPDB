@@ -15,6 +15,8 @@ from .widget_compat import Tab, Accordion
 from .source_status import upload_entries,source_html,import_receipt,receipt_html,notice_html
 from .force_audit import force_basis,FORCE_LABELS
 from .force_diagrams import ForceDiagramPanel
+from .transverse_widgets import TransversePanel
+from .transverse import enabled as actual_transverse
 from .visuals import section_figure,elevation_figure,reinforcement_plan_figure,reinforcement_summary_html,clear_spacing_html,hoop_figure,hoop_explanation_html,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html,spacing_html,side_steel_html,pile_head_help_html
 
 UNIT_NAMES={'in':'inches','ft':'feet','kip':'kips','kip*ft':'kip-feet','ksi':'ksi (kips per square inch)','deg':'degrees'}
@@ -65,6 +67,7 @@ class CapNotebook:
         self.aggregate_confirmed=W.Checkbox(value=self.case['screening']['aggregate_confirmed'],description='Aggregate size confirmed',indent=False)
         for control in (self.clearance,self.aggregate,self.aggregate_confirmed):control.observe(self._changed,names='value')
         self.input_tabs=self._inputs()
+        self.transverse_panel=TransversePanel(self)
         self.force_diagrams=ForceDiagramPanel()
         self.plot_tabs=Tab(children=[self.cage,self.results,W.VBox([self.register],layout=W.Layout(max_height='850px',overflow='auto')),W.VBox([self.trace],layout=W.Layout(max_height='750px',overflow='auto')),self.force_diagrams.ui],layout=W.Layout(flex='1 1 650px',min_width='560px'))
         for i,title in enumerate(['Live cage','Plots','D/C checks','Equations','Force diagrams']):self.plot_tabs.set_title(i,title)
@@ -85,6 +88,7 @@ class CapNotebook:
             self.cap_type,W.HTML('<p>Shared sectional workflow for pier and end-bent caps supported directly on a single pile row. The cap type labels the case; it does not add loads or change the design method. Backwall/wingwall, earth-pressure load generation, footing/column caps and strut-and-tie design are outside this calculation.</p>'),
             W.HBox([self.upload,reset]),self.xml_import.ui,self.import_notice,self.pile_review.ui,
             W.HTML('<h2 style="color:#213649">2. Cap reinforcement and steel optimization</h2>'),self.source_label,source,self.banner,self.metrics,
+            self.transverse_panel.ui,
             W.HBox([self.input_tabs,self.plot_tabs],layout=W.Layout(display='flex',flex_flow='row wrap',align_items='flex-start',grid_gap='16px')),
             self.search_panel,self.export_panel,self.message],layout=W.Layout(width='100%'))
         self.refresh()
@@ -112,9 +116,9 @@ class CapNotebook:
                     control.layout.min_height='34px';control.layout.height='auto';control.add_class('cap-input')
                     rows.append(control)
                 if title=='Hoops and side bars':
-                    rows.insert(0,W.HTML('<p><b>G = overall shear check; L = lower-shear interval check.</b> L is not the bottom of the cap. The XML importer initially uses the same shear for both. Pitch is measured along the cap, center to center. First-hoop and zone stations are not inputs in this tool.</p>'))
-                    rows.extend([self.clearance,self.aggregate,self.aggregate_confirmed,W.HTML('<small>AASHTO LRFD BDS + FDOT policy. The larger of the code minimum and project minimum governs. Confirm aggregate from the mix design. Hoop zone limits and pile-head arrangement require a separate detail.</small>')])
-                if title=='Extra U-leg inventory · unresolved':rows.insert(0,W.HTML('<p>These are <b>extra reinforcing legs</b> from the legacy sectional calculation. Counts add steel area, but positions and development are unresolved, so a nonzero count triggers a detailing issue. <b>Do not enter the end hooks of the ADDITIONAL span bars here:</b> those hooks are already part of the drawn bars. Zero means no separate U-leg inventory.</p>'))
+                    rows.insert(0,W.HTML('<p><b>Uniform-cage reference inputs.</b> G = overall shear check; L = lower-shear interval check, not the bottom of the cap. Set actual hoops and open-bottom pile U-bars in the editor above. These reference pitches seed the starting layout; later edits to them do not move your entered bars. The reference hoop diameter also locates the longitudinal cage; actual shape conflicts are checked separately.</p>'))
+                    rows.extend([self.clearance,self.aggregate,self.aggregate_confirmed,W.HTML('<small>AASHTO LRFD BDS + FDOT policy. The larger of the code minimum and project minimum governs. Confirm aggregate from the mix design. Enter actual stations and U end geometry in the transverse editor.</small>')])
+                if title=='Extra U-leg inventory · unresolved':rows.insert(0,W.HTML('<p><b>These are NOT the transverse pile U-bars.</b> Use the actual transverse editor above for those. These legacy counts add longitudinal tension area but have no resolved position or development. A nonzero count triggers an issue. Do not enter span-bar end hooks here either. Zero means no separate legacy inventory.</p>'))
                 if title=='Advanced · cross-section spacing':rows.insert(0,W.HTML('<p>Override the automatic spacing of longitudinal bars <b>within the cross section</b>. The checkbox activates top, continuous-bottom, added-row and side-bar spacing overrides. It does not add bars or change along-cap hoop pitch. <b>Inner leg spacing</b> is used separately when effective hoop loops exceed one; multiple-loop positions remain unresolved.</p>'))
                 if title=='ADDITIONAL steel · between piles':rows.insert(0,W.HTML('<p><b>These counts are ADDITIONAL, not totals.</b> Continuous bottom bars stay in place. Total span steel = continuous bars + these added bars. Enter 0 for no added bars. The bar size here applies only to the added steel. Standard 90° hooks are drawn at the span ends; anchorage remains a separate check.</p>'))
                 if title=='Continuous bottom steel · at piles':rows.insert(0,W.HTML('<p>These bottom bars continue through every pile and span to the cap end-cover planes. Their transverse positions stay fixed. End anchorage and splices require review.</p>'))
@@ -133,6 +137,7 @@ class CapNotebook:
         self.case['screening']['minimum_clear_in']=self.clearance.value
         self.case['screening']['aggregate_in']=self.aggregate.value
         self.case['screening']['aggregate_confirmed']=self.aggregate_confirmed.value
+        self.transverse_panel.sync()
         self._update_search_basis()
         self.refresh()
         self._notify_case_change()
@@ -168,11 +173,13 @@ class CapNotebook:
         self.figures=[]
         def fw(fig):
             widget=go.FigureWidget(fig);self.figures.append(widget);widget.layout.autosize=True;return widget
-        self.cage.children=[W.HTML(reinforcement_summary_html(e)),W.HTML(side_steel_html(e)),fw(section_figure(e,'B')),fw(section_figure(e,'P')),fw(reinforcement_plan_figure(e)),fw(elevation_figure(e)),W.HTML(hoop_explanation_html(e)),fw(hoop_figure(e)),W.HTML(clear_spacing_html(e)),W.HTML('<small>Bar circles use actual diameters and positions. Pile embedment is to scale; pile lengths below the cap are schematic. Purple dashed hoops show a short pitch sample only. U-leg positions, actual first hoop and hoop-zone limits require a separate detail.</small>')]
+        selected=self.transverse_panel.selected_run_id
+        footer=('Every transverse station is drawn. Pink U-bars are open downward; the section shows the selected run of that shape, or the first run of that shape. Bend / tail fit and pile conflicts are screened; development, closure and 3D congestion at longitudinal hook ends require review.' if actual_transverse(self.case) else 'Dashed transverse shapes are reference illustrations. Set the actual hoops and open-bottom U-bars in the editor above.')
+        self.cage.children=[W.HTML(reinforcement_summary_html(e)),W.HTML(side_steel_html(e)),fw(section_figure(e,'B',selected)),fw(section_figure(e,'P',selected)),fw(reinforcement_plan_figure(e)),fw(elevation_figure(e)),W.HTML(hoop_explanation_html(e)),fw(hoop_figure(e)),W.HTML(clear_spacing_html(e)),W.HTML('<small>'+footer+' Pile lengths below the cap are schematic.</small>')]
         self.results.children=[fw(results_figure(e)),W.HTML(spacing_html(e)),fw(optional_service_figure(e)),fw(ratios_figure(e)),W.HTML('<small>These plots compare imported force envelopes and sectional capacities. They are not a continuous moment/shear diagram or a rerun of FB-MultiPier.</small>')]
         self.register.value=checks_html(e)
         rows=''.join(f'<tr><td>{html.escape(t["name"])}</td><td>{html.escape(t["formula"])}</td><td>{html.escape(str(t["value"]))}</td></tr>' for t in formula_trace(e))
-        self.trace.value='<p>Live equations use independent pile and between-pile reinforcement.</p><table class="cap-table"><tr><th>Name</th><th>Equation</th><th>Value</th></tr>'+rows+'</table>'
+        self.trace.value=('<p><b>Actual transverse layout:</b> this equation table retains the uniform closed-hoop reference. The D/C tab separately lists checks at actual adjacent stations. Open U-bars receive no closed-hoop torsion credit.</p>' if actual_transverse(self.case) else '')+'<p>Live equations use independent pile and between-pile reinforcement.</p><table class="cap-table"><tr><th>Name</th><th>Equation</th><th>Value</th></tr>'+rows+'</table>'
 
     def load(self,case,*,import_name=None):
         case=upgrade_case(case);evaluate(case);self.busy=True
@@ -184,6 +191,7 @@ class CapNotebook:
             self.aggregate.value=case['screening']['aggregate_in']
             self.aggregate_confirmed.value=case['screening']['aggregate_confirmed']
             self.cap_type.value=case.get('cap_type','Pier pile cap')
+            self.transverse_panel.sync()
         finally:self.busy=False
         self._update_search_basis()
         self.refresh()
@@ -361,23 +369,86 @@ class CapNotebook:
         try:
             self.case=chosen
             for n,w in self.controls.items():w.value=chosen['inputs'][n]
+            self.transverse_panel.sync()
         finally:self.busy=False
         self.refresh();self._update_search_basis();self.message.value=f'Applied candidate #{index+1}. Live drawings and checks now show that layout.'
         self._notify_case_change()
 
     def _export_panel(self):
-        export=W.Button(description='Export current case + checks',icon='download',button_style='success');export.on_click(self._export)
         self.blockpad_export=BlockpadExportPanel(self)
         self.bpad_path=self.blockpad_export.path
-        return W.VBox([W.HTML('<h3>Save / reuse a selected case</h3><p>The JSON bundle is the single file to load next time. Exports include the D/C register, equation trace, Blockpad input assignments, all passing search alternatives and all current filter matches (every page). Saved cases retain force-source geometry so stale forces stay visible.</p>'),export,self.blockpad_export.ui])
+        self.case_export_folder=None
+        self.case_download_files=self.blockpad_export.colab_files
+        self.case_download_output=W.Output()
+        self.case_export_status=W.HTML()
+        self.case_export_button=W.Button(description='Export case + checks',icon='download',button_style='success',layout=W.Layout(width='210px'))
+        self.case_export_button.on_click(self._export)
+        self.case_json_button=W.Button(description='Download saved JSON',icon='download',disabled=True,layout=W.Layout(width='210px'))
+        self.case_zip_button=W.Button(description='Download full bundle ZIP',icon='download',disabled=True,layout=W.Layout(width='230px'))
+        self.case_json_button.on_click(lambda _:self._download_case_export('json'))
+        self.case_zip_button.on_click(lambda _:self._download_case_export('zip'))
+        location=('Colab first saves a temporary runtime copy, then starts a browser download of <b>selected_case.json</b>. '
+                  'A /content/ path is on Colab, not your computer or Google Drive. Download the file before ending the runtime.'
+                  if self.case_download_files else
+                  'Export saves a copy on the computer running this notebook and shows a JSON download link below. '
+                  'Use that link to save a copy on the computer where your browser is open.')
+        return W.VBox([W.HTML('<h3>Save / reuse a selected case</h3><p><b>selected_case.json</b> is the file to load next time. '
+            'The full bundle also includes checks, drawings, equation trace and search alternatives.</p><p>'+location+'</p>'
+            '<p><b>Choose where to save:</b> your browser controls the download folder. In Chrome, open Settings → Downloads '
+            'and enable <b>Ask where to save each file before downloading</b>. Otherwise, check the browser’s Downloads list '
+            'for the actual location. The notebook cannot select a folder on your other computer.</p>'
+            '<p>Download buttons use the <b>most recent successful export</b>. Export again after changing inputs.</p>'),
+            W.HBox([self.case_export_button,self.case_json_button,self.case_zip_button],layout=W.Layout(flex_flow='row wrap')),
+            self.case_export_status,self.case_download_output,self.blockpad_export.ui])
+
+    def _case_export_notice(self,title,detail,kind='info'):
+        self.case_export_status.value=notice_html(title,detail,kind)
+        self.message.value=self.case_export_status.value
+
+    def _download_case_export(self,kind='json'):
+        if self.case_export_folder is None:return
+        from IPython.display import clear_output,display,HTML
+        import base64
+        import zipfile
+        folder=self.case_export_folder
+        try:
+            if kind=='zip':
+                path=folder.with_suffix('.zip')
+                with zipfile.ZipFile(path,'w',zipfile.ZIP_DEFLATED) as archive:
+                    for file in sorted(folder.rglob('*')):
+                        if file.is_file():archive.write(file,file.relative_to(folder.parent))
+                mime='application/zip'
+            else:
+                path=folder/'selected_case.json';mime='application/json'
+            with self.case_download_output:
+                clear_output(wait=True)
+                if self.case_download_files:
+                    self.case_download_files.download(str(path.resolve()))
+                    detail='Browser download requested for <b>'+html.escape(path.name)+'</b>. Check your browser’s Downloads list; completion is not confirmed by the notebook.'
+                else:
+                    # An absolute FileLink can point outside Jupyter's served root.
+                    # Embed the exported bytes so this works from another computer too.
+                    payload=base64.b64encode(path.read_bytes()).decode('ascii')
+                    display(HTML(f'<a download="{html.escape(path.name,quote=True)}" href="data:{mime};base64,{payload}">Download {html.escape(path.name)}</a>'))
+                    detail='Click the download link below to save <b>'+html.escape(path.name)+'</b> on this computer.'
+            self._case_export_notice('CASE EXPORT READY',detail+'<br>Copy on the notebook runtime: <code>'+html.escape(str(path.resolve()))+'</code>','success')
+        except Exception as exc:
+            self._case_export_notice('CASE SAVED — DOWNLOAD NEEDS RETRY',html.escape(str(exc))+
+                '<br>Use Download saved JSON or Download full bundle ZIP to retry. Runtime folder: <code>'+html.escape(str(folder.resolve()))+'</code>','pending')
 
     def _export(self,button):
+        self.case_export_button.disabled=True
         try:
-            self.last_export=export_bundle(self.case,self.export_root,self.search_result,search_filter=self._search_filter())
+            folder=export_bundle(self.case,self.export_root,self.search_result,search_filter=self._search_filter())
             if self.pile_review.review is not None:
-                self.pile_review.save_bundle(self.last_export/'pile_review')
-            self.message.value='<b>Saved review bundle:</b> '+html.escape(str(self.last_export.resolve()))
-        except Exception as exc:self.message.value='<b>Export stopped:</b> '+html.escape(str(exc))
+                self.pile_review.save_bundle(folder/'pile_review')
+            self.last_export=self.case_export_folder=folder.resolve()
+            self.case_json_button.disabled=self.case_zip_button.disabled=False
+            self._download_case_export('json')
+        except Exception as exc:
+            previous=('<br>Download buttons still refer to the previous successful export: <code>'+html.escape(str(self.case_export_folder))+'</code>') if self.case_export_folder else ''
+            self._case_export_notice('EXPORT STOPPED',html.escape(str(exc))+previous,'error')
+        finally:self.case_export_button.disabled=False
 
     def _export_bpad(self,button):
         self.blockpad_export.export(button)
