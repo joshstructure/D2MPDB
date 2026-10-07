@@ -113,7 +113,11 @@ def shape_parameters(run):
 def development_fingerprint(case,run):
     detail={k:run[k] for k in ('kind','bar','zone','first_in','end_in','pitch_in')}
     detail['shape']=shape_parameters(run)
-    payload={'inputs':case['inputs'],'screening':case['screening'],'run':detail}
+    # Another run can move the common longitudinal cage and change the end
+    # congestion basis, even when this run's entered dimensions stay unchanged.
+    cage_shapes=[{'kind':r['kind'],'bar':r['bar'],'shape':shape_parameters(r)}
+                 for r in case.get('transverse_detail',{}).get('runs',[])]
+    payload={'inputs':case['inputs'],'screening':case['screening'],'run':detail,'cage_shapes':cage_shapes}
     return hashlib.sha256(json.dumps(payload,sort_keys=True).encode()).hexdigest()
 
 

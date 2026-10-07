@@ -50,6 +50,16 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
         for c in e.checks:w.writerow([c.label,c.status,c.ratio,c.basis])
     from .model import bar_positions
     from .detailing import spacing_records
+    with (path/'longitudinal_bar_positions.csv').open('w',newline='',encoding='utf-8-sig') as f:
+        w=csv.writer(f);w.writerow(['Region','Layer','Bar size','Across cap (in)','Above underside (in)','Diameter (in)','Additional'])
+        for region in 'PB':
+            for bar in bar_positions(e,region):
+                w.writerow([region,bar['kind'],bar['bar'],bar['x'],bar['y'],bar['diameter'],bar['additional']])
+    if e.longitudinal_layout is not None:
+        geometry={name:e.value(name) for name in ('dc_N','dc_P','dc_B','d_N','d_P','d_B','dv','SP_N','SP_P','SP_B','SP_skin')}
+        geometry.update(units='in',fitted=e.longitudinal_layout['fitted'],issues=e.longitudinal_layout['issues'],
+            basis='Actual longitudinal coordinates inside the common envelope of all entered transverse runs; includes conservative envelope for span additions. Existing sectional equations use the resulting centroids and spacing. Hook-end congestion and development remain separate checks.')
+        (path/'longitudinal_geometry.json').write_text(json.dumps(geometry,indent=2),encoding='utf-8')
     with (path/'rebar_clear_spacing.csv').open('w',newline='',encoding='utf-8-sig') as f:
         w=csv.writer(f);w.writerow(['Region','Bars','Actual clear (in)','Required clear (in)','Status'])
         for region in 'PB':

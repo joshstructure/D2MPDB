@@ -115,6 +115,6 @@ class TransversePanel:
         run.update(kind=self.kind.value,bar=self.bar.value,zone=self.zone.value,first_in=self.fields['first'].value*12,
             end_in=self.fields['end'].value*12,pitch_in=self.fields['pitch'].value,development_confirmed=self.confirm.value,development_basis=self.basis.value)
         run['shape']={n:self.fields[n].value for n in ('inside_diameter_in','tail_in','end_raise_in','side_inset_in')};run['shape']['end_angle']=self.angle.value
-        if run['development_confirmed']:run['development_fingerprint']=development_fingerprint(self.owner.case,run)
+        if run['development_confirmed']:run['development_fingerprint']=development_fingerprint(dict(self.owner.case,transverse_detail=detail),run)
         else:run.pop('development_fingerprint',None)
         self._attempt(lambda:self._commit(detail))

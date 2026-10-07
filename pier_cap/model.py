@@ -127,6 +127,7 @@ class Evaluation:
     status:str
     max_dc:float
     weight_lb:float
+    longitudinal_layout:object=None
 
     def value(self,name,unit=None):
         v=self.engine.get(name)
@@ -143,6 +144,8 @@ def bar_positions(e,region='B'):
     Extras use Bar_B and fill the largest remaining clear intervals; existing
     continuous bars never move between sections. U bars remain unresolved.
     """
+    if e.longitudinal_layout is not None:
+        return [dict(v) for v in e.longitudinal_layout['bars'][region]]
     p=e.case['inputs'];b=p['b'];h=p['h'];dv=BAR_DIAMETER[p['Bar_v']]
     bars=[]
     def row(n,size,y,label,manual=None,split=False):
@@ -201,7 +204,7 @@ def cage_issues(e):
     for z in 'PB':
         bars=bar_positions(e,z)
         outside=any(v['x']-v['diameter']/2<p['C_s']+dv-1e-6 or v['x']+v['diameter']/2>p['b']-p['C_s']-dv+1e-6 or v['y']-v['diameter']/2<p['C_b']+dv-1e-6 or v['y']+v['diameter']/2>p['h']-p['C_t']-dv+1e-6 for v in bars)
-        if outside:issues.append(f'{z} section: bars extend outside the clear interior of the hoop.')
+        if outside and not actual_transverse(e.case):issues.append(f'{z} section: bars extend outside the clear interior of the hoop.')
         for r in spacing_records(e,z,bars):
             if r['status']=='FAIL':issues.append(f"{z} section {r['label']}: clear spacing {r['actual']:.2f} in < required {r['required']:.2f} in.")
         issues.extend(f'{z} section: {problem}' for problem in layer_alignment(bars))
@@ -261,7 +264,8 @@ def detailing_checks(e):
     paths=hook_paths(e,bar_positions(e,'B'))
     if paths:
         top=max(t['top']+t['bar']['diameter']/2 for t in paths)
-        limit=p['h']-p['C_t']-BAR_DIAMETER[p['Bar_v']]
+        transverse_diameter=max((BAR_DIAMETER[r['bar']] for r in e.case['transverse_detail']['runs']),default=BAR_DIAMETER[p['Bar_v']]) if actual_transverse(e.case) else BAR_DIAMETER[p['Bar_v']]
+        limit=p['h']-p['C_t']-transverse_diameter
         fit=min(t['straight'] for t in paths)>=0 and top<=limit+1e-8
         checks.append(Check('Chk_hook_fit','90° span hooks · fit','PASS' if fit else 'FAIL',max(top/limit,2 if min(t['straight'] for t in paths)<0 else 0),
             'General bars: inside bend diameter 6db (#3–8), 8db (#9–11); straight tail 12db. Hook turns up outside the pile clearance envelope.'))
@@ -316,6 +320,15 @@ def evaluate(case=None,fast=False):
     overrides['Status_layout']='REIMPORT ANALYSIS FORCES' if any(n in PILE_GEOMETRY for n in stale) else 'SOURCE PILE LAYOUT'
     overrides['Status_section']='RECHECK MODEL SELF-WEIGHT / FORCES' if any(n in ('b','h') for n in stale) else 'SOURCE SECTION'
     eng=(FAST if fast else FORMULAS).fork(overrides)
+    layout=None
+    if actual_transverse(case):
+        from .placement import actual_layout
+        trial=Evaluation(case,eng,[],[],stale,False,'',0,0)
+        layout=actual_layout(trial)
+        if layout is not None:
+            # Fresh engine: no reference-position dependency can remain cached.
+            overrides.update({n:v if fast else Q(v,(1,0,0)) for n,v in layout['values'].items()})
+            eng=(FAST if fast else FORMULAS).fork(overrides)
     eng.all()
     checks=[]
     for key,s in SPEC.items():
@@ -325,7 +338,7 @@ def evaluate(case=None,fast=False):
             ratio=ratio.v
         if isinstance(ratio,(float,int)) and not math.isfinite(ratio):raise ValueError('Nonfinite D/C: '+key)
         checks.append(Check(key,s['label'],eng.get(key),ratio,s['basis']))
-    e=Evaluation(case,eng,checks,[],stale,False,'',max((c.ratio for c in checks if isinstance(c.ratio,(float,int))),default=0),0)
+    e=Evaluation(case,eng,checks,[],stale,False,'',max((c.ratio for c in checks if isinstance(c.ratio,(float,int))),default=0),0,layout)
     for check in checks:
         if check.key.startswith('Chk_long_'):
             region=check.key[-1]
@@ -334,6 +347,10 @@ def evaluate(case=None,fast=False):
             check.basis+=(f' Required {required:.3f} in²; credited main {main:.3f} + side {side:.3f}'
                           f' = {main+side:.3f} in²; shortfall {max(0,required-main-side):.3f} in².')
     checks.extend(detailing_checks(e))
+    if layout is not None:
+        checks.append(Check('Chk_actual_longitudinal_fit','Longitudinal steel inside actual hoops / U-bars',
+            'PASS' if layout['fitted'] else 'FAIL',0 if layout['fitted'] else 2,
+            'One common envelope of all actual runs governs continuous and added straight bars. Row counts and row spacing are retained. Actual positions feed steel centroids, effective depths and bar-spacing checks. Hook ends, development and transverse-to-pile conflicts require their separate checks.'))
     if actual_transverse(case):
         for check in checks:
             if check.key.startswith(('Chk_shear_','Chk_spacing_','Chk_torsteel_','Chk_long_','Chk_hoop_clear_','Chk_drawn_hoop_legs_','Chk_shrink_')) or check.key=='Status_overall':
@@ -342,7 +359,7 @@ def evaluate(case=None,fast=False):
                 check.status='REFERENCE';check.ratio='N/A'
         checks.extend(transverse_checks(e))
     e.max_dc=max(c.ratio for c in checks if isinstance(c.ratio,(float,int)))
-    e.issues=cage_issues(e)+transverse_issues(e);e.weight_lb=estimate_weight(e)
+    e.issues=(layout['issues'] if layout else [])+cage_issues(e)+transverse_issues(e);e.weight_lb=estimate_weight(e)
     failure=any('FAIL' in c.status for c in checks)
     e.eligible=sectional_checks_pass(e) and not stale
     if stale:e.status='REIMPORT FORCES — changed analysis geometry: '+', '.join(stale)
@@ -356,7 +373,11 @@ def evaluate(case=None,fast=False):
     return e
 
 def formula_trace(e):
-    return [{'name':d['name'],'formula':d['formula'],'value':e.engine.text(e.engine.get(d['name']),d['unit'],5),'note':d['caption']} for d in DEFINITIONS if '(' not in d['name']]
+    fitted=e.longitudinal_layout['values'] if e.longitudinal_layout else {}
+    return [{'name':d['name'],'formula':(d['name']+' = actual longitudinal layout (in)' if d['name'] in fitted else d['formula']),
+             'value':e.engine.text(e.engine.get(d['name']),d['unit'],5),
+             'note':('Derived from the displayed bar coordinates fitted to actual hoop/U geometry; replaces the reference cover/pitch expression. '+d['caption'] if d['name'] in fitted else d['caption'])}
+            for d in DEFINITIONS if '(' not in d['name']]
 
 
 def side_reinforcement(e):

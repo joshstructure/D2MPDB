@@ -158,6 +158,12 @@ def configuration_html(e):
         entries.append(('Reference hoops',f'#{p["Bar_v"]:g} · overall {p["s_G"]:g} in / lower-shear {p["s_L"]:g} in pitch · actual stations not set'))
     if p['n_PU'] or p['n_BU']:
         entries.append(('Unpositioned U-leg inventory',f'At piles {p["n_PU"]:g}; between piles {p["n_BU"]:g} · #{p["Bar_U"]:g}'))
+    if e.longitudinal_layout is not None:
+        layout=e.longitudinal_layout
+        entries.append(('Longitudinal fit','Fitted inside the common envelope of all actual hoop / U-bar runs' if layout['fitted'] else 'FIT FAILED — review the cage and failed checks below'))
+        entries.append(('Steel centroid from tension face',f'Top {e.value("dc_N"):.3f} in · bottom at piles {e.value("dc_P"):.3f} in · bottom between piles {e.value("dc_B"):.3f} in'))
+        entries.append(('Effective depth used in calculations',f'Top {e.value("d_N"):.3f} in · at piles {e.value("d_P"):.3f} in · between piles {e.value("d_B"):.3f} in'))
+        entries.append(('Position basis',('Drawings and flexure, service, fatigue and shear-depth calculations use these fitted coordinates.' if layout['fitted'] else 'Drawings and calculations share the displayed trial coordinates; this cage has not passed the fit check.')+' Counts and sizes are unchanged; hook-end congestion and development remain separate checks.'))
     return ('<div style="padding:12px;background:#eaf1f6;border-radius:6px"><b>Current bar configuration</b>'
         +f' · {p["b"]:g} × {p["h"]:g} in cap<table style="width:100%;font-size:13px">'
         +''.join(f'<tr><td style="padding:4px 12px 4px 0;vertical-align:top"><b>{label}</b></td><td>{html.escape(value)}</td></tr>' for label,value in entries)
@@ -425,9 +431,18 @@ def snapshot(e):
     fig,axes=plt.subplots(2,2,figsize=(13,9),layout='constrained');fig.patch.set_facecolor('#f7f9fc')
     ax=axes[0,0];p=e.case['inputs'];dv=BAR_DIAMETER[p['Bar_v']]
     ax.add_patch(Rectangle((0,0),p['b'],p['h'],facecolor='#edf2f6',edgecolor=INK,lw=2))
-    ax.add_patch(Rectangle((p['C_s']+dv/2,p['C_b']+dv/2),p['b']-2*p['C_s']-dv,p['h']-p['C_t']-p['C_b']-dv,fill=False,edgecolor=AMBER,lw=2))
+    shape_label='Reference transverse shape'
+    if actual_transverse(e.case):
+        from .transverse import bar_shape
+        runs=e.case['transverse_detail']['runs']
+        run=next((r for r in runs if r['kind']=='hoop'),runs[0] if runs else None)
+        if run:
+            pts=bar_shape(e,run)['points'];ax.plot([v[0] for v in pts],[v[1] for v in pts],color=HOOP,lw=2)
+            shape_label='Actual '+run['id']+' · '+('closed hoop' if run['kind']=='hoop' else 'open-bottom U')
+        else:shape_label='No actual transverse run entered'
+    else:ax.add_patch(Rectangle((p['C_s']+dv/2,p['C_b']+dv/2),p['b']-2*p['C_s']-dv,p['h']-p['C_t']-p['C_b']-dv,fill=False,edgecolor=AMBER,lw=2))
     for b in bar_positions(e):ax.add_patch(Circle((b['x'],b['y']),b['diameter']/2,color=TEAL if b['kind']=='Skin' else BLUE))
-    ax.set(xlim=(-3,p['b']+3),ylim=(-3,p['h']+3),aspect='equal',title='Bearing section · actual counts and bar diameters',xlabel='Width (in)',ylabel='Depth (in)')
+    ax.set(xlim=(-3,p['b']+3),ylim=(-3,p['h']+3),aspect='equal',title='Between-pile section · '+shape_label,xlabel='Width (in)',ylabel='Depth (in)')
     ax=axes[0,1];length=e.value('L_cap')/12;depth=p['h']/12
     ax.add_patch(Rectangle((0,0),length,depth,facecolor='#edf2f6',edgecolor=BLUE,lw=2))
     for i in range(int(p['N_pile'])):
