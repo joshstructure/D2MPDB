@@ -417,6 +417,10 @@ class CapNotebook:
         self.case_export_status=W.HTML()
         self.case_export_button=W.Button(description='Export case + checks',icon='download',button_style='success',layout=W.Layout(width='210px'))
         self.case_export_button.on_click(self._export)
+        self.case_report_button=W.Button(description='Generate calculation report',icon='file-text-o',button_style='info',layout=W.Layout(width='250px'))
+        self.case_report_button.on_click(lambda _:self._export(None,download_kind='html'))
+        self.case_html_button=W.Button(description='Download saved HTML report',icon='download',disabled=True,layout=W.Layout(width='250px'))
+        self.case_html_button.on_click(lambda _:self._download_case_export('html'))
         self.case_json_button=W.Button(description='Download saved JSON',icon='download',disabled=True,layout=W.Layout(width='210px'))
         self.case_zip_button=W.Button(description='Download full bundle ZIP',icon='download',disabled=True,layout=W.Layout(width='230px'))
         self.case_json_button.on_click(lambda _:self._download_case_export('json'))
@@ -427,12 +431,17 @@ class CapNotebook:
                   'Export saves a copy on the computer running this notebook and shows a JSON download link below. '
                   'Use that link to save a copy on the computer where your browser is open.')
         return W.VBox([W.HTML('<h3>Save / reuse a selected case</h3><p><b>selected_case.json</b> is the file to load next time. '
-            'The full bundle also includes checks, drawings, equation trace and search alternatives.</p><p>'+location+'</p>'
+            'The full bundle also includes the calculation report, checks, drawings, equation trace and search alternatives.</p>'
+            '<p><b>Generate calculation report</b> evaluates the current inputs and downloads a standalone HTML report with '
+            'mathematical equations, results, numeric substitutions, interactive plots, and collapsible calculation sections. '
+            'Open the downloaded file in Chrome or Edge. Use <b>Expand all</b>, <b>Collapse all</b>, or <b>Print / save PDF</b> in the report. '
+            'Equations and plots are embedded for offline use. The report covers the cap calculation; loaded pile-analysis reviews remain in the full bundle.</p><p>'+location+'</p>'
             '<p><b>Choose where to save:</b> your browser controls the download folder. In Chrome, open Settings → Downloads '
             'and enable <b>Ask where to save each file before downloading</b>. Otherwise, check the browser’s Downloads list '
             'for the actual location. The notebook cannot select a folder on your other computer.</p>'
             '<p>Download buttons use the <b>most recent successful export</b>. Export again after changing inputs.</p>'),
             W.HBox([self.case_export_button,self.case_json_button,self.case_zip_button],layout=W.Layout(flex_flow='row wrap')),
+            W.HBox([self.case_report_button,self.case_html_button],layout=W.Layout(flex_flow='row wrap')),
             self.case_export_status,self.case_download_output,self.blockpad_export.ui])
 
     def _case_export_notice(self,title,detail,kind='info'):
@@ -452,6 +461,8 @@ class CapNotebook:
                     for file in sorted(folder.rglob('*')):
                         if file.is_file():archive.write(file,file.relative_to(folder.parent))
                 mime='application/zip'
+            elif kind=='html':
+                path=folder/'calculation_report.html';mime='text/html'
             else:
                 path=folder/'selected_case.json';mime='application/json'
             with self.case_download_output:
@@ -468,21 +479,21 @@ class CapNotebook:
             self._case_export_notice('CASE EXPORT READY',detail+'<br>Copy on the notebook runtime: <code>'+html.escape(str(path.resolve()))+'</code>','success')
         except Exception as exc:
             self._case_export_notice('CASE SAVED — DOWNLOAD NEEDS RETRY',html.escape(str(exc))+
-                '<br>Use Download saved JSON or Download full bundle ZIP to retry. Runtime folder: <code>'+html.escape(str(folder.resolve()))+'</code>','pending')
+                '<br>Use the saved JSON, HTML report or full bundle download button to retry. Runtime folder: <code>'+html.escape(str(folder.resolve()))+'</code>','pending')
 
-    def _export(self,button):
-        self.case_export_button.disabled=True
+    def _export(self,button,download_kind='json'):
+        self.case_export_button.disabled=self.case_report_button.disabled=True
         try:
             folder=export_bundle(self.case,self.export_root,self.search_result,search_filter=self._search_filter())
             if self.pile_review.review is not None:
                 self.pile_review.save_bundle(folder/'pile_review')
             self.last_export=self.case_export_folder=folder.resolve()
-            self.case_json_button.disabled=self.case_zip_button.disabled=False
-            self._download_case_export('json')
+            self.case_json_button.disabled=self.case_zip_button.disabled=self.case_html_button.disabled=False
+            self._download_case_export(download_kind)
         except Exception as exc:
             previous=('<br>Download buttons still refer to the previous successful export: <code>'+html.escape(str(self.case_export_folder))+'</code>') if self.case_export_folder else ''
             self._case_export_notice('EXPORT STOPPED',html.escape(str(exc))+previous,'error')
-        finally:self.case_export_button.disabled=False
+        finally:self.case_export_button.disabled=self.case_report_button.disabled=False
 
     def _export_bpad(self,button):
         self.blockpad_export.export(button)

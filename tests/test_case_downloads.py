@@ -86,5 +86,24 @@ class CaseDownloadTests(unittest.TestCase):
         self.assertEqual(base64.b64decode(payload),(app.case_export_folder/'selected_case.json').read_bytes())
         self.assertIn('Click the download link',app.case_export_status.value)
 
+    def test_report_button_generates_current_snapshot_and_saved_download_retries(self):
+        app=self.app;download=Mock();app.case_download_files=SimpleNamespace(download=download)
+        self.assertTrue(app.case_html_button.disabled)
+        app.case_report_button.click()
+        folder=app.case_export_folder
+        report=folder/'calculation_report.html'
+        self.assertTrue(report.is_file())
+        download.assert_called_once_with(str(report))
+        snapshot=report.read_bytes()
+        app.controls['Mu_B'].value+=1
+        app.case_html_button.click()
+        self.assertEqual(download.call_args.args,(str(report),))
+        self.assertEqual(report.read_bytes(),snapshot)
+        app.case_report_button.click()
+        self.assertNotEqual(app.case_export_folder,folder)
+        self.assertEqual(load_case(app.case_export_folder/'selected_case.json'),app.case)
+        self.assertNotEqual((app.case_export_folder/'calculation_report.html').read_bytes(),snapshot)
+        self.assertFalse(app.case_report_button.disabled)
+
 
 if __name__=='__main__':unittest.main()

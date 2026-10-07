@@ -218,10 +218,11 @@ def cage_issues(e):
                     break
     return issues
 
-def estimate_weight(e):
+def steel_quantity_components(e):
     # Continuous bars plus each explicitly drawn hooked span supplement.
     p=e.case['inputs'];length=e.value('L_cap');dv=BAR_DIAMETER[p['Bar_v']]
-    longitudinal=(e.value('As_N')+e.value('As_P')+2*e.value('As_side'))*max(0,length-2*p['C_s'])
+    continuous=(e.value('As_N')+e.value('As_P')+2*e.value('As_side'))*max(0,length-2*p['C_s'])
+    longitudinal=continuous
     for path in hook_paths(e,bar_positions(e,'B')):
         longitudinal+=BAR_AREA[path['bar']['bar']]*(max(0,path['straight'])+math.pi*path['radius']+2*path['tail'])
     hoop_length=2*(p['b']-2*p['C_s']-dv+p['h']-p['C_t']-p['C_b']-dv)
@@ -229,7 +230,13 @@ def estimate_weight(e):
     transverse=count*p['n_loop']*hoop_length*BAR_AREA[p['Bar_v']]
     if actual_transverse(e.case):
         transverse=sum(r['count']*bar_shape(e,r)['length_in']*BAR_AREA[r['bar']] for r in run_summary(e.case))
-    return (longitudinal+transverse)*490/1728
+    return {'continuous_in3':continuous,'additional_in3':longitudinal-continuous,
+            'transverse_in3':transverse,'density_lb_ft3':490,
+            'weight_lb':(longitudinal+transverse)*490/1728}
+
+
+def estimate_weight(e):
+    return steel_quantity_components(e)['weight_lb']
 
 
 def detailing_checks(e):

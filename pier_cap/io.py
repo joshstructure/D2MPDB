@@ -124,6 +124,9 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
                 c=search_result.candidates[i]
                 w.writerow([rank,i+1,c.label,c.weight_lb,candidate_dc(c,options['scope']),c.max_dc,c.strength_dc,candidate_governing(c,options['scope']),options['scope'],options['max_dc'],mode_label])
     (path/'review.json').write_text(json.dumps(manifest,indent=2,ensure_ascii=False),encoding='utf-8')
+    from .calculation_report import write_calculation_report
+    write_calculation_report(case,path/'calculation_report.html',evaluation=e,
+                             search_result=search_result,search_filter=search_filter)
     return path
 
 def _blockpad_template(source):
