@@ -7,6 +7,7 @@ from plotly.subplots import make_subplots
 from .model import bar_positions,BAR_DIAMETER,side_reinforcement
 from .detailing import spacing_records,hook_paths,standard_hook,required_clear
 from .transverse import enabled as actual_transverse
+from .view_controls import bar_family,drawing_controls
 from .optimizer import candidate_dc,candidate_governing,governing_check,DC_SCOPES
 
 BLUE='#1f5b91';TEAL='#167b75';AMBER='#d88822';RED='#bb3e39';INK='#213649';GREY='#b8c7d1'
@@ -43,7 +44,8 @@ def pile_head_help_html():
 </svg>
 <p style="margin:4px 0"><b>Clear gap to pile:</b> minimum concrete clearance from the pile surface to the <b>outside of a longitudinal bar</b>, beside or above the pile—not to the bar center.<br>
 <b>Pile embedment:</b> height of the pile top above the cap underside.</p>
-<p style="margin:6px 0 0;font-size:12px">The horizontal pile-placement allowance is added separately. Enter the dimensions required by your pile-head detail, then confirm. Check actual bar positions in <b>Live cage</b>.</p>
+<p style="margin:6px 0 0;font-size:12px"><b>Starting values: 12 in embedment; 2 in clear gap.</b> Confirm these for the project. Saved cases retain their entered values.</p>
+<p style="margin:6px 0 0;font-size:12px">The 2 in gap is an adopted starting value from <a href="https://www.fdot.gov/Structures/StructuresManual/CurrentRelease" target="_blank">FDOT SDG 2026 3.11.2.F.1.c</a>, which applies to the specified laterally loaded footings with full pile bending capacity developed; it is not a universal bent-cap clearance rule. FDOT SDM Figure 12.5-3 separately accounts for pile-driving tolerance. This notebook adds that horizontal allowance separately. Check the required project detail and actual bar positions in <b>Live cage</b>.</p>
 </div>'''
 
 
@@ -73,7 +75,7 @@ def section_figure(e,region='B',run_id=None):
         ys=[p['C_b']+dv/2,h-p['C_t']-dv/2,h-p['C_t']-dv/2,p['C_b']+dv/2]
         if region=='B':xs.append(xs[0]);ys.append(ys[0])
         fig.add_trace(go.Scatter(x=xs,y=ys,mode='lines',line=dict(color=HOOP,width=3,dash='dash'),
-            name='Reference shape · actual layout not set',hoverinfo='name'))
+            name='Reference shape · actual layout not set',meta=dict(part='transverse'),hoverinfo='name'))
     else:
         from .transverse_visuals import add_section
         kind='pile_u' if region=='P' else 'hoop'
@@ -83,28 +85,34 @@ def section_figure(e,region='B',run_id=None):
         else:fig.add_annotation(x=b/2,y=h/2,text='No '+('pile U-bar' if region=='P' else 'hoop')+' run entered',showarrow=False)
     if region=='P' and p['Ready_pile']:
         left=(b-p['D_pile'])/2;right=(b+p['D_pile'])/2
-        fig.add_shape(type='rect',x0=e.value('Pile_left')-p['C_pile'],x1=e.value('Pile_right')+p['C_pile'],y0=0,y1=p['Pile_embed']+p['C_pile'],line=dict(color=RED,dash='dot'),fillcolor='rgba(187,62,57,.06)',layer='below')
-        fig.add_shape(type='rect',x0=left,x1=right,y0=-3,y1=p['Pile_embed'],line=dict(color=INK,width=2),fillcolor='#b8c7d1',layer='below')
-        fig.add_annotation(x=b/2,y=p['Pile_embed']/2,text=f'Pile · {p["D_pile"]:g} in<br>embed {p["Pile_embed"]:g} in',showarrow=False,font=dict(size=10))
-        fig.add_annotation(x=b/2,y=-4.5,text='Dotted limit: bar clearance + pile placement allowance',showarrow=False,font=dict(size=9,color=RED))
+        fig.add_shape(type='rect',name='part:piles',x0=e.value('Pile_left')-p['C_pile'],x1=e.value('Pile_right')+p['C_pile'],y0=0,y1=p['Pile_embed']+p['C_pile'],line=dict(color=RED,dash='dot'),fillcolor='rgba(187,62,57,.06)',layer='below')
+        fig.add_shape(type='rect',name='part:piles',x0=left,x1=right,y0=-3,y1=p['Pile_embed'],line=dict(color=INK,width=2),fillcolor='#b8c7d1',layer='below')
+        fig.add_annotation(name='part:piles',x=b/2,y=p['Pile_embed']/2,text=f'Pile · {p["D_pile"]:g} in<br>embed {p["Pile_embed"]:g} in',showarrow=False,font=dict(size=10))
+        fig.add_annotation(name='part:piles',x=b/2,y=-4.5,text='Dotted limit: bar clearance + pile placement allowance',showarrow=False,font=dict(size=9,color=RED))
     elif region=='P':
         fig.add_annotation(x=b/2,y=h/2,text='Pile-head dimensions pending<br>Bar clearance is not verified',showarrow=False,bgcolor='#fff3d9',font=dict(color=RED))
     groups=defaultdict(list)
     for bar in bar_positions(e,region):
         groups[bar['kind']].append(bar);r=bar['diameter']/2
         color=TEAL if bar['kind']=='Skin' else AMBER if bar.get('additional') else BLUE
-        fig.add_shape(type='circle',x0=bar['x']-r,y0=bar['y']-r,x1=bar['x']+r,y1=bar['y']+r,line=dict(color=color,width=1),fillcolor=color)
+        # Draw physical circles as traces so visibility controls hide the bar,
+        # not merely the transparent hover target at its center.
+        angles=[2*math.pi*i/32 for i in range(33)]
+        fig.add_trace(go.Scatter(x=[bar['x']+r*math.cos(a) for a in angles],
+            y=[bar['y']+r*math.sin(a) for a in angles],mode='lines',fill='toself',
+            line=dict(color=color,width=1),fillcolor=color,name='Bar outline',
+            meta=dict(part=bar_family(bar)),legendgroup=bar['kind'],showlegend=False,hoverinfo='skip'))
     for label,bars in groups.items():
         color=TEAL if label=='Skin' else AMBER if label.startswith('Added') else BLUE
         display_label='Side bars' if label=='Skin' else label+' · continuous' if label.startswith('Bottom') else label
-        fig.add_trace(go.Scatter(x=[v['x'] for v in bars],y=[v['y'] for v in bars],mode='markers',name=f'{display_label}: {len(bars)} bars',
+        fig.add_trace(go.Scatter(x=[v['x'] for v in bars],y=[v['y'] for v in bars],mode='markers',name=f'{display_label}: {len(bars)} bars',legendgroup=label,meta=dict(part=bar_family(bars[0])),
             marker=dict(size=8,color=color,opacity=.15),text=[f"#{v['bar']} · diameter {v['diameter']:g} in" for v in bars],hovertemplate='%{text}<br>x=%{x:.2f}, y=%{y:.2f} in<extra>%{fullData.name}</extra>'))
     records=spacing_records(e,region,bar_positions(e,region))
     if records:
         worst=max(records,key=lambda r:r['ratio']);a=worst['a'];c=worst['b'];color=RED if worst['status']=='FAIL' else TEAL
         fig.add_trace(go.Scatter(x=[a['x'],c['x']],y=[a['y'],c['y']],mode='lines+markers',line=dict(color=color,width=3,dash='dot'),marker=dict(color=color,size=9,symbol='circle-open'),
-            name=f"Governing clear: {worst['actual']:.2f} / {worst['required']:.2f} in required",hoverinfo='name'))
-        fig.add_annotation(x=0,y=1.04,xref='paper',yref='paper',xanchor='left',showarrow=False,font=dict(color=color,size=11),
+            name=f"Governing clear: {worst['actual']:.2f} / {worst['required']:.2f} in required",meta=dict(part='clearance'),hoverinfo='name'))
+        fig.add_annotation(name='part:clearance',x=0,y=1.04,xref='paper',yref='paper',xanchor='left',showarrow=False,font=dict(color=color,size=11),
             text=f"{worst['status']} · {worst['label']} clear {worst['actual']:.3f} in {'<' if worst['status']=='FAIL' else '≥'} {worst['required']:.3f} in required")
     if p['n_'+region+'U']:
         fig.add_annotation(x=b/2,y=-4,text=f"U-leg inventory: {p['n_'+region+'U']:g} #{p['Bar_U']:g}; positions unresolved",showarrow=False,font=dict(color=RED,size=11))
@@ -112,7 +120,7 @@ def section_figure(e,region='B',run_id=None):
     fig.update_yaxes(title='Depth from bottom (in)',range=[-6,h+3],scaleanchor='x',scaleratio=1,zeroline=False)
     title=('Cross section · at pile' if region=='P' else 'Cross section · between piles')+f' · {b:g} × {h:g} in'
     theme(fig,title,520);fig.update_layout(legend=dict(font=dict(size=10),orientation='h',y=-.2),margin=dict(t=90,b=110))
-    return fig
+    return drawing_controls(fig)
 
 
 def reinforcement_summary_html(e):
@@ -127,6 +135,33 @@ def reinforcement_summary_html(e):
         'Blue bars continue through the full cap; orange bars are additional span bars with 90° hooks. '
         +transverse_note+
         'Hook fit is checked; development, cutoff lengths, end anchorage and pile-head hoop arrangement remain pending.</p>'+note)
+
+
+def configuration_html(e):
+    """Quick inventory of the current inputs, before the live drawings."""
+    from .transverse import run_summary
+    p=e.case['inputs']
+    top=' + '.join(f'{p["n_N"+str(i)]:g} × #{p["Bar_N"+str(i)]:g} (row {i})' for i in (1,2,3) if p['n_N'+str(i)]) or 'None'
+    def rows(prefix,size):
+        return ' + '.join(f'{p["n_"+prefix+str(i)]:g} × #{p[size]:g} (row {i})' for i in (1,2) if p['n_'+prefix+str(i)]) or 'None'
+    entries=[('Top steel',top),('Continuous bottom',rows('P','Bar_P')),
+             ('Added between piles',rows('B','Bar_B')+' per span'),
+             ('Side steel',f'{p["n_skin"]:g} × #{p["Bar_skin"]:g} per side'),
+             ('Pile head',f'{p["Pile_embed"]:g} in embed · {p["C_pile"]:g} in clear'+('' if p['Ready_pile'] else ' · confirm dimensions'))]
+    if actual_transverse(e.case):
+        runs=run_summary(e.case)
+        for kind,label in [('hoop','Closed hoops'),('pile_u','Open-bottom U-bars')]:
+            selected=[r for r in runs if r['kind']==kind]
+            value='; '.join(f'{r["id"]}: {r["count"]} × #{r["bar"]} @ {r["pitch_in"]:g} in' for r in selected) or 'None entered'
+            entries.append((label,value))
+    else:
+        entries.append(('Reference hoops',f'#{p["Bar_v"]:g} · overall {p["s_G"]:g} in / lower-shear {p["s_L"]:g} in pitch · actual stations not set'))
+    if p['n_PU'] or p['n_BU']:
+        entries.append(('Unpositioned U-leg inventory',f'At piles {p["n_PU"]:g}; between piles {p["n_BU"]:g} · #{p["Bar_U"]:g}'))
+    return ('<div style="padding:12px;background:#eaf1f6;border-radius:6px"><b>Current bar configuration</b>'
+        +f' · {p["b"]:g} × {p["h"]:g} in cap<table style="width:100%;font-size:13px">'
+        +''.join(f'<tr><td style="padding:4px 12px 4px 0;vertical-align:top"><b>{label}</b></td><td>{html.escape(value)}</td></tr>' for label,value in entries)
+        +'</table></div>')
 
 
 def clear_spacing_html(e):
@@ -147,8 +182,8 @@ def elevation_figure(e):
     fig.add_shape(type='rect',x0=0,x1=L/12,y0=0,y1=h,fillcolor='#eef3f7',line=dict(color=INK,width=2),layer='below')
     centers=[e.value('E_CL')+j*p['S_pile']*12 for j in range(int(p['N_pile']))]
     for j,x in enumerate(centers,1):
-        fig.add_shape(type='rect',x0=(x-D/2)/12,x1=(x+D/2)/12,y0=-18,y1=p['Pile_embed'],fillcolor='#b8c7d1',line=dict(color=INK),layer='below')
-        fig.add_annotation(x=x/12,y=-10,text=f'P{j}',showarrow=False)
+        fig.add_shape(type='rect',name='part:piles',x0=(x-D/2)/12,x1=(x+D/2)/12,y0=-18,y1=p['Pile_embed'],fillcolor='#b8c7d1',line=dict(color=INK),layer='below')
+        fig.add_annotation(name='part:piles',x=x/12,y=-10,text=f'P{j}',showarrow=False)
     # A short pitch illustration, deliberately not a full-cap station schedule.
     # Its center is arbitrary; actual first-hoop and zone stations are not inputs.
     dv=BAR_DIAMETER[p['Bar_v']];pitch=p['s_G']
@@ -160,10 +195,10 @@ def elevation_figure(e):
         stations=[start+i*pitch for i in range(count)]
         fig.add_trace(go.Scatter(x=[v for x in stations for v in (x/12,x/12,None)],
             y=[v for _ in stations for v in (p['C_b']+dv/2,h-p['C_t']-dv/2,None)],
-            mode='lines',name=f'Hoop sample: #{p["Bar_v"]:g} @ {pitch:g} in c/c',
+            mode='lines',meta=dict(part='transverse'),name=f'Hoop sample: #{p["Bar_v"]:g} @ {pitch:g} in c/c',
             line=dict(color=HOOP,width=3,dash='dash'),
             hovertemplate=f'<b>Hoop sample · side elevation</b><br>#{p["Bar_v"]:g} @ {pitch:g} in center to center<br>Overall check (G)<br>Illustrative position; stationing pending<extra></extra>'))
-        fig.add_annotation(x=(left+right)/24,y=h+2,text='Hoop sample',showarrow=False,font=dict(color=HOOP,size=10))
+        fig.add_annotation(name='part:transverse',x=(left+right)/24,y=h+2,text='Hoop sample',showarrow=False,font=dict(color=HOOP,size=10))
     if actual_transverse(e.case):
         from .transverse_visuals import add_projection
         add_projection(fig,e,'elevation')
@@ -172,7 +207,7 @@ def elevation_figure(e):
     for bar in continuous:groups[(bar['kind'],bar['y'],bar['bar'])].append(bar)
     seen_skin=False
     for (kind,y,size),bars in groups.items():
-        fig.add_trace(go.Scatter(x=[p['C_s']/12,(L-p['C_s'])/12],y=[y,y],mode='lines',
+        fig.add_trace(go.Scatter(x=[p['C_s']/12,(L-p['C_s'])/12],y=[y,y],mode='lines',meta=dict(part=bar_family(bars[0])),
             name=f'Side bars: {int(2*p["n_skin"])} #{size} continuous' if kind=='Skin' else f'{kind}: {len(bars)} #{size} continuous',showlegend=kind!='Skin' or not seen_skin,legendgroup=kind,line=dict(color=TEAL if kind=='Skin' else BLUE,width=1 if kind=='Skin' else 2),
             hovertemplate='%{fullData.name}<br>Elevation %{y:.3f} in<extra></extra>'))
         if kind=='Skin':seen_skin=True
@@ -184,21 +219,21 @@ def elevation_figure(e):
         drawn.add(key)
         count=sum(t['span']==path['span'] and t['bar']['layer']==b['layer'] for t in paths)
         fig.add_trace(go.Scatter(x=[pt[0]/12 for pt in path['points']],y=[pt[1] for pt in path['points']],mode='lines',
-            name=f'Span {path["span"]}: {count} #{b["bar"]} added'+(' · FAIL' if hook_failure else ''),line=dict(color=RED if hook_failure else AMBER,width=3),
+            meta=dict(part='added'),name=f'Span {path["span"]}: {count} #{b["bar"]} added'+(' · FAIL' if hook_failure else ''),line=dict(color=RED if hook_failure else AMBER,width=3),
             hovertemplate=f'{count} added #{b["bar"]} · 90° hooks<br>Inside bend {path["inside_diameter"]:.2f} in; tail {path["tail"]:.2f} in<br>Station %{{x:.3f}} ft; elevation %{{y:.3f}} in<extra></extra>'))
     xdim=(centers[0]-D/2-5)/12
-    fig.add_trace(go.Scatter(x=[xdim,xdim],y=[0,p['Pile_embed']],mode='lines+markers',line=dict(color=RED),marker=dict(symbol='line-ew',size=10),name='Pile embedment',showlegend=False))
-    fig.add_annotation(x=xdim,y=p['Pile_embed']/2,text=f'  Embed {p["Pile_embed"]:g} in',xanchor='right',showarrow=False,font=dict(color=RED))
+    fig.add_trace(go.Scatter(x=[xdim,xdim],y=[0,p['Pile_embed']],mode='lines+markers',line=dict(color=RED),marker=dict(symbol='line-ew',size=10),name='Pile embedment',meta=dict(part='piles'),showlegend=False))
+    fig.add_annotation(name='part:piles',x=xdim,y=p['Pile_embed']/2,text=f'  Embed {p["Pile_embed"]:g} in',xanchor='right',showarrow=False,font=dict(color=RED))
     note=('FAIL: hook fit / clearance. ' if hook_failure else '')+('90° hooks outside pile envelope; development / cutoff pending.' if paths else 'No additional span bars entered; continuous bars remain throughout the cap.')
-    fig.add_annotation(x=0,y=1.10,xref='paper',yref='paper',text=note,showarrow=False,xanchor='left',font=dict(size=11,color=RED if hook_failure else AMBER))
+    fig.add_annotation(name='part:added',x=0,y=1.10,xref='paper',yref='paper',text=note,showarrow=False,xanchor='left',font=dict(size=11,color=RED if hook_failure else AMBER))
     fig.update_xaxes(title='Along cap (ft)',range=[-1,L/12+1],zeroline=False)
     fig.update_yaxes(title='Elevation above cap underside (in)',range=[-22,h+5],scaleanchor='x',scaleratio=1/12,zeroline=False)
     theme(fig,'SIDE ELEVATION · along the cap length',540)
-    fig.add_annotation(x=0,y=1.23,xref='paper',yref='paper',xanchor='left',showarrow=False,
+    fig.add_annotation(name='part:transverse',x=0,y=1.23,xref='paper',yref='paper',xanchor='left',showarrow=False,
         text=('Every purple / pink line is an entered bar station.<br>Pile U-bars are open at the bottom; see cross section / 3D.' if actual_transverse(e.case) else 'Purple dashed lines = hoop pitch sample only.<br>Set actual stations in Actual hoops and pile U-bars.'),
         align='left',font=dict(size=11,color=HOOP))
     fig.update_layout(legend=dict(orientation='h',y=-.3,font=dict(size=10)),margin=dict(t=130,b=170))
-    return fig
+    return drawing_controls(fig)
 
 
 def reinforcement_plan_figure(e):
@@ -206,25 +241,26 @@ def reinforcement_plan_figure(e):
     fig.add_shape(type='rect',x0=0,x1=L/12,y0=0,y1=p['b'],line=dict(color=INK),fillcolor='#f2f5f7',layer='below')
     for i in range(int(p['N_pile'])):
         c=e.value('E_CL')+i*p['S_pile']*12
-        fig.add_shape(type='rect',x0=(c-p['D_pile']/2)/12,x1=(c+p['D_pile']/2)/12,y0=(p['b']-p['D_pile'])/2,y1=(p['b']+p['D_pile'])/2,line=dict(color=GREY),fillcolor='#d2dde5',layer='below')
+        fig.add_shape(type='rect',name='part:piles',x0=(c-p['D_pile']/2)/12,x1=(c+p['D_pile']/2)/12,y0=(p['b']-p['D_pile'])/2,y1=(p['b']+p['D_pile'])/2,line=dict(color=GREY),fillcolor='#d2dde5',layer='below')
     seen=set()
     for b in bar_positions(e,'P'):
-        if not b['kind'].startswith('Bottom'):continue
-        key=b['layer'];show=key not in seen;seen.add(key)
-        fig.add_trace(go.Scatter(x=[p['C_s']/12,(L-p['C_s'])/12],y=[b['x'],b['x']],mode='lines',name=key+' continuous',legendgroup=key,showlegend=show,
-            line=dict(color=BLUE,width=2,dash='solid' if key.endswith('1') else 'dash'),hovertemplate=f'Continuous #{b["bar"]}<br>Across cap {b["x"]:.3f} in<extra></extra>'))
+        key=b['kind'];part=bar_family(b);show=key not in seen;seen.add(key)
+        fig.add_trace(go.Scatter(x=[p['C_s']/12,(L-p['C_s'])/12],y=[b['x'],b['x']],mode='lines',
+            name=('Side bars' if part=='side' else key)+' continuous',legendgroup=key,showlegend=show,meta=dict(part=part),
+            line=dict(color=TEAL if part=='side' else BLUE,width=2,dash='dot' if part=='top' else 'solid'),
+            hovertemplate=f'{key} · #{b["bar"]}<br>Across cap {b["x"]:.3f} in<br>Elevation {b["y"]:.3f} in<extra></extra>'))
     seen=set()
     for t in hook_paths(e,bar_positions(e,'B')):
         b=t['bar'];key=b['layer'];show=key not in seen;seen.add(key)
-        fig.add_trace(go.Scatter(x=[t['left']/12,t['right']/12],y=[b['x'],b['x']],mode='lines+markers',name=key+' added / hooks up',legendgroup='extra'+key,showlegend=show,
+        fig.add_trace(go.Scatter(x=[t['left']/12,t['right']/12],y=[b['x'],b['x']],mode='lines+markers',name=key+' added / hooks up',legendgroup='extra'+key,showlegend=show,meta=dict(part='added'),
             marker=dict(symbol='triangle-up',size=6),line=dict(color=AMBER,width=2),hovertemplate=f'Added #{b["bar"]}<br>Across cap {b["x"]:.3f} in<extra></extra>'))
     if actual_transverse(e.case):
         from .transverse_visuals import add_projection
         add_projection(fig,e,'plan')
     fig.update_xaxes(title='Along cap (ft)',range=[-1,L/12+1]);fig.update_yaxes(title='Across cap (in)',range=[-3,p['b']+3],scaleanchor='x',scaleratio=1/12)
-    theme(fig,'PLAN VIEW · '+('transverse steel + bottom bars' if actual_transverse(e.case) else 'bottom bars')+' viewed from above',430)
+    theme(fig,'PLAN VIEW · steel viewed from above (layers overlap)',430)
     fig.update_layout(legend=dict(y=-.35,font=dict(size=10)),margin=dict(b=110))
-    return fig
+    return drawing_controls(fig)
 
 
 def hoop_explanation_html(e):

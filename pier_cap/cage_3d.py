@@ -1,12 +1,15 @@
 """Full cap cage from the shared bar geometry, with true pile-section surfaces."""
 import html
 import math
+import hashlib
+import json
 from collections import Counter
 import plotly.graph_objects as go
 from .model import bar_positions
 from .detailing import hook_paths
 from .transverse import scheduled_bars,bar_shape,enabled
 from .pile_visual import pile_appearance
+from .view_controls import visibility_buttons
 
 COLORS={'top':'#1f5b91','bottom':'#448bc1','side':'#167b75','added':'#d88822','hoop':'#7952a3','pile_u':'#bd407d'}
 
@@ -107,23 +110,42 @@ def layout_3d(e):
             meta=dict(part='transverse',kind=run['kind'],bar=run['bar'],id=bar['id']),line=dict(color=COLORS[run['kind']],width=5),
             hovertemplate=f'{html.escape(bar["id"])} · #{bar["bar"]}<br>Station {bar["station_in"]/12:.3f} ft<br>Across %{{y:.2f}} in; elevation %{{z:.2f}} in<extra></extra>'))
         seen.add(run['id'])
-    fig.add_trace(box_mesh(0,L,0,p['b'],0,p['h'],name='Concrete cap',color='#bdcbd5',opacity=.05,legendgroup='cap',
-                          meta=dict(part='cap'),showlegend=True,hoverinfo='skip'))
+    # Match the explicitly illustrative between-pile sample in the 2D elevation.
+    # This does not enter bars in the case or change quantities/checks.
+    if not enabled(e.case):
+        from .model import BAR_DIAMETER
+        d=BAR_DIAMETER[p['Bar_v']];pitch=p['s_G']
+        inset=p['D_pile']/2+e.value('Tol_pile')+p['C_pile']+d/2
+        left=e.value('E_CL')+inset;right=e.value('E_CL')+p['S_pile']*12-inset
+        count=min(5,math.floor((right-left)/pitch)+1)
+        if count>=2:
+            start=(left+right-(count-1)*pitch)/2
+            shape=bar_shape(e,dict(kind='hoop',bar=int(p['Bar_v'])))
+            for i in range(count):
+                station=start+i*pitch
+                fig.add_trace(_line([(station,y,z) for y,z in shape['points']],
+                    name=f'Reference hoop sample · #{p["Bar_v"]:g} @ {pitch:g} in',legendgroup='reference-hoops',showlegend=i==0,
+                    meta=dict(part='transverse',reference=True),line=dict(color=COLORS['hoop'],width=5,dash='dash'),
+                    hovertemplate=f'Reference hoop · #{p["Bar_v"]:g} @ {pitch:g} in<br>Illustrative position only; actual stations not set<extra></extra>'))
+    # An outline avoids transparent concrete faces obscuring the internal bars.
+    outline=[]
+    for z in (0,p['h']):outline.extend([None,(0,0,z),(L,0,z),(L,p['b'],z),(0,p['b'],z),(0,0,z)])
+    for x,y in ((0,0),(L,0),(L,p['b']),(0,p['b'])):outline.extend([None,(x,y,0),(x,y,p['h'])])
+    fig.add_trace(_line(outline,name='Concrete cap outline',line=dict(color='#a9bac7',width=2),legendgroup='cap',
+                        meta=dict(part='cap'),showlegend=True,hoverinfo='skip'))
     appearance=add_piles(fig,e)
-    parts=[t.meta['part'] for t in fig.data];always={'cap','piles'}
-    buttons=[]
-    for label,visible in [('All steel',set(parts)),('Longitudinal',always|{'top','bottom','side','added'}),('Hoops + U-bars',always|{'transverse'}),('Piles only',{'piles'})]:
-        buttons.append(dict(label=label,method='restyle',args=[{'visible':[part in visible for part in parts]}]))
+    buttons=visibility_buttons(fig)
     note='Click legend groups to hide/show steel. Drag to rotate; scroll to zoom.'
-    if not enabled(e.case):note+='<br>Transverse stations are not yet enabled.'
+    if not enabled(e.case):note+='<br>Dashed hoops are a spacing sample only. Create / enable actual runs above for the full layout.'
+    elif not scheduled_bars(e.case):note+='<br>No actual bars entered. Add a run in Actual hoops and pile U-bars.'
     if p['n_PU'] or p['n_BU']:note+='<br>Legacy U-leg inventory has no assigned positions and is not drawn.'
     pile_note=appearance['label']+' · '+appearance['description']
     # Fix true inch proportions when groups are hidden, including Piles only.
     extents=(L+8,p['b']+8,p['h']+18);scale=math.prod(extents)**(1/3)
     fig.update_layout(title=dict(text='3D CAGE · reinforcement and pile heads',font=dict(size=17),x=.015,y=.98,yanchor='top'),height=770,template='plotly_white',
         margin=dict(l=0,r=0,t=145,b=160,autoexpand=False),legend=dict(orientation='h',y=-.08,font=dict(size=10),groupclick='togglegroup'),
-        hoverlabel=dict(namelength=-1),uirevision='full-cap-cage',
-        updatemenus=[dict(type='buttons',direction='right',x=0,y=1.18,xanchor='left',yanchor='top',buttons=buttons,font=dict(size=11))],
+        hoverlabel=dict(namelength=-1),uirevision=hashlib.sha256(json.dumps({'inputs':p,'runs':e.case.get('transverse_detail'),'pile':appearance},sort_keys=True).encode()).hexdigest(),
+        updatemenus=[dict(type='buttons',direction='right',active=0,x=0,y=1.18,xanchor='left',yanchor='top',buttons=buttons,font=dict(size=11))],
         annotations=[dict(x=0,y=1.08,xref='paper',yref='paper',text=html.escape(pile_note),showarrow=False,xanchor='left',font=dict(size=10)),
                      dict(x=0,y=-.01,xref='paper',yref='paper',text=note,showarrow=False,xanchor='left',font=dict(size=10))],
         scene=dict(xaxis=dict(title='Along cap (in)',range=[-4,L+4]),yaxis=dict(title='Across cap (in)',range=[-4,p['b']+4]),

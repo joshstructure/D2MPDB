@@ -77,16 +77,16 @@
     "name": "Ready_pile"
   },
   {
-    "formula": "Pile_embed = 0 in",
+    "formula": "Pile_embed = 12 in",
     "unit": "in",
-    "caption": "Physical pile penetration above the cap underside; not the analysis connection elevation.",
+    "caption": "Physical pile penetration above the cap underside. Starts at 12 in; confirm for the project, independently of the analysis connection elevation.",
     "input": true,
     "name": "Pile_embed"
   },
   {
-    "formula": "C_pile = 0 in",
+    "formula": "C_pile = 2 in",
     "unit": "in",
-    "caption": "Adopted clear distance between pile surface and reinforcing bar surface.",
+    "caption": "Pile surface to reinforcing bar surface. Starts at 2 in, adopted from FDOT SDG 2026 3.11.2.F.1.c (specified laterally loaded footings); verify project applicability. Horizontal pile placement tolerance is separate.",
     "input": true,
     "name": "C_pile"
   },

@@ -322,6 +322,9 @@ class SectionStudy:
     def _run(self, _):
         self.invalidate(force=True)
         self.run_button.disabled = True
+        self.progress.value = 0
+        self.progress.max = 1
+        self.progress.bar_style = 'info'
         try:
             grid = SectionGrid(widths=dimension_values(*(w.value for w in self.bounds['width'])),
                                depths=dimension_values(*(w.value for w in self.bounds['depth'])),
@@ -342,8 +345,10 @@ class SectionStudy:
                     'Every section was skipped before the steel search. ' + reasons +
                     '<br>Review the width/depth ranges, project minimums and force mode above.', 'pending')
             self._render()
+            self.progress.bar_style = 'success' if self.study.evaluated else 'warning'
         except Exception as exc:
-            self.notice.value = '<b>Study stopped:</b> ' + html.escape(str(exc))
+            self.progress.bar_style = 'danger'
+            self.notice.value = '<span role="alert" style="color:#9d302b"><b>Study stopped:</b> ' + html.escape(str(exc) or type(exc).__name__) + '</span>'
         finally:
             self.run_button.disabled = False
 

@@ -19,6 +19,7 @@ from .transverse_widgets import TransversePanel
 from .transverse import enabled as actual_transverse
 from .pile_visual_widgets import PileAppearancePanel
 from .cage_3d import layout_3d
+from .visuals import configuration_html
 from .visuals import section_figure,elevation_figure,reinforcement_plan_figure,reinforcement_summary_html,clear_spacing_html,hoop_figure,hoop_explanation_html,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html,spacing_html,side_steel_html,pile_head_help_html
 
 UNIT_NAMES={'in':'inches','ft':'feet','kip':'kips','kip*ft':'kip-feet','ksi':'ksi (kips per square inch)','deg':'degrees'}
@@ -59,7 +60,7 @@ class CapNotebook:
     def __init__(self,case=None,export_root='exports'):
         self.case=upgrade_case(case or default_case());self.export_root=Path(export_root)
         self.controls={};self.busy=False;self.search_result=None;self.current=None;self.figures=[];self.last_export=None
-        self.browsing=False;self.filtered_indices=[];self.alternative_figure=None
+        self.browsing=False;self.filtered_indices=[];self.alternative_figure=None;self.cage_3d_widget=None
         self.case_listeners=[]
         self.import_receipt=None;self.import_notice=W.HTML()
         self.banner=W.HTML();self.metrics=W.HTML();self.message=W.HTML()
@@ -173,13 +174,28 @@ class CapNotebook:
         if overall.key in ('Chk_spacing_G','Chk_spacing_L'):
             zone=overall.key[-1];s=e.value('S_leg');limit=e.value('Sw_'+zone)
             self.metrics.value+=f'<p><b>Across-cap hoop legs:</b> {s:.3f} in / {limit:.3f} in allowed = <b>{s/limit:.4f}</b>. Adding main bars or reducing along-cap hoop spacing leaves this across-cap distance unchanged.</p>'
-        for old in self.figures:old.close()
+        for old in self.figures:
+            if old is not self.cage_3d_widget:old.close()
         self.figures=[]
         def fw(fig):
             widget=go.FigureWidget(fig);self.figures.append(widget);widget.layout.autosize=True;return widget
         selected=self.transverse_panel.selected_run_id
+        new_cage=layout_3d(e)
+        if self.cage_3d_widget is None:self.cage_3d_widget=go.FigureWidget(new_cage)
+        else:
+            # Keep a single WebGL canvas across input edits. Replacing widgets on
+            # every edit can exhaust browser contexts; stale visibility must also
+            # not be carried to new trace indices when the bar count changes.
+            camera=self.cage_3d_widget.layout.scene.camera.to_plotly_json()
+            with self.cage_3d_widget.batch_update():
+                self.cage_3d_widget.data=[]
+                self.cage_3d_widget.add_traces(new_cage.data)
+                self.cage_3d_widget.layout=new_cage.layout
+                self.cage_3d_widget.layout.scene.camera=camera
+        self.cage_3d_widget.layout.autosize=True
+        self.figures.append(self.cage_3d_widget)
         footer=('Every transverse station is drawn. Pink U-bars are open downward; the section shows the selected run of that shape, or the first run of that shape. Bend / tail fit and pile conflicts are screened; development, closure and 3D congestion at longitudinal hook ends require review.' if actual_transverse(self.case) else 'Dashed transverse shapes are reference illustrations. Set the actual hoops and open-bottom U-bars in the editor above.')
-        self.cage.children=[W.HTML(reinforcement_summary_html(e)),W.HTML(side_steel_html(e)),fw(layout_3d(e)),fw(section_figure(e,'B',selected)),fw(section_figure(e,'P',selected)),fw(reinforcement_plan_figure(e)),fw(elevation_figure(e)),W.HTML(hoop_explanation_html(e)),
+        self.cage.children=[W.HTML(configuration_html(e)+reinforcement_summary_html(e)),W.HTML(side_steel_html(e)),self.cage_3d_widget,fw(section_figure(e,'B',selected)),fw(section_figure(e,'P',selected)),fw(reinforcement_plan_figure(e)),fw(elevation_figure(e)),W.HTML(hoop_explanation_html(e)),
             *([fw(hoop_figure(e))] if not actual_transverse(self.case) else []),W.HTML(clear_spacing_html(e)),W.HTML('<small>'+footer+' Pile lengths below the cap are schematic. The 3D cage uses bar centerlines; displayed line thickness is for visibility.</small>')]
         self.results.children=[fw(results_figure(e)),W.HTML(spacing_html(e)),fw(optional_service_figure(e)),fw(ratios_figure(e)),W.HTML('<small>These plots compare imported force envelopes and sectional capacities. They are not a continuous moment/shear diagram or a rerun of FB-MultiPier.</small>')]
         self.register.value=checks_html(e)
@@ -252,12 +268,13 @@ class CapNotebook:
         self.run_button=W.Button(description='Search steel layouts',button_style='primary',icon='search');self.run_button.on_click(self._run_search)
         self.search_force_notice=W.HTML()
         self.progress=W.IntProgress(min=0,max=1,value=0,description='Search')
+        self.search_status=W.HTML(layout=W.Layout(min_width='240px',flex='1 1 300px'))
         self.search_text=W.HTML();self.search_notice=W.HTML();self.candidates=W.Dropdown(options=[],description='Alternative',layout=W.Layout(width='90%'),style={'description_width':'80px'})
         self.apply_button=W.Button(description='Apply selected layout',disabled=True,icon='check');self.apply_button.on_click(self._apply)
         self.alternative_output=W.VBox()
         return W.VBox([W.HTML('<h3>Search practical steel</h3><p>Search top steel, continuous bottom steel and ADDITIONAL between-pile steel with independent sizes and counts. Span counts add to the continuous count; zero means no extra bars. One row per group, one closed hoop and uniform hoop spacing; multirow arrangements remain manual inputs. Hold Ctrl/Cmd to select several choices.</p>'),
             W.HBox(boxes,layout=W.Layout(flex_flow='row wrap',grid_gap='10px')),self.search_force_notice,
-            W.HBox([self.limit,self.run_button,self.progress],layout=W.Layout(flex_flow='row wrap')),
+            W.HBox([self.limit,self.run_button,self.progress,self.search_status],layout=W.Layout(flex_flow='row wrap',align_items='center')),
             W.HTML('<h4>Browse every passing layout</h4><p>These are reinforcement layouts for the current force case. <b>Strength checks only</b> is the default margin target: set <b>Max D/C</b> to 0.90 to seek reserve in those checks. Filtering, ranking and paging reuse the completed search.</p>'),
             W.HBox([self.dc_limit,self.dc_scope,self.objective],layout=W.Layout(flex_flow='row wrap')),
             W.HTML('<small><b>All available checks</b> includes spacing, minimum steel, strain and service checks. <b>Strength checks only</b> targets flexure, shear, combined shear/torsion steel and longitudinal steel; all other available checks must still pass. Missing Service III/fatigue checks stay pending. Largest margin ranks the selected D/C scope.</small>'),
@@ -290,6 +307,7 @@ class CapNotebook:
 
     def _clear_search(self,message=''):
         self.search_notice.value=''
+        self.search_status.value='';self.progress.bar_style='';self.progress.value=0
         self.search_result=None;self.filtered_indices=[];self.candidates.options=[];self.apply_button.disabled=True
         self.page.value=1;self.page.max=1;self.page.disabled=True
         self.previous_page.disabled=True;self.next_page.disabled=True;self.search_text.value=message
@@ -355,14 +373,22 @@ class CapNotebook:
 
     def _run_search(self,button):
         self.run_button.disabled=True;self._clear_search('Searching and checking all passing layouts…')
-        self.progress.value=0
+        self.progress.max=1;self.search_status.value='Checking inputs and searching…';self.progress.bar_style='info'
         try:
             config=SearchConfig(**{n:tuple(w.value) for n,w in self.search_lists.items()},objective=self.objective.value,max_cases=self.limit.value)
             def update(n,total):self.progress.max=total;self.progress.value=n
             run=sensitivity_search if self._search_force_mode()=='fixed' else search
             result=run(self.case,config,update);self.search_result=result
             self._render_candidates(reset_page=True)
-        except Exception as exc:self.search_text.value='<b>Search stopped:</b> '+html.escape(str(exc))
+            self.progress.bar_style='success' if result.passed else 'warning'
+            self.search_status.value=f'<b>Search complete:</b> {result.evaluated:,} evaluated; {result.passed:,} passing layouts.'
+            if not result.passed:
+                common='; '.join(f'{html.escape(k)} ({v:,})' for k,v in sorted(result.rejection_counts.items(),key=lambda item:-item[1])[:3])
+                self.search_status.value+='<br>No passing cages. Most frequent failures: '+common
+        except Exception as exc:
+            self.progress.bar_style='danger'
+            self.search_status.value='<span role="alert" style="color:#9d302b"><b>Search stopped:</b> '+html.escape(str(exc) or type(exc).__name__)+'</span>'
+            self.search_text.value=self.search_status.value
         finally:self.run_button.disabled=False
 
     def _apply(self,button):

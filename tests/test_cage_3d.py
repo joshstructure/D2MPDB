@@ -90,7 +90,9 @@ class Cage3DTests(unittest.TestCase):
 
     def test_views_work_without_transverse_stations_and_buttons_select_groups(self):
         c=case();c['transverse_detail']['enabled']=False;fig=layout_3d(evaluate(c))
-        self.assertFalse(any(t.meta.get('part')=='transverse' for t in fig.data))
+        samples=[t for t in fig.data if t.meta.get('part')=='transverse']
+        self.assertTrue(samples)
+        self.assertTrue(all(t.meta.get('reference') and t.line.dash=='dash' for t in samples))
         for button in fig.layout.updatemenus[0].buttons:
             visibility=button.args[0]['visible'];self.assertEqual(len(visibility),len(fig.data))
             if button.label=='Piles only':

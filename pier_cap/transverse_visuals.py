@@ -36,7 +36,7 @@ def add_projection(fig,e,view):
         r=runs[b['run']];shape=bar_shape(e,r);values=[pt[1 if view=='elevation' else 0] for pt in shape['points']]
         label=f'{r["id"]}: {NAMES[r["kind"]]} #{r["bar"]} @ {r["pitch_in"]:g} in'
         fig.add_trace(go.Scatter(x=[b['station_in']/12]*2,y=[min(values),max(values)],mode='lines',
-            name=label,legendgroup=r['id'],showlegend=r['id'] not in seen,line=dict(color=COLORS[r['kind']],width=3),
+            name=label,legendgroup=r['id'],meta=dict(part='transverse'),showlegend=r['id'] not in seen,line=dict(color=COLORS[r['kind']],width=3),
             hovertemplate=f'<b>{html.escape(b["id"])}</b><br>{label}<br>Station {b["station_in"]/12:.3f} ft from left end<br>Shown edge-on; see transverse section for shape<extra></extra>'))
         seen.add(r['id'])
 
@@ -45,13 +45,13 @@ def add_section(fig,e,run):
     shape=bar_shape(e,run);pts=shape['points'];problems=shape_issues(e,run)
     color=COLORS[run['kind']]
     fig.add_trace(go.Scatter(x=[pt[0] for pt in pts],y=[pt[1] for pt in pts],mode='lines',
-        name=f'{run["id"]}: {NAMES[run["kind"]]} #{run["bar"]}',line=dict(color=color,width=5),
+        name=f'{run["id"]}: {NAMES[run["kind"]]} #{run["bar"]}',legendgroup=run['id'],meta=dict(part='transverse'),line=dict(color=color,width=5),
         hovertemplate=f'{html.escape(run["id"])} · {NAMES[run["kind"]]} #{run["bar"]}<br>Across %{{x:.2f}} in; above underside %{{y:.2f}} in<extra></extra>'))
     if run['kind']=='pile_u':
         fig.add_trace(go.Scatter(x=[pts[0][0],pts[-1][0]],y=[pts[0][1],pts[-1][1]],mode='markers',name='Independent U ends',
-            marker=dict(size=9,color=color,symbol='circle-open'),hovertemplate='End of U-bar · development must be verified<extra></extra>'))
-        fig.add_annotation(x=e.case['inputs']['b']/2,y=1,text='OPEN BOTTOM · no crossbar through pile',showarrow=False,bgcolor='white',font=dict(size=10,color=color))
-    fig.add_annotation(x=0,y=1.12,xref='paper',yref='paper',text=html.escape(run['id'])+': '+('CLASH / FIT — see run schedule' if problems else 'Entered shape · anchorage review'),
+            legendgroup=run['id'],meta=dict(part='transverse'),showlegend=False,marker=dict(size=9,color=color,symbol='circle-open'),hovertemplate='End of U-bar · development must be verified<extra></extra>'))
+        fig.add_annotation(name='part:transverse',x=e.case['inputs']['b']/2,y=1,text='OPEN BOTTOM · no crossbar through pile',showarrow=False,bgcolor='white',font=dict(size=10,color=color))
+    fig.add_annotation(name='part:transverse',x=0,y=1.12,xref='paper',yref='paper',text=html.escape(run['id'])+': '+('CLASH / FIT — see run schedule' if problems else 'Entered shape · anchorage review'),
         showarrow=False,xanchor='left',font=dict(size=11,color='#bb3e39' if problems else color))
 
 

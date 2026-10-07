@@ -73,8 +73,8 @@
     "Bar_P": 8.0,
     "Bar_B": 8.0,
     "Ready_pile": false,
-    "Pile_embed": 0,
-    "C_pile": 0
+    "Pile_embed": 12,
+    "C_pile": 2
   },
   "analysis": {
     "id": "Pier_MinTip_Max supplied design workbooks",
