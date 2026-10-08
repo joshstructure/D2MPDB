@@ -101,7 +101,6 @@ class CapNotebook:
             self.cap_type,W.HTML('<p>Shared sectional workflow for pier and end-bent caps supported directly on a single pile row. The cap type labels the case; it does not add loads or change the design method. Backwall/wingwall, earth-pressure load generation, footing/column caps and strut-and-tie design are outside this calculation.</p>'),
             self.case_import.ui,self.xml_import.ui,self.import_notice,self.pile_review.ui,
             W.HTML('<h2 style="color:#213649">2. Cap reinforcement and steel optimization</h2>'),self.source_label,source,self.banner,self.metrics,
-            self.transverse_panel.ui,
             self.workbench,
             self.search_panel,self.export_panel,self.message],layout=W.Layout(width='100%'))
         self.refresh()
@@ -149,16 +148,17 @@ class CapNotebook:
                     control.layout.min_height='34px';control.layout.height='auto';control.add_class('cap-input')
                     rows.append(control)
                 if title=='Hoops and side bars':
-                    rows.insert(0,W.HTML('<p><b>Uniform-cage reference inputs.</b> G = overall shear check; L = lower-shear interval check, not the bottom of the cap. Set actual hoops and open-bottom pile U-bars in the editor above. These reference pitches seed the starting layout; later edits to them do not move your entered bars. The reference hoop diameter also locates the longitudinal cage; actual shape conflicts are checked separately.</p>'))
-                    rows.extend([self.clearance,self.aggregate,self.aggregate_confirmed,W.HTML('<small>AASHTO LRFD BDS + FDOT policy. The larger of the code minimum and project minimum governs. Confirm aggregate from the mix design. Enter actual stations and U end geometry in the transverse editor.</small>')])
-                if title=='Extra U-leg inventory · unresolved':rows.insert(0,W.HTML('<p><b>These are NOT the transverse pile U-bars.</b> Use the actual transverse editor above for those. These legacy counts add longitudinal tension area but have no resolved position or development. A nonzero count triggers an issue. Do not enter span-bar end hooks here either. Zero means no separate legacy inventory.</p>'))
+                    self.hoop_reference_inputs=W.VBox([W.HTML('<p><b>Uniform-cage reference inputs.</b> G = overall shear check; L = lower-shear interval check, not the bottom of the cap. These reference pitches seed the starting layout; later edits to them do not move your entered bars. The reference hoop diameter also locates the longitudinal cage; actual shape conflicts are checked separately.</p>'),
+                        *rows[:4],self.clearance,self.aggregate,self.aggregate_confirmed,W.HTML('<small>The larger of the code minimum and project minimum governs. Confirm aggregate from the mix design. Set actual zone sizes and pitches above; edit end geometry in the general run editor.</small>')])
+                    rows=rows[4:]
+                if title=='Extra U-leg inventory · unresolved':rows.insert(0,W.HTML('<p><b>These are NOT the transverse pile U-bars.</b> Use the zone controls below the reinforcement elevation for those. These legacy counts add longitudinal tension area but have no resolved position or development. A nonzero count triggers an issue. Do not enter span-bar end hooks here either. Zero means no separate legacy inventory.</p>'))
                 if title=='Advanced · cross-section spacing':rows.insert(0,W.HTML('<p>Override the automatic spacing of longitudinal bars <b>within the cross section</b>. The checkbox activates top, continuous-bottom, added-row and side-bar spacing overrides. It does not add bars or change along-cap hoop pitch. <b>Inner leg spacing</b> is used separately when effective hoop loops exceed one; multiple-loop positions remain unresolved.</p>'))
                 if title=='ADDITIONAL steel · between piles':rows.insert(0,W.HTML('<p><b>These counts are ADDITIONAL, not totals.</b> Continuous bottom bars stay in place. Total span steel = continuous bars + these added bars. Enter 0 for no added bars. The bar size here applies only to the added steel. Standard 90° hooks are drawn at the span ends; anchorage remains a separate check.</p>'))
                 if title=='Continuous bottom steel · at piles':rows.insert(0,W.HTML('<p>These bottom bars continue through every pile and span to the cap end-cover planes. Their transverse positions stay fixed. End anchorage and splices require review.</p>'))
                 if title=='Pile head':rows.extend([W.HTML(pile_head_help_html()),self.pile_appearance.ui])
                 panels.append(W.VBox(rows))
             accordion=Accordion(children=panels)
-            for i,(title,_) in enumerate(sections):accordion.set_title(i,title)
+            for i,(title,_) in enumerate(sections):accordion.set_title(i,'Side bars and row spacing' if title=='Hoops and side bars' else title)
             accordion.selected_index=0;tabs.append(accordion)
         tab=Tab(children=tabs,layout=W.Layout(flex='0 0 360px',width='360px'))
         for i,name in enumerate(GROUPS):tab.set_title(i,name)
@@ -188,8 +188,11 @@ class CapNotebook:
         except Exception as exc:
             self.force_diagrams.refresh(self.case)
             self.current=None;self.banner.value=f'<div style="padding:14px;background:#ffe9e7;color:#9d302b"><b>INPUT ERROR</b><br>{html.escape(str(exc))}</div>'
-            self.metrics.value='';self.cage.children=[];self.results.children=[];self.dimensions.children=[];self.register.value='';self.trace.value='';return
+            self.transverse_panel.zone_grid.layout.display='none'
+            self.transverse_panel.zone_notice.value='<p>Correct the input error above to restore zone controls and drawings. General inputs remain available below.</p>'
+            self.metrics.value='';self.cage.children=[self.transverse_panel.ui];self.results.children=[];self.dimensions.children=[];self.register.value='';self.trace.value='';return
         self.current=e
+        self.transverse_panel.sync_zones(e)
         self.force_diagrams.refresh(self.case,evaluation=e)
         self.pile_appearance.sync()
         trial_section=self._search_force_mode()=='fixed'
@@ -225,8 +228,8 @@ class CapNotebook:
                 self.cage_3d_widget.layout.scene.camera=camera
         self.cage_3d_widget.layout.autosize=True
         self.figures.append(self.cage_3d_widget)
-        footer=('Every transverse station is drawn. Pink U-bars are open downward; the section shows the selected run of that shape, or the first run of that shape. Bend / tail fit and pile conflicts are screened; development, closure and 3D congestion at longitudinal hook ends require review.' if actual_transverse(self.case) else 'Dashed transverse shapes are reference illustrations. Set the actual hoops and open-bottom U-bars in the editor above.')
-        self.cage.children=[W.HTML(configuration_html(e)+reinforcement_summary_html(e)),W.HTML(side_steel_html(e)),self.cage_3d_widget,fw(section_figure(e,'B',selected)),fw(section_figure(e,'P',selected)),fw(reinforcement_plan_figure(e)),fw(elevation_figure(e)),W.HTML(hoop_explanation_html(e)),
+        footer=('Every transverse station is drawn. Pink U-bars are open downward; the section shows the selected run of that shape, or the first run of that shape. Bend / tail fit and pile conflicts are screened; development, closure and 3D congestion at longitudinal hook ends require review.' if actual_transverse(self.case) else 'Dashed transverse shapes are reference illustrations. Set actual hoops and open-bottom U-bars in the zone controls below the elevation.')
+        self.cage.children=[W.HTML(configuration_html(e)+reinforcement_summary_html(e)),W.HTML(side_steel_html(e)),self.cage_3d_widget,fw(section_figure(e,'B',selected)),fw(section_figure(e,'P',selected)),fw(reinforcement_plan_figure(e)),fw(elevation_figure(e,zone_labels=True)),self.transverse_panel.ui,W.HTML(hoop_explanation_html(e)),
             *([fw(hoop_figure(e))] if not actual_transverse(self.case) else []),W.HTML(clear_spacing_html(e)),W.HTML('<small>'+footer+' Pile lengths below the cap are schematic. The 3D cage uses bar centerlines; displayed line thickness is for visibility.</small>')]
         self.results.children=[fw(results_figure(e)),W.HTML(spacing_html(e)),fw(optional_service_figure(e)),fw(ratios_figure(e)),W.HTML('<small>These plots compare imported force envelopes and sectional capacities. They are not a continuous moment/shear diagram or a rerun of FB-MultiPier.</small>')]
         self.register.value=checks_html(e)
@@ -528,6 +531,7 @@ class CapNotebook:
     def close(self):
         self.pile_review.close()
         self.force_diagrams.close()
+        self.transverse_panel.close()
         for figure in self.figures:figure.close()
         self._close_alternative_plot()
         self.case_listeners.clear()

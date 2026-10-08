@@ -182,7 +182,7 @@ def clear_spacing_html(e):
         f'({"confirmed" if s["aggregate_confirmed"] else "UNCONFIRMED assumption"}). Vertical alignment is checked separately.</p>'
         '<table class="cap-table"><tr><th>Region / bars</th><th>Actual clear (in)</th><th>Required clear (in)</th><th>Status</th></tr>'+''.join(rows)+'</table>')
 
-def elevation_figure(e):
+def elevation_figure(e,*,zone_labels=False):
     p=e.case['inputs'];L=e.value('L_cap');h=p['h'];D=p['D_pile']
     fig=go.Figure()
     fig.add_shape(type='rect',x0=0,x1=L/12,y0=0,y1=h,fillcolor='#eef3f7',line=dict(color=INK,width=2),layer='below')
@@ -239,6 +239,13 @@ def elevation_figure(e):
         text=('Every purple / pink line is an entered bar station.<br>Pile U-bars are open at the bottom; see cross section / 3D.' if actual_transverse(e.case) else 'Purple dashed lines = hoop pitch sample only.<br>Set actual stations in Actual hoops and pile U-bars.'),
         align='left',font=dict(size=11,color=HOOP))
     fig.update_layout(legend=dict(orientation='h',y=-.3,font=dict(size=10)),margin=dict(t=130,b=170))
+    if zone_labels:
+        from .transverse_zones import cap_zones
+        for zone in cap_zones(e):
+            if zone['right']<=zone['left']:continue
+            fig.add_annotation(name='part:transverse',x=(zone['left']+zone['right'])/24,y=1.025,xref='x',yref='paper',
+                text=zone['label'].replace('Pile ',''),showarrow=False,bgcolor='#fff1f7' if zone['kind']=='pile_u' else '#f2ecf8',
+                font=dict(size=10,color='#bd407d' if zone['kind']=='pile_u' else HOOP))
     return drawing_controls(fig)
 
 

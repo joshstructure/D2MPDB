@@ -1,13 +1,16 @@
 """Editable physical bar runs; serialized with the case, independent of U inventory."""
 from copy import deepcopy
 import html
+import math
 import ipywidgets as W
 from .transverse import empty_detail,enabled,shape_parameters,suggested_detail,validate_detail,run_summary,development_current,development_fingerprint
+from .widget_compat import Accordion
+from .transverse_zones import zone_runs,new_zone_run
 
 
 class TransversePanel:
     def __init__(self,owner):
-        self.owner=owner;self.busy=False
+        self.owner=owner;self.busy=False;self.zone_controls={};self._zone_key=None;self._zone_widgets=[]
         self.active=W.Checkbox(description='Use actual transverse layout',indent=False)
         self.generate=W.Button(description='Create starting layout',icon='plus',layout=W.Layout(width='210px'))
         self.select=W.Dropdown(options=[],description='Edit run',layout=W.Layout(width='430px'))
@@ -34,11 +37,21 @@ class TransversePanel:
             W.HTML('<small>Bend and tail values define the drawing. They do not calculate or certify development length. '
                    'Hoops use a closed outline; their closure detail must be checked separately. Change the size and bend dimensions together.</small>'),
             self.confirm,self.basis,self.apply,self.count])
-        self.ui=W.VBox([W.HTML('<h3>Actual hoops and pile U-bars</h3><p>Set the bar shape, size and exact stations here. '
-            '<b>Create starting layout</b> uses the current overall pitch, with closed hoops clear of the piles and open-bottom U-bars over the pile zones. '
-            'It creates editable dimensions; development is initially unconfirmed. Saved cases retain every run.</p>'),
+        self.zone_grid=W.GridBox(layout=W.Layout(width='100%',grid_template_columns='repeat(auto-fit, minmax(215px, 1fr))',grid_gap='10px'))
+        self.zone_notice=W.HTML()
+        self.general=Accordion(children=[W.VBox([
+            W.HTML('<p>Use the run editor for custom limits, multiple runs per zone, shear basis, bend dimensions and development records. '
+                   'Changing a zone size preserves explicitly entered bend and tail dimensions; review their fit.</p>'),
+            W.HBox([self.select,self.add,self.remove],layout=W.Layout(flex_flow='row wrap')),self.editor]),self.owner.hoop_reference_inputs])
+        self.general.set_title(0,'General hoop / U-bar details and exact run limits')
+        self.general.set_title(1,'Uniform-cage reference inputs and spacing assumptions')
+        self.general.selected_index=None
+        self.ui=W.VBox([W.HTML('<h3>Actual hoops and pile U-bars · by zone</h3><p>Zones follow the elevation from left to right. '
+            'Change a run’s size or spacing to update the drawing and checks immediately; press Enter or leave the spacing field to apply it. '
+            'First stations and end limits remain unchanged. <b>Create starting layout</b> fills the cap using the reference overall pitch. '
+            'Bend dimensions and development records are below.</p>'),
             W.HBox([self.active,self.generate],layout=W.Layout(flex_flow='row wrap')),
-            W.HBox([self.select,self.add,self.remove],layout=W.Layout(flex_flow='row wrap')),self.editor,self.status])
+            self.zone_grid,self.zone_notice,self.status,self.general],layout=W.Layout(width='100%',min_width='0'))
         self.active.observe(self._toggle,names='value');self.select.observe(self._selected,names='value')
         self.generate.on_click(self._generate);self.add.on_click(self._add);self.remove.on_click(self._remove);self.apply.on_click(self._apply)
         for field in [self.kind,self.bar,self.zone,self.angle,*self.fields.values()]:field.observe(self._edited,names='value')
@@ -57,6 +70,92 @@ class TransversePanel:
             if runs:self._fill()
         finally:self.busy=False
 
+    def sync_zones(self,e):
+        """Reuse controls during redraws so editing a zone retains keyboard focus."""
+        self.zone_grid.layout.display=''
+        zones,groups,custom=zone_runs(e)
+        key=tuple((z['key'],tuple(r['id'] for r in groups[z['key']])) for z in zones)
+        prior_busy=self.busy;self.busy=True
+        try:
+            if key!=self._zone_key:
+                self.zone_grid.children=[]
+                for widget in self._zone_widgets:widget.close()
+                self._zone_widgets=[];self.zone_controls={};self._zone_headers={};self._empty_zones={}
+                cards=[]
+                for z in zones:
+                    header=W.HTML();self._zone_headers[z['key']]=header;children=[header]
+                    for run in groups[z['key']]:
+                        label=W.HTML();size=W.Dropdown(options=[(f'#{n}',n) for n in range(3,12)],description='Size',
+                            style={'description_width':'65px'},layout=W.Layout(width='calc(100% - 4px)',min_width='0'))
+                        pitch=W.FloatText(description='c/c (in)',continuous_update=False,
+                            style={'description_width':'65px'},layout=W.Layout(width='calc(100% - 4px)',min_width='0'))
+                        info=W.HTML();error=W.HTML()
+                        controls=dict(bar=size,pitch=pitch,info=info,label=label,error=error)
+                        self.zone_controls[run['id']]=controls
+                        for field,widget in [('bar',size),('pitch_in',pitch)]:
+                            widget.observe(lambda change,rid=run['id'],name=field:self._zone_edited(rid,name,change),names='value')
+                        children.extend([label,size,pitch,info,error])
+                    if not groups[z['key']]:
+                        size=W.Dropdown(options=[(f'#{n}',n) for n in range(3,12)],value=int(e.case['inputs']['Bar_v']),description='Size',
+                            style={'description_width':'65px'},layout=W.Layout(width='calc(100% - 4px)',min_width='0'))
+                        pitch=W.FloatText(value=e.case['inputs']['s_G'],description='c/c (in)',continuous_update=False,
+                            style={'description_width':'65px'},layout=W.Layout(width='calc(100% - 4px)',min_width='0'))
+                        empty=W.HTML();button=W.Button(description='Add zone run',icon='plus',layout=W.Layout(width='calc(100% - 4px)',min_width='0'))
+                        button.on_click(lambda _,key=z['key']:self._add_zone(key))
+                        self._empty_zones[z['key']]=dict(note=empty,bar=size,pitch=pitch,button=button)
+                        children.extend([empty,size,pitch,button])
+                    card=W.VBox(children,layout=W.Layout(border='1px solid '+('#bd407d' if z['kind']=='pile_u' else '#7952a3'),padding='8px',min_width='0'))
+                    self._zone_widgets.extend([*children,card]);cards.append(card)
+                self.zone_grid.children=cards;self._zone_key=key
+            active=enabled(e.case)
+            for z in zones:
+                color='#bd407d' if z['kind']=='pile_u' else '#7952a3'
+                self._zone_headers[z['key']].value=(f'<b style="color:{color}">{html.escape(z["label"])}</b><br><small>'+
+                    ('Open-bottom U-bars' if z['kind']=='pile_u' else 'Closed hoops')+'</small>')
+                for run in groups[z['key']]:
+                    c=self.zone_controls[run['id']];c['bar'].value=run['bar'];c['pitch'].value=run['pitch_in']
+                    c['bar'].disabled=c['pitch'].disabled=not active
+                    count=math.floor((run['end_in']-run['first_in'])/run['pitch_in']+1e-9)+1
+                    last=run['first_in']+(count-1)*run['pitch_in']
+                    c['label'].value='<small>Run '+html.escape(run['id'])+'</small>'
+                    c['info'].value=f'<small>{count} {"bar" if count==1 else "bars"} · first {run["first_in"]/12:.3f} ft<br>Last {last/12:.3f} ft · limit {run["end_in"]/12:.3f} ft</small>'
+                    c['error'].value=''
+                if z['key'] in self._empty_zones:
+                    c=self._empty_zones[z['key']]
+                    c['note'].value='<small>No entered run. Set size / spacing, then add this zone.</small>'
+                    c['button'].disabled=z['right']<=z['left']
+            notes=[]
+            if not active:notes.append('Actual layout is off. Enable it to edit saved zone runs and draw their bars.')
+            if custom:notes.append('Custom / crossing runs retained in the general editor: '+', '.join(r['id'] for r in custom)+'.')
+            notes.append('Zone labels follow the current pile layout. Saved bar stations do not move when geometry changes. Review adjoining-run spacing and the D/C checks.')
+            self.zone_notice.value='<p>'+html.escape(' '.join(notes))+'</p>'
+        finally:self.busy=prior_busy
+
+    def _zone_edited(self,run_id,field,change):
+        if self.busy or self.owner.busy:return
+        def perform():
+            detail=deepcopy(self.owner.case['transverse_detail'])
+            run=next(r for r in detail['runs'] if r['id']==run_id)
+            run[field]=change['new'];run['development_confirmed']=False;run.pop('development_fingerprint',None)
+            self._commit(detail)
+        applied=self._attempt(perform)
+        if self.owner.current:self.sync_zones(self.owner.current)
+        if not applied and run_id in self.zone_controls:self.zone_controls[run_id]['error'].value=self.status.value
+
+    def _add_zone(self,key):
+        def perform():
+            from .model import evaluate
+            e=evaluate(self.owner.case);c=self._empty_zones[key]
+            run=new_zone_run(e,key,c['bar'].value,c['pitch'].value)
+            detail=deepcopy(self.owner.case.get('transverse_detail',empty_detail()))
+            detail['enabled']=True;detail['runs'].append(run)
+            self._commit(detail)
+        if not self._attempt(perform) and key in self._empty_zones:self._empty_zones[key]['note'].value=self.status.value
+
+    def close(self):
+        for widget in self._zone_widgets:widget.close()
+        self.ui.close()
+
     def _fill(self):
         run=next(r for r in self.owner.case['transverse_detail']['runs'] if r['id']==self.select.value)
         self.kind.value=run['kind'];self.bar.value=run['bar'];self.zone.value=run['zone']
@@ -74,8 +173,10 @@ class TransversePanel:
         self.status.value='<p>Layout applied. The live views and export now use these exact stations.</p>' if detail['enabled'] else '<p>Actual layout disabled; its saved runs are retained.</p>'
 
     def _attempt(self,callback):
-        try:callback()
-        except Exception as exc:self.status.value='<p style="color:#bb3e39"><b>Not applied:</b> '+html.escape(str(exc))+'</p>'
+        try:callback();return True
+        except Exception as exc:
+            self.status.value='<p style="color:#bb3e39"><b>Not applied:</b> '+html.escape(str(exc))+'</p>'
+            return False
 
     def _toggle(self,change):
         if self.busy or self.owner.busy:return
