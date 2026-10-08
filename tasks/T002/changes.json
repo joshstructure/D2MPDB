@@ -1,0 +1,644 @@
+{
+  "replacements": [
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "EndBentCap_width = 36 in to in",
+      "new": "EndBentCap_width = 42 in to in"
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "User input, 30 September 2026: 36-in by 36-in cap section; bearing spacing unchanged. The cap length and the absolute FBMP node coordinates are not established by these two section dimensions.",
+      "new": "Current geometry for both end bents: cap and pile dimensions follow the 8 October 2026 End Bent 1 cap report; applicability to both end bents is confirmed by the user. Bearing spacing and the backwall/beam-end placement chain remain the journal basis. End Bent 1 analysis results are recorded separately from this shared geometry."
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "Bearing eccentricity toward the adjacent span relative to the centered pile/cap line. Current chain: 0 + 12 + 3 + 9 - 18 = 6 in.",
+      "new": "Bearing eccentricity toward the adjacent span relative to the centered pile/cap line. It follows the live rear-face, backwall, beam-end and half-cap-width chain. Verify this reference point against the exact analysis model."
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "Checks the dimension chain only; the existing 4-ft pedestal footprint still requires reconciliation with the 3-ft cap.",
+      "new": "Checks the pad dimension chain only. The retained 48-in pedestal footprint exceeds the current cap width and remains unresolved; this check does not establish pedestal fit."
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "* Pedestal outline is illustrative: the legacy 4-ft longitudinal footprint exceeds the new 3-ft cap width. The bearing-offset calculation uses the pad and backwall dimension chain, not that unresolved footprint. Rear backwall face is adopted flush with cap rear face.",
+      "new": "* Pedestal outline is illustrative. Its retained 48-in longitudinal footprint exceeds the current 42-in cap width. The bearing-offset calculation uses the pad and backwall chain, not that unresolved footprint. Rear backwall face remains adopted flush with cap rear face."
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "[1.3+.07*BridgeGeometry_2Beam.EndBent_pileCL_fromRear/(1 in)-.28,1.3+.07*BridgeGeometry_2Beam.EndBent_pileCL_fromRear/(1 in)+.28,1.3+.07*BridgeGeometry_2Beam.EndBent_pileCL_fromRear/(1 in)+.28,1.3+.07*BridgeGeometry_2Beam.EndBent_pileCL_fromRear/(1 in)-.28,1.3+.07*BridgeGeometry_2Beam.EndBent_pileCL_fromRear/(1 in)-.28],[0.7,0.7,1.55,1.55,0.7]",
+      "new": "[1.3+.07*BridgeGeometry_2Beam.EndBent_pileCL_fromRear/(1 in)-.035*BridgeGeometry_2Beam.EndBent_pileWidth/(1 in),1.3+.07*BridgeGeometry_2Beam.EndBent_pileCL_fromRear/(1 in)+.035*BridgeGeometry_2Beam.EndBent_pileWidth/(1 in),1.3+.07*BridgeGeometry_2Beam.EndBent_pileCL_fromRear/(1 in)+.035*BridgeGeometry_2Beam.EndBent_pileWidth/(1 in),1.3+.07*BridgeGeometry_2Beam.EndBent_pileCL_fromRear/(1 in)-.035*BridgeGeometry_2Beam.EndBent_pileWidth/(1 in),1.3+.07*BridgeGeometry_2Beam.EndBent_pileCL_fromRear/(1 in)-.035*BridgeGeometry_2Beam.EndBent_pileWidth/(1 in)],[0.7,0.7,1.55+1.3*BridgeGeometry_2Beam.EndBent_pileEmbed/BridgeGeometry_2Beam.EndBentCap_depth,1.55+1.3*BridgeGeometry_2Beam.EndBent_pileEmbed/BridgeGeometry_2Beam.EndBentCap_depth,0.7]"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "END BENT 1 | SPAN 1 | NODES 12 AND 19",
+      "new": "END BENT 1 | SPAN 1 | LEGACY NODE MAP — VERIFY BEFORE ENTRY"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "User: 36 in",
+      "new": "Current shared geometry"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "12 + 3 + 9 - 18 = 6 in; rear face flush",
+      "new": "Live rear-face chain minus half the current cap width"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "EB_CheckSpan = If(EB_SpanNumber == 1,&quot;END BENT 1 - NODES 12 / 19&quot;,&quot;SPAN SELECTION CHANGED - REMAP NODES&quot;)",
+      "new": "EB_CheckSpan = &quot;REMAP REQUIRED - LEGACY 12 / 19; REPORT BEARING STATIONS AT 15 / 34&quot;"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "EB_CheckSpan = If(EB_SpanNumber == 1,\"END BENT 1 - NODES 12 / 19\",\"SPAN SELECTION CHANGED - REMAP NODES\")",
+      "new": "EB_CheckSpan = \"REMAP REQUIRED - LEGACY 12 / 19; REPORT BEARING STATIONS AT 15 / 34\""
+    },
+    {
+      "component": "spreadsheet:QauntitiesBridge",
+      "old": "End Bent Cap and Back Wall",
+      "new": "End Bent Caps ONLY"
+    },
+    {
+      "component": "spreadsheet:QauntitiesBridge",
+      "old": "<c formula=\"14.3592 ft^2\"><num>14.3592 ft^2</num></c>",
+      "new": "<c formula=\"BridgeGeometry_2Beam.EndBentCap_area to ft^2\" />"
+    },
+    {
+      "component": "spreadsheet:QauntitiesBridge",
+      "old": "<c formula=\"C104*19'3&quot;\"><num>276.41459999999995 ft^3</num></c>",
+      "new": "<c formula=\"BridgeGeometry_2Beam.EndBentCap_volume to ft^3\" valueformat=\"RoundedNumber(1, 3, {PriorityUnits: []})\" />"
+    },
+    {
+      "component": "spreadsheet:QauntitiesBridge",
+      "old": "<c formula=\"2*D104\" background=\"#ABDB92\"><num>552.8291999999999 ft^3</num></c>",
+      "new": "<c formula=\"BridgeGeometry_2Beam.EndBent_count*D104 to ft^3\" background=\"#EFF7F1\" />"
+    },
+    {
+      "component": "spreadsheet:QauntitiesBridge",
+      "old": "6-in height; retained 4-ft length — verify final end-bent footprint.",
+      "new": "PROVISIONAL: 48-in pedestal length exceeds 42-in cap. Revise footprint before final quantities."
+    },
+    {
+      "component": "report:PedBridge",
+      "old": "FBMP Entry - End Bent (12 / 19)",
+      "new": "FBMP Entry - End Bent (legacy node map; review required)"
+    }
+  ],
+  "invalidated_cached_expressions": [
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "formula": "BridgeGeometry_2Beam.EndBentCap_width to in"
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "formula": "BridgeGeometry_2Beam.EndBent_bearingOffset to in"
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "formula": "EndBentCap_width = 42 in to in"
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "formula": "EndBent_pileCL_fromRear = EndBentCap_width/2 to in"
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "formula": "EndBent_bearingOffset = EndBent_bearingCL_fromRear-EndBent_pileCL_fromRear to in"
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "formula": "EndBent_padFrontClear = EndBentCap_width-EndBent_bearingCL_fromRear-Bearing_pad_length/2 to in"
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "formula": "EndBent_checkLayout = If(And(EndBent_rearFaceInset >= 0 in,EndBent_beamEndClear >= BeamEnd_backwallClear_min,EndBent_padFrontClear >= 0 in),\"PASS - PAD WITHIN CAP / MINIMUM GAP\",\"REVIEW GEOMETRY\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_RowL = If(EB_SpanNumber == 1,1,-1)*BridgeGeometry_2Beam.EndBent_bearingOffset to ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_NodeL = If(EB_NodeLine == \"At centered pile/cap line\",0 ft,EB_RowL) to ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckSpan = \"REMAP REQUIRED - LEGACY 12 / 19; REPORT BEARING STATIONS AT 15 / 34\""
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckFootprint = If(BridgeGeometry_2Beam.Pedestal_length_endBent <= BridgeGeometry_2Beam.EndBentCap_width,\"FOOTPRINT FITS CAP WIDTH\",\"REVISE LEGACY 4-FT PEDESTAL FOOTPRINT\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_W1_near = EB_axisT*AX_Base_EB_MT_W1_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MV_W1_near = EB_axisV*AX_Base_EB_MV_W1_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_W1_far = EB_axisT*AX_Base_EB_MT_W1_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MV_W1_far = EB_axisV*AX_Base_EB_MV_W1_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumMT_W1 = (EB_L_entry*EB_FV_W1_near-EB_V_entry*EB_FL_W1_near+EB_MT_W1_near)+(EB_L_entry*EB_FV_W1_far-EB_V_entry*EB_FL_W1_far+EB_MT_W1_far) to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumMV_W1 = (EB_T_near*EB_FL_W1_near-EB_L_entry*EB_FT_W1_near+EB_MV_W1_near)+(EB_T_far*EB_FL_W1_far-EB_L_entry*EB_FT_W1_far+EB_MV_W1_far) to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_RefMT_W1 = EB_signL*EB_lambda_W1*(EB_wc_W1*EB_zc+EB_wf_W1*EB_zf)*EB_Trib-EB_RowL*EB_wu_W1*EB_Trib to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_RefMV_W1 = -EB_RowL*EB_signT*(EB_wc_W1+EB_wf_W1)*EB_Trib to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckM_W1 = If(And(AX_Base_EB_CheckM_W1 == \"PASS\",Abs(EB_SumMT_W1-EB_axisT*AX_Base_EB_SumMT_W1)<0.000001 kip*ft,Abs(EB_SumML_W1-EB_axisL*AX_Base_EB_SumML_W1)<0.000001 kip*ft,Abs(EB_SumMV_W1-EB_axisV*AX_Base_EB_SumMV_W1)<0.000001 kip*ft),\"PASS\",\"FAIL\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_W2_near = EB_axisT*AX_Base_EB_MT_W2_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MV_W2_near = EB_axisV*AX_Base_EB_MV_W2_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_W2_far = EB_axisT*AX_Base_EB_MT_W2_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MV_W2_far = EB_axisV*AX_Base_EB_MV_W2_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumMT_W2 = (EB_L_entry*EB_FV_W2_near-EB_V_entry*EB_FL_W2_near+EB_MT_W2_near)+(EB_L_entry*EB_FV_W2_far-EB_V_entry*EB_FL_W2_far+EB_MT_W2_far) to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumMV_W2 = (EB_T_near*EB_FL_W2_near-EB_L_entry*EB_FT_W2_near+EB_MV_W2_near)+(EB_T_far*EB_FL_W2_far-EB_L_entry*EB_FT_W2_far+EB_MV_W2_far) to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_RefMT_W2 = EB_signL*EB_lambda_W2*(EB_wc_W2*EB_zc+EB_wf_W2*EB_zf)*EB_Trib-EB_RowL*EB_wu_W2*EB_Trib to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_RefMV_W2 = -EB_RowL*EB_signT*(EB_wc_W2+EB_wf_W2)*EB_Trib to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckM_W2 = If(And(AX_Base_EB_CheckM_W2 == \"PASS\",Abs(EB_SumMT_W2-EB_axisT*AX_Base_EB_SumMT_W2)<0.000001 kip*ft,Abs(EB_SumML_W2-EB_axisL*AX_Base_EB_SumML_W2)<0.000001 kip*ft,Abs(EB_SumMV_W2-EB_axisV*AX_Base_EB_SumMV_W2)<0.000001 kip*ft),\"PASS\",\"FAIL\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_W3_near = EB_axisT*AX_Base_EB_MT_W3_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MV_W3_near = EB_axisV*AX_Base_EB_MV_W3_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_W3_far = EB_axisT*AX_Base_EB_MT_W3_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MV_W3_far = EB_axisV*AX_Base_EB_MV_W3_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumMT_W3 = (EB_L_entry*EB_FV_W3_near-EB_V_entry*EB_FL_W3_near+EB_MT_W3_near)+(EB_L_entry*EB_FV_W3_far-EB_V_entry*EB_FL_W3_far+EB_MT_W3_far) to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumMV_W3 = (EB_T_near*EB_FL_W3_near-EB_L_entry*EB_FT_W3_near+EB_MV_W3_near)+(EB_T_far*EB_FL_W3_far-EB_L_entry*EB_FT_W3_far+EB_MV_W3_far) to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_RefMT_W3 = EB_signL*EB_lambda_W3*(EB_wc_W3*EB_zc+EB_wf_W3*EB_zf)*EB_Trib-EB_RowL*EB_wu_W3*EB_Trib to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_RefMV_W3 = -EB_RowL*EB_signT*(EB_wc_W3+EB_wf_W3)*EB_Trib to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckM_W3 = If(And(AX_Base_EB_CheckM_W3 == \"PASS\",Abs(EB_SumMT_W3-EB_axisT*AX_Base_EB_SumMT_W3)<0.000001 kip*ft,Abs(EB_SumML_W3-EB_axisL*AX_Base_EB_SumML_W3)<0.000001 kip*ft,Abs(EB_SumMV_W3-EB_axisV*AX_Base_EB_SumMV_W3)<0.000001 kip*ft),\"PASS\",\"FAIL\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_MT_W1_near = EB_signL*EB_lambda_W1*(EB_wc_W1*(EB_zc+EB_NodeV)+EB_wf_W1*(EB_zf+EB_NodeV))*EB_Trib/2+EB_DeltaL*AX_Base_EB_FV_W1_near to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_MV_W1_near = -EB_DeltaL*AX_Base_EB_FT_W1_near to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_MT_W1_far = EB_signL*EB_lambda_W1*(EB_wc_W1*(EB_zc+EB_NodeV)+EB_wf_W1*(EB_zf+EB_NodeV))*EB_Trib/2+EB_DeltaL*AX_Base_EB_FV_W1_far to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_MV_W1_far = -EB_DeltaL*AX_Base_EB_FT_W1_far to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_MT_W2_near = EB_signL*EB_lambda_W2*(EB_wc_W2*(EB_zc+EB_NodeV)+EB_wf_W2*(EB_zf+EB_NodeV))*EB_Trib/2+EB_DeltaL*AX_Base_EB_FV_W2_near to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_MV_W2_near = -EB_DeltaL*AX_Base_EB_FT_W2_near to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_MT_W2_far = EB_signL*EB_lambda_W2*(EB_wc_W2*(EB_zc+EB_NodeV)+EB_wf_W2*(EB_zf+EB_NodeV))*EB_Trib/2+EB_DeltaL*AX_Base_EB_FV_W2_far to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_MV_W2_far = -EB_DeltaL*AX_Base_EB_FT_W2_far to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_MT_W3_near = EB_signL*EB_lambda_W3*(EB_wc_W3*(EB_zc+EB_NodeV)+EB_wf_W3*(EB_zf+EB_NodeV))*EB_Trib/2+EB_DeltaL*AX_Base_EB_FV_W3_near to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_MV_W3_near = -EB_DeltaL*AX_Base_EB_FT_W3_near to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_MT_W3_far = EB_signL*EB_lambda_W3*(EB_wc_W3*(EB_zc+EB_NodeV)+EB_wf_W3*(EB_zf+EB_NodeV))*EB_Trib/2+EB_DeltaL*AX_Base_EB_FV_W3_far to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_MV_W3_far = -EB_DeltaL*AX_Base_EB_FT_W3_far to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_SumMT_W1 = (EB_NodeL*AX_Base_EB_FV_W1_near-EB_NodeV*AX_Base_EB_FL_W1_near+AX_Base_EB_MT_W1_near)+(EB_NodeL*AX_Base_EB_FV_W1_far-EB_NodeV*AX_Base_EB_FL_W1_far+AX_Base_EB_MT_W1_far) to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_SumMV_W1 = (AX_Base_EB_T_near*AX_Base_EB_FL_W1_near-EB_NodeL*AX_Base_EB_FT_W1_near+AX_Base_EB_MV_W1_near)+(AX_Base_EB_T_far*AX_Base_EB_FL_W1_far-EB_NodeL*AX_Base_EB_FT_W1_far+AX_Base_EB_MV_W1_far) to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_SumMT_W2 = (EB_NodeL*AX_Base_EB_FV_W2_near-EB_NodeV*AX_Base_EB_FL_W2_near+AX_Base_EB_MT_W2_near)+(EB_NodeL*AX_Base_EB_FV_W2_far-EB_NodeV*AX_Base_EB_FL_W2_far+AX_Base_EB_MT_W2_far) to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_SumMV_W2 = (AX_Base_EB_T_near*AX_Base_EB_FL_W2_near-EB_NodeL*AX_Base_EB_FT_W2_near+AX_Base_EB_MV_W2_near)+(AX_Base_EB_T_far*AX_Base_EB_FL_W2_far-EB_NodeL*AX_Base_EB_FT_W2_far+AX_Base_EB_MV_W2_far) to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_SumMT_W3 = (EB_NodeL*AX_Base_EB_FV_W3_near-EB_NodeV*AX_Base_EB_FL_W3_near+AX_Base_EB_MT_W3_near)+(EB_NodeL*AX_Base_EB_FV_W3_far-EB_NodeV*AX_Base_EB_FL_W3_far+AX_Base_EB_MT_W3_far) to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_SumMV_W3 = (AX_Base_EB_T_near*AX_Base_EB_FL_W3_near-EB_NodeL*AX_Base_EB_FT_W3_near+AX_Base_EB_MV_W3_near)+(AX_Base_EB_T_far*AX_Base_EB_FL_W3_far-EB_NodeL*AX_Base_EB_FT_W3_far+AX_Base_EB_MV_W3_far) to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_L_entry = EB_axisL*EB_NodeL to ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_CheckM_W1 = If(And(Abs(AX_Base_EB_SumMT_W1-EB_RefMT_W1)<0.000001 kip*ft,Abs(AX_Base_EB_SumML_W1-EB_RefML_W1)<0.000001 kip*ft,Abs(AX_Base_EB_SumMV_W1-EB_RefMV_W1)<0.000001 kip*ft),\"PASS\",\"FAIL\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_CheckM_W2 = If(And(Abs(AX_Base_EB_SumMT_W2-EB_RefMT_W2)<0.000001 kip*ft,Abs(AX_Base_EB_SumML_W2-EB_RefML_W2)<0.000001 kip*ft,Abs(AX_Base_EB_SumMV_W2-EB_RefMV_W2)<0.000001 kip*ft),\"PASS\",\"FAIL\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_CheckM_W3 = If(And(Abs(AX_Base_EB_SumMT_W3-EB_RefMT_W3)<0.000001 kip*ft,Abs(AX_Base_EB_SumML_W3-EB_RefML_W3)<0.000001 kip*ft,Abs(AX_Base_EB_SumMV_W3-EB_RefMV_W3)<0.000001 kip*ft),\"PASS\",\"FAIL\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_DeltaL = EB_RowL-EB_NodeL to ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_DC_near = EB_axisT*EB_DeltaL*EB_DC_near to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_DC_far = EB_axisT*EB_DeltaL*EB_DC_far to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumMT_DC = EB_L_entry*EB_axisV*EB_TotalDC+EB_MT_DC_near+EB_MT_DC_far to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckOffset_DC = If(Abs(EB_SumMT_DC-EB_axisT*EB_RowL*EB_TotalDC) < 0.000001 kip*ft,\"PASS\",\"FAIL\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_PL_near = EB_axisT*EB_DeltaL*EB_PL_near to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_PL_far = EB_axisT*EB_DeltaL*EB_PL_far to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumMT_PL = EB_L_entry*EB_axisV*EB_TotalPL+EB_MT_PL_near+EB_MT_PL_far to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckOffset_PL = If(Abs(EB_SumMT_PL-EB_axisT*EB_RowL*EB_TotalPL) < 0.000001 kip*ft,\"PASS\",\"FAIL\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_DW_near = EB_axisT*EB_DeltaL*EB_DW_near to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_DW_far = EB_axisT*EB_DeltaL*EB_DW_far to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumMT_DW = EB_L_entry*EB_axisV*EB_TotalDW+EB_MT_DW_near+EB_MT_DW_far to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckOffset_DW = If(Abs(EB_SumMT_DW-EB_axisT*EB_RowL*EB_TotalDW) < 0.000001 kip*ft,\"PASS\",\"FAIL\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "BridgeGeometry_2Beam.EndBentCap_width to in"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckSpan"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "BridgeGeometry_2Beam.EndBent_bearingOffset to in"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_RowL to ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_DeltaL to in"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "BridgeGeometry_2Beam.EndBentCap_width to in"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "BridgeGeometry_2Beam.EndBent_bearingOffset to in"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "If(EB_ViewCase == \"W1\",EB_MT_W1_near,If(EB_ViewCase == \"W2\",EB_MT_W2_near,EB_MT_W3_near))/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "If(EB_ViewCase == \"W1\",EB_MV_W1_near,If(EB_ViewCase == \"W2\",EB_MV_W2_near,EB_MV_W3_near))/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "If(EB_ViewCase == \"W1\",EB_MT_W1_far,If(EB_ViewCase == \"W2\",EB_MT_W2_far,EB_MT_W3_far))/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "If(EB_ViewCase == \"W1\",EB_MV_W1_far,If(EB_ViewCase == \"W2\",EB_MV_W2_far,EB_MV_W3_far))/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_L_entry to ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_L_entry to ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_DC_near/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_DC_far/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_PL_near/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_PL_far/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_W1_near/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MV_W1_near/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_W1_far/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MV_W1_far/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_W2_near/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MV_W2_near/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_W2_far/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MV_W2_far/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_W3_near/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MV_W3_near/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MT_W3_far/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_MV_W3_far/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckFootprint"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckM_W1"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckM_W2"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckM_W3"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumMT_DC/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckOffset_DC"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumMT_PL/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckOffset_PL"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumMT_W1/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumMV_W1/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckM_W1"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumMT_W2/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumMV_W2/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckM_W2"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumMT_W3/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumMV_W3/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckM_W3"
+    }
+  ],
+  "changed_width_dependency_names": [
+    "AX_Base_EB_CheckM_W1",
+    "AX_Base_EB_CheckM_W2",
+    "AX_Base_EB_CheckM_W3",
+    "AX_Base_EB_MT_W1_far",
+    "AX_Base_EB_MT_W1_near",
+    "AX_Base_EB_MT_W2_far",
+    "AX_Base_EB_MT_W2_near",
+    "AX_Base_EB_MT_W3_far",
+    "AX_Base_EB_MT_W3_near",
+    "AX_Base_EB_MV_W1_far",
+    "AX_Base_EB_MV_W1_near",
+    "AX_Base_EB_MV_W2_far",
+    "AX_Base_EB_MV_W2_near",
+    "AX_Base_EB_MV_W3_far",
+    "AX_Base_EB_MV_W3_near",
+    "AX_Base_EB_SumMT_W1",
+    "AX_Base_EB_SumMT_W2",
+    "AX_Base_EB_SumMT_W3",
+    "AX_Base_EB_SumMV_W1",
+    "AX_Base_EB_SumMV_W2",
+    "AX_Base_EB_SumMV_W3",
+    "EB_CheckFootprint",
+    "EB_CheckM_W1",
+    "EB_CheckM_W2",
+    "EB_CheckM_W3",
+    "EB_CheckOffset_DC",
+    "EB_CheckOffset_DW",
+    "EB_CheckOffset_PL",
+    "EB_CheckSpan",
+    "EB_DeltaL",
+    "EB_L_entry",
+    "EB_MT_DC_far",
+    "EB_MT_DC_near",
+    "EB_MT_DW_far",
+    "EB_MT_DW_near",
+    "EB_MT_PL_far",
+    "EB_MT_PL_near",
+    "EB_MT_W1_far",
+    "EB_MT_W1_near",
+    "EB_MT_W2_far",
+    "EB_MT_W2_near",
+    "EB_MT_W3_far",
+    "EB_MT_W3_near",
+    "EB_MV_W1_far",
+    "EB_MV_W1_near",
+    "EB_MV_W2_far",
+    "EB_MV_W2_near",
+    "EB_MV_W3_far",
+    "EB_MV_W3_near",
+    "EB_NodeL",
+    "EB_RefMT_W1",
+    "EB_RefMT_W2",
+    "EB_RefMT_W3",
+    "EB_RefMV_W1",
+    "EB_RefMV_W2",
+    "EB_RefMV_W3",
+    "EB_RowL",
+    "EB_SumMT_DC",
+    "EB_SumMT_DW",
+    "EB_SumMT_PL",
+    "EB_SumMT_W1",
+    "EB_SumMT_W2",
+    "EB_SumMT_W3",
+    "EB_SumMV_W1",
+    "EB_SumMV_W2",
+    "EB_SumMV_W3",
+    "EndBentCap_DC",
+    "EndBentCap_area",
+    "EndBentCap_volume",
+    "EndBentCap_width",
+    "EndBentCaps_volume",
+    "EndBent_bearingOffset",
+    "EndBent_checkLayout",
+    "EndBent_padFrontClear",
+    "EndBent_pileCL_fromRear"
+  ]
+}

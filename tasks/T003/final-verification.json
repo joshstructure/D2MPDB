@@ -1,0 +1,16 @@
+{
+  "canonical_sha256": "a45256fbdd3c27444bb3b93ffc327353efcfdc366a126aff35f809a853635d72",
+  "canonical_matches_reviewed_candidate": true,
+  "git_diff_check": {
+    "status": "whitespace-only findings",
+    "count": 75,
+    "disposition": "Indentation left on blank XML lines after removing stale cached results or inserting sections. Preserved under the lossless BPAD workflow; no text/formula error and no whole-file reformat."
+  },
+  "preexisting_unrelated_modified_files_preserved": [
+    "Cap_and_Pile_Design.ipynb",
+    "README.md",
+    "pier_cap/force_diagrams.py",
+    "pier_cap/widgets.py"
+  ],
+  "commit_or_push_performed": false
+}

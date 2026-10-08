@@ -193,7 +193,7 @@ def cap_force_figure(case, *, show_resistance=False, evaluation=None):
         buttons.append(dict(label=label,method='update',args=[{'visible':visible},
             {'title.text':title(label,is_strength),'yaxis.autorange':True,'yaxis2.autorange':True,'yaxis3.autorange':True}]))
     for trace,visible in zip(fig.data,buttons[0]['args'][0]['visible']):trace.visible=visible
-    fig.update_layout(template='plotly_white',height=910,margin=dict(l=65,r=20,t=140,b=90),
+    fig.update_layout(template='plotly_white',autosize=True,width=None,height=910,margin=dict(l=65,r=20,t=140,b=90),
         title=dict(text=title(modes[0][0],bool(strength)),font=dict(size=16),y=.99),
         font=dict(family='Arial',size=11,color='#213649'),hovermode='closest',
         legend=dict(orientation='h',y=-.085,font=dict(size=10)),
@@ -217,8 +217,9 @@ class ForceDiagramPanel:
             layout=W.Layout(width='260px'))
         self.show_resistance.observe(self._toggle_resistance,names='value')
         self.resistance_notice=W.HTML()
-        self.output=W.VBox()
-        self.ui=W.VBox([self.show_resistance,self.notice,self.resistance_notice,self.output],layout=W.Layout(max_height='1250px',overflow='auto'))
+        self.output=W.VBox(layout=W.Layout(width='100%',min_width='0',align_items='stretch'))
+        self.ui=W.VBox([self.show_resistance,self.notice,self.resistance_notice,self.output],
+            layout=W.Layout(width='100%',min_width='0',align_items='stretch',max_height='1250px',overflow='auto'))
         self.figure=None
         self._key=None
         self._resistance_key=None

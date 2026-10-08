@@ -1,0 +1,80 @@
+<report name="DecisionLog" title="Decision Log" unit="in" pagesize="816, 1056" margin="48,48,48,48">
+        <paragraph level="1">
+            2026-07-30
+            <paragraphlabel numbergroup="paragraph">1.</paragraphlabel>
+        </paragraph>
+        <paragraph level="2">
+            We will not provide handrails on the bridge as the 0.005 or 0.5% slope does not require them per ADA. Per Matt Kosar.
+            <paragraphlabel numbergroup="paragraph">1.1.</paragraphlabel>
+        </paragraph>
+        <paragraph level="1">
+            2026-07-31
+            <paragraphlabel numbergroup="paragraph">2.</paragraphlabel>
+        </paragraph>
+        <paragraph level="2">
+            Brought up the issue that conduit probably wont fit in the railing. Agreed to put 2 runs of conduit in each rail for quantities and to check with Erik Spillmann and hope the issue gets worked out later. --Per Matt Kosar
+            <paragraphlabel numbergroup="paragraph">2.1.</paragraphlabel>
+        </paragraph>
+        <paragraph level="1">
+            2026-08-17
+            <paragraphlabel numbergroup="paragraph">3.</paragraphlabel>
+        </paragraph>
+        <paragraph level="2">
+            Use 6 - 24" x5/8" Piles in the pier wall in liue of the 20" Pipe or HP's to give us more favorable FDLs and some room for conservatism -- Per Matt Kosar
+            <paragraphlabel numbergroup="paragraph">3.1.</paragraphlabel>
+        </paragraph>
+        <paragraph level="2">
+            Keep the 5 - HP 14x89's for the same reason -- Per Matt Kosar
+            <paragraphlabel numbergroup="paragraph">3.2.</paragraphlabel>
+        </paragraph>
+        <paragraph level="1">
+            <paragraphlabel numbergroup="paragraph">4.</paragraphlabel>
+            2026-08-18
+        </paragraph>
+        <paragraph level="2">
+            Do not increase the pier wall thickness due to the larger 24" Pipe piles as this will effect Roadway, TCP, etc. Contractor will have to be told to be dead on
+            <paragraphlabel numbergroup="paragraph">4.1.</paragraphlabel>
+        </paragraph>
+        <paragraph level="2">
+            <image source="Resource164" width="428.8696364647243" height="255.76225592805372"/>
+        </paragraph>
+        <paragraph level="2"/>
+        <paragraph level="1">
+            2026/9/18
+            <paragraphlabel numbergroup="paragraph">5.</paragraphlabel>
+        </paragraph>
+        <paragraph level="2">
+            Contractor has decided to go with a 12ft ped bridge clear width with only 2 FIB36 beams --Per Matt
+            <paragraphlabel numbergroup="paragraph">5.1.</paragraphlabel>
+        </paragraph>
+        <paragraph level="2">
+            We will use one size bearing pad for all bridges on the project --Per Matt
+            <paragraphlabel numbergroup="paragraph">5.2.</paragraphlabel>
+        </paragraph>
+        <paragraph level="1">
+            2026/9/24
+            <paragraphlabel numbergroup="paragraph">6.</paragraphlabel>
+        </paragraph>
+        <paragraph level="2">
+            Moving to a Type F bearing and pedestals at 6" to facilitate 2" off leeway for camber. -- Per Matt
+            <paragraphlabel numbergroup="paragraph">6.1.</paragraphlabel>
+        </paragraph>
+        <paragraph level="2"/>
+        <paragraph level="2"/>
+        <paragraph/>
+        <heading>2026-09-29 — coordinated geometry update</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">User direction: Type F bearings, 6-in pedestals, 36-in cap depth, four 20-in piles at 6D center spacing, and 15 in from each end pile face to the cap end. Cap length is 34 ft 2 in. Use Bridge_Geo_2_Beam_Reorganized for the selected profile, slab-only area and separately counted haunch volume. This current direction supersedes the earlier pile/cap configuration; historical entries remain unchanged.</paragraph>
+        <heading>2026-09-29 — pile spacing corrected to 3D</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">The user corrected pile spacing from 6D to 3D. Four 20-in piles now have three 5-ft center spaces. With 15 in from each outside pile face to the cap end, the cap length is 19 ft 2 in (3 × 60 in + 20 in + 2 × 15 in = 230 in). Cap width remains 4 ft and depth remains 36 in; cap concrete is 230 ft³ and self-weight is 34.5 kip at 150 pcf. This correction supersedes the 6D / 34-ft-2-in entry above. The pile-layout comparison now matches the retained source layout, but the changed cap section and deck dead load still require updated analysis forces.</paragraph>
+        <heading level="0" keepwithnext="True">2026-09-30 - Topic modules and end-bent entry</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" leftindent="0">Moved the former Ped Bridge sections into topic modules and updated their formula references and navigation links. Added End Bent 1 entry for the larger adjacent span: Span 1 = 107.35 ft versus Span 2 = 104.90 ft. User supplied node 12 for the bearing closer to global origin, node 19 for the other bearing, unchanged bearing spacing and a 36-in × 36-in cap. Existing pier entry load cases and calculations retain their source values.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" leftindent="0">End-bent transfer starts with centered bearing row and cap-centroid application nodes, with editable offsets. The legacy 4-ft end-bent pedestal quantity remains provisional because it exceeds the 3-ft cap width; reconcile the footprint before using its below-pad dead weight. Local deck-end concrete, direct end-bent wind and other end-bent actions remain separate as documented in the entry module.</paragraph>
+        <heading>2026-09-30 - Live axis and wind schematics</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Added independent physical-wind and coordinate-axis controls to both FBMP entry modules. Node identity and physical load state remain fixed under an axis-view change. The vertical axis is derived from the two horizontal choices to retain right-handed coordinates. All three force and moment components, node coordinates and gravity entry signs follow the view. Formula-driven arrows and a selected-case table give a visual model comparison.</paragraph>
+        <heading>2026-09-30 — Centered pile, eccentric bearings and upright elevations</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6">Replaced the zero end-bent bearing offset with the Bridge Geometry dimension chain. Added explicit rear-face placement and adopted beam-end clearance, separated bearing and application-node lines, and included force-transfer moments in DC, PL, DW and W1–W3. Rebuilt both Type F elevations with the beam above the pad, pedestal and cap. Retained the live right-handed model-axis controls and all unrelated modules.</paragraph>
+    
+<section name="EndBentUpdate20261008" capture="False" hide="false"><heading level="0" keepwithnext="True">2026-10-08 — current end-bent geometry and steel</heading><paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">User confirmed this configuration applies to both end bents. The 8 October End Bent 1 report supersedes the earlier 36-in-wide end-bent cap: 42-in width, 36-in depth and 17-ft-8-in length; four 18-in square piles at 54-in centers, with 25-in end-to-center distances. Pier geometry and historical decisions remain distinct.</paragraph><paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Current entered cage: 4 #6 top, 2 #8 continuous bottom, 2 additional #5 hooked span bars, 7 #4 skin bars per side, and 19 closed #4 hoops plus 16 open-bottom #4 U-bars in the nine-run schedule. R2/R4/R6/R8 pile conflicts and source pending checks remain unresolved. This records the current arrangement; it is not an approved final cage.</paragraph><paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Shared live cap quantities replace the obsolete combined end-bent cap/backwall allowance. Backwalls remain unresolved; the retained 48-in pedestal footprint also requires a revised detail. The live bearing offset changes with cap width. Source analysis is End Bent 1 only; the exact XML fingerprint, legacy node mapping and End Bent 2 demands require reconciliation.</paragraph><paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7"><link address="#FBMPEndBent.EBCurrentDesignRecord">Current design record and open items</link></paragraph></section>
+
+<section name="EndBentResponses20261008" capture="False" hide="false"><heading level="0" keepwithnext="True" pagebreakbefore="break">2026-10-08 — coherence responses applied</heading><paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">This entry supersedes the open pedestal, node-number and model-currency statements in the earlier 8 October entry. Source: the user-completed End_Bent_Coherence_Review_Responses.xlsx, items 01–09; exact workbook and hash retained with T004.</paragraph><paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">01 — End-bent pedestal: 30 in along the beam, starting at the front of the 12-in backwall on a 42-in cap. Separate end-bent section inputs retain 6-in height, 42-in transverse width and 3/4-in chamfers. Quantities and local dead weights update live. Pier pedestal remains 48 in.</paragraph><paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">02 — Backwall and cheek-wall final quantities deferred by the user.</paragraph><paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">03–04 — The report contains the latest FBMP model per user. Loaded node numbers change from 12/19 to 15/34 following additional model nodes. The physical near/far identities, axes and load-transfer conventions remain the same. The different Downloads XML is not substituted.</paragraph><paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">05 — Station explanation: cap-end station = report audit station + 25 in. Bearing stations 29.50/132.49 become 54.50/157.49 in; 102.99-in spacing agrees with 103 in to displayed precision. This changes the measurement origin, not the geometry.</paragraph><paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">06 — U-bar hooks at potential pile interference may be field bent to provide clearance per user direction. Original as-drawn clash results are retained as source evidence; revised hook geometry and anchorage have not been checked in this update.</paragraph><paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">07 — Service III is not applicable to the current nonprestressed, non-post-tensioned substructure per user. Strength III, Service I and fatigue remain distinct. Original 48 pending/conditional source checks are historical, not a new recalculated count.</paragraph><paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">D-region discussion: concentrated bearing loads and pile reactions disturb ordinary beam stress distributions. The cap depth is 36 in, pile spacing is 54 in and the bearing-to-nearest-pile distance is about 24.5 in. Local load-path, nodal-zone and tie anchorage checks are separate from ordinary section moment/shear checks; this issue does not depend on prestressing. No strut-and-tie design is performed here.</paragraph><paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">08 — Both end bents follow the controlling End Bent 1 design, since their principal difference is the modest adjacent-span length difference. End Bent 1 is beside the 107.35-ft span versus 104.90 ft at the other end. No independent End Bent 2 forces are created.</paragraph><paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">09 — Removed unused FBMP Min Tip, Feet and Inches, Metric to Inches, Scratch and CAD modules and their navigation links. Their 110 stored errors are removed with those modules. Three inherited LoadCombinations reference links remain open; no numerical consumer of a removed module remains.</paragraph><paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7"><link address="https://www.fhwa.dot.gov/bridge/concrete/nhi17071.pdf">FHWA strut-and-tie modeling reference — D-regions, Chapter 2</link></paragraph><paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7"><link address="#FBMPEndBent.EBCurrentDesignRecord">Current design and coherence register</link></paragraph></section>
+</report>

@@ -1,0 +1,10 @@
+{
+  "report_file": "End bent 1 Cap Design Report_10-8.html",
+  "report_sha256": "42120857965352febea29e4a672b2ba93f45199430360a89f8e1e529d2df50ef",
+  "generated_utc": "2026-10-08T15:27:00+00:00",
+  "case_sha256": "ab2c7fff9b4a955c8964bb2c0d2c253b1b0581661c6f84d0150723cc415edec6",
+  "analysis_xml_sha256": "739f44c1d542464cfd536493ce1ed6cb240f98a75ed3e1188c6f6812742d6fe2",
+  "local_same_named_xml_sha256": "744048c5c0dfa398ddc50f9cf14e51fca2d2a3a985a6c0e73680a35cce2d5811",
+  "geometry_and_cage_scope": "Both end bents, confirmed by user on 2026-10-08",
+  "analysis_scope": "End Bent 1 only; exact raw XML not available"
+}

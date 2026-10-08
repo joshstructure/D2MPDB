@@ -1,0 +1,37 @@
+{
+  "summary": "Record current cap geometry and cage for both end bents from the 8 October report, with End Bent 1-only analysis provenance and explicit unresolved items. T003 integrates the T002 proposal and 31 portable reference paths.",
+  "published_outputs": [
+    "BridgeGeometry_2Beam.EndBentCap_width and existing end-bent interfaces",
+    "BridgeGeometry_2Beam.EndBentCurrentGeometry: pile layout, cap length, cap-only quantities",
+    "FBMPEndBent.EBCurrentDesignRecord: steel, source forces and open coherence items",
+    "QauntitiesBridge C104/D104/E106: rectangular caps only; backwalls unresolved"
+  ],
+  "assumptions_and_conventions": [
+    "User confirmed both end bents use geometry and cage",
+    "18-in square end-bent piles are separate from pier pipe properties",
+    "Cap/cage station zero is left cap end; XML force zero is first pile center",
+    "Source action envelopes are independent, not concurrent",
+    "Retained bearing chain is a journal assumption pending exact model verification"
+  ],
+  "downstream_impact": [
+    "Centered pile line, bearing offset, pad edge clearance, end-bent force-transfer moments and live schematic",
+    "Cap quantity scope changes from obsolete combined cap/backwall to known cap-only volumes",
+    "No outside module formulas reference the changed end-bent definitions or C104/D104/E106; broad dependency fallback retained"
+  ],
+  "external_analysis": "Unverified and excluded from accepted engineering-result scope. Report XML differs from available same-named XML; legacy nodes 12/19 versus report bearing stations 15/34 require remapping. End Bent 2 forces absent.",
+  "checks_performed": [
+    "33 independent formula/source checks passed; see tasks/T002/coherence_checks.json",
+    "Seven bounded module changes; other module and embedded resource bytes preserved",
+    "No new structural issues or stored errors",
+    "Source cage quantities and 48 pending/conditional checks reproduced",
+    "31 References paths relocated using existing workflow helper; PDFs unchanged"
+  ],
+  "open_items": [
+    "48-in pedestal footprint versus 42-in cap",
+    "Backwall geometry and quantity",
+    "R2/R4/R6/R8 pile conflicts and unresolved design checks",
+    "Exact analysis identity, node mapping and End Bent 2 demands",
+    "Inherited 110 errors and three broken reference links",
+    "Native exact-candidate review required for promotion"
+  ]
+}

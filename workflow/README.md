@@ -69,6 +69,14 @@ has a full journal so native scopes and upstream definitions remain available.
 Repeat `--write` for multiple permitted components. Exact keys such as
 `report:PierWallFins`, `xref:ReferencePDF01` or `resource:Resource32` are supported.
 
+For an explicitly requested module removal, register each existing module with
+`--delete`, and include affected index/link/consumer modules with `--write`.
+Only report, spreadsheet and drawing modules may be deleted. The check rejects
+remaining native links or detected qualified formula consumers. Resources and
+styles are retained. Assemblies record deletions in the proposal manifest with
+the original component hash so restoration remains byte exact. Deletions require
+the same native and engineering review gates as other changes.
+
 Two authoring paths are available:
 
 - Edit assigned fragments, then run `import-components T002`. It refuses to
@@ -110,8 +118,9 @@ Integration rejects changed task contracts/bases, edits outside scope, conflicti
 owned components, changed upstream components, changed supporting files, changed
 resource copies, unmet prerequisites, new detected broken native links/images,
 duplicate IDs, new stored errors, and removal of simple published names still used
-by qualified formulas. It preserves unrelated accepted updates. New modules,
-deleted/reordered components and wrapper changes are deliberately unsupported.
+by qualified formulas. It preserves unrelated accepted updates. Explicitly
+registered module deletions are supported; additions, other deletions, component
+reordering and wrapper changes remain unsupported.
 
 The expression index is a partial reference inventory, not a complete Blockpad
 language interpreter. Arbitrary symbol/scope resolution, complex function exports,

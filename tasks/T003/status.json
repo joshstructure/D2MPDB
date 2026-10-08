@@ -1,0 +1,13 @@
+{
+  "status": "promoted_data_record_with_open_engineering_items",
+  "canonical_journal": "journal/D2_I95_Project_Journal.bpad",
+  "sha256": "a45256fbdd3c27444bb3b93ffc327353efcfdc366a126aff35f809a853635d72",
+  "promoted": "2026-10-08T16:17:59.431506+00:00",
+  "authoring_task": "T002",
+  "integration_task": "T003",
+  "independent_checks_passed": 33,
+  "portable_references_verified": 31,
+  "open_items": "See coherence-review.md; full project/design coherence is not closed.",
+  "commit_or_push_performed": false,
+  "editing_preference": "XML-first; native app only for required validation or a clearly more efficient operation."
+}

@@ -1,0 +1,50 @@
+{
+  "task": "T004",
+  "base_sha256": "a45256fbdd3c27444bb3b93ffc327353efcfdc366a126aff35f809a853635d72",
+  "components": {
+    "report:PedBridge": {
+      "file": "000.xml",
+      "sha256": "b6ae190d9a5ac548e97a4ccf0a71fb34e9d2abb4819a46914505a65657b45e2e"
+    },
+    "report:BridgeGeometry_2Beam": {
+      "file": "001.xml",
+      "sha256": "dc5ab3c5294afbfc360336bf01b15cb04c3b8392b0c2b18693a6546d0177728e"
+    },
+    "report:FBMPEndBent": {
+      "file": "002.xml",
+      "sha256": "3cae9e3b0b56bdd20239b7adcb5166e965d5b1b4f10bb4546a07527f008a3eb2"
+    },
+    "report:FoundationModeling": {
+      "file": "003.xml",
+      "sha256": "d33984bc70f8245bd3e1ed832fb1a74b0f265bae64c2e22d55b5fa2bb792a849"
+    },
+    "spreadsheet:FBMPMinTip": {
+      "deleted": true,
+      "before_sha256": "8e606d2d9561bc975f32802ef5398d04a15f6aadec389bea589ee86ac330f249"
+    },
+    "spreadsheet:QauntitiesBridge": {
+      "file": "005.xml",
+      "sha256": "54436079412e4ba3fd35ccf8a235c05812738e3dfa7c007c58b84fe43ae10722"
+    },
+    "report:DecisionLog": {
+      "file": "006.xml",
+      "sha256": "d380b8370642552cb55a09cf4e7f8073973889e6c767a3411de29b4b35e07748"
+    },
+    "report:CAD": {
+      "deleted": true,
+      "before_sha256": "a327311d9a77337f20cd2b9a965111ef3d92ffc0dc29d214acea417ed11eb48c"
+    },
+    "spreadsheet:FeetintoDecimalFeet": {
+      "deleted": true,
+      "before_sha256": "192b13c0d4723284aa7a8b40a8c069d7a937c0c045b5115f809cd222df62ac02"
+    },
+    "spreadsheet:MetrictoInches": {
+      "deleted": true,
+      "before_sha256": "051c60a68f3759c030f51ca97a4701d9983d0e81a778cc57c3d83494e93ef66f"
+    },
+    "report:Scratch": {
+      "deleted": true,
+      "before_sha256": "d93091c9b584e18466dc822f1fb5709615f5adafb5d15c914e95da2695033546"
+    }
+  }
+}

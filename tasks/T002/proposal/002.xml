@@ -1,0 +1,428 @@
+<report name="PileProperties" title="Pile Section Properties" unit="in" pagesize="816, 1056" margin="48,48,48,48" collapsemargins="False">
+        <stylerule applytoall="True" type="Any" leftindent="0.25 in" spacingafter="4"/>
+        <stylerule type="AnyEquation" name="Required Input" texthighlight="#F7E6B9"/>
+        <heading level="0">Pile Properties</heading>
+<section name="EBApplicability20261008" capture="False" hide="false"><heading level="1" keepwithnext="True">Pile section applicability</heading><paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">The pipe section formulas below apply to the pier’s 20-in pipe piles. Both end bents use the current 18-in square pile envelope recorded in Bridge Geometry. Do not apply these pipe thickness, steel area, stiffness or corrosion allowances to the end-bent piles; their material, reinforcement, section properties and foundation checks require the applicable pile design/model.</paragraph><paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7"><link address="#FBMPEndBent.EBCurrentDesignRecord">Current end-bent design and coherence record</link></paragraph></section>
+        <heading level="1">Sacrificial Thickness</heading>
+        <paragraph>
+            <image source="Resource17" width="371.71505008259237" height="261.27796998559097"/>
+        </paragraph>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Sacrificial_thk=0.15 in">
+                <expbody>Sacrificial_thk=0.15 in</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Steel thickness set aside as the sacrificial-loss allowance.</paragraph>
+        <section name="EqNotes_PedBridge_034_Sacrificial_thk" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This input records the thickness allowance to leave out of the structural section when representing the adopted section-loss condition. The next expression subtracts an explicitly entered allowance; it does not refer to this variable by name.</paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Pile_modelThickness=0 5/8 in-0.15 in to in">
+                <expbody>Pile_modelThickness=0 5/8 in-0.15 in to in</expbody>
+                <expresult> = 0.475 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Steel wall thickness left after subtracting the entered allowance.</paragraph>
+        <section name="EqNotes_PedBridge_035_Pile_modelThickness" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">Start with the full 5/8 in pipe wall and subtract the fixed 0.15 in sacrificial allowance shown in this equation. The remainder is the wall thickness represented for this model note. “To in” displays it in inches.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">The effective thickness used in the pipe-property section is entered separately, so changing this result alone does not automatically change all of those properties.</paragraph>
+        </section>
+        <heading level="1">Pile section data</heading>
+        <paragraph fontweight="bold">PIPE PILE SECTION PROPERTIES — USE THE LIVE DIMENSIONS BELOW</paragraph>
+        <paragraph/>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="D_o = BridgeGeometry_2Beam.Pier_pile_diameter to in">
+                <expbody>D_o = BridgeGeometry_2Beam.Pier_pile_diameter to in</expbody>
+                <expresult> = 20 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Outside diameter of the circular pipe pile used by these section equations.</paragraph>
+        <section name="EqNotes_PedBridge_036_D_o" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This is the full diameter across the outer surface of the pipe. The following equations use this live input for the actual and reduced steel sections. The model keeps this outside diameter fixed when it represents the thinner effective wall.</paragraph>
+        </section>
+        <paragraph/>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="t_actual = 5/8 in">
+                <expbody>t_actual = 5/8 in</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Full as-built pipe wall thickness before the adopted section loss.</paragraph>
+        <section name="EqNotes_PedBridge_037_t_actual" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This is the thickness of steel on one side of the original pipe wall. It defines the actual steel area and the weight that the model is intended to retain.</paragraph>
+        </section>
+        <paragraph/>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="t_eff = Pile_modelThickness">
+                <expbody>t_eff = Pile_modelThickness</expbody>
+                <expresult> = 0.475 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Reduced wall thickness used for stiffness and section properties.</paragraph>
+        <section name="EqNotes_PedBridge_038_t_eff" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This is the effective steel thickness remaining in the adopted section-loss model. It defines the reduced steel area, bending properties, and torsional property. It is an independent input here, rather than a live subtraction from the actual thickness.</paragraph>
+        </section>
+        <paragraph/>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="D_i_actual = D_o - 2*t_actual">
+                <expbody>D_i_actual = D_o - 2*t_actual</expbody>
+                <expresult> = 1 ft 6 3/4 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Inside diameter corresponding to the full as-built steel wall.</paragraph>
+        <section name="EqNotes_PedBridge_039_D_i_actual" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                <dynexp formula="D_o" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>D_o</expbody>
+                </dynexp>
+                 is the outside diameter. Subtract twice 
+                <dynexp formula="t_actual" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>t_actual</expbody>
+                </dynexp>
+                 because a line across the pipe passes through a wall on one side and a wall on the opposite side. The distance left between the two inner wall faces is the inside diameter.
+            </paragraph>
+        </section>
+        <paragraph/>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="D_i_eff = D_o - 2*t_eff">
+                <expbody>D_i_eff = D_o - 2*t_eff</expbody>
+                <expresult> = 19.05 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Inside diameter corresponding to the reduced effective steel wall.</paragraph>
+        <section name="EqNotes_PedBridge_040_D_i_eff" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                <dynexp formula="D_o" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>D_o</expbody>
+                </dynexp>
+                 is the outside diameter. Subtract twice 
+                <dynexp formula="t_eff" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>t_eff</expbody>
+                </dynexp>
+                 because a line across the pipe passes through a wall on one side and a wall on the opposite side. The distance left between the two inner wall faces is the inside diameter.
+            </paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="A_enclosed = pi/4*(D_o^2)">
+                <expbody>A_enclosed = pi/4*(D_o^2)</expbody>
+                <expresult> = 314.159 in^2</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Full circular footprint inside the pipe’s outside boundary.</paragraph>
+        <section name="EqNotes_PedBridge_041_A_enclosed" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Square 
+                <dynexp formula="D_o" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>D_o</expbody>
+                </dynexp>
+                , the outside diameter, and multiply by pi divided by 4 to calculate the area of the entire outer circle. This includes the hollow interior as part of the footprint. It is not the amount of steel in the wall; the steel-ring areas below subtract the inside circle.
+            </paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="A_enclosed to ft^2">
+                <expbody>A_enclosed to ft^2</expbody>
+                <expresult> = 2.182 ft^2</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Full enclosed pipe footprint expressed in square feet.</paragraph>
+        <section name="EqNotes_PedBridge_042_A_enclosed_to_ft_2" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Display 
+                <dynexp formula="A_enclosed" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>A_enclosed</expbody>
+                </dynexp>
+                , the full circular footprint including the hollow interior, in square feet. This converts area units only; it does not subtract the hollow area or change the geometry.
+            </paragraph>
+        </section>
+        <paragraph/>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="A_actual = pi/4*(D_o^2-D_i_actual^2)">
+                <expbody>A_actual = pi/4*(D_o^2-D_i_actual^2)</expbody>
+                <expresult> = 38.043 in^2</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Cross-sectional area of steel in the full as-built pipe ring.</paragraph>
+        <section name="EqNotes_PedBridge_043_A_actual" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                <dynexp formula="D_o" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>D_o</expbody>
+                </dynexp>
+                 is the outside diameter and 
+                <dynexp formula="D_i_actual" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>D_i_actual</expbody>
+                </dynexp>
+                 is the inside diameter for this wall condition. Square each diameter, subtract the inner square from the outer square, then multiply by pi divided by 4.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">Pi times diameter squared divided by 4 is the area of a solid circle. Subtracting the inner circle removes the hollow opening and leaves only the steel ring. The result is area, not the full enclosed footprint.</paragraph>
+        </section>
+        <paragraph/>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="A_eff = pi/4*(D_o^2-D_i_eff^2)">
+                <expbody>A_eff = pi/4*(D_o^2-D_i_eff^2)</expbody>
+                <expresult> = 29.136 in^2</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Cross-sectional area of steel in the reduced effective pipe ring.</paragraph>
+        <section name="EqNotes_PedBridge_044_A_eff" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                <dynexp formula="D_o" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>D_o</expbody>
+                </dynexp>
+                 is the outside diameter and 
+                <dynexp formula="D_i_eff" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>D_i_eff</expbody>
+                </dynexp>
+                 is the inside diameter for this wall condition. Square each diameter, subtract the inner square from the outer square, then multiply by pi divided by 4.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">Pi times diameter squared divided by 4 is the area of a solid circle. Subtracting the inner circle removes the hollow opening and leaves only the steel ring. The result is area, not the full enclosed footprint.</paragraph>
+        </section>
+        <paragraph/>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="I_x = pi/64*(D_o^4-D_i_eff^4)">
+                <expbody>I_x = pi/64*(D_o^4-D_i_eff^4)</expbody>
+                <expresult> = 1389.260 in^4</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Second moment of area of the reduced pipe wall about a centroidal bending axis.</paragraph>
+        <section name="EqNotes_PedBridge_045_I_x" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                Raise 
+                <dynexp formula="D_o" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>D_o</expbody>
+                </dynexp>
+                , the outside diameter, and 
+                <dynexp formula="D_i_eff" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>D_i_eff</expbody>
+                </dynexp>
+                , the effective inside diameter, to the fourth power. Subtract the inner term from the outer term and multiply by pi divided by 64. This is the outer circle’s bending property minus the hollow opening’s bending property.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">The result measures how the remaining steel is distributed away from the bending axis, with units of length to the fourth power. A larger value gives less bending curvature for the same moment and elastic modulus.</paragraph>
+        </section>
+        <paragraph/>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="I_y = I_x">
+                <expbody>I_y = I_x</expbody>
+                <expresult> = 1389.260 in^4</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Bending second moment of area about the perpendicular centroidal axis.</paragraph>
+        <section name="EqNotes_PedBridge_046_I_y" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Set it equal to 
+                <dynexp formula="I_x" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>I_x</expbody>
+                </dynexp>
+                . A circular pipe ring looks the same when rotated 90° about its center, so the two centroidal bending axes have the same second moment of area in this section model.
+            </paragraph>
+        </section>
+        <paragraph/>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="S_x = I_x/(D_o/2)">
+                <expbody>S_x = I_x/(D_o/2)</expbody>
+                <expresult> = 138.926 in^3</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Elastic section modulus for bending of the reduced pipe wall.</paragraph>
+        <section name="EqNotes_PedBridge_047_S_x" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                <dynexp formula="I_x" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>I_x</expbody>
+                </dynexp>
+                 is the bending second moment of area. Divide it by half of 
+                <dynexp formula="D_o" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>D_o</expbody>
+                </dynexp>
+                , which is the distance from the section center to the outside steel surface.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This packages the section geometry into the quantity used in elastic bending stress: moment divided by section modulus gives the extreme-fiber bending stress. Its units are length cubed.</paragraph>
+        </section>
+        <paragraph/>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="S_y = S_x">
+                <expbody>S_y = S_x</expbody>
+                <expresult> = 138.926 in^3</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Elastic section modulus about the other centroidal bending axis.</paragraph>
+        <section name="EqNotes_PedBridge_048_S_y" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Use 
+                <dynexp formula="S_x" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>S_x</expbody>
+                </dynexp>
+                 because the circular section has the same geometry about both centroidal axes. This copies a section property; it does not copy a bending moment or a stress.
+            </paragraph>
+        </section>
+        <paragraph/>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Z_x = (D_o^3-D_i_eff^3)/6">
+                <expbody>Z_x = (D_o^3-D_i_eff^3)/6</expbody>
+                <expresult> = 181.118 in^3</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Plastic section modulus of the reduced circular steel ring.</paragraph>
+        <section name="EqNotes_PedBridge_049_Z_x" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                Cube 
+                <dynexp formula="D_o" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>D_o</expbody>
+                </dynexp>
+                , the outside diameter, and 
+                <dynexp formula="D_i_eff" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>D_i_eff</expbody>
+                </dynexp>
+                , the effective inside diameter. Subtract the inner cube from the outer cube, then divide by 6. This sums the areas of the ring according to their distances from the plastic neutral axis.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">The result describes the geometry used in a fully yielded plastic bending idealization. It is a section property with length-cubed units; this equation alone is not a strength or local-buckling check.</paragraph>
+        </section>
+        <paragraph/>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Z_y = Z_x">
+                <expbody>Z_y = Z_x</expbody>
+                <expresult> = 181.118 in^3</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Plastic section modulus about the other centroidal bending axis.</paragraph>
+        <section name="EqNotes_PedBridge_050_Z_y" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Set it equal to 
+                <dynexp formula="Z_x" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Z_x</expbody>
+                </dynexp>
+                 because the circular steel ring has the same section shape about both centroidal axes.
+            </paragraph>
+        </section>
+        <paragraph/>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="r_x = Sqrt(I_x/A_eff)">
+                <expbody>r_x = Sqrt(I_x/A_eff)</expbody>
+                <expresult> = 6.905 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Radius of gyration for the reduced steel area about the x axis.</paragraph>
+        <section name="EqNotes_PedBridge_051_r_x" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                Divide 
+                <dynexp formula="I_x" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>I_x</expbody>
+                </dynexp>
+                , the bending second moment of area, by 
+                <dynexp formula="A_eff" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>A_eff</expbody>
+                </dynexp>
+                , the effective steel area. The ratio has units of length squared. Sqrt takes its square root, leaving a length.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This length describes how far the steel area is spread from the axis in a stiffness sense. It is used in slenderness calculations; it is not the outside pipe radius.</paragraph>
+        </section>
+        <paragraph/>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="r_y = r_x">
+                <expbody>r_y = r_x</expbody>
+                <expresult> = 6.905 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Radius of gyration about the other centroidal axis.</paragraph>
+        <section name="EqNotes_PedBridge_052_r_y" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Use 
+                <dynexp formula="r_x" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>r_x</expbody>
+                </dynexp>
+                 because the circular ring has the same area distribution about the two centroidal axes.
+            </paragraph>
+        </section>
+        <paragraph/>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="J = pi/32*(D_o^4-D_i_eff^4)">
+                <expbody>J = pi/32*(D_o^4-D_i_eff^4)</expbody>
+                <expresult> = 2778.520 in^4</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Polar second moment of area for torsion of the reduced circular pipe ring.</paragraph>
+        <section name="EqNotes_PedBridge_053_J" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                Raise 
+                <dynexp formula="D_o" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>D_o</expbody>
+                </dynexp>
+                 and 
+                <dynexp formula="D_i_eff" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>D_i_eff</expbody>
+                </dynexp>
+                 to the fourth power, subtract the inner term from the outer term, and multiply by pi divided by 32. The subtraction removes the hollow part from the outer circular property.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">For this circular tube, the result is the geometric torsional constant used with the shear modulus to describe resistance to twisting. It has units of length to the fourth power.</paragraph>
+        </section>
+        <paragraph/>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="gamma_steel=490 lb/ft^3">
+                <expbody>gamma_steel=490 lb/ft^3</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Weight of one cubic foot of the original steel.</paragraph>
+        <section name="EqNotes_PedBridge_054_gamma_steel" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This unit-weight input converts a volume of steel to a weight force. It is used with the actual steel area to preserve the pile’s original weight when the structural section is modeled with a reduced thickness.</paragraph>
+        </section>
+        <paragraph/>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="gamma_steel_mod = gamma_steel*A_actual/A_eff">
+                <expbody>gamma_steel_mod = gamma_steel*A_actual/A_eff</expbody>
+                <expresult> = 639.784 lb/ft^3</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Adjusted model unit weight that preserves the full-thickness pile weight.</paragraph>
+        <section name="EqNotes_PedBridge_055_gamma_steel_mod" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                <dynexp formula="gamma_steel" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>gamma_steel</expbody>
+                </dynexp>
+                 is the ordinary steel unit weight. 
+                <dynexp formula="A_actual" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>A_actual</expbody>
+                </dynexp>
+                 is the steel area before the adopted loss, and 
+                <dynexp formula="A_eff" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>A_eff</expbody>
+                </dynexp>
+                 is the smaller area used for structural properties. Multiply the ordinary unit weight by actual area divided by effective area.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This makes each modeled unit of reduced area carry more weight, so reduced area times adjusted unit weight equals actual area times ordinary unit weight. The adjustment is for model weight; it does not restore the lost stiffness or steel strength area.</paragraph>
+        </section>
+        <paragraph/>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="w_pile = A_eff*12 in/ft*gamma_steel_mod">
+                <expbody>w_pile = A_eff*12 in/ft*gamma_steel_mod</expbody>
+                <expresult> = 10.788 lb/in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Pile weight per unit length using the reduced area and adjusted unit weight.</paragraph>
+        <section name="EqNotes_PedBridge_056_w_pile" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                Multiply 
+                <dynexp formula="A_eff" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>A_eff</expbody>
+                </dynexp>
+                , the effective steel area, by 
+                <dynexp formula="gamma_steel_mod" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>gamma_steel_mod</expbody>
+                </dynexp>
+                , the adjusted weight per volume. Area times weight per volume gives weight per length.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">The explicit 12 in/ft term equals one physically and writes out the inch-to-foot conversion used in this expression. It does not represent twelve piles or additional steel. This combination is intended to retain the weight of the original full-thickness pipe.</paragraph>
+        </section>
+        <paragraph/>
+        <section name="Pipe Pile" capture="True" hide="false">
+            <heading level="1">Pipe</heading>
+            <paragraph level="1">
+                From Nucor 
+                <link address="C:\Users\josh.turley\OneDrive - BCC Engineering, LLC\Projects\D2\References\Nucor Piles.pdf">pipe brochure</link>
+            </paragraph>
+            <paragraph>
+                <image source="Resource163"/>
+            </paragraph>
+            <paragraph level="1" fontweight="bold"/>
+            <paragraph level="1" fontweight="bold"/>
+        </section>
+        <paragraph/>
+        <paragraph/>
+        <paragraph/>
+    </report>

@@ -1,0 +1,5 @@
+{
+  "status": "integrated_via_T003",
+  "canonical_sha256": "a45256fbdd3c27444bb3b93ffc327353efcfdc366a126aff35f809a853635d72",
+  "standalone_promotion": "not used; T003 also integrates portable References paths"
+}

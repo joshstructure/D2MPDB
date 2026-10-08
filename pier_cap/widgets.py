@@ -77,6 +77,12 @@ class CapNotebook:
         self.force_diagrams=ForceDiagramPanel()
         self.plot_tabs=Tab(children=[self.cage,self.results,W.VBox([self.register],layout=W.Layout(max_height='850px',overflow='auto')),W.VBox([self.trace],layout=W.Layout(max_height='750px',overflow='auto')),self.force_diagrams.ui,self.dimensions],layout=W.Layout(flex='1 1 650px',min_width='560px'))
         for i,title in enumerate(['Live cage','Plots','D/C checks','Equations','Force diagrams','Dimensions']):self.plot_tabs.set_title(i,title)
+        self.input_panel=Accordion(children=[self.input_tabs],layout=W.Layout(flex='0 0 360px',width='360px',min_width='0'))
+        self.input_panel.set_title(0,'Cap inputs · steel, geometry, loads and factors')
+        self.input_panel.selected_index=0
+        self.workbench=W.HBox([self.input_panel,self.plot_tabs],
+            layout=W.Layout(width='100%',min_width='0',display='flex',flex_flow='row wrap',align_items='flex-start',grid_gap='16px'))
+        self.plot_tabs.observe(self._plot_tab_changed,names='selected_index')
         self.case_import=CaseImportPanel(self)
         self.upload=self.case_import.upload
         reset=W.Button(description='Reset starting case',icon='undo');reset.on_click(lambda _:self.load(default_case()))
@@ -96,9 +102,27 @@ class CapNotebook:
             self.case_import.ui,self.xml_import.ui,self.import_notice,self.pile_review.ui,
             W.HTML('<h2 style="color:#213649">2. Cap reinforcement and steel optimization</h2>'),self.source_label,source,self.banner,self.metrics,
             self.transverse_panel.ui,
-            W.HBox([self.input_tabs,self.plot_tabs],layout=W.Layout(display='flex',flex_flow='row wrap',align_items='flex-start',grid_gap='16px')),
+            self.workbench,
             self.search_panel,self.export_panel,self.message],layout=W.Layout(width='100%'))
         self.refresh()
+
+    def _plot_tab_changed(self,change):
+        # Give long force profiles the full output row. Keep the same controls
+        # mounted so opening the input panel never resets a case or listeners.
+        if 4 not in (change['old'],change['new']):return
+        wide=change['new']==4
+        self.workbench.layout.flex_flow='column' if wide else 'row wrap'
+        self.input_panel.layout.width='100%' if wide else '360px'
+        self.input_panel.layout.flex='0 0 auto' if wide else '0 0 360px'
+        self.input_panel.selected_index=None if wide else 0
+        self.plot_tabs.layout.width='100%' if wide else None
+        self.plot_tabs.layout.min_width='0' if wide else '560px'
+        self.plot_tabs.layout.flex='0 0 auto' if wide else '1 1 650px'
+        figure=self.force_diagrams.figure
+        if wide and figure is not None:
+            # Recompute the plot bounds after it leaves the narrower column.
+            figure.layout.autosize=False
+            figure.layout.autosize=True
 
     def _cap_type_changed(self,change):
         if not self.busy:

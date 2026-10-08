@@ -1,0 +1,81 @@
+{
+  "candidate_sha256": "99e0daa0d7b80581d780152aabc71b85928f8978b768a5fa01173ef9c6ed29c0",
+  "reviewer": "Codex — source/data-coherence review with actual native Blockpad observations; no human engineering sign-off",
+  "native_recalculation": true,
+  "native_visual_review": true,
+  "engineering_review": true,
+  "design_outcome": "not_applicable",
+  "external_analysis_status": "excluded_from_accepted_scope",
+  "external_analysis_disposition": "The user confirms that the supplied report contains the latest FBMP model and directs both end bents to follow controlling End Bent 1. The journal records that current source basis and its exact report/XML hashes; loaded nodes are 15/34. Acceptance covers faithful data reconciliation and pedestal geometry/quantity bookkeeping. Independent raw-input verification, FBMP rerun, separate End Bent 2 action verification, revised hook design, D-region/anchorage and final structural adequacy are outside this task. Source check counts remain historical; no rerun result is invented.",
+  "inherited_issues_disposition": "Removed the five explicitly retired modules and their links; all 110 inherited stored errors were confined to those removed modules. No new errors or structural issues. The three inherited LoadCombinations links remain unresolved and are expressly outside this bounded response update. Wall quantities are deferred by the user; remaining design checks retain the dispositions in the current record.",
+  "evidence_files": [
+    {
+      "path": "evidence/final-native-application-table.jpg",
+      "sha256": "17c8ece6febf5f615513e35a2b913199530334e822ac6c73b3e7c52f0418b43a"
+    },
+    {
+      "path": "evidence/final-native-entry-weights.jpg",
+      "sha256": "e6dba03c0d0b4081a2f382e48cfe86260fb41dd52ff5dba768361ad28475f371"
+    },
+    {
+      "path": "evidence/integration-check.json",
+      "sha256": "0bc8479df498a9f1664ec069d628b8a6c01145685a476280a09d6349b62f13bf"
+    },
+    {
+      "path": "evidence/native-review.md",
+      "sha256": "3304336270f5e772c8117d32c32c7f4076f995b0daadaf01bd117246981aefa6"
+    },
+    {
+      "path": "evidence/response-review.md",
+      "sha256": "f87a388083ad0189501089cee4c17b7dab2c90570de14636b43e3b61e4782c5e"
+    },
+    {
+      "path": "evidence/response_checks.json",
+      "sha256": "81153447d59370ea32cb07f78c8d68289346d1ac46865db89b18a7816ef64a5e"
+    },
+    {
+      "path": "evidence/revision-01-observations/native-bearing-footprint.jpg",
+      "sha256": "d785bf8a259b4b59aaf64780d54283f48b3c0d83d294974588833ee729559bcd"
+    },
+    {
+      "path": "evidence/revision-01-observations/native-current-dispositions.jpg",
+      "sha256": "43bc1074310268a47e0eece0176d75b0ca2756d1c26caacebfda1e3caa20d2e3"
+    },
+    {
+      "path": "evidence/revision-01-observations/native-entry-nodes.jpg",
+      "sha256": "f1aaec7d80169ae3fc1384e9a10662b600aa0344d5a8ef72b233823c258a41eb"
+    },
+    {
+      "path": "evidence/revision-01-observations/native-foundation-context.jpg",
+      "sha256": "06d75bbf34214fefbccefcf7fb870b161ec41f460b2132244067089fa5a70f84"
+    },
+    {
+      "path": "evidence/revision-01-observations/native-index.jpg",
+      "sha256": "4fefc14cdbc561d01f0c554d33c94ec12b564a902e3483adf067c398e2e64036"
+    },
+    {
+      "path": "evidence/revision-01-observations/native-local-weights.jpg",
+      "sha256": "8a012350394859e75b7c1824f0b48f3860131e2a7272f04297696479636f2d1c"
+    },
+    {
+      "path": "evidence/revision-01-observations/native-node-plan.jpg",
+      "sha256": "765419e01bdb879a15fc069c4aa7446cf31576faeb591776a5d91470dd57f7bf"
+    },
+    {
+      "path": "evidence/revision-01-observations/native-pedestal-calculations.jpg",
+      "sha256": "c42ae85c90009dd5ae5c04565d8b5a275cf543b52e361fdc2a472d98b60952f6"
+    },
+    {
+      "path": "evidence/revision-01-observations/native-pedestal-takeoff.jpg",
+      "sha256": "978511f453ce936df66e630875083a497b4e47c17d8f9eb7e96e5f2840bd5b22"
+    },
+    {
+      "path": "evidence/revision-01-observations/native-response-log.jpg",
+      "sha256": "f958bee34835afd65592a8e09e7453204a28cc219b514c649876edba0f7d9697"
+    },
+    {
+      "path": "evidence/revision-comparison.json",
+      "sha256": "d3ad90c134fd6e970634cad173ae6070ad5ad8ce7e4149ceadfdcb159376aefa"
+    }
+  ]
+}

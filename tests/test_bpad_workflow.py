@@ -315,6 +315,80 @@ class WorkflowTests(unittest.TestCase):
         with self.assertRaisesRegex(w.WorkflowError, "stale external results"):
             w.promote(self.root, folder)
 
+    def test_registered_module_deletion_preserves_other_bytes_and_restores(self):
+        w.prepare(self.root, "T001", "Remove unused notes", [], delete_names=["Notes"])
+        base = w.Journal(SAMPLE)
+        expected = base.replace({"report:Notes": b""})
+        (self.root / "tasks/T001/working.bpad").write_bytes(expected)
+        candidate, report = w.check(self.root, "T001")
+        self.assertEqual(candidate.data, expected)
+        self.assertEqual(report["deleted_components"], ["report:Notes"])
+        self.assertEqual(candidate.shell, base.shell)
+        for key in candidate.order:
+            self.assertEqual(candidate.part(key), base.part(key))
+        folder = self.root / "generated/delete-notes"
+        w.assemble(self.root, "T001", folder)
+        (self.root / "tasks/T001/working.bpad").unlink()
+        w.restore_task(self.root, "T001")
+        self.assertEqual((self.root / "tasks/T001/working.bpad").read_bytes(), expected)
+        self.assertEqual(w.check(self.root, "T001")[0].data, expected)
+
+    def test_unregistered_module_deletion_is_rejected(self):
+        self.prepare()
+        base = w.Journal(SAMPLE)
+        (self.root / "tasks/T001/working.bpad").write_bytes(base.replace({"report:Notes": b""}))
+        with self.assertRaisesRegex(w.WorkflowError, "registered deletion"):
+            w.check(self.root, "T001")
+
+    def test_deletion_rejects_surviving_numeric_consumers(self):
+        w.prepare(self.root, "T001", "Remove geometry", [], delete_names=["Geometry"])
+        base = w.Journal(SAMPLE)
+        (self.root / "tasks/T001/working.bpad").write_bytes(base.replace({"report:Geometry": b""}))
+        with self.assertRaisesRegex(w.WorkflowError, "Deleted module Geometry still referenced"):
+            w.check(self.root, "T001")
+
+    def test_deletion_rejects_surviving_native_links(self):
+        self.edit_current(b"Original notes", b'<link address="#Geometry">geometry</link>')
+        w.prepare(self.root, "T001", "Remove geometry and loads", [], delete_names=["Geometry", "Loads"])
+        base = w.Journal.load(self.root / w.JOURNAL)
+        (self.root / "tasks/T001/working.bpad").write_bytes(base.replace({"report:Geometry": b"", "report:Loads": b""}))
+        with self.assertRaisesRegex(w.WorkflowError, "New structural issues"):
+            w.check(self.root, "T001")
+
+    def test_resource_deletion_cannot_be_registered(self):
+        with self.assertRaisesRegex(w.WorkflowError, "resources and styles remain protected"):
+            w.prepare(self.root, "T001", "Remove resource", [], delete_names=["resource:R"])
+
+    def test_registered_deletion_does_not_allow_other_deletions_or_reordering(self):
+        w.prepare(self.root, "T001", "Remove notes", [], delete_names=["Notes"])
+        base = w.Journal(SAMPLE)
+        working = self.root / "tasks/T001/working.bpad"
+        working.write_bytes(base.replace({"report:Notes": b"", "report:Loads": b""}))
+        with self.assertRaisesRegex(w.WorkflowError, "registered deletion"):
+            w.check(self.root, "T001")
+        working.write_bytes(base.replace({"report:Geometry": base.part("report:Loads"), "report:Loads": base.part("report:Geometry"), "report:Notes": b""}))
+        with self.assertRaisesRegex(w.WorkflowError, "reordering"):
+            w.check(self.root, "T001")
+
+    def test_deletion_retains_review_gate_and_promotes_exact_bytes(self):
+        w.prepare(self.root, "T001", "Remove notes", [], delete_names=["Notes"])
+        expected = w.Journal(SAMPLE).replace({"report:Notes": b""})
+        (self.root / "tasks/T001/working.bpad").write_bytes(expected)
+        folder = self.root / "generated/deletion-review"
+        w.assemble(self.root, "T001", folder)
+        with self.assertRaisesRegex(w.WorkflowError, "explicitly completed"):
+            w.promote(self.root, folder)
+        review = w.read_json(folder / "review.json")
+        review.update(reviewer="Synthetic test only", native_recalculation=True, native_visual_review=True,
+                      engineering_review=True, design_outcome="not_applicable",
+                      external_analysis_disposition="No analysis in test fixture.", external_analysis_status="not_applicable",
+                      inherited_issues_disposition="No inherited test issues.")
+        (folder / "evidence.txt").write_text("SYNTHETIC TEST ONLY")
+        review["evidence_files"] = [{"path":"evidence.txt", "sha256":w.digest((folder / "evidence.txt").read_bytes())}]
+        w.write_json(folder / "review.json", review)
+        w.promote(self.root, folder)
+        self.assertEqual((self.root / w.JOURNAL).read_bytes(), expected)
+
 
 if __name__ == "__main__":
     unittest.main()

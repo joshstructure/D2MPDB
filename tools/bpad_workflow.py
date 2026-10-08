@@ -181,10 +181,13 @@ class Journal:
         require(len(matches) == 1, f"Use an exact component key for {name!r}; found {matches}")
         return matches[0]
 
-    def changes(self, other):
-        require(self.order == other.order, "Component addition/removal/reordering is outside this pilot's scope.")
+    def changes(self, other, allowed_deletions=()):
+        removed = set(self.order) - set(other.order)
+        require(removed <= set(allowed_deletions) and
+                other.order == [key for key in self.order if key not in removed],
+                "Component addition/removal/reordering requires an explicitly registered deletion; additions and reordering are unsupported.")
         require(self.shell == other.shell, "Document wrapper or inter-component whitespace changed outside scope.")
-        return [k for k in self.order if self.hashes[k] != other.hashes[k]]
+        return [k for k in self.order if k in removed or self.hashes[k] != other.hashes[k]]
 
 
 def scan(journal):
@@ -360,7 +363,7 @@ def task_dependencies(root, j, writes):
     return sorted(reads - set(writes)), modes
 
 
-def prepare(root, task_id, objective, write_names, prerequisites=()):
+def prepare(root, task_id, objective, write_names, prerequisites=(), delete_names=()):
     require(re.fullmatch(r"T[0-9]{3,}[A-Za-z0-9_-]*", task_id), "Use a task ID such as T001.")
     with writer_lock(root):
         package = root / "tasks" / task_id
@@ -368,17 +371,20 @@ def prepare(root, task_id, objective, write_names, prerequisites=()):
         plan_only = package.is_dir() and {p.name for p in package.iterdir()} <= {"plan.md"}
         require((not package.exists() or plan_only) and not registry.exists(), "Task already exists; use a new task ID.")
         j = Journal.load(root / JOURNAL)
-        writes = sorted({j.resolve(x) for x in write_names})
+        deletes = sorted({j.resolve(x) for x in delete_names})
+        require(all(j.elements[k].tag in MODULE_TAGS for k in deletes),
+                "Only explicitly named report, spreadsheet or drawing modules may be deleted; resources and styles remain protected.")
+        writes = sorted({j.resolve(x) for x in write_names} | set(deletes))
         require(writes, "A task needs an explicit write scope.")
         reads, modes = task_dependencies(root, j, writes)
         for prerequisite in prerequisites:
             require(re.fullmatch(r"T[0-9]{3,}[A-Za-z0-9_-]*", prerequisite), "Invalid prerequisite ID.")
             require((root / "workflow/registry" / f"{prerequisite}.json").is_file(), f"Unknown prerequisite: {prerequisite}")
         record = {"schema": 1, "id": task_id, "created": stamp(), "objective": objective,
-                  "base_journal_sha256": j.sha256, "writes": writes, "reads": reads,
+                  "base_journal_sha256": j.sha256, "writes": writes, "deletes": deletes, "reads": reads,
                   "dependency_modes": modes, "prerequisites": list(prerequisites),
                   "component_hashes": j.hashes, "source_files": snapshot_files(root),
-                  "exclusions": ["No unassigned components, document wrapper or topology changes", "No automatic engineering approval"],
+                  "exclusions": ["No unassigned components or document wrapper changes; no topology changes except registered module deletions", "No automatic engineering approval"],
                   "output_contract": "Retain existing published names and scopes; describe units, signs, cases and any interface change in submission.json.",
                   "acceptance": ["bounded changes", "unchanged dependencies", "structural delta review", "Blockpad recalculation", "native visual review", "engineering and external-analysis review"],
                   "stop_conditions": ["Missing inputs or reference sources", "Required change outside assigned scope", "Changed upstream inputs", "Unresolved engineering assumptions"]}
@@ -397,7 +403,7 @@ def prepare(root, task_id, objective, write_names, prerequisites=()):
         write_json(package / "submission.json", {"summary": "", "published_outputs": [], "assumptions_and_conventions": [],
                                                     "downstream_impact": [], "external_analysis": "not assessed", "checks_performed": [], "open_items": []})
         write_json(registry, record)
-        return {"task": task_id, "writes": writes, "reads": len(reads), "package": str(package)}
+        return {"task": task_id, "writes": writes, "deletes": deletes, "reads": len(reads), "package": str(package)}
 
 
 def load_task(root, task_id):
@@ -415,7 +421,8 @@ def check(root, task_id, proposed_data=None):
     record, package, base = load_task(root, task_id)
     current = Journal.load(root / JOURNAL)
     proposed = Journal(proposed_data) if proposed_data is not None else Journal.load(package / "working.bpad")
-    changed = base.changes(proposed)
+    changed = base.changes(proposed, record.get("deletes", []))
+    deleted = [key for key in changed if key not in proposed.elements]
     base.changes(current)  # Verify topology and document envelope compatibility.
     require(set(changed) <= set(record["writes"]), f"Out-of-scope edits: {sorted(set(changed) - set(record['writes']))}")
     conflicts = [k for k in record["writes"] if base.hashes[k] != current.hashes[k]]
@@ -429,8 +436,19 @@ def check(root, task_id, proposed_data=None):
     require(expected == actual, "Task reference resources changed outside the registered scope.")
     for prerequisite in record["prerequisites"]:
         require((root / "workflow/completed" / f"{prerequisite}.json").exists(), f"Prerequisite has not been promoted: {prerequisite}")
-    candidate = Journal(current.replace({key: proposed.part(key) for key in changed}))
+    candidate = Journal(current.replace({key: proposed.part(key) if key not in deleted else b"" for key in changed}))
+    for key in deleted:
+        owner = current.elements[key].get("name")
+        if not owner:
+            continue
+        pattern = re.compile(r"(?<!\w)" + re.escape(owner) + r"(?=\.|$)")
+        consumers = [other for other, el in candidate.elements.items()
+                     if any(pattern.search(e.get(attr, "")) for e in el.iter()
+                            for attr in ("formula", "condition", "source", "target", "valuedef"))]
+        require(not consumers, f"Deleted module {owner} still referenced by {consumers}")
     for key in changed:
+        if key in deleted:
+            continue
         owner = current.elements[key].get("name")
         if current.elements[key].tag not in MODULE_TAGS or not owner:
             continue
@@ -452,12 +470,14 @@ def check(root, task_id, proposed_data=None):
     require(not introduced, f"New structural issues: {dict(introduced)}")
     new_errors = []
     for key in changed:
+        if key in deleted:
+            continue
         errors = lambda j: Counter("".join(e.itertext()) for e in j.elements[key].iter("error"))
         new_errors.extend({"component": key, "message": e, "count": n} for e, n in (errors(candidate) - errors(current)).items())
     require(not new_errors, f"New stored native errors: {new_errors}")
     detected = {r["key"]: r["candidate_dependencies"] for r in scan(candidate)["components"]}
     watched = set(record["reads"]) | set(record["writes"])
-    additional = sorted({d for key in changed for d in detected[key] if d not in watched})
+    additional = sorted({d for key in changed if key in detected for d in detected[key] if d not in watched})
     require(not additional, f"New dependencies need a new task contract: {additional}")
     affected = set(changed)
     while True:
@@ -466,7 +486,7 @@ def check(root, task_id, proposed_data=None):
             break
         affected = next_set
     report = {"task": task_id, "base_sha256": base.sha256, "current_sha256": current.sha256,
-              "candidate_sha256": candidate.sha256, "changed_components": changed,
+              "candidate_sha256": candidate.sha256, "changed_components": changed, "deleted_components": deleted,
               "detected_downstream_impact": sorted(affected - set(changed)),
               "impact_coverage": "partial; all external results require review if any component changed",
               "inherited_structural_issues": dict(structural_issues(current)),
@@ -530,6 +550,10 @@ def assemble(root, task_id, output):
         proposal = root / "tasks" / task_id / "proposal"
         components = {}
         for index, key in enumerate(report["changed_components"]):
+            if key in report["deleted_components"]:
+                base = Journal.load(root / "tasks" / task_id / "base.bpad")
+                components[key] = {"deleted": True, "before_sha256": base.hashes[key]}
+                continue
             filename = f"{index:03d}.xml"
             data = candidate.part(key)
             atomic_write(proposal / filename, data)
@@ -564,11 +588,16 @@ def restore_task(root, task_id, base_path=None):
             require(manifest["base_sha256"] == base.sha256 and manifest["task"] == task_id, "Proposal belongs to a different base/task.")
             require(set(manifest["components"]) <= set(record["writes"]), "Proposal exceeds registered scope.")
             for key, item in manifest["components"].items():
+                if item.get("deleted"):
+                    require(key in record.get("deletes", []), f"Unregistered proposal deletion: {key}")
+                    require(item.get("before_sha256") == base.hashes[key], f"Deleted component fingerprint changed: {key}")
+                    replacements[key] = b""
+                    continue
                 data = within(package / "proposal", item["file"]).read_bytes()
                 require(digest(data) == item["sha256"], f"Proposal component changed: {key}")
                 replacements[key] = data
         proposed = Journal(base.replace(replacements))
-        require(set(base.changes(proposed)) <= set(record["writes"]), "Restored proposal exceeds scope.")
+        require(set(base.changes(proposed, record.get("deletes", []))) <= set(record["writes"]), "Restored proposal exceeds scope.")
         atomic_write(package / "base.bpad", base.data)
         atomic_write(package / "working.bpad", proposed.data)
         shutil.copytree(root / "journal/References", package / "References", dirs_exist_ok=True)
@@ -637,7 +666,8 @@ def main(argv=None):
     p = commands.add_parser("prepare", help="Create an isolated folder and registered task contract")
     p.add_argument("id")
     p.add_argument("--objective", required=True)
-    p.add_argument("--write", action="append", required=True)
+    p.add_argument("--write", action="append", default=[])
+    p.add_argument("--delete", action="append", default=[], help="Explicitly authorize removal of an existing module; include affected link/consumer modules in --write")
     p.add_argument("--prerequisite", action="append", default=[])
     p = commands.add_parser("import-references", help="Copy verified reference filenames without modifying PDFs or journal")
     p.add_argument("source", type=Path)
@@ -666,7 +696,7 @@ def main(argv=None):
         elif args.command == "roundtrip":
             result = roundtrip(args.journal or root / JOURNAL, args.output)
         elif args.command == "prepare":
-            result = prepare(root, args.id, args.objective, args.write, args.prerequisite)
+            result = prepare(root, args.id, args.objective, args.write, args.prerequisite, args.delete)
         elif args.command == "import-references":
             result = import_references(root, args.source)
         elif args.command == "import-components":

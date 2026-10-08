@@ -1,0 +1,250 @@
+{
+  "candidate_sha256": "99e0daa0d7b80581d780152aabc71b85928f8978b768a5fa01173ef9c6ed29c0",
+  "checks": [
+    {
+      "check": "EndBentCap_width [in]",
+      "status": "PASS",
+      "value": 42.0
+    },
+    {
+      "check": "EndBentCap_depth [in]",
+      "status": "PASS",
+      "value": 36.0
+    },
+    {
+      "check": "EndBentCap_length [in]",
+      "status": "PASS",
+      "value": 212.0
+    },
+    {
+      "check": "EndBent_endCenter [in]",
+      "status": "PASS",
+      "value": 25.0
+    },
+    {
+      "check": "EndBent_pileSpacing [in]",
+      "status": "PASS",
+      "value": 54.0
+    },
+    {
+      "check": "EndBent_pileWidth [in]",
+      "status": "PASS",
+      "value": 18.0
+    },
+    {
+      "check": "EndBentPedestal_fromRear [in]",
+      "status": "PASS",
+      "value": 12.0
+    },
+    {
+      "check": "Pedestal_length_endBent [in]",
+      "status": "PASS",
+      "value": 30.0
+    },
+    {
+      "check": "EndBentPedestal_ht [in]",
+      "status": "PASS",
+      "value": 6.0
+    },
+    {
+      "check": "EndBentPedestal_width [in]",
+      "status": "PASS",
+      "value": 42.0
+    },
+    {
+      "check": "EndBentPedestal_chamfer [in]",
+      "status": "PASS",
+      "value": 0.75
+    },
+    {
+      "check": "EndBentPedestal_area [ft^2]",
+      "status": "PASS",
+      "value": 1.74609375
+    },
+    {
+      "check": "Pedestal_volume_endBent [ft^3]",
+      "status": "PASS",
+      "value": 17.4609375
+    },
+    {
+      "check": "Pedestal_length_pier [in]",
+      "status": "PASS",
+      "value": 48.0
+    },
+    {
+      "check": "Pedestal_volume_pier [ft^3]",
+      "status": "PASS",
+      "value": 13.96875
+    },
+    {
+      "check": "EndBent_bearingOffset [in]",
+      "status": "PASS",
+      "value": 3.0
+    },
+    {
+      "check": "EndBent_BearingPlane_CapCG [in]",
+      "status": "PASS",
+      "value": 26.5625
+    },
+    {
+      "check": "EndBentCap_volume [ft^3]",
+      "status": "PASS",
+      "value": 185.5
+    },
+    {
+      "check": "EndBentCaps_volume [ft^3]",
+      "status": "PASS",
+      "value": 371.0
+    },
+    {
+      "check": "Unchanged pier formula: Pedestal_ht",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "Unchanged pier formula: Pedestal_width",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "Unchanged pier formula: Pedestal_chamfer",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "Unchanged pier formula: Pedestal_area",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "Unchanged pier formula: Pedestal_length_pier",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "Unchanged pier formula: Pedestal_count_pier",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "Unchanged pier formula: Pedestal_volume_pier",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "New node identities",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "All source steel definitions preserved",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "Pedestal dead weight [kip]",
+      "status": "PASS",
+      "value": 0.65478515625
+    },
+    {
+      "check": "Report station at node 15",
+      "status": "PASS",
+      "value": 29.5
+    },
+    {
+      "check": "Report station at node 34",
+      "status": "PASS",
+      "value": 132.49
+    },
+    {
+      "check": "Datum conversion",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "Takeoff row count preserved",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "Pier takeoff bytes unchanged",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "End-bent takeoff uses separate area",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "Exactly registered changes",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "All 264 other components preserved",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "Every resource preserved",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "110 errors removed with modules",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "Only inherited reference issues",
+      "status": "PASS",
+      "value": {
+        "report:LoadCombinations: unresolved link #CodeReferences.CodePage42;paragraphcoderef42": 2,
+        "report:LoadCombinations: unresolved link #CodeReferences.CodePage14;paragraphcoderef14": 1
+      }
+    },
+    {
+      "check": "All five requested modules removed",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "No stale active node labels: report:FBMPEndBent",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "No stale active node labels: report:FoundationModeling",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "No stale active node labels: report:PedBridge",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "Old 36 by 36 end-bent cap note removed",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "No duplicate native names: report:BridgeGeometry_2Beam",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "No duplicate native names: report:FBMPEndBent",
+      "status": "PASS",
+      "value": null
+    },
+    {
+      "check": "Report bytes preserved",
+      "status": "PASS",
+      "value": null
+    }
+  ],
+  "native_recalculation": "Not established by this script",
+  "analysis_rerun": false
+}

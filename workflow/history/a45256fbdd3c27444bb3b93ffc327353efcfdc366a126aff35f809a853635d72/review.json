@@ -1,0 +1,105 @@
+{
+  "candidate_sha256": "a45256fbdd3c27444bb3b93ffc327353efcfdc366a126aff35f809a853635d72",
+  "reviewer": "Codex - source/data-coherence review with native Blockpad observations; no human engineering sign-off",
+  "native_recalculation": true,
+  "native_visual_review": true,
+  "engineering_review": true,
+  "design_outcome": "not_applicable",
+  "external_analysis_disposition": "Accepted scope is the current cap/cage data record for both end bents. Source forces are an End Bent 1 snapshot only. Report XML hash 739f44c1d542464cfd536493ce1ed6cb240f98a75ed3e1188c6f6812742d6fe2 differs from the available same-named XML hash 744048c5c0dfa398ddc50f9cf14e51fca2d2a3a985a6c0e73680a35cce2d5811. Historical load-entry nodes 12/19 require reconciliation with bearing force stations at 15/34; exact axes, elevation, eccentricity and loads remain unverified. End Bent 2 actions absent. Four U-bar clashes, 48 pending/conditional checks and provisional pedestal/wall quantities remain explicit. No current model or final design adequacy is accepted.",
+  "external_analysis_status": "excluded_from_accepted_scope",
+  "inherited_issues_disposition": "The 110 stored errors (4 FBMPMinTip, 106 FeetintoDecimalFeet) and three unresolved LoadCombinations reference links are preserved without additions and explicitly excluded from this bounded data-record update. These and documented model/detailing issues prevent an all-project-coherence or completed-design claim.",
+  "evidence_files": [
+    {
+      "path": "evidence/coherence-review.md",
+      "sha256": "f0a9657394d08b13529cfaab3ecd172ac2665682c708ebaee24fa79960f6a5e6"
+    },
+    {
+      "path": "evidence/final-native-decision-log.jpg",
+      "sha256": "17632c6b9c1c494dd52931666e93151882ff7bf65cbaa5213f087177349ba95e"
+    },
+    {
+      "path": "evidence/final-native-foundation-scope.jpg",
+      "sha256": "ad7ed05ce56bd1a1ec3709b5035642499fe12ff0d4294119b51d6e6d7dd5cc28"
+    },
+    {
+      "path": "evidence/final-native-index.jpg",
+      "sha256": "da7fe1c55cce7b49a0c90aa6eca3e2959974b915ec79f86d90cd459262ebd600"
+    },
+    {
+      "path": "evidence/final-native-pile-scope.jpg",
+      "sha256": "39ed8e7fcc1ea42bc45e9b138d48c5198fdc1c1580c176d8ca2dac09899c16db"
+    },
+    {
+      "path": "evidence/final-native-quantities.jpg",
+      "sha256": "47c7ca5095cd1a13ab405859b43f4a3e9dde1d43338cf67ae6b7558be1ebc4ee"
+    },
+    {
+      "path": "evidence/independent_checks.json",
+      "sha256": "3d50774322fd3257b691b141f2f2ff95ea37c48860f1723d01611c0dc76c77db"
+    },
+    {
+      "path": "evidence/integration-check.json",
+      "sha256": "1b019fef340e90c6a25b072fe9923472f3397fe4b3bb13eea42a99ec49da6fc8"
+    },
+    {
+      "path": "evidence/native-review.md",
+      "sha256": "f70c6db1abeed3a08b1ca104fdbe1e79a5b1120a2ee5ef4f2f1c9231035d5d07"
+    },
+    {
+      "path": "evidence/review-02-unchanged-reports/native-bearing-chain.jpg",
+      "sha256": "a681ac0a2946bda3222cd6c66c8fbcba12a121aee406613f1565254ee7f4a859"
+    },
+    {
+      "path": "evidence/review-02-unchanged-reports/native-cap-width.jpg",
+      "sha256": "4494624ffc80d660d6373d93dc841e96349223ae5a07abd555c5fc2b11cb5219"
+    },
+    {
+      "path": "evidence/review-02-unchanged-reports/native-coherence.jpg",
+      "sha256": "2333c26b0bec23fd6b3d7c255ae46e5ef09163c0c2c452a69f8d55b4553eae2c"
+    },
+    {
+      "path": "evidence/review-02-unchanged-reports/native-coordinates.jpg",
+      "sha256": "cefb48e8853395ce31ff153addee7d96be027718de3bbdf2d024d0f32dfac995"
+    },
+    {
+      "path": "evidence/review-02-unchanged-reports/native-end-bent-schematic.jpg",
+      "sha256": "9e313ec18ecd1325c861cdcf13c78a819639624d2e50fe9c034a23f18be3191b"
+    },
+    {
+      "path": "evidence/review-02-unchanged-reports/native-entry.jpg",
+      "sha256": "d65f941b85cc39d4b3b7595e13545e57e1f1706593a7a438245ea9ad72edd310"
+    },
+    {
+      "path": "evidence/review-02-unchanged-reports/native-forces.jpg",
+      "sha256": "fe7ae61395f6b9444393e69e81ee3ccec0d1892cf6c6b3a97b775b6984cf0f05"
+    },
+    {
+      "path": "evidence/review-02-unchanged-reports/native-geometry-clearances.jpg",
+      "sha256": "149d69cb6465dfedf89f70cf0f137745760b1d785e041fd5c34b9ab8284aecb5"
+    },
+    {
+      "path": "evidence/review-02-unchanged-reports/native-geometry-inputs.jpg",
+      "sha256": "c5736845324631f619a6d9720106758c23614e825a67d45b6ed0c9d0a1556f27"
+    },
+    {
+      "path": "evidence/review-02-unchanged-reports/native-geometry-results.jpg",
+      "sha256": "3af754daa6b941e848564ac5e97e9dcd1c45c0187236f22d67d0aed895cc73fb"
+    },
+    {
+      "path": "evidence/review-02-unchanged-reports/native-materials-source.jpg",
+      "sha256": "f76931761e493963e106571eb338216bc50a4027bbf6548849b2bbd7e0c1ff0b"
+    },
+    {
+      "path": "evidence/review-02-unchanged-reports/native-steel-areas.jpg",
+      "sha256": "e9ca082875d1b0ea9fcb5421d11e4b866ad54473d00a924a6926ae6c4193d68f"
+    },
+    {
+      "path": "evidence/review-02-unchanged-reports/native-steel-inputs.jpg",
+      "sha256": "271898fee8da438cbcda2eba449f555bbb4e6be39682d17cd5bd0d675ca63d58"
+    },
+    {
+      "path": "evidence/review-02-unchanged-reports/native-transverse-schedule.jpg",
+      "sha256": "3b503ee86d324f3d961f5f0c0e43dcbaae48829dc162ae4d9e5a71b2ce69a054"
+    }
+  ]
+}

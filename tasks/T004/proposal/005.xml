@@ -1,0 +1,440 @@
+<spreadsheet name="QauntitiesBridge" title="Quantities - Bridge" unit="in" pagesize="816, 1056" colwidths="1: 107.48, 4: 66.64, 5: 66.64" margin="48,48,48,48">
+        <stylerule range="A12:A16" fontweight="bold"/>
+        <stylerule range="C5:D5" fontweight="bold"/>
+        <float>
+            <rectangle origin="6.459999999999999, 2.103215773700753, 0" dir="1.768131350047513, 0, 0" normal="-0, 0, 2.4103445463595756" height="1.3632157737007533" shapetype="Fill">
+                <image source="Resource116"/>
+            </rectangle>
+            <rectangle origin="6.640000000000001, 9.115984277166717, 0" dir="0.9825017516982841, 0, 0" normal="-0, 0, 2.078958258882328" height="2.1159842771667163" shapetype="Fill">
+                <image source="Resource118"/>
+            </rectangle>
+            <rectangle origin="9.290000000000001, 8.68375, 0" dir="3.125, 0, 0" normal="0, 0, 1" height="1.5937499999999991" shapetype="Fill">
+                <image source="Resource120"/>
+            </rectangle>
+            <rectangle origin="9.1, 1.8195833333333333, 0" dir="3.083333333333332, 0, 0" normal="0, 0, 1" height="0.9895833333333333" shapetype="Fill">
+                <image source="Resource121"/>
+            </rectangle>
+            <rectangle origin="7.84, 12.859746785532096, 0" dir="0.8681064885959469, 0, 0" normal="-0, 0, 2.960023308989587" height="3.4097467855320964" shapetype="Fill">
+                <image source="Resource122"/>
+            </rectangle>
+            <rectangle origin="4.749999999999999, 10.993749999999999, 0" dir="3.083333333333332, 0, 0" normal="0, 0, 1" height="1.5937499999999982" shapetype="Fill">
+                <image source="Resource123"/>
+            </rectangle>
+            <rectangle origin="6.659999999999998, 17.217471970072893, 0" dir="0.9657635422971644, 0, 0" normal="-0, 0, 3.8162349749761644" height="3.9515210585593916" shapetype="Fill">
+                <image source="Resource124"/>
+            </rectangle>
+            <rectangle origin="9.129999999999999, 15.844902772354553, 0" dir="2.424899648574778, 0, 0" normal="-0, 0, 2.82477232330633" height="1.1649027723545515" shapetype="Fill">
+                <image source="Resource125"/>
+            </rectangle>
+            <rectangle origin="6.124924496704272, 5.66101108327268, 0" dir="3.2794878238732856, 0, 0" normal="-0, 0, 1.4462904777859213" height="0.441011083272679" shapetype="Fill">
+                <image source="Resource117"/>
+            </rectangle>
+            <rectangle origin="9.47, 6.273750000000001, 0" dir="3.125, 0, 0" normal="0, 0, 1" height="1.5937500000000009" shapetype="Fill">
+                <image source="Resource127"/>
+            </rectangle>
+            <rectangle origin="8.899058162734534, 11.785454803907315, 0" dir="5.400241792577818, 0, 0" normal="-0, 0, 11.909989203701802" height="2.2054548039073154" shapetype="Fill">
+                <image source="Resource119"/>
+            </rectangle>
+            <rectangle origin="7.796182198650032, 17.100199062239938, 0" dir="1.1165509464986156, 0, 0" normal="0, 0, 4.022558327897325" height="3.6026643840226367" shapetype="Fill">
+                <image source="Resource128"/>
+            </rectangle>
+            <rectangle origin="4.74, 21.401512344733927, 0" dir="0.9031872941889167, 0, 0" normal="-0, 0, 3.993453770863128" height="4.421512344733927" shapetype="Fill">
+                <image source="Resource129"/>
+            </rectangle>
+            <rectangle origin="9.72, 20.29795172413793, 0" dir="2.3411793103448275, 0, 0" normal="-0, 0, 3.1557966878953647" height="1.347951724137932" shapetype="Fill">
+                <image source="Resource130"/>
+            </rectangle>
+            <rectangle origin="5.7299999999999995, 21.444922399963335, 0" dir="3.8401376907915834, 0, 0" normal="-0, 0, 14.189010772649285" height="3.694922399963332" shapetype="Fill">
+                <image source="Resource131"/>
+            </rectangle>
+            <rectangle origin="6.4300000000000015, 25.647916666666667, 0" dir="3.114583333333332, 0, 0" normal="0, 0, 1" height="0.9479166666666679" shapetype="Fill">
+                <image source="Resource132"/>
+            </rectangle>
+            <rectangle origin="4.8100000000000005, 24.5720714372119, 0" dir="0.9116172719715223, 0, 0" normal="-0, 0, 2.3994417832252717" height="2.632071437211895" shapetype="Fill">
+                <image source="Resource133"/>
+            </rectangle>
+            <rectangle origin="5.92, 24.61287794202998, 0" dir="4.2168160258905765, 0, 0" normal="-0, 0, 11.0601937399069" height="2.6228779420299766" shapetype="Fill">
+                <image source="Resource134"/>
+            </rectangle>
+            <rectangle origin="4.55, 33.181999999999995, 0" dir="2.044000000000003, 0, 0" normal="-0, 0, 2.0889680000000292" height="1.0220000000000127" shapetype="Fill">
+                <image source="Resource139"/>
+            </rectangle>
+            <rectangle origin="4.571770996368887, 31.96147343088225, 0" dir="6.523360084019849, 0, 0" normal="-0, 0, 11.39593738841141" height="1.7469428701824725" shapetype="Fill">
+                <image source="Resource140"/>
+            </rectangle>
+            <rectangle origin="4.94, 28.26923080898959, 0" dir="0.8257551130181557, 0, 0" normal="-0, 0, 1.9233742499225626" height="2.329230808989582" shapetype="Fill">
+                <image source="Resource136"/>
+            </rectangle>
+            <rectangle origin="5.914929874899577, 28.26260222231756, 0" dir="3.7878157086548727, 0, 0" normal="-0, 0, 8.949101810997362" height="2.362602222317559" shapetype="Fill">
+                <image source="Resource135"/>
+            </rectangle>
+            <rectangle origin="4.96, 29.556576513171127, 0" dir="2.366562437160667, 0, 0" normal="-0, 0, 2.8317730292594674" height="1.1965765131711237" shapetype="Fill">
+                <image source="Resource137"/>
+            </rectangle>
+            <rectangle origin="6.39, 4.11625, 0" dir="6.166666666666666, 0, 0" normal="0, 0, 1" height="1.65625" shapetype="Fill">
+                <image source="Resource126"/>
+            </rectangle>
+        </float>
+        <row>
+            <c fontweight="bold"><textvalue>Total Span</textvalue></c>
+            <c formula="BridgeGeometry_2Beam.Span_1+BridgeGeometry_2Beam.Span_2"><num>212.25 ft</num></c>
+        </row>
+        <row/>
+        <row/>
+        <row/>
+        <row>
+            <c fontweight="bold"><textvalue>FIB 36</textvalue></c>
+            <cell/>
+            <c><textvalue>Area</textvalue></c>
+            <c><textvalue>Volume</textvalue></c>
+            <c fontweight="bold"><textvalue>Final Volume</textvalue></c>
+        </row>
+        <row>
+            <cell/>
+            <cell/>
+            <c><num>5.6012 ft^2</num></c>
+            <c formula="C6*B1"><num>1188.8547 ft^3</num></c>
+        </row>
+        <row/>
+        <row>
+            <c fontweight="bold"><textvalue>2 FIB 36</textvalue></c>
+            <cell/>
+            <cell/>
+            <cell/>
+            <c formula="BridgeGeometry_2Beam.Beam_count*D6" background="#ABDB92"><num>2377.7094 ft^3</num></c>
+        </row>
+        <row/>
+        <row/>
+        <row/>
+        <row>
+            <c><textvalue>Beam 1 Haunch</textvalue></c>
+            <cell/>
+            <cell/>
+            <cell/>
+            <c background="#ABDB92" formula="BridgeGeometry_2Beam.Haunch_volume_perBeam"><num>92.91833333333335 ft^3</num></c>
+        </row>
+        <row/>
+        <row>
+            <c><textvalue>Beam 2 Haunch</textvalue></c>
+            <cell/>
+            <cell/>
+            <cell/>
+            <c background="#ABDB92" formula="BridgeGeometry_2Beam.Haunch_volume_perBeam"><num>92.91833333333335 ft^3</num></c>
+        </row>
+        <row/>
+        <row>
+            <c><textvalue>Unused - two-beam layout</textvalue></c>
+            <cell/>
+            <cell/>
+            <cell/>
+            <c background="#ABDB92" formula="0 ft^3"><num>0 ft^3</num></c>
+        </row>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row>
+            <c fontweight="bold"><textvalue>Bridge Deck</textvalue></c>
+            <cell/>
+            <c fontweight="bold"><textvalue>Area</textvalue></c>
+            <c fontweight="bold"><textvalue>Volume</textvalue></c>
+            <c fontweight="bold"><textvalue>Final Volume</textvalue></c>
+        </row>
+        <row>
+            <cell/>
+            <cell/>
+            <c formula="BridgeGeometry_2Beam.Deck_area"><num>6.791666666666666 ft^2</num></c>
+            <c formula="C26*B1"><num>1441.5312499999998 ft^3</num></c>
+            <c formula="D26" background="#ABDB92"><num>1441.5312499999998 ft^3</num></c>
+        </row>
+        <row/>
+        <row/>
+        <row>
+            <cell fontweight="bold"/>
+        </row>
+        <row>
+            <cell/>
+            <cell/>
+            <cell/>
+        </row>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row>
+            <c fontweight="bold"><textvalue>Bridge Barrier</textvalue></c>
+            <cell/>
+            <c fontweight="bold"><textvalue>Area</textvalue></c>
+            <c fontweight="bold"><textvalue>Volume</textvalue></c>
+            <c fontweight="bold"><textvalue>Final Volume</textvalue></c>
+        </row>
+        <row>
+            <cell/>
+            <cell/>
+            <c><num>2.1185 ft^2</num></c>
+            <c formula="C36*B1"><num>449.651625 ft^3</num></c>
+        </row>
+        <row/>
+        <row>
+            <c fontweight="bold"><textvalue>2 Barriers</textvalue></c>
+            <cell/>
+            <cell/>
+            <cell formula="2*D25"/>
+            <c formula="2*D36" background="#ABDB92"><num>899.30325 ft^3</num></c>
+            <c><textvalue>Actually linear feet</textvalue></c>
+        </row>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row>
+            <c fontweight="bold"><textvalue>Pier Cap</textvalue></c>
+            <cell/>
+            <c fontweight="bold"><textvalue>Area</textvalue></c>
+            <c fontweight="bold"><textvalue>Volume</textvalue></c>
+            <c fontweight="bold"><textvalue>Final Volume</textvalue></c>
+            <cell/>
+            <cell/>
+            <cell/>
+        </row>
+        <row>
+            <cell/>
+            <cell/>
+            <c formula="BridgeGeometry_2Beam.PierCap_width*BridgeGeometry_2Beam.PierCap_ht"><num>12 ft^2</num></c>
+            <c formula="PedBridgeWeights_2Beams.H37"><num>229.99999999999994 ft^3</num></c>
+            <c formula="D49"><num>229.99999999999994 ft^3</num></c>
+        </row>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row>
+            <c fontweight="bold"><textvalue>Pier Cheek Wall</textvalue></c>
+            <cell/>
+            <c fontweight="bold"><textvalue>Area</textvalue></c>
+            <c fontweight="bold"><textvalue>Volume</textvalue></c>
+            <c fontweight="bold"><textvalue>Final Volume</textvalue></c>
+        </row>
+        <row>
+            <cell/>
+            <cell/>
+            <c><num>16.5962 ft^2</num></c>
+            <c formula="C66*1 ft"><num>16.5962 ft^3</num></c>
+        </row>
+        <row/>
+        <row>
+            <c fontweight="bold"><textvalue>2 Pier Cheek Walls</textvalue></c>
+            <cell/>
+            <cell/>
+            <cell/>
+            <c formula="2*D66" background="#ABDB92"><num>33.1924 ft^3</num></c>
+        </row>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row>
+            <cell/>
+            <cell/>
+            <cell/>
+        </row>
+        <row/>
+        <row>
+            <cell/>
+            <cell/>
+            <cell/>
+        </row>
+        <row>
+            <c fontweight="bold"><textvalue>Crash Wall</textvalue></c>
+            <cell/>
+            <c fontweight="bold"><textvalue>Area</textvalue></c>
+            <c fontweight="bold"><textvalue>Volume</textvalue></c>
+            <c fontweight="bold"><textvalue>Final Volume</textvalue></c>
+        </row>
+        <row>
+            <cell/>
+            <cell/>
+            <c formula="46.0859 ft^2"><num>46.0859 ft^2</num></c>
+            <c formula="C84*18'3&quot;"><num>841.067675 ft^3</num></c>
+            <c formula="D84" background="#ABDB92"><num>841.067675 ft^3</num></c>
+        </row>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row height="34.53333333333154">
+            <textcell fontweight="bold" capture="False">
+                <paragraph>End Bent Caps ONLY</paragraph>
+            </textcell>
+            <cell/>
+            <c fontweight="bold"><textvalue>Area</textvalue></c>
+            <c fontweight="bold"><textvalue>Volume</textvalue></c>
+            <c fontweight="bold"><textvalue>Final Volume</textvalue></c>
+        </row>
+        <row>
+            <cell/>
+            <cell/>
+            <c formula="BridgeGeometry_2Beam.EndBentCap_area to ft^2" />
+            <c formula="BridgeGeometry_2Beam.EndBentCap_volume to ft^3" valueformat="RoundedNumber(1, 3, {PriorityUnits: []})" />
+        </row>
+        <row/>
+        <row>
+            <c fontweight="bold"><textvalue>2 End Bents</textvalue></c>
+            <cell/>
+            <cell/>
+            <cell/>
+            <c formula="BridgeGeometry_2Beam.EndBent_count*D104 to ft^3" background="#EFF7F1" />
+        </row>
+        <row/>
+        <row><textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="9">Backwalls excluded: final geometry pending. Old 14.3592-ft² × 19-ft-3-in combined allowance is superseded. Adjacent embedded sketches are historical reference.</paragraph></textcell></row>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row>
+            <c fontweight="bold"><textvalue>End Bent Cheek Wall</textvalue></c>
+            <cell/>
+            <c fontweight="bold"><textvalue>Area</textvalue></c>
+            <c fontweight="bold"><textvalue>Volume</textvalue></c>
+            <c fontweight="bold"><textvalue>Final Volume</textvalue></c>
+        </row>
+        <row>
+            <cell/>
+            <cell/>
+            <c><num>10.7227 ft^2</num></c>
+            <c formula="C121*8&quot;"><num>7.148466666666666 ft^3</num></c>
+        </row>
+        <row/>
+        <row>
+            <c fontweight="bold"><textvalue>4 Cheek Walls</textvalue></c>
+            <cell/>
+            <cell/>
+            <cell/>
+            <c formula="4*D121"><num>28.593866666666663 ft^3</num></c>
+        </row>
+        <row/>
+        <row><textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="9">DEFERRED BY USER: legacy cheek-wall quantity remains provisional until the end-bent wall detail is supplied.</paragraph></textcell></row>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row>
+            <c fontweight="bold"><textvalue>Pier Pedestals</textvalue></c>
+            <cell/>
+            <c fontweight="bold"><textvalue>Area</textvalue></c>
+            <c fontweight="bold"><textvalue>Volume</textvalue></c>
+            <c fontweight="bold"><textvalue>Final Volume</textvalue></c>
+        </row>
+        <row>
+            <cell/>
+            <cell/>
+            <c formula="BridgeGeometry_2Beam.Pedestal_area"><num>1.74609375 ft^2</num></c>
+            <c formula="C141*BridgeGeometry_2Beam.Pedestal_length_pier"><num>6.984375 ft^3</num></c>
+        </row>
+        <row/>
+        <row/>
+        <row>
+            <c><textvalue>2 Pier Pedestals</textvalue></c>
+            <cell/>
+            <cell/>
+            <cell/>
+            <c formula="BridgeGeometry_2Beam.Pedestal_count_pier*D141"><num>13.96875 ft^3</num></c>
+        </row>
+        <row>
+            <cell/>
+            <c><textvalue>6-in height; geometry references the two-beam module.</textvalue></c>
+        </row>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row>
+            <c fontweight="bold"><textvalue>End Bent Pedestals</textvalue></c>
+            <cell/>
+            <c fontweight="bold"><textvalue>Area</textvalue></c>
+            <c fontweight="bold"><textvalue>Volume</textvalue></c>
+            <c fontweight="bold"><textvalue>Final Volume</textvalue></c>
+        </row>
+        <row>
+            <cell/>
+            <cell/>
+            <c formula="BridgeGeometry_2Beam.EndBentPedestal_area"></c>
+            <c formula="C156*BridgeGeometry_2Beam.Pedestal_length_endBent"></c>
+        </row>
+        <row/>
+        <row/>
+        <row>
+            <c><textvalue>4 End Bent Pedestals</textvalue></c>
+            <cell/>
+            <cell/>
+            <cell/>
+            <c formula="BridgeGeometry_2Beam.Pedestal_count_endBent*D156"><num>27.9375 ft^3</num></c>
+        </row>
+        <row>
+            <cell/>
+            <c><textvalue>Confirmed end-bent length: 30 in = 42-in cap less 12-in backwall; separate 6-in-high section. Pier pedestal remains 48 in.</textvalue></c>
+        </row>
+    </spreadsheet>

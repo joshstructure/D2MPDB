@@ -1,0 +1,1190 @@
+{
+  "replacements": [
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "formula=\"Pedestal_length_endBent = 4 ft\"",
+      "new": "formula=\"Pedestal_length_endBent = EndBentCap_width-EndBentPedestal_fromRear to in\"",
+      "count": 1
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "<expbody>Pedestal_length_endBent = 4 ft</expbody>",
+      "new": "<expbody>Pedestal_length_endBent = EndBentCap_width-EndBentPedestal_fromRear to in</expbody>",
+      "count": 1
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "Retained end-bent pedestal length for quantities — verify.",
+      "new": "User response: 42-in cap less 12-in backwall gives 30 in along the beam. The pier pedestal remains 48 in.",
+      "count": 1
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "formula=\"Pedestal_volume_endBent = Pedestal_count_endBent*Pedestal_area*Pedestal_length_endBent to ft^3\"",
+      "new": "formula=\"Pedestal_volume_endBent = Pedestal_count_endBent*EndBentPedestal_area*Pedestal_length_endBent to ft^3\"",
+      "count": 1
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "<expbody>Pedestal_volume_endBent = Pedestal_count_endBent*Pedestal_area*Pedestal_length_endBent to ft^3</expbody>",
+      "new": "<expbody>Pedestal_volume_endBent = Pedestal_count_endBent*EndBentPedestal_area*Pedestal_length_endBent to ft^3</expbody>",
+      "count": 1
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "formula=\"EndBent_BearingPlane_CapCG = EndBentCap_depth/2+Pedestal_ht+Bearing_pad_thickness+Bearing_separatePlateThickness to ft in\"",
+      "new": "formula=\"EndBent_BearingPlane_CapCG = EndBentCap_depth/2+EndBentPedestal_ht+Bearing_pad_thickness+Bearing_separatePlateThickness to ft in\"",
+      "count": 1
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "<expbody>EndBent_BearingPlane_CapCG = EndBentCap_depth/2+Pedestal_ht+Bearing_pad_thickness+Bearing_separatePlateThickness to ft in</expbody>",
+      "new": "<expbody>EndBent_BearingPlane_CapCG = EndBentCap_depth/2+EndBentPedestal_ht+Bearing_pad_thickness+Bearing_separatePlateThickness to ft in</expbody>",
+      "count": 1
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "Bearing plane above the end-bent cap centroid, using the existing 6-in pedestal and Type F pad.",
+      "new": "Bearing plane above the end-bent cap centroid, using the separate 6-in end-bent pedestal and Type F pad.",
+      "count": 1
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "Checks the pad dimension chain only. The retained 48-in pedestal footprint exceeds the current cap width and remains unresolved; this check does not establish pedestal fit.",
+      "new": "Checks the pad dimension chain only. The end-bent pedestal occupies the remaining 30 in between the backwall front and cap front; the pier pedestal remains 48 in.",
+      "count": 1
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "* Pedestal outline is illustrative. Its retained 48-in longitudinal footprint exceeds the current 42-in cap width. The bearing-offset calculation uses the pad and backwall chain, not that unresolved footprint. Rear backwall face remains adopted flush with cap rear face.",
+      "new": "End-bent pedestal: 30 in along the beam, from the 12-in backwall front to the 42-in cap front. Rear backwall face is adopted flush with the cap rear face. Vertical drawing proportions are schematic; live dimensions govern.",
+      "count": 1
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "Both end bents: geometry and entered reinforcement. Forces and analysis provenance: End Bent 1 only.",
+      "new": "Both end bents follow the controlling End Bent 1 geometry and reinforcement by user direction. Source forces are from End Bent 1.",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "formula=\"EB_Node_near = 12\"",
+      "new": "formula=\"EB_Node_near = 15\"",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "<expbody>EB_Node_near = 12</expbody>",
+      "new": "<expbody>EB_Node_near = 15</expbody>",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "formula=\"EB_Node_far = 19\"",
+      "new": "formula=\"EB_Node_far = 34\"",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "<expbody>EB_Node_far = 19</expbody>",
+      "new": "<expbody>EB_Node_far = 34</expbody>",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "Toward node 19",
+      "new": "Toward node 34",
+      "count": 8
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "Toward node 12",
+      "new": "Toward node 15",
+      "count": 2
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "Node 12 is",
+      "new": "Node 15 is",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "node 19 is",
+      "new": "node 34 is",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "nodes 12 and 19",
+      "new": "nodes 15 and 34",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "numbers remain 12 and 19",
+      "new": "numbers remain 15 and 34",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "END BENT 1 | SPAN 1 | LEGACY NODE MAP — VERIFY BEFORE ENTRY",
+      "new": "END BENT 1 | SPAN 1 | NODES 15 AND 34",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "MODEL COHERENCE OPEN: the load-entry tables retain legacy nodes 12/19. The report audit places the bearing force stations at nodes 15/34. Confirm node mapping, axes, node elevation, longitudinal eccentricity and load inputs against the exact analyzed model before using these tables. The report XML fingerprint differs from the available same-named XML.",
+      "new": "CURRENT MODEL BASIS: the user confirms the cap report contains the latest FBMP model. Loaded nodes are 15 and 34; added model nodes changed their numbering. Physical axes, node-line choice, elevation and load-transfer conventions are retained. Both end bents follow the controlling End Bent 1 design. The different same-named Downloads XML is not the report source.",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "formula=\"EB_CheckSpan = &quot;REMAP REQUIRED - LEGACY 12 / 19; REPORT BEARING STATIONS AT 15 / 34&quot;\"",
+      "new": "formula=\"EB_CheckSpan = If(EB_SpanNumber == 1,&quot;END BENT 1 - NODES 15 / 34&quot;,&quot;SPAN SELECTION CHANGED - REMAP NODES&quot;)\"",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "<expbody>EB_CheckSpan = \"REMAP REQUIRED - LEGACY 12 / 19; REPORT BEARING STATIONS AT 15 / 34\"</expbody>",
+      "new": "<expbody>EB_CheckSpan = If(EB_SpanNumber == 1,\"END BENT 1 - NODES 15 / 34\",\"SPAN SELECTION CHANGED - REMAP NODES\")</expbody>",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "formula=\"EB_CheckFootprint = If(BridgeGeometry_2Beam.Pedestal_length_endBent &lt;= BridgeGeometry_2Beam.EndBentCap_width,&quot;FOOTPRINT FITS CAP WIDTH&quot;,&quot;REVISE LEGACY 4-FT PEDESTAL FOOTPRINT&quot;)\"",
+      "new": "formula=\"EB_CheckFootprint = If(And(BridgeGeometry_2Beam.Pedestal_length_endBent &gt; 0 in,BridgeGeometry_2Beam.EndBentPedestal_fromRear+BridgeGeometry_2Beam.Pedestal_length_endBent &lt;= BridgeGeometry_2Beam.EndBentCap_width),&quot;FITS AVAILABLE CAP WIDTH&quot;,&quot;REVISE END-BENT FOOTPRINT&quot;)\"",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "<expbody>EB_CheckFootprint = If(BridgeGeometry_2Beam.Pedestal_length_endBent &lt;= BridgeGeometry_2Beam.EndBentCap_width,\"FOOTPRINT FITS CAP WIDTH\",\"REVISE LEGACY 4-FT PEDESTAL FOOTPRINT\")</expbody>",
+      "new": "<expbody>EB_CheckFootprint = If(And(BridgeGeometry_2Beam.Pedestal_length_endBent &gt; 0 in,BridgeGeometry_2Beam.EndBentPedestal_fromRear+BridgeGeometry_2Beam.Pedestal_length_endBent &lt;= BridgeGeometry_2Beam.EndBentCap_width),\"FITS AVAILABLE CAP WIDTH\",\"REVISE END-BENT FOOTPRINT\")</expbody>",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "formula=\"EB_PedestalDC = BridgeGeometry_2Beam.Pedestal_area*BridgeGeometry_2Beam.Pedestal_length_endBent*EB_gammaConcrete to kip\"",
+      "new": "formula=\"EB_PedestalDC = BridgeGeometry_2Beam.EndBentPedestal_area*BridgeGeometry_2Beam.Pedestal_length_endBent*EB_gammaConcrete to kip\"",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "<expbody>EB_PedestalDC = BridgeGeometry_2Beam.Pedestal_area*BridgeGeometry_2Beam.Pedestal_length_endBent*EB_gammaConcrete to kip</expbody>",
+      "new": "<expbody>EB_PedestalDC = BridgeGeometry_2Beam.EndBentPedestal_area*BridgeGeometry_2Beam.Pedestal_length_endBent*EB_gammaConcrete to kip</expbody>",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "Below-pad weights belong to the end bent, not the pier. The following provisional quantities use one end-bent pedestal and one end-bent cheek wall per bearing from the existing journal. They are excluded from the master DC rows.",
+      "new": "Below-pad weights belong to the end bent. Each bearing uses the separate 30-in end-bent pedestal. The cheek-wall quantity remains provisional and is deferred by the user. These local weights are excluded from the master superstructure DC rows.",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "The legacy end-bent pedestal quantity uses a 4-ft longitudinal length, longer than the new 3-ft cap width. Its weight remains a provisional source quantity until the footprint is reconciled. Enter the confirmed length in Bridge Geometry; the quantity and these loads will update together. Apply local dead weights once at their actual centroids. The table lists magnitudes only; centroid eccentricities and transfer moments for these provisional below-pad weights are not established.",
+      "new": "The end-bent pedestal length is 30 in = 42-in cap minus 12-in backwall. Its concrete quantity and dead weight follow the live end-bent geometry. The longitudinal centroid is 27 in from the cap rear face, 6 in toward the span from the centered pile line. The table lists gravity magnitudes only: apply local weights once at their own centroids and include the corresponding moment if transferring to another line. Cheek-wall geometry and centroid remain deferred. The report analysis has not been rerun by this journal update.",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "Geometry link: rear-face inset + backwall thickness + adopted beam-end gap + bearing setback − half the cap width. Pile line is centered; bearing line is toward the span. The pedestal outline is illustrative pending the existing footprint correction.",
+      "new": "Geometry link: rear-face inset + backwall thickness + beam-end gap + bearing setback minus half the cap width. Pile line is centered; bearing line is toward the span. The pedestal occupies 30 in from the backwall front to the cap front; vertical proportions are schematic.",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "Use FBMP modeled self-weight once. Cap is 36 in × 36 in; cap length is a separate model input.",
+      "new": "Use FBMP modeled self-weight once. Current cap: 42 in wide × 36 in deep × 17 ft 8 in long, linked to Bridge Geometry. Keep unmodeled local concrete weights separate.",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "<table name=\"EBUnresolvedApplications\" capture=\"False\" colwidths=\"1:155, 2:445\">\n                <stylerule range=\"A1:B6\" fontfamily=\"Times New Roman\" fontsize=\"9.5\" valueformat=\"RoundedNumber(3, 3, {PriorityUnits: []})\" border=\"Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.7, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.35, &quot;#CCD6D0&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.35, &quot;#CCD6D0&quot;);\" horzalign=\"Center\" vertalign=\"Center\"/>\n                <stylerule range=\"A1:B1\" background=\"#DCE7F3\" fontweight=\"bold\"/>\n                <stylerule range=\"A2:B6\" background=\"#F1F5FA\"/>\n                <row>\n                    <c capture=\"False\"><textvalue>Action</textvalue></c>\n                    <c capture=\"False\"><textvalue>Treatment in this entry</textvalue></c>\n                </row>\n                <row>\n                    <c capture=\"False\"><textvalue>Cap / piles / modeled concrete self-weight</textvalue></c>\n                    <c capture=\"False\"><textvalue>Use FBMP modeled self-weight once. Current cap: 42 in wide × 36 in deep × 17 ft 8 in long, linked to Bridge Geometry. Keep unmodeled local concrete weights separate.</textvalue></c>\n                </row>\n                <row>\n                    <c capture=\"False\"><textvalue>Backwall and other unmodeled concrete</textvalue></c>\n                    <c capture=\"False\"><textvalue>Add actual unmodeled weights at their locations. The old combined cap/backwall quantity does not establish the revised geometry.</textvalue></c>\n                </row>\n                <row>\n                    <c capture=\"False\"><textvalue>Direct cap / backwall wind</textvalue></c>\n                    <c capture=\"False\"><textvalue>Separate application at actual exposed-face centroids. Pier cap/wall wind values are not transferred to this end bent. Exposed areas and centroids require end-bent geometry.</textvalue></c>\n                </row>\n                <row>\n                    <c capture=\"False\"><textvalue>Local thickened deck-end concrete</textvalue></c>\n                    <c capture=\"False\"><textvalue>Separate additional DC when detailed; the source normal slab/haunch loads do not include this unresolved local quantity.</textvalue></c>\n                </row>\n                <row>\n                    <c capture=\"False\"><textvalue>Earth pressure, surcharge and restraint actions</textvalue></c>\n                    <c capture=\"False\"><textvalue>Separate applicable end-bent cases; this table is the source DC / PL / DW / wind subset.</textvalue></c>\n                </row>\n            </table>",
+      "new": "<table name=\"EBUnresolvedApplications\" capture=\"False\" colwidths=\"1:155, 2:445\">\n                <stylerule range=\"A1:B6\" fontfamily=\"Times New Roman\" fontsize=\"9.5\" valueformat=\"RoundedNumber(3, 3, {PriorityUnits: []})\" border=\"Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.7, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.35, &quot;#CCD6D0&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.35, &quot;#CCD6D0&quot;);\" horzalign=\"Center\" vertalign=\"Center\"/>\n                <stylerule range=\"A1:B1\" background=\"#DCE7F3\" fontweight=\"bold\"/>\n                <stylerule range=\"A2:B6\" background=\"#F1F5FA\"/>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9.5\" leftindent=\"0\" spacingafter=\"3\">Action</paragraph></textcell>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9.5\" leftindent=\"0\" spacingafter=\"3\">Treatment in this entry</paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9.5\" leftindent=\"0\" spacingafter=\"3\">Cap / piles / modeled concrete self-weight</paragraph></textcell>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9.5\" leftindent=\"0\" spacingafter=\"3\">Use FBMP modeled self-weight once. Current cap: 42 in wide × 36 in deep × 17 ft 8 in long, linked to Bridge Geometry. Keep unmodeled local concrete weights separate.</paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9.5\" leftindent=\"0\" spacingafter=\"3\">Backwall and other unmodeled concrete</paragraph></textcell>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9.5\" leftindent=\"0\" spacingafter=\"3\">Add actual unmodeled weights at their locations. The old combined cap/backwall quantity does not establish the revised geometry.</paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9.5\" leftindent=\"0\" spacingafter=\"3\">Direct cap / backwall wind</paragraph></textcell>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9.5\" leftindent=\"0\" spacingafter=\"3\">Separate application at actual exposed-face centroids. Pier cap/wall wind values are not transferred to this end bent. Exposed areas and centroids require end-bent geometry.</paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9.5\" leftindent=\"0\" spacingafter=\"3\">Local thickened deck-end concrete</paragraph></textcell>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9.5\" leftindent=\"0\" spacingafter=\"3\">Separate additional DC when detailed; the source normal slab/haunch loads do not include this unresolved local quantity.</paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9.5\" leftindent=\"0\" spacingafter=\"3\">Earth pressure, surcharge and restraint actions</paragraph></textcell>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9.5\" leftindent=\"0\" spacingafter=\"3\">Separate applicable end-bent cases; this table is the source DC / PL / DW / wind subset.</paragraph></textcell>\n                </row>\n            </table>",
+      "count": 1
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "[1.3+.07*BridgeGeometry_2Beam.EndBent_bearingCL_fromRear/(1 in)-.48,1.3+.07*BridgeGeometry_2Beam.EndBent_bearingCL_fromRear/(1 in)+.48,1.3+.07*BridgeGeometry_2Beam.EndBent_bearingCL_fromRear/(1 in)+.48,1.3+.07*BridgeGeometry_2Beam.EndBent_bearingCL_fromRear/(1 in)-.48,1.3+.07*BridgeGeometry_2Beam.EndBent_bearingCL_fromRear/(1 in)-.48]",
+      "new": "[1.3+.07*BridgeGeometry_2Beam.EndBentPedestal_fromRear/(1 in),1.3+.07*(BridgeGeometry_2Beam.EndBentPedestal_fromRear+BridgeGeometry_2Beam.Pedestal_length_endBent)/(1 in),1.3+.07*(BridgeGeometry_2Beam.EndBentPedestal_fromRear+BridgeGeometry_2Beam.Pedestal_length_endBent)/(1 in),1.3+.07*BridgeGeometry_2Beam.EndBentPedestal_fromRear/(1 in),1.3+.07*BridgeGeometry_2Beam.EndBentPedestal_fromRear/(1 in)]",
+      "count": 1
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "6-in pedestal*",
+      "new": "6-in pedestal",
+      "count": 1
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "origin=\"4.2,2.76,0\"",
+      "new": "origin=\"4.65,2.76,0\"",
+      "count": 1
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "[1.3+.07*BridgeGeometry_2Beam.EndBent_bearingCL_fromRear/(1 in)+.48,4.1],[2.96,2.82]",
+      "new": "[1.3+.07*(BridgeGeometry_2Beam.EndBentPedestal_fromRear+BridgeGeometry_2Beam.Pedestal_length_endBent)/(1 in),4.55],[2.96,2.82]",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "[1.3+.07*BridgeGeometry_2Beam.EndBent_bearingCL_fromRear/(1 in)-.48,1.3+.07*BridgeGeometry_2Beam.EndBent_bearingCL_fromRear/(1 in)+.48,1.3+.07*BridgeGeometry_2Beam.EndBent_bearingCL_fromRear/(1 in)+.48,1.3+.07*BridgeGeometry_2Beam.EndBent_bearingCL_fromRear/(1 in)-.48,1.3+.07*BridgeGeometry_2Beam.EndBent_bearingCL_fromRear/(1 in)-.48]",
+      "new": "[1.3+.07*BridgeGeometry_2Beam.EndBentPedestal_fromRear/(1 in),1.3+.07*(BridgeGeometry_2Beam.EndBentPedestal_fromRear+BridgeGeometry_2Beam.Pedestal_length_endBent)/(1 in),1.3+.07*(BridgeGeometry_2Beam.EndBentPedestal_fromRear+BridgeGeometry_2Beam.Pedestal_length_endBent)/(1 in),1.3+.07*BridgeGeometry_2Beam.EndBentPedestal_fromRear/(1 in),1.3+.07*BridgeGeometry_2Beam.EndBentPedestal_fromRear/(1 in)]",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "6-in pedestal*",
+      "new": "6-in pedestal",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "origin=\"4.2,2.76,0\"",
+      "new": "origin=\"4.65,2.76,0\"",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "[1.3+.07*BridgeGeometry_2Beam.EndBent_bearingCL_fromRear/(1 in)+.48,4.1],[2.96,2.82]",
+      "new": "[1.3+.07*(BridgeGeometry_2Beam.EndBentPedestal_fromRear+BridgeGeometry_2Beam.Pedestal_length_endBent)/(1 in),4.55],[2.96,2.82]",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "[1.3+.07*BridgeGeometry_2Beam.EndBent_pileCL_fromRear/(1 in)-.28,1.3+.07*BridgeGeometry_2Beam.EndBent_pileCL_fromRear/(1 in)+.28,1.3+.07*BridgeGeometry_2Beam.EndBent_pileCL_fromRear/(1 in)+.28,1.3+.07*BridgeGeometry_2Beam.EndBent_pileCL_fromRear/(1 in)-.28,1.3+.07*BridgeGeometry_2Beam.EndBent_pileCL_fromRear/(1 in)-.28],[0.7,0.7,1.55,1.55,0.7]",
+      "new": "[1.3+.07*BridgeGeometry_2Beam.EndBent_pileCL_fromRear/(1 in)-.035*BridgeGeometry_2Beam.EndBent_pileWidth/(1 in),1.3+.07*BridgeGeometry_2Beam.EndBent_pileCL_fromRear/(1 in)+.035*BridgeGeometry_2Beam.EndBent_pileWidth/(1 in),1.3+.07*BridgeGeometry_2Beam.EndBent_pileCL_fromRear/(1 in)+.035*BridgeGeometry_2Beam.EndBent_pileWidth/(1 in),1.3+.07*BridgeGeometry_2Beam.EndBent_pileCL_fromRear/(1 in)-.035*BridgeGeometry_2Beam.EndBent_pileWidth/(1 in),1.3+.07*BridgeGeometry_2Beam.EndBent_pileCL_fromRear/(1 in)-.035*BridgeGeometry_2Beam.EndBent_pileWidth/(1 in)],[0.7,0.7,1.55+1.3*BridgeGeometry_2Beam.EndBent_pileEmbed/BridgeGeometry_2Beam.EndBentCap_depth,1.55+1.3*BridgeGeometry_2Beam.EndBent_pileEmbed/BridgeGeometry_2Beam.EndBentCap_depth,0.7]",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "Geometry / cage",
+      "new": "Common end-bent design",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "Applies to both end bents by user confirmation. Shared dimensions are in Bridge Geometry.",
+      "new": "Both end bents follow the controlling End Bent 1 configuration by user direction; shared dimensions are in Bridge Geometry.",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "End Bent 1 only. Independent envelopes; maximum moment, shear and torque are not a concurrent action vector.",
+      "new": "Latest model per user: End Bent 1 controls the common design. Independent envelope maxima are not a concurrent action vector.",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "DETAILING SCREEN: 0 failed scalar checks; 48 pending/conditional checks; U-bar conflicts at R2, R4, R6 and R8.",
+      "new": "Original report: 0 failed scalar checks, 48 pending/conditional checks. Current dispositions below exclude Service III and record field-adjusted U hooks; source results have not been rerun.",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "All stations below are inches from the left cap end. Each run uses #4 bars at 6-in pitch, global shear basis G. Nineteen closed hoops plus sixteen open-bottom U-bars give 35 transverse bars. Development is unconfirmed for every run. U ends use 90-degree bends, 6-in straight tails and 3-in inside bend diameter; these ends conflict with pile/clearance envelopes in the source.",
+      "new": "All stations are inches from the left cap end. Each run uses #4 bars at 6-in pitch, global shear basis G: 19 closed hoops and 16 open-bottom U-bars. The source uses 90-degree U ends, 6-in tails and 3-in inside bend diameter. User direction: field bend the potentially interfering hooks to provide pile clearance. The table retains the original as-drawn screening; revised hook coordinates and development checks are not supplied.",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "PILE CLASH / development pending",
+      "new": "As drawn: clash; field-adjust hooks",
+      "count": 4
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "Service III / fatigue",
+      "new": "Original Service III / fatigue",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "Stored zero placeholders are not verified actions",
+      "new": "Original placeholders only. Current Service III: N/A; fatigue remains pending.",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "Source check summary: largest available D/C = 0.966155 for B actual row spacing / shrinkage. This passing scalar ratio does not close the 48 pending/conditional checks. Axial force, weak-axis bending and lateral shear are outside the sectional calculation. End Bent 2 demands and model currency require separate verification.",
+      "new": "Original source summary: maximum available D/C = 0.966155 for B row spacing / shrinkage, with 48 pending/conditional checks. This historical count is unchanged because no source calculation was rerun. Current user basis: Service III is not applicable to the nonprestressed substructure; Strength III and Service I remain applicable. Fatigue and remaining detailing/load-path checks retain their separate status. Axial force, weak-axis bending and lateral shear remain outside the source sectional calculation. Both end bents follow the controlling End Bent 1 design by user direction.",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "Live journal chain updates with 42-in width. Verify actual XML offsets and node mapping before model entry.",
+      "new": "Loaded nodes updated to 15/34 following the user-confirmed model renumbering. The live 42-in cap bearing chain and existing physical axes/elevation conventions are retained.",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "48-in retained longitudinal footprint exceeds the 42-in cap; revised footprint not supplied. Related pedestal dead weight remains provisional.",
+      "new": "Resolved: separate 30-in end-bent pedestal, 42-in cap less 12-in backwall. Live quantities and local pedestal weight updated. Pier pedestal remains 48 in.",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "Legacy combined cap/backwall allowance is superseded. Cap volume is separated; backwall volume is unresolved by this cap-only report.",
+      "new": "Deferred by user. Cap volume remains separate; backwall and cheek-wall final quantities remain open.",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "R2/R4/R6/R8 pile conflicts; development, cutoff, anchorage and closure checks remain open.",
+      "new": "User directs field adjustment of U hooks at potential pile conflicts. Original R2/R4/R6/R8 clash flags describe the as-drawn cage; revised geometry, development, anchorage and closure verification remain open.",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "Service III, fatigue, code/exposure basis, force zones, D-regions and omitted force components remain open.",
+      "new": "Service III is N/A for the current nonprestressed substructure per user. Strength III is retained. Fatigue, code/exposure basis, force zones, D-regions and omitted action components remain separate open checks.",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "Report snapshot has its own XML identity. Available same-named XML differs; no verified current model/input pair. End Bent 2 forces are not provided.",
+      "new": "User confirms the report contains the latest FBMP model. Its recorded hash identifies the accepted source; the different Downloads XML was not substituted. Both end bents use the controlling End Bent 1 configuration; no separate End Bent 2 action vector is claimed.",
+      "count": 1
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "old": "110 stored errors in FBMPMinTip and FeetintoDecimalFeet; three broken LoadCombinations reference links. Unchanged and outside this data update.",
+      "new": "Retired FBMP Min Tip, Feet and Inches, Metric to Inches, Scratch and CAD modules removed by user direction, including their 110 stored errors. Three preexisting LoadCombinations reference links remain unresolved.",
+      "count": 1
+    },
+    {
+      "component": "spreadsheet:QauntitiesBridge",
+      "old": "PROVISIONAL: 48-in pedestal length exceeds 42-in cap. Revise footprint before final quantities.",
+      "new": "Confirmed end-bent length: 30 in = 42-in cap less 12-in backwall; separate 6-in-high section. Pier pedestal remains 48 in.",
+      "count": 1
+    },
+    {
+      "component": "spreadsheet:QauntitiesBridge",
+      "old": "PROVISIONAL: legacy cheek-wall geometry; update with the end-bent detail.",
+      "new": "DEFERRED BY USER: legacy cheek-wall quantity remains provisional until the end-bent wall detail is supplied.",
+      "count": 1
+    },
+    {
+      "component": "report:FoundationModeling",
+      "old": "Both end bents use the shared square-pile geometry in Bridge Geometry. The p-multiplier discussion below remains for pier pipe piles. The End Bent 1 report confirms its recorded cap geometry but does not establish a current journal-to-analysis input pair. Verify the exact XML identity, bearing nodes, axes, eccentricities, pedestal/backwall dead loads and convergence before relying on transferred results.",
+      "new": "Both end bents follow the controlling End Bent 1 configuration by user direction. The user confirms the cap report contains the latest FBMP model; loaded nodes are 15 and 34 after model refinement. Shared square-pile geometry and the separate 30-in end-bent pedestal are recorded in Bridge Geometry. The p-multiplier discussion below remains for pier pipe piles. The different same-named Downloads XML is not the source model. This update does not rerun FBMP or verify raw input loads absent from the report; backwall and cheek-wall quantities remain deferred.",
+      "count": 1
+    },
+    {
+      "component": "report:FoundationModeling",
+      "old": "End-bent load entry: nodes 12 and 19",
+      "new": "End-bent load entry: nodes 15 and 34",
+      "count": 1
+    },
+    {
+      "component": "report:PedBridge",
+      "old": "FBMP Entry - End Bent (legacy node map; review required)",
+      "new": "FBMP Entry - End Bent (15 / 34)",
+      "count": 1
+    },
+    {
+      "component": "report:PedBridge",
+      "old": "Revision: 30 September 2026. End-bent input uses the user-specified nodes 12 and 19, existing bearing spacing and a 36-in × 36-in cap. The end-bent module lists its remaining local geometry and quantity assumptions explicitly.",
+      "new": "Revision: 8 October 2026, coherence responses. End-bent input uses loaded nodes 15 and 34, 103-in bearing spacing and a 42-in-wide by 36-in-deep cap. Both end bents follow the controlling configuration. End-bent pedestals are 30 in long; pier pedestals remain 48 in. Deferred wall quantities and remaining design checks are identified in the current record.",
+      "count": 1
+    },
+    {
+      "component": "report:PedBridge",
+      "old": "Geometry and current cage are recorded for both end bents. Open design, pedestal/backwall and analysis-provenance items remain listed in the design record.",
+      "new": "Both end bents follow the controlling End Bent 1 configuration. User responses applied: 30-in end-bent pedestals, nodes 15/34, latest report model, field-adjusted U hooks and Service III N/A. Wall quantities are deferred; remaining design checks are listed in the record.",
+      "count": 1
+    },
+    {
+      "component": "report:DecisionLog",
+      "old": "</report>",
+      "new": "\n<section name=\"EndBentResponses20261008\" capture=\"False\" hide=\"false\"><heading level=\"0\" keepwithnext=\"True\" pagebreakbefore=\"break\">2026-10-08 — coherence responses applied</heading><paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" leftindent=\"0\" spacingafter=\"7\">This entry supersedes the open pedestal, node-number and model-currency statements in the earlier 8 October entry. Source: the user-completed End_Bent_Coherence_Review_Responses.xlsx, items 01–09; exact workbook and hash retained with T004.</paragraph><paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" leftindent=\"0\" spacingafter=\"7\">01 — End-bent pedestal: 30 in along the beam, starting at the front of the 12-in backwall on a 42-in cap. Separate end-bent section inputs retain 6-in height, 42-in transverse width and 3/4-in chamfers. Quantities and local dead weights update live. Pier pedestal remains 48 in.</paragraph><paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" leftindent=\"0\" spacingafter=\"7\">02 — Backwall and cheek-wall final quantities deferred by the user.</paragraph><paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" leftindent=\"0\" spacingafter=\"7\">03–04 — The report contains the latest FBMP model per user. Loaded node numbers change from 12/19 to 15/34 following additional model nodes. The physical near/far identities, axes and load-transfer conventions remain the same. The different Downloads XML is not substituted.</paragraph><paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" leftindent=\"0\" spacingafter=\"7\">05 — Station explanation: cap-end station = report audit station + 25 in. Bearing stations 29.50/132.49 become 54.50/157.49 in; 102.99-in spacing agrees with 103 in to displayed precision. This changes the measurement origin, not the geometry.</paragraph><paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" leftindent=\"0\" spacingafter=\"7\">06 — U-bar hooks at potential pile interference may be field bent to provide clearance per user direction. Original as-drawn clash results are retained as source evidence; revised hook geometry and anchorage have not been checked in this update.</paragraph><paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" leftindent=\"0\" spacingafter=\"7\">07 — Service III is not applicable to the current nonprestressed, non-post-tensioned substructure per user. Strength III, Service I and fatigue remain distinct. Original 48 pending/conditional source checks are historical, not a new recalculated count.</paragraph><paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" leftindent=\"0\" spacingafter=\"7\">D-region discussion: concentrated bearing loads and pile reactions disturb ordinary beam stress distributions. The cap depth is 36 in, pile spacing is 54 in and the bearing-to-nearest-pile distance is about 24.5 in. Local load-path, nodal-zone and tie anchorage checks are separate from ordinary section moment/shear checks; this issue does not depend on prestressing. No strut-and-tie design is performed here.</paragraph><paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" leftindent=\"0\" spacingafter=\"7\">08 — Both end bents follow the controlling End Bent 1 design, since their principal difference is the modest adjacent-span length difference. End Bent 1 is beside the 107.35-ft span versus 104.90 ft at the other end. No independent End Bent 2 forces are created.</paragraph><paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" leftindent=\"0\" spacingafter=\"7\">09 — Removed unused FBMP Min Tip, Feet and Inches, Metric to Inches, Scratch and CAD modules and their navigation links. Their 110 stored errors are removed with those modules. Three inherited LoadCombinations reference links remain open; no numerical consumer of a removed module remains.</paragraph><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" leftindent=\"0\" spacingafter=\"7\"><link address=\"https://www.fhwa.dot.gov/bridge/concrete/nhi17071.pdf\">FHWA strut-and-tie modeling reference — D-regions, Chapter 2</link></paragraph><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" leftindent=\"0\" spacingafter=\"7\"><link address=\"#FBMPEndBent.EBCurrentDesignRecord\">Current design and coherence register</link></paragraph></section>\n</report>",
+      "count": 1
+    }
+  ],
+  "deleted_modules": [
+    "report:CAD",
+    "report:Scratch",
+    "spreadsheet:FBMPMinTip",
+    "spreadsheet:FeetintoDecimalFeet",
+    "spreadsheet:MetrictoInches"
+  ],
+  "invalidated_cached_expressions": [
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "formula": "Pedestal_volume_endBent = Pedestal_count_endBent*EndBentPedestal_area*Pedestal_length_endBent to ft^3"
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "formula": "EndBent_BearingPlane_CapCG = EndBentCap_depth/2+EndBentPedestal_ht+Bearing_pad_thickness+Bearing_separatePlateThickness to ft in"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_VerticalLabel"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_zb = BridgeGeometry_2Beam.EndBent_BearingPlane_CapCG to ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_zc = EB_zb+EB_hc to ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_zf = EB_zb+EB_hf to ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_signT = If(EB_Tdirection == \"Toward node 34\",1,-1)"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_T_near = EB_axisT*AX_Base_EB_T_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_T_far = EB_axisT*AX_Base_EB_T_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_PedestalDC = BridgeGeometry_2Beam.EndBentPedestal_area*BridgeGeometry_2Beam.Pedestal_length_endBent*EB_gammaConcrete to kip"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_BelowPadDC = EB_PedestalDC+EB_CheekDC to kip"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckGeometry = If(And(EB_s > 0 ft,BridgeGeometry_2Beam.EndBentCap_depth > 0 in,EB_zb+EB_NodeV >= 0 ft),\"PASS\",\"FAIL\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_roll_W1 = EB_signT*(EB_wc_W1*EB_hc+EB_wf_W1*EB_hf+EB_wu_W1*EB_e)*EB_Trib/EB_s to kip"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FT_W1_near = EB_axisT*AX_Base_EB_FT_W1_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FV_W1_near = EB_axisV*AX_Base_EB_FV_W1_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_ML_W1_near = EB_axisL*AX_Base_EB_ML_W1_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FT_W1_far = EB_axisT*AX_Base_EB_FT_W1_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FV_W1_far = EB_axisV*AX_Base_EB_FV_W1_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_ML_W1_far = EB_axisL*AX_Base_EB_ML_W1_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumFT_W1 = EB_FT_W1_near+EB_FT_W1_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumFV_W1 = EB_FV_W1_near+EB_FV_W1_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumML_W1 = (EB_V_entry*EB_FT_W1_near-EB_T_near*EB_FV_W1_near+EB_ML_W1_near)+(EB_V_entry*EB_FT_W1_far-EB_T_far*EB_FV_W1_far+EB_ML_W1_far) to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_RefML_W1 = -EB_signT*(EB_wc_W1*EB_zc+EB_wf_W1*EB_zf+EB_wu_W1*EB_e)*EB_Trib to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckF_W1 = If(And(AX_Base_EB_CheckF_W1 == \"PASS\",Abs(EB_SumFT_W1-EB_axisT*AX_Base_EB_SumFT_W1)<0.000001 kip,Abs(EB_SumFL_W1-EB_axisL*AX_Base_EB_SumFL_W1)<0.000001 kip,Abs(EB_SumFV_W1-EB_axisV*AX_Base_EB_SumFV_W1)<0.000001 kip),\"PASS\",\"FAIL\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_roll_W2 = EB_signT*(EB_wc_W2*EB_hc+EB_wf_W2*EB_hf+EB_wu_W2*EB_e)*EB_Trib/EB_s to kip"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FT_W2_near = EB_axisT*AX_Base_EB_FT_W2_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FV_W2_near = EB_axisV*AX_Base_EB_FV_W2_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_ML_W2_near = EB_axisL*AX_Base_EB_ML_W2_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FT_W2_far = EB_axisT*AX_Base_EB_FT_W2_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FV_W2_far = EB_axisV*AX_Base_EB_FV_W2_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_ML_W2_far = EB_axisL*AX_Base_EB_ML_W2_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumFT_W2 = EB_FT_W2_near+EB_FT_W2_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumFV_W2 = EB_FV_W2_near+EB_FV_W2_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumML_W2 = (EB_V_entry*EB_FT_W2_near-EB_T_near*EB_FV_W2_near+EB_ML_W2_near)+(EB_V_entry*EB_FT_W2_far-EB_T_far*EB_FV_W2_far+EB_ML_W2_far) to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_RefML_W2 = -EB_signT*(EB_wc_W2*EB_zc+EB_wf_W2*EB_zf+EB_wu_W2*EB_e)*EB_Trib to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckF_W2 = If(And(AX_Base_EB_CheckF_W2 == \"PASS\",Abs(EB_SumFT_W2-EB_axisT*AX_Base_EB_SumFT_W2)<0.000001 kip,Abs(EB_SumFL_W2-EB_axisL*AX_Base_EB_SumFL_W2)<0.000001 kip,Abs(EB_SumFV_W2-EB_axisV*AX_Base_EB_SumFV_W2)<0.000001 kip),\"PASS\",\"FAIL\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_roll_W3 = EB_signT*(EB_wc_W3*EB_hc+EB_wf_W3*EB_hf+EB_wu_W3*EB_e)*EB_Trib/EB_s to kip"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FT_W3_near = EB_axisT*AX_Base_EB_FT_W3_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FV_W3_near = EB_axisV*AX_Base_EB_FV_W3_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_ML_W3_near = EB_axisL*AX_Base_EB_ML_W3_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FT_W3_far = EB_axisT*AX_Base_EB_FT_W3_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FV_W3_far = EB_axisV*AX_Base_EB_FV_W3_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_ML_W3_far = EB_axisL*AX_Base_EB_ML_W3_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumFT_W3 = EB_FT_W3_near+EB_FT_W3_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumFV_W3 = EB_FV_W3_near+EB_FV_W3_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumML_W3 = (EB_V_entry*EB_FT_W3_near-EB_T_near*EB_FV_W3_near+EB_ML_W3_near)+(EB_V_entry*EB_FT_W3_far-EB_T_far*EB_FV_W3_far+EB_ML_W3_far) to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_RefML_W3 = -EB_signT*(EB_wc_W3*EB_zc+EB_wf_W3*EB_zf+EB_wu_W3*EB_e)*EB_Trib to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckF_W3 = If(And(AX_Base_EB_CheckF_W3 == \"PASS\",Abs(EB_SumFT_W3-EB_axisT*AX_Base_EB_SumFT_W3)<0.000001 kip,Abs(EB_SumFL_W3-EB_axisL*AX_Base_EB_SumFL_W3)<0.000001 kip,Abs(EB_SumFV_W3-EB_axisV*AX_Base_EB_SumFV_W3)<0.000001 kip),\"PASS\",\"FAIL\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_axisT = If(EB_AxisTChoice == \"Toward node 34\",1,-1)"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_axisV = EB_axisT*EB_axisL"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_VerticalLabel = If(EB_axisV == 1,\"Downward - into the plan\",\"Upward - out of the plan\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_AxisCheck = If(EB_axisT*EB_axisL*EB_axisV == 1,\"PASS - RIGHT-HANDED\",\"FAIL\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_FT_W1_near = EB_signT*(EB_wc_W1+EB_wf_W1)*EB_Trib/2 to kip"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_FV_W1_near = -EB_wu_W1*EB_Trib/2-EB_roll_W1 to kip"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_ML_W1_near = -(EB_zb+EB_NodeV)*AX_Base_EB_FT_W1_near to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_FT_W1_far = EB_signT*(EB_wc_W1+EB_wf_W1)*EB_Trib/2 to kip"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_FV_W1_far = -EB_wu_W1*EB_Trib/2+EB_roll_W1 to kip"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_ML_W1_far = -(EB_zb+EB_NodeV)*AX_Base_EB_FT_W1_far to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_FT_W2_near = EB_signT*(EB_wc_W2+EB_wf_W2)*EB_Trib/2 to kip"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_FV_W2_near = -EB_wu_W2*EB_Trib/2-EB_roll_W2 to kip"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_ML_W2_near = -(EB_zb+EB_NodeV)*AX_Base_EB_FT_W2_near to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_FT_W2_far = EB_signT*(EB_wc_W2+EB_wf_W2)*EB_Trib/2 to kip"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_FV_W2_far = -EB_wu_W2*EB_Trib/2+EB_roll_W2 to kip"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_ML_W2_far = -(EB_zb+EB_NodeV)*AX_Base_EB_FT_W2_far to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_FT_W3_near = EB_signT*(EB_wc_W3+EB_wf_W3)*EB_Trib/2 to kip"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_FV_W3_near = -EB_wu_W3*EB_Trib/2-EB_roll_W3 to kip"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_ML_W3_near = -(EB_zb+EB_NodeV)*AX_Base_EB_FT_W3_near to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_FT_W3_far = EB_signT*(EB_wc_W3+EB_wf_W3)*EB_Trib/2 to kip"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_FV_W3_far = -EB_wu_W3*EB_Trib/2+EB_roll_W3 to kip"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_ML_W3_far = -(EB_zb+EB_NodeV)*AX_Base_EB_FT_W3_far to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_SumFT_W1 = AX_Base_EB_FT_W1_near+AX_Base_EB_FT_W1_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_SumFV_W1 = AX_Base_EB_FV_W1_near+AX_Base_EB_FV_W1_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_SumML_W1 = (EB_NodeV*AX_Base_EB_FT_W1_near-AX_Base_EB_T_near*AX_Base_EB_FV_W1_near+AX_Base_EB_ML_W1_near)+(EB_NodeV*AX_Base_EB_FT_W1_far-AX_Base_EB_T_far*AX_Base_EB_FV_W1_far+AX_Base_EB_ML_W1_far) to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_SumFT_W2 = AX_Base_EB_FT_W2_near+AX_Base_EB_FT_W2_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_SumFV_W2 = AX_Base_EB_FV_W2_near+AX_Base_EB_FV_W2_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_SumML_W2 = (EB_NodeV*AX_Base_EB_FT_W2_near-AX_Base_EB_T_near*AX_Base_EB_FV_W2_near+AX_Base_EB_ML_W2_near)+(EB_NodeV*AX_Base_EB_FT_W2_far-AX_Base_EB_T_far*AX_Base_EB_FV_W2_far+AX_Base_EB_ML_W2_far) to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_SumFT_W3 = AX_Base_EB_FT_W3_near+AX_Base_EB_FT_W3_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_SumFV_W3 = AX_Base_EB_FV_W3_near+AX_Base_EB_FV_W3_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_SumML_W3 = (EB_NodeV*AX_Base_EB_FT_W3_near-AX_Base_EB_T_near*AX_Base_EB_FV_W3_near+AX_Base_EB_ML_W3_near)+(EB_NodeV*AX_Base_EB_FT_W3_far-AX_Base_EB_T_far*AX_Base_EB_FV_W3_far+AX_Base_EB_ML_W3_far) to kip*ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_V_entry = EB_axisV*EB_NodeV to ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_CheckF_W1 = If(And(Abs(AX_Base_EB_SumFT_W1-EB_signT*(EB_wc_W1+EB_wf_W1)*EB_Trib)<0.000001 kip,Abs(AX_Base_EB_SumFL_W1-EB_signL*EB_lambda_W1*(EB_wc_W1+EB_wf_W1)*EB_Trib)<0.000001 kip,Abs(AX_Base_EB_SumFV_W1+EB_wu_W1*EB_Trib)<0.000001 kip),\"PASS\",\"FAIL\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_CheckF_W2 = If(And(Abs(AX_Base_EB_SumFT_W2-EB_signT*(EB_wc_W2+EB_wf_W2)*EB_Trib)<0.000001 kip,Abs(AX_Base_EB_SumFL_W2-EB_signL*EB_lambda_W2*(EB_wc_W2+EB_wf_W2)*EB_Trib)<0.000001 kip,Abs(AX_Base_EB_SumFV_W2+EB_wu_W2*EB_Trib)<0.000001 kip),\"PASS\",\"FAIL\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "AX_Base_EB_CheckF_W3 = If(And(Abs(AX_Base_EB_SumFT_W3-EB_signT*(EB_wc_W3+EB_wf_W3)*EB_Trib)<0.000001 kip,Abs(AX_Base_EB_SumFL_W3-EB_signL*EB_lambda_W3*(EB_wc_W3+EB_wf_W3)*EB_Trib)<0.000001 kip,Abs(AX_Base_EB_SumFV_W3+EB_wu_W3*EB_Trib)<0.000001 kip),\"PASS\",\"FAIL\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_zb to ft in"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "If(FBMPEndBent.EB_axisT == 1,\"+T\",\"\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "If(FBMPEndBent.EB_axisT == 1,\"T: left\",\"T: right\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "If(FBMPEndBent.EB_axisV == 1,\"+V down / into page\",\"+V up / out of page\")"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "FBMPEndBent.EB_Node_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "FBMPEndBent.EB_Node_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_Node_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "If(EB_ViewCase == \"W1\",EB_FT_W1_near,If(EB_ViewCase == \"W2\",EB_FT_W2_near,EB_FT_W3_near))/EB_U_F"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "If(EB_ViewCase == \"W1\",EB_FV_W1_near,If(EB_ViewCase == \"W2\",EB_FV_W2_near,EB_FV_W3_near))/EB_U_F"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "If(EB_ViewCase == \"W1\",EB_ML_W1_near,If(EB_ViewCase == \"W2\",EB_ML_W2_near,EB_ML_W3_near))/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_Node_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "If(EB_ViewCase == \"W1\",EB_FT_W1_far,If(EB_ViewCase == \"W2\",EB_FT_W2_far,EB_FT_W3_far))/EB_U_F"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "If(EB_ViewCase == \"W1\",EB_FV_W1_far,If(EB_ViewCase == \"W2\",EB_FV_W2_far,EB_FV_W3_far))/EB_U_F"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "If(EB_ViewCase == \"W1\",EB_ML_W1_far,If(EB_ViewCase == \"W2\",EB_ML_W2_far,EB_ML_W3_far))/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_AxisCheck"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_Node_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_T_near to ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_V_entry to ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_Node_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_T_far to ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_V_entry to ft"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_Node_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_axisV*(EB_DC_near/EB_U_F)"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_Node_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_axisV*(EB_DC_far/EB_U_F)"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_Node_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_axisV*(EB_PL_near/EB_U_F)"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_Node_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_axisV*(EB_PL_far/EB_U_F)"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_Node_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FT_W1_near/EB_U_F"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FV_W1_near/EB_U_F"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_ML_W1_near/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_Node_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FT_W1_far/EB_U_F"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FV_W1_far/EB_U_F"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_ML_W1_far/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_Node_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FT_W2_near/EB_U_F"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FV_W2_near/EB_U_F"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_ML_W2_near/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_Node_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FT_W2_far/EB_U_F"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FV_W2_far/EB_U_F"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_ML_W2_far/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_Node_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FT_W3_near/EB_U_F"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FV_W3_near/EB_U_F"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_ML_W3_near/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_Node_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FT_W3_far/EB_U_F"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_FV_W3_far/EB_U_F"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_ML_W3_far/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_axisV*(EB_TotalDC/EB_U_F)"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_axisV*(EB_TotalPL/EB_U_F)"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_axisV*(EB_TotalDW/EB_U_F)"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_Node_near"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_axisV*(EB_PedestalDC/EB_U_F)"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_axisV*(EB_CheekDC/EB_U_F)"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_axisV*(EB_BelowPadDC/EB_U_F)"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_axisV*(EB_DW_near/EB_U_F)"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_Node_far"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_axisV*(EB_PedestalDC/EB_U_F)"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_axisV*(EB_CheekDC/EB_U_F)"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_axisV*(EB_BelowPadDC/EB_U_F)"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_axisV*(EB_DW_far/EB_U_F)"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckF_W1"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckF_W2"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckF_W3"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckGeometry"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumML_W1/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumML_W2/EB_U_M"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_SumML_W3/EB_U_M"
+    }
+  ],
+  "dependency_names": [
+    "AX_Base_EB_CheckF_W1",
+    "AX_Base_EB_CheckF_W2",
+    "AX_Base_EB_CheckF_W3",
+    "AX_Base_EB_CheckM_W1",
+    "AX_Base_EB_CheckM_W2",
+    "AX_Base_EB_CheckM_W3",
+    "AX_Base_EB_FT_W1_far",
+    "AX_Base_EB_FT_W1_near",
+    "AX_Base_EB_FT_W2_far",
+    "AX_Base_EB_FT_W2_near",
+    "AX_Base_EB_FT_W3_far",
+    "AX_Base_EB_FT_W3_near",
+    "AX_Base_EB_FV_W1_far",
+    "AX_Base_EB_FV_W1_near",
+    "AX_Base_EB_FV_W2_far",
+    "AX_Base_EB_FV_W2_near",
+    "AX_Base_EB_FV_W3_far",
+    "AX_Base_EB_FV_W3_near",
+    "AX_Base_EB_ML_W1_far",
+    "AX_Base_EB_ML_W1_near",
+    "AX_Base_EB_ML_W2_far",
+    "AX_Base_EB_ML_W2_near",
+    "AX_Base_EB_ML_W3_far",
+    "AX_Base_EB_ML_W3_near",
+    "AX_Base_EB_MT_W1_far",
+    "AX_Base_EB_MT_W1_near",
+    "AX_Base_EB_MT_W2_far",
+    "AX_Base_EB_MT_W2_near",
+    "AX_Base_EB_MT_W3_far",
+    "AX_Base_EB_MT_W3_near",
+    "AX_Base_EB_MV_W1_far",
+    "AX_Base_EB_MV_W1_near",
+    "AX_Base_EB_MV_W2_far",
+    "AX_Base_EB_MV_W2_near",
+    "AX_Base_EB_MV_W3_far",
+    "AX_Base_EB_MV_W3_near",
+    "AX_Base_EB_SumFT_W1",
+    "AX_Base_EB_SumFT_W2",
+    "AX_Base_EB_SumFT_W3",
+    "AX_Base_EB_SumFV_W1",
+    "AX_Base_EB_SumFV_W2",
+    "AX_Base_EB_SumFV_W3",
+    "AX_Base_EB_SumML_W1",
+    "AX_Base_EB_SumML_W2",
+    "AX_Base_EB_SumML_W3",
+    "AX_Base_EB_SumMT_W1",
+    "AX_Base_EB_SumMT_W2",
+    "AX_Base_EB_SumMT_W3",
+    "AX_Base_EB_SumMV_W1",
+    "AX_Base_EB_SumMV_W2",
+    "AX_Base_EB_SumMV_W3",
+    "EB_AxisCheck",
+    "EB_AxisTChoice",
+    "EB_BelowPadDC",
+    "EB_CheckF_W1",
+    "EB_CheckF_W2",
+    "EB_CheckF_W3",
+    "EB_CheckFootprint",
+    "EB_CheckGeometry",
+    "EB_CheckM_W1",
+    "EB_CheckM_W2",
+    "EB_CheckM_W3",
+    "EB_CheckOffset_DC",
+    "EB_CheckOffset_DW",
+    "EB_CheckOffset_PL",
+    "EB_CheckSpan",
+    "EB_FT_W1_far",
+    "EB_FT_W1_near",
+    "EB_FT_W2_far",
+    "EB_FT_W2_near",
+    "EB_FT_W3_far",
+    "EB_FT_W3_near",
+    "EB_FV_W1_far",
+    "EB_FV_W1_near",
+    "EB_FV_W2_far",
+    "EB_FV_W2_near",
+    "EB_FV_W3_far",
+    "EB_FV_W3_near",
+    "EB_ML_W1_far",
+    "EB_ML_W1_near",
+    "EB_ML_W2_far",
+    "EB_ML_W2_near",
+    "EB_ML_W3_far",
+    "EB_ML_W3_near",
+    "EB_MT_DC_far",
+    "EB_MT_DC_near",
+    "EB_MT_DW_far",
+    "EB_MT_DW_near",
+    "EB_MT_PL_far",
+    "EB_MT_PL_near",
+    "EB_MT_W1_far",
+    "EB_MT_W1_near",
+    "EB_MT_W2_far",
+    "EB_MT_W2_near",
+    "EB_MT_W3_far",
+    "EB_MT_W3_near",
+    "EB_MV_W1_far",
+    "EB_MV_W1_near",
+    "EB_MV_W2_far",
+    "EB_MV_W2_near",
+    "EB_MV_W3_far",
+    "EB_MV_W3_near",
+    "EB_Node_far",
+    "EB_Node_near",
+    "EB_PedestalDC",
+    "EB_RefML_W1",
+    "EB_RefML_W2",
+    "EB_RefML_W3",
+    "EB_RefMT_W1",
+    "EB_RefMT_W2",
+    "EB_RefMT_W3",
+    "EB_RefMV_W1",
+    "EB_RefMV_W2",
+    "EB_RefMV_W3",
+    "EB_SumFT_W1",
+    "EB_SumFT_W2",
+    "EB_SumFT_W3",
+    "EB_SumFV_W1",
+    "EB_SumFV_W2",
+    "EB_SumFV_W3",
+    "EB_SumML_W1",
+    "EB_SumML_W2",
+    "EB_SumML_W3",
+    "EB_SumMT_DC",
+    "EB_SumMT_DW",
+    "EB_SumMT_PL",
+    "EB_SumMT_W1",
+    "EB_SumMT_W2",
+    "EB_SumMT_W3",
+    "EB_SumMV_W1",
+    "EB_SumMV_W2",
+    "EB_SumMV_W3",
+    "EB_T_far",
+    "EB_T_near",
+    "EB_Tdirection",
+    "EB_V_entry",
+    "EB_VerticalLabel",
+    "EB_axisT",
+    "EB_axisV",
+    "EB_roll_W1",
+    "EB_roll_W2",
+    "EB_roll_W3",
+    "EB_signT",
+    "EB_zb",
+    "EB_zc",
+    "EB_zf",
+    "EndBent_BearingPlane_CapCG",
+    "Pedestal_length_endBent",
+    "Pedestal_volume_endBent"
+  ]
+}

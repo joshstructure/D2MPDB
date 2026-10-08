@@ -1,0 +1,278 @@
+{
+  "candidate_sha256": "7d74241c48d66766260b2c04fca43fe4c8b3f79d215c8ac4a1ec3f436c171367",
+  "checks": [
+    {
+      "check": "EndBentCap_width (in)",
+      "actual": 42.0,
+      "expected": 42,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "EndBentCap_depth (in)",
+      "actual": 36.0,
+      "expected": 36,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "EndBentCap_length (in)",
+      "actual": 212.0,
+      "expected": 212,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "EndBent_pileWidth (in)",
+      "actual": 18.0,
+      "expected": 18,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "EndBent_pileSpacing (in)",
+      "actual": 54.0,
+      "expected": 54,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "EndBent_endFace (in)",
+      "actual": 16.0,
+      "expected": 16,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "EndBent_endCenter (in)",
+      "actual": 25.0,
+      "expected": 25,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "EndBent_pileClearSpacing (in)",
+      "actual": 36.0,
+      "expected": 36,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "EndBent_pileCL_fromRear (in)",
+      "actual": 21.0,
+      "expected": 21,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "EndBent_bearingCL_fromRear (in)",
+      "actual": 24.0,
+      "expected": 24,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "EndBent_bearingOffset (in)",
+      "actual": 3.0,
+      "expected": 3,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "EndBent_padFrontClear (in)",
+      "actual": 13.0,
+      "expected": 13,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "EndBentCap_area (ft^2)",
+      "actual": 10.5,
+      "expected": 10.5,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "EndBentCap_volume (ft^3)",
+      "actual": 185.5,
+      "expected": 185.5,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "EndBentCaps_volume (ft^3)",
+      "actual": 371.0,
+      "expected": 371,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "EndBentCap_DC (kip)",
+      "actual": 27.825,
+      "expected": 27.825,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "EndBent_BearingPlane_CapCG (in)",
+      "actual": 26.5625,
+      "expected": 26.5625,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "Pile center 1",
+      "actual": 25.0,
+      "expected": 25,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "Pile center 2",
+      "actual": 79.0,
+      "expected": 79,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "Pile center 3",
+      "actual": 133.0,
+      "expected": 133,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "Pile center 4",
+      "actual": 187.0,
+      "expected": 187,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "EBSteel_AsTop (in^2)",
+      "actual": 1.76,
+      "expected": 1.76,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "EBSteel_AsPile (in^2)",
+      "actual": 1.58,
+      "expected": 1.58,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "EBSteel_AsSpan (in^2)",
+      "actual": 2.2,
+      "expected": 2.2,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "EBSteel_AsSkinSide (in^2)",
+      "actual": 1.4000000000000001,
+      "expected": 1.4,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "Closed hoops",
+      "actual": 19,
+      "expected": 19,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "Open bottom U bars",
+      "actual": 16,
+      "expected": 16,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "Transverse bars",
+      "actual": 35,
+      "expected": 35,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "Pitch between every adjacent station (in)",
+      "actual": 6.0,
+      "expected": 6,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "Report gross reinforcing estimate (lb)",
+      "actual": 616.2593996377283,
+      "expected": 616.259,
+      "tolerance": 0.0005,
+      "status": "PASS"
+    },
+    {
+      "check": "Report maximum available ratio",
+      "actual": 0.9661549416853692,
+      "expected": 0.966155,
+      "tolerance": 5e-07,
+      "status": "PASS"
+    },
+    {
+      "check": "Pending / conditional report checks",
+      "actual": 48,
+      "expected": 48,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    },
+    {
+      "check": "Failed scalar checks",
+      "actual": 0,
+      "expected": 0,
+      "tolerance": 1e-08,
+      "status": "PASS"
+    }
+  ],
+  "unchanged_components": 268,
+  "changed_components": [
+    "report:PedBridge",
+    "report:BridgeGeometry_2Beam",
+    "report:PileProperties",
+    "report:FBMPEndBent",
+    "report:FoundationModeling",
+    "spreadsheet:QauntitiesBridge",
+    "report:DecisionLog"
+  ],
+  "resource_bytes": "all preserved",
+  "inherited_error_count": 110,
+  "structural_issues": {
+    "report:LoadCombinations: unresolved link #CodeReferences.CodePage42;paragraphcoderef42": 2,
+    "report:LoadCombinations: unresolved link #CodeReferences.CodePage14;paragraphcoderef14": 1
+  },
+  "new_native_names": [
+    "CurrentEndBentRecord",
+    "EBActualTransverseSchedule",
+    "EBApplicability20261008",
+    "EBApplicability20261008",
+    "EBCoherenceRegister",
+    "EBCurrentDesignRecord",
+    "EBCurrentGeometryContext",
+    "EBCurrentPileStations",
+    "EBCurrentQuantities",
+    "EBDesignFactors",
+    "EBDesignRecordContext",
+    "EBLongitudinalSummary",
+    "EBRecordedFitCoordinates",
+    "EBRecordedForces",
+    "EndBentCurrentGeometry",
+    "EndBentUpdate20261008"
+  ],
+  "source_case_status": "DETAILING SCREEN — review the drawn cage",
+  "source_issues": [
+    "R2: Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+    "R4: Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+    "R6: Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+    "R8: Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends."
+  ],
+  "native_recalculation": "NOT established by this script"
+}
