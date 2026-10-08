@@ -21,6 +21,10 @@ The reported FBMP summary and original XML element-end envelopes remain separate
 
 ## Cap and pile design notebook
 
+**Demand / resistance overlays:** In **Force diagrams**, enable **Show current resistances**. The lines update with the current steel, dimensions and factors while the demand curves retain the imported analysis. Negative moment uses top steel; positive moment shows the continuous-bottom reference plus the continuous-and-added sectional value only over the common straight portions of the drawn span bars. Actual hoop/U layouts use the same conditional adjacent-interval shear resistance as the D/C checks; without actual stations, shear shows the lower uniform G/L resistance. The selected load view is retained during edits. Strength overlays are hidden for service combinations. Torsion shows an explicitly labeled investigation threshold, not a torsional resistance. Development, cutoffs, fit and combined checks remain separate. Width/depth trials are labeled; changed pile layouts or cap ends suppress the overlay until matching analysis is applied.
+
+**Exact geometry:** Open **Dimensions** beside **Force diagrams** for a dimensioned plan and pile cross section. Hover a dimension line or pile center for values in feet and inches. The tables include overall length, width/depth, pile center spacing, clear face gaps, both end distances, cover, embedment and every pile center/face station. These views follow the current inputs; force diagrams retain the analyzed layout. Nominal end clearances show the edge-clearance, pile-tolerance and extra-end-allowance components. The full bundle includes **geometry_dimensions.html** and force diagrams with current resistances; the calculation report includes both views.
+
 **Portable one-file edition:** [Cap_and_Pile_Design.ipynb](Cap_and_Pile_Design.ipynb) includes the calculation package. Open it in Colab and choose **Runtime → Run all**.
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Cap_and_Pile_Design.ipynb)

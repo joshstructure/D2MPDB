@@ -2,6 +2,7 @@
 from collections import defaultdict
 from itertools import combinations
 import html
+import json
 import math
 
 import plotly.graph_objects as go
@@ -111,7 +112,7 @@ def diagram_notice(case):
     return base
 
 
-def cap_force_figure(case):
+def cap_force_figure(case, *, show_resistance=False, evaluation=None):
     profiles = cap_profiles(case)
     audit = case['analysis']['xml_audit']
     geometry = case['analysis']['geometry']
@@ -146,6 +147,17 @@ def cap_force_figure(case):
                         '<br>%{customdata[3]}<extra></extra>'),row=row,col=1)
         trace_groups.append(list(range(start,len(fig.data))))
     force_count = len(fig.data)
+    resistance_indices=[];resistance_note=''
+    if show_resistance:
+        from .model import evaluate
+        from .force_resistance import resistance_traces
+        try:
+            traces,resistance_note=resistance_traces(evaluation if evaluation is not None else evaluate(case))
+            for trace,row in traces:
+                resistance_indices.append(len(fig.data))
+                fig.add_trace(trace,row=row,col=1)
+        except (ValueError,KeyError,TypeError,ZeroDivisionError,OverflowError) as exc:
+            resistance_note='RESISTANCE OVERLAY UNAVAILABLE: '+str(exc)+'. Correct the current inputs; imported demand curves are retained.'
     x0 = min(r['x_in'] for r in audit['end_records'])
     length = (max(r['x_in'] for r in audit['end_records'])-x0)/12
     depth=geometry['h']/12
@@ -165,19 +177,28 @@ def cap_force_figure(case):
         hovertemplate='Bearing at x = %{x:.3f} ft<extra></extra>'),row=4,col=1)
     fig.add_trace(go.Scatter(x=pile_x,y=[0]*len(pile_x),mode='markers',name='Pile centers',
         marker=dict(size=7,color='#627386'),hovertemplate='Pile center x = %{x:.3f} ft<extra></extra>'),row=4,col=1)
-    def title(label):
-        return f'{html.escape(label)}<br><sup>Analyzed cap {geometry["b"]:g} × {geometry["h"]:g} in · {length:.3f} ft long</sup>'
+    def title(label, is_strength):
+        detail=f'Analyzed cap {geometry["b"]:g} × {geometry["h"]:g} in · {length:.3f} ft long'
+        if resistance_indices:
+            p=case['inputs']
+            detail+=(f' · Current resistance section {p["b"]:g} × {p["h"]:g} in' if is_strength else
+                     ' · Strength resistance overlay hidden for service demands')
+        elif resistance_note:detail+=' · Resistance overlay unavailable; see notice'
+        return f'{html.escape(label)}<br><sup>{detail}</sup>'
     buttons=[]
-    for (label,_), group in zip(modes,trace_groups):
-        visible=[i in group if i<force_count else True for i in range(len(fig.data))]
+    for (label,combos), group in zip(modes,trace_groups):
+        is_strength=bool(combos) and all(states[k].startswith('STRENGTH-') for k in combos)
+        visible=[i in group if i<force_count else is_strength if i in resistance_indices else True for i in range(len(fig.data))]
         buttons.append(dict(label=label,method='update',args=[{'visible':visible},
-            {'title.text':title(label),'yaxis.autorange':True,'yaxis2.autorange':True,'yaxis3.autorange':True}]))
+            {'title.text':title(label,is_strength),'yaxis.autorange':True,'yaxis2.autorange':True,'yaxis3.autorange':True}]))
+    for trace,visible in zip(fig.data,buttons[0]['args'][0]['visible']):trace.visible=visible
     fig.update_layout(template='plotly_white',height=910,margin=dict(l=65,r=20,t=140,b=90),
-        title=dict(text=title(modes[0][0]),font=dict(size=16),y=.99),
+        title=dict(text=title(modes[0][0],bool(strength)),font=dict(size=16),y=.99),
         font=dict(family='Arial',size=11,color='#213649'),hovermode='closest',
         legend=dict(orientation='h',y=-.085,font=dict(size=10)),
         updatemenus=[dict(buttons=buttons,direction='down',x=0,y=1.13,xanchor='left',yanchor='top',showactive=True)],
-        uirevision=audit.get('sha256','xml'))
+        uirevision=audit.get('sha256','xml'),meta=dict(resistance_notice=resistance_note))
+    if show_resistance:fig.update_layout(height=1000,margin=dict(b=145))
     for row,title_y in [(1,'M (kip-ft)'),(2,'V (kip)'),(3,'|T| (kip-ft)')]:
         fig.update_yaxes(title_text=title_y,zeroline=True,zerolinecolor='#7e8993',row=row,col=1)
     fig.update_yaxes(visible=False,range=[-stub*1.2,depth*1.6],row=4,col=1)
@@ -191,24 +212,56 @@ class ForceDiagramPanel:
     def __init__(self):
         import ipywidgets as W
         self.notice=W.HTML()
+        self.show_resistance=W.Checkbox(value=False,description='Show current resistances',indent=False,
+            layout=W.Layout(width='260px'))
+        self.show_resistance.observe(self._toggle_resistance,names='value')
+        self.resistance_notice=W.HTML()
         self.output=W.VBox()
-        self.ui=W.VBox([self.notice,self.output],layout=W.Layout(max_height='1050px',overflow='auto'))
+        self.ui=W.VBox([self.show_resistance,self.notice,self.resistance_notice,self.output],layout=W.Layout(max_height='1250px',overflow='auto'))
         self.figure=None
         self._key=None
+        self._resistance_key=None
+        self._case=None
 
-    def refresh(self,case):
+    def _toggle_resistance(self,change):
+        if self._case is not None:self.refresh(self._case)
+
+    def refresh(self,case,evaluation=None):
+        self._case=case
         audit=case['analysis'].get('xml_audit',{})
         self.notice.value='<p>'+html.escape(diagram_notice(case))+'</p>'
         key=(audit.get('sha256'),id(audit.get('end_records')))
-        if key == self._key:return
-        self._key=key
-        if self.figure is not None:self.figure.close()
-        self.figure=None;self.output.children=[]
-        if not audit.get('end_records'):return
+        self.show_resistance.disabled=not bool(audit.get('end_records'))
+        resistance_key=json.dumps({k:v for k,v in case.items() if k!='analysis'},sort_keys=True) if self.show_resistance.value else None
+        if key == self._key and resistance_key == self._resistance_key and (self.figure is not None or not audit.get('end_records')):return
+        same_source=key == self._key
+        if not audit.get('end_records'):
+            if self.figure is not None:self.figure.close()
+            self.figure=None;self.output.children=[];self.resistance_notice.value=''
+            self._key=key;self._resistance_key=resistance_key
+            return
         try:
-            self.figure=go.FigureWidget(cap_force_figure(case))
+            fresh=cap_force_figure(case,show_resistance=self.show_resistance.value,evaluation=evaluation)
+            self.resistance_notice.value='<p>'+html.escape(fresh.layout.meta['resistance_notice'])+'</p>' if self.show_resistance.value else ''
+            if self.figure is None:self.figure=go.FigureWidget(fresh)
+            else:
+                active=(self.figure.layout.updatemenus[0].active or 0) if same_source else 0
+                active=max(0,min(active,len(fresh.layout.updatemenus[0].buttons)-1))
+                button=fresh.layout.updatemenus[0].buttons[active]
+                for trace,visible in zip(fresh.data,button.args[0]['visible']):trace.visible=visible
+                fresh.update_layout(button.args[1]);fresh.layout.updatemenus[0].active=active
+                if same_source:
+                    for axis in ('xaxis','xaxis2','xaxis3','xaxis4'):
+                        fresh.layout[axis].range=self.figure.layout[axis].range
+                with self.figure.batch_update():
+                    self.figure.data=[]
+                    self.figure.add_traces(fresh.data)
+                    self.figure.layout=fresh.layout
             self.output.children=[self.figure]
+            self._key=key;self._resistance_key=resistance_key
         except (ValueError,KeyError,TypeError) as exc:
+            if self.figure is not None:self.figure.close()
+            self.figure=None;self.output.children=[];self.resistance_notice.value=''
             self.notice.value='<p><b>Force diagram unavailable:</b> '+html.escape(str(exc))+'</p>'
 
     def close(self):

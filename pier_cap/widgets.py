@@ -16,6 +16,7 @@ from .widget_compat import Tab, Accordion
 from .source_status import source_html,import_receipt,receipt_html,notice_html
 from .force_audit import force_basis,FORCE_LABELS
 from .force_diagrams import ForceDiagramPanel
+from .geometry_dimensions import dimensions_figure,dimensions_html
 from .transverse_widgets import TransversePanel
 from .transverse import enabled as actual_transverse
 from .pile_visual_widgets import PileAppearancePanel
@@ -65,7 +66,7 @@ class CapNotebook:
         self.case_listeners=[]
         self.import_receipt=None;self.import_notice=W.HTML()
         self.banner=W.HTML();self.metrics=W.HTML();self.message=W.HTML()
-        self.cage=W.VBox();self.results=W.VBox();self.register=W.HTML();self.trace=W.HTML()
+        self.cage=W.VBox();self.results=W.VBox();self.dimensions=W.VBox();self.register=W.HTML();self.trace=W.HTML()
         self.clearance=W.BoundedFloatText(value=self.case['screening']['minimum_clear_in'],min=0,max=12,step=.25,description='Project min clear (in)',style={'description_width':'120px'},layout=W.Layout(width='260px'))
         self.aggregate=W.BoundedFloatText(value=self.case['screening']['aggregate_in'],min=.125,max=6,step=.125,description='Max aggregate (in)',style={'description_width':'170px'},layout=W.Layout(width='300px'))
         self.aggregate_confirmed=W.Checkbox(value=self.case['screening']['aggregate_confirmed'],description='Aggregate size confirmed',indent=False)
@@ -74,8 +75,8 @@ class CapNotebook:
         self.input_tabs=self._inputs()
         self.transverse_panel=TransversePanel(self)
         self.force_diagrams=ForceDiagramPanel()
-        self.plot_tabs=Tab(children=[self.cage,self.results,W.VBox([self.register],layout=W.Layout(max_height='850px',overflow='auto')),W.VBox([self.trace],layout=W.Layout(max_height='750px',overflow='auto')),self.force_diagrams.ui],layout=W.Layout(flex='1 1 650px',min_width='560px'))
-        for i,title in enumerate(['Live cage','Plots','D/C checks','Equations','Force diagrams']):self.plot_tabs.set_title(i,title)
+        self.plot_tabs=Tab(children=[self.cage,self.results,W.VBox([self.register],layout=W.Layout(max_height='850px',overflow='auto')),W.VBox([self.trace],layout=W.Layout(max_height='750px',overflow='auto')),self.force_diagrams.ui,self.dimensions],layout=W.Layout(flex='1 1 650px',min_width='560px'))
+        for i,title in enumerate(['Live cage','Plots','D/C checks','Equations','Force diagrams','Dimensions']):self.plot_tabs.set_title(i,title)
         self.case_import=CaseImportPanel(self)
         self.upload=self.case_import.upload
         reset=W.Button(description='Reset starting case',icon='undo');reset.on_click(lambda _:self.load(default_case()))
@@ -156,15 +157,16 @@ class CapNotebook:
     def refresh(self):
         self.source_label.value=source_html(self.case)
         self._refresh_search_force_notice()
-        self.force_diagrams.refresh(self.case)
         for key in FORCE_LABELS:
             self.controls[key].tooltip=input_tooltip(key,force_basis(self.case,key))
         self.import_notice.value=receipt_html(self.import_receipt,self.case)
         try:e=evaluate(self.case)
         except Exception as exc:
+            self.force_diagrams.refresh(self.case)
             self.current=None;self.banner.value=f'<div style="padding:14px;background:#ffe9e7;color:#9d302b"><b>INPUT ERROR</b><br>{html.escape(str(exc))}</div>'
-            self.metrics.value='';self.cage.children=[];self.results.children=[];self.register.value='';self.trace.value='';return
+            self.metrics.value='';self.cage.children=[];self.results.children=[];self.dimensions.children=[];self.register.value='';self.trace.value='';return
         self.current=e
+        self.force_diagrams.refresh(self.case,evaluation=e)
         self.pile_appearance.sync()
         trial_section=self._search_force_mode()=='fixed'
         color='#fff3d9' if e.eligible or (trial_section and sectional_checks_pass(e)) else '#ffe9e7'
@@ -183,6 +185,7 @@ class CapNotebook:
         self.figures=[]
         def fw(fig):
             widget=go.FigureWidget(fig);self.figures.append(widget);widget.layout.autosize=True;return widget
+        self.dimensions.children=[fw(dimensions_figure(e)),W.HTML(dimensions_html(e))]
         selected=self.transverse_panel.selected_run_id
         new_cage=layout_3d(e)
         if self.cage_3d_widget is None:self.cage_3d_widget=go.FigureWidget(new_cage)

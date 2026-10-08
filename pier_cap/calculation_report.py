@@ -232,11 +232,13 @@ class Report:
         from . import visuals as v
         e=self.e
         if key=='basis':
+            from .geometry_dimensions import dimensions_figure,dimensions_html
             return ('<p>Basis: the notebook’s C005 sectional equations and project assumptions, with the code references recorded beside their checks. '
                     'A complete governing code edition is not recorded by this case; confirm it before issuing a design. '
                     'Normal-weight concrete, the entered resistance factors and simplified shear parameters are adopted assumptions. '
                     'This report does not calculate D-regions, development lengths or a new structural analysis.</p>'+
                     self.plot(v.elevation_figure(e),'Cap elevation, pile stations and reinforcement; engineering schematic, not a construction drawing.')+
+                    self.plot(dimensions_figure(e),'Current cap plan and cross section; hover dimension traces for feet/inches.')+dimensions_html(e)+
                     table(['Analyzed geometry','Current geometry','Analysis consistency'],[[str(e.case['analysis']['geometry']),
                           ', '.join(f'{n} = {e.case["inputs"][n]:g}' for n in e.case['analysis']['geometry'] if n in e.case['inputs']),
                           'Changed: '+', '.join(e.stale) if e.stale else 'Current geometry matches the recorded analysis geometry']], 'discussion'))
@@ -245,7 +247,8 @@ class Report:
             result=''.join('<p>'+escape(n)+'</p>' for n in audit['notes'])+table(audit['headers'],audit['rows'])+table(audit['provenance_headers'],audit['provenance'])
             if e.case['analysis'].get('xml_audit',{}).get('end_records'):
                 from .force_diagrams import cap_force_figure,diagram_notice
-                result+='<p>'+escape(diagram_notice(e.case))+'</p>'+self.plot(cap_force_figure(e.case),'Imported cap force diagrams; use the load-state selector to inspect source combinations.')
+                figure=cap_force_figure(e.case,show_resistance=True,evaluation=e)
+                result+='<p>'+escape(diagram_notice(e.case))+'</p><p>'+escape(figure.layout.meta['resistance_notice'])+'</p>'+self.plot(figure,'Imported demands and current sectional resistances; use the load-state selector. Strength overlays are hidden for service demands. Click resistance legend entries to hide/show them.')
             else:result+='<p>No source member-end records were saved; a force diagram cannot be reconstructed from scalar envelopes.</p>'
             return result
         if key=='steel':

@@ -235,6 +235,22 @@ def transverse_issues(e):
     return issues
 
 
+def shear_intervals(e):
+    """Existing conditional shear calculation, shared by checks and diagrams."""
+    from .model import BAR_AREA
+    if not enabled(e.case):return []
+    p=e.case['inputs'];bars=scheduled_bars(e.case);intervals=[]
+    for a,b in zip(bars,bars[1:]):
+        pitch=b['station_in']-a['station_in'];size=min(a['bar'],b['bar'])
+        zone=max((a['zone'],b['zone']),key=lambda z:p['Vu_'+z]);vu=p['Vu_'+zone]
+        area=2*BAR_AREA[size]
+        vs=area*p['fy']*e.value('dv')*e.value('cot_theta')/max(pitch,1e-6)
+        vr=p['phi_v']*min(e.value('Vc','kip')+vs,e.value('Vn_limit','kip'))
+        ratio=max(vu/max(vr,1e-6),vu/p['phi_v']/max(e.value('Vn_limit','kip'),1e-6))
+        intervals.append(dict(a=a,b=b,pitch=pitch,zone=zone,vu=vu,area=area,vr=vr,ratio=ratio))
+    return intervals
+
+
 def transverse_checks(e):
     """Detail screens, plus conditional two-leg shear at actual adjacent spacing.
 
@@ -251,14 +267,9 @@ def transverse_checks(e):
         checks.append(Check('Status_transverse_development_'+run['id'],run['id']+' end development / closure',
             'RECORDED' if confirmed else 'PENDING','N/A',
             ('User-recorded check: '+run['development_basis']) if confirmed else 'Enter bend / tail dimensions and record the checked development calculation. Geometry alone does not establish anchorage.'))
-    for a,b in zip(bars,bars[1:]):
-        pitch=b['station_in']-a['station_in'];size=min(a['bar'],b['bar'])
-        # Use the larger demand on both sides of a transition, and weaker legs.
-        zone=max((a['zone'],b['zone']),key=lambda z:p['Vu_'+z]);vu=p['Vu_'+zone]
-        # The drawn legs are vertical, independent of the reference alpha_v.
-        area=2*BAR_AREA[size];vs=area*p['fy']*e.value('dv')*e.value('cot_theta')/max(pitch,1e-6)
-        vr=p['phi_v']*min(e.value('Vc','kip')+vs,e.value('Vn_limit','kip'))
-        ratio=max(vu/max(vr,1e-6),vu/p['phi_v']/max(e.value('Vn_limit','kip'),1e-6))
+    for interval in shear_intervals(e):
+        a,b=interval['a'],interval['b']
+        pitch,zone,vu,area,vr,ratio=(interval[k] for k in ('pitch','zone','vu','area','vr','ratio'))
         name=a['id']+' → '+b['id'];key=a['id']+'_'+b['id']
         checks.append(Check('Chk_actual_shear_'+key,name+' shear (anchorage conditional)','FAIL' if ratio>1 else 'CONDITIONAL',ratio,
             f'Actual interval {pitch:.3f} in; weaker vertical two-leg area {area:.3f} in²; larger adjacent shear {vu:.3f} kip; Vr {vr:.3f} kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit.'))

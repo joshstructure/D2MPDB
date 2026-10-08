@@ -86,15 +86,20 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
         parts.append(cage.to_html(full_html=False,include_plotlyjs=False))
     parts.extend([clear_spacing_html(e),'</body></html>'])
     (path/'reinforcement_detail.html').write_text('\n'.join(parts),encoding='utf-8')
+    from .geometry_dimensions import dimensions_figure,dimensions_html
+    dimensions=dimensions_figure(e).to_html(full_html=True,include_plotlyjs=True)
+    dimensions=dimensions.replace('<body>','<body>'+dimensions_html(e),1)
+    (path/'geometry_dimensions.html').write_text(dimensions,encoding='utf-8')
     prefix=('UNIFORM-CAGE REFERENCE ONLY. Actual hoop/U runs are in selected_case.json and transverse_bar_schedule.csv; these scalar inputs do not represent their topology.\n\n' if actual_transverse(case) else '')
     (path/'blockpad_inputs.txt').write_text(prefix+'\n'.join(input_formula(k,v) for k,v in case['inputs'].items())+'\n',encoding='utf-8')
     (path/'formula_trace.json').write_text(json.dumps(formula_trace(e),indent=2,ensure_ascii=False),encoding='utf-8')
     if case['analysis'].get('xml_audit',{}).get('end_records'):
         from .force_diagrams import cap_force_figure,diagram_notice
         import html
-        fig=cap_force_figure(case)
+        fig=cap_force_figure(case,show_resistance=True,evaluation=e)
         page=fig.to_html(full_html=True,include_plotlyjs=True)
-        page=page.replace('<body>','<body><p style="font:14px Arial;margin:20px">'+html.escape(diagram_notice(case))+'</p>',1)
+        page=page.replace('<body>','<body><p style="font:14px Arial;margin:20px">'+html.escape(diagram_notice(case))+'</p>'
+            '<p style="font:14px Arial;margin:20px">'+html.escape(fig.layout.meta['resistance_notice'])+'</p>',1)
         (path/'force_diagrams.html').write_text(page,encoding='utf-8')
     audit=strength_audit(case)
     for filename,headers,rows in [('strength_loads.csv',audit['headers'],audit['rows']),
