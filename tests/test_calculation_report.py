@@ -84,6 +84,46 @@ class CalculationReportTests(unittest.TestCase):
             self.assertIn('layout',figure)
         self.assertNotIn('SECTIONAL CHECKS PASS</span>',self.markup)
 
+    def test_geometry_gallery_contains_all_views_and_navigation_targets(self):
+        gallery=self.doc.get_element_by_id('geometry')
+        expected=('dimensions','elevation','pile-section','span-section','reinforcement-plan','3d')
+        self.assertEqual(len(gallery.xpath('.//figure')),len(expected))
+        for key in expected:
+            view=self.doc.get_element_by_id('geometry-'+key)
+            plot=view.xpath('.//div[@class="plot"]')[0]
+            figure=json.loads(self.doc.get_element_by_id(plot.get('data-figure')).text)
+            self.assertTrue(figure['data'],key)
+        self.assertTrue(self.doc.xpath('//nav[@class="toolbar"]/a[@href="#geometry"]'))
+        for link in self.doc.xpath('//a[starts-with(@href,"#")]'):
+            self.assertIsNotNone(self.doc.get_element_by_id(link.get('href')[1:]))
+        self.assertIn('Pile center and face stations',gallery.text_content())
+        self.assertIn('Print / save PDF includes all views',gallery.text_content())
+        # One copy of each drawing, with links from its related calculation.
+        self.assertFalse(self.doc.get_element_by_id('steel').xpath('.//figure'))
+        self.assertTrue(self.doc.get_element_by_id('steel').xpath('.//a[@href="#geometry-3d"]'))
+
+    def test_exported_geometry_uses_edited_case_and_retains_actual_cage(self):
+        from pier_cap.geometry_dimensions import geometry_dimensions
+        case=set_inputs(self.case,b=54,h=42,S_pile=6,Bar_N1=10,n_B1=2)
+        case['transverse_detail']=suggested_detail(evaluate(case))
+        case['transverse_detail']['enabled']=True
+        before=deepcopy(case)
+        e=evaluate(case)
+        report=html.fromstring(calculation_report(evaluation=e))
+        def figure(key):
+            plot=report.get_element_by_id('geometry-'+key).xpath('.//div[@class="plot"]')[0]
+            return json.loads(report.get_element_by_id(plot.get('data-figure')).text)
+        dimensions={t['meta']['dimension']:t['meta']['inches'] for t in figure('dimensions')['data'] if t.get('meta')}
+        self.assertAlmostEqual(dimensions['length'],geometry_dimensions(e)['length'])
+        self.assertEqual(dimensions['section_width'],54)
+        self.assertEqual(dimensions['section_depth'],42)
+        self.assertEqual(dimensions['center_chain_1'],72)
+        self.assertIn('differ from analyzed geometry',report.get_element_by_id('geometry-dimensions').text_content())
+        from pier_cap.cage_3d import layout_3d
+        # Export must preserve the entered schedule, coordinates and visibility controls.
+        self.assertEqual(figure('3d')['data'],json.loads(layout_3d(e).to_json())['data'])
+        self.assertEqual(case,before)
+
     def test_actual_geometry_replaces_reference_cover_equation(self):
         case=deepcopy(self.case)
         case['transverse_detail']=suggested_detail(evaluate(case))

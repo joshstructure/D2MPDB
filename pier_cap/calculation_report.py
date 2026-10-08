@@ -55,10 +55,11 @@ main{max-width:1140px;margin:24px auto;background:white;padding:38px 48px;box-sh
 h1{font-size:24pt;line-height:1.15;margin:12px 0}h2{font-size:16pt}h3{font-size:14pt}h4{font-size:12pt}h1,h2,h3,h4,summary{break-after:avoid}
 p{margin:10px 0}a{color:#1766a0}.eyebrow,.step,.toolbar,button,.badge{font-family:Arial,sans-serif}.eyebrow{letter-spacing:.12em;font-size:9pt;color:#52697e}
 .toolbar{position:sticky;top:0;z-index:10;background:#233548;color:white;padding:10px 20px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-button{border:1px solid #becbd7;border-radius:4px;padding:8px 14px;background:white;color:#233548;cursor:pointer;font-size:10pt}button:focus-visible,summary:focus-visible{outline:3px solid #dba62b;outline-offset:2px}
+button,.toolbar a{border:1px solid #becbd7;border-radius:4px;padding:8px 14px;background:white;color:#233548;cursor:pointer;font-size:10pt}.toolbar a{text-decoration:none}button:focus-visible,summary:focus-visible,.toolbar a:focus-visible{outline:3px solid #dba62b;outline-offset:2px}
 .toolbar span{margin-left:auto;font-size:9pt}.lead{font-size:13pt}.muted,figcaption,.caption{color:#536575}.caption{font-size:10pt;margin:0 0 8px}.step{color:var(--blue);background:#edf3f8;padding:5px 10px;font-size:9pt;display:inline-block}
 details.section{border-top:2px solid var(--line);margin:24px 0;padding-top:12px;scroll-margin-top:70px}summary{cursor:pointer;font-weight:bold;padding:8px 0}details.section>summary{font-size:16pt}details.region>summary{font-size:13pt}
 .section-body{padding:4px 0 12px}details.region,details.working{border-left:3px solid #dce7f3;padding:0 0 0 16px;margin:14px 0}details.working>summary{font-size:10pt}
+.geometry-gallery,.geometry-view{scroll-margin-top:80px}.geometry-links{display:flex;flex-wrap:wrap;gap:8px 18px;padding:0;list-style:none;font:10pt Arial,sans-serif}
 table{border-collapse:collapse;width:100%;font-size:10pt;margin:14px 0}th,td{border:1px solid #cbd5df;text-align:left;padding:8px 10px;vertical-align:top;overflow-wrap:anywhere}thead{display:table-header-group}tr{break-inside:avoid}th{background:#dce7f3}
 .table-wrap{overflow-x:auto}.inputs td{background:#fff8e9}.inputs th{background:#f7e6b9}.inputs td,.inputs th{border-color:#a78638}.discussion td{background:#f1f5fa}.discussion th{background:#dce7f3}.discussion td,.discussion th{border-color:#7189a6}.output td{background:#eff7f1}.output th{background:#dcece0}.output td,.output th{border-color:#6a9075}
 .badge{display:inline-block;padding:3px 7px;border-radius:3px;font-size:9pt;font-weight:600;background:#edf1f5;white-space:normal}.pass{color:#1d6844;background:#e3f1e8}.fail{color:#952c2c;background:#ffe7e5}.pending{color:#805413;background:#fff0cf}.reference{color:#4c5c70;background:#e8edf3}
@@ -93,10 +94,13 @@ function setSections(open){details.forEach(d=>d.open=open);scheduleRender();}
 document.getElementById('expand-all').addEventListener('click',()=>setSections(true));
 document.getElementById('collapse-all').addEventListener('click',()=>setSections(false));
 document.addEventListener('toggle',scheduleRender,true);
-function revealHash(){const node=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(!node)return;
+function revealTarget(id){const node=document.getElementById(id);if(!node)return;
   for(let p=node;p;p=p.parentElement)if(p.tagName==='DETAILS')p.open=true;
   requestAnimationFrame(()=>{node.scrollIntoView();renderPlots();});}
+function revealHash(){revealTarget(decodeURIComponent(location.hash.slice(1)));}
 window.addEventListener('hashchange',revealHash);
+document.addEventListener('click',event=>{const link=event.target.closest('a[href^="#"]');
+  if(link)revealTarget(decodeURIComponent(link.getAttribute('href').slice(1)));});
 let savedOpen=null;
 function preparePrint(){if(!savedOpen)savedOpen=details.map(d=>d.open);details.forEach(d=>d.open=true);return renderPlots(true);}
 window.addEventListener('beforeprint',preparePrint);
@@ -228,17 +232,46 @@ class Report:
             note+='<p><b>Actual cage fit:</b> '+('fitted' if fit['fitted'] else 'unresolved / failed trial')+f". Top family translation {fit['top_shift']:.6g} in; bottom family translation {fit['bottom_shift']:.6g} in. Maximum center spacing is obtained from adjacent sorted bar coordinates; the pile gap is retained.</p>"
         return note+'<details class="region"><summary>Bar coordinates and source of fitted row values</summary>'+table(['Region','Bar','Layer / kind','Size','x (in)','y (in)','Diameter (in)','Inventory'],rows,'inputs')+'</details>'
 
+    def geometry(self):
+        from . import visuals as v
+        from .cage_3d import layout_3d
+        from .geometry_dimensions import dimensions_figure,dimensions_html
+        e=self.e
+        views=[
+            ('dimensions','Dimensioned plan and pile cross section',dimensions_figure,
+             'Current cap length, width, depth, pile spacing and end distances. Hover dimension lines for feet and inches.'),
+            ('elevation','Cap elevation',v.elevation_figure,
+             'Cap elevation, pile stations and reinforcement; below-cap pile lengths are schematic.'),
+            ('pile-section','Reinforcement cross section at a pile',lambda e:v.section_figure(e,'P'),
+             'Pile-region cross section and continuous reinforcement.'),
+            ('span-section','Reinforcement cross section between piles',lambda e:v.section_figure(e,'B'),
+             'Between-pile cross section, retaining continuous bars and showing additional steel.'),
+            ('reinforcement-plan','Reinforcement plan',v.reinforcement_plan_figure,
+             'Reinforcement plan and cap stations for the current configuration.'),
+            ('3d','Interactive three-dimensional cage',layout_3d,
+             'Rotate to review the entered cage, pile clearances and open-bottom U-bars. Bar lines show centerlines; display thickness is schematic.'),
+        ]
+        content=('<section class="geometry-gallery" id="geometry"><h3>Geometry plots and dimensions</h3>'
+                 '<p>Drawings and dimension tables use the current case at export. Open a view below to pan, zoom or hover for values. '
+                 'Print / save PDF includes all views and the dimension tables. Regenerate the report after changing inputs.</p>'
+                 '<ul class="geometry-links">'+''.join('<li><a href="#geometry-'+key+'">'+escape(title)+'</a></li>' for key,title,_,_ in views)+'</ul>')
+        for key,title,draw,caption in views:
+            content+='<details class="region geometry-view" id="geometry-'+key+'"'+(' open' if key=='dimensions' else '')+'><summary>'+escape(title)+'</summary>'
+            content+=self.plot(draw(e),caption)
+            if key=='dimensions':content+=dimensions_html(e)
+            content+='</details>'
+        return content+('<p>These are engineering schematics, not construction drawings. Development, anchorage and congestion remain separate checks. '
+                        'See the reinforcement calculation for <a href="#steel">bar coordinates and effective depths</a>.</p></section>')
+
     def technical_content(self,key):
         from . import visuals as v
         e=self.e
         if key=='basis':
-            from .geometry_dimensions import dimensions_figure,dimensions_html
             return ('<p>Basis: the notebook’s C005 sectional equations and project assumptions, with the code references recorded beside their checks. '
                     'A complete governing code edition is not recorded by this case; confirm it before issuing a design. '
                     'Normal-weight concrete, the entered resistance factors and simplified shear parameters are adopted assumptions. '
                     'This report does not calculate D-regions, development lengths or a new structural analysis.</p>'+
-                    self.plot(v.elevation_figure(e),'Cap elevation, pile stations and reinforcement; engineering schematic, not a construction drawing.')+
-                    self.plot(dimensions_figure(e),'Current cap plan and cross section; hover dimension traces for feet/inches.')+dimensions_html(e)+
+                    self.geometry()+
                     table(['Analyzed geometry','Current geometry','Analysis consistency'],[[str(e.case['analysis']['geometry']),
                           ', '.join(f'{n} = {e.case["inputs"][n]:g}' for n in e.case['analysis']['geometry'] if n in e.case['inputs']),
                           'Changed: '+', '.join(e.stale) if e.stale else 'Current geometry matches the recorded analysis geometry']], 'discussion'))
@@ -252,10 +285,9 @@ class Report:
             else:result+='<p>No source member-end records were saved; a force diagram cannot be reconstructed from scalar envelopes.</p>'
             return result
         if key=='steel':
-            from .cage_3d import layout_3d
-            content=v.reinforcement_summary_html(e)+self.plot(v.section_figure(e,'P'),'Pile-region cross section and continuous reinforcement.')+self.plot(v.section_figure(e,'B'),'Between-pile cross section, retaining continuous bars and showing additional steel.')
-            content+=self.plot(v.reinforcement_plan_figure(e),'Reinforcement plan and cap stations.')
-            content+='<details class="region"><summary>Interactive three-dimensional cage</summary>'+self.plot(layout_3d(e),'Rotate to review the entered cage, pile clearances and open-bottom U-bars. Development and congestion remain separate checks.')+'</details>'
+            content=v.reinforcement_summary_html(e)+('<p>View the <a href="#geometry-pile-section">pile-region section</a>, '
+                '<a href="#geometry-span-section">between-pile section</a>, <a href="#geometry-reinforcement-plan">reinforcement plan</a> '
+                'and <a href="#geometry-3d">three-dimensional cage</a> in Geometry plots and dimensions.</p>')
             content+=self.coordinates()
             rows=[[k,f'{BAR_DIAMETER[k]:g}',f'{BAR_AREA[k]:g}'] for k in BAR_AREA]
             content+=table(['US bar number','Diameter (in)','Area (in²)'],rows,'inputs')+'<p>Bar properties are the notebook’s source worksheet lookup. Ab(k) returns area and Db(k) returns diameter; unsupported sizes fail validation. ValidBar requires integer sizes 3–11; ValidCount requires nonnegative integers.</p>'
@@ -325,7 +357,7 @@ def calculation_report(case=None, *, evaluation=None, search_result=None, search
     stamp=generated_at or datetime.now(timezone.utc).isoformat(timespec='seconds')
     title='Cap design calculation report'
     parts=['<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>'+title+' · '+escape(e.case['name'])+'</title><style>'+CSS+'</style></head><body>',
-           '<nav class="toolbar" aria-label="Report controls"><button id="expand-all">Expand all</button><button id="collapse-all">Collapse all</button><button id="print-report">Print / save PDF</button><span>Offline calculation snapshot</span></nav><main>',
+           '<nav class="toolbar" aria-label="Report controls"><a href="#geometry">Geometry plots</a><button id="expand-all">Expand all</button><button id="collapse-all">Collapse all</button><button id="print-report">Print / save PDF</button><span>Offline calculation snapshot</span></nav><main>',
            '<div class="eyebrow">ENGINEERING CALCULATIONS · CAP &amp; PILE DESIGN NOTEBOOK</div><h1>'+title+'</h1><p class="lead">'+escape(e.case['name'])+'</p>',
            '<p>Analysis: '+escape(str(e.case['analysis']['id']))+'<br>Generated: '+escape(str(stamp))+'</p>',
            context('Review cap sectional resistance, service behavior and reinforcement detailing.',

@@ -51,6 +51,12 @@ const settle = async () => {for(let i=0;i<4;i++) await new Promise(setImmediate)
   windowEvents.get('hashchange')();
   await settle();
   assert(sections[2].open && anchor.scrolled);
+  // A geometry shortcut must reopen a collapsed section even at the same hash.
+  callbacks.get('collapse-all')();
+  await settle();
+  events.get('click')({target:{closest:() => ({getAttribute:() => '#equation'})}});
+  await settle();
+  assert(sections[2].open && anchor.scrolled);
   const prior=sections.map(d=>d.open);
   await callbacks.get('print-report')();
   await settle();
@@ -58,5 +64,5 @@ const settle = async () => {for(let i=0;i<4;i++) await new Promise(setImmediate)
   assert.deepEqual(sections.map(d=>d.open),prior);
   assert.equal(draws.length,3,'plots must not be initialized twice');
   assert(resizes.length>0);
-  console.log('PASS: expand/collapse, lazy plot initialization, anchor reveal, print expansion and state restoration.');
+  console.log('PASS: expand/collapse, lazy plots, repeated geometry navigation, print expansion and state restoration.');
 })().catch(error => {console.error(error);process.exitCode=1;});
