@@ -61,8 +61,8 @@ def receipt_html(receipt, case):
         return ''
     same = receipt['signature'] == source_signature(case)
     body = (f'<b>{html.escape(receipt["filename"])}</b> · loaded {receipt["loaded_utc"]}<br>'
-            + ('Geometry, materials and load inputs are active below. Previous search results were cleared. '
-               'Next: Search steel layouts or Run section study. No need to run all notebook cells again.' if same else
+            + ('Geometry, materials and load inputs are active below. Search and study results are not restored from this file. '
+               'Next: review the live cage and checks, then run a search or study as needed. No need to run all notebook cells again.' if same else
                'The source or imported inputs have changed since this import. Review the active force source below before searching.'))
     return notice_html('LOADS IMPORTED SUCCESSFULLY' if same else 'IMPORTED INPUTS HAVE CHANGED',
                        body, 'success' if same else 'pending')

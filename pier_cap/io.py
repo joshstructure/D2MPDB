@@ -11,8 +11,17 @@ from .model import INPUTS,DEFINITIONS,GEOMETRY,validate_case,evaluate,default_ca
 from .force_audit import strength_audit
 
 def load_case(source):
-    if isinstance(source,(bytes,bytearray,memoryview)):data=json.loads(bytes(source).decode('utf-8-sig'))
-    else:data=json.loads(Path(source).read_text(encoding='utf-8-sig'))
+    try:
+        if isinstance(source,(bytes,bytearray,memoryview)):data=json.loads(bytes(source).decode('utf-8-sig'))
+        else:data=json.loads(Path(source).read_text(encoding='utf-8-sig'))
+    except json.JSONDecodeError as exc:
+        raise ValueError(f'Invalid JSON at line {exc.lineno}, column {exc.colno}: {exc.msg}. Select the original exported selected_case.json.') from exc
+    except UnicodeDecodeError as exc:
+        raise ValueError('The file is not UTF-8 JSON. Select the exported selected_case.json.') from exc
+    if isinstance(data,dict) and 'review' in data and 'controls' in data:
+        raise ValueError('This is a pile review JSON. Use Load pile review in the pile panel; use selected_case.json here for the cap.')
+    if not isinstance(data,dict) or not all(isinstance(data.get(key),dict) for key in ('inputs','units','analysis','screening')):
+        raise ValueError('This is not a saved cap case. Select selected_case.json from Export case + checks, not a report, equation trace or pile review JSON.')
     data=upgrade_case(data)
     validate_case(data)
     evaluate(data)

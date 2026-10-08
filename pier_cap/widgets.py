@@ -7,12 +7,13 @@ import ipywidgets as W
 import plotly.graph_objects as go
 from .model import default_case,upgrade_case,evaluate,INPUTS,GEOMETRY,formula_trace,analysis_match,sectional_checks_pass
 from .optimizer import search,sensitivity_search,SearchConfig,candidate_case,filter_candidates,candidate_dc,candidate_governing,governing_check,DC_SCOPES,same_design_basis
-from .io import load_case,export_bundle,export_blockpad
+from .io import export_bundle,export_blockpad
 from .fbmp_widgets import XMLImportPanel
 from .pile_widgets import PileReviewPanel
+from .case_widgets import CaseImportPanel
 from .blockpad_widgets import BlockpadExportPanel
 from .widget_compat import Tab, Accordion
-from .source_status import upload_entries,source_html,import_receipt,receipt_html,notice_html
+from .source_status import source_html,import_receipt,receipt_html,notice_html
 from .force_audit import force_basis,FORCE_LABELS
 from .force_diagrams import ForceDiagramPanel
 from .transverse_widgets import TransversePanel
@@ -75,9 +76,10 @@ class CapNotebook:
         self.force_diagrams=ForceDiagramPanel()
         self.plot_tabs=Tab(children=[self.cage,self.results,W.VBox([self.register],layout=W.Layout(max_height='850px',overflow='auto')),W.VBox([self.trace],layout=W.Layout(max_height='750px',overflow='auto')),self.force_diagrams.ui],layout=W.Layout(flex='1 1 650px',min_width='560px'))
         for i,title in enumerate(['Live cage','Plots','D/C checks','Equations','Force diagrams']):self.plot_tabs.set_title(i,title)
-        self.upload=W.FileUpload(accept='.json',multiple=False,description='Load case JSON')
-        self.upload.observe(self._uploaded,names='value')
+        self.case_import=CaseImportPanel(self)
+        self.upload=self.case_import.upload
         reset=W.Button(description='Reset starting case',icon='undo');reset.on_click(lambda _:self.load(default_case()))
+        self.case_import.actions.children=(*self.case_import.actions.children,reset)
         self.source_label=W.HTML()
         self.source_id=W.Text(description='Analysis ID',placeholder='Name of the new force analysis run',layout=W.Layout(width='430px'))
         self.source_confirm=W.Checkbox(value=False,description='I have supplied forces for the current geometry',indent=False,layout=W.Layout(width='420px'))
@@ -90,7 +92,7 @@ class CapNotebook:
         self.cap_type.observe(self._cap_type_changed,names='value')
         self.ui=W.VBox([W.HTML('<style>.cap-input .widget-label{white-space:normal!important;text-overflow:clip!important;line-height:1.25!important;height:auto!important;text-align:left!important;align-self:center}</style><h2 style="color:#213649;margin-bottom:4px">Cap and pile design explorer</h2><p>Review the FBMP pile results → inspect the cap cage and checks → search practical steel → export a review case.</p>'),
             self.cap_type,W.HTML('<p>Shared sectional workflow for pier and end-bent caps supported directly on a single pile row. The cap type labels the case; it does not add loads or change the design method. Backwall/wingwall, earth-pressure load generation, footing/column caps and strut-and-tie design are outside this calculation.</p>'),
-            W.HBox([self.upload,reset]),self.xml_import.ui,self.import_notice,self.pile_review.ui,
+            self.case_import.ui,self.xml_import.ui,self.import_notice,self.pile_review.ui,
             W.HTML('<h2 style="color:#213649">2. Cap reinforcement and steel optimization</h2>'),self.source_label,source,self.banner,self.metrics,
             self.transverse_panel.ui,
             W.HBox([self.input_tabs,self.plot_tabs],layout=W.Layout(display='flex',flex_flow='row wrap',align_items='flex-start',grid_gap='16px')),
@@ -98,7 +100,9 @@ class CapNotebook:
         self.refresh()
 
     def _cap_type_changed(self,change):
-        if not self.busy:self.case['cap_type']=change['new']
+        if not self.busy:
+            self.case['cap_type']=change['new']
+            self.case_import._case_changed()
 
     def _inputs(self):
         tabs=[]
@@ -220,17 +224,6 @@ class CapNotebook:
         if import_name and case['analysis'].get('xml_audit',{}).get('end_records'):
             self.plot_tabs.selected_index=4
         self._notify_case_change()
-
-    def _uploaded(self,change):
-        if not self.upload.value:return
-        try:
-            self.import_receipt=None
-            self.import_notice.value=notice_html('READING CASE FILE','Checking the uploaded inputs…','pending')
-            entry=upload_entries(self.upload.value)[0]
-            self.load(load_case(entry['content']),import_name=entry['name'])
-            self.message.value='<b>Case loaded.</b>'
-        except Exception as exc:
-            self.import_notice.value=notice_html('CASE IMPORT FAILED',html.escape(str(exc))+'<br>Review the active force source below.','error')
 
     def _stamp(self,button):
         if not self.source_confirm.value or not self.source_id.value.strip():
