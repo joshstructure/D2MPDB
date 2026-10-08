@@ -3,7 +3,7 @@ from copy import deepcopy
 import html
 import ipywidgets as W
 from .widget_compat import Accordion
-import plotly.graph_objects as go
+from .plotly_compat import FigureWidget
 
 from .model import evaluate
 from .optimizer import SearchConfig,same_design_basis
@@ -360,15 +360,15 @@ class SectionStudy:
             self.rows = section_rows(self.study, self.target.value, rates)
             for figure in self.figures:
                 figure.close()
-            heat = go.FigureWidget(section_heatmap(self.study, self.rows, metric, labels))
-            pareto = go.FigureWidget(section_pareto(self.study, self.rows))
+            heat = FigureWidget(section_heatmap(self.study, self.rows, metric, labels))
+            pareto = FigureWidget(section_pareto(self.study, self.rows))
             heat.data[0].on_click(self._map_clicked)
             heat.data[1].on_click(self._map_clicked)
             for trace in pareto.data:
                 trace.on_click(self._pareto_clicked)
             self._clear_cost_view()
             if rates:
-                costs = go.FigureWidget(section_cost_chart(self.study, self.rows, self.section.value))
+                costs = FigureWidget(section_cost_chart(self.study, self.rows, self.section.value))
                 for trace in costs.data:
                     trace.on_click(self._pareto_clicked)
                 self.figures = [heat, costs, pareto]
@@ -473,7 +473,7 @@ class SectionStudy:
             highlight_section(self.figures[0], self.study, self.rows, row['point_id'])
             if self.use_cost.value and len(self.figures) == 3:
                 # Rebuild only this inexpensive chart to include a selected section outside the leading ten.
-                cost_figure = go.FigureWidget(section_cost_chart(self.study, self.rows, row['point_id']))
+                cost_figure = FigureWidget(section_cost_chart(self.study, self.rows, row['point_id']))
                 for trace in cost_figure.data:
                     trace.on_click(self._pareto_clicked)
                 self.figures[1].close()
@@ -516,7 +516,7 @@ class SectionStudy:
         if self.study.grid['force_mode'] == 'matched':
             self.selection_info.value += '<small>Reusing forces over trial reinforcement assumes the analysis stiffness model permits it; geometry matching alone does not verify that assumption.</small>'
         for figure in (section_figure(e, 'P'), section_figure(e, 'B'), results_figure(e)):
-            self.preview_figures.append(go.FigureWidget(figure))
+            self.preview_figures.append(FigureWidget(figure))
         self.preview.children = [*self.preview_figures, W.HTML(spacing_html(e)),
                                  W.VBox([W.HTML(checks_html(e))], layout=W.Layout(max_height='420px', overflow='auto'))]
         self.apply_button.disabled = False

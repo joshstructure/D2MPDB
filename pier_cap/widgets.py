@@ -4,7 +4,7 @@ from pathlib import Path
 import html
 import json
 import ipywidgets as W
-import plotly.graph_objects as go
+from .plotly_compat import FigureWidget
 from .model import default_case,upgrade_case,evaluate,INPUTS,GEOMETRY,formula_trace,analysis_match,sectional_checks_pass
 from .optimizer import search,sensitivity_search,SearchConfig,candidate_case,filter_candidates,candidate_dc,candidate_governing,governing_check,DC_SCOPES,same_design_basis
 from .io import export_bundle,export_blockpad
@@ -184,11 +184,11 @@ class CapNotebook:
             if old is not self.cage_3d_widget:old.close()
         self.figures=[]
         def fw(fig):
-            widget=go.FigureWidget(fig);self.figures.append(widget);widget.layout.autosize=True;return widget
+            widget=FigureWidget(fig);self.figures.append(widget);widget.layout.autosize=True;return widget
         self.dimensions.children=[fw(dimensions_figure(e)),W.HTML(dimensions_html(e))]
         selected=self.transverse_panel.selected_run_id
         new_cage=layout_3d(e)
-        if self.cage_3d_widget is None:self.cage_3d_widget=go.FigureWidget(new_cage)
+        if self.cage_3d_widget is None:self.cage_3d_widget=FigureWidget(new_cage)
         else:
             # Keep a single WebGL canvas across input edits. Replacing widgets on
             # every edit can exhaust browser contexts; stale visibility must also
@@ -364,7 +364,7 @@ class CapNotebook:
         rows=''.join(f'<tr><td>{rank}</td><td>#{i+1}</td><td>{html.escape(c.label)}</td><td>{c.weight_lb:.0f}</td><td>{candidate_dc(c,scope):.4f}</td><td>{c.strength_dc:.4f}</td><td>{c.max_dc:.4f}</td><td>{html.escape(candidate_governing(c,scope))}</td></tr>' for rank,(i,c) in enumerate(((i,result.candidates[i]) for i in shown),start+1))
         rejects='; '.join(f'{html.escape(k)}: {v}' for k,v in sorted(result.rejection_counts.items(),key=lambda t:-t[1])[:8])
         self._close_alternative_plot()
-        self.alternative_figure=go.FigureWidget(alternatives_figure(result,indices,dc_scope=scope,max_dc=target))
+        self.alternative_figure=FigureWidget(alternatives_figure(result,indices,dc_scope=scope,max_dc=target))
         self.alternative_output.children=[W.HTML('<table class="cap-table"><tr><th>Filtered rank</th><th>Candidate ID</th><th>Layout</th><th>Gross lb</th><th>Filter ratio</th><th>Strength D/C</th><th>All-check utilization</th><th>Controls filter</th></tr>'+rows+'</table>'),self.alternative_figure,W.HTML('<small>Rejection counts overlap: '+rejects+'</small>')]
 
     def _run_search(self,button):

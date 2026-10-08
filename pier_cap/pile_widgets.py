@@ -11,6 +11,7 @@ import ipywidgets as W
 from traitlets import Tuple
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+from .plotly_compat import FigureWidget
 from .pile_review import (import_pile_xml, elastic_profile, pile_heads, governors,
                           parse_trials, evaluate_trials, csv_text, require, validate_saved_review)
 from .source_status import upload_entries, notice_html
@@ -424,7 +425,7 @@ class PileReviewPanel:
     def _figure(self, key, container, figure):
         if key in self.figures:
             self.figures[key].close()
-        widget = go.FigureWidget(figure)
+        widget = FigureWidget(figure)
         self.figures[key] = widget
         container.children = [widget]
 

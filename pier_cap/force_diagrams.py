@@ -10,6 +10,7 @@ from plotly.subplots import make_subplots
 
 from .fbmp import _moment_at
 from .force_audit import state_label
+from .plotly_compat import FigureWidget
 
 
 MOMENT = '#2166ac'
@@ -243,7 +244,7 @@ class ForceDiagramPanel:
         try:
             fresh=cap_force_figure(case,show_resistance=self.show_resistance.value,evaluation=evaluation)
             self.resistance_notice.value='<p>'+html.escape(fresh.layout.meta['resistance_notice'])+'</p>' if self.show_resistance.value else ''
-            if self.figure is None:self.figure=go.FigureWidget(fresh)
+            if self.figure is None:self.figure=FigureWidget(fresh)
             else:
                 active=(self.figure.layout.updatemenus[0].active or 0) if same_source else 0
                 active=max(0,min(active,len(fresh.layout.updatemenus[0].buttons)-1))
