@@ -2,6 +2,7 @@
 from copy import deepcopy
 import json
 import unittest
+from unittest.mock import patch
 
 from pier_cap.model import evaluate,set_inputs
 from pier_cap.io import load_case
@@ -119,6 +120,81 @@ class ZoneWidgetTests(unittest.TestCase):
         self.assertIn('positive pitch',panel.status.value)
         self.assertIn('positive pitch',panel.zone_controls[rid]['error'].value)
 
+    def test_zone_locations_link_units_refresh_once_and_keep_exact_pitch(self):
+        app=self.app;panel=app.transverse_panel
+        rid=zone_runs(app.current)[1]['P2'][0]['id'];controls=panel.zone_controls[rid]
+        before=deepcopy(app.case['transverse_detail']['runs'])
+        old=next(r for r in before if r['id']==rid)
+        for field,value,stored,expected in [
+            ('first_in',old['first_in']+.1,'first_in',old['first_in']+.1),
+            ('first_ft',(old['first_in']+.75)/12,'first_in',old['first_in']+.75),
+            ('end_in',old['end_in']-.2,'end_in',old['end_in']-.2),
+            ('end_ft',(old['end_in']-.75)/12,'end_in',old['end_in']-.75)]:
+            with self.subTest(field=field),patch.object(app,'refresh',wraps=app.refresh) as refresh:
+                controls[field].value=value
+                refresh.assert_called_once()
+                run=next(r for r in app.case['transverse_detail']['runs'] if r['id']==rid)
+                self.assertAlmostEqual(run[stored],expected)
+                for name in ('first','end'):
+                    self.assertEqual(controls[name+'_in'].value,run[name+'_in'])
+                    self.assertEqual(controls[name+'_ft'].value,run[name+'_in']/12)
+                self.assertEqual(run['pitch_in'],old['pitch_in'])
+                self.assertIs(controls,panel.zone_controls[rid])
+        for run in app.case['transverse_detail']['runs']:
+            if run['id']!=rid:self.assertEqual(run,next(r for r in before if r['id']==run['id']))
+        bars=[b for b in scheduled_bars(app.case) if b['run']==rid]
+        stations=[b['station_in'] for b in bars]
+        self.assertTrue(all(abs(b-a-old['pitch_in'])<1e-9 for a,b in zip(stations,stations[1:])))
+        self.assertIn(f'Actual last: {stations[-1]:g} in / {stations[-1]/12:g} ft',controls['info'].value)
+        elevation=app.cage.children[app.cage.children.index(panel.ui)-1]
+        self.assertEqual([t.x[0]*12 for t in elevation.data if t.legendgroup==rid],stations)
+        saved=load_case(json.dumps(app.case).encode());app.load(saved)
+        self.assertEqual(app.case['transverse_detail'],saved['transverse_detail'])
+        restored=next(r for r in saved['transverse_detail']['runs'] if r['id']==rid)
+        self.assertEqual(panel.zone_controls[rid]['first_in'].value,restored['first_in'])
+        self.assertEqual(panel.zone_controls[rid]['end_ft'].value,restored['end_in']/12)
+
+    def test_invalid_location_restores_both_units_and_reports_inline(self):
+        panel=self.app.transverse_panel;before=deepcopy(self.app.case)
+        rid=zone_runs(self.app.current)[1]['P2'][0]['id'];controls=panel.zone_controls[rid]
+        original={name:controls[name].value for name in ('first_in','first_ft','end_in','end_ft')}
+        for field,value in [('first_in',-1),('end_ft',original['first_ft']-1),('first_ft',float('nan')),('end_in',float('inf'))]:
+            with self.subTest(field=field):
+                controls[field].value=value
+                self.assertEqual(self.app.case,before)
+                self.assertEqual({name:controls[name].value for name in original},original)
+                self.assertIn('Not applied',controls['error'].value)
+
+    def test_general_run_editor_links_both_units_and_applies_without_rounding(self):
+        panel=self.app.transverse_panel
+        rid=zone_runs(self.app.current)[1]['P2'][0]['id'];panel.select.value=rid
+        before=deepcopy(self.app.case)
+        first=panel.fields['first_in'].value+.1;end=panel.fields['end_in'].value-.75
+        panel.fields['first_in'].value=first
+        self.assertEqual(panel.fields['first'].value,first/12)
+        panel.fields['end'].value=end/12
+        self.assertAlmostEqual(panel.fields['end_in'].value,end)
+        self.assertEqual(self.app.case,before)
+        panel.apply.click()
+        run=next(r for r in self.app.case['transverse_detail']['runs'] if r['id']==rid)
+        self.assertEqual(run['first_in'],first);self.assertAlmostEqual(run['end_in'],end)
+        self.assertEqual(panel.zone_controls[rid]['first_in'].value,first)
+        panel.fields['first'].value=(first+.25)/12
+        self.assertAlmostEqual(panel.fields['first_in'].value,first+.25)
+        panel.fields['end_in'].value=end-.1
+        self.assertEqual(panel.fields['end'].value,(end-.1)/12)
+
+    def test_crossing_location_remains_saved_and_accessible_in_general_editor(self):
+        panel=self.app.transverse_panel
+        rid=zone_runs(self.app.current)[1]['P2'][0]['id']
+        panel.zone_controls[rid]['end_in'].value=zone_runs(self.app.current)[1]['S2'][0]['end_in']
+        self.assertNotIn(rid,panel.zone_controls)
+        self.assertIn(rid,[r['id'] for r in zone_runs(self.app.current)[2]])
+        self.assertIn('Custom / crossing runs retained in the general editor: '+rid,panel.zone_notice.value)
+        panel.select.value=rid
+        run=next(r for r in self.app.case['transverse_detail']['runs'] if r['id']==rid)
+        self.assertEqual(panel.fields['end_in'].value,run['end_in'])
+
     def test_empty_zone_adds_selected_size_and_pitch_without_filling_other_zones(self):
         app=self.app;app.load(default_case());panel=app.transverse_panel
         card=panel._empty_zones['P1']
@@ -133,6 +209,7 @@ class ZoneWidgetTests(unittest.TestCase):
         app=self.app;panel=app.transverse_panel;saved=deepcopy(app.case['transverse_detail']['runs'])
         panel.active.value=False
         self.assertTrue(all(c['pitch'].disabled for c in panel.zone_controls.values()))
+        self.assertTrue(all(c[name].disabled for c in panel.zone_controls.values() for name in ('first_in','first_ft','end_in','end_ft')))
         self.assertEqual(app.case['transverse_detail']['runs'],saved)
         app.controls['s_G'].value=0
         self.assertIsNone(app.current)

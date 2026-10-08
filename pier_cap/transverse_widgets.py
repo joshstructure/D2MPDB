@@ -20,16 +20,20 @@ class TransversePanel:
         self.bar=W.Dropdown(options=[(f'#{n}',n) for n in range(3,12)],description='Bar size')
         self.zone=W.Dropdown(options=[('Overall shear (G)','G'),('Lower-shear (L)','L')],description='Shear basis')
         self.fields={}
-        for key,label,value in [('first','First bar (ft)',0),('end','Run end limit (ft)',0),('pitch','Pitch (in)',9),
+        for key,label,value in [('first_in','First bar (in)',0),('first','First bar (ft)',0),
+            ('end_in','Last-bar limit (in)',0),('end','Last-bar limit (ft)',0),('pitch','Pitch (in)',9),
             ('inside_diameter_in','Inside bend diameter (in)',4.5),('tail_in','Straight end tail (in)',9),
             ('end_raise_in','Raise U ends (in)',0),('side_inset_in','Inset legs from cover (in)',0)]:
-            self.fields[key]=W.FloatText(value=value,description=label,style={'description_width':'180px'},layout=W.Layout(width='300px'))
+            self.fields[key]=W.FloatText(value=value,description=label,continuous_update=False,style={'description_width':'180px'},layout=W.Layout(width='300px'))
         self.angle=W.Dropdown(options=[('90° inward hooks',90),('135° inward hooks',135),('180° return hooks',180),('Straight legs, no end hook',0)],description='U ends',style={'description_width':'110px'},layout=W.Layout(width='390px'))
         self.confirm=W.Checkbox(description='Development / closure checked for this run',indent=False)
         self.basis=W.Textarea(description='Checked detail',placeholder='Drawing / calculation reference and development basis',style={'description_width':'110px'},layout=W.Layout(width='620px',height='60px'))
         self.status=W.HTML();self.count=W.HTML()
         self.editor=W.VBox([W.HBox([self.kind,self.bar,self.zone],layout=W.Layout(flex_flow='row wrap')),
-            W.HBox([self.fields[n] for n in ('first','end','pitch')],layout=W.Layout(flex_flow='row wrap')),
+            W.HBox([self.fields[n] for n in ('first_in','first')],layout=W.Layout(flex_flow='row wrap')),
+            W.HBox([self.fields[n] for n in ('end_in','end','pitch')],layout=W.Layout(flex_flow='row wrap')),
+            W.HTML('<small>Locations are measured from the left end of the cap. Inch and foot fields are linked. '
+                   'The last-bar limit bounds the run; the actual last bar stays on the entered spacing.</small>'),
             W.HTML('<p><b>U shape:</b> top across the cap, two legs down beside the pile, bottom open. '
                    'Raise ends is measured above the bottom-cover position. Inset moves both legs inward from the side-cover position. '
                    'End tails point inward independently and are checked for pile clashes. All dimensions are actual inches.</p>'),
@@ -47,14 +51,18 @@ class TransversePanel:
         self.general.set_title(1,'Uniform-cage reference inputs and spacing assumptions')
         self.general.selected_index=None
         self.ui=W.VBox([W.HTML('<h3>Actual hoops and pile U-bars · by zone</h3><p>Zones follow the elevation from left to right. '
-            'Change a run’s size or spacing to update the drawing and checks immediately; press Enter or leave the spacing field to apply it. '
-            'First stations and end limits remain unchanged. <b>Create starting layout</b> fills the cap using the reference overall pitch. '
+            'Change a run’s size, spacing or locations to update the drawing and checks immediately; press Enter or leave a number field to apply it. '
+            'Locations are measured from the <b>left end of the cap</b>. Edit inches or feet; the paired field updates automatically. '
+            'The <b>last-bar limit</b> bounds the run; the actual last bar stays on the entered spacing and is shown below each run. '
+            '<b>Create starting layout</b> fills the cap using the reference overall pitch. '
             'Bend dimensions and development records are below.</p>'),
             W.HBox([self.active,self.generate],layout=W.Layout(flex_flow='row wrap')),
             self.zone_grid,self.zone_notice,self.status,self.general],layout=W.Layout(width='100%',min_width='0'))
         self.active.observe(self._toggle,names='value');self.select.observe(self._selected,names='value')
         self.generate.on_click(self._generate);self.add.on_click(self._add);self.remove.on_click(self._remove);self.apply.on_click(self._apply)
         for field in [self.kind,self.bar,self.zone,self.angle,*self.fields.values()]:field.observe(self._edited,names='value')
+        for name,other in [('first_in','first'),('first','first_in'),('end_in','end'),('end','end_in')]:
+            self.fields[name].observe(lambda change,target=other:self._link_location(change,target),names='value')
         self.sync()
 
     @property
@@ -91,10 +99,17 @@ class TransversePanel:
                             style={'description_width':'65px'},layout=W.Layout(width='calc(100% - 4px)',min_width='0'))
                         info=W.HTML();error=W.HTML()
                         controls=dict(bar=size,pitch=pitch,info=info,label=label,error=error)
+                        locations=[]
+                        for name,title,field,scale in [('first_in','First (in)','first_in',1),('first_ft','First (ft)','first_in',12),
+                            ('end_in','Last limit (in)','end_in',1),('end_ft','Last limit (ft)','end_in',12)]:
+                            widget=W.FloatText(description=title,continuous_update=False,style={'description_width':'95px'},
+                                layout=W.Layout(width='calc(100% - 4px)',min_width='0'))
+                            controls[name]=widget;locations.append(widget)
+                            widget.observe(lambda change,rid=run['id'],name=field,factor=scale:self._zone_edited(rid,name,change,factor),names='value')
                         self.zone_controls[run['id']]=controls
                         for field,widget in [('bar',size),('pitch_in',pitch)]:
                             widget.observe(lambda change,rid=run['id'],name=field:self._zone_edited(rid,name,change),names='value')
-                        children.extend([label,size,pitch,info,error])
+                        children.extend([label,size,pitch,*locations,info,error])
                     if not groups[z['key']]:
                         size=W.Dropdown(options=[(f'#{n}',n) for n in range(3,12)],value=int(e.case['inputs']['Bar_v']),description='Size',
                             style={'description_width':'65px'},layout=W.Layout(width='calc(100% - 4px)',min_width='0'))
@@ -114,15 +129,17 @@ class TransversePanel:
                     ('Open-bottom U-bars' if z['kind']=='pile_u' else 'Closed hoops')+'</small>')
                 for run in groups[z['key']]:
                     c=self.zone_controls[run['id']];c['bar'].value=run['bar'];c['pitch'].value=run['pitch_in']
-                    c['bar'].disabled=c['pitch'].disabled=not active
+                    c['first_in'].value=run['first_in'];c['first_ft'].value=run['first_in']/12
+                    c['end_in'].value=run['end_in'];c['end_ft'].value=run['end_in']/12
+                    for name in ('bar','pitch','first_in','first_ft','end_in','end_ft'):c[name].disabled=not active
                     count=math.floor((run['end_in']-run['first_in'])/run['pitch_in']+1e-9)+1
                     last=run['first_in']+(count-1)*run['pitch_in']
                     c['label'].value='<small>Run '+html.escape(run['id'])+'</small>'
-                    c['info'].value=f'<small>{count} {"bar" if count==1 else "bars"} · first {run["first_in"]/12:.3f} ft<br>Last {last/12:.3f} ft · limit {run["end_in"]/12:.3f} ft</small>'
+                    c['info'].value=f'<small>{count} {"bar" if count==1 else "bars"}<br>Actual last: {last:g} in / {last/12:g} ft</small>'
                     c['error'].value=''
                 if z['key'] in self._empty_zones:
                     c=self._empty_zones[z['key']]
-                    c['note'].value='<small>No entered run. Set size / spacing, then add this zone.</small>'
+                    c['note'].value='<small>No entered run. Set size / spacing, then add this zone to edit its first and last locations.</small>'
                     c['button'].disabled=z['right']<=z['left']
             notes=[]
             if not active:notes.append('Actual layout is off. Enable it to edit saved zone runs and draw their bars.')
@@ -131,12 +148,12 @@ class TransversePanel:
             self.zone_notice.value='<p>'+html.escape(' '.join(notes))+'</p>'
         finally:self.busy=prior_busy
 
-    def _zone_edited(self,run_id,field,change):
+    def _zone_edited(self,run_id,field,change,scale=1):
         if self.busy or self.owner.busy:return
         def perform():
             detail=deepcopy(self.owner.case['transverse_detail'])
             run=next(r for r in detail['runs'] if r['id']==run_id)
-            run[field]=change['new'];run['development_confirmed']=False;run.pop('development_fingerprint',None)
+            run[field]=change['new']*scale;run['development_confirmed']=False;run.pop('development_fingerprint',None)
             self._commit(detail)
         applied=self._attempt(perform)
         if self.owner.current:self.sync_zones(self.owner.current)
@@ -159,12 +176,14 @@ class TransversePanel:
     def _fill(self):
         run=next(r for r in self.owner.case['transverse_detail']['runs'] if r['id']==self.select.value)
         self.kind.value=run['kind'];self.bar.value=run['bar'];self.zone.value=run['zone']
-        self.fields['first'].value=run['first_in']/12;self.fields['end'].value=run['end_in']/12;self.fields['pitch'].value=run['pitch_in']
+        self.fields['first_in'].value=run['first_in'];self.fields['first'].value=run['first_in']/12
+        self.fields['end_in'].value=run['end_in'];self.fields['end'].value=run['end_in']/12;self.fields['pitch'].value=run['pitch_in']
         shape=shape_parameters(run);self.angle.value=shape['end_angle']
         for n in ('inside_diameter_in','tail_in','end_raise_in','side_inset_in'):self.fields[n].value=shape[n]
         self.confirm.value=development_current(self.owner.case,run);self.basis.value=run.get('development_basis','')
         s=next((r for r in run_summary(self.owner.case) if r['id']==run['id']),None)
-        self.count.value=(f'<b>Applied run: {s["count"]} bars. First {s["first_in"]/12:.3f} ft; last {s["actual_last_in"]/12:.3f} ft; exact pitch {s["pitch_in"]:g} in.</b>' if s else '<b>Layout is disabled. Runs remain saved.</b>')
+        self.count.value=(f'<b>Applied run: {s["count"]} bars. First {s["first_in"]:g} in / {s["first_in"]/12:g} ft; '
+            f'actual last {s["actual_last_in"]:g} in / {s["actual_last_in"]/12:g} ft; exact pitch {s["pitch_in"]:g} in.</b>' if s else '<b>Layout is disabled. Runs remain saved.</b>')
 
     def _commit(self,detail):
         case=deepcopy(self.owner.case);case['transverse_detail']=detail
@@ -197,6 +216,12 @@ class TransversePanel:
     def _edited(self,change):
         if not self.busy:self.confirm.value=False
 
+    def _link_location(self,change,target):
+        if self.busy:return
+        self.busy=True
+        try:self.fields[target].value=change['new']/12 if target in ('first','end') else change['new']*12
+        finally:self.busy=False
+
     def _add(self,_):
         def perform():
             detail=deepcopy(self.owner.case.get('transverse_detail',empty_detail()));existing={r['id'] for r in detail['runs']};n=1
@@ -213,8 +238,8 @@ class TransversePanel:
     def _apply(self,_):
         detail=deepcopy(self.owner.case['transverse_detail'])
         run=next(r for r in detail['runs'] if r['id']==self.select.value)
-        run.update(kind=self.kind.value,bar=self.bar.value,zone=self.zone.value,first_in=self.fields['first'].value*12,
-            end_in=self.fields['end'].value*12,pitch_in=self.fields['pitch'].value,development_confirmed=self.confirm.value,development_basis=self.basis.value)
+        run.update(kind=self.kind.value,bar=self.bar.value,zone=self.zone.value,first_in=self.fields['first_in'].value,
+            end_in=self.fields['end_in'].value,pitch_in=self.fields['pitch'].value,development_confirmed=self.confirm.value,development_basis=self.basis.value)
         run['shape']={n:self.fields[n].value for n in ('inside_diameter_in','tail_in','end_raise_in','side_inset_in')};run['shape']['end_angle']=self.angle.value
         if run['development_confirmed']:run['development_fingerprint']=development_fingerprint(dict(self.owner.case,transverse_detail=detail),run)
         else:run.pop('development_fingerprint',None)
