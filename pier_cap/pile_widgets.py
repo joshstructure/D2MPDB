@@ -241,8 +241,8 @@ class PileReviewPanel:
         self.all_piles.on_click(lambda _: setattr(self.piles, 'value', tuple(self.review['piles']) if self.review else ()))
         self.no_piles.on_click(lambda _: setattr(self.piles, 'value', ()))
         self.governing_pile.on_click(lambda _: setattr(self.piles, 'value', (self.selected_pile(),)) if self.review else None)
-        self.cutoff = W.Text(description='Cutoff EL (ft)', placeholder='Optional project datum', continuous_update=False,
-                             layout=W.Layout(width='320px'))
+        self.cutoff = W.Text(description='Pile cutoff EL (ft)', placeholder='Pile-head project elevation', continuous_update=False,
+                             style={'description_width':'125px'}, layout=W.Layout(width='330px'))
         self.export = W.Button(description='Download pile review', icon='download', disabled=True, layout=W.Layout(width='200px'))
         self.export.on_click(self._export)
         self.upload = self._uploader('Separate pile XML', '.xml,.XML', self._import)
@@ -274,7 +274,7 @@ class PileReviewPanel:
                                                   ('Percentage of Lcrit','fraction')], value='fixed',
                                          description='Method', layout=W.Layout(width='410px'))
         self.reference = W.Text(description='Ground EL (ft)', placeholder='Required for tip elevation', continuous_update=False,
-                                layout=W.Layout(width='330px'))
+                                style={'description_width':'105px'}, layout=W.Layout(width='330px'))
         self.accepted = W.Text(description='Trial Lcrit (ft)', placeholder='Calculated from trials', disabled=True, layout=W.Layout(width='330px'))
         self.zero_band = W.FloatText(value=1e-6, description='Zero band (in)', style={'description_width':'100px'})
         self.fixity_allowance = W.Checkbox(value=True, description='Add selected allowance below second crossing', indent=False, layout=W.Layout(width='390px'))
@@ -295,19 +295,22 @@ class PileReviewPanel:
             w.observe(self._trials_changed, names='value')
         self.trial_template = W.Button(description='Download CSV template', icon='download', layout=W.Layout(width='210px'))
         self.trial_template.on_click(self._template)
-        trials = W.VBox([W.HTML('<p>Paste the five workbook columns (trial, combination, pile, embedment in ft, displacement in in), '
+        trials = W.VBox([W.HTML('<b>Elevations for minimum tip</b>'),
+            W.HBox([self.cutoff, self.reference], layout=W.Layout(flex_flow='row wrap', width='100%')),
+            W.HTML('<small>Use the same project datum for pile-head cutoff and design ground / scour. These elevations also update the displacement plot.</small>'),
+            W.HTML('<p>Paste the five workbook columns (trial, combination, pile, embedment in ft, displacement in in), '
             'or upload the CSV template. A single solved XML does not contain the shortened-pile trial history. '
             'Each row is the governing result for that embedment. Use <b>series</b> for separate studies; combination and pile may change as governors change. '
             '<b>Trial Lcrit is calculated automatically</b> from Δ ≤ 0.1 in (editable below). '
             'The second-zero criterion uses the deepest second crossing among signed DX and DY profiles for all imported piles and combinations. '
             '<b>The deeper required tip controls.</b> The selected allowance (normally 5 ft) applies to trials and, when checked below, the second crossing. '
             '<b>Tip elevation = design ground/scour elevation − required embedment.</b> '
-            'Enter Ground EL and Cutoff EL to compare both criteria in one datum. '
+            'Enter Pile cutoff EL and Ground EL above to compare both criteria in one datum. '
             'The trial-based 5-ft default follows January 2026 FDOT SDG 3.5.9.B.4 for driven piles; '
             'check any greater required penetration and Service-limit deflections separately.</p>'),
             W.HBox([self.trial_upload, self.trial_template]), self.trial_label, self.trial_text,
             W.HBox([self.tolerance, self.extension, self.fraction], layout=W.Layout(flex_flow='row wrap')),
-            self.extension_mode, W.HBox([self.reference, self.accepted], layout=W.Layout(flex_flow='row wrap')),
+            self.extension_mode, self.accepted,
             W.HBox([self.zero_band,self.fixity_allowance], layout=W.Layout(flex_flow='row wrap')),
             self.trial_basis, self.rounding, self.run_trials, self.trial_status, self.minimum_tip_summary,
             W.HTML('<h4>Displacement-change trial calculation</h4>'), self.trial_summary, self.trial_output])
@@ -315,7 +318,8 @@ class PileReviewPanel:
             W.VBox([self.combo, W.HTML('<b>Compare piles</b> · check any combination of piles; colors stay the same on every plot.'),
                 self.piles, W.HBox([self.all_piles, self.no_piles, self.governing_pile]),
                 W.HTML('<p>Solid: DX / |M2| / maximum stress. Dashed: DY / |M3| / minimum stress. '
-                       'Click a pile in the legend to hide or show its curves on every plot.</p>'), self.fixity_summary, self.profile_output, self.reported]),
+                       'Click a pile in the legend to hide or show its curves on every plot. '
+                       'Set <b>Pile cutoff EL (ft)</b> at the top of <b>Minimum tip</b> to show project elevations.</p>'), self.fixity_summary, self.profile_output, self.reported]),
             W.VBox([self.section_output, self.properties, manual]), trials,
             W.VBox([W.HTML('<p>Share pile section information, minimum tip elevation and maximum factored loads in short tons. '
                 'Paste trials and enter the design ground / scour elevation in Minimum tip, then update or download here. '
@@ -330,7 +334,7 @@ class PileReviewPanel:
         separate.set_title(0, 'Optional separate pile analysis'); separate.selected_index = None
         self.ui = W.VBox([W.HTML('<h2 style="color:#213649">1. FBMP pile review</h2><p>Review pile behavior and the minimum-tip study before selecting cap reinforcement.</p>'),
             W.HBox([self.restore_upload, self.export], layout=W.Layout(flex_flow='row wrap')), separate,
-            self.upload_output, self.notice, self.source_match, self.cutoff, self.tabs, self.message, self.download_output])
+            self.upload_output, self.notice, self.source_match, self.tabs, self.message, self.download_output])
         self.notice.value = notice_html('PILE RESULTS NOT LOADED', 'Upload FBMP XML once above to load pile results and preview cap inputs.')
         self.refresh_handoff()
         self.app.case_listeners.append(self.refresh_match)

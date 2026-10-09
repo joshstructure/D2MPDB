@@ -97,7 +97,9 @@ def compare_minimum_tip(trials, fixity, *, ground=None, cutoff=None, extension=5
     critical = profile['critical_embedment_ft'] if profile else None
     status = 'Available'
     if not profile: status = 'Second crossing unavailable'
-    elif cutoff is None or ground is None: status = 'Enter cutoff and ground elevations to compare embedment'
+    elif cutoff is None or ground is None:
+        missing = (['Pile cutoff EL (ft)'] if cutoff is None else []) + (['Ground EL (ft)'] if ground is None else [])
+        status = 'Enter '+' and '.join(missing)+' at the top of Minimum tip'
     elif critical <= 0: status = 'Second crossing is not below design ground / scour'
     added = required = tip = None
     if status == 'Available':
