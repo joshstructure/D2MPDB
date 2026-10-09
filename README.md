@@ -1,5 +1,15 @@
 # D2MPDB notebooks
 
+## Bridge geometry notebook
+
+[Open Bridge_Geometry_2 Beam_V2 in Colab](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Bridge_Geometry_2%20Beam_V2.ipynb) and choose **Runtime → Run all**.
+
+The interior pier's pile cutoff elevation is **local cap underside + vertical pile embedment**. Edit `CONFIG['pier']['pile_embedment_in']` in Project inputs; it defaults to **12 in**. With the saved inputs, the cap underside is **40.73325 ft** and all four pile cutoffs are **41.73325 ft**. The longitudinal elevations plot, transverse pier section and pile elevation schedule use the same calculation. A sloped cap gives a separate cutoff at each pile centerline. Pile tips and end-bent cutoffs are not defined by this pier model.
+
+**No Google Drive dependency:** the only external roadway/ground-elevation source is [Geometry Report.xml](Geometry%20Report.xml), already tracked in this repository. Local runs use the adjacent XML; fresh Colab sessions automatically download the pinned repository version. For offline use, keep the notebook and XML together. An explicit custom XML path is preserved and must exist. The station mapping and uncovered roadway tail remain unchanged; no missing elevations are extrapolated. The older `Bridge_GeoV2.ipynb` and `Bridge_Geo_2_Beam.ipynb` are historical editions; use the linked V2 notebook for this update.
+
+Validation: `python -m unittest discover -s tests -p test_bridge_geometry_notebook.py -v` checks cutoff elevations, sloped caps, input changes, invalid embedment, plotting data and file loading. Requires NumPy, pandas and Matplotlib; Colab provides these.
+
 ## Native Blockpad journal workflow
 
 The journal workflow is documented in [workflow/README.md](workflow/README.md).
