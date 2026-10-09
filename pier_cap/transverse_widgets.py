@@ -82,19 +82,19 @@ class TransversePanel:
         self.generate=W.Button(description='Create starting layout',icon='plus',layout=W.Layout(width='210px'))
         self.add=W.Button(description='Add custom run',icon='plus')
         self.status=W.HTML(layout=W.Layout(min_height='32px'));self.zone_notice=W.HTML()
-        self.zone_grid=W.GridBox(layout=W.Layout(width='100%',flex='0 0 auto',align_items='flex-start',
-            grid_template_columns='repeat(auto-fit, minmax(255px, 1fr))',grid_gap='10px'))
-        # Keep the viewport mounted and let the grid grow inside it, never down the page.
-        self.zone_scroll=W.VBox([self.zone_grid],layout=W.Layout(width='100%',min_width='0',height='560px',
-            min_height='560px',max_height='560px',flex='0 0 auto',overflow='auto',border='1px solid #b7bec8',padding='8px'))
+        # Follow the cap from left to right in one row; extra zones scroll sideways.
+        self.zone_grid=W.GridBox(layout=W.Layout(width='max-content',min_width='100%',flex='0 0 auto',align_items='flex-start',
+            grid_auto_flow='column',grid_auto_columns='300px',grid_template_rows='auto',grid_gap='10px'))
+        self.zone_scroll=W.VBox([self.zone_grid],layout=W.Layout(width='100%',min_width='0',max_width='100%',
+            flex='0 0 auto',overflow='auto',border='1px solid #b7bec8',padding='8px'))
         self.zone_scroll.add_class('cap-run-scroll')
         self.general=Accordion(children=[owner.hoop_reference_inputs]);self.general.set_title(0,'General hoop reference inputs and spacing assumptions');self.general.selected_index=None
-        self.ui=W.VBox([W.HTML('<style>.cap-run-scroll {scrollbar-gutter:stable;overscroll-behavior:contain;overflow-y:scroll !important;}</style>'
+        self.ui=W.VBox([W.HTML('<style>.cap-run-scroll {overscroll-behavior-x:contain;overflow-x:scroll !important;}</style>'
             '<h3>Actual hoops and pile U-bars · by zone</h3><p><b>Run numbers match the elevation labels and plot legends.</b> '
             'Each run is edited only in its card. Changes apply on Enter or leaving the field. '
             'Locations are from the <b>left cap end</b>; inches and feet are linked. The last-bar limit keeps the entered pitch; the actual last bar is shown below. '
             'Use <b>View run section</b> to inspect that shape above. Expand its card for bends, shear basis and development records. '
-            '<b>Scroll within the run-card section</b> to reach additional zones or expanded details.</p>'),
+            '<b>Use the horizontal scrollbar below the zone inputs</b> to move along the cap from left to right.</p>'),
             W.HBox([self.active,self.generate,self.add],layout=W.Layout(flex_flow='row wrap')),self.zone_scroll,self.zone_notice,self.status,self.general],layout=W.Layout(width='100%',min_width='0'))
         self.active.observe(self._toggle,names='value');self.generate.on_click(self._generate);self.add.on_click(self._add)
         self.sync()
