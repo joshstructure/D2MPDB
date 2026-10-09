@@ -4,6 +4,7 @@ import unittest
 from pier_cap.fbmp import import_fbmp_xml
 from pier_cap.force_diagrams import cap_profiles, cap_force_figure, diagram_notice, ForceDiagramPanel
 from pier_cap.model import default_case
+from pier_cap.force_trace import DEMAND,DEMAND_LOWER,joined_trace
 from tests.test_fbmp import FIXTURE, changed
 
 
@@ -35,6 +36,34 @@ class ForceDiagramTests(unittest.TestCase):
         self.assertIn('J-end · raw M3 -287.44',at_node[0]['station'])
         self.assertIn('I-end · raw M3 287.44',at_node[1]['station'])
 
+    def test_plot_connects_shared_station_with_vertical_jump_and_both_popups(self):
+        fig=cap_force_figure(self.case)
+        button=next(b for b in fig.layout.updatemenus[0].buttons if b.label.endswith('combo 1'))
+        shear=next(t for t,on in zip(fig.data,button.args[0]['visible']) if on and t.name=='Shear demand')
+        station=(38.5+25.44)/12
+        indices=[i for i,x in enumerate(shear.x) if x is not None and abs(x-station)<1e-10]
+        self.assertEqual(len(indices),2);a,b=indices
+        self.assertEqual(b,a+1);self.assertEqual(shear.x[a],shear.x[b])
+        self.assertEqual([shear.y[a],shear.y[b]],[142.32,-204.44])
+        self.assertIn('J-end',shear.customdata[a][3]);self.assertIn('I-end',shear.customdata[b][3])
+        for trace in fig.data[:-2]:
+            self.assertNotIn(None,trace.x)
+            self.assertEqual(trace.line.dash,'solid');self.assertFalse(trace.connectgaps)
+
+    def test_missing_member_retains_a_real_gap(self):
+        records=self.case['analysis']['xml_audit']['end_records']
+        element=list(dict.fromkeys(r['element'] for r in records))[8]
+        self.case['analysis']['xml_audit']['end_records']=[r for r in records if r['element']!=element]
+        trace=cap_force_figure(self.case).data[0]
+        self.assertEqual(trace.x.count(None),1)
+        gap=list(trace.x).index(None)
+        self.assertGreater(trace.x[gap+1],trace.x[gap-1])
+
+    def test_roundoff_at_shared_station_does_not_create_a_sloped_jump(self):
+        x,y,notes=joined_trace([(0,1,'start'),(2,3,'left'),None,(2+1e-12,-4,'right'),(3,-5,'end')])
+        self.assertEqual(x,[0,2,2,3]);self.assertEqual(y,[1,3,-4,-5])
+        self.assertEqual(notes[1:3],['left','right'])
+
     def test_interior_extremum_is_included_not_just_member_ends(self):
         def mutate(root):
             el=root.find('.//LOAD_CASE_RESULTS/LOAD_CASE/TIME_STEP/STRUCTURE_INTERNAL_FORCES/PIER_CAP/ELEMENT[@number="9"]')
@@ -65,7 +94,9 @@ class ForceDiagramTests(unittest.TestCase):
         figure=cap_force_figure(self.case)
         self.assertEqual(len(figure.layout.updatemenus[0].buttons),8)
         visible=[t for t in figure.data if t.visible is not False]
-        self.assertNotEqual(visible[0].line.color,visible[2].line.color)
+        self.assertEqual(visible[0].line.color,DEMAND)
+        self.assertEqual(visible[1].line.color,DEMAND_LOWER)
+        self.assertNotEqual(visible[0].line.color,visible[1].line.color)
         self.assertEqual(min(v for v in visible[1].y if v is not None),-183.15)
         self.assertEqual(max(v for v in visible[0].y if v is not None),287.44)
         with self.assertRaisesRegex(ValueError,'Scalar workbook envelopes'):

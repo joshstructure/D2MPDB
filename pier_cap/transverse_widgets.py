@@ -119,7 +119,7 @@ class TransversePanel:
         self.owner=owner;self.busy=False;self.zone_controls={};self._cards={};self._zones={};self._empty_zones={};self._inspect_buttons={};self._selected_run_id=None
         self.active=W.Checkbox(description='Use actual transverse layout',indent=False)
         self.generate=W.Button(description='Create starting layout',icon='plus',layout=W.Layout(width='210px'))
-        self.generate.tooltip='Replace the current runs with one run per zone, using the starting size and spacing.'
+        self.generate.tooltip='One run per zone; leave half the starting clear gap from each zone edge to the nearest bar surface. Cap cover and minimum clearance still govern.'
         p=owner.case['inputs'];self._starter_defaults=(p['Bar_v'],p['s_G']);self._previous_detail=None;self._rebuild_order=False
         self.start_bar=W.Dropdown(options=[(f'#{n}',n) for n in range(3,12)],value=int(p['Bar_v']),description='Start size',style={'description_width':'65px'},layout=W.Layout(width='142px'))
         self.start_pitch=W.FloatText(value=p['s_G'],description='Start c/c (in)',continuous_update=False,style={'description_width':'90px'},layout=W.Layout(width='166px'))
@@ -142,7 +142,7 @@ class TransversePanel:
             'First / limit: from the <b>left cap end</b>; inches and feet are linked. '
             '<b>Details</b> opens shape / development; <b>Delete R…</b> removes that run.</small></p>'),
             W.HBox([self.active,self.start_bar,self.start_pitch,self.generate,self.undo_start,self.add],layout=W.Layout(flex_flow='row wrap')),
-            W.HTML('<small>Starting layout replaces current runs. Regular spacing stays as entered; each zone gets an end bar with any shorter final gap.</small>'),
+            W.HTML('<small>Starting layout replaces current runs. Zone edges get half a clear gap to the nearest bar surface (centers half a pitch inside); cover and minimum clearance still govern. Regular spacing stays as entered, with any shorter final gap.</small>'),
             self.status,self.zone_scroll,self.detail_area,self.zone_notice,self.general],layout=W.Layout(width='100%',min_width='0'))
         self.active.observe(self._toggle,names='value');self.generate.on_click(self._generate);self.add.on_click(self._add)
         self.undo_start.on_click(self._undo_start)
@@ -284,7 +284,7 @@ class TransversePanel:
             try:self._commit(detail,selected=detail['runs'][0]['id'])
             finally:self._rebuild_order=False
             self._previous_detail=previous;self.undo_start.disabled=False
-            self.status.value=f'<small>Created {len(detail["runs"])} zone runs · #{self.start_bar.value} @ {self.start_pitch.value:g} in, plus zone end bars. Review short final gaps in the spacing checks.</small>'
+            self.status.value=f'<small>Created {len(detail["runs"])} zone runs · #{self.start_bar.value} @ {self.start_pitch.value:g} in, with half-clear-gap offsets at zone edges. Short final gaps within a run remain flagged for review.</small>'
         self._attempt(perform)
 
     def _undo_start(self,_):

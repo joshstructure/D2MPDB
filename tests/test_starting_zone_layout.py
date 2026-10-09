@@ -4,7 +4,8 @@ import csv
 import json
 import tempfile
 import unittest
-from pier_cap.model import evaluate
+from pier_cap.model import evaluate,BAR_DIAMETER
+from pier_cap.detailing import required_clear
 from pier_cap.transverse import run_stations,run_bar_count,run_last_station,scheduled_bars,validate_detail,development_fingerprint,development_current
 from pier_cap.transverse_zones import cap_zones,starting_zone_detail,zone_runs
 from pier_cap.widgets import CapNotebook
@@ -63,6 +64,23 @@ class EndBarScheduleTests(unittest.TestCase):
             self.assertLessEqual(stations[-1]-stations[-2],7+1e-7)
             self.assertFalse(run['development_confirmed'])
 
+    def test_starter_leaves_half_the_clear_gap_at_every_zone_edge(self):
+        e=evaluate(default_case())
+        for bar,pitch in ((5,8),(6,7),(8,6)):
+            diameter=BAR_DIAMETER[bar];radius=diameter/2
+            detail=starting_zone_detail(e,bar,pitch);zones=cap_zones(e)
+            for z,r in zip(zones,detail['runs']):
+                self.assertAlmostEqual(r['first_in'],max(e.case['inputs']['C_s']+radius,z['left']+pitch/2))
+                self.assertAlmostEqual(r['end_in'],min(e.value('L_cap')-e.case['inputs']['C_s']-radius,z['right']-pitch/2))
+            for a,b in zip(detail['runs'],detail['runs'][1:]):
+                gap=run_stations(b)[0]-run_stations(a)[-1]-diameter
+                self.assertAlmostEqual(gap,pitch-diameter)
+                self.assertGreaterEqual(gap,required_clear(e,diameter))
+
+    def test_narrow_zone_reports_offset_problem_without_squeezing_bars(self):
+        with self.assertRaisesRegex(ValueError,'Left end: no room after half-spacing offsets'):
+            starting_zone_detail(evaluate(default_case()),5,20)
+
     def test_endpoint_bars_survive_json_export_drawings_and_short_gap_checks(self):
         case,run=self.run_case(20.25);app=CapNotebook(case);self.addCleanup(app.close)
         stations=run_stations(run)
@@ -102,7 +120,7 @@ class StartingLayoutWidgetTests(unittest.TestCase):
 
     def test_invalid_start_pitch_does_not_replace_existing_runs(self):
         panel=self.app.transverse_panel;panel.generate.click();before=deepcopy(self.app.case)
-        for bad in (0,-1,float('nan'),float('inf')):
+        for bad in (0,-1,float('nan'),float('inf'),20):
             panel.start_pitch.value=bad;panel.generate.click()
             self.assertEqual(self.app.case,before)
             self.assertIn('Not applied',panel.status.value)

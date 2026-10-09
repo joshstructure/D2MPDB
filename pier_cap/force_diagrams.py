@@ -11,11 +11,7 @@ from plotly.subplots import make_subplots
 from .fbmp import _moment_at
 from .force_audit import state_label
 from .plotly_compat import FigureWidget
-
-
-MOMENT = '#2166ac'
-SHEAR = '#8250a0'
-TORSION = '#cc7919'
+from .force_trace import joined_trace,DEMAND,DEMAND_LOWER
 
 
 def _roots(a, b, c):
@@ -92,7 +88,8 @@ def cap_profiles(case):
                     shear=i['shear']+(j['shear']-i['shear'])*t,
                     torque=abs(i['torque'])+(abs(j['torque'])-abs(i['torque']))*t,
                     combination=combo,state=i['state'],element=element,station=label))
-            # Never draw a sloping connection across a nodal jump or missing span.
+            # Preserve raw member boundaries. The display joins shared stations
+            # vertically while retaining true gaps and both member-side records.
             profiles[combo].append(None)
     return profiles
 
@@ -106,7 +103,8 @@ def diagram_notice(case):
                 if not math.isclose(case['inputs'][k],r['adopted'],abs_tol=1e-8)]
     base = ('Diagrams show the imported analysis. Changing steel or trial dimensions does not rerun FB-MultiPier. '
             'Moment: positive = bottom tension; negative = top tension. J-end signs are converted. '
-            'Shear keeps its diagram sign; torsion shows magnitude. Curves retain separate member sides at jumps. '
+            'Shear keeps its diagram sign; torsion shows magnitude. Solid blue/purple demand curves connect '
+            'shared member stations with vertical jumps; hover retains both member sides. '
             'Pile lengths are schematic; horizontal stations and cap depth follow the analyzed model.')
     if changed:
         base = 'CURRENT INPUTS DIFFER FROM PLOTTED ANALYSIS: '+', '.join(changed)+'. '+base
@@ -129,20 +127,22 @@ def cap_force_figure(case, *, show_resistance=False, evaluation=None):
     trace_groups = []
     for mi,(label, combos) in enumerate(modes):
         start = len(fig.data)
-        for field,row,color,unit in [('moment',1,MOMENT,'kip-ft'),('shear',2,SHEAR,'kip'),('torque',3,TORSION,'kip-ft')]:
+        for field,row,unit in [('moment',1,'kip-ft'),('shear',2,'kip'),('torque',3,'kip-ft')]:
             kinds = ['upper','lower'] if len(combos)>1 and field != 'torque' else ['upper']
             for kind in kinds:
-                x=[];y=[];custom=[]
+                points=[]
                 for records in zip(*(profiles[k] for k in combos)):
                     if records[0] is None:
-                        x.append(None);y.append(None);custom.append(['','','','']);continue
+                        points.append(None);continue
                     record = (max if kind == 'upper' else min)(records,key=lambda r:r[field])
-                    x.append(record['x']);y.append(record[field])
-                    custom.append([state_label(record['state']),record['combination'],record['element'],record['station']])
-                name = {'moment':'Moment','shear':'Shear','torque':'|T|'}[field]
+                    points.append((record['x'],record[field],
+                        [state_label(record['state']),record['combination'],record['element'],record['station']]))
+                x,y,custom=joined_trace(points)
+                name = {'moment':'Moment demand','shear':'Shear demand','torque':'Torsion demand |T|'}[field]
                 if len(combos)>1:name+=' · '+('maximum' if field == 'torque' else kind)
                 fig.add_trace(go.Scatter(x=x,y=y,customdata=custom,name=name,visible=mi==0,
-                    mode='lines',connectgaps=False,line=dict(color=color,width=2,dash='dash' if kind=='lower' else 'solid'),
+                    mode='lines',connectgaps=False,line=dict(color=DEMAND_LOWER if kind=='lower' else DEMAND,
+                        width=2.5,dash='solid',shape='linear',simplify=False),
                     hovertemplate=f'x = %{{x:.3f}} ft from left cap edge<br>{name} = %{{y:.2f}} {unit}'
                         '<br>%{customdata[0]} · combo %{customdata[1]} · member %{customdata[2]}'
                         '<br>%{customdata[3]}<extra></extra>'),row=row,col=1)
