@@ -193,6 +193,7 @@ class CapNotebook:
             self.force_diagrams.refresh(self.case)
             self.current=None;self.banner.value=f'<div style="padding:14px;background:#ffe9e7;color:#9d302b"><b>INPUT ERROR</b><br>{html.escape(str(exc))}</div>'
             self.transverse_panel.zone_grid.layout.display='none'
+            self.transverse_panel.zone_scroll.layout.display='none'
             self.transverse_panel.zone_notice.value='<p>Correct the input error above to restore zone controls and drawings. General inputs remain available below.</p>'
             self.metrics.value='';self.cage.children=[self.transverse_panel.ui];self.results.children=[];self.dimensions.children=[];self.register.value='';self.trace.value='';return
         self.current=e

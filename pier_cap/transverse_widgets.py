@@ -82,13 +82,20 @@ class TransversePanel:
         self.generate=W.Button(description='Create starting layout',icon='plus',layout=W.Layout(width='210px'))
         self.add=W.Button(description='Add custom run',icon='plus')
         self.status=W.HTML(layout=W.Layout(min_height='32px'));self.zone_notice=W.HTML()
-        self.zone_grid=W.GridBox(layout=W.Layout(width='100%',grid_template_columns='repeat(auto-fit, minmax(255px, 1fr))',grid_gap='10px'))
+        self.zone_grid=W.GridBox(layout=W.Layout(width='100%',flex='0 0 auto',align_items='flex-start',
+            grid_template_columns='repeat(auto-fit, minmax(255px, 1fr))',grid_gap='10px'))
+        # Keep the viewport mounted and let the grid grow inside it, never down the page.
+        self.zone_scroll=W.VBox([self.zone_grid],layout=W.Layout(width='100%',min_width='0',height='560px',
+            min_height='560px',max_height='560px',flex='0 0 auto',overflow='auto',border='1px solid #b7bec8',padding='8px'))
+        self.zone_scroll.add_class('cap-run-scroll')
         self.general=Accordion(children=[owner.hoop_reference_inputs]);self.general.set_title(0,'General hoop reference inputs and spacing assumptions');self.general.selected_index=None
-        self.ui=W.VBox([W.HTML('<h3>Actual hoops and pile U-bars · by zone</h3><p><b>Run numbers match the elevation labels and plot legends.</b> '
+        self.ui=W.VBox([W.HTML('<style>.cap-run-scroll {scrollbar-gutter:stable;overscroll-behavior:contain;overflow-y:scroll !important;}</style>'
+            '<h3>Actual hoops and pile U-bars · by zone</h3><p><b>Run numbers match the elevation labels and plot legends.</b> '
             'Each run is edited only in its card. Changes apply on Enter or leaving the field. '
             'Locations are from the <b>left cap end</b>; inches and feet are linked. The last-bar limit keeps the entered pitch; the actual last bar is shown below. '
-            'Use <b>View run section</b> to inspect that shape above. Expand its card for bends, shear basis and development records.</p>'),
-            W.HBox([self.active,self.generate,self.add],layout=W.Layout(flex_flow='row wrap')),self.zone_grid,self.zone_notice,self.status,self.general],layout=W.Layout(width='100%',min_width='0'))
+            'Use <b>View run section</b> to inspect that shape above. Expand its card for bends, shear basis and development records. '
+            '<b>Scroll within the run-card section</b> to reach additional zones or expanded details.</p>'),
+            W.HBox([self.active,self.generate,self.add],layout=W.Layout(flex_flow='row wrap')),self.zone_scroll,self.zone_notice,self.status,self.general],layout=W.Layout(width='100%',min_width='0'))
         self.active.observe(self._toggle,names='value');self.generate.on_click(self._generate);self.add.on_click(self._add)
         self.sync()
 
@@ -121,7 +128,7 @@ class TransversePanel:
         return c['ui']
 
     def sync_zones(self,e):
-        self.zone_grid.layout.display='';zones,groups,custom=zone_runs(e)
+        self.zone_scroll.layout.display='';self.zone_grid.layout.display='';zones,groups,custom=zone_runs(e)
         runs=e.case.get('transverse_detail',empty_detail())['runs'];ids={r['id'] for r in runs}
         prior=self.busy;self.busy=True
         try:
@@ -239,4 +246,4 @@ class TransversePanel:
         for header,box in self._zones.values():header.close();box.close()
         for controls in self._empty_zones.values():
             for widget in controls.values():widget.close()
-        for widget in (self.active,self.generate,self.add,self.status,self.zone_notice,self.zone_grid,self.general,self.ui):widget.close()
+        for widget in (self.active,self.generate,self.add,self.status,self.zone_notice,self.zone_grid,self.zone_scroll,self.general,self.ui):widget.close()
