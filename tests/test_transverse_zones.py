@@ -206,6 +206,26 @@ class ZoneWidgetTests(unittest.TestCase):
         run=next(r for r in self.app.case['transverse_detail']['runs'] if r['id']==rid)
         self.assertEqual(card['end_in'].value,run['end_in'])
 
+    def test_visible_delete_removes_only_its_run_and_can_clear_disabled_saved_runs(self):
+        app=self.app;panel=app.transverse_panel
+        panel.zone_controls['R1']['end_in'].value=30
+        controls=panel.zone_controls['R1'];card=panel._cards['R1'].ui
+        self.assertTrue(any(controls['remove'] in getattr(child,'children',()) for child in card.children))
+        self.assertIsNone(controls['details'].selected_index)
+        before=deepcopy(app.case['transverse_detail']['runs'])
+        remaining_bars=[b for b in scheduled_bars(app.case) if b['run']!='R1']
+        controls['remove'].click()
+        self.assertEqual(app.case['transverse_detail']['runs'],[r for r in before if r['id']!='R1'])
+        self.assertEqual(scheduled_bars(app.case),remaining_bars)
+        self.assertNotIn('R1',panel.zone_controls);self.assertNotIn(card,panel.zone_grid.children)
+        for key in ('plan','elevation'):
+            self.assertFalse(any(t.legendgroup=='R1' or (t.meta or {}).get('run_id')=='R1' for t in app.views.plots[key].data))
+        panel.active.value=False
+        self.assertFalse(panel.zone_controls['R2']['remove'].disabled)
+        panel.zone_controls['R2']['remove'].click()
+        self.assertEqual(app.case['transverse_detail']['runs'],[r for r in before if r['id'] not in ('R1','R2')])
+        self.assertFalse(panel.active.value)
+
     def test_empty_zone_adds_selected_size_and_pitch_without_filling_other_zones(self):
         app=self.app;app.load(default_case());panel=app.transverse_panel
         card=panel._empty_zones['P1']

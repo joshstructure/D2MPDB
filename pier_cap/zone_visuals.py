@@ -10,7 +10,7 @@ def _run_lanes(runs,length):
     lanes=[];placed=[]
     for run in sorted(runs,key=lambda r:(r['first_in'],r['id'])):
         center=(run['first_in']+run['end_in'])/2
-        half=max((run['end_in']-run['first_in'])/2,length/14)
+        half=max((run['end_in']-run['first_in'])/2,length/12)
         left,right=center-half,center+half
         lane=next((i for i,end in enumerate(lanes) if end<left),len(lanes))
         if lane==len(lanes):lanes.append(right)
@@ -22,6 +22,7 @@ def _run_lanes(runs,length):
 def _add_run_dimensions(fig,placed,lane_count):
     for run,lane in placed:
         first,limit,last=run['first_in'],run['end_in'],run_last_station(run)
+        first_label=f'{first:.4f}'.rstrip('0').rstrip('.');limit_label=f'{limit:.4f}'.rstrip('0').rstrip('.')
         y=1-(lane+.8)/lane_count;rid=run['id']
         color='#bd407d' if run['kind']=='pile_u' else '#7952a3'
         detail=[rid,first,limit,last,first/12,limit/12,last/12]
@@ -31,7 +32,7 @@ def _add_run_dimensions(fig,placed,lane_count):
         fig.add_trace(go.Scatter(x=[first/12,(first+limit)/24,limit/12],y=[y]*3,xaxis='x3',yaxis='y3',
             mode='lines+markers+text',showlegend=False,name='Run '+rid+' first / limit',legendgroup='run-dimension:'+rid,
             line=dict(color=color,width=2),marker=dict(symbol='line-ns',size=[10,0,10]),
-            text=['','<b>'+html.escape(rid)+f'</b><br>{first/12:.3f}–{limit/12:.3f} ft',''],
+            text=['','<b>'+html.escape(rid)+f'</b><br>{first_label}–{limit_label} in',''],
             textposition='top center',textfont=dict(size=10,color=color),cliponaxis=False,
             meta=dict(part='cap',dimension='run_limits',run_id=rid,start_in=first,end_in=limit,last_in=last),
             customdata=[detail]*3,hovertemplate=hover))
@@ -90,6 +91,6 @@ def add_zone_dimensions(fig,e):
             xaxis3=dict(matches='x',anchor='y3',range=list(fig.layout.xaxis.range),visible=False))
         _add_run_dimensions(fig,placed,lane_count)
         fig.add_annotation(name='part:cap',xref='paper',yref='paper',x=0,y=(drawing_height+run_height-10)/plot_height,
-            xanchor='left',showarrow=False,text='Run first → entered limit · feet · ◇ actual last bar · hover for exact inches / feet',
+            xanchor='left',showarrow=False,text='Run first → entered limit · inches · ◇ actual last bar · hover for exact inches / feet',
             font=dict(size=11,color='#213649'))
     return fig

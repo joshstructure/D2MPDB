@@ -46,7 +46,7 @@ class RunCard:
         info=add('info',W.HTML(layout=W.Layout(min_height='20px')))
         warning=add('warning',W.HTML(layout=W.Layout(min_height='32px')))
         error=add('error',W.HTML())
-        view=add('view',W.Button(description=f'{rid} · section / details',icon='eye',layout=_layout()))
+        view=add('view',W.Button(description=f'{rid} · details',icon='eye',layout=W.Layout(width='124px')))
         view.on_click(lambda _:panel._select_run(rid))
         kind=add('kind',W.Dropdown(options=[('Closed hoop','hoop'),('Open-bottom U','pile_u')],description='Shape',style={'description_width':'105px'},layout=W.Layout(width='224px')))
         shear=add('zone',W.Dropdown(options=[('Overall (G)','G'),('Lower-shear (L)','L')],description='Shear basis',style={'description_width':'105px'},layout=W.Layout(width='224px')))
@@ -64,16 +64,19 @@ class RunCard:
             widget.observe(lambda change,field=name:panel._zone_edited(rid,field,change),names='value')
         split=add('split',W.Button(description=f'Split {rid}',icon='columns',layout=W.Layout(width='130px')))
         split.on_click(lambda _:panel._split_run(rid))
-        remove=add('remove',W.Button(description=f'Remove {rid}',icon='trash',layout=W.Layout(width='130px')))
+        remove=add('remove',W.Button(description=f'Delete {rid}',icon='trash',button_style='danger',
+            tooltip=f'Delete only run {rid} and its saved bars.',layout=W.Layout(width='124px')))
         remove.on_click(lambda _:panel._remove_run(rid))
         detail_fields=W.HBox([kind,shear,angle,*shape],layout=W.Layout(flex_flow='row wrap',width='100%'))
-        detail_actions=W.HBox([split,remove])
+        detail_actions=W.HBox([split])
         details=W.VBox([detail_fields,help_text,basis,confirm,detail_actions],layout=W.Layout(width='100%',min_width='0'))
         advanced=add('details',Accordion(children=[details]));advanced.set_title(0,f'{rid} · shape and development');advanced.selected_index=None
         self.widgets.extend([details,detail_fields,detail_actions])
         pairs=[W.HBox(pair,layout=W.Layout(width='100%',min_width='0',flex_flow='row nowrap',overflow='visible')) for pair in ([size,pitch],locations[:2],locations[2:])]
         self.widgets.extend(pairs)
-        self.ui=W.VBox([label,*pairs,info,warning,view,error],layout=_card_layout())
+        actions=W.HBox([view,remove],layout=W.Layout(width='100%',flex_flow='row nowrap'))
+        self.widgets.append(actions)
+        self.ui=W.VBox([label,*pairs,info,warning,actions,error],layout=_card_layout())
         self.ui.add_class('cap-hoop-card')
 
     def sync(self,run,region,active,selected,case,overlaps=()):
@@ -93,7 +96,7 @@ class RunCard:
         ranges='; '.join(o['id']+': '+station_range(o['first'],o['last']) for o in overlaps)
         c['warning'].value=('<small style="color:#9b6012" title="'+html.escape(ranges,quote=True)+'"><b>⚠ Limits overlap '+html.escape(ids)+'.</b> Edit first / limit to resolve.</small>' if overlaps else '')
         c['view'].button_style='info' if selected else '';c['view'].disabled=not active
-        c['split'].disabled=not active or count<2;c['remove'].disabled=not active
+        c['split'].disabled=not active or count<2;c['remove'].disabled=False
         c['error'].value=''
 
     def close(self):
@@ -120,9 +123,9 @@ class TransversePanel:
         self.general=Accordion(children=[owner.hoop_reference_inputs]);self.general.set_title(0,'General hoop reference inputs and spacing assumptions');self.general.selected_index=None
         self.ui=W.VBox([W.HTML('<style>.cap-hoop-track {flex-wrap:nowrap!important;overflow-x:scroll!important;overflow-y:hidden!important;overscroll-behavior-x:contain;}'
             '.cap-hoop-card {flex-shrink:0!important;}</style>'
-            '<h3>Actual hoops and pile U-bars · by zone</h3><p>Scroll sideways directly below the cards. '
-            'First / limit locations are from the <b>left cap end</b>; inches and feet are linked. '
-            'The limit keeps the entered pitch. Choose <b>section / details</b> for bends, shape and development below this frame.</p>'),
+            '<h3 style="margin:4px 0">Actual hoops and pile U-bars · by zone</h3><p style="margin:4px 0"><small>'
+            'First / limit: from the <b>left cap end</b>; inches and feet are linked. '
+            '<b>Details</b> opens shape / development; <b>Delete R…</b> removes that run.</small></p>'),
             W.HBox([self.active,self.generate,self.add],layout=W.Layout(flex_flow='row wrap')),self.zone_scroll,self.detail_area,self.zone_notice,self.status,self.general],layout=W.Layout(width='100%',min_width='0'))
         self.active.observe(self._toggle,names='value');self.generate.on_click(self._generate);self.add.on_click(self._add)
         self.sync()

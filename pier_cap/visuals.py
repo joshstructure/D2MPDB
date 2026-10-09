@@ -230,11 +230,11 @@ def elevation_figure(e,*,zone_labels=True):
     fig.add_annotation(name='part:added',x=0,y=1.10,xref='paper',yref='paper',text=note,showarrow=False,xanchor='left',font=dict(size=11,color=RED if hook_failure else AMBER))
     fig.update_xaxes(title='Along cap (ft)',range=[-1,L/12+1],zeroline=False)
     fig.update_yaxes(title='Elevation above cap underside (in)',range=[-22,h+5],scaleanchor='x',scaleratio=1/12,zeroline=False)
-    theme(fig,'SIDE ELEVATION · along the cap length',540)
+    theme(fig,'SIDE ELEVATION · along the cap length',415)
     fig.add_annotation(name='part:transverse',x=0,y=1.15,xref='paper',yref='paper',xanchor='left',showarrow=False,
         text=('Each purple / pink line is an entered bar station · Open-bottom U-bars: see cross section / 3D.' if actual_transverse(e.case) else 'Dashed hoops show reference pitch only · Actual stations are not set.'),
         align='left',font=dict(size=11,color=HOOP))
-    fig.update_layout(legend=dict(orientation='h',y=-.3,font=dict(size=10)),margin=dict(t=130,b=170))
+    fig.update_layout(showlegend=False,margin=dict(t=130,b=45))
     if zone_labels:
         from .zone_visuals import add_zone_dimensions
         add_zone_dimensions(fig,e)
