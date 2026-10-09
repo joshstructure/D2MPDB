@@ -175,6 +175,12 @@ def actual_layout(e):
     def make_row(n, size, y, kind, layer, additional=False, existing=(), strict=True, align=None):
         n = int(n); d = BAR_DIAMETER[size]
         if not n: return []
+        from .added_steel import entered_positions,legacy_spacing
+        entered=entered_positions(e.case,int(layer[-1])) if additional else None
+        if entered is not None:
+            # Preserve the user's exact row and leave conflicts visible to the
+            # clearance/fit checks. Never translate continuous bars to hide it.
+            return [dict(x=x,y=y,diameter=d,kind=kind,layer=layer,bar=int(size),additional=True) for x in entered]
         spans = env.intervals(y, d, pile=kind.startswith('Bottom'))
         minimum = d+(required_clear(e,d) if strict else 1e-5)
         for other in existing:
@@ -186,7 +192,7 @@ def actual_layout(e):
                 dx = math.sqrt(max(0,q*q-dy*dy))
                 spans = subtract(spans, other['x']-dx, other['x']+dx)
         manual = None
-        if p['Manual_spacing'] and layer.endswith('1'):
+        if p['Manual_spacing'] and layer.endswith('1') and (not additional or legacy_spacing(e.case)):
             key = 'SP_detail_B' if additional else 'SP_detail_N' if kind.startswith('Top') else 'SP_detail_P'
             manual = p[key]
         xs = None
@@ -282,6 +288,8 @@ def actual_layout(e):
     for x in (left,p['b']-left):
         for y in ys: bars.append(dict(x=x,y=y,diameter=ds,kind='Skin',layer='Skin',bar=int(p['Bar_skin']),additional=False))
     regions = {'B':bars,'P':[v for v in bars if not v['additional']]}
+    from .added_steel import fit_problems
+    issues.extend(fit_problems(e,bars))
     for z, label in [('N','Top row 1'),('P','Bottom row 1'),('B','Bottom row 1')]:
         xs = sorted(v['x'] for v in regions['B' if z=='B' else 'P'] if v['layer']==label)
         spacing = max((b-a for a,b in zip(xs,xs[1:])),default=0.)

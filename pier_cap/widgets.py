@@ -19,6 +19,8 @@ from .force_audit import force_basis,FORCE_LABELS
 from .force_diagrams import ForceDiagramPanel
 from .geometry_dimensions import dimensions_figure,dimensions_html
 from .transverse_widgets import TransversePanel
+from .added_steel_widgets import AddedSteelPanel
+from .steel_feedback import feedback as steel_feedback
 from .transverse import enabled as actual_transverse
 from .pile_visual_widgets import PileAppearancePanel
 from .cage_3d import layout_3d
@@ -52,7 +54,7 @@ LABELS={'b':'Cap width','h':'Cap depth','C_t':'Top cover','C_b':'Bottom cover','
  'SP_detail_N':'Top spacing override','SP_detail_P':'Pile spacing override','SP_detail_B':'Added row pitch override','SP_detail_skin':'Skin spacing override','S_leg_detail':'Inner leg spacing'}
 
 GROUPS={
- 'Steel': [('Top rows','Bar_N1 n_N1 Bar_N2 n_N2 Bar_N3 n_N3'),('Continuous bottom steel · at piles','Bar_P n_P1 n_P2'),('ADDITIONAL steel · between piles','Bar_B n_B1 n_B2'),('Hoops and side bars','Bar_v n_loop s_G s_L Bar_skin n_skin s_row'),('Extra U-leg inventory · unresolved','Bar_U n_PU n_BU'),('Advanced · cross-section spacing','Manual_spacing SP_detail_N SP_detail_P SP_detail_B SP_detail_skin S_leg_detail')],
+ 'Steel': [('Top rows','Bar_N1 n_N1 Bar_N2 n_N2 Bar_N3 n_N3'),('Continuous bottom steel · at piles','Bar_P n_P1 n_P2'),('ADDITIONAL steel · between piles','Bar_B n_B1 n_B2'),('Hoops and side bars','Bar_v n_loop s_G s_L Bar_skin n_skin'),('Layer spacing','s_row'),('Advanced · cross-section spacing','Manual_spacing SP_detail_N SP_detail_P SP_detail_B SP_detail_skin S_leg_detail')],
  'Geometry':[('Section and cover','b h C_t C_b C_s'),('Pile row and cap ends','N_pile S_pile D_pile E_clear E_detail'),('Pile head','Pile_embed C_pile Ready_pile')],
  'Loads':[('Combined strength envelopes','Mu_N Mu_P Mu_B Vu_G Vu_L Tu'),('Service I','MI_N MI_P MI_B')],
  'Pending':[('Service III','Ready_III MIII_N MIII_P MIII_B'),('Fatigue','Ready_fatigue MDL_N MDL_P MDL_B DMLL_N DMLL_P DMLL_B')],
@@ -74,6 +76,7 @@ class CapNotebook:
         self.aggregate_confirmed=W.Checkbox(value=self.case['screening']['aggregate_confirmed'],description='Aggregate size confirmed',indent=False)
         for control in (self.clearance,self.aggregate,self.aggregate_confirmed):control.observe(self._changed,names='value')
         self.pile_appearance=PileAppearancePanel(self)
+        self.steel_readouts={};self.added_steel=AddedSteelPanel(self)
         self.input_tabs=self._inputs()
         self.transverse_panel=TransversePanel(self)
         self.force_diagrams=ForceDiagramPanel()
@@ -140,14 +143,21 @@ class CapNotebook:
                     control.layout.min_height='30px';control.layout.height='auto';control.add_class('cap-input')
                     rows.append(control)
                 if title=='Hoops and side bars':
+                    self.steel_readouts['hoops']=W.HTML()
                     self.hoop_reference_inputs=W.VBox([W.HTML('<p><b>Uniform-cage reference inputs.</b> G = overall shear check; L = lower-shear interval check, not the bottom of the cap. These reference pitches seed the starting layout; later edits to them do not move your entered bars. The reference hoop diameter also locates the longitudinal cage; actual shape conflicts are checked separately.</p>'),
-                        *rows[:4],self.clearance,self.aggregate,self.aggregate_confirmed,W.HTML('<small>The larger of the code minimum and project minimum governs. Confirm aggregate from the mix design. All actual run inputs, including end geometry, are in the numbered cards above.</small>')])
+                        *rows[:4],self.steel_readouts['hoops'],self.clearance,self.aggregate,self.aggregate_confirmed,W.HTML('<small>The larger of the code minimum and project minimum governs. Confirm aggregate from the mix design. All actual run inputs, including end geometry, are in the numbered cards above.</small>')])
                     rows=rows[4:]
-                if title=='Extra U-leg inventory · unresolved':rows.insert(0,W.HTML('<p><b>These are NOT the transverse pile U-bars.</b> Use the zone controls below the reinforcement elevation for those. These legacy counts add longitudinal tension area but have no resolved position or development. A nonzero count triggers an issue. Do not enter span-bar end hooks here either. Zero means no separate legacy inventory.</p>'))
-                if title=='Advanced · cross-section spacing':rows.insert(0,W.HTML('<p>Override the automatic spacing of longitudinal bars <b>within the cross section</b>. The checkbox activates top, continuous-bottom, added-row and side-bar spacing overrides. It does not add bars or change along-cap hoop pitch. <b>Inner leg spacing</b> is used separately when effective hoop loops exceed one; multiple-loop positions remain unresolved.</p>'))
-                if title=='ADDITIONAL steel · between piles':rows.insert(0,W.HTML('<p><b>These counts are ADDITIONAL, not totals.</b> Continuous bottom bars stay in place. Total span steel = continuous bars + these added bars. Enter 0 for no added bars. The bar size here applies only to the added steel. Standard 90° hooks are drawn at the span ends; anchorage remains a separate check.</p>'))
+                if title=='Advanced · cross-section spacing':
+                    self.controls['SP_detail_B'].layout.display='none'
+                    rows.insert(0,W.HTML('<p>Override top, continuous-bottom and side-bar spacing within the cross section. Added bars have their own layout controls. Inner leg spacing applies to the unresolved multiple-loop reference.</p>'))
+                if title=='ADDITIONAL steel · between piles':
+                    rows.insert(0,W.HTML('<p>Total span steel = continuous + added bars. Enter 0 for no added bars. Automatic layout fills free gaps; it is not a code-prescribed pitch.</p>'))
+                    rows.append(self.added_steel.ui)
                 if title=='Continuous bottom steel · at piles':rows.insert(0,W.HTML('<p>These bottom bars continue through every pile and span to the cap end-cover planes. Their transverse positions stay fixed. End anchorage and splices require review.</p>'))
-                caption='Side bars and row spacing' if title=='Hoops and side bars' else title
+                key={'Top rows':'top','Continuous bottom steel · at piles':'continuous','ADDITIONAL steel · between piles':'added',
+                    'Hoops and side bars':'side','Layer spacing':'layers','Advanced · cross-section spacing':'advanced'}.get(title)
+                if key:self.steel_readouts[key]=W.HTML();rows.append(self.steel_readouts[key])
+                caption='Side bars' if title=='Hoops and side bars' else title
                 content=[W.HBox(rows,layout=W.Layout(width='100%',flex_flow='row wrap',grid_gap='8px'))] if group=='Geometry' else rows
                 if title=='Pile head':
                     content[0].layout.width='auto';content[0].layout.flex='1 1 450px'
@@ -165,11 +175,12 @@ class CapNotebook:
 
     def _changed(self,change):
         if self.busy:return
-        self.case['inputs']={n:w.value for n,w in self.controls.items()}
+        self.case['inputs'].update({n:w.value for n,w in self.controls.items()})
         self.case['screening']['minimum_clear_in']=self.clearance.value
         self.case['screening']['aggregate_in']=self.aggregate.value
         self.case['screening']['aggregate_confirmed']=self.aggregate_confirmed.value
         self.transverse_panel.sync()
+        self.added_steel.sync()
         self._update_search_basis()
         self.refresh()
         self._notify_case_change()
@@ -188,12 +199,14 @@ class CapNotebook:
             self._aux_basis.clear()
             self.force_diagrams.refresh(self.case)
             self.current=None;self.banner.value=f'<div style="padding:14px;background:#ffe9e7;color:#9d302b"><b>INPUT ERROR</b><br>{html.escape(str(exc))}</div>'
+            for readout in self.steel_readouts.values():readout.value='<small>Checks unavailable · correct the input error.</small>'
             self.transverse_panel.zone_grid.layout.display='none'
             self.transverse_panel.zone_scroll.layout.display='none'
             self.transverse_panel.detail_area.layout.display='none'
             self.transverse_panel.zone_notice.value='<p>Correct the input error above to restore zone controls and drawings. General inputs remain available below.</p>'
             self.metrics.value='';self.cage.children=[self.input_panel,self.transverse_panel.ui];self.results.children=[];self.dimensions.children=[];self.register.value='';self.trace.value='';return
         self.current=e
+        for key,value in steel_feedback(e).items():self.steel_readouts[key].value=value
         self.transverse_panel.sync_zones(e)
         self.force_diagrams.refresh(self.case,evaluation=e)
         self.pile_appearance.sync()
@@ -260,6 +273,7 @@ class CapNotebook:
             self.aggregate_confirmed.value=case['screening']['aggregate_confirmed']
             self.cap_type.value=case.get('cap_type','Pier pile cap')
             self.transverse_panel.sync(reset_starter=True)
+            self.added_steel.sync()
             self.pile_appearance.sync()
         finally:self.busy=False
         self._update_search_basis()
@@ -439,6 +453,7 @@ class CapNotebook:
             self.case=chosen
             for n,w in self.controls.items():w.value=chosen['inputs'][n]
             self.transverse_panel.sync()
+            self.added_steel.sync()
             self.pile_appearance.sync()
         finally:self.busy=False
         self.refresh();self._update_search_basis();self.message.value=f'Applied candidate #{index+1}. Live drawings and checks now show that layout.'
@@ -544,6 +559,8 @@ class CapNotebook:
         return self
 
     def close(self):
+        self.added_steel.close()
+        for readout in self.steel_readouts.values():readout.close()
         self.pile_review.close()
         self.force_diagrams.close()
         self.transverse_panel.close()

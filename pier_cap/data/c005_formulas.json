@@ -436,7 +436,7 @@
   {
     "formula": "Bar_U = 8",
     "unit": null,
-    "caption": "U-bar size; count the developed tension legs as in the source sheet.",
+    "caption": "Retired compatibility field; no longitudinal steel credit.",
     "input": true,
     "name": "Bar_U"
   },
@@ -457,7 +457,7 @@
   {
     "formula": "n_PU = 0",
     "unit": null,
-    "caption": "Pile-region U-bar tension leg count.",
+    "caption": "Retired pile-region U-leg count; normalized to zero on load, with no steel credit.",
     "input": true,
     "name": "n_PU"
   },
@@ -478,7 +478,7 @@
   {
     "formula": "n_BU = 0",
     "unit": null,
-    "caption": "Between-pile U-bar tension leg count.",
+    "caption": "Retired between-pile U-leg count; normalized to zero on load, with no steel credit.",
     "input": true,
     "name": "n_BU"
   },
@@ -616,16 +616,16 @@
     "name": "As_N"
   },
   {
-    "formula": "As_P = (n_P1+n_P2)*Ab(Bar_P)+n_PU*Ab(Bar_U) to in^2",
+    "formula": "As_P = (n_P1+n_P2)*Ab(Bar_P) to in^2",
     "unit": "in^2",
     "caption": "Positive region P reinforcement area.",
     "input": false,
     "name": "As_P"
   },
   {
-    "formula": "As_B = As_P+(n_B1+n_B2)*Ab(Bar_B)+n_BU*Ab(Bar_U) to in^2",
+    "formula": "As_B = As_P+(n_B1+n_B2)*Ab(Bar_B) to in^2",
     "unit": "in^2",
-    "caption": "Combined span steel: continuous pile bars plus additional span bars and unresolved added U-leg inventory.",
+    "caption": "Combined span steel: continuous pile bars plus additional span bars; no legacy U-leg allowance.",
     "input": false,
     "name": "As_B"
   },
@@ -721,14 +721,14 @@
     "name": "y_U"
   },
   {
-    "formula": "dc_P = (n_P1*Ab(Bar_P)*y_P1+n_P2*Ab(Bar_P)*y_P2+n_PU*Ab(Bar_U)*y_U)/Max(As_P,0.000001 in^2) to in",
+    "formula": "dc_P = (n_P1*Ab(Bar_P)*y_P1+n_P2*Ab(Bar_P)*y_P2)/Max(As_P,0.000001 in^2) to in",
     "unit": "in",
     "caption": "Region P bottom-steel centroid.",
     "input": false,
     "name": "dc_P"
   },
   {
-    "formula": "dc_B = (As_P*dc_P+n_B1*Ab(Bar_B)*y_B1+n_B2*Ab(Bar_B)*y_B2+n_BU*Ab(Bar_U)*y_U)/Max(As_B,0.000001 in^2) to in",
+    "formula": "dc_B = (As_P*dc_P+n_B1*Ab(Bar_B)*y_B1+n_B2*Ab(Bar_B)*y_B2)/Max(As_B,0.000001 in^2) to in",
     "unit": "in",
     "caption": "Area-weighted centroid of continuous plus additional span steel.",
     "input": false,
@@ -763,14 +763,14 @@
     "name": "do_N"
   },
   {
-    "formula": "do_P = If(n_PU > 0, Min(y_P1,y_U), y_P1) to in",
+    "formula": "do_P = y_P1 to in",
     "unit": "in",
     "caption": "Extreme tension face to outer bottom bar center.",
     "input": false,
     "name": "do_P"
   },
   {
-    "formula": "do_B = If(n_BU > 0,Min(do_P,y_B1,y_U),If(n_B1 > 0,Min(do_P,y_B1),do_P)) to in",
+    "formula": "do_B = If(n_B1 > 0,Min(do_P,y_B1),do_P) to in",
     "unit": "in",
     "caption": "Extreme tension face to outer bottom bar center.",
     "input": false,

@@ -178,7 +178,8 @@ class Report:
         output='<article class="equation" id="eq-'+name+'"><span class="equation-id">('+str(self.equation_count)+')</span><p class="caption">'+escape(caption)+'</p>'
         override=name in self.e.engine.overrides
         if override:
-            output+='<p>Derived from the actual longitudinal coordinates and the common envelope of the entered transverse shapes; see the coordinate table above. Includes the fitted row translation.</p>'
+            output+=('<p>Maximum spacing between adjacent continuous and added bar centers in the displayed span row; see the coordinate table above.</p>' if name in (self.e.spacing_values or {}) else
+                '<p>Derived from the actual longitudinal coordinates and the common envelope of the entered transverse shapes; see the coordinate table above. Includes the fitted row translation.</p>')
             output+='<div class="equation-line">'+mathml(symbol(name)+'<mo>=</mo>'+quantity(self.e.engine.get(name),self.e.engine,d['unit']),True)+'</div>'
         else:
             ast=self.e.engine.defs[name]
@@ -197,6 +198,7 @@ class Report:
                   'E_end':'Nominal extension beyond the outer pile face','L_cap':'Cap length along the pile row'}
         for d in definitions:
             if not d['input']:continue
+            if d['name'] in ('Bar_U','n_PU','n_BU'):continue
             n=d['name'];caption=meanings.get(n,d['caption'])
             source='Current case input / adopted assumption'
             if n.startswith(('Mu_','MI_','MIII_','MDL_','DMLL_','Vu_')) or n=='Tu':

@@ -63,7 +63,7 @@ class CalculationTests(unittest.TestCase):
             ({'S_pile':4},'Chk_piles','FAIL'),
             ({'n_N2':4,'n_N3':2,'Bar_N2':9,'Bar_N3':10},'As_N',12.86),
             ({'C_t':4},'dc_N',5.125),
-            ({'n_PU':2,'Bar_U':5},'As_P',6.94),
+            ({'n_PU':2,'Bar_U':5},'As_P',6.32),  # Retired allowance carries no steel credit.
             ({'Manual_spacing':True,'SP_detail_B':40},'Chk_I_B','FAIL'),
             ({'Ready_III':True,'MIII_B':700},'Chk_III_B','FAIL'),
             ({'Ready_fatigue':True,'DMLL_B':1000,'MDL_B':100},'Chk_fat_B','FAIL'),
@@ -128,7 +128,7 @@ class CalculationTests(unittest.TestCase):
         self.assertGreater(e.value('As_N'),self.base.value('As_N'))
         e=evaluate(set_inputs(default_case(),n_N1=50))
         self.assertTrue(any('clear spacing' in s for s in e.issues));self.assertFalse(e.eligible)
-        for change in ({'n_PU':2},{'n_loop':2}):
+        for change in ({'n_loop':2},):
             self.assertFalse(evaluate(set_inputs(default_case(),**change)).eligible)
 
 class SearchTests(unittest.TestCase):

@@ -77,7 +77,8 @@ class RunCard:
         self.widgets.extend(pairs)
         actions=W.HBox([view,remove],layout=W.Layout(width='100%',flex_flow='row nowrap'))
         self.widgets.append(actions)
-        self.ui=W.VBox([label,*pairs,info,warning,actions,error],layout=_card_layout())
+        self.feedback=add('feedback',W.HTML())
+        self.ui=W.VBox([label,*pairs,info,warning,self.feedback,actions,error],layout=_card_layout())
         self.ui.add_class('cap-hoop-card')
 
     def sync(self,run,region,active,selected,case,overlaps=()):
@@ -105,6 +106,8 @@ class RunCard:
         c['view'].button_style='info' if selected else '';c['view'].disabled=not active
         c['split'].disabled=not active or count<2;c['remove'].disabled=False
         c['error'].value=''
+        from .steel_feedback import run_feedback
+        self.feedback.value=run_feedback(self.panel.owner.current,run['id']) if active and self.panel.owner.current else '<small>Actual layout inactive.</small>'
 
     def close(self):
         for widget in self.widgets:widget.close()

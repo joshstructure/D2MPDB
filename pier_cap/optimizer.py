@@ -32,7 +32,7 @@ def same_design_basis(a,b):
     def basis(case):
         case=upgrade_case(case)
         return ({k:v for k,v in case['inputs'].items() if k not in REINFORCEMENT_INPUTS},
-                case['analysis'],case['screening'],case['units'],case['schema_version'],case.get('transverse_detail'))
+                case['analysis'],case['screening'],case['units'],case['schema_version'],case.get('transverse_detail'),case.get('added_bar_layout'))
     return basis(a)==basis(b)
 
 

@@ -91,6 +91,8 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
     dimensions=dimensions.replace('<body>','<body>'+dimensions_html(e),1)
     (path/'geometry_dimensions.html').write_text(dimensions,encoding='utf-8')
     prefix=('UNIFORM-CAGE REFERENCE ONLY. Actual hoop/U runs are in selected_case.json and transverse_bar_schedule.csv; these scalar inputs do not represent their topology.\n\n' if actual_transverse(case) else '')
+    if case.get('added_bar_layout'):
+        prefix+='ADDED-BAR LAYOUT: independent row spacing/offsets are saved in selected_case.json and longitudinal_bar_positions.csv, not represented by these legacy scalar spacing inputs. Recheck spacing in the notebook.\n\n'
     (path/'blockpad_inputs.txt').write_text(prefix+'\n'.join(input_formula(k,v) for k,v in case['inputs'].items())+'\n',encoding='utf-8')
     (path/'formula_trace.json').write_text(json.dumps(formula_trace(e),indent=2,ensure_ascii=False),encoding='utf-8')
     if case['analysis'].get('xml_audit',{}).get('end_records'):

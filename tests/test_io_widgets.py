@@ -92,7 +92,8 @@ class WidgetTests(unittest.TestCase):
             app.controls['N_pile'].value=5
             self.assertIn('REIMPORT',app.current.status);self.assertFalse(app.current.eligible)
             app.controls['s_G'].value=0
-            self.assertIsNone(app.current);self.assertIn('INPUT ERROR',app.banner.value);self.assertEqual(len(app.cage.children),0)
+            self.assertIsNone(app.current);self.assertIn('INPUT ERROR',app.banner.value)
+            self.assertEqual(app.cage.children,(app.input_panel,app.transverse_panel.ui))
             app.load(default_case());self.assertTrue(app.current.eligible)
         finally:
             for f in app.figures:f.close()

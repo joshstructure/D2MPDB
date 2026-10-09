@@ -123,10 +123,12 @@ def reinforcement_summary_html(e):
     p=e.case['inputs'];continuous=int(p['n_P1']+p['n_P2']);extra=int(p['n_B1']+p['n_B2'])
     migration=e.case.get('reinforcement_migration',{})
     note=('<p style="color:#9b6012"><b>Saved-case conversion:</b> '+html.escape(migration['note'])+'</p>') if migration else ''
+    retired=e.case.get('retired_u_leg_inventory',{})
+    if retired:note+='<p style="color:#9b6012"><b>Saved-case conversion:</b> '+html.escape(retired['note'])+'</p>'
     transverse_note=('Purple = actual closed hoops; pink = actual open-bottom pile U-bars. Select a run in the editor to inspect its section.<br>' if actual_transverse(e.case) else 'Purple dashed shapes / pitch samples are reference geometry; use Actual hoops and pile U-bars to set construction stations.<br>')
     return (f'<p><b>Between-pile inputs are ADDITIONAL steel.</b> '
         f'{continuous} continuous #{p["Bar_P"]:g} + {extra} added #{p["Bar_B"]:g} = <b>{continuous+extra} bottom bars in the span</b> '
-        '(excluding any unresolved U-leg inventory).<br>'
+        '.<br>'
         f'At piles: <b>{e.value("As_P"):.3f} in²</b>. Between piles: <b>{e.value("As_B"):.3f} in² combined</b>. '
         'Blue bars continue through the full cap; orange bars are additional span bars with 90° hooks. '
         +transverse_note+
@@ -144,6 +146,11 @@ def configuration_html(e):
              ('Added between piles',rows('B','Bar_B')+' per span'),
              ('Side steel',f'{p["n_skin"]:g} × #{p["Bar_skin"]:g} per side'),
              ('Pile head',f'{p["Pile_embed"]:g} in embed · {p["C_pile"]:g} in clear'+('' if p['Ready_pile'] else ' · confirm dimensions'))]
+    if e.case.get('added_bar_layout'):
+        config=e.case['added_bar_layout']
+        text=('Automatic gap filling' if config['mode']=='auto' else 'Saved legacy spacing' if config['mode']=='legacy' else
+            '; '.join(f"Row {k}: {r['pitch_in']:g} in c/c, shift {r['offset_in']:+g} in from cap center" for k,r in config['rows'].items()))
+        entries.append(('Added bar layout',text))
     if actual_transverse(e.case):
         runs=run_summary(e.case)
         for kind,label in [('hoop','Closed hoops'),('pile_u','Open-bottom U-bars')]:

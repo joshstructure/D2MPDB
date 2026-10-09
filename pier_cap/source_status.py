@@ -64,5 +64,6 @@ def receipt_html(receipt, case):
             + ('Geometry, materials and load inputs are active below. Search and study results are not restored from this file. '
                'Next: review the live cage and checks, then run a search or study as needed. No need to run all notebook cells again.' if same else
                'The source or imported inputs have changed since this import. Review the active force source below before searching.'))
+    if case.get('retired_u_leg_inventory'):body+='<br><b>Converted saved steel:</b> '+html.escape(case['retired_u_leg_inventory']['note'])
     return notice_html('LOADS IMPORTED SUCCESSFULLY' if same else 'IMPORTED INPUTS HAVE CHANGED',
                        body, 'success' if same else 'pending')

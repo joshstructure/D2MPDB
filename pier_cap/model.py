@@ -57,6 +57,12 @@ def upgrade_case(case):
     screen.setdefault('aggregate_in',0.75)
     screen.setdefault('aggregate_confirmed',False)
     screen.setdefault('code_basis','AASHTO LRFD BDS 5.10.3 / 5.10.2; FDOT SDM 2026 4.3.2 and 4.3.4; contract criteria govern')
+    p=result.get('inputs',{})
+    former={k:p.get(k,0) for k in ('n_PU','n_BU')}
+    if any(former.values()) and all(type(v) in (int,float) and math.isfinite(v) and v>=0 and v==int(v) for v in former.values()):
+        result['retired_u_leg_inventory']={**former,'Bar_U':p.get('Bar_U'),
+            'note':f"Removed legacy longitudinal U-leg allowance: {former['n_PU']:g} pile legs and {former['n_BU']:g} span legs. Their steel area is no longer credited; review the recalculated checks. Actual transverse pile U-bar runs are unchanged."}
+        p.update(n_PU=0,n_BU=0)
     return result
 
 def set_inputs(case,**changes):
@@ -72,7 +78,9 @@ def set_inputs(case,**changes):
 
 def validate_case(case):
     validate_detail(case)
-    if case.get('schema_version')!=3:raise ValueError('Expected case schema_version 3; load older cases through load_case().')
+    if case.get('schema_version') not in (3,4):raise ValueError('Expected case schema_version 3 or 4; load older cases through load_case().')
+    from .added_steel import validate_layout
+    validate_layout(case)
     expected_units={n:d['unit'] or 'unitless' for n,d in INPUTS.items()}
     if case.get('units')!=expected_units:raise ValueError('Case units differ from the input schema. Use the units in default_case.json; convert values before importing.')
     p=case.get('inputs',{})
@@ -128,6 +136,7 @@ class Evaluation:
     max_dc:float
     weight_lb:float
     longitudinal_layout:object=None
+    spacing_values:object=None
 
     def value(self,name,unit=None):
         v=self.engine.get(name)
@@ -172,7 +181,10 @@ def bar_positions(e,region='B'):
         if region=='B':
             extra=int(p[f'n_B{k}'])
             diameter=BAR_DIAMETER[p['Bar_B']];x0=p['C_s']+dv+diameter/2
-            if p['Manual_spacing'] and k==1:
+            from .added_steel import entered_positions,legacy_spacing
+            entered=entered_positions(e.case,k)
+            if entered is not None:xs=entered
+            elif p['Manual_spacing'] and k==1 and legacy_spacing(e.case):
                 xs=[b/2+(j-(extra-1)/2)*p['SP_detail_B'] for j in range(extra)]
             else:
                 existing=sorted((v for v in bars if v['layer']==label),key=lambda v:v['x'])
@@ -241,6 +253,15 @@ def estimate_weight(e):
 
 def detailing_checks(e):
     checks=[];p=e.case['inputs']
+    from .added_steel import added_clearances,fit_problems
+    for r in added_clearances(e,bar_positions(e,'B')):
+        label='Added to added' if r['family']=='added' else 'Added to continuous'
+        checks.append(Check(f"Chk_added_clear_{r['row']}_{r['family']}",f"Row {r['row']} · {label} clear spacing",r['status'],r['ratio'],
+            f"Actual surface gap {r['actual']:.3f} in; required {r['required']:.3f} in. Required / actual; overlap fails. AASHTO LRFD 5.10.3 plus project minimum."))
+    if e.case.get('added_bar_layout',{}).get('mode')=='spacing':
+        issues=fit_problems(e,bar_positions(e,'B'))
+        checks.append(Check('Chk_added_fit','Entered added-bar spacing · cover / cage fit','FAIL' if issues else 'PASS',2 if issues else 0,
+            '; '.join(issues) or 'Entered center spacing and row offsets fit inside the cap cover / transverse cage envelope.'))
     for region in 'PB':
         bars=bar_positions(e,region)
         for i,r in enumerate(spacing_records(e,region,bars)):
@@ -327,7 +348,7 @@ def evaluate(case=None,fast=False):
     overrides['Status_layout']='REIMPORT ANALYSIS FORCES' if any(n in PILE_GEOMETRY for n in stale) else 'SOURCE PILE LAYOUT'
     overrides['Status_section']='RECHECK MODEL SELF-WEIGHT / FORCES' if any(n in ('b','h') for n in stale) else 'SOURCE SECTION'
     eng=(FAST if fast else FORMULAS).fork(overrides)
-    layout=None
+    layout=None;spacing_values={}
     if actual_transverse(case):
         from .placement import actual_layout
         trial=Evaluation(case,eng,[],[],stale,False,'',0,0)
@@ -336,6 +357,13 @@ def evaluate(case=None,fast=False):
             # Fresh engine: no reference-position dependency can remain cached.
             overrides.update({n:v if fast else Q(v,(1,0,0)) for n,v in layout['values'].items()})
             eng=(FAST if fast else FORMULAS).fork(overrides)
+    if layout is None and case.get('added_bar_layout',{}).get('mode') in ('auto','spacing'):
+        trial=Evaluation(case,eng,[],[],stale,False,'',0,0)
+        xs=sorted(b['x'] for b in bar_positions(trial,'B') if b['layer']=='Bottom row 1')
+        maximum=max((b-a for a,b in zip(xs,xs[1:])),default=0.)
+        spacing_values={'SP_B':maximum,'SP_B_auto':maximum}
+        overrides.update({n:v if fast else Q(v,(1,0,0)) for n,v in spacing_values.items()})
+        eng=(FAST if fast else FORMULAS).fork(overrides)
     eng.all()
     checks=[]
     for key,s in SPEC.items():
@@ -345,7 +373,7 @@ def evaluate(case=None,fast=False):
             ratio=ratio.v
         if isinstance(ratio,(float,int)) and not math.isfinite(ratio):raise ValueError('Nonfinite D/C: '+key)
         checks.append(Check(key,s['label'],eng.get(key),ratio,s['basis']))
-    e=Evaluation(case,eng,checks,[],stale,False,'',max((c.ratio for c in checks if isinstance(c.ratio,(float,int))),default=0),0,layout)
+    e=Evaluation(case,eng,checks,[],stale,False,'',max((c.ratio for c in checks if isinstance(c.ratio,(float,int))),default=0),0,layout,spacing_values)
     for check in checks:
         if check.key.startswith('Chk_long_'):
             region=check.key[-1]
@@ -381,9 +409,11 @@ def evaluate(case=None,fast=False):
 
 def formula_trace(e):
     fitted=e.longitudinal_layout['values'] if e.longitudinal_layout else {}
+    fitted={**fitted,**(e.spacing_values or {})}
     return [{'name':d['name'],'formula':(d['name']+' = actual longitudinal layout (in)' if d['name'] in fitted else d['formula']),
              'value':e.engine.text(e.engine.get(d['name']),d['unit'],5),
-             'note':('Derived from the displayed bar coordinates fitted to actual hoop/U geometry; replaces the reference cover/pitch expression. '+d['caption'] if d['name'] in fitted else d['caption'])}
+             'note':('Maximum adjacent spacing in the displayed continuous-plus-added span row. '+d['caption'] if d['name'] in (e.spacing_values or {}) else
+                 'Derived from the displayed bar coordinates fitted to actual hoop/U geometry; replaces the reference cover/pitch expression. '+d['caption'] if d['name'] in fitted else d['caption'])}
             for d in DEFINITIONS if '(' not in d['name']]
 
 
