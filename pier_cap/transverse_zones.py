@@ -32,7 +32,7 @@ def starting_zone_detail(e,bar,pitch):
     diameter=BAR_DIAMETER[bar];radius=diameter/2
     # Half the minimum allowable clear gap is measured to the bar surface.
     # Center offset includes the radius and is independent of regular pitch.
-    offset=(diameter+required_clear(e,diameter))/2
+    minimum=required_clear(e,diameter);offset=(diameter+minimum)/2
     cover=e.case['inputs']['C_s']+radius;length=e.value('L_cap');runs=[]
     for zone in cap_zones(e):
         first=max(cover,zone['left']+offset)
@@ -40,9 +40,9 @@ def starting_zone_detail(e,bar,pitch):
         if end<first:
             raise ValueError(zone['label']+': no room after minimum-clearance offsets and cap cover. Review zone geometry, bar size and clearance requirements.')
         runs.append(dict(id=f'R{len(runs)+1}',kind=zone['kind'],bar=int(bar),zone='G',
-            first_in=first,end_in=end,pitch_in=pitch,include_end_bar=True,
+            first_in=first,end_in=end,pitch_in=pitch,include_end_bar=True,end_min_clear_in=minimum,
             development_confirmed=False,development_basis=''))
-    detail=dict(version=2,enabled=True,runs=runs)
+    detail=dict(version=3,enabled=True,runs=runs)
     validate_detail(dict(e.case,transverse_detail=detail))
     return detail
 

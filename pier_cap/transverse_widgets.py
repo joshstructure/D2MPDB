@@ -142,7 +142,7 @@ class TransversePanel:
             'First / limit: from the <b>left cap end</b>; inches and feet are linked. '
             '<b>Details</b> opens shape / development; <b>Delete R…</b> removes that run.</small></p>'),
             W.HBox([self.active,self.start_bar,self.start_pitch,self.generate,self.undo_start,self.add],layout=W.Layout(flex_flow='row wrap')),
-            W.HTML('<small>Starting layout replaces current runs. Zone edges get half the minimum allowable clear spacing to the nearest bar surface, independent of Start c/c. Cap-end cover still governs. Regular spacing stays as entered, with any shorter final gap.</small>'),
+            W.HTML('<small>Starting layout replaces current runs. Zone edges get half the minimum allowable clear spacing to the bar surface, independent of Start c/c. Cap-end cover still governs. Bars near each run end shift as needed to meet minimum clear spacing; first and last bars stay fixed.</small>'),
             self.status,self.zone_scroll,self.detail_area,self.zone_notice,self.general],layout=W.Layout(width='100%',min_width='0'))
         self.active.observe(self._toggle,names='value');self.generate.on_click(self._generate);self.add.on_click(self._add)
         self.undo_start.on_click(self._undo_start)
@@ -243,6 +243,10 @@ class TransversePanel:
             if field in ('end_angle','inside_diameter_in','tail_in','end_raise_in','side_inset_in'):
                 run['shape']=shape_parameters(run);run['shape'][field]=value
             else:run[field]=value
+            if field=='bar' and 'end_min_clear_in' in run:
+                from .model import BAR_DIAMETER
+                from .detailing import required_clear
+                run['end_min_clear_in']=required_clear(self.owner.current,BAR_DIAMETER[value])
             if field=='development_confirmed' and value:
                 run['development_fingerprint']=development_fingerprint(dict(self.owner.case,transverse_detail=detail),run)
             else:run['development_confirmed']=False;run.pop('development_fingerprint',None)
@@ -258,7 +262,8 @@ class TransversePanel:
             self.zone_controls[rid]['details'].selected_index=0
 
     def _commit(self,detail,selected=None):
-        if any(r.get('include_end_bar',False) for r in detail['runs']):detail['version']=2
+        if any('end_min_clear_in' in r for r in detail['runs']):detail['version']=3
+        elif any(r.get('include_end_bar',False) for r in detail['runs']):detail['version']=max(2,detail['version'])
         case=deepcopy(self.owner.case);case['transverse_detail']=detail;validate_detail(case)
         self.owner.case=case
         if selected:self._selected_run_id=selected
@@ -284,7 +289,7 @@ class TransversePanel:
             try:self._commit(detail,selected=detail['runs'][0]['id'])
             finally:self._rebuild_order=False
             self._previous_detail=previous;self.undo_start.disabled=False
-            self.status.value=f'<small>Created {len(detail["runs"])} zone runs · #{self.start_bar.value} @ {self.start_pitch.value:g} in, with half the minimum allowable clear spacing at zone edges. These edge offsets are independent of Start c/c. Short final gaps within a run remain flagged for review.</small>'
+            self.status.value=f'<small>Created {len(detail["runs"])} zone runs · #{self.start_bar.value} @ {self.start_pitch.value:g} in regular spacing. End gaps are fitted to minimum clear spacing with the first and last bars fixed. Zone-edge offsets use half the minimum clear gap, independent of Start c/c.</small>'
         self._attempt(perform)
 
     def _undo_start(self,_):

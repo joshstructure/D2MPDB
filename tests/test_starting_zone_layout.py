@@ -1,4 +1,4 @@
-"""Zone-end bars share one regular pitch in drawings, checks and saved cases."""
+"""Zone-end bars retain their fitted stations in drawings, checks and saved cases."""
 from copy import deepcopy
 import csv
 import json
@@ -60,8 +60,9 @@ class EndBarScheduleTests(unittest.TestCase):
             self.assertEqual((run['bar'],run['pitch_in'],run['kind']),(6,7,zone['kind']))
             self.assertEqual((stations[0],stations[-1]),(run['first_in'],run['end_in']))
             self.assertGreaterEqual(stations[0],zone['left']);self.assertLessEqual(stations[-1],zone['right'])
-            for left,right in zip(stations[:-2],stations[1:-1]):self.assertAlmostEqual(right-left,7)
-            self.assertLessEqual(stations[-1]-stations[-2],7+1e-7)
+            for left,right in zip(stations,stations[1:]):
+                self.assertLessEqual(right-left,7+1e-7)
+                self.assertGreaterEqual(right-left-BAR_DIAMETER[6],required_clear(e,BAR_DIAMETER[6])-1e-8)
             self.assertFalse(run['development_confirmed'])
 
     def test_starter_leaves_half_minimum_clearance_at_every_zone_edge(self):
@@ -79,7 +80,7 @@ class EndBarScheduleTests(unittest.TestCase):
 
     def test_pitch_changes_do_not_move_zone_end_bars(self):
         e=evaluate(default_case());zones=cap_zones(e);endpoints=[]
-        for pitch in (4,8,20):
+        for pitch in (6,8,20):
             runs=starting_zone_detail(e,5,pitch)['runs']
             endpoints.append([(r['first_in'],r['end_in']) for r in runs])
             # Default minimum clear gap is 2 in; #5 radius is 0.3125 in.
@@ -119,6 +120,53 @@ class EndBarScheduleTests(unittest.TestCase):
             with (folder/'transverse_bar_schedule.csv').open(encoding='utf-8-sig') as stream:rows=list(csv.DictReader(stream))
             self.assertEqual([float(r['station_in']) for r in rows],stations)
 
+    def test_fitted_tail_keeps_endpoints_and_moves_only_required_bars(self):
+        for end,pitch,minimum,expected in [
+            (20.25,8,2,[4,12,17.625,20.25]),
+            (21,5,3.375,[4,9,13,17,21]),
+            (20,8,2,[4,12,20]),(23,8,2,[4,12,20,23]),(4,8,2,[4])]:
+            case,run=self.run_case(end,pitch);case['transverse_detail']['version']=3
+            run['end_min_clear_in']=minimum;validate_detail(case)
+            self.assertEqual(run_stations(run),expected)
+            self.assertEqual(run_bar_count(run),len(expected));self.assertEqual(run_last_station(run),end)
+
+    def test_infeasible_tail_and_invalid_fit_metadata_are_rejected(self):
+        case,run=self.run_case(14.1,5);case['transverse_detail']['version']=3
+        run['end_min_clear_in']=3.375
+        with self.assertRaisesRegex(ValueError,'fixed end bars cannot fit'):validate_detail(case)
+        case,run=self.run_case(20.25);run['end_min_clear_in']=2
+        with self.assertRaisesRegex(ValueError,'version 3'):validate_detail(case)
+        case['transverse_detail']['version']=3
+        for bad in (0,-1,True,float('nan'),float('inf')):
+            run['end_min_clear_in']=bad
+            with self.assertRaisesRegex(ValueError,'positive finite'):validate_detail(case)
+
+    def test_generated_short_tail_passes_clearance_and_round_trips_exact_stations(self):
+        case=default_case();case['transverse_detail']=starting_zone_detail(evaluate(case),5,10)
+        e=evaluate(case)
+        self.assertTrue(all(c.status=='PASS' for c in e.checks if c.key.startswith('Chk_actual_clear_')))
+        run=case['transverse_detail']['runs'][2];stations=run_stations(run)
+        self.assertAlmostEqual(stations[-1]-stations[-2]-.625,2.)
+        self.assertEqual(load_case(json.dumps(case).encode())['transverse_detail'],case['transverse_detail'])
+        app=CapNotebook(case);self.addCleanup(app.close)
+        self.assertNotIn('fails clear spacing',app.transverse_panel.zone_controls[run['id']]['warning'].value)
+        for key in ('plan','elevation','cage3d'):
+            traces=[t for t in app.views.plots[key].data if t.legendgroup==run['id']]
+            self.assertEqual(len(traces),len(stations))
+            if key!='cage3d':self.assertEqual([t.x[0]*12 for t in traces],stations)
+        with tempfile.TemporaryDirectory() as root:
+            folder=export_bundle(case,root)
+            with (folder/'transverse_bar_schedule.csv').open(encoding='utf-8-sig') as stream:rows=list(csv.DictReader(stream))
+            self.assertEqual([float(r['station_in']) for r in rows],[b['station_in'] for b in scheduled_bars(case)])
+
+    def test_end_fit_changes_invalidate_recorded_development(self):
+        case,run=self.run_case(20.25);case['transverse_detail']['version']=3
+        run.update(end_min_clear_in=2,development_confirmed=True,development_basis='Reviewed fitted end')
+        run['development_fingerprint']=development_fingerprint(case,run)
+        self.assertTrue(development_current(case,run))
+        run['end_min_clear_in']=2.2
+        self.assertFalse(development_current(case,run))
+
 
 class StartingLayoutWidgetTests(unittest.TestCase):
     def setUp(self):
@@ -150,13 +198,35 @@ class StartingLayoutWidgetTests(unittest.TestCase):
             self.assertIn('Not applied',panel.status.value)
 
     def test_split_preserves_short_terminal_bay_and_remains_editable(self):
-        panel=self.app.transverse_panel;panel.generate.click()
+        panel=self.app.transverse_panel;panel.start_pitch.value=10;panel.generate.click()
         before=[b['station_in'] for b in scheduled_bars(self.app.case)]
-        rid=next(r['id'] for r in self.app.case['transverse_detail']['runs'] if len(run_stations(r))>2)
+        rid='R3'  # Fitted penultimate bar, not just an unmodified regular run.
         panel.zone_controls[rid]['split'].click()
         self.assertEqual([b['station_in'] for b in scheduled_bars(self.app.case)],before)
         panel.zone_controls[rid]['include_end_bar'].value=False
         self.assertFalse(next(r for r in self.app.case['transverse_detail']['runs'] if r['id']==rid)['include_end_bar'])
+
+    def test_infeasible_generation_preserves_previous_layout_and_undo_state(self):
+        panel=self.app.transverse_panel;panel.generate.click();before=deepcopy(self.app.case)
+        previous=deepcopy(panel._previous_detail)
+        panel.start_pitch.value=4;panel.generate.click()
+        self.assertEqual(self.app.case,before);self.assertEqual(panel._previous_detail,previous)
+        self.assertIn('fixed end bars cannot fit',panel.status.value)
+
+    def test_generated_run_edits_refit_the_tail_and_preserve_card(self):
+        panel=self.app.transverse_panel;panel.start_pitch.value=10;panel.generate.click()
+        controls=panel.zone_controls['R3'];card=panel._cards['R3']
+        def current():return next(r for r in self.app.case['transverse_detail']['runs'] if r['id']=='R3')
+        endpoints=(current()['first_in'],current()['end_in'])
+        for field,value in [('bar',11),('pitch',9),('end_in',endpoints[1]-.25)]:
+            controls[field].value=value;run=current();stations=run_stations(run)
+            minimum=required_clear(self.app.current,BAR_DIAMETER[run['bar']])
+            self.assertEqual(run['end_min_clear_in'],minimum)
+            self.assertGreaterEqual(min(b-a for a,b in zip(stations,stations[1:]))-BAR_DIAMETER[run['bar']],minimum-1e-8)
+            self.assertEqual(stations[0],endpoints[0])
+            self.assertEqual(stations[-1],value if field=='end_in' else endpoints[1])
+            self.assertIs(panel._cards['R3'],card)
+        self.assertEqual(self.app.case['transverse_detail']['version'],3)
 
     def test_enabling_end_bar_upgrades_legacy_layout_format(self):
         panel=self.app.transverse_panel;panel.add.click()

@@ -1,7 +1,8 @@
 """Explicit transverse-rebar stations, independent of longitudinal U inventory.
 
 Stations are inches from the left cap end. Runs retain the entered pitch;
-an optional end bar fills the entered limit with a shorter final interval.
+an optional end bar fills the entered limit. Generated runs fit the final
+intervals to their saved minimum clear spacing without moving the endpoints.
 """
 import math
 import hashlib
@@ -36,19 +37,32 @@ def run_stations(run):
     if run.get('include_end_bar',False):
         if run['end_in']-stations[-1]>1e-7:stations.append(run['end_in'])
         else:stations[-1]=run['end_in']
+        if 'end_min_clear_in' in run and len(stations)>1:
+            from .model import BAR_DIAMETER
+            minimum=run['end_min_clear_in']+BAR_DIAMETER[run['bar']]
+            span=run['end_in']-run['first_in'];intervals=len(stations)-1
+            if run['pitch_in']<minimum-1e-8 or span<intervals*minimum-1e-8:
+                raise ValueError(f"{run['id']}: fixed end bars cannot fit with {run['pitch_in']:g} in maximum c/c and "
+                    f"{run['end_min_clear_in']:g} in minimum clear spacing. Change the pitch or run limits.")
+            # Keep the regular prefix and fixed end bar; move only the tail
+            # bars that would otherwise leave less than the minimum clear gap.
+            for i in range(len(stations)-2,0,-1):
+                stations[i]=min(stations[i],stations[i+1]-minimum)
     return stations
 
 
 def end_bar_note(run):
     if not run.get('include_end_bar',False):return ''
     stations=run_stations(run)
-    return f' · last gap {stations[-1]-stations[-2]:g} in' if len(stations)>1 else ' · single end bar'
+    note=f' · last gap {stations[-1]-stations[-2]:g} in' if len(stations)>1 else ' · single end bar'
+    if 'end_min_clear_in' in run:note+=f" · end fit ≥ {run['end_min_clear_in']:g} in clear"
+    return note
 
 
 def validate_detail(case):
     detail=case.get('transverse_detail')
     if detail is None:return
-    if not isinstance(detail,dict) or detail.get('version') not in (1,2):
+    if not isinstance(detail,dict) or detail.get('version') not in (1,2,3):
         raise ValueError('Unsupported transverse-detail version.')
     if type(detail.get('enabled')) is not bool:
         raise ValueError('Transverse-detail enabled must be true or false.')
@@ -79,9 +93,15 @@ def validate_detail(case):
             raise ValueError(f'{label}: include_end_bar must be true or false.')
         if run.get('include_end_bar',False) and detail['version']<2:
             raise ValueError(f'{label}: an end-limit bar requires transverse-detail version 2.')
+        if 'end_min_clear_in' in run:
+            minimum=run['end_min_clear_in']
+            if isinstance(minimum,bool) or not isinstance(minimum,(int,float)) or not math.isfinite(minimum) or minimum<=0:
+                raise ValueError(f'{label}: end-fit minimum clear spacing must be a positive finite inch value.')
+            if detail['version']<3:raise ValueError(f'{label}: fitted end spacing requires transverse-detail version 3; use the updated notebook.')
         count=run_bar_count(run)
         total+=count
         if total>2000:raise ValueError('The transverse layout exceeds 2,000 bars; check station units and pitch.')
+        if 'end_min_clear_in' in run:run_stations(run)
         shape=run.get('shape',{})
         if not isinstance(shape,dict):raise ValueError(f'{label}: shape must be a record.')
         if isinstance(shape.get('end_angle',90),bool) or shape.get('end_angle',90) not in (0,90,135,180):raise ValueError(f'{label}: choose straight, 90°, 135° or 180° U ends.')
@@ -144,6 +164,7 @@ def shape_parameters(run):
 def development_fingerprint(case,run):
     detail={k:run[k] for k in ('kind','bar','zone','first_in','end_in','pitch_in')}
     if run.get('include_end_bar',False):detail['include_end_bar']=True
+    if 'end_min_clear_in' in run:detail['end_min_clear_in']=run['end_min_clear_in']
     detail['shape']=shape_parameters(run)
     # Another run can move the common longitudinal cage and change the end
     # congestion basis, even when this run's entered dimensions stay unchanged.
