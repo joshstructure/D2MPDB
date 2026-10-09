@@ -15,6 +15,7 @@ CASE_CONTENTS = (
     'pile appearance and design settings. Cap plots and checks are recalculated. '
     'Force diagrams return when their source records are in the file. '
     'This does not restore completed steel searches or section studies. '
+    '<b>notebook_state.json</b> restores both sections, including the minimum-tip XML results, trials and reaction margin. '
     'Pile profiles and minimum-tip trials are separate: use <b>Load pile review</b> '
     'in the pile panel with <b>pile_review.json</b>, or upload the solved XML for pile results.'
 )
@@ -31,20 +32,20 @@ class CaseImportPanel:
         self.receiving = False
         self.upload_output = W.Output(layout=W.Layout(display='none'))
         self.status = W.HTML(notice_html('READY TO LOAD CASE JSON',
-            'Choose <b>selected_case.json</b> from a previous cap export. '
+            'Choose <b>notebook_state.json</b> to restore both sections, or <b>selected_case.json</b> for the cap. '
             'The filename and a success or error message will appear here.'))
         try:
             from google.colab import files
         except ImportError:
             self.colab_files = None
             self.upload = W.FileUpload(accept='.json,.JSON', multiple=False,
-                description='Load case JSON', layout=W.Layout(width='190px'))
+                description='Load notebook / case', layout=W.Layout(width='190px'))
             self.upload.observe(self._uploaded, names='value')
             self.upload.observe(self._upload_error, names='error')
         else:
             # As with XML imports, avoid Colab FileUpload's missing binary buffers.
             self.colab_files = files
-            self.upload = W.Button(description='Load case JSON', icon='upload',
+            self.upload = W.Button(description='Load notebook / case', icon='upload',
                 layout=W.Layout(width='190px'))
             self.upload.on_click(self._colab_uploaded)
         self.actions = W.HBox([self.upload], layout=W.Layout(flex_flow='row wrap'))
@@ -76,7 +77,7 @@ class CaseImportPanel:
         try:
             entries = upload_entries(self.upload.value)
             if len(entries) != 1:
-                raise ValueError('Select exactly one cap case JSON file.')
+                raise ValueError('Select exactly one notebook or cap case JSON file.')
             entry = entries[0]
             self.load(entry['content'], entry['name'])
         except Exception as exc:
@@ -98,7 +99,7 @@ class CaseImportPanel:
         self.receipt = None
         self.upload.disabled = True
         self.status.value = notice_html('CHOOSE CASE JSON',
-            'Click <b>Choose Files</b> above and select one saved cap case JSON. '
+            'Click <b>Choose Files</b> above and select notebook_state.json for both sections or selected_case.json for the cap. '
             'The current cap inputs stay in place until the file passes validation.', 'pending')
         self.upload_output.layout.display = ''
         try:
@@ -112,7 +113,7 @@ class CaseImportPanel:
                     'No file was selected. The current cap inputs were not changed.')
                 return
             if len(received) != 1:
-                raise ValueError('Select exactly one cap case JSON file.')
+                raise ValueError('Select exactly one notebook or cap case JSON file.')
             filename, content = next(iter(received.items()))
             self.load(content, Path(filename).name)
         except Exception as exc:
@@ -127,19 +128,32 @@ class CaseImportPanel:
             '<b>' + html.escape(filename) + '</b><br>Checking saved inputs and calculating the cap…', 'pending')
         try:
             if Path(filename).suffix.lower() != '.json':
-                raise ValueError('Select a cap case .json file, usually selected_case.json.')
-            proposed = load_case(content)
+                raise ValueError('Select a .json file: notebook_state.json for both sections, or selected_case.json for the cap.')
+            try:
+                data=json.loads(bytes(content).decode('utf-8-sig'))
+            except (json.JSONDecodeError,UnicodeDecodeError):
+                # Keep the existing actionable parse/encoding diagnostics.
+                load_case(content)
+                raise
+            minimum_tip=None
+            if isinstance(data,dict) and data.get('format')=='d2mpdb-notebook':
+                proposed,minimum_tip=self.app.validate_notebook_state(data)
+            else:
+                proposed = load_case(content)
         except Exception as exc:
             self._failed(exc, filename)
             return
         try:
             self.app.load(proposed, import_name=filename)
+            if minimum_tip is not None:
+                self.app.pile_review.restore(minimum_tip)
             if self.app.current is None:
                 raise ValueError('The cap calculation could not be refreshed. See the input error below.')
         except Exception as exc:
             self._failed(exc, filename, applied=True)
             return
         self.receipt = dict(filename=filename,
+            includes_minimum_tip=minimum_tip is not None,
             loaded_utc=datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC'),
             signature=case_signature(self.app.case))
         self._case_changed()
@@ -164,5 +178,6 @@ class CaseImportPanel:
             f' · Shear G / L: <b>{p["Vu_G"]:g} / {p["Vu_L"]:g} kip</b> · Torsion: <b>{p["Tu"]:g} kip-ft</b>'
             '<br><b>Cap plots and checks recalculated.</b> No Apply button or cell rerun is needed. '
             'Saved check failures or pending items still require review.'
-            '<br>Pile review and completed search/study results were not loaded from this file.')
+            + ('<br>Minimum-tip study and reaction margin also restored. Completed searches/studies need a new run.'
+               if r.get('includes_minimum_tip') else '<br>Pile review and completed search/study results were not loaded from this file.'))
         self.status.value = notice_html('CASE JSON LOADED SUCCESSFULLY', detail, 'success')

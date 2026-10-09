@@ -68,7 +68,15 @@ def reported_cracking_check(review, combination):
     return checks
 
 
-def geotech_section_and_loads(review, nominal_weight=None, nominal_diameter=None, toe='Unknown'):
+def geotech_section_and_loads(review, nominal_weight=None, nominal_diameter=None, toe='Unknown', margin_percent=5.0):
+    """Minimum-tip model head demands, with a separate internal handoff margin.
+
+    Always start with original XML forces; repeated refresh/export cannot compound
+    the margin. Compression and uplift are positive demand magnitudes.
+    """
+    require(type(margin_percent) in (int, float) and math.isfinite(margin_percent)
+            and margin_percent >= 0, 'Reaction margin must be a finite, nonnegative percentage.')
+    multiplier = 1 + margin_percent / 100
     s = review['section']
     size = (f'{s["width_in"]:g}-in diameter' if s['circular'] else
             f'{s["width_in"]:g} × {s["depth_in"]:g} in')
@@ -91,7 +99,12 @@ def geotech_section_and_loads(review, nominal_weight=None, nominal_diameter=None
     for label, key in [('Maximum factored compression', 'compression_kip'), ('Maximum factored uplift', 'uplift_kip')]:
         value = max((r[key] for r in heads), default=None)
         ties = [r for r in heads if math.isclose(r[key], value, rel_tol=0, abs_tol=1e-9)] if value is not None and value > 0 else []
-        loads.append(dict(load=label, short_tons=value/2 if value is not None else None,
+        adjusted = value * multiplier if value is not None else None
+        require(adjusted is None or math.isfinite(adjusted), 'Reaction margin produces a nonfinite load.')
+        loads.append(dict(load=label, raw_kip=value, raw_short_tons=value/2 if value is not None else None,
+                          margin_percent=margin_percent, multiplier=multiplier,
+                          handoff_kip=adjusted, short_tons=adjusted/2 if adjusted is not None else None,
+                          source_role='Minimum-tip model', source_xml=review['filename'], source_sha256=review['sha256'],
                           governing='; '.join(f'Pile {r["pile"]} · combo {r["combination"]} · {r["state"]}' for r in ties)
                           or ('None — no demand' if value == 0 else 'No strength / extreme-event results')))
     return section, loads

@@ -264,6 +264,8 @@ class FixityWidgetTests(unittest.TestCase):
         self.assertFalse(p.minimum_tip_result['comparison_complete'])
         self.assertIn('Reload the original XML',p.trial_status.value)
         self.app.xml_import.stage((FIXTURES/'fbmp_610_piles.xml').read_bytes(),'fbmp_610_piles.xml')
+        self.assertFalse(p.minimum_tip_result['comparison_complete'])
+        p._import((FIXTURES/'fbmp_610_piles.xml').read_bytes(),'fbmp_610_piles.xml')
         self.assertTrue(p.minimum_tip_result['comparison_complete'])
         self.assertEqual(p.cutoff.value,'40');self.assertEqual(p.reference.value,'30')
         self.assertEqual(p.trial_text.value,state['controls']['trial_text'])

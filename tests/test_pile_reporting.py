@@ -92,8 +92,10 @@ class PileReportingTests(unittest.TestCase):
         review['forces'][1]['axial_tension_kip'] = -99999
         review['forces'][0]['axial_tension_kip'] = 20
         section, loads = geotech_section_and_loads(review)
-        self.assertEqual(loads[0]['short_tons'], 50)
-        self.assertEqual(loads[1]['short_tons'], 10)
+        self.assertEqual(loads[0]['raw_short_tons'], 50)
+        self.assertEqual(loads[0]['short_tons'], 52.5)
+        self.assertEqual(loads[1]['raw_short_tons'], 10)
+        self.assertEqual(loads[1]['short_tons'], 10.5)
         self.assertNotIn('SERVICE',loads[0]['governing'])
         self.assertIn('Pile 2',loads[0]['governing'])
         self.assertIn('Pile 3',loads[0]['governing'])
@@ -195,7 +197,7 @@ class HandoffWidgetTests(unittest.TestCase):
     def test_old_manual_depth_is_recomputed_and_new_state_has_no_depth_input(self):
         self.select_trials()
         state=self.panel.snapshot()
-        self.assertEqual(state['schema_version'],4)
+        self.assertEqual(state['schema_version'],5)
         self.assertNotIn('accepted',state['controls'])
         state['schema_version']=2
         state['controls']['accepted']='999'

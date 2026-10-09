@@ -256,7 +256,7 @@ class PileReviewPanel:
                              style={'description_width':'125px'}, layout=W.Layout(width='330px'))
         self.export = W.Button(description='Download pile review', icon='download', disabled=True, layout=W.Layout(width='200px'))
         self.export.on_click(self._export)
-        self.upload = self._uploader('Separate pile XML', '.xml,.XML', self._import)
+        self.upload = self._uploader('Minimum-tip XML', '.xml,.XML', self._import)
         self.restore_upload = self._uploader('Load pile review', '.json', self._restore_file)
         self.combo.observe(self._selection_changed, names='value')
         self.piles.observe(self._selection_changed, names='value')
@@ -294,8 +294,10 @@ class PileReviewPanel:
         self.nominal_weight = W.Text(description='Weight (lb/ft)', placeholder='Nominal / supplied, optional', layout=W.Layout(width='330px'))
         self.nominal_diameter = W.Text(description='Nominal OD (in)', placeholder='Pipe geotechnical diameter', layout=W.Layout(width='330px'))
         self.toe = W.Dropdown(options=['Unknown','Open','Closed','Not applicable'],description='Pile toe')
+        self.reaction_margin = W.FloatText(value=5.0, description='Reaction margin (%)',
+            style={'description_width':'145px'}, layout=W.Layout(width='300px'))
         self.geotech_notes = W.Textarea(description='Project notes',placeholder='Scour, downdrag, driving / test criteria, resistance basis',layout=W.Layout(width='100%',height='90px'))
-        for w in [self.nominal_weight,self.nominal_diameter,self.toe,self.geotech_notes]:
+        for w in [self.nominal_weight,self.nominal_diameter,self.toe,self.geotech_notes,self.reaction_margin]:
             w.observe(lambda _: self.refresh_handoff() if not self.busy else None,names='value')
         self.run_trials = W.Button(description='Calculate minimum tip', button_style='primary', icon='line-chart', disabled=True,
                                    layout=W.Layout(width='220px'))
@@ -336,17 +338,20 @@ class PileReviewPanel:
                 'Paste trials and enter the design ground / scour elevation in Minimum tip, then update or download here. '
                 'Critical embedment and minimum tip are calculated automatically.</p>'),
                 W.HBox([self.nominal_weight,self.nominal_diameter,self.toe],layout=W.Layout(flex_flow='row wrap')),
+                self.reaction_margin, W.HTML('<p><b>Geotech load source: minimum-tip model.</b> '
+                    'Internal margin multiplies the original factored pile-head compression and uplift magnitudes by '
+                    '1 + margin / 100 (5% = 1.05). Enter 0 to use the original reactions. '
+                    'This project setting is additional to the FBMP load factors; it is not a code resistance factor.</p>'),
                 self.geotech_notes, W.HBox([self.handoff_refresh, self.handoff_export], layout=W.Layout(flex_flow='row wrap')),
                 self.handoff_status, self.handoff_download_output, self.handoff])])
         for i, name in enumerate(['Pile loads', 'Profiles and stresses', 'Pile section', 'Minimum tip', 'Geotech handoff']):
             self.tabs.set_title(i, name)
-        separate = Accordion(children=[W.VBox([W.HTML('<p>The shared XML upload above supplies both sections. '
-            'Use this only to review a different pile analysis.</p>'), self.upload])])
-        separate.set_title(0, 'Optional separate pile analysis'); separate.selected_index = None
-        self.ui = W.VBox([W.HTML('<h2 style="color:#213649">1. FBMP pile review</h2><p>Review pile behavior and the minimum-tip study before selecting cap reinforcement.</p>'),
-            W.HBox([self.restore_upload, self.export], layout=W.Layout(flex_flow='row wrap')), separate,
+        self.ui = W.VBox([W.HTML('<h2 style="color:#213649">1. Minimum-tip study and geotech handoff</h2>'
+            '<p>Upload the minimum-tip model XML for pile profiles and the pile-head axial demands used in the geotech handoff. '
+            'Load the trial table separately to calculate minimum tip. The fixed-depth cap XML is loaded in Cell 2.</p>'),
+            W.HBox([self.upload, self.restore_upload, self.export], layout=W.Layout(flex_flow='row wrap')),
             self.upload_output, self.notice, self.source_match, self.tabs, self.message, self.download_output])
-        self.notice.value = notice_html('PILE RESULTS NOT LOADED', 'Upload FBMP XML once above to load pile results and preview cap inputs.')
+        self.notice.value = notice_html('MINIMUM-TIP XML NOT LOADED', 'Upload the minimum-tip model XML here. Cap-design forces have a separate input in Cell 2.')
         self.refresh_handoff()
         self.app.case_listeners.append(self.refresh_match)
 
@@ -454,15 +459,18 @@ class PileReviewPanel:
         audit = self.app.case['analysis'].get('xml_audit', {})
         edited_forces=any(not math.isclose(self.app.case['inputs'][key],record['adopted'],abs_tol=1e-8)
             for key,record in audit.get('governing',{}).items() if key in self.app.case['inputs'] and 'adopted' in record)
-        if audit.get('sha256') != self.review['sha256']:
-            text = 'Pile review and cap forces use different source records. Pile results remain an independent review.'
+        if not audit.get('sha256'):
+            text = 'Minimum-tip model supplies the geotech reactions. No fixed-depth cap XML is applied.'
+        elif audit.get('sha256') != self.review['sha256']:
+            text = 'Minimum-tip study and fixed-depth cap design use different source records, as intended. Geotech reactions come only from the minimum-tip model.'
         elif analysis_match(self.app.case) or self.app.case.get('section_study', {}).get('force_mode') == 'fixed':
             text = 'Pile and cap sources share the XML, but the current cap geometry differs or uses fixed-force sensitivity. Pile results describe the original analysis.'
         elif edited_forces:
             text = 'Pile and cap sources share the XML, but cap force inputs have been edited. Pile results describe the original analysis.'
         else:
             text = 'Pile review and cap inputs share the same analyzed XML.'
-        self.source_match.value = '<p><b>'+html.escape(text)+'</b></p>'
+        self.source_match.value = '<p><b>'+html.escape(text)+'</b><br>Minimum-tip XML: '+html.escape(self.review['filename'])
+        self.source_match.value += '<br>Cap XML: '+html.escape(audit.get('filename', 'Not loaded'))+'</p>'
 
     def _figure(self, key, container, figure):
         if key in self.figures:
@@ -691,7 +699,8 @@ class PileReviewPanel:
     def handoff_data(self, require_selected=False):
         require(self.review is not None, 'Load pile results first.')
         section, loads = geotech_section_and_loads(self.review, self.optional(self.nominal_weight),
-                                                   self.optional(self.nominal_diameter), self.toe.value)
+                                                   self.optional(self.nominal_diameter), self.toe.value,
+                                                   margin_percent=self.reaction_margin.value)
         selected = None
         if self.minimum_tip_result and self.minimum_tip_result['accepted_embedment_ft'] is not None:
             selected = selected_trial_handoff(self.review, self.minimum_tip_result, source=self.trial_label.value,
@@ -723,11 +732,16 @@ class PileReviewPanel:
             if result['total_length_ft'] is not None:
                 markup += f'Selected total length: {result["total_length_ft"]:.3f} ft; cutoff elevation: {self.optional(self.cutoff):.3f} ft. '
             markup += '</p>'
-        markup += table(data['loads'], [('load','Pile-head design load'), ('short_tons','Short tons'), ('governing','Governing record')], scroll=False, reference='handoff_loads')
-        markup += '<p>1 short ton = 2 kip. Envelopes use strength and extreme-event combinations from the loaded XML; service and fatigue combinations are excluded.</p>'
+        markup += table(data['loads'], [('load','Pile-head design load'), ('raw_short_tons','Original · Short tons'),
+            ('margin_percent','Internal margin (%)'), ('short_tons','Handoff · Short tons'), ('governing','Governing record')], scroll=False, reference='handoff_loads')
+        margin = data['loads'][0]['margin_percent']
+        markup += f'<p><b>Handoff demand = original factored pile-head demand × (1 + {margin:g}/100) = original × {1+margin/100:g}.</b> '
+        markup += 'Compression and uplift are positive magnitudes. The internal project margin is applied once to the original XML demands; '
+        markup += 'it does not modify cap forces, pile profiles, or the minimum-tip calculation. It is not a code load or resistance factor.</p>'
+        markup += '<p>1 short ton = 2 kip. Envelopes use strength and extreme-event combinations from the minimum-tip XML; service and fatigue combinations are excluded.</p>'
         if self.geotech_notes.value.strip():
             markup += '<p><b>Project notes:</b> '+html.escape(self.geotech_notes.value).replace('\n','<br>')+'</p>'
-        markup += '<p>Section / loads: '+html.escape(self.review['filename'])+'.</p>'
+        markup += '<p><b>Section / reaction source: minimum-tip model</b> · '+html.escape(self.review['filename'])+'.<br>SHA256: '+html.escape(self.review['sha256'])+'</p>'
         if data['selected']:
             markup += '<p>Tip calculation: '+html.escape(self.trial_label.value.strip() or 'Pasted trials — source not named')+'. '
             markup += html.escape(result['basis'])
@@ -737,6 +751,7 @@ class PileReviewPanel:
         return markup
 
     def refresh_handoff(self):
+        self.handoff_status.value = ''
         if self.review is None:
             self.handoff.value = '<p>Load pile results to prepare the handoff.</p>'
             return
@@ -794,13 +809,15 @@ class PileReviewPanel:
     def snapshot(self):
         controls = ['combo','piles','cutoff','use_override','material','circular','trial_text','trial_label','tolerance','extension','fraction',
                     'extension_mode','reference','rounding','trial_basis','nominal_weight','nominal_diameter','toe','geotech_notes',
-                    'zero_band','fixity_allowance']
-        return dict(schema_version=4, review=deepcopy(self.review), controls={k:getattr(self,k).value for k in controls},
+                    'zero_band','fixity_allowance','reaction_margin']
+        return dict(schema_version=5, review=deepcopy(self.review), controls={k:getattr(self,k).value for k in controls},
                     override={k:w.value for k,w in self.override.items()})
 
-    def restore(self, state):
-        require(state.get('schema_version') in (1, 2, 3, 4) and isinstance(state.get('review'), dict), 'Unsupported pile review file.')
+    def validate_snapshot(self, state):
+        require(isinstance(state, dict) and state.get('schema_version') in (1, 2, 3, 4, 5)
+                and isinstance(state.get('review'), dict), 'Unsupported pile review file.')
         state = deepcopy(state)
+        state.setdefault('controls', {}).setdefault('reaction_margin', 5.0)
         # Old manually entered depths are outputs under the automatic workflow.
         # Recompute them from saved trials instead of adopting a stale value.
         if state['schema_version'] in (1, 2):
@@ -822,10 +839,18 @@ class PileReviewPanel:
             elif expected in (float,int):
                 require(type(value) in (float,int) and math.isfinite(value), f'Invalid {k}.')
                 if k == 'zero_band': require(value >= 0, 'Zero band must be nonnegative.')
+                if k == 'reaction_margin': require(value >= 0, 'Reaction margin must be nonnegative.')
             else:
                 require(isinstance(value,expected),f'Invalid {k}.')
+            if k in ('material', 'toe', 'extension_mode'):
+                control = getattr(self, k)
+                require(value in control._options_values, f'Invalid {k} selection.')
         for k,value in state.get('override',{}).items():
             require(k in self.override and type(value) in (float,int) and math.isfinite(value), 'Invalid property override.')
+        return state
+
+    def restore(self, state):
+        state = self.validate_snapshot(state)
         self.set_review(state['review'])
         self.busy = True
         try:

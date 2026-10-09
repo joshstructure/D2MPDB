@@ -103,12 +103,22 @@ class CapNotebook:
         self.xml_import=XMLImportPanel(self,LABELS)
         self.cap_type=W.Dropdown(options=['Pier pile cap','End-bent pile cap'],value=self.case.get('cap_type','Pier pile cap'),description='Cap type',layout=W.Layout(width='330px'))
         self.cap_type.observe(self._cap_type_changed,names='value')
-        self.ui=W.VBox([W.HTML('<style>.cap-input .widget-label{white-space:normal!important;text-overflow:clip!important;line-height:1.25!important;height:auto!important;text-align:left!important;align-self:center}</style><h2 style="color:#213649;margin-bottom:4px">Cap and pile design explorer</h2><p>Review the FBMP pile results → inspect the cap cage and checks → search practical steel → export a review case.</p>'),
+        self.notebook_status=W.HTML();self.notebook_download_output=W.Output()
+        self.save_both=W.Button(description='Save both sections',icon='download',layout=W.Layout(width='190px'))
+        self.save_both.on_click(self._save_notebook)
+        self.session_ui=W.VBox([W.HTML('<p><b>Save / restore the full notebook:</b> Save both sections to keep the two analysis sources, '
+            'minimum-tip trials, reaction margin and cap inputs together. Load notebook_state.json to restore both; '
+            'selected_case.json restores only the cap.</p>'),
+            W.HBox([self.case_import.upload,self.save_both],layout=W.Layout(flex_flow='row wrap')),
+            self.case_import.upload_output,self.case_import.status,self.notebook_status,self.notebook_download_output])
+        self.minimum_tip_ui=W.VBox([self.session_ui,self.pile_review.ui],layout=W.Layout(width='100%'))
+        self.cap_ui=W.VBox([W.HTML('<style>.cap-input .widget-label{white-space:normal!important;text-overflow:clip!important;line-height:1.25!important;height:auto!important;text-align:left!important;align-self:center}</style><h2 style="color:#213649;margin-bottom:4px">2. Fixed-depth cap design</h2><p>Import the fixed-depth model, inspect the cap cage and checks, then search practical steel layouts.</p>'),
             self.cap_type,W.HTML('<p>Shared sectional workflow for pier and end-bent caps supported directly on a single pile row. The cap type labels the case; it does not add loads or change the design method. Backwall/wingwall, earth-pressure load generation, footing/column caps and strut-and-tie design are outside this calculation.</p>'),
-            self.case_import.ui,self.xml_import.ui,self.import_notice,self.pile_review.ui,
-            W.HTML('<h2 style="color:#213649">2. Cap reinforcement and steel optimization</h2>'),self.source_label,source,self.banner,self.metrics,
+            self.case_import.ui,self.xml_import.ui,self.import_notice,
+            self.source_label,source,self.banner,self.metrics,
             self.workbench,
             self.search_panel,self.export_panel,self.message],layout=W.Layout(width='100%'))
+        self.ui=W.VBox([self.session_ui,self.pile_review.ui,*self.cap_ui.children],layout=W.Layout(width='100%'))
         self.refresh()
 
     def _plot_tab_changed(self,change):
@@ -542,6 +552,7 @@ class CapNotebook:
             folder=export_bundle(self.case,self.export_root,self.search_result,search_filter=self._search_filter())
             if self.pile_review.review is not None:
                 self.pile_review.save_bundle(folder/'pile_review')
+                (folder/'notebook_state.json').write_text(json.dumps(self.notebook_snapshot(),indent=2,allow_nan=False),encoding='utf-8')
             self.last_export=self.case_export_folder=folder.resolve()
             self.case_json_button.disabled=self.case_zip_button.disabled=self.case_html_button.disabled=False
             self._download_case_export(download_kind)
@@ -553,11 +564,40 @@ class CapNotebook:
     def _export_bpad(self,button):
         self.blockpad_export.export(button)
 
-    def display(self):
+    def notebook_snapshot(self):
+        from .pile_review import require
+        require(self.pile_review.review is not None, 'Load the minimum-tip XML before saving both sections. Use the cap export for a cap-only case.')
+        state=self.pile_review.validate_snapshot(self.pile_review.snapshot())
+        return json.loads(json.dumps(dict(format='d2mpdb-notebook',schema_version=1,
+            cap_case=self.case,minimum_tip=state),allow_nan=False))
+
+    def validate_notebook_state(self,state):
+        from .io import load_case
+        from .pile_review import require
+        require(isinstance(state,dict) and state.get('format')=='d2mpdb-notebook'
+                and state.get('schema_version')==1, 'Unsupported notebook state file.')
+        case=load_case(json.dumps(state.get('cap_case'),allow_nan=False).encode())
+        minimum_tip=self.pile_review.validate_snapshot(state.get('minimum_tip'))
+        return case,minimum_tip
+
+    def _save_notebook(self,_=None):
+        from datetime import datetime,timezone
+        self.save_both.disabled=True
+        try:
+            payload=json.dumps(self.notebook_snapshot(),indent=2,allow_nan=False)
+            folder=self.export_root/datetime.now(timezone.utc).strftime('notebook-%Y%m%d-%H%M%S-%f')
+            folder.mkdir(parents=True,exist_ok=False)
+            path=folder/'notebook_state.json';path.write_text(payload,encoding='utf-8')
+            self.pile_review._download(path,status=self.notebook_status,output=self.notebook_download_output)
+        except Exception as exc:
+            self.notebook_status.value=notice_html('NOTEBOOK NOT SAVED',html.escape(str(exc)),'error')
+        finally:self.save_both.disabled=False
+
+    def display(self,section=None):
         from IPython.display import display
-        for figure in [*self.figures,self.force_diagrams.figure]:
+        for figure in [*self.figures,*self.pile_review.figures.values(),self.force_diagrams.figure]:
             if figure is not None:figure.prepare_display()
-        display(self.ui)
+        display(self.minimum_tip_ui if section=='minimum_tip' else self.cap_ui if section=='cap' else self.ui)
         return self
 
     def close(self):

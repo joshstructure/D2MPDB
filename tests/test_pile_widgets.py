@@ -28,7 +28,7 @@ class PileWidgetTests(unittest.TestCase):
         self.panel.set_review(self.review)
         children=list(self.app.ui.children)
         self.assertLess(children.index(self.panel.ui),children.index(self.app.search_panel))
-        self.assertIn('different source',self.panel.source_match.value)
+        self.assertIn('No fixed-depth cap XML',self.panel.source_match.value)
         self.assertEqual(self.panel.combo.value,'4')
         self.panel.combo.value='2';self.panel.piles.value=('1',)
         self.assertIn('Pile 1',self.panel.figures['profiles'].layout.title.text)
@@ -114,7 +114,7 @@ class PileWidgetTests(unittest.TestCase):
         old=self.panel.review['forces'][0].copy()
         self.app.controls['b'].value+=4
         self.assertEqual(self.panel.review['forces'][0],old)
-        self.assertIn('different source',self.panel.source_match.value)
+        self.assertIn('No fixed-depth cap XML',self.panel.source_match.value)
 
     def test_invalid_saved_results_do_not_replace_active_review(self):
         self.panel.set_review(self.review)
@@ -169,7 +169,7 @@ class PileWidgetTests(unittest.TestCase):
         self.assertIn('Row 1: embedment_ft', self.panel.trial_status.value)
         self.assertIn('TRIALS NEED REVIEW', self.panel.trial_status.value)
 
-    def test_single_upload_populates_piles_even_before_cap_apply_and_preserves_review(self):
+    def test_independent_uploads_preserve_minimum_tip_review(self):
         # The two fixtures retain complementary blocks from the same XML run.
         root = E.parse(str(FIXTURES/'fbmp_610_piles.xml')).getroot()
         cap = E.parse(str(FIXTURES/'fbmp_610_cap.xml')).getroot()
@@ -179,8 +179,9 @@ class PileWidgetTests(unittest.TestCase):
             result.find('TIME_STEP').append(deepcopy(matching.find('TIME_STEP/STRUCTURE_INTERNAL_FORCES')))
         root.find('.//OUTPUT_SUMMARY').append(deepcopy(cap.find('.//OUTPUT_SUMMARY/STRUCTURE_PIER_CAP_MAX')))
         self.app.xml_import.stage(E.tostring(root), 'shared.xml')
-        self.assertIsNotNone(self.panel.review)
+        self.assertIsNone(self.panel.review)
         self.assertIsNotNone(self.app.xml_import.pending)
+        self.panel._import(E.tostring(root), 'shared.xml')
         self.panel.cutoff.value = '40'
         self.panel.piles.value = ('2','4')
         self.app.xml_import.apply_button.click()
@@ -193,6 +194,8 @@ class PileWidgetTests(unittest.TestCase):
         # stress plots when that XML is uploaded again after an importer update.
         self.panel.review['section']['issues'] = ['Old unsupported group interpretation']
         self.app.xml_import.refresh_button.click()
+        self.assertEqual(self.panel.review['section']['issues'], ['Old unsupported group interpretation'])
+        self.panel._import(E.tostring(root), 'shared.xml')
         self.assertEqual(self.panel.review['section']['issues'], [])
         self.assertEqual(self.panel.piles.value, ('2','4'))
         self.assertEqual(self.panel.cutoff.value, '40')

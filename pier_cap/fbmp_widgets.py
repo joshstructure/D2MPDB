@@ -1,11 +1,10 @@
-"""One-file upload, review and apply controls for the live cap notebook."""
+"""Fixed-depth cap XML upload; independent of the minimum-tip study."""
 from copy import deepcopy
 import html
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import ipywidgets as W
 from .fbmp import import_fbmp_xml
-from .pile_review import import_pile_xml
 from .model import INPUTS
 from .source_status import upload_entries,notice_html,source_signature
 
@@ -15,7 +14,6 @@ class XMLImportPanel:
         self.app = app
         self.labels = labels
         self.pending = None
-        self.pending_piles = None
         self.source = None
         self.filename = None
         self.base_snapshot = None
@@ -25,24 +23,25 @@ class XMLImportPanel:
             from google.colab import files
         except ImportError:
             self.colab_files = None
-            self.upload = W.FileUpload(accept='.xml,.XML', multiple=False, description='Upload FBMP XML', layout=W.Layout(width='185px'))
+            self.upload = W.FileUpload(accept='.xml,.XML', multiple=False, description='Fixed-depth cap XML', layout=W.Layout(width='210px'))
             self.upload.observe(self._uploaded, names='value')
         else:
             # Colab's FileUpload can show a file badge without delivering its
             # binary buffers. Use Colab's supported transfer path in this UI.
             self.colab_files = files
-            self.upload = W.Button(description='Upload FBMP XML', icon='upload', layout=W.Layout(width='185px'))
+            self.upload = W.Button(description='Fixed-depth cap XML', icon='upload', layout=W.Layout(width='210px'))
             self.upload.on_click(self._colab_uploaded)
         self.refresh_button = W.Button(description='Refresh preview', disabled=True, icon='refresh')
         self.refresh_button.on_click(lambda _: self.stage(self.source, self.filename))
         self.apply_button = W.Button(description='Apply XML inputs', disabled=True, button_style='primary', icon='check')
         self.apply_button.on_click(self.apply)
-        self.status = W.HTML(notice_html('STEP 1 · SELECT XML','Choose a solved FB-MultiPier XML. A preview or an error will appear here.'))
+        self.status = W.HTML(notice_html('STEP 1 · SELECT FIXED-DEPTH XML','Choose the solved fixed-depth cap-design model. A preview or an error will appear here.'))
         self.preview = W.HTML()
         self.ui = W.VBox([
-            W.HTML('<h3 style="margin-bottom:4px">Load cap and pile results from FB-MultiPier</h3>'
-                   '<p>Upload the solved XML once. Pile results load immediately below. '
-                   'Review the cap preview, then click Apply XML inputs to update the cap geometry and loads.</p>'),
+            W.HTML('<h3 style="margin-bottom:4px">Fixed-depth model · cap design</h3>'
+                   '<p>Upload the solved fixed-depth XML, review the preview, then click Apply XML inputs. '
+                   'This section uses the imported cap forces without the geotech reaction margin. '
+                   'The minimum-tip study has its own XML input and saved results.</p>'),
             W.HBox([self.upload, self.refresh_button, self.apply_button], layout=W.Layout(flex_flow='row wrap')),
             self.upload_output, self.status, self.preview,
         ])
@@ -115,7 +114,6 @@ class XMLImportPanel:
 
     def stage(self, source, filename=None):
         self.pending = None
-        self.pending_piles = None
         self.applied_signature = None
         self.app.import_receipt = None
         self.app.import_notice.value = ''
@@ -124,40 +122,17 @@ class XMLImportPanel:
         self.preview.value = ''
         self.source, self.filename = source, filename
         self.refresh_button.disabled = source is None
-        pile_error = None
-        try:
-            self.pending_piles = import_pile_xml(source, filename)
-            active = self.app.pile_review.review
-            if active is None or active['sha256'] != self.pending_piles['sha256']:
-                self.app.pile_review.set_review(self.pending_piles)
-            elif (active['section'] != self.pending_piles['section'] or
-                  active.get('combination_factors') != self.pending_piles.get('combination_factors')):
-                # A saved review may contain an older interpretation of the
-                # same XML. Refresh properties/load factors while preserving user input.
-                saved = self.app.pile_review.snapshot()
-                saved['review'] = self.pending_piles
-                self.app.pile_review.restore(saved)
-        except Exception as exc:
-            self.pending_piles = None
-            pile_error = str(exc)
-            self.app.pile_review.notice.value = notice_html('PILE RESULTS NOT UPDATED',
-                html.escape(pile_error)+' Any previous pile review still belongs to its displayed source.', 'error')
         try:
             proposed = import_fbmp_xml(source, base=self.app.case, filename=filename)
             self.base_snapshot = deepcopy(self.app.case)
             self.preview.value = self._preview_html(proposed)
             self.pending = proposed
-            if pile_error:
-                self.preview.value += '<p><b>Pile review unavailable:</b> '+html.escape(pile_error)+'</p>'
             self.apply_button.disabled = False
             self.status.value = notice_html('STEP 2 · PREVIEW READY — NOT APPLIED',
                 '<b>'+html.escape(proposed['analysis']['xml_audit']['filename'])+'</b> was read successfully. '+
-                ('Pile results are loaded below. ' if self.pending_piles else '')+
                 'Review the cap values, then click <b>Apply XML inputs</b>. The cap calculation still uses the active source shown below.','pending')
         except Exception as exc:
             self._failed(exc)
-            if self.pending_piles is not None:
-                self.status.value += '<p><b>Pile results loaded successfully below.</b> The cap preview could not be prepared; no cap inputs were applied.</p>'
 
     def apply(self, button=None):
         if self.pending is None:
@@ -166,14 +141,10 @@ class XMLImportPanel:
             self._case_changed()
             return
         proposed = self.pending
-        piles = self.pending_piles
         self.pending = None
-        self.pending_piles = None
         self.apply_button.disabled = True
         try:
             self.app.load(proposed,import_name=proposed['analysis']['xml_audit']['filename'])
-            if piles is not None and (self.app.pile_review.review is None or self.app.pile_review.review['sha256'] != piles['sha256']):
-                self.app.pile_review.set_review(piles)
             self.app.pile_review.refresh_match()
             self.applied_signature = source_signature(proposed)
             self.preview.value = ''
