@@ -29,14 +29,35 @@ def visibility_buttons(fig, *, drawing=False):
     return buttons
 
 
-def drawing_controls(fig):
+def drawing_controls(fig, *, zone_case=None, fit_cap=False):
     # Pixel offset keeps the controls clear of titles and engineering annotations
-    # even in the narrow live-cage column. Reserve room below the legend.
+    # even in the narrow live-cage column. Finalize the margins BEFORE allocating
+    # dimension bands, so their fractions describe the actual drawable height.
+    old_top = fig.layout.margin.t or 0
+    fig.layout.margin.t = max(old_top, 170)
+    fig.layout.height += fig.layout.margin.t - old_top if fit_cap else 80
+    if fit_cap:fig.layout.title.update(y=1, yanchor='top', pad=dict(t=12))
+    else:fig.layout.title.update(y=.98, yanchor='top')
+    if zone_case is not None:
+        from .zone_visuals import add_zone_dimensions
+        add_zone_dimensions(fig, zone_case)
     fig.update_layout(updatemenus=[dict(type='buttons', direction='right', active=0,
         x=0, y=1, xanchor='left', yanchor='bottom', pad=dict(b=76),
         buttons=visibility_buttons(fig, drawing=True), font=dict(size=10))],
         legend_groupclick='togglegroup')
-    fig.layout.margin.t = max(fig.layout.margin.t or 0, 170)
-    fig.layout.height += 80
-    fig.layout.title.update(y=.98, yanchor='top')
+    if fit_cap:
+        # Keep a geometry-derived home view, independent of ranges returned by
+        # the browser after a resize/zoom or a change in dimension-band height.
+        ranges = dict(x=list(fig.layout.xaxis.range), y=list(fig.layout.yaxis.range))
+        fig.update_layout(meta=dict(cap_fit_ranges=ranges))
+        reset = {}
+        for key in ('xaxis', 'xaxis2', 'xaxis3'):
+            if key in fig.layout.to_plotly_json():
+                reset[key+'.range'] = ranges['x']
+                reset[key+'.autorange'] = False
+        reset.update({'yaxis.range': ranges['y'], 'yaxis.autorange': False})
+        fig.layout.updatemenus += (dict(type='buttons', showactive=False,
+            x=1, y=1, xanchor='right', yanchor='bottom', pad=dict(b=76),
+            buttons=[dict(label='Fit cap', method='relayout', args=[reset])],
+            font=dict(size=10)),)
     return fig

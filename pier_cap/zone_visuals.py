@@ -82,7 +82,7 @@ def add_zone_dimensions(fig,e):
             tickmode='array',tickvals=[v/12 for v in boundaries],
             ticktext=[f'{v/12:.3f}'.rstrip('0').rstrip('.') for v in boundaries],tickangle=-45,
             ticks='outside',tickfont=dict(size=10),showgrid=False,zeroline=False,showline=True,linecolor='#b8b0c1'))
-    fig.add_annotation(name='part:cap',xref='paper',yref='paper',x=0,y=1,xanchor='left',showarrow=False,
+    fig.add_annotation(name='part:cap',xref='paper',yref='paper',x=0,y=1,yanchor='bottom',yshift=4,xanchor='left',showarrow=False,
         text='Geometry zones · ft from left cap end · hover for inches and occupied runs',
         font=dict(size=11,color='#213649'))
     if runs:

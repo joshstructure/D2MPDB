@@ -49,6 +49,16 @@ def update_figure(widget,fresh,*,preserve_view=True,preserve_filter=True):
             if key.startswith(('xaxis','yaxis')) and isinstance(value,dict) and key in new_layout:
                 for name in ('range','autorange'):
                     if name in value:new_layout[key][name]=deepcopy(value[name])
+        fit = (new_layout.get('meta') or {}).get('cap_fit_ranges')
+        if fit:
+            x = new_layout['xaxis'].get('range') or fit['x']
+            y = new_layout['yaxis'].get('range') or fit['y']
+            # A full-length cap view must also contain its full depth. Do not
+            # perpetuate a cropped vertical range from a previous live layout.
+            # A user zoomed into part of the cap keeps that detailed view.
+            full_length = x[0] <= fit['x'][0]+1e-8 and x[1] >= fit['x'][1]-1e-8
+            if full_length and (y[0] > fit['y'][0]+1e-8 or y[1] < fit['y'][1]-1e-8):
+                new_layout['yaxis'].update(range=[min(y[0],fit['y'][0]),max(y[1],fit['y'][1])],autorange=False)
     old=list(widget.data);new=list(fresh.data)
     # Complete topology changes before queuing indexed property updates. Moving
     # traces during a batch would leave its queued updates aimed at old indices.

@@ -227,18 +227,15 @@ def elevation_figure(e,*,zone_labels=True):
     fig.add_trace(go.Scatter(x=[xdim,xdim],y=[0,p['Pile_embed']],mode='lines+markers',line=dict(color=RED),marker=dict(symbol='line-ew',size=10),name='Pile embedment',meta=dict(part='piles'),showlegend=False))
     fig.add_annotation(name='part:piles',x=xdim,y=p['Pile_embed']/2,text=f'  Embed {p["Pile_embed"]:g} in',xanchor='right',showarrow=False,font=dict(color=RED))
     note=('FAIL: hook fit / clearance. ' if hook_failure else '')+('90° hooks outside pile envelope; development / cutoff pending.' if paths else 'No additional span bars entered; continuous bars remain throughout the cap.')
-    fig.add_annotation(name='part:added',x=0,y=1.10,xref='paper',yref='paper',text=note,showarrow=False,xanchor='left',font=dict(size=11,color=RED if hook_failure else AMBER))
+    fig.add_annotation(name='part:added',x=0,y=1,yshift=24,yanchor='bottom',xref='paper',yref='paper',text=note,showarrow=False,xanchor='left',font=dict(size=11,color=RED if hook_failure else AMBER))
     fig.update_xaxes(title='Along cap (ft)',range=[-1,L/12+1],zeroline=False)
     fig.update_yaxes(title='Elevation above cap underside (in)',range=[-22,h+5],scaleanchor='x',scaleratio=1/12,zeroline=False)
     theme(fig,'SIDE ELEVATION · along the cap length',415)
-    fig.add_annotation(name='part:transverse',x=0,y=1.15,xref='paper',yref='paper',xanchor='left',showarrow=False,
+    fig.add_annotation(name='part:transverse',x=0,y=1,yshift=46,yanchor='bottom',xref='paper',yref='paper',xanchor='left',showarrow=False,
         text=('Each purple / pink line is an entered bar station · Open-bottom U-bars: see cross section / 3D.' if actual_transverse(e.case) else 'Dashed hoops show reference pitch only · Actual stations are not set.'),
         align='left',font=dict(size=11,color=HOOP))
     fig.update_layout(showlegend=False,margin=dict(t=130,b=45))
-    if zone_labels:
-        from .zone_visuals import add_zone_dimensions
-        add_zone_dimensions(fig,e)
-    return drawing_controls(fig)
+    return drawing_controls(fig,zone_case=e if zone_labels else None,fit_cap=True)
 
 
 def reinforcement_plan_figure(e,*,zone_labels=True):
@@ -265,10 +262,7 @@ def reinforcement_plan_figure(e,*,zone_labels=True):
     fig.update_xaxes(title='Along cap (ft)',range=[-1,L/12+1]);fig.update_yaxes(title='Across cap (in)',range=[-3,p['b']+3],scaleanchor='x',scaleratio=1/12)
     theme(fig,'PLAN VIEW · steel viewed from above (layers overlap)',430)
     fig.update_layout(legend=dict(y=-.35,font=dict(size=10)),margin=dict(b=110))
-    if zone_labels:
-        from .zone_visuals import add_zone_dimensions
-        add_zone_dimensions(fig,e)
-    return drawing_controls(fig)
+    return drawing_controls(fig,zone_case=e if zone_labels else None,fit_cap=True)
 
 
 def hoop_explanation_html(e):
