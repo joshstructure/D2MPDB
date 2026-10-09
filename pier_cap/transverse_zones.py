@@ -24,22 +24,21 @@ def cap_zones(e):
 
 
 def starting_zone_detail(e,bar,pitch):
-    """One run per zone; split the starting clear gap across zone boundaries."""
+    """One run per zone; split minimum allowable clearance at zone boundaries."""
     from .detailing import required_clear
     from .transverse import validate_detail
     if isinstance(bar,bool) or bar not in range(3,12):raise ValueError('Choose starting bar size #3 through #11.')
     if isinstance(pitch,bool) or not math.isfinite(pitch) or pitch<=0:raise ValueError('Starting spacing must be a positive finite inch value.')
     diameter=BAR_DIAMETER[bar];radius=diameter/2
-    # Half the clear gap is measured from the zone edge to the bar surface.
-    # Adding the radius gives half a center-to-center pitch. A larger required
-    # minimum still governs; never tighten a boundary gap below that minimum.
-    offset=max(pitch,diameter+required_clear(e,diameter))/2
+    # Half the minimum allowable clear gap is measured to the bar surface.
+    # Center offset includes the radius and is independent of regular pitch.
+    offset=(diameter+required_clear(e,diameter))/2
     cover=e.case['inputs']['C_s']+radius;length=e.value('L_cap');runs=[]
     for zone in cap_zones(e):
         first=max(cover,zone['left']+offset)
         end=min(length-cover,zone['right']-offset)
         if end<first:
-            raise ValueError(zone['label']+': no room after half-spacing offsets and cap cover. Reduce the starting spacing or review the zone geometry.')
+            raise ValueError(zone['label']+': no room after minimum-clearance offsets and cap cover. Review zone geometry, bar size and clearance requirements.')
         runs.append(dict(id=f'R{len(runs)+1}',kind=zone['kind'],bar=int(bar),zone='G',
             first_in=first,end_in=end,pitch_in=pitch,include_end_bar=True,
             development_confirmed=False,development_basis=''))

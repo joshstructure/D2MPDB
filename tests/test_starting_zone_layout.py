@@ -64,22 +64,46 @@ class EndBarScheduleTests(unittest.TestCase):
             self.assertLessEqual(stations[-1]-stations[-2],7+1e-7)
             self.assertFalse(run['development_confirmed'])
 
-    def test_starter_leaves_half_the_clear_gap_at_every_zone_edge(self):
+    def test_starter_leaves_half_minimum_clearance_at_every_zone_edge(self):
         e=evaluate(default_case())
         for bar,pitch in ((5,8),(6,7),(8,6)):
             diameter=BAR_DIAMETER[bar];radius=diameter/2
+            minimum=required_clear(e,diameter);offset=minimum/2+radius
             detail=starting_zone_detail(e,bar,pitch);zones=cap_zones(e)
             for z,r in zip(zones,detail['runs']):
-                self.assertAlmostEqual(r['first_in'],max(e.case['inputs']['C_s']+radius,z['left']+pitch/2))
-                self.assertAlmostEqual(r['end_in'],min(e.value('L_cap')-e.case['inputs']['C_s']-radius,z['right']-pitch/2))
+                self.assertAlmostEqual(r['first_in'],max(e.case['inputs']['C_s']+radius,z['left']+offset))
+                self.assertAlmostEqual(r['end_in'],min(e.value('L_cap')-e.case['inputs']['C_s']-radius,z['right']-offset))
             for a,b in zip(detail['runs'],detail['runs'][1:]):
                 gap=run_stations(b)[0]-run_stations(a)[-1]-diameter
-                self.assertAlmostEqual(gap,pitch-diameter)
-                self.assertGreaterEqual(gap,required_clear(e,diameter))
+                self.assertAlmostEqual(gap,minimum)
+
+    def test_pitch_changes_do_not_move_zone_end_bars(self):
+        e=evaluate(default_case());zones=cap_zones(e);endpoints=[]
+        for pitch in (4,8,20):
+            runs=starting_zone_detail(e,5,pitch)['runs']
+            endpoints.append([(r['first_in'],r['end_in']) for r in runs])
+            # Default minimum clear gap is 2 in; #5 radius is 0.3125 in.
+            self.assertAlmostEqual(runs[1]['first_in']-zones[1]['left'],1.3125)
+            self.assertAlmostEqual(zones[1]['right']-runs[1]['end_in'],1.3125)
+            self.assertTrue(all(r['pitch_in']==pitch for r in runs))
+        self.assertEqual(endpoints[0],endpoints[1]);self.assertEqual(endpoints[1],endpoints[2])
+
+    def test_project_and_aggregate_minima_control_boundary_gap(self):
+        for project,aggregate,expected in ((3.,.75,3.),(1.,2.,3.),(2.2,.75,2.2)):
+            case=default_case();case['screening'].update(minimum_clear_in=project,aggregate_in=aggregate)
+            case['transverse_detail']=starting_zone_detail(evaluate(case),5,8)
+            runs=case['transverse_detail']['runs']
+            self.assertAlmostEqual(runs[2]['first_in']-runs[1]['end_in']-.625,expected)
+            e=evaluate(case);checks={c.key:c for c in e.checks};bars=scheduled_bars(case)
+            for a,b in zip(bars,bars[1:]):
+                if a['run']!=b['run']:
+                    check=checks['Chk_actual_clear_'+a['id']+'_'+b['id']]
+                    self.assertEqual(check.status,'PASS');self.assertEqual(check.ratio,1.)
 
     def test_narrow_zone_reports_offset_problem_without_squeezing_bars(self):
-        with self.assertRaisesRegex(ValueError,'Left end: no room after half-spacing offsets'):
-            starting_zone_detail(evaluate(default_case()),5,20)
+        case=default_case();case['inputs']['C_s']=8
+        with self.assertRaisesRegex(ValueError,'Left end: no room after minimum-clearance offsets'):
+            starting_zone_detail(evaluate(case),5,8)
 
     def test_endpoint_bars_survive_json_export_drawings_and_short_gap_checks(self):
         case,run=self.run_case(20.25);app=CapNotebook(case);self.addCleanup(app.close)
@@ -120,7 +144,7 @@ class StartingLayoutWidgetTests(unittest.TestCase):
 
     def test_invalid_start_pitch_does_not_replace_existing_runs(self):
         panel=self.app.transverse_panel;panel.generate.click();before=deepcopy(self.app.case)
-        for bad in (0,-1,float('nan'),float('inf'),20):
+        for bad in (0,-1,float('nan'),float('inf')):
             panel.start_pitch.value=bad;panel.generate.click()
             self.assertEqual(self.app.case,before)
             self.assertIn('Not applied',panel.status.value)

@@ -316,7 +316,8 @@ def transverse_checks(e):
             Component('Across-cap leg spacing',across,e.value('Sw_'+zone),'in')])
         clear=pitch-(BAR_DIAMETER[a['bar']]+BAR_DIAMETER[b['bar']])/2
         req=required_clear(e,max(BAR_DIAMETER[a['bar']],BAR_DIAMETER[b['bar']]))
-        checks.append(Check('Chk_actual_clear_'+key,name+' clear spacing','PASS' if clear>=req else 'FAIL',req/max(clear,1e-6),f'Actual {clear:.3f} in; required {req:.3f} in.'))
+        clear_ratio=1. if math.isclose(clear,req,rel_tol=0,abs_tol=1e-8) else req/max(clear,1e-6)
+        checks.append(Check('Chk_actual_clear_'+key,name+' clear spacing','PASS' if clear_ratio<=1 else 'FAIL',clear_ratio,f'Actual {clear:.3f} in; required {req:.3f} in.'))
         rate=area/max(pitch,1e-6);minimum=e.value('Av_min_rate')
         checks.append(Check('Chk_actual_min_'+key,name+' minimum shear steel','PASS' if rate>=minimum else 'FAIL',minimum/rate,'Two weaker legs / actual adjacent pitch; existing sectional minimum rate.'))
     if bars:
