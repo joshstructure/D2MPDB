@@ -16,7 +16,7 @@ MOMENT='#2166ac';MOMENT_CAPACITY='#90bce4';SHEAR='#8250a0';SHEAR_CAPACITY='#c4a4
 
 
 def pile_head_help_html():
-    """Small input guide; symbolic dimensions, not a proposed pile-head detail."""
+    """Pile-head schematic with symbolic embedment and clear-gap dimensions."""
     return '''<div style="max-width:336px;white-space:normal;line-height:1.4">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 336 224" role="img"
      aria-label="Pile-head section: embedment is measured from the cap underside to the pile top. Clear gap is measured from the pile top to the outside surface of the bar."
@@ -42,10 +42,6 @@ def pile_head_help_html():
   <path d="M65 175V166" stroke="#213649" stroke-width=".8"/>
   <text x="16" y="215" fill="#64748b" font-size="10">Schematic · not to scale</text>
 </svg>
-<p style="margin:4px 0"><b>Clear gap to pile:</b> minimum concrete clearance from the pile surface to the <b>outside of a longitudinal bar</b>, beside or above the pile—not to the bar center.<br>
-<b>Pile embedment:</b> height of the pile top above the cap underside.</p>
-<p style="margin:6px 0 0;font-size:12px"><b>Starting values: 12 in embedment; 2 in clear gap.</b> Confirm these for the project. Saved cases retain their entered values.</p>
-<p style="margin:6px 0 0;font-size:12px">The 2 in gap is an adopted starting value from <a href="https://www.fdot.gov/Structures/StructuresManual/CurrentRelease" target="_blank">FDOT SDG 2026 3.11.2.F.1.c</a>, which applies to the specified laterally loaded footings with full pile bending capacity developed; it is not a universal bent-cap clearance rule. FDOT SDM Figure 12.5-3 separately accounts for pile-driving tolerance. This notebook adds that horizontal allowance separately. Check the required project detail and actual bar positions in <b>Live cage</b>.</p>
 </div>'''
 
 

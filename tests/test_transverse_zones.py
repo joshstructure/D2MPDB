@@ -216,6 +216,28 @@ class ZoneWidgetTests(unittest.TestCase):
         self.assertTrue(panel.active.value)
         self.assertEqual(zone_runs(app.current)[1]['P1'],runs)
 
+    def test_run_one_stays_visible_when_an_edit_crosses_its_zone(self):
+        panel=self.app.transverse_panel;card=panel._cards['R1'].ui;controls=panel.zone_controls['R1']
+        original_index=panel.zone_grid.children.index(card);original_limit=controls['end_in'].value
+        original_order=[c for c in panel.zone_grid.children if c in [r.ui for r in panel._cards.values()]]
+        controls['view'].click()
+        controls['end_in'].value=30
+        self.assertIn('Custom / crossing runs',controls['label'].value)
+        self.assertIn('Limits overlap R2',controls['warning'].value)
+        self.assertFalse(controls['end_in'].disabled)
+        self.assertEqual(panel.zone_grid.children.index(card),original_index)
+        self.assertEqual(controls['details'].selected_index,0)
+        self.assertEqual(controls['details'].layout.display,'')
+        self.assertIs(panel.zone_controls['R1'],controls)
+        self.assertEqual([c for c in panel.zone_grid.children if c in original_order],original_order)
+        # A later redraw must not move the formerly edited card either.
+        panel.zone_controls['R2']['bar'].value=6
+        self.assertEqual(panel.zone_grid.children.index(card),original_index)
+        controls['end_in'].value=original_limit
+        self.assertIn('Left end',controls['label'].value)
+        self.assertEqual(controls['warning'].value,'')
+        self.assertEqual(panel.zone_grid.children.index(card),original_index)
+
     def test_disabled_layout_retains_runs_and_invalid_reference_input_is_recoverable(self):
         app=self.app;panel=app.transverse_panel;saved=deepcopy(app.case['transverse_detail']['runs'])
         panel.active.value=False

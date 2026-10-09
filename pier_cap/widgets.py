@@ -22,7 +22,7 @@ from .transverse_widgets import TransversePanel
 from .transverse import enabled as actual_transverse
 from .pile_visual_widgets import PileAppearancePanel
 from .cage_3d import layout_3d
-from .visuals import configuration_html
+from .visuals import configuration_html,pile_head_help_html
 from .visuals import section_figure,elevation_figure,reinforcement_plan_figure,reinforcement_summary_html,clear_spacing_html,hoop_figure,hoop_explanation_html,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html,spacing_html,side_steel_html
 
 UNIT_NAMES={'in':'inches','ft':'feet','kip':'kips','kip*ft':'kip-feet','ksi':'ksi (kips per square inch)','deg':'degrees'}
@@ -149,6 +149,10 @@ class CapNotebook:
                 if title=='Continuous bottom steel · at piles':rows.insert(0,W.HTML('<p>These bottom bars continue through every pile and span to the cap end-cover planes. Their transverse positions stay fixed. End anchorage and splices require review.</p>'))
                 caption='Side bars and row spacing' if title=='Hoops and side bars' else title
                 content=[W.HBox(rows,layout=W.Layout(width='100%',flex_flow='row wrap',grid_gap='8px'))] if group=='Geometry' else rows
+                if title=='Pile head':
+                    content[0].layout.width='auto';content[0].layout.flex='1 1 450px'
+                    schematic=W.HTML(pile_head_help_html(),layout=W.Layout(width='336px',max_width='100%',flex='0 1 336px'))
+                    content=[W.HBox([content[0],schematic],layout=W.Layout(width='100%',flex_flow='row wrap',align_items='flex-start',grid_gap='8px'))]
                 layout=(W.Layout(width='100%',min_width='0',flex='0 0 auto',padding='8px',border='1px solid #c4cdd6') if group=='Geometry' else
                     W.Layout(flex='1 1 280px',min_width='280px',max_width='360px',padding='8px',border='1px solid #c4cdd6'))
                 card=W.VBox([W.HTML('<b>'+html.escape(caption)+'</b>'),*content],layout=layout)

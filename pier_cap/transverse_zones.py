@@ -90,13 +90,25 @@ def zone_add_conflicts(e):
     return {z['key']:[o for o in occupancy[z['key']] if _boundary_side(z,assigned.get(o['id'])) is None] for z in zones}
 
 
-def new_zone_run(e,key,bar,pitch):
+def run_limit_overlaps(runs):
+    """Editing warnings for intersecting entered extents, not a fit calculation."""
+    result={r['id']:[] for r in runs}
+    for index,run in enumerate(runs):
+        for other in runs[index+1:]:
+            first=max(run['first_in'],other['first_in']);last=min(run['end_in'],other['end_in'])
+            if first<=last+1e-7:
+                result[run['id']].append(dict(id=other['id'],first=first,last=last))
+                result[other['id']].append(dict(id=run['id'],first=first,last=last))
+    return result
+
+
+def new_zone_run(e,key,bar,pitch,*,allow_overlap=False):
     """Propose a new run inside one zone; existing runs remain untouched."""
     zones,groups,_=zone_runs(e)
     zone=next(z for z in zones if z['key']==key)
     if groups[key]:raise ValueError(zone['label']+' already has a run: '+', '.join(r['id'] for r in groups[key])+'. Edit or split its numbered card.')
     occupants=zone_add_conflicts(e)[key]
-    if occupants:
+    if occupants and not allow_overlap:
         raise ValueError(zone['label']+' ['+station_range(zone['left'],zone['right'])+'] already contains bars from '+
             '; '.join(occupant_text(owner) for owner in occupants)+'. Inspect those numbered runs before adding another. Geometry changes do not move saved stations.')
     radius=BAR_DIAMETER[bar]/2;p=e.case['inputs']

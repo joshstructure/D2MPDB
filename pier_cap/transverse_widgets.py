@@ -5,7 +5,7 @@ import math
 import ipywidgets as W
 from .transverse import empty_detail,enabled,shape_parameters,suggested_detail,validate_detail,development_current,development_fingerprint
 from .widget_compat import Accordion
-from .transverse_zones import zone_runs,new_zone_run,zone_add_conflicts,occupant_text,station_range,run_last_station
+from .transverse_zones import zone_runs,new_zone_run,zone_add_conflicts,occupant_text,station_range,run_last_station,run_limit_overlaps
 
 
 def _layout():return W.Layout(width='calc(100% - 4px)',min_width='0')
@@ -13,6 +13,16 @@ def _layout():return W.Layout(width='calc(100% - 4px)',min_width='0')
 
 def _card_layout():
     return W.Layout(width='280px',min_width='280px',max_width='280px',flex='0 0 280px',padding='8px',border='1px solid #b7bec8')
+
+
+def _keep_card_positions(current,desired):
+    """Keep mounted cards in place when edits change their zone classification."""
+    ordered=[card for card in current if card in desired]
+    for index,card in enumerate(desired):
+        if card not in ordered:
+            following=next((other for other in desired[index+1:] if other in ordered),None)
+            ordered.insert(ordered.index(following) if following is not None else len(ordered),card)
+    return tuple(ordered)
 
 
 class RunCard:
@@ -34,6 +44,7 @@ class RunCard:
         locations=[number('first_in','First in'),number('first_ft','First ft','first_in',12),
                    number('end_in','Limit in'),number('end_ft','Limit ft','end_in',12)]
         info=add('info',W.HTML(layout=W.Layout(min_height='20px')))
+        warning=add('warning',W.HTML(layout=W.Layout(min_height='32px')))
         error=add('error',W.HTML())
         view=add('view',W.Button(description=f'{rid} · section / details',icon='eye',layout=_layout()))
         view.on_click(lambda _:panel._select_run(rid))
@@ -62,10 +73,10 @@ class RunCard:
         self.widgets.extend([details,detail_fields,detail_actions])
         pairs=[W.HBox(pair,layout=W.Layout(width='100%',min_width='0',flex_flow='row nowrap',overflow='visible')) for pair in ([size,pitch],locations[:2],locations[2:])]
         self.widgets.extend(pairs)
-        self.ui=W.VBox([label,*pairs,info,view,error],layout=_card_layout())
+        self.ui=W.VBox([label,*pairs,info,warning,view,error],layout=_card_layout())
         self.ui.add_class('cap-hoop-card')
 
-    def sync(self,run,region,active,selected,case):
+    def sync(self,run,region,active,selected,case,overlaps=()):
         c=self.controls;shape=shape_parameters(run)
         values={**run,**shape,'pitch':run['pitch_in'],'first_ft':run['first_in']/12,'end_ft':run['end_in']/12,
                 'development_basis':run.get('development_basis',''),'development_confirmed':development_current(case,run)}
@@ -78,6 +89,9 @@ class RunCard:
         self.ui.layout.border='1px solid '+color
         c['label'].value=f'<b style="font-size:16px;color:{color}">Run {html.escape(run["id"])}</b> · {count} {"bar" if count==1 else "bars"}<br><small>{html.escape(region)} · '+('Open-bottom U-bars' if run['kind']=='pile_u' else 'Closed hoops')+'</small>'
         c['info'].value=f'<small>Actual last: {last:g} in / {last/12:g} ft</small>'
+        ids=', '.join(o['id'] for o in overlaps)
+        ranges='; '.join(o['id']+': '+station_range(o['first'],o['last']) for o in overlaps)
+        c['warning'].value=('<small style="color:#9b6012" title="'+html.escape(ranges,quote=True)+'"><b>⚠ Limits overlap '+html.escape(ids)+'.</b> Edit first / limit to resolve.</small>' if overlaps else '')
         c['view'].button_style='info' if selected else '';c['view'].disabled=not active
         c['split'].disabled=not active or count<2;c['remove'].disabled=not active
         c['error'].value=''
@@ -138,11 +152,10 @@ class TransversePanel:
             note=W.HTML('<small>No run entered. Choose size / spacing and add this zone.</small>')
             button=W.Button(description='Add zone run',icon='plus',layout=_layout());button.on_click(lambda _:self._add_zone(key))
             links=W.HBox(layout=W.Layout(flex_flow='row wrap'))
-            self._empty_zones[key]=dict(bar=size,pitch=pitch,note=note,button=button,links=links,ui=W.VBox([note,size,pitch,button,links]))
-        c=self._empty_zones[key];c['button'].disabled=bool(occupants) or z['right']<=z['left']
-        c['bar'].disabled=c['pitch'].disabled=bool(occupants)
-        for name in ('bar','pitch','button'):c[name].layout.display='none' if occupants else ''
-        c['note'].value=('<small><b>Occupied by saved bars:</b><br>'+html.escape('; '.join(occupant_text(o) for o in occupants))+'</small>' if occupants else
+            fields=W.HBox([size,pitch],layout=W.Layout(flex_flow='row nowrap'))
+            self._empty_zones[key]=dict(bar=size,pitch=pitch,note=note,button=button,links=links,fields=fields,ui=W.VBox([note,fields,button,links]))
+        c=self._empty_zones[key];c['button'].disabled=z['right']<=z['left']
+        c['note'].value=('<small title="'+html.escape('; '.join(occupant_text(o) for o in occupants),quote=True)+'"><b style="color:#9b6012">⚠ May overlap '+html.escape(', '.join(o['id'] for o in occupants))+'.</b><br>Inspect saved runs, or add a run and adjust its limits.</small>' if occupants else
             '<small>No run assigned. Choose size / spacing; adjoining-bar clearance is kept when adding.</small>')
         buttons=[]
         for owner in occupants:
@@ -156,7 +169,7 @@ class TransversePanel:
 
     def sync_zones(self,e):
         self.zone_scroll.layout.display='';self.zone_grid.layout.display='';self.detail_area.layout.display='';zones,groups,custom=zone_runs(e)
-        runs=e.case.get('transverse_detail',empty_detail())['runs'];ids={r['id'] for r in runs};occupancy=zone_add_conflicts(e)
+        runs=e.case.get('transverse_detail',empty_detail())['runs'];ids={r['id'] for r in runs};occupancy=zone_add_conflicts(e);overlaps=run_limit_overlaps(runs)
         prior=self.busy;self.busy=True
         try:
             for rid in set(self._cards)-ids:
@@ -170,19 +183,23 @@ class TransversePanel:
             if custom:regions.append((dict(key='custom',label='Custom / crossing runs',kind='hoop'),custom))
             for z,group in regions:
                 for run in group:
-                    card=self._cards[run['id']];card.sync(run,z['label'],enabled(e.case),run['id']==self.selected_run_id,e.case)
+                    card=self._cards[run['id']];card.sync(run,z['label'],enabled(e.case),run['id']==self.selected_run_id,e.case,overlaps[run['id']])
                     boxes.append(card.ui)
                 if not group:
                     header,box=self._zone_box(z['key']);header.value='<b>'+html.escape(z['label'])+'</b><br><small>'+station_range(z['left'],z['right'])+'</small>'
                     children=(header,self._empty_card(z,e,occupancy[z['key']]))
                     if box.children!=children:box.children=children
                     boxes.append(box)
-            if self.zone_grid.children!=tuple(boxes):self.zone_grid.children=boxes
+            boxes=_keep_card_positions(self.zone_grid.children,boxes)
+            if self.zone_grid.children!=boxes:self.zone_grid.children=boxes
             details=tuple(self.zone_controls[r['id']]['details'] for r in runs)
             for run,detail in zip(runs,details):detail.layout.display='' if run['id']==self.selected_run_id else 'none'
             selected=next((r for r in runs if r['id']==self.selected_run_id),None)
             self.selected_info.value=('<b>'+html.escape(selected['id'])+'</b> · Actual first–last: '+station_range(selected['first_in'],run_last_station(selected))+
                 f' · Entered limit: {selected["end_in"]:g} in / {selected["end_in"]/12:g} ft' if selected else '')
+            if selected and overlaps[selected['id']]:
+                detail='; '.join(o['id']+' at '+station_range(o['first'],o['last']) for o in overlaps[selected['id']])
+                self.selected_info.value+='<br><span style="color:#9b6012"><b>⚠ Run limits overlap:</b> '+html.escape(detail)+'. Inputs remain editable; review bar spacing.</span>'
             if self.detail_area.children!=(self.selected_info,*details):self.detail_area.children=(self.selected_info,*details)
             notes=[]
             if not enabled(e.case):notes.append('Actual layout is off. Enable it to edit saved runs and draw their bars.')
@@ -238,7 +255,7 @@ class TransversePanel:
         def perform():
             from .model import evaluate
             e=self.owner.current or evaluate(self.owner.case);c=self._empty_zones[key]
-            run=new_zone_run(e,key,c['bar'].value,c['pitch'].value)
+            run=new_zone_run(e,key,c['bar'].value,c['pitch'].value,allow_overlap=True)
             detail=deepcopy(self.owner.case.get('transverse_detail',empty_detail()));detail['enabled']=True;detail['runs'].append(run)
             self._commit(detail,selected=run['id'])
         if not self._attempt(perform):self._empty_zones[key]['note'].value=self.status.value

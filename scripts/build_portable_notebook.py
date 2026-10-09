@@ -30,7 +30,11 @@ def build(repo, *, preserve_outputs=False):
     if revisions != 1 or packages != 1:
         raise ValueError('Expected exactly one package and revision in the portable setup cell.')
     setup['source'] = source.splitlines(keepends=True)
-    setup['metadata'].update(cellView='form')
+    for cell in notebook['cells']:
+        if cell['cell_type'] == 'code':
+            metadata = cell.setdefault('metadata', {})
+            metadata['cellView'] = 'form'
+            metadata.setdefault('jupyter', {})['source_hidden'] = True
     if not preserve_outputs:
         notebook['cells'] = [cell for cell in notebook['cells'] if not cell.get('metadata', {}).get('saved_run_annotation')]
         for cell in notebook['cells']:
