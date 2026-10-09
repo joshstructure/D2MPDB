@@ -135,7 +135,7 @@ def reinforcement_summary_html(e):
 
 def configuration_html(e):
     """Quick inventory of the current inputs, before the live drawings."""
-    from .transverse import run_summary
+    from .transverse import run_summary,end_bar_note
     p=e.case['inputs']
     top=' + '.join(f'{p["n_N"+str(i)]:g} × #{p["Bar_N"+str(i)]:g} (row {i})' for i in (1,2,3) if p['n_N'+str(i)]) or 'None'
     def rows(prefix,size):
@@ -148,7 +148,7 @@ def configuration_html(e):
         runs=run_summary(e.case)
         for kind,label in [('hoop','Closed hoops'),('pile_u','Open-bottom U-bars')]:
             selected=[r for r in runs if r['kind']==kind]
-            value='; '.join(f'{r["id"]}: {r["count"]} × #{r["bar"]} @ {r["pitch_in"]:g} in' for r in selected) or 'None entered'
+            value='; '.join(f'{r["id"]}: {r["count"]} × #{r["bar"]} @ {r["pitch_in"]:g} in'+end_bar_note(r) for r in selected) or 'None entered'
             entries.append((label,value))
     else:
         entries.append(('Reference hoops',f'#{p["Bar_v"]:g} · overall {p["s_G"]:g} in / lower-shear {p["s_L"]:g} in pitch · actual stations not set'))

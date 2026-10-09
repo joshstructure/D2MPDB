@@ -1,11 +1,10 @@
 """One persistent, numbered card per physical transverse run."""
 from copy import deepcopy
 import html
-import math
 import ipywidgets as W
-from .transverse import empty_detail,enabled,shape_parameters,suggested_detail,validate_detail,development_current,development_fingerprint
+from .transverse import empty_detail,enabled,shape_parameters,validate_detail,development_current,development_fingerprint,run_stations,end_bar_note
 from .widget_compat import Accordion
-from .transverse_zones import zone_runs,new_zone_run,zone_add_conflicts,occupant_text,station_range,run_last_station,run_limit_overlaps
+from .transverse_zones import zone_runs,new_zone_run,zone_add_conflicts,occupant_text,station_range,run_last_station,run_limit_overlaps,starting_zone_detail
 
 
 def _layout():return W.Layout(width='calc(100% - 4px)',min_width='0')
@@ -51,6 +50,8 @@ class RunCard:
         kind=add('kind',W.Dropdown(options=[('Closed hoop','hoop'),('Open-bottom U','pile_u')],description='Shape',style={'description_width':'105px'},layout=W.Layout(width='224px')))
         shear=add('zone',W.Dropdown(options=[('Overall (G)','G'),('Lower-shear (L)','L')],description='Shear basis',style={'description_width':'105px'},layout=W.Layout(width='224px')))
         angle=add('end_angle',W.Dropdown(options=[('90° inward',90),('135° inward',135),('180° return',180),('Straight',0)],description='U ends',style={'description_width':'105px'},layout=W.Layout(width='224px')))
+        end_bar=add('include_end_bar',W.Checkbox(description='Bar at end limit',indent=False,layout=W.Layout(width='224px')))
+        end_bar.observe(lambda change:panel._zone_edited(rid,'include_end_bar',change),names='value')
         for name,widget in [('kind',kind),('zone',shear),('end_angle',angle)]:
             widget.observe(lambda change,field=name:panel._zone_edited(rid,field,change),names='value')
         shape=[number(name,title) for name,title in [('inside_diameter_in','Bend ID (in)'),('tail_in','End tail (in)'),
@@ -67,7 +68,7 @@ class RunCard:
         remove=add('remove',W.Button(description=f'Delete {rid}',icon='trash',button_style='danger',
             tooltip=f'Delete only run {rid} and its saved bars.',layout=W.Layout(width='124px')))
         remove.on_click(lambda _:panel._remove_run(rid))
-        detail_fields=W.HBox([kind,shear,angle,*shape],layout=W.Layout(flex_flow='row wrap',width='100%'))
+        detail_fields=W.HBox([kind,shear,angle,end_bar,*shape],layout=W.Layout(flex_flow='row wrap',width='100%'))
         detail_actions=W.HBox([split])
         details=W.VBox([detail_fields,help_text,basis,confirm,detail_actions],layout=W.Layout(width='100%',min_width='0'))
         advanced=add('details',Accordion(children=[details]));advanced.set_title(0,f'{rid} · shape and development');advanced.selected_index=None
@@ -82,19 +83,25 @@ class RunCard:
     def sync(self,run,region,active,selected,case,overlaps=()):
         c=self.controls;shape=shape_parameters(run)
         values={**run,**shape,'pitch':run['pitch_in'],'first_ft':run['first_in']/12,'end_ft':run['end_in']/12,
+                'include_end_bar':run.get('include_end_bar',False),
                 'development_basis':run.get('development_basis',''),'development_confirmed':development_current(case,run)}
         for name,value in values.items():
             if name in c and hasattr(c[name],'disabled'):
                 c[name].value=value;c[name].disabled=not active
-        count=math.floor((run['end_in']-run['first_in'])/run['pitch_in']+1e-9)+1
-        last=run['first_in']+(count-1)*run['pitch_in']
+        stations=run_stations(run);count=len(stations);last=stations[-1]
         color='#bd407d' if run['kind']=='pile_u' else '#7952a3'
         self.ui.layout.border='1px solid '+color
         c['label'].value=f'<b style="font-size:16px;color:{color}">Run {html.escape(run["id"])}</b> · {count} {"bar" if count==1 else "bars"}<br><small>{html.escape(region)} · '+('Open-bottom U-bars' if run['kind']=='pile_u' else 'Closed hoops')+'</small>'
-        c['info'].value=f'<small>Actual last: {last:g} in / {last/12:g} ft</small>'
+        c['info'].value=f'<small>Actual last: {last:g} in / {last/12:g} ft'+end_bar_note(run)+'</small>'
         ids=', '.join(o['id'] for o in overlaps)
         ranges='; '.join(o['id']+': '+station_range(o['first'],o['last']) for o in overlaps)
         c['warning'].value=('<small style="color:#9b6012" title="'+html.escape(ranges,quote=True)+'"><b>⚠ Limits overlap '+html.escape(ids)+'.</b> Edit first / limit to resolve.</small>' if overlaps else '')
+        if run.get('include_end_bar',False) and len(stations)>1 and self.panel.owner.current:
+            from .detailing import required_clear
+            from .model import BAR_DIAMETER
+            diameter=BAR_DIAMETER[run['bar']];gap=stations[-1]-stations[-2]
+            if gap-diameter<required_clear(self.panel.owner.current,diameter)-1e-7:
+                c['warning'].value+=f'<br><small style="color:#bb3e39"><b>⚠ Last gap {gap:g} in fails clear spacing.</b> Adjust pitch or limits.</small>'
         c['view'].button_style='info' if selected else '';c['view'].disabled=not active
         c['split'].disabled=not active or count<2;c['remove'].disabled=False
         c['error'].value=''
@@ -109,8 +116,13 @@ class TransversePanel:
         self.owner=owner;self.busy=False;self.zone_controls={};self._cards={};self._zones={};self._empty_zones={};self._inspect_buttons={};self._selected_run_id=None
         self.active=W.Checkbox(description='Use actual transverse layout',indent=False)
         self.generate=W.Button(description='Create starting layout',icon='plus',layout=W.Layout(width='210px'))
+        self.generate.tooltip='Replace the current runs with one run per zone, using the starting size and spacing.'
+        p=owner.case['inputs'];self._starter_defaults=(p['Bar_v'],p['s_G']);self._previous_detail=None;self._rebuild_order=False
+        self.start_bar=W.Dropdown(options=[(f'#{n}',n) for n in range(3,12)],value=int(p['Bar_v']),description='Start size',style={'description_width':'65px'},layout=W.Layout(width='142px'))
+        self.start_pitch=W.FloatText(value=p['s_G'],description='Start c/c (in)',continuous_update=False,style={'description_width':'90px'},layout=W.Layout(width='166px'))
+        self.undo_start=W.Button(description='Undo starting layout',icon='undo',disabled=True,layout=W.Layout(width='178px'))
         self.add=W.Button(description='Add custom run',icon='plus')
-        self.status=W.HTML(layout=W.Layout(min_height='32px'));self.zone_notice=W.HTML()
+        self.status=W.HTML(layout=W.Layout(min_height='22px'));self.zone_notice=W.HTML()
         # Explicit non-shrinking flex cards work with Colab's mixed widget manager.
         # Each run is a direct child, including multiple runs in the same zone.
         self.zone_grid=W.HBox(layout=W.Layout(width='100%',min_width='0',max_width='100%',flex='0 0 auto',
@@ -126,18 +138,27 @@ class TransversePanel:
             '<h3 style="margin:4px 0">Actual hoops and pile U-bars · by zone</h3><p style="margin:4px 0"><small>'
             'First / limit: from the <b>left cap end</b>; inches and feet are linked. '
             '<b>Details</b> opens shape / development; <b>Delete R…</b> removes that run.</small></p>'),
-            W.HBox([self.active,self.generate,self.add],layout=W.Layout(flex_flow='row wrap')),self.zone_scroll,self.detail_area,self.zone_notice,self.status,self.general],layout=W.Layout(width='100%',min_width='0'))
+            W.HBox([self.active,self.start_bar,self.start_pitch,self.generate,self.undo_start,self.add],layout=W.Layout(flex_flow='row wrap')),
+            W.HTML('<small>Starting layout replaces current runs. Regular spacing stays as entered; each zone gets an end bar with any shorter final gap.</small>'),
+            self.status,self.zone_scroll,self.detail_area,self.zone_notice,self.general],layout=W.Layout(width='100%',min_width='0'))
         self.active.observe(self._toggle,names='value');self.generate.on_click(self._generate);self.add.on_click(self._add)
+        self.undo_start.on_click(self._undo_start)
         self.sync()
 
     @property
     def selected_run_id(self):return self._selected_run_id
 
-    def sync(self):
+    def sync(self,*,reset_starter=False):
         prior=self.busy;self.busy=True
         try:
+            if reset_starter:
+                self._starter_defaults=None;self._previous_detail=None;self.undo_start.disabled=True
             detail=self.owner.case.get('transverse_detail',empty_detail());runs=detail['runs']
-            self.active.value=detail['enabled'];self.generate.disabled=bool(runs)
+            self.active.value=detail['enabled'];self.generate.disabled=False
+            self.generate.description='Rebuild starting layout' if runs else 'Create starting layout'
+            defaults=(self.owner.case['inputs']['Bar_v'],self.owner.case['inputs']['s_G'])
+            if defaults!=self._starter_defaults:
+                self.start_bar.value=int(defaults[0]);self.start_pitch.value=defaults[1];self._starter_defaults=defaults
             if self._selected_run_id not in [r['id'] for r in runs]:self._selected_run_id=runs[0]['id'] if runs else None
         finally:self.busy=prior
 
@@ -193,7 +214,7 @@ class TransversePanel:
                     children=(header,self._empty_card(z,e,occupancy[z['key']]))
                     if box.children!=children:box.children=children
                     boxes.append(box)
-            boxes=_keep_card_positions(self.zone_grid.children,boxes)
+            boxes=tuple(boxes) if self._rebuild_order else _keep_card_positions(self.zone_grid.children,boxes)
             if self.zone_grid.children!=boxes:self.zone_grid.children=boxes
             details=tuple(self.zone_controls[r['id']]['details'] for r in runs)
             for run,detail in zip(runs,details):detail.layout.display='' if run['id']==self.selected_run_id else 'none'
@@ -234,6 +255,7 @@ class TransversePanel:
             self.zone_controls[rid]['details'].selected_index=0
 
     def _commit(self,detail,selected=None):
+        if any(r.get('include_end_bar',False) for r in detail['runs']):detail['version']=2
         case=deepcopy(self.owner.case);case['transverse_detail']=detail;validate_detail(case)
         self.owner.case=case
         if selected:self._selected_run_id=selected
@@ -252,7 +274,23 @@ class TransversePanel:
 
     def _generate(self,_):
         from .model import evaluate
-        self._attempt(lambda:self._commit(suggested_detail(evaluate(self.owner.case))))
+        def perform():
+            detail=starting_zone_detail(evaluate(self.owner.case),self.start_bar.value,self.start_pitch.value)
+            previous=deepcopy(self.owner.case.get('transverse_detail',empty_detail()))
+            self._rebuild_order=True
+            try:self._commit(detail,selected=detail['runs'][0]['id'])
+            finally:self._rebuild_order=False
+            self._previous_detail=previous;self.undo_start.disabled=False
+            self.status.value=f'<small>Created {len(detail["runs"])} zone runs · #{self.start_bar.value} @ {self.start_pitch.value:g} in, plus zone end bars. Review short final gaps in the spacing checks.</small>'
+        self._attempt(perform)
+
+    def _undo_start(self,_):
+        if self._previous_detail is None:return
+        def perform():
+            self._commit(deepcopy(self._previous_detail))
+            self._previous_detail=None;self.undo_start.disabled=True
+            self.status.value='<small>Previous transverse layout restored.</small>'
+        self._attempt(perform)
 
     def _add_zone(self,key):
         def perform():
@@ -285,10 +323,10 @@ class TransversePanel:
     def _split_run(self,rid):
         def perform():
             detail=deepcopy(self.owner.case['transverse_detail']);run=next(r for r in detail['runs'] if r['id']==rid)
-            count=math.floor((run['end_in']-run['first_in'])/run['pitch_in']+1e-9)+1
+            stations=run_stations(run);count=len(stations)
             if count<2:raise ValueError('A run needs at least two bars to split.')
-            other=deepcopy(run);other['id']=self._next_id(detail);other['first_in']=run['first_in']+(count//2)*run['pitch_in']
-            run['end_in']=other['first_in']-run['pitch_in']
+            other=deepcopy(run);other['id']=self._next_id(detail);other['first_in']=stations[count//2]
+            run['end_in']=stations[count//2-1]
             for r in (run,other):r['development_confirmed']=False;r.pop('development_fingerprint',None)
             detail['runs'].append(other);self._commit(detail,selected=other['id'])
         self._attempt(perform)
@@ -299,4 +337,4 @@ class TransversePanel:
         for controls in self._empty_zones.values():
             for widget in controls.values():widget.close()
         for widget in self._inspect_buttons.values():widget.close()
-        for widget in (self.active,self.generate,self.add,self.status,self.zone_notice,self.zone_grid,self.zone_scroll,self.detail_area,self.selected_info,self.general,self.ui):widget.close()
+        for widget in (self.active,self.generate,self.start_bar,self.start_pitch,self.undo_start,self.add,self.status,self.zone_notice,self.zone_grid,self.zone_scroll,self.detail_area,self.selected_info,self.general,self.ui):widget.close()

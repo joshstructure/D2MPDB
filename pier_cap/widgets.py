@@ -259,7 +259,7 @@ class CapNotebook:
             self.aggregate.value=case['screening']['aggregate_in']
             self.aggregate_confirmed.value=case['screening']['aggregate_confirmed']
             self.cap_type.value=case.get('cap_type','Pier pile cap')
-            self.transverse_panel.sync()
+            self.transverse_panel.sync(reset_starter=True)
             self.pile_appearance.sync()
         finally:self.busy=False
         self._update_search_basis()

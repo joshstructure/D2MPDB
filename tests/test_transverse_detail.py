@@ -118,7 +118,7 @@ class TransverseDetailTests(unittest.TestCase):
             panel=app.transverse_panel;panel.generate.click()
             self.assertTrue(app.case['transverse_detail']['enabled'])
             self.assertIsNotNone(app.current)
-            self.assertTrue(panel.generate.disabled)
+            self.assertFalse(panel.generate.disabled)
             run=next(r for r in app.case['transverse_detail']['runs'] if r['kind']=='pile_u')
             card=panel.zone_controls[run['id']];card['bar'].value=5;card['end_angle'].value=180
             card['pitch'].value=7;card['tail_in'].value=4

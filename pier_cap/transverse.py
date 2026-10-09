@@ -1,7 +1,7 @@
 """Explicit transverse-rebar stations, independent of longitudinal U inventory.
 
 Stations are inches from the left cap end. Runs retain the entered pitch;
-the last bar is the last full pitch at or before the entered end limit.
+an optional end bar fills the entered limit with a shorter final interval.
 """
 import math
 import hashlib
@@ -17,10 +17,38 @@ def enabled(case):
     return bool(case.get('transverse_detail',{}).get('enabled',False))
 
 
+def run_regular_count(run):
+    return math.floor((run['end_in']-run['first_in'])/run['pitch_in']+1e-9)+1
+
+
+def run_bar_count(run):
+    count=run_regular_count(run)
+    last=run['first_in']+(count-1)*run['pitch_in']
+    return count+int(run.get('include_end_bar',False) and run['end_in']-last>1e-7)
+
+
+def run_last_station(run):
+    return run['end_in'] if run.get('include_end_bar',False) else run['first_in']+(run_regular_count(run)-1)*run['pitch_in']
+
+
+def run_stations(run):
+    stations=[run['first_in']+i*run['pitch_in'] for i in range(run_regular_count(run))]
+    if run.get('include_end_bar',False):
+        if run['end_in']-stations[-1]>1e-7:stations.append(run['end_in'])
+        else:stations[-1]=run['end_in']
+    return stations
+
+
+def end_bar_note(run):
+    if not run.get('include_end_bar',False):return ''
+    stations=run_stations(run)
+    return f' · last gap {stations[-1]-stations[-2]:g} in' if len(stations)>1 else ' · single end bar'
+
+
 def validate_detail(case):
     detail=case.get('transverse_detail')
     if detail is None:return
-    if not isinstance(detail,dict) or detail.get('version')!=1:
+    if not isinstance(detail,dict) or detail.get('version') not in (1,2):
         raise ValueError('Unsupported transverse-detail version.')
     if type(detail.get('enabled')) is not bool:
         raise ValueError('Transverse-detail enabled must be true or false.')
@@ -47,7 +75,11 @@ def validate_detail(case):
                 raise ValueError(f'{label}: {key} must be a finite inch dimension.')
         if run['first_in']<0 or run['end_in']<run['first_in'] or run['pitch_in']<=0:
             raise ValueError(f'{label}: use 0 ≤ first station ≤ end limit and positive pitch.')
-        count=math.floor((run['end_in']-run['first_in'])/run['pitch_in']+1e-9)+1
+        if type(run.get('include_end_bar',False)) is not bool:
+            raise ValueError(f'{label}: include_end_bar must be true or false.')
+        if run.get('include_end_bar',False) and detail['version']<2:
+            raise ValueError(f'{label}: an end-limit bar requires transverse-detail version 2.')
+        count=run_bar_count(run)
         total+=count
         if total>2000:raise ValueError('The transverse layout exceeds 2,000 bars; check station units and pitch.')
         shape=run.get('shape',{})
@@ -71,11 +103,10 @@ def scheduled_bars(case):
     if not enabled(case):return []
     bars=[]
     for run in case['transverse_detail']['runs']:
-        count=math.floor((run['end_in']-run['first_in'])/run['pitch_in']+1e-9)+1
-        for i in range(count):
+        for i,station in enumerate(run_stations(run)):
             bars.append({'id':f'{run["id"]}-{i+1}','run':run['id'],
                          'kind':run['kind'],'bar':int(run['bar']),'zone':run['zone'],
-                         'station_in':run['first_in']+i*run['pitch_in']})
+                         'station_in':station})
     return sorted(bars,key=lambda b:(b['station_in'],b['id']))
 
 
@@ -112,6 +143,7 @@ def shape_parameters(run):
 
 def development_fingerprint(case,run):
     detail={k:run[k] for k in ('kind','bar','zone','first_in','end_in','pitch_in')}
+    if run.get('include_end_bar',False):detail['include_end_bar']=True
     detail['shape']=shape_parameters(run)
     # Another run can move the common longitudinal cage and change the end
     # congestion basis, even when this run's entered dimensions stay unchanged.
@@ -157,7 +189,7 @@ def bar_shape(e,run):
 
 
 def suggested_detail(e):
-    """An editable starting grid; never marks development as confirmed."""
+    """Legacy whole-cap pitch grid; the workbench creates a run for each zone."""
     from .model import BAR_DIAMETER
     p=e.case['inputs'];d=BAR_DIAMETER[p['Bar_v']];L=e.value('L_cap');pitch=p['s_G']
     inset=p['D_pile']/2+e.value('Tol_pile')+p['C_pile']+d/2

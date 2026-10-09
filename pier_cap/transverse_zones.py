@@ -1,10 +1,7 @@
 """Locate transverse runs in physical cap zones without changing their stations."""
 import math
 from .model import BAR_DIAMETER
-
-
-def run_last_station(run):
-    return run['first_in']+math.floor((run['end_in']-run['first_in'])/run['pitch_in']+1e-9)*run['pitch_in']
+from .transverse import run_last_station
 
 
 def station_range(first,last):
@@ -24,6 +21,29 @@ def cap_zones(e):
         if i<len(centers):add(f'S{i}',f'P{i}–P{i+1}','hoop',center+half,centers[i]-half)
     add('right','Right end','hoop',centers[-1]+half,length)
     return zones
+
+
+def starting_zone_detail(e,bar,pitch):
+    """One end-inclusive run per zone, using common size and regular pitch."""
+    from .detailing import required_clear
+    from .transverse import validate_detail
+    if isinstance(bar,bool) or bar not in range(3,12):raise ValueError('Choose starting bar size #3 through #11.')
+    if isinstance(pitch,bool) or not math.isfinite(pitch) or pitch<=0:raise ValueError('Starting spacing must be a positive finite inch value.')
+    diameter=BAR_DIAMETER[bar];radius=diameter/2
+    # Split the required gap between the two bars adjoining each zone boundary.
+    offset=(diameter+required_clear(e,diameter))/2
+    cover=e.case['inputs']['C_s']+radius;length=e.value('L_cap');runs=[]
+    for zone in cap_zones(e):
+        first=max(cover,zone['left']+offset if zone['key']!='left' else cover)
+        end=min(length-cover,zone['right']-offset if zone['key']!='right' else length-cover)
+        if end<first:
+            raise ValueError(zone['label']+': no room for the zone end bars after cover and adjoining-bar clearance. Review geometry or bar size.')
+        runs.append(dict(id=f'R{len(runs)+1}',kind=zone['kind'],bar=int(bar),zone='G',
+            first_in=first,end_in=end,pitch_in=pitch,include_end_bar=True,
+            development_confirmed=False,development_basis=''))
+    detail=dict(version=2,enabled=True,runs=runs)
+    validate_detail(dict(e.case,transverse_detail=detail))
+    return detail
 
 
 def zone_runs(e):
