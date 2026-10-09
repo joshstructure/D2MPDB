@@ -103,6 +103,8 @@ class Candidate:
     strength_dc:float
     governing_check:str
     strength_governing_check:str
+    governing_component:str=''
+    strength_governing_component:str=''
 
 @dataclass
 class SearchResult:
@@ -123,7 +125,9 @@ def candidate_dc(candidate,scope='all'):
 
 def candidate_governing(candidate,scope='all'):
     if scope not in DC_SCOPES:raise ValueError('Unknown D/C scope.')
-    return candidate.governing_check if scope=='all' else candidate.strength_governing_check
+    label=candidate.governing_check if scope=='all' else candidate.strength_governing_check
+    detail=candidate.governing_component if scope=='all' else candidate.strength_governing_component
+    return label+(' — '+detail if detail else '')
 
 def _rank_key(candidate,objective,scope='all'):
     dc=candidate_dc(candidate,scope)
@@ -205,7 +209,8 @@ def _search(case,config,progress,section_sensitivity):
                 side_label=f'{nskin} #{skin}/side' if nskin else 'no side bars'
                 label=f'{top} #{bar} top / pile continuous {pcount} #{pbar} / between +{bcount} #{bbar} · #{hoop} @ {spacing:g} in · {side_label}'
                 overall=_governing(e);strength=_governing(e,STRENGTH_CHECKS)
-                good.append(Candidate(changes,e.weight_lb,e.max_dc,complexity,label,strength.ratio,overall.label,strength.label))
+                good.append(Candidate(changes,e.weight_lb,e.max_dc,complexity,label,strength.ratio,overall.label,strength.label,
+                    overall.governing,strength.governing))
             else:
                 for ch in e.checks:
                     if 'FAIL' in ch.status:rejected[ch.label]+=1

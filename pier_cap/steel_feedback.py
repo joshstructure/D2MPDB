@@ -5,6 +5,7 @@ from .model import Check,bar_positions
 from .detailing import spacing_records
 from .transverse import enabled
 from .added_steel import added_clearances
+from .check_details import explain,service_components,service_note
 
 
 def line(label,checks):
@@ -20,7 +21,18 @@ def line(label,checks):
             value='Contact / overlap'
     color='#bb3e39' if 'FAIL' in status else '#9b6012' if status in ('PENDING','CONDITIONAL','REFERENCE') else '#167b75' if check and isinstance(check.ratio,(int,float)) else '#64748b'
     suffix=' · conditional' if status=='CONDITIONAL' else ' · FAIL' if 'FAIL' in status and value!=status else ''
-    return f'<div title="{html.escape(basis,quote=True)}">{html.escape(label)}: <b style="color:{color}">{html.escape(value+suffix)}</b></div>'
+    control=check.governing if check else ''
+    if not control and check and check.key.startswith('Chk_drawn_'):control='Actual drawn bar spacing'
+    if check and len(checks)>1:
+        basis+='\nSelected check: '+check.label
+        if len(checks)<=3:
+            basis+='\nCompared readouts:\n'+'\n'.join(f'{c.label}: {c.ratio:.4f}' if isinstance(c.ratio,(int,float)) else f'{c.label}: {c.ratio}' for c in checks)
+        else:basis+=f'\nLargest of {len(checks)} current checks.'
+        # Retain sectional operands when the separate drawn-pitch screen wins.
+        if check.key.startswith('Chk_drawn_'):
+            basis+=''.join('\n'+c.basis for c in checks if c is not check and c.components)
+    detail=f'<br><small>Controls: {html.escape(control)}</small>' if control else ''
+    return f'<div title="{html.escape(basis,quote=True)}">{html.escape(label)}: <b style="color:{color}">{html.escape(value+suffix)}</b>{detail}</div>'
 
 
 def block(rows,note=''):
@@ -38,8 +50,11 @@ def feedback(e):
     def optional(z):
         rows=[];p=e.case['inputs']
         if p['Ready_III']:
-            limit=e.value('SIII_'+z);ratio=max(e.value('fo_III_'+z)/24,e.value('SP_'+z)/max(limit,1e-6))
-            rows.append(line('Service III utilization',[Check('','',e.value('Chk_III_'+z),ratio,'Stress / 24 ksi and bar spacing / allowable spacing.'),*pick('Chk_drawn_III_'+z)]))
+            parts=service_components(e,'III',z)
+            ratio=max(c.ratio for c in parts) if all(c.ratio is not None for c in parts) else 'INVALID'
+            check=Check('Chk_III_'+z,'Service III · '+z,e.value('Chk_III_'+z),ratio,'')
+            explain(check,parts,note=service_note(e,'III',z))
+            rows.append(line('Service III utilization',[check,*pick('Chk_drawn_III_'+z)]))
         if p['Ready_fatigue']:rows.append(line('Fatigue D/C',[Check('','',e.value('Chk_fat_'+z),e.value('DC_fat_'+z),'Factored stress range / fatigue threshold.')]))
         return rows
     top=[row('Negative flexure D/C','Chk_flex_N'),row('Minimum flexural steel','Chk_min_N'),service('N'),

@@ -21,6 +21,7 @@ from .geometry_dimensions import dimensions_figure,dimensions_html
 from .transverse_widgets import TransversePanel
 from .added_steel_widgets import AddedSteelPanel
 from .steel_feedback import feedback as steel_feedback
+from .check_details import controlling_label
 from .transverse import enabled as actual_transverse
 from .pile_visual_widgets import PileAppearancePanel
 from .cage_3d import layout_3d
@@ -218,7 +219,7 @@ class CapNotebook:
         strength=governing_check(e,'strength');overall=governing_check(e)
         items=[('Strength D/C',f'{strength.ratio:.3f}'),('All-check utilization',f'{e.max_dc:.3f}'),('Gross steel estimate',f'{e.weight_lb:,.0f} lb'),('Top steel area',f'{e.value("As_N"):.2f} in²'),('Top Service I stress',f'{e.value("fs_I_N"):.2f} ksi'),('Cap length',f'{e.value("L_cap")/12:.3f} ft'),('Nominal end extension',f'{e.value("E_end"):g} in')]
         metrics='<div style="display:flex;flex-wrap:wrap;gap:10px;margin:12px 0">'+''.join(f'<div style="padding:10px 18px;background:#eaf1f6;border-radius:5px"><small>{k}</small><br><b style="font-size:23px;color:#1f5b91">{v}</b></div>' for k,v in items)+'</div>'
-        metrics+=f'<p><b>Controls strength:</b> {html.escape(strength.label)}. <b>Controls all checks:</b> {html.escape(overall.label)}.<br><small>All-check utilization also includes spacing and minimum/detailing limits. It does not measure a single reserve against increased load.</small></p>'
+        metrics+=f'<p title="{html.escape(strength.basis,quote=True)}"><b>Controls strength:</b> {html.escape(controlling_label(strength))}.</p><p title="{html.escape(overall.basis,quote=True)}"><b>Controls all checks:</b> {html.escape(controlling_label(overall))}.<br><small>All-check utilization also includes spacing and minimum/detailing limits. It does not measure a single reserve against increased load.</small></p>'
         if overall.key in ('Chk_spacing_G','Chk_spacing_L'):
             zone=overall.key[-1];s=e.value('S_leg');limit=e.value('Sw_'+zone)
             metrics+=f'<p><b>Across-cap hoop legs:</b> {s:.3f} in / {limit:.3f} in allowed = <b>{s/limit:.4f}</b>. Adding main bars or reducing along-cap hoop spacing leaves this across-cap distance unchanged.</p>'

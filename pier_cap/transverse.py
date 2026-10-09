@@ -291,6 +291,7 @@ def transverse_checks(e):
     """
     from .model import Check,BAR_AREA,BAR_DIAMETER
     from .detailing import required_clear
+    from .check_details import Component,explain
     if not enabled(e.case):return []
     p=e.case['inputs'];bars=scheduled_bars(e.case);checks=[]
     runs={r['id']:r for r in e.case['transverse_detail']['runs']}
@@ -305,10 +306,14 @@ def transverse_checks(e):
         name=a['id']+' → '+b['id'];key=a['id']+'_'+b['id']
         checks.append(Check('Chk_actual_shear_'+key,name+' shear (anchorage conditional)','FAIL' if ratio>1 else 'CONDITIONAL',ratio,
             f'Actual interval {pitch:.3f} in; weaker vertical two-leg area {area:.3f} in²; larger adjacent shear {vu:.3f} kip; Vr {vr:.3f} kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit.'))
+        explain(checks[-1],[Component('Shear resistance',vu,max(vr,1e-6),'kip'),
+            Component('Section upper bound',vu/p['phi_v'],max(e.value('Vn_limit'),1e-6),'kip')])
         across=max(p['b']-2*p['C_s']-BAR_DIAMETER[item['bar']]-2*shape_parameters(runs[item['run']])['side_inset_in'] for item in (a,b))
         spacing=max(pitch/e.value('s_code_'+zone),across/e.value('Sw_'+zone))
         checks.append(Check('Chk_actual_pitch_'+key,name+' maximum spacing','PASS' if spacing<=1 else 'FAIL',spacing,
             'Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately.'))
+        explain(checks[-1],[Component('Along-cap bar spacing',pitch,e.value('s_code_'+zone),'in'),
+            Component('Across-cap leg spacing',across,e.value('Sw_'+zone),'in')])
         clear=pitch-(BAR_DIAMETER[a['bar']]+BAR_DIAMETER[b['bar']])/2
         req=required_clear(e,max(BAR_DIAMETER[a['bar']],BAR_DIAMETER[b['bar']]))
         checks.append(Check('Chk_actual_clear_'+key,name+' clear spacing','PASS' if clear>=req else 'FAIL',req/max(clear,1e-6),f'Actual {clear:.3f} in; required {req:.3f} in.'))
@@ -319,6 +324,8 @@ def transverse_checks(e):
         edge=max(bars[0]['station_in'],e.value('L_cap')-bars[-1]['station_in'])
         limit=min(e.value('s_code_G'),e.value('s_code_L'))/2
         checks.append(Check('Chk_actual_end','First / last transverse bar end coverage','PASS' if edge<=limit else 'FAIL',edge/limit,f'Max end distance {edge:.3f} in / half the tighter sectional pitch limit {limit:.3f} in. Conservative screening rule, not an end-region design.'))
+        explain(checks[-1],[Component('Left cap end',bars[0]['station_in'],limit,'in'),
+            Component('Right cap end',e.value('L_cap')-bars[-1]['station_in'],limit,'in')])
     has_u=any(r['kind']=='pile_u' for r in runs.values())
     required=p['Tu']>e.value('T_threshold','kip*ft')
     checks.append(Check('Status_actual_torsion','Actual transverse torsion path','PENDING' if required else 'BELOW THRESHOLD','N/A',

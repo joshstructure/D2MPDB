@@ -3,6 +3,7 @@ import html
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from .transverse import scheduled_bars,run_summary,bar_shape,shape_issues,shape_parameters,development_current,end_bar_note
+from .check_details import hover_basis,service_hover
 
 COLORS={'hoop':'#7952a3','pile_u':'#bd407d'}
 NAMES={'hoop':'Closed hoop','pile_u':'U-bar · open bottom'}
@@ -67,13 +68,14 @@ def response_figure(e):
         'Actual adjacent-bar shear D/C','Torsion / anchorage review'),vertical_spacing=.24,horizontal_spacing=.14)
     for prefix,name,color in [('Mu_','Moment demand','#2166ac'),('Mr_','Moment resistance','#90bce4')]:
         fig.add_trace(go.Bar(x=['Top','At piles','Between piles'],y=[e.value(prefix+z,'kip*ft') for z in 'NPB'],name=name,marker_color=color),row=1,col=1)
-    fig.add_trace(go.Bar(x=['Top','At piles','Between piles'],y=[e.value('fs_I_'+z,'ksi') for z in 'NPB'],name='Service I stress',marker_color='#167b75'),row=1,col=2)
+    fig.add_trace(go.Bar(x=['Top','At piles','Between piles'],y=[e.value('fs_I_'+z,'ksi') for z in 'NPB'],name='Service I stress',marker_color='#167b75',
+        customdata=[service_hover(e,z) for z in 'NPB'],hovertemplate='%{x}<br>Steel stress %{y:.3f} ksi<br>%{customdata}<extra></extra>'),row=1,col=2)
     fig.add_hline(y=e.value('fs_I_limit','ksi'),line_dash='dash',line_color='#d88822',row=1,col=2)
     checks=[c for c in e.checks if c.key.startswith('Chk_actual_shear_')];bars=scheduled_bars(e.case)
     fig.add_trace(go.Scatter(x=[(a['station_in']+b['station_in'])/24 for a,b in zip(bars,bars[1:])],y=[c.ratio for c in checks],
         mode='lines+markers',name='Actual shear · conditional on anchorage',marker=dict(color=['#bb3e39' if c.ratio>1 else '#7952a3' for c in checks]),
-        line=dict(color='#7952a3'),text=[c.label for c in checks],
-        hovertemplate='%{text}<br>Interval midpoint %{x:.3f} ft<br>D/C %{y:.3f}<br>Requires developed legs and verified force zone<extra></extra>'),row=2,col=1)
+        line=dict(color='#7952a3'),text=[c.label for c in checks],customdata=[hover_basis(c) for c in checks],
+        hovertemplate='%{text}<br>Interval midpoint %{x:.3f} ft<br>D/C %{y:.3f}<br>%{customdata}<extra></extra>'),row=2,col=1)
     fig.add_hline(y=1,line_dash='dash',line_color='#bb3e39',row=2,col=1)
     fig.update_xaxes(title='Along cap (ft)',row=2,col=1)
     threshold=e.value('T_threshold','kip*ft');torque=e.case['inputs']['Tu']

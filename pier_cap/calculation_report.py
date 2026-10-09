@@ -216,7 +216,7 @@ class Report:
         rows=[]
         for c in checks:
             ratio=f'{c.ratio:.6g}' if isinstance(c.ratio,(int,float)) else str(c.ratio)
-            basis=escape(c.basis)
+            basis=escape(c.basis).replace('\n','<br>')
             if criteria and c.key in self.e.engine.defs and c.key not in self.e.engine.overrides and c.status!='REFERENCE':
                 basis+='<details class="working"><summary>Check criterion</summary><div class="equation-line">'+mathml(expression(self.e.engine.defs[c.key]),True)+'</div></details>'
             rows.append([escape(c.label),badge(c.status),escape(ratio),basis])

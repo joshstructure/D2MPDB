@@ -9,6 +9,7 @@ from .detailing import spacing_records,hook_paths,standard_hook,required_clear
 from .transverse import enabled as actual_transverse
 from .view_controls import bar_family,drawing_controls
 from .optimizer import candidate_dc,candidate_governing,governing_check,DC_SCOPES
+from .check_details import hover_basis,service_hover
 
 BLUE='#1f5b91';TEAL='#167b75';AMBER='#d88822';RED='#bb3e39';INK='#213649';GREY='#b8c7d1'
 HOOP='#7952a3'
@@ -339,7 +340,8 @@ def results_figure(e):
     fig=make_subplots(rows=2,cols=2,subplot_titles=('Factored moment / resistance (kip-ft)','Service I steel stress (ksi)','Shear demand / resistance (kip)','Combined shear + torsion area (in²)'),vertical_spacing=.22,horizontal_spacing=.13)
     labels=['N · top','P · pile','B · between piles']
     for prefix,name,color in [('Mu_','Demand',MOMENT),('Mr_','Resistance',MOMENT_CAPACITY)]:fig.add_trace(go.Bar(x=labels,y=[e.value(prefix+z,'kip*ft') for z in 'NPB'],name='Moment '+name,marker_color=color),row=1,col=1)
-    fig.add_trace(go.Bar(x=labels,y=[e.value('fs_I_'+z,'ksi') for z in 'NPB'],name='Service I stress',marker_color=TEAL),row=1,col=2)
+    fig.add_trace(go.Bar(x=labels,y=[e.value('fs_I_'+z,'ksi') for z in 'NPB'],name='Service I stress',marker_color=TEAL,
+        customdata=[service_hover(e,z) for z in 'NPB'],hovertemplate='%{x}<br>Steel stress %{y:.3f} ksi<br>%{customdata}<extra></extra>'),row=1,col=2)
     fig.add_hline(y=e.value('fs_I_limit','ksi'),line_color=AMBER,line_dash='dash',annotation_text='Stress limit',row=1,col=2)
     for prefix,name,color in [('Vu_','Shear demand',SHEAR),('Vr_','Shear resistance',SHEAR_CAPACITY)]:fig.add_trace(go.Bar(x=['Overall (G)','Lower-shear (L)'],y=[e.value(prefix+z,'kip') for z in 'GL'],name=name,marker_color=color),row=2,col=1)
     fig.add_trace(go.Bar(x=['Overall (G)','Lower-shear (L)'],y=[e.value('Acomb_'+z,'in^2') for z in 'GL'],name='Combined area required',marker_color=AMBER),row=2,col=2)
@@ -380,7 +382,7 @@ def ratios_figure(e):
     checks=[c for c in e.checks if isinstance(c.ratio,(float,int))]
     fig=go.Figure(go.Bar(x=[c.ratio for c in checks],y=[c.label for c in checks],orientation='h',
         marker_color=[check_color(c) for c in checks],showlegend=False,
-        text=[f'{c.ratio:.3f}' for c in checks],textposition='outside',customdata=[[c.basis,c.status] for c in checks],hovertemplate='%{y}<br>Check ratio %{x:.4f}<br>%{customdata[0]}<br>%{customdata[1]}<extra></extra>'))
+        text=[f'{c.ratio:.3f}' for c in checks],textposition='outside',customdata=[[hover_basis(c),c.status] for c in checks],hovertemplate='%{y}<br>Check ratio %{x:.4f}<br>%{customdata[0]}<br>%{customdata[1]}<extra></extra>'))
     families=dict(check_family(c) for c in checks)
     if any(check_color(c)==RED for c in checks):families['Failed check']=RED
     for name,color in families.items():
@@ -394,7 +396,8 @@ def optional_service_figure(e):
     fig=make_subplots(rows=1,cols=2,subplot_titles=('Service III outer-bar stress (ksi)','Factored fatigue stress range (ksi)'))
     labels=['N','P','B']
     if e.case['inputs']['Ready_III']:
-        fig.add_trace(go.Bar(x=labels,y=[e.value('fo_III_'+z,'ksi') for z in labels],name='Outer-bar stress',marker_color=BLUE),row=1,col=1)
+        fig.add_trace(go.Bar(x=labels,y=[e.value('fo_III_'+z,'ksi') for z in labels],name='Outer-bar stress',marker_color=BLUE,
+            customdata=[service_hover(e,z,'III') for z in labels],hovertemplate='%{x}<br>Outer-bar stress %{y:.3f} ksi<br>%{customdata}<extra></extra>'),row=1,col=1)
         fig.add_hline(y=24,line_dash='dash',line_color=AMBER,annotation_text='24 ksi limit',row=1,col=1)
     else:fig.add_annotation(x=.22,y=.5,xref='paper',yref='paper',text='PENDING<br>Supply Service III loads',showarrow=False,font=dict(color=AMBER,size=16))
     if e.case['inputs']['Ready_fatigue']:
@@ -423,7 +426,9 @@ def checks_html(e):
     for c in e.checks:
         ratio=f'{c.ratio:.3f}' if isinstance(c.ratio,(int,float)) else str(c.ratio)
         color=RED if 'FAIL' in c.status else AMBER if 'PENDING' in c.status or 'PROVISIONAL' in c.status else TEAL
-        rows.append(f'<tr><td>{html.escape(c.label)}</td><td style="color:{color}">{html.escape(c.status)}</td><td><b>{ratio}</b></td><td>{html.escape(c.basis)}</td></tr>')
+        controller='<br><small>Controls: '+html.escape(c.governing)+'</small>' if c.governing else ''
+        basis=html.escape(c.basis).replace('\n','<br>')
+        rows.append(f'<tr><td>{html.escape(c.label)}</td><td style="color:{color}">{html.escape(c.status)}</td><td title="{html.escape(c.basis,quote=True)}"><b>{ratio}</b>{controller}</td><td>{basis}</td></tr>')
     extra='<p><b>Additional notebook gates:</b> '+html.escape('; '.join(e.issues) if e.issues else 'Drawn cage passes the available numerical spacing and fit checks; pending checks remain listed above.')+'</p><p><b>Combined notebook status:</b> '+html.escape(e.status)+'</p>'
     return '<style>.cap-table{border-collapse:collapse;width:100%;font:12px Arial}.cap-table td,.cap-table th{padding:8px;border-bottom:1px solid #dce5ec;text-align:left}.cap-table th{background:#e7eef4;position:sticky;top:0}</style><p>Strength rows show D/C; maximum-spacing rows show actual / allowed; minimum-clearance rows show required / actual, and minimum-steel rows show required / provided. See each ratio basis.</p><table class="cap-table"><thead><tr><th>Check</th><th>Status</th><th>Check ratio</th><th>Ratio basis</th></tr></thead><tbody>'+''.join(rows)+'</tbody></table>'+extra
 

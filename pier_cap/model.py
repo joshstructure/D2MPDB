@@ -123,6 +123,9 @@ class Check:
     status:str
     ratio:object
     basis:str
+    components:tuple=()
+    governing:str=''
+    component_rule:str=''
 
 @dataclass
 class Evaluation:
@@ -297,6 +300,10 @@ def detailing_checks(e):
         fit=min(t['straight'] for t in paths)>=0 and top<=limit+1e-8
         checks.append(Check('Chk_hook_fit','90° span hooks · fit','PASS' if fit else 'FAIL',max(top/limit,2 if min(t['straight'] for t in paths)<0 else 0),
             'General bars: inside bend diameter 6db (#3–8), 8db (#9–11); straight tail 12db. Hook turns up outside the pile clearance envelope.'))
+        from .check_details import Component,explain
+        explain(checks[-1],[Component('Hook height / available height',top,limit,'in'),
+            Component('Straight-length fit flag',2 if min(t['straight'] for t in paths)<0 else 0,1,'flag')],
+            note=f"Shortest straight portion {min(t['straight'] for t in paths):.3f} in. Negative straight length uses the existing failure flag 2; this flag is not a physical D/C.")
         continuous=bar_positions(e,'P')
         worst=0;min_gap=math.inf;req_at_worst=0
         # A hook traverses the entire vertical interval at fixed transverse x;
@@ -393,6 +400,8 @@ def evaluate(case=None,fast=False):
                 check.basis+=' Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout.'
                 check.status='REFERENCE';check.ratio='N/A'
         checks.extend(transverse_checks(e))
+    from .check_details import annotate_checks
+    annotate_checks(e)
     e.max_dc=max(c.ratio for c in checks if isinstance(c.ratio,(float,int)))
     e.issues=(layout['issues'] if layout else [])+cage_issues(e)+transverse_issues(e);e.weight_lb=estimate_weight(e)
     failure=any('FAIL' in c.status for c in checks)
