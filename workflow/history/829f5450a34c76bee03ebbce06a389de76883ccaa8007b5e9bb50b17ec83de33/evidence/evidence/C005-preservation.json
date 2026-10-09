@@ -1,0 +1,8 @@
+{
+  "base_sha256": "4cdc73c485443fd22aaa77eff17ea1faeec30f9ba143be881b5d6c9676189625",
+  "candidate_sha256": "829f5450a34c76bee03ebbce06a389de76883ccaa8007b5e9bb50b17ec83de33",
+  "C005_sha256": "ee85ac4e68a03b3d5b1d7039f73de626c0e4ee736ee52a00ca07cdc2977da907",
+  "C005_byte_identical": true,
+  "new_steel_or_force_record_in_bpad": false,
+  "other_unchanged_components": 264
+}

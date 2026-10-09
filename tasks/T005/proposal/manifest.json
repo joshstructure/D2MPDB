@@ -1,0 +1,30 @@
+{
+  "task": "T005",
+  "base_sha256": "4cdc73c485443fd22aaa77eff17ea1faeec30f9ba143be881b5d6c9676189625",
+  "components": {
+    "report:PedBridge": {
+      "file": "000.xml",
+      "sha256": "02831d7bdd4798e55f3385f53e64e5a1a2462742661c410e19b72ccaeae3f77a"
+    },
+    "report:BridgeGeometry_2Beam": {
+      "file": "001.xml",
+      "sha256": "1b3b66a8baad411f937d286f44ffa88a15241143bee8404d7616bf9347a5eb25"
+    },
+    "report:FBMPPier": {
+      "file": "002.xml",
+      "sha256": "b3b8e727ef3f8eaf7368caf37efd7ca7b54aaec6edccf9c84576f2c402a3e95d"
+    },
+    "report:FoundationModeling": {
+      "file": "003.xml",
+      "sha256": "bfd6b100f100bd25e9e28255fc45c01a609ccc639aff3a3b58d2ad38f4c2d4f3"
+    },
+    "spreadsheet:QauntitiesBridge": {
+      "file": "004.xml",
+      "sha256": "a35fcd22fd9bba2191173c85fc117b9ca2df09ac577e35d1b1304d4c991c21ae"
+    },
+    "report:DecisionLog": {
+      "file": "005.xml",
+      "sha256": "08b2fdb20bae673fe8cb0b04bccd646834b0861a74f7de742103ea286eb07466"
+    }
+  }
+}

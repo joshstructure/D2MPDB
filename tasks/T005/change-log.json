@@ -1,0 +1,32 @@
+[
+  [
+    "report:BridgeGeometry_2Beam",
+    "</report>",
+    "\n<section name=\"PierCurrentGeometry\" capture=\"False\" hide=\"false\"><heading level=\"0\" keepwithnext=\"True\">Current pier cap geometry — 9 October 2026</heading><paragraph fontfamily=\"",
+    1
+  ],
+  [
+    "report:FoundationModeling",
+    "</report>",
+    "\n<section name=\"PierSourceReconciliation\" capture=\"False\" hide=\"false\"><heading level=\"1\" keepwithnext=\"True\">Pier model source — 9 October 2026</heading><paragraph fontfamily=\"Tim",
+    1
+  ],
+  [
+    "report:PedBridge",
+    "</report>",
+    "\n<section name=\"PierJournalRevision20261009\" capture=\"False\" hide=\"false\"><heading level=\"1\" keepwithnext=\"True\">Pier revision — 9 October 2026</heading><paragraph fontfamily=\"Time",
+    1
+  ],
+  [
+    "report:DecisionLog",
+    "</report>",
+    "\n<section name=\"PierDecision20261009\" capture=\"False\" hide=\"false\"><heading level=\"1\" keepwithnext=\"True\">2026-10-09 — current pier cap source record</heading><paragraph fontfamily",
+    1
+  ],
+  [
+    "spreadsheet:QauntitiesBridge",
+    "formula=\"PedBridgeWeights_2Beams.H37\"",
+    "formula=\"BridgeGeometry_2Beam.PierCap_volume to ft^3\"",
+    1
+  ]
+]

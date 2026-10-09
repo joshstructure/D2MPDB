@@ -1,0 +1,8 @@
+{
+  "report_file": "Pier Cap Design 10-9.html",
+  "report_sha256": "806a47bb50962827f5fd3e6fdd4c42c8b41851bddd23ff3948f377fe6a48b7b2",
+  "analysis_xml_file": "Pier_MinTip.XML",
+  "analysis_xml_sha256": "cb094424ed16e60b16957ed84a62aea21533fb61671c58a27ca73a997eaf70e4",
+  "local_xml_matches_report": true,
+  "scope": "Pier only; source snapshot and geometry/steel bookkeeping; no final design approval or FBMP rerun"
+}

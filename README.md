@@ -1,5 +1,9 @@
 # D2MPDB notebooks
 
+**Current project record:** start at [project_current](project_current/README.md)
+for the source register, journal, cap reports, Mathcad sheets, analysis files and
+the editable [coherence tracker](project_current/coherence/Coherence_Tracker.xlsx).
+
 ## Bridge geometry notebook
 
 [Open Bridge_Geometry_2 Beam_V2 in Colab](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Bridge_Geometry_2%20Beam_V2.ipynb) and choose **Runtime → Run all**.

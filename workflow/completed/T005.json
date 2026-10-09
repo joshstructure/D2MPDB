@@ -1,0 +1,56 @@
+{
+  "task": "T005",
+  "journal_sha256": "829f5450a34c76bee03ebbce06a389de76883ccaa8007b5e9bb50b17ec83de33",
+  "previous_sha256": "4cdc73c485443fd22aaa77eff17ea1faeec30f9ba143be881b5d6c9676189625",
+  "promoted": "2026-10-09T21:00:39.334837+00:00",
+  "review": {
+    "candidate_sha256": "829f5450a34c76bee03ebbce06a389de76883ccaa8007b5e9bb50b17ec83de33",
+    "reviewer": "Codex — source/geometry coherence review and actual native Blockpad observations; no human engineering sign-off",
+    "native_recalculation": true,
+    "native_visual_review": true,
+    "engineering_review": true,
+    "design_outcome": "not_applicable",
+    "external_analysis_status": "excluded_from_accepted_scope",
+    "external_analysis_disposition": "Exact Pier_MinTip.XML identity matches the supplied report. Cap geometry, bearing mapping, pipe properties and printed DC magnitudes were compared. Acceptance is limited to geometry/source bookkeeping. Full journal/model load currency, offset correction/reanalysis, convergence and final structural adequacy remain excluded. Reinforcement remains separate in the report/Excel, and C005 is completely unchanged by express user direction.",
+    "inherited_issues_disposition": "Zero stored errors and no new structural issues. Three inherited LoadCombinations links remain unresolved. C005 earlier inputs are retained by user direction, with the difference recorded outside it. Independent wind/wall dimensions and old quantity-sheet sketches are explicit Excel review items; they are not declared reconciled.",
+    "evidence_files": [
+      {
+        "path": "evidence/C005-preservation.json",
+        "sha256": "6d90da4cb0f6a9241f69d07af424ce7772cac7b9e5e75761aeddb2e1ef2a4071"
+      },
+      {
+        "path": "evidence/final-review.md",
+        "sha256": "f06548f740c731e7337272effc612711a04840dba4a672a86c58fa4508756323"
+      },
+      {
+        "path": "evidence/integration-check.json",
+        "sha256": "74d007034108c73c6b25bba8117d25d5d9a90b2d1e08fdaf3399bcc36135b5da"
+      },
+      {
+        "path": "evidence/native-cap-quantity.png",
+        "sha256": "7e33597d77679821b915b5c73d8f8da148b174988ae90077133ed23726f73968"
+      },
+      {
+        "path": "evidence/native-geometry-calculations.png",
+        "sha256": "4aef442683b42ee05e4fa976dd4610f52616d2537473c5a08d36e27c5e543d27"
+      },
+      {
+        "path": "evidence/native-source-reference.png",
+        "sha256": "c58ded0f3ef17f9974a86fcd894e86f7cafc2232a67440ae655a4f482e1e5258"
+      },
+      {
+        "path": "evidence/native-user-direction.png",
+        "sha256": "acf08088d6d4932c2a7fe8e128ff70340e63c6fa84be3200927fa8c065bc87cb"
+      },
+      {
+        "path": "evidence/source-checks.json",
+        "sha256": "10d3fb4c08c88aa3bfcc943deb641519d67bdb706cebaf365f1e72fb720f34f6"
+      },
+      {
+        "path": "evidence/workbook-validation.json",
+        "sha256": "e0fe036231849d8c0a8f88fdb0d4ecae7beb2886ec9f00f1c97d610a4ac3d1ab"
+      }
+    ]
+  },
+  "history": "workflow/history/829f5450a34c76bee03ebbce06a389de76883ccaa8007b5e9bb50b17ec83de33"
+}

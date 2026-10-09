@@ -1,0 +1,106 @@
+<report name="FoundationModeling" title="Foundations and FBMP Modeling" unit="in" pagesize="816, 1056" margin="48,48,48,48" collapsemargins="False">
+        <stylerule applytoall="True" type="Any" leftindent="0.25 in" spacingafter="4" />
+        <stylerule type="AnyEquation" name="Required Input" texthighlight="#F7E6B9" />
+        <heading level="0">Foundation Modeling</heading>
+        <section name="EBApplicability20261008" capture="False" hide="false">
+            <heading level="1" keepwithnext="True">End-bent model reconciliation</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Both end bents follow the controlling End Bent 1 configuration by user direction. The user confirms the cap report contains the latest FBMP model; loaded nodes are 15 and 34 after model refinement. Shared square-pile geometry and the separate 30-in end-bent pedestal are recorded in Bridge Geometry. The p-multiplier discussion below remains for pier pipe piles. The different same-named Downloads XML is not the source model. This update does not rerun FBMP or verify raw input loads absent from the report; backwall and cheek-wall quantities remain deferred.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#FBMPEndBent.EBCurrentDesignRecord">Current end-bent design and coherence record</link>
+            </paragraph>
+        </section>
+        <heading level="0">Current Files</heading>
+        <paragraph />
+        <heading level="1">Pile Spacing</heading>
+        <paragraph />
+        <paragraph />
+        <paragraph />
+        <paragraph level="1" />
+        <paragraph level="1" />
+        <paragraph level="1" fontweight="bold" />
+        <paragraph />
+        <heading level="0">P Multipliers</heading>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="B_pMult = BridgeGeometry_2Beam.Pier_pile_diameter to in">
+                <expbody>B_pMult = BridgeGeometry_2Beam.Pier_pile_diameter to in</expbody>
+                <expresult> = 20 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Pile width used to express spacing for the group-effect discussion.</paragraph>
+        <section name="EqNotes_PedBridge_058_B_pMult" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This input is the width or diameter represented by B in the spacing comparisons. It follows the same current 20-in project diameter as the pipe-section calculation.</paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="5*B_pMult">
+                <expbody>5*B_pMult</expbody>
+                <expresult> = 100 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Physical spacing equal to 5 selected pile widths.</paragraph>
+        <section name="EqNotes_PedBridge_059_5_B_pMult" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Multiply 
+                <dynexp formula="B_pMult" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>B_pMult</expbody>
+                </dynexp>
+                , the pile width entered for the spacing discussion, by 5. This converts a spacing stated as a number of pile widths into a distance. Compare it with the actual center spacing; this expression does not calculate a group-reduction factor.
+            </paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="3*B_pMult">
+                <expbody>3*B_pMult</expbody>
+                <expresult> = 60 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Physical spacing equal to 3 selected pile widths.</paragraph>
+        <section name="EqNotes_PedBridge_060_3_B_pMult" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Multiply 
+                <dynexp formula="B_pMult" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>B_pMult</expbody>
+                </dynexp>
+                , the pile width entered for the spacing discussion, by 3. This converts a spacing stated as a number of pile widths into a distance. Compare it with the actual center spacing; this expression does not calculate a group-reduction factor.
+            </paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="S_B=BridgeGeometry_2Beam.Pile_spacing/B_pMult" showsteps="reference-values unit-conversions function-results">
+                <expbody>S_B=BridgeGeometry_2Beam.Pile_spacing/B_pMult</expbody>
+                <expstep> = 60 in/20 in</expstep>
+                <expresult> = 3</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Pile center spacing expressed as a number of pile widths.</paragraph>
+        <section name="EqNotes_PedBridge_061_S_B" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Divide 
+                <dynexp formula="BridgeGeometry_2Beam.Pile_spacing" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>BridgeGeometry_2Beam.Pile_spacing</expbody>
+                </dynexp>
+                , the center-to-center spacing, by 
+                <dynexp formula="B_pMult" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>B_pMult</expbody>
+                </dynexp>
+                , the width used for the group-effect discussion. The length units cancel. A result of 3, for example, means the centers are three selected pile widths apart; this ratio itself is not a p-multiplier.
+            </paragraph>
+        </section>
+        <heading level="0">Modeling</heading>
+        <paragraph level="1">
+            Spread the load of the deck, fencing, live load and parapets out to the two beam lines.
+            <paragraphlabel numbergroup="paragraph1">1.</paragraphlabel>
+        </paragraph>
+        <paragraph level="1">
+            Apply the pier wall load split between the piles at the center of their exposed heights
+            <paragraphlabel numbergroup="paragraph1">2.</paragraphlabel>
+        </paragraph>
+        <paragraph level="1" />
+        <paragraph />
+        <heading level="1" />
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#PileProperties">Pipe-pile dimensions, section loss and section properties</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#FBMPEndBent">End-bent load entry: nodes 15 and 34</link>
+        </paragraph>
+    
+<section name="PierSourceReconciliation" capture="False" hide="false"><heading level="1" keepwithnext="True">Pier model source — 9 October 2026</heading><paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">The current pier record uses the exact Pier_MinTip.XML matching Pier Cap Design 10-9.html (SHA256 cb094424ed16e60b16957ed84a62aea21533fb61671c58a27ca73a997eaf70e4). Cap section, 230-in length, four 20-in pipes, 60-in spacing, 103-in bearing separation and effective pipe-section properties reconcile to displayed precision. Actual right bearing offset +10.14 in differs from the journal +10.50 in. Full load application, independent wall/wind envelopes and structural adequacy remain outside this source-data acceptance; no FBMP rerun is claimed.</paragraph><paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7"><link address="#FBMPPier.PierSourceModelRecord">Bearing map and offset conflict</link></paragraph></section>
+</report>

@@ -7,3 +7,6 @@ tasks/** -text
 workflow/** -text
 tools/*.py text eol=lf
 tests/test_bpad_workflow.py text eol=lf
+# Registered source fingerprints are byte identities across clones.
+project_current/** -text
+"Geometry Report.xml" -text

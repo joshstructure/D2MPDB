@@ -1,0 +1,42 @@
+{
+  "summary": "Geometry and source references only in BPAD, per final user direction. Keep C005 entirely unchanged and steel separate in the report/Excel. Issue eight open coherence decisions plus the recorded C005/steel instruction.",
+  "published_outputs": [
+    "PierCurrentGeometry with native end allowance, datum, area and volume equations",
+    "PierSourceModelRecord with source hashes, four bearing identities and right-row offset caution",
+    "Direct live cap quantity link; volume remains 230 ft3",
+    "Updated index/foundation source context and dated user direction",
+    "Separate Excel coherence review with steel information"
+  ],
+  "assumptions_and_conventions": [
+    "Final user instruction overrides original request to include steel: no new steel or force record in BPAD",
+    "C005 entirely byte-identical, including formulas, prose and caches",
+    "Existing geometry owners retained; four 20-in pipes at 60-in centers and 48 x 36 x 230-in cap",
+    "Current report end-detail allowance is 3 in; retained C005 input is 3.44 in and is explicitly unreconciled",
+    "Independent source action maxima and steel checks are discussed only in the external Excel review",
+    "Service III N/A follows prior user direction; original report count remains historical"
+  ],
+  "downstream_impact": [
+    "264 other components entirely unchanged, including C005 and end-bent record",
+    "Existing geometry formulas and shared material values unchanged; new current geometry details added",
+    "Cap takeoff links directly to shared geometry with unchanged numerical volume",
+    "Right-row 10.14 versus 10.50-in offset and independent 231-in wind face retained as explicit review decisions"
+  ],
+  "external_analysis": "Exact local Pier_MinTip.XML matches the report hash. Geometry, bearing map, pipe-section properties and DC magnitudes cross-checked. No FBMP rerun or claim that full current journal load inputs, model convergence, U-bar detail or structural adequacy is verified.",
+  "checks_performed": [
+    "45 source, geometry, section-property, scope and preservation checks; C005 byte identity and absence of new BPAD steel/result record confirmed",
+    "Zero stored errors; no new broken links or structural issues",
+    "Excel item 01 records explicit user direction to retain C005; other responses remain blank; zero formula errors and rendered views inspected"
+  ],
+  "open_items": [
+    "C005 retained entirely unchanged by user direction; differences explicitly recorded",
+    "Right bearing-row offset",
+    "Pier U-bar conflicts",
+    "N uniform-reference longitudinal-steel shortfall",
+    "Full model load-input currency",
+    "Independent wind-face/wall geometry",
+    "Remaining design checks",
+    "Construction clearances and fabrication takeoff",
+    "Three inherited reference links",
+    "Exact-candidate native review before promotion"
+  ]
+}

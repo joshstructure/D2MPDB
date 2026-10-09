@@ -1,0 +1,96 @@
+{
+  "working_sha256": "829f5450a34c76bee03ebbce06a389de76883ccaa8007b5e9bb50b17ec83de33",
+  "checks_passed": 45,
+  "checks": [
+    "source XML fingerprint",
+    "six permitted components only",
+    "264 other component bytes retained",
+    "C005 entirely unchanged by express user direction",
+    "no new steel or force record in BPAD",
+    "no new structural issues",
+    "no stored errors",
+    "cap geometry matches report",
+    "end extension chain",
+    "overall cap length",
+    "gross volume",
+    "main steel counts",
+    "main steel sizes",
+    "skin bars",
+    "top area",
+    "pile area",
+    "span area includes continuous plus additional",
+    "side area",
+    "19 closed + 16 U = 35",
+    "transverse R1",
+    "transverse R2",
+    "transverse R3",
+    "transverse R4",
+    "transverse R5",
+    "transverse R6",
+    "transverse R7",
+    "transverse R8",
+    "transverse R9",
+    "source transverse counts/last gaps",
+    "2-inch adjacent-run clear spacing",
+    "gross steel report quantity",
+    "N reference shortfall preserved",
+    "cap-end node length",
+    "bearing cap stations",
+    "bearing cap links",
+    "left bearing offset matches",
+    "right bearing discrepancy recorded",
+    "pipe area matches exact 0.475 wall to XML precision",
+    "pipe inertia matches exact 0.475 wall to XML precision",
+    "superstructure DC printed precision",
+    "every legacy native formula retained",
+    "published pier materials/cover unchanged",
+    "prior geometry formula definitions retained",
+    "end-bent data untouched",
+    "31 references still relative"
+  ],
+  "pipe_area_in2": 29.13630836663681,
+  "pipe_I_in4": 1389.2601558548836,
+  "source_bearing_coordinates_in": {
+    "5": {
+      "X": -25.0,
+      "Y": 0.0,
+      "Z": -497.01
+    },
+    "44": {
+      "X": 205.0,
+      "Y": 0.0,
+      "Z": -497.01
+    },
+    "16": {
+      "X": 38.5,
+      "Y": 0.0,
+      "Z": -497.01
+    },
+    "33": {
+      "X": 141.49,
+      "Y": 0.0,
+      "Z": -497.01
+    },
+    "181": {
+      "X": 38.5,
+      "Y": -10.5,
+      "Z": -497.01
+    },
+    "182": {
+      "X": 141.49,
+      "Y": -10.5,
+      "Z": -497.01
+    },
+    "183": {
+      "X": 38.5,
+      "Y": 10.14,
+      "Z": -497.01
+    },
+    "184": {
+      "X": 141.49,
+      "Y": 10.14,
+      "Z": -497.01
+    }
+  },
+  "scope": "Source/data reconciliation only. Native review remains separate."
+}

@@ -1,0 +1,709 @@
+{
+  "checked_at_utc": "2026-10-09T21:20:56.164175+00:00",
+  "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
+  "register_sha256": "6ae24e0c850b5172b8c9e7d4627dbb70745f62cc8c4ee597d22993d742b8c9b4",
+  "tracker_sha256": "92c8fb072acf53a52b0be36ae6cea729dbfeef4e184693b0c6ff65b92fe12cd4",
+  "source_count": 16,
+  "item_count": 18,
+  "outstanding_count": 18,
+  "status_counts": {
+    "Open": 14,
+    "Deferred": 1,
+    "Awaiting source": 3
+  },
+  "check_counts": {
+    "MATCH": 31,
+    "MISSING": 6,
+    "REVIEW": 6
+  },
+  "checks": [
+    {
+      "check_id": "SOURCE:JOURNAL",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "JOURNAL"
+      ],
+      "path": "journal/D2_I95_Project_Journal.bpad",
+      "expected_sha256": "829f5450a34c76bee03ebbce06a389de76883ccaa8007b5e9bb50b17ec83de33",
+      "actual_sha256": "829f5450a34c76bee03ebbce06a389de76883ccaa8007b5e9bb50b17ec83de33"
+    },
+    {
+      "check_id": "SOURCE:GEOMETRY",
+      "status": "MATCH",
+      "detail": "Registered text content matches after CRLF/LF normalization.",
+      "source_ids": [
+        "GEOMETRY"
+      ],
+      "path": "Bridge_Geometry_2 Beam_V2.ipynb",
+      "expected_sha256": "76b8e0251a12f225a83a2869caa557cd14d240f3f616f7a5cd903180da50ce63",
+      "actual_sha256": "76b8e0251a12f225a83a2869caa557cd14d240f3f616f7a5cd903180da50ce63"
+    },
+    {
+      "check_id": "SOURCE:ROADWAY",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "ROADWAY"
+      ],
+      "path": "Geometry Report.xml",
+      "expected_sha256": "9880ef7adeeac4228666146f5d5bb4dd17ef93f66ffeaf465a2c813eb69489e4",
+      "actual_sha256": "9880ef7adeeac4228666146f5d5bb4dd17ef93f66ffeaf465a2c813eb69489e4"
+    },
+    {
+      "check_id": "SOURCE:CAP-TOOL",
+      "status": "MATCH",
+      "detail": "Registered text content matches after CRLF/LF normalization.",
+      "source_ids": [
+        "CAP-TOOL"
+      ],
+      "path": "Cap_and_Pile_Design.ipynb",
+      "expected_sha256": "1af14e6efa5095a973b88ced422bee1656596ec8cba4e5c6b6b31ee9796c4c74",
+      "actual_sha256": "1af14e6efa5095a973b88ced422bee1656596ec8cba4e5c6b6b31ee9796c4c74"
+    },
+    {
+      "check_id": "SOURCE:PIER-REPORT",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "PIER-REPORT"
+      ],
+      "path": "project_current/cap_design/pier/Pier Cap Design 10-9.html",
+      "expected_sha256": "806a47bb50962827f5fd3e6fdd4c42c8b41851bddd23ff3948f377fe6a48b7b2",
+      "actual_sha256": "806a47bb50962827f5fd3e6fdd4c42c8b41851bddd23ff3948f377fe6a48b7b2"
+    },
+    {
+      "check_id": "SOURCE:PIER-CASE",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "PIER-CASE"
+      ],
+      "path": "project_current/cap_design/pier/selected_case.json",
+      "expected_sha256": "3f368f577d7269ef67cf4c0f04f89046191bacd798ce3f348c760b449f83cf2a",
+      "actual_sha256": "3f368f577d7269ef67cf4c0f04f89046191bacd798ce3f348c760b449f83cf2a"
+    },
+    {
+      "check_id": "SOURCE:PIER-XML",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "PIER-XML"
+      ],
+      "path": "project_current/fbmp/pier/Pier_MinTip.XML",
+      "expected_sha256": "cb094424ed16e60b16957ed84a62aea21533fb61671c58a27ca73a997eaf70e4",
+      "actual_sha256": "cb094424ed16e60b16957ed84a62aea21533fb61671c58a27ca73a997eaf70e4"
+    },
+    {
+      "check_id": "SOURCE:EB-REPORT",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "EB-REPORT"
+      ],
+      "path": "project_current/cap_design/end_bents/End bent 1 Cap Design Report_10-8.html",
+      "expected_sha256": "42120857965352febea29e4a672b2ba93f45199430360a89f8e1e529d2df50ef",
+      "actual_sha256": "42120857965352febea29e4a672b2ba93f45199430360a89f8e1e529d2df50ef"
+    },
+    {
+      "check_id": "SOURCE:EB-CASE",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "EB-CASE"
+      ],
+      "path": "project_current/cap_design/end_bents/selected_case.json",
+      "expected_sha256": "ab2c7fff9b4a955c8964bb2c0d2c253b1b0581661c6f84d0150723cc415edec6",
+      "actual_sha256": "ab2c7fff9b4a955c8964bb2c0d2c253b1b0581661c6f84d0150723cc415edec6"
+    },
+    {
+      "check_id": "SOURCE:EB-XML",
+      "status": "MISSING",
+      "detail": "Registered file is absent.",
+      "source_ids": [
+        "EB-XML"
+      ],
+      "path": "project_current/fbmp/end_bents/End Bent 1.XML",
+      "expected_sha256": "739f44c1d542464cfd536493ce1ed6cb240f98a75ed3e1188c6f6812742d6fe2",
+      "actual_sha256": ""
+    },
+    {
+      "check_id": "SOURCE:MCAD-S1",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "MCAD-S1"
+      ],
+      "path": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd",
+      "expected_sha256": "b514ba288a859054bae7e8556ce978bcf1c4310bc6820517759d1ed73300a76f",
+      "actual_sha256": "b514ba288a859054bae7e8556ce978bcf1c4310bc6820517759d1ed73300a76f"
+    },
+    {
+      "check_id": "SOURCE:MCAD-DAT1",
+      "status": "MISSING",
+      "detail": "Registered file is absent.",
+      "source_ids": [
+        "MCAD-DAT1"
+      ],
+      "path": "project_current/mathcad/PedestrianBridge2Beam_Span1.dat",
+      "expected_sha256": "",
+      "actual_sha256": ""
+    },
+    {
+      "check_id": "SOURCE:PSB-S1",
+      "status": "MISSING",
+      "detail": "No source file has been selected.",
+      "source_ids": [
+        "PSB-S1"
+      ],
+      "path": "",
+      "expected_sha256": "",
+      "actual_sha256": ""
+    },
+    {
+      "check_id": "SOURCE:MCAD-S2",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "MCAD-S2"
+      ],
+      "path": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd",
+      "expected_sha256": "fa6693a473770e088665283631b099a0b61a0cabecac1f577ee9473b3569585b",
+      "actual_sha256": "fa6693a473770e088665283631b099a0b61a0cabecac1f577ee9473b3569585b"
+    },
+    {
+      "check_id": "SOURCE:MCAD-DAT2",
+      "status": "MISSING",
+      "detail": "Registered file is absent.",
+      "source_ids": [
+        "MCAD-DAT2"
+      ],
+      "path": "project_current/mathcad/PedestrianBridge2Beam_Span2.dat",
+      "expected_sha256": "",
+      "actual_sha256": ""
+    },
+    {
+      "check_id": "SOURCE:PSB-S2",
+      "status": "MISSING",
+      "detail": "No source file has been selected.",
+      "source_ids": [
+        "PSB-S2"
+      ],
+      "path": "",
+      "expected_sha256": "",
+      "actual_sha256": ""
+    },
+    {
+      "check_id": "DEP:EB-REPORT:EB-XML",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "EB-REPORT",
+        "EB-XML"
+      ]
+    },
+    {
+      "check_id": "DEP:EB-CASE:EB-XML",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "EB-CASE",
+        "EB-XML"
+      ]
+    },
+    {
+      "check_id": "DEP:MCAD-S1:MCAD-DAT1",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "MCAD-S1",
+        "MCAD-DAT1"
+      ]
+    },
+    {
+      "check_id": "DEP:MCAD-S1:PSB-S1",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "MCAD-S1",
+        "PSB-S1"
+      ]
+    },
+    {
+      "check_id": "DEP:MCAD-S2:MCAD-DAT2",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "MCAD-S2",
+        "MCAD-DAT2"
+      ]
+    },
+    {
+      "check_id": "DEP:MCAD-S2:PSB-S2",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "MCAD-S2",
+        "PSB-S2"
+      ]
+    },
+    {
+      "check_id": "JOURNAL:acceptance",
+      "status": "MATCH",
+      "detail": "Journal matches acceptance receipt T005. Review scope remains as recorded.",
+      "source_ids": [
+        "JOURNAL"
+      ]
+    },
+    {
+      "check_id": "PIER:report-case",
+      "status": "MATCH",
+      "detail": "Saved case equals the case embedded in the registered report.",
+      "source_ids": [
+        "PIER-CASE",
+        "PIER-REPORT"
+      ]
+    },
+    {
+      "check_id": "PIER:analysis-identity",
+      "status": "MATCH",
+      "detail": "Raw XML matches the case analysis fingerprint.",
+      "source_ids": [
+        "PIER-CASE",
+        "PIER-XML"
+      ]
+    },
+    {
+      "check_id": "EB:report-case",
+      "status": "MATCH",
+      "detail": "Saved case equals the case embedded in the registered report.",
+      "source_ids": [
+        "EB-CASE",
+        "EB-REPORT"
+      ]
+    },
+    {
+      "check_id": "EB:analysis-identity",
+      "status": "MISSING",
+      "detail": "Exact XML required by the case is absent: 739f44c1d542464cfd536493ce1ed6cb240f98a75ed3e1188c6f6812742d6fe2",
+      "source_ids": [
+        "EB-CASE",
+        "EB-XML"
+      ]
+    },
+    {
+      "check_id": "GEOMETRY:PIER:b",
+      "status": "MATCH",
+      "detail": "Notebook 48; saved case 48.0. Units: in.",
+      "source_ids": [
+        "GEOMETRY",
+        "PIER-CASE"
+      ]
+    },
+    {
+      "check_id": "GEOMETRY:PIER:h",
+      "status": "MATCH",
+      "detail": "Notebook 36; saved case 36.0. Units: in.",
+      "source_ids": [
+        "GEOMETRY",
+        "PIER-CASE"
+      ]
+    },
+    {
+      "check_id": "GEOMETRY:PIER:N_pile",
+      "status": "MATCH",
+      "detail": "Notebook 4; saved case 4. Units: count.",
+      "source_ids": [
+        "GEOMETRY",
+        "PIER-CASE"
+      ]
+    },
+    {
+      "check_id": "GEOMETRY:PIER:D_pile",
+      "status": "MATCH",
+      "detail": "Notebook 20; saved case 20.0. Units: in.",
+      "source_ids": [
+        "GEOMETRY",
+        "PIER-CASE"
+      ]
+    },
+    {
+      "check_id": "GEOMETRY:PIER:S_pile",
+      "status": "MATCH",
+      "detail": "Notebook 5; saved case 5.0. Units: ft.",
+      "source_ids": [
+        "GEOMETRY",
+        "PIER-CASE"
+      ]
+    },
+    {
+      "check_id": "GEOMETRY:PIER:Pile_embed",
+      "status": "MATCH",
+      "detail": "Notebook 12; saved case 12.0. Units: in.",
+      "source_ids": [
+        "GEOMETRY",
+        "PIER-CASE"
+      ]
+    },
+    {
+      "check_id": "GEOMETRY:PIER:length",
+      "status": "MATCH",
+      "detail": "Notebook 230 in; source audit 230 in. Comparison tolerance 0.01 in for printed coordinates.",
+      "source_ids": [
+        "GEOMETRY",
+        "PIER-CASE"
+      ]
+    },
+    {
+      "check_id": "GEOMETRY:EB:b",
+      "status": "MATCH",
+      "detail": "Notebook 42; saved case 42.0. Units: in.",
+      "source_ids": [
+        "GEOMETRY",
+        "EB-CASE"
+      ]
+    },
+    {
+      "check_id": "GEOMETRY:EB:h",
+      "status": "MATCH",
+      "detail": "Notebook 36; saved case 36.0. Units: in.",
+      "source_ids": [
+        "GEOMETRY",
+        "EB-CASE"
+      ]
+    },
+    {
+      "check_id": "GEOMETRY:EB:N_pile",
+      "status": "MATCH",
+      "detail": "Notebook 4; saved case 4. Units: count.",
+      "source_ids": [
+        "GEOMETRY",
+        "EB-CASE"
+      ]
+    },
+    {
+      "check_id": "GEOMETRY:EB:D_pile",
+      "status": "MATCH",
+      "detail": "Notebook 18; saved case 18.0. Units: in.",
+      "source_ids": [
+        "GEOMETRY",
+        "EB-CASE"
+      ]
+    },
+    {
+      "check_id": "GEOMETRY:EB:S_pile",
+      "status": "MATCH",
+      "detail": "Notebook 4.5; saved case 4.5. Units: ft.",
+      "source_ids": [
+        "GEOMETRY",
+        "EB-CASE"
+      ]
+    },
+    {
+      "check_id": "GEOMETRY:EB:Pile_embed",
+      "status": "MATCH",
+      "detail": "Notebook 12; saved case 12.0. Units: in.",
+      "source_ids": [
+        "GEOMETRY",
+        "EB-CASE"
+      ]
+    },
+    {
+      "check_id": "GEOMETRY:EB:length",
+      "status": "MATCH",
+      "detail": "Notebook 212 in; source audit 212 in. Comparison tolerance 0.01 in for printed coordinates.",
+      "source_ids": [
+        "GEOMETRY",
+        "EB-CASE"
+      ]
+    },
+    {
+      "check_id": "MCAD-S1:parse",
+      "status": "MATCH",
+      "detail": "Native worksheet XML is readable. No native recalculation or engineering acceptance is implied.",
+      "source_ids": [
+        "MCAD-S1"
+      ]
+    },
+    {
+      "check_id": "MCAD-S2:parse",
+      "status": "MATCH",
+      "detail": "Native worksheet XML is readable. No native recalculation or engineering acceptance is implied.",
+      "source_ids": [
+        "MCAD-S2"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "Item ID": "COH-001",
+      "Status": "Open",
+      "Area": "Pier",
+      "Item": "Right bearing-row offset",
+      "Finding": "Model right row is +10.14 in; journal is +10.50 in. Difference is 0.36 in. Left row agrees at -10.50 in.",
+      "Next action": "Choose the intended offset, then reconcile the model/journal and affected load transfers.",
+      "Your response": "",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "PIER-XML; JOURNAL; coherence/evidence/pier_review_2026-10-09.xlsx, item 02",
+      "Last reviewed": "2026-10-09",
+      "_row": 9
+    },
+    {
+      "Item ID": "COH-002",
+      "Status": "Open",
+      "Area": "Pier",
+      "Item": "U-bar / pile conflicts",
+      "Finding": "Report R2/R4/R6/R8 U-bars intersect pile-clearance envelopes. End-bent hook direction has not been applied to the pier.",
+      "Next action": "Provide or develop the pier hook detail and check clearance, development and anchorage.",
+      "Your response": "",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "PIER-REPORT; coherence/evidence/pier_review_2026-10-09.xlsx, item 03",
+      "Last reviewed": "2026-10-09",
+      "_row": 10
+    },
+    {
+      "Item ID": "COH-003",
+      "Status": "Open",
+      "Area": "Pier",
+      "Item": "Longitudinal tension reference",
+      "Finding": "Historical report reference: required 4.287 in2; credited 3.080 in2; shortfall 1.207 in2. This is a reference check, not an established actual-cage failure.",
+      "Next action": "Evaluate the actual cage/load path or document the disposition of the reference check.",
+      "Your response": "",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "PIER-REPORT; coherence/evidence/pier_review_2026-10-09.xlsx, item 04",
+      "Last reviewed": "2026-10-09",
+      "_row": 11
+    },
+    {
+      "Item ID": "COH-004",
+      "Status": "Open",
+      "Area": "Pier",
+      "Item": "Complete model load comparison",
+      "Finding": "Exact XML identity is established. Full wind, below-pad weights, transfer moments, combinations and convergence remain unverified against the current journal.",
+      "Next action": "Compare the adopted load inputs and document any corrections and required rerun.",
+      "Your response": "",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "PIER-XML; JOURNAL; coherence/evidence/pier_review_2026-10-09.xlsx, item 05",
+      "Last reviewed": "2026-10-09",
+      "_row": 12
+    },
+    {
+      "Item ID": "COH-005",
+      "Status": "Open",
+      "Area": "Pier",
+      "Item": "Wind and wall geometry",
+      "Finding": "Cap length is 230 in; retained wind face is 231 in. Wall, fin and crash-wall dimensions may represent different envelopes.",
+      "Next action": "Establish the wall/wind dimensions and update only the affected loads and quantities.",
+      "Your response": "",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "JOURNAL; coherence/evidence/pier_review_2026-10-09.xlsx, item 06",
+      "Last reviewed": "2026-10-09",
+      "_row": 13
+    },
+    {
+      "Item ID": "COH-006",
+      "Status": "Open",
+      "Area": "Journal",
+      "Item": "Historical quantity sketches",
+      "Finding": "The quantity sheet retains earlier three-beam / 19-ft-3-in sketches. Live cap quantity is 230 ft3.",
+      "Next action": "Update or explicitly label the historical sketches without changing current calculation records.",
+      "Your response": "",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "JOURNAL; coherence/evidence/pier_review_2026-10-09.xlsx, item 06",
+      "Last reviewed": "2026-10-09",
+      "_row": 14
+    },
+    {
+      "Item ID": "COH-007",
+      "Status": "Open",
+      "Area": "Pier",
+      "Item": "Remaining design checks",
+      "Finding": "Historical report has 48 pending/conditional checks. Service III is already N/A by recorded direction. Other detail, fatigue, load-path and omitted-action checks remain open.",
+      "Next action": "Separate the remaining checks into actionable items and document applicable criteria and completion evidence.",
+      "Your response": "",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "PIER-REPORT; coherence/evidence/pier_review_2026-10-09.xlsx, item 07",
+      "Last reviewed": "2026-10-09",
+      "_row": 15
+    },
+    {
+      "Item ID": "COH-008",
+      "Status": "Open",
+      "Area": "Pier",
+      "Item": "Spacing and fabrication takeoff",
+      "Finding": "Adjacent-run clearance is 2.00 in, equal to the entered minimum. The gross 1171.89-lb steel estimate omits laps, closures, undrawn anchorage and waste.",
+      "Next action": "Confirm tolerance/spacing allowance and complete the fabrication takeoff if required.",
+      "Your response": "",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "PIER-REPORT; coherence/evidence/pier_review_2026-10-09.xlsx, item 08",
+      "Last reviewed": "2026-10-09",
+      "_row": 16
+    },
+    {
+      "Item ID": "COH-009",
+      "Status": "Open",
+      "Area": "Journal",
+      "Item": "Three reference links",
+      "Finding": "Three inherited LoadCombinations links remain unresolved: CodePage42 twice and CodePage14 once. The prior 110 stored errors were removed with retired modules.",
+      "Next action": "Identify and repair the intended references through the existing journal workflow.",
+      "Your response": "",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "JOURNAL; coherence/evidence/pier_review_2026-10-09.xlsx, item 09; coherence/evidence/end_bent_response_review.md",
+      "Last reviewed": "2026-10-09",
+      "_row": 17
+    },
+    {
+      "Item ID": "COH-010",
+      "Status": "Deferred",
+      "Area": "End bents",
+      "Item": "Backwall and cheek-wall quantities",
+      "Finding": "Final wall geometry and quantities were deferred. Cap-only quantities exclude walls.",
+      "Next action": "Supply final wall details, then reconcile quantities and dead loads.",
+      "Your response": "Will address later — recorded user response, 8 October 2026.",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "JOURNAL; coherence/evidence/end_bent_response_review.md, item 02",
+      "Last reviewed": "2026-10-09",
+      "_row": 18
+    },
+    {
+      "Item ID": "COH-011",
+      "Status": "Open",
+      "Area": "End bents",
+      "Item": "Revised U-bar hooks",
+      "Finding": "Field adjustment of interfering hooks is the recorded direction. Revised coordinates, clearance and anchorage verification have not been supplied.",
+      "Next action": "Document the adjusted detail and verify clearance/development/anchorage.",
+      "Your response": "Field-bend interfering hooks for clearance — recorded user direction, 8 October 2026.",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "EB-REPORT; coherence/evidence/end_bent_response_review.md, item 06",
+      "Last reviewed": "2026-10-09",
+      "_row": 19
+    },
+    {
+      "Item ID": "COH-012",
+      "Status": "Open",
+      "Area": "End bents",
+      "Item": "Remaining design checks",
+      "Finding": "Service III is already N/A. Fatigue, anchorage/development, D-regions, force zones, exposure/code basis and omitted-action checks remain separate.",
+      "Next action": "Record a disposition and evidence for each applicable outstanding design check.",
+      "Your response": "",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "EB-REPORT; coherence/evidence/end_bent_response_review.md, item 07",
+      "Last reviewed": "2026-10-09",
+      "_row": 20
+    },
+    {
+      "Item ID": "COH-013",
+      "Status": "Awaiting source",
+      "Area": "End bents",
+      "Item": "Matching raw analysis export",
+      "Finding": "The report is adopted as the current source, but its exact analyzed XML is absent. The available same-named file has a different fingerprint.",
+      "Next action": "Add the exact matching XML and its native input/run record. Expected hash is in source_register.csv.",
+      "Your response": "",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "EB-REPORT; EB-XML; coherence/evidence/end_bent_provenance.json",
+      "Last reviewed": "2026-10-09",
+      "_row": 21
+    },
+    {
+      "Item ID": "COH-014",
+      "Status": "Open",
+      "Area": "End bents",
+      "Item": "Common controlling design basis",
+      "Finding": "The user adopted the controlling End Bent 1 configuration for both ends. Independent End Bent 2 action verification remains outside the recorded review.",
+      "Next action": "Document how End Bent 1 bounds the relevant End Bent 2 actions and conditions.",
+      "Your response": "Use the common controlling end-bent design — recorded user direction, 8 October 2026.",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "EB-REPORT; coherence/evidence/end_bent_response_review.md, item 08",
+      "Last reviewed": "2026-10-09",
+      "_row": 22
+    },
+    {
+      "Item ID": "COH-015",
+      "Status": "Awaiting source",
+      "Area": "Superstructure",
+      "Item": "Mathcad companion data",
+      "Finding": "The selected worksheets name PedestrianBridge2Beam_Span1.dat and PedestrianBridge2Beam_Span2.dat. Neither file was supplied.",
+      "Next action": "Add the matching .dat files and verify the worksheets load the intended project inputs.",
+      "Your response": "",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "MCAD-S1; MCAD-S2; MCAD-DAT1; MCAD-DAT2",
+      "Last reviewed": "2026-10-09",
+      "_row": 23
+    },
+    {
+      "Item ID": "COH-016",
+      "Status": "Awaiting source",
+      "Area": "Superstructure",
+      "Item": "PSBeam run packages",
+      "Finding": "No native PSBeam runs or current output reports have been selected for either span.",
+      "Next action": "Add each span input/run file and matching output report, with software version and run date.",
+      "Your response": "",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "PSB-S1; PSB-S2",
+      "Last reviewed": "2026-10-09",
+      "_row": 24
+    },
+    {
+      "Item ID": "COH-017",
+      "Status": "Open",
+      "Area": "Superstructure",
+      "Item": "Mathcad / project comparison",
+      "Finding": "The sheets are user-selected current. A full comparison of spans, bearing offsets, loads and reactions with the journal and geometry model has not been performed.",
+      "Next action": "Recalculate with the companion data and compare inputs/outputs. Review the repeated 107.35-ft PSBeam narrative in the Span 2 sheet.",
+      "Your response": "",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "MCAD-S1; MCAD-S2; GEOMETRY; JOURNAL",
+      "Last reviewed": "2026-10-09",
+      "_row": 25
+    },
+    {
+      "Item ID": "COH-018",
+      "Status": "Open",
+      "Area": "Geometry",
+      "Item": "Complete notebook comparison",
+      "Finding": "The notebook cites the 8 October journal for end-bent inputs. The journal now includes the 9 October pier update. Selected dimensions can be compared automatically; full elevations, offsets and dependencies need review.",
+      "Next action": "Reconcile the complete saved geometry inputs and derived schedules with the current journal, documenting agreed conventions.",
+      "Your response": "",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "GEOMETRY; JOURNAL; ROADWAY",
+      "Last reviewed": "2026-10-09",
+      "_row": 26
+    }
+  ]
+}

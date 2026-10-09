@@ -1,0 +1,3210 @@
+[
+  [
+    [
+      "Objective",
+      "Review cap sectional resistance, service behavior and reinforcement detailing."
+    ],
+    [
+      "Inputs",
+      "Current saved case, imported force provenance, adopted factors and entered cage."
+    ],
+    [
+      "Output",
+      "Equations, evaluated results, drawings and a complete check register."
+    ]
+  ],
+  [
+    [
+      "Summary item",
+      "Snapshot result"
+    ],
+    [
+      "Largest available D/C",
+      "1 — R1-2 → R2-1 clear spacing (PASS)"
+    ],
+    [
+      "Failed checks",
+      "0"
+    ],
+    [
+      "Pending / conditional checks",
+      "48"
+    ],
+    [
+      "Cage mode",
+      "Actual hoop/U-bar station schedule"
+    ],
+    [
+      "Force basis",
+      "Independent envelopes; not concurrent actions"
+    ],
+    [
+      "Analysis consistency",
+      "Recorded analysis geometry matches current inputs"
+    ]
+  ],
+  [
+    [
+      "Objective",
+      "Establish the cap section, pile geometry, materials and adopted factors."
+    ],
+    [
+      "Inputs",
+      "Geometry and materials in the current case"
+    ],
+    [
+      "Output",
+      "Dimensions and assumptions for sectional checks"
+    ]
+  ],
+  [
+    [
+      "Dimension",
+      "Feet",
+      "Inches"
+    ],
+    [
+      "Overall cap length",
+      "19.166667",
+      "230"
+    ],
+    [
+      "Cap width",
+      "4",
+      "48"
+    ],
+    [
+      "Cap depth",
+      "3",
+      "36"
+    ],
+    [
+      "Pile width / outside diameter",
+      "1.666667",
+      "20"
+    ],
+    [
+      "Left cap end → first pile center",
+      "2.083333",
+      "25"
+    ],
+    [
+      "Last pile center → right cap end",
+      "2.083333",
+      "25"
+    ],
+    [
+      "Left cap end → first pile face (nominal)",
+      "1.25",
+      "15"
+    ],
+    [
+      "Last pile face → right cap end (nominal)",
+      "1.25",
+      "15"
+    ],
+    [
+      "Pile center-to-center spacing",
+      "5",
+      "60"
+    ],
+    [
+      "Clear gap between pile faces",
+      "3.333333",
+      "40"
+    ],
+    [
+      "Top concrete cover",
+      "0.25",
+      "3"
+    ],
+    [
+      "Bottom concrete cover",
+      "0.25",
+      "3"
+    ],
+    [
+      "Side concrete cover",
+      "0.25",
+      "3"
+    ],
+    [
+      "Pile embedment",
+      "1",
+      "12"
+    ],
+    [
+      "Required pile-to-bar clear gap",
+      "0.083333",
+      "1"
+    ]
+  ],
+  [
+    [
+      "Pile",
+      "Center (ft)",
+      "Left face (ft)",
+      "Right face (ft)"
+    ],
+    [
+      "P1",
+      "2.083333",
+      "1.25",
+      "2.916667"
+    ],
+    [
+      "P2",
+      "7.083333",
+      "6.25",
+      "7.916667"
+    ],
+    [
+      "P3",
+      "12.083333",
+      "11.25",
+      "12.916667"
+    ],
+    [
+      "P4",
+      "17.083333",
+      "16.25",
+      "17.916667"
+    ]
+  ],
+  [
+    [
+      "Analyzed geometry",
+      "Current geometry",
+      "Analysis consistency"
+    ],
+    [
+      "{'N_pile': 4, 'S_pile': 5.0, 'D_pile': 20.0, 'b': 48.0, 'h': 36.0, 'E_clear': 9.0, 'E_detail': 3.0}",
+      "N_pile = 4, S_pile = 5, D_pile = 20, b = 48, h = 36, E_clear = 9, E_detail = 3",
+      "Current geometry matches the recorded analysis geometry"
+    ]
+  ],
+  [
+    [
+      "Symbol",
+      "Input / meaning",
+      "Value and units",
+      "Basis"
+    ],
+    [
+      "b",
+      "Cap cross-section width",
+      "48 in",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "h",
+      "Cap depth",
+      "36 in",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "C t",
+      "Clear top cover to the outside of the hoop.",
+      "3 in",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "C b",
+      "Clear bottom cover to the outside of the hoop.",
+      "3 in",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "C s",
+      "Clear side cover to the outside of the hoop.",
+      "3 in",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "N pile",
+      "Number of equally spaced piles",
+      "4",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "S pile",
+      "Pile center-to-center spacing",
+      "5 ft",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "D pile",
+      "Nominal pile width along the cap",
+      "20 in",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "E clear",
+      "Minimum actual pile-face edge clearance adopted from the FHWA discussion of LRFD 10.7.1.2.",
+      "9 in",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "Ready pile",
+      "Confirm actual pile-head embedment and required bar-to-pile clearance before searching.",
+      "true",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "Pile embed",
+      "Physical pile penetration above the cap underside. Starts at 12 in; confirm for the project, independently of the analysis connection elevation.",
+      "12 in",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "C pile",
+      "Pile surface to reinforcing bar surface. Starts at 2 in, adopted from FDOT SDG 2026 3.11.2.F.1.c (specified laterally loaded footings); verify project applicability. Horizontal pile placement tolerance is separate.",
+      "1 in",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "E detail",
+      "Additional end allowance for reinforcement, pile-head detailing or project-specific requirements.",
+      "3 in",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "f′ c",
+      "Project cap concrete strength; imported starting material value.",
+      "5.5 ksi",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "f y",
+      "Trial reinforcing yield strength.",
+      "60 ksi",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "E s",
+      "Source worksheet steel modulus.",
+      "29000 ksi",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "φ f",
+      "Flexure resistance factor inherited from source; tension-controlled assumption.",
+      "0.9",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "φ v",
+      "Shear/torsion resistance factor inherited from source.",
+      "0.9",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "γ e",
+      "Crack-control exposure factor; FDOT exposure classification requires confirmation.",
+      "1",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "γ fat",
+      "Source worksheet fatigue load factor; review with the applicable fatigue combination.",
+      "1.75",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "β v",
+      "Source simplified sectional shear parameter.",
+      "2",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "θ",
+      "Source simplified concrete compression-field angle.",
+      "45 deg",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "α v",
+      "Vertical stirrup angle.",
+      "90 deg",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "f pc",
+      "No favorable axial-compression/prestress credit in the torsion threshold.",
+      "0 ksi",
+      "Current case input / adopted assumption"
+    ]
+  ],
+  [
+    [
+      "Check / region",
+      "Status",
+      "D/C",
+      "Basis / application"
+    ],
+    [
+      "Pile layout validity",
+      "✓ PASS",
+      "N/A",
+      "Minimum spacing, edge clearance and integer pile count; see geometry checks. Check criterion { ✓ PASS if ( N pile ≥ 2 ) ∧ ( N pile = Round ( N pile , 0 ) ) ∧ ( S pile ≥ S pile,min ) ∧ ( ( E end − Tol pile ) ≥ E clear ) ⊗ FAIL otherwise"
+    ],
+    [
+      "Pile layout source check",
+      "SOURCE PILE LAYOUT",
+      "N/A",
+      "Match to the imported force model; REIMPORT means new analysis forces are needed."
+    ],
+    [
+      "Section source check",
+      "SOURCE SECTION",
+      "N/A",
+      "Match to the imported force model; RECHECK includes self-weight and stiffness."
+    ]
+  ],
+  [
+    [
+      "Objective",
+      "Identify strength and service demands and their source."
+    ],
+    [
+      "Inputs",
+      "Imported envelopes or edited load inputs"
+    ],
+    [
+      "Output",
+      "Adopted actions, governing combinations and source limitations"
+    ]
+  ],
+  [
+    [
+      "Load basis",
+      "M− magnitude (kip-ft)",
+      "M+ pile (kip-ft)",
+      "M+ bearing/span (kip-ft)",
+      "|V| global (kip)",
+      "|T| (kip-ft)"
+    ],
+    [
+      "Strength I",
+      "22.93 · C1",
+      "163.18 · C1",
+      "369.38 · C1",
+      "218.27 · C1",
+      "4.12 · C1"
+    ],
+    [
+      "Strength III",
+      "33.65 · C2",
+      "113.06 · C3",
+      "325.42 · C2",
+      "167.36 · C2",
+      "24.97 · C2"
+    ],
+    [
+      "Imported combined envelope",
+      "33.65",
+      "163.18",
+      "369.38",
+      "218.27",
+      "24.97"
+    ],
+    [
+      "Current calculator inputs",
+      "33.65",
+      "163.18",
+      "369.38",
+      "218.27",
+      "24.97"
+    ]
+  ],
+  [
+    [
+      "Current input",
+      "Value",
+      "Governing source / edit status"
+    ],
+    [
+      "M− magnitude (kip-ft)",
+      "33.65",
+      "Strength III · combo 2 · member 27, J, x = 10.000 ft"
+    ],
+    [
+      "M+ pile (kip-ft)",
+      "163.18",
+      "Strength I · combo 1 · member 29, interior, x = 10.833 ft"
+    ],
+    [
+      "M+ bearing/span (kip-ft)",
+      "369.38",
+      "Strength I · combo 1 · member 31, J, x = 11.791 ft"
+    ],
+    [
+      "|V| global (kip)",
+      "218.27",
+      "Strength I · combo 1 · member 28, I, x = 10.000 ft"
+    ],
+    [
+      "|T| (kip-ft)",
+      "24.97",
+      "Strength III · combo 2 · member 13, I, x = 3.208 ft"
+    ],
+    [
+      "|V| low interval (kip)",
+      "218.27",
+      "Strength I · combo 1 · global shear adopted; low-shear zone not established · member 28, I, x = 10.000 ft"
+    ]
+  ],
+  [
+    [
+      "Symbol",
+      "Input / meaning",
+      "Value and units",
+      "Basis"
+    ],
+    [
+      "M u,N",
+      "Factored strength moment magnitude",
+      "33.65 kip · ft",
+      "Strength III · combo 2 · member 27, J, x = 10.000 ft"
+    ],
+    [
+      "M I,N",
+      "Service I moment magnitude",
+      "20.83 kip · ft",
+      "Service I · combo 4 · member 38, J, x = 15.000 ft"
+    ],
+    [
+      "M u,P",
+      "Factored strength moment magnitude",
+      "163.18 kip · ft",
+      "Strength I · combo 1 · member 29, interior, x = 10.833 ft"
+    ],
+    [
+      "M I,P",
+      "Service I moment magnitude",
+      "125.69 kip · ft",
+      "Service I · combo 4 · member 29, interior, x = 10.833 ft"
+    ],
+    [
+      "M u,B",
+      "Factored strength moment magnitude",
+      "369.38 kip · ft",
+      "Strength I · combo 1 · member 31, J, x = 11.791 ft"
+    ],
+    [
+      "M I,B",
+      "Service I moment magnitude",
+      "315.31 kip · ft",
+      "Service I · combo 4 · member 32, I, x = 11.791 ft"
+    ],
+    [
+      "V u,G",
+      "Factored shear magnitude",
+      "218.27 kip",
+      "Strength I · combo 1 · member 28, I, x = 10.000 ft"
+    ],
+    [
+      "V u,L",
+      "Factored shear magnitude",
+      "218.27 kip",
+      "Strength I · combo 1 · global shear adopted; low-shear zone not established · member 28, I, x = 10.000 ft"
+    ],
+    [
+      "Tu",
+      "Factored torque magnitude",
+      "24.97 kip · ft",
+      "Strength III · combo 2 · member 13, I, x = 3.208 ft"
+    ],
+    [
+      "Ready III",
+      "Set true only after all three Service III moments have been entered.",
+      "PENDING",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "Ready fatigue",
+      "Set true only after applicability, load factor and six fatigue inputs have been established.",
+      "false",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "M III,N",
+      "Service III moment magnitude",
+      "PENDING",
+      "Pending; stored placeholder is not a verified design action"
+    ],
+    [
+      "MDL N",
+      "Signed permanent moment; tension positive",
+      "PENDING",
+      "Pending; stored placeholder is not a verified design action"
+    ],
+    [
+      "DMLL N",
+      "Fatigue live-load moment range",
+      "PENDING",
+      "Pending; stored placeholder is not a verified design action"
+    ],
+    [
+      "M III,P",
+      "Service III moment magnitude",
+      "PENDING",
+      "Pending; stored placeholder is not a verified design action"
+    ],
+    [
+      "MDL P",
+      "Signed permanent moment; tension positive",
+      "PENDING",
+      "Pending; stored placeholder is not a verified design action"
+    ],
+    [
+      "DMLL P",
+      "Fatigue live-load moment range",
+      "PENDING",
+      "Pending; stored placeholder is not a verified design action"
+    ],
+    [
+      "M III,B",
+      "Service III moment magnitude",
+      "PENDING",
+      "Pending; stored placeholder is not a verified design action"
+    ],
+    [
+      "MDL B",
+      "Signed permanent moment; tension positive",
+      "PENDING",
+      "Pending; stored placeholder is not a verified design action"
+    ],
+    [
+      "DMLL B",
+      "Fatigue live-load moment range",
+      "PENDING",
+      "Pending; stored placeholder is not a verified design action"
+    ]
+  ],
+  [
+    [
+      "Check / region",
+      "Status",
+      "D/C",
+      "Basis / application"
+    ],
+    [
+      "Load input validity",
+      "✓ PASS",
+      "N/A",
+      "Required moment, shear and torque magnitudes must be nonnegative. Check criterion { ✓ PASS if ( M u,N ≥ 0 · kip · ft ) ∧ ( M u,P ≥ 0 · kip · ft ) ∧ ( M u,B ≥ 0 · kip · ft ) ∧ ( M I,N ≥ 0 · kip · ft ) ∧ ( M I,P ≥ 0 · kip · ft ) ∧ ( M I,B ≥ 0 · kip · ft ) ∧ ( V u,G ≥ 0 · kip ) ∧ ( V u,L ≥ 0 · kip ) ∧ ( Tu ≥ 0 · kip · ft ) ⊗ FAIL otherwise"
+    ]
+  ],
+  [
+    [
+      "Objective",
+      "Locate the continuous and additional bars and calculate their area-weighted centroids."
+    ],
+    [
+      "Inputs",
+      "Bar sizes, counts, cover and transverse detail"
+    ],
+    [
+      "Output",
+      "Steel areas, row coordinates, effective depths and spacings"
+    ]
+  ],
+  [
+    [
+      "Region",
+      "Bar",
+      "Layer / kind",
+      "Size",
+      "x (in)",
+      "y (in)",
+      "Diameter (in)",
+      "Inventory"
+    ],
+    [
+      "P",
+      "1",
+      "Top row 1",
+      "#6",
+      "6.01232",
+      "31.8694",
+      "0.75",
+      "Continuous"
+    ],
+    [
+      "P",
+      "2",
+      "Top row 1",
+      "#6",
+      "18.0041",
+      "31.8694",
+      "0.75",
+      "Continuous"
+    ],
+    [
+      "P",
+      "3",
+      "Top row 1",
+      "#6",
+      "29.9959",
+      "31.8694",
+      "0.75",
+      "Continuous"
+    ],
+    [
+      "P",
+      "4",
+      "Top row 1",
+      "#6",
+      "41.9877",
+      "31.8694",
+      "0.75",
+      "Continuous"
+    ],
+    [
+      "P",
+      "5",
+      "Bottom row 1",
+      "#9",
+      "6.01541",
+      "4.31962",
+      "1.128",
+      "Continuous"
+    ],
+    [
+      "P",
+      "6",
+      "Bottom row 1",
+      "#9",
+      "9.436",
+      "4.31962",
+      "1.128",
+      "Continuous"
+    ],
+    [
+      "P",
+      "7",
+      "Bottom row 1",
+      "#9",
+      "38.564",
+      "4.31962",
+      "1.128",
+      "Continuous"
+    ],
+    [
+      "P",
+      "8",
+      "Bottom row 1",
+      "#9",
+      "41.9846",
+      "4.31962",
+      "1.128",
+      "Continuous"
+    ],
+    [
+      "P",
+      "9",
+      "Skin",
+      "#6",
+      "4.13062",
+      "11.2071",
+      "0.75",
+      "Continuous"
+    ],
+    [
+      "P",
+      "10",
+      "Skin",
+      "#6",
+      "4.13062",
+      "18.0945",
+      "0.75",
+      "Continuous"
+    ],
+    [
+      "P",
+      "11",
+      "Skin",
+      "#6",
+      "4.13062",
+      "24.9819",
+      "0.75",
+      "Continuous"
+    ],
+    [
+      "P",
+      "12",
+      "Skin",
+      "#6",
+      "43.8694",
+      "11.2071",
+      "0.75",
+      "Continuous"
+    ],
+    [
+      "P",
+      "13",
+      "Skin",
+      "#6",
+      "43.8694",
+      "18.0945",
+      "0.75",
+      "Continuous"
+    ],
+    [
+      "P",
+      "14",
+      "Skin",
+      "#6",
+      "43.8694",
+      "24.9819",
+      "0.75",
+      "Continuous"
+    ],
+    [
+      "B",
+      "1",
+      "Top row 1",
+      "#6",
+      "6.01232",
+      "31.8694",
+      "0.75",
+      "Continuous"
+    ],
+    [
+      "B",
+      "2",
+      "Top row 1",
+      "#6",
+      "18.0041",
+      "31.8694",
+      "0.75",
+      "Continuous"
+    ],
+    [
+      "B",
+      "3",
+      "Top row 1",
+      "#6",
+      "29.9959",
+      "31.8694",
+      "0.75",
+      "Continuous"
+    ],
+    [
+      "B",
+      "4",
+      "Top row 1",
+      "#6",
+      "41.9877",
+      "31.8694",
+      "0.75",
+      "Continuous"
+    ],
+    [
+      "B",
+      "5",
+      "Bottom row 1",
+      "#9",
+      "6.01541",
+      "4.31962",
+      "1.128",
+      "Continuous"
+    ],
+    [
+      "B",
+      "6",
+      "Bottom row 1",
+      "#9",
+      "9.436",
+      "4.31962",
+      "1.128",
+      "Continuous"
+    ],
+    [
+      "B",
+      "7",
+      "Bottom row 1",
+      "#9",
+      "38.564",
+      "4.31962",
+      "1.128",
+      "Continuous"
+    ],
+    [
+      "B",
+      "8",
+      "Bottom row 1",
+      "#9",
+      "41.9846",
+      "4.31962",
+      "1.128",
+      "Continuous"
+    ],
+    [
+      "B",
+      "9",
+      "Added span row 1",
+      "#6",
+      "15",
+      "4.13062",
+      "0.75",
+      "Additional"
+    ],
+    [
+      "B",
+      "10",
+      "Added span row 1",
+      "#6",
+      "21",
+      "4.13062",
+      "0.75",
+      "Additional"
+    ],
+    [
+      "B",
+      "11",
+      "Added span row 1",
+      "#6",
+      "27",
+      "4.13062",
+      "0.75",
+      "Additional"
+    ],
+    [
+      "B",
+      "12",
+      "Added span row 1",
+      "#6",
+      "33",
+      "4.13062",
+      "0.75",
+      "Additional"
+    ],
+    [
+      "B",
+      "13",
+      "Skin",
+      "#6",
+      "4.13062",
+      "11.2071",
+      "0.75",
+      "Continuous"
+    ],
+    [
+      "B",
+      "14",
+      "Skin",
+      "#6",
+      "4.13062",
+      "18.0945",
+      "0.75",
+      "Continuous"
+    ],
+    [
+      "B",
+      "15",
+      "Skin",
+      "#6",
+      "4.13062",
+      "24.9819",
+      "0.75",
+      "Continuous"
+    ],
+    [
+      "B",
+      "16",
+      "Skin",
+      "#6",
+      "43.8694",
+      "11.2071",
+      "0.75",
+      "Continuous"
+    ],
+    [
+      "B",
+      "17",
+      "Skin",
+      "#6",
+      "43.8694",
+      "18.0945",
+      "0.75",
+      "Continuous"
+    ],
+    [
+      "B",
+      "18",
+      "Skin",
+      "#6",
+      "43.8694",
+      "24.9819",
+      "0.75",
+      "Continuous"
+    ]
+  ],
+  [
+    [
+      "US bar number",
+      "Diameter (in)",
+      "Area (in²)"
+    ],
+    [
+      "3",
+      "0.375",
+      "0.11"
+    ],
+    [
+      "4",
+      "0.5",
+      "0.2"
+    ],
+    [
+      "5",
+      "0.625",
+      "0.31"
+    ],
+    [
+      "6",
+      "0.75",
+      "0.44"
+    ],
+    [
+      "7",
+      "0.875",
+      "0.6"
+    ],
+    [
+      "8",
+      "1",
+      "0.79"
+    ],
+    [
+      "9",
+      "1.128",
+      "1"
+    ],
+    [
+      "10",
+      "1.27",
+      "1.27"
+    ],
+    [
+      "11",
+      "1.41",
+      "1.56"
+    ]
+  ],
+  [
+    [
+      "Symbol",
+      "Input / meaning",
+      "Value and units",
+      "Basis"
+    ],
+    [
+      "Bar N1",
+      "Top row 1 bar size.",
+      "6",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "Bar N2",
+      "Top row 2 bar size; valid even when count is zero.",
+      "6",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "Bar N3",
+      "Top row 3 bar size.",
+      "6",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "n N1",
+      "Top row 1 bar count.",
+      "4",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "n N2",
+      "Top row 2 bar count.",
+      "0",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "n N3",
+      "Top row 3 bar count.",
+      "0",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "Bar P",
+      "Continuous bottom bars; same positions at piles and between piles.",
+      "9",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "Bar B",
+      "Size of the additional span bars; continuous bars retain Bar_P.",
+      "6",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "n P1",
+      "Pile-region bottom row 1 count.",
+      "4",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "n P2",
+      "Pile-region bottom row 2 count.",
+      "0",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "n B1",
+      "ADDITIONAL span bars in this layer, beyond continuous Bar_P bars. Total span count = n_P + n_B. Zero adds no bars.",
+      "4",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "n B2",
+      "ADDITIONAL span bars in this layer, beyond continuous Bar_P bars. Total span count = n_P + n_B. Zero adds no bars.",
+      "0",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "Bar v",
+      "Closed hoop bar size.",
+      "6",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "n loop",
+      "Number of effective closed shear loops; each supplies two vertical legs.",
+      "1",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "Bar skin",
+      "Longitudinal skin bar size.",
+      "6",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "n skin",
+      "Skin bar count on each side, excluding top/bottom main bars.",
+      "3",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "s row",
+      "Center-to-center vertical separation between main rows, measured from row 1.",
+      "4 in",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "s G",
+      "Selected hoop spacing in the global-demand zone.",
+      "9 in",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "s L",
+      "Selected hoop spacing only in the identified low-shear interval.",
+      "9 in",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "Manual spacing",
+      "False uses idealized outer-row/skin spacing; true uses the four detailed spacing inputs below.",
+      "false",
+      "Current case input / adopted assumption"
+    ],
+    [
+      "SP detail,N",
+      "Actual detailed maximum spacing for N; active only when Manual_spacing is true.",
+      "5.67857 in",
+      "Current case input / adopted assumption; dormant spacing override"
+    ],
+    [
+      "SP detail,P",
+      "Actual detailed maximum spacing for P; active only when Manual_spacing is true.",
+      "5.67857 in",
+      "Current case input / adopted assumption; dormant spacing override"
+    ],
+    [
+      "SP detail,B",
+      "Actual detailed maximum spacing for B; active only when Manual_spacing is true.",
+      "5.67857 in",
+      "Current case input / adopted assumption; dormant spacing override"
+    ],
+    [
+      "SP detail,skin",
+      "Actual detailed maximum spacing for skin; active only when Manual_spacing is true.",
+      "5.67857 in",
+      "Current case input / adopted assumption; dormant spacing override"
+    ],
+    [
+      "S leg,detail",
+      "Actual largest transverse spacing of effective hoop legs; used for multiple-loop details.",
+      "41.375 in",
+      "Current case input / adopted assumption"
+    ]
+  ],
+  [
+    [
+      "Check / region",
+      "Status",
+      "D/C",
+      "Basis / application"
+    ],
+    [
+      "Bar size validity",
+      "✓ PASS",
+      "N/A",
+      "Supported US bar numbers. Check criterion { ✓ PASS if ( ValidBar ( Bar N1 ) ) ∧ ( ValidBar ( Bar N2 ) ) ∧ ( ValidBar ( Bar N3 ) ) ∧ ( ValidBar ( Bar P ) ) ∧ ( ValidBar ( Bar B ) ) ∧ ( ValidBar ( Bar U ) ) ∧ ( ValidBar ( Bar v ) ) ∧ ( ValidBar ( Bar skin ) ) ⊗ FAIL otherwise"
+    ],
+    [
+      "Bar / loop count validity",
+      "✓ PASS",
+      "N/A",
+      "Nonnegative integer counts and required minimum counts. Check criterion { ✓ PASS if ( ValidCount ( n N1 ) ) ∧ ( ValidCount ( n N2 ) ) ∧ ( ValidCount ( n N3 ) ) ∧ ( ValidCount ( n P1 ) ) ∧ ( ValidCount ( n P2 ) ) ∧ ( ValidCount ( n PU ) ) ∧ ( ValidCount ( n B1 ) ) ∧ ( ValidCount ( n B2 ) ) ∧ ( ValidCount ( n BU ) ) ∧ ( ValidCount ( n loop ) ) ∧ ( ValidCount ( n skin ) ) ∧ ( n N1 ≥ 2 ) ∧ ( n P1 ≥ 2 ) ∧ ( n loop ≥ 1 ) ⊗ FAIL otherwise"
+    ],
+    [
+      "Section input validity",
+      "✓ PASS",
+      "N/A",
+      "Geometry, materials, factors, covers and spacings must be valid. Check criterion { ✓ PASS if ( b > 0 · in ) ∧ ( h > 0 · in ) ∧ ( f′ c > 0 · ksi ) ∧ ( f y > 0 · ksi ) ∧ ( φ f > 0 ) ∧ ( φ f ≤ 1 ) ∧ ( φ v > 0 ) ∧ ( φ v ≤ 1 ) ∧ ( C t > 0 · in ) ∧ ( C b > 0 · in ) ∧ ( C s > 0 · in ) ∧ ( s row > 0 · in ) ∧ ( s G > 0 · in ) ∧ ( s L > 0 · in ) ∧ ( min ( d N , d P , d B ) > h 2 ) ∧ ( min ( SP N , SP P , SP B , SP skin , S leg ) > 0 · in ) ⊗ FAIL otherwise"
+    ]
+  ],
+  [
+    [
+      "Objective",
+      "Compare factored moments with resistance and minimum reinforcement targets."
+    ],
+    [
+      "Inputs",
+      "Actions from step 2 and effective sections from step 3"
+    ],
+    [
+      "Output",
+      "Resistance, strain applicability and demand/capacity ratios"
+    ]
+  ],
+  [
+    [
+      "Check / region",
+      "Status",
+      "D/C",
+      "Basis / application"
+    ],
+    [
+      "Flexural strength — N",
+      "✓ PASS",
+      "0.134309",
+      "Factored moment / factored flexural resistance. Check criterion { ✓ PASS if ( M r,N > 0 · kip · ft ) ∧ ( DC flex,N ≤ 1 ) ∧ ( c N < d N ) ⊗ FAIL otherwise"
+    ],
+    [
+      "Minimum flexural steel — N",
+      "✓ PASS",
+      "0.178631",
+      "Controls: 1.33 × factored moment. Smaller component sets this ratio. Cracking-moment criterion: 521.3 / 250.5 kip-ft = 2.0808 1.33 × factored moment: 44.75 / 250.5 kip-ft = 0.1786 Minimum required moment resistance / provided resistance. Check criterion { ✓ PASS if ( M r,N > 0 · kip · ft ) ∧ ( DC min,N ≤ 1 ) ⊗ FAIL otherwise"
+    ],
+    [
+      "Tension strain screen — N",
+      "✓ PASS",
+      "0.032372",
+      "Required minimum strain (0.005) / calculated tension strain. Check criterion { ✓ PASS if ε t,N ≥ 0.005 ⊗ FAIL otherwise"
+    ],
+    [
+      "Flexural strength — P",
+      "✓ PASS",
+      "0.29107",
+      "Factored moment / factored flexural resistance. Check criterion { ✓ PASS if ( M r,P > 0 · kip · ft ) ∧ ( DC flex,P ≤ 1 ) ∧ ( c P < d P ) ⊗ FAIL otherwise"
+    ],
+    [
+      "Minimum flexural steel — P",
+      "✓ PASS",
+      "0.387123",
+      "Controls: 1.33 × factored moment. Smaller component sets this ratio. Cracking-moment criterion: 521.3 / 560.6 kip-ft = 0.9299 1.33 × factored moment: 217 / 560.6 kip-ft = 0.3871 Minimum required moment resistance / provided resistance. Check criterion { ✓ PASS if ( M r,P > 0 · kip · ft ) ∧ ( DC min,P ≤ 1 ) ⊗ FAIL otherwise"
+    ],
+    [
+      "Tension strain screen — P",
+      "✓ PASS",
+      "0.075908",
+      "Required minimum strain (0.005) / calculated tension strain. Check criterion { ✓ PASS if ε t,P ≥ 0.005 ⊗ FAIL otherwise"
+    ],
+    [
+      "Flexural strength — B",
+      "✓ PASS",
+      "0.460176",
+      "Factored moment / factored flexural resistance. Check criterion { ✓ PASS if ( M r,B > 0 · kip · ft ) ∧ ( DC flex,B ≤ 1 ) ∧ ( c B < d B ) ⊗ FAIL otherwise"
+    ],
+    [
+      "Minimum flexural steel — B",
+      "✓ PASS",
+      "0.612034",
+      "Controls: 1.33 × factored moment. Smaller component sets this ratio. Cracking-moment criterion: 521.3 / 802.7 kip-ft = 0.6495 1.33 × factored moment: 491.3 / 802.7 kip-ft = 0.6120 Minimum required moment resistance / provided resistance. Check criterion { ✓ PASS if ( M r,B > 0 · kip · ft ) ∧ ( DC min,B ≤ 1 ) ⊗ FAIL otherwise"
+    ],
+    [
+      "Tension strain screen — B",
+      "✓ PASS",
+      "0.111326",
+      "Required minimum strain (0.005) / calculated tension strain. Check criterion { ✓ PASS if ε t,B ≥ 0.005 ⊗ FAIL otherwise"
+    ]
+  ],
+  [
+    [
+      "Objective",
+      "Calculate cracked-section steel stresses and permissible bar spacing."
+    ],
+    [
+      "Inputs",
+      "Service moments, section properties and exposure factor"
+    ],
+    [
+      "Output",
+      "Steel stresses and spacing checks; missing Service III remains pending"
+    ]
+  ],
+  [
+    [
+      "Check / region",
+      "Status",
+      "D/C",
+      "Basis / application"
+    ],
+    [
+      "Service I — N",
+      "✓ PASS",
+      "0.100624",
+      "Controls: Bar spacing. Largest component sets this ratio. Steel stress: 4.635 / 48 ksi = 0.0966 Bar spacing: 11.99 / 119.2 in = 0.1006 Spacing uses the maximum drawn row pitch. The allowable crack-control spacing also depends on calculated steel stress. Larger of steel stress / limit and current sectional bar-spacing value / allowable spacing. Check criterion { ✓ PASS if ( f y < 75 · ksi ) ∧ ( f s,I,N ≤ f s,I,limit ) ∧ ( SI N > 0 · in ) ∧ ( SP N ≤ SI N ) ⊗ FAIL otherwise"
+    ],
+    [
+      "Service I — P",
+      "✓ PASS",
+      "0.770409",
+      "Controls: Bar spacing. Largest component sets this ratio. Steel stress: 12.61 / 48 ksi = 0.2628 Bar spacing: 29.13 / 37.81 in = 0.7704 Spacing uses the maximum drawn row pitch. The allowable crack-control spacing also depends on calculated steel stress. Larger of steel stress / limit and current sectional bar-spacing value / allowable spacing. Check criterion { ✓ PASS if ( f y < 75 · ksi ) ∧ ( f s,I,P ≤ f s,I,limit ) ∧ ( SI P > 0 · in ) ∧ ( SP P ≤ SI P ) ⊗ FAIL otherwise"
+    ],
+    [
+      "Service I — B",
+      "✓ PASS",
+      "0.461857",
+      "Controls: Steel stress. Largest component sets this ratio. Steel stress: 22.17 / 48 ksi = 0.4619 Bar spacing: 6 / 17.97 in = 0.3339 Spacing uses the maximum drawn row pitch. The allowable crack-control spacing also depends on calculated steel stress. Larger of steel stress / limit and current sectional bar-spacing value / allowable spacing. Check criterion { ✓ PASS if ( f y < 75 · ksi ) ∧ ( f s,I,B ≤ f s,I,limit ) ∧ ( SI B > 0 · in ) ∧ ( SP B ≤ SI B ) ⊗ FAIL otherwise"
+    ],
+    [
+      "Service III — all regions",
+      "PENDING — three Service III moments",
+      "PENDING",
+      "Largest outer-bar stress / 24 ksi or actual / allowable spacing across N, P and B. Check criterion { { ✓ PASS if ( Chk III,N = ✓ PASS ) ∧ ( Chk III,P = ✓ PASS ) ∧ ( Chk III,B = ✓ PASS ) ⊗ FAIL otherwise if Ready III PENDING — three Service III moments otherwise"
+    ]
+  ],
+  [
+    [
+      "Objective",
+      "Compare the factored live-load stress range with the straight-bar threshold."
+    ],
+    [
+      "Inputs",
+      "Permanent moment, fatigue range and adopted factor"
+    ],
+    [
+      "Output",
+      "Fatigue ratios only when applicability and loads are confirmed"
+    ]
+  ],
+  [
+    [
+      "Check / region",
+      "Status",
+      "D/C",
+      "Basis / application"
+    ],
+    [
+      "Fatigue — all regions",
+      "PENDING — applicability and fatigue loads",
+      "PENDING",
+      "Largest factored stress range / fatigue threshold across N, P and B. Check criterion { { ✓ PASS if ( Chk fat,N = ✓ PASS ) ∧ ( Chk fat,P = ✓ PASS ) ∧ ( Chk fat,B = ✓ PASS ) ⊗ FAIL otherwise if Ready fatigue PENDING — applicability and fatigue loads otherwise"
+    ]
+  ],
+  [
+    [
+      "Objective",
+      "Determine concrete and transverse-steel resistance and spacing limits."
+    ],
+    [
+      "Inputs",
+      "Shear envelope, effective depth and entered hoop/U-bar schedule"
+    ],
+    [
+      "Output",
+      "Sectional shear checks and conditional actual-station checks"
+    ]
+  ],
+  [
+    [
+      "Run",
+      "Shape",
+      "Count / size / pitch",
+      "First → last (ft)",
+      "End limit (ft)",
+      "Shear basis",
+      "End geometry",
+      "Review"
+    ],
+    [
+      "R1",
+      "Closed hoop",
+      "2 × #6 @ 9 in · last gap 6.25 in · end fit ≥ 2 in clear",
+      "0.281 → 0.802",
+      "0.802",
+      "Overall",
+      "Closed outline; closure detail to be verified",
+      "Development pending"
+    ],
+    [
+      "R2",
+      "U-bar · open bottom",
+      "4 × #6 @ 9 in · last gap 7.25 in · end fit ≥ 2 in clear",
+      "1.031 → 3.135",
+      "3.135",
+      "Overall",
+      "90° ends; 9 in straight tail; inside bend 4.5 in",
+      "CLASH / FIT Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends."
+    ],
+    [
+      "R3",
+      "Closed hoop",
+      "5 × #6 @ 9 in · last gap 2.75 in · end fit ≥ 2 in clear",
+      "3.365 → 5.802",
+      "5.802",
+      "Overall",
+      "Closed outline; closure detail to be verified",
+      "Development pending"
+    ],
+    [
+      "R4",
+      "U-bar · open bottom",
+      "4 × #6 @ 9 in · last gap 7.25 in · end fit ≥ 2 in clear",
+      "6.031 → 8.135",
+      "8.135",
+      "Overall",
+      "90° ends; 9 in straight tail; inside bend 4.5 in",
+      "CLASH / FIT Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends."
+    ],
+    [
+      "R5",
+      "Closed hoop",
+      "5 × #6 @ 9 in · last gap 2.75 in · end fit ≥ 2 in clear",
+      "8.365 → 10.802",
+      "10.802",
+      "Overall",
+      "Closed outline; closure detail to be verified",
+      "Development pending"
+    ],
+    [
+      "R6",
+      "U-bar · open bottom",
+      "4 × #6 @ 9 in · last gap 7.25 in · end fit ≥ 2 in clear",
+      "11.031 → 13.135",
+      "13.135",
+      "Overall",
+      "90° ends; 9 in straight tail; inside bend 4.5 in",
+      "CLASH / FIT Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends."
+    ],
+    [
+      "R7",
+      "Closed hoop",
+      "5 × #6 @ 9 in · last gap 2.75 in · end fit ≥ 2 in clear",
+      "13.365 → 15.802",
+      "15.802",
+      "Overall",
+      "Closed outline; closure detail to be verified",
+      "Development pending"
+    ],
+    [
+      "R8",
+      "U-bar · open bottom",
+      "4 × #6 @ 9 in · last gap 7.25 in · end fit ≥ 2 in clear",
+      "16.031 → 18.135",
+      "18.135",
+      "Overall",
+      "90° ends; 9 in straight tail; inside bend 4.5 in",
+      "CLASH / FIT Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends."
+    ],
+    [
+      "R9",
+      "Closed hoop",
+      "2 × #6 @ 9 in · last gap 6.25 in · end fit ≥ 2 in clear",
+      "18.365 → 18.885",
+      "18.885",
+      "Overall",
+      "Closed outline; closure detail to be verified",
+      "Development pending"
+    ]
+  ],
+  [
+    [
+      "Check / region",
+      "Status",
+      "D/C",
+      "Basis / application"
+    ],
+    [
+      "R1-1 → R1-2 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.503223",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 433.7 kip = 0.5032 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 6.250 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 433.744 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R1-2 → R2-1 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R2-1 → R2-2 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R2-2 → R2-3 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R2-3 → R2-4 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.543951",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 401.3 kip = 0.5440 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 7.250 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 401.268 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R2-4 → R3-1 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R3-1 → R3-2 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R3-2 → R3-3 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R3-3 → R3-4 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.587667",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 371.4 kip = 0.5877 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 8.500 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 371.418 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R3-4 → R3-5 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R3-5 → R4-1 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R4-1 → R4-2 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R4-2 → R4-3 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R4-3 → R4-4 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.543951",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 401.3 kip = 0.5440 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 7.250 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 401.268 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R4-4 → R5-1 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R5-1 → R5-2 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R5-2 → R5-3 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R5-3 → R5-4 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.587667",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 371.4 kip = 0.5877 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 8.500 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 371.418 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R5-4 → R5-5 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R5-5 → R6-1 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R6-1 → R6-2 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R6-2 → R6-3 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R6-3 → R6-4 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.543951",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 401.3 kip = 0.5440 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 7.250 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 401.268 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R6-4 → R7-1 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R7-1 → R7-2 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R7-2 → R7-3 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R7-3 → R7-4 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.587667",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 371.4 kip = 0.5877 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 8.500 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 371.418 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R7-4 → R7-5 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R7-5 → R8-1 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R8-1 → R8-2 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R8-2 → R8-3 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R8-3 → R8-4 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.543951",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 401.3 kip = 0.5440 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 7.250 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 401.268 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R8-4 → R9-1 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R9-1 → R9-2 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.503223",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 433.7 kip = 0.5032 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 6.250 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 433.744 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ]
+  ],
+  [
+    [
+      "Check / region",
+      "Status",
+      "D/C",
+      "Basis / application"
+    ],
+    [
+      "Shear — global · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Larger of shear / resistance and nominal demand / section upper bound. Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Hoop spacing — global · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Larger of along-cap spacing / limit and transverse leg spacing / limit. Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Shear — low interval · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Larger of shear / resistance and nominal demand / section upper bound. Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Hoop spacing — low interval · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Larger of along-cap spacing / limit and transverse leg spacing / limit. Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ]
+  ],
+  [
+    [
+      "Objective",
+      "Screen torsion and the associated transverse and longitudinal reinforcement."
+    ],
+    [
+      "Inputs",
+      "Torque envelope, shear and reinforcement geometry"
+    ],
+    [
+      "Output",
+      "Torsion threshold, required steel and outstanding closure/development review"
+    ]
+  ],
+  [
+    [
+      "Symbol",
+      "Input / meaning",
+      "Value and units",
+      "Basis"
+    ],
+    [
+      "Ao factor",
+      "Adopted effective torsion-area coefficient; original Mathcad coefficient was 1.0.",
+      "0.85",
+      "Current case input / adopted assumption"
+    ]
+  ],
+  [
+    [
+      "Check / region",
+      "Status",
+      "D/C",
+      "Basis / application"
+    ],
+    [
+      "Shear + torsion steel — global · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Larger of torsion area per leg / provided leg area and combined area / provided area. Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Shear + torsion steel — low interval · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Larger of torsion area per leg / provided leg area and combined area / provided area. Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Longitudinal steel — N · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Moment + shear/torsion tension / yield resistance of this region's main bars plus effective side steel (half of both side faces). Required 4.287 in²; credited main 1.760 + side 1.320 = 3.080 in²; shortfall 1.207 in². Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Longitudinal steel — P · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Moment + shear/torsion tension / yield resistance of this region's main bars plus effective side steel (half of both side faces). Required 5.217 in²; credited main 4.000 + side 1.320 = 5.320 in²; shortfall 0.000 in². Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Longitudinal steel — B · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Moment + shear/torsion tension / yield resistance of this region's main bars plus effective side steel (half of both side faces). Required 6.696 in²; credited main 5.760 + side 1.320 = 7.080 in²; shortfall 0.000 in². Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ]
+  ],
+  [
+    [
+      "Objective",
+      "Check face reinforcement and record quantities and remaining detailing requirements."
+    ],
+    [
+      "Inputs",
+      "Section, steel inventory and spacing"
+    ],
+    [
+      "Output",
+      "Face-steel checks, concrete volume, steel estimate and detailing register"
+    ]
+  ],
+  [
+    [
+      "Region / bars",
+      "Actual clear (in)",
+      "Required clear (in)",
+      "Status"
+    ],
+    [
+      "P · Top row 1",
+      "11.242",
+      "2.000",
+      "PASS"
+    ],
+    [
+      "P · Top row 1 / Bottom row 1",
+      "26.611",
+      "2.000",
+      "PASS"
+    ],
+    [
+      "P · Top row 1 / Skin",
+      "6.390",
+      "2.000",
+      "PASS"
+    ],
+    [
+      "P · Bottom row 1",
+      "2.293",
+      "2.000",
+      "PASS"
+    ],
+    [
+      "P · Bottom row 1 / Skin",
+      "6.202",
+      "2.000",
+      "PASS"
+    ],
+    [
+      "P · Skin",
+      "6.137",
+      "2.000",
+      "PASS"
+    ],
+    [
+      "B · Top row 1",
+      "11.242",
+      "2.000",
+      "PASS"
+    ],
+    [
+      "B · Top row 1 / Bottom row 1",
+      "26.611",
+      "2.000",
+      "PASS"
+    ],
+    [
+      "B · Top row 1 / Skin",
+      "6.390",
+      "2.000",
+      "PASS"
+    ],
+    [
+      "B · Bottom row 1",
+      "2.293",
+      "2.000",
+      "PASS"
+    ],
+    [
+      "B · Bottom row 1 / Skin",
+      "6.202",
+      "2.000",
+      "PASS"
+    ],
+    [
+      "B · Skin",
+      "6.137",
+      "2.000",
+      "PASS"
+    ]
+  ],
+  [
+    [
+      "Component",
+      "Steel volume (in³)"
+    ],
+    [
+      "Continuous bars",
+      "1881.6"
+    ],
+    [
+      "Additional hooked span bars",
+      "275.862"
+    ],
+    [
+      "Transverse bars",
+      "1975.23"
+    ]
+  ],
+  [
+    [
+      "Quantity",
+      "Evaluated result",
+      "Basis"
+    ],
+    [
+      "Estimated gross reinforcing steel",
+      "1171.89 lb",
+      "Drawn continuous bars and hooked additions; actual hoop/U outlines when enabled. Excludes laps, hoop closure extensions, end anchorage not drawn, and waste."
+    ],
+    [
+      "Concrete volume",
+      "230 ft³",
+      "Gross rectangular cap, without pile deductions."
+    ]
+  ],
+  [
+    [
+      "Check / region",
+      "Status",
+      "D/C",
+      "Basis / application"
+    ],
+    [
+      "Skin reinforcement area",
+      "✓ PASS",
+      "N/A",
+      "Required / provided area on one half-side; N/A when skin steel is not required. Check criterion { ✓ PASS if ( Not ( Skin required ) ) ∨ ( A s,skin,half ≥ A s,skin,req ) ⊗ FAIL otherwise"
+    ],
+    [
+      "Skin reinforcement spacing",
+      "✓ PASS",
+      "N/A",
+      "Actual skin-bar spacing / allowable spacing, when required. Check criterion { ✓ PASS if ( Not ( Skin required ) ) ∨ ( SP skin ≤ s skin,limit ) ⊗ FAIL otherwise"
+    ],
+    [
+      "Shrinkage reinforcement area · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Required area rate / least provided rate across surfaces and directions. Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Shrinkage reinforcement spacing · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Largest source surface spacing / allowable shrinkage spacing; bottom uses the between-pile row (Mathcad SP[2]). Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ]
+  ],
+  [
+    [
+      "Check / region",
+      "Status",
+      "D/C",
+      "Basis / application"
+    ],
+    [
+      "Pile layout validity",
+      "✓ PASS",
+      "N/A",
+      "Minimum spacing, edge clearance and integer pile count; see geometry checks."
+    ],
+    [
+      "Load input validity",
+      "✓ PASS",
+      "N/A",
+      "Required moment, shear and torque magnitudes must be nonnegative."
+    ],
+    [
+      "Bar size validity",
+      "✓ PASS",
+      "N/A",
+      "Supported US bar numbers."
+    ],
+    [
+      "Bar / loop count validity",
+      "✓ PASS",
+      "N/A",
+      "Nonnegative integer counts and required minimum counts."
+    ],
+    [
+      "Section input validity",
+      "✓ PASS",
+      "N/A",
+      "Geometry, materials, factors, covers and spacings must be valid."
+    ],
+    [
+      "Flexural strength — N",
+      "✓ PASS",
+      "0.134309",
+      "Factored moment / factored flexural resistance."
+    ],
+    [
+      "Minimum flexural steel — N",
+      "✓ PASS",
+      "0.178631",
+      "Controls: 1.33 × factored moment. Smaller component sets this ratio. Cracking-moment criterion: 521.3 / 250.5 kip-ft = 2.0808 1.33 × factored moment: 44.75 / 250.5 kip-ft = 0.1786 Minimum required moment resistance / provided resistance."
+    ],
+    [
+      "Tension strain screen — N",
+      "✓ PASS",
+      "0.032372",
+      "Required minimum strain (0.005) / calculated tension strain."
+    ],
+    [
+      "Service I — N",
+      "✓ PASS",
+      "0.100624",
+      "Controls: Bar spacing. Largest component sets this ratio. Steel stress: 4.635 / 48 ksi = 0.0966 Bar spacing: 11.99 / 119.2 in = 0.1006 Spacing uses the maximum drawn row pitch. The allowable crack-control spacing also depends on calculated steel stress. Larger of steel stress / limit and current sectional bar-spacing value / allowable spacing."
+    ],
+    [
+      "Longitudinal steel — N · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Moment + shear/torsion tension / yield resistance of this region's main bars plus effective side steel (half of both side faces). Required 4.287 in²; credited main 1.760 + side 1.320 = 3.080 in²; shortfall 1.207 in². Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Flexural strength — P",
+      "✓ PASS",
+      "0.29107",
+      "Factored moment / factored flexural resistance."
+    ],
+    [
+      "Minimum flexural steel — P",
+      "✓ PASS",
+      "0.387123",
+      "Controls: 1.33 × factored moment. Smaller component sets this ratio. Cracking-moment criterion: 521.3 / 560.6 kip-ft = 0.9299 1.33 × factored moment: 217 / 560.6 kip-ft = 0.3871 Minimum required moment resistance / provided resistance."
+    ],
+    [
+      "Tension strain screen — P",
+      "✓ PASS",
+      "0.075908",
+      "Required minimum strain (0.005) / calculated tension strain."
+    ],
+    [
+      "Service I — P",
+      "✓ PASS",
+      "0.770409",
+      "Controls: Bar spacing. Largest component sets this ratio. Steel stress: 12.61 / 48 ksi = 0.2628 Bar spacing: 29.13 / 37.81 in = 0.7704 Spacing uses the maximum drawn row pitch. The allowable crack-control spacing also depends on calculated steel stress. Larger of steel stress / limit and current sectional bar-spacing value / allowable spacing."
+    ],
+    [
+      "Longitudinal steel — P · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Moment + shear/torsion tension / yield resistance of this region's main bars plus effective side steel (half of both side faces). Required 5.217 in²; credited main 4.000 + side 1.320 = 5.320 in²; shortfall 0.000 in². Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Flexural strength — B",
+      "✓ PASS",
+      "0.460176",
+      "Factored moment / factored flexural resistance."
+    ],
+    [
+      "Minimum flexural steel — B",
+      "✓ PASS",
+      "0.612034",
+      "Controls: 1.33 × factored moment. Smaller component sets this ratio. Cracking-moment criterion: 521.3 / 802.7 kip-ft = 0.6495 1.33 × factored moment: 491.3 / 802.7 kip-ft = 0.6120 Minimum required moment resistance / provided resistance."
+    ],
+    [
+      "Tension strain screen — B",
+      "✓ PASS",
+      "0.111326",
+      "Required minimum strain (0.005) / calculated tension strain."
+    ],
+    [
+      "Service I — B",
+      "✓ PASS",
+      "0.461857",
+      "Controls: Steel stress. Largest component sets this ratio. Steel stress: 22.17 / 48 ksi = 0.4619 Bar spacing: 6 / 17.97 in = 0.3339 Spacing uses the maximum drawn row pitch. The allowable crack-control spacing also depends on calculated steel stress. Larger of steel stress / limit and current sectional bar-spacing value / allowable spacing."
+    ],
+    [
+      "Longitudinal steel — B · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Moment + shear/torsion tension / yield resistance of this region's main bars plus effective side steel (half of both side faces). Required 6.696 in²; credited main 5.760 + side 1.320 = 7.080 in²; shortfall 0.000 in². Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Shear — global · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Larger of shear / resistance and nominal demand / section upper bound. Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Hoop spacing — global · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Larger of along-cap spacing / limit and transverse leg spacing / limit. Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Shear + torsion steel — global · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Larger of torsion area per leg / provided leg area and combined area / provided area. Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Shear — low interval · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Larger of shear / resistance and nominal demand / section upper bound. Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Hoop spacing — low interval · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Larger of along-cap spacing / limit and transverse leg spacing / limit. Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Shear + torsion steel — low interval · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Larger of torsion area per leg / provided leg area and combined area / provided area. Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Skin reinforcement area",
+      "✓ PASS",
+      "N/A",
+      "Required / provided area on one half-side; N/A when skin steel is not required."
+    ],
+    [
+      "Skin reinforcement spacing",
+      "✓ PASS",
+      "N/A",
+      "Actual skin-bar spacing / allowable spacing, when required."
+    ],
+    [
+      "Shrinkage reinforcement area · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Required area rate / least provided rate across surfaces and directions. Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Shrinkage reinforcement spacing · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Largest source surface spacing / allowable shrinkage spacing; bottom uses the between-pile row (Mathcad SP[2]). Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Service III — all regions",
+      "PENDING — three Service III moments",
+      "PENDING",
+      "Largest outer-bar stress / 24 ksi or actual / allowable spacing across N, P and B."
+    ],
+    [
+      "Fatigue — all regions",
+      "PENDING — applicability and fatigue loads",
+      "PENDING",
+      "Largest factored stress range / fatigue threshold across N, P and B."
+    ],
+    [
+      "Pile layout source check",
+      "SOURCE PILE LAYOUT",
+      "N/A",
+      "Match to the imported force model; REIMPORT means new analysis forces are needed."
+    ],
+    [
+      "Section source check",
+      "SOURCE SECTION",
+      "N/A",
+      "Match to the imported force model; RECHECK includes self-weight and stiffness."
+    ],
+    [
+      "Overall design status · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Combined numerical, input, readiness and review conditions. Full status follows the table. Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Row 1 · Added to added clear spacing",
+      "✓ PASS",
+      "0.380952",
+      "Actual surface gap 5.250 in; required 2.000 in. Required / actual; overlap fails. AASHTO LRFD 5.10.3 plus project minimum."
+    ],
+    [
+      "Row 1 · Added to continuous clear spacing",
+      "✓ PASS",
+      "0.432133",
+      "Actual surface gap 4.628 in; required 2.000 in. Required / actual; overlap fails. AASHTO LRFD 5.10.3 plus project minimum."
+    ],
+    [
+      "Entered added-bar spacing · cover / cage fit",
+      "✓ PASS",
+      "0",
+      "Entered center spacing and row offsets fit inside the cap cover / transverse cage envelope."
+    ],
+    [
+      "P clear spacing · Top row 1",
+      "✓ PASS",
+      "0.177908",
+      "Parallel-bar surface clearance: actual 11.242 in; required 2.000 in. Ratio = required / actual; contact/overlap fails. AASHTO LRFD 5.10.3 plus project minimum."
+    ],
+    [
+      "P clear spacing · Top row 1 / Bottom row 1",
+      "✓ PASS",
+      "0.0751576",
+      "Vertical layer clearance: actual 26.611 in; required 2.000 in. Ratio = required / actual; contact/overlap fails. AASHTO LRFD 5.10.3 plus project minimum."
+    ],
+    [
+      "P clear spacing · Top row 1 / Skin",
+      "✓ PASS",
+      "0.312996",
+      "Parallel-bar surface clearance: actual 6.390 in; required 2.000 in. Ratio = required / actual; contact/overlap fails. AASHTO LRFD 5.10.3 plus project minimum."
+    ],
+    [
+      "P clear spacing · Bottom row 1",
+      "✓ PASS",
+      "0.872376",
+      "Parallel-bar surface clearance: actual 2.293 in; required 2.000 in. Ratio = required / actual; contact/overlap fails. AASHTO LRFD 5.10.3 plus project minimum."
+    ],
+    [
+      "P clear spacing · Bottom row 1 / Skin",
+      "✓ PASS",
+      "0.322494",
+      "Parallel-bar surface clearance: actual 6.202 in; required 2.000 in. Ratio = required / actual; contact/overlap fails. AASHTO LRFD 5.10.3 plus project minimum."
+    ],
+    [
+      "P clear spacing · Skin",
+      "✓ PASS",
+      "0.325869",
+      "Parallel-bar surface clearance: actual 6.137 in; required 2.000 in. Ratio = required / actual; contact/overlap fails. AASHTO LRFD 5.10.3 plus project minimum."
+    ],
+    [
+      "P layer alignment",
+      "✓ PASS",
+      "0",
+      "AASHTO LRFD 5.10.3.1.3: align bars vertically for layers separated by at most 6 in."
+    ],
+    [
+      "P actual row spacing · Service I",
+      "✓ PASS",
+      "0.770409",
+      "Maximum actual center spacing 29.128 in / service limit 37.808 in; includes the gap across the pile."
+    ],
+    [
+      "B clear spacing · Top row 1",
+      "✓ PASS",
+      "0.177908",
+      "Parallel-bar surface clearance: actual 11.242 in; required 2.000 in. Ratio = required / actual; contact/overlap fails. AASHTO LRFD 5.10.3 plus project minimum."
+    ],
+    [
+      "B clear spacing · Top row 1 / Bottom row 1",
+      "✓ PASS",
+      "0.0751576",
+      "Vertical layer clearance: actual 26.611 in; required 2.000 in. Ratio = required / actual; contact/overlap fails. AASHTO LRFD 5.10.3 plus project minimum."
+    ],
+    [
+      "B clear spacing · Top row 1 / Skin",
+      "✓ PASS",
+      "0.312996",
+      "Parallel-bar surface clearance: actual 6.390 in; required 2.000 in. Ratio = required / actual; contact/overlap fails. AASHTO LRFD 5.10.3 plus project minimum."
+    ],
+    [
+      "B clear spacing · Bottom row 1",
+      "✓ PASS",
+      "0.872376",
+      "Parallel-bar surface clearance: actual 2.293 in; required 2.000 in. Ratio = required / actual; contact/overlap fails. AASHTO LRFD 5.10.3 plus project minimum."
+    ],
+    [
+      "B clear spacing · Bottom row 1 / Skin",
+      "✓ PASS",
+      "0.322494",
+      "Parallel-bar surface clearance: actual 6.202 in; required 2.000 in. Ratio = required / actual; contact/overlap fails. AASHTO LRFD 5.10.3 plus project minimum."
+    ],
+    [
+      "B clear spacing · Skin",
+      "✓ PASS",
+      "0.325869",
+      "Parallel-bar surface clearance: actual 6.137 in; required 2.000 in. Ratio = required / actual; contact/overlap fails. AASHTO LRFD 5.10.3 plus project minimum."
+    ],
+    [
+      "B layer alignment",
+      "✓ PASS",
+      "0",
+      "AASHTO LRFD 5.10.3.1.3: align bars vertically for layers separated by at most 6 in."
+    ],
+    [
+      "B actual row spacing · Service I",
+      "✓ PASS",
+      "0.3339",
+      "Maximum actual center spacing 6.000 in / service limit 17.969 in; includes the gap across the pile."
+    ],
+    [
+      "B actual row spacing · shrinkage",
+      "✓ PASS",
+      "0.5",
+      "Maximum actual bottom-row center spacing 6.000 in / shrinkage limit 12.000 in."
+    ],
+    [
+      "Hoop minimum clear spacing · G · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Pitch minus hoop diameter: 8.250 in; conservative parallel-bar minimum 2.000 in. Maximum hoop pitch is checked separately. Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Actual outer-hoop leg spacing · G · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Drawn outer leg centers 41.250 in / limit 42.000 in. A spacing override does not create undrawn inner legs. Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Hoop minimum clear spacing · L · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Pitch minus hoop diameter: 8.250 in; conservative parallel-bar minimum 2.000 in. Maximum hoop pitch is checked separately. Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "Actual outer-hoop leg spacing · L · uniform reference",
+      "REFERENCE",
+      "N/A",
+      "Drawn outer leg centers 41.250 in / limit 42.000 in. A spacing override does not create undrawn inner legs. Uniform closed-hoop calculation only; not a capacity determination for the entered hoop/U layout."
+    ],
+    [
+      "90° span hooks · fit",
+      "✓ PASS",
+      "0.500174",
+      "Controls: Hook height / available height. Largest component sets this ratio. Hook height / available height: 16.13 / 32.25 in = 0.5002 Straight-length fit flag: 0 / 1 flag = 0.0000 Shortest straight portion 26.000 in. Negative straight length uses the existing failure flag 2; this flag is not a physical D/C. General bars: inside bend diameter 6db (#3–8), 8db (#9–11); straight tail 12db. Hook turns up outside the pile clearance envelope."
+    ],
+    [
+      "Span hooks · clearance to continuous cage",
+      "✓ PASS",
+      "0.432432",
+      "Minimum hook-to-continuous-bar clear gap 4.625 in; required 2.000 in."
+    ],
+    [
+      "Added hooks · mutual tail clearance",
+      "✓ PASS",
+      "0.380952",
+      "Clear distance between vertical hook tails 5.250 in; required 2.000 in."
+    ],
+    [
+      "Span hook development / cutoff",
+      "PENDING",
+      "PENDING",
+      "Bend dimensions alone do not establish anchorage. Verify critical section, required ldh, cutoff extension and confinement; hooks beside a pile are not assumed developed into it."
+    ],
+    [
+      "Continuous bars · end anchorage / splices",
+      "PENDING",
+      "PENDING",
+      "Continuous bars run between end-cover planes. End development and any required splices remain a detailing review."
+    ],
+    [
+      "Aggregate size / spacing basis",
+      "✓ PASS",
+      "N/A",
+      "Maximum aggregate 0.75 in. AASHTO LRFD BDS 5.10.3 / 5.10.2; FDOT SDM 2026 4.3.2 and 4.3.4; contract criteria govern."
+    ],
+    [
+      "Longitudinal steel inside actual hoops / U-bars",
+      "✓ PASS",
+      "0",
+      "One common envelope of all actual runs governs continuous and added straight bars. Row counts and row spacing are retained. Actual positions feed steel centroids, effective depths and bar-spacing checks. Hook ends, development and transverse-to-pile conflicts require their separate checks."
+    ],
+    [
+      "R1 end development / closure",
+      "PENDING",
+      "N/A",
+      "Enter bend / tail dimensions and record the checked development calculation. Geometry alone does not establish anchorage."
+    ],
+    [
+      "R2 end development / closure",
+      "PENDING",
+      "N/A",
+      "Enter bend / tail dimensions and record the checked development calculation. Geometry alone does not establish anchorage."
+    ],
+    [
+      "R3 end development / closure",
+      "PENDING",
+      "N/A",
+      "Enter bend / tail dimensions and record the checked development calculation. Geometry alone does not establish anchorage."
+    ],
+    [
+      "R4 end development / closure",
+      "PENDING",
+      "N/A",
+      "Enter bend / tail dimensions and record the checked development calculation. Geometry alone does not establish anchorage."
+    ],
+    [
+      "R5 end development / closure",
+      "PENDING",
+      "N/A",
+      "Enter bend / tail dimensions and record the checked development calculation. Geometry alone does not establish anchorage."
+    ],
+    [
+      "R6 end development / closure",
+      "PENDING",
+      "N/A",
+      "Enter bend / tail dimensions and record the checked development calculation. Geometry alone does not establish anchorage."
+    ],
+    [
+      "R7 end development / closure",
+      "PENDING",
+      "N/A",
+      "Enter bend / tail dimensions and record the checked development calculation. Geometry alone does not establish anchorage."
+    ],
+    [
+      "R8 end development / closure",
+      "PENDING",
+      "N/A",
+      "Enter bend / tail dimensions and record the checked development calculation. Geometry alone does not establish anchorage."
+    ],
+    [
+      "R9 end development / closure",
+      "PENDING",
+      "N/A",
+      "Enter bend / tail dimensions and record the checked development calculation. Geometry alone does not establish anchorage."
+    ],
+    [
+      "R1-1 → R1-2 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.503223",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 433.7 kip = 0.5032 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 6.250 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 433.744 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R1-1 → R1-2 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 6.25 / 24 in = 0.2604 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R1-1 → R1-2 clear spacing",
+      "✓ PASS",
+      "0.363636",
+      "Actual 5.500 in; required 2.000 in."
+    ],
+    [
+      "R1-1 → R1-2 minimum shear steel",
+      "✓ PASS",
+      "0.421071",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R1-2 → R2-1 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R1-2 → R2-1 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 2.75 / 24 in = 0.1146 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R1-2 → R2-1 clear spacing",
+      "✓ PASS",
+      "1",
+      "Actual 2.000 in; required 2.000 in."
+    ],
+    [
+      "R1-2 → R2-1 minimum shear steel",
+      "✓ PASS",
+      "0.185271",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R2-1 → R2-2 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R2-1 → R2-2 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 9 / 24 in = 0.3750 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R2-1 → R2-2 clear spacing",
+      "✓ PASS",
+      "0.242424",
+      "Actual 8.250 in; required 2.000 in."
+    ],
+    [
+      "R2-1 → R2-2 minimum shear steel",
+      "✓ PASS",
+      "0.606343",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R2-2 → R2-3 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R2-2 → R2-3 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 9 / 24 in = 0.3750 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R2-2 → R2-3 clear spacing",
+      "✓ PASS",
+      "0.242424",
+      "Actual 8.250 in; required 2.000 in."
+    ],
+    [
+      "R2-2 → R2-3 minimum shear steel",
+      "✓ PASS",
+      "0.606343",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R2-3 → R2-4 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.543951",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 401.3 kip = 0.5440 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 7.250 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 401.268 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R2-3 → R2-4 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 7.25 / 24 in = 0.3021 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R2-3 → R2-4 clear spacing",
+      "✓ PASS",
+      "0.307692",
+      "Actual 6.500 in; required 2.000 in."
+    ],
+    [
+      "R2-3 → R2-4 minimum shear steel",
+      "✓ PASS",
+      "0.488443",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R2-4 → R3-1 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R2-4 → R3-1 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 2.75 / 24 in = 0.1146 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R2-4 → R3-1 clear spacing",
+      "✓ PASS",
+      "1",
+      "Actual 2.000 in; required 2.000 in."
+    ],
+    [
+      "R2-4 → R3-1 minimum shear steel",
+      "✓ PASS",
+      "0.185271",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R3-1 → R3-2 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R3-1 → R3-2 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 9 / 24 in = 0.3750 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R3-1 → R3-2 clear spacing",
+      "✓ PASS",
+      "0.242424",
+      "Actual 8.250 in; required 2.000 in."
+    ],
+    [
+      "R3-1 → R3-2 minimum shear steel",
+      "✓ PASS",
+      "0.606343",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R3-2 → R3-3 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R3-2 → R3-3 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 9 / 24 in = 0.3750 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R3-2 → R3-3 clear spacing",
+      "✓ PASS",
+      "0.242424",
+      "Actual 8.250 in; required 2.000 in."
+    ],
+    [
+      "R3-2 → R3-3 minimum shear steel",
+      "✓ PASS",
+      "0.606343",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R3-3 → R3-4 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.587667",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 371.4 kip = 0.5877 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 8.500 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 371.418 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R3-3 → R3-4 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 8.5 / 24 in = 0.3542 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R3-3 → R3-4 clear spacing",
+      "✓ PASS",
+      "0.258065",
+      "Actual 7.750 in; required 2.000 in."
+    ],
+    [
+      "R3-3 → R3-4 minimum shear steel",
+      "✓ PASS",
+      "0.572657",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R3-4 → R3-5 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R3-4 → R3-5 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 2.75 / 24 in = 0.1146 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R3-4 → R3-5 clear spacing",
+      "✓ PASS",
+      "1",
+      "Actual 2.000 in; required 2.000 in."
+    ],
+    [
+      "R3-4 → R3-5 minimum shear steel",
+      "✓ PASS",
+      "0.185271",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R3-5 → R4-1 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R3-5 → R4-1 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 2.75 / 24 in = 0.1146 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R3-5 → R4-1 clear spacing",
+      "✓ PASS",
+      "1",
+      "Actual 2.000 in; required 2.000 in."
+    ],
+    [
+      "R3-5 → R4-1 minimum shear steel",
+      "✓ PASS",
+      "0.185271",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R4-1 → R4-2 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R4-1 → R4-2 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 9 / 24 in = 0.3750 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R4-1 → R4-2 clear spacing",
+      "✓ PASS",
+      "0.242424",
+      "Actual 8.250 in; required 2.000 in."
+    ],
+    [
+      "R4-1 → R4-2 minimum shear steel",
+      "✓ PASS",
+      "0.606343",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R4-2 → R4-3 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R4-2 → R4-3 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 9 / 24 in = 0.3750 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R4-2 → R4-3 clear spacing",
+      "✓ PASS",
+      "0.242424",
+      "Actual 8.250 in; required 2.000 in."
+    ],
+    [
+      "R4-2 → R4-3 minimum shear steel",
+      "✓ PASS",
+      "0.606343",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R4-3 → R4-4 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.543951",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 401.3 kip = 0.5440 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 7.250 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 401.268 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R4-3 → R4-4 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 7.25 / 24 in = 0.3021 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R4-3 → R4-4 clear spacing",
+      "✓ PASS",
+      "0.307692",
+      "Actual 6.500 in; required 2.000 in."
+    ],
+    [
+      "R4-3 → R4-4 minimum shear steel",
+      "✓ PASS",
+      "0.488443",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R4-4 → R5-1 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R4-4 → R5-1 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 2.75 / 24 in = 0.1146 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R4-4 → R5-1 clear spacing",
+      "✓ PASS",
+      "1",
+      "Actual 2.000 in; required 2.000 in."
+    ],
+    [
+      "R4-4 → R5-1 minimum shear steel",
+      "✓ PASS",
+      "0.185271",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R5-1 → R5-2 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R5-1 → R5-2 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 9 / 24 in = 0.3750 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R5-1 → R5-2 clear spacing",
+      "✓ PASS",
+      "0.242424",
+      "Actual 8.250 in; required 2.000 in."
+    ],
+    [
+      "R5-1 → R5-2 minimum shear steel",
+      "✓ PASS",
+      "0.606343",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R5-2 → R5-3 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R5-2 → R5-3 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 9 / 24 in = 0.3750 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R5-2 → R5-3 clear spacing",
+      "✓ PASS",
+      "0.242424",
+      "Actual 8.250 in; required 2.000 in."
+    ],
+    [
+      "R5-2 → R5-3 minimum shear steel",
+      "✓ PASS",
+      "0.606343",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R5-3 → R5-4 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.587667",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 371.4 kip = 0.5877 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 8.500 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 371.418 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R5-3 → R5-4 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 8.5 / 24 in = 0.3542 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R5-3 → R5-4 clear spacing",
+      "✓ PASS",
+      "0.258065",
+      "Actual 7.750 in; required 2.000 in."
+    ],
+    [
+      "R5-3 → R5-4 minimum shear steel",
+      "✓ PASS",
+      "0.572657",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R5-4 → R5-5 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R5-4 → R5-5 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 2.75 / 24 in = 0.1146 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R5-4 → R5-5 clear spacing",
+      "✓ PASS",
+      "1",
+      "Actual 2.000 in; required 2.000 in."
+    ],
+    [
+      "R5-4 → R5-5 minimum shear steel",
+      "✓ PASS",
+      "0.185271",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R5-5 → R6-1 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R5-5 → R6-1 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 2.75 / 24 in = 0.1146 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R5-5 → R6-1 clear spacing",
+      "✓ PASS",
+      "1",
+      "Actual 2.000 in; required 2.000 in."
+    ],
+    [
+      "R5-5 → R6-1 minimum shear steel",
+      "✓ PASS",
+      "0.185271",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R6-1 → R6-2 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R6-1 → R6-2 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 9 / 24 in = 0.3750 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R6-1 → R6-2 clear spacing",
+      "✓ PASS",
+      "0.242424",
+      "Actual 8.250 in; required 2.000 in."
+    ],
+    [
+      "R6-1 → R6-2 minimum shear steel",
+      "✓ PASS",
+      "0.606343",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R6-2 → R6-3 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R6-2 → R6-3 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 9 / 24 in = 0.3750 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R6-2 → R6-3 clear spacing",
+      "✓ PASS",
+      "0.242424",
+      "Actual 8.250 in; required 2.000 in."
+    ],
+    [
+      "R6-2 → R6-3 minimum shear steel",
+      "✓ PASS",
+      "0.606343",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R6-3 → R6-4 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.543951",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 401.3 kip = 0.5440 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 7.250 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 401.268 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R6-3 → R6-4 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 7.25 / 24 in = 0.3021 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R6-3 → R6-4 clear spacing",
+      "✓ PASS",
+      "0.307692",
+      "Actual 6.500 in; required 2.000 in."
+    ],
+    [
+      "R6-3 → R6-4 minimum shear steel",
+      "✓ PASS",
+      "0.488443",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R6-4 → R7-1 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R6-4 → R7-1 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 2.75 / 24 in = 0.1146 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R6-4 → R7-1 clear spacing",
+      "✓ PASS",
+      "1",
+      "Actual 2.000 in; required 2.000 in."
+    ],
+    [
+      "R6-4 → R7-1 minimum shear steel",
+      "✓ PASS",
+      "0.185271",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R7-1 → R7-2 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R7-1 → R7-2 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 9 / 24 in = 0.3750 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R7-1 → R7-2 clear spacing",
+      "✓ PASS",
+      "0.242424",
+      "Actual 8.250 in; required 2.000 in."
+    ],
+    [
+      "R7-1 → R7-2 minimum shear steel",
+      "✓ PASS",
+      "0.606343",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R7-2 → R7-3 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R7-2 → R7-3 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 9 / 24 in = 0.3750 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R7-2 → R7-3 clear spacing",
+      "✓ PASS",
+      "0.242424",
+      "Actual 8.250 in; required 2.000 in."
+    ],
+    [
+      "R7-2 → R7-3 minimum shear steel",
+      "✓ PASS",
+      "0.606343",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R7-3 → R7-4 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.587667",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 371.4 kip = 0.5877 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 8.500 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 371.418 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R7-3 → R7-4 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 8.5 / 24 in = 0.3542 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R7-3 → R7-4 clear spacing",
+      "✓ PASS",
+      "0.258065",
+      "Actual 7.750 in; required 2.000 in."
+    ],
+    [
+      "R7-3 → R7-4 minimum shear steel",
+      "✓ PASS",
+      "0.572657",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R7-4 → R7-5 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R7-4 → R7-5 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 2.75 / 24 in = 0.1146 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R7-4 → R7-5 clear spacing",
+      "✓ PASS",
+      "1",
+      "Actual 2.000 in; required 2.000 in."
+    ],
+    [
+      "R7-4 → R7-5 minimum shear steel",
+      "✓ PASS",
+      "0.185271",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R7-5 → R8-1 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R7-5 → R8-1 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 2.75 / 24 in = 0.1146 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R7-5 → R8-1 clear spacing",
+      "✓ PASS",
+      "1",
+      "Actual 2.000 in; required 2.000 in."
+    ],
+    [
+      "R7-5 → R8-1 minimum shear steel",
+      "✓ PASS",
+      "0.185271",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R8-1 → R8-2 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R8-1 → R8-2 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 9 / 24 in = 0.3750 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R8-1 → R8-2 clear spacing",
+      "✓ PASS",
+      "0.242424",
+      "Actual 8.250 in; required 2.000 in."
+    ],
+    [
+      "R8-1 → R8-2 minimum shear steel",
+      "✓ PASS",
+      "0.606343",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R8-2 → R8-3 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.60329",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 361.8 kip = 0.6033 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 9.000 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 361.799 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R8-2 → R8-3 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 9 / 24 in = 0.3750 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R8-2 → R8-3 clear spacing",
+      "✓ PASS",
+      "0.242424",
+      "Actual 8.250 in; required 2.000 in."
+    ],
+    [
+      "R8-2 → R8-3 minimum shear steel",
+      "✓ PASS",
+      "0.606343",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R8-3 → R8-4 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.543951",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 401.3 kip = 0.5440 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 7.250 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 401.268 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R8-3 → R8-4 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 7.25 / 24 in = 0.3021 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R8-3 → R8-4 clear spacing",
+      "✓ PASS",
+      "0.307692",
+      "Actual 6.500 in; required 2.000 in."
+    ],
+    [
+      "R8-3 → R8-4 minimum shear steel",
+      "✓ PASS",
+      "0.488443",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R8-4 → R9-1 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.297607",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 733.4 kip = 0.2976 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 2.750 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 733.416 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R8-4 → R9-1 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 2.75 / 24 in = 0.1146 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R8-4 → R9-1 clear spacing",
+      "✓ PASS",
+      "1",
+      "Actual 2.000 in; required 2.000 in."
+    ],
+    [
+      "R8-4 → R9-1 minimum shear steel",
+      "✓ PASS",
+      "0.185271",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "R9-1 → R9-2 shear (anchorage conditional)",
+      "CONDITIONAL",
+      "0.503223",
+      "Controls: Shear resistance. Largest component sets this ratio. Shear resistance: 218.3 / 433.7 kip = 0.5032 Section upper bound: 242.5 / 2044 kip = 0.1187 Actual interval 6.250 in; weaker vertical two-leg area 0.880 in²; larger adjacent shear 218.270 kip; Vr 433.744 kip. Requires developed legs, appropriate local shear model and force-zone review. No U-bar torsion credit."
+    ],
+    [
+      "R9-1 → R9-2 maximum spacing",
+      "✓ PASS",
+      "0.982143",
+      "Controls: Across-cap leg spacing. Largest component sets this ratio. Along-cap bar spacing: 6.25 / 24 in = 0.2604 Across-cap leg spacing: 41.25 / 42 in = 0.9821 Actual adjacent pitch and wider adjacent outer-leg separation / sectional code spacing limits. Actual strength and minimum area rate are checked separately."
+    ],
+    [
+      "R9-1 → R9-2 clear spacing",
+      "✓ PASS",
+      "0.363636",
+      "Actual 5.500 in; required 2.000 in."
+    ],
+    [
+      "R9-1 → R9-2 minimum shear steel",
+      "✓ PASS",
+      "0.421071",
+      "Two weaker legs / actual adjacent pitch; existing sectional minimum rate."
+    ],
+    [
+      "First / last transverse bar end coverage",
+      "✓ PASS",
+      "0.28125",
+      "Controls: Left cap end + Right cap end (tie). Largest component sets this ratio. Left cap end: 3.375 / 12 in = 0.2812 Right cap end: 3.375 / 12 in = 0.2812 Max end distance 3.375 in / half the tighter sectional pitch limit 12.000 in. Conservative screening rule, not an end-region design."
+    ],
+    [
+      "Actual transverse torsion path",
+      "BELOW THRESHOLD",
+      "N/A",
+      "Input torque is below the existing investigation threshold. No closed-hoop torsion resistance is assigned to U-bars."
+    ],
+    [
+      "Actual layout · force zones / anchorage / congestion",
+      "PENDING",
+      "N/A",
+      "Actual bars are drawn and counted. Conditional shear checks use entered G/L demands; verify zone applicability, end-region behavior, hoop closure, U development and 3D congestion with longitudinal hook ends. Uniform-cage equations remain reference results."
+    ]
+  ]
+]

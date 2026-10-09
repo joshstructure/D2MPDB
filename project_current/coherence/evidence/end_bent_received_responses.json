@@ -1,0 +1,92 @@
+[
+  [
+    "Item",
+    "Review topic",
+    "Finding and current treatment",
+    "Decision or information needed",
+    "Your decision",
+    "Your instructions",
+    "New values / supporting files"
+  ],
+  [
+    "01",
+    "Pedestal footprint",
+    "The retained 48-in longitudinal pedestal footprint exceeds the 42-in cap width. Pedestal quantities and related below-pad dead weights remain provisional.",
+    "Provide the revised longitudinal dimension/footprint and say whether to update the related quantities and dead loads.",
+    "Update",
+    "The end bents have 42\" wide cap. The end bent has an associated 12\" backwall leaving the rest of the cap width for the pedestal footprint. Update accordingly. Keep the pier and end bent pedestals separate. The pier pedestal is still 48\".",
+    null
+  ],
+  [
+    "02",
+    "Backwall and cheek walls",
+    "The cap-only report does not establish the complete backwall quantity or revise the legacy cheek-wall takeoff. Cap totals exclude backwalls. Cheek-wall quantities are marked provisional.",
+    "Provide wall dimensions or a detail to use, or direct how these provisional quantities should be handled.",
+    "Defer",
+    "Will address later",
+    null
+  ],
+  [
+    "03",
+    "Source XML identity",
+    "The report’s analyzed XML fingerprint differs from the available Downloads/End Bent 1.XML. That file was not substituted for the analyzed model. Full fingerprints are recorded below.",
+    "Identify the correct model and matching results. State whether to reconcile the files, rerun the analysis, or keep the results identified as a source snapshot.",
+    "Keep as noted",
+    "The report has the latest FBMP model associated with it. It should be reflected in the journal where data differs.",
+    null
+  ],
+  [
+    "04",
+    "Node mapping",
+    "Load-entry tables retain historical nodes 12/19. The report audit places bearing force stations at nodes 15/34. Remapping and model verification remain required; the complete application-node transformation is not established.",
+    "Provide or identify the bearing/application-node mapping, axes, elevations and offsets. State how the load-entry tables should be revised.",
+    "Update",
+    "Update to the new nodes. I added more nodes in the FBMP model and it changed the numbering for the loaded nodes.",
+    null
+  ],
+  [
+    "05",
+    "Reference station",
+    "Geometry/cage stations start at the cap end; audit force stations start at the first pile center. The documented conversion adds 25 in. Audit bearing spacing is 102.99 in versus 103 in in the journal, consistent with displayed precision.",
+    "Confirm the cap-end datum, 25-in conversion and rounding treatment, or specify the reference convention you want used.",
+    "Discuss",
+    "Not sure what you mean here provide more detail in chat.",
+    null
+  ],
+  [
+    "06",
+    "Cage conflicts",
+    "U-bar runs R2, R4, R6 and R8 intersect pile/clearance envelopes. The source’s 0 failed scalar checks does not resolve these detailing conflicts.",
+    "Specify a revised U-bar/pile-clearance detail, identify a detail to follow, or direct development of alternatives for your review.",
+    "Keep as noted",
+    "U bars the potential intersect pile clearance can have their hooks field bent to provide clearance.",
+    null
+  ],
+  [
+    "07",
+    "Design completion",
+    "48 pending/conditional checks remain, including Service III, fatigue, development and anchorage. Code/exposure basis, force-zone applicability, D-regions and omitted action components remain open. Independent action maxima are not simultaneous forces.",
+    "Specify which checks to complete, defer or exclude, and provide any governing design criteria, actions or detailing requirements to use.",
+    "Discuss",
+    "Service III is not applicable for the current substructure as there are no prestressed or post tensioned substructure elements. Explain more about the D region issue in chat.",
+    null
+  ],
+  [
+    "08",
+    "End Bent 2",
+    "Shared geometry and current steel are user-confirmed. End Bent 2 design actions, analysis identity and adequacy have not been supplied or verified.",
+    "Identify End Bent 2 model/results, request a separate evaluation, or specify how its outstanding verification should be recorded.",
+    "Keep as noted",
+    "End bent will be the same configuration as the only difference is a modest connected span length difference. Therefore for simplicity designs will follow the controlling bent.",
+    null
+  ],
+  [
+    "09",
+    "Inherited journal defects",
+    "110 stored errors remain: 4 in FBMPMinTip and 106 in FeetintoDecimalFeet. Three unresolved LoadCombinations reference links also remain. These were preserved and excluded from the bounded end-bent update.",
+    "Choose whether to repair these now, defer them, or address them separately. Identify any specific exclusions or priorities.",
+    "Update",
+    "I'm no longer using FBMP Min Tip in the journal. Remove it and other utility parts such as scratch and metric to inches and feet to decimal modules etc. Also remove CAD. ",
+    null
+  ]
+]
