@@ -113,6 +113,15 @@ def selected_trial_handoff(review, result, *, source='', ground=None, cutoff=Non
         ('Selected total pile length (ft)', result['total_length_ft']),
         ('Calculation basis', result['basis']),
         ('Project notes for trial study', basis.strip() or 'None')]]
+    if 'controlling_criterion' in result:
+        selection.extend(dict(item=label, value=value) for label, value in [
+            ('Controlling minimum-tip criterion', result['controlling_criterion']),
+            ('Both criteria fully evaluated', result['comparison_complete']),
+            ('Zero-band tolerance (in)', result['fixity']['zero_band_in']),
+            ('Profiles without second crossing', result['fixity']['unresolved_count'])])
+        for candidate in result['candidates']:
+            selection.extend(dict(item=candidate['criterion']+' · '+key, value=candidate[key])
+                for key in ('critical_embedment_ft','extension_ft','required_embedment_ft','raw_tip_elevation_ft','source','status'))
     trials = []
     for group in result['groups']:
         match = next((r for r in result['rows'] if r['series'] == group['series'] and

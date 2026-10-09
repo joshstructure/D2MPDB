@@ -141,7 +141,9 @@ class HandoffWidgetTests(unittest.TestCase):
         self.assertEqual(self.panel.accepted.value,'32.740')
         self.assertEqual(self.panel.trial_basis.value,'')
         self.assertNotIn('engineering critical',self.panel.trial_summary.value)
-        self.assertIn('-13.240 ft',self.panel.handoff.value)
+        self.assertIn('-30.013 ft',self.panel.handoff.value)
+        self.assertEqual(self.panel.minimum_tip_result['controlling_criterion'],'Second zero crossing')
+        self.assertAlmostEqual(self.panel.trial_result['tip_elevation_ft'],-13.24)
         self.assertIn('Short tons',self.panel.handoff.value)
         self.assertNotIn('EA (kip)',self.panel.handoff.value)
         self.assertNotIn('modeled_weight',self.panel.handoff.value)
@@ -155,20 +157,21 @@ class HandoffWidgetTests(unittest.TestCase):
                 self.assertEqual(len(z.namelist()),5)
                 self.assertNotIn('pile_forces.csv',z.namelist())
                 html = z.read('geotech_handoff.html').decode()
-                self.assertIn('Minimum tip elevation: -13.240 ft',html)
+                self.assertIn('Minimum tip elevation: -30.013 ft',html)
                 self.assertIn('Separate workbook reference trials',html)
                 trials = list(csv.DictReader(io.StringIO(z.read('selected_trial_results.csv').decode('utf-8-sig'))))
                 self.assertEqual(len(trials),1)
-                self.assertEqual(float(trials[0]['embedment_ft']),32.74)
+                self.assertAlmostEqual(float(trials[0]['embedment_ft']),49.513,places=3)
+                self.assertIn('not interpolated',trials[0]['status'])
         self.panel.extension.value = 4
-        self.assertNotIn('-13.240', self.panel.handoff.value)
+        self.assertNotIn('-30.013 ft', self.panel.handoff.value)
         self.assertNotIn('HANDOFF READY', self.panel.handoff_status.value)
 
     def test_download_errors_are_visible_beside_handoff_button(self):
         with patch.object(self.panel,'_download') as download:
             self.panel.handoff_export.click()
             download.assert_not_called()
-        self.assertIn('Paste trial rows first',self.panel.handoff_status.value)
+        self.assertIn('No critical embedment is available',self.panel.handoff_status.value)
         self.assertFalse(self.panel.handoff_export.disabled)
         self.select_trials()
         self.panel.reference.value = ''
@@ -192,7 +195,7 @@ class HandoffWidgetTests(unittest.TestCase):
     def test_old_manual_depth_is_recomputed_and_new_state_has_no_depth_input(self):
         self.select_trials()
         state=self.panel.snapshot()
-        self.assertEqual(state['schema_version'],3)
+        self.assertEqual(state['schema_version'],4)
         self.assertNotIn('accepted',state['controls'])
         state['schema_version']=2
         state['controls']['accepted']='999'

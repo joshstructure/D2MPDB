@@ -130,13 +130,13 @@ class PileWidgetTests(unittest.TestCase):
         self.assertIn('Select one or more', self.panel.figures['profiles'].layout.annotations[-1].text)
         self.panel.piles.checks['1'].value = True
         self.panel.piles.checks['3'].value = True
-        traces = self.panel.figures['profiles'].data
+        traces = [t for t in self.panel.figures['profiles'].data if not t.meta or t.meta.get('part')!='fixity']
         self.assertEqual(len(traces), 16)
         for axis in ('x','x2','x3','x4','x5'):
             self.assertEqual({t.legendgroup for t in traces if t.xaxis == axis}, {'1','3'})
         before = {t.legendgroup:t.line.color for t in traces}
         self.panel.piles.checks['1'].value = False
-        self.assertTrue(all(t.line.color == before['3'] for t in self.panel.figures['profiles'].data))
+        self.assertTrue(all(t.line.color == before['3'] for t in self.panel.figures['profiles'].data if not t.meta or t.meta.get('part')!='fixity'))
         self.panel.all_piles.click()
         self.assertEqual(self.panel.piles.value, tuple(self.review['piles']))
         self.panel.governing_pile.click()
