@@ -23,12 +23,12 @@ from .pile_fixity import displacement_fixity, compare_minimum_tip
 from .pile_fixity_visual import mark_fixity, fixity_overview, minimum_tip_html
 
 
-def table(rows, columns, scroll=True):
+def table(rows, columns, scroll=True, decimals=None):
     def value(v):
         if v is None:
             return 'Unavailable'
         if isinstance(v, float):
-            return f'{v:,.4g}'
+            return f'{v:,.4g}' if decimals is None else f'{v:,.{decimals}f}'
         return html.escape(str(v))
     return ('<div'+(' style="overflow:auto;max-height:380px"' if scroll else '')+'><table style="border-collapse:collapse;width:100%">'
             '<tr>'+''.join('<th style="text-align:left;padding:7px;background:#eaf1f6">'+html.escape(label)+'</th>' for _, label in columns)+'</tr>'
@@ -545,7 +545,7 @@ class PileReviewPanel:
                 add_fixity_allowance=self.fixity_allowance.value, round_feet=self.rounding.value)
             self.minimum_tip_result = result
             self.minimum_tip_summary.value = minimum_tip_html(result, table)
-            self.fixity_summary.value = fixity_overview(self.fixity_result)
+            self.fixity_summary.value = fixity_overview(self.fixity_result, result)
             self.fixity_summary.value += '<p><b>Minimum-tip control'+(' among available criteria' if not result['comparison_complete'] else '')+': '
             self.fixity_summary.value += html.escape(result['controlling_criterion'])
             if result['tip_elevation_ft'] is not None:
@@ -695,9 +695,10 @@ class PileReviewPanel:
         if data['selected']:
             markup += '<p><b>Controls: '+html.escape(result['controlling_criterion'])+'</b>. '
             markup += ('Both criteria compared.' if result['comparison_complete'] else '<b>Comparison incomplete — available criteria only.</b>')+'</p>'
-            markup += table([dict(c, control_label='Yes' if c['controls'] else 'No') for c in result['candidates']], [('criterion','Criterion'), ('raw_tip_elevation_ft','Tip EL before rounding (ft)'),
-                ('control_label','Controls'), ('source','Source'), ('status','Status')], scroll=False)
-            markup += fixity_overview(result['fixity'])
+            markup += table([dict(c, control_label='Yes' if c['controls'] else 'No') for c in result['candidates']], [('criterion','Criterion'),
+                ('critical_elevation_ft','Critical EL before allowance (ft)'), ('extension_ft','Allowance (ft)'), ('raw_tip_elevation_ft','Criterion tip EL before rounding (ft)'),
+                ('control_label','Controls'), ('source','Source'), ('status','Status')], scroll=False, decimals=3)
+            markup += fixity_overview(result['fixity'], result)
         if tip is not None:
             markup += f'<p>Design ground / scour elevation: {self.optional(self.reference):.3f} ft. '
             if result['total_length_ft'] is not None:

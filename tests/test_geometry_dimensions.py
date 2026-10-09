@@ -40,7 +40,6 @@ class GeometryDimensionTests(unittest.TestCase):
         app=CapNotebook(self.case)
         self.addCleanup(app.close)
         self.assertEqual(app.plot_tabs.get_title(5),'Dimensions')
-        app.force_diagrams.show_resistance.value=True
         fig=app.force_diagrams.figure
         old=next(t.y for t in fig.data if (t.meta or {}).get('capacity')=='Mr_N')
         app.controls['Bar_N1'].value=11

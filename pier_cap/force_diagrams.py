@@ -213,30 +213,21 @@ class ForceDiagramPanel:
     def __init__(self):
         import ipywidgets as W
         self.notice=W.HTML()
-        self.show_resistance=W.Checkbox(value=False,description='Show current resistances',indent=False,
-            layout=W.Layout(width='260px'))
-        self.show_resistance.observe(self._toggle_resistance,names='value')
         self.resistance_notice=W.HTML()
         self.output=W.VBox(layout=W.Layout(width='100%',min_width='0',align_items='stretch'))
-        self.ui=W.VBox([self.show_resistance,self.notice,self.resistance_notice,self.output],
+        self.ui=W.VBox([self.notice,self.resistance_notice,self.output],
             layout=W.Layout(width='100%',min_width='0',align_items='stretch',max_height='1250px',overflow='auto'))
         self.figure=None
         self._key=None
         self._resistance_key=None
-        self._case=None
-
-    def _toggle_resistance(self,change):
-        if self._case is not None:self.refresh(self._case)
 
     def refresh(self,case,evaluation=None):
-        self._case=case
         audit=case['analysis'].get('xml_audit',{})
         self.notice.value='<p>'+html.escape(diagram_notice(case))+'</p>'
         # Case edits deep-copy the audit. Object identity would rebuild identical
-        # force traces on every reinforcement edit, even with overlays disabled.
+        # views on every refresh even when their contents have not changed.
         key=json.dumps(audit,sort_keys=True)
-        self.show_resistance.disabled=not bool(audit.get('end_records'))
-        resistance_key=json.dumps({k:v for k,v in case.items() if k!='analysis'},sort_keys=True) if self.show_resistance.value else None
+        resistance_key=json.dumps({k:v for k,v in case.items() if k!='analysis'},sort_keys=True)
         if key == self._key and resistance_key == self._resistance_key and (self.figure is not None or not audit.get('end_records')):return
         same_source=key == self._key
         if not audit.get('end_records'):
@@ -245,8 +236,8 @@ class ForceDiagramPanel:
             self._key=key;self._resistance_key=resistance_key
             return
         try:
-            fresh=cap_force_figure(case,show_resistance=self.show_resistance.value,evaluation=evaluation)
-            self.resistance_notice.value='<p>'+html.escape(fresh.layout.meta['resistance_notice'])+'</p>' if self.show_resistance.value else ''
+            fresh=cap_force_figure(case,show_resistance=True,evaluation=evaluation)
+            self.resistance_notice.value='<p>'+html.escape(fresh.layout.meta['resistance_notice'])+'</p>'
             if self.figure is None:self.figure=FigureWidget(fresh)
             else:
                 active=(self.figure.layout.updatemenus[0].active or 0) if same_source else 0

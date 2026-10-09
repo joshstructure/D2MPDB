@@ -160,5 +160,34 @@ class FixityWidgetTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'Zero band'):p.restore(state)
         self.assertEqual(p.snapshot(),before)
 
+    def test_handoff_separates_live_xml_crossing_allowance_and_trial_control(self):
+        p=self.panel
+        def crossing():return p.minimum_tip_result['candidates'][1]
+        self.assertEqual(crossing()['critical_elevation_ft'],-5)
+        self.assertIn('EL -5.000 ft',p.handoff.value)
+        self.assertIn('= -5.000 − 5.000 allowance = <b>-10.000 ft</b>',p.handoff.value)
+        self.assertIn('Loaded displacement XML: <b>fbmp_610_piles.xml</b>',p.handoff.value)
+        p.extension.value=3
+        self.assertEqual(crossing()['critical_elevation_ft'],-5)
+        self.assertEqual(crossing()['raw_tip_elevation_ft'],-8)
+        self.assertIn('= -5.000 − 3.000 allowance = <b>-8.000 ft</b>',p.handoff.value)
+        # A new pasted trial changes the governing tip, not the loaded XML.
+        p.trial_text.value='1,2,3,60,1\n2,2,3,55,1.01';p.run_trials.click()
+        self.assertEqual(p.minimum_tip_result['controlling_criterion'],'Displacement-change trials')
+        self.assertEqual(p.minimum_tip_result['tip_elevation_ft'],-33)
+        self.assertEqual(crossing()['critical_elevation_ft'],-5)
+        # A replacement displacement source changes the crossing and its label.
+        data=deepcopy(p.review);data['filename']='new-analysis.xml'
+        for r in data['displacements']:
+            if r['pile']=='3' and r['combination']=='2' and r['vertical_ft']>25:
+                r['dy']=r['vertical_ft']-47;r['lateral_in']=abs(r['dy'])
+        p.set_review(data);p.cutoff.value='40.25';p.reference.value='30';p.rounding.value=True
+        self.assertEqual(crossing()['critical_elevation_ft'],-6.75)
+        self.assertEqual(crossing()['raw_tip_elevation_ft'],-9.75)
+        self.assertEqual(p.minimum_tip_result['tip_elevation_ft'],-10)
+        self.assertIn('new-analysis.xml',p.handoff.value)
+        self.assertNotIn('fbmp_610_piles.xml',p.handoff.value)
+        self.assertIn('= -6.750 − 3.000 allowance = <b>-9.750 ft</b>',p.handoff.value)
+
 
 if __name__=='__main__':unittest.main()

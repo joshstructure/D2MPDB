@@ -121,7 +121,7 @@ def selected_trial_handoff(review, result, *, source='', ground=None, cutoff=Non
             ('Profiles without second crossing', result['fixity']['unresolved_count'])])
         for candidate in result['candidates']:
             selection.extend(dict(item=candidate['criterion']+' · '+key, value=candidate[key])
-                for key in ('critical_embedment_ft','extension_ft','required_embedment_ft','raw_tip_elevation_ft','source','status'))
+                for key in ('critical_embedment_ft','critical_elevation_ft','extension_ft','required_embedment_ft','raw_tip_elevation_ft','source','status'))
     trials = []
     for group in result['groups']:
         match = next((r for r in result['rows'] if r['series'] == group['series'] and

@@ -28,15 +28,25 @@ def mark_fixity(fig, fixity, combo, piles, result=None):
             annotation_position='bottom right', exclude_empty_subplots=False)
 
 
-def fixity_overview(fixity):
+def fixity_overview(fixity, result=None):
     governors = fixity['governors']
     if not governors:
         message = '<b>Second zero crossing: unavailable.</b> No imported signed profile has two resolved crossings.'
     else:
         p = governors[0]
-        message = f'<b>Deepest second zero crossing: {p["second_vertical_ft"]:.3f} ft vertically below cutoff</b>'
-        if p['second_elevation_ft'] is not None: message += f' · EL {p["second_elevation_ft"]:.3f} ft'
+        message = '<b>Raw second-zero crossing (before allowance): '
+        message += (f'EL {p["second_elevation_ft"]:.3f} ft' if p['second_elevation_ft'] is not None else 'elevation needs pile cutoff')+'</b>'
+        message += f'<br>Depth below pile cutoff: {p["second_vertical_ft"]:.3f} ft'
+        if p['critical_embedment_ft'] is not None: message += f' · depth below ground / scour: {p["critical_embedment_ft"]:.3f} ft'
         message += '<br>'+html.escape('; '.join(governor_label(p) for p in governors))
+        candidate = next((c for c in result['candidates'] if c['criterion']=='Second zero crossing'), None) if result else None
+        if candidate and candidate['raw_tip_elevation_ft'] is not None:
+            message += (f'<br>Crossing criterion tip EL = {p["second_elevation_ft"]:.3f} − '
+                f'{candidate["extension_ft"]:.3f} allowance = <b>{candidate["raw_tip_elevation_ft"]:.3f} ft</b> (before rounding).')
+            message += '<br>This is the second-zero row in the table. The adopted minimum tip is selected after comparing both criteria and applying any rounding.'
+    if fixity.get('source_filename'):
+        message += '<br>Loaded displacement XML: <b>'+html.escape(fixity['source_filename'])+'</b>.'
+        message += ' Changing pasted trial rows does not replace these displacement profiles.'
     if fixity['unresolved_count']:
         message += f'<br><b>{fixity["unresolved_count"]} active/missing profiles lack a resolved second crossing.</b> The deepest available crossing does not complete that comparison.'
     return ('<p>'+message+'</p><p><small>All imported piles and combinations, independent of plot selection. Circles = first crossing; orange diamonds = second. '
@@ -51,12 +61,12 @@ def minimum_tip_html(result, table):
     text += html.escape(result['controlling_criterion'])+'</b></p>'
     text += table([dict(c, control_label='Yes' if c['controls'] else 'No') for c in result['candidates']], [('criterion','Criterion'), ('critical_embedment_ft','Critical depth below ground (ft)'),
         ('extension_ft','Added (ft)'), ('required_embedment_ft','Required embedment (ft)'),
-        ('raw_tip_elevation_ft','Tip EL before rounding (ft)'), ('control_label','Controls'), ('source','Governing source'), ('status','Status')], scroll=False)
+        ('raw_tip_elevation_ft','Tip EL before rounding (ft)'), ('control_label','Controls'), ('source','Governing source'), ('status','Status')], scroll=False, decimals=3)
     if result['required_embedment_ft'] is not None:
         text += f'<p>Required embedment: <b>{result["required_embedment_ft"]:.3f} ft</b> below design ground / scour.'
         if result['total_length_ft'] is not None: text += f' Total pile length: <b>{result["total_length_ft"]:.3f} ft</b>.'
         text += '</p>'
-    text += '<p>'+html.escape(result['basis'])+'</p>'+fixity_overview(result['fixity'])
+    text += '<p>'+html.escape(result['basis'])+'</p>'+fixity_overview(result['fixity'], result)
     rows = []
     for p in result['fixity']['profiles']:
         rows.append(dict(p, first_vertical_ft=p['crossings'][0]['vertical_ft'] if p['crossings'] else None))

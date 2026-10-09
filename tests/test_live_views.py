@@ -88,11 +88,10 @@ class LiveViewTests(unittest.TestCase):
         embed=next(t for t in app.views.plots['dimensions'].data if (t.meta or {}).get('dimension')=='embedment')
         self.assertEqual(embed.meta['inches'],8)
 
-    def test_unchanged_imported_forces_do_not_redraw_after_case_deepcopy(self):
-        app=self.app;app.load(import_fbmp_xml('tests/fixtures/fbmp_610_cap.xml'));panel=app.transverse_panel;panel.generate.click()
-        with patch('pier_cap.force_diagrams.cap_force_figure',side_effect=AssertionError('Unchanged imported forces')):
-            panel.zone_controls['R4']['pitch'].value=6
-        self.assertNotIn('Not applied',panel.status.value)
+    def test_unchanged_force_and_resistance_inputs_do_not_redraw_after_case_deepcopy(self):
+        app=self.app;app.load(import_fbmp_xml('tests/fixtures/fbmp_610_cap.xml'))
+        with patch('pier_cap.force_diagrams.cap_force_figure',side_effect=AssertionError('Unchanged force/resistance inputs')):
+            app.force_diagrams.refresh(deepcopy(app.case),evaluation=app.current)
 
     def test_auxiliary_views_remount_after_invalid_input_restores_same_case(self):
         app=self.app

@@ -69,7 +69,8 @@ def displacement_fixity(review, cutoff=None, ground=None, zero_band=1e-6):
     governors = [p for p in found if math.isclose(p['second_vertical_ft'], deepest, abs_tol=1e-8, rel_tol=0)]
     unresolved = [p for p in profiles if (p['active'] and p['crossing_count']<2) or p['status']=='No profile records']
     return dict(profiles=profiles, governors=governors, unresolved_count=len(unresolved), zero_band_in=zero_band,
-                complete=bool(governors) and not unresolved, cutoff_elevation_ft=cutoff, ground_elevation_ft=ground)
+                complete=bool(governors) and not unresolved, cutoff_elevation_ft=cutoff, ground_elevation_ft=ground,
+                source_filename=review.get('filename') if review else None, source_sha256=review.get('sha256') if review else None)
 
 
 def governor_label(profile):
@@ -87,6 +88,7 @@ def compare_minimum_tip(trials, fixity, *, ground=None, cutoff=None, extension=5
     candidates = []
     trial_critical = trials.get('critical_embedment_ft') if trials else None
     candidates.append(dict(criterion='Displacement-change trials', critical_embedment_ft=trial_critical,
+        critical_elevation_ft=ground-trial_critical if ground is not None and trial_critical is not None else None,
         extension_ft=trials['extension_ft'] if trials else None,
         required_embedment_ft=trials['required_embedment_ft'] if trials else None,
         raw_tip_elevation_ft=ground-trials['required_embedment_ft'] if ground is not None and trials and trials['required_embedment_ft'] is not None else None,
@@ -107,6 +109,7 @@ def compare_minimum_tip(trials, fixity, *, ground=None, cutoff=None, extension=5
         required = critical+added
         tip = ground-required
     candidates.append(dict(criterion='Second zero crossing', critical_embedment_ft=critical, extension_ft=added,
+        critical_elevation_ft=profile['second_elevation_ft'] if profile else None,
         required_embedment_ft=required, raw_tip_elevation_ft=tip,
         source='; '.join(governor_label(p) for p in governors), status=status))
     available = [c for c in candidates if c['required_embedment_ft'] is not None]

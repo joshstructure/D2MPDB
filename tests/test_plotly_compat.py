@@ -99,7 +99,6 @@ class WorkbenchTraceDeltaTests(unittest.TestCase):
         root = Path(__file__).resolve().parents[1]
         app = CapNotebook(import_fbmp_xml(root/'tests/fixtures/fbmp_610_cap.xml'))
         self.addCleanup(app.close)
-        app.force_diagrams.show_resistance.value = True
         cage, force = app.cage_3d_widget, app.force_diagrams.figure
         self.assertIsInstance(cage, FigureWidget)
         self.assertTrue(all(isinstance(f, FigureWidget) for f in app.figures))
@@ -123,8 +122,8 @@ class WorkbenchTraceDeltaTests(unittest.TestCase):
             self.assertEqual(force.layout.updatemenus[0].active, 2)
             self.assertEqual(app.current.case['inputs']['Bar_N1'], size)
             self.assertIn(f'#{size}', app.cage.children[0].value)
-        # Overlay removal also retires traces while retaining the same figure.
+        # A mismatch with the analyzed pile layout retires resistance traces.
         overlay_uids = [t.uid for t in force.data if (t.meta or {}).get('role')]
-        app.force_diagrams.show_resistance.value = False
+        app.controls['S_pile'].value += 1
         acknowledge(force, [{'uid': uid, 'visible': True} for uid in overlay_uids])
         self.assertFalse(any((t.meta or {}).get('role') for t in force.data))

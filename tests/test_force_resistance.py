@@ -101,13 +101,14 @@ class ForceResistanceTests(unittest.TestCase):
         self.assertFalse(overlays(mismatch))
         self.assertIn('OVERLAY UNAVAILABLE',mismatch.layout.meta['resistance_notice'])
 
-    def test_toggle_updates_steel_keeps_selected_mode_and_removes_stale_capacity(self):
+    def test_resistances_start_visible_update_steel_and_remove_stale_capacity(self):
         panel=ForceDiagramPanel()
         self.addCleanup(panel.close)
         panel.refresh(self.case)
         figure=panel.figure
+        self.assertTrue(overlays(figure))
+        self.assertTrue(any(t.visible is not False for t in overlays(figure)))
         panel.figure.layout.updatemenus[0].active=2
-        panel.show_resistance.value=True
         self.assertIs(panel.figure,figure)
         self.assertEqual(panel.figure.layout.updatemenus[0].active,2)
         old=deepcopy(next(t.y for t in overlays(figure) if t.meta['capacity']=='Mr_N'))
@@ -119,6 +120,3 @@ class ForceResistanceTests(unittest.TestCase):
         panel.refresh(self.case)
         self.assertFalse(overlays(figure))
         self.assertIn('UNAVAILABLE',panel.resistance_notice.value)
-        panel.show_resistance.value=False
-        self.assertFalse(overlays(figure))
-        self.assertEqual(panel.resistance_notice.value,'')
