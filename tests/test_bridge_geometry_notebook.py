@@ -98,10 +98,91 @@ class BridgeGeometryTests(unittest.TestCase):
         piles = [c for c in geometry['components'] if c['kind'] == 'Pile']
         self.assertEqual(len(piles), 4)
         np.testing.assert_allclose([c['xy'][:, 1].max() for c in piles], 41.73325, atol=1e-8)
-        end = self.env['section_geometry'](self.model, self.model.start)[0]
-        self.assertFalse(any(c['kind'] == 'Pile' for c in end['components']))
+        between = self.env['section_geometry'](self.model, (self.model.start+1700.57)/2)[0]
+        self.assertFalse(any(c['kind'] == 'Pile' for c in between['components']))
         hidden = self.env['longitudinal_figure'](self.model, 1700.57, layers=('Deck',))
         self.assertFalse(any(c.get_label() == 'Pile cutoff' for c in hidden.axes[0].collections))
+
+    def test_end_bents_match_current_project_geometry(self):
+        self.assertEqual([p['name'] for p in self.model.supports], ['Pier','End Bent 1','End Bent 2'])
+        for support,station,top,cutoff in zip(self.model.end_bents,
+                [1593.22,1805.47],[43.196625,43.208625],[41.196625,41.208625]):
+            with self.subTest(support=support['name']):
+                self.assertEqual(support['station'],station)
+                self.assertAlmostEqual(support['length']*12,212)
+                self.assertAlmostEqual(support['width']*12,42)
+                self.assertAlmostEqual(support['depth']*12,36)
+                self.assertAlmostEqual(support['volume_ft3'],185.5)
+                self.assertAlmostEqual(support['pedestal_length_ft']*12,30)
+                self.assertAlmostEqual(support['bearing_offset_ft']*12,3)
+                self.assertAlmostEqual(support['top'],top)
+                self.assertEqual(support['pile_shape'],'square')
+                np.testing.assert_allclose(support['pile_layout']['Offset (ft)'],[-6.75,-2.25,2.25,6.75])
+                np.testing.assert_allclose(support['pile_elevations']['Pile cutoff (ft)'],cutoff,atol=1e-9)
+                np.testing.assert_allclose(support['seats']['Pedestal height (in)'],6,atol=1e-9)
+                self.assertEqual(len(support['seats']),2)
+                section=self.env['section_geometry'](self.model,station)[0]
+                self.assertEqual(section['support']['name'],support['name'])
+                self.assertEqual(sum(c['kind']=='Pile' for c in section['components']),4)
+                self.assertEqual(sum(c['kind']=='Bearing' for c in section['components']),2)
+                self.assertEqual(sum(c['kind']=='Pedestal' for c in section['components']),2)
+                self.assertEqual(sum(c['kind']=='Cap' for c in section['components']),1)
+
+    def test_end_bent_inputs_are_independent_and_follow_profile(self):
+        config=copy.deepcopy(self.config)
+        config['end_bents']['start']['depth_ft']=4
+        model=self.env['BridgeModel'](config)
+        np.testing.assert_allclose(model.end_bents[0]['pile_elevations']['Pile cutoff (ft)'],40.196625,atol=1e-9)
+        np.testing.assert_allclose(model.end_bents[1]['pile_elevations']['Pile cutoff (ft)'],41.208625,atol=1e-9)
+        self.assertAlmostEqual(model.pier['top'],self.model.pier['top'])
+        config=copy.deepcopy(self.config)
+        config['profile']['start_elev_ft']+=2
+        config['profile']['end_elev_ft']+=2
+        model=self.env['BridgeModel'](config)
+        for previous,current in zip(self.model.end_bents,model.end_bents):
+            self.assertAlmostEqual(current['top'],previous['top']+2)
+        config['end_bents']['start']['cross_slope']=.01
+        model=self.env['BridgeModel'](config)
+        piles=model.end_bents[0]['pile_elevations']
+        np.testing.assert_allclose(np.diff(piles['Pile cutoff (ft)']),.045,atol=1e-9)
+
+    def test_invalid_end_bent_geometry_is_rejected(self):
+        for edits in ({'pile_embedment_in':37},{'width_ft':1},{'pile_spacing_in':17},
+                      {'backwall_thickness_in':40},{'beam_end_clear_in':-1}):
+            config=copy.deepcopy(self.config)
+            config['end_bents']['start'].update(edits)
+            with self.subTest(edits=edits),self.assertRaises(ValueError):
+                self.env['BridgeModel'](config)
+
+    def test_clearance_callout_matches_independent_dense_scan(self):
+        detail=self.model.clearance_details()
+        stations=np.linspace(self.model.start,self.model.end,100001)
+        sampled=np.nanmin(self.model.evaluate(stations)['clearance'])
+        self.assertLessEqual(detail['value'],sampled+1e-9)
+        self.assertLess(sampled-detail['value'],.0001)
+        self.assertAlmostEqual(detail['bottom']-detail['roadway'],detail['value'])
+        self.assertAlmostEqual(detail['station'],1699.462329)
+        self.assertAlmostEqual(detail['value'],18.328812585230622)
+        self.assertEqual(detail['beam_label'],'B1/B2')
+        card=self.env['clearance_card'](self.model).data
+        self.assertIn('18.329 ft',card)
+        self.assertIn('16+99.46',card)
+        self.assertIn('Covered region only',card)
+        self.assertNotIn('Meets requirement',card)
+
+    def test_clearance_missing_and_below_requirement_states(self):
+        config=copy.deepcopy(self.config)
+        config['roadway']['xml_path']=str(ROOT/'missing.xml')
+        missing=self.env['BridgeModel'](config)
+        self.assertFalse(missing.clearance_details()['available'])
+        self.assertIn('unavailable',self.env['clearance_card'](missing).data)
+        self.env['longitudinal_figure'](missing,missing.start)
+        config=copy.deepcopy(self.config)
+        config['roadway']['clearance_required_ft']=19
+        failing=self.env['BridgeModel'](config)
+        self.assertEqual(failing.clearance_details()['status'],'Below requirement')
+        self.assertLess(failing.clearance_details()['margin'],0)
+        self.assertIn('Below requirement',self.env['clearance_card'](failing).data)
 
     def test_existing_xml_and_custom_paths_need_no_network(self):
         loader = self.env['ensure_roadway_file']
