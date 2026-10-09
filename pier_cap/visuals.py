@@ -182,7 +182,7 @@ def clear_spacing_html(e):
         f'({"confirmed" if s["aggregate_confirmed"] else "UNCONFIRMED assumption"}). Vertical alignment is checked separately.</p>'
         '<table class="cap-table"><tr><th>Region / bars</th><th>Actual clear (in)</th><th>Required clear (in)</th><th>Status</th></tr>'+''.join(rows)+'</table>')
 
-def elevation_figure(e,*,zone_labels=False):
+def elevation_figure(e,*,zone_labels=True):
     p=e.case['inputs'];L=e.value('L_cap');h=p['h'];D=p['D_pile']
     fig=go.Figure()
     fig.add_shape(type='rect',x0=0,x1=L/12,y0=0,y1=h,fillcolor='#eef3f7',line=dict(color=INK,width=2),layer='below')
@@ -235,26 +235,17 @@ def elevation_figure(e,*,zone_labels=False):
     fig.update_xaxes(title='Along cap (ft)',range=[-1,L/12+1],zeroline=False)
     fig.update_yaxes(title='Elevation above cap underside (in)',range=[-22,h+5],scaleanchor='x',scaleratio=1/12,zeroline=False)
     theme(fig,'SIDE ELEVATION · along the cap length',540)
-    fig.add_annotation(name='part:transverse',x=0,y=1.23,xref='paper',yref='paper',xanchor='left',showarrow=False,
-        text=('Every purple / pink line is an entered bar station.<br>Pile U-bars are open at the bottom; see cross section / 3D.' if actual_transverse(e.case) else 'Purple dashed lines = hoop pitch sample only.<br>Set actual stations in Actual hoops and pile U-bars.'),
+    fig.add_annotation(name='part:transverse',x=0,y=1.15,xref='paper',yref='paper',xanchor='left',showarrow=False,
+        text=('Each purple / pink line is an entered bar station · Open-bottom U-bars: see cross section / 3D.' if actual_transverse(e.case) else 'Dashed hoops show reference pitch only · Actual stations are not set.'),
         align='left',font=dict(size=11,color=HOOP))
     fig.update_layout(legend=dict(orientation='h',y=-.3,font=dict(size=10)),margin=dict(t=130,b=170))
     if zone_labels:
-        from .transverse_zones import zone_runs
-        zones,groups,custom=zone_runs(e)
-        for zone in zones:
-            if zone['right']<=zone['left']:continue
-            numbers=', '.join(html.escape(r['id']) for r in groups[zone['key']])
-            fig.add_annotation(name='part:transverse',x=(zone['left']+zone['right'])/24,y=1.025,xref='x',yref='paper',
-                text=('<b>'+numbers+'</b><br>' if numbers else '')+zone['label'].replace('Pile ',''),showarrow=False,bgcolor='#fff1f7' if zone['kind']=='pile_u' else '#f2ecf8',
-                font=dict(size=10,color='#bd407d' if zone['kind']=='pile_u' else HOOP))
-        for run in custom:
-            fig.add_annotation(name='part:transverse',x=(run['first_in']+run['end_in'])/24,y=1.025,xref='x',yref='paper',
-                text='<b>'+html.escape(run['id'])+'</b><br>Custom',showarrow=False,font=dict(size=10,color=HOOP))
+        from .zone_visuals import add_zone_dimensions
+        add_zone_dimensions(fig,e)
     return drawing_controls(fig)
 
 
-def reinforcement_plan_figure(e):
+def reinforcement_plan_figure(e,*,zone_labels=True):
     p=e.case['inputs'];L=e.value('L_cap');fig=go.Figure()
     fig.add_shape(type='rect',x0=0,x1=L/12,y0=0,y1=p['b'],line=dict(color=INK),fillcolor='#f2f5f7',layer='below')
     for i in range(int(p['N_pile'])):
@@ -278,6 +269,9 @@ def reinforcement_plan_figure(e):
     fig.update_xaxes(title='Along cap (ft)',range=[-1,L/12+1]);fig.update_yaxes(title='Across cap (in)',range=[-3,p['b']+3],scaleanchor='x',scaleratio=1/12)
     theme(fig,'PLAN VIEW · steel viewed from above (layers overlap)',430)
     fig.update_layout(legend=dict(y=-.35,font=dict(size=10)),margin=dict(b=110))
+    if zone_labels:
+        from .zone_visuals import add_zone_dimensions
+        add_zone_dimensions(fig,e)
     return drawing_controls(fig)
 
 

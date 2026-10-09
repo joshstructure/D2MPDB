@@ -23,7 +23,7 @@ from .transverse import enabled as actual_transverse
 from .pile_visual_widgets import PileAppearancePanel
 from .cage_3d import layout_3d
 from .visuals import configuration_html
-from .visuals import section_figure,elevation_figure,reinforcement_plan_figure,reinforcement_summary_html,clear_spacing_html,hoop_figure,hoop_explanation_html,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html,spacing_html,side_steel_html,pile_head_help_html
+from .visuals import section_figure,elevation_figure,reinforcement_plan_figure,reinforcement_summary_html,clear_spacing_html,hoop_figure,hoop_explanation_html,results_figure,optional_service_figure,ratios_figure,alternatives_figure,checks_html,spacing_html,side_steel_html
 
 UNIT_NAMES={'in':'inches','ft':'feet','kip':'kips','kip*ft':'kip-feet','ksi':'ksi (kips per square inch)','deg':'degrees'}
 
@@ -135,7 +135,8 @@ class CapNotebook:
                     label=LABELS.get(n,n.replace('_',' '))
                     unit=meta['unit'] or ('unitless' if isinstance(control,W.FloatText) else '')
                     control.description=label+(f' ({unit.replace("*","-")})' if unit else '')
-                    control.style.description_width='180px';control.layout.width='260px';control.layout.max_width='calc(100% - 4px)'
+                    control.style.description_width='140px' if group=='Geometry' else '180px'
+                    control.layout.width='216px' if group=='Geometry' else '260px';control.layout.max_width='calc(100% - 4px)'
                     control.layout.min_height='30px';control.layout.height='auto';control.add_class('cap-input')
                     rows.append(control)
                 if title=='Hoops and side bars':
@@ -146,11 +147,13 @@ class CapNotebook:
                 if title=='Advanced · cross-section spacing':rows.insert(0,W.HTML('<p>Override the automatic spacing of longitudinal bars <b>within the cross section</b>. The checkbox activates top, continuous-bottom, added-row and side-bar spacing overrides. It does not add bars or change along-cap hoop pitch. <b>Inner leg spacing</b> is used separately when effective hoop loops exceed one; multiple-loop positions remain unresolved.</p>'))
                 if title=='ADDITIONAL steel · between piles':rows.insert(0,W.HTML('<p><b>These counts are ADDITIONAL, not totals.</b> Continuous bottom bars stay in place. Total span steel = continuous bars + these added bars. Enter 0 for no added bars. The bar size here applies only to the added steel. Standard 90° hooks are drawn at the span ends; anchorage remains a separate check.</p>'))
                 if title=='Continuous bottom steel · at piles':rows.insert(0,W.HTML('<p>These bottom bars continue through every pile and span to the cap end-cover planes. Their transverse positions stay fixed. End anchorage and splices require review.</p>'))
-                if title=='Pile head':rows.extend([W.HTML(pile_head_help_html()),self.pile_appearance.ui])
                 caption='Side bars and row spacing' if title=='Hoops and side bars' else title
-                card=W.VBox([W.HTML('<b>'+html.escape(caption)+'</b>'),*rows],
-                    layout=W.Layout(flex='1 1 280px',min_width='280px',max_width='360px',padding='8px',border='1px solid #c4cdd6'))
+                content=[W.HBox(rows,layout=W.Layout(width='100%',flex_flow='row wrap',grid_gap='8px'))] if group=='Geometry' else rows
+                layout=(W.Layout(width='100%',min_width='0',flex='0 0 auto',padding='8px',border='1px solid #c4cdd6') if group=='Geometry' else
+                    W.Layout(flex='1 1 280px',min_width='280px',max_width='360px',padding='8px',border='1px solid #c4cdd6'))
+                card=W.VBox([W.HTML('<b>'+html.escape(caption)+'</b>'),*content],layout=layout)
                 card.add_class('cap-input-card');panels.append(card)
+            if group=='Geometry':panels.append(self.pile_appearance.ui)
             tabs.append(W.HBox(panels,layout=W.Layout(width='100%',min_width='0',flex_flow='row wrap',align_items='flex-start',grid_gap='8px')))
         tab=Tab(children=tabs,layout=W.Layout(flex='0 0 auto',width='100%',min_width='0'))
         for i,name in enumerate(GROUPS):tab.set_title(i,name)

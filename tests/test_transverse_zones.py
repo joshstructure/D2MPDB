@@ -39,7 +39,7 @@ class TransverseZoneTests(unittest.TestCase):
         zones,groups,custom=zone_runs(e)
         self.assertEqual([r['id'] for r in custom],['Custom'])
         self.assertFalse(any(groups.values()))
-        with self.assertRaisesRegex(ValueError,'custom run'):new_zone_run(e,'S1',6,7)
+        with self.assertRaisesRegex(ValueError,'bars from Custom'):new_zone_run(e,'S1',6,7)
         self.assertEqual(case,before)
 
     def test_add_zone_respects_cover_neighbors_and_unique_identifier(self):
@@ -169,7 +169,8 @@ class ZoneWidgetTests(unittest.TestCase):
         panel=self.app.transverse_panel
         self.assertEqual(panel.general.children,(self.app.hoop_reference_inputs,))
         self.assertFalse(hasattr(panel,'fields'));self.assertFalse(hasattr(panel,'select'))
-        annotations=' '.join(a.text or '' for a in self.app.views.plots['elevation'].layout.annotations)
+        figure=self.app.views.plots['elevation']
+        annotations=' '.join(str(text) for trace in figure.data if (trace.meta or {}).get('dimension','').startswith('zone_') for text in trace.text)
         for rid,card in panel.zone_controls.items():
             self.assertIn('Run '+rid,card['label'].value)
             self.assertIn(rid,annotations)

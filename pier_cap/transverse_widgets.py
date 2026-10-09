@@ -5,7 +5,7 @@ import math
 import ipywidgets as W
 from .transverse import empty_detail,enabled,shape_parameters,suggested_detail,validate_detail,development_current,development_fingerprint
 from .widget_compat import Accordion
-from .transverse_zones import zone_runs,new_zone_run
+from .transverse_zones import zone_runs,new_zone_run,zone_add_conflicts,occupant_text,station_range,run_last_station
 
 
 def _layout():return W.Layout(width='calc(100% - 4px)',min_width='0')
@@ -89,7 +89,7 @@ class RunCard:
 
 class TransversePanel:
     def __init__(self,owner):
-        self.owner=owner;self.busy=False;self.zone_controls={};self._cards={};self._zones={};self._empty_zones={};self._selected_run_id=None
+        self.owner=owner;self.busy=False;self.zone_controls={};self._cards={};self._zones={};self._empty_zones={};self._inspect_buttons={};self._selected_run_id=None
         self.active=W.Checkbox(description='Use actual transverse layout',indent=False)
         self.generate=W.Button(description='Create starting layout',icon='plus',layout=W.Layout(width='210px'))
         self.add=W.Button(description='Add custom run',icon='plus')
@@ -102,6 +102,7 @@ class TransversePanel:
         self.zone_scroll=W.VBox([self.zone_grid],layout=W.Layout(width='100%',min_width='0',max_width='100%',
             flex='0 0 auto'))
         self.detail_area=W.VBox(layout=W.Layout(width='100%',min_width='0'))
+        self.selected_info=W.HTML()
         self.general=Accordion(children=[owner.hoop_reference_inputs]);self.general.set_title(0,'General hoop reference inputs and spacing assumptions');self.general.selected_index=None
         self.ui=W.VBox([W.HTML('<style>.cap-hoop-track {flex-wrap:nowrap!important;overflow-x:scroll!important;overflow-y:hidden!important;overscroll-behavior-x:contain;}'
             '.cap-hoop-card {flex-shrink:0!important;}</style>'
@@ -129,20 +130,33 @@ class TransversePanel:
             self._zones[key]=(header,box)
         return self._zones[key]
 
-    def _empty_card(self,z,e):
+    def _empty_card(self,z,e,occupants):
         key=z['key']
         if key not in self._empty_zones:
             size=W.Dropdown(options=[(f'#{n}',n) for n in range(3,12)],value=int(e.case['inputs']['Bar_v']),description='Size',style={'description_width':'65px'},layout=W.Layout(width='124px'))
             pitch=W.FloatText(value=e.case['inputs']['s_G'],description='c/c in',continuous_update=False,style={'description_width':'65px'},layout=W.Layout(width='124px'))
             note=W.HTML('<small>No run entered. Choose size / spacing and add this zone.</small>')
             button=W.Button(description='Add zone run',icon='plus',layout=_layout());button.on_click(lambda _:self._add_zone(key))
-            self._empty_zones[key]=dict(bar=size,pitch=pitch,note=note,button=button,ui=W.VBox([note,size,pitch,button]))
-        c=self._empty_zones[key];c['button'].disabled=z['right']<=z['left']
+            links=W.HBox(layout=W.Layout(flex_flow='row wrap'))
+            self._empty_zones[key]=dict(bar=size,pitch=pitch,note=note,button=button,links=links,ui=W.VBox([note,size,pitch,button,links]))
+        c=self._empty_zones[key];c['button'].disabled=bool(occupants) or z['right']<=z['left']
+        c['bar'].disabled=c['pitch'].disabled=bool(occupants)
+        for name in ('bar','pitch','button'):c[name].layout.display='none' if occupants else ''
+        c['note'].value=('<small><b>Occupied by saved bars:</b><br>'+html.escape('; '.join(occupant_text(o) for o in occupants))+'</small>' if occupants else
+            '<small>No run assigned. Choose size / spacing; adjoining-bar clearance is kept when adding.</small>')
+        buttons=[]
+        for owner in occupants:
+            rid=owner['id'];button_key=(key,rid)
+            if button_key not in self._inspect_buttons:
+                button=W.Button(description='Inspect '+rid,icon='eye',layout=W.Layout(width='124px'))
+                button.on_click(lambda _,rid=rid:self._select_run(rid));self._inspect_buttons[button_key]=button
+            buttons.append(self._inspect_buttons[button_key])
+        if c['links'].children!=tuple(buttons):c['links'].children=buttons
         return c['ui']
 
     def sync_zones(self,e):
         self.zone_scroll.layout.display='';self.zone_grid.layout.display='';self.detail_area.layout.display='';zones,groups,custom=zone_runs(e)
-        runs=e.case.get('transverse_detail',empty_detail())['runs'];ids={r['id'] for r in runs}
+        runs=e.case.get('transverse_detail',empty_detail())['runs'];ids={r['id'] for r in runs};occupancy=zone_add_conflicts(e)
         prior=self.busy;self.busy=True
         try:
             for rid in set(self._cards)-ids:
@@ -159,17 +173,20 @@ class TransversePanel:
                     card=self._cards[run['id']];card.sync(run,z['label'],enabled(e.case),run['id']==self.selected_run_id,e.case)
                     boxes.append(card.ui)
                 if not group:
-                    header,box=self._zone_box(z['key']);header.value='<b>'+html.escape(z['label'])+'</b>'
-                    children=(header,self._empty_card(z,e))
+                    header,box=self._zone_box(z['key']);header.value='<b>'+html.escape(z['label'])+'</b><br><small>'+station_range(z['left'],z['right'])+'</small>'
+                    children=(header,self._empty_card(z,e,occupancy[z['key']]))
                     if box.children!=children:box.children=children
                     boxes.append(box)
             if self.zone_grid.children!=tuple(boxes):self.zone_grid.children=boxes
             details=tuple(self.zone_controls[r['id']]['details'] for r in runs)
             for run,detail in zip(runs,details):detail.layout.display='' if run['id']==self.selected_run_id else 'none'
-            if self.detail_area.children!=details:self.detail_area.children=details
+            selected=next((r for r in runs if r['id']==self.selected_run_id),None)
+            self.selected_info.value=('<b>'+html.escape(selected['id'])+'</b> · Actual first–last: '+station_range(selected['first_in'],run_last_station(selected))+
+                f' · Entered limit: {selected["end_in"]:g} in / {selected["end_in"]/12:g} ft' if selected else '')
+            if self.detail_area.children!=(self.selected_info,*details):self.detail_area.children=(self.selected_info,*details)
             notes=[]
             if not enabled(e.case):notes.append('Actual layout is off. Enable it to edit saved runs and draw their bars.')
-            if custom:notes.append('Runs crossing zone boundaries keep their numbered cards in Custom / crossing runs.')
+            if custom:notes.append('Crossing / different-shape runs: '+', '.join(r['id'] for r in custom)+'. Occupied zone cards identify their actual bars; Inspect opens that run below.')
             notes.append('Geometry changes never move saved bar stations. Review adjoining-run spacing and the D/C checks.')
             self.zone_notice.value='<p>'+html.escape(' '.join(notes))+'</p>'
         finally:self.busy=prior
@@ -261,4 +278,5 @@ class TransversePanel:
         for header,box in self._zones.values():header.close();box.close()
         for controls in self._empty_zones.values():
             for widget in controls.values():widget.close()
-        for widget in (self.active,self.generate,self.add,self.status,self.zone_notice,self.zone_grid,self.zone_scroll,self.detail_area,self.general,self.ui):widget.close()
+        for widget in self._inspect_buttons.values():widget.close()
+        for widget in (self.active,self.generate,self.add,self.status,self.zone_notice,self.zone_grid,self.zone_scroll,self.detail_area,self.selected_info,self.general,self.ui):widget.close()
