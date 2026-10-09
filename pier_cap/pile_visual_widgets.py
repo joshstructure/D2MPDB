@@ -7,10 +7,10 @@ from .pile_visual import pile_appearance,validate_pile_visual
 class PileAppearancePanel:
     def __init__(self,owner):
         self.owner=owner;self.busy=False
-        style={'description_width':'145px'};layout=W.Layout(width='336px')
+        style={'description_width':'145px'};layout=W.Layout(width='calc(100% - 4px)',min_width='0')
         self.shape=W.Dropdown(options=[('Not specified','unknown'),('Square','square'),('Round solid','round'),('Pipe / round shell','pipe')],description='3D pile shape',style=style,layout=layout)
-        self.wall=W.Text(description='Pipe wall (in)',placeholder='Unknown if blank',style=style,layout=W.Layout(width='336px'))
-        self.filled=W.Dropdown(options=[('Unspecified',None),('Open pipe',False),('Concrete filled',True)],description='Pipe interior',style=style,layout=W.Layout(width='336px'))
+        self.wall=W.Text(description='Pipe wall (in)',placeholder='Unknown if blank',style=style,layout=W.Layout(width='calc(100% - 4px)',min_width='0'))
+        self.filled=W.Dropdown(options=[('Unspecified',None),('Open pipe',False),('Concrete filled',True)],description='Pipe interior',style=style,layout=W.Layout(width='calc(100% - 4px)',min_width='0'))
         self.apply=W.Button(description='Apply pile appearance',icon='check',layout=W.Layout(width='220px'))
         self.status=W.HTML()
         self.ui=W.VBox([W.HTML('<b>Pile shape in the 3D view</b>'),self.shape,self.wall,self.filled,self.apply,self.status,

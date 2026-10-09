@@ -186,6 +186,11 @@ class ZoneWidgetTests(unittest.TestCase):
         self.assertIs(card,panel.zone_controls[rid]);self.assertEqual(card['details'].selected_index,0)
         new_id=(set(panel.zone_controls)-old_ids).pop()
         self.assertEqual(len(zone_runs(app.current)[1]['P2']),2)
+        # Splitting a zone creates another horizontal card, never a vertical stack.
+        self.assertIn(panel._cards[rid].ui,panel.zone_grid.children)
+        self.assertIn(panel._cards[new_id].ui,panel.zone_grid.children)
+        self.assertNotIn(card['details'],panel._cards[rid].ui.children)
+        self.assertIn(card['details'],panel.detail_area.children)
         panel.zone_controls[new_id]['remove'].click()
         self.assertFalse(new_id in panel.zone_controls)
         self.assertIs(card,panel.zone_controls[rid])

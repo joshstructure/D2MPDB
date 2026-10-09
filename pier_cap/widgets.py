@@ -68,7 +68,7 @@ class CapNotebook:
         self.case_listeners=[]
         self.import_receipt=None;self.import_notice=W.HTML()
         self.banner=W.HTML(layout=W.Layout(height='130px',overflow='auto'));self.metrics=W.HTML();self.message=W.HTML()
-        self.cage=W.VBox();self.results=W.VBox();self.dimensions=W.VBox();self.register=W.HTML();self.trace=W.HTML()
+        self.cage=W.VBox(layout=W.Layout(width='100%',min_width='0'));self.results=W.VBox();self.dimensions=W.VBox();self.register=W.HTML();self.trace=W.HTML()
         self.clearance=W.BoundedFloatText(value=self.case['screening']['minimum_clear_in'],min=0,max=12,step=.25,description='Project min clear (in)',style={'description_width':'120px'},layout=W.Layout(width='260px'))
         self.aggregate=W.BoundedFloatText(value=self.case['screening']['aggregate_in'],min=.125,max=6,step=.125,description='Max aggregate (in)',style={'description_width':'170px'},layout=W.Layout(width='300px'))
         self.aggregate_confirmed=W.Checkbox(value=self.case['screening']['aggregate_confirmed'],description='Aggregate size confirmed',indent=False)
@@ -77,13 +77,12 @@ class CapNotebook:
         self.input_tabs=self._inputs()
         self.transverse_panel=TransversePanel(self)
         self.force_diagrams=ForceDiagramPanel()
-        self.plot_tabs=Tab(children=[self.cage,self.results,W.VBox([self.register],layout=W.Layout(max_height='850px',overflow='auto')),W.VBox([self.trace],layout=W.Layout(max_height='750px',overflow='auto')),self.force_diagrams.ui,self.dimensions],layout=W.Layout(flex='1 1 650px',min_width='560px'))
+        self.plot_tabs=Tab(children=[self.cage,self.results,W.VBox([self.register],layout=W.Layout(max_height='850px',overflow='auto')),W.VBox([self.trace],layout=W.Layout(max_height='750px',overflow='auto')),self.force_diagrams.ui,self.dimensions],layout=W.Layout(width='100%',min_width='0',flex='0 0 auto'))
         for i,title in enumerate(['Live cage','Plots','D/C checks','Equations','Force diagrams','Dimensions']):self.plot_tabs.set_title(i,title)
-        self.input_panel=Accordion(children=[self.input_tabs],layout=W.Layout(flex='0 0 360px',width='360px',min_width='0'))
-        self.input_panel.set_title(0,'Cap inputs · steel, geometry, loads and factors')
-        self.input_panel.selected_index=0
-        self.workbench=W.HBox([self.input_panel,self.plot_tabs],
-            layout=W.Layout(width='100%',min_width='0',display='flex',flex_flow='row wrap',align_items='flex-start',grid_gap='16px'))
+        self.input_panel=W.VBox([W.HTML('<h3>Cap inputs · steel, geometry, loads and factors</h3>'),self.input_tabs],
+            layout=W.Layout(width='100%',min_width='0',flex='0 0 auto'))
+        self.input_panel.add_class('cap-section-inputs')
+        self.workbench=W.VBox([self.plot_tabs],layout=W.Layout(width='100%',min_width='0'))
         self.plot_tabs.observe(self._plot_tab_changed,names='selected_index')
         self.case_import=CaseImportPanel(self)
         self.upload=self.case_import.upload
@@ -109,20 +108,9 @@ class CapNotebook:
 
     def _plot_tab_changed(self,change):
         self._refresh_auxiliary_view(change['new'])
-        # Give long force profiles the full output row. Keep the same controls
-        # mounted so opening the input panel never resets a case or listeners.
-        if 4 not in (change['old'],change['new']):return
-        wide=change['new']==4
-        self.workbench.layout.flex_flow='column' if wide else 'row wrap'
-        self.input_panel.layout.width='100%' if wide else '360px'
-        self.input_panel.layout.flex='0 0 auto' if wide else '0 0 360px'
-        self.input_panel.selected_index=None if wide else 0
-        self.plot_tabs.layout.width='100%' if wide else None
-        self.plot_tabs.layout.min_width='0' if wide else '560px'
-        self.plot_tabs.layout.flex='0 0 auto' if wide else '1 1 650px'
+        # Every plot now occupies the full row; inputs live under the sections.
         figure=self.force_diagrams.figure
-        if wide and figure is not None:
-            # Recompute the plot bounds after it leaves the narrower column.
+        if change['new']==4 and figure is not None:
             figure.layout.autosize=False
             figure.layout.autosize=True
 
@@ -147,8 +135,8 @@ class CapNotebook:
                     label=LABELS.get(n,n.replace('_',' '))
                     unit=meta['unit'] or ('unitless' if isinstance(control,W.FloatText) else '')
                     control.description=label+(f' ({unit.replace("*","-")})' if unit else '')
-                    control.style.description_width='190px';control.layout.width='calc(100% - 4px)';control.layout.max_width='336px'
-                    control.layout.min_height='34px';control.layout.height='auto';control.add_class('cap-input')
+                    control.style.description_width='180px';control.layout.width='260px';control.layout.max_width='calc(100% - 4px)'
+                    control.layout.min_height='30px';control.layout.height='auto';control.add_class('cap-input')
                     rows.append(control)
                 if title=='Hoops and side bars':
                     self.hoop_reference_inputs=W.VBox([W.HTML('<p><b>Uniform-cage reference inputs.</b> G = overall shear check; L = lower-shear interval check, not the bottom of the cap. These reference pitches seed the starting layout; later edits to them do not move your entered bars. The reference hoop diameter also locates the longitudinal cage; actual shape conflicts are checked separately.</p>'),
@@ -159,11 +147,12 @@ class CapNotebook:
                 if title=='ADDITIONAL steel · between piles':rows.insert(0,W.HTML('<p><b>These counts are ADDITIONAL, not totals.</b> Continuous bottom bars stay in place. Total span steel = continuous bars + these added bars. Enter 0 for no added bars. The bar size here applies only to the added steel. Standard 90° hooks are drawn at the span ends; anchorage remains a separate check.</p>'))
                 if title=='Continuous bottom steel · at piles':rows.insert(0,W.HTML('<p>These bottom bars continue through every pile and span to the cap end-cover planes. Their transverse positions stay fixed. End anchorage and splices require review.</p>'))
                 if title=='Pile head':rows.extend([W.HTML(pile_head_help_html()),self.pile_appearance.ui])
-                panels.append(W.VBox(rows))
-            accordion=Accordion(children=panels)
-            for i,(title,_) in enumerate(sections):accordion.set_title(i,'Side bars and row spacing' if title=='Hoops and side bars' else title)
-            accordion.selected_index=0;tabs.append(accordion)
-        tab=Tab(children=tabs,layout=W.Layout(flex='0 0 360px',width='360px'))
+                caption='Side bars and row spacing' if title=='Hoops and side bars' else title
+                card=W.VBox([W.HTML('<b>'+html.escape(caption)+'</b>'),*rows],
+                    layout=W.Layout(flex='1 1 280px',min_width='280px',max_width='360px',padding='8px',border='1px solid #c4cdd6'))
+                card.add_class('cap-input-card');panels.append(card)
+            tabs.append(W.HBox(panels,layout=W.Layout(width='100%',min_width='0',flex_flow='row wrap',align_items='flex-start',grid_gap='8px')))
+        tab=Tab(children=tabs,layout=W.Layout(flex='0 0 auto',width='100%',min_width='0'))
         for i,name in enumerate(GROUPS):tab.set_title(i,name)
         return tab
 
@@ -194,8 +183,9 @@ class CapNotebook:
             self.current=None;self.banner.value=f'<div style="padding:14px;background:#ffe9e7;color:#9d302b"><b>INPUT ERROR</b><br>{html.escape(str(exc))}</div>'
             self.transverse_panel.zone_grid.layout.display='none'
             self.transverse_panel.zone_scroll.layout.display='none'
+            self.transverse_panel.detail_area.layout.display='none'
             self.transverse_panel.zone_notice.value='<p>Correct the input error above to restore zone controls and drawings. General inputs remain available below.</p>'
-            self.metrics.value='';self.cage.children=[self.transverse_panel.ui];self.results.children=[];self.dimensions.children=[];self.register.value='';self.trace.value='';return
+            self.metrics.value='';self.cage.children=[self.input_panel,self.transverse_panel.ui];self.results.children=[];self.dimensions.children=[];self.register.value='';self.trace.value='';return
         self.current=e
         self.transverse_panel.sync_zones(e)
         self.force_diagrams.refresh(self.case,evaluation=e)
@@ -220,7 +210,7 @@ class CapNotebook:
         self.cage_3d_widget=fw('cage3d',lambda:layout_3d(e))
         self.refresh_sections(preserve_view=same_geometry)
         footer=('Every transverse station is drawn. Pink U-bars are open downward; the section shows the selected run of that shape, or the first run of that shape. Bend / tail fit and pile conflicts are screened; development, closure and 3D congestion at longitudinal hook ends require review.' if actual_transverse(self.case) else 'Dashed transverse shapes are reference illustrations. Set actual hoops and open-bottom U-bars in the zone controls below the elevation.')
-        self.views.mount(self.cage,[txt('configuration',configuration_html(e)+reinforcement_summary_html(e)),txt('side',side_steel_html(e)),self.cage_3d_widget,self.views.plots['sectionB'],self.views.plots['sectionP'],fw('plan',lambda:reinforcement_plan_figure(e)),fw('elevation',lambda:elevation_figure(e,zone_labels=True)),self.transverse_panel.ui,txt('hoop',hoop_explanation_html(e)),
+        self.views.mount(self.cage,[txt('configuration',configuration_html(e)+reinforcement_summary_html(e)),txt('side',side_steel_html(e)),self.cage_3d_widget,self.views.plots['sectionB'],self.views.plots['sectionP'],self.input_panel,fw('plan',lambda:reinforcement_plan_figure(e)),fw('elevation',lambda:elevation_figure(e,zone_labels=True)),self.transverse_panel.ui,txt('hoop',hoop_explanation_html(e)),
             *([fw('reference_hoop',lambda:hoop_figure(e))] if not actual_transverse(self.case) else []),txt('clearance',clear_spacing_html(e)),txt('footer','<small>'+footer+' Pile lengths below the cap are schematic. The 3D cage uses bar centerlines; displayed line thickness is for visibility.</small>')])
         self._refresh_auxiliary_view(self.plot_tabs.selected_index)
         self.figures=list(self.views.plots.values())

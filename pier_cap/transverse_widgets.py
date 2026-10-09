@@ -11,29 +11,35 @@ from .transverse_zones import zone_runs,new_zone_run
 def _layout():return W.Layout(width='calc(100% - 4px)',min_width='0')
 
 
+def _card_layout():
+    return W.Layout(width='280px',min_width='280px',max_width='280px',flex='0 0 280px',padding='8px',border='1px solid #b7bec8')
+
+
 class RunCard:
     """All run inputs live here; repainting never replaces an existing card."""
     def __init__(self,panel,rid):
         self.panel=panel;self.rid=rid;self.controls={};self.widgets=[]
         def add(name,widget):self.controls[name]=widget;self.widgets.append(widget);return widget
         def number(name,label,field=None,scale=1):
+            compact=name in ('pitch','first_in','first_ft','end_in','end_ft')
             widget=add(name,W.FloatText(description=label,continuous_update=False,
-                style={'description_width':'105px'},layout=_layout()))
+                style={'description_width':'65px' if compact else '105px'},
+                layout=W.Layout(width='124px' if compact else '224px',flex='0 0 auto')))
             widget.observe(lambda change:panel._zone_edited(rid,field or name,change,scale),names='value')
             return widget
         label=add('label',W.HTML())
-        size=add('bar',W.Dropdown(options=[(f'#{n}',n) for n in range(3,12)],description='Size',style={'description_width':'105px'},layout=_layout()))
+        size=add('bar',W.Dropdown(options=[(f'#{n}',n) for n in range(3,12)],description='Size',style={'description_width':'65px'},layout=W.Layout(width='124px')))
         size.observe(lambda c:panel._zone_edited(rid,'bar',c),names='value')
-        pitch=number('pitch','c/c (in)','pitch_in')
-        locations=[number('first_in','First (in)'),number('first_ft','First (ft)','first_in',12),
-                   number('end_in','Last limit (in)'),number('end_ft','Last limit (ft)','end_in',12)]
-        info=add('info',W.HTML(layout=W.Layout(min_height='42px')))
-        error=add('error',W.HTML(layout=W.Layout(min_height='24px')))
-        view=add('view',W.Button(description=f'View {rid} section',icon='eye',layout=_layout()))
+        pitch=number('pitch','c/c in','pitch_in')
+        locations=[number('first_in','First in'),number('first_ft','First ft','first_in',12),
+                   number('end_in','Limit in'),number('end_ft','Limit ft','end_in',12)]
+        info=add('info',W.HTML(layout=W.Layout(min_height='20px')))
+        error=add('error',W.HTML())
+        view=add('view',W.Button(description=f'{rid} · section / details',icon='eye',layout=_layout()))
         view.on_click(lambda _:panel._select_run(rid))
-        kind=add('kind',W.Dropdown(options=[('Closed hoop','hoop'),('Open-bottom U','pile_u')],description='Shape',style={'description_width':'105px'},layout=_layout()))
-        shear=add('zone',W.Dropdown(options=[('Overall (G)','G'),('Lower-shear (L)','L')],description='Shear basis',style={'description_width':'105px'},layout=_layout()))
-        angle=add('end_angle',W.Dropdown(options=[('90° inward',90),('135° inward',135),('180° return',180),('Straight',0)],description='U ends',style={'description_width':'105px'},layout=_layout()))
+        kind=add('kind',W.Dropdown(options=[('Closed hoop','hoop'),('Open-bottom U','pile_u')],description='Shape',style={'description_width':'105px'},layout=W.Layout(width='224px')))
+        shear=add('zone',W.Dropdown(options=[('Overall (G)','G'),('Lower-shear (L)','L')],description='Shear basis',style={'description_width':'105px'},layout=W.Layout(width='224px')))
+        angle=add('end_angle',W.Dropdown(options=[('90° inward',90),('135° inward',135),('180° return',180),('Straight',0)],description='U ends',style={'description_width':'105px'},layout=W.Layout(width='224px')))
         for name,widget in [('kind',kind),('zone',shear),('end_angle',angle)]:
             widget.observe(lambda change,field=name:panel._zone_edited(rid,field,change),names='value')
         shape=[number(name,title) for name,title in [('inside_diameter_in','Bend ID (in)'),('tail_in','End tail (in)'),
@@ -41,18 +47,23 @@ class RunCard:
         help_text=add('help',W.HTML('<small>U-bars are open downward. Raise ends is above bottom cover; inset moves legs inward. '
             'Bend and tail dimensions describe the drawing. Record the separate development / closure check below.</small>'))
         basis=add('development_basis',W.Textarea(description='Detail ref.',placeholder='Drawing / calculation reference',continuous_update=False,
-            style={'description_width':'70px'},layout=W.Layout(width='calc(100% - 4px)',height='70px')))
+            style={'description_width':'70px'},layout=W.Layout(width='calc(100% - 4px)',max_width='600px',height='70px')))
         confirm=add('development_confirmed',W.Checkbox(description='Development / closure checked',indent=False,layout=_layout()))
         for name,widget in [('development_basis',basis),('development_confirmed',confirm)]:
             widget.observe(lambda change,field=name:panel._zone_edited(rid,field,change),names='value')
-        split=add('split',W.Button(description=f'Split {rid}',icon='columns',layout=_layout()))
+        split=add('split',W.Button(description=f'Split {rid}',icon='columns',layout=W.Layout(width='130px')))
         split.on_click(lambda _:panel._split_run(rid))
-        remove=add('remove',W.Button(description=f'Remove {rid}',icon='trash',layout=_layout()))
+        remove=add('remove',W.Button(description=f'Remove {rid}',icon='trash',layout=W.Layout(width='130px')))
         remove.on_click(lambda _:panel._remove_run(rid))
-        details=W.VBox([kind,shear,angle,*shape,help_text,basis,confirm,split,remove])
+        detail_fields=W.HBox([kind,shear,angle,*shape],layout=W.Layout(flex_flow='row wrap',width='100%'))
+        detail_actions=W.HBox([split,remove])
+        details=W.VBox([detail_fields,help_text,basis,confirm,detail_actions],layout=W.Layout(width='100%',min_width='0'))
         advanced=add('details',Accordion(children=[details]));advanced.set_title(0,f'{rid} · shape and development');advanced.selected_index=None
-        self.widgets.append(details)
-        self.ui=W.VBox([label,size,pitch,*locations,info,view,advanced,error],layout=W.Layout(min_width='0'))
+        self.widgets.extend([details,detail_fields,detail_actions])
+        pairs=[W.HBox(pair,layout=W.Layout(width='100%',min_width='0',flex_flow='row nowrap',overflow='visible')) for pair in ([size,pitch],locations[:2],locations[2:])]
+        self.widgets.extend(pairs)
+        self.ui=W.VBox([label,*pairs,info,view,error],layout=_card_layout())
+        self.ui.add_class('cap-hoop-card')
 
     def sync(self,run,region,active,selected,case):
         c=self.controls;shape=shape_parameters(run)
@@ -64,8 +75,9 @@ class RunCard:
         count=math.floor((run['end_in']-run['first_in'])/run['pitch_in']+1e-9)+1
         last=run['first_in']+(count-1)*run['pitch_in']
         color='#bd407d' if run['kind']=='pile_u' else '#7952a3'
-        c['label'].value=f'<b style="font-size:16px;color:{color}">Run {html.escape(run["id"])}</b><br><small>{html.escape(region)} · '+('Open-bottom U-bars' if run['kind']=='pile_u' else 'Closed hoops')+'</small>'
-        c['info'].value=f'<small>{count} {"bar" if count==1 else "bars"}<br>Actual last: {last:g} in / {last/12:g} ft</small>'
+        self.ui.layout.border='1px solid '+color
+        c['label'].value=f'<b style="font-size:16px;color:{color}">Run {html.escape(run["id"])}</b> · {count} {"bar" if count==1 else "bars"}<br><small>{html.escape(region)} · '+('Open-bottom U-bars' if run['kind']=='pile_u' else 'Closed hoops')+'</small>'
+        c['info'].value=f'<small>Actual last: {last:g} in / {last/12:g} ft</small>'
         c['view'].button_style='info' if selected else '';c['view'].disabled=not active
         c['split'].disabled=not active or count<2;c['remove'].disabled=not active
         c['error'].value=''
@@ -82,20 +94,21 @@ class TransversePanel:
         self.generate=W.Button(description='Create starting layout',icon='plus',layout=W.Layout(width='210px'))
         self.add=W.Button(description='Add custom run',icon='plus')
         self.status=W.HTML(layout=W.Layout(min_height='32px'));self.zone_notice=W.HTML()
-        # Follow the cap from left to right in one row; extra zones scroll sideways.
-        self.zone_grid=W.GridBox(layout=W.Layout(width='max-content',min_width='100%',flex='0 0 auto',align_items='flex-start',
-            grid_auto_flow='column',grid_auto_columns='300px',grid_template_rows='auto',grid_gap='10px'))
+        # Explicit non-shrinking flex cards work with Colab's mixed widget manager.
+        # Each run is a direct child, including multiple runs in the same zone.
+        self.zone_grid=W.HBox(layout=W.Layout(width='100%',min_width='0',max_width='100%',flex='0 0 auto',
+            display='flex',flex_flow='row nowrap',align_items='flex-start',overflow='auto',grid_gap='8px',padding='6px',border='1px solid #b7bec8'))
+        self.zone_grid.add_class('cap-hoop-track')
         self.zone_scroll=W.VBox([self.zone_grid],layout=W.Layout(width='100%',min_width='0',max_width='100%',
-            flex='0 0 auto',overflow='auto',border='1px solid #b7bec8',padding='8px'))
-        self.zone_scroll.add_class('cap-run-scroll')
+            flex='0 0 auto'))
+        self.detail_area=W.VBox(layout=W.Layout(width='100%',min_width='0'))
         self.general=Accordion(children=[owner.hoop_reference_inputs]);self.general.set_title(0,'General hoop reference inputs and spacing assumptions');self.general.selected_index=None
-        self.ui=W.VBox([W.HTML('<style>.cap-run-scroll {overscroll-behavior-x:contain;overflow-x:scroll !important;}</style>'
-            '<h3>Actual hoops and pile U-bars · by zone</h3><p><b>Run numbers match the elevation labels and plot legends.</b> '
-            'Each run is edited only in its card. Changes apply on Enter or leaving the field. '
-            'Locations are from the <b>left cap end</b>; inches and feet are linked. The last-bar limit keeps the entered pitch; the actual last bar is shown below. '
-            'Use <b>View run section</b> to inspect that shape above. Expand its card for bends, shear basis and development records. '
-            '<b>Use the horizontal scrollbar below the zone inputs</b> to move along the cap from left to right.</p>'),
-            W.HBox([self.active,self.generate,self.add],layout=W.Layout(flex_flow='row wrap')),self.zone_scroll,self.zone_notice,self.status,self.general],layout=W.Layout(width='100%',min_width='0'))
+        self.ui=W.VBox([W.HTML('<style>.cap-hoop-track {flex-wrap:nowrap!important;overflow-x:scroll!important;overflow-y:hidden!important;overscroll-behavior-x:contain;}'
+            '.cap-hoop-card {flex-shrink:0!important;}</style>'
+            '<h3>Actual hoops and pile U-bars · by zone</h3><p>Scroll sideways directly below the cards. '
+            'First / limit locations are from the <b>left cap end</b>; inches and feet are linked. '
+            'The limit keeps the entered pitch. Choose <b>section / details</b> for bends, shape and development below this frame.</p>'),
+            W.HBox([self.active,self.generate,self.add],layout=W.Layout(flex_flow='row wrap')),self.zone_scroll,self.detail_area,self.zone_notice,self.status,self.general],layout=W.Layout(width='100%',min_width='0'))
         self.active.observe(self._toggle,names='value');self.generate.on_click(self._generate);self.add.on_click(self._add)
         self.sync()
 
@@ -112,15 +125,15 @@ class TransversePanel:
 
     def _zone_box(self,key):
         if key not in self._zones:
-            header=W.HTML();box=W.VBox(layout=W.Layout(border='1px solid #b7bec8',padding='8px',min_width='0'))
+            header=W.HTML();box=W.VBox(layout=_card_layout());box.add_class('cap-hoop-card')
             self._zones[key]=(header,box)
         return self._zones[key]
 
     def _empty_card(self,z,e):
         key=z['key']
         if key not in self._empty_zones:
-            size=W.Dropdown(options=[(f'#{n}',n) for n in range(3,12)],value=int(e.case['inputs']['Bar_v']),description='Size',layout=_layout())
-            pitch=W.FloatText(value=e.case['inputs']['s_G'],description='c/c (in)',continuous_update=False,layout=_layout())
+            size=W.Dropdown(options=[(f'#{n}',n) for n in range(3,12)],value=int(e.case['inputs']['Bar_v']),description='Size',style={'description_width':'65px'},layout=W.Layout(width='124px'))
+            pitch=W.FloatText(value=e.case['inputs']['s_G'],description='c/c in',continuous_update=False,style={'description_width':'65px'},layout=W.Layout(width='124px'))
             note=W.HTML('<small>No run entered. Choose size / spacing and add this zone.</small>')
             button=W.Button(description='Add zone run',icon='plus',layout=_layout());button.on_click(lambda _:self._add_zone(key))
             self._empty_zones[key]=dict(bar=size,pitch=pitch,note=note,button=button,ui=W.VBox([note,size,pitch,button]))
@@ -128,7 +141,7 @@ class TransversePanel:
         return c['ui']
 
     def sync_zones(self,e):
-        self.zone_scroll.layout.display='';self.zone_grid.layout.display='';zones,groups,custom=zone_runs(e)
+        self.zone_scroll.layout.display='';self.zone_grid.layout.display='';self.detail_area.layout.display='';zones,groups,custom=zone_runs(e)
         runs=e.case.get('transverse_detail',empty_detail())['runs'];ids={r['id'] for r in runs}
         prior=self.busy;self.busy=True
         try:
@@ -142,17 +155,18 @@ class TransversePanel:
             regions=[(z,groups[z['key']]) for z in zones]
             if custom:regions.append((dict(key='custom',label='Custom / crossing runs',kind='hoop'),custom))
             for z,group in regions:
-                header,box=self._zone_box(z['key']);numbers=', '.join(r['id'] for r in group)
-                header.value='<b>'+html.escape(z['label'])+('</b> · <b>'+html.escape(numbers) if numbers else '')+'</b>'
-                box.layout.border='1px solid '+('#bd407d' if z['kind']=='pile_u' else '#7952a3')
-                children=[header]
                 for run in group:
                     card=self._cards[run['id']];card.sync(run,z['label'],enabled(e.case),run['id']==self.selected_run_id,e.case)
-                    children.append(card.ui)
-                if not group:children.append(self._empty_card(z,e))
-                if box.children!=tuple(children):box.children=children
-                boxes.append(box)
+                    boxes.append(card.ui)
+                if not group:
+                    header,box=self._zone_box(z['key']);header.value='<b>'+html.escape(z['label'])+'</b>'
+                    children=(header,self._empty_card(z,e))
+                    if box.children!=children:box.children=children
+                    boxes.append(box)
             if self.zone_grid.children!=tuple(boxes):self.zone_grid.children=boxes
+            details=tuple(self.zone_controls[r['id']]['details'] for r in runs)
+            for run,detail in zip(runs,details):detail.layout.display='' if run['id']==self.selected_run_id else 'none'
+            if self.detail_area.children!=details:self.detail_area.children=details
             notes=[]
             if not enabled(e.case):notes.append('Actual layout is off. Enable it to edit saved runs and draw their bars.')
             if custom:notes.append('Runs crossing zone boundaries keep their numbered cards in Custom / crossing runs.')
@@ -180,6 +194,7 @@ class TransversePanel:
         self._selected_run_id=rid
         if self.owner.current:
             self.sync_zones(self.owner.current);self.owner.refresh_sections()
+            self.zone_controls[rid]['details'].selected_index=0
 
     def _commit(self,detail,selected=None):
         case=deepcopy(self.owner.case);case['transverse_detail']=detail;validate_detail(case)
@@ -246,4 +261,4 @@ class TransversePanel:
         for header,box in self._zones.values():header.close();box.close()
         for controls in self._empty_zones.values():
             for widget in controls.values():widget.close()
-        for widget in (self.active,self.generate,self.add,self.status,self.zone_notice,self.zone_grid,self.zone_scroll,self.general,self.ui):widget.close()
+        for widget in (self.active,self.generate,self.add,self.status,self.zone_notice,self.zone_grid,self.zone_scroll,self.detail_area,self.general,self.ui):widget.close()

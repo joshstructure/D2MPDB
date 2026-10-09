@@ -10,6 +10,26 @@ from tests.case_fixtures import default_case as ready_case
 
 
 class LiveCageControlsTests(unittest.TestCase):
+    def test_inputs_live_below_pile_section_and_remain_reachable_after_error(self):
+        app=CapNotebook(ready_case())
+        self.addCleanup(app.close)
+        self.assertEqual(app.workbench.children,(app.plot_tabs,))
+        index=app.cage.children.index(app.views.plots['sectionP'])
+        self.assertIs(app.cage.children[index+1],app.input_panel)
+
+        def descendants(widget):
+            yield widget
+            for child in getattr(widget,'children',()):yield from descendants(child)
+
+        original=dict(app.controls)
+        for width in (0,48):
+            app.controls['b'].value=width
+            mounted=list(descendants(app.ui))
+            for name,control in original.items():
+                self.assertIs(app.controls[name],control)
+                self.assertEqual(sum(w is control for w in mounted),1,name)
+        self.assertIsNotNone(app.current)
+
     def test_new_defaults_preserve_saved_project_values(self):
         fresh=default_case()['inputs']
         self.assertEqual((fresh['Pile_embed'],fresh['C_pile']),(12,2))
