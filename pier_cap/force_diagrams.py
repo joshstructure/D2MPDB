@@ -1,4 +1,5 @@
 """Signed cap-force profiles from verified XML member ends, on source geometry."""
+from .output_labels import numbered_figure
 from collections import defaultdict
 from itertools import combinations
 import html
@@ -111,6 +112,7 @@ def diagram_notice(case):
     return base
 
 
+@numbered_figure('cap_forces')
 def cap_force_figure(case, *, show_resistance=False, evaluation=None):
     profiles = cap_profiles(case)
     audit = case['analysis']['xml_audit']

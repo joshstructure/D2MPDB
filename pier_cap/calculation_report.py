@@ -9,6 +9,7 @@ from hashlib import sha256
 from html import escape
 import json
 from pathlib import Path
+from .output_labels import number_tables
 
 from .engine import Q, parse
 from .model import DEFINITIONS, evaluate, bar_positions, BAR_AREA, BAR_DIAMETER, steel_quantity_components
@@ -160,7 +161,8 @@ class Report:
         payload=figure.to_json().replace('<','\\u003c').replace('>','\\u003e').replace('&','\\u0026')
         self.figures.append('<script type="application/json" id="'+key+'">'+payload+'</script>')
         height=figure.layout.height or 520
-        return f'<figure><div class="plot" id="plot-{index}" data-figure="{key}" style="height:{height}px"></div><figcaption>Figure {index}. {escape(caption)}</figcaption></figure>'
+        reference = figure.layout.meta['reference']
+        return f'<figure><div class="plot" id="plot-{index}" data-figure="{key}" style="height:{height}px"></div><figcaption>{reference}. {escape(caption)}</figcaption></figure>'
 
     def result(self, name):
         if pending(name,self.e):return badge('PENDING — inputs / applicability not confirmed')
@@ -393,8 +395,8 @@ def calculation_report(case=None, *, evaluation=None, search_result=None, search
         parts.append('<details class="section"><summary>Search alternatives · separate completed search</summary><p>Candidate results describe the completed search layouts, not subsequent manual cage edits. Force mode: '+escape(search_result.force_mode)+'. '+('Forces held unchanged; changed stiffness and self-weight were not reanalyzed.' if search_result.force_mode=='fixed' else 'Recorded analysis geometry matched.')+'</p>'+table(['Evaluated','Retained','Current filter matches','Exhaustive'],[[search_result.evaluated,len(search_result.candidates),len(indices),search_result.exhaustive]])+r.plot(alternatives_figure(search_result,indices=indices,dc_scope=options['scope'],max_dc=options['max_dc']),'Completed steel search alternatives under the selected filter.')+'</details>')
     parts.append('<details class="section" id="provenance"><summary>Snapshot provenance and calculation basis</summary><p>This cap report uses the notebook’s C005 formula set and current coordinate/detailing checks. It is not a recalculation by Mathcad or Blockpad. The imported pile analysis and minimum-tip review, when loaded, are exported separately in the full bundle.</p><p>Formula captions and check bases identify inherited source relations and adopted assumptions. They do not establish a verified code edition. Displayed values use six significant figures; comparisons use full precision.</p><p class="meta">Case SHA-256 (canonical JSON): '+case_hash+'<br>Formula definition SHA-256: '+formula_hash+'</p><p>Report formatting basis: BPAD_Ref_V5.txt, §16 (guide v11). Snapshot is fixed at export; regenerate after editing the notebook inputs.</p><details class="working raw-source"><summary>Current case inputs and source record (omitted from print)</summary><pre class="meta">'+escape(json.dumps(e.case,indent=2,ensure_ascii=False))+'</pre></details></details>')
     from plotly.offline import get_plotlyjs
-    parts.extend(['</main>',*r.figures,'<script>'+get_plotlyjs()+'</script>','<script>'+JS+'</script></body></html>'])
-    return '\n'.join(parts)
+    body = number_tables('\n'.join(parts), report=True)
+    return body+'\n'+'\n'.join(['</main>',*r.figures,'<script>'+get_plotlyjs()+'</script>','<script>'+JS+'</script></body></html>'])
 
 
 def write_calculation_report(case, path, **kwargs):

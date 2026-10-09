@@ -1,4 +1,5 @@
 """Shared, explicit load provenance for notebook and Blockpad review copies."""
+from .output_labels import numbered_tables
 import html
 import math
 
@@ -66,6 +67,7 @@ def strength_audit(case):
                 provenance_headers=['Current input', 'Value', 'Governing source / edit status'], provenance=provenance)
 
 
+@numbered_tables('strength_loads', 'strength_sources')
 def strength_html(case):
     data = strength_audit(case)
     def table(headers, rows):

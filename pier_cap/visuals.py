@@ -1,4 +1,5 @@
 """Geometry-driven drawings and plots; no invented load distribution."""
+from .output_labels import numbered_figure, numbered_tables
 import math
 import html
 from collections import defaultdict
@@ -19,6 +20,7 @@ MOMENT='#2166ac';MOMENT_CAPACITY='#90bce4';SHEAR='#8250a0';SHEAR_CAPACITY='#c4a4
 def pile_head_help_html():
     """Pile-head schematic with symbolic embedment and clear-gap dimensions."""
     return '''<div style="max-width:336px;white-space:normal;line-height:1.4">
+<b>Figure 12 — Pile embedment schematic</b>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 336 224" role="img"
      aria-label="Pile-head section: embedment is measured from the cap underside to the pile top. Clear gap is measured from the pile top to the outside surface of the bar."
      style="display:block;width:100%;height:auto;background:#fff;border-radius:4px;font-family:Arial,sans-serif;font-size:12px">
@@ -62,6 +64,7 @@ def theme(fig,title,height=460):
         paper_bgcolor='#ffffff',plot_bgcolor='#ffffff',legend=dict(orientation='h',y=-.12),hoverlabel=dict(bgcolor='white',namelength=-1,align='left'))
     return fig
 
+@numbered_figure(lambda e, region='B', run_id=None: 'cap_section_pile' if region=='P' else 'cap_section_span')
 def section_figure(e,region='B',run_id=None):
     p=e.case['inputs'];b=p['b'];h=p['h'];fig=go.Figure();dv=BAR_DIAMETER[p['Bar_v']]
     fig.add_shape(type='rect',x0=0,y0=0,x1=b,y1=h,line=dict(color=INK,width=2),fillcolor='#f2f5f7',layer='below')
@@ -136,6 +139,7 @@ def reinforcement_summary_html(e):
         'Hook fit is checked; development, cutoff lengths, end anchorage and pile-head hoop arrangement remain pending.</p>'+note)
 
 
+@numbered_tables('cap_configuration')
 def configuration_html(e):
     """Quick inventory of the current inputs, before the live drawings."""
     from .transverse import run_summary,end_bar_note
@@ -174,6 +178,7 @@ def configuration_html(e):
         +'</table></div>')
 
 
+@numbered_tables('clear_spacing')
 def clear_spacing_html(e):
     rows=[]
     for region in 'PB':
@@ -186,6 +191,7 @@ def clear_spacing_html(e):
         f'({"confirmed" if s["aggregate_confirmed"] else "UNCONFIRMED assumption"}). Vertical alignment is checked separately.</p>'
         '<table class="cap-table"><tr><th>Region / bars</th><th>Actual clear (in)</th><th>Required clear (in)</th><th>Status</th></tr>'+''.join(rows)+'</table>')
 
+@numbered_figure('cap_elevation')
 def elevation_figure(e,*,zone_labels=True):
     p=e.case['inputs'];L=e.value('L_cap');h=p['h'];D=p['D_pile']
     fig=go.Figure()
@@ -246,6 +252,7 @@ def elevation_figure(e,*,zone_labels=True):
     return drawing_controls(fig,zone_case=e if zone_labels else None,fit_cap=True)
 
 
+@numbered_figure('cap_plan')
 def reinforcement_plan_figure(e,*,zone_labels=True):
     p=e.case['inputs'];L=e.value('L_cap');fig=go.Figure()
     fig.add_shape(type='rect',x0=0,x1=L/12,y0=0,y1=p['b'],line=dict(color=INK),fillcolor='#f2f5f7',layer='below')
@@ -273,6 +280,7 @@ def reinforcement_plan_figure(e,*,zone_labels=True):
     return drawing_controls(fig,zone_case=e if zone_labels else None,fit_cap=True)
 
 
+@numbered_tables('hoop_basis')
 def hoop_explanation_html(e):
     if actual_transverse(e.case):
         from .transverse_visuals import schedule_html
@@ -296,6 +304,7 @@ def hoop_explanation_html(e):
         'These reference samples illustrate spacing only.</p>')
 
 
+@numbered_figure('cap_hoops')
 def hoop_figure(e):
     if actual_transverse(e.case):
         from .transverse_visuals import layout_3d
@@ -333,6 +342,7 @@ def hoop_figure(e):
     return fig
 
 
+@numbered_figure('cap_results')
 def results_figure(e):
     if actual_transverse(e.case):
         from .transverse_visuals import response_figure
@@ -362,6 +372,7 @@ def side_steel_html(e):
             f'<b>Zero side bars, other inputs unchanged:</b> {outcome}</p>')
 
 
+@numbered_tables('hoop_spacing')
 def spacing_html(e):
     if actual_transverse(e.case):
         from .transverse import scheduled_bars
@@ -378,6 +389,7 @@ def spacing_html(e):
             rows.append(f'<tr><td>{label}</td><td>{direction}</td><td>{actual:.3f}</td><td>{limit:.3f}</td><td>{actual/limit:.4f}</td></tr>')
     return '<h4>Hoop spacing · two different directions</h4><p>Each hoop-spacing check uses the larger of these two ratios. Along-cap hoop spacing and across-cap leg spacing are independent dimensions.</p><table class="cap-table"><tr><th>Zone</th><th>Direction</th><th>Actual (in)</th><th>Allowed (in)</th><th>Spacing utilization</th></tr>'+''.join(rows)+'</table>'
 
+@numbered_figure('cap_ratios')
 def ratios_figure(e):
     checks=[c for c in e.checks if isinstance(c.ratio,(float,int))]
     fig=go.Figure(go.Bar(x=[c.ratio for c in checks],y=[c.label for c in checks],orientation='h',
@@ -392,6 +404,7 @@ def ratios_figure(e):
     theme(fig,'All available numerical comparisons',max(750,len(checks)*28+60));fig.update_layout(margin=dict(l=240,r=55,t=65,b=100),legend=dict(y=-.08,orientation='h',font=dict(size=10)))
     return fig
 
+@numbered_figure('cap_service')
 def optional_service_figure(e):
     fig=make_subplots(rows=1,cols=2,subplot_titles=('Service III outer-bar stress (ksi)','Factored fatigue stress range (ksi)'))
     labels=['N','P','B']
@@ -406,6 +419,7 @@ def optional_service_figure(e):
     else:fig.add_annotation(x=.82,y=.5,xref='paper',yref='paper',text='PENDING<br>Confirm applicability and loads',showarrow=False,font=dict(color=AMBER,size=15))
     return theme(fig,'Optional service checks · inactive inputs do not establish a pass',350)
 
+@numbered_figure('cap_alternatives')
 def alternatives_figure(result,indices=None,*,dc_scope='all',max_dc=1.0):
     fig=go.Figure()
     indices=list(range(len(result.candidates))) if indices is None else list(indices)
@@ -421,6 +435,7 @@ def alternatives_figure(result,indices=None,*,dc_scope='all',max_dc=1.0):
     fig.update_xaxes(title='Estimated steel (lb; span hooks included, laps/waste excluded)');fig.update_yaxes(title='Strength D/C' if dc_scope=='strength' else 'All-check utilization (includes detailing)',range=[0,1.08])
     return theme(fig,f'All {len(indices):,} filter matches · hover for candidate IDs and controlling checks',400)
 
+@numbered_tables('cap_checks')
 def checks_html(e):
     rows=[]
     for c in e.checks:
@@ -432,6 +447,7 @@ def checks_html(e):
     extra='<p><b>Additional notebook gates:</b> '+html.escape('; '.join(e.issues) if e.issues else 'Drawn cage passes the available numerical spacing and fit checks; pending checks remain listed above.')+'</p><p><b>Combined notebook status:</b> '+html.escape(e.status)+'</p>'
     return '<style>.cap-table{border-collapse:collapse;width:100%;font:12px Arial}.cap-table td,.cap-table th{padding:8px;border-bottom:1px solid #dce5ec;text-align:left}.cap-table th{background:#e7eef4;position:sticky;top:0}</style><p>Strength rows show D/C; maximum-spacing rows show actual / allowed; minimum-clearance rows show required / actual, and minimum-steel rows show required / provided. See each ratio basis.</p><table class="cap-table"><thead><tr><th>Check</th><th>Status</th><th>Check ratio</th><th>Ratio basis</th></tr></thead><tbody>'+''.join(rows)+'</tbody></table>'+extra
 
+@numbered_figure('cap_snapshot')
 def snapshot(e):
     """Static notebook output that also renders in GitHub's notebook preview."""
     import matplotlib.pyplot as plt

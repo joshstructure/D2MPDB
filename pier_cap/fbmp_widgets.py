@@ -185,6 +185,7 @@ class XMLImportPanel:
 
     def _preview_html(self, case):
         from .force_audit import strength_html
+        from .output_labels import table_caption
         p, old = case['inputs'], self.app.case['inputs']
         audit = case['analysis']['xml_audit']
         def table(keys, force=False):
@@ -203,7 +204,7 @@ class XMLImportPanel:
                               f'<br><small>Member {html.escape(str(row["element"]))}, {html.escape(row["side"])}'
                               f' · x = {row["x_in"]/12:.3f} ft</small></td>')
                 rows.append('<tr'+(' style="background:#fff5dc"' if changed else '')+'>'+cells+'</tr>')
-            return ('<table class="cap-table"><tr><th>Input</th><th>Current</th><th>From XML</th>'
+            return ('<table class="cap-table">'+table_caption('xml_forces' if force else 'xml_geometry')+'<tr><th>Input</th><th>Current</th><th>From XML</th>'
                     + ('<th>Controls</th>' if force else '')+'</tr>'+''.join(rows)+'</table>')
         combos = ', '.join(f'{k}: {v}' for k,v in audit['combinations'].items())
         notes = ''.join('<li>'+html.escape(note)+'</li>' for note in audit['notes'])

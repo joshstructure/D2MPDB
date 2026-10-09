@@ -1,4 +1,5 @@
 """Section maps and material-frontier views; data always carry their force mode."""
+from .output_labels import numbered_figure, numbered_tables
 import html
 import plotly.graph_objects as go
 from .sections import ranked_cost_rows
@@ -26,6 +27,7 @@ def _breakdown(row):
     return text
 
 
+@numbered_figure('section_heatmap')
 def section_heatmap(study, rows, metric='steel_lb', labels='quantities'):
     if metric not in METRICS:
         raise ValueError('Unknown map metric.')
@@ -112,6 +114,7 @@ def highlight_section(fig, study, rows, point_id):
     fig.update_layout(shapes=shapes)
 
 
+@numbered_figure('section_cost')
 def section_cost_chart(study, rows, selected=None, limit=10):
     ranked = ranked_cost_rows(rows)
     shown = ranked[:limit]
@@ -172,6 +175,7 @@ def cost_summary_html(study, rows, rates):
     return text + '</small></div>'
 
 
+@numbered_tables('section_costs')
 def cost_table_html(rows):
     ranked = ranked_cost_rows(rows)
     if not ranked:
@@ -187,6 +191,7 @@ def cost_table_html(rows):
     return text + '</tbody></table></div>'
 
 
+@numbered_figure('section_pareto')
 def section_pareto(study, rows):
     feasible = [r for r in rows if r['matches']]
     front = sorted((r for r in feasible if r['pareto']), key=lambda r: r['concrete_yd3'])
@@ -209,6 +214,7 @@ def section_pareto(study, rows):
     return fig
 
 
+@numbered_figure('section_snapshot')
 def section_snapshot(study, rows):
     """Static GitHub preview; the workbench uses clickable Plotly figures."""
     import numpy as np

@@ -1,4 +1,5 @@
 """Views of the same explicit bar schedule used by checks and exports."""
+from .output_labels import numbered_figure, numbered_tables
 import html
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
@@ -9,6 +10,7 @@ COLORS={'hoop':'#7952a3','pile_u':'#bd407d'}
 NAMES={'hoop':'Closed hoop','pile_u':'U-bar · open bottom'}
 
 
+@numbered_tables('hoop_schedule')
 def schedule_html(e):
     rows=[]
     for r in run_summary(e.case):
@@ -63,6 +65,7 @@ def layout_3d(e):
     return full_cage(e)
 
 
+@numbered_figure('actual_results')
 def response_figure(e):
     """Actual station checks on the main plots; no uniform hoop capacity bars."""
     fig=make_subplots(rows=2,cols=2,subplot_titles=('Moment demand / resistance (kip-ft)','Service I steel stress (ksi)',

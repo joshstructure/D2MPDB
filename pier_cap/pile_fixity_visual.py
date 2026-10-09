@@ -4,6 +4,32 @@ import plotly.graph_objects as go
 from .pile_fixity import governor_label
 
 
+def comparison_issues_html(result):
+    issues = result.get('comparison_issues', [])
+    if not issues: return ''
+    return '<p><b>Why the comparison is incomplete</b></p><ul>'+''.join('<li>'+html.escape(s)+'</li>' for s in issues)+'</ul>'
+
+
+def crossing_rows(fixity):
+    """Read the same crossing records that supply the plotted markers."""
+    rows = []
+    cutoff = fixity['cutoff_elevation_ft']
+    for p in fixity['profiles']:
+        row = dict(p)
+        for index, name in enumerate(('first', 'second')):
+            if len(p['crossings']) > index:
+                crossing = p['crossings'][index]
+                row[name+'_vertical_ft'] = crossing['vertical_ft']
+                row[name+'_elevation_ft'] = (cutoff-crossing['vertical_ft'] if cutoff is not None else 'Enter pile cutoff EL')
+            else:
+                reason = ('No profile records' if p['status']=='No profile records' else
+                          'Not applicable — within zero band' if not p['active'] else
+                          'No first crossing found' if index==0 else 'No second crossing found')
+                row[name+'_vertical_ft'] = row[name+'_elevation_ft'] = reason
+        rows.append(row)
+    return rows
+
+
 def mark_fixity(fig, fixity, combo, piles, result=None):
     cutoff = fixity['cutoff_elevation_ft']
     for profile in fixity['profiles']:
@@ -47,30 +73,56 @@ def fixity_overview(fixity, result=None):
     if fixity.get('source_filename'):
         message += '<br>Loaded displacement XML: <b>'+html.escape(fixity['source_filename'])+'</b>.'
         message += ' Changing pasted trial rows does not replace these displacement profiles.'
+    datum = lambda value: f'{value:.3f} ft' if value is not None else 'not entered'
+    message += '<br>Current datums: pile cutoff EL <b>'+datum(fixity['cutoff_elevation_ft'])+'</b>; ground / scour EL <b>'+datum(fixity['ground_elevation_ft'])+'</b>.'
+    found = sum(p['crossing_count'] >= 2 for p in fixity['profiles'])
+    inactive = sum(not p['active'] and p['status']!='No profile records' for p in fixity['profiles'])
+    message += f'<br>Profile coverage: <b>{found} with a second crossing</b>; {inactive} within the zero band; {fixity["unresolved_count"]} need review.'
     if fixity['unresolved_count']:
-        message += f'<br><b>{fixity["unresolved_count"]} active/missing profiles lack a resolved second crossing.</b> The deepest available crossing does not complete that comparison.'
+        message += '<br>The unresolved profiles are listed under <b>Table 7 — Profiles needing review</b> in Minimum tip. They do not erase the crossings shown for other profiles.'
+    if fixity['cutoff_elevation_ft'] is None:
+        message += '<br><b>Enter Pile cutoff EL (ft) at the top of Minimum tip to convert crossing depths to project elevations.</b>'
     return ('<p>'+message+'</p><p><small>All imported piles and combinations, independent of plot selection. Circles = first crossing; orange diamonds = second. '
         +f'Zero band ±{fixity["zero_band_in"]:g} in; touches and zero tails are not counted as crossings.</small></p>')
 
 
-def minimum_tip_html(result, table):
+def minimum_tip_html(result, table, combo=None, piles=None):
     tip = result['tip_elevation_ft']
     title = 'Minimum tip elevation' if result['comparison_complete'] else 'Minimum tip from available criteria — comparison incomplete'
     text = '<h3>'+title+(': '+f'{tip:.3f} ft' if tip is not None else ': unavailable')+'</h3>'
     text += '<p><b>Controls'+(' among available criteria' if not result['comparison_complete'] else '')+': '
-    text += html.escape(result['controlling_criterion'])+'</b></p>'
+    text += html.escape(result['controlling_criterion'])+'</b></p>'+comparison_issues_html(result)
     text += table([dict(c, control_label='Yes' if c['controls'] else 'No') for c in result['candidates']], [('criterion','Criterion'), ('critical_embedment_ft','Critical depth below ground (ft)'),
+        ('critical_elevation_ft','Critical EL before allowance (ft)'),
         ('extension_ft','Added (ft)'), ('required_embedment_ft','Required embedment (ft)'),
-        ('raw_tip_elevation_ft','Tip EL before rounding (ft)'), ('control_label','Controls'), ('source','Governing source'), ('status','Status')], scroll=False, decimals=3)
+        ('raw_tip_elevation_ft','Tip EL before rounding (ft)'), ('control_label','Controls'), ('source','Governing source'), ('status','Status')], scroll=False, decimals=3, reference='minimum_tip')
     if result['required_embedment_ft'] is not None:
         text += f'<p>Required embedment: <b>{result["required_embedment_ft"]:.3f} ft</b> below design ground / scour.'
         if result['total_length_ft'] is not None: text += f' Total pile length: <b>{result["total_length_ft"]:.3f} ft</b>.'
         text += '</p>'
     text += '<p>'+html.escape(result['basis'])+'</p>'+fixity_overview(result['fixity'], result)
-    rows = []
-    for p in result['fixity']['profiles']:
-        rows.append(dict(p, first_vertical_ft=p['crossings'][0]['vertical_ft'] if p['crossings'] else None))
-    text += table(rows, [('pile','Pile'), ('combination','Combo'), ('state','Limit state'), ('component','Direction'),
-        ('first_vertical_ft','First crossing below cutoff (ft)'), ('second_vertical_ft','Second crossing below cutoff (ft)'),
-        ('second_elevation_ft','Second crossing EL (ft)'), ('status','Profile status')])
+    rows = crossing_rows(result['fixity'])
+    unresolved = [p for p in rows if p['review_reason']]
+    if unresolved:
+        text += '<h4>Profiles needing review</h4><p>These specific profiles prevent a complete comparison. '
+        text += 'Check their signed displacement results and model depth; no second crossing is inferred from a first crossing or zero tail.</p>'
+        text += table(unresolved, [('pile','Pile'), ('combination','Combo'), ('state','Limit state'), ('component','Direction'),
+            ('crossing_count','Crossings found'), ('review_reason','Reason')], reference='profile_issues')
+    selected = [p for p in rows if (combo is None or p['combination']==combo) and (piles is None or p['pile'] in piles)]
+    other = [p for p in rows if p not in selected]
+    text += '<h4>Crossing locations for Figure 2</h4>'
+    if combo is not None:
+        state = next((p['state'] for p in rows if p['combination']==combo), '')
+        text += '<p><b>Current plot selection: combination '+html.escape(combo)+' · '+html.escape(state)
+        text += ' · piles '+html.escape(', '.join(piles) if piles else 'none selected')+'</b>. Change this selection in Profiles and stresses.</p>'
+    text += '<p>These are the same crossing records used for the plot markers. '
+    text += 'First = circle; second = orange diamond. Depths are vertically below the pile cutoff; EL uses the project datum.</p>'
+    columns = [('pile','Pile'), ('combination','Combo'), ('state','Limit state'), ('component','Direction'), ('crossing_count','Crossings found'),
+        ('first_vertical_ft','First depth (ft)'), ('first_elevation_ft','First EL (ft)'),
+        ('second_vertical_ft','Second depth (ft)'), ('second_elevation_ft','Second EL (ft)'), ('status','Profile status')]
+    text += table(selected, columns, decimals=3, reference='crossings') if selected else '<p>No piles selected in Figure 2.</p>'
+    if other:
+        text += '<details><summary>Table 31 — Crossing locations outside the current plot selection ('+str(len(other))+' profiles)</summary>'
+        text += table(other, columns, decimals=3, reference='other_crossings')+'</details>'
+    text += '<p>The governing minimum-tip comparison still includes all imported combinations and piles, independent of this display selection.</p>'
     return text

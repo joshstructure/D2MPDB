@@ -1,4 +1,5 @@
 """Full cap cage from the shared bar geometry, with true pile-section surfaces."""
+from .output_labels import numbered_figure
 import html
 import math
 import hashlib
@@ -84,6 +85,7 @@ def add_piles(fig,e):
     return s
 
 
+@numbered_figure('cap_3d')
 def layout_3d(e):
     fig=go.Figure();p=e.case['inputs'];L=e.value('L_cap')
     continuous=bar_positions(e,'P');extra=hook_paths(e,bar_positions(e,'B'))

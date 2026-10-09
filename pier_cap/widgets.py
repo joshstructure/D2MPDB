@@ -1,4 +1,5 @@
 """Jupyter interface. All normal input, search and export work stays in the notebook."""
+from .output_labels import table_caption
 from copy import deepcopy
 from pathlib import Path
 import html
@@ -237,7 +238,7 @@ class CapNotebook:
         self.figures=list(self.views.plots.values())
         self.register.value=checks_html(e)
         rows=''.join(f'<tr><td>{html.escape(t["name"])}</td><td>{html.escape(t["formula"])}</td><td>{html.escape(str(t["value"]))}</td></tr>' for t in formula_trace(e))
-        self.trace.value=('<p><b>Actual transverse layout:</b> this equation table retains the uniform closed-hoop reference. The D/C tab separately lists checks at actual adjacent stations. Open U-bars receive no closed-hoop torsion credit.</p>' if actual_transverse(self.case) else '')+'<p>Live equations use independent pile and between-pile reinforcement.</p><table class="cap-table"><tr><th>Name</th><th>Equation</th><th>Value</th></tr>'+rows+'</table>'
+        self.trace.value=('<p><b>Actual transverse layout:</b> this equation table retains the uniform closed-hoop reference. The D/C tab separately lists checks at actual adjacent stations. Open U-bars receive no closed-hoop torsion credit.</p>' if actual_transverse(self.case) else '')+'<p>Live equations use independent pile and between-pile reinforcement.</p><table class="cap-table">'+table_caption('live_equations')+'<tr><th>Name</th><th>Equation</th><th>Value</th></tr>'+rows+'</table>'
 
     def refresh_sections(self,*,preserve_view=True):
         """Inspect a run using the current calculation; no full-case redraw."""
@@ -420,7 +421,7 @@ class CapNotebook:
         rejects='; '.join(f'{html.escape(k)}: {v}' for k,v in sorted(result.rejection_counts.items(),key=lambda t:-t[1])[:8])
         self._close_alternative_plot()
         self.alternative_figure=FigureWidget(alternatives_figure(result,indices,dc_scope=scope,max_dc=target))
-        self.alternative_output.children=[W.HTML('<table class="cap-table"><tr><th>Filtered rank</th><th>Candidate ID</th><th>Layout</th><th>Gross lb</th><th>Filter ratio</th><th>Strength D/C</th><th>All-check utilization</th><th>Controls filter</th></tr>'+rows+'</table>'),self.alternative_figure,W.HTML('<small>Rejection counts overlap: '+rejects+'</small>')]
+        self.alternative_output.children=[W.HTML('<table class="cap-table">'+table_caption('steel_alternatives')+'<tr><th>Filtered rank</th><th>Candidate ID</th><th>Layout</th><th>Gross lb</th><th>Filter ratio</th><th>Strength D/C</th><th>All-check utilization</th><th>Controls filter</th></tr>'+rows+'</table>'),self.alternative_figure,W.HTML('<small>Rejection counts overlap: '+rejects+'</small>')]
 
     def _run_search(self,button):
         self.run_button.disabled=True;self._clear_search('Searching and checking all passing layouts…')

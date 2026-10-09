@@ -55,19 +55,26 @@ def displacement_fixity(review, cutoff=None, ground=None, zero_band=1e-6):
                     crossings = zero_crossings(rows, component, zero_band)
                     active = any(abs(r[component]) > zero_band for r in rows)
                     second = crossings[1] if len(crossings)>1 else None
+                    first = crossings[0] if crossings else None
                     elevation = cutoff-second['vertical_ft'] if cutoff is not None and second else None
+                    issue = ('No profile records' if not rows else
+                             f'Only {len(crossings)} crossing'+('s' if len(crossings)!=1 else '')+' found; two required'
+                             if active and not second else '')
                     profiles.append(dict(combination=combo, state=review['combinations'][combo], pile=pile,
                         component=component.upper(), active=active, crossings=crossings, crossing_count=len(crossings),
+                        first_vertical_ft=first['vertical_ft'] if first else None,
+                        first_elevation_ft=cutoff-first['vertical_ft'] if cutoff is not None and first else None,
                         second_distance_ft=second['distance_ft'] if second else None,
                         second_vertical_ft=second['vertical_ft'] if second else None,
                         second_elevation_ft=elevation,
                         critical_embedment_ft=ground-elevation if ground is not None and elevation is not None else None,
+                        review_reason=issue,
                         status=('Second crossing found' if second else 'Fewer than two crossings' if active else
                                 'No profile records' if not rows else 'Within zero band; not governing')))
     found = [p for p in profiles if p['second_vertical_ft'] is not None]
     deepest = max((p['second_vertical_ft'] for p in found), default=None)
     governors = [p for p in found if math.isclose(p['second_vertical_ft'], deepest, abs_tol=1e-8, rel_tol=0)]
-    unresolved = [p for p in profiles if (p['active'] and p['crossing_count']<2) or p['status']=='No profile records']
+    unresolved = [p for p in profiles if p['review_reason']]
     return dict(profiles=profiles, governors=governors, unresolved_count=len(unresolved), zero_band_in=zero_band,
                 complete=bool(governors) and not unresolved, cutoff_elevation_ft=cutoff, ground_elevation_ft=ground,
                 source_filename=review.get('filename') if review else None, source_sha256=review.get('sha256') if review else None)
@@ -108,6 +115,8 @@ def compare_minimum_tip(trials, fixity, *, ground=None, cutoff=None, extension=5
         added = (extension if mode=='fixed' else fraction*critical if mode=='fraction' else min(extension, fraction*critical)) if add_fixity_allowance else 0.
         required = critical+added
         tip = ground-required
+        if fixity['unresolved_count']:
+            status = f'Crossing available; {fixity["unresolved_count"]} other profiles need review'
     candidates.append(dict(criterion='Second zero crossing', critical_embedment_ft=critical, extension_ft=added,
         critical_elevation_ft=profile['second_elevation_ft'] if profile else None,
         required_embedment_ft=required, raw_tip_elevation_ft=tip,
@@ -122,9 +131,27 @@ def compare_minimum_tip(trials, fixity, *, ground=None, cutoff=None, extension=5
     require(length is None or length > 0, 'Cutoff elevation must be above the required tip.')
     if round_feet and length is not None: length = math.ceil(length)
     complete = len(available)==2 and fixity['complete'] and raw_tip is not None
+    issues = []
+    if ground is None: issues.append('Enter Ground EL (ft) at the top of Minimum tip.')
+    if cutoff is None: issues.append('Enter Pile cutoff EL (ft) at the top of Minimum tip; plotted depths alone are not project elevations.')
+    if not trials:
+        issues.append('Displacement-change trials are not calculated. Paste the trial rows and click Calculate minimum tip.')
+    elif trial_critical is None:
+        names = ', '.join(g['series'] for g in trials['groups'] if g['candidate_ft'] is None)
+        issues.append('No qualifying displacement-change trial pair in: '+names+'.')
+    if not fixity['profiles']:
+        issues.append('Load pile displacement results to evaluate second zero crossings.')
+    elif not governors:
+        issues.append('No active profile has two resolved zero crossings; a first-crossing marker alone does not provide the second-crossing criterion.')
+    if fixity['unresolved_count']:
+        issues.append(f'{fixity["unresolved_count"]} profiles need review; see the pile, combination and direction listed in Table 7 — Profiles needing review. '
+                      'Crossings found on other profiles remain available.')
+    if critical is not None and critical <= 0:
+        issues.append('The deepest second crossing is not below design ground / scour; check the elevations and profile.')
     label = ' + '.join(c['criterion'] for c in controlling) + (' (tie)' if len(controlling)>1 else '')
     base = deepcopy(trials) if trials else dict(rows=[], groups=[])
     base.update(candidates=candidates, controlling_criterion=label or 'Unavailable', comparison_complete=complete,
+        comparison_issues=issues,
         critical_embedment_ft=controlling[0]['critical_embedment_ft'] if controlling else None,
         accepted_embedment_ft=controlling[0]['critical_embedment_ft'] if controlling else None,
         extension_ft=controlling[0]['extension_ft'] if controlling else None,

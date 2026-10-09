@@ -515,10 +515,12 @@ class SectionStudy:
         self.selection_info.value += reinforcement_summary_html(e)+side_steel_html(e)
         if self.study.grid['force_mode'] == 'matched':
             self.selection_info.value += '<small>Reusing forces over trial reinforcement assumes the analysis stiffness model permits it; geometry matching alone does not verify that assumption.</small>'
-        for figure in (section_figure(e, 'P'), section_figure(e, 'B'), results_figure(e)):
-            self.preview_figures.append(FigureWidget(figure))
-        self.preview.children = [*self.preview_figures, W.HTML(spacing_html(e)),
-                                 W.VBox([W.HTML(checks_html(e))], layout=W.Layout(max_height='420px', overflow='auto'))]
+        from .output_labels import label_figure, relabel_table
+        for figure, key in zip((section_figure(e, 'P'), section_figure(e, 'B'), results_figure(e)),
+                               ('study_section_pile', 'study_section_span', 'study_results')):
+            self.preview_figures.append(FigureWidget(label_figure(figure, key)))
+        self.preview.children = [*self.preview_figures, W.HTML(relabel_table(spacing_html(e), 'hoop_spacing', 'study_spacing')),
+                                 W.VBox([W.HTML(relabel_table(checks_html(e), 'cap_checks', 'study_checks'))], layout=W.Layout(max_height='420px', overflow='auto'))]
         self.apply_button.disabled = False
 
     def _apply(self, _):

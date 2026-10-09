@@ -1,4 +1,5 @@
 """Exact current cap dimensions with hoverable dimension traces."""
+from .output_labels import numbered_figure, numbered_tables
 import html
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
@@ -28,6 +29,7 @@ def geometry_dimensions(e):
         piles=[dict(label=f'P{i}',center=x,left=x-diam/2,right=x+diam/2) for i,x in enumerate(centers,1)])
 
 
+@numbered_tables('cap_dimensions', 'pile_stations')
 def dimensions_html(e):
     data=geometry_dimensions(e);p=e.case['inputs']
     def table(headers,rows):
@@ -48,6 +50,7 @@ def dimensions_html(e):
         'see Live cage and D/C checks for actual reinforcement clearances.</p>')
 
 
+@numbered_figure('cap_dimensions')
 def dimensions_figure(e):
     p=e.case['inputs'];data=geometry_dimensions(e);length=data['length']/12;width=p['b']/12
     fig=make_subplots(rows=2,cols=1,vertical_spacing=.19,row_heights=[.48,.52],

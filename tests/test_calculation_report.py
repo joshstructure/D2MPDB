@@ -82,6 +82,11 @@ class CalculationReportTests(unittest.TestCase):
             figure=json.loads(script.text)
             self.assertIn('data',figure)
             self.assertIn('layout',figure)
+            reference=figure['layout']['meta']['reference']
+            self.assertTrue(figure['layout']['title']['text'].startswith(reference+' — '))
+            plot=self.doc.xpath(f'//div[@data-figure="{script.get("id")}"]')[0]
+            self.assertTrue(plot.getparent().xpath('./figcaption')[0].text.startswith(reference+'.'))
+        self.assertTrue(all(t.xpath('./caption') for t in self.doc.xpath('//table')))
         self.assertNotIn('SECTIONAL CHECKS PASS</span>',self.markup)
 
     def test_geometry_gallery_contains_all_views_and_navigation_targets(self):

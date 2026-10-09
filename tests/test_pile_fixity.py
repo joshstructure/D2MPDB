@@ -5,6 +5,7 @@ import json
 import unittest
 from pier_cap.pile_fixity import zero_crossings, displacement_fixity, compare_minimum_tip
 from pier_cap.pile_review import evaluate_trials, parse_trials, import_pile_xml
+from pier_cap.pile_fixity_visual import crossing_rows
 from pier_cap.widgets import CapNotebook
 
 FIXTURES = Path(__file__).parent/'fixtures'
@@ -21,6 +22,29 @@ def review(rows):
 
 
 class CrossingTests(unittest.TestCase):
+    def test_table_locations_follow_every_plotted_crossing_with_and_without_cutoff(self):
+        from pier_cap.pile_widgets import profile_figure
+        data = import_pile_xml(FIXTURES/'fbmp_610_piles.xml')
+        for cutoff in (None, 0, 40.25):
+            fixity = displacement_fixity(data, cutoff=cutoff, ground=24.5)
+            rows = crossing_rows(fixity)
+            self.assertEqual(len(rows), 32)
+            for combo in data['combinations']:
+                fig = profile_figure(data, combo, list(data['piles']), cutoff=cutoff, fixity=fixity)
+                markers = [t for t in fig.data if t.meta and t.meta.get('part')=='fixity']
+                expected = []
+                for row in rows:
+                    if row['combination'] != combo: continue
+                    for index, name in enumerate(('first','second')):
+                        self.assertIsInstance(row[name+'_vertical_ft'], float)
+                        if cutoff is None:
+                            self.assertEqual(row[name+'_elevation_ft'], 'Enter pile cutoff EL')
+                            expected.append(row['crossings'][index]['distance_ft'])
+                        else:
+                            expected.append(row[name+'_elevation_ft'])
+                            self.assertEqual(row[name+'_elevation_ft'], cutoff-row[name+'_vertical_ft'])
+                self.assertEqual([t.y[0] for t in markers], expected)
+
     def test_interpolation_second_not_last_and_signed_components(self):
         rows = profile([2,-2,-1,3,-3])
         result = displacement_fixity(review(rows), cutoff=40, ground=30)
@@ -88,6 +112,32 @@ class TipComparisonTests(unittest.TestCase):
         f=displacement_fixity(review(profile([1,-1,1],spacing=20)),ground=0)
         self.assertIsNone(compare_minimum_tip(None,f,ground=0)['tip_elevation_ft'])
 
+    def test_incomplete_reasons_distinguish_found_crossings_from_other_profiles(self):
+        rows = profile([1,-1,1],pile='1',spacing=20)+profile([1,-1,-1],pile='2',spacing=20)
+        f = displacement_fixity(review(rows),cutoff=10,ground=0)
+        trials = evaluate_trials(parse_trials('1,1,1,10,1\n2,1,1,5,1.01'),reference_elevation=0)
+        result = compare_minimum_tip(trials,f,ground=0,cutoff=10)
+        self.assertEqual(result['tip_elevation_ft'],-25)
+        self.assertFalse(result['comparison_complete'])
+        self.assertIn('Crossing available',result['candidates'][1]['status'])
+        self.assertEqual(len(result['comparison_issues']),1)
+        issues = [p for p in f['profiles'] if p['review_reason']]
+        self.assertEqual([(p['pile'],p['component']) for p in issues],[('2','DX')])
+        display = crossing_rows(f)
+        self.assertEqual(display[2]['first_elevation_ft'],0)
+        self.assertEqual(display[2]['second_elevation_ft'],'No second crossing found')
+        self.assertEqual(display[1]['second_elevation_ft'],'Not applicable — within zero band')
+
+    def test_missing_cutoff_keeps_crossing_depths_and_names_only_missing_input(self):
+        f = displacement_fixity(review(profile([1,-1,1],spacing=20)),ground=0)
+        trials = evaluate_trials(parse_trials('1,1,1,10,1\n2,1,1,5,1.01'),reference_elevation=0)
+        result = compare_minimum_tip(trials,f,ground=0)
+        self.assertEqual(len(result['comparison_issues']),1)
+        self.assertIn('Pile cutoff EL',result['comparison_issues'][0])
+        row = crossing_rows(f)[0]
+        self.assertEqual((row['first_vertical_ft'],row['second_vertical_ft']),(10,30))
+        self.assertEqual(row['second_elevation_ft'],'Enter pile cutoff EL')
+
     def test_fraction_and_rounding_use_same_datum(self):
         f=displacement_fixity(review(profile([1,-1,1],spacing=20)),cutoff=10.25,ground=-.5)
         result=compare_minimum_tip(None,f,ground=-.5,cutoff=10.25,mode='fraction',fraction=.2,round_feet=True)
@@ -126,6 +176,10 @@ class FixityWidgetTests(unittest.TestCase):
         self.assertIn('-5.000 ft',p.handoff.value)
         p.cutoff.value='41'
         self.assertEqual(p.minimum_tip_result['tip_elevation_ft'],-4)
+        self.assertIn('Figure 2',p.figures['profiles'].layout.title.text)
+        self.assertIn('Table 8',p.minimum_tip_summary.value)
+        self.assertIn('Table 6',p.minimum_tip_summary.value)
+        self.assertNotIn('Why the comparison is incomplete',p.trial_status.value)
 
     def test_saved_review_and_exports_keep_criterion_and_coordinates(self):
         p=self.panel;p.fixity_allowance.value=False
@@ -159,6 +213,46 @@ class FixityWidgetTests(unittest.TestCase):
         state['controls']['zero_band']=-1
         with self.assertRaisesRegex(ValueError,'Zero band'):p.restore(state)
         self.assertEqual(p.snapshot(),before)
+
+    def test_new_xml_reset_and_calculate_never_flash_green_for_incomplete_comparison(self):
+        from pier_cap.source_status import notice_html
+        p = self.panel
+        p.set_review(import_pile_xml(FIXTURES/'fbmp_610_piles.xml'))
+        self.assertIn('MINIMUM-TIP INPUTS RESET',p.trial_status.value)
+        self.assertEqual((p.cutoff.value,p.reference.value,p.trial_text.value),('','',''))
+        p.reference.value='24.5'
+        p.trial_text.value=(FIXTURES/'pile_minimum_tip_reference.csv').read_text()
+        statuses=[]
+        p.trial_status.observe(lambda change: statuses.append(change['new']), names='value')
+        p.run_trials.click()
+        self.assertFalse(p.minimum_tip_result['comparison_complete'])
+        success_style=notice_html('','', 'success').split('>')[0]
+        self.assertFalse(any(s.startswith(success_style) for s in statuses))
+        self.assertIn('Enter Pile cutoff EL',p.trial_status.value)
+        self.assertEqual(p.fixity_result['unresolved_count'],0)
+        p.cutoff.value='40'
+        self.assertTrue(p.minimum_tip_result['comparison_complete'])
+        self.assertTrue(p.trial_status.value.startswith(success_style))
+        self.assertNotIn('Enter Pile cutoff EL',p.trial_status.value)
+
+    def test_crossing_table_follows_plot_selection_without_changing_criterion(self):
+        from lxml import html
+        p = self.panel
+        original_tip = p.minimum_tip_result['tip_elevation_ft']
+        p.combo.value='2';p.piles.value=('3',)
+        doc = html.fromstring(p.minimum_tip_summary.value)
+        selected = doc.xpath('//table[caption[@data-reference="crossings"]]/tr[position()>1]')
+        self.assertEqual(len(selected),2)
+        self.assertTrue(all(row.xpath('./td')[0].text=='3' and row.xpath('./td')[1].text=='2' for row in selected))
+        self.assertIn('-5.000',' '.join(r.text_content() for r in selected))
+        self.assertIn('STRENGTH-III',p.minimum_tip_summary.value)
+        self.assertEqual(len(doc.xpath('//table[caption[@data-reference="other_crossings"]]/tr[position()>1]')),30)
+        p.combo.value='1'
+        self.assertEqual(p.minimum_tip_result['tip_elevation_ft'],original_tip)
+        doc = html.fromstring(p.minimum_tip_summary.value)
+        selected = doc.xpath('//table[caption[@data-reference="crossings"]]/tr[position()>1]')
+        self.assertTrue(all(row.xpath('./td')[1].text=='1' for row in selected))
+        self.assertTrue(all('Not applicable' in row.text_content() for row in selected))
 
     def test_handoff_separates_live_xml_crossing_allowance_and_trial_control(self):
         p=self.panel
