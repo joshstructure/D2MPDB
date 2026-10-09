@@ -164,6 +164,11 @@ def import_pile_xml(source, filename=None):
         coords[pile], distances[pile] = xyz, length
     definitions = unique(root.findall('MODEL_INFO/LOAD_COMBINATION'), 'number', 'combination')
     require(bool(definitions), 'No load combinations in XML.')
+    combination_factors = {}
+    for combo, definition in definitions.items():
+        tags = [child.tag for child in definition if isinstance(child.tag, str)]
+        require(len(tags)==len(set(tags)), f'Combination {combo}: duplicate load factors.')
+        combination_factors[combo] = {tag: number(definition, tag) for tag in tags}
     results = root.findall('.//LOAD_CASE_RESULTS/LOAD_CASE')
     require(results, 'No solved pile results. Export XML after analysis.')
     seen, forces, displacements, reported = set(), [], [], []
@@ -232,6 +237,7 @@ def import_pile_xml(source, filename=None):
     return dict(schema_version=1, filename=Path(filename).name, sha256=hashlib.sha256(raw).hexdigest(),
         project=root.findtext('PROJECT_INFO/PROJECT_NAME') or '', version='6.1.0', section=section,
         combinations={k: v.get('limitstate') for k, v in definitions.items()},
+        combination_factors=combination_factors,
         piles={p: dict(length_ft=distances[p][-1], head_xyz_in=coords[p][0], tip_xyz_in=coords[p][-1]) for p in coords},
         forces=forces, displacements=displacements, reported_stresses=reported, reported_summary=summary,
         notes=['Force values are original XML element-end values; axial stress reverses the J-end axial sign.',
@@ -426,6 +432,12 @@ def validate_saved_review(review):
             'Missing pile file provenance.')
     require(isinstance(review.get('combinations'), dict) and bool(review['combinations']), 'Missing combinations.')
     require(all(isinstance(k, str) and isinstance(v, str) and v for k,v in review['combinations'].items()), 'Invalid combination labels.')
+    if 'combination_factors' in review:
+        factors = review['combination_factors']
+        require(isinstance(factors, dict) and factors.keys()==review['combinations'].keys(), 'Invalid combination factor coverage.')
+        for combo, values in factors.items():
+            require(isinstance(values, dict) and all(isinstance(k, str) and k and type(v) in (int,float) and math.isfinite(v)
+                    for k,v in values.items()), f'Combination {combo}: invalid load factors.')
     require(isinstance(review.get('piles'), dict) and bool(review['piles']), 'Missing pile geometry.')
     for key in ('reported_stresses', 'reported_summary', 'notes'):
         require(isinstance(review.get(key), list), f'Missing {key}.')

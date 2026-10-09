@@ -116,7 +116,10 @@ def selected_trial_handoff(review, result, *, source='', ground=None, cutoff=Non
     if 'controlling_criterion' in result:
         selection.extend(dict(item=label, value=value) for label, value in [
             ('Controlling minimum-tip criterion', result['controlling_criterion']),
-            ('Both criteria fully evaluated', result['comparison_complete']),
+            ('All applicable criteria fully evaluated', result['comparison_complete']),
+            ('Crossing-check wind combinations', ', '.join(result['fixity']['wind_combinations'])),
+            ('Crossing-check excluded non-wind combinations', ', '.join(result['fixity']['excluded_combinations'])),
+            ('Crossing-check combinations with unknown wind factors', ', '.join(result['fixity']['unknown_combinations'])),
             ('Zero-band tolerance (in)', result['fixity']['zero_band_in']),
             ('Profiles without second crossing', result['fixity']['unresolved_count'])])
         for candidate in result['candidates']:

@@ -37,6 +37,7 @@ TABLES = {
     'steel_alternatives': (27, 'Steel alternatives'), 'section_costs': (28, 'Section cost comparison'),
     'study_spacing': (29, 'Candidate hoop spacing'), 'study_checks': (30, 'Candidate check register'),
     'other_crossings': (31, 'Crossing locations outside the current plot selection'),
+    'wind_scope': (32, 'Wind combinations for the crossing check'),
 }
 
 

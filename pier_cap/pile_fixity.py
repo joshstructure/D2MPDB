@@ -5,6 +5,7 @@ They are a profile criterion, not a replacement for the shortened-pile study.
 """
 from copy import deepcopy
 import math
+import re
 from .pile_review import require
 
 
@@ -39,20 +40,43 @@ def zero_crossings(rows, component, zero_band=1e-6):
     return crossings
 
 
+def wind_combination_scope(review):
+    """Use nonzero XML WS/WL factors, never limit-state names or deflections."""
+    factors = review.get('combination_factors', {}) if review else {}
+    rows = []
+    for combo, state in (review['combinations'].items() if review else []):
+        values = factors.get(combo)
+        wind = {key: value for key,value in (values or {}).items()
+                if re.fullmatch(r'(WS|WL)\d*', key.upper()) and value != 0}
+        included = bool(wind) if values else None
+        rows.append(dict(combination=combo, state=state, included=included, wind_factors=wind,
+            wind_factor_label=', '.join(f'{k} = {v:g}' for k,v in wind.items()) or ('None' if values else 'Unknown'),
+            scope_label='Included — wind' if included else 'Excluded — no wind' if included is False else 'Unknown — reload XML',
+            basis='Nonzero WS/WL load factor in XML' if included else 'No nonzero WS/WL load factor in XML' if included is False
+                  else 'Saved review lacks load factors. Reload the original XML to identify wind combinations.'))
+    return rows
+
+
 def displacement_fixity(review, cutoff=None, ground=None, zero_band=1e-6):
     require(math.isfinite(zero_band) and zero_band >= 0, 'Zero band must be nonnegative and finite.')
     for value in (cutoff, ground):
         require(value is None or math.isfinite(value), 'Elevations must be finite.')
     profiles = []
+    scope = wind_combination_scope(review)
+    wind = [s['combination'] for s in scope if s['included'] is True]
+    excluded = [s['combination'] for s in scope if s['included'] is False]
+    unknown = [s['combination'] for s in scope if s['included'] is None]
     if review:
         grouped = {}
         for row in review['displacements']:
             grouped.setdefault((row['combination'], row['pile']), []).append(row)
         for combo in review['combinations']:
+            included = combo in wind
+            scope_label = next(s['scope_label'] for s in scope if s['combination']==combo)
             for pile in review['piles']:
                 rows = grouped.get((combo, pile), [])
                 for component in ('dx', 'dy'):
-                    crossings = zero_crossings(rows, component, zero_band)
+                    crossings = zero_crossings(rows, component, zero_band) if included else []
                     active = any(abs(r[component]) > zero_band for r in rows)
                     second = crossings[1] if len(crossings)>1 else None
                     first = crossings[0] if crossings else None
@@ -60,7 +84,9 @@ def displacement_fixity(review, cutoff=None, ground=None, zero_band=1e-6):
                     issue = ('No profile records' if not rows else
                              f'Only {len(crossings)} crossing'+('s' if len(crossings)!=1 else '')+' found; two required'
                              if active and not second else '')
+                    if not included: issue = ''
                     profiles.append(dict(combination=combo, state=review['combinations'][combo], pile=pile,
+                        included_in_fixity=included, scope_label=scope_label,
                         component=component.upper(), active=active, crossings=crossings, crossing_count=len(crossings),
                         first_vertical_ft=first['vertical_ft'] if first else None,
                         first_elevation_ft=cutoff-first['vertical_ft'] if cutoff is not None and first else None,
@@ -69,14 +95,17 @@ def displacement_fixity(review, cutoff=None, ground=None, zero_band=1e-6):
                         second_elevation_ft=elevation,
                         critical_embedment_ft=ground-elevation if ground is not None and elevation is not None else None,
                         review_reason=issue,
-                        status=('Second crossing found' if second else 'Fewer than two crossings' if active else
+                        status=(scope_label if not included else 'Second crossing found' if second else 'Fewer than two crossings' if active else
                                 'No profile records' if not rows else 'Within zero band; not governing')))
     found = [p for p in profiles if p['second_vertical_ft'] is not None]
     deepest = max((p['second_vertical_ft'] for p in found), default=None)
     governors = [p for p in found if math.isclose(p['second_vertical_ft'], deepest, abs_tol=1e-8, rel_tol=0)]
     unresolved = [p for p in profiles if p['review_reason']]
     return dict(profiles=profiles, governors=governors, unresolved_count=len(unresolved), zero_band_in=zero_band,
-                complete=bool(governors) and not unresolved, cutoff_elevation_ft=cutoff, ground_elevation_ft=ground,
+                combination_scope=scope, wind_combinations=wind, excluded_combinations=excluded, unknown_combinations=unknown,
+                applicable=bool(wind) if not unknown and review else True if wind else None,
+                complete=bool(review) and not unknown and (not wind or (bool(governors) and not unresolved)),
+                cutoff_elevation_ft=cutoff, ground_elevation_ft=ground,
                 source_filename=review.get('filename') if review else None, source_sha256=review.get('sha256') if review else None)
 
 
@@ -105,7 +134,8 @@ def compare_minimum_tip(trials, fixity, *, ground=None, cutoff=None, extension=5
     profile = governors[0] if governors else None
     critical = profile['critical_embedment_ft'] if profile else None
     status = 'Available'
-    if not profile: status = 'Second crossing unavailable'
+    if fixity['applicable'] is False: status = 'Not applicable — no wind combinations'
+    elif not profile: status = 'Wind factors unknown — reload XML' if fixity['unknown_combinations'] else 'Second crossing unavailable in wind combinations'
     elif cutoff is None or ground is None:
         missing = (['Pile cutoff EL (ft)'] if cutoff is None else []) + (['Ground EL (ft)'] if ground is None else [])
         status = 'Enter '+' and '.join(missing)+' at the top of Minimum tip'
@@ -130,10 +160,10 @@ def compare_minimum_tip(trials, fixity, *, ground=None, cutoff=None, extension=5
     length = cutoff-tip if cutoff is not None and tip is not None else None
     require(length is None or length > 0, 'Cutoff elevation must be above the required tip.')
     if round_feet and length is not None: length = math.ceil(length)
-    complete = len(available)==2 and fixity['complete'] and raw_tip is not None
+    complete = (len(available)==2 or (fixity['applicable'] is False and trial_critical is not None)) and fixity['complete'] and raw_tip is not None
     issues = []
     if ground is None: issues.append('Enter Ground EL (ft) at the top of Minimum tip.')
-    if cutoff is None: issues.append('Enter Pile cutoff EL (ft) at the top of Minimum tip; plotted depths alone are not project elevations.')
+    if cutoff is None and fixity['applicable'] is not False: issues.append('Enter Pile cutoff EL (ft) at the top of Minimum tip; plotted depths alone are not project elevations.')
     if not trials:
         issues.append('Displacement-change trials are not calculated. Paste the trial rows and click Calculate minimum tip.')
     elif trial_critical is None:
@@ -141,8 +171,10 @@ def compare_minimum_tip(trials, fixity, *, ground=None, cutoff=None, extension=5
         issues.append('No qualifying displacement-change trial pair in: '+names+'.')
     if not fixity['profiles']:
         issues.append('Load pile displacement results to evaluate second zero crossings.')
-    elif not governors:
-        issues.append('No active profile has two resolved zero crossings; a first-crossing marker alone does not provide the second-crossing criterion.')
+    elif not governors and fixity['wind_combinations']:
+        issues.append('No active wind profile has two resolved zero crossings; a first-crossing marker alone does not provide the second-crossing criterion.')
+    if fixity['unknown_combinations']:
+        issues.append('Wind load factors are unavailable for combinations '+', '.join(fixity['unknown_combinations'])+'. Reload the original XML; limit-state names alone do not identify wind loading.')
     if fixity['unresolved_count']:
         issues.append(f'{fixity["unresolved_count"]} profiles need review; see the pile, combination and direction listed in Table 7 — Profiles needing review. '
                       'Crossings found on other profiles remain available.')
@@ -157,7 +189,8 @@ def compare_minimum_tip(trials, fixity, *, ground=None, cutoff=None, extension=5
         extension_ft=controlling[0]['extension_ft'] if controlling else None,
         required_embedment_ft=maximum, raw_tip_elevation_ft=raw_tip, tip_elevation_ft=tip, total_length_ft=length,
         fixity=fixity, add_fixity_allowance=add_fixity_allowance,
-        basis='Deeper required tip from displacement-change trials and the deepest second signed DX/DY zero crossing across all imported piles and combinations. '
+        basis='Deeper required tip from displacement-change trials and the deepest second signed DX/DY zero crossing across all piles in wind combinations (nonzero XML WS/WL load factors). '
+              +('No wind combinations are present; the crossing criterion is not applicable. ' if fixity['applicable'] is False else '')
               +('The selected allowance applies to both criteria.' if add_fixity_allowance else 'No allowance is added to the crossing criterion.')
               +(' Comparison is incomplete; shown tip uses available criteria only.' if not complete else ''))
     return base

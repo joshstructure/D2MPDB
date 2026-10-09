@@ -16,13 +16,15 @@ def crossing_rows(fixity):
     cutoff = fixity['cutoff_elevation_ft']
     for p in fixity['profiles']:
         row = dict(p)
+        if not p['included_in_fixity']:
+            row['crossing_count'] = 'Not checked'
         for index, name in enumerate(('first', 'second')):
             if len(p['crossings']) > index:
                 crossing = p['crossings'][index]
                 row[name+'_vertical_ft'] = crossing['vertical_ft']
                 row[name+'_elevation_ft'] = (cutoff-crossing['vertical_ft'] if cutoff is not None else 'Enter pile cutoff EL')
             else:
-                reason = ('No profile records' if p['status']=='No profile records' else
+                reason = (p['scope_label'] if not p['included_in_fixity'] else 'No profile records' if p['status']=='No profile records' else
                           'Not applicable — within zero band' if not p['active'] else
                           'No first crossing found' if index==0 else 'No second crossing found')
                 row[name+'_vertical_ft'] = row[name+'_elevation_ft'] = reason
@@ -56,8 +58,10 @@ def mark_fixity(fig, fixity, combo, piles, result=None):
 
 def fixity_overview(fixity, result=None):
     governors = fixity['governors']
-    if not governors:
-        message = '<b>Second zero crossing: unavailable.</b> No imported signed profile has two resolved crossings.'
+    if fixity['applicable'] is False:
+        message = '<b>Second-zero crossing criterion: not applicable.</b> No imported combination contains a nonzero wind load factor.'
+    elif not governors:
+        message = '<b>Second zero crossing: unavailable.</b> No included wind profile has two resolved crossings.'
     else:
         p = governors[0]
         message = '<b>Raw second-zero crossing (before allowance): '
@@ -75,14 +79,21 @@ def fixity_overview(fixity, result=None):
         message += ' Changing pasted trial rows does not replace these displacement profiles.'
     datum = lambda value: f'{value:.3f} ft' if value is not None else 'not entered'
     message += '<br>Current datums: pile cutoff EL <b>'+datum(fixity['cutoff_elevation_ft'])+'</b>; ground / scour EL <b>'+datum(fixity['ground_elevation_ft'])+'</b>.'
-    found = sum(p['crossing_count'] >= 2 for p in fixity['profiles'])
-    inactive = sum(not p['active'] and p['status']!='No profile records' for p in fixity['profiles'])
-    message += f'<br>Profile coverage: <b>{found} with a second crossing</b>; {inactive} within the zero band; {fixity["unresolved_count"]} need review.'
+    included = [p for p in fixity['profiles'] if p['included_in_fixity']]
+    found = sum(p['crossing_count'] >= 2 for p in included)
+    inactive = sum(not p['active'] and p['status']!='No profile records' for p in included)
+    wind_labels = [s['combination']+' ('+s['state']+'; '+s['wind_factor_label']+')' for s in fixity['combination_scope'] if s['included'] is True]
+    message += '<br><b>Wind combinations included:</b> '+html.escape('; '.join(wind_labels) or 'None identified')+'.'
+    if fixity['excluded_combinations']:
+        message += '<br>Excluded from crossing checks — no wind: combinations '+html.escape(', '.join(fixity['excluded_combinations']))+'.'
+    if fixity['unknown_combinations']:
+        message += '<br><b>Reload the original XML to identify wind factors for combinations '+html.escape(', '.join(fixity['unknown_combinations']))+'.</b>'
+    message += f'<br>Wind-profile coverage: <b>{found} with a second crossing</b>; {inactive} within the zero band; {fixity["unresolved_count"]} need review.'
     if fixity['unresolved_count']:
         message += '<br>The unresolved profiles are listed under <b>Table 7 — Profiles needing review</b> in Minimum tip. They do not erase the crossings shown for other profiles.'
-    if fixity['cutoff_elevation_ft'] is None:
+    if fixity['cutoff_elevation_ft'] is None and fixity['applicable'] is not False:
         message += '<br><b>Enter Pile cutoff EL (ft) at the top of Minimum tip to convert crossing depths to project elevations.</b>'
-    return ('<p>'+message+'</p><p><small>All imported piles and combinations, independent of plot selection. Circles = first crossing; orange diamonds = second. '
+    return ('<p>'+message+'</p><p><small>All piles in wind combinations, independent of plot selection. Circles = first crossing; orange diamonds = second. '
         +f'Zero band ±{fixity["zero_band_in"]:g} in; touches and zero tails are not counted as crossings.</small></p>')
 
 
@@ -101,6 +112,8 @@ def minimum_tip_html(result, table, combo=None, piles=None):
         if result['total_length_ft'] is not None: text += f' Total pile length: <b>{result["total_length_ft"]:.3f} ft</b>.'
         text += '</p>'
     text += '<p>'+html.escape(result['basis'])+'</p>'+fixity_overview(result['fixity'], result)
+    text += table(result['fixity']['combination_scope'], [('combination','Combo'), ('state','Limit state'),
+        ('wind_factor_label','Nonzero wind factors'), ('scope_label','Crossing check'), ('basis','Basis')], reference='wind_scope')
     rows = crossing_rows(result['fixity'])
     unresolved = [p for p in rows if p['review_reason']]
     if unresolved:
@@ -124,5 +137,5 @@ def minimum_tip_html(result, table, combo=None, piles=None):
     if other:
         text += '<details><summary>Table 31 — Crossing locations outside the current plot selection ('+str(len(other))+' profiles)</summary>'
         text += table(other, columns, decimals=3, reference='other_crossings')+'</details>'
-    text += '<p>The governing minimum-tip comparison still includes all imported combinations and piles, independent of this display selection.</p>'
+    text += '<p>The governing crossing criterion includes all piles in the wind combinations listed in Table 32, independent of this display selection. Non-wind profiles remain viewable without crossing checks.</p>'
     return text

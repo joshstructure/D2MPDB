@@ -51,6 +51,16 @@ class PileResultTests(unittest.TestCase):
         self.assertEqual(len(self.review['reported_stresses']),8)
         self.assertTrue(all('casing' in r['description'] and r['pile']!='0' for r in self.review['reported_stresses']))
 
+    def test_load_factors_survive_import_and_invalid_saved_factors_are_rejected(self):
+        from pier_cap.pile_review import validate_saved_review
+        self.assertEqual(self.review['combination_factors']['1']['WS1'],0)
+        self.assertEqual(self.review['combination_factors']['2']['WS1'],1)
+        self.assertEqual(self.review['combination_factors']['3']['WS2'],1)
+        self.assertEqual(self.review['combination_factors']['4']['WS3'],1)
+        for bad in (float('nan'),True,'1'):
+            data=deepcopy(self.review);data['combination_factors']['2']['WS1']=bad
+            with self.assertRaisesRegex(ValueError,'load factors'):validate_saved_review(data)
+
     def test_uplift_is_retained_and_head_is_not_any_depth(self):
         head = next(r for r in pile_heads(self.review) if r['combination']=='1' and r['pile']=='4')
         self.assertEqual(head['compression_kip'],0)

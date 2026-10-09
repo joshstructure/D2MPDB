@@ -143,6 +143,10 @@ def profile_figure(review, combo, piles, cutoff=None, section=None, fixity=None,
             +html.escape(minimum_tip['controlling_criterion'])
             +(' · available criteria only' if not minimum_tip['comparison_complete'] else '')+'</sup>')
         fig.layout.margin.t = 115
+    scope = next((s for s in fixity['combination_scope'] if s['combination']==combo), None)
+    if scope and scope['included'] is not True:
+        fig.layout.title.text += '<br><sup>Crossing check: '+html.escape(scope['scope_label'])+'</sup>'
+        fig.layout.margin.t += 20
     return fig
 
 
@@ -309,7 +313,7 @@ class PileReviewPanel:
             'or upload the CSV template. A single solved XML does not contain the shortened-pile trial history. '
             'Each row is the governing result for that embedment. Use <b>series</b> for separate studies; combination and pile may change as governors change. '
             '<b>Trial Lcrit is calculated automatically</b> from Δ ≤ 0.1 in (editable below). '
-            'The second-zero criterion uses the deepest second crossing among signed DX and DY profiles for all imported piles and combinations. '
+            'The second-zero criterion uses the deepest second crossing among signed DX and DY profiles for all piles in combinations with nonzero wind load factors (WS/WL). '
             '<b>The deeper required tip controls.</b> The selected allowance (normally 5 ft) applies to trials and, when checked below, the second crossing. '
             '<b>Tip elevation = design ground/scour elevation − required embedment.</b> '
             'Enter Pile cutoff EL and Ground EL above to compare both criteria in one datum. '
@@ -387,7 +391,13 @@ class PileReviewPanel:
         return control
 
     def _import(self, raw, name):
-        self.set_review(import_pile_xml(raw, name))
+        review = import_pile_xml(raw, name)
+        if self.review is not None and self.review['sha256']==review['sha256']:
+            saved = self.snapshot()
+            saved['review'] = review
+            self.restore(saved)
+        else:
+            self.set_review(review)
 
     def set_review(self, review):
         self.review = deepcopy(review)
@@ -674,7 +684,7 @@ class PileReviewPanel:
             result = self.minimum_tip_result
             self.trial_status.value = notice_html('MINIMUM TIP CALCULATED'+(' — COMPARISON INCOMPLETE' if not result['comparison_complete'] else ''),
                 f'Tip EL {result["tip_elevation_ft"]:.3f} ft · controls: '+html.escape(result['controlling_criterion'])+'. '
-                +(comparison_issues_html(result) if not result['comparison_complete'] else 'Both criteria compared.'),
+                +(comparison_issues_html(result) if not result['comparison_complete'] else 'All applicable criteria evaluated.'),
                 'success' if result['comparison_complete'] else 'pending')
         self.refresh_handoff()
 
@@ -702,7 +712,7 @@ class PileReviewPanel:
         markup += '<p><b>Minimum tip elevation: '+html.escape(tip_text)+'</b></p>'
         if data['selected']:
             markup += '<p><b>Controls: '+html.escape(result['controlling_criterion'])+'</b>. '
-            markup += ('Both criteria compared.' if result['comparison_complete'] else '<b>Comparison incomplete — available criteria only.</b>')+'</p>'
+            markup += ('All applicable criteria evaluated.' if result['comparison_complete'] else '<b>Comparison incomplete — available criteria only.</b>')+'</p>'
             markup += comparison_issues_html(result)
             markup += table([dict(c, control_label='Yes' if c['controls'] else 'No') for c in result['candidates']], [('criterion','Criterion'),
                 ('critical_elevation_ft','Critical EL before allowance (ft)'), ('extension_ft','Allowance (ft)'), ('raw_tip_elevation_ft','Criterion tip EL before rounding (ft)'),
@@ -857,6 +867,7 @@ class PileReviewPanel:
         if self.minimum_tip_result:
             datasets['minimum_tip_criteria.csv'] = self.minimum_tip_result['candidates']
             datasets['pile_zero_crossings.csv'] = self.fixity_result['profiles']
+            datasets['pile_crossing_scope.csv'] = self.fixity_result['combination_scope']
             (folder/'minimum_tip_result.json').write_text(json.dumps(self.minimum_tip_result, indent=2, allow_nan=False), encoding='utf-8')
         for name, rows in datasets.items():
             (folder/name).write_text(csv_text(rows), encoding='utf-8-sig')

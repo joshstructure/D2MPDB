@@ -18,10 +18,33 @@ def profile(values, *, pile='1', combo='1', spacing=10, batter=1):
 
 def review(rows):
     return dict(displacements=rows, piles={r['pile']:{} for r in rows},
-                combinations={r['combination']:r['state'] for r in rows})
+                combinations={r['combination']:r['state'] for r in rows},
+                combination_factors={r['combination']:{'WS1':1.} for r in rows})
 
 
 class CrossingTests(unittest.TestCase):
+    def test_wind_factors_not_limit_state_names_determine_scope_and_governor(self):
+        rows = profile([1,-1,1], combo='1', spacing=40)+profile([1,-1,1], combo='2', spacing=10)
+        data = review(rows)
+        data['combinations']={'1':'STRENGTH-III','2':'SERVICE-I'}
+        data['combination_factors']={'1':{'DC':1.25,'WS1':0.,'WL1':0.},'2':{'DC':1.,'WL2':-.5}}
+        f = displacement_fixity(data,cutoff=10,ground=0)
+        self.assertEqual(f['wind_combinations'],['2'])
+        self.assertEqual(f['excluded_combinations'],['1'])
+        self.assertEqual(f['governors'][0]['second_vertical_ft'],15)
+        self.assertTrue(f['complete'])
+        self.assertFalse(f['profiles'][0]['crossings'])
+        # Non-wind profiles without a crossing cannot make this incomplete.
+        data['displacements'] = profile([1,1,1],combo='1')+profile([1,-1,1],combo='2')
+        f = displacement_fixity(data)
+        self.assertEqual(f['unresolved_count'],0)
+        self.assertTrue(f['complete'])
+        # A missing second crossing in the included wind profile still matters.
+        data['displacements'] = profile([1,-1,1],combo='1')+profile([1,1,1],combo='2')
+        f = displacement_fixity(data)
+        self.assertEqual(f['unresolved_count'],1)
+        self.assertFalse(f['complete'])
+
     def test_table_locations_follow_every_plotted_crossing_with_and_without_cutoff(self):
         from pier_cap.pile_widgets import profile_figure
         data = import_pile_xml(FIXTURES/'fbmp_610_piles.xml')
@@ -35,6 +58,9 @@ class CrossingTests(unittest.TestCase):
                 expected = []
                 for row in rows:
                     if row['combination'] != combo: continue
+                    if not row['included_in_fixity']:
+                        self.assertEqual(row['second_elevation_ft'],'Excluded — no wind')
+                        continue
                     for index, name in enumerate(('first','second')):
                         self.assertIsInstance(row[name+'_vertical_ft'], float)
                         if cutoff is None:
@@ -144,6 +170,21 @@ class TipComparisonTests(unittest.TestCase):
         self.assertAlmostEqual(result['required_embedment_ft'],19.25*1.2)
         self.assertEqual(result['tip_elevation_ft'],-24);self.assertEqual(result['total_length_ft'],35)
 
+    def test_no_wind_is_not_applicable_but_missing_factors_need_review(self):
+        data = review(profile([1,-1,1]))
+        data['combination_factors']={'1':{'DC':1.25,'WS1':0.}}
+        trials=evaluate_trials(parse_trials('1,1,1,10,1\n2,1,1,5,1.01'),reference_elevation=0)
+        result=compare_minimum_tip(trials,displacement_fixity(data,ground=0),ground=0)
+        self.assertTrue(result['comparison_complete'])
+        self.assertEqual(result['candidates'][1]['status'],'Not applicable — no wind combinations')
+        self.assertEqual(result['comparison_issues'],[])
+        self.assertEqual(result['tip_elevation_ft'],-15)
+        del data['combination_factors']
+        result=compare_minimum_tip(trials,displacement_fixity(data,cutoff=10,ground=0),ground=0,cutoff=10)
+        self.assertFalse(result['comparison_complete'])
+        self.assertEqual(result['fixity']['unknown_combinations'],['1'])
+        self.assertTrue(any('Reload the original XML' in s for s in result['comparison_issues']))
+
 
 class FixityWidgetTests(unittest.TestCase):
     def setUp(self):
@@ -214,6 +255,27 @@ class FixityWidgetTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'Zero band'):p.restore(state)
         self.assertEqual(p.snapshot(),before)
 
+    def test_legacy_save_recovers_wind_factors_on_same_xml_upload_without_losing_inputs(self):
+        p=self.panel;p.set_review(import_pile_xml(FIXTURES/'fbmp_610_piles.xml'))
+        p.cutoff.value='40';p.reference.value='30'
+        p.trial_text.value='1,2,3,20,1\n2,2,3,15,1.01';p.run_trials.click()
+        state=p.snapshot();state['review'].pop('combination_factors')
+        p.restore(state)
+        self.assertFalse(p.minimum_tip_result['comparison_complete'])
+        self.assertIn('Reload the original XML',p.trial_status.value)
+        self.app.xml_import.stage((FIXTURES/'fbmp_610_piles.xml').read_bytes(),'fbmp_610_piles.xml')
+        self.assertTrue(p.minimum_tip_result['comparison_complete'])
+        self.assertEqual(p.cutoff.value,'40');self.assertEqual(p.reference.value,'30')
+        self.assertEqual(p.trial_text.value,state['controls']['trial_text'])
+        self.assertEqual(p.fixity_result['wind_combinations'],['2','3','4'])
+        saved=p.snapshot();p.restore(saved)
+        self.assertEqual(p.fixity_result['wind_combinations'],['2','3','4'])
+        self.assertEqual(p.review['combination_factors'],saved['review']['combination_factors'])
+        p.restore(state)
+        p._import((FIXTURES/'fbmp_610_piles.xml').read_bytes(),'fbmp_610_piles.xml')
+        self.assertTrue(p.minimum_tip_result['comparison_complete'])
+        self.assertEqual(p.cutoff.value,'40');self.assertEqual(p.reference.value,'30')
+
     def test_new_xml_reset_and_calculate_never_flash_green_for_incomplete_comparison(self):
         from pier_cap.source_status import notice_html
         p = self.panel
@@ -252,7 +314,7 @@ class FixityWidgetTests(unittest.TestCase):
         doc = html.fromstring(p.minimum_tip_summary.value)
         selected = doc.xpath('//table[caption[@data-reference="crossings"]]/tr[position()>1]')
         self.assertTrue(all(row.xpath('./td')[1].text=='1' for row in selected))
-        self.assertTrue(all('Not applicable' in row.text_content() for row in selected))
+        self.assertTrue(all('Excluded — no wind' in row.text_content() for row in selected))
 
     def test_handoff_separates_live_xml_crossing_allowance_and_trial_control(self):
         p=self.panel

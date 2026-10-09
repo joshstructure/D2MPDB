@@ -130,9 +130,10 @@ class XMLImportPanel:
             active = self.app.pile_review.review
             if active is None or active['sha256'] != self.pending_piles['sha256']:
                 self.app.pile_review.set_review(self.pending_piles)
-            elif active['section'] != self.pending_piles['section']:
+            elif (active['section'] != self.pending_piles['section'] or
+                  active.get('combination_factors') != self.pending_piles.get('combination_factors')):
                 # A saved review may contain an older interpretation of the
-                # same XML. Refresh its properties while preserving user input.
+                # same XML. Refresh properties/load factors while preserving user input.
                 saved = self.app.pile_review.snapshot()
                 saved['review'] = self.pending_piles
                 self.app.pile_review.restore(saved)
