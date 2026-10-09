@@ -165,35 +165,40 @@ class ZoneWidgetTests(unittest.TestCase):
                 self.assertEqual({name:controls[name].value for name in original},original)
                 self.assertIn('Not applied',controls['error'].value)
 
-    def test_general_run_editor_links_both_units_and_applies_without_rounding(self):
+    def test_numbered_cards_are_the_only_run_editors_and_match_elevation(self):
         panel=self.app.transverse_panel
-        rid=zone_runs(self.app.current)[1]['P2'][0]['id'];panel.select.value=rid
-        before=deepcopy(self.app.case)
-        first=panel.fields['first_in'].value+.1;end=panel.fields['end_in'].value-.75
-        panel.fields['first_in'].value=first
-        self.assertEqual(panel.fields['first'].value,first/12)
-        panel.fields['end'].value=end/12
-        self.assertAlmostEqual(panel.fields['end_in'].value,end)
-        self.assertEqual(self.app.case,before)
-        panel.apply.click()
-        run=next(r for r in self.app.case['transverse_detail']['runs'] if r['id']==rid)
-        self.assertEqual(run['first_in'],first);self.assertAlmostEqual(run['end_in'],end)
-        self.assertEqual(panel.zone_controls[rid]['first_in'].value,first)
-        panel.fields['first'].value=(first+.25)/12
-        self.assertAlmostEqual(panel.fields['first_in'].value,first+.25)
-        panel.fields['end_in'].value=end-.1
-        self.assertEqual(panel.fields['end'].value,(end-.1)/12)
+        self.assertEqual(panel.general.children,(self.app.hoop_reference_inputs,))
+        self.assertFalse(hasattr(panel,'fields'));self.assertFalse(hasattr(panel,'select'))
+        annotations=' '.join(a.text or '' for a in self.app.views.plots['elevation'].layout.annotations)
+        for rid,card in panel.zone_controls.items():
+            self.assertIn('Run '+rid,card['label'].value)
+            self.assertIn(rid,annotations)
+            self.assertIn(rid,card['view'].description)
+            self.assertEqual(card['details'].get_title(0),rid+' · shape and development')
 
-    def test_crossing_location_remains_saved_and_accessible_in_general_editor(self):
+    def test_split_and_remove_run_preserve_stations_and_existing_cards(self):
+        app=self.app;panel=app.transverse_panel
+        rid=zone_runs(app.current)[1]['P2'][0]['id'];card=panel.zone_controls[rid]
+        card['details'].selected_index=0
+        stations=[b['station_in'] for b in scheduled_bars(app.case)]
+        old_ids=set(panel.zone_controls);card['split'].click()
+        self.assertEqual([b['station_in'] for b in scheduled_bars(app.case)],stations)
+        self.assertIs(card,panel.zone_controls[rid]);self.assertEqual(card['details'].selected_index,0)
+        new_id=(set(panel.zone_controls)-old_ids).pop()
+        self.assertEqual(len(zone_runs(app.current)[1]['P2']),2)
+        panel.zone_controls[new_id]['remove'].click()
+        self.assertFalse(new_id in panel.zone_controls)
+        self.assertIs(card,panel.zone_controls[rid])
+
+    def test_crossing_location_retains_its_same_numbered_card(self):
         panel=self.app.transverse_panel
         rid=zone_runs(self.app.current)[1]['P2'][0]['id']
-        panel.zone_controls[rid]['end_in'].value=zone_runs(self.app.current)[1]['S2'][0]['end_in']
-        self.assertNotIn(rid,panel.zone_controls)
+        card=panel.zone_controls[rid];card['end_in'].value=zone_runs(self.app.current)[1]['S2'][0]['end_in']
+        self.assertIs(card,panel.zone_controls[rid])
         self.assertIn(rid,[r['id'] for r in zone_runs(self.app.current)[2]])
-        self.assertIn('Custom / crossing runs retained in the general editor: '+rid,panel.zone_notice.value)
-        panel.select.value=rid
+        self.assertIn('Custom / crossing runs',card['label'].value)
         run=next(r for r in self.app.case['transverse_detail']['runs'] if r['id']==rid)
-        self.assertEqual(panel.fields['end_in'].value,run['end_in'])
+        self.assertEqual(card['end_in'].value,run['end_in'])
 
     def test_empty_zone_adds_selected_size_and_pitch_without_filling_other_zones(self):
         app=self.app;app.load(default_case());panel=app.transverse_panel

@@ -47,6 +47,7 @@ class GeometryDimensionTests(unittest.TestCase):
         self.assertNotEqual(next(t.y for t in fig.data if (t.meta or {}).get('capacity')=='Mr_N'),old)
         app.controls['S_pile'].value=6
         app.controls['h'].value=42
+        app.plot_tabs.selected_index=5
         figure=app.dimensions.children[0]
         length=next(t for t in figure.data if (t.meta or {}).get('dimension')=='length')
         self.assertAlmostEqual(length.meta['feet'],22.24)

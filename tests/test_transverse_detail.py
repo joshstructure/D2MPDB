@@ -120,8 +120,8 @@ class TransverseDetailTests(unittest.TestCase):
             self.assertIsNotNone(app.current)
             self.assertTrue(panel.generate.disabled)
             run=next(r for r in app.case['transverse_detail']['runs'] if r['kind']=='pile_u')
-            panel.select.value=run['id'];panel.bar.value=5;panel.angle.value=180
-            panel.fields['pitch'].value=7;panel.fields['tail_in'].value=4;panel.apply.click()
+            card=panel.zone_controls[run['id']];card['bar'].value=5;card['end_angle'].value=180
+            card['pitch'].value=7;card['tail_in'].value=4
             applied=next(r for r in app.case['transverse_detail']['runs'] if r['id']==run['id'])
             self.assertEqual(applied['bar'],5);self.assertEqual(applied['pitch_in'],7)
             self.assertEqual(applied['shape']['end_angle'],180)

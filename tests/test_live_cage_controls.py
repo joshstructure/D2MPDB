@@ -47,10 +47,10 @@ class LiveCageControlsTests(unittest.TestCase):
                 app.controls['n_N1'].value=top
                 self.assertEqual(app.cage_3d_widget.model_id,model_id)
                 self.assertEqual(app.case['transverse_detail'],original)
-                self.assertEqual(widget.layout.updatemenus[0].active,0)
+                self.assertEqual(widget.layout.updatemenus[0].active,3)
                 hoops=[t for t in widget.data if t.meta['part']=='transverse']
                 self.assertEqual(len(hoops),count)
-                self.assertTrue(all(t.visible is not False for t in hoops))
+                self.assertTrue(all(t.visible is False for t in hoops))
                 self.assertTrue(all(max(t.z)<=depth for t in hoops))
                 for button in widget.layout.updatemenus[0].buttons:
                     self.assertEqual(len(button.args[0]['visible']),len(widget.data))

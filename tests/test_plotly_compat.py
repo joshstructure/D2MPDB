@@ -108,11 +108,14 @@ class WorkbenchTraceDeltaTests(unittest.TestCase):
         for size in (9, 10, 8):
             previous_cage = [t.uid for t in cage.data]
             previous_force = [t.uid for t in force.data]
+            cage_edit=cage._last_trace_edit_id;force_edit=force._last_trace_edit_id
             app.controls['Bar_N1'].value = size
             expected_cage = cage.to_plotly_json()
             expected_force = force.to_plotly_json()
-            acknowledge(cage, [{'uid': uid, 'visible': False} for uid in previous_cage])
-            acknowledge(force, [{'uid': uid, 'visible': False} for uid in previous_force])
+            # Reused traces keep their IDs. Their previous edit acknowledgements
+            # are ignored by edit ID; removed IDs still use the stale-UID guard.
+            acknowledge(cage, [{'uid': uid, 'visible': False} for uid in previous_cage],cage_edit)
+            acknowledge(force, [{'uid': uid, 'visible': False} for uid in previous_force],force_edit)
             self.assertEqual(cage.to_plotly_json(), expected_cage)
             self.assertEqual(force.to_plotly_json(), expected_force)
             self.assertIs(app.cage_3d_widget, cage)

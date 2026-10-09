@@ -5,7 +5,8 @@ import html
 import json
 import ipywidgets as W
 from .plotly_compat import FigureWidget
-from .model import default_case,upgrade_case,evaluate,INPUTS,GEOMETRY,formula_trace,analysis_match,sectional_checks_pass
+from .live_views import LiveViews
+from .model import default_case,upgrade_case,evaluate,INPUTS,GEOMETRY,formula_trace,analysis_match,sectional_checks_pass,bar_positions
 from .optimizer import search,sensitivity_search,SearchConfig,candidate_case,filter_candidates,candidate_dc,candidate_governing,governing_check,DC_SCOPES,same_design_basis
 from .io import export_bundle,export_blockpad
 from .fbmp_widgets import XMLImportPanel
@@ -63,9 +64,10 @@ class CapNotebook:
         self.case=upgrade_case(case or default_case());self.export_root=Path(export_root)
         self.controls={};self.busy=False;self.search_result=None;self.current=None;self.figures=[];self.last_export=None
         self.browsing=False;self.filtered_indices=[];self.alternative_figure=None;self.cage_3d_widget=None
+        self.views=LiveViews();self._view_geometry=None;self._aux_geometry={};self._aux_basis={}
         self.case_listeners=[]
         self.import_receipt=None;self.import_notice=W.HTML()
-        self.banner=W.HTML();self.metrics=W.HTML();self.message=W.HTML()
+        self.banner=W.HTML(layout=W.Layout(height='130px',overflow='auto'));self.metrics=W.HTML();self.message=W.HTML()
         self.cage=W.VBox();self.results=W.VBox();self.dimensions=W.VBox();self.register=W.HTML();self.trace=W.HTML()
         self.clearance=W.BoundedFloatText(value=self.case['screening']['minimum_clear_in'],min=0,max=12,step=.25,description='Project min clear (in)',style={'description_width':'120px'},layout=W.Layout(width='260px'))
         self.aggregate=W.BoundedFloatText(value=self.case['screening']['aggregate_in'],min=.125,max=6,step=.125,description='Max aggregate (in)',style={'description_width':'170px'},layout=W.Layout(width='300px'))
@@ -106,6 +108,7 @@ class CapNotebook:
         self.refresh()
 
     def _plot_tab_changed(self,change):
+        self._refresh_auxiliary_view(change['new'])
         # Give long force profiles the full output row. Keep the same controls
         # mounted so opening the input panel never resets a case or listeners.
         if 4 not in (change['old'],change['new']):return
@@ -149,7 +152,7 @@ class CapNotebook:
                     rows.append(control)
                 if title=='Hoops and side bars':
                     self.hoop_reference_inputs=W.VBox([W.HTML('<p><b>Uniform-cage reference inputs.</b> G = overall shear check; L = lower-shear interval check, not the bottom of the cap. These reference pitches seed the starting layout; later edits to them do not move your entered bars. The reference hoop diameter also locates the longitudinal cage; actual shape conflicts are checked separately.</p>'),
-                        *rows[:4],self.clearance,self.aggregate,self.aggregate_confirmed,W.HTML('<small>The larger of the code minimum and project minimum governs. Confirm aggregate from the mix design. Set actual zone sizes and pitches above; edit end geometry in the general run editor.</small>')])
+                        *rows[:4],self.clearance,self.aggregate,self.aggregate_confirmed,W.HTML('<small>The larger of the code minimum and project minimum governs. Confirm aggregate from the mix design. All actual run inputs, including end geometry, are in the numbered cards above.</small>')])
                     rows=rows[4:]
                 if title=='Extra U-leg inventory · unresolved':rows.insert(0,W.HTML('<p><b>These are NOT the transverse pile U-bars.</b> Use the zone controls below the reinforcement elevation for those. These legacy counts add longitudinal tension area but have no resolved position or development. A nonzero count triggers an issue. Do not enter span-bar end hooks here either. Zero means no separate legacy inventory.</p>'))
                 if title=='Advanced · cross-section spacing':rows.insert(0,W.HTML('<p>Override the automatic spacing of longitudinal bars <b>within the cross section</b>. The checkbox activates top, continuous-bottom, added-row and side-bar spacing overrides. It does not add bars or change along-cap hoop pitch. <b>Inner leg spacing</b> is used separately when effective hoop loops exceed one; multiple-loop positions remain unresolved.</p>'))
@@ -186,6 +189,7 @@ class CapNotebook:
         self.import_notice.value=receipt_html(self.import_receipt,self.case)
         try:e=evaluate(self.case)
         except Exception as exc:
+            self._aux_basis.clear()
             self.force_diagrams.refresh(self.case)
             self.current=None;self.banner.value=f'<div style="padding:14px;background:#ffe9e7;color:#9d302b"><b>INPUT ERROR</b><br>{html.escape(str(exc))}</div>'
             self.transverse_panel.zone_grid.layout.display='none'
@@ -202,39 +206,50 @@ class CapNotebook:
         self.banner.value=f'<div style="padding:12px;background:{color};border-radius:6px"><b>{html.escape(status)}</b>{"<br>"+extra if extra else ""}<br><small>Sectional calculation only. D-regions, anchorage, pile heads, applicability and final detail review remain open.</small></div>'
         strength=governing_check(e,'strength');overall=governing_check(e)
         items=[('Strength D/C',f'{strength.ratio:.3f}'),('All-check utilization',f'{e.max_dc:.3f}'),('Gross steel estimate',f'{e.weight_lb:,.0f} lb'),('Top steel area',f'{e.value("As_N"):.2f} in²'),('Top Service I stress',f'{e.value("fs_I_N"):.2f} ksi'),('Cap length',f'{e.value("L_cap")/12:.3f} ft'),('Nominal end extension',f'{e.value("E_end"):g} in')]
-        self.metrics.value='<div style="display:flex;flex-wrap:wrap;gap:10px;margin:12px 0">'+''.join(f'<div style="padding:10px 18px;background:#eaf1f6;border-radius:5px"><small>{k}</small><br><b style="font-size:23px;color:#1f5b91">{v}</b></div>' for k,v in items)+'</div>'
-        self.metrics.value+=f'<p><b>Controls strength:</b> {html.escape(strength.label)}. <b>Controls all checks:</b> {html.escape(overall.label)}.<br><small>All-check utilization also includes spacing and minimum/detailing limits. It does not measure a single reserve against increased load.</small></p>'
+        metrics='<div style="display:flex;flex-wrap:wrap;gap:10px;margin:12px 0">'+''.join(f'<div style="padding:10px 18px;background:#eaf1f6;border-radius:5px"><small>{k}</small><br><b style="font-size:23px;color:#1f5b91">{v}</b></div>' for k,v in items)+'</div>'
+        metrics+=f'<p><b>Controls strength:</b> {html.escape(strength.label)}. <b>Controls all checks:</b> {html.escape(overall.label)}.<br><small>All-check utilization also includes spacing and minimum/detailing limits. It does not measure a single reserve against increased load.</small></p>'
         if overall.key in ('Chk_spacing_G','Chk_spacing_L'):
             zone=overall.key[-1];s=e.value('S_leg');limit=e.value('Sw_'+zone)
-            self.metrics.value+=f'<p><b>Across-cap hoop legs:</b> {s:.3f} in / {limit:.3f} in allowed = <b>{s/limit:.4f}</b>. Adding main bars or reducing along-cap hoop spacing leaves this across-cap distance unchanged.</p>'
-        for old in self.figures:
-            if old is not self.cage_3d_widget:old.close()
-        self.figures=[]
-        def fw(fig):
-            widget=FigureWidget(fig);self.figures.append(widget);widget.layout.autosize=True;return widget
-        self.dimensions.children=[fw(dimensions_figure(e)),W.HTML(dimensions_html(e))]
-        selected=self.transverse_panel.selected_run_id
-        new_cage=layout_3d(e)
-        if self.cage_3d_widget is None:self.cage_3d_widget=FigureWidget(new_cage)
-        else:
-            # Keep a single WebGL canvas across input edits. Replacing widgets on
-            # every edit can exhaust browser contexts; stale visibility must also
-            # not be carried to new trace indices when the bar count changes.
-            camera=self.cage_3d_widget.layout.scene.camera.to_plotly_json()
-            with self.cage_3d_widget.batch_update():
-                self.cage_3d_widget.data=[]
-                self.cage_3d_widget.add_traces(new_cage.data)
-                self.cage_3d_widget.layout=new_cage.layout
-                self.cage_3d_widget.layout.scene.camera=camera
-        self.cage_3d_widget.layout.autosize=True
-        self.figures.append(self.cage_3d_widget)
+            metrics+=f'<p><b>Across-cap hoop legs:</b> {s:.3f} in / {limit:.3f} in allowed = <b>{s/limit:.4f}</b>. Adding main bars or reducing along-cap hoop spacing leaves this across-cap distance unchanged.</p>'
+        self.metrics.value=metrics
+        geometry=tuple((n,self.case['inputs'][n]) for n in (*GEOMETRY,'C_t','C_b','C_s','Pile_embed','C_pile'))
+        same_geometry=geometry==self._view_geometry;self._view_geometry=geometry
+        def fw(key,factory,**kwargs):return self.views.figure(key,factory,preserve_view=same_geometry,**kwargs)
+        txt=self.views.text
+        self.cage_3d_widget=fw('cage3d',lambda:layout_3d(e))
+        self.refresh_sections(preserve_view=same_geometry)
         footer=('Every transverse station is drawn. Pink U-bars are open downward; the section shows the selected run of that shape, or the first run of that shape. Bend / tail fit and pile conflicts are screened; development, closure and 3D congestion at longitudinal hook ends require review.' if actual_transverse(self.case) else 'Dashed transverse shapes are reference illustrations. Set actual hoops and open-bottom U-bars in the zone controls below the elevation.')
-        self.cage.children=[W.HTML(configuration_html(e)+reinforcement_summary_html(e)),W.HTML(side_steel_html(e)),self.cage_3d_widget,fw(section_figure(e,'B',selected)),fw(section_figure(e,'P',selected)),fw(reinforcement_plan_figure(e)),fw(elevation_figure(e,zone_labels=True)),self.transverse_panel.ui,W.HTML(hoop_explanation_html(e)),
-            *([fw(hoop_figure(e))] if not actual_transverse(self.case) else []),W.HTML(clear_spacing_html(e)),W.HTML('<small>'+footer+' Pile lengths below the cap are schematic. The 3D cage uses bar centerlines; displayed line thickness is for visibility.</small>')]
-        self.results.children=[fw(results_figure(e)),W.HTML(spacing_html(e)),fw(optional_service_figure(e)),fw(ratios_figure(e)),W.HTML('<small>These plots compare imported force envelopes and sectional capacities. They are not a continuous moment/shear diagram or a rerun of FB-MultiPier.</small>')]
+        self.views.mount(self.cage,[txt('configuration',configuration_html(e)+reinforcement_summary_html(e)),txt('side',side_steel_html(e)),self.cage_3d_widget,self.views.plots['sectionB'],self.views.plots['sectionP'],fw('plan',lambda:reinforcement_plan_figure(e)),fw('elevation',lambda:elevation_figure(e,zone_labels=True)),self.transverse_panel.ui,txt('hoop',hoop_explanation_html(e)),
+            *([fw('reference_hoop',lambda:hoop_figure(e))] if not actual_transverse(self.case) else []),txt('clearance',clear_spacing_html(e)),txt('footer','<small>'+footer+' Pile lengths below the cap are schematic. The 3D cage uses bar centerlines; displayed line thickness is for visibility.</small>')])
+        self._refresh_auxiliary_view(self.plot_tabs.selected_index)
+        self.figures=list(self.views.plots.values())
         self.register.value=checks_html(e)
         rows=''.join(f'<tr><td>{html.escape(t["name"])}</td><td>{html.escape(t["formula"])}</td><td>{html.escape(str(t["value"]))}</td></tr>' for t in formula_trace(e))
         self.trace.value=('<p><b>Actual transverse layout:</b> this equation table retains the uniform closed-hoop reference. The D/C tab separately lists checks at actual adjacent stations. Open U-bars receive no closed-hoop torsion credit.</p>' if actual_transverse(self.case) else '')+'<p>Live equations use independent pile and between-pile reinforcement.</p><table class="cap-table"><tr><th>Name</th><th>Equation</th><th>Value</th></tr>'+rows+'</table>'
+
+    def refresh_sections(self,*,preserve_view=True):
+        """Inspect a run using the current calculation; no full-case redraw."""
+        if self.current is None:return
+        for region in ('B','P'):
+            self.views.figure('section'+region,lambda:section_figure(self.current,region,self.transverse_panel.selected_run_id),preserve_view=preserve_view)
+
+    def _refresh_auxiliary_view(self,index):
+        """Render hidden plots on entry using the latest evaluated case."""
+        if self.current is None or index not in (1,5):return
+        e=self.current
+        basis=json.dumps(e.case,sort_keys=True)
+        if self._aux_basis.get(index)==basis:return
+        geometry=tuple((n,e.case['inputs'][n]) for n in (*GEOMETRY,'C_t','C_b','C_s','Pile_embed','C_pile'))
+        preserve=geometry==self._aux_geometry.get(index)
+        def fw(key,factory,**kwargs):return self.views.figure(key,factory,preserve_view=preserve,**kwargs)
+        txt=self.views.text
+        if index==5:
+            dimension_basis=json.dumps({'geometry':geometry,'bars':bar_positions(e,'P')},sort_keys=True)
+            self.views.mount(self.dimensions,[fw('dimensions',lambda:dimensions_figure(e),basis=dimension_basis),txt('dimensions',dimensions_html(e))])
+        else:
+            self.views.mount(self.results,[fw('results',lambda:results_figure(e)),txt('spacing',spacing_html(e)),fw('service',lambda:optional_service_figure(e)),fw('ratios',lambda:ratios_figure(e)),txt('results_note','<small>These plots compare imported force envelopes and sectional capacities. They are not a continuous moment/shear diagram or a rerun of FB-MultiPier.</small>')])
+        self._aux_geometry[index]=geometry;self._aux_basis[index]=basis
+        self.figures=list(self.views.plots.values())
 
     def load(self,case,*,import_name=None):
         case=upgrade_case(case);evaluate(case);self.busy=True
@@ -525,6 +540,8 @@ class CapNotebook:
 
     def display(self):
         from IPython.display import display
+        for figure in [*self.figures,self.force_diagrams.figure]:
+            if figure is not None:figure.prepare_display()
         display(self.ui)
         return self
 
@@ -532,7 +549,7 @@ class CapNotebook:
         self.pile_review.close()
         self.force_diagrams.close()
         self.transverse_panel.close()
-        for figure in self.figures:figure.close()
+        self.views.close()
         self._close_alternative_plot()
         self.case_listeners.clear()
         self.ui.close()

@@ -24,7 +24,7 @@ def zone_runs(e):
     by the starting grid. Use the largest supported radius only for grouping,
     so a size edit does not move its controls. Physical clearance checks still
     use each actual diameter. Hoop centers stay outside the pile envelope.
-    Crossing/custom runs stay in the general editor; none are split or moved.
+    Crossing/custom runs get their own numbered cards; none are split or moved.
     """
     zones=cap_zones(e);groups={z['key']:[] for z in zones};custom=[]
     for run in e.case.get('transverse_detail',{}).get('runs',[]):
@@ -46,7 +46,7 @@ def new_zone_run(e,key,bar,pitch):
     """Propose a new run inside one zone; existing runs remain untouched."""
     zones,groups,_=zone_runs(e)
     zone=next(z for z in zones if z['key']==key)
-    if groups[key]:raise ValueError('This zone already has a run. Edit it here or use the general run editor.')
+    if groups[key]:raise ValueError('This zone already has a run. Edit or split its numbered card.')
     radius=BAR_DIAMETER[bar]/2;p=e.case['inputs']
     first=max(zone['left']+radius,p['C_s']+radius)
     end=min(zone['right']-radius,e.value('L_cap')-p['C_s']-radius)
@@ -58,7 +58,7 @@ def new_zone_run(e,key,bar,pitch):
         x=existing['station_in']
         if x<=zone['left']:first=max(first,x+gap)
         elif x>=zone['right']:end=min(end,x-gap)
-        else:raise ValueError('A custom run already places bars in this zone. Review its exact limits in the general editor.')
+        else:raise ValueError('A custom run already places bars in this zone. Review its limits in the Custom / crossing runs cards.')
     if end<first:raise ValueError('No room for a new run in this zone with the current cover, pile clearances and adjoining bars.')
     existing={r['id'] for r in e.case.get('transverse_detail',{}).get('runs',[])};n=1
     while f'R{n}' in existing:n+=1

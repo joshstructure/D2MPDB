@@ -232,7 +232,9 @@ class ForceDiagramPanel:
         self._case=case
         audit=case['analysis'].get('xml_audit',{})
         self.notice.value='<p>'+html.escape(diagram_notice(case))+'</p>'
-        key=(audit.get('sha256'),id(audit.get('end_records')))
+        # Case edits deep-copy the audit. Object identity would rebuild identical
+        # force traces on every reinforcement edit, even with overlays disabled.
+        key=json.dumps(audit,sort_keys=True)
         self.show_resistance.disabled=not bool(audit.get('end_records'))
         resistance_key=json.dumps({k:v for k,v in case.items() if k!='analysis'},sort_keys=True) if self.show_resistance.value else None
         if key == self._key and resistance_key == self._resistance_key and (self.figure is not None or not audit.get('end_records')):return
@@ -255,11 +257,9 @@ class ForceDiagramPanel:
                 if same_source:
                     for axis in ('xaxis','xaxis2','xaxis3','xaxis4'):
                         fresh.layout[axis].range=self.figure.layout[axis].range
-                with self.figure.batch_update():
-                    self.figure.data=[]
-                    self.figure.add_traces(fresh.data)
-                    self.figure.layout=fresh.layout
-            self.output.children=[self.figure]
+                from .live_views import update_figure
+                update_figure(self.figure,fresh,preserve_view=same_source,preserve_filter=False)
+            if self.output.children!=(self.figure,):self.output.children=[self.figure]
             self._key=key;self._resistance_key=resistance_key
         except (ValueError,KeyError,TypeError) as exc:
             if self.figure is not None:self.figure.close()

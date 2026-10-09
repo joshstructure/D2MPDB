@@ -157,11 +157,10 @@ class ActualPlacementTests(unittest.TestCase):
         try:
             panel=app.transverse_panel
             run=app.case['transverse_detail']['runs'][0]
-            panel.select.value=run['id']
+            card=panel.zone_controls[run['id']]
             before=bar_positions(app.current)
-            panel.bar.value=10
-            panel.basis.value='Reviewed test detail';panel.confirm.value=True
-            panel.apply.click()
+            card['bar'].value=10
+            card['development_basis'].value='Reviewed test detail';card['development_confirmed'].value=True
             current=next(r for r in app.case['transverse_detail']['runs'] if r['id']==run['id'])
             self.assertTrue(development_current(app.case,current))
             self.assertNotEqual(before,bar_positions(app.current))

@@ -240,12 +240,17 @@ def elevation_figure(e,*,zone_labels=False):
         align='left',font=dict(size=11,color=HOOP))
     fig.update_layout(legend=dict(orientation='h',y=-.3,font=dict(size=10)),margin=dict(t=130,b=170))
     if zone_labels:
-        from .transverse_zones import cap_zones
-        for zone in cap_zones(e):
+        from .transverse_zones import zone_runs
+        zones,groups,custom=zone_runs(e)
+        for zone in zones:
             if zone['right']<=zone['left']:continue
+            numbers=', '.join(html.escape(r['id']) for r in groups[zone['key']])
             fig.add_annotation(name='part:transverse',x=(zone['left']+zone['right'])/24,y=1.025,xref='x',yref='paper',
-                text=zone['label'].replace('Pile ',''),showarrow=False,bgcolor='#fff1f7' if zone['kind']=='pile_u' else '#f2ecf8',
+                text=('<b>'+numbers+'</b><br>' if numbers else '')+zone['label'].replace('Pile ',''),showarrow=False,bgcolor='#fff1f7' if zone['kind']=='pile_u' else '#f2ecf8',
                 font=dict(size=10,color='#bd407d' if zone['kind']=='pile_u' else HOOP))
+        for run in custom:
+            fig.add_annotation(name='part:transverse',x=(run['first_in']+run['end_in'])/24,y=1.025,xref='x',yref='paper',
+                text='<b>'+html.escape(run['id'])+'</b><br>Custom',showarrow=False,font=dict(size=10,color=HOOP))
     return drawing_controls(fig)
 
 
