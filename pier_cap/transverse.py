@@ -8,6 +8,7 @@ import math
 import hashlib
 import json
 from copy import deepcopy
+from .hooks import stirrup_hook_extension
 
 HOOK_ROTATIONS=('hook_rotation_left_deg','hook_rotation_right_deg')
 
@@ -106,6 +107,8 @@ def validate_detail(case):
         if 'end_min_clear_in' in run:run_stations(run)
         shape=run.get('shape',{})
         if not isinstance(shape,dict):raise ValueError(f'{label}: shape must be a record.')
+        if shape.get('extension_mode','custom' if 'tail_in' in shape else 'standard') not in ('standard','custom'):
+            raise ValueError(f'{label}: choose CRSI standard or custom hook extension.')
         if isinstance(shape.get('end_angle',90),bool) or shape.get('end_angle',90) not in (0,90,135,180):raise ValueError(f'{label}: choose straight, 90°, 135° or 180° U ends.')
         for key in ('inside_diameter_in','tail_in','end_raise_in','side_inset_in'):
             if key not in shape:continue
@@ -165,8 +168,14 @@ def station_issues(e):
 def shape_parameters(run):
     from .model import BAR_DIAMETER
     d=BAR_DIAMETER[run['bar']]
-    return dict({'end_angle':90,'inside_diameter_in':6*d,'tail_in':12*d,
+    shape=dict({'end_angle':90,'inside_diameter_in':6*d,'tail_in':12*d,
                  'end_raise_in':0.,'side_inset_in':0.,**dict.fromkeys(HOOK_ROTATIONS,0.)},**run.get('shape',{}))
+    shape.setdefault('extension_mode','custom' if 'tail_in' in run.get('shape',{}) else 'standard')
+    if shape['extension_mode']=='standard':
+        standard=stirrup_hook_extension(run['bar'],shape['end_angle'])
+        # Unsupported sizes keep drawable geometry but fail the existing LRFD screen.
+        if standard is not None:shape['tail_in']=standard
+    return shape
 
 
 def hook_rotations(run):
@@ -185,6 +194,7 @@ def rotation_note(run):
 def development_fingerprint(case,run):
     def fingerprint_shape(r):
         shape=shape_parameters(r)
+        shape.pop('extension_mode',None)  # Confirmation tracks resolved geometry.
         # Preserve previously recorded checks when the new controls stay at zero.
         for key in HOOK_ROTATIONS:
             if not shape[key]:shape.pop(key)
@@ -420,7 +430,7 @@ def transverse_checks(e):
         confirmed=development_current(e.case,run)
         checks.append(Check('Status_transverse_development_'+run['id'],run['id']+' end development / closure',
             'RECORDED' if confirmed else 'PENDING','N/A',
-            ('User-recorded check: '+run['development_basis']) if confirmed else 'Enter bend / tail dimensions and record the checked development calculation. Geometry alone does not establish anchorage.'))
+            ('User-recorded check: '+run['development_basis']) if confirmed else 'Review bend / hook extension dimensions and record the checked development calculation. Geometry alone does not establish anchorage.'))
     for interval in shear_intervals(e):
         a,b=interval['a'],interval['b']
         pitch,zone,vu,area,vr,ratio=(interval[k] for k in ('pitch','zone','vu','area','vr','ratio'))

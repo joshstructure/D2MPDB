@@ -18,7 +18,7 @@ def schedule_html(e):
         status='CLASH / FIT' if issues else 'Development recorded' if development_current(e.case,r) else 'Development pending'
         if issues:status+='<ul>'+''.join('<li>'+html.escape(s)+'</li>' for s in issues)+'</ul>'
         if any(hook_rotations(r)):status+='<br>'+html.escape(rotation_note(r))
-        ends=(f'{shape["end_angle"]:g}° ends; {shape["tail_in"]:g} in straight tail; inside bend {shape["inside_diameter_in"]:g} in' if r['kind']=='pile_u' else 'Closed outline; closure detail to be verified')
+        ends=(f'{shape["end_angle"]:g}° ends; {shape["tail_in"]:g} in hook extension ({"CRSI standard" if shape["extension_mode"]=="standard" and r["bar"]<=8 else "custom / outside standard table"}); inside bend {shape["inside_diameter_in"]:g} in' if r['kind']=='pile_u' else 'Closed outline; closure detail to be verified')
         if any(hook_rotations(r)):
             left,right=hook_rotations(r);ends+=f'; vertical-axis rotation L {left:+g}° / R {right:+g}°'
         rows.append(f'<tr><td>{html.escape(r["id"])}</td><td style="color:{COLORS[r["kind"]]}">{NAMES[r["kind"]]}</td>'

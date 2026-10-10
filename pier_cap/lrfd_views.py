@@ -1,6 +1,6 @@
 """Notebook controls and portable working for the actual-cage LRFD checks."""
 from html import escape
-from .lrfd_checks import settings
+from .lrfd_checks import settings,closure_extension
 
 
 def _table(headers,rows):
@@ -21,6 +21,7 @@ def working_html(e,*,full=False):
         ['Load-path evidence',s['load_path_basis'] or 'Not recorded'],['Individual pile overrides',s['support_overrides']],
         ['Concrete density factor',s['density_factor']],['Coating',s['coating']+' (unknown uses adverse epoxy factors)'],
         ['Continuous-bar splices',s['continuous_splices']],['Hoop closure',s['hoop_closure']],
+        ['Closed-stirrup hook extension','CRSI standard, automatic by bar size / angle' if s['closure_extension_mode']=='standard' else f'Custom: {s["closure_tail_in"]:g} in'],
         ['Code source','AASHTO LRFD BDS 10th ed. (2024), 5.7.3.5 pp. 5-78–80; 5.7.3.6.3 p. 5-81; 5.10.6 pp. 5-182–183; 5.10.8 pp. 5-188–198'],
         ['Owner criteria','FDOT Structures Design Guidelines, January 2026, 4.1.4A–C, p. 4-2'],
         ['Actual-cage calculation source SHA-256',d['engine_sha256']]]))
@@ -79,7 +80,7 @@ def working_html(e,*,full=False):
         ['Segment','Window length (in)','Window center (in)','Intersected bar IDs','ΣAv (in²)','Developed ΣAv (in²)','Ao (in²)','ph (in)','Av/s req','At/s req','Combined req','Torsion D/C'],
         [[r['id'],r['window']['length_in'],r['window']['station_in'],', '.join(r['window']['bar_ids']),r['window']['area_in2'],r['developed_window_area_in2'],r['ao_in2'],r['ph_in'],r['av_required_rate'],r['at_required_rate'],r['combined_required_rate'],r['torsion_ratio']] for r in d['longitudinal']])+'</details>')
     out.append('<details><summary>Stirrup anchorage / closure working</summary>'+_table(
-        ['Run','Type','#','Bend','Min bend','Tail','Min tail','Available le','Required le','D/C','Notes'],
+        ['Run','Type','#','Bend','Min bend','Hook extension (in)','LRFD min extension (in)','Available le','Required le','D/C','Notes'],
         [[r['run'],r['kind'],r['bar'],r['bend_in'],r['bend_required_in'],r['tail_in'],r['tail_required_in'],r['embed_available_in'],r['embed_required_in'],r['ratio'],r['notes']] for r in d['transverse_development']])+'</details>')
     out.append('<details><summary>Face reinforcement working</summary>'+_table(
         ['Face','Direction','Provided in²/ft','Required in²/ft','Area D/C','Spacing','Code max','Project max','Spacing D/C','Basis'],
@@ -96,22 +97,36 @@ class LRFDPanel:
             ('coating','Bar coating',[('Unconfirmed (adverse factor)','unknown'),('Uncoated','uncoated'),('Epoxy coated','epoxy')]),
             ('continuous_splices','Continuous-bar splices',[('Unconfirmed','unknown'),('No splices','none'),('Splices present: separate review','present')]),
             ('hoop_closure','Hoop closure',[('Unconfirmed','unknown'),('Standard hooked ends','hooks'),('Overlapping U pair','lap_pair')]),
-            ('closure_angle','Closure hook angle',[(90,90),(135,135)])]
+            ('closure_angle','Closure hook angle',[(90,90),(135,135)]),
+            ('closure_extension_mode','Closed-stirrup hook extension',[('CRSI standard (automatic)','standard'),('Custom extension','custom')])]
         values=settings(owner.case);items=[]
         for key,label,options in specs:
             self.controls[key]=W.Dropdown(options=options,value=values[key],description=label,
-                style={'description_width':'165px'},layout=W.Layout(width='390px'))
+                style={'description_width':'225px' if key=='closure_extension_mode' else '165px'},layout=W.Layout(width='470px' if key=='closure_extension_mode' else '390px'))
         for key,label in [('density_factor','Concrete density λ'),('phi_axial','Axial factor φc'),
-            ('closure_tail_in','Closure tail (in)'),('closure_lap_in','Closure lap (in)'),
+            ('closure_tail_in','Custom hook extension (in)'),('closure_lap_in','Closure lap (in)'),
             ('shrinkage_project_spacing_in','Project face spacing (in; 0=code)')]:
             self.controls[key]=W.FloatText(value=values[key],description=label,style={'description_width':'225px'},layout=W.Layout(width='335px'))
         self.controls['closure_engages_bars']=W.Checkbox(value=values['closure_engages_bars'],description='Closure hooks engage longitudinal bars',indent=False,layout=W.Layout(width='390px'))
         self.controls['load_path_basis']=W.Textarea(value=values['load_path_basis'],description='Load-path basis',placeholder='Identify the bearing / connection drawing or design basis.',layout=W.Layout(width='98%',height='65px'))
         for control in self.controls.values():control.observe(self.changed,names='value')
+        self.extension_summary=W.HTML()
         self.result=W.HTML();self.piles={};self.pile_box=W.HBox(layout=W.Layout(flex_flow='row wrap'))
         self.sync_piles()
         self.ui=W.VBox([W.HTML('<p><b>AASHTO LRFD 10th edition and FDOT SDG 2026.</b> Unknown connections use full longitudinal interaction. Enter the physical detail; a filename is not evidence of fixity. Closure dimensions describe the supplied detail and do not alter the cage drawing. Individual pile settings override the common connection setting.</p>'),
-            W.HBox(list(self.controls.values())[:-1],layout=W.Layout(flex_flow='row wrap')),self.pile_box,self.controls['load_path_basis'],self.result],layout=W.Layout(width='100%'))
+            W.HBox(list(self.controls.values())[:-1],layout=W.Layout(flex_flow='row wrap')),self.extension_summary,self.pile_box,self.controls['load_path_basis'],self.result],layout=W.Layout(width='100%'))
+        self.sync_extensions()
+
+    def sync_extensions(self):
+        s=settings(self.owner.case);standard=s['closure_extension_mode']=='standard'
+        self.controls['closure_tail_in'].disabled=standard or s['hoop_closure']!='hooks'
+        self.controls['closure_tail_in'].layout.display='none' if standard else ''
+        sizes=sorted({r['bar'] for r in self.owner.case.get('transverse_detail',{}).get('runs',[]) if r['kind']=='hoop'})
+        if not sizes:sizes=[int(self.owner.case['inputs']['Bar_v'])]
+        values=[f'#{bar}: {value:g} in' if (value:=closure_extension(s,bar)) is not None else f'#{bar}: outside CRSI stirrup table' for bar in sizes]
+        self.extension_summary.value=('<p><b>Closed-stirrup hook extension:</b> '+escape('; '.join(values))+
+            (' · CRSI standard; updates with bar size and hook angle.' if standard else ' · custom detail.')+
+            ' Measured from the end of the bend to the bar tip.</p>') if s['hoop_closure']=='hooks' else ''
 
     def sync_piles(self):
         import ipywidgets as W
@@ -129,6 +144,13 @@ class LRFDPanel:
 
     def changed(self,_):
         if self.busy or self.owner.busy:return
+        if _['owner'] is self.controls['closure_extension_mode'] and _['new']=='custom':
+            # Start a custom edit from the resolved standard, never a hidden zero.
+            sizes=[r['bar'] for r in self.owner.case.get('transverse_detail',{}).get('runs',[]) if r['kind']=='hoop']
+            values=[closure_extension(settings(self.owner.case),bar) for bar in sizes or [int(self.owner.case['inputs']['Bar_v'])]]
+            self.busy=True
+            try:self.controls['closure_tail_in'].value=max((v for v in values if v is not None),default=0.)
+            finally:self.busy=False
         self.owner.case['lrfd_checks']={**settings(self.owner.case),**{k:w.value for k,w in self.controls.items()}}
         self.owner.case['lrfd_checks']['support_overrides']={k:w.value for k,w in self.piles.items() if w.value!='inherit'}
         self.owner.refresh();self.owner._notify_case_change()
@@ -138,14 +160,17 @@ class LRFDPanel:
         try:
             for k,w in self.controls.items():w.value=settings(self.owner.case)[k]
             self.sync_piles()
+            self.sync_extensions()
         finally:self.busy=False
 
     def refresh(self,e):
         self.sync_piles()
+        self.sync_extensions()
         self.result.value=working_html(e)
 
     def close(self):
         for w in self.controls.values():w.close()
         for w in self.piles.values():w.close()
         self.pile_box.close()
+        self.extension_summary.close()
         self.result.close();self.ui.close()

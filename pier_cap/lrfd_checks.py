@@ -9,26 +9,41 @@ from copy import deepcopy
 from hashlib import sha256
 from pathlib import Path
 import math
+from .hooks import stirrup_hook_extension, CRSI_HOOK_SOURCE
 
 CODE = 'AASHTO LRFD BDS, 10th ed. (2024)'
-DEFAULTS = dict(version=1, bearing_loading='unknown', pile_connection='unknown',
+DEFAULTS = dict(version=2, bearing_loading='unknown', pile_connection='unknown',
     load_path_basis='', density_factor=1.0, coating='unknown', phi_axial=.9,
-    hoop_closure='unknown', closure_angle=135, closure_tail_in=0., closure_lap_in=0.,
+    hoop_closure='hooks', closure_angle=135, closure_tail_in=0., closure_lap_in=0.,
+    closure_extension_mode='standard',
     closure_engages_bars=False, continuous_splices='unknown',
     shrinkage_project_spacing_in=12., support_overrides={})
 
 
 def settings(case):
-    return {**deepcopy(DEFAULTS), **deepcopy(case.get('lrfd_checks', {}))}
+    saved=deepcopy(case.get('lrfd_checks', {}))
+    result={**deepcopy(DEFAULTS), **saved}
+    if saved.get('version',1)==1:
+        result['version']=2
+        # The old default was an unentered zero, not a specified zero-length hook.
+        # Preserve explicitly entered nonzero dimensions as custom details.
+        if 'closure_extension_mode' not in saved:
+            result['closure_extension_mode']='standard' if saved.get('closure_tail_in',0)==0 else 'custom'
+    return result
+
+
+def closure_extension(s,bar):
+    return stirrup_hook_extension(bar,s['closure_angle']) if s['closure_extension_mode']=='standard' else s['closure_tail_in']
 
 
 def validate_settings(case):
     s=settings(case)
-    if s['version']!=1: raise ValueError('Unsupported LRFD check settings version.')
+    if s['version']!=2: raise ValueError('Unsupported LRFD check settings version; use the updated notebook.')
     choices={'bearing_loading':('unknown','top','indirect'),
         'pile_connection':('unknown','pinned','moment'),
         'coating':('unknown','uncoated','epoxy'),
         'hoop_closure':('unknown','hooks','lap_pair'),
+        'closure_extension_mode':('standard','custom'),
         'continuous_splices':('unknown','none','present')}
     for k,values in choices.items():
         if s[k] not in values: raise ValueError('Invalid LRFD setting: '+k)
@@ -284,7 +299,7 @@ def _anchorage_reason(row):
                 details.append(f'{label} {actual:.3f} in < required {required:.3f} in')
         # Lap-pair closure has its own required lap in the existing notes.
         if row['closure_type']=='hooks' and row['tail_ratio']>1+1e-8:
-            details.append(f'hook tail {row["tail_in"]:.3f} in < required {row["tail_required_in"]:.3f} in')
+            details.append(f'hook extension {row["tail_in"]:.3f} in < required {row["tail_required_in"]:.3f} in')
         if row['bar']>8 or row['angle'] not in (90,135):
             details.append(f'#{row["bar"]} bar / {row["angle"]}° end is outside the implemented anchorage details')
     return reason+(' — '+'; '.join(details) if details else '')
@@ -330,7 +345,8 @@ def transverse_development(e):
     for run in run_summary(e.case):
         d=BAR_DIAMETER[run['bar']];shape=shape_parameters(run);geometry=bar_shape(e,run)
         angle=shape['end_angle'] if run['kind']=='pile_u' else s['closure_angle']
-        tail=shape['tail_in'] if run['kind']=='pile_u' else s['closure_tail_in']
+        extension=shape['tail_in'] if run['kind']=='pile_u' else closure_extension(s,run['bar'])
+        tail=extension if extension is not None else 0.
         bend_min=(4 if run['bar']<=5 and p['fy']<=60 else 6 if run['bar']<=8 else 8)*d
         required_tail=(12*d if run['bar']>=6 else 6*d) if angle==90 else 6*d
         le=.44*d*p['fy']/(s['density_factor']*math.sqrt(p['fc'])) if 6<=run['bar']<=8 else 0.
@@ -341,6 +357,11 @@ def transverse_development(e):
             ld=development_length(d,BAR_AREA[run['bar']],p['fy'],p['fc'],density=s['density_factor'],coating=s['coating'],top=True)['required_in']
             tail_ratio=1.3*ld/max(s['closure_lap_in'],1e-9);extra=f'5.10.8.2.6d: lap ≥ 1.3ld = {1.3*ld:.3f} in; entered {s["closure_lap_in"]:.3f} in.'
         else: tail_ratio=required_tail/max(tail,1e-9)
+        extension_mode=shape['extension_mode'] if run['kind']=='pile_u' else s['closure_extension_mode']
+        if run['kind']=='pile_u' or s['hoop_closure']=='hooks':
+            if extension_mode=='standard':
+                extra+=' '+(CRSI_HOOK_SOURCE+f'; automatic {tail:g} in.' if stirrup_hook_extension(run['bar'],angle) is not None else 'CRSI standard extension unavailable for this bar size / angle.')
+            else:extra+=' Custom hook extension.'
         if run['kind']=='pile_u':
             # An end hook must actually wrap a longitudinal bar in the bend pocket.
             radius=geometry['radius'];inset=p['C_s']+d/2+shape['side_inset_in'];bottom=p['C_b']+d/2+shape['end_raise_in']
@@ -368,11 +389,12 @@ def transverse_development(e):
             bend_in=shape['inside_diameter_in'],bend_required_in=bend_min,tail_in=tail,
             tail_required_in=required_tail,embed_available_in=available,embed_required_in=le,
             closure_type=s['hoop_closure'] if run['kind']=='hoop' else 'hooks',tail_ratio=tail_ratio,
+            extension_mode=extension_mode,
             ratio=ratio,pending=pending,notes=extra+' '+'; '.join(issues))
         rows.append(row)
         checks.append(_check('Status_transverse_development_'+run['id'],run['id']+' calculated anchorage / closure',ratio,
             f'{CODE} 5.10.2.1/.3, 5.10.8.2.6a/b/d. Bend {shape["inside_diameter_in"]:.3f}/{bend_min:.3f} in; '
-            f'tail {tail:.3f}/{required_tail:.3f} in; midheight embedment {available:.3f}/{le:.3f} in. '+row['notes'],pending=pending))
+            f'hook extension {tail:.3f}/{required_tail:.3f} in; midheight embedment {available:.3f}/{le:.3f} in. '+row['notes'],pending=pending))
     return rows,checks
 
 

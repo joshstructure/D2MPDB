@@ -7,7 +7,7 @@ import unittest
 
 from pier_cap.cage_3d import layout_3d
 from pier_cap.io import export_bundle,load_case
-from pier_cap.model import evaluate
+from pier_cap.model import evaluate,BAR_DIAMETER
 from pier_cap.transverse import (HOOK_ROTATIONS,bar_shape,development_current,
     development_fingerprint,shape_issues,validate_detail)
 from pier_cap.transverse_visuals import add_projection,schedule_html
@@ -18,14 +18,15 @@ from tests.test_transverse_detail import explicit_case
 def rotated_case(left=60,right=60):
     case=explicit_case();case['transverse_detail']['version']=4
     run=next(r for r in case['transverse_detail']['runs'] if r['kind']=='pile_u')
-    run['shape']=dict(zip(HOOK_ROTATIONS,(left,right)))
+    # Keep the long-hook clash fixture independent of automatic CRSI defaults.
+    run['shape']=dict(zip(HOOK_ROTATIONS,(left,right)),tail_in=12*BAR_DIAMETER[run['bar']])
     return case,run
 
 
 class HookRotationTests(unittest.TestCase):
     def test_independent_hooks_rotate_about_vertical_legs_without_changing_length(self):
         case,run=rotated_case(60,-30);e=evaluate(case)
-        original=deepcopy(run);original['shape']={}
+        original=deepcopy(run);original['shape']={'tail_in':run['shape']['tail_in']}
         before=bar_shape(e,original);after=bar_shape(e,run)
         self.assertAlmostEqual(after['length_in'],before['length_in'])
         n=after['hook_point_count']
@@ -52,7 +53,7 @@ class HookRotationTests(unittest.TestCase):
         run['development_fingerprint']=development_fingerprint(case,run)
         self.assertFalse(development_current(case,run))
         self.assertNotIn('Development recorded',schedule_html(e))
-        run['shape']={}
+        run['shape']={'tail_in':run['shape']['tail_in']}
         self.assertTrue(any('embedded pile' in s for s in shape_issues(evaluate(case),run)))
 
     def test_rotated_tail_can_reach_pile_outside_its_leg_station_and_cap_end(self):
@@ -62,7 +63,7 @@ class HookRotationTests(unittest.TestCase):
         run.update(first_in=center-inset-1,end_in=center-inset-1)
         case['transverse_detail']['runs']=[run]
         self.assertTrue(any('embedded pile' in s for s in shape_issues(evaluate(case),run)))
-        run['shape']=dict.fromkeys(HOOK_ROTATIONS,-30.)
+        run['shape'].update(dict.fromkeys(HOOK_ROTATIONS,-30.))
         self.assertFalse(any('embedded pile' in s for s in shape_issues(evaluate(case),run)))
         case,run=rotated_case(-90,-90)
         self.assertTrue(any('cap end cover' in s for s in shape_issues(evaluate(case),run)))

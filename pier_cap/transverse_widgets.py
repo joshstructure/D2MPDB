@@ -50,11 +50,12 @@ class RunCard:
         kind=add('kind',W.Dropdown(options=[('Closed hoop','hoop'),('Open-bottom U','pile_u')],description='Shape',style={'description_width':'105px'},layout=W.Layout(width='224px')))
         shear=add('zone',W.Dropdown(options=[('Overall (G)','G'),('Lower-shear (L)','L')],description='Shear basis',style={'description_width':'105px'},layout=W.Layout(width='224px')))
         angle=add('end_angle',W.Dropdown(options=[('90° inward',90),('135° inward',135),('180° return',180),('Straight',0)],description='U ends',style={'description_width':'105px'},layout=W.Layout(width='224px')))
+        extension=add('extension_mode',W.Dropdown(options=[('CRSI standard','standard'),('Custom','custom')],description='Hook extension',style={'description_width':'105px'},layout=W.Layout(width='250px')))
         end_bar=add('include_end_bar',W.Checkbox(description='Bar at end limit',indent=False,layout=W.Layout(width='224px')))
         end_bar.observe(lambda change:panel._zone_edited(rid,'include_end_bar',change),names='value')
-        for name,widget in [('kind',kind),('zone',shear),('end_angle',angle)]:
+        for name,widget in [('kind',kind),('zone',shear),('end_angle',angle),('extension_mode',extension)]:
             widget.observe(lambda change,field=name:panel._zone_edited(rid,field,change),names='value')
-        shape=[number(name,title) for name,title in [('inside_diameter_in','Bend ID (in)'),('tail_in','End tail (in)'),
+        shape=[number(name,title) for name,title in [('inside_diameter_in','Bend ID (in)'),('tail_in','Extension (in)'),
             ('end_raise_in','Raise ends (in)'),('side_inset_in','Inset legs (in)'),
             (HOOK_ROTATIONS[0],'Left rotate (°)'),(HOOK_ROTATIONS[1],'Right rotate (°)')]]
         help_text=add('help',W.HTML('<small>U-bars are open downward. Raise ends is above bottom cover; inset moves legs inward. '
@@ -62,7 +63,9 @@ class RunCard:
             '0° is inward in the section; positive turns toward increasing cap stations, negative toward decreasing stations. '
             '±90° is a trial geometry range, not a code allowance. Rotated-hook anchorage stays PENDING; '
             'verify longitudinal-bar engagement and 3D congestion. Rotation values are inactive for hoops and straight ends. '
-            'Bend and tail dimensions describe the drawing. Record the separate development / closure check below.</small>'))
+            'CRSI standard hook extensions update with bar size and angle; Custom preserves an entered length. '
+            'Extension is the straight length after the bend. Closed-stirrup hook extensions are set in LRFD regions & checks. '
+            'Bend dimensions describe the drawing. Record the separate development / closure check below.</small>'))
         basis=add('development_basis',W.Textarea(description='Detail ref.',placeholder='Drawing / calculation reference',continuous_update=False,
             style={'description_width':'70px'},layout=W.Layout(width='calc(100% - 4px)',max_width='600px',height='70px')))
         confirm=add('development_confirmed',W.Checkbox(description='Development / closure checked',indent=False,layout=_layout()))
@@ -73,7 +76,7 @@ class RunCard:
         remove=add('remove',W.Button(description=f'Delete {rid}',icon='trash',button_style='danger',
             tooltip=f'Delete only run {rid} and its saved bars.',layout=W.Layout(width='124px')))
         remove.on_click(lambda _:panel._remove_run(rid))
-        detail_fields=W.HBox([kind,shear,angle,end_bar,*shape],layout=W.Layout(flex_flow='row wrap',width='100%'))
+        detail_fields=W.HBox([kind,shear,angle,extension,end_bar,*shape],layout=W.Layout(flex_flow='row wrap',width='100%'))
         detail_actions=W.HBox([split])
         details=W.VBox([detail_fields,help_text,basis,confirm,detail_actions],layout=W.Layout(width='100%',min_width='0'))
         advanced=add('details',Accordion(children=[details]));advanced.set_title(0,f'{rid} · shape and development');advanced.selected_index=None
@@ -95,6 +98,8 @@ class RunCard:
             if name in c and hasattr(c[name],'disabled'):
                 c[name].value=value;c[name].disabled=not active
         for name in HOOK_ROTATIONS:c[name].disabled=not active or run['kind']!='pile_u' or not shape['end_angle']
+        c['extension_mode'].disabled=not active or run['kind']!='pile_u' or not shape['end_angle']
+        c['tail_in'].disabled=not active or run['kind']!='pile_u' or shape['extension_mode']=='standard' or not shape['end_angle']
         c['development_confirmed'].disabled=not active or any(hook_rotations(run))
         stations=run_stations(run);count=len(stations);last=stations[-1]
         color='#bd407d' if run['kind']=='pile_u' else '#7952a3'
@@ -247,7 +252,7 @@ class TransversePanel:
         def perform():
             detail=deepcopy(self.owner.case['transverse_detail']);run=next(r for r in detail['runs'] if r['id']==rid)
             value=change['new']*scale if isinstance(change['new'],(int,float)) and not isinstance(change['new'],bool) else change['new']
-            if field in ('end_angle','inside_diameter_in','tail_in','end_raise_in','side_inset_in',*HOOK_ROTATIONS):
+            if field in ('end_angle','extension_mode','inside_diameter_in','tail_in','end_raise_in','side_inset_in',*HOOK_ROTATIONS):
                 run['shape']=shape_parameters(run);run['shape'][field]=value
             else:run[field]=value
             if field=='bar' and 'end_min_clear_in' in run:
