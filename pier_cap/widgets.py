@@ -615,10 +615,12 @@ class CapNotebook:
             if figure is not None:figure.prepare_display()
         name='minimum_tip_ui' if section=='minimum_tip' else 'cap_ui' if section=='cap' else 'ui'
         root=getattr(self,name)
-        if root.comm is None:
-            # ipywidgets 7 disables rich display on close(); keeping that shell
-            # produces only VBox(children=...). Retain the live controls/state.
-            root=W.VBox(children=root.children,layout=root.layout,_dom_classes=root._dom_classes)
+        if section=='cap' or root.comm is None:
+            # Colab can show only VBox(children=...) for the cap shell created
+            # in Cell 1 even while its comm and rich-display hook remain live.
+            # Mount a fresh shell in Cell 2; keep controls, callbacks and plots.
+            layout=W.Layout(**{key:value for key,value in root.layout.get_state().items() if not key.startswith('_')})
+            root=W.VBox(children=root.children,layout=layout,_dom_classes=root._dom_classes)
             setattr(self,name,root)
         display(root)
         return self

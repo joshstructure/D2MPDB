@@ -152,24 +152,27 @@ class SplitNotebookTests(unittest.TestCase):
             display.assert_called_with('cap')
         self.assertEqual(self.app.notebook_snapshot(),original)
 
-    def test_cell_two_recovers_closed_container_without_resetting_inputs(self):
+    def test_cell_two_remounts_live_closed_and_reopened_containers_without_reset(self):
         self.fixed();self.p.reaction_margin.value=9
         original=self.app.notebook_snapshot()
-        old_root=self.app.cap_ui;children=old_root.children
-        old_root.close()
+        children=self.app.cap_ui.children
         nb=json.loads((ROOT/'Cap_and_Pile_Design.ipynb').read_text(encoding='utf-8'))
         source=''.join(next(c for c in nb['cells'] if c.get('id')=='fixed-depth-cap')['source'])
         InteractiveShell.instance()
-        for _ in range(2):
+        for state in ('live','closed','reopened'):
+            old_root=self.app.cap_ui
+            if state!='live':old_root.close()
+            if state=='reopened':old_root.open()
             with capture_output() as output:
                 exec(source,dict(app=self.app))
             self.assertEqual(len(output.outputs),1)
             view=output.outputs[0].data['application/vnd.jupyter.widget-view+json']
             self.assertEqual(view['model_id'],self.app.cap_ui.model_id)
             self.assertIsNotNone(self.app.cap_ui.comm)
+            self.assertIsNot(self.app.cap_ui,old_root)
+            self.assertIsNot(self.app.cap_ui.layout,old_root.layout)
             self.assertEqual(self.app.cap_ui.children,children)
             self.assertEqual(self.app.notebook_snapshot(),original)
-        self.assertIsNot(self.app.cap_ui,old_root)
 
     def test_cell_one_does_not_reuse_closed_cap_container(self):
         self.fixed();self.p.reaction_margin.value=9
