@@ -52,6 +52,12 @@ def service_note(e,state,z):
     pitch=('maximum drawn row pitch' if drawn else 'entered sectional pitch' if e.case['inputs']['Manual_spacing']
            else 'nominal combined-row pitch' if z=='B' else 'sectional row pitch')
     note=f'Spacing uses the {pitch}. The allowable crack-control spacing also depends on calculated steel stress.'
+    if z in ('N','P'):
+        from .model import bar_positions
+        from .detailing import row_spacing
+        label='Top row 1' if z=='N' else 'Bottom row 1'
+        spacing=row_spacing(e,[b for b in bar_positions(e,'P') if b['layer']==label],at_pile=True)
+        if spacing['excluded_pile_interval_in']:note+=' '+spacing['basis']
     if state=='I' and e.case['inputs']['fy']>=75:
         note+=' Applicability gate FAIL: this Service I check requires fy < 75 ksi, regardless of the numerical ratio.'
     return note

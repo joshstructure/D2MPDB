@@ -48,7 +48,8 @@ class EndGridAlignmentTests(unittest.TestCase):
             for _,x,y in ends:
                 for main in before:
                     clear=math.hypot(x-main['x'],y-main['y'])-(bar['diameter']+main['diameter'])/2
-                    self.assertGreaterEqual(clear+1e-7,required_clear(e,max(bar['diameter'],main['diameter'])))
+                    self.assertGreaterEqual(clear+1e-7,0.)
+        self.assertTrue(any(abs(r['clear_in'])<1e-7 and r['longitudinal_contact'] for r in collision_review(e)))
 
     def test_impossible_stagger_retains_requested_bars_and_withholds_fit(self):
         c=case();c['end_face_grid']['placement_mode']='aligned';c['end_face_grid']['horizontal']['count']=40
@@ -62,7 +63,57 @@ class EndGridAlignmentTests(unittest.TestCase):
         c['end_face_grid']['placement_mode']='aligned';e=geometry_evaluation(c)
         self.assertEqual(before,bar_positions(e,'P'))
         vertical=[b for b in geometry(e) if b['direction']=='vertical']
-        self.assertTrue(all(not b['placement_ok'] for b in vertical))
+        self.assertTrue(all(b['placement_ok'] for b in vertical))
+
+    def test_equal_spacing_keeps_clear_nominal_bars_and_bumps_only_conflicts(self):
+        c=case();c['inputs'].update(n_N1=4,n_P1=4,Bar_N1=6,Bar_P=9)
+        s=c['end_face_grid'];s['placement_mode']='aligned'
+        # This retained manual value must not defeat automatic equal spacing.
+        for direction in ('horizontal','vertical'):s[direction].update(hook_mode='standard',spacing_in=1.)
+        e=geometry_evaluation(c);bars=geometry(e);main=bar_positions(e,'P')
+        fixed=moved=0
+        for bar in bars:
+            x0,x1,y0,y1=bounds(e,bar['diameter'])
+            horizontal=bar['direction']=='horizontal'
+            a,b=(y0,y1) if horizontal else (x0,x1)
+            lo,hi=(x0,x1) if horizontal else (y0,y1)
+            count=s[bar['direction']]['count'];i=int(bar['id'].split('-')[-1][1:])
+            self.assertAlmostEqual(bar['nominal_coordinate_in'],a+i*(b-a)/(count+1))
+            def main_clear(at):
+                return min(math.hypot(max(lo-q['x' if horizontal else 'y'],q['x' if horizontal else 'y']-hi,0.),
+                    at-q['y' if horizontal else 'x'])-(bar['diameter']+q['diameter'])/2 for q in main)
+            if abs(bar['shift_in'])<1e-8:
+                fixed+=1;self.assertGreaterEqual(main_clear(bar['coordinate_in']),-1e-8)
+            else:
+                moved+=1
+                self.assertLess(main_clear(bar['nominal_coordinate_in']),0.)
+                self.assertAlmostEqual(main_clear(bar['coordinate_in']),0.,places=7)
+        self.assertGreater(fixed,0);self.assertGreater(moved,0)
+
+    def test_longitudinal_lap_contact_passes_and_small_physical_overlap_fails(self):
+        c=case();e=geometry_evaluation(c)
+        e._end_grid_geometry=[dict(id='End-left-H1',diameter=.625,points=[(4.,10.,10.),(12.,10.,10.)])]
+        for gap in (0.,.001,-.001,-.1):
+            if hasattr(e,'_end_grid_collisions'):del e._end_grid_collisions
+            main=[dict(kind='Bottom row 1',x=10.+(.625+1.)/2+gap,y=10.,diameter=1.)]
+            with patch('pier_cap.model.bar_positions',return_value=main), \
+                 patch('pier_cap.transverse.scheduled_bars',return_value=[]), \
+                 patch('pier_cap.detailing.hook_paths',return_value=[]):
+                row=collision_review(e)[0]
+            self.assertAlmostEqual(row['clear_in'],gap)
+            self.assertEqual(row['required_in'],0.)
+            self.assertEqual(row['screen_margin_in']>=0,gap>=0)
+
+    def test_parallel_end_grid_returns_still_require_clearance(self):
+        e=geometry_evaluation(case())
+        e._end_grid_geometry=[dict(id='End-left-'+str(i),diameter=.625,
+            points=[(4.,10.+i,10.),(12.,10.+i,10.)]) for i in range(2)]
+        with patch('pier_cap.model.bar_positions',return_value=[]), \
+             patch('pier_cap.transverse.scheduled_bars',return_value=[]), \
+             patch('pier_cap.detailing.hook_paths',return_value=[]):
+            row=collision_review(e)[0]
+        self.assertGreater(row['required_in'],0.)
+        self.assertLess(row['screen_margin_in'],0.)
 
     def test_broad_phase_matches_unpruned_collision_screen(self):
         c=case();c['end_face_grid']['placement_mode']='aligned'

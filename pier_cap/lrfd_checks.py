@@ -99,6 +99,7 @@ def longitudinal_inventory(e):
             right=t['right']+b['diameter']/2 if t else e.value('L_cap')-p['C_s']
             result.append(dict(id=f'L{i+1}'+(f'-S{t["span"]}' if t else ''),kind=b['kind'],
                 bar=b['bar'],x=b['x'],y=b['y'],additional=b['additional'],
+                span=t['span'] if t else None,
                 left_in=left,right_in=right,
                 straight_left_in=t['left']+t['radius'] if t else left,
                 straight_right_in=t['right']-t['radius'] if t else right,cb_in=cb,**d))
@@ -393,14 +394,19 @@ def _aggregate(key,label,rows,field,basis,*,pending=False,inherit_pending=True):
 def surface_checks(e):
     """Each exposed face/direction; open U tails are not full-width bottom bars.
 
-    The entire face is conservatively treated as exposed. No pile-contact or
-    buried-face exemption is inferred. End-face steel comes from the nearest
-    actual closed hoop and explicitly drawn end-grid crosspieces.
+    Bottom transverse screening is excluded for an embedded-pile layout with
+    open pile stirrups, per the project check scope. This is not a code exemption.
+    All other face/direction checks remain active. End-face steel comes from the
+    nearest actual closed hoop and explicitly drawn end-grid crosspieces.
     """
     from .model import bar_positions,BAR_AREA,BAR_DIAMETER
     from .transverse import scheduled_bars,shape_parameters
     p=e.case['inputs'];s=settings(e.case);bars=bar_positions(e,'P')
     physical=scheduled_bars(e.case);runs={r['id']:r for r in e.case['transverse_detail']['runs']}
+    from .transverse_zones import cap_zones
+    pile_zones=[z for z in cap_zones(e) if z['kind']=='pile_u'] if p['Pile_embed']>0 else []
+    open_pile_runs=list(dict.fromkeys(b['run'] for b in physical if b['kind']=='pile_u'
+        and any(z['left']<=b['station_in']<=z['right'] for z in pile_zones)))
     required=min(.60,max(.11,1.30*p['b']*p['h']/(2*(p['b']+p['h'])*min(p['fy'],75))))
     # 10th edition p. 5-183 says "not less than 18", not "not more".
     code_spacing=12. if min(p['b'],p['h'])>36 else max(18.,3*min(p['b'],p['h']))
@@ -417,8 +423,14 @@ def surface_checks(e):
         ('Side right',[b for b in bars if b['kind']=='Skin' and b['x']>p['b']/2],p['h'],'y')]:
         coords=sorted(b[axis] for b in selected)
         pitch=max([2*coords[0],2*(width-coords[-1]),*(v-u for u,v in zip(coords,coords[1:]))]) if coords else width
+        spacing_basis=''
+        if axis=='x':
+            from .detailing import row_spacing
+            spacing=row_spacing(e,selected,at_pile=True,edges=True)
+            pitch=spacing['pitch_in'];spacing_basis=' '+spacing['basis']
         add(face,'Longitudinal',sum(BAR_AREA[b['bar']] for b in selected)*12/width,pitch,
-            'Continuous face bars only; corner/added bars not double-counted. Twice edge distance included conservatively.')
+            'Continuous face bars only; corner/added bars not double-counted. Twice edge distance included conservatively.'+spacing_basis)
+        if axis=='x':rows[-1]['excluded_pile_interval_in']=spacing['excluded_pile_interval_in']
     for face in ('Top','Bottom','Side left','Side right'):
         selected=[b for b in physical if face!='Bottom' or b['kind']=='hoop']
         gaps=[(a,b,b['station_in']-a['station_in']) for a,b in zip(selected,selected[1:])]
@@ -427,6 +439,13 @@ def surface_checks(e):
             pitch=max(2*selected[0]['station_in'],2*(e.value('L_cap')-selected[-1]['station_in']),*(g for _,_,g in gaps))
         else:rate=0.;pitch=e.value('L_cap')
         add(face,'Transverse',rate,pitch,'Actual full-face bar crossings. Open U-bars omitted on the bottom face; their short tails do not cross its full width.')
+        if face=='Bottom' and open_pile_runs:
+            rows[-1].update(included=False,status='EXCLUDED',area_ratio=None,spacing_ratio=None,
+                excluded_runs=open_pile_runs,
+                notes='Excluded from face shrinkage / temperature area and spacing checks: '
+                'open-bottom pile stirrups in '+', '.join(open_pile_runs)+'. '
+                'Project check scope; no code exemption or bottom-face compliance is established. '
+                'Shown area and spacing are diagnostic closed-hoop values; U tails receive no full-width credit.')
     for face,near in [('End left',physical[:1]),('End right',physical[-1:])]:
         b=near[0] if near else None;closed=b is not None and b['kind']=='hoop'
         area=BAR_AREA[b['bar']] if closed else 0.
@@ -455,9 +474,12 @@ def surface_checks(e):
             'Two side legs of the nearest actual closed hoop; no undrawn end-face mesh credited.')
         add(face,'Horizontal',2*area*12/p['h'],p['h']-p['C_t']-p['C_b']-d,
             'Top and bottom legs of the nearest actual closed hoop; no undrawn end-face mesh credited.')
-    basis=f'{CODE} 5.10.6-1/-2, pp. 5-182–183. Each face and direction. '
-    return rows,[_aggregate('Chk_shrink_area','Actual face shrinkage / temperature area',rows,'area_ratio',basis),
-        _aggregate('Chk_shrink_space','Actual face shrinkage / temperature spacing',rows,'spacing_ratio',basis+f'Code spacing {code_spacing:g} in; adopted project spacing {limit:g} in.')]
+    basis=f'{CODE} 5.10.6-1/-2, pp. 5-182–183. Each included face and direction. '
+    if open_pile_runs:
+        basis+='Bottom · Transverse excluded for open pile stirrups (project check scope, not a code exemption). '
+    included=[r for r in rows if r.get('included',True)]
+    return rows,[_aggregate('Chk_shrink_area','Actual face shrinkage / temperature area',included,'area_ratio',basis),
+        _aggregate('Chk_shrink_space','Actual face shrinkage / temperature spacing',included,'spacing_ratio',basis+f'Code spacing {code_spacing:g} in; adopted project spacing {limit:g} in.')]
 
 
 def actual_calculations(e):
@@ -588,8 +610,16 @@ def actual_calculations(e):
     # Full development of the hook at the midpoint is a necessary geometric gate,
     # in addition to station-by-station reduced steel and cutoff extension checks.
     hook_ratio=max((b['required_in']/max((b['right_in']-b['left_in'])/2,1e-9) for b in hooks),default=0.)
-    checks.append(_check('Status_hook_development','Added bars · calculated hook development',hook_ratio,
-        '10th ed. 5.10.8.2.1 and 5.10.8.2.4a; hook lengths and reduced developed steel are calculated. Cutoff/extension beyond theoretical need and hook confinement still require the detailed bar schedule.',pending=bool(hooks)))
+    hook_scope='Additional bottom longitudinal bars between piles (Steel → ADDITIONAL steel · between piles), with upturned 90° hooks at both ends. '
+    if hooks:
+        governing=max(hooks,key=lambda b:b['required_in']/max((b['right_in']-b['left_in'])/2,1e-9))
+        hook_scope+=(f'Governing: {governing["id"]}, #{governing["bar"]}, {governing["kind"]}, '
+            f'span P{governing["span"]}–P{governing["span"]+1}; '
+            f'end stations {governing["left_in"]:.3f}–{governing["right_in"]:.3f} in from the left cap end. ')
+    else:hook_scope+='No additional bottom span bars are present. '
+    checks.append(_check('Status_hook_development','Added bottom span bars · hook development',hook_ratio,
+        hook_scope+'10th ed. 5.10.8.2.1 and 5.10.8.2.4a; hook lengths and reduced developed steel are calculated. '
+        'Cutoff/extension beyond theoretical need and hook confinement still require the detailed bar schedule.',pending=bool(hooks)))
     checks.append(_check('Status_continuous_anchorage','Continuous bars · development / splices','N/A',
         'Straight-bar ld calculated for each actual bar; local credited area reduced for both ends. Splice state: '+s['continuous_splices']+'. Unmodeled splices cannot be accepted.',pending=s['continuous_splices']!='none'))
     checks.append(_check('Status_actual_torsion','Actual torsion applicability / path',max((r['tor_ratio'] for r in rows),default=0.),

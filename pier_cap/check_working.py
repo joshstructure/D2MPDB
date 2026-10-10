@@ -186,13 +186,15 @@ def _actual(e, check):
                      ('treatment', r['classification'], '')])
     if key in ('Chk_shrink_area', 'Chk_shrink_space', 'Chk_drawn_shrink_B'):
         field = 'area_ratio' if key == 'Chk_shrink_area' else 'spacing_ratio'
-        rows = [r for r in d['faces'] if key != 'Chk_drawn_shrink_B' or r['face'] == 'Bottom' and r['direction'] == 'Longitudinal']
+        rows = [r for r in d['faces'] if r.get('included',True) and
+                (key != 'Chk_drawn_shrink_B' or r['face'] == 'Bottom' and r['direction'] == 'Longitudinal')]
         if rows:
             r = max(rows, key=lambda row: row[field])
             return ('ratio = required area rate / max(provided area rate, 10⁻⁹ in²/ft)' if field == 'area_ratio' else 'ratio = actual spacing / adopted spacing limit',
                     [('Governing face', r['face']+' · '+r['direction'], ''), ('required area rate', r['required_in2_ft'], 'in²/ft'),
                      ('provided area rate', r['provided_in2_ft'], 'in²/ft'), ('actual spacing', r['spacing_in'], 'in'),
-                     ('code spacing limit', r['code_spacing_in'], 'in'), ('adopted spacing limit', r['adopted_spacing_in'], 'in')])
+                     ('code spacing limit', r['code_spacing_in'], 'in'), ('adopted spacing limit', r['adopted_spacing_in'], 'in'),
+                     ('Spacing scope', r['notes'], '')])
     if key.startswith('Status_transverse_development_'):
         rows = [r for r in d['transverse_development'] if r['run'] == key[len('Status_transverse_development_'):]]
         if rows:
@@ -208,9 +210,14 @@ def _actual(e, check):
         rows = [r for r in d['inventory'] if r['additional']]
         if rows:
             r = max(rows, key=lambda row: row['required_in']/max((row['right_in']-row['left_in'])/2, 1e-9))
-            return ('ratio = required development / max(available half-length, 10⁻⁹ in); governing added bar',
-                    [('required development', r['required_in'], 'in'), ('available half-length', (r['right_in']-r['left_in'])/2, 'in')])
-        return 'No added bars: hook-development demand and ratio are zero.', []
+            return ('ratio = required development / max(available half-length, 10⁻⁹ in); governing additional bottom longitudinal bar between piles',
+                    [('Governing bar', r['id'], ''), ('Bar group / row', r['kind'], ''),
+                     ('Bar size', '#'+str(r['bar']), ''), ('Span', f'P{r["span"]}–P{r["span"]+1}', ''),
+                     ('Across-cap position from left side', r['x'], 'in'), ('Height above cap bottom', r['y'], 'in'),
+                     ('Left hook end station from left cap end', r['left_in'], 'in'),
+                     ('Right hook end station from left cap end', r['right_in'], 'in'),
+                     ('required development', r['required_in'], 'in'), ('available half-length', (r['right_in']-r['left_in'])/2, 'in')])
+        return 'No additional bottom longitudinal bars between piles: hook-development demand and ratio are zero.', []
     if key == 'Status_lrfd_strain':
         r = max(d['longitudinal'], key=lambda row: row['epsilon'] or 0., default=None)
         return ('Required: calculated general strain ≤ 0.006. Larger strain has no adopted resistance; no clipping. Simplified strain is not required.',

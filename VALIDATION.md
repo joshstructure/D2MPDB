@@ -1,4 +1,14 @@
-# Current verification · 2026-09-30
+# Current verification · 2026-10-10 · pile spacing and end-hook contact
+
+The requested project scope excludes Bottom / Transverse from face shrinkage/temperature area and spacing checks when actual open pile stirrups occupy an embedded-pile zone. Excluded rows retain diagnostic geometry with EXCLUDED status and null D/C values; they cannot govern a passing or failing aggregate. Other face checks stay active. Pile-region Service I/III and face spacing omit the embedded-pile/placement/clearance gap and check the concrete strips beside it. Between-pile gaps, rows above the pile head, physical pile conflicts and missing steel remain checked. Failed placement trials use the same spacing scope without clearing their fit failures.
+
+End U-bars in automatic placement start equally spaced. Nonconflicting nominal bars remain fixed; conflicts move to the nearest permitted position beside the longitudinal bars. End-hook/longitudinal contact has zero required clear gap and a numerical tolerance of 1e-8 in; 0.001-in physical overlap fails. Separate end-grid returns retain their clear-spacing requirement. Hook development identifies the additional bottom span bars by ID, size, row, span, transverse position, height and end stations; development/cutoff readiness is unchanged.
+
+81 targeted tests passed on the final source: 26 in `test_face_check_scope`, `test_positive_regions` and `test_actual_placement`; 55 in `test_end_grid_alignment`, `test_end_grid`, `test_lrfd_actual`, `test_check_working`, `test_check_details` and `test_portable_build`. The portable package `dc49c24fab86` matches all 68 embedded source files byte-for-byte. All notebook cells executed locally; loading the saved case, changing end-grid counts and restoring the original geometry passed. This verifies software behavior, not a live Google Colab session or final design acceptance.
+
+For the saved standard-hook-grid case, the former bottom transverse area/spacing D/C values were 1.834677 and 2.552083. Bottom longitudinal face spacing is now 0.916310 after omitting the pile gap. Side longitudinal spacing remains governing at 1.857349. Added bottom span hook development remains PENDING at 0.816243. End-grid fit and drawn-steel interference pass. The rebuilt notebook, case, report and placement preview are in the workspace `outputs/pile-spacing-end-laps-20261010` folder. No commit or push was made.
+
+# Verification · 2026-09-30
 
 Independent positive regions add bar sizes, areas, centroids and physical pile-head geometry. The 103-test suite passed; 16 focused regional and notebook-rerun checks also passed with Colab's ipywidgets 7.7.1 / Plotly 5.24.1. The clean four-cell notebook executed successfully. In local JupyterLab, a native numeric-input change to seven pile bars updated the pile drawing while the between-pile drawing stayed at eight. All delivered outputs remain cleared. Legacy arithmetic regressions explicitly use a non-protruding pile fixture; their historical passing counts below are not the current project search results. Project pile embedment/clearance remain unconfirmed.
 

@@ -66,7 +66,8 @@ def working_html(e,*,full=False):
         '<p><b>Stirrup anchorage:</b> 5.10.8.2.6b requires #6–8 hooks around longitudinal bars and ℓ<sub>e</sub>≥0.44d<sub>b</sub>f<sub>y</sub>/(λ√f′<sub>c</sub>). '
         'Bend diameter, tail, embedment and enclosure are separate checks. A closed outline does not establish closure. A lap pair uses 1.3ℓ<sub>d</sub>.</p>'
         '<p><b>Face reinforcement:</b> 5.10.6 requires A<sub>s</sub>/ft = clamp[1.30bh/{2(b+h)f<sub>y</sub>},0.11,0.60] on each exposed face and direction. '
-        'The spacing table separately identifies code and adopted project limits. Partial U tails are not counted as full-width bottom-face bars.</p>')
+        'The spacing table separately identifies code and adopted project limits. Partial U tails are not counted as full-width bottom-face bars. '
+        'For embedded-pile layouts with open pile stirrups, Bottom · Transverse is excluded from the face checks under the project scope; this does not establish a code exemption.</p>')
     from .check_math import equation_html
     out.append('<h4>Signed sectional strain and compression-face cracking</h4><p>Forces in kip, moment in kip-in, dimensions in inches, moduli and concrete stress in ksi. Raw axial values are FBMP member-end actions; Nu is the normalized sectional resultant. The flange cracking model follows the idealized axial flanges in C5.7.3.4.2 Figures 3/4, with the finite estimated tensile strength in C5.4.2.7.</p>')
     for equation in [
@@ -91,8 +92,8 @@ def working_html(e,*,full=False):
         ['Location / combination','Region','M (kip-ft)','V (kip)','Signed Nu (kip)','T (kip-ft)','θ calculated / simplified','ε (None = not required)','Shear method','Vs credited (kip)','As developed (in²)','Full F (kip)','Adopted F (kip)','Capacity (kip)','D/C','Treatment'],
         [[r['id'],r['group'],r['moment'],r['vu'],r['nu'],r['tu'],r['long_theta'],r['epsilon'],r['method'],r['vs_credited_kip'],r['steel_area_in2'],r['full_tension_kip'],r['required_tension_kip'],r['capacity_kip'],r['ratio'],r['classification']] for r in d['longitudinal']])+'</details>')
     out.append('<details><summary>Bar development operands</summary>'+_table(
-        ['Bar','Kind','#','cb (in)','Fh (kip)','Basic ld (in)','λrl','λcf','λrc','Required (in)','Left end','Right end'],
-        [[r['id'],r['kind'],r['bar'],r['cb_in'],r['fh'],r['basic_in'],r['location_factor'],r['coating_factor'],r['confinement_factor'],r['required_in'],r['left_in'],r['right_in']] for r in d['inventory']])+'</details>')
+        ['Bar','Kind','Span','#','Across cap (in)','Above bottom (in)','cb (in)','Fh (kip)','Basic ld (in)','λrl','λcf','λrc','Required (in)','Left end','Right end'],
+        [[r['id'],r['kind'],f'P{r["span"]}–P{r["span"]+1}' if r['additional'] else 'Continuous',r['bar'],r['x'],r['y'],r['cb_in'],r['fh'],r['basic_in'],r['location_factor'],r['coating_factor'],r['confinement_factor'],r['required_in'],r['left_in'],r['right_in']] for r in d['inventory']])+'</details>')
     out.append('<details><summary>FDOT intersected stirrup legs and torsion operands · every segment</summary>'+_table(
         ['Segment','Window length (in)','Window center (in)','Intersected bar IDs','ΣAv (in²)','Developed ΣAv (in²)','Ao (in²)','ph (in)','Av/s req','At/s req','Combined req','Torsion D/C'],
         [[r['id'],r['window']['length_in'],r['window']['station_in'],', '.join(r['window']['bar_ids']),r['window']['area_in2'],r['developed_window_area_in2'],r['ao_in2'],r['ph_in'],r['av_required_rate'],r['at_required_rate'],r['combined_required_rate'],r['torsion_ratio']] for r in d['longitudinal']])+'</details>')
@@ -100,8 +101,8 @@ def working_html(e,*,full=False):
         ['Run','Type','#','Bend','Min bend','Hook extension (in)','LRFD min extension (in)','Available le','Required le','D/C','Notes'],
         [[r['run'],r['kind'],r['bar'],r['bend_in'],r['bend_required_in'],r['tail_in'],r['tail_required_in'],r['embed_available_in'],r['embed_required_in'],r['ratio'],r['notes']] for r in d['transverse_development']])+'</details>')
     out.append('<details><summary>Face reinforcement working</summary>'+_table(
-        ['Face','Direction','Provided in²/ft','Required in²/ft','Area D/C','Spacing','Code max','Project max','Spacing D/C','Basis'],
-        [[r['face'],r['direction'],r['provided_in2_ft'],r['required_in2_ft'],r['area_ratio'],r['spacing_in'],r['code_spacing_in'],r['adopted_spacing_in'],r['spacing_ratio'],r['notes']] for r in d['faces']])+'</details></section>')
+        ['Face','Direction','Scope','Provided in²/ft','Required in²/ft','Area D/C','Spacing','Code max','Project max','Spacing D/C','Basis'],
+        [[r['face'],r['direction'],'Included' if r.get('included',True) else 'EXCLUDED',r['provided_in2_ft'],r['required_in2_ft'],r['area_ratio'] if r.get('included',True) else 'N/A',r['spacing_in'],r['code_spacing_in'],r['adopted_spacing_in'],r['spacing_ratio'] if r.get('included',True) else 'N/A',r['notes']] for r in d['faces']])+'</details></section>')
     return ''.join(out)
 
 

@@ -300,14 +300,15 @@ def detailing_checks(e):
             'AASHTO LRFD 5.10.3.1.3: align bars vertically for layers separated by at most 6 in.'))
         record(checks[-1],'Required: alignment criterion satisfied. Flag = 0 when satisfied, otherwise 2; this is not a physical D/C.',
             [('alignment criterion satisfied',aligned,''),('layer-separation applicability limit',6,'in')])
-        xs=sorted(b['x'] for b in bars if b['layer']=='Bottom row 1')
-        pitch=max((b-a for a,b in zip(xs,xs[1:])),default=0)
+        from .detailing import row_spacing
+        spacing=row_spacing(e,[b for b in bars if b['layer']=='Bottom row 1'],at_pile=region=='P')
+        pitch=spacing['pitch_in']
         for state,enabled in [('I',True),('III',p['Ready_III'])]:
             if not enabled:continue
             limit=e.value('S'+state+'_'+region)
             checks.append(Check(f'Chk_drawn_{state}_{region}',f'{region} actual row spacing · Service {state}',
                 'PASS' if limit>0 and pitch<=limit+1e-8 else 'FAIL',pitch/max(limit,1e-6),
-                f'Maximum actual center spacing {pitch:.3f} in / service limit {limit:.3f} in; includes the gap across the pile.'))
+                f'Maximum actual center spacing {pitch:.3f} in / service limit {limit:.3f} in. '+spacing['basis']))
             record(checks[-1],'ratio = maximum drawn center spacing / max(service spacing limit, 0.000001 in)',
                 [('maximum drawn center spacing',pitch,'in'),('service spacing limit',limit,'in')])
         if region=='B':
@@ -408,6 +409,15 @@ def geometry_evaluation(case=None,fast=False):
         spacing_values={'SP_B':maximum,'SP_B_auto':maximum}
         overrides.update({n:v if fast else Q(v,(1,0,0)) for n,v in spacing_values.items()})
         eng=(FAST if fast else FORMULAS).fork(overrides)
+    if case['inputs']['Ready_pile'] and case['inputs']['Pile_embed']>0:
+        from .detailing import row_spacing
+        trial=Evaluation(case,eng,[],[],stale,False,'',0,0,layout)
+        for z,label in (('N','Top row 1'),('P','Bottom row 1')):
+            spacing=row_spacing(trial,[b for b in bar_positions(trial,'P') if b['layer']==label],at_pile=True)
+            if spacing['excluded_pile_interval_in']:
+                spacing_values.update({'SP_'+z:spacing['pitch_in'],'SP_'+z+'_auto':spacing['pitch_in']})
+        overrides.update({n:v if fast else Q(v,(1,0,0)) for n,v in spacing_values.items()})
+        eng=(FAST if fast else FORMULAS).fork(overrides)
     e=Evaluation(case,eng,[],[],stale,False,'CALCULATING',0,0,layout,spacing_values)
     e.calculating=True
     return e
@@ -485,7 +495,7 @@ def formula_trace(e):
     fitted={**fitted,**(e.spacing_values or {})}
     trace=[{'name':d['name'],'formula':(d['name']+' = actual longitudinal layout (in)' if d['name'] in fitted else d['formula']),
              'value':e.engine.text(e.engine.get(d['name']),d['unit'],5),
-             'note':('Maximum adjacent spacing in the displayed continuous-plus-added span row. '+d['caption'] if d['name'] in (e.spacing_values or {}) else
+             'note':('Maximum spacing in the displayed row; pile-region rows omit the embedded-pile gap and check the available concrete strips. '+d['caption'] if d['name'] in (e.spacing_values or {}) else
                  'Derived from the displayed bar coordinates fitted to actual hoop/U geometry; replaces the reference cover/pitch expression. '+d['caption'] if d['name'] in fitted else d['caption'])}
             for d in DEFINITIONS if '(' not in d['name']]
     if e.lrfd:

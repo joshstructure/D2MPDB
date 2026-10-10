@@ -94,7 +94,7 @@ def geometry(e):
             a, b = (y0, y1) if direction == 'horizontal' else (x0, x1)
             # Interior grid bars complement the perimeter hoop. Keeping their
             # return legs off the four corners avoids coincident H/V returns.
-            pitch = row['spacing_in'] or (b-a)/(row['count']+1)
+            pitch = (b-a)/(row['count']+1) if s['placement_mode']=='aligned' else row['spacing_in'] or (b-a)/(row['count']+1)
             nominal=[(a+b)/2+(i-(row['count']-1)/2)*pitch for i in range(row['count'])]
             positions=nominal;placement_ok=True;placement_note='Entered perimeter inset and spacing.'
             if s['placement_mode']=='aligned' and nominal:
@@ -164,47 +164,55 @@ def collision_review(e):
     from .detailing import hook_paths, required_clear
     if hasattr(e, '_end_grid_collisions'):
         return e._end_grid_collisions
-    grid = geometry(e); segments = []; owner_ids = []; diameters = []; parallel = []
-    def add_path(label, points, diameter, longitudinal=False):
+    grid = geometry(e); segments = []; owner_ids = []; diameters = []; parallel = []; lap_contact = []
+    def add_path(label, points, diameter, longitudinal=False,main=False):
         for a, b in zip(points, points[1:]):
             if math.dist(a, b) > 1e-10:
                 segments.append((a, b)); owner_ids.append(label); diameters.append(diameter)
                 parallel.append(longitudinal or abs(b[0]-a[0]) > 1e-8 and math.hypot(b[1]-a[1],b[2]-a[2]) < 1e-8)
+                lap_contact.append(main and parallel[-1])
     length = e.value('L_cap'); p = e.case['inputs']
     for i, bar in enumerate(bar_positions(e, 'P')):
-        add_path(f'{bar["kind"]} {i+1}', [(p['C_s'], bar['x'], bar['y']), (length-p['C_s'], bar['x'], bar['y'])], bar['diameter'], True)
+        add_path(f'{bar["kind"]} {i+1}', [(p['C_s'], bar['x'], bar['y']), (length-p['C_s'], bar['x'], bar['y'])], bar['diameter'], True,main=True)
     runs = {r['id']: r for r in e.case.get('transverse_detail', {}).get('runs', [])}
     for bar in scheduled_bars(e.case):
         shape = bar_shape(e, runs[bar['run']])
         add_path(bar['id'], [(bar['station_in']+v[0], v[1], v[2]) for v in shape['points_3d']], BAR_DIAMETER[bar['bar']])
     for i, hook in enumerate(hook_paths(e, bar_positions(e, 'B'))):
         # Added bars lie in vertical longitudinal planes.
-        add_path('Added hook '+str(i+1), [(x, hook['bar']['x'], y) for x, y in hook['points']], hook['bar']['diameter'])
+        add_path('Added hook '+str(i+1), [(x, hook['bar']['x'], y) for x, y in hook['points']], hook['bar']['diameter'],main=True)
     records = []
     for bar in grid:
         if segments:
             arrays = np.asarray(segments); starts = arrays[:, 0]; ends = arrays[:, 1]
             lower=np.minimum(starts,ends);upper=np.maximum(starts,ends)
-            ds = np.asarray(diameters); longs = np.asarray(parallel)
+            ds = np.asarray(diameters); longs = np.asarray(parallel); laps = np.asarray(lap_contact)
             pair_clear = np.asarray([required_clear(e, max(bar['diameter'], diameter)) for diameter in diameters])
             worst = None
             for a, b in zip(np.asarray(bar['points']), np.asarray(bar['points'])[1:]):
-                # Only parallel return/main bars need the parallel clear gap.
+                # End returns may lap/touch longitudinal bars. Other parallel
+                # grid returns retain their required clear spacing.
                 is_return = abs(b[0]-a[0]) > 1e-8 and np.linalg.norm((b-a)[1:]) < 1e-8
-                required = np.where(longs & is_return, pair_clear, 0.)
+                required = np.where(longs & is_return & ~laps, pair_clear, 0.)
+                # Straight longitudinal contact is exact: do not subtract a
+                # chord allowance or tolerate physical overlap at the lap.
+                allowance=np.where(laps,0.,.005)
+                tolerance=np.where(laps,1e-8,.01)
                 # Polyline bend sagitta is bounded by r*(1-cos(pi/96)).
                 # Bounding-box distance is a lower bound on segment distance.
                 # Discard only pairs that cannot beat the current worst margin.
                 delta=np.maximum(0,np.maximum(lower-np.maximum(a,b),np.minimum(a,b)-upper))
-                bound=np.sqrt(np.einsum('ij,ij->i',delta,delta))-(bar['diameter']+ds)/2-.005-required
-                indices=np.flatnonzero(bound < (worst['margin_in'] if worst else math.inf))
+                bound=np.sqrt(np.einsum('ij,ij->i',delta,delta))-(bar['diameter']+ds)/2-allowance-required+tolerance
+                indices=np.flatnonzero(bound < (worst['screen_margin_in'] if worst else math.inf))
                 if not len(indices):continue
-                clear = _distances(a, b, starts[indices], ends[indices])-(bar['diameter']+ds[indices])/2-.005
+                clear = _distances(a, b, starts[indices], ends[indices])-(bar['diameter']+ds[indices])/2-allowance[indices]
                 margin = clear-required[indices]
-                k=int(np.argmin(margin));j=int(indices[k])
-                if worst is None or margin[k] < worst['margin_in']:
+                screen_margin=margin+tolerance[indices]
+                k=int(np.argmin(screen_margin));j=int(indices[k])
+                if worst is None or screen_margin[k] < worst['screen_margin_in']:
                     worst = dict(bar=bar['id'], other=owner_ids[j], clear_in=float(clear[k]),
-                                 required_in=float(required[j]), margin_in=float(margin[k]))
+                                 required_in=float(required[j]), margin_in=float(margin[k]),
+                                 screen_margin_in=float(screen_margin[k]),longitudinal_contact=bool(laps[j]))
             if worst: records.append(worst)
         add_path(bar['id'], bar['points'], bar['diameter'])
     e._end_grid_collisions = records
@@ -268,9 +276,9 @@ def checks(e):
                  [('actual clear', clear, 'in'), ('required clear', minimum_clear, 'in')])
     collisions = collision_review(e)
     if collisions:
-        worst = min(collisions, key=lambda r:r['margin_in'])
-        flag('Chk_end_grid_collision', 'End U grid · drawn steel interference', worst['margin_in'] >= -.01,
-             '3D centerline segment distances including bends, actual hoops / pile U-bars, continuous bars, added hooks, and the other end-grid bars. Crossing-bar contact is allowed; parallel main/return bars require clear spacing. Bend approximation allowance 0.005 in. Full fabrication and pile tolerance review remains separate.',
+        worst = min(collisions, key=lambda r:r['screen_margin_in'])
+        flag('Chk_end_grid_collision', 'End U grid · drawn steel interference', worst['screen_margin_in'] >= 0.,
+             '3D centerline segment distances including bends, actual hoops / pile U-bars, continuous bars, added hooks, and the other end-grid bars. End hooks may lap alongside and touch longitudinal bars with zero clear gap; physical overlap fails. Other parallel end-grid returns retain clear spacing. Nonlongitudinal bend screening retains its 0.005 in approximation allowance and 0.01 in screen tolerance. Full fabrication and pile tolerance review remains separate.',
              [('end bar', worst['bar'], ''), ('other bar', worst['other'], ''), ('clear gap', worst['clear_in'], 'in'), ('required clear', worst['required_in'], 'in')])
     if e.case['inputs']['Ready_pile']:
         conflicts=pile_conflicts(e)

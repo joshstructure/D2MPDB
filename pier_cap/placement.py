@@ -289,10 +289,11 @@ def actual_layout(e):
         for y in ys: bars.append(dict(x=x,y=y,diameter=ds,kind='Skin',layer='Skin',bar=int(p['Bar_skin']),additional=False))
     regions = {'B':bars,'P':[v for v in bars if not v['additional']]}
     from .added_steel import fit_problems
+    from .detailing import row_spacing
     issues.extend(fit_problems(e,bars))
     for z, label in [('N','Top row 1'),('P','Bottom row 1'),('B','Bottom row 1')]:
-        xs = sorted(v['x'] for v in regions['B' if z=='B' else 'P'] if v['layer']==label)
-        spacing = max((b-a for a,b in zip(xs,xs[1:])),default=0.)
+        row = [v for v in regions['B' if z=='B' else 'P'] if v['layer']==label]
+        spacing = row_spacing(e,row,at_pile=z!='B')['pitch_in']
         values['SP_'+z] = values['SP_'+z+'_auto'] = spacing
     values['SP_skin'] = values['SP_skin_auto'] = pitch
     bottom_x = sorted(v['x'] for v in regions['P'] if v['layer']=='Bottom row 1')

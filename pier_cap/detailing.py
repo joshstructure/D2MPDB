@@ -14,6 +14,32 @@ def required_clear(e, diameter, *, multilayer=False):
     return max(s['minimum_clear_in'],code)
 
 
+def row_spacing(e,bars,*,at_pile=False,edges=False):
+    """Maximum spacing in available concrete, omitting an embedded-pile gap.
+
+    Only rows interrupted by the known pile/placement/clearance envelope split.
+    Above the head and between piles the complete row remains checked. Isolated
+    bars use twice their strip-edge distances so missing side steel is visible.
+    """
+    p=e.case['inputs'];width=p['b'];intervals=[(0.,width)];excluded=None
+    if (at_pile and bars and p['Ready_pile'] and p['Pile_embed']>0 and
+            all(b['y']-b['diameter']/2<p['Pile_embed']+p['C_pile'] for b in bars)):
+        left=max(0.,e.value('Pile_left')-p['C_pile'])
+        right=min(width,e.value('Pile_right')+p['C_pile'])
+        if left<right:
+            excluded=(left,right)
+            intervals=[(a,b) for a,b in ((0.,left),(right,width)) if b>a]
+    pitches=[]
+    for left,right in intervals:
+        coords=sorted(b['x'] for b in bars if excluded is None or left<=b['x']<=right)
+        pitches.extend(b-a for a,b in zip(coords,coords[1:]))
+        if edges or excluded is not None and len(coords)<2:
+            pitches.extend((2*(coords[0]-left),2*(right-coords[-1])) if coords else [right-left])
+    return dict(pitch_in=max(pitches,default=0.),excluded_pile_interval_in=excluded,
+        basis=('Pile embedment gap '+f'{excluded[0]:.3f}–{excluded[1]:.3f} in across the cap excluded; '
+               'spacing checked separately in the concrete strips beside it.' if excluded else 'Full row spacing; no pile embedment gap excluded.'))
+
+
 def spacing_records(e, region, bars):
     """Governing surface clearance per row pair; no center-distance shortcut."""
     rows=defaultdict(list)

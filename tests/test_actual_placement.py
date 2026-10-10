@@ -106,7 +106,8 @@ class ActualPlacementTests(unittest.TestCase):
         bottom=sorted(b['x'] for b in bar_positions(e) if b['kind']=='Bottom row 1')
         self.assertAlmostEqual(bottom[1]-bottom[0],3.5)
         self.assertAlmostEqual(bottom[-1]-bottom[-2],3.5)
-        self.assertAlmostEqual(e.value('SP_P'),max(b-a for a,b in zip(bottom,bottom[1:])))
+        self.assertAlmostEqual(e.value('SP_P'),3.5)
+        self.assertGreater(max(b-a for a,b in zip(bottom,bottom[1:])),e.value('SP_P'))
 
     def test_impossible_shapes_fail_without_losing_bars_or_mutating_inputs(self):
         c=actual_case();before=deepcopy(c)

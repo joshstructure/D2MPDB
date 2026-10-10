@@ -60,7 +60,7 @@ class PositiveRegionTests(unittest.TestCase):
         for name in ('As_P','As_B','dc_P','dc_B','Mr_P','Mr_B','SP_P','SP_B'):
             self.assertAlmostEqual(e.value(name),fast.value(name))
 
-    def test_side_rows_avoid_pile_and_central_gap_remains_checked(self):
+    def test_side_rows_avoid_pile_and_spacing_omits_the_embedment_gap(self):
         case=head_case(Bar_P=6,n_P1=4,n_P2=4,Bar_B=8)
         e=evaluate(case)
         bars=[b for b in bar_positions(e,'P') if b['kind'].startswith('Bottom')]
@@ -71,12 +71,14 @@ class PositiveRegionTests(unittest.TestCase):
         self.assertTrue(any(e.value('Pile_left')<b['x']<e.value('Pile_right')
                             for b in bar_positions(e,'B') if b['kind']=='Added span row 1'))
         first=sorted(b['x'] for b in bars if b['kind']=='Bottom row 1')
-        self.assertAlmostEqual(e.value('SP_P'),max(b-a for a,b in zip(first,first[1:])))
+        sides=[[x for x in first if x<e.case['inputs']['b']/2],[x for x in first if x>e.case['inputs']['b']/2]]
+        self.assertAlmostEqual(e.value('SP_P'),max(b-a for side in sides for a,b in zip(side,side[1:])))
+        self.assertLess(e.value('SP_P'),max(b-a for a,b in zip(first,first[1:])))
         self.assertAlmostEqual(e.value('s_shrink'),max(e.value(n) for n in ('SP_N','SP_B','SP_skin','s_G','s_L')))
         self.assertIn('PASS',e.value('Chk_shrink_space'))
         self.assertIn('FAIL',evaluate(set_inputs(case,MI_P=1500)).value('Chk_I_P'))
         manual=evaluate(set_inputs(case,Manual_spacing=True,SP_detail_P=3))
-        self.assertGreater(manual.value('SP_P'),3)
+        self.assertAlmostEqual(manual.value('SP_P'),3)
 
     def test_second_row_above_head_is_full_width_and_bad_layouts_fail(self):
         e=evaluate(head_case(n_P1=4,n_P2=4,s_row=12))

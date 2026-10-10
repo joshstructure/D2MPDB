@@ -10,7 +10,7 @@ class EndGridPanel:
         self.owner=owner;self.busy=False;self.controls={};self.rows={}
         for key,label in [('enabled','Enable hooked end-face grid'),('left','Left end'),('right','Right end')]:
             self.controls[key]=W.Checkbox(description=label,indent=False,layout=W.Layout(width='240px'))
-        self.controls['placement_mode']=W.Dropdown(options=[('Entered perimeter inset','manual'),('Inside end stirrups · align and stagger','aligned')],
+        self.controls['placement_mode']=W.Dropdown(options=[('Entered perimeter inset','manual'),('Equal spacing · bump conflicts','aligned')],
             description='Placement',style={'description_width':'90px'},layout=W.Layout(width='440px'))
         self.notice=W.HTML();self.readout=W.HTML()
         common=[]
@@ -34,7 +34,7 @@ class EndGridPanel:
             W.HTML('<small>Both ends share these settings and mirror inward. Counts are added U crosspieces per end. Auto spacing distributes them inside the perimeter; entered spacing centers the group. '
                    'Returns are straight lengths after the 90° bends. Horizontal crosspieces are the outer layer. Extra end cover is added to side/end cover; perimeter inset is added to side/top/bottom cover. '
                    'Standard 90° uses the general-bar minimum bend and a 12db straight tail at each end. These dimensions do not establish development length. '
-                   'Aligned placement matches the outside tail surfaces to the longitudinal cage, then staggers the bars to maintain clear spacing. Entered spacing is nominal in this mode; actual drawn spacings govern. Perimeter inset is inactive. '
+                   'Equal spacing starts with evenly distributed bars inside the end stirrup and moves only conflicts beside the fixed longitudinal bars. Hook tails may touch or lap longitudinal bars; physical overlap fails. Other end-grid bars retain clear spacing. Entered spacing and perimeter inset are inactive in this mode; actual drawn spacings govern. '
                    'Geometry is a trial until fit, anchorage and pile clearance are reviewed.</small>'),self.notice,self.readout],
             layout=W.Layout(width='100%',padding='8px',border='1px solid #c4cdd6'))
         self.sync()
@@ -63,6 +63,7 @@ class EndGridPanel:
                 row['return_in'].value=12*BAR_DIAMETER[row['bar'].value]
                 row['bend_diameter_in'].value=minimum_bend(row['bar'].value)
         self.controls['perimeter_inset_in'].disabled=self.controls['placement_mode'].value=='aligned'
+        for row in self.rows.values():row['spacing_in'].disabled=self.controls['placement_mode'].value=='aligned'
 
     def changed(self,_):
         if self.busy or self.owner.busy:return
