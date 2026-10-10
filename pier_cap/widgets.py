@@ -605,9 +605,22 @@ class CapNotebook:
 
     def display(self,section=None):
         from IPython.display import display
+        try:
+            from google.colab import output as colab_output
+        except ImportError:
+            pass
+        else:
+            colab_output.enable_custom_widget_manager()
         for figure in [*self.figures,*self.pile_review.figures.values(),self.force_diagrams.figure]:
             if figure is not None:figure.prepare_display()
-        display(self.minimum_tip_ui if section=='minimum_tip' else self.cap_ui if section=='cap' else self.ui)
+        name='minimum_tip_ui' if section=='minimum_tip' else 'cap_ui' if section=='cap' else 'ui'
+        root=getattr(self,name)
+        if root.comm is None:
+            # ipywidgets 7 disables rich display on close(); keeping that shell
+            # produces only VBox(children=...). Retain the live controls/state.
+            root=W.VBox(children=root.children,layout=root.layout,_dom_classes=root._dom_classes)
+            setattr(self,name,root)
+        display(root)
         return self
 
     def close(self):

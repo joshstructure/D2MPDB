@@ -7,6 +7,8 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
 import unittest
+from IPython.core.interactiveshell import InteractiveShell
+from IPython.utils.capture import capture_output
 
 from pier_cap.widgets import CapNotebook
 from pier_cap.pile_review import import_pile_xml
@@ -148,6 +150,38 @@ class SplitNotebookTests(unittest.TestCase):
             self.assertIs(self.app.cap_ui,old_cap_ui)
             exec(''.join(next(c for c in nb['cells'] if c.get('id')=='fixed-depth-cap')['source']),context)
             display.assert_called_with('cap')
+        self.assertEqual(self.app.notebook_snapshot(),original)
+
+    def test_cell_two_recovers_closed_container_without_resetting_inputs(self):
+        self.fixed();self.p.reaction_margin.value=9
+        original=self.app.notebook_snapshot()
+        old_root=self.app.cap_ui;children=old_root.children
+        old_root.close()
+        nb=json.loads((ROOT/'Cap_and_Pile_Design.ipynb').read_text(encoding='utf-8'))
+        source=''.join(next(c for c in nb['cells'] if c.get('id')=='fixed-depth-cap')['source'])
+        InteractiveShell.instance()
+        for _ in range(2):
+            with capture_output() as output:
+                exec(source,dict(app=self.app))
+            self.assertEqual(len(output.outputs),1)
+            view=output.outputs[0].data['application/vnd.jupyter.widget-view+json']
+            self.assertEqual(view['model_id'],self.app.cap_ui.model_id)
+            self.assertIsNotNone(self.app.cap_ui.comm)
+            self.assertEqual(self.app.cap_ui.children,children)
+            self.assertEqual(self.app.notebook_snapshot(),original)
+        self.assertIsNot(self.app.cap_ui,old_root)
+
+    def test_cell_one_does_not_reuse_closed_cap_container(self):
+        self.fixed();self.p.reaction_margin.value=9
+        original=self.app.notebook_snapshot();old_root=self.app.cap_ui
+        old_root.close()
+        nb=json.loads((ROOT/'Cap_and_Pile_Design.ipynb').read_text(encoding='utf-8'))
+        context=dict(app=self.app,case=deepcopy(self.app.case),ROOT=ROOT)
+        with patch.object(CapNotebook,'display'):
+            exec(''.join(next(c for c in nb['cells'] if c.get('id')=='7447e4cc')['source']),context)
+        self.app=context['app'];self.p=self.app.pile_review
+        self.assertIsNot(self.app.cap_ui,old_root)
+        self.assertIsNotNone(self.app.cap_ui.comm)
         self.assertEqual(self.app.notebook_snapshot(),original)
 
 
