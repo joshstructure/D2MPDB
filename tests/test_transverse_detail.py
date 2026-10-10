@@ -58,7 +58,7 @@ class TransverseDetailTests(unittest.TestCase):
         case=explicit_case();active=evaluate(case);ref=deepcopy(case);ref['transverse_detail']['enabled']=False;old=evaluate(ref)
         for name in ('As_P','As_B','As_N'):self.assertEqual(active.value(name),old.value(name))
         self.assertFalse(active.eligible)
-        self.assertTrue(all(c.status=='REFERENCE' and c.ratio=='N/A' for c in active.checks if c.key.startswith('Chk_torsteel_')))
+        self.assertTrue(all(c.status!='REFERENCE' for c in active.checks if c.key.startswith('Chk_torsteel_')))
         self.assertNotIn('Status_pile_hoops',[c.key for c in active.checks])
         self.assertIn('open',next(c.basis for c in evaluate(set_inputs(case,Tu=1e5)).checks if c.key=='Status_actual_torsion').lower())
 

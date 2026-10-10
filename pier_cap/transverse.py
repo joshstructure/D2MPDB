@@ -289,10 +289,21 @@ def transverse_issues(e):
 
 
 def shear_intervals(e):
-    """Existing conditional shear calculation, shared by checks and diagrams."""
+    """Share evaluated actual-cage capacities with every diagram.
+
+    During legacy evaluation lrfd is not populated yet. Afterwards the final
+    LRFD results replace that provisional interval calculation.
+    """
     from .model import BAR_AREA
     if not enabled(e.case):return []
     p=e.case['inputs'];bars=scheduled_bars(e.case);intervals=[]
+    if getattr(e,'lrfd',None):
+        by_id={b['id']:b for b in bars}
+        for r in e.lrfd['intervals']:
+            first,last=r['id'].split(' → ')
+            intervals.append(dict(a=by_id[first],b=by_id[last],pitch=r['pitch_in'],
+                zone=r['zone'],vu=r['vu'],area=r['av_in2'],vr=r['vr'],ratio=r['ratio'],pending=r['pending']))
+        return intervals
     for a,b in zip(bars,bars[1:]):
         pitch=b['station_in']-a['station_in'];size=min(a['bar'],b['bar'])
         zone=max((a['zone'],b['zone']),key=lambda z:p['Vu_'+z]);vu=p['Vu_'+zone]

@@ -63,6 +63,8 @@ def upgrade_case(case):
         result['retired_u_leg_inventory']={**former,'Bar_U':p.get('Bar_U'),
             'note':f"Removed legacy longitudinal U-leg allowance: {former['n_PU']:g} pile legs and {former['n_BU']:g} span legs. Their steel area is no longer credited; review the recalculated checks. Actual transverse pile U-bar runs are unchanged."}
         p.update(n_PU=0,n_BU=0)
+    from .lrfd_checks import settings
+    result['lrfd_checks']=settings(result)
     return result
 
 def set_inputs(case,**changes):
@@ -78,6 +80,8 @@ def set_inputs(case,**changes):
 
 def validate_case(case):
     validate_detail(case)
+    from .lrfd_checks import validate_settings
+    validate_settings(case)
     if case.get('schema_version') not in (3,4):raise ValueError('Expected case schema_version 3 or 4; load older cases through load_case().')
     from .added_steel import validate_layout
     validate_layout(case)
@@ -140,6 +144,7 @@ class Evaluation:
     weight_lb:float
     longitudinal_layout:object=None
     spacing_values:object=None
+    lrfd:object=None
 
     def value(self,name,unit=None):
         v=self.engine.get(name)
@@ -402,6 +407,9 @@ def evaluate(case=None,fast=False):
         checks.extend(transverse_checks(e))
     from .check_details import annotate_checks
     annotate_checks(e)
+    if actual_transverse(case):
+        from .lrfd_checks import apply_actual_checks
+        apply_actual_checks(e)
     e.max_dc=max(c.ratio for c in checks if isinstance(c.ratio,(float,int)))
     e.issues=(layout['issues'] if layout else [])+cage_issues(e)+transverse_issues(e);e.weight_lb=estimate_weight(e)
     failure=any('FAIL' in c.status for c in checks)
@@ -413,17 +421,26 @@ def evaluate(case=None,fast=False):
     else:e.status=eng.get('Status_overall')+' · ANCHORAGE / DETAILING PENDING'
     if actual_transverse(case):
         e.eligible=False
-        if not stale and not failure and not e.issues:e.status='ACTUAL TRANSVERSE LAYOUT · LOCAL FORCE / ANCHORAGE REVIEW PENDING'
+        if not stale and not failure and not e.issues:e.status='ACTUAL CAGE · LRFD CALCULATIONS / DETAIL REVIEW PENDING'
     return e
 
 def formula_trace(e):
     fitted=e.longitudinal_layout['values'] if e.longitudinal_layout else {}
     fitted={**fitted,**(e.spacing_values or {})}
-    return [{'name':d['name'],'formula':(d['name']+' = actual longitudinal layout (in)' if d['name'] in fitted else d['formula']),
+    trace=[{'name':d['name'],'formula':(d['name']+' = actual longitudinal layout (in)' if d['name'] in fitted else d['formula']),
              'value':e.engine.text(e.engine.get(d['name']),d['unit'],5),
              'note':('Maximum adjacent spacing in the displayed continuous-plus-added span row. '+d['caption'] if d['name'] in (e.spacing_values or {}) else
                  'Derived from the displayed bar coordinates fitted to actual hoop/U geometry; replaces the reference cover/pitch expression. '+d['caption'] if d['name'] in fitted else d['caption'])}
             for d in DEFINITIONS if '(' not in d['name']]
+    if e.lrfd:
+        from .lrfd_checks import REPLACED_PREFIXES,REPLACED_KEYS
+        actual={c.key:c for c in e.checks}
+        for row in trace:
+            name=row['name']
+            if name in actual and (name.startswith(REPLACED_PREFIXES) or name in REPLACED_KEYS):
+                c=actual[name];row.update(formula=c.basis,value=c.status+'; D/C = '+str(c.ratio),note='Active actual-cage LRFD check; full operands in lrfd_calculations.json and the LRFD tab.')
+            else:row['note']='Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. '+row['note']
+    return trace
 
 
 def side_reinforcement(e):

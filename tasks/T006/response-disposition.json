@@ -1,0 +1,56 @@
+[
+  {
+    "item": "01",
+    "decision": "Keep as noted",
+    "user_instruction": "Do not update calc C005. Geometry and source references only in BPAD; keep reinforcement details in the separate pier report and Excel review. User direction, October 9, 2026.",
+    "disposition": "Applied: C005 byte-identical; no new reinforcement details in BPAD."
+  },
+  {
+    "item": "02",
+    "decision": "Discuss",
+    "user_instruction": "I need to correct the FBMP model I think there is a typo in it. I'll update the model and reupload the report.",
+    "disposition": "Replacement report received; raw Pier_Fixed.XML still needed to verify right-row offset. Journal offsets retained."
+  },
+  {
+    "item": "03",
+    "decision": "Keep as noted",
+    "user_instruction": "U bars tails can be field bent to accommodate a potential clash",
+    "disposition": "Recorded externally: user permits field bending of U-bar tails for potential clashes. No revised drawing, bend geometry or anchorage verification is inferred."
+  },
+  {
+    "item": "04",
+    "decision": "Discuss",
+    "user_instruction": "Explain to me in chat what the N uniform check is all about",
+    "disposition": "Explained in chat. Updated uniform-reference N check requires 4.237 in², credits 3.080 in², shortfall 1.157 in². Actual cage verification remains open."
+  },
+  {
+    "item": "05",
+    "decision": "Discuss",
+    "user_instruction": "Will need to provide an update cap design report as the latest.",
+    "disposition": "Replacement report archived and adopted as current source. Full model-input currency remains unverified; geometry width change may require corresponding model update."
+  },
+  {
+    "item": "06",
+    "decision": "Update",
+    "user_instruction": "Use the cap length from the report",
+    "disposition": "Applied 230-in cap length to shared wind width and dependent native area/force bounds. Old cap sketches labeled historical. Separate wall quantities retained."
+  },
+  {
+    "item": "07",
+    "decision": "Defer",
+    "user_instruction": "Leave as is",
+    "disposition": "Deferred as requested; no additional engineering checks completed."
+  },
+  {
+    "item": "08",
+    "decision": "Defer",
+    "user_instruction": "Leave as is we can deal with this issue in shops later",
+    "disposition": "Deferred to shop detailing as requested; no fabrication allowances or spacing change made."
+  },
+  {
+    "item": "09",
+    "decision": "Update",
+    "user_instruction": "repair now",
+    "disposition": "Repaired all three links: two to verified existing embedded §3.7 excerpt; one to existing general-reference LRFD Table 3.4.1-1 page."
+  }
+]

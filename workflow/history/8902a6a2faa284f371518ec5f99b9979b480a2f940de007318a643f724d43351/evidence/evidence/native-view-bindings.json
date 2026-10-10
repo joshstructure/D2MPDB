@@ -1,0 +1,16 @@
+{
+  "revision01-native-wind-geometry.png": {
+    "observed_candidate_sha256": "db8b89c51263751d336a9f9aa475f1647b3b0d1c7e46490bedef14e6755bfa1f",
+    "final_candidate_sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351",
+    "component": "report:BridgeGeometry_2Beam",
+    "component_sha256": "a49d474de32859b49077f11e8a5bec71b875c90fd2cc7b3fabb9fa3502371588",
+    "component_and_all_numerical_inputs_identical": true
+  },
+  "revision01-native-wind-handoff.png": {
+    "observed_candidate_sha256": "db8b89c51263751d336a9f9aa475f1647b3b0d1c7e46490bedef14e6755bfa1f",
+    "final_candidate_sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351",
+    "component": "report:FBMPPier",
+    "component_sha256": "bdc16be046c9bbe4119096ab9b05b0af2227613f9db4eb9655be03ed78b306d9",
+    "component_and_all_numerical_inputs_identical": true
+  }
+}

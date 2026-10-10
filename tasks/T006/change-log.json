@@ -1,0 +1,147 @@
+{
+  "replacements": [
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "Pier_windFace_width = 19 ft 3 in",
+      "new": "Pier_windFace_width = PierCap_length to in",
+      "count": 2
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "Retained broad-face projected pier width — verify.",
+      "new": "Broad-face projected pier width — current cap length.",
+      "count": 1
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "Width of the existing gross direct-pier wind rectangle. Verify the exposed silhouette against the pier section; this is not substituted for the cap or wall concrete volume widths.",
+      "new": "Use the report cap length, 230 in, as the gross direct-pier wind width per coherence response 06. Width remains a live link to the shared cap geometry. Separate wall/fin concrete quantities retain the",
+      "count": 1
+    },
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "old": "The right bearing row has a separate 0.36-in offset conflict recorded in the coherence review.",
+      "new": "The earlier model had a 0.36-in right-row offset conflict. The replacement report identifies Pier_Fixed.XML; its bearing offsets remain unverified until that exact XML is supplied.",
+      "count": 1
+    },
+    {
+      "component": "report:DecisionLog",
+      "old": "</report>",
+      "new": "\n<section name=\"PierResponses20261009\" capture=\"False\" hide=\"false\"><heading level=\"1\" keepwithnext=\"True\">2026-10-09 — pier coherence responses applied</heading><paragraph fontfamily=\"Times New Roman",
+      "count": 1
+    },
+    {
+      "component": "spreadsheet:QauntitiesBridge",
+      "old": "Current pier cap only: 230 ft³ gross; no pile deduction, wall or pedestal. Geometry source: Pier Cap Design 10-9.html. Reinforcement remains in the separate report/review.",
+      "new": "Current cap: 230 in long; 230 ft³ gross. Adjacent three-beam / 19-ft-3-in cap sketches are HISTORICAL. Use the live quantity above.",
+      "count": 1
+    },
+    {
+      "component": "report:LoadCombinations",
+      "old": "#CodeReferences.CodePage42;paragraphcoderef42",
+      "new": "#LoadCombinations;paragraphpedguide37excerpt",
+      "count": 2
+    },
+    {
+      "component": "report:LoadCombinations",
+      "old": "<paragraph>\r\n            <image source=\"Resource175\"",
+      "new": "<paragraph id=\"paragraphpedguide37excerpt\">\r\n            <image source=\"Resource175\"",
+      "count": 1
+    },
+    {
+      "component": "report:LoadCombinations",
+      "old": ">LRFD Pedestrian Bridge Guide §3.7</link>",
+      "new": ">Pedestrian Guide §3.7 — embedded excerpt</link>",
+      "count": 1
+    },
+    {
+      "component": "report:LoadCombinations",
+      "old": "#CodeReferences.CodePage14;paragraphcoderef14",
+      "new": "#CodeReferencesGeneral.CodePage14;paragraphprojectcoderef14General",
+      "count": 1
+    }
+  ],
+  "affected_symbols": {
+    "BridgeGeometry_2Beam": [
+      "Pier_wall_area",
+      "Pier_windFace_width"
+    ],
+    "FenceWind": [
+      "F_wall_L_III",
+      "F_wall_L_SI"
+    ],
+    "FBMPPier": [
+      "FE_DirectLBound_W1",
+      "FE_DirectLBound_W2",
+      "FE_DirectLBound_W3"
+    ],
+    "PedBridgeWind": [
+      "Wind_perpPierWall"
+    ]
+  },
+  "invalidated_caches": [
+    {
+      "component": "report:BridgeGeometry_2Beam",
+      "formula": "Pier_wall_area = Pier_windFace_width*PierCap_ht_toTop to ft^2"
+    },
+    {
+      "component": "report:FBMPPier",
+      "formula": "FE_DirectLBound_W1=FenceWind.F_wall_L_III to kip"
+    },
+    {
+      "component": "report:FBMPPier",
+      "formula": "FE_DirectLBound_W2=FenceWind.F_wall_L_III to kip"
+    },
+    {
+      "component": "report:FBMPPier",
+      "formula": "FE_DirectLBound_W3=FenceWind.F_wall_L_SI to kip"
+    },
+    {
+      "component": "report:FBMPPier",
+      "formula": "FE_DirectLBound_W1/FE_U_F"
+    },
+    {
+      "component": "report:FBMPPier",
+      "formula": "FE_DirectLBound_W3/FE_U_F"
+    },
+    {
+      "component": "report:FBMPPier",
+      "formula": "FenceWind.F_wall_L_III"
+    },
+    {
+      "component": "report:FBMPPier",
+      "formula": "FenceWind.F_wall_L_SI"
+    },
+    {
+      "component": "report:FenceWind",
+      "formula": "F_wall_L_III=p_sub_III*BridgeGeometry_2Beam.Pier_wall_area"
+    },
+    {
+      "component": "report:FenceWind",
+      "formula": "F_wall_L_SI=p_sub_SI*BridgeGeometry_2Beam.Pier_wall_area"
+    },
+    {
+      "component": "report:FenceWind",
+      "formula": "F_wall_L_III"
+    },
+    {
+      "component": "report:FenceWind",
+      "formula": "F_wall_L_SI"
+    },
+    {
+      "component": "report:PedBridgeWind",
+      "formula": "Wind_perpPierWall = FenceWind.F_wall_L_III"
+    }
+  ],
+  "changed_components": [
+    "report:PedBridge",
+    "report:BridgeGeometry_2Beam",
+    "report:PedBridgeWind",
+    "report:FenceWind",
+    "report:LoadCombinations",
+    "report:FBMPPier",
+    "report:FoundationModeling",
+    "spreadsheet:QauntitiesBridge",
+    "report:DecisionLog"
+  ]
+}

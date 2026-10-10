@@ -379,7 +379,7 @@ def spacing_html(e):
         bars=scheduled_bars(e.case)
         pitches=[b['station_in']-a['station_in'] for a,b in zip(bars,bars[1:])]
         return ('<p><b>Actual transverse spacing:</b> '+(f'{len(bars)} bars; largest adjacent pitch {max(pitches):.3f} in, including transitions between runs.' if pitches else 'Enter at least two bars to check adjacent spacing.')+
-            ' Every adjacent interval is checked in the D/C tab using the weaker two-leg area and larger adjacent shear demand. End development and force-zone applicability remain review items.</p>')
+            ' Every adjacent interval uses the LRFD / FDOT 2026 intersected-leg calculation and verified member-force bounds. See LRFD regions &amp; checks for numerical working, anchorage status and source applicability.</p>')
     """Expose the two independent ratios hidden in each combined spacing check."""
     rows=[]
     for zone,label in [('G','Overall (G)'),('L','Lower-shear interval (L)')]:

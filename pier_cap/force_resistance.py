@@ -71,11 +71,11 @@ def resistance_traces(e):
     if enabled(case):
         segments=[(v['a']['station_in']/12,v['b']['station_in']/12,v['vr'],
             f'{v["a"]["id"]} → {v["b"]["id"]}: {v["pitch"]:.3f} in pitch; '
-            f'weaker two-leg area {v["area"]:.3f} in². Anchorage and local force zones remain conditional.')
+            f'LRFD / FDOT 2026 intersected-leg calculation. Check the LRFD tab for anchorage and applicability status.')
             for v in shear_intervals(e)]
         key='Vr_actual';name='Shear resistance · actual intervals (conditional)'
-        basis='Existing actual-interval shear check; developed vertical legs and local force-zone review required.'
-        note+=('Shear follows the actual adjacent hoop/U-bar intervals and the weaker two-leg area. '
+        basis='Minimum actual LRFD / FDOT 2026 resistance over each interval; unresolved anchorage remains conditional.'
+        note+=('Shear follows the actual LRFD / FDOT 2026 intersected-leg results over each interval. '
                'No resistance is extended beyond the first/last bar or across invalid intervals; anchorage and force-zone review remain conditional. ')
         if not any(0<=a<b<=length+1e-6 for a,b,_,_ in segments):
             note+='No valid adjacent transverse intervals are available, so no shear resistance is drawn. '
@@ -88,8 +88,13 @@ def resistance_traces(e):
     for sign in (1,-1):
         add(key,name,2,segments,RESISTANCE,'kip',sign=sign,legend=sign==1,basis=basis)
     threshold='Investigation threshold only; this is not torsional resistance or a combined shear/torsion check.'
+    threshold_value=e.value('T_threshold','kip*ft')
+    if e.lrfd:
+        from .lrfd_checks import torsion_threshold
+        threshold_value=min((r['threshold_kip_ft'] for r in e.lrfd['longitudinal']),default=torsion_threshold(e))
+        threshold+=' Actual-cage display uses the minimum axial-adjusted threshold across analyzed segments.'
     add('T_threshold','Torsion investigation threshold · not resistance',3,
-        [(0,length,e.value('T_threshold','kip*ft'),threshold)],THRESHOLD,'kip-ft',kind='threshold',basis=threshold)
+        [(0,length,threshold_value,threshold)],THRESHOLD,'kip-ft',kind='threshold',basis=threshold)
     note+='Torsion shows only its investigation threshold, not a torsional resistance. Open U-bars receive no closed-hoop torsion credit. '
     if any(not math.isclose(p[k],g[k],rel_tol=0,abs_tol=1e-6) for k in ('b','h')):
         note+='TRIAL SECTION: resistance uses the current size while demand retains the analyzed size and forces. '

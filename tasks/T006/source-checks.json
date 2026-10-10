@@ -1,0 +1,40 @@
+{
+  "working_sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351",
+  "checks_passed": 25,
+  "checks": [
+    "exactly nine registered components changed",
+    "261 other components byte-identical",
+    "C005 completely byte-identical",
+    "all embedded resources and reference paths byte-identical",
+    "all three inherited link errors repaired; no structural issues",
+    "zero stored errors",
+    "report:DecisionLog formulas preserved except authorized width alias",
+    "report:BridgeGeometry_2Beam formulas preserved except authorized width alias",
+    "report:FenceWind formulas preserved except authorized width alias",
+    "report:FBMPPier formulas preserved except authorized width alias",
+    "report:FoundationModeling formulas preserved except authorized width alias",
+    "spreadsheet:QauntitiesBridge formulas preserved except authorized width alias",
+    "report:PedBridgeWind formulas preserved except authorized width alias",
+    "report:PedBridge formulas preserved except authorized width alias",
+    "report:LoadCombinations formulas preserved except authorized width alias",
+    "report geometric inputs retained",
+    "cap length and volume",
+    "current source hash recorded",
+    "raw XML verification limitation explicit",
+    "historical sketches explicitly labeled",
+    "user response workbook archived exact",
+    "all nine response dispositions recorded",
+    "updated N reference values preserved externally",
+    "deferred steel not inserted into BPAD",
+    "wind area and bounds reduce by 230/231"
+  ],
+  "expected_native_values": {
+    "wind_width_in": 230,
+    "projected_area_ft2": 348.9646249999999,
+    "longitudinal_III_kip": 20.932810272574702,
+    "longitudinal_SI_kip": 5.953280668159999,
+    "cap_volume_ft3": 230
+  },
+  "C005_sha256": "ee85ac4e68a03b3d5b1d7039f73de626c0e4ee736ee52a00ca07cdc2977da907",
+  "scope": "Bookkeeping and geometry coherence; native validation recorded separately; structural adequacy excluded."
+}

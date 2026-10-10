@@ -1,0 +1,284 @@
+<report title="Loads - Wind Basis" name="PedBridgeWind" unit="in" pagesize="816, 1056" margin="48,48,48,48" collapsemargins="False" bordermargin="0,0,0,0">
+        <float />
+        <stylerule applytoall="True" type="Any" leftindent="0.25 in" spacingafter="4" />
+        <paragraph fontfamily="Times New Roman" fontweight="bold" fontsize="16" fontunderline="True" textdecoration="underline" horzalign="Center" spacingafter="12">PED BRIDGE WIND LOADS</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" background="#FFF8E9" fontweight="bold">GEOMETRY BASIS — Cap and wind datums derive from the selected Type F pad, 6-in pedestal and 36-in cap. Individual seat grades, separate plates, the retained wind envelope, terrain reference and gross pier-face width require final-detail confirmation.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="12">Wind assembly module. This module gathers the bridge-level wind calculations and live results used for FB-MultiPier loading; detailed pressure and fence-resultant calculations remain in their dedicated source modules.</paragraph>
+        <heading>
+            <paragraphlabel numbergroup="heading">1.</paragraphlabel>
+            Wind Load Assembly
+        </heading>
+        <heading level="1">
+            <paragraphlabel numbergroup="heading">1.1.</paragraphlabel>
+            Concrete Superstructure
+        </heading>
+        <paragraph spacingafter="4">Line load at center of concrete portion of the super structure</paragraph>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="C001WindLoadOnPedBridgeSuperstructure.P_Z_III">
+                <expbody>C001WindLoadOnPedBridgeSuperstructure.P_Z_III</expbody>
+                <expresult> = 0.0487 ksf</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Strength III concrete wind pressure displayed from the main wind module.</paragraph>
+        <section name="EqNotes_PedBridgeWind_001_WindLoadonPedBridgeSuperstructure_P_Z_III" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This live reference shows the pressure already calculated from wind speed, exposure, gust treatment, and structural drag. It is force per projected area. The following line-load expression multiplies it by the concrete height exposed to wind.</paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Wind_conc_superstrc_lineload=C001WindLoadOnPedBridgeSuperstructure.P_Z_III*BridgeGeometry_2Beam.Depth_SuperStr" mathlayout="on" showsteps="False">
+                <expbody>Wind_conc_superstrc_lineload=C001WindLoadOnPedBridgeSuperstructure.P_Z_III*BridgeGeometry_2Beam.Depth_SuperStr</expbody>
+                <expresult> = 0.345 ksf*ft</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Strength III concrete wind force for each foot of bridge length.</paragraph>
+        <section name="EqNotes_PedBridgeWind_002_Wind_conc_superstrc_lineload" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                <dynexp formula="C001WindLoadOnPedBridgeSuperstructure.P_Z_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>C001WindLoadOnPedBridgeSuperstructure.P_Z_III</expbody>
+                </dynexp>
+                 is the concrete wind pressure in force per square foot. Multiply by 
+                <dynexp formula="BridgeGeometry_2Beam.Depth_SuperStr" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>BridgeGeometry_2Beam.Depth_SuperStr</expbody>
+                </dynexp>
+                , the exposed concrete height, to get force per foot along the bridge. This is the perpendicular-wind reference line load before collecting the pier’s share.
+            </paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Wind_conc_superstrc_pointload = FenceWind.F_c_III" mathlayout="on" showsteps="False">
+                <expbody>Wind_conc_superstrc_pointload = FenceWind.F_c_III</expbody>
+                <expresult> = 36.637 kip</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Total transverse concrete wind force delivered to the intermediate pier for Strength III.</paragraph>
+        <section name="EqNotes_PedBridgeWind_003_Wind_conc_superstrc_pointload" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Copy 
+                <dynexp formula="FenceWind.F_c_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>FenceWind.F_c_III</expbody>
+                </dynexp>
+                , where concrete pressure is multiplied by concrete depth and the pier’s contributing bridge length. This is already a complete pier force, so do not multiply it by span length again.
+            </paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Wind_conc_superstrc_moment = FenceWind.M_c_III" mathlayout="on" showsteps="False">
+                <expbody>Wind_conc_superstrc_moment = FenceWind.M_c_III</expbody>
+                <expresult> = 210.856 kip*ft</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Strength III concrete wind moment about the cap reference.</paragraph>
+        <section name="EqNotes_PedBridgeWind_004_Wind_conc_superstrc_moment" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Copy 
+                <dynexp formula="FenceWind.M_c_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>FenceWind.M_c_III</expbody>
+                </dynexp>
+                , the concrete pier force multiplied by its vertical offset above the cap reference. This turning effect accompanies the corresponding concrete force; it is not an additional horizontal force.
+            </paragraph>
+        </section>
+        <paragraph spacingafter="4" />
+        <heading level="1" id="paragraphrefreturn0001">
+            <paragraphlabel numbergroup="heading">1.2.</paragraphlabel>
+            Fencing
+        </heading>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="q_z_fencing = FenceWind.p_fence" mathlayout="on" showsteps="False">
+                <expbody>q_z_fencing = FenceWind.p_fence</expbody>
+                <expresult> = 0.015 ksf</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Uniform gross-surface fence pressure used in the separate fence calculation.</paragraph>
+        <section name="EqNotes_PedBridgeWind_005_q_z_fencing" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Copy 
+                <dynexp formula="FenceWind.p_fence" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>FenceWind.p_fence</expbody>
+                </dynexp>
+                , the prescribed pressure applied to the complete fence outline, including mesh holes. For the global bridge-transfer model, the prescribed pressure is applied once to the gross projected fence face for the selected wind direction. The opposite wind direction is checked by reversing sign; no second simultaneous leeward 15 psf load is added.
+            </paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">
+            Reference: 
+            <link address="#CodeReferencesGeneral.CodePage16;paragraphprojectcoderef16General">LRFD 13.8.2</link>
+        </paragraph>
+        <paragraph spacingafter="4">
+            <image source="Resource9" />
+        </paragraph>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Dist_WindCG_CapCG = FenceWind.z_mid" mathlayout="on" showsteps="False">
+                <expbody>Dist_WindCG_CapCG = FenceWind.z_mid</expbody>
+                <expresult> = 14 ft 1 23/32 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Fence midpoint height above the cap reference used for longitudinal wind.</paragraph>
+        <section name="EqNotes_PedBridgeWind_006_Dist_WindCG_CapCG" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Copy 
+                <dynexp formula="FenceWind.z_mid" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>FenceWind.z_mid</expbody>
+                </dynexp>
+                , the fence-base height plus half the vertical fence height. This is the adopted point for the along-bridge fence force. The transverse force’s equivalent height is a different quantity obtained from its complete moment divided by its force.
+            </paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Wind_fence_lineload = FenceWind.w_fence" mathlayout="on" showsteps="False">
+                <expbody>Wind_fence_lineload = FenceWind.w_fence</expbody>
+                <expresult> = 0.145 ksf*ft</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">
+            Strength III transverse fence force per foot of bridge from the prescribed
+            <link address="#CodeReferencesGeneral.CodePage16;paragraphprojectcoderef16General">LRFD 13.8.2</link>
+            fence load.
+        </paragraph>
+        <section name="EqNotes_PedBridgeWind_007_Wind_fence_lineload" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                Copy 
+                <dynexp formula="FenceWind.w_fence" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>FenceWind.w_fence</expbody>
+                </dynexp>
+                . The source applies the prescribed
+                <link address="#CodeReferencesGeneral.CodePage16;paragraphprojectcoderef16General">LRFD 13.8.2</link>
+                pressure to the gross fence surface and expresses the resulting force per contributing bridge foot.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">Use the complete simultaneous 100% transverse + 25% longitudinal row for analysis input; do not mix components or signs from different directional cases.</paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Wind_fence_pointload = FenceWind.F_fence" mathlayout="on" showsteps="False">
+                <expbody>Wind_fence_pointload = FenceWind.F_fence</expbody>
+                <expresult> = 15.430 kip</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">
+            Total Strength III transverse fence force delivered to the pier from the prescribed
+            <link address="#CodeReferencesGeneral.CodePage16;paragraphprojectcoderef16General">LRFD 13.8.2</link>
+            fence load.
+        </paragraph>
+        <section name="EqNotes_PedBridgeWind_008_Wind_fence_pointload" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                Copy 
+                <dynexp formula="FenceWind.F_fence" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>FenceWind.F_fence</expbody>
+                </dynexp>
+                . The source applies the prescribed
+                <link address="#CodeReferencesGeneral.CodePage16;paragraphprojectcoderef16General">LRFD 13.8.2</link>
+                gross-surface fence load over the pier tributary length.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">Use the complete simultaneous 100% transverse + 25% longitudinal row for analysis input; do not mix components or signs from different directional cases.</paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Wind_fence_moment = FenceWind.M_fence" mathlayout="on" showsteps="False">
+                <expbody>Wind_fence_moment = FenceWind.M_fence</expbody>
+                <expresult> = 218.224 kip*ft</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Strength III fence moment about the longitudinal axis at the cap reference.</paragraph>
+        <section name="EqNotes_PedBridgeWind_009_Wind_fence_moment" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                Copy 
+                <dynexp formula="FenceWind.M_fence" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>FenceWind.M_fence</expbody>
+                </dynexp>
+                . The source integrates the prescribed normal pressure over the curved enclosure and carries the resulting turning effect to the cap reference.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">Use the complete simultaneous 100% transverse + 25% longitudinal row for analysis input; do not mix components or signs from different directional cases.</paragraph>
+        </section>
+        <paragraph spacingafter="4">
+            <image source="Resource10" width="328.3844542161894" height="286.82711633771214" />
+        </paragraph>
+        <heading level="1" id="paragraphrefreturn0002">
+            <paragraphlabel numbergroup="heading">1.3.</paragraphlabel>
+            Fencing and Superstructure Combined
+        </heading>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Wind_CG_Cap_pointLoad = FenceWind.F_cap_T_III" mathlayout="on" showsteps="False">
+                <expbody>Wind_CG_Cap_pointLoad = FenceWind.F_cap_T_III</expbody>
+                <expresult> = 52.067 kip</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Total Strength III transverse cap force from concrete superstructure plus the prescribed fence load for the 0° reference case.</paragraph>
+        <section name="EqNotes_PedBridgeWind_010_Wind_CG_Cap_pointLoad" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                Copy 
+                <dynexp formula="FenceWind.F_cap_T_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>FenceWind.F_cap_T_III</expbody>
+                </dynexp>
+                . The source adds the Strength III concrete superstructure force and the prescribed
+                <link address="#CodeReferencesGeneral.CodePage16;paragraphprojectcoderef16General">LRFD 13.8.2</link>
+                fence force at the same cap reference.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">Use the complete simultaneous 100% transverse + 25% longitudinal row for analysis input; do not mix components or signs from different directional cases.</paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Wind_CG_Cap_moment = FenceWind.M_cap_L_III" mathlayout="on" showsteps="False">
+                <expbody>Wind_CG_Cap_moment = FenceWind.M_cap_L_III</expbody>
+                <expresult> = 429.080 kip*ft</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Strength III combined moment about the longitudinal axis at the cap reference for the 0° reference case.</paragraph>
+        <section name="EqNotes_PedBridgeWind_011_Wind_CG_Cap_moment" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                Copy 
+                <dynexp formula="FenceWind.M_cap_L_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>FenceWind.M_cap_L_III</expbody>
+                </dynexp>
+                . The source adds the Strength III concrete superstructure moment and the prescribed
+                <link address="#CodeReferencesGeneral.CodePage16;paragraphprojectcoderef16General">LRFD 13.8.2</link>
+                fence moment at the same cap reference.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">Use the complete simultaneous 100% transverse + 25% longitudinal row for analysis input; do not mix components or signs from different directional cases.</paragraph>
+        </section>
+        <heading>
+            <paragraphlabel numbergroup="heading">2.</paragraphlabel>
+            Direct Pier Wind — Broad Face
+        </heading>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Wind_perpPierWall = FenceWind.F_wall_L_III" mathlayout="on" showsteps="False">
+                <expbody>Wind_perpPierWall = FenceWind.F_wall_L_III</expbody>
+                
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Strength III wind force pushing directly on the broad pier-wall face.</paragraph>
+        <section name="EqNotes_PedBridgeWind_012_Wind_perpPierWall" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Multiply 
+                <dynexp formula="FenceWind.p_sub_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>FenceWind.p_sub_III</expbody>
+                </dynexp>
+                , the direct substructure pressure, by 
+                <dynexp formula="BridgeGeometry_2Beam.Pier_wall_area" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>BridgeGeometry_2Beam.Pier_wall_area</expbody>
+                </dynexp>
+                , the broad-face projected wall area. Pressure times area gives the wall force. It is applied directly to the pier at its wall-load location, rather than added into the bridge-and-fence cap total.
+            </paragraph>
+        </section>
+        <heading level="1">
+            <paragraphlabel numbergroup="heading">2.1.</paragraphlabel>
+            Pier Wall and Cap — Narrow Face
+        </heading>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Wind_pierWall_pointload = FenceWind.F_wall_T_III" mathlayout="on" showsteps="False">
+                <expbody>Wind_pierWall_pointload = FenceWind.F_wall_T_III</expbody>
+                <expresult> = 4.369 kip</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Strength III force from wind acting directly on the narrow wall-and-cap face.</paragraph>
+        <section name="EqNotes_PedBridgeWind_013_Wind_pierWall_pointload" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Copy 
+                <dynexp formula="FenceWind.F_wall_T_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>FenceWind.F_wall_T_III</expbody>
+                </dynexp>
+                , which is substructure pressure times the adopted exposed height and projected cap width. Apply it at the wall-load location, with the corresponding force direction. This force is separate from wind delivered through the superstructure and fence.
+            </paragraph>
+        </section>
+        <heading style="FW Heading 3" id="paragraphrefreturn0003">
+            <paragraphlabel numbergroup="heading">3.</paragraphlabel>
+            Wind Load Sets
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1">
+            Use separate Strength III and Service I wind sets with WS factor 1.0. For this qualifying usual girder bridge, the cap-reference set uses the
+            <link address="#CodeReferencesGeneral.CodePage10;paragraphprojectcoderef10General">LRFD 3.8.1.2.3a</link>
+            simplified components: 100% transverse plus 25% longitudinal, applied simultaneously. Apply both horizontal signs and add the direct-pier wind components separately in accordance with
+            <link address="#CodeReferencesGeneral.CodePage10;paragraphprojectcoderef10General">LRFD 3.8.1.2.3b</link>
+            .
+        </paragraph>
+    </report>

@@ -1,0 +1,69 @@
+{
+  "candidate_sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351",
+  "reviewer": "Codex — source/geometry data review and actual native Blockpad observations; no human engineering sign-off",
+  "native_recalculation": true,
+  "native_visual_review": true,
+  "engineering_review": true,
+  "design_outcome": "not_applicable",
+  "external_analysis_status": "excluded_from_accepted_scope",
+  "external_analysis_disposition": "Replacement Pier_Fixed report archived exactly. Matching raw XML unavailable; offset correction and full current model-input currency remain unverified. No model rerun or structural adequacy approval. Acceptance limited to geometry/source records, user-directed wind-width linkage and reference repairs.",
+  "inherited_issues_disposition": "All three inherited broken links repaired with verified existing targets; zero stored errors and structural issues. C005 remains byte-identical by user direction. Historical cap sketches labeled. Separate wall/fin quantities and deferred steel/design checks remain explicitly outside acceptance.",
+  "evidence_files": [
+    {
+      "path": "evidence/change-log.json",
+      "sha256": "3002ee332c1247ac92c1f2962ba956457c9c48056d732aa644747c0a3aa96a5e"
+    },
+    {
+      "path": "evidence/final-review.md",
+      "sha256": "bfdc7cf1211cb5b5c46cf6e2e47a14c45d1902bb477efb19d731124304f6d605"
+    },
+    {
+      "path": "evidence/integration-check.json",
+      "sha256": "88d4c3bda3c6b6023225e03068f4d20d52234e320b18337448a35b30db1bc018"
+    },
+    {
+      "path": "evidence/native-decisions-final.png",
+      "sha256": "5751dbbafa4824dcad7d770ebca080df2bf03aa2528d2b0f688671d0eafd611c"
+    },
+    {
+      "path": "evidence/native-foundation-final.png",
+      "sha256": "410f71d73ef60b32446c52a778f64e211fa93fa203f95a8ed54783afdfece46f"
+    },
+    {
+      "path": "evidence/native-index-final.png",
+      "sha256": "9223e3dc1768b20014ad05e30bd0497fce8bb67c42c20bc3a822273ba60d43c1"
+    },
+    {
+      "path": "evidence/native-quantity-final.png",
+      "sha256": "3e548ce1ecc45b5f5692ddb0711347d4e6b0933946753a38fc522b4357052fbb"
+    },
+    {
+      "path": "evidence/native-reference-final.png",
+      "sha256": "0c61914b64c4a226e0cb2ffbe192247f3be6c3726fb9d97658d10e6decb90e39"
+    },
+    {
+      "path": "evidence/native-source-final.png",
+      "sha256": "9218bc151bac77a182efde11681295220ef91b6630e8cc211d0b7792329b5b1c"
+    },
+    {
+      "path": "evidence/native-view-bindings.json",
+      "sha256": "6bd3948d7a3b4c3efd5b34fb348433263f186d1e1a48dd38e7dc019ef36537bd"
+    },
+    {
+      "path": "evidence/response-disposition.json",
+      "sha256": "631b45fce2915468892b606edc581181824b2b26ffb37b1f629673647bbdadf8"
+    },
+    {
+      "path": "evidence/revision01-native-wind-geometry.png",
+      "sha256": "d3aa5040ada57cc796cff1e133a95c806bc46c4005f36e279da1fe9b8ae8fe34"
+    },
+    {
+      "path": "evidence/revision01-native-wind-handoff.png",
+      "sha256": "9200e457383a108049cd3a647c8a2e529d303d4f72a1fd36094b4c26eb91aa06"
+    },
+    {
+      "path": "evidence/source-checks.json",
+      "sha256": "d29140e0b4d15019e00868a9b9cd8888f74a4d70f90407bcbb879f8d0669dc90"
+    }
+  ]
+}

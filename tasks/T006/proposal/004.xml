@@ -1,0 +1,95 @@
+<report name="LoadCombinations" title="Loads - Combinations" unit="in" pagesize="816, 1056" margin="48,48,48,48" collapsemargins="False">
+        <stylerule applytoall="True" type="Any" leftindent="0.25 in" spacingafter="4" />
+        <stylerule type="AnyEquation" name="Required Input" texthighlight="#F7E6B9" />
+        <heading level="0">Load Combos</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">
+            <link address="#FBMPPier.FBMPEntryReference;paragraphfbmpentry">Use the load-case register, factors and application lists in FBMP Entry - Pier or FBMP Entry - End Bent. Service I uses its own wind set with WS = 1.0.</link>
+        </paragraph>
+        <paragraph>
+            Load combos for ped bridge dont have the following per the
+            <link address="#LoadCombinations;paragraphpedguide37excerpt">LRFD Ped Bridge Code</link>
+        </paragraph>
+        <paragraph id="paragraphpedguide37excerpt">
+            <image source="Resource175" width="374.99153439771146" height="232.79897726277682" />
+            <link address="#LoadCombinations;paragraphpedguide37excerpt">Pedestrian Guide §3.7 — embedded excerpt</link>
+        </paragraph>
+        <paragraph>
+            <image source="Resource176" width="605.9240920181728" height="467.4844815901797" />
+            <link address="#CodeReferencesGeneral.CodePage14;paragraphprojectcoderef14General">LRFD Table 3.4.1-1</link>
+        </paragraph>
+        <paragraph>
+            <span fontweight="bold">Strength I</span>
+            —Basic load combination relating to the normal vehicular use of the bridge without wind. 
+        </paragraph>
+        <paragraph textcolor="#79C653">Used</paragraph>
+        <paragraph>
+            <span fontweight="bold">Strength II</span>
+            —Load combination relating to the use of the bridge by Owner-specified special design vehicles, evaluation permit vehicles, or both without wind. 
+        </paragraph>
+        <paragraph textcolor="#FF0000">Not Req'd Ped Bridge Code</paragraph>
+        <paragraph>
+             
+            <span fontweight="bold">Strength III</span>
+            —Load combination relating to the bridge exposed to the design wind speed at the location of the bridge. 
+        </paragraph>
+        <paragraph> Vehicles become unstable at higher wind velocities.  Therefore, high winds prevent the presence of significant</paragraph>
+        <paragraph textcolor="#79C653">Used for High Winds not because of vehicles.</paragraph>
+        <paragraph>
+            <span fontweight="bold">Strength IV</span>
+            —Load combination emphasizing dead load force effects in bridge superstructures. 
+        </paragraph>
+        <paragraph textcolor="#FF0000">Not Req'd Ped Bridge Code</paragraph>
+        <paragraph>
+            <span fontweight="bold">Strength V</span>
+            —Load combination relating to normal vehicular use of the bridge with wind of 80 mph velocity.
+        </paragraph>
+        <paragraph textcolor="#FF0000">Not Req'd Ped Bridge Code</paragraph>
+        <paragraph>
+            <span fontweight="bold">Extreme Event I</span>
+            —Load combination including earthquake. The load factor for live load, γEQ, shall be determined on a project-specific basis.
+        </paragraph>
+        <paragraph textcolor="#FF0000">Exempt from full seismic analysis per SDG 2.3.1 because the superstructure is supported entirely on elastomeric bearings; minimum bearing support dimensions per LRFD 4.7.4.4 are still required.</paragraph>
+        <paragraph>
+            <span fontweight="bold">Extreme Event II</span>
+            —Load combination relating to ice load, blast load, collision by vessels and vehicles, and check floods. 
+        </paragraph>
+        <paragraph>Where deck overhang design or substructure components are investigated for vehicular collision load, CT, use the minimum value for LL+IM and the maximum value for CT. Where a pier may be exposed to a collision load but is not designed explicitly for the CT loading, investigate with one column missing for post-collision evaluation using the maximum value for LL+IM and no CT loading.</paragraph>
+        <paragraph textcolor="#FF0000">Not considering vehicle collision in this analysis.</paragraph>
+        <paragraph>
+            <span fontweight="bold">Service I</span>
+            —Load combination relating to the normal operational use of the bridge with a 70 mph wind and all loads taken at their nominal values. Also related to deflection control in buried metal structures, tunnel liner plate, and thermoplastic pipe, to control crack width in reinforced concrete structures, and for transverse analysis relating to tension in concrete segmental girders.  
+        </paragraph>
+        <paragraph textcolor="#79C653">Used</paragraph>
+        <paragraph>
+            <span fontweight="bold">Service II</span>
+            —Load combination intended to control yielding of steel structures and slip of slip-critical connections due to vehicular live load. For structures with unique truck loading conditions, such as access roads to ports or industrial sites which might lead to a disproportionate number of permit loads, a site-specific increase in the load factor should be considered.
+        </paragraph>
+        <paragraph textcolor="#FF0000">Not req'd. Not a steel structure.</paragraph>
+        <paragraph>
+            <span fontweight="bold">Service III</span>
+            —Load combination for longitudinal analysis relating to flexural tension, and principal tension in the webs of prestressed concrete superstructures with the objective of crack control.  
+        </paragraph>
+        <paragraph textcolor="#FF0000">Not Req'd for substructure design.</paragraph>
+        <paragraph>
+            <span fontweight="bold">Service IV</span>
+            —Load combination relating only to tension in prestressed concrete columns with the objective of crack control. 
+        </paragraph>
+        <paragraph textcolor="#FF0000">Not Req'd no prestressed concrete columns.</paragraph>
+        <paragraph>
+            <span fontweight="bold">Fatigue I</span>
+            —Fatigue and fracture load combination related to infinite load-induced fatigue life. 
+        </paragraph>
+        <paragraph textcolor="#FF0000">Not required for substructure.</paragraph>
+        <paragraph>
+            <span fontweight="bold">Fatigue II</span>
+            —Fatigue and fracture load combination related to finite load-induced fatigue life. 
+        </paragraph>
+        <paragraph textcolor="#FF0000">Not required for substructure.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" />
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#FBMPPier.FBMPEntryReference">Pier entry and source factor register</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#FBMPEndBent">End-bent entry and corresponding load cases</link>
+        </paragraph>
+    </report>

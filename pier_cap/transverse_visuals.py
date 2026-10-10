@@ -83,6 +83,9 @@ def response_figure(e):
     fig.add_hline(y=1,line_dash='dash',line_color='#bb3e39',row=2,col=1)
     fig.update_xaxes(title='Along cap (ft)',row=2,col=1)
     threshold=e.value('T_threshold','kip*ft');torque=e.case['inputs']['Tu']
+    if e.lrfd:
+        from .lrfd_checks import torsion_threshold
+        threshold=min((r['threshold_kip_ft'] for r in e.lrfd['longitudinal']),default=torsion_threshold(e))
     fig.add_annotation(x=.5,y=.5,xref='x4 domain',yref='y4 domain',showarrow=False,align='left',font=dict(size=12),
         text=f'Torque input: {torque:.2f} kip-ft<br>Investigation threshold: {threshold:.2f} kip-ft<br><br><b>Open U-bars have no closed-hoop<br>torsion capacity assigned.</b><br>Verify end development, closure<br>and local force zones.')
     fig.update_xaxes(visible=False,row=2,col=2);fig.update_yaxes(visible=False,row=2,col=2)

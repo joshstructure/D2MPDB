@@ -139,9 +139,9 @@ class CalculationReportTests(unittest.TestCase):
         self.assertIn('actual longitudinal coordinates',markup)
         self.assertNotIn('Numeric substitution',markup)
         self.assertIn(r.result('y_N1'),markup)
-        self.assertIn('Uniform-cage reference',r.equation(BY_NAME['Vr_G']))
-        self.assertEqual(r.result('Chk_shear_G'),'<span class="badge reference">REFERENCE</span>')
-        self.assertIn('CONDITIONAL',r.technical_content('shear'))
+        self.assertEqual(r.equation(BY_NAME['Vr_G']),'')
+        self.assertNotIn('REFERENCE',r.result('Chk_shear_G'))
+        self.assertIn('LRFD regions',r.technical_content('shear'))
 
     def test_confirmed_service_and_edited_load_provenance(self):
         e=evaluate(set_inputs(self.case,Ready_III=True,MIII_N=20,MIII_P=25,MIII_B=40))

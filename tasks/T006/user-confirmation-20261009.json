@@ -1,0 +1,11 @@
+{
+  "record_type": "Supplemental user confirmation after T006 promotion",
+  "date": "2026-10-09",
+  "user_statement": "I updated it to be 10.5.",
+  "subject": "Pier_Fixed model right bearing-row longitudinal offset",
+  "confirmed_value_in": 10.5,
+  "journal_value_in": 10.5,
+  "disposition": "Treat the right-row model offset correction as user-confirmed. The shared journal already uses the confirmed value. Matching raw XML has not been independently inspected.",
+  "accepted_T006_review_unchanged": true,
+  "C005_unchanged": true
+}

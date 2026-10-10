@@ -99,7 +99,7 @@ class EndBarScheduleTests(unittest.TestCase):
             for a,b in zip(bars,bars[1:]):
                 if a['run']!=b['run']:
                     check=checks['Chk_actual_clear_'+a['id']+'_'+b['id']]
-                    self.assertEqual(check.status,'PASS');self.assertEqual(check.ratio,1.)
+                    self.assertEqual(check.status,'PASS');self.assertAlmostEqual(check.ratio,1.)
 
     def test_narrow_zone_reports_offset_problem_without_squeezing_bars(self):
         case=default_case();case['inputs']['C_s']=8

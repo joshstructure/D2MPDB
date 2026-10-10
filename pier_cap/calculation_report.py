@@ -171,6 +171,9 @@ class Report:
 
     def equation(self, d):
         name=d['name']
+        # The actual-cage module supersedes these uniform-cage calculations.
+        # Its equations and substitutions are printed in the LRFD working section.
+        if self.actual and (name in ('Av','S_leg') or name.startswith(('Vs_','Vr_','s_strength_','s_minsteel','s_allow_','s_suggest_','DC_shear_','At_','Av_shear_','Acomb_','F_vt','F_long_','As_add_','DC_long_','Ash_hoop','Ash_prov','s_shrink'))):return ''
         if d['input'] or '(' in name:return ''
         # Aggregate/status checks are shown through the authoritative check register,
         # never the historic hard-coded source-layout test or an unqualified collector.
@@ -203,6 +206,8 @@ class Report:
             if d['name'] in ('Bar_U','n_PU','n_BU'):continue
             n=d['name'];caption=meanings.get(n,d['caption'])
             source='Current case input / adopted assumption'
+            if self.actual and n in ('beta_v','theta','alpha_v','Ao_factor'):
+                source='Uniform-mode input only; actual-cage value is derived in the LRFD calculation working.'
             if n.startswith(('Mu_','MI_','MIII_','MDL_','DMLL_','Vu_')) or n=='Tu':
                 caption={'Mu':'Factored strength moment magnitude','MI':'Service I moment magnitude',
                          'MIII':'Service III moment magnitude','MDL':'Signed permanent moment; tension positive',
@@ -219,7 +224,9 @@ class Report:
         for c in checks:
             ratio=f'{c.ratio:.6g}' if isinstance(c.ratio,(int,float)) else str(c.ratio)
             basis=escape(c.basis).replace('\n','<br>')
-            if criteria and c.key in self.e.engine.defs and c.key not in self.e.engine.overrides and c.status!='REFERENCE':
+            from .lrfd_checks import REPLACED_PREFIXES,REPLACED_KEYS
+            replaced=self.actual and (c.key.startswith(REPLACED_PREFIXES) or c.key in REPLACED_KEYS)
+            if criteria and not replaced and c.key in self.e.engine.defs and c.key not in self.e.engine.overrides and c.status!='REFERENCE':
                 basis+='<details class="working"><summary>Check criterion</summary><div class="equation-line">'+mathml(expression(self.e.engine.defs[c.key]),True)+'</div></details>'
             rows.append([escape(c.label),badge(c.status),escape(ratio),basis])
         return table(['Check / region','Status','D/C','Basis / application'],rows,'output',True)
@@ -272,9 +279,9 @@ class Report:
         e=self.e
         if key=='basis':
             return ('<p>Basis: the notebook’s C005 sectional equations and project assumptions, with the code references recorded beside their checks. '
-                    'A complete governing code edition is not recorded by this case; confirm it before issuing a design. '
-                    'Normal-weight concrete, the entered resistance factors and simplified shear parameters are adopted assumptions. '
-                    'This report does not calculate D-regions, development lengths or a new structural analysis.</p>'+
+                    'The actual-cage LRFD module uses AASHTO LRFD 10th edition (2024) for longitudinal tension, shear/torsion, face reinforcement and development. '
+                    'Its settings, applicability limits and numerical working are recorded in the LRFD section. '
+                    'Other inherited checks retain their stated basis. D-regions and a new structural analysis are outside this sectional model.</p>'+
                     self.geometry()+
                     table(['Analyzed geometry','Current geometry','Analysis consistency'],[[str(e.case['analysis']['geometry']),
                           ', '.join(f'{n} = {e.case["inputs"][n]:g}' for n in e.case['analysis']['geometry'] if n in e.case['inputs']),
@@ -306,21 +313,9 @@ class Report:
         if key=='shear':
             if self.actual:
                 from .transverse_visuals import schedule_html,response_figure
-                actual=[c for c in e.checks if c.key.startswith('Chk_actual_shear_')]
-                equations=['s_j = x_next-x_prev', 'Av_j = 2*Min(Ab_prev,Ab_next)',
-                           'Vs_j = Av_j*fy*dv*cot_theta/Max(s_j,0.000001 in)',
-                           'Vr_j = phi_v*Min(Vc+Vs_j,Vn_limit)',
-                           'Vu_j = Max(Vu_prev,Vu_next)',
-                           'DC_j = Max(Vu_j/Max(Vr_j,0.000001 kip),(Vu_j/phi_v)/Max(Vn_limit,0.000001 kip))']
-                content='<div class="notice">Actual hoop/U-bar stations govern the following conditional interval checks. The later uniform-cage equations are reference calculations and do not represent the entered topology. Open U-bars receive no closed-hoop torsion credit.</div>'+schedule_html(e)+self.plot(response_figure(e),'Actual adjacent-station shear and sectional flexural response.')
-                content+='<h3>Actual adjacent-station calculation</h3><p>For each neighboring pair: use actual pitch, the weaker two vertical legs, and the larger adjacent G/L demand. The code uses the following sectional calculation; results come from its actual-interval check register.</p>'
-                for formula in equations:
-                    lhs,rhs=formula.split(' = ')
-                    content+='<div class="equation-line">'+mathml(symbol(lhs)+'<mo>=</mo>'+expression(parse(rhs)),True)+'</div>'
-                content+=self.checks_table(actual)
-                return content
+                return '<p>Actual stations and member-segment action bounds govern. See <a href="#lrfd-actual">LRFD regions and calculation working</a> for equations, force combinations, development, anchorage and applicability. A pending anchorage result is not an accepted resistance.</p>'+schedule_html(e)+self.plot(response_figure(e),'Actual adjacent-station LRFD shear and sectional flexural response.')
             return v.hoop_explanation_html(e)+self.plot(v.hoop_figure(e),'Uniform reference hoop section; actual stationing is unresolved.')+v.spacing_html(e)
-        if key=='torsion':return '<p>Independent force maxima are combined conservatively; they are not a concurrent load case. The adopted effective torsion-area factor is explicit. Where actual U-bars are enabled, uniform closed-hoop steel and longitudinal-equilibrium results remain reference checks; the actual torsion path is reviewed separately.</p>'
+        if key=='torsion':return ('<p>Actual closed paths, combined shear/torsion reinforcement and longitudinal interaction are calculated in <a href="#lrfd-actual">LRFD regions and calculation working</a>. Open U-bars receive no closed-path torsion credit. Source member combinations are preserved, with conservative action bounds within each segment.</p>' if self.actual else '<p>Independent force maxima are combined conservatively; they are not a concurrent load case. The adopted effective torsion-area factor is explicit.</p>')
         if key=='details':
             components=steel_quantity_components(e)
             working='<h3>Reinforcing steel quantity</h3><p>Inventory estimate from the same drawn paths used by the notebook. Continuous volume = total continuous area × clear length; added volume sums each bar area × its straight, bend and tail lengths; transverse volume sums each entered shape area × centerline length × count (or the uniform reference hoop count when actual layout is disabled).</p>'
@@ -376,14 +371,17 @@ def calculation_report(case=None, *, evaluation=None, search_result=None, search
         ['Failed checks',sum('FAIL' in c.status for c in e.checks)],
         ['Pending / conditional checks',sum('PENDING' in c.status or 'CONDITIONAL' in c.status for c in e.checks)],
         ['Cage mode','Actual hoop/U-bar station schedule' if r.actual else 'Uniform-cage reference'],
-        ['Force basis','Independent envelopes; not concurrent actions'],
+        ['Force basis',e.lrfd['source_notice'] if e.lrfd else 'Independent envelopes; not concurrent actions'],
         ['Analysis consistency','Geometry changed: '+', '.join(e.stale) if e.stale else 'Recorded analysis geometry matches current inputs']], 'output'))
     if e.issues:parts.append('<div class="notice"><b>Detailing findings</b><ul>'+''.join('<li>'+escape(issue)+'</li>' for issue in e.issues)+'</ul></div>')
-    parts.append('<p>Available ratios do not close pending Service III, fatigue, anchorage, force-zone or detailing reviews. Green result tables identify outputs; only an explicit ✓ PASS denotes a passed check.</p>')
+    parts.append('<p>Available ratios do not close pending Service III, fatigue, anchorage, force-zone or detailing reviews. Green result tables identify outputs; only an explicit PASS denotes a passed check.</p>')
     parts.append('<h2 id="strategy">Calculation strategy</h2><ol class="links">'+''.join('<li><a href="#'+s[0]+'">'+escape(s[1])+'</a> — '+escape(s[3])+'</li>' for s in SECTIONS)+'</ol><ul class="flow"><li>Geometry &amp; actions</li><li>Steel coordinates</li><li>Section resistance</li><li>Service &amp; fatigue</li><li>Shear &amp; torsion</li><li>Detail review</li></ul>')
     parts.append('<noscript>Equations, results and tables work without JavaScript. Interactive plots and expand-all controls require JavaScript enabled in your browser.</noscript>')
     grouped=groups()
     for i,s in enumerate(SECTIONS,1):parts.append(r.section(s,grouped[s[0]],i))
+    if e.lrfd:
+        from .lrfd_views import working_html
+        parts.append('<details class="section" id="lrfd-actual" open><summary>LRFD regions and calculation working · actual cage</summary>'+working_html(e,full=True)+'</details>')
     from .visuals import ratios_figure
     parts.append('<details class="section" id="register"><summary>Complete check register</summary><p>Authoritative statuses from this evaluation, including coordinate-based spacing, anchorage and actual-station checks. D/C is demand/resistance or the stated screening ratio; pending and reference entries are not successful design checks.</p>'+r.plot(ratios_figure(e),'All available check ratios; see the register for status and applicability.')+r.checks_table(e.checks)+'</details>')
     if search_result is not None:
@@ -393,7 +391,7 @@ def calculation_report(case=None, *, evaluation=None, search_result=None, search
         options=search_filter or {'max_dc':1.0,'scope':'all','objective':search_result.config['objective']}
         indices=filter_candidates(search_result,**options)
         parts.append('<details class="section"><summary>Search alternatives · separate completed search</summary><p>Candidate results describe the completed search layouts, not subsequent manual cage edits. Force mode: '+escape(search_result.force_mode)+'. '+('Forces held unchanged; changed stiffness and self-weight were not reanalyzed.' if search_result.force_mode=='fixed' else 'Recorded analysis geometry matched.')+'</p>'+table(['Evaluated','Retained','Current filter matches','Exhaustive'],[[search_result.evaluated,len(search_result.candidates),len(indices),search_result.exhaustive]])+r.plot(alternatives_figure(search_result,indices=indices,dc_scope=options['scope'],max_dc=options['max_dc']),'Completed steel search alternatives under the selected filter.')+'</details>')
-    parts.append('<details class="section" id="provenance"><summary>Snapshot provenance and calculation basis</summary><p>This cap report uses the notebook’s C005 formula set and current coordinate/detailing checks. It is not a recalculation by Mathcad or Blockpad. The imported pile analysis and minimum-tip review, when loaded, are exported separately in the full bundle.</p><p>Formula captions and check bases identify inherited source relations and adopted assumptions. They do not establish a verified code edition. Displayed values use six significant figures; comparisons use full precision.</p><p class="meta">Case SHA-256 (canonical JSON): '+case_hash+'<br>Formula definition SHA-256: '+formula_hash+'</p><p>Report formatting basis: BPAD_Ref_V5.txt, §16 (guide v11). Snapshot is fixed at export; regenerate after editing the notebook inputs.</p><details class="working raw-source"><summary>Current case inputs and source record (omitted from print)</summary><pre class="meta">'+escape(json.dumps(e.case,indent=2,ensure_ascii=False))+'</pre></details></details>')
+    parts.append('<details class="section" id="provenance"><summary>Snapshot provenance and calculation basis</summary><p>This cap report uses the notebook’s C005 formula set and current coordinate/detailing checks. It is not a recalculation by Mathcad or Blockpad. The imported pile analysis and minimum-tip review, when loaded, are exported separately in the full bundle.</p><p>Formula captions and check bases identify inherited source relations and adopted assumptions. The actual-cage LRFD module identifies its verified 10th-edition articles and FDOT 2026 criteria separately; this does not verify every inherited C005 relation against that edition. Displayed values use six significant figures; comparisons use full precision.</p><p class="meta">Case SHA-256 (canonical JSON): '+case_hash+'<br>Formula definition SHA-256: '+formula_hash+'</p><p>Report formatting basis: BPAD_Ref_V5.txt, §16 (guide v11). Snapshot is fixed at export; regenerate after editing the notebook inputs.</p><details class="working raw-source"><summary>Current case inputs and source record (omitted from print)</summary><pre class="meta">'+escape(json.dumps(e.case,indent=2,ensure_ascii=False))+'</pre></details></details>')
     from plotly.offline import get_plotlyjs
     body = number_tables('\n'.join(parts), report=True)
     return body+'\n'+'\n'.join(['</main>',*r.figures,'<script>'+get_plotlyjs()+'</script>','<script>'+JS+'</script></body></html>'])

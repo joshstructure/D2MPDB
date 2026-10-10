@@ -1,0 +1,95 @@
+{
+  "source": "Excel response worksheet",
+  "rows": [
+    [
+      "Item",
+      "Review topic",
+      "Finding and current treatment",
+      "Decision or information needed",
+      "Your decision",
+      "Your instructions",
+      "New values / supporting files"
+    ],
+    [
+      "01",
+      "C005 / separate steel",
+      "C005 is completely unchanged by your direction, retaining earlier steel, forces and a 3.44-in end-detail allowance. BPAD receives geometry and source references only (3-in current end-detail allowance). Current steel is kept in the separate report and this Excel review.",
+      "No decision needed: your instructions are recorded at right. Differences remain explicit; no claim is made that C005 checks the current report cage.",
+      "Keep as noted",
+      "Do not update calc C005. Geometry and source references only in BPAD; keep reinforcement details in the separate pier report and Excel review. User direction, October 9, 2026.",
+      null
+    ],
+    [
+      "02",
+      "Right bearing-row offset",
+      "Exact source XML: left row Y = −10.50 in, right row Y = +10.14 in. The journal uses ±10.50 in. Right-row difference = 0.36 in. Bearing labels 1L/2L/1R/2R are correct; cap connections are 16/33 and bearing nodes are 181–184.",
+      "Specify the intended right-row offset. Direct whether the journal or model should change and whether to rerun affected load-transfer/design results.",
+      "Discuss",
+      "I need to correct the FBMP model I think there is a typo in it. I'll update the model and reupload the report.",
+      null
+    ],
+    [
+      "03",
+      "Pier U-bar conflicts",
+      "Source R2/R4/R6/R8 #6 U-bars clash with pile/clearance envelopes. Ends: 90° bends, 9-in straight tails, 4.5-in inside bend diameter. The prior end-bent field-hook direction has not been assumed to resolve the pier detail.",
+      "Specify how to handle the pier hooks, identify a revised detail, or request alternatives. Revised geometry and development/anchorage checks remain necessary to close the conflict.",
+      "Keep as noted",
+      "U bars tails can be field bent to accommodate a potential clash",
+      null
+    ],
+    [
+      "04",
+      "Longitudinal tension reference",
+      "The report’s N uniform-reference check requires 4.287 in² versus 3.080 in² credited (1.760 main + 1.320 side): 1.207 in² shortfall. It is labeled REFERENCE, not an actual-cage failure. Passing flexure and “0 failed checks” do not resolve it.",
+      "Direct an actual-cage longitudinal force/load-path evaluation, a reinforcement revision, or a documented disposition of this reference shortfall.",
+      "Discuss",
+      "Explain to me in chat what the N uniform check is all about",
+      null
+    ],
+    [
+      "05",
+      "Model and journal load inputs",
+      "The exact local XML matches the report. Geometry, bearing spacing, effective pipe properties and superstructure DC reconcile to printed precision. Full wind inputs, local below-pad weights, transfer moments, combinations and convergence have not been certified against the current journal.",
+      "Confirm this is the controlling pier model. Choose a full load-input comparison/update, a rerun after corrections, or retention as an explicitly identified source snapshot.",
+      "Discuss",
+      "Will need to provide an update cap design report as the latest.",
+      null
+    ],
+    [
+      "06",
+      "Wind, walls and old sketches",
+      "Cap length is 230 in; the journal wind face is 231 in. The quantity sheet also retains earlier three-beam / 19-ft-3-in sketches. Wall/fin, crash-wall and cheek-wall quantities are separate from the cap report. Cap volume remains 230 ft³; pier pedestals remain 48 in.",
+      "Confirm the intended wall/wind envelope and provide wall dimensions. Direct which wind loads, quantities and historical sketches to update, label or defer.",
+      "Update",
+      "Use the cap length from the report",
+      null
+    ],
+    [
+      "07",
+      "Remaining engineering checks",
+      "Original source count: 48 pending/conditional. Service III is already N/A by your prior direction. Fatigue, development, anchorage, hoop closure, force zones, D-regions/pile-head load transfer, code/exposure basis and omitted axial/weak-axis/lateral actions remain separate.",
+      "Specify checks to complete, defer or exclude and the criteria/details/actions to use. Do not treat independent maximum actions as a concurrent force vector.",
+      "Defer",
+      "Leave as is",
+      null
+    ],
+    [
+      "08",
+      "Construction spacing and takeoff",
+      "Adjacent-run transverse bars have 2.00 in clear, exactly the source minimum (D/C 1.000). Pile-to-bar clearance is a separate 1-in input. Gross steel is 1171.89 lb and excludes laps, closure extensions, undrawn end anchorage and waste.",
+      "Confirm the clearance/tolerance basis and whether the actual cage needs added spacing margin. State whether to develop a fabrication-level steel takeoff with the missing allowances.",
+      "Defer",
+      "Leave as is we can deal with this issue in shops later",
+      null
+    ],
+    [
+      "09",
+      "Inherited reference links",
+      "The current journal has zero stored errors. Three preexisting LoadCombinations links are unresolved: two references to CodePage42 and one to CodePage14. They remain outside the pier source update.",
+      "Choose repair now, defer, or address separately. Provide the intended references if known.",
+      "Update",
+      "repair now",
+      null
+    ]
+  ]
+}

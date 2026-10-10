@@ -1,0 +1,42 @@
+{
+  "task": "T006",
+  "base_sha256": "829f5450a34c76bee03ebbce06a389de76883ccaa8007b5e9bb50b17ec83de33",
+  "components": {
+    "report:PedBridge": {
+      "file": "000.xml",
+      "sha256": "fad0b8fa5b80c89435c7a06ba0a3f8c75b47b412f7d31380e9edf66205d1a72e"
+    },
+    "report:BridgeGeometry_2Beam": {
+      "file": "001.xml",
+      "sha256": "a49d474de32859b49077f11e8a5bec71b875c90fd2cc7b3fabb9fa3502371588"
+    },
+    "report:PedBridgeWind": {
+      "file": "002.xml",
+      "sha256": "9c28c1913afee5d2f5a0f662f3366304d8e8cdae518c55424e3759ceaec70ced"
+    },
+    "report:FenceWind": {
+      "file": "003.xml",
+      "sha256": "6e0baae4220017c2841e770848cd7d38476121449d3d0f7d102160b3c0bb5c82"
+    },
+    "report:LoadCombinations": {
+      "file": "004.xml",
+      "sha256": "0a4bff9cf481511c2eb7c687926c37be921c51258afff3b2d59eca8a14629d5f"
+    },
+    "report:FBMPPier": {
+      "file": "005.xml",
+      "sha256": "bdc16be046c9bbe4119096ab9b05b0af2227613f9db4eb9655be03ed78b306d9"
+    },
+    "report:FoundationModeling": {
+      "file": "006.xml",
+      "sha256": "97172098444a944802dc74db2d459c5e068dfac94840dbce73c1bab83750efdc"
+    },
+    "spreadsheet:QauntitiesBridge": {
+      "file": "007.xml",
+      "sha256": "b85855d3f856e9724fb8445bbfc9cecb1998235298fc7e0b5676cea136bea9cb"
+    },
+    "report:DecisionLog": {
+      "file": "008.xml",
+      "sha256": "7daf3c9e9417f94164b30119375966b3f83f8906a4b9458d1fc11e43ed733206"
+    }
+  }
+}

@@ -1,0 +1,103 @@
+<report title="Project Index" name="PedBridge" unit="in" pagesize="816, 1056" margin="48,48,48,48" collapsemargins="False">
+        <float />
+        <stylerule applytoall="True" type="Any" leftindent="0.25 in" spacingafter="4" />
+        <stylerule type="AnyEquation" name="Required Input" texthighlight="#F7E6B9" />
+        <heading level="0" keepwithnext="True">D2 I-95 Pedestrian Bridge - Project Index</heading>
+        <section name="CurrentEndBentRecord" capture="False" hide="false">
+            <heading level="1" keepwithnext="True">Current end-bent data — 8 October 2026</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#BridgeGeometry_2Beam.EndBentCurrentGeometry">Both end bents — cap and square pile geometry</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#FBMPEndBent.EBCurrentDesignRecord">Current steel configuration, End Bent 1 forces and coherence register</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">Both end bents follow the controlling End Bent 1 configuration. User responses applied: 30-in end-bent pedestals, nodes 15/34, latest report model, field-adjusted U hooks and Service III N/A. Wall quantities are deferred; remaining design checks are listed in the record.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" leftindent="0">The former Ped Bridge contents are organized by topic. Use the module list or the links below. Existing geometry, load sources, calculations, notes and reference images are retained; historical alternatives are labeled separately.</paragraph>
+        <heading level="1" keepwithnext="True">Project basis and geometry</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#Materials">Materials</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#BridgeGeometry_2Beam">Bridge Geometry - 2 Beam</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#AccessGeometry">Access Geometry and ADA</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#BearingDesign">Bearings and Support Details</link>
+        </paragraph>
+        <heading level="1" keepwithnext="True">Loads and FBMP entry</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#PedBridgeWeights_2Beams">Gravity Loads - 2 Beam</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#GeneralLoads">General and Collision Loads</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#PedBridgeWind">Wind - Design Basis</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#C001WindLoadOnPedBridgeSuperstructure">C001 - Superstructure Wind</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#FenceWind">C002 - Fence Wind</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#SuperstructureUplift">C004 - Uplift and Bearing Reactions</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#LoadCombinations">Load Combinations</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#FBMPPier">FBMP Entry - Pier</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#FBMPEndBent">FBMP Entry - End Bent (15 / 34)</link>
+        </paragraph>
+        <heading level="1" keepwithnext="True">Specific calculations and foundations</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#BridgeMovement">C003 - Temperature Movement</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#PierCapDesign">C005 - Pier Cap Design</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#PierWallFins">C006 - Pier Wall, Hairpins and Fin Plates</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#PileProperties">Pile Section Properties</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#FoundationModeling">Foundation Modeling</link>
+        </paragraph>
+        <heading level="1" keepwithnext="True">Quantities, decisions and references</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#QauntitiesBridge">Bridge Quantities</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#QuantitiesMSEWall">MSE Wall Quantities</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#DecisionLog">Decision Log</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#Notes">Project Notes</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#CodeReferencesGeneral">General Reference Index</link>
+        </paragraph>
+        <heading level="1" keepwithnext="True">Archives and utilities</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#BridgeGeometry_3Beam">Archive - 3-Beam Geometry</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#PedBridgeWeights_3Beams">Archive - 3-Beam Weights</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#VoidPedBridge">Archive - Previous Ped Bridge</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Revision: 8 October 2026, coherence responses. End-bent input uses loaded nodes 15 and 34, 103-in bearing spacing and a 42-in-wide by 36-in-deep cap. Both end bents follow the controlling configuration. End-bent pedestals are 30 in long; pier pedestals remain 48 in. Deferred wall quantities and remaining design checks are identified in the current record.</paragraph>
+    
+<section name="PierJournalRevision20261009" capture="False" hide="false"><heading level="1" keepwithnext="True">Pier revision — responses applied, 9 October 2026</heading><paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Current pier geometry and source references use the replacement Pier_Fixed report. The shared cap length and gross direct-pier wind width are both 230 in; gross cap volume remains 230 ft³ and pier pedestals remain 48 in. The matching raw XML is still needed to verify the offset correction. C005 is completely unchanged and reinforcement remains separate. Completed Excel responses and source snapshots are archived under tasks/T006/sources.</paragraph><paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7"><link address="#BridgeGeometry_2Beam.PierCurrentGeometry">Current pier cap geometry</link></paragraph><paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7"><link address="#FBMPPier.PierSourceModelRecord">Current report source</link></paragraph></section>
+</report>

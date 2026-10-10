@@ -1,56 +1,76 @@
 {
-  "task": "T005",
-  "journal_sha256": "829f5450a34c76bee03ebbce06a389de76883ccaa8007b5e9bb50b17ec83de33",
-  "previous_sha256": "4cdc73c485443fd22aaa77eff17ea1faeec30f9ba143be881b5d6c9676189625",
-  "promoted": "2026-10-09T21:00:39.334837+00:00",
+  "task": "T006",
+  "journal_sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351",
+  "previous_sha256": "829f5450a34c76bee03ebbce06a389de76883ccaa8007b5e9bb50b17ec83de33",
+  "promoted": "2026-10-09T22:39:27.616137+00:00",
   "review": {
-    "candidate_sha256": "829f5450a34c76bee03ebbce06a389de76883ccaa8007b5e9bb50b17ec83de33",
-    "reviewer": "Codex — source/geometry coherence review and actual native Blockpad observations; no human engineering sign-off",
+    "candidate_sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351",
+    "reviewer": "Codex — source/geometry data review and actual native Blockpad observations; no human engineering sign-off",
     "native_recalculation": true,
     "native_visual_review": true,
     "engineering_review": true,
     "design_outcome": "not_applicable",
     "external_analysis_status": "excluded_from_accepted_scope",
-    "external_analysis_disposition": "Exact Pier_MinTip.XML identity matches the supplied report. Cap geometry, bearing mapping, pipe properties and printed DC magnitudes were compared. Acceptance is limited to geometry/source bookkeeping. Full journal/model load currency, offset correction/reanalysis, convergence and final structural adequacy remain excluded. Reinforcement remains separate in the report/Excel, and C005 is completely unchanged by express user direction.",
-    "inherited_issues_disposition": "Zero stored errors and no new structural issues. Three inherited LoadCombinations links remain unresolved. C005 earlier inputs are retained by user direction, with the difference recorded outside it. Independent wind/wall dimensions and old quantity-sheet sketches are explicit Excel review items; they are not declared reconciled.",
+    "external_analysis_disposition": "Replacement Pier_Fixed report archived exactly. Matching raw XML unavailable; offset correction and full current model-input currency remain unverified. No model rerun or structural adequacy approval. Acceptance limited to geometry/source records, user-directed wind-width linkage and reference repairs.",
+    "inherited_issues_disposition": "All three inherited broken links repaired with verified existing targets; zero stored errors and structural issues. C005 remains byte-identical by user direction. Historical cap sketches labeled. Separate wall/fin quantities and deferred steel/design checks remain explicitly outside acceptance.",
     "evidence_files": [
       {
-        "path": "evidence/C005-preservation.json",
-        "sha256": "6d90da4cb0f6a9241f69d07af424ce7772cac7b9e5e75761aeddb2e1ef2a4071"
+        "path": "evidence/change-log.json",
+        "sha256": "3002ee332c1247ac92c1f2962ba956457c9c48056d732aa644747c0a3aa96a5e"
       },
       {
         "path": "evidence/final-review.md",
-        "sha256": "f06548f740c731e7337272effc612711a04840dba4a672a86c58fa4508756323"
+        "sha256": "bfdc7cf1211cb5b5c46cf6e2e47a14c45d1902bb477efb19d731124304f6d605"
       },
       {
         "path": "evidence/integration-check.json",
-        "sha256": "74d007034108c73c6b25bba8117d25d5d9a90b2d1e08fdaf3399bcc36135b5da"
+        "sha256": "88d4c3bda3c6b6023225e03068f4d20d52234e320b18337448a35b30db1bc018"
       },
       {
-        "path": "evidence/native-cap-quantity.png",
-        "sha256": "7e33597d77679821b915b5c73d8f8da148b174988ae90077133ed23726f73968"
+        "path": "evidence/native-decisions-final.png",
+        "sha256": "5751dbbafa4824dcad7d770ebca080df2bf03aa2528d2b0f688671d0eafd611c"
       },
       {
-        "path": "evidence/native-geometry-calculations.png",
-        "sha256": "4aef442683b42ee05e4fa976dd4610f52616d2537473c5a08d36e27c5e543d27"
+        "path": "evidence/native-foundation-final.png",
+        "sha256": "410f71d73ef60b32446c52a778f64e211fa93fa203f95a8ed54783afdfece46f"
       },
       {
-        "path": "evidence/native-source-reference.png",
-        "sha256": "c58ded0f3ef17f9974a86fcd894e86f7cafc2232a67440ae655a4f482e1e5258"
+        "path": "evidence/native-index-final.png",
+        "sha256": "9223e3dc1768b20014ad05e30bd0497fce8bb67c42c20bc3a822273ba60d43c1"
       },
       {
-        "path": "evidence/native-user-direction.png",
-        "sha256": "acf08088d6d4932c2a7fe8e128ff70340e63c6fa84be3200927fa8c065bc87cb"
+        "path": "evidence/native-quantity-final.png",
+        "sha256": "3e548ce1ecc45b5f5692ddb0711347d4e6b0933946753a38fc522b4357052fbb"
+      },
+      {
+        "path": "evidence/native-reference-final.png",
+        "sha256": "0c61914b64c4a226e0cb2ffbe192247f3be6c3726fb9d97658d10e6decb90e39"
+      },
+      {
+        "path": "evidence/native-source-final.png",
+        "sha256": "9218bc151bac77a182efde11681295220ef91b6630e8cc211d0b7792329b5b1c"
+      },
+      {
+        "path": "evidence/native-view-bindings.json",
+        "sha256": "6bd3948d7a3b4c3efd5b34fb348433263f186d1e1a48dd38e7dc019ef36537bd"
+      },
+      {
+        "path": "evidence/response-disposition.json",
+        "sha256": "631b45fce2915468892b606edc581181824b2b26ffb37b1f629673647bbdadf8"
+      },
+      {
+        "path": "evidence/revision01-native-wind-geometry.png",
+        "sha256": "d3aa5040ada57cc796cff1e133a95c806bc46c4005f36e279da1fe9b8ae8fe34"
+      },
+      {
+        "path": "evidence/revision01-native-wind-handoff.png",
+        "sha256": "9200e457383a108049cd3a647c8a2e529d303d4f72a1fd36094b4c26eb91aa06"
       },
       {
         "path": "evidence/source-checks.json",
-        "sha256": "10d3fb4c08c88aa3bfcc943deb641519d67bdb706cebaf365f1e72fb720f34f6"
-      },
-      {
-        "path": "evidence/workbook-validation.json",
-        "sha256": "e0fe036231849d8c0a8f88fdb0d4ecae7beb2886ec9f00f1c97d610a4ac3d1ab"
+        "sha256": "d29140e0b4d15019e00868a9b9cd8888f74a4d70f90407bcbb879f8d0669dc90"
       }
     ]
   },
-  "history": "workflow/history/829f5450a34c76bee03ebbce06a389de76883ccaa8007b5e9bb50b17ec83de33"
+  "history": "workflow/history/8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351"
 }

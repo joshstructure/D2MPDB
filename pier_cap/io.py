@@ -95,6 +95,14 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
         prefix+='ADDED-BAR LAYOUT: independent row spacing/offsets are saved in selected_case.json and longitudinal_bar_positions.csv, not represented by these legacy scalar spacing inputs. Recheck spacing in the notebook.\n\n'
     (path/'blockpad_inputs.txt').write_text(prefix+'\n'.join(input_formula(k,v) for k,v in case['inputs'].items())+'\n',encoding='utf-8')
     (path/'formula_trace.json').write_text(json.dumps(formula_trace(e),indent=2,ensure_ascii=False),encoding='utf-8')
+    if e.lrfd:
+        (path/'lrfd_calculations.json').write_text(json.dumps(e.lrfd,indent=2,ensure_ascii=False,allow_nan=False),encoding='utf-8')
+        for key in ('regions','longitudinal','intervals','inventory','transverse_development','faces'):
+            rows=e.lrfd[key]
+            with (path/('lrfd_'+key+'.csv')).open('w',newline='',encoding='utf-8-sig') as f:
+                if rows:
+                    writer=csv.DictWriter(f,fieldnames=list(rows[0]))
+                    writer.writeheader();writer.writerows(rows)
     if case['analysis'].get('xml_audit',{}).get('end_records'):
         from .force_diagrams import cap_force_figure,diagram_notice
         import html
@@ -112,7 +120,7 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
         'limitations':'Sectional checks only. Service III/fatigue readiness, D-regions, hook development/cutoffs, end anchorage, pile-head hoops and full code/detail review remain explicit. Steel includes drawn span-hook bends/tails; excludes laps, end anchorage, hoop bends and waste. Hoop quantity uses tighter spacing over the full cap; stationing is unresolved.',
         'case_sha256':hashlib.sha256((path/'selected_case.json').read_bytes()).hexdigest()}
     if actual_transverse(case):
-        manifest['limitations']='Actual station schedule and entered bar geometry are exported. Weight includes U bends/tails and closed hoop outlines, but excludes hoop closure extensions, laps and waste. Actual adjacent-station shear is conditional on developed legs and verified force zones. U-bars have no closed-hoop torsion credit. Reference equations are labeled separately. Anchorage, D-regions and full 3D congestion remain review items.'
+        manifest['limitations']='Actual-cage LRFD working is in lrfd_calculations.json and lrfd_*.csv. Unknown load paths get no direct-loading exception. Numerical capacity remains pending where anchorage or source data is unresolved; consult the check register. Weight excludes hoop closure extensions, laps and waste. U-bars receive no closed-path torsion credit. End zones, cutoffs, D-regions and full 3D congestion retain explicit review statuses.'
     if search_result:
         write_case(search_result.base_case,path/'search_base_case.json')
         manifest['search']={k:getattr(search_result,k) for k in ('config','total','evaluated','passed','elapsed','exhaustive','rejection_counts','force_mode')}

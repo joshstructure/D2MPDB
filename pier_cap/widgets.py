@@ -81,9 +81,13 @@ class CapNotebook:
         self.steel_readouts={};self.added_steel=AddedSteelPanel(self)
         self.input_tabs=self._inputs()
         self.transverse_panel=TransversePanel(self)
+        from .lrfd_views import LRFDPanel
+        self.lrfd_panel=LRFDPanel(self)
         self.force_diagrams=ForceDiagramPanel()
         self.plot_tabs=Tab(children=[self.cage,self.results,W.VBox([self.register],layout=W.Layout(max_height='850px',overflow='auto')),W.VBox([self.trace],layout=W.Layout(max_height='750px',overflow='auto')),self.force_diagrams.ui,self.dimensions],layout=W.Layout(width='100%',min_width='0',flex='0 0 auto'))
         for i,title in enumerate(['Live cage','Plots','D/C checks','Equations','Force diagrams','Dimensions']):self.plot_tabs.set_title(i,title)
+        self.plot_tabs.children=(*self.plot_tabs.children,self.lrfd_panel.ui)
+        self.plot_tabs.set_title(6,'LRFD regions & checks')
         self.input_panel=W.VBox([W.HTML('<h3>Cap inputs · steel, geometry, loads and factors</h3>'),self.input_tabs],
             layout=W.Layout(width='100%',min_width='0',flex='0 0 auto'))
         self.input_panel.add_class('cap-section-inputs')
@@ -216,8 +220,12 @@ class CapNotebook:
             self.transverse_panel.zone_scroll.layout.display='none'
             self.transverse_panel.detail_area.layout.display='none'
             self.transverse_panel.zone_notice.value='<p>Correct the input error above to restore zone controls and drawings. General inputs remain available below.</p>'
-            self.metrics.value='';self.cage.children=[self.input_panel,self.transverse_panel.ui];self.results.children=[];self.dimensions.children=[];self.register.value='';self.trace.value='';return
+            self.metrics.value='';self.cage.children=[self.input_panel,self.transverse_panel.ui];self.results.children=[];self.dimensions.children=[];self.register.value='';self.trace.value='';self.lrfd_panel.result.value='Checks unavailable; correct the input error.';return
         self.current=e
+        self.lrfd_panel.refresh(e)
+        for name in ('beta_v','theta','alpha_v','Ao_factor'):
+            self.controls[name].disabled=actual_transverse(self.case)
+            self.controls[name].tooltip=('Actual-cage calculations derive this value from the LRFD method and entered geometry; see LRFD regions & checks.' if actual_transverse(self.case) else input_tooltip(name))
         for key,value in steel_feedback(e).items():self.steel_readouts[key].value=value
         self.transverse_panel.sync_zones(e)
         self.force_diagrams.refresh(self.case,evaluation=e)
@@ -248,7 +256,8 @@ class CapNotebook:
         self.figures=list(self.views.plots.values())
         self.register.value=checks_html(e)
         rows=''.join(f'<tr><td>{html.escape(t["name"])}</td><td>{html.escape(t["formula"])}</td><td>{html.escape(str(t["value"]))}</td></tr>' for t in formula_trace(e))
-        self.trace.value=('<p><b>Actual transverse layout:</b> this equation table retains the uniform closed-hoop reference. The D/C tab separately lists checks at actual adjacent stations. Open U-bars receive no closed-hoop torsion credit.</p>' if actual_transverse(self.case) else '')+'<p>Live equations use independent pile and between-pile reinforcement.</p><table class="cap-table">'+table_caption('live_equations')+'<tr><th>Name</th><th>Equation</th><th>Value</th></tr>'+rows+'</table>'
+        table='<table class="cap-table">'+table_caption('live_equations')+'<tr><th>Name</th><th>Equation</th><th>Value</th></tr>'+rows+'</table>'
+        self.trace.value=('<p><b>Active actual-cage equations and numerical working are in LRFD regions &amp; checks.</b> The inherited equation archive below includes superseded uniform-cage values and is not the actual-cage check register.</p><details><summary>Inherited sectional equation archive</summary>'+table+'</details>' if actual_transverse(self.case) else '<p>Live equations use independent pile and between-pile reinforcement.</p>'+table)
 
     def refresh_sections(self,*,preserve_view=True):
         """Inspect a run using the current calculation; no full-case redraw."""
@@ -285,6 +294,7 @@ class CapNotebook:
             self.aggregate_confirmed.value=case['screening']['aggregate_confirmed']
             self.cap_type.value=case.get('cap_type','Pier pile cap')
             self.transverse_panel.sync(reset_starter=True)
+            self.lrfd_panel.load()
             self.added_steel.sync()
             self.pile_appearance.sync()
         finally:self.busy=False
@@ -606,6 +616,7 @@ class CapNotebook:
         self.pile_review.close()
         self.force_diagrams.close()
         self.transverse_panel.close()
+        self.lrfd_panel.close()
         self.views.close()
         self._close_alternative_plot()
         self.case_listeners.clear()

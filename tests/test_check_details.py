@@ -70,8 +70,9 @@ class CheckDetailsTests(unittest.TestCase):
         high_grade=evaluate(set_inputs(default_case(),fy=75))
         self.assertIn('Applicability gate FAIL',find(high_grade,'Chk_I_N').basis)
         actual=default_case();actual['transverse_detail']=starting_zone_detail(base,5,8)
-        reference=find(evaluate(actual),'Chk_spacing_G')
-        self.assertEqual(reference.ratio,'N/A');self.assertFalse(reference.components)
+        calculated=find(evaluate(actual),'Chk_spacing_G')
+        self.assertIsInstance(calculated.ratio,(int,float))
+        self.assertNotEqual(calculated.status,'REFERENCE')
 
     def test_html_plot_report_and_csv_share_current_details(self):
         case=set_inputs(default_case(),Manual_spacing=True,SP_detail_N=30);e=evaluate(case)
