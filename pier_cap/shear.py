@@ -6,7 +6,7 @@ arguments in kip-ft. No resistance factor enters the strain calculation.
 import math
 from .axial import NUMERICAL_ZERO_KIP
 
-CALCULATION_VERSION = 'signed-concurrent-lrfd-2024-v1'
+CALCULATION_VERSION = 'signed-concurrent-lrfd-2024-v3-numerical-locations'
 
 
 def compression_flange(e, action, compression_steel):

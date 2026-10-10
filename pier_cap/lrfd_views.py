@@ -16,6 +16,19 @@ def working_html(e,*,full=False):
     p=e.case['inputs'];s=d['settings']
     out=['<section class="lrfd-working"><h3>Actual-cage LRFD calculations · 10th edition</h3>',
          '<p>'+escape(d['source_notice'])+' Stations are inches from the left cap end. Unknown load paths retain the full interaction check. These classifications are for longitudinal reinforcement; they do not exempt shear, anchorage or D-region design.</p>']
+    summary=d.get('search_summary',{})
+    if summary:
+        out.append('<h4>Controlling locations</h4><p>'
+            f'{summary["algebraic_segments"]} segments solved algebraically; '
+            f'{summary["numerical_segments"]} segments solved numerically at transitions and interior peaks; '
+            f'{summary["fallback_segments"]} segments require the adaptive sweep fallback; '
+            f'{summary["diagnostic_segments"]} segments have unresolved force data. '
+            f'{summary["retained_results"]} station/combination results are retained from '
+            f'{summary["section_evaluations"]} section evaluations. '
+            'The solutions check boundaries, both sides of reinforcement changes and interior D/C peaks. '
+            'Numerical solutions use independent local checks; unresolved models use the sweep. '
+            'Trial evaluations validate the solution and are not all retained as rows. '
+            'Repeated locations in different combinations are separate results.</p>')
     out.append(_table(['Input','Value / basis'],[
         ['Bearing loading',s['bearing_loading']],['Pile connection',s['pile_connection']],
         ['Load-path evidence',s['load_path_basis'] or 'Not recorded'],['Individual pile overrides',s['support_overrides']],
@@ -89,8 +102,8 @@ def working_html(e,*,full=False):
         ['Interval','x1','x2','Av (in²)','s (in)','Vu (kip)','β','θ (deg)','Vc (kip)','Vs (kip)','Vr governing (kip)','Vr min for plot (kip)','Shear D/C','Av/s req','2At/s req','Torsion D/C','Status','Governing segment'],
         [[r['id'],r['left_in'],r['right_in'],r['av_in2'],r['pitch_in'],r['vu'],r['beta'],r['theta'],r['vc'],r['vs'],r['vr_governing'],r['vr'],r['ratio'],r['av_required_rate'],2*r['at_required_rate'],r['tor_ratio'],'FAIL' if r['ratio']>1 else 'PENDING' if r['pending'] else 'PASS',r['governing_segment']] for r in d['intervals']])+'</details>')
     out.append('<details><summary>Longitudinal tension working · every analyzed segment</summary>'+_table(
-        ['Location / combination','Region','M (kip-ft)','V (kip)','Signed Nu (kip)','T (kip-ft)','θ calculated / simplified','ε (None = not required)','Shear method','Vs credited (kip)','As developed (in²)','Full F (kip)','Adopted F (kip)','Capacity (kip)','D/C','Treatment'],
-        [[r['id'],r['group'],r['moment'],r['vu'],r['nu'],r['tu'],r['long_theta'],r['epsilon'],r['method'],r['vs_credited_kip'],r['steel_area_in2'],r['full_tension_kip'],r['required_tension_kip'],r['capacity_kip'],r['ratio'],r['classification']] for r in d['longitudinal']])+'</details>')
+        ['Location / combination','Location selected because','Region','M (kip-ft)','V (kip)','Signed Nu (kip)','T (kip-ft)','θ calculated / simplified','ε (None = not required)','Shear method','Vs credited (kip)','As developed (in²)','Full F (kip)','Adopted F (kip)','Capacity (kip)','D/C','Treatment'],
+        [[r['id'],r.get('station_reason',r['search'].get('method','adaptive search')),r['group'],r['moment'],r['vu'],r['nu'],r['tu'],r['long_theta'],r['epsilon'],r['method'],r['vs_credited_kip'],r['steel_area_in2'],r['full_tension_kip'],r['required_tension_kip'],r['capacity_kip'],r['ratio'],r['classification']] for r in d['longitudinal']])+'</details>')
     out.append('<details><summary>Bar development operands</summary>'+_table(
         ['Bar','Kind','Span','#','Across cap (in)','Above bottom (in)','cb (in)','Fh (kip)','Basic ld (in)','λrl','λcf','λrc','Required (in)','Left end','Right end'],
         [[r['id'],r['kind'],f'P{r["span"]}–P{r["span"]+1}' if r['additional'] else 'Continuous',r['bar'],r['x'],r['y'],r['cb_in'],r['fh'],r['basic_in'],r['location_factor'],r['coating_factor'],r['confinement_factor'],r['required_in'],r['left_in'],r['right_in']] for r in d['inventory']])+'</details>')

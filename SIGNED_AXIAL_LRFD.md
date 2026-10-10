@@ -143,16 +143,55 @@ Minimum-steel eligibility conservatively requires both the adjacent-interval
 nominal Av/s and the intersected-window rate to meet the minimum. A locally
 dense window therefore cannot override a sparse adjacent interval.
 
-Within each smooth input interval, the search starts at at most 0.5 in spacing,
+For verified constant-angle, no-investigated-torsion segments, station selection
+is algebraic. The source defines quadratic M and linear V/N; bar geometry defines
+piecewise linear developed As. Every force zero, straight-bar end, development
+transition (including the midpoint of overlapping end-development zones), and
+45-degree transverse-window entry/exit splits the calculation. Both sides are
+checked. Saturation of developed Vs credit, direct-demand caps and the capacity
+floor introduce additional exact branch boundaries. On each remaining piece,
+longitudinal D/C is a quadratic divided by a linear polynomial; its stationary
+points solve D'C - DC' = 0. Other utilization objectives are constant or linear.
+Only actual section evaluations determine reported values. Independent interior
+comparisons with the existing evaluator reject an inconsistent algebraic model.
+Linear axial force must satisfy simplified eligibility throughout; endpoint
+checks certify the convex torsion-investigation expression throughout. Any
+unsupported or inconsistent algebraic branch proceeds to the numerical solver.
+
+For variable-angle and torsion branches, signed switch margins locate cracking,
+torsion investigation, minimum steel, strain/domain, layer qualification, stress
+limits and demand/capacity transitions. Moving-window edge roots identify each
+stirrup entry/exit. Polynomial extrema expose paired crossings even when the
+endpoint classifications agree. The solver brackets roots with actual section
+values and retains the transition and both sides. Between transitions, degree-4
+Chebyshev models locate stationary points for longitudinal, shear, torsion,
+minimum steel, inverse resistance, required transverse steel and strain.
+Five model nodes and four independent interlaced nodes validate each local
+piece; actual section evaluations also check each predicted stationary point.
+The local normalized error limit is one quarter of the 0.0002 D/C tolerance.
+Failed pieces subdivide locally, without a length-based grid. Exhausted depth,
+evaluation/transition budgets or nonconvergence trigger the retained sweep;
+the fallback records the attempted solution and reason. Nonfinite calculations
+remain unresolved. Only actual section values are reported. This numerical
+validation is not a mathematical global-error certificate.
+
+The retained adaptive fallback starts at at most 0.5 in spacing,
 refines at least twice (at most 0.125 in), requires two successive relative
 D/C-envelope agreements within 0.0002, and resolves changing window/branch
 events to 0.000001 in. Local interior peaks are polished within brackets.
 Separate objectives include shear, longitudinal, torsion, minimum steel and
 minimum resistance. The trace retains each objective's controller, endpoints,
 branch representatives and event sides, with counts and convergence metadata.
-Nonconvergence is pending. Regression testing compares an interior controller
-against an independent 0.01-in scan. This is numerical convergence evidence,
-not a mathematical proof for arbitrary unsupported force functions.
+Nonconvergence is pending. Algebraic candidates are tested against independent
+0.01-in scans for interior controllers, hook cutoffs, overlapping development
+zones, direct caps, both moment signs and unanchored stirrups. Numerical branches
+are compared with independent 0.01-in scans and the retained dense solver for
+torsion thresholds, axial sign changes, sparse windows, partial development,
+hook cutoffs, narrow paired cracking transitions and invalid strain. Full imported
+cage comparisons also check group/interval envelopes and check statuses.
+Fallback convergence is not a proof for arbitrary unsupported force functions.
+The calculation records both the number of section evaluations and the smaller
+set of retained station/combination results, separately by solution method.
 
 The same theta controls Vc/Vs, crack length, actual intersected legs and
 5.7.3.5 longitudinal demand. Only developed transverse steel may reduce that

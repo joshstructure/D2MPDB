@@ -530,7 +530,12 @@ def actual_calculations(e):
     dev={r['run']:r for r in development}
     unresolved={name:_anchorage_reason(row) for name,row in dev.items() if row['pending'] or row['ratio']>1+1e-8}
     physical=scheduled_bars(e.case);runs={r['id']:r for r in e.case['transverse_detail']['runs']}
-    rows=[];longitudinal=[]
+    rows=[];longitudinal=[];searches=[]
+    audit=e.case['analysis'].get('xml_audit',{})
+    origin=min(r['x_in'] for r in audit['end_records']) if members else 0.
+    location_cuts={x-origin for x in audit.get('bearing_stations_in',[])}
+    location_cuts.update(x-origin+offset for x in audit.get('pile_centers_in',[])
+                         for offset in (-p['D_pile']/2,0.,p['D_pile']/2))
     for first,last in zip(physical,physical[1:]):
         left,right=first['station_in'],last['station_in'];pitch=right-left
         size=min(first['bar'],last['bar']);av=2*BAR_AREA[size];rate=av/max(pitch,1e-9)
@@ -552,11 +557,12 @@ def actual_calculations(e):
             lo=max(left,m['left']);hi=min(right,m['right'])
             cuts={lo,hi}
             if m['combo']!='envelope':
+                cuts.update(x for x in location_cuts if lo<x<hi)
                 cuts.update(x for x in member_roots(m) if lo<x<hi)
                 cuts.update(x for x in member_roots(m,'shear') if lo<x<hi)
                 cuts.update(r['left_in'] for r in regions if r['combination']==m['combo'] and lo<r['left_in']<hi)
             for b in inventory:
-                cuts.update(x for x in (b['straight_left_in'],b['straight_right_in'],b['left_in']+b['required_in'],b['right_in']-b['required_in']) if lo<x<hi)
+                cuts.update(x for x in (b['straight_left_in'],b['straight_right_in'],b['left_in']+b['required_in'],b['right_in']-b['required_in'],(b['left_in']+b['right_in'])/2) if lo<x<hi)
             cuts=sorted(cuts)
             for a,b in zip(cuts,cuts[1:]):
                 if b-a<1e-8:continue
@@ -572,13 +578,19 @@ def actual_calculations(e):
                 # the nonlinear strain/theta calculation.
                 for action_index in range(2 if m['combo']=='envelope' else 1):
                     if m['combo']=='envelope':
-                        search_info=dict(converged=False,samples=3,refinements=0,
+                        search_info=dict(method='unresolved diagnostic',converged=False,samples=3,refinements=0,
                             reason='Unresolved concurrent axial/source data; three diagnostic locations only')
                         points=[dict(at(x)[action_index],search=search_info) for x in (a,(a+b)/2,b)]
-                    else:points,search_info=critical_search(lambda x:at(x)[action_index],a,b,physical)
+                    else:
+                        region=next((r for r in regions if r['combination']==m['combo'] and r['left_in']<=(a+b)/2<=r['right_in']),None)
+                        points,search_info=critical_search(lambda x:at(x)[action_index],a,b,physical,
+                            algebraic_context=dict(e=e,m=m,inventory=inventory,dev=dev,rate=rate,region=region))
+                    searches.append(search_info)
                     for result in points:
+                        # Switch margins are solver workspace, not report or
+                        # export operands; retain only the section calculation.
+                        result.pop('search_margins',None)
                         x=result['station_in'];face=result['face']
-                        origin=min(r['x_in'] for r in e.case['analysis']['xml_audit']['end_records']) if members else 0.
                         near_pile=any(abs(x-(v-origin))<=p['D_pile']/2 for v in e.case['analysis'].get('xml_audit',{}).get('pile_centers_in',[]))
                         group='N' if face=='top' else 'P' if near_pile else 'B'
                         ident=f'{first["id"]}/{last["id"]} · C{m["combo"]} E{m["element"]} · x={x:.6f} in · {face}'
@@ -676,13 +688,27 @@ def actual_calculations(e):
     strain=max((r['epsilon'] or 0. for r in longitudinal),default=0.)
     checks.append(_check('Status_lrfd_strain','General shear procedure strain range','N/A',
         f'5.7.3.4.2: maximum calculated general-procedure strain {strain:.6g}. No strain clipping; values above 0.006 have no adopted resistance. Simplified epsilon is not required.',pending=strain>.006+1e-12))
-    checks.append(_check('Status_lrfd_search','Concurrent station search convergence','N/A',
-        'Member ends, moment roots/extrema, development transitions and moving transverse-window/branch events; D/C refinement tolerance 0.0002, event tolerance 0.000001 in.',
+    search_summary=dict(segments=len(searches),
+        algebraic_segments=sum(r['method']=='algebraic critical locations' for r in searches),
+        numerical_segments=sum(r['method']=='numerical critical locations' for r in searches),
+        fallback_segments=sum(r['method']=='adaptive fallback' for r in searches),
+        diagnostic_segments=sum(r['method']=='unresolved diagnostic' for r in searches),
+        section_evaluations=sum(r['samples'] for r in searches),retained_results=len(longitudinal),
+        unique_stations=len({r['station_in'] for r in longitudinal}),
+        unresolved_segments=sum(not r['converged'] for r in searches))
+    checks.append(_check('Status_lrfd_search','Controlling station solution / convergence','N/A',
+        f'{search_summary["algebraic_segments"]} algebraic segments; {search_summary["numerical_segments"]} numerical critical-location segments; '
+        f'{search_summary["fallback_segments"]} adaptive fallback segments; '
+        f'{search_summary["diagnostic_segments"]} unresolved diagnostic segments. '
+        f'{search_summary["section_evaluations"]} section evaluations; {search_summary["retained_results"]} retained station/combination results. '
+        'Algebraic branches solve D\u2032C - DC\u2032 = 0 and check both sides of physical, force and development boundaries. '
+        'Variable-angle/torsion branches solve transition roots and interior peaks with independent local validation. '
+        'A failed numerical model uses the adaptive sweep. D/C tolerance 0.0002, event tolerance 0.000001 in.',
         pending=any(not r['search']['converged'] for r in longitudinal)))
     from .shear import CALCULATION_VERSION
     return dict(code=CODE,owner_code='FDOT Structures Design Guidelines, January 2026, 4.1.4A–C',
         calculation_version=CALCULATION_VERSION,
-        engine_sha256=sha256(b''.join(Path(__file__).with_name(name).read_bytes() for name in ('lrfd_checks.py','shear.py','section_search.py','axial.py','end_grid.py','end_grid_alignment.py'))).hexdigest(),settings=s,source_notice=notice,regions=regions,inventory=inventory,
+        engine_sha256=sha256(b''.join(Path(__file__).with_name(name).read_bytes() for name in ('lrfd_checks.py','shear.py','section_search.py','critical_locations.py','numerical_locations.py','axial.py','end_grid.py','end_grid_alignment.py'))).hexdigest(),settings=s,source_notice=notice,regions=regions,inventory=inventory,search_summary=search_summary,
         transverse_development=development,intervals=rows,longitudinal=longitudinal,faces=faces),checks
 
 

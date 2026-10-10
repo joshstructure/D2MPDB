@@ -1,4 +1,4 @@
-"""Concurrent section evaluation and convergence-controlled station search."""
+"""Concurrent section evaluation and event-based critical-location search."""
 import math
 
 
@@ -48,7 +48,39 @@ def section(e, action, x, inventory, physical, dev, rate, ao, ph, closed, region
     av=max(params['minimum_rate'],max(0,action['vu']/p['phi_v']-params['vc'])/(p['fy']*max(dv*params['cot'],1e-9)))
     at=action['tu']*12/(2*ao*p['phi_v']*p['fy']*max(params['cot'],1e-9)) if params['torsion_required'] else 0.
     tor=(av+2*at)/max(min(rate,effective_rate),1e-9) if params['torsion_required'] and closed else 2. if params['torsion_required'] else 0.
+    # Signed switch margins let the location solver detect two crossings even
+    # when the classifications at both ends of a piece are the same.
+    from .axial import NUMERICAL_ZERO_KIP
+    crack=general['compression_face']
+    margins=dict(axial=action['nu']-NUMERICAL_ZERO_KIP,
+        moment_sign=action['moment'],
+        shear_sign=action.get('shear',action['vu']),
+        torsion=action['tu']**2-general['threshold_kip_ft']**2,
+        moment_floor=abs(action['moment'])*12-action['vu']*dv,
+        cracking=crack['force_kip']-crack['cracking_force_kip'],
+        strain_zero=general['epsilon_base'] or 0.,
+        strain_limit=(general['epsilon'] or 0.)-.006-1e-12,
+        angle_limit=general['theta']-90.,
+        capacity_floor=capacity-1e-9,
+        minimum_window=effective_rate+1e-12-params['minimum_rate'],
+        shear_cap=params['vc']+params['vs']-params['nominal_limit'],
+        developed_credit=developed['area_in2']*min(p['fy'],100.)-action['vu']/p['phi_v'],
+        tension_zero=moment_tension+axial_tension+diagonal,
+        pitch_stress=general['veff']/(p['phi_v']*p['b']*dv)-.125*p['fc'],
+        across_low=action['vu']/(p['phi_v']*p['b']*dv)-.08*math.sqrt(p['fc']),
+        across_high=action['vu']/(p['phi_v']*p['b']*dv)-.16*math.sqrt(p['fc']))
+    if region and region['qualifies']:
+        flexural_cap=region['peak_moment_kip_ft']*12/(p['phi_f']*dv)
+        margins.update(direct_steel=main*p['fy']+1e-8-flexural_cap,direct_demand=full-flexural_cap)
+    layers={}
+    for bar in tension+compression:
+        y=round(bar['y'],8);layers[y]=layers.get(y,0.)+bar['credited_area']
+    ys=sorted({0.,p['h'],*layers})
+    gaps={min(dv,b-a) for i,a in enumerate(ys) for b in ys[i+1:]}
+    for y,steel in layers.items():
+        for sx in gaps:margins[f'layer:{y}:{sx}']=steel+1e-12-.003*p['b']*sx
     return dict(**action,**params,station_in=x,face=face,steel_area_in2=area,
+        search_margins=margins,
         general_window_length_in=general_length,window=window,effective_rate=effective_rate,
         developed_window_area_in2=developed['area_in2'],vs_credited_kip=credit,
         long_theta=params['theta'],full_tension_kip=full,required_tension_kip=demand,
@@ -66,19 +98,48 @@ def section(e, action, x, inventory, physical, dev, rate, ao, ph, closed, region
 
 def signature(r):
     return (r['method'],r['minimum_transverse'],r['compression_face']['cracked'],r['sx_in'],
-        r['torsion_required'],r['valid'],r['face'],tuple(r['window']['bar_ids']))
+        r['torsion_required'],r['valid'],r['face'],tuple(r['window']['bar_ids']),
+        r.get('exception_applied'),r.get('pitch_limit'),r.get('across_limit'),
+        tuple(r.get('applicability_warnings',())))
 
 
-def critical_search(evaluate, left, right, physical, *, tolerance=2e-4, max_levels=7):
-    """Refined concurrent D/C envelopes with explicit moving-window events.
+def critical_search(evaluate, left, right, physical, *, tolerance=2e-4, max_levels=7, algebraic_context=None):
+    """Solve exact branches, then numerical event/peak locations; sweep on failure.
 
-    Caller splits at all moment extrema/zeros, member ends and development
-    transitions. Start with <=0.5 in spacing; require at least two refinements
-    (<=0.125 in) and two successive envelope agreements. Track four independent
-    D/C objectives, not force envelopes. Bracket branch/window events and retain
-    both sides to 1e-6 in. Nonconvergence is a prerequisite, never a PASS.
+    Caller splits at member, load, moment and reinforcement/development bounds.
+    The independent dense_search remains callable for validation. It runs in
+    production only if the local numerical models fail their checks or budget.
     """
-    cache={};fields=('ratio','shear_ratio','minimum_ratio','torsion_ratio','inverse_resistance')
+    cache={}
+    def at(x):
+        x=max(left,min(right,x))
+        if x not in cache:cache[x]=evaluate(x)
+        return cache[x]
+    if algebraic_context is not None and max_levels>=2:
+        from .critical_locations import algebraic_search
+        exact=algebraic_search(left=left,right=right,physical=physical,evaluate=at,**algebraic_context)
+        if exact is not None:
+            exact[1]['samples']=len(cache)
+            return exact
+    from .numerical_locations import numerical_search
+    points,meta=numerical_search(at,left,right,physical,tolerance=tolerance,max_levels=max_levels)
+    if meta['converged']:
+        meta['samples']=len(cache)
+        return points,meta
+    points,fallback=dense_search(evaluate,left,right,physical,tolerance=tolerance,
+        max_levels=max_levels,_cache=cache)
+    fallback['numerical_attempt']=meta
+    fallback['fallback_reason']='; '.join(dict.fromkeys(r[2] for r in meta['unresolved_intervals']))
+    if any('Nonfinite' in r[2] for r in meta['unresolved_intervals']):fallback['converged']=False
+    return points,fallback
+
+
+def dense_search(evaluate, left, right, physical, *, tolerance=2e-4, max_levels=7, _cache=None):
+    """Independent refined sweep retained as the validation reference/fallback."""
+    cache={} if _cache is None else _cache
+    fields=('ratio','shear_ratio','minimum_ratio','torsion_ratio','inverse_resistance',
+            'av_required_rate','combined_required_rate','epsilon')
+    def value(r,f):return r.get(f) or 0.
     def at(x):
         x=max(left,min(right,x))
         if x not in cache:cache[x]=evaluate(x)
@@ -129,7 +190,7 @@ def critical_search(evaluate, left, right, physical, *, tolerance=2e-4, max_leve
                 m=(a+b)/2;at(m)
                 if signature(at(a))!=signature(at(m)):stack.append((a,m))
                 if signature(at(m))!=signature(at(b)):stack.append((m,b))
-        maxima=[max(r[f] for r in cache.values()) for f in fields]
+        maxima=[max(value(r,f) for r in cache.values()) for f in fields]
         if previous is not None:
             max_change=max(abs(a-b)/max(1,abs(a)) for a,b in zip(maxima,previous))
             stable=stable+1 if max_change<=tolerance else 0
@@ -139,20 +200,21 @@ def critical_search(evaluate, left, right, physical, *, tolerance=2e-4, max_leve
     # is local only; the refined full-span sweep supplies independent brackets.
     for field in fields:
         for i in range(1,len(points)-1):
-            if at(points[i])[field]<=max(at(points[i-1])[field],at(points[i+1])[field]):continue
+            if value(at(points[i]),field)<=max(value(at(points[i-1]),field),value(at(points[i+1]),field)):continue
             lo,hi=points[i-1],points[i+1]
             for _ in range(24):
                 a=hi-(hi-lo)*.61803398875;b=lo+(hi-lo)*.61803398875
-                if at(a)[field]<at(b)[field]:lo=a
+                if value(at(a),field)<value(at(b),field):lo=a
                 else:hi=b
             at((lo+hi)/2)
     retained={left,right}
-    for field in fields:retained.add(max(cache,key=lambda x:cache[x][field]))
+    for field in fields:retained.add(max(cache,key=lambda x:value(cache[x],field)))
     # One trace per distinct branch, plus both sides of all resolved events.
     by_branch={}
     for x,r in cache.items():by_branch.setdefault(signature(r),x)
     retained.update(by_branch.values());retained.update(event_points)
-    meta=dict(converged=converged,samples=len(cache),refinements=level,
+    meta=dict(method='adaptive fallback',converged=converged,samples=len(cache),refinements=level,
+        retained_stations=len(retained),
         final_spacing_in=(right-left)/n,relative_dc_tolerance=tolerance,
         last_relative_change=max_change,event_tolerance_in=1e-6,event_count=len(event_points))
     return [dict(at(x),search=meta) for x in sorted(retained)],meta
