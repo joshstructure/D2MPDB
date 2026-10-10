@@ -382,7 +382,8 @@ def sectional_checks_pass(e):
     """Numerical/detail screens only; analysis provenance is a separate gate."""
     return not any('FAIL' in c.status for c in e.checks) and not e.issues
 
-def evaluate(case=None,fast=False):
+def geometry_evaluation(case=None,fast=False):
+    """Validated drawing geometry with no completed calculation/check claims."""
     case=upgrade_case(default_case() if case is None else case);validate_case(case)
     stale=analysis_match(case);overrides={}
     for n,v in case['inputs'].items():
@@ -407,6 +408,14 @@ def evaluate(case=None,fast=False):
         spacing_values={'SP_B':maximum,'SP_B_auto':maximum}
         overrides.update({n:v if fast else Q(v,(1,0,0)) for n,v in spacing_values.items()})
         eng=(FAST if fast else FORMULAS).fork(overrides)
+    e=Evaluation(case,eng,[],[],stale,False,'CALCULATING',0,0,layout,spacing_values)
+    e.calculating=True
+    return e
+
+
+def evaluate(case=None,fast=False):
+    e=geometry_evaluation(case,fast)
+    case=e.case;eng=e.engine;layout=e.longitudinal_layout;stale=e.stale
     eng.all()
     checks=[]
     for key,s in SPEC.items():
@@ -416,7 +425,8 @@ def evaluate(case=None,fast=False):
             ratio=ratio.v
         if isinstance(ratio,(float,int)) and not math.isfinite(ratio):raise ValueError('Nonfinite D/C: '+key)
         checks.append(Check(key,s['label'],eng.get(key),ratio,s['basis']))
-    e=Evaluation(case,eng,checks,[],stale,False,'',max((c.ratio for c in checks if isinstance(c.ratio,(float,int))),default=0),0,layout,spacing_values)
+    e.checks=checks;e.calculating=False
+    e.max_dc=max((c.ratio for c in checks if isinstance(c.ratio,(float,int))),default=0)
     for check in checks:
         if check.key.startswith('Chk_long_'):
             region=check.key[-1]

@@ -615,7 +615,7 @@ def actual_calculations(e):
     from .shear import CALCULATION_VERSION
     return dict(code=CODE,owner_code='FDOT Structures Design Guidelines, January 2026, 4.1.4A–C',
         calculation_version=CALCULATION_VERSION,
-        engine_sha256=sha256(b''.join(Path(__file__).with_name(name).read_bytes() for name in ('lrfd_checks.py','shear.py','section_search.py','axial.py','end_grid.py'))).hexdigest(),settings=s,source_notice=notice,regions=regions,inventory=inventory,
+        engine_sha256=sha256(b''.join(Path(__file__).with_name(name).read_bytes() for name in ('lrfd_checks.py','shear.py','section_search.py','axial.py','end_grid.py','end_grid_alignment.py'))).hexdigest(),settings=s,source_notice=notice,regions=regions,inventory=inventory,
         transverse_development=development,intervals=rows,longitudinal=longitudinal,faces=faces),checks
 
 
@@ -665,12 +665,20 @@ _CALCULATION_CACHE={}
 
 
 def cached_calculations(e):
-    """Bounded, input-exact cache; module reload discards all prior engine data."""
+    """Cache sectional work; recalculate face checks from the current end grid."""
     import json
     from .shear import CALCULATION_VERSION
-    key=sha256(json.dumps([CALCULATION_VERSION,id(transverse_development),e.case,e.value('dv'),e.value('Ec','ksi')],
+    # End bars cannot move the longitudinal cage or receive sectional strength
+    # credit. Only the face area/spacing rows depend on their local geometry.
+    sectional_case={k:v for k,v in e.case.items() if k!='end_face_grid'}
+    key=sha256(json.dumps([CALCULATION_VERSION,id(transverse_development),sectional_case,e.value('dv'),e.value('Ec','ksi')],
         sort_keys=True,allow_nan=False).encode()).hexdigest()
     if key not in _CALCULATION_CACHE:
         if len(_CALCULATION_CACHE)>=8:_CALCULATION_CACHE.pop(next(iter(_CALCULATION_CACHE)))
         _CALCULATION_CACHE[key]=actual_calculations(e)
-    return deepcopy(_CALCULATION_CACHE[key])
+    data,checks=deepcopy(_CALCULATION_CACHE[key])
+    faces,face_checks=surface_checks(e)
+    replacements={c.key:c for c in face_checks}
+    data['faces']=faces
+    checks=[replacements.get(c.key,c) for c in checks]
+    return data,checks

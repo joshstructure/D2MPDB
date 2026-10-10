@@ -24,6 +24,9 @@ def case(actual=True):
     c=set_inputs(default_case(),h=36,n_skin=3)
     if actual:c['transverse_detail']=suggested_detail(evaluate(c))
     c['schema_version']=5;c['end_face_grid']=settings(c);c['end_face_grid']['enabled']=True
+    # Preserve the original manually dimensioned example for legacy regressions.
+    for direction in ('horizontal','vertical'):
+        c['end_face_grid'][direction].update(hook_mode='custom',return_in=18.)
     return c
 
 

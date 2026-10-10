@@ -229,8 +229,13 @@ class ForceDiagramPanel:
         # Case edits deep-copy the audit. Object identity would rebuild identical
         # views on every refresh even when their contents have not changed.
         key=json.dumps(audit,sort_keys=True)
-        resistance_key=json.dumps({k:v for k,v in case.items() if k!='analysis'},sort_keys=True)
-        if key == self._key and resistance_key == self._resistance_key and (self.figure is not None or not audit.get('end_records')):return
+        # Local end-face bars have no sectional flexure/shear/torsion credit.
+        # Their detailing edits cannot change a resistance trace.
+        resistance_key=json.dumps({k:v for k,v in case.items() if k not in ('analysis','end_face_grid','schema_version')},sort_keys=True)
+        if key == self._key and resistance_key == self._resistance_key and (self.figure is not None or not audit.get('end_records')):
+            self.output.children=[self.figure] if self.figure is not None else []
+            self.resistance_notice.value=('<p>'+html.escape(self.figure.layout.meta['resistance_notice'])+'</p>') if self.figure is not None else ''
+            return
         same_source=key == self._key
         if not audit.get('end_records'):
             if self.figure is not None:self.figure.close()

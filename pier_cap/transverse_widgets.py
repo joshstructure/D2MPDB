@@ -119,7 +119,8 @@ class RunCard:
         c['split'].disabled=not active or count<2;c['remove'].disabled=False
         c['error'].value=''
         from .steel_feedback import run_feedback
-        self.feedback.value=run_feedback(self.panel.owner.current,run['id']) if active and self.panel.owner.current else '<small>Actual layout inactive.</small>'
+        self.feedback.value=('<small>Calculating…</small>' if getattr(self.panel.owner,'calculating',False) else
+            run_feedback(self.panel.owner.current,run['id']) if active and self.panel.owner.current else '<small>Actual layout inactive.</small>')
 
     def close(self):
         for widget in self.widgets:widget.close()
@@ -258,7 +259,8 @@ class TransversePanel:
             if field=='bar' and 'end_min_clear_in' in run:
                 from .model import BAR_DIAMETER
                 from .detailing import required_clear
-                run['end_min_clear_in']=required_clear(self.owner.current,BAR_DIAMETER[value])
+                from .model import geometry_evaluation
+                run['end_min_clear_in']=required_clear(self.owner.current or geometry_evaluation(self.owner.case),BAR_DIAMETER[value])
             if field=='development_confirmed' and value:
                 run['development_fingerprint']=development_fingerprint(dict(self.owner.case,transverse_detail=detail),run)
             else:run['development_confirmed']=False;run.pop('development_fingerprint',None)

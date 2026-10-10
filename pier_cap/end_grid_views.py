@@ -13,12 +13,13 @@ def add_projection(fig, e, view, *, end=None, row=None, col=None, both_axes_ft=F
         if end and bar['end'] != end: continue
         points = bar['points']; direction = bar['direction']; group = 'end_'+bar['end']+'_'+direction
         projected = view == 'section'
-        label = f'{bar["end"].title()} end · {direction} U · #{bar["bar"]}'
+        label = f'{bar["end"].title()} end · {direction} hooked bar · #{bar["bar"]}'
         if projected: label += ' · projected from end'
         hover = (f'{bar["id"]} · #{bar["bar"]}<br>Return after bend {bar["return_in"]:g} in'
                  f'<br>Inside bend diameter {bar["inside_diameter_in"]:g} in'
                  f'<br>End-face crosspiece station {bar["plane_in"]:.3f} in'
-                 f'<br>Grid c/c {bar["pitch_in"]:.3f} in'+
+                 f'<br>Nominal grid c/c {bar["pitch_in"]:.3f} in; stagger {bar["shift_in"]:+.3f} in'+
+                 f'<br>{escape(bar["placement_note"])}'+
                  ('<br>End-face projection; not reinforcement at this pile/span section' if projected else ''))
         meta=dict(part='end_grid',id=bar['id'],end=bar['end'],direction=direction,bar=bar['bar'],projection=view)
         shared=dict(name=label,legendgroup=group,showlegend=group not in seen,meta=meta,
@@ -74,8 +75,10 @@ def summary_html(e):
             group=[b for b in bars if b['end']==end and b['direction']==direction]
             if group:
                 b=group[0]
-                lines.append(f'{end.title()} {direction}: {len(group)} × #{b["bar"]}, {b["pitch_in"]:.3f} in c/c, '
-                             f'{b["return_in"]:g} in straight returns, {b["inside_diameter_in"]:g} in inside bend')
+                gaps=[v['coordinate_in']-u['coordinate_in'] for u,v in zip(group,group[1:])]
+                pitch=f'{min(gaps):.3f}–{max(gaps):.3f} in actual c/c' if gaps else 'single bar'
+                lines.append(f'{end.title()} {direction}: {len(group)} × #{b["bar"]}, {pitch}, '
+                             f'{b["return_in"]:g} in straight hook tails, {b["inside_diameter_in"]:g} in inside bend; {b["hook_mode"]} hooks')
     return '<p><b>End-face U grids:</b> '+escape('; '.join(lines) or 'No bars entered')+'.<br>'+\
         'Orange = horizontal crosspieces; green = vertical crosspieces. Return legs point into the cap. '+\
         'Dotted overlays on pile/span sections are projections from the ends, not full-length steel. '+\

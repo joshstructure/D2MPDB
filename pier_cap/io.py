@@ -54,7 +54,7 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
         end_bars=end_grid_geometry(e)
         (path/'end_grid_geometry.json').write_text(json.dumps(end_bars,indent=2,ensure_ascii=False),encoding='utf-8')
         with (path/'end_grid_schedule.csv').open('w',newline='',encoding='utf-8-sig') as f:
-            fields=['id','end','direction','bar','diameter','coordinate_in','plane_in','pitch_in','return_in','inside_diameter_in','length_in','fit']
+            fields=['id','end','direction','bar','diameter','coordinate_in','nominal_coordinate_in','shift_in','plane_in','pitch_in','return_in','inside_diameter_in','hook_mode','placement_mode','placement_ok','placement_note','length_in','fit']
             writer=csv.DictWriter(f,fieldnames=fields,extrasaction='ignore');writer.writeheader();writer.writerows(end_bars)
         for end in ('left','right'):
             end_figure(e,end).write_html(path/f'end_grid_{end}.html',include_plotlyjs=True,full_html=True)

@@ -7,7 +7,7 @@ import json
 import ipywidgets as W
 from .plotly_compat import FigureWidget
 from .live_views import LiveViews
-from .model import default_case,upgrade_case,evaluate,INPUTS,GEOMETRY,formula_trace,analysis_match,sectional_checks_pass,bar_positions
+from .model import default_case,upgrade_case,evaluate,geometry_evaluation,INPUTS,GEOMETRY,formula_trace,analysis_match,sectional_checks_pass,bar_positions
 from .optimizer import search,sensitivity_search,SearchConfig,candidate_case,filter_candidates,candidate_dc,candidate_governing,governing_check,DC_SCOPES,same_design_basis
 from .io import export_bundle,export_blockpad
 from .fbmp_widgets import XMLImportPanel
@@ -127,10 +127,15 @@ class CapNotebook:
             self.workbench,
             self.search_panel,self.export_panel,self.message],layout=W.Layout(width='100%'))
         self.ui=W.VBox([self.session_ui,self.pile_review.ui,*self.cap_ui.children],layout=W.Layout(width='100%'))
+        from .live_refresh import LatestRefresh
+        self.calculating=False
+        self.refresh_driver=LatestRefresh(geometry_evaluation,self._calculate_refresh,
+            self._geometry_ready,self._calculation_ready,self._refresh_error)
         self.refresh()
 
     def _plot_tab_changed(self,change):
         self._refresh_auxiliary_view(change['new'])
+        if change['new']==4 and not self.calculating:self.force_diagrams.refresh(self.case,evaluation=self.current)
         # Every plot now occupies the full row; inputs live under the sections.
         figure=self.force_diagrams.figure
         if change['new']==4 and figure is not None:
@@ -209,46 +214,52 @@ class CapNotebook:
     def _notify_case_change(self):
         for callback in self.case_listeners:callback()
 
+    @staticmethod
+    def _calculate_refresh(case):
+        # This worker computes against an isolated case and never edits widgets.
+        e=evaluate(case)
+        return e,side_steel_html(e)
+
+    def _set_calculating(self,value):
+        self.calculating=value
+        for button in (self.run_button,self.case_export_button,self.case_report_button):button.disabled=value
+
     def refresh(self):
         self.source_label.value=source_html(self.case)
         self._refresh_search_force_notice()
         for key in FORCE_LABELS:
             self.controls[key].tooltip=input_tooltip(key,force_basis(self.case,key))
         self.import_notice.value=receipt_html(self.import_receipt,self.case)
-        try:e=evaluate(self.case)
-        except Exception as exc:
-            self._aux_basis.clear()
-            self.force_diagrams.refresh(self.case)
-            self.current=None;self.banner.value=f'<div style="padding:14px;background:#ffe9e7;color:#9d302b"><b>INPUT ERROR</b><br>{html.escape(str(exc))}</div>'
-            for readout in self.steel_readouts.values():readout.value='<small>Checks unavailable · correct the input error.</small>'
-            self.transverse_panel.zone_grid.layout.display='none'
-            self.transverse_panel.zone_scroll.layout.display='none'
-            self.transverse_panel.detail_area.layout.display='none'
-            self.transverse_panel.zone_notice.value='<p>Correct the input error above to restore zone controls and drawings. General inputs remain available below.</p>'
-            self.metrics.value='';self.cage.children=[self.input_panel,self.transverse_panel.ui];self.results.children=[];self.dimensions.children=[];self.register.value='';self.trace.value='';self.lrfd_panel.result.value='Checks unavailable; correct the input error.';return
+        self._set_calculating(True);self.current=None
+        message='<p><b>Calculating…</b> Drawings update first; check results follow.</p>'
+        self.banner.value=message;self.metrics.value=''
+        self.register.value=message;self.trace.value=message;self.lrfd_panel.result.value=message
+        self._aux_basis.clear()
+        self.results.children=[self.views.text('calculating',message)]
+        for readout in self.steel_readouts.values():readout.value='<small>Calculating…</small>'
+        for card in self.transverse_panel._cards.values():card.feedback.value='<small>Calculating…</small>'
+        for key in ('side','clearance','hoop'):
+            if key in self.views.texts:self.views.texts[key].value=message
+        self.force_diagrams.output.layout.display='none'
+        self.force_diagrams.resistance_notice.value=message
+        self.refresh_driver.submit(self.case)
+
+    def _refresh_error(self,exc):
+        self._set_calculating(False)
+        self._aux_basis.clear()
+        self.force_diagrams.output.children=[]
+        self.current=None;self.banner.value=f'<div style="padding:14px;background:#ffe9e7;color:#9d302b"><b>INPUT ERROR</b><br>{html.escape(str(exc))}</div>'
+        for readout in self.steel_readouts.values():readout.value='<small>Checks unavailable · correct the input error.</small>'
+        self.transverse_panel.zone_grid.layout.display='none'
+        self.transverse_panel.zone_scroll.layout.display='none'
+        self.transverse_panel.detail_area.layout.display='none'
+        self.transverse_panel.zone_notice.value='<p>Correct the input error above to restore zone controls and drawings. General inputs remain available below.</p>'
+        self.metrics.value='';self.cage.children=[self.input_panel,self.transverse_panel.ui];self.results.children=[];self.dimensions.children=[];self.register.value='';self.trace.value='';self.lrfd_panel.result.value='Checks unavailable; correct the input error.'
+
+    def _geometry_ready(self,e):
         self.current=e
         self.end_grid.refresh(e)
-        self.lrfd_panel.refresh(e)
-        for name in ('beta_v','theta','alpha_v','Ao_factor'):
-            self.controls[name].disabled=bool(e.lrfd)
-            self.controls[name].tooltip=('Shared sectional calculations derive this value from the LRFD method and entered geometry; see LRFD regions & checks.' if e.lrfd else input_tooltip(name))
-        for key,value in steel_feedback(e).items():self.steel_readouts[key].value=value
         self.transverse_panel.sync_zones(e)
-        self.force_diagrams.refresh(self.case,evaluation=e)
-        self.pile_appearance.sync()
-        trial_section=self._search_force_mode()=='fixed'
-        color='#fff3d9' if e.eligible or (trial_section and sectional_checks_pass(e)) else '#ffe9e7'
-        status='TRIAL CAP SIZE — checks use current forces; changed self-weight and stiffness are not reanalyzed' if trial_section else e.status
-        extra='<br>'.join(html.escape(s) for s in e.issues)
-        self.banner.value=f'<div style="padding:12px;background:{color};border-radius:6px"><b>{html.escape(status)}</b>{"<br>"+extra if extra else ""}<br><small>Sectional calculation only. D-regions, anchorage, pile heads, applicability and final detail review remain open.</small></div>'
-        strength=governing_check(e,'strength');overall=governing_check(e)
-        items=[('Strength D/C',f'{strength.ratio:.3f}'),('All-check utilization',f'{e.max_dc:.3f}'),('Gross steel estimate',f'{e.weight_lb:,.0f} lb'),('Top steel area',f'{e.value("As_N"):.2f} in²'),('Top Service I stress',f'{e.value("fs_I_N"):.2f} ksi'),('Cap length',f'{e.value("L_cap")/12:.3f} ft'),('Nominal end extension',f'{e.value("E_end"):g} in')]
-        metrics='<div style="display:flex;flex-wrap:wrap;gap:10px;margin:12px 0">'+''.join(f'<div style="padding:10px 18px;background:#eaf1f6;border-radius:5px"><small>{k}</small><br><b style="font-size:23px;color:#1f5b91">{v}</b></div>' for k,v in items)+'</div>'
-        metrics+=f'<p title="{html.escape(strength.basis,quote=True)}"><b>Controls strength:</b> {html.escape(controlling_label(strength))}.</p><p title="{html.escape(overall.basis,quote=True)}"><b>Controls all checks:</b> {html.escape(controlling_label(overall))}.<br><small>All-check utilization also includes spacing and minimum/detailing limits. It does not measure a single reserve against increased load.</small></p>'
-        if overall.key in ('Chk_spacing_G','Chk_spacing_L'):
-            zone=overall.key[-1];s=e.value('S_leg');limit=e.value('Sw_'+zone)
-            metrics+=f'<p><b>Across-cap hoop legs:</b> {s:.3f} in / {limit:.3f} in allowed = <b>{s/limit:.4f}</b>. Adding main bars or reducing along-cap hoop spacing leaves this across-cap distance unchanged.</p>'
-        self.metrics.value=metrics
         geometry=tuple((n,self.case['inputs'][n]) for n in (*GEOMETRY,'C_t','C_b','C_s','Pile_embed','C_pile'))
         same_geometry=geometry==self._view_geometry;self._view_geometry=geometry
         def fw(key,factory,**kwargs):return self.views.figure(key,factory,preserve_view=same_geometry,**kwargs)
@@ -265,8 +276,45 @@ class CapNotebook:
                 key='end_grid_'+end
                 if key in self.views.plots:fw(key,lambda end=end:end_figure(e,end))
         footer=('Every transverse station is drawn. Pink U-bars are open downward; the section shows the selected run of that shape, or the first run of that shape. Bend / tail fit and pile conflicts are screened; development, closure and 3D congestion at longitudinal hook ends require review.' if actual_transverse(self.case) else 'Dashed transverse shapes are reference illustrations. Set actual hoops and open-bottom U-bars in the zone controls below the elevation.')
-        self.views.mount(self.cage,[txt('configuration',configuration_html(e)+reinforcement_summary_html(e)),txt('side',side_steel_html(e)),self.cage_3d_widget,self.views.plots['sectionB'],self.views.plots['sectionP'],self.input_panel,fw('plan',lambda:reinforcement_plan_figure(e)),fw('elevation',lambda:elevation_figure(e,zone_labels=True)),self.transverse_panel.ui,txt('hoop',hoop_explanation_html(e)),
-            *end_views,*([fw('reference_hoop',lambda:hoop_figure(e))] if not actual_transverse(self.case) else []),txt('clearance',clear_spacing_html(e)),txt('footer','<small>'+footer+' Pile lengths below the cap are schematic. The 3D cage uses bar centerlines; displayed line thickness is for visibility.</small>')])
+        self.views.mount(self.cage,[txt('configuration',configuration_html(e)+reinforcement_summary_html(e)),txt('side','<p>Calculating side-face checks…</p>'),self.cage_3d_widget,self.views.plots['sectionB'],self.views.plots['sectionP'],self.input_panel,fw('plan',lambda:reinforcement_plan_figure(e)),fw('elevation',lambda:elevation_figure(e,zone_labels=True)),self.transverse_panel.ui,txt('hoop','<p>Calculating transverse checks…</p>'),
+            *end_views,*([fw('reference_hoop',lambda:hoop_figure(e))] if not actual_transverse(self.case) else []),txt('clearance','<p>Calculating detailing checks…</p>'),txt('footer','<small>'+footer+' Pile lengths below the cap are schematic. The 3D cage uses bar centerlines; displayed line thickness is for visibility.</small>')])
+        self.figures=list(self.views.plots.values())
+        self.banner.value='<p><b>Drawing updated · Calculating checks…</b></p>'
+        if self.plot_tabs.selected_index==5:self._refresh_auxiliary_view(5)
+
+    def _calculation_ready(self,e,side_html):
+        self._set_calculating(False)
+        self.current=e
+        self.lrfd_panel.refresh(e)
+        for name in ('beta_v','theta','alpha_v','Ao_factor'):
+            self.controls[name].disabled=bool(e.lrfd)
+            self.controls[name].tooltip=('Shared sectional calculations derive this value from the LRFD method and entered geometry; see LRFD regions & checks.' if e.lrfd else input_tooltip(name))
+        for key,value in steel_feedback(e).items():self.steel_readouts[key].value=value
+        self.transverse_panel.sync_zones(e)
+        self.force_diagrams.output.layout.display=''
+        if self.plot_tabs.selected_index==4 or self.force_diagrams.figure is None:
+            self.force_diagrams.refresh(self.case,evaluation=e)
+        self.pile_appearance.sync()
+        trial_section=self._search_force_mode()=='fixed'
+        color='#fff3d9' if e.eligible or (trial_section and sectional_checks_pass(e)) else '#ffe9e7'
+        status='TRIAL CAP SIZE — checks use current forces; changed self-weight and stiffness are not reanalyzed' if trial_section else e.status
+        extra='<br>'.join(html.escape(s) for s in e.issues)
+        self.banner.value=f'<div style="padding:12px;background:{color};border-radius:6px"><b>{html.escape(status)}</b>{"<br>"+extra if extra else ""}<br><small>Sectional calculation only. D-regions, anchorage, pile heads, applicability and final detail review remain open.</small></div>'
+        strength=governing_check(e,'strength');overall=governing_check(e)
+        items=[('Strength D/C',f'{strength.ratio:.3f}'),('All-check utilization',f'{e.max_dc:.3f}'),('Gross steel estimate',f'{e.weight_lb:,.0f} lb'),('Top steel area',f'{e.value("As_N"):.2f} in²'),('Top Service I stress',f'{e.value("fs_I_N"):.2f} ksi'),('Cap length',f'{e.value("L_cap")/12:.3f} ft'),('Nominal end extension',f'{e.value("E_end"):g} in')]
+        metrics='<div style="display:flex;flex-wrap:wrap;gap:10px;margin:12px 0">'+''.join(f'<div style="padding:10px 18px;background:#eaf1f6;border-radius:5px"><small>{k}</small><br><b style="font-size:23px;color:#1f5b91">{v}</b></div>' for k,v in items)+'</div>'
+        metrics+=f'<p title="{html.escape(strength.basis,quote=True)}"><b>Controls strength:</b> {html.escape(controlling_label(strength))}.</p><p title="{html.escape(overall.basis,quote=True)}"><b>Controls all checks:</b> {html.escape(controlling_label(overall))}.<br><small>All-check utilization also includes spacing and minimum/detailing limits. It does not measure a single reserve against increased load.</small></p>'
+        if overall.key in ('Chk_spacing_G','Chk_spacing_L'):
+            zone=overall.key[-1];s=e.value('S_leg');limit=e.value('Sw_'+zone)
+            metrics+=f'<p><b>Across-cap hoop legs:</b> {s:.3f} in / {limit:.3f} in allowed = <b>{s/limit:.4f}</b>. Adding main bars or reducing along-cap hoop spacing leaves this across-cap distance unchanged.</p>'
+        self.metrics.value=metrics
+        self.views.text('side',side_html)
+        self.views.text('clearance',clear_spacing_html(e))
+        self.views.text('hoop',hoop_explanation_html(e))
+        # Refresh only drawings with calculation-dependent annotations/colors.
+        if any(c.key.startswith('Chk_hook_') and 'FAIL' in c.status for c in e.checks):
+            self.views.figure('elevation',lambda:elevation_figure(e,zone_labels=True))
+        if not actual_transverse(e.case):self.views.figure('reference_hoop',lambda:hoop_figure(e))
         self._refresh_auxiliary_view(self.plot_tabs.selected_index)
         self.figures=list(self.views.plots.values())
         self.register.value=checks_html(e)
@@ -282,7 +330,7 @@ class CapNotebook:
 
     def _refresh_auxiliary_view(self,index):
         """Render hidden plots on entry using the latest evaluated case."""
-        if self.current is None or index not in (1,5):return
+        if self.current is None or index not in (1,5) or (self.calculating and index==1):return
         e=self.current
         basis=json.dumps(e.case,sort_keys=True)
         if self._aux_basis.get(index)==basis:return
@@ -299,7 +347,7 @@ class CapNotebook:
         self.figures=list(self.views.plots.values())
 
     def load(self,case,*,import_name=None):
-        case=upgrade_case(case);evaluate(case);self.busy=True
+        case=upgrade_case(case);geometry_evaluation(case);self.busy=True
         try:
             self.case=deepcopy(case)
             self.import_receipt=import_receipt(case,import_name) if import_name else None
@@ -643,6 +691,7 @@ class CapNotebook:
         return self
 
     def close(self):
+        self.refresh_driver.close()
         self.end_grid.close()
         self.added_steel.close()
         for readout in self.steel_readouts.values():readout.close()
