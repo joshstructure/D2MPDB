@@ -2,6 +2,8 @@
 from html import escape
 from .engine import UNITS
 from .math_notation import expression, mathml, quantity, symbol
+from .check_references import references_html
+from .check_math import working_html, equation_html, components_html
 
 
 def record(check, equation, values):
@@ -25,9 +27,9 @@ def _values(values):
         '<dt>'+escape(label)+'</dt><dd>'+_value(value, unit)+'</dd>' for label, value, unit in values)+'</dl>'
 
 
-def _record_html(working):
+def _record_html(check, working):
     equation, values = working
-    return '<p class="check-equation">'+escape(equation)+'</p>'+_values(values)
+    return working_html(check, equation)+_values(values)
 
 
 def _section_comparison(e, check):
@@ -231,7 +233,7 @@ def details_html(e, check):
     working = check.working or _actual(e, check)
     actual_key = e.lrfd and (key in REPLACED_KEYS or key.startswith(REPLACED_PREFIXES))
     if working:
-        body = _record_html(working)
+        body = _record_html(check, working)
     elif key in ('Status_layout', 'Status_section'):
         names = ('b', 'h') if key == 'Status_section' else ('N_pile', 'S_pile', 'D_pile', 'E_clear', 'E_detail')
         body = '<p>Required: current geometry must match the imported force model.</p>'+_values([
@@ -242,18 +244,17 @@ def details_html(e, check):
     elif key in e.engine.defs:
         body = _values(_section_comparison(e, check))+_registered(e, check)
     elif check.components:
-        body = '<p>Governing equation: ratio = '+('min' if check.component_rule == 'min' else 'max')+'(component demand / component limit).</p>'
+        body = equation_html('ratio == '+('Min' if check.component_rule == 'min' else 'Max')+'("component demand" / "component limit")')
     else:
         body = '<p>Governing criterion: '+escape(check.basis)+'</p><p>Required: satisfy this detailing / readiness condition. No physical demand-to-capacity equation is assigned to this review gate.</p>'
     if check.components:
-        rule = 'min' if check.component_rule == 'min' else 'max'
-        body += '<p><b>Demand / required value and resistance / limit</b><br>ratio = '+rule+'(component ratios). Spacing checks compare actual spacing with its allowed limit.</p>'
-        body += ''.join('<p>'+escape(c.text())+'</p>' for c in check.components)
+        body += components_html(check)
     ratio = _value(check.ratio)
     physical = isinstance(check.ratio, (int, float)) and not key.startswith(('Chk_alignment_', 'Chk_added_fit', 'Chk_actual_longitudinal_fit'))
     body += '<p><b>Result:</b> '+escape(check.status)+' · '+('Check ratio: ' if physical else 'Recorded ratio / flag: ')+ratio+'</p>'
     if physical:
-        body += '<p><b>Required:</b> ratio ≤ 1, together with the stated applicability and detailing conditions.</p>'
+        body += '<p><b>Required:</b> '+mathml(expression(('bin','<=',('name','ratio'),('num',1))))+', together with the stated applicability and detailing conditions.</p>'
+    body = references_html(e, check) + body
     body += '<p class="check-basis">'+escape(check.basis).replace('\n', '<br>')+'</p>'
     return '<details class="check-working" data-check="'+escape(key, quote=True)+'"><summary>Equation &amp; values</summary><div class="check-working-body">'+body+'</div></details>'
 
@@ -263,4 +264,6 @@ STYLE = '''.check-working{margin-top:5px}.check-working>summary{cursor:pointer;c
 .check-working-body{margin:8px 0;padding:12px;background:#f5f8fb;border-left:3px solid #a4bdce;max-width:100%;overflow-wrap:anywhere}
 .check-working-body p{margin:7px 0}.check-equation{overflow-x:auto;padding:6px 0;white-space:normal}
 .check-equation math{font-size:14px;min-width:max-content}.check-values{display:grid;grid-template-columns:minmax(100px,max-content) minmax(100px,1fr);gap:5px 18px;margin:10px 0}
-.check-values dt{font-weight:600}.check-values dd{margin:0}.check-basis{color:#485969;font-size:12px}'''
+.check-values dt{font-weight:600}.check-values dd{margin:0}.check-basis{color:#485969;font-size:12px}
+.check-references{padding-bottom:8px;margin-bottom:10px;border-bottom:1px solid #d4dfe7;font-size:12px;color:#334b5c}
+.check-references ul{margin:5px 0 8px;padding-left:20px}.check-references li{margin:4px 0}'''

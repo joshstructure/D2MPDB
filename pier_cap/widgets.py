@@ -78,6 +78,8 @@ class CapNotebook:
         self.aggregate_confirmed=W.Checkbox(value=self.case['screening']['aggregate_confirmed'],description='Aggregate size confirmed',indent=False)
         for control in (self.clearance,self.aggregate,self.aggregate_confirmed):control.observe(self._changed,names='value')
         self.pile_appearance=PileAppearancePanel(self)
+        from .fdot_detailing import FDOTDetailingPanel
+        self.fdot_panel=FDOTDetailingPanel(self)
         self.steel_readouts={};self.added_steel=AddedSteelPanel(self)
         self.input_tabs=self._inputs()
         self.transverse_panel=TransversePanel(self)
@@ -183,7 +185,7 @@ class CapNotebook:
                     W.Layout(flex='1 1 280px',min_width='280px',max_width='360px',padding='8px',border='1px solid #c4cdd6'))
                 card=W.VBox([W.HTML('<b>'+html.escape(caption)+'</b>'),*content],layout=layout)
                 card.add_class('cap-input-card');panels.append(card)
-            if group=='Geometry':panels.append(self.pile_appearance.ui)
+            if group=='Geometry':panels.extend([self.fdot_panel.ui,self.pile_appearance.ui])
             tabs.append(W.HBox(panels,layout=W.Layout(width='100%',min_width='0',flex_flow='row wrap',align_items='flex-start',grid_gap='8px')))
         tab=Tab(children=tabs,layout=W.Layout(flex='0 0 auto',width='100%',min_width='0'))
         for i,name in enumerate(GROUPS):tab.set_title(i,name)
@@ -295,6 +297,7 @@ class CapNotebook:
             self.cap_type.value=case.get('cap_type','Pier pile cap')
             self.transverse_panel.sync(reset_starter=True)
             self.lrfd_panel.load()
+            self.fdot_panel.load()
             self.added_steel.sync()
             self.pile_appearance.sync()
         finally:self.busy=False
@@ -632,6 +635,7 @@ class CapNotebook:
         self.force_diagrams.close()
         self.transverse_panel.close()
         self.lrfd_panel.close()
+        self.fdot_panel.close()
         self.views.close()
         self._close_alternative_plot()
         self.case_listeners.clear()

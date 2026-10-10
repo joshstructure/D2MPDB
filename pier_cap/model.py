@@ -65,6 +65,8 @@ def upgrade_case(case):
         p.update(n_PU=0,n_BU=0)
     from .lrfd_checks import settings
     result['lrfd_checks']=settings(result)
+    from .fdot_detailing import settings as fdot_settings
+    result['fdot_detailing']=fdot_settings(result)
     return result
 
 def set_inputs(case,**changes):
@@ -82,6 +84,8 @@ def validate_case(case):
     validate_detail(case)
     from .lrfd_checks import validate_settings
     validate_settings(case)
+    from .fdot_detailing import validate_settings as validate_fdot
+    validate_fdot(case)
     if case.get('schema_version') not in (3,4):raise ValueError('Expected case schema_version 3 or 4; load older cases through load_case().')
     from .added_steel import validate_layout
     validate_layout(case)
@@ -411,6 +415,8 @@ def evaluate(case=None,fast=False):
             check.basis+=(f' Required {required:.3f} in²; credited main {main:.3f} + side {side:.3f}'
                           f' = {main+side:.3f} in²; shortfall {max(0,required-main-side):.3f} in².')
     checks.extend(detailing_checks(e))
+    from .fdot_detailing import detailing_checks as fdot_checks
+    checks.extend(fdot_checks(e))
     if layout is not None:
         checks.append(Check('Chk_actual_longitudinal_fit','Longitudinal steel inside actual hoops / U-bars',
             'PASS' if layout['fitted'] else 'FAIL',0 if layout['fitted'] else 2,

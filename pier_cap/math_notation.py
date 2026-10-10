@@ -22,16 +22,19 @@ def number(value):
 
 
 def symbol(name):
-    greek = {'phi':'φ', 'gamma':'γ', 'beta':'β', 'theta':'θ', 'alpha':'α', 'eps':'ε'}
+    greek = {'phi':'φ', 'gamma':'γ', 'beta':'β', 'theta':'θ', 'alpha':'α', 'eps':'ε', 'lambda':'λ'}
     special = {'fc':"f′", 'fy':'f', 'Es':'E', 'Mu':'M', 'MI':'M', 'MIII':'M',
                'As':'A', 'Av':'A', 'Mn':'M', 'Mr':'M', 'dc':'d', 'fs':'f', 'fo':'f',
                'ccr':'c', 'Icr':'I', 'Ig':'I', 'nAs':'nA', 'Ss':'S', 'bs':'β',
                'yt':'y', 'fr':'f', 'fpc':'f', 'dv':'d', 'Vu':'V', 'Vs':'V', 'Vr':'V', 'Vc':'V'}
-    subs = {'fc':'c', 'fy':'y', 'Es':'s', 'Mu':'u', 'MI':'I', 'MIII':'III', 'As':'s',
+    special['Vn'] = 'V'
+    subs = {'fc':'c', 'fy':'y', 'Es':'s', 'Mu':'u', 'MI':'I', 'MIII':'III', 'As':'s', 'Vn':'n',
             'Av':'v', 'Mn':'n', 'Mr':'r', 'dc':'c', 'fs':'s', 'fo':'o', 'ccr':'cr',
             'Icr':'cr', 'Ig':'g', 'nAs':'s', 'Ss':'s', 'bs':'s', 'yt':'t', 'fr':'r',
             'fpc':'pc', 'dv':'v', 'Vu':'u', 'Vs':'s', 'Vr':'r', 'Vc':'c'}
     parts = name.split('_')
+    if name == 'Sigma_Av':
+        return '<mrow><mo>∑</mo>'+symbol('Av')+'</mrow>'
     base = parts[0]
     suffix = ([subs[base]] if base in subs else [])+parts[1:]
     main = tag('mi', greek.get(base, special.get(base, base)))
@@ -100,7 +103,7 @@ def expression(ast, engine=None, definitions=None, substitute=False, units_only=
                 '</mtd><mtd><mtext>otherwise</mtext></mtd></mtr></mtable></mrow>')
     if name in ('And','Or'):
         return '<mrow>'+tag('mo', '∧' if name=='And' else '∨').join(fenced(render(a)) for a in args)+'</mrow>'
-    return '<mrow>'+tag('mi', name.lower() if name in ('Min','Max','Sin','Cos','Tan') else name)+fenced('<mo>,</mo>'.join(render(a) for a in args))+'</mrow>'
+    return '<mrow>'+tag('mi', name.lower() if name in ('Min','Max','Sin','Cos','Tan','Cot') else name)+fenced('<mo>,</mo>'.join(render(a) for a in args))+'</mrow>'
 
 
 def mathml(body, block=False):

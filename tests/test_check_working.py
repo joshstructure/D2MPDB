@@ -37,7 +37,7 @@ class CheckWorkingTests(unittest.TestCase):
                 self.assertIn('Result:', d.text_content())
                 self.assertTrue(d.xpath('.//math') or 'ratio =' in d.text_content() or 'Required:' in d.text_content(), c.key)
             for node in doc.xpath('//math'):
-                etree.fromstring(etree.tostring(node))
+                etree.fromstring(etree.tostring(node, with_tail=False))
             self.assertEqual(before, [(c.key, c.ratio, c.status) for c in e.checks])
 
     def test_flexure_discloses_demand_capacity_equation_and_current_variables(self):
@@ -51,6 +51,19 @@ class CheckWorkingTests(unittest.TestCase):
             self.assertIn('Variable values', text)
             for value in ('required moment Mu', 'calculated resistance Mr', 'φ', 'Current substitution'):
                 self.assertIn(value, text)
+
+    def test_numerical_working_uses_structured_math_and_references(self):
+        for e in (self.base, self.actual):
+            for c in e.checks:
+                doc = html.fromstring(details_html(e, c))
+                self.assertIn('Code references', doc.text_content())
+                self.assertNotIn('Code reference not assigned', doc.text_content(), c.key)
+                if isinstance(c.ratio, (int, float)):
+                    self.assertTrue(doc.xpath('.//math'), c.key)
+                if c.working or _actual(e, c):
+                    equation, values = c.working or _actual(e, c)
+                    if equation.startswith(('ratio =', 'Vc =', 'Ffull =', 'required rate =')):
+                        self.assertTrue(doc.xpath('.//div[@class="check-equation"]//math//mfrac'), c.key)
 
     def test_pending_invalid_and_coordinate_overrides_are_truthful(self):
         for key in ('Status_III', 'Status_fatigue'):
