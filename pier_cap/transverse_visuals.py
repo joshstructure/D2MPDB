@@ -3,7 +3,7 @@ from .output_labels import numbered_figure, numbered_tables
 import html
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-from .transverse import scheduled_bars,run_summary,bar_shape,shape_issues,shape_parameters,development_current,end_bar_note
+from .transverse import scheduled_bars,run_summary,bar_shape,shape_issues,shape_parameters,development_current,end_bar_note,hook_rotations,rotation_note
 from .check_details import hover_basis,service_hover
 
 COLORS={'hoop':'#7952a3','pile_u':'#bd407d'}
@@ -17,14 +17,17 @@ def schedule_html(e):
         shape=shape_parameters(r);issues=shape_issues(e,r)
         status='CLASH / FIT' if issues else 'Development recorded' if development_current(e.case,r) else 'Development pending'
         if issues:status+='<ul>'+''.join('<li>'+html.escape(s)+'</li>' for s in issues)+'</ul>'
+        if any(hook_rotations(r)):status+='<br>'+html.escape(rotation_note(r))
         ends=(f'{shape["end_angle"]:g}° ends; {shape["tail_in"]:g} in straight tail; inside bend {shape["inside_diameter_in"]:g} in' if r['kind']=='pile_u' else 'Closed outline; closure detail to be verified')
+        if any(hook_rotations(r)):
+            left,right=hook_rotations(r);ends+=f'; vertical-axis rotation L {left:+g}° / R {right:+g}°'
         rows.append(f'<tr><td>{html.escape(r["id"])}</td><td style="color:{COLORS[r["kind"]]}">{NAMES[r["kind"]]}</td>'
             f'<td><b>{r["count"]} × #{r["bar"]} @ {r["pitch_in"]:g} in</b>{end_bar_note(r)}</td><td>{r["first_in"]/12:.3f} → {r["actual_last_in"]/12:.3f}</td>'
             f'<td>{r["end_in"]/12:.3f}</td><td>{"Overall" if r["zone"]=="G" else "Lower-shear"}</td><td>{ends}</td><td>{status}</td></tr>')
     return ('<h4>Actual transverse steel · all stations measured from the left cap end</h4>'
         '<p><b>Purple = closed hoops. Pink = inverted U-bars, open at the bottom.</b> The pile U spans the top of the cap and has two legs beside the pile. '
         'Each end terminates independently; there is no bar crossing underneath the embedded pile. '
-        'The plan looks down from above; the side elevation shows the bars edge-on. Rotate the 3D view to see the opening.</p>'
+        'The plan looks down from above; the side elevation shows the projected hooks. Rotate the 3D view to see the opening and hook rotation.</p>'
         '<div style="max-width:100%;overflow-x:auto"><table class="cap-table" style="min-width:1100px"><tr><th>Run</th><th>Shape</th><th>Count / size / pitch</th><th>First → last (ft)</th><th>End limit (ft)</th><th>Shear basis</th><th>End geometry</th><th>Review</th></tr>'+''.join(rows)+'</table></div>'
         '<p>Regular pitch stays as entered. Generated runs shift bars near the end as needed to meet their saved minimum clear spacing; the first and last bars stay fixed. '
         'For other runs, <b>Bar at end limit</b> adds a bar in any shorter final gap. '
@@ -39,10 +42,14 @@ def add_projection(fig,e,view):
     runs={r['id']:r for r in e.case['transverse_detail']['runs']};seen=set()
     for b in scheduled_bars(e.case):
         r=runs[b['run']];shape=bar_shape(e,r);values=[pt[1 if view=='elevation' else 0] for pt in shape['points']]
+        if any(hook_rotations(r)):
+            xs=[(b['station_in']+pt[0])/12 for pt in shape['points_3d']]
+            ys=[pt[2 if view=='elevation' else 1] for pt in shape['points_3d']]
+        else:xs=[b['station_in']/12]*2;ys=[min(values),max(values)]
         label=f'{r["id"]}: {NAMES[r["kind"]]} #{r["bar"]} @ {r["pitch_in"]:g} in'+end_bar_note(r)
-        fig.add_trace(go.Scatter(x=[b['station_in']/12]*2,y=[min(values),max(values)],mode='lines',
+        fig.add_trace(go.Scatter(x=xs,y=ys,mode='lines',
             name=label,legendgroup=r['id'],meta=dict(part='transverse'),showlegend=r['id'] not in seen,line=dict(color=COLORS[r['kind']],width=3),
-            hovertemplate=f'<b>{html.escape(b["id"])}</b><br>{label}<br>Station {b["station_in"]/12:.3f} ft from left end<br>Shown edge-on; see transverse section for shape<extra></extra>'))
+            hovertemplate=f'<b>{html.escape(b["id"])}</b><br>{label}<br>Leg station {b["station_in"]/12:.3f} ft from left end<br>Projected shape; see 3D view for hook orientation<extra></extra>'))
         seen.add(r['id'])
 
 

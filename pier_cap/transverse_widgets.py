@@ -2,7 +2,7 @@
 from copy import deepcopy
 import html
 import ipywidgets as W
-from .transverse import empty_detail,enabled,shape_parameters,validate_detail,development_current,development_fingerprint,run_stations,end_bar_note
+from .transverse import empty_detail,enabled,shape_parameters,validate_detail,development_current,development_fingerprint,run_stations,end_bar_note,HOOK_ROTATIONS,hook_rotations
 from .widget_compat import Accordion
 from .transverse_zones import zone_runs,new_zone_run,zone_add_conflicts,occupant_text,station_range,run_last_station,run_limit_overlaps,starting_zone_detail
 
@@ -55,8 +55,13 @@ class RunCard:
         for name,widget in [('kind',kind),('zone',shear),('end_angle',angle)]:
             widget.observe(lambda change,field=name:panel._zone_edited(rid,field,change),names='value')
         shape=[number(name,title) for name,title in [('inside_diameter_in','Bend ID (in)'),('tail_in','End tail (in)'),
-            ('end_raise_in','Raise ends (in)'),('side_inset_in','Inset legs (in)')]]
+            ('end_raise_in','Raise ends (in)'),('side_inset_in','Inset legs (in)'),
+            (HOOK_ROTATIONS[0],'Left rotate (°)'),(HOOK_ROTATIONS[1],'Right rotate (°)')]]
         help_text=add('help',W.HTML('<small>U-bars are open downward. Raise ends is above bottom cover; inset moves legs inward. '
+            'Hook rotation turns each bend and tail about its vertical leg. Left / right refer to the transverse section. '
+            '0° is inward in the section; positive turns toward increasing cap stations, negative toward decreasing stations. '
+            '±90° is a trial geometry range, not a code allowance. Rotated-hook anchorage stays PENDING; '
+            'verify longitudinal-bar engagement and 3D congestion. Rotation values are inactive for hoops and straight ends. '
             'Bend and tail dimensions describe the drawing. Record the separate development / closure check below.</small>'))
         basis=add('development_basis',W.Textarea(description='Detail ref.',placeholder='Drawing / calculation reference',continuous_update=False,
             style={'description_width':'70px'},layout=W.Layout(width='calc(100% - 4px)',max_width='600px',height='70px')))
@@ -89,6 +94,8 @@ class RunCard:
         for name,value in values.items():
             if name in c and hasattr(c[name],'disabled'):
                 c[name].value=value;c[name].disabled=not active
+        for name in HOOK_ROTATIONS:c[name].disabled=not active or run['kind']!='pile_u' or not shape['end_angle']
+        c['development_confirmed'].disabled=not active or any(hook_rotations(run))
         stations=run_stations(run);count=len(stations);last=stations[-1]
         color='#bd407d' if run['kind']=='pile_u' else '#7952a3'
         self.ui.layout.border='1px solid '+color
@@ -240,7 +247,7 @@ class TransversePanel:
         def perform():
             detail=deepcopy(self.owner.case['transverse_detail']);run=next(r for r in detail['runs'] if r['id']==rid)
             value=change['new']*scale if isinstance(change['new'],(int,float)) and not isinstance(change['new'],bool) else change['new']
-            if field in ('end_angle','inside_diameter_in','tail_in','end_raise_in','side_inset_in'):
+            if field in ('end_angle','inside_diameter_in','tail_in','end_raise_in','side_inset_in',*HOOK_ROTATIONS):
                 run['shape']=shape_parameters(run);run['shape'][field]=value
             else:run[field]=value
             if field=='bar' and 'end_min_clear_in' in run:
@@ -262,7 +269,8 @@ class TransversePanel:
             self.zone_controls[rid]['details'].selected_index=0
 
     def _commit(self,detail,selected=None):
-        if any('end_min_clear_in' in r for r in detail['runs']):detail['version']=3
+        if any(any(shape_parameters(r)[key] for key in HOOK_ROTATIONS) for r in detail['runs']):detail['version']=4
+        elif any('end_min_clear_in' in r for r in detail['runs']):detail['version']=max(3,detail['version'])
         elif any(r.get('include_end_bar',False) for r in detail['runs']):detail['version']=max(2,detail['version'])
         case=deepcopy(self.owner.case);case['transverse_detail']=detail;validate_detail(case)
         self.owner.case=case

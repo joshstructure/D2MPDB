@@ -264,10 +264,40 @@ def shear_parameters(e,action,area,rate,ao=None,ph=None):
         torsion_required=torsion,threshold_kip_ft=threshold,veff=veff)
 
 
-def _check(key,label,ratio,basis,*,pending=False,na=False):
+def _check(key,label,ratio,basis,*,pending=False,na=False,pending_reasons=()):
     from .model import Check
     status='NOT REQUIRED' if na else 'FAIL' if isinstance(ratio,(int,float)) and ratio>1+1e-8 else 'PENDING' if pending else 'PASS'
+    if pending and pending_reasons:
+        heading='Pending because:' if status=='PENDING' else 'Unresolved prerequisites:'
+        basis=heading+'\n'+'\n'.join('• '+reason for reason in dict.fromkeys(pending_reasons))+'\n'+basis
     return Check(key,label,status,ratio,basis)
+
+
+def _anchorage_reason(row):
+    failed=row['ratio']>1+1e-8
+    reason=f'{row["run"]}: anchorage / closure '+(f'fails (D/C {row["ratio"]:.3f})' if failed else 'is unconfirmed')
+    details=[row['notes'].strip()] if row['notes'].strip() else []
+    if failed:
+        for label,actual,required in [('inside bend diameter',row['bend_in'],row['bend_required_in']),
+                                     ('midheight embedment',row['embed_available_in'],row['embed_required_in'])]:
+            if required/max(actual,1e-9)>1+1e-8:
+                details.append(f'{label} {actual:.3f} in < required {required:.3f} in')
+        # Lap-pair closure has its own required lap in the existing notes.
+        if row['closure_type']=='hooks' and row['tail_ratio']>1+1e-8:
+            details.append(f'hook tail {row["tail_in"]:.3f} in < required {row["tail_required_in"]:.3f} in')
+        if row['bar']>8 or row['angle'] not in (90,135):
+            details.append(f'#{row["bar"]} bar / {row["angle"]}° end is outside the implemented anchorage details')
+    return reason+(' — '+'; '.join(details) if details else '')
+
+
+def _shear_domain_reasons(p,params):
+    reasons=[]
+    fc_limit=10 if params['torsion_required'] else 15
+    if p['fc']>fc_limit:reasons.append(f"Concrete f′c {p['fc']:g} ksi exceeds the implemented {fc_limit:g} ksi shear limit")
+    if p['fy']>100:reasons.append(f"Steel fy {p['fy']:g} ksi exceeds the implemented 100 ksi shear limit")
+    if params['epsilon']>.006+1e-12:reasons.append('Calculated longitudinal strain exceeds the implemented 0.006 limit')
+    if p['fpc']!=0:reasons.append(f"Precompression fpc = {p['fpc']:g} ksi; the implemented shear calculation requires fpc = 0")
+    return reasons
 
 
 def window_steel(physical,left,right,length,development=None):
@@ -294,7 +324,7 @@ def window_steel(physical,left,right,length,development=None):
 
 
 def transverse_development(e):
-    from .transverse import run_summary,bar_shape,shape_parameters,shape_issues
+    from .transverse import run_summary,bar_shape,shape_parameters,shape_issues,hook_rotations,rotation_note
     from .model import BAR_DIAMETER,BAR_AREA,bar_positions
     p=e.case['inputs'];s=settings(e.case);rows=[];checks=[]
     for run in run_summary(e.case):
@@ -316,11 +346,16 @@ def transverse_development(e):
             radius=geometry['radius'];inset=p['C_s']+d/2+shape['side_inset_in'];bottom=p['C_b']+d/2+shape['end_raise_in']
             pockets=[(inset+radius,bottom+radius),(p['b']-inset-radius,bottom+radius)]
             bars=bar_positions(e,'P')
-            engages=all(any(math.hypot(b['x']-cx,b['y']-cy)+(d+b['diameter'])/2<=radius+.03 for b in bars) for cx,cy in pockets)
+            rotations=hook_rotations(run)
+            # The planar engagement test cannot certify a rotated hook. Keep
+            # that end unresolved, while retaining tests of unchanged bends.
+            engages=all(rotation or any(math.hypot(b['x']-cx,b['y']-cy)+(d+b['diameter'])/2<=radius+.03 for b in bars)
+                        for (cx,cy),rotation in zip(pockets,rotations))
             # Top continuous bends must enclose a bar too (5.10.8.2.6a).
             top=p['h']-p['C_t']-d/2
             engages=engages and all(any(math.hypot(b['x']-cx,b['y']-(top-radius))+(d+b['diameter'])/2<=radius+.03 for b in bars) for cx,_ in pockets)
             if not engages: extra+=' End or continuous U bend does not enclose a drawn longitudinal bar.'
+            if any(rotations):pending=True;extra+=' '+rotation_note(run)
         else:
             engages=s['closure_engages_bars'] or s['hoop_closure']=='lap_pair'
             if not engages: pending=True;extra+=' Hook engagement not confirmed.'
@@ -332,6 +367,7 @@ def transverse_development(e):
         row=dict(run=run['id'],kind=run['kind'],bar=run['bar'],angle=angle,
             bend_in=shape['inside_diameter_in'],bend_required_in=bend_min,tail_in=tail,
             tail_required_in=required_tail,embed_available_in=available,embed_required_in=le,
+            closure_type=s['hoop_closure'] if run['kind']=='hoop' else 'hooks',tail_ratio=tail_ratio,
             ratio=ratio,pending=pending,notes=extra+' '+'; '.join(issues))
         rows.append(row)
         checks.append(_check('Status_transverse_development_'+run['id'],run['id']+' calculated anchorage / closure',ratio,
@@ -345,7 +381,8 @@ def _aggregate(key,label,rows,field,basis,*,pending=False,inherit_pending=True):
     worst=max(rows,key=lambda r:r[field])
     location=worst.get('id',worst.get('face',''))
     return _check(key,label,worst[field],basis+f' Governing: {location}; ratio {worst[field]:.6g}.',
-                  pending=pending or inherit_pending and any(r.get('pending',False) for r in rows))
+                  pending=pending or inherit_pending and any(r.get('pending',False) for r in rows),
+                  pending_reasons=[reason for row in rows for reason in row.get('pending_reasons',())] if key.startswith('Chk_shear_') else ())
 
 
 def surface_checks(e):
@@ -408,6 +445,7 @@ def actual_calculations(e):
     regions=direct_regions(e,members,inventory)
     development,checks=transverse_development(e)
     dev={r['run']:r for r in development}
+    unresolved={name:_anchorage_reason(row) for name,row in dev.items() if row['pending'] or row['ratio']>1+1e-8}
     physical=scheduled_bars(e.case);runs={r['id']:r for r in e.case['transverse_detail']['runs']}
     rows=[];longitudinal=[]
     for first,last in zip(physical,physical[1:]):
@@ -415,6 +453,10 @@ def actual_calculations(e):
         size=min(first['bar'],last['bar']);av=2*BAR_AREA[size];rate=av/max(pitch,1e-9)
         anchored=all(not dev[b['run']]['pending'] and dev[b['run']]['ratio']<=1+1e-8 for b in (first,last))
         pending=not anchored or s['continuous_splices']!='none'
+        base_reasons=[unresolved[name] for name in dict.fromkeys(b['run'] for b in (first,last)) if name in unresolved]
+        if s['continuous_splices']=='unknown':base_reasons.append('Continuous-bar splices are unconfirmed (LRFD regions & checks → Continuous-bar splices)')
+        elif s['continuous_splices']=='present':base_reasons.append('Continuous-bar splices are present and require separate review')
+        if not members:base_reasons.append(notice)
         closed=first['kind']==last['kind']=='hoop'
         widths=[p['b']-2*p['C_s']-BAR_DIAMETER[b['bar']]-2*shape_parameters(runs[b['run']])['side_inset_in'] for b in (first,last)]
         heights=[p['h']-p['C_t']-p['C_b']-BAR_DIAMETER[b['bar']] for b in (first,last)]
@@ -496,10 +538,21 @@ def actual_calculations(e):
                         av_required_rate=av_req,at_required_rate=at_req,combined_required_rate=combined,
                         ao_in2=ao,ph_in=ph,closed=closed,torsion_ratio=tor_ratio)
                     ratio=max(action['vu']/max(params['vr'],1e-9),params['veff']/p['phi_v']/params['nominal_limit'])
+                    reasons=[*base_reasons,*_shear_domain_reasons(p,params)]
+                    if developed_window['area_in2']<window['area_in2']-1e-8:
+                        # Identify unverified bars at the developed window's
+                        # controlling location, which can differ from the
+                        # unfiltered window and from the two interval endpoints.
+                        window_runs=dict.fromkeys(bar['run'] for bar in physical
+                            if abs(bar['station_in']-developed_window['station_in'])<window['length_in']/2-1e-8
+                            and bar['run'] in unresolved)
+                        reasons.append('Shear window includes reinforcement without verified anchorage: '+', '.join(window_runs))
+                        reasons.extend(unresolved[name] for name in window_runs)
                     interval.append(dict(id=ident,**params,**action,ratio=ratio,tor_ratio=tor_ratio,
                         av_required_rate=av_req,at_required_rate=at_req,combined_required_rate=combined,
                         ao_in2=ao,ph_in=ph,closed=closed,window=window,effective_rate=effective_rate,
-                        pending=pending or not members or not params['valid'] or developed_window['area_in2']<window['area_in2']-1e-8))
+                        pending=pending or not members or not params['valid'] or developed_window['area_in2']<window['area_in2']-1e-8,
+                        pending_reasons=list(dict.fromkeys(reasons))))
         if not interval:continue
         worst=max(interval,key=lambda r:r['ratio']);tor=max(interval,key=lambda r:r['tor_ratio'])
         spacing_limit=min(q['pitch_limit'] for q in interval);across_limit=min(q['across_limit'] for q in interval)
@@ -516,12 +569,13 @@ def actual_calculations(e):
             spacing_ratio=max(pitch/spacing_limit,max(widths)/across_limit,minimum/rate),
             clear_in=clear,clear_required_in=clearance,clear_ratio=clearance/max(clear,1e-9),
             minimum_rate=minimum,min_ratio=max(q['minimum_rate']/max(q['effective_rate'],1e-9) for q in interval),anchored=anchored,pending=any(q['pending'] for q in interval),
+            pending_reasons=list(dict.fromkeys(reason for q in interval for reason in q['pending_reasons'])),
             vr=min(q['vr'] for q in interval),vr_governing=worst['vr'],governing_segment=worst['id'])
         rows.append(row)
         suffix=first['id']+'_'+last['id']
         checks.extend([
             _check('Chk_actual_shear_'+suffix,row['id']+' shear',row['ratio'],
-                f'{CODE} 5.7.3.3/5.7.3.4; FDOT 2026 SDG 4.1.4A actual legs intersected by dv cotθ. Vc={worst["vc"]:.4f}, Vs={worst["vs"]:.4f}, Vr={worst["vr"]:.4f} kip; β={worst["beta"]:.4f}, θ={worst["theta"]:.4f}°. Governing {worst["id"]}.',pending=row['pending']),
+                f'{CODE} 5.7.3.3/5.7.3.4; FDOT 2026 SDG 4.1.4A actual legs intersected by dv cotθ. Vc={worst["vc"]:.4f}, Vs={worst["vs"]:.4f}, Vr={worst["vr"]:.4f} kip; β={worst["beta"]:.4f}, θ={worst["theta"]:.4f}°. Governing {worst["id"]}.',pending=row['pending'],pending_reasons=row['pending_reasons']),
             _check('Chk_actual_pitch_'+suffix,row['id']+' spacing',row['spacing_ratio'],
                 f'5.7.2.6: pitch {pitch:.4f}/{spacing_limit:.4f} in; 5.7.2.5: adjacent Av/s {rate:.5f}, minimum {minimum:.5f} in²/in. FDOT 2026 SDG 4.1.4C across-leg spacing {max(widths):.4f}/{across_limit:.4f} in.'),
             _check('Chk_actual_clear_'+suffix,row['id']+' clear spacing',row['clear_ratio'],

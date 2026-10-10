@@ -106,11 +106,11 @@ def layout_3d(e):
             hovertemplate=f'Span {t["span"]} · added #{b["bar"]}<br>Across {b["x"]:.3f} in<br>90° hooks; inside bend {t["inside_diameter"]:g} in; tail {t["tail"]:g} in<br>Along %{{x:.3f}} in; elevation %{{z:.3f}} in<extra></extra>'))
     runs={r['id']:r for r in e.case.get('transverse_detail',{}).get('runs',[])};seen=set()
     for bar in scheduled_bars(e.case):
-        run=runs[bar['run']];shape=bar_shape(e,run);points=[(bar['station_in'],y,z) for y,z in shape['points']]
+        run=runs[bar['run']];shape=bar_shape(e,run);points=[(bar['station_in']+x,y,z) for x,y,z in shape['points_3d']]
         name='Closed hoop' if run['kind']=='hoop' else 'U-bar · open bottom'
         fig.add_trace(_line(points,name=f'{run["id"]}: {name} #{run["bar"]}',legendgroup=run['id'],showlegend=run['id'] not in seen,
             meta=dict(part='transverse',kind=run['kind'],bar=run['bar'],id=bar['id']),line=dict(color=COLORS[run['kind']],width=5),
-            hovertemplate=f'{html.escape(bar["id"])} · #{bar["bar"]}<br>Station {bar["station_in"]/12:.3f} ft<br>Across %{{y:.2f}} in; elevation %{{z:.2f}} in<extra></extra>'))
+            hovertemplate=f'{html.escape(bar["id"])} · #{bar["bar"]}<br>Leg station {bar["station_in"]/12:.3f} ft<br>Along %{{x:.2f}} in; across %{{y:.2f}} in; elevation %{{z:.2f}} in<extra></extra>'))
         seen.add(run['id'])
     # Match the explicitly illustrative between-pile sample in the 2D elevation.
     # This does not enter bars in the case or change quantities/checks.

@@ -9,6 +9,8 @@ import hashlib
 import json
 from copy import deepcopy
 
+HOOK_ROTATIONS=('hook_rotation_left_deg','hook_rotation_right_deg')
+
 
 def empty_detail():
     return {'version':1,'enabled':False,'runs':[]}
@@ -62,7 +64,7 @@ def end_bar_note(run):
 def validate_detail(case):
     detail=case.get('transverse_detail')
     if detail is None:return
-    if not isinstance(detail,dict) or detail.get('version') not in (1,2,3):
+    if not isinstance(detail,dict) or detail.get('version') not in (1,2,3,4):
         raise ValueError('Unsupported transverse-detail version.')
     if type(detail.get('enabled')) is not bool:
         raise ValueError('Transverse-detail enabled must be true or false.')
@@ -111,6 +113,12 @@ def validate_detail(case):
             if isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v) or not 0<=v<=1000:
                 raise ValueError(f'{label}: {key} must be a finite nonnegative inch dimension, at most 1000.')
         if shape.get('inside_diameter_in',1)<=0:raise ValueError(f'{label}: inside bend diameter must be positive.')
+        for key in HOOK_ROTATIONS:
+            value=shape.get(key,0.)
+            if isinstance(value,bool) or not isinstance(value,(int,float)) or not math.isfinite(value) or not -90<=value<=90:
+                raise ValueError(f'{label}: hook rotation must be between -90° and +90° (trial geometry range, not a code limit).')
+            if value and detail['version']<4:
+                raise ValueError(f'{label}: rotated hooks require transverse-detail version 4; use the updated notebook.')
         if type(run.get('development_confirmed',False)) is not bool:raise ValueError(f'{label}: development confirmation must be true or false.')
         if not isinstance(run.get('development_basis',''),str):raise ValueError(f'{label}: development basis must be text.')
         if run.get('development_confirmed') and not run.get('development_basis','').strip():
@@ -158,30 +166,51 @@ def shape_parameters(run):
     from .model import BAR_DIAMETER
     d=BAR_DIAMETER[run['bar']]
     return dict({'end_angle':90,'inside_diameter_in':6*d,'tail_in':12*d,
-                 'end_raise_in':0.,'side_inset_in':0.},**run.get('shape',{}))
+                 'end_raise_in':0.,'side_inset_in':0.,**dict.fromkeys(HOOK_ROTATIONS,0.)},**run.get('shape',{}))
+
+
+def hook_rotations(run):
+    """Active yaw angles about each vertical leg; positive goes along the cap."""
+    shape=shape_parameters(run)
+    return tuple(shape[key] for key in HOOK_ROTATIONS) if run['kind']=='pile_u' and shape['end_angle'] else (0.,0.)
+
+
+def rotation_note(run):
+    left,right=hook_rotations(run)
+    return (f'Trial hook rotation: left {left:+g}°, right {right:+g}°. '
+            'Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. '
+            'The rotation range is not a code allowance.') if left or right else ''
 
 
 def development_fingerprint(case,run):
+    def fingerprint_shape(r):
+        shape=shape_parameters(r)
+        # Preserve previously recorded checks when the new controls stay at zero.
+        for key in HOOK_ROTATIONS:
+            if not shape[key]:shape.pop(key)
+        return shape
     detail={k:run[k] for k in ('kind','bar','zone','first_in','end_in','pitch_in')}
     if run.get('include_end_bar',False):detail['include_end_bar']=True
     if 'end_min_clear_in' in run:detail['end_min_clear_in']=run['end_min_clear_in']
-    detail['shape']=shape_parameters(run)
+    detail['shape']=fingerprint_shape(run)
     # Another run can move the common longitudinal cage and change the end
     # congestion basis, even when this run's entered dimensions stay unchanged.
-    cage_shapes=[{'kind':r['kind'],'bar':r['bar'],'shape':shape_parameters(r)}
+    cage_shapes=[{'kind':r['kind'],'bar':r['bar'],'shape':fingerprint_shape(r)}
                  for r in case.get('transverse_detail',{}).get('runs',[])]
     payload={'inputs':case['inputs'],'screening':case['screening'],'run':detail,'cage_shapes':cage_shapes}
     return hashlib.sha256(json.dumps(payload,sort_keys=True).encode()).hexdigest()
 
 
 def development_current(case,run):
-    return bool(run.get('development_confirmed') and run.get('development_basis','').strip()
+    return bool(not any(hook_rotations(run)) and run.get('development_confirmed') and run.get('development_basis','').strip()
                 and run.get('development_fingerprint')==development_fingerprint(case,run))
 
 
 def bar_shape(e,run):
-    """Cross-section centerline paths (across cap, above underside), in inches.
+    """Centerline paths and cross-section projections, in inches.
 
+    points_3d uses (offset along cap from leg station, across cap, above underside).
+    points is its cross-section projection, also used by the continuous-bar fit.
     U ends are independent: there is never a segment joining them below the pile.
     Entered bend/tail dimensions describe geometry, not calculated development.
     Hoop closure is an outline; its lap/end anchorage remains a separate detail.
@@ -204,8 +233,19 @@ def bar_shape(e,run):
             end.append((end[-1][0]-s['tail_in']*math.sin(theta),end[-1][1]+s['tail_in']*math.cos(theta)))
         else:end=[(left,bottom)]
         points=list(reversed(end))+arc(left+r,top-r,180,90)+arc(right-r,top-r,90,0)+[(p['b']-x,y) for x,y in end]
-    return {'points':points,'diameter':d,'radius':r,'parameters':s,
-            'length_in':sum(math.dist(a,b) for a,b in zip(points,points[1:])),
+    points_3d=[(0.,x,y) for x,y in points]
+    if run['kind']=='pile_u':
+        for indices,axis,sign,rotation in ((range(len(end)),left,1,hook_rotations(run)[0]),
+                (range(len(points)-len(end),len(points)),right,-1,hook_rotations(run)[1])):
+            if not rotation:continue
+            theta=math.radians(rotation)
+            for i in indices:
+                _,x,y=points_3d[i];reach=sign*(x-axis)
+                points_3d[i]=(reach*math.sin(theta),axis+sign*reach*math.cos(theta),y)
+        points=[(x,y) for _,x,y in points_3d]
+    return {'points':points,'points_3d':points_3d,'diameter':d,'radius':r,'parameters':s,
+            'hook_point_count':len(end) if run['kind']=='pile_u' else 0,
+            'length_in':sum(math.dist(a,b) for a,b in zip(points_3d,points_3d[1:])),
             'fit':right-left>=2*r and top-bottom>=2*r}
 
 
@@ -250,6 +290,38 @@ def _segment_box(a,b,left,right,top):
     return True
 
 
+def _segment_box_3d(a,b,bounds):
+    """Slab intersection against the existing conservative pile envelope."""
+    low=0.;high=1.
+    for origin,end,(lo,hi) in zip(a,b,bounds):
+        delta=end-origin
+        if abs(delta)<1e-12:
+            if not lo<=origin<=hi:return False
+            continue
+        t0=(lo-origin)/delta;t1=(hi-origin)/delta
+        low=max(low,min(t0,t1));high=min(high,max(t0,t1))
+        if low>high:return False
+    return True
+
+
+def _segment_distance_3d(a,b,c,d):
+    """Closest distance, including interior crossings and degenerate segments."""
+    dot=lambda u,v:sum(x*y for x,y in zip(u,v))
+    sub=lambda u,v:tuple(x-y for x,y in zip(u,v))
+    def point_distance(point,start,end):
+        v=sub(end,start);den=dot(v,v)
+        t=max(0.,min(1.,dot(sub(point,start),v)/den)) if den else 0.
+        return math.dist(point,tuple(x+t*y for x,y in zip(start,v)))
+    distances=[point_distance(a,c,d),point_distance(b,c,d),point_distance(c,a,b),point_distance(d,a,b)]
+    u=sub(b,a);v=sub(d,c);w=sub(a,c)
+    aa=dot(u,u);bb=dot(u,v);cc=dot(v,v);dd=dot(u,w);ee=dot(v,w);den=aa*cc-bb*bb
+    if den>1e-12*aa*cc:
+        s=(bb*ee-cc*dd)/den;t=(aa*ee-bb*dd)/den
+        if 0<=s<=1 and 0<=t<=1:
+            distances.append(math.dist(tuple(x+s*y for x,y in zip(a,u)),tuple(x+t*y for x,y in zip(c,v))))
+    return min(distances)
+
+
 def shape_issues(e,run):
     from .model import bar_positions
     shape=bar_shape(e,run);p=e.case['inputs'];pts=shape['points'];d=shape['diameter'];issues=[]
@@ -257,14 +329,26 @@ def shape_issues(e,run):
     if any(x-d/2<p['C_s']-1e-8 or x+d/2>p['b']-p['C_s']+1e-8 or y-d/2<p['C_b']-1e-8 or y+d/2>p['h']-p['C_t']+1e-8 for x,y in pts):
         issues.append('Bar or end tail violates cap cover.')
     bars=[b for b in scheduled_bars(e.case) if b['run']==run['id']]
+    rotated=any(hook_rotations(run));points_3d=shape['points_3d']
+    if rotated and any(b['station_in']+x-d/2<p['C_s']-1e-8 or
+            b['station_in']+x+d/2>e.value('L_cap')-p['C_s']+1e-8 for b in bars for x,_,_ in points_3d):
+        issues.append('Rotated hook violates cap end cover along the cap.')
     inset=p['D_pile']/2+e.value('Tol_pile')+p['C_pile']+d/2
     centers=[e.value('E_CL')+i*p['S_pile']*12 for i in range(int(p['N_pile']))]
-    at_pile=any(abs(b['station_in']-c)<=inset for b in bars for c in centers)
     # Exact line intersection and conservative allowance for discretized arcs.
     chord_allowance=shape['radius']*(1-math.cos(math.pi/48))+1e-8
+    offset_min=min(q[0] for q in points_3d);offset_max=max(q[0] for q in points_3d)
+    if rotated:offset_min-=chord_allowance;offset_max+=chord_allowance
+    at_pile=any(b['station_in']+offset_min<=c+inset and b['station_in']+offset_max>=c-inset for b in bars for c in centers)
     if at_pile and p['Pile_embed']>0:
         left=e.value('Pile_left')-p['C_pile']-d/2;right=e.value('Pile_right')+p['C_pile']+d/2
-        if any(_segment_box(a,b,left-chord_allowance,right+chord_allowance,p['Pile_embed']+p['C_pile']+d/2+chord_allowance) for a,b in zip(pts,pts[1:])):
+        if rotated:
+            clash=any(_segment_box_3d(a,b,((c-inset-station['station_in']-chord_allowance,c+inset-station['station_in']+chord_allowance),
+                (left-chord_allowance,right+chord_allowance),(-math.inf,p['Pile_embed']+p['C_pile']+d/2+chord_allowance)))
+                for station in bars for c in centers for a,b in zip(points_3d,points_3d[1:]))
+        else:
+            clash=any(_segment_box(a,b,left-chord_allowance,right+chord_allowance,p['Pile_embed']+p['C_pile']+d/2+chord_allowance) for a,b in zip(pts,pts[1:]))
+        if clash:
             issues.append('Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.')
     # Contact with cage bars is normal; physical overlap is not. Added hooked
     # longitudinal bars need the separate 3D congestion review noted in the UI.
@@ -275,8 +359,13 @@ def shape_issues(e,run):
         if gap<-.03:clashes.append(bar['kind'])
     if clashes:issues.append('Physical overlap with longitudinal bars: '+', '.join(sorted(set(clashes)))+'.')
     if run['kind']=='pile_u':
-        a=pts[0];b=pts[-1]
-        if a[0]+d/2>=b[0]-d/2:issues.append('U end tails meet or cross; the bottom opening is lost.')
+        if rotated:
+            n=shape['hook_point_count'];left=points_3d[:n];right=points_3d[-n:]
+            if any(_segment_distance_3d(a,b,c,f)<d+2*chord_allowance for a,b in zip(left,left[1:]) for c,f in zip(right,right[1:])):
+                issues.append('U end hooks physically intersect in 3D.')
+        else:
+            a=pts[0];b=pts[-1]
+            if a[0]+d/2>=b[0]-d/2:issues.append('U end tails meet or cross; the bottom opening is lost.')
     return issues
 
 
