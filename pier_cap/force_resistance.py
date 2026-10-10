@@ -68,11 +68,11 @@ def resistance_traces(e):
           'shown for strength demands only. M− uses top steel; M+ shows the continuous-bottom reference and '
           'steps to the continuous-plus-added value only over the common straight portions of the drawn span bars. '
           'Development, cutoffs, cage fit and the other D/C checks still apply. ')
-    if enabled(case):
-        segments=[(v['a']['station_in']/12,v['b']['station_in']/12,v['vr'],
-            f'{v["a"]["id"]} → {v["b"]["id"]}: {v["pitch"]:.3f} in pitch; '
+    if e.lrfd:
+        segments=[(v['left_in']/12,v['right_in']/12,v['vr'],
+            f'{v["id"]}: {v["pitch_in"]:.3f} in pitch; '
             f'LRFD / FDOT 2026 intersected-leg calculation. Check the LRFD tab for anchorage and applicability status.')
-            for v in shear_intervals(e)]
+            for v in e.lrfd['intervals']]
         key='Vr_actual';name='Shear resistance · actual intervals (conditional)'
         basis='Minimum actual LRFD / FDOT 2026 resistance over each interval; unresolved anchorage remains conditional.'
         note+=('Shear follows the actual LRFD / FDOT 2026 intersected-leg results over each interval. '

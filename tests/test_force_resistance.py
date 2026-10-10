@@ -1,5 +1,6 @@
 """Current sectional overlays must never silently replace the analyzed demand."""
 from copy import deepcopy
+import math
 import unittest
 from pier_cap.fbmp import import_fbmp_xml
 from pier_cap.model import evaluate,set_inputs
@@ -46,7 +47,12 @@ class ForceResistanceTests(unittest.TestCase):
             self.assertEqual(same.customdata,t.customdata)
         self.assertEqual(curves['T_threshold'].meta['role'],'threshold')
         self.assertIn('not resistance',curves['T_threshold'].name)
-        self.assertAlmostEqual(curves['T_threshold'].y[0],e.value('T_threshold','kip*ft'))
+        # The authoritative threshold now includes the verified signed Nu.
+        # This fixture's tensile maximum is +4.88 kip; compression is not abs(N).
+        p=e.case['inputs'];area=p['b']*p['h'];root=.126*math.sqrt(p['fc'])
+        expected=.25*p['phi_v']*root*area**2/(2*(p['b']+p['h']))*math.sqrt(1-4.88/(area*root))/12
+        self.assertAlmostEqual(curves['T_threshold'].y[0],expected)
+        self.assertLess(curves['T_threshold'].y[0],e.value('T_threshold','kip*ft'))
 
     def test_solid_complementary_demand_and_resistance_styles(self):
         fig=cap_force_figure(self.case,show_resistance=True)

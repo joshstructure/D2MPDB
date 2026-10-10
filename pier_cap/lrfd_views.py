@@ -50,12 +50,12 @@ def working_html(e,*,full=False):
         'V<sub>s</sub> = ΣA<sub>v,intersected</sub>f<sub>y</sub>; V<sub>r</sub> = φ<sub>v</sub> min(V<sub>c</sub> + V<sub>s</sub>, 0.25f′<sub>c</sub>bd<sub>v</sub>). '
         'FDOT 2026 SDG 4.1.4A requires actual legs within 0.5d<sub>v</sub>cotθ on each side. Every bar-entry/exit event is examined for the minimum intersected area over the segment, including truncated end windows. '
         'The simplified β=2, θ=45° route is used only when 5.7.3.4.1 permits it. '
-        'Otherwise ε<sub>s</sub>=[max(|M|/d<sub>v</sub>,V<sub>eff</sub>)+0.5N+V<sub>eff</sub>]/(E<sub>s</sub>A<sub>s,eff</sub>); '
-        'For tensile N the strain is conservatively doubled (compression-face cracking branch). β=4.8/(1+750ε<sub>s</sub>), θ=29+3500ε<sub>s</sub>. Below minimum transverse steel, β also uses 51/(39+s<sub>xe</sub>), '
-        'with s<sub>xe</sub>=clamp[1.38d<sub>v</sub>/(a<sub>g</sub>+0.63),12,80]. Strain beyond 0.006 remains pending. '
-        'General-method longitudinal demand uses the lower θ bound of 29° to bound the whole segment; shear resistance uses its calculated θ. '
-        'The simplified method uses 45° for both. Investigated torsion uses the single shear resistance factor in Eq. 5.7.3.6.3-1. '
-        'The torsion threshold includes λ and the adverse tensile-axial adjustment to K; no prestress credit is assumed.</p>'
+        'Otherwise the calculated strain uses signed Nu and developed tension-half steel. The compression-half flange check uses actual moment, shear and axial force with C5.7.3.4.2 Figures 3/4 and the finite C5.4.2.7 tensile threshold. '
+        'Strain doubles only when net tension cracks that flange. Negative base strain adopts the permitted zero value. General strain above 0.006 has no adopted resistance. '
+        'The same calculated theta is used for shear, the transverse window and longitudinal demand. '
+        'The no-minimum branch uses eligible developed longitudinal layers for sx and the aggregate-size adjustment for sxe. '
+        'Simplified strain is not required; its separately labeled base strain is diagnostic only. '
+        'Investigated torsion replaces the shear term in Eq. 4 by Veff; the separately defined moment floor remains |Vu|dv (Vp=0). Longitudinal demand uses actual M and the single shear resistance factor in 5.7.3.6.3-1.</p>'
         '<p><b>Development, 10th edition:</b> ℓ<sub>db</sub>=0.17d<sub>b</sub>[(f<sub>y</sub>−F<sub>h</sub>/A<sub>b</sub>)/(1.97λf′<sub>c</sub><sup>0.25</sup>)]²; '
         'ℓ<sub>d</sub>=ℓ<sub>db</sub>λ<sub>rl</sub>λ<sub>cf</sub>λ<sub>rc</sub>. '
         'Straight bars: F<sub>h</sub>=0 and ℓ<sub>d</sub>≥12 in. Hooks: F<sub>h</sub>=d<sub>b</sub>Rνf′<sub>c</sub>, '
@@ -67,11 +67,28 @@ def working_html(e,*,full=False):
         'Bend diameter, tail, embedment and enclosure are separate checks. A closed outline does not establish closure. A lap pair uses 1.3ℓ<sub>d</sub>.</p>'
         '<p><b>Face reinforcement:</b> 5.10.6 requires A<sub>s</sub>/ft = clamp[1.30bh/{2(b+h)f<sub>y</sub>},0.11,0.60] on each exposed face and direction. '
         'The spacing table separately identifies code and adopted project limits. Partial U tails are not counted as full-width bottom-face bars.</p>')
+    from .check_math import equation_html
+    out.append('<h4>Signed sectional strain and compression-face cracking</h4><p>Forces in kip, moment in kip-in, dimensions in inches, moduli and concrete stress in ksi. Raw axial values are FBMP member-end actions; Nu is the normalized sectional resultant. The flange cracking model follows the idealized axial flanges in C5.7.3.4.2 Figures 3/4, with the finite estimated tensile strength in C5.4.2.7.</p>')
+    for equation in [
+        'M_epsilon == Max(Abs(Mu), Abs(Vu) * dv)',
+        'epsilon_base == (M_epsilon / dv + 0.5 * Nu + V_eff) / (Es * As_eff)',
+        'F_compression_flange == -Abs(Mu) / dv + 0.5 * Nu + V_eff',
+        'f_flange == F_compression_flange / (Ac_net + Es / Ec * As_compression)',
+        'f_cracking == 0.213 * lambda * Sqrt(fc)',
+        'epsilon_s == Max(0, epsilon_base) * "cracking multiplier (1 or 2)"',
+        'beta == 4.8 / (1 + 750 * epsilon_s)',
+        'theta == 29 + 3500 * epsilon_s',
+        'cot_theta == 1 / Tan(theta)']:
+        out.append(equation_html(equation))
+    out.append('<p>Beta above applies with minimum transverse steel; otherwise multiply by 51/(39+sxe). Theta is in degrees. Simplified: beta=2, theta=45°, cot(theta)=1 and epsilon is not required. A genuine positive Nu disallows the ordinary simplified route even when the compression flange is uncracked.</p>')
+    out.append('<details><summary>Station / combination strain and cracking trace</summary>'+_table(
+        ['Location','Raw I axial (kip)','Raw J axial (kip)','Signed Nu (kip)','Simplified eligibility / reason','dv (in)','As effective (in²)','Es (ksi)','Actual M (kip-in)','M for epsilon (kip-in)','Epsilon base','Compression flange F (kip)','Concrete stress (ksi)','Cracking threshold (ksi)','Cracked?','Multiplier','Adopted epsilon','beta','theta (deg)','cot(theta)','sx (in)','sxe (in)','Search','Unresolved prerequisites'],
+        [[r['id'],r.get('raw_axial_i'),r.get('raw_axial_j'),r['nu'],r['simplified_reason'],r['dv_in'],r['as_effective_in2'],r['es_ksi'],abs(r['moment'])*12,r['m_for_epsilon_kip_in'],r['epsilon_base'],r['compression_face']['force_kip'],r['compression_face']['stress_ksi'],r['compression_face']['cracking_stress_ksi'],r['compression_face']['cracked'],r['strain_multiplier'],r['epsilon'] if r['epsilon'] is not None else 'not required',r['beta'],r['theta'],r['cot'],r['sx_in'],r['sxe_in'],r['search'],'; '.join(r['pending_reasons'])] for r in d['longitudinal']])+'</details>')
     out.append('<details open><summary>Actual transverse interval working</summary>'+_table(
         ['Interval','x1','x2','Av (in²)','s (in)','Vu (kip)','β','θ (deg)','Vc (kip)','Vs (kip)','Vr governing (kip)','Vr min for plot (kip)','Shear D/C','Av/s req','2At/s req','Torsion D/C','Status','Governing segment'],
         [[r['id'],r['left_in'],r['right_in'],r['av_in2'],r['pitch_in'],r['vu'],r['beta'],r['theta'],r['vc'],r['vs'],r['vr_governing'],r['vr'],r['ratio'],r['av_required_rate'],2*r['at_required_rate'],r['tor_ratio'],'FAIL' if r['ratio']>1 else 'PENDING' if r['pending'] else 'PASS',r['governing_segment']] for r in d['intervals']])+'</details>')
     out.append('<details><summary>Longitudinal tension working · every analyzed segment</summary>'+_table(
-        ['Location / combination','Region','M (kip-ft)','V (kip)','N bound (kip)','T (kip-ft)','θ tension bound','Strain bound','Shear method','Vs credited (kip)','As developed (in²)','Full F (kip)','Adopted F (kip)','Capacity (kip)','D/C','Treatment'],
+        ['Location / combination','Region','M (kip-ft)','V (kip)','Signed Nu (kip)','T (kip-ft)','θ calculated / simplified','ε (None = not required)','Shear method','Vs credited (kip)','As developed (in²)','Full F (kip)','Adopted F (kip)','Capacity (kip)','D/C','Treatment'],
         [[r['id'],r['group'],r['moment'],r['vu'],r['nu'],r['tu'],r['long_theta'],r['epsilon'],r['method'],r['vs_credited_kip'],r['steel_area_in2'],r['full_tension_kip'],r['required_tension_kip'],r['capacity_kip'],r['ratio'],r['classification']] for r in d['longitudinal']])+'</details>')
     out.append('<details><summary>Bar development operands</summary>'+_table(
         ['Bar','Kind','#','cb (in)','Fh (kip)','Basic ld (in)','λrl','λcf','λrc','Required (in)','Left end','Right end'],

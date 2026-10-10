@@ -23,7 +23,9 @@ FORCE_INPUTS = {
 }
 ENGINE_SHA = hashlib.sha256(b''.join(
     (Path(__file__).parent / name).read_bytes() for name in (
-        'engine.py', 'model.py', 'detailing.py', 'optimizer.py', 'sections.py', 'data/c005_formulas.json', 'data/dc_ratio_spec.json')
+        'engine.py', 'model.py', 'detailing.py', 'optimizer.py', 'sections.py',
+        'lrfd_checks.py', 'shear.py', 'section_search.py', 'axial.py', 'fbmp.py',
+        'data/c005_formulas.json', 'data/dc_ratio_spec.json')
 )).hexdigest()
 
 

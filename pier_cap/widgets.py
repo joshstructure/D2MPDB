@@ -226,8 +226,8 @@ class CapNotebook:
         self.current=e
         self.lrfd_panel.refresh(e)
         for name in ('beta_v','theta','alpha_v','Ao_factor'):
-            self.controls[name].disabled=actual_transverse(self.case)
-            self.controls[name].tooltip=('Actual-cage calculations derive this value from the LRFD method and entered geometry; see LRFD regions & checks.' if actual_transverse(self.case) else input_tooltip(name))
+            self.controls[name].disabled=bool(e.lrfd)
+            self.controls[name].tooltip=('Shared sectional calculations derive this value from the LRFD method and entered geometry; see LRFD regions & checks.' if e.lrfd else input_tooltip(name))
         for key,value in steel_feedback(e).items():self.steel_readouts[key].value=value
         self.transverse_panel.sync_zones(e)
         self.force_diagrams.refresh(self.case,evaluation=e)
@@ -259,7 +259,7 @@ class CapNotebook:
         self.register.value=checks_html(e)
         rows=''.join(f'<tr><td>{html.escape(t["name"])}</td><td>{html.escape(t["formula"])}</td><td>{html.escape(str(t["value"]))}</td></tr>' for t in formula_trace(e))
         table='<table class="cap-table">'+table_caption('live_equations')+'<tr><th>Name</th><th>Equation</th><th>Value</th></tr>'+rows+'</table>'
-        self.trace.value=('<p><b>Active actual-cage equations and numerical working are in LRFD regions &amp; checks.</b> The inherited equation archive below includes superseded uniform-cage values and is not the actual-cage check register.</p><details><summary>Inherited sectional equation archive</summary>'+table+'</details>' if actual_transverse(self.case) else '<p>Live equations use independent pile and between-pile reinforcement.</p>'+table)
+        self.trace.value=('<p><b>Active sectional equations and numerical working are in LRFD regions &amp; checks.</b> The inherited equation archive below includes superseded uniform-cage values; use the shared LRFD check register.</p><details><summary>Inherited sectional equation archive</summary>'+table+'</details>' if e.lrfd else '<p>Live equations use independent pile and between-pile reinforcement.</p>'+table)
 
     def refresh_sections(self,*,preserve_view=True):
         """Inspect a run using the current calculation; no full-case redraw."""

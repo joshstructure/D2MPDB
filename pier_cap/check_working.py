@@ -212,8 +212,8 @@ def _actual(e, check):
                     [('required development', r['required_in'], 'in'), ('available half-length', (r['right_in']-r['left_in'])/2, 'in')])
         return 'No added bars: hook-development demand and ratio are zero.', []
     if key == 'Status_lrfd_strain':
-        r = max(d['longitudinal'], key=lambda row: row['epsilon'], default=None)
-        return ('Required: maximum uncapped strain ≤ 0.006. Larger strain retains PENDING; the numerical shear display caps strain at 0.006.',
+        r = max(d['longitudinal'], key=lambda row: row['epsilon'] or 0., default=None)
+        return ('Required: calculated general strain ≤ 0.006. Larger strain has no adopted resistance; no clipping. Simplified strain is not required.',
                 [('maximum uncapped strain', r['epsilon'] if r else 0., ''),
                  ('governing segment', r['id'] if r else 'No segments', ''), ('strain limit', .006, '')])
     if key == 'Status_lrfd_domain':

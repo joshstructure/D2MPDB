@@ -119,8 +119,9 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
     manifest={'status':e.status,'cage_issues':e.issues,'stale_geometry':e.stale,'max_dc':e.max_dc,'estimated_gross_steel_lb':e.weight_lb,
         'limitations':'Sectional checks only. Service III/fatigue readiness, D-regions, hook development/cutoffs, end anchorage, pile-head hoops and full code/detail review remain explicit. Steel includes drawn span-hook bends/tails; excludes laps, end anchorage, hoop bends and waste. Hoop quantity uses tighter spacing over the full cap; stationing is unresolved.',
         'case_sha256':hashlib.sha256((path/'selected_case.json').read_bytes()).hexdigest()}
-    if actual_transverse(case):
-        manifest['limitations']='Actual-cage LRFD working is in lrfd_calculations.json and lrfd_*.csv. Unknown load paths get no direct-loading exception. Numerical capacity remains pending where anchorage or source data is unresolved; consult the check register. Weight excludes hoop closure extensions, laps and waste. U-bars receive no closed-path torsion credit. End zones, cutoffs, D-regions and full 3D congestion retain explicit review statuses.'
+    if e.lrfd:
+        manifest['limitations']='Shared sectional LRFD working is in lrfd_calculations.json and lrfd_*.csv. Unknown load paths get no direct-loading exception. Numerical capacity remains pending where anchorage or source data is unresolved; consult the check register. Weight excludes hoop closure extensions, laps and waste. U-bars receive no closed-path torsion credit. End zones, cutoffs, D-regions and full 3D congestion retain explicit review statuses.'
+        if not actual_transverse(case):manifest['limitations']+=' Uniform placement is conditional: cover plus half the bar diameter, at the larger G/L pitch; enter an actual schedule before acceptance.'
     if search_result:
         write_case(search_result.base_case,path/'search_base_case.json')
         manifest['search']={k:getattr(search_result,k) for k in ('config','total','evaluated','passed','elapsed','exhaustive','rejection_counts','force_mode')}

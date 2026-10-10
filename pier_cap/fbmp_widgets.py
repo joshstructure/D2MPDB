@@ -195,7 +195,7 @@ class XMLImportPanel:
             f'<p><b>Checked:</b> {audit["cap_element_count"]} cap members; signed moment/shear extrema and absolute torque match the XML cap summary. '
             f'Combinations: {html.escape(combos)}.</p>'
             + strength_html(case) + '<details><summary><b>Import basis and remaining checks</b></summary><ul>'+notes+'</ul>'
-            f'<p>Outside-calculation envelope magnitudes: axial {outside["axial"]:g} kip; '
+            f'<p>Signed cap axial range: {audit["summary_checks"].get("min axial force",{}).get("extracted","unresolved")} to {audit["summary_checks"].get("max axial force",{}).get("extracted","unresolved")} kip (positive tension). Outside-calculation magnitudes: '
             f'weak-axis moment {outside["weak_moment"]:g} kip-ft; lateral shear {outside["lateral_shear"]:g} kip.</p>'
             f'<p>SHA256: <code>{audit["sha256"]}</code>. Governing member ends and source metadata travel with the saved JSON.</p>'
             '</details></div>'

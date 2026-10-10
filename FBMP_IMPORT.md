@@ -63,9 +63,9 @@ For the supplied `Pier_MinTip.XML`, combination 1 is Strength I; combinations 2 
 | Strength III | 183.15 | 50.61 | 279.73 | 168.62 | 34.16 |
 | Combined design envelope | 183.15 | 90.45 | 287.44 | 209.52 | 34.16 |
 
-Strength I was already included; these labels and audit tables do not change the adopted forces or equations. The calculation does **not** run separate simultaneous-force checks for each combination. Blockpad review copies contain the same source tables as a clearly dated-by-export snapshot; subsequent edits in Blockpad do not rewrite that snapshot. Review bundles also contain `strength_loads.csv` and `strength_governing.csv`. Older saved JSON cases retain their governing records but need their XML reimported to populate the per-state table; states or non-governing values are never inferred from the combined maxima.
+The scalar Strength/Service tables remain source envelopes. The active LRFD shear/longitudinal calculation separately evaluates concurrent M/V/N/T by member, station and combination, then envelopes calculated D/C values. Blockpad review copies retain their source tables as export snapshots; the original journal is unchanged.
 
-Axial force, weak-axis bending and lateral shear are not mapped into this calculation's strong-axis flexure/shear/torsion method. Their envelope magnitudes are shown in the preview and audit. Full interaction, convergence, anchorage and the existing pending design checks still require review.
+Signed cap axial force now enters the shared LRFD shear/longitudinal calculation. Weak-axis bending, lateral shear and combined axial/biaxial flexural resistance remain separate. Raw axial end actions are retained; I = -raw AXIAL, J = +raw AXIAL for the supported increasing-X chain. Both independent signed axial extrema and raw end-force equilibrium are checked. See [the signed axial and LRFD method guide](SIGNED_AXIAL_LRFD.md) for the two tension decisions, cracking criterion, tolerances, calculated strain and saved-case migration.
 
 ## Geometry in the supplied run
 

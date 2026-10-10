@@ -74,19 +74,21 @@ def layout_3d(e):
 
 @numbered_figure('actual_results')
 def response_figure(e):
-    """Actual station checks on the main plots; no uniform hoop capacity bars."""
+    """Shared station checks, including conditional uniform reference placement."""
+    from .transverse import enabled
+    actual=enabled(e.case)
     fig=make_subplots(rows=2,cols=2,subplot_titles=('Moment demand / resistance (kip-ft)','Service I steel stress (ksi)',
-        'Actual adjacent-bar shear D/C','Torsion / anchorage review'),vertical_spacing=.24,horizontal_spacing=.14)
+        'Concurrent station shear D/C','Torsion / anchorage review'),vertical_spacing=.24,horizontal_spacing=.14)
     for prefix,name,color in [('Mu_','Moment demand','#2166ac'),('Mr_','Moment resistance','#90bce4')]:
         fig.add_trace(go.Bar(x=['Top','At piles','Between piles'],y=[e.value(prefix+z,'kip*ft') for z in 'NPB'],name=name,marker_color=color),row=1,col=1)
     fig.add_trace(go.Bar(x=['Top','At piles','Between piles'],y=[e.value('fs_I_'+z,'ksi') for z in 'NPB'],name='Service I stress',marker_color='#167b75',
         customdata=[service_hover(e,z) for z in 'NPB'],hovertemplate='%{x}<br>Steel stress %{y:.3f} ksi<br>%{customdata}<extra></extra>'),row=1,col=2)
     fig.add_hline(y=e.value('fs_I_limit','ksi'),line_dash='dash',line_color='#d88822',row=1,col=2)
-    checks=[c for c in e.checks if c.key.startswith('Chk_actual_shear_')];bars=scheduled_bars(e.case)
-    fig.add_trace(go.Scatter(x=[(a['station_in']+b['station_in'])/24 for a,b in zip(bars,bars[1:])],y=[c.ratio for c in checks],
-        mode='lines+markers',name='Actual shear · conditional on anchorage',marker=dict(color=['#bb3e39' if c.ratio>1 else '#7952a3' for c in checks]),
-        line=dict(color='#7952a3'),text=[c.label for c in checks],customdata=[hover_basis(c) for c in checks],
-        hovertemplate='%{text}<br>Interval midpoint %{x:.3f} ft<br>D/C %{y:.3f}<br>%{customdata}<extra></extra>'),row=2,col=1)
+    rows=e.lrfd['intervals'] if e.lrfd else []
+    fig.add_trace(go.Scatter(x=[r['station_in']/12 for r in rows],y=[r['shear_ratio'] for r in rows],
+        mode='markers',name=('Actual shear' if actual else 'Sectional shear')+' · conditional on prerequisites',marker=dict(color=['#bb3e39' if r['shear_ratio']>1 else '#7952a3' for r in rows]),
+        text=[r['id'] for r in rows],customdata=[r['basis'] for r in rows],
+        hovertemplate='%{text}<br>Governing station %{x:.3f} ft<br>D/C %{y:.3f}<br>%{customdata}<extra></extra>'),row=2,col=1)
     fig.add_hline(y=1,line_dash='dash',line_color='#bb3e39',row=2,col=1)
     fig.update_xaxes(title='Along cap (ft)',row=2,col=1)
     threshold=e.value('T_threshold','kip*ft');torque=e.case['inputs']['Tu']
@@ -96,6 +98,6 @@ def response_figure(e):
     fig.add_annotation(x=.5,y=.5,xref='x4 domain',yref='y4 domain',showarrow=False,align='left',font=dict(size=12),
         text=f'Torque input: {torque:.2f} kip-ft<br>Investigation threshold: {threshold:.2f} kip-ft<br><br><b>Open U-bars have no closed-hoop<br>torsion capacity assigned.</b><br>Verify end development, closure<br>and local force zones.')
     fig.update_xaxes(visible=False,row=2,col=2);fig.update_yaxes(visible=False,row=2,col=2)
-    fig.update_layout(title='Actual cage · shear checks conditional on anchorage',template='plotly_white',height=650,
+    fig.update_layout(title=('Actual cage' if actual else 'Conditional uniform placement')+' · shared LRFD station checks',template='plotly_white',height=650,
         margin=dict(l=55,r=30,t=90,b=110),legend=dict(orientation='h',y=-.2,font=dict(size=10)),hoverlabel=dict(namelength=-1),barmode='group')
     return fig

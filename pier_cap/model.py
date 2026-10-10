@@ -67,6 +67,12 @@ def upgrade_case(case):
     result['lrfd_checks']=settings(result)
     from .fdot_detailing import settings as fdot_settings
     result['fdot_detailing']=fdot_settings(result)
+    from .axial import upgrade_axial
+    upgrade_axial(result)
+    if result.get('analysis',{}).get('xml_audit',{}).get('axial_schema_version')==1:
+        # Older notebooks reject LRFD settings v3 instead of reinterpreting the
+        # new signed axial field using the obsolete absolute-force algorithm.
+        result['lrfd_checks']['version']=3
     return result
 
 def set_inputs(case,**changes):
@@ -433,9 +439,12 @@ def evaluate(case=None,fast=False):
         checks.extend(transverse_checks(e))
     from .check_details import annotate_checks
     annotate_checks(e)
-    if actual_transverse(case):
+    if actual_transverse(case) or case['analysis'].get('xml_audit',{}).get('end_records'):
         from .lrfd_checks import apply_actual_checks
         apply_actual_checks(e)
+    else:
+        checks.append(Check('Status_signed_axial_source','Concurrent cap forces / signed axial source','PENDING','N/A',
+            'No verified concurrent signed M/V/N/T source. Uniform C005 values are archival reference screens; reimport solved cap XML for the authoritative LRFD calculation. Axial force is unresolved, not zero.'))
     e.max_dc=max(c.ratio for c in checks if isinstance(c.ratio,(float,int)))
     e.issues=(layout['issues'] if layout else [])+cage_issues(e)+transverse_issues(e);e.weight_lb=estimate_weight(e)
     failure=any('FAIL' in c.status for c in checks)

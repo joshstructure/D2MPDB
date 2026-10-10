@@ -66,7 +66,7 @@ def working_html(check, equation):
         lines = ['ratio == "drawn outer-leg center spacing" / "spacing limit"']
     elif key == 'Status_lrfd_strain':
         lines = ['eps_max <= 0.006']
-        notes = 'Maximum uncapped strain is compared with this implementation limit. Larger strain retains PENDING; the numerical shear display caps strain at 0.006.'
+        notes = 'Calculated strain is compared with the applicability limit. Larger strain has no adopted resistance; no clipping. Simplified epsilon is not required.'
     elif key == 'Status_lrfd_domain':
         lines = ['fpc == 0 * ksi', 'fc <= 15 * ksi', 'fy <= 75 * ksi']
         notes = 'This is the implementation readiness gate. Investigated torsion additionally requires concrete strength at most 10 ksi in the local shear check. Higher-grade detailing retains review.'

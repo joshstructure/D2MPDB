@@ -151,6 +151,8 @@ class Report:
         self.figures=[]
         self.checks={c.key:c for c in e.checks}
         self.actual=actual_transverse(e.case)
+        self.sectional=bool(e.lrfd)
+        self.superseded={d['name'] for key in ('shear','torsion') for d in groups()[key]}-{'dv'}
         self.equation_count=0
 
     def plot(self, figure, caption):
@@ -173,7 +175,7 @@ class Report:
         name=d['name']
         # The actual-cage module supersedes these uniform-cage calculations.
         # Its equations and substitutions are printed in the LRFD working section.
-        if self.actual and (name in ('Av','S_leg') or name.startswith(('Vs_','Vr_','s_strength_','s_minsteel','s_allow_','s_suggest_','DC_shear_','At_','Av_shear_','Acomb_','F_vt','F_long_','As_add_','DC_long_','Ash_hoop','Ash_prov','s_shrink'))):return ''
+        if self.sectional and (name in self.superseded or name in ('Av','S_leg') or name.startswith(('Ash_hoop','Ash_prov','s_shrink'))):return ''
         if d['input'] or '(' in name:return ''
         # Aggregate/status checks are shown through the authoritative check register,
         # never the historic hard-coded source-layout test or an unqualified collector.
@@ -206,8 +208,8 @@ class Report:
             if d['name'] in ('Bar_U','n_PU','n_BU'):continue
             n=d['name'];caption=meanings.get(n,d['caption'])
             source='Current case input / adopted assumption'
-            if self.actual and n in ('beta_v','theta','alpha_v','Ao_factor'):
-                source='Uniform-mode input only; actual-cage value is derived in the LRFD calculation working.'
+            if self.sectional and n in ('beta_v','theta','alpha_v','Ao_factor'):
+                source='Archived input only; the active value is derived in the shared LRFD calculation working.'
             if n.startswith(('Mu_','MI_','MIII_','MDL_','DMLL_','Vu_')) or n=='Tu':
                 caption={'Mu':'Factored strength moment magnitude','MI':'Service I moment magnitude',
                          'MIII':'Service III moment magnitude','MDL':'Signed permanent moment; tension positive',
@@ -225,7 +227,7 @@ class Report:
             ratio=f'{c.ratio:.6g}' if isinstance(c.ratio,(int,float)) else str(c.ratio)
             basis=escape(c.basis).replace('\n','<br>')
             from .lrfd_checks import REPLACED_PREFIXES,REPLACED_KEYS
-            replaced=self.actual and (c.key.startswith(REPLACED_PREFIXES) or c.key in REPLACED_KEYS)
+            replaced=self.sectional and (c.key.startswith(REPLACED_PREFIXES) or c.key in REPLACED_KEYS)
             if criteria and not replaced and c.key in self.e.engine.defs and c.key not in self.e.engine.overrides and c.status!='REFERENCE':
                 basis+='<details class="working"><summary>Check criterion</summary><div class="equation-line">'+mathml(expression(self.e.engine.defs[c.key]),True)+'</div></details>'
             rows.append([escape(c.label),badge(c.status),escape(ratio),basis])
@@ -313,9 +315,11 @@ class Report:
         if key=='shear':
             if self.actual:
                 from .transverse_visuals import schedule_html,response_figure
-                return '<p>Actual stations and member-segment action bounds govern. See <a href="#lrfd-actual">LRFD regions and calculation working</a> for equations, force combinations, development, anchorage and applicability. A pending anchorage result is not an accepted resistance.</p>'+schedule_html(e)+self.plot(response_figure(e),'Actual adjacent-station LRFD shear and sectional flexural response.')
+                return '<p>Concurrent station actions and developed reinforcement govern. See <a href="#lrfd-actual">LRFD regions and calculation working</a> for equations, force combinations, development, anchorage and applicability. A pending anchorage result is not an accepted resistance.</p>'+schedule_html(e)+self.plot(response_figure(e),'Actual adjacent-station LRFD shear and sectional flexural response.')
+            if self.sectional:
+                return v.hoop_explanation_html(e)+self.plot(v.results_figure(e),'Shared LRFD results for the conditional uniform reference placement; see the station trace for concurrent actions.')+v.spacing_html(e)
             return v.hoop_explanation_html(e)+self.plot(v.hoop_figure(e),'Uniform reference hoop section; actual stationing is unresolved.')+v.spacing_html(e)
-        if key=='torsion':return ('<p>Actual closed paths, combined shear/torsion reinforcement and longitudinal interaction are calculated in <a href="#lrfd-actual">LRFD regions and calculation working</a>. Open U-bars receive no closed-path torsion credit. Source member combinations are preserved, with conservative action bounds within each segment.</p>' if self.actual else '<p>Independent force maxima are combined conservatively; they are not a concurrent load case. The adopted effective torsion-area factor is explicit.</p>')
+        if key=='torsion':return ('<p>Closed paths, combined shear/torsion reinforcement and longitudinal interaction are calculated in <a href="#lrfd-actual">LRFD regions and calculation working</a>. Open U-bars receive no closed-path torsion credit. Actions remain concurrent at each investigated station and source combination.</p>' if self.sectional else '<p>Independent force maxima are combined conservatively; they are not a concurrent load case. The adopted effective torsion-area factor is explicit.</p>')
         if key=='details':
             components=steel_quantity_components(e)
             working='<h3>Reinforcing steel quantity</h3><p>Inventory estimate from the same drawn paths used by the notebook. Continuous volume = total continuous area × clear length; added volume sums each bar area × its straight, bend and tail lengths; transverse volume sums each entered shape area × centerline length × count (or the uniform reference hoop count when actual layout is disabled).</p>'

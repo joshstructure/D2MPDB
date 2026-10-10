@@ -161,7 +161,9 @@ def references_for(e, check):
     if key == 'Status_lrfd_regions':
         return (lrfd('Art. 5.7.3.5; Commentary C5.7.3.5', 'Direct-loading treatment of longitudinal reinforcement'),), 'Eligibility requires the recorded project load path.'
     if key == 'Status_lrfd_strain':
-        return (lrfd('Art. 5.7.3.4.2; Eqs. 5.7.3.4.2-1 through 5.7.3.4.2-3', 'General shear parameters and longitudinal-strain treatment'),), 'The 0.006 readiness/display bound is an implementation limit; exceeding it requires review.'
+        return (lrfd('Art. 5.7.3.4.2; Eqs. 5.7.3.4.2-1 through 5.7.3.4.2-4', 'Calculated shear parameters and longitudinal-strain treatment'),), 'No clipping or adopted resistance above 0.006. Simplified strain is not required.'
+    if key in ('Status_signed_axial_source','Status_lrfd_search','Status_uniform_schedule'):
+        return (lrfd('Arts. 5.7.3.4.2 and 5.7.3.5', 'Concurrent section actions and signed axial force'), WINDOW), 'Notebook source, convergence or station-placement readiness gate; not an additional code resistance equation.'
     if key == 'Status_lrfd_domain':
         return (
             lrfd('Arts. 5.1, 5.4.3.3, 5.7 and 5.10.8.2', 'Material and member applicability of shear and development provisions'),

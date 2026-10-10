@@ -187,11 +187,9 @@ def _search(case,config,progress,section_sensitivity):
     if any(not g for g in grids):raise ValueError('Select at least one value in every search list.')
     total=1
     for g in grids:total*=len(g)
-    # The saved force audit is immutable provenance, not a calculation input.
-    # Avoid copying hundreds of XML records twice per trial cage.
+    # Concurrent signed M/V/N/T is a calculation input. Keep the same source
+    # records in fast trials and detailed rechecks.
     trial_base=deepcopy(case)
-    for key in ('xml_audit','workbook_audit'):
-        trial_base['analysis'].pop(key,None)
     start=perf_counter();good=[];rejected=Counter();count=0
     for bar,top,bottom,hoop,spacing,side,pbar,bbar,pcount,bcount in bounded_layouts(grids,c.max_cases):
         count+=1

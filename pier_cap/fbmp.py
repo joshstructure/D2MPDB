@@ -11,6 +11,7 @@ import math
 from lxml import etree as ET
 from .model import upgrade_case, default_case, evaluate, validate_case, GEOMETRY
 from .pile_visual import appearance_from_xml
+from .axial import CONVENTION, SCHEMA, PRINTED_EQUILIBRIUM_KIP, PRINTED_SUMMARY_KIP
 
 
 def _require(condition, message):
@@ -238,6 +239,7 @@ def import_fbmp_xml(source, base=None, filename=None):
     excluded_counts = []
     pile_stations = [x+offset for x in centers for offset in (-diameter/2,0,diameter/2)]
     max_equilibrium_error = 0.
+    max_axial_error = 0.
     for result in results:
         state = result.get('limitstate').strip()
         common = dict(load_case=result.get('number'), combination=result.get('combination'), state=state)
@@ -256,10 +258,13 @@ def import_fbmp_xml(source, base=None, filename=None):
             for side,end,node,x,sign in [('I',ei,ordered[i],xi,1),('J',ej,ordered[i+1],xj,-1)]:
                 raw_m = _number(end,'MOMENT-3','kip-ft')
                 raw_v = _number(end,'SHEAR-2','kip')
+                raw_n = _number(end,'AXIAL','kip')
                 record = dict(common, element=element.get('elem_number'), side=side, node=node, x_in=x,
                               moment=sign*raw_m, shear=-sign*raw_v, torque=_number(end,'TORQUE','kip-ft'),
                               raw_moment_3=raw_m, raw_shear_2=raw_v,
-                              axial=_number(end,'AXIAL','kip'), weak_moment=_number(end,'MOMENT-2','kip-ft'),
+                              raw_axial=raw_n, axial=-sign*raw_n, axial_convention=CONVENTION,
+                              coordinates_in=list(nodes[node]), force_units='kip', moment_units='kip-ft',
+                              weak_moment=_number(end,'MOMENT-2','kip-ft'),
                               lateral_shear=_number(end,'SHEAR-3','kip'),
                               station='member end', pile_station=any(_close(x,s) for s in pile_stations))
                 end_records.append(record)
@@ -267,6 +272,10 @@ def import_fbmp_xml(source, base=None, filename=None):
                 ends.append(record)
             mi,mj = [r['moment'] for r in ends]
             vi,vj = [r['shear'] for r in ends]
+            axial_error = abs(ends[0]['raw_axial']+ends[1]['raw_axial'])
+            _require(axial_error <= PRINTED_EQUILIBRIUM_KIP,
+                     f'LC {common["load_case"]}, member {i+1}: axial end-force equilibrium failed; distributed axial loading is unsupported.')
+            max_axial_error = max(max_axial_error, axial_error)
             error = abs(mj-mi-(vi+vj)*length/2)
             # Printed coordinates/forces are rounded to .01 in / kip / kip-ft.
             bound = .02+.01*length+max(abs(vi),abs(vj))*.02/12
@@ -292,11 +301,13 @@ def import_fbmp_xml(source, base=None, filename=None):
     for label,field,kind,unit in [('max moment about 3 axis','moment','max','kip-ft'),
                                   ('min moment about 3 axis','moment','min','kip-ft'),
                                   ('max shear in 2 direction','shear','max','kip'),
-                                  ('min shear in 2 direction','shear','min','kip')]:
+                                  ('min shear in 2 direction','shear','min','kip'),
+                                  ('max axial force','axial','max','kip'),
+                                  ('min axial force','axial','min','kip')]:
         _require(label in summary, f'Missing summary: {label}.')
         actual = (max if kind == 'max' else min)(r[field] for r in end_records)
         expected = _number(summary[label],'ITEM_VALUE',unit)
-        _require(_close(actual,expected,.025), f'{label}: member forces disagree with the FB summary ({actual:g} vs {expected:g}).')
+        _require(_close(actual,expected,PRINTED_SUMMARY_KIP if field=='axial' else .025), f'{label}: member forces disagree with the FB summary ({actual:g} vs {expected:g}).')
         comparisons[label] = dict(extracted=actual,summary=expected)
     _require('max torque' in summary and 'min torque' in summary, 'Missing torque summary.')
     torque = max(abs(r['torque']) for r in end_records)
@@ -333,13 +344,18 @@ def import_fbmp_xml(source, base=None, filename=None):
         'Trial reinforcement, covers and design factors are retained. Service III and fatigue are reset to pending (STRENGTH-III is not SERVICE-III).',
         'End geometry is the analyzed nominal extension. Existing actual-clearance and 3 in tolerance allowances are retained; the remainder is extra end allowance.',
         'Cantilever dimensions are recovered from cap-end/pile-center coordinates. The printed length field is checked with its export-rounding tolerance; both values are retained in the audit.',
-        'Axial force, weak-axis bending and lateral shear remain outside the existing sectional calculation; their maxima are recorded in the audit. Analysis convergence, anchorage and full design review remain separate.',
+        'Signed cap axial force (positive tension) is used in the shared shear/longitudinal calculation: I = -raw AXIAL, J = +raw AXIAL. Weak-axis bending, lateral shear and combined axial/biaxial flexure require separate checks. Pile signs are unchanged.',
     ]
     case['name'] = Path(filename).stem+' — XML analysis'
     case['pile_visual']=appearance_from_xml(pile_sections[0],f'FBMP XML: {Path(filename).name} · SHA256 {digest[:12]}')
     case['analysis'] = dict(id=f'{Path(filename).name} · SHA256 {digest[:12]}',
                             geometry={k:p[k] for k in GEOMETRY}, notes=' '.join(notes),
                             xml_audit=dict(filename=Path(filename).name,sha256=digest,version=version,
+                                axial_schema_version=SCHEMA,axial_convention=CONVENTION,axial_status='verified',
+                                orientation='straight-horizontal-increasing-global-X',
+                                maximum_axial_equilibrium_residual_kip=max_axial_error,
+                                axial_equilibrium_rounding_tolerance_kip=PRINTED_EQUILIBRIUM_KIP,
+                                axial_summary_rounding_tolerance_kip=PRINTED_SUMMARY_KIP,
                                 project=_text(root,'PROJECT_INFO/PROJECT_NAME'), combinations=combinations,
                                 cap_element_count=cap_count,excluded_elements_per_case=excluded_counts,
                                 cap_length_ft=(xs[-1]-xs[0])/12,nominal_end_extension_in=nominal_extension,
@@ -351,9 +367,11 @@ def import_fbmp_xml(source, base=None, filename=None):
                                 maximum_equilibrium_residual_kip_ft=max_equilibrium_error,
                                 summary_checks=comparisons,governing=governing,
                                 strength_envelopes=strength_envelopes,notes=notes,
-                                outside_calc_maxima={field:max(abs(r[field]) for r in end_records) for field in ('axial','weak_moment','lateral_shear')},
+                                signed_axial_extrema_kip=dict(maximum=max(r['axial'] for r in end_records),minimum=min(r['axial'] for r in end_records)),
+                                outside_calc_maxima={field:max(abs(r[field]) for r in end_records) for field in ('weak_moment','lateral_shear')},
                                 end_records=end_records))
     case.pop('section_study',None)
+    case['lrfd_checks']['version']=3
     validate_case(case)
     evaluated = evaluate(case)
     _require(_close(evaluated.value('L_cap'),xs[-1]-xs[0]), 'Imported cap length does not match analyzed geometry.')

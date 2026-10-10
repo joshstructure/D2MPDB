@@ -38,7 +38,7 @@ def closure_extension(s,bar):
 
 def validate_settings(case):
     s=settings(case)
-    if s['version']!=2: raise ValueError('Unsupported LRFD check settings version; use the updated notebook.')
+    if s['version'] not in (2,3): raise ValueError('Unsupported LRFD check settings version; use the updated notebook.')
     choices={'bearing_loading':('unknown','top','indirect'),
         'pile_connection':('unknown','pinned','moment'),
         'coating':('unknown','uncoated','epoxy'),
@@ -129,14 +129,17 @@ def source_members(e):
     from .force_diagrams import cap_profiles
     audit=e.case['analysis'].get('xml_audit',{})
     if not audit.get('end_records'): return [],'No member forces: global envelopes are used without direct-loading exclusions.'
-    if e.stale: return [],'Analysis geometry changed: reimport forces; no direct-loading exclusions.'
+    if any(k not in ('b','h') for k in e.stale): return [],'Analysis geometry changed: reimport forces; no direct-loading exclusions.'
+    from .axial import validate_axial
+    problem=validate_axial(audit)
+    if problem:return [],problem
     changed=[k for k,r in audit.get('governing',{}).items()
              if not math.isclose(e.case['inputs'][k],r['adopted'],rel_tol=1e-9,abs_tol=1e-8)]
     if changed:return [],'Entered demands differ from the imported member forces ('+', '.join(changed)+'); scalar envelopes used without exclusions. Reimport matching forces.'
     try: cap_profiles(e.case)
     except (ValueError,KeyError,TypeError) as exc: return [],'Invalid member-force source: '+str(exc)
     for r in audit['end_records']:
-        if any(not isinstance(r.get(k,0),(int,float)) or not math.isfinite(r.get(k,0))
+        if any(not isinstance(r.get(k),(int,float)) or not math.isfinite(r.get(k))
                for k in ('x_in','moment','shear','torque','axial')):
             return [],'Nonfinite or invalid member action; reimport solved forces. No exclusions.'
     grouped=defaultdict(dict);origin=min(r['x_in'] for r in audit['end_records'])
@@ -148,24 +151,24 @@ def source_members(e):
         i,j=pair['I'],pair['J'];length=j['x_in']-i['x_in']
         result.append(dict(combo=combo,element=element,state=i['state'],left=i['x_in']-origin,
             right=j['x_in']-origin,mi=i['moment'],mj=j['moment'],vi=i['shear'],vj=j['shear'],
-            # AXIAL is retained in FBMP's local convention. Its absolute bound is
-            # used as tension; no unverified sign convention creates compression credit.
-            nu=max(abs(i.get('axial',0)),abs(j.get('axial',0))),
-            tu=max(abs(i['torque']),abs(j['torque'])),length=length))
+            ni=i['axial'],nj=j['axial'],nu=max(i['axial'],j['axial']),
+            ti=-i['torque'],tj=j['torque'],tu=max(abs(i['torque']),abs(j['torque'])),
+            raw_axial_i=i['raw_axial'],raw_axial_j=j['raw_axial'],
+            source_sha256=audit['sha256'],axial_convention=audit['axial_convention'],length=length))
     result=sorted(result,key=lambda m:(m['combo'],m['left']))
     for combo in set(m['combo'] for m in result):
         group=[m for m in result if m['combo']==combo]
         if any(abs(a['right']-b['left'])>1e-6 for a,b in zip(group,group[1:])):
             return [],'Member-force coverage has a gap or overlap; scalar envelopes used without exclusions.'
-    return result,'Concurrent M/V/T by member and combination; |N| upper bound used as tension.'
+    return result,'Concurrent signed M/V/N/T by member and combination; positive Nu is tension. I = -raw AXIAL; J = +raw AXIAL.'
 
 
 def torsion_threshold(e,nu=0.):
     """5.7.2.1-3/-4/-6, solid nonprestressed rectangular section, kip-ft.
 
-    A tensile upper bound reduces K; unverified compression never raises it.
+    Signed tension reduces K; verified compression increases K (5.7.2.1-6).
     """
-    p=e.case['inputs'];lam=settings(e.case)['density_factor']
+    p=e.case['inputs'];lam=(e.case.get('lrfd_checks') or settings(e.case))['density_factor']
     root=.126*lam*math.sqrt(p['fc']);area=p['b']*p['h']
     k=math.sqrt(max(0.,1-nu/area/root))
     return .25*p['phi_v']*root*area**2/(2*(p['b']+p['h']))*k/12
@@ -176,7 +179,9 @@ def forces(m,x):
     a=.5*(m['vj']-m['vi'])*m['length']/12
     b=m['mj']-m['mi']-a
     return dict(moment=a*t*t+b*t+m['mi'],vu=abs(m['vi']+(m['vj']-m['vi'])*t),
-                shear=m['vi']+(m['vj']-m['vi'])*t,nu=m['nu'],tu=m['tu'])
+                shear=m['vi']+(m['vj']-m['vi'])*t,
+                nu=m.get('ni',m['nu'])+(m.get('nj',m['nu'])-m.get('ni',m['nu']))*t,
+                tu=abs(m.get('ti',m['tu'])+(m.get('tj',m['tu'])-m.get('ti',m['tu']))*t))
 
 
 def member_roots(m,kind='moment'):
@@ -236,7 +241,7 @@ def direct_regions(e,members,inventory):
                 if not sufficient:reason+='; continuous main bars do not resist the flexural maximum'
                 qualified=qualified and bool(direct) and extended and sufficient
                 reasons.append(f'x={x:.3f} in: '+reason)
-            if any(m['nu']>1e-6 for m in span): qualified=False;reasons.append('Axial tension upper bound: full interaction retained')
+            if any(m['nu']>1e-10 for m in span): qualified=False;reasons.append('Net axial tension: full interaction retained (conservative exception boundary)')
             if any(m['tu']>torsion_threshold(e,m['nu']) for m in span):qualified=False;reasons.append('Torsion requires 5.7.3.6.3')
             if s['continuous_splices']!='none':qualified=False;reasons.append('Unspliced continuous main bars not confirmed')
             out.append(dict(id=f'{combo}-{len(out)+1}',combination=combo,left_in=left,right_in=right,face=face,
@@ -246,37 +251,9 @@ def direct_regions(e,members,inventory):
     return out
 
 
-def shear_parameters(e,action,area,rate,ao=None,ph=None):
-    p=e.case['inputs'];s=settings(e.case);dv=e.value('dv');fc=p['fc'];vu=action['vu'];nu=action['nu']
-    minimum=.0316*s['density_factor']*math.sqrt(fc)*p['b']/min(p['fy'],100.)
-    threshold=torsion_threshold(e,nu)
-    torsion=action['tu']>threshold
-    veff=math.hypot(vu,.9*ph*action['tu']*12/(2*ao)) if torsion and ao and ph else vu
-    epsilon=(max(abs(action['moment'])*12/dv,veff)+.5*nu+veff)/(p['Es']*max(area,1e-9))
-    # Conservative 5.7.3.4.2 compression-face cracking branch for tensile N.
-    # Using the doubled strain avoids relying on an unverified stress state.
-    if nu>1e-6:epsilon*=2
-    simplified=nu<=1e-6 and (rate+1e-10>=minimum or p['h']<16)
-    if simplified: beta=2.;theta=45.;epsilon=0.
-    else:
-        theta=29+3500*min(.006,epsilon)
-        sxe=max(12.,min(80.,1.38*dv/(e.case['screening']['aggregate_in']+.63)))
-        beta=4.8/(1+750*min(.006,epsilon))*(1 if rate>=minimum else 51/(39+sxe))
-    cot=1/math.tan(math.radians(theta))
-    vc=.0316*s['density_factor']*beta*math.sqrt(fc)*p['b']*dv
-    vs=rate*min(p['fy'],100.)*dv*cot
-    limit=.25*fc*p['b']*dv
-    vr=p['phi_v']*min(vc+vs,limit)
-    stress=veff/(p['phi_v']*p['b']*dv)
-    pitch=min(.8*dv,24.) if stress<.125*fc else min(.4*dv,12.)
-    # Retained as an explicitly identified project criterion, not LRFD 5.7.2.6.
-    owner_stress=vu/(p['phi_v']*p['b']*dv)
-    across=42. if owner_stress<=.08*math.sqrt(fc) else min(dv,24.) if owner_stress<=.16*math.sqrt(fc) else min(.5*dv,12.)
-    return dict(beta=beta,theta=theta,cot=cot,epsilon=epsilon,vc=vc,vs=vs,vr=vr,
-        nominal_limit=limit,minimum_rate=minimum,pitch_limit=pitch,across_limit=across,
-        method='5.7.3.4.1' if simplified else '5.7.3.4.2',
-        valid=fc<=(10 if torsion else 15) and p['fy']<=100 and epsilon<=.006+1e-12 and p['fpc']==0,
-        torsion_required=torsion,threshold_kip_ft=threshold,veff=veff)
+def shear_parameters(e,action,area,rate,ao=None,ph=None,**kwargs):
+    from .shear import parameters
+    return parameters(e,action,area,rate,ao,ph,**kwargs)
 
 
 def _check(key,label,ratio,basis,*,pending=False,na=False,pending_reasons=()):
@@ -310,9 +287,10 @@ def _shear_domain_reasons(p,params):
     fc_limit=10 if params['torsion_required'] else 15
     if p['fc']>fc_limit:reasons.append(f"Concrete f′c {p['fc']:g} ksi exceeds the implemented {fc_limit:g} ksi shear limit")
     if p['fy']>100:reasons.append(f"Steel fy {p['fy']:g} ksi exceeds the implemented 100 ksi shear limit")
-    if params['epsilon']>.006+1e-12:reasons.append('Calculated longitudinal strain exceeds the implemented 0.006 limit')
+    if (params['epsilon'] or 0)>.006+1e-12:reasons.append('Calculated longitudinal strain exceeds the implemented 0.006 limit')
     if p['fpc']!=0:reasons.append(f"Precompression fpc = {p['fpc']:g} ksi; the implemented shear calculation requires fpc = 0")
-    return reasons
+    reasons.extend(params.get('applicability_warnings',[]))
+    return list(dict.fromkeys(reasons))
 
 
 def window_steel(physical,left,right,length,development=None):
@@ -503,82 +481,45 @@ def actual_calculations(e):
             cuts=sorted(cuts)
             for a,b in zip(cuts,cuts[1:]):
                 if b-a<1e-8:continue
-                mid=(a+b)/2
-                if m['combo']=='envelope':
-                    actions=[dict(moment=-p['Mu_N'],vu=max(p['Vu_G'],p['Vu_L']),nu=0.,tu=p['Tu']),
-                             dict(moment=max(p['Mu_P'],p['Mu_B']),vu=max(p['Vu_G'],p['Vu_L']),nu=0.,tu=p['Tu'])]
-                else:
-                    ends=[forces(m,x) for x in (a,b,mid)]
-                    mom=max(ends,key=lambda q:abs(q['moment']))['moment']
-                    actions=[dict(moment=mom,vu=max(q['vu'] for q in ends),nu=m['nu'],tu=m['tu'])]
-                for action in actions:
-                    face='top' if action['moment']<0 else 'bottom'
-                    steels=[steel_at(inventory,x,p['h'],face) for x in (a+1e-7,b-1e-7)]
-                    area=min(sum(q['credited_area'] for q in values) for values in steels)
-                    main_area=min(sum(q['area'] for q in values if not q['additional'] and q['kind']!='Skin') for values in steels)
-                    window45=window_steel(physical,a,b,e.value('dv'))
-                    params=shear_parameters(e,action,area,min(rate,window45['area_in2']/e.value('dv')),ao,ph)
-                    window=window_steel(physical,a,b,e.value('dv')*params['cot'])
-                    effective_rate=window['area_in2']/window['length_in']
-                    if effective_rate<params['minimum_rate']:
-                        params=shear_parameters(e,action,area,min(rate,effective_rate),ao,ph)
-                        window=window_steel(physical,a,b,e.value('dv')*params['cot'])
-                        effective_rate=window['area_in2']/window['length_in']
-                    params['vs']=window['area_in2']*min(p['fy'],100.)
-                    params['vr']=p['phi_v']*min(params['vc']+params['vs'],params['nominal_limit'])
-                    developed_window=window_steel(physical,a,b,window['length_in'],dev)
-                    # Do not use anchorage-conditional stirrup strength to lower longitudinal demand.
-                    vs_credit=min(developed_window['area_in2']*min(p['fy'],100.),action['vu']/p['phi_v'])
-                    shear_tension=max(0.,action['vu']/p['phi_v']-.5*vs_credit)
-                    torsion_tension=.45*ph*action['tu']*12/(2*ao*p['phi_v']) if params['torsion_required'] else 0.
-                    # Segment action bounds raise strain; 29 degrees is the lower
-                    # theta bound for nonnegative strain and bounds longitudinal
-                    # tension without pretending maxima are concurrent points.
-                    long_theta=45. if params['method']=='5.7.3.4.1' else 29.
-                    long_cot=1/math.tan(math.radians(long_theta))
-                    phi_m=p['phi_v'] if params['torsion_required'] else p['phi_f']
-                    phi_n=p['phi_v'] if params['torsion_required'] else s['phi_axial']
-                    full=abs(action['moment'])*12/(phi_m*e.value('dv'))+.5*action['nu']/phi_n+long_cot*math.hypot(shear_tension,torsion_tension)
-                    region=next((r for r in regions if r['combination']==m['combo'] and r['left_in']-1e-8<=mid<=r['right_in']+1e-8),None)
-                    applies=bool(region and region['qualifies'] and not params['torsion_required'])
-                    cap=region['peak_moment_kip_ft']*12/(p['phi_f']*e.value('dv')) if applies else full
-                    # Eligibility additionally requires continuous main bars alone to resist the peak.
-                    applies=applies and main_area*p['fy']+1e-8>=cap
-                    demand=min(full,cap) if applies else full
-                    capacity=area*p['fy'];dc=demand/max(capacity,1e-9)
-                    near_pile=any(abs(mid-(x-min(r['x_in'] for r in e.case['analysis']['xml_audit']['end_records'])))<=p['D_pile']/2 for x in e.case['analysis'].get('xml_audit',{}).get('pile_centers_in',[])) if members else False
-                    group='N' if face=='top' else 'P' if near_pile else 'B'
-                    ident=f'{first["id"]}/{last["id"]} · C{m["combo"]} E{m["element"]} · {a:.3f}–{b:.3f} in · {face}'
-                    longitudinal.append(dict(id=ident,group=group,combination=m['combo'],element=m['element'],
-                        left_in=a,right_in=b,face=face,**action,**params,steel_area_in2=area,
-                        vs_credited_kip=vs_credit,long_theta=long_theta,full_tension_kip=full,required_tension_kip=demand,
-                        capacity_kip=capacity,ratio=dc,exception_applied=applies,
-                        classification='DIRECT — flexural maximum limit' if applies else 'FULL INTERACTION',
-                        pending=pending or not members or not params['valid'],
-                        basis=(region['basis'] if region else notice)))
-                    av_req=max(params['minimum_rate'],max(0,action['vu']/p['phi_v']-params['vc'])/(p['fy']*e.value('dv')*params['cot']))
-                    at_req=action['tu']*12/(2*ao*p['phi_v']*p['fy']*params['cot']) if params['torsion_required'] else 0.
-                    combined=av_req+2*at_req
-                    tor_ratio=combined/max(min(rate,effective_rate),1e-9) if params['torsion_required'] and closed else 2. if params['torsion_required'] else 0.
-                    longitudinal[-1].update(window=window,developed_window_area_in2=developed_window['area_in2'],
-                        av_required_rate=av_req,at_required_rate=at_req,combined_required_rate=combined,
-                        ao_in2=ao,ph_in=ph,closed=closed,torsion_ratio=tor_ratio)
-                    ratio=max(action['vu']/max(params['vr'],1e-9),params['veff']/p['phi_v']/params['nominal_limit'])
-                    reasons=[*base_reasons,*_shear_domain_reasons(p,params)]
-                    if developed_window['area_in2']<window['area_in2']-1e-8:
-                        # Identify unverified bars at the developed window's
-                        # controlling location, which can differ from the
-                        # unfiltered window and from the two interval endpoints.
-                        window_runs=dict.fromkeys(bar['run'] for bar in physical
-                            if abs(bar['station_in']-developed_window['station_in'])<window['length_in']/2-1e-8
-                            and bar['run'] in unresolved)
-                        reasons.append('Shear window includes reinforcement without verified anchorage: '+', '.join(window_runs))
-                        reasons.extend(unresolved[name] for name in window_runs)
-                    interval.append(dict(id=ident,**params,**action,ratio=ratio,tor_ratio=tor_ratio,
-                        av_required_rate=av_req,at_required_rate=at_req,combined_required_rate=combined,
-                        ao_in2=ao,ph_in=ph,closed=closed,window=window,effective_rate=effective_rate,
-                        pending=pending or not members or not params['valid'] or developed_window['area_in2']<window['area_in2']-1e-8,
-                        pending_reasons=list(dict.fromkeys(reasons))))
+                from .section_search import section,critical_search
+                def at(x):
+                    region=next((r for r in regions if r['combination']==m['combo'] and r['left_in']-1e-8<=x<=r['right_in']+1e-8),None)
+                    if m['combo']=='envelope':
+                        actions=[dict(moment=-p['Mu_N'],vu=max(p['Vu_G'],p['Vu_L']),nu=0.,tu=p['Tu']),
+                                 dict(moment=max(p['Mu_P'],p['Mu_B']),vu=max(p['Vu_G'],p['Vu_L']),nu=0.,tu=p['Tu'])]
+                    else:actions=[forces(m,x)]
+                    return [section(e,q,x,inventory,physical,dev,rate,ao,ph,closed,region) for q in actions]
+                # Separate scalar diagnostic faces; never envelope forces before
+                # the nonlinear strain/theta calculation.
+                for action_index in range(2 if m['combo']=='envelope' else 1):
+                    if m['combo']=='envelope':
+                        search_info=dict(converged=False,samples=3,refinements=0,
+                            reason='Unresolved concurrent axial/source data; three diagnostic locations only')
+                        points=[dict(at(x)[action_index],search=search_info) for x in (a,(a+b)/2,b)]
+                    else:points,search_info=critical_search(lambda x:at(x)[action_index],a,b,physical)
+                    for result in points:
+                        x=result['station_in'];face=result['face']
+                        origin=min(r['x_in'] for r in e.case['analysis']['xml_audit']['end_records']) if members else 0.
+                        near_pile=any(abs(x-(v-origin))<=p['D_pile']/2 for v in e.case['analysis'].get('xml_audit',{}).get('pile_centers_in',[]))
+                        group='N' if face=='top' else 'P' if near_pile else 'B'
+                        ident=f'{first["id"]}/{last["id"]} · C{m["combo"]} E{m["element"]} · x={x:.6f} in · {face}'
+                        reasons=[*base_reasons,*_shear_domain_reasons(p,result)]
+                        window=result['window']
+                        if result['developed_window_area_in2']<window['area_in2']-1e-8:
+                            names=dict.fromkeys(bar['run'] for bar in physical if bar['id'] in window['bar_ids'] and bar['run'] in unresolved)
+                            reasons.append('Shear window includes reinforcement without verified anchorage: '+', '.join(names))
+                            reasons.extend(unresolved[name] for name in names)
+                        if not search_info['converged']:reasons.append('Station D/C search did not converge; refine the search before acceptance')
+                        if not members:reasons.append('N=0 only for unresolved scalar diagnostic; signed axial data and concurrent M/V/N/T require reimport')
+                        point_pending=bool(reasons) or pending or not members or not result['valid']
+                        common=dict(result,id=ident,group=group,combination=m['combo'],element=m['element'],
+                            state=m.get('state','unresolved'),left_in=a,right_in=b,
+                            raw_axial_i=m.get('raw_axial_i'),raw_axial_j=m.get('raw_axial_j'),
+                            source_sha256=m.get('source_sha256'),axial_convention=m.get('axial_convention'),
+                            axial_resolved=bool(members),pending=point_pending,pending_reasons=list(dict.fromkeys(reasons)),
+                            basis=notice)
+                        longitudinal.append(common)
+                        interval.append(dict(common,ratio=result['shear_ratio']))
         if not interval:continue
         worst=max(interval,key=lambda r:r['ratio']);tor=max(interval,key=lambda r:r['tor_ratio'])
         spacing_limit=min(q['pitch_limit'] for q in interval);across_limit=min(q['across_limit'] for q in interval)
@@ -635,7 +576,7 @@ def actual_calculations(e):
         f'5.7.2.1 zero-axial investigation threshold {torsion_threshold(e):.4f} kip-ft; reduced locally for axial tension. Required torsion uses actual closed paths and 5.7.3.6. Open U-bars receive no torsion resistance.',
         pending=any(r['pending'] and r['torsion_required'] for r in rows),na=not any(r['torsion_required'] for r in rows)))
     checks.append(_check('Status_lrfd_source','Local force / LRFD applicability','N/A',notice+
-        ' Member-segment M/V bounds are combined conservatively within each actual interval. No force extrapolation or exemption from scalar envelopes.',pending=not members))
+        ' Concurrent section D/C values are enveloped after calculating strain, theta and actual reinforcement. Scalar diagnostics retain unresolved axial/source status.',pending=not members))
     checks.append(_check('Status_actual_review','D-regions / owner detailing requirements','N/A',
         'Sectional calculations do not replace 5.8 D-region/strut-and-tie checks at concentrated loads, embedded piles and end regions. FDOT 2026 SDG 4.1.4A–C is included; local 3D closure/congestion remains a drawing review.',pending=True))
     checks.append(_check('Status_lrfd_regions','Direct-loading region classification','N/A',
@@ -645,11 +586,16 @@ def actual_calculations(e):
     checks.append(_check('Status_lrfd_domain','Actual-cage calculation domain','N/A',
         'Solid rectangular nonprestressed cap, perpendicular stirrups; shear fc ≤ 15 ksi, investigated torsion fc ≤ 10 ksi, fy ≤ 100 ksi. High-grade hook confinement and nonstandard bar details require separate verification.',
         pending=p['fpc']!=0 or p['fc']>15 or p['fy']>75))
-    strain=max((r['epsilon'] for r in longitudinal),default=0.)
+    strain=max((r['epsilon'] or 0. for r in longitudinal),default=0.)
     checks.append(_check('Status_lrfd_strain','General shear procedure strain range','N/A',
-        f'5.7.3.4.2: maximum calculated strain bound {strain:.6g}. Numerical displays cap strain at 0.006 (theta 50 degrees); an uncapped bound above 0.006 retains PENDING rather than accepting resistance outside the implemented strain range.',pending=strain>.006+1e-12))
+        f'5.7.3.4.2: maximum calculated general-procedure strain {strain:.6g}. No strain clipping; values above 0.006 have no adopted resistance. Simplified epsilon is not required.',pending=strain>.006+1e-12))
+    checks.append(_check('Status_lrfd_search','Concurrent station search convergence','N/A',
+        'Member ends, moment roots/extrema, development transitions and moving transverse-window/branch events; D/C refinement tolerance 0.0002, event tolerance 0.000001 in.',
+        pending=any(not r['search']['converged'] for r in longitudinal)))
+    from .shear import CALCULATION_VERSION
     return dict(code=CODE,owner_code='FDOT Structures Design Guidelines, January 2026, 4.1.4A–C',
-        engine_sha256=sha256(Path(__file__).read_bytes()).hexdigest(),settings=s,source_notice=notice,regions=regions,inventory=inventory,
+        calculation_version=CALCULATION_VERSION,
+        engine_sha256=sha256(b''.join(Path(__file__).with_name(name).read_bytes() for name in ('lrfd_checks.py','shear.py','section_search.py','axial.py'))).hexdigest(),settings=s,source_notice=notice,regions=regions,inventory=inventory,
         transverse_development=development,intervals=rows,longitudinal=longitudinal,faces=faces),checks
 
 
@@ -661,7 +607,31 @@ REPLACED_KEYS={'Status_overall','Status_actual_torsion','Status_actual_review',
 
 
 def apply_actual_checks(e):
-    data,new=actual_calculations(e)
+    from .transverse import enabled
+    if enabled(e.case):
+        data,new=cached_calculations(e)
+    else:
+        # A uniform search has no entered station schedule. Evaluate an explicit
+        # trial grid at the larger G/L pitch with the same sectional solver.
+        # Never mutate the selected case or pretend these are confirmed bars.
+        from copy import copy
+        from .model import BAR_DIAMETER
+        trial=copy(e);trial.case=deepcopy(e.case);p=e.case['inputs']
+        db=BAR_DIAMETER[p['Bar_v']];start=p['C_s']+db/2
+        trial.case['transverse_detail']=dict(version=1,enabled=True,runs=[dict(
+            id='Uniform'+str(i+1),kind='hoop',bar=int(p['Bar_v']),zone='G',
+            first_in=start,end_in=e.value('L_cap')-start,pitch_in=max(p['s_G'],p['s_L']),
+            development_confirmed=False,development_basis='') for i in range(int(p['n_loop']))])
+        data,new=cached_calculations(trial)
+        data['transverse_basis']='Uniform reference trial: first bar at side cover + db/2; larger G/L pitch; actual schedule/closure requires confirmation'
+        for row in data['intervals']:row['zone']='GL'
+        # Both scalar zone screens use the same explicitly conservative trial.
+        from copy import copy as shallow_copy
+        for c in list(new):
+            if c.key.endswith('_G') and c.key.startswith(('Chk_shear_','Chk_spacing_','Chk_torsteel_','Chk_hoop_clear_','Chk_drawn_hoop_legs_')):
+                other=shallow_copy(c);other.key=c.key[:-1]+'L';other.label=c.label[:-1]+'L'
+                new=[q for q in new if q.key!=other.key]+[other]
+        new.append(_check('Status_uniform_schedule','Uniform reference station placement','N/A',data['transverse_basis'],pending=True))
     e.lrfd=data
     e.checks[:]=[c for c in e.checks if not c.key.startswith(REPLACED_PREFIXES) and c.key not in REPLACED_KEYS]+new
     pending=any('PENDING' in c.status or 'CONDITIONAL' in c.status for c in e.checks)
@@ -669,3 +639,18 @@ def apply_actual_checks(e):
     from .model import Check
     e.checks.append(Check('Status_overall','Actual-cage check summary','FAIL' if failed else 'PENDING' if pending else 'PASS','N/A',
         'Collects actual-cage numerical results and outstanding applicability/detailing requirements. No reference result is treated as a passed check.'))
+
+
+_CALCULATION_CACHE={}
+
+
+def cached_calculations(e):
+    """Bounded, input-exact cache; module reload discards all prior engine data."""
+    import json
+    from .shear import CALCULATION_VERSION
+    key=sha256(json.dumps([CALCULATION_VERSION,id(transverse_development),e.case,e.value('dv'),e.value('Ec','ksi')],
+        sort_keys=True,allow_nan=False).encode()).hexdigest()
+    if key not in _CALCULATION_CACHE:
+        if len(_CALCULATION_CACHE)>=8:_CALCULATION_CACHE.pop(next(iter(_CALCULATION_CACHE)))
+        _CALCULATION_CACHE[key]=actual_calculations(e)
+    return deepcopy(_CALCULATION_CACHE[key])

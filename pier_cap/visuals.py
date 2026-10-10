@@ -285,6 +285,12 @@ def hoop_explanation_html(e):
     if actual_transverse(e.case):
         from .transverse_visuals import schedule_html
         return schedule_html(e)
+    if e.lrfd:
+        p=e.case['inputs']
+        return (f'<p><b>Conditional uniform placement:</b> #{p["Bar_v"]:g} hoops at {max(p["s_G"],p["s_L"]):g} in, '
+            'starting at cover plus half the bar diameter. The larger G/L pitch is used because regional extents are unspecified. '
+            'The shared LRFD solver uses concurrent signed actions and developed bars at each station. '
+            'The diagrams illustrate reference geometry; enter actual hoop/U-bar stations before accepting the design.</p>')
     p=e.case['inputs']
     same=math.isclose(p['Vu_G'],p['Vu_L'],abs_tol=1e-8,rel_tol=0)
     rows=''.join(f'<tr><td>{label}</td><td>{p["Vu_"+z]:.2f} kip</td>'
@@ -318,7 +324,7 @@ def hoop_figure(e):
     x0=p['C_s']+dv/2;x1=p['b']-x0;y0=p['C_b']+dv/2;y1=p['h']-p['C_t']-dv/2
     for row,(z,name) in enumerate(samples,1):
         s=p['s_'+z];limit=e.value('s_allow_'+z);clear=s-dv;minimum=required_clear(e,dv)
-        color=RED if s>limit or clear<minimum else HOOP
+        color=RED if (not e.lrfd and s>limit) or clear<minimum else HOOP
         length=max(48,2*s);xs=[i*s for i in range(min(12,math.floor(length/s))+1)]
         fig.add_shape(type='rect',x0=0,x1=length,y0=0,y1=p['h'],fillcolor='#eef3f7',line=dict(color=GREY),layer='below',row=row,col=1)
         fig.add_trace(go.Scatter(x=[v for x in xs for v in (x,x,None)],y=[v for _ in xs for v in (y0,y1,None)],
@@ -327,14 +333,16 @@ def hoop_figure(e):
         fig.add_annotation(x=length/2,y=p['h']+6,text=f'<b>#{p["Bar_v"]:g} @ {s:g} in c/c</b> · {clear:.3f} in clear',showarrow=False,font=dict(color=color,size=12),row=row,col=1)
         fig.add_trace(go.Scatter(x=[0,s],y=[y1/2,y1/2],mode='lines+markers',line=dict(color=INK),marker=dict(symbol='line-ns',size=12),
             showlegend=False,hovertemplate=f'Pitch: {s:g} in center to center<extra></extra>'),row=row,col=1)
-        fig.add_annotation(x=length/2,y=-9,text=f'Max pitch {limit:.2f} in · min clear gap {minimum:.2f} in',showarrow=False,font=dict(size=11),row=row,col=1)
+        pitch_note='Pitch acceptance: see shared LRFD checks' if e.lrfd else f'Max pitch {limit:.2f} in'
+        fig.add_annotation(x=length/2,y=-9,text=f'{pitch_note} · min clear gap {minimum:.2f} in',showarrow=False,font=dict(size=11),row=row,col=1)
         fig.update_xaxes(title='Distance along illustrative sample (in)',range=[-3,length+3],row=row,col=1)
         fig.update_yaxes(title='Above underside (in)',range=[-12,p['h']+13],row=row,col=1)
     fig.add_shape(type='rect',x0=0,x1=p['b'],y0=0,y1=p['h'],fillcolor='#eef3f7',line=dict(color=INK),layer='below',row=nr,col=1)
     fig.add_trace(go.Scatter(x=[x0,x1,x1,x0,x0],y=[y0,y0,y1,y1,y0],mode='lines',line=dict(color=HOOP,width=4),showlegend=False,
         hovertemplate=f'One #{p["Bar_v"]:g} outer hoop<br>Nominal cross-section outline<extra></extra>'),row=nr,col=1)
     actual=x1-x0;limit=min(e.value('Sw_G'),e.value('Sw_L'))
-    fig.add_annotation(x=p['b']/2,y=p['h']/2,text=f'Across-cap leg centers<br><b>{actual:.3f} in</b><br>Allowed ≤ {limit:.3f} in',showarrow=False,font=dict(color=RED if actual>limit else INK),row=nr,col=1)
+    limit_note='Acceptance: see shared LRFD checks' if e.lrfd else f'Allowed ≤ {limit:.3f} in'
+    fig.add_annotation(x=p['b']/2,y=p['h']/2,text=f'Across-cap leg centers<br><b>{actual:.3f} in</b><br>{limit_note}',showarrow=False,font=dict(color=RED if not e.lrfd and actual>limit else INK),row=nr,col=1)
     fig.update_xaxes(title='Across cap (in)',range=[-3,p['b']+3],constrain='domain',row=nr,col=1)
     fig.update_yaxes(title='Above underside (in)',range=[-3,p['h']+3],scaleanchor=f'x{nr}',scaleratio=1,row=nr,col=1)
     theme(fig,'HOOPS · side elevation sample and cross section',780 if same else 1080)
@@ -344,7 +352,7 @@ def hoop_figure(e):
 
 @numbered_figure('cap_results')
 def results_figure(e):
-    if actual_transverse(e.case):
+    if e.lrfd:
         from .transverse_visuals import response_figure
         return response_figure(e)
     fig=make_subplots(rows=2,cols=2,subplot_titles=('Factored moment / resistance (kip-ft)','Service I steel stress (ksi)','Shear demand / resistance (kip)','Combined shear + torsion area (in²)'),vertical_spacing=.22,horizontal_spacing=.13)
@@ -374,12 +382,19 @@ def side_steel_html(e):
 
 @numbered_tables('hoop_spacing')
 def spacing_html(e):
+    if e.lrfd and not actual_transverse(e.case):
+        rows=''.join(f'<tr><td>{html.escape(r["id"])}</td><td>{r["pitch_in"]:.3f}</td>'
+            f'<td>{r["pitch_limit"]:.3f}</td><td>{r["across_in"]:.3f}</td>'
+            f'<td>{r["across_limit"]:.3f}</td><td>{r["spacing_ratio"]:.4f}</td></tr>' for r in e.lrfd['intervals'])
+        return ('<p>Conditional uniform placement. Limits come from the shared concurrent station search; anchorage and actual stationing remain prerequisites.</p>'
+            '<table class="cap-table"><tr><th>Interval</th><th>Pitch (in)</th><th>Limit (in)</th>'
+            '<th>Across (in)</th><th>Limit (in)</th><th>Spacing D/C</th></tr>'+rows+'</table>')
     if actual_transverse(e.case):
         from .transverse import scheduled_bars
         bars=scheduled_bars(e.case)
         pitches=[b['station_in']-a['station_in'] for a,b in zip(bars,bars[1:])]
         return ('<p><b>Actual transverse spacing:</b> '+(f'{len(bars)} bars; largest adjacent pitch {max(pitches):.3f} in, including transitions between runs.' if pitches else 'Enter at least two bars to check adjacent spacing.')+
-            ' Every adjacent interval uses the LRFD / FDOT 2026 intersected-leg calculation and verified member-force bounds. See LRFD regions &amp; checks for numerical working, anchorage status and source applicability.</p>')
+            ' Every adjacent interval uses the LRFD / FDOT 2026 intersected-leg calculation with concurrent station actions. See LRFD regions &amp; checks for numerical working, anchorage status and source applicability.</p>')
     """Expose the two independent ratios hidden in each combined spacing check."""
     rows=[]
     for zone,label in [('G','Overall (G)'),('L','Lower-shear interval (L)')]:

@@ -1,5 +1,7 @@
 # Calculation scope and assumptions
 
+**Current signed-axial shear/longitudinal engine:** [SIGNED_AXIAL_LRFD.md](SIGNED_AXIAL_LRFD.md) supersedes the historical C005 shear/longitudinal assumptions below for imported concurrent force records. Both notebook entry points, fast trials, reports and exports use the shared calculated-strain solution. The archival C005 equations remain available for provenance; scalar-only cases have unresolved axial/concurrency status. Strong-axis flexure/service and the independent minimum-tip/pile workflow retain their existing scope.
+
 This is a port of the C005 live Blockpad calculation built from the original `20. Cap Design.xmcd`. It is not an independent certification of that method or an update to every current design-code provision. The source journal hash and conversion date are in `pier_cap/data/provenance.json`.
 
 ## Starting case
