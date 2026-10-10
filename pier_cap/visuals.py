@@ -119,11 +119,14 @@ def section_figure(e,region='B',run_id=None):
     fig.update_xaxes(title='Width (in)',range=[-3,b+3],constrain='domain',zeroline=False)
     fig.update_yaxes(title='Depth from bottom (in)',range=[-6,h+3],scaleanchor='x',scaleratio=1,zeroline=False)
     title=('Cross section · at pile' if region=='P' else 'Cross section · between piles')+f' · {b:g} × {h:g} in'
+    from .end_grid_views import add_projection as add_end_grid
+    add_end_grid(fig,e,'section')
     theme(fig,title,520);fig.update_layout(legend=dict(font=dict(size=10),orientation='h',y=-.2),margin=dict(t=90,b=110))
     return drawing_controls(fig)
 
 
 def reinforcement_summary_html(e):
+    from .end_grid_views import summary_html as end_grid_summary
     p=e.case['inputs'];continuous=int(p['n_P1']+p['n_P2']);extra=int(p['n_B1']+p['n_B2'])
     migration=e.case.get('reinforcement_migration',{})
     note=('<p style="color:#9b6012"><b>Saved-case conversion:</b> '+html.escape(migration['note'])+'</p>') if migration else ''
@@ -136,7 +139,7 @@ def reinforcement_summary_html(e):
         f'At piles: <b>{e.value("As_P"):.3f} in²</b>. Between piles: <b>{e.value("As_B"):.3f} in² combined</b>. '
         'Blue bars continue through the full cap; orange bars are additional span bars with 90° hooks. '
         +transverse_note+
-        'Hook fit is checked; development, cutoff lengths, end anchorage and pile-head hoop arrangement remain pending.</p>'+note)
+        'Hook fit is checked; development, cutoff lengths, end anchorage and pile-head hoop arrangement remain pending.</p>'+note+end_grid_summary(e))
 
 
 @numbered_tables('cap_configuration')
@@ -218,6 +221,8 @@ def elevation_figure(e,*,zone_labels=True):
     if actual_transverse(e.case):
         from .transverse_visuals import add_projection
         add_projection(fig,e,'elevation')
+    from .end_grid_views import add_projection as add_end_grid
+    add_end_grid(fig,e,'elevation')
     fig.add_shape(type='line',x0=0,x1=L/12,y0=0,y1=0,line=dict(color=INK,dash='dash'))
     continuous=bar_positions(e,'P');groups=defaultdict(list)
     for bar in continuous:groups[(bar['kind'],bar['y'],bar['bar'])].append(bar)
@@ -274,6 +279,8 @@ def reinforcement_plan_figure(e,*,zone_labels=True):
     if actual_transverse(e.case):
         from .transverse_visuals import add_projection
         add_projection(fig,e,'plan')
+    from .end_grid_views import add_projection as add_end_grid
+    add_end_grid(fig,e,'plan')
     fig.update_xaxes(title='Along cap (ft)',range=[-1,L/12+1]);fig.update_yaxes(title='Across cap (in)',range=[-3,p['b']+3],scaleanchor='x',scaleratio=1/12)
     theme(fig,'PLAN VIEW · steel viewed from above (layers overlap)',430)
     fig.update_layout(legend=dict(y=-.35,font=dict(size=10)),margin=dict(b=110))
@@ -481,11 +488,25 @@ def snapshot(e):
         else:shape_label='No actual transverse run entered'
     else:ax.add_patch(Rectangle((p['C_s']+dv/2,p['C_b']+dv/2),p['b']-2*p['C_s']-dv,p['h']-p['C_t']-p['C_b']-dv,fill=False,edgecolor=AMBER,lw=2))
     for b in bar_positions(e):ax.add_patch(Circle((b['x'],b['y']),b['diameter']/2,color=TEAL if b['kind']=='Skin' else BLUE))
+    from .end_grid import geometry as end_grid_geometry
+    from .end_grid_views import COLORS as end_grid_colors
+    end_bars=end_grid_geometry(e)
+    seen=set()
+    for bar in end_bars:
+        direction=bar['direction'];points=bar['points']
+        # Mirrored ends share the same section projection; show it once.
+        if bar['end']!=end_bars[0]['end']:continue
+        ax.plot([v[1] for v in points],[v[2] for v in points],ls=':',alpha=.6,
+            color=end_grid_colors[direction],label=direction.title()+' end U · projection' if direction not in seen else None)
+        seen.add(direction)
+    if end_bars:ax.legend(fontsize=7,loc='upper center',bbox_to_anchor=(.5,-.17),ncol=2,frameon=False)
     ax.set(xlim=(-3,p['b']+3),ylim=(-3,p['h']+3),aspect='equal',title='Between-pile section · '+shape_label,xlabel='Width (in)',ylabel='Depth (in)')
     ax=axes[0,1];length=e.value('L_cap')/12;depth=p['h']/12
     ax.add_patch(Rectangle((0,0),length,depth,facecolor='#edf2f6',edgecolor=BLUE,lw=2))
     for i in range(int(p['N_pile'])):
         x=e.value('E_CL')/12+i*p['S_pile'];ax.add_patch(Rectangle((x-p['D_pile']/24,-1.5),p['D_pile']/12,1.5+p['Pile_embed']/12,color=GREY))
+    for bar in end_bars:
+        ax.plot([v[0]/12 for v in bar['points']],[v[2]/12 for v in bar['points']],color=end_grid_colors[bar['direction']],lw=1.5)
     ax.set(xlim=(-1,length+1),ylim=(-2,depth+1),aspect='equal',title=f'Pile layout · {length:.3f} ft cap length',xlabel='Along cap (ft)')
     ax=axes[1,0];labels=list('NPB');xs=list(range(3))
     ax.bar([x-.18 for x in xs],[e.value('Mu_'+z,'kip*ft') for z in labels],width=.36,color=MOMENT,label='Demand')

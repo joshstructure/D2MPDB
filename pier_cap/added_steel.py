@@ -15,7 +15,7 @@ def validate_layout(case):
     if config is None:
         if case.get('schema_version')==4:raise ValueError('Case version 4 requires added_bar_layout.')
         return
-    if case.get('schema_version')!=4:raise ValueError('Added-bar layout requires case schema_version 4; use the updated notebook.')
+    if case.get('schema_version') not in (4,5):raise ValueError('Added-bar layout requires case schema_version 4 or 5; use the updated notebook.')
     if not isinstance(config,dict) or type(config.get('version')) is not int or config.get('version')!=1 or config.get('mode') not in ('auto','spacing','legacy'):
         raise ValueError('Invalid added-bar layout version or spacing mode.')
     if not isinstance(config.get('rows'),dict) or set(config['rows'])!={'1','2'}:

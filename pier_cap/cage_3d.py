@@ -105,6 +105,8 @@ def layout_3d(e):
             meta=dict(part='added',bar=b['bar'],span=t['span']),line=dict(color=COLORS['added'],width=5),
             hovertemplate=f'Span {t["span"]} · added #{b["bar"]}<br>Across {b["x"]:.3f} in<br>90° hooks; inside bend {t["inside_diameter"]:g} in; tail {t["tail"]:g} in<br>Along %{{x:.3f}} in; elevation %{{z:.3f}} in<extra></extra>'))
     runs={r['id']:r for r in e.case.get('transverse_detail',{}).get('runs',[])};seen=set()
+    from .end_grid_views import add_projection as add_end_grid
+    add_end_grid(fig,e,'3d')
     for bar in scheduled_bars(e.case):
         run=runs[bar['run']];shape=bar_shape(e,run);points=[(bar['station_in']+x,y,z) for x,y,z in shape['points_3d']]
         name='Closed hoop' if run['kind']=='hoop' else 'U-bar · open bottom'

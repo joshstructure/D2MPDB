@@ -111,6 +111,9 @@ def dimensions_figure(e):
     dimension('section_depth','Cap depth',0,h,-8,2,vertical=True,unit='in')
     dimension('pile_width','Pile width / OD',left,right,-stub-5,2,unit='in')
     if p['Pile_embed']>0:dimension('embedment','Pile embedment',0,p['Pile_embed'],b+9,2,vertical=True,unit='in')
+    from .end_grid_views import add_projection as add_end_grid
+    add_end_grid(fig,e,'plan',row=1,col=1,both_axes_ft=True)
+    add_end_grid(fig,e,'section',row=2,col=1)
     fig.update_layout(template='plotly_white',height=880,margin=dict(l=55,r=45,t=70,b=45),
         font=dict(family='Arial',size=11,color='#213649'),hovermode='closest',hoverlabel=dict(namelength=-1),
         title='Current cap · hover dimensions for exact values',uirevision='cap-dimensions')

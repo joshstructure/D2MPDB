@@ -1,9 +1,10 @@
 """Steel visibility shared by drawings and the 3D cage."""
 
-VIEWS = [('All steel', {'cap', 'piles', 'top', 'bottom', 'side', 'added', 'transverse', 'clearance'}),
+VIEWS = [('All steel', {'cap', 'piles', 'top', 'bottom', 'side', 'added', 'transverse', 'end_grid', 'clearance'}),
          ('Longitudinal', {'cap', 'piles', 'top', 'bottom', 'side', 'added', 'clearance'}),
-         ('Hoops + U-bars', {'cap', 'piles', 'transverse'}),
-         ('Piles only', {'piles'})]
+         ('Hoops + U-bars', {'cap', 'piles', 'transverse', 'end_grid'}),
+         ('Piles only', {'piles'}),
+         ('End grids', {'cap', 'end_grid'})]
 
 
 def bar_family(bar):
@@ -16,6 +17,7 @@ def visibility_buttons(fig, *, drawing=False):
     parts = [(t.meta or {}).get('part', 'cap') for t in fig.data]
     buttons = []
     for label, shown in VIEWS:
+        if label == 'End grids' and 'end_grid' not in parts: continue
         traces = {'visible': [part in shown for part in parts]}
         if drawing:
             layout = {}

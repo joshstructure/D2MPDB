@@ -92,7 +92,9 @@ def validate_case(case):
     validate_settings(case)
     from .fdot_detailing import validate_settings as validate_fdot
     validate_fdot(case)
-    if case.get('schema_version') not in (3,4):raise ValueError('Expected case schema_version 3 or 4; load older cases through load_case().')
+    if case.get('schema_version') not in (3,4,5):raise ValueError('Expected case schema_version 3, 4 or 5; load older cases through load_case().')
+    from .end_grid import validate as validate_end_grid
+    validate_end_grid(case)
     from .added_steel import validate_layout
     validate_layout(case)
     expected_units={n:d['unit'] or 'unitless' for n,d in INPUTS.items()}
@@ -261,9 +263,11 @@ def steel_quantity_components(e):
     transverse=count*p['n_loop']*hoop_length*BAR_AREA[p['Bar_v']]
     if actual_transverse(e.case):
         transverse=sum(r['count']*bar_shape(e,r)['length_in']*BAR_AREA[r['bar']] for r in run_summary(e.case))
+    from .end_grid import geometry as end_grid_geometry
+    end_grid=sum(r['length_in']*BAR_AREA[r['bar']] for r in end_grid_geometry(e))
     return {'continuous_in3':continuous,'additional_in3':longitudinal-continuous,
-            'transverse_in3':transverse,'density_lb_ft3':490,
-            'weight_lb':(longitudinal+transverse)*490/1728}
+            'transverse_in3':transverse,'end_grid_in3':end_grid,'density_lb_ft3':490,
+            'weight_lb':(longitudinal+transverse+end_grid)*490/1728}
 
 
 def estimate_weight(e):
@@ -423,6 +427,8 @@ def evaluate(case=None,fast=False):
     checks.extend(detailing_checks(e))
     from .fdot_detailing import detailing_checks as fdot_checks
     checks.extend(fdot_checks(e))
+    from .end_grid import checks as end_grid_checks
+    checks.extend(end_grid_checks(e))
     if layout is not None:
         checks.append(Check('Chk_actual_longitudinal_fit','Longitudinal steel inside actual hoops / U-bars',
             'PASS' if layout['fitted'] else 'FAIL',0 if layout['fitted'] else 2,
@@ -445,6 +451,11 @@ def evaluate(case=None,fast=False):
     else:
         checks.append(Check('Status_signed_axial_source','Concurrent cap forces / signed axial source','PENDING','N/A',
             'No verified concurrent signed M/V/N/T source. Uniform C005 values are archival reference screens; reimport solved cap XML for the authoritative LRFD calculation. Axial force is unresolved, not zero.'))
+        from .end_grid import enabled as end_grid_enabled
+        if end_grid_enabled(case):
+            from .lrfd_checks import surface_checks
+            _, face_checks = surface_checks(e)
+            checks[:] = [c for c in checks if c.key not in ('Chk_shrink_area', 'Chk_shrink_space')]+face_checks
     e.max_dc=max(c.ratio for c in checks if isinstance(c.ratio,(float,int)))
     e.issues=(layout['issues'] if layout else [])+cage_issues(e)+transverse_issues(e);e.weight_lb=estimate_weight(e)
     failure=any('FAIL' in c.status for c in checks)

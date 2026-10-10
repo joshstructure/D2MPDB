@@ -19,6 +19,7 @@ FIGURES = {
     'section_snapshot': (23, 'Section study snapshot'),
     'study_section_pile': (24, 'Candidate cross section at pile'), 'study_section_span': (25, 'Candidate cross section between piles'),
     'study_results': (26, 'Candidate demand and resistance'),
+    'end_grid_left': (27, 'Left end-face U grid'), 'end_grid_right': (28, 'Right end-face U grid'),
 }
 TABLES = {
     'pile_summary': (1, 'Pile result envelopes'), 'pile_properties': (2, 'Pile section properties'),

@@ -384,6 +384,7 @@ def _aggregate(key,label,rows,field,basis,*,pending=False,inherit_pending=True):
     if not rows:return _check(key,label,'N/A',basis+' No applicable stations.',na=True)
     worst=max(rows,key=lambda r:r[field])
     location=worst.get('id',worst.get('face',''))
+    if 'face' in worst:location+=' · '+worst.get('direction','')
     return _check(key,label,worst[field],basis+f' Governing: {location}; ratio {worst[field]:.6g}.',
                   pending=pending or inherit_pending and any(r.get('pending',False) for r in rows),
                   pending_reasons=[reason for row in rows for reason in row.get('pending_reasons',())] if key.startswith('Chk_shear_') else ())
@@ -393,8 +394,8 @@ def surface_checks(e):
     """Each exposed face/direction; open U tails are not full-width bottom bars.
 
     The entire face is conservatively treated as exposed. No pile-contact or
-    buried-face exemption is inferred. End-face mesh must be represented by the
-    actual nearest closed hoop; additional undrawn grids receive no credit.
+    buried-face exemption is inferred. End-face steel comes from the nearest
+    actual closed hoop and explicitly drawn end-grid crosspieces.
     """
     from .model import bar_positions,BAR_AREA,BAR_DIAMETER
     from .transverse import scheduled_bars,shape_parameters
@@ -431,6 +432,25 @@ def surface_checks(e):
         area=BAR_AREA[b['bar']] if closed else 0.
         d=BAR_DIAMETER[b['bar']] if b else 0.
         inset=shape_parameters(runs[b['run']])['side_inset_in'] if b else 0.
+        from .end_grid import geometry as end_grid_geometry
+        grid=[r for r in end_grid_geometry(e) if r['end']==face.split()[-1]]
+        if grid:
+            from .transverse import bar_shape
+            outline=bar_shape(e,runs[b['run']])['points'] if closed else []
+            for direction,axis,width in [('Vertical',0,p['b']),('Horizontal',1,p['h'])]:
+                # A U contributes ONE face crosspiece, never its two return legs.
+                selected=[r for r in grid if r['direction']==direction.lower() and r['fit']]
+                coords=[r['coordinate_in'] for r in selected]
+                if outline:
+                    coords += [min(v[axis] for v in outline),max(v[axis] for v in outline)]
+                coords=sorted(coords)
+                pitch=max([2*coords[0],2*(width-coords[-1]),*(v-u for u,v in zip(coords,coords[1:]))]) if coords else width
+                add(face,direction,(2*area+sum(BAR_AREA[r['bar']] for r in selected))*12/width,pitch,
+                    f'{len(selected)} drawn end U crosspieces plus '+('two nearest closed-hoop legs. ' if closed else 'no closed-hoop legs. ')+
+                    'One crosspiece per U; return legs are not extra face bars. Twice edge distance included. Anchorage and pile clearance require review.')
+                rows[-1].update(pending=True,bar_ids=[r['id'] for r in selected],coordinates_in=coords,
+                               end_grid_count=len(selected),perimeter_leg_count=2 if closed else 0)
+            continue
         add(face,'Vertical',2*area*12/p['b'],p['b']-2*p['C_s']-d-2*inset,
             'Two side legs of the nearest actual closed hoop; no undrawn end-face mesh credited.')
         add(face,'Horizontal',2*area*12/p['h'],p['h']-p['C_t']-p['C_b']-d,
@@ -595,7 +615,7 @@ def actual_calculations(e):
     from .shear import CALCULATION_VERSION
     return dict(code=CODE,owner_code='FDOT Structures Design Guidelines, January 2026, 4.1.4A–C',
         calculation_version=CALCULATION_VERSION,
-        engine_sha256=sha256(b''.join(Path(__file__).with_name(name).read_bytes() for name in ('lrfd_checks.py','shear.py','section_search.py','axial.py'))).hexdigest(),settings=s,source_notice=notice,regions=regions,inventory=inventory,
+        engine_sha256=sha256(b''.join(Path(__file__).with_name(name).read_bytes() for name in ('lrfd_checks.py','shear.py','section_search.py','axial.py','end_grid.py'))).hexdigest(),settings=s,source_notice=notice,regions=regions,inventory=inventory,
         transverse_development=development,intervals=rows,longitudinal=longitudinal,faces=faces),checks
 
 

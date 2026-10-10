@@ -36,7 +36,7 @@ class AddedSteelPanel:
     def changed(self,change):
         if self.busy or self.owner.busy:return
         candidate=deepcopy(self.owner.case)
-        candidate['schema_version']=4
+        candidate['schema_version']=max(4,candidate['schema_version'])
         candidate['added_bar_layout']=dict(version=1,mode=self.mode.value,
             rows={str(k):{name:control.value for name,control in controls.items()} for k,controls in self.rows.items()})
         try:validate_layout(candidate)

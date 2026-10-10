@@ -45,6 +45,9 @@ def detailing_checks(e):
                       for r in e.case['transverse_detail']['runs']]
     else:
         inventory.append(('reference_hoop', 'Uniform hoop', p['Bar_v'], 6))
+    from .end_grid import geometry as end_grid_geometry
+    end_groups={(b['direction'],b['bar']) for b in end_grid_geometry(e)}
+    inventory += [('end_'+direction, 'End U · '+direction, bar, 11) for direction,bar in sorted(end_groups)]
     for key, label, bar, maximum in inventory:
         diameter = BAR_DIAMETER[bar]; low = BAR_DIAMETER[4]; high = BAR_DIAMETER[maximum]
         ratio = max(low/diameter, diameter/high)

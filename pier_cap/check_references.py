@@ -60,6 +60,14 @@ DEVELOPMENT = (
 def references_for(e, check):
     """Return (source, locator, purpose) entries plus any attribution qualifier."""
     key = check.key
+    if key.startswith('Chk_end_grid_bend_'):
+        return (lrfd('Art. 5.10.2.1', 'General reinforcing-bar minimum bend diameters'),), ''
+    if key.startswith('Chk_end_grid_clear_'):
+        return (lrfd('Art. 5.10.3.1.1', 'Parallel reinforcement clear spacing'),), 'The entered project clear spacing may govern.'
+    if key in ('Chk_end_grid_fit','Chk_end_grid_collision'):
+        return (sdm('Art. 4.3.4', 'Reinforcement fit and clearance'),), 'Drawn geometry screen, not a strength ratio or final fabrication check.'
+    if key == 'Status_end_grid_anchorage':
+        return (lrfd('Art. 5.10.8', 'Reinforcement development and anchorage'),), 'Entered U return lengths require separate development and pile-clearance review.'
     if key.startswith('Chk_fdot_bar_'):
         return (sdm('Art. 4.3.11', 'Minimum #4 cast-in-place bar; maximum #11 cap main bar and #6 stirrup'),), ''
     if key.startswith('Chk_fdot_cover_'):

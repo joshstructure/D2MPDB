@@ -264,6 +264,11 @@ class Report:
             ('3d','Interactive three-dimensional cage',layout_3d,
              'Rotate to review the entered cage, pile clearances and open-bottom U-bars. Bar lines show centerlines; display thickness is schematic.'),
         ]
+        from .end_grid import enabled as end_grid_enabled
+        from .end_grid_views import end_figure
+        if end_grid_enabled(e.case):
+            views.extend([(f'end-grid-{end}',f'{end.title()} end-face U grid',lambda e,end=end:end_figure(e,end),
+                           'Actual end crosspieces and inward returns; anchorage and pile-clearance review remains separate.') for end in ('left','right')])
         content=('<section class="geometry-gallery" id="geometry"><h3>Geometry plots and dimensions</h3>'
                  '<p>Drawings and dimension tables use the current case at export. Open a view below to pan, zoom or hover for values. '
                  'Print / save PDF includes all views and the dimension tables. Regenerate the report after changing inputs.</p>'
@@ -323,9 +328,9 @@ class Report:
         if key=='details':
             components=steel_quantity_components(e)
             working='<h3>Reinforcing steel quantity</h3><p>Inventory estimate from the same drawn paths used by the notebook. Continuous volume = total continuous area × clear length; added volume sums each bar area × its straight, bend and tail lengths; transverse volume sums each entered shape area × centerline length × count (or the uniform reference hoop count when actual layout is disabled).</p>'
-            working+=table(['Component','Steel volume (in³)'],[['Continuous bars',f'{components["continuous_in3"]:.6g}'],['Additional hooked span bars',f'{components["additional_in3"]:.6g}'],['Transverse bars',f'{components["transverse_in3"]:.6g}']], 'output')
+            working+=table(['Component','Steel volume (in³)'],[['Continuous bars',f'{components["continuous_in3"]:.6g}'],['Additional hooked span bars',f'{components["additional_in3"]:.6g}'],['Transverse bars',f'{components["transverse_in3"]:.6g}'],['End-face U grids',f'{components["end_grid_in3"]:.6g}']], 'output')
             working+='<div class="equation-line">'+mathml(expression(parse('W_steel == (V_cont+V_add+V_trans)*490/1728')),True)+'</div><p class="caption">Volumes in in³; steel density 490 lb/ft³; 1 ft³ = 1728 in³. Result in lb.</p>'
-            working+='<div class="equation-line">'+mathml(expression(parse(f'W_steel == ({components["continuous_in3"]:.12g}+{components["additional_in3"]:.12g}+{components["transverse_in3"]:.12g})*490/1728')),True)+'</div>'
+            working+='<div class="equation-line">'+mathml(expression(parse(f'W_steel == ({components["continuous_in3"]:.12g}+{components["additional_in3"]:.12g}+{components["transverse_in3"]:.12g}+{components["end_grid_in3"]:.12g})*490/1728')),True)+'</div>'
             return v.side_steel_html(e)+v.clear_spacing_html(e)+working+table(['Quantity','Evaluated result','Basis'],[
                 ['Estimated gross reinforcing steel',f'{e.weight_lb:.6g} lb','Drawn continuous bars and hooked additions; actual hoop/U outlines when enabled. Excludes laps, hoop closure extensions, end anchorage not drawn, and waste.'],
                 ['Concrete volume',f'{e.value("V_cap","ft^3"):.6g} ft³','Gross rectangular cap, without pile deductions.']], 'output')

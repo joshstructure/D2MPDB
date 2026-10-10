@@ -81,6 +81,8 @@ class CapNotebook:
         from .fdot_detailing import FDOTDetailingPanel
         self.fdot_panel=FDOTDetailingPanel(self)
         self.steel_readouts={};self.added_steel=AddedSteelPanel(self)
+        from .end_grid_widgets import EndGridPanel
+        self.end_grid=EndGridPanel(self)
         self.input_tabs=self._inputs()
         self.transverse_panel=TransversePanel(self)
         from .lrfd_views import LRFDPanel
@@ -186,6 +188,7 @@ class CapNotebook:
                 card=W.VBox([W.HTML('<b>'+html.escape(caption)+'</b>'),*content],layout=layout)
                 card.add_class('cap-input-card');panels.append(card)
             if group=='Geometry':panels.extend([self.fdot_panel.ui,self.pile_appearance.ui])
+            if group=='Steel':panels.append(self.end_grid.ui)
             tabs.append(W.HBox(panels,layout=W.Layout(width='100%',min_width='0',flex_flow='row wrap',align_items='flex-start',grid_gap='8px')))
         tab=Tab(children=tabs,layout=W.Layout(flex='0 0 auto',width='100%',min_width='0'))
         for i,name in enumerate(GROUPS):tab.set_title(i,name)
@@ -224,6 +227,7 @@ class CapNotebook:
             self.transverse_panel.zone_notice.value='<p>Correct the input error above to restore zone controls and drawings. General inputs remain available below.</p>'
             self.metrics.value='';self.cage.children=[self.input_panel,self.transverse_panel.ui];self.results.children=[];self.dimensions.children=[];self.register.value='';self.trace.value='';self.lrfd_panel.result.value='Checks unavailable; correct the input error.';return
         self.current=e
+        self.end_grid.refresh(e)
         self.lrfd_panel.refresh(e)
         for name in ('beta_v','theta','alpha_v','Ao_factor'):
             self.controls[name].disabled=bool(e.lrfd)
@@ -251,9 +255,18 @@ class CapNotebook:
         txt=self.views.text
         self.cage_3d_widget=fw('cage3d',lambda:layout_3d(e))
         self.refresh_sections(preserve_view=same_geometry)
+        from .end_grid import enabled as end_grid_enabled
+        from .end_grid_views import end_figure,summary_html as end_grid_summary
+        end_views=([txt('end_grid_summary',end_grid_summary(e)),
+                    fw('end_grid_left',lambda:end_figure(e,'left')),
+                    fw('end_grid_right',lambda:end_figure(e,'right'))] if end_grid_enabled(e.case) else [])
+        if not end_views:
+            for end in ('left','right'):
+                key='end_grid_'+end
+                if key in self.views.plots:fw(key,lambda end=end:end_figure(e,end))
         footer=('Every transverse station is drawn. Pink U-bars are open downward; the section shows the selected run of that shape, or the first run of that shape. Bend / tail fit and pile conflicts are screened; development, closure and 3D congestion at longitudinal hook ends require review.' if actual_transverse(self.case) else 'Dashed transverse shapes are reference illustrations. Set actual hoops and open-bottom U-bars in the zone controls below the elevation.')
         self.views.mount(self.cage,[txt('configuration',configuration_html(e)+reinforcement_summary_html(e)),txt('side',side_steel_html(e)),self.cage_3d_widget,self.views.plots['sectionB'],self.views.plots['sectionP'],self.input_panel,fw('plan',lambda:reinforcement_plan_figure(e)),fw('elevation',lambda:elevation_figure(e,zone_labels=True)),self.transverse_panel.ui,txt('hoop',hoop_explanation_html(e)),
-            *([fw('reference_hoop',lambda:hoop_figure(e))] if not actual_transverse(self.case) else []),txt('clearance',clear_spacing_html(e)),txt('footer','<small>'+footer+' Pile lengths below the cap are schematic. The 3D cage uses bar centerlines; displayed line thickness is for visibility.</small>')])
+            *end_views,*([fw('reference_hoop',lambda:hoop_figure(e))] if not actual_transverse(self.case) else []),txt('clearance',clear_spacing_html(e)),txt('footer','<small>'+footer+' Pile lengths below the cap are schematic. The 3D cage uses bar centerlines; displayed line thickness is for visibility.</small>')])
         self._refresh_auxiliary_view(self.plot_tabs.selected_index)
         self.figures=list(self.views.plots.values())
         self.register.value=checks_html(e)
@@ -278,7 +291,7 @@ class CapNotebook:
         def fw(key,factory,**kwargs):return self.views.figure(key,factory,preserve_view=preserve,**kwargs)
         txt=self.views.text
         if index==5:
-            dimension_basis=json.dumps({'geometry':geometry,'bars':bar_positions(e,'P')},sort_keys=True)
+            dimension_basis=json.dumps({'geometry':geometry,'bars':bar_positions(e,'P'),'end_grid':e.case.get('end_face_grid')},sort_keys=True)
             self.views.mount(self.dimensions,[fw('dimensions',lambda:dimensions_figure(e),basis=dimension_basis),txt('dimensions',dimensions_html(e))])
         else:
             self.views.mount(self.results,[fw('results',lambda:results_figure(e)),txt('spacing',spacing_html(e)),fw('service',lambda:optional_service_figure(e)),fw('ratios',lambda:ratios_figure(e)),txt('results_note','<small>These plots compare imported force envelopes and sectional capacities. They are not a continuous moment/shear diagram or a rerun of FB-MultiPier.</small>')])
@@ -299,6 +312,7 @@ class CapNotebook:
             self.lrfd_panel.load()
             self.fdot_panel.load()
             self.added_steel.sync()
+            self.end_grid.sync()
             self.pile_appearance.sync()
         finally:self.busy=False
         self._update_search_basis()
@@ -629,6 +643,7 @@ class CapNotebook:
         return self
 
     def close(self):
+        self.end_grid.close()
         self.added_steel.close()
         for readout in self.steel_readouts.values():readout.close()
         self.pile_review.close()

@@ -48,6 +48,16 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
     path=Path(root)/datetime.now(timezone.utc).strftime('case-%Y%m%d-%H%M%S-%f')
     path.mkdir(parents=True,exist_ok=False)
     write_case(case,path/'selected_case.json')
+    from .end_grid import enabled as end_grid_enabled,geometry as end_grid_geometry
+    from .end_grid_views import end_figure,summary_html as end_grid_summary
+    if end_grid_enabled(case):
+        end_bars=end_grid_geometry(e)
+        (path/'end_grid_geometry.json').write_text(json.dumps(end_bars,indent=2,ensure_ascii=False),encoding='utf-8')
+        with (path/'end_grid_schedule.csv').open('w',newline='',encoding='utf-8-sig') as f:
+            fields=['id','end','direction','bar','diameter','coordinate_in','plane_in','pitch_in','return_in','inside_diameter_in','length_in','fit']
+            writer=csv.DictWriter(f,fieldnames=fields,extrasaction='ignore');writer.writeheader();writer.writerows(end_bars)
+        for end in ('left','right'):
+            end_figure(e,end).write_html(path/f'end_grid_{end}.html',include_plotlyjs=True,full_html=True)
     from .transverse import enabled as actual_transverse,scheduled_bars,bar_shape,shape_issues
     if actual_transverse(case):
         with (path/'transverse_bar_schedule.csv').open('w',newline='',encoding='utf-8-sig') as f:
@@ -84,6 +94,10 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
         parts.append(fig.to_html(full_html=False,include_plotlyjs=(i==0)))
     if not actual_transverse(case):
         parts.append(cage.to_html(full_html=False,include_plotlyjs=False))
+    if end_grid_enabled(case):
+        parts.append(end_grid_summary(e))
+        for end in ('left','right'):
+            parts.append(end_figure(e,end).to_html(full_html=False,include_plotlyjs=False))
     parts.extend([clear_spacing_html(e),'</body></html>'])
     (path/'reinforcement_detail.html').write_text('\n'.join(parts),encoding='utf-8')
     from .geometry_dimensions import dimensions_figure,dimensions_html
@@ -101,7 +115,7 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
             rows=e.lrfd[key]
             with (path/('lrfd_'+key+'.csv')).open('w',newline='',encoding='utf-8-sig') as f:
                 if rows:
-                    writer=csv.DictWriter(f,fieldnames=list(rows[0]))
+                    writer=csv.DictWriter(f,fieldnames=list(dict.fromkeys(k for r in rows for k in r)))
                     writer.writeheader();writer.writerows(rows)
     if case['analysis'].get('xml_audit',{}).get('end_records'):
         from .force_diagrams import cap_force_figure,diagram_notice
@@ -187,6 +201,9 @@ def export_blockpad(source,case,destination):
     """Patch only C005 in a new copy, accepting local paths or uploaded bytes."""
     from lxml import etree as E
     case=upgrade_case(case);validate_case(case);e=evaluate(case);destination=Path(destination)
+    from .end_grid import enabled as end_grid_enabled
+    if end_grid_enabled(case):
+        raise ValueError('The Blockpad scalar template cannot represent end-face U grids. Export the case JSON and full review bundle to retain the complete detail.')
     if case.get('transverse_detail',{}).get('enabled'):
         raise ValueError('The Blockpad scalar template cannot represent actual hoop/U stations and open-bottom topology. Export the case JSON and full review bundle to retain the complete detail.')
     same_source=not isinstance(source,(bytes,bytearray,memoryview)) and Path(source).resolve()==destination.resolve()
