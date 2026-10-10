@@ -130,6 +130,7 @@ class Check:
     components:tuple=()
     governing:str=''
     component_rule:str=''
+    working:object=None
 
 @dataclass
 class Evaluation:
@@ -261,23 +262,30 @@ def estimate_weight(e):
 
 def detailing_checks(e):
     checks=[];p=e.case['inputs']
+    from .check_working import record,clearance
     from .added_steel import added_clearances,fit_problems
     for r in added_clearances(e,bar_positions(e,'B')):
         label='Added to added' if r['family']=='added' else 'Added to continuous'
         checks.append(Check(f"Chk_added_clear_{r['row']}_{r['family']}",f"Row {r['row']} · {label} clear spacing",r['status'],r['ratio'],
             f"Actual surface gap {r['actual']:.3f} in; required {r['required']:.3f} in. Required / actual; overlap fails. AASHTO LRFD 5.10.3 plus project minimum."))
+        clearance(checks[-1],r['actual'],r['required'])
     if e.case.get('added_bar_layout',{}).get('mode')=='spacing':
         issues=fit_problems(e,bar_positions(e,'B'))
         checks.append(Check('Chk_added_fit','Entered added-bar spacing · cover / cage fit','FAIL' if issues else 'PASS',2 if issues else 0,
             '; '.join(issues) or 'Entered center spacing and row offsets fit inside the cap cover / transverse cage envelope.'))
+        record(checks[-1],'Required: no cover / cage fit violations. Flag = 0 when satisfied, otherwise 2; this is not a physical D/C.',
+            [('fit violations',len(issues),'')])
     for region in 'PB':
         bars=bar_positions(e,region)
         for i,r in enumerate(spacing_records(e,region,bars)):
             checks.append(Check(f'Chk_clear_{region}_{i}',f"{region} clear spacing · {r['label']}",r['status'],r['ratio'],
                 f"{r['basis']}: actual {r['actual']:.3f} in; required {r['required']:.3f} in. Ratio = required / actual; contact/overlap fails. AASHTO LRFD 5.10.3 plus project minimum."))
+            clearance(checks[-1],r['actual'],r['required'])
         aligned=not layer_alignment(bars)
         checks.append(Check('Chk_alignment_'+region,region+' layer alignment','PASS' if aligned else 'FAIL',0 if aligned else 2,
             'AASHTO LRFD 5.10.3.1.3: align bars vertically for layers separated by at most 6 in.'))
+        record(checks[-1],'Required: alignment criterion satisfied. Flag = 0 when satisfied, otherwise 2; this is not a physical D/C.',
+            [('alignment criterion satisfied',aligned,''),('layer-separation applicability limit',6,'in')])
         xs=sorted(b['x'] for b in bars if b['layer']=='Bottom row 1')
         pitch=max((b-a for a,b in zip(xs,xs[1:])),default=0)
         for state,enabled in [('I',True),('III',p['Ready_III'])]:
@@ -286,17 +294,24 @@ def detailing_checks(e):
             checks.append(Check(f'Chk_drawn_{state}_{region}',f'{region} actual row spacing · Service {state}',
                 'PASS' if limit>0 and pitch<=limit+1e-8 else 'FAIL',pitch/max(limit,1e-6),
                 f'Maximum actual center spacing {pitch:.3f} in / service limit {limit:.3f} in; includes the gap across the pile.'))
+            record(checks[-1],'ratio = maximum drawn center spacing / max(service spacing limit, 0.000001 in)',
+                [('maximum drawn center spacing',pitch,'in'),('service spacing limit',limit,'in')])
         if region=='B':
             limit=e.value('s_shrink_limit')
             checks.append(Check('Chk_drawn_shrink_B','B actual row spacing · shrinkage','PASS' if pitch<=limit+1e-8 else 'FAIL',pitch/limit,
                 f'Maximum actual bottom-row center spacing {pitch:.3f} in / shrinkage limit {limit:.3f} in.'))
+            record(checks[-1],'ratio = maximum drawn center spacing / shrinkage spacing limit',
+                [('maximum drawn center spacing',pitch,'in'),('shrinkage spacing limit',limit,'in')])
     for z in 'GL':
         actual=p['s_'+z]-BAR_DIAMETER[p['Bar_v']];required=required_clear(e,BAR_DIAMETER[p['Bar_v']])
         checks.append(Check('Chk_hoop_clear_'+z,'Hoop minimum clear spacing · '+z,'PASS' if actual>=required else 'FAIL',required/max(actual,1e-6),
             f'Pitch minus hoop diameter: {actual:.3f} in; conservative parallel-bar minimum {required:.3f} in. Maximum hoop pitch is checked separately.'))
+        clearance(checks[-1],actual,required)
         across=p['b']-2*p['C_s']-BAR_DIAMETER[p['Bar_v']];limit=e.value('Sw_'+z)
         checks.append(Check('Chk_drawn_hoop_legs_'+z,'Actual outer-hoop leg spacing · '+z,'PASS' if across<=limit else 'FAIL',across/limit,
             f'Drawn outer leg centers {across:.3f} in / limit {limit:.3f} in. A spacing override does not create undrawn inner legs.'))
+        record(checks[-1],'ratio = drawn outer-leg center spacing / spacing limit',
+            [('drawn outer-leg center spacing',across,'in'),('spacing limit',limit,'in')])
     paths=hook_paths(e,bar_positions(e,'B'))
     if paths:
         top=max(t['top']+t['bar']['diameter']/2 for t in paths)
@@ -323,6 +338,7 @@ def detailing_checks(e):
                 if ratio>worst:worst=ratio;min_gap=gap;req_at_worst=req
         checks.append(Check('Chk_hook_cage','Span hooks · clearance to continuous cage','PASS' if min_gap+1e-8>=req_at_worst else 'FAIL',worst,
             f'Minimum hook-to-continuous-bar clear gap {min_gap:.3f} in; required {req_at_worst:.3f} in.'))
+        clearance(checks[-1],min_gap,req_at_worst)
         unique=[t for t in paths if t['span']==1]
         minimum=math.inf;required=0
         for i,a in enumerate(unique):
@@ -335,6 +351,7 @@ def detailing_checks(e):
         if math.isfinite(minimum):
             checks.append(Check('Chk_hook_pairs','Added hooks · mutual tail clearance','PASS' if minimum+1e-8>=required else 'FAIL',required/max(minimum,1e-6),
                 f'Clear distance between vertical hook tails {minimum:.3f} in; required {required:.3f} in.'))
+            clearance(checks[-1],minimum,required)
         checks.append(Check('Status_hook_development','Span hook development / cutoff','PENDING','PENDING',
             'Bend dimensions alone do not establish anchorage. Verify critical section, required ldh, cutoff extension and confinement; hooks beside a pile are not assumed developed into it.'))
     checks.append(Check('Status_continuous_anchorage','Continuous bars · end anchorage / splices','PENDING','PENDING',
@@ -398,6 +415,9 @@ def evaluate(case=None,fast=False):
         checks.append(Check('Chk_actual_longitudinal_fit','Longitudinal steel inside actual hoops / U-bars',
             'PASS' if layout['fitted'] else 'FAIL',0 if layout['fitted'] else 2,
             'One common envelope of all actual runs governs continuous and added straight bars. Row counts and row spacing are retained. Actual positions feed steel centroids, effective depths and bar-spacing checks. Hook ends, development and transverse-to-pile conflicts require their separate checks.'))
+        from .check_working import record
+        record(checks[-1],'Required: longitudinal bars fit the common transverse envelope. Flag = 0 when fitted, otherwise 2; this is not a physical D/C.',
+            [('fitted',layout['fitted'],'')])
     if actual_transverse(case):
         for check in checks:
             if check.key.startswith(('Chk_shear_','Chk_spacing_','Chk_torsteel_','Chk_long_','Chk_hoop_clear_','Chk_drawn_hoop_legs_','Chk_shrink_')) or check.key=='Status_overall':

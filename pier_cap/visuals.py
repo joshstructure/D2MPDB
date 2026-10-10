@@ -437,15 +437,15 @@ def alternatives_figure(result,indices=None,*,dc_scope='all',max_dc=1.0):
 
 @numbered_tables('cap_checks')
 def checks_html(e):
+    from .check_working import details_html,STYLE
     rows=[]
     for c in e.checks:
         ratio=f'{c.ratio:.3f}' if isinstance(c.ratio,(int,float)) else str(c.ratio)
         color=RED if 'FAIL' in c.status else AMBER if 'PENDING' in c.status or 'PROVISIONAL' in c.status else TEAL
         controller='<br><small>Controls: '+html.escape(c.governing)+'</small>' if c.governing else ''
-        basis=html.escape(c.basis).replace('\n','<br>')
-        rows.append(f'<tr><td>{html.escape(c.label)}</td><td style="color:{color}">{html.escape(c.status)}</td><td title="{html.escape(c.basis,quote=True)}"><b>{ratio}</b>{controller}</td><td>{basis}</td></tr>')
+        rows.append(f'<tr><td>{html.escape(c.label)}</td><td style="color:{color}">{html.escape(c.status)}</td><td title="{html.escape(c.basis,quote=True)}"><b>{ratio}</b>{controller}</td><td>{details_html(e,c)}</td></tr>')
     extra='<p><b>Additional notebook gates:</b> '+html.escape('; '.join(e.issues) if e.issues else 'Drawn cage passes the available numerical spacing and fit checks; pending checks remain listed above.')+'</p><p><b>Combined notebook status:</b> '+html.escape(e.status)+'</p>'
-    return '<style>.cap-table{border-collapse:collapse;width:100%;font:12px Arial}.cap-table td,.cap-table th{padding:8px;border-bottom:1px solid #dce5ec;text-align:left}.cap-table th{background:#e7eef4;position:sticky;top:0}</style><p>Strength rows show D/C; maximum-spacing rows show actual / allowed; minimum-clearance rows show required / actual, and minimum-steel rows show required / provided. See each ratio basis.</p><table class="cap-table"><thead><tr><th>Check</th><th>Status</th><th>Check ratio</th><th>Ratio basis</th></tr></thead><tbody>'+''.join(rows)+'</tbody></table>'+extra
+    return '<style>.cap-table{border-collapse:collapse;width:100%;font:12px Arial}.cap-table td,.cap-table th{padding:8px;border-bottom:1px solid #dce5ec;text-align:left;vertical-align:top}.cap-table th{background:#e7eef4;position:sticky;top:0}'+STYLE+'</style><p>Strength rows show D/C; maximum-spacing rows show actual / allowed; minimum-clearance rows show required / actual, and minimum-steel rows show required / provided. Expand Equation &amp; values for the current working. Values are rounded for display; checks retain full precision.</p><table class="cap-table"><thead><tr><th>Check</th><th>Status</th><th>Check ratio</th><th>Calculation details</th></tr></thead><tbody>'+''.join(rows)+'</tbody></table>'+extra
 
 @numbered_figure('cap_snapshot')
 def snapshot(e):

@@ -389,6 +389,10 @@ def transverse_development(e):
             bend_in=shape['inside_diameter_in'],bend_required_in=bend_min,tail_in=tail,
             tail_required_in=required_tail,embed_available_in=available,embed_required_in=le,
             closure_type=s['hoop_closure'] if run['kind']=='hoop' else 'hooks',tail_ratio=tail_ratio,
+            closure_required_in=1.3*ld if run['kind']=='hoop' and s['hoop_closure']=='lap_pair' else required_tail,
+            closure_available_in=s['closure_lap_in'] if run['kind']=='hoop' and s['hoop_closure']=='lap_pair' else tail,
+            engagement_flag=2. if run['kind']=='pile_u' and not engages else 0.,
+            unsupported_flag=2. if unsupported else 0.,shape_flag=2. if issues else 0.,
             extension_mode=extension_mode,
             ratio=ratio,pending=pending,notes=extra+' '+'; '.join(issues))
         rows.append(row)
@@ -592,7 +596,9 @@ def actual_calculations(e):
             clear_in=clear,clear_required_in=clearance,clear_ratio=clearance/max(clear,1e-9),
             minimum_rate=minimum,min_ratio=max(q['minimum_rate']/max(q['effective_rate'],1e-9) for q in interval),anchored=anchored,pending=any(q['pending'] for q in interval),
             pending_reasons=list(dict.fromkeys(reason for q in interval for reason in q['pending_reasons'])),
-            vr=min(q['vr'] for q in interval),vr_governing=worst['vr'],governing_segment=worst['id'])
+            vr=min(q['vr'] for q in interval),vr_governing=worst['vr'],governing_segment=worst['id'],
+            minimum_segment=max(interval,key=lambda q:q['minimum_rate']/max(q['effective_rate'],1e-9)),
+            torsion_segment=tor)
         rows.append(row)
         suffix=first['id']+'_'+last['id']
         checks.extend([
