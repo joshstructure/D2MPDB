@@ -190,8 +190,15 @@ def _actual(e, check):
                 (key != 'Chk_drawn_shrink_B' or r['face'] == 'Bottom' and r['direction'] == 'Longitudinal')]
         if rows:
             r = max(rows, key=lambda row: row[field])
+            from .lrfd_checks import governing_face_rows
+            leaders = governing_face_rows(rows, field)
+            faces = '; '.join(row['face']+' · '+row['direction'] for row in leaders)
+            locations = [('Governing faces (tie)' if len(leaders)>1 else 'Governing face', faces, '')]
+            if len(leaders)>1:locations.append(('Operands shown for', r['face']+' · '+r['direction'], ''))
+            failing = [row['face']+' · '+row['direction'] for row in rows if row[field]>1+1e-8]
+            if failing:locations.append(('Faces exceeding this limit', '; '.join(failing), ''))
             return ('ratio = required area rate / max(provided area rate, 10⁻⁹ in²/ft)' if field == 'area_ratio' else 'ratio = actual spacing / adopted spacing limit',
-                    [('Governing face', r['face']+' · '+r['direction'], ''), ('required area rate', r['required_in2_ft'], 'in²/ft'),
+                    locations+[('required area rate', r['required_in2_ft'], 'in²/ft'),
                      ('provided area rate', r['provided_in2_ft'], 'in²/ft'), ('actual spacing', r['spacing_in'], 'in'),
                      ('code spacing limit', r['code_spacing_in'], 'in'), ('adopted spacing limit', r['adopted_spacing_in'], 'in'),
                      ('Spacing scope', r['notes'], '')])

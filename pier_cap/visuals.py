@@ -458,16 +458,22 @@ def alternatives_figure(result,indices=None,*,dc_scope='all',max_dc=1.0):
     return theme(fig,f'All {len(indices):,} filter matches · hover for candidate IDs and controlling checks',400)
 
 @numbered_tables('cap_checks')
-def checks_html(e):
+def checks_html(e,view='all'):
     from .check_working import details_html,STYLE
+    failed=[c for c in e.checks if 'FAIL' in c.status]
+    if view=='failures_first':checks=failed+[c for c in e.checks if 'FAIL' not in c.status]
+    elif view=='failures_only':checks=failed
+    else:checks=e.checks
     rows=[]
-    for c in e.checks:
+    for c in checks:
         ratio=f'{c.ratio:.3f}' if isinstance(c.ratio,(int,float)) else str(c.ratio)
         color=RED if 'FAIL' in c.status else AMBER if 'PENDING' in c.status or 'PROVISIONAL' in c.status else TEAL
         controller='<br><small>Controls: '+html.escape(c.governing)+'</small>' if c.governing else ''
         rows.append(f'<tr><td>{html.escape(c.label)}</td><td style="color:{color}">{html.escape(c.status)}</td><td title="{html.escape(c.basis,quote=True)}"><b>{ratio}</b>{controller}</td><td>{details_html(e,c)}</td></tr>')
-    extra='<p><b>Additional notebook gates:</b> '+html.escape('; '.join(e.issues) if e.issues else 'Drawn cage passes the available numerical spacing and fit checks; pending checks remain listed above.')+'</p><p><b>Combined notebook status:</b> '+html.escape(e.status)+'</p>'
-    return '<style>.cap-table{border-collapse:collapse;width:100%;font:12px Arial}.cap-table td,.cap-table th{padding:8px;border-bottom:1px solid #dce5ec;text-align:left;vertical-align:top}.cap-table th{background:#e7eef4;position:sticky;top:0}'+STYLE+'</style><p>Strength rows show D/C; maximum-spacing rows show actual / allowed; minimum-clearance rows show required / actual, and minimum-steel rows show required / provided. Expand Equation &amp; values for the current working. Values are rounded for display; checks retain full precision.</p><table class="cap-table"><thead><tr><th>Check</th><th>Status</th><th>Check ratio</th><th>Calculation details</th></tr></thead><tbody>'+''.join(rows)+'</tbody></table>'+extra
+    summary=f'<p><b>Showing {len(checks)} of {len(e.checks)} checks · {len(failed)} failed.</b></p>'
+    if view=='failures_only' and not failed:summary+='<p>No failed checks. Pending checks and additional notebook gates may still require review.</p>'
+    extra='<p><b>Additional notebook gates:</b> '+html.escape('; '.join(e.issues) if e.issues else 'Drawn cage passes the available numerical spacing and fit checks; pending checks remain part of the full register.')+'</p><p><b>Combined notebook status:</b> '+html.escape(e.status)+'</p>'
+    return '<style>.cap-table{border-collapse:collapse;width:100%;font:12px Arial}.cap-table td,.cap-table th{padding:8px;border-bottom:1px solid #dce5ec;text-align:left;vertical-align:top}.cap-table th{background:#e7eef4;position:sticky;top:0}'+STYLE+'</style><p>Strength rows show D/C; maximum-spacing rows show actual / allowed; minimum-clearance rows show required / actual, and minimum-steel rows show required / provided. Expand Equation &amp; values for the current working. Values are rounded for display; checks retain full precision.</p>'+summary+'<table class="cap-table"><thead><tr><th>Check</th><th>Status</th><th>Check ratio</th><th>Calculation details</th></tr></thead><tbody>'+''.join(rows)+'</tbody></table>'+extra
 
 @numbered_figure('cap_snapshot')
 def snapshot(e):

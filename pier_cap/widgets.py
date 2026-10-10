@@ -73,6 +73,9 @@ class CapNotebook:
         self.import_receipt=None;self.import_notice=W.HTML()
         self.banner=W.HTML(layout=W.Layout(height='130px',overflow='auto'));self.metrics=W.HTML();self.message=W.HTML()
         self.cage=W.VBox(layout=W.Layout(width='100%',min_width='0'));self.results=W.VBox();self.dimensions=W.VBox();self.register=W.HTML();self.trace=W.HTML()
+        self.check_view=W.Dropdown(options=[('All checks','all'),('Failures first','failures_first'),('Failures only','failures_only')],
+            value='all',description='View',style={'description_width':'40px'},layout=W.Layout(width='260px'))
+        self.check_view.observe(self._check_view_changed,names='value')
         self.clearance=W.BoundedFloatText(value=self.case['screening']['minimum_clear_in'],min=0,max=12,step=.25,description='Project min clear (in)',style={'description_width':'120px'},layout=W.Layout(width='260px'))
         self.aggregate=W.BoundedFloatText(value=self.case['screening']['aggregate_in'],min=.125,max=6,step=.125,description='Max aggregate (in)',style={'description_width':'170px'},layout=W.Layout(width='300px'))
         self.aggregate_confirmed=W.Checkbox(value=self.case['screening']['aggregate_confirmed'],description='Aggregate size confirmed',indent=False)
@@ -88,7 +91,8 @@ class CapNotebook:
         from .lrfd_views import LRFDPanel
         self.lrfd_panel=LRFDPanel(self)
         self.force_diagrams=ForceDiagramPanel()
-        self.plot_tabs=Tab(children=[self.cage,self.results,W.VBox([self.register],layout=W.Layout(max_height='850px',overflow='auto')),W.VBox([self.trace],layout=W.Layout(max_height='750px',overflow='auto')),self.force_diagrams.ui,self.dimensions],layout=W.Layout(width='100%',min_width='0',flex='0 0 auto'))
+        check_panel=W.VBox([self.check_view,W.VBox([self.register],layout=W.Layout(max_height='850px',overflow='auto'))])
+        self.plot_tabs=Tab(children=[self.cage,self.results,check_panel,W.VBox([self.trace],layout=W.Layout(max_height='750px',overflow='auto')),self.force_diagrams.ui,self.dimensions],layout=W.Layout(width='100%',min_width='0',flex='0 0 auto'))
         for i,title in enumerate(['Live cage','Plots','D/C checks','Equations','Force diagrams','Dimensions']):self.plot_tabs.set_title(i,title)
         self.plot_tabs.children=(*self.plot_tabs.children,self.lrfd_panel.ui)
         self.plot_tabs.set_title(6,'LRFD regions & checks')
@@ -132,6 +136,10 @@ class CapNotebook:
         self.refresh_driver=LatestRefresh(geometry_evaluation,self._calculate_refresh,
             self._geometry_ready,self._calculation_ready,self._refresh_error)
         self.refresh()
+
+    def _check_view_changed(self,change):
+        if self.current is not None and not self.calculating:
+            self.register.value=checks_html(self.current,view=self.check_view.value)
 
     def _plot_tab_changed(self,change):
         self._refresh_auxiliary_view(change['new'])
@@ -317,7 +325,7 @@ class CapNotebook:
         if not actual_transverse(e.case):self.views.figure('reference_hoop',lambda:hoop_figure(e))
         self._refresh_auxiliary_view(self.plot_tabs.selected_index)
         self.figures=list(self.views.plots.values())
-        self.register.value=checks_html(e)
+        self.register.value=checks_html(e,view=self.check_view.value)
         rows=''.join(f'<tr><td>{html.escape(t["name"])}</td><td>{html.escape(t["formula"])}</td><td>{html.escape(str(t["value"]))}</td></tr>' for t in formula_trace(e))
         table='<table class="cap-table">'+table_caption('live_equations')+'<tr><th>Name</th><th>Equation</th><th>Value</th></tr>'+rows+'</table>'
         self.trace.value=('<p><b>Active sectional equations and numerical working are in LRFD regions &amp; checks.</b> The inherited equation archive below includes superseded uniform-cage values; use the shared LRFD check register.</p><details><summary>Inherited sectional equation archive</summary>'+table+'</details>' if e.lrfd else '<p>Live equations use independent pile and between-pile reinforcement.</p>'+table)
@@ -692,6 +700,7 @@ class CapNotebook:
 
     def close(self):
         self.refresh_driver.close()
+        self.check_view.close()
         self.end_grid.close()
         self.added_steel.close()
         for readout in self.steel_readouts.values():readout.close()

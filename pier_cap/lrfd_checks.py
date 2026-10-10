@@ -381,14 +381,30 @@ def transverse_development(e):
     return rows,checks
 
 
+def governing_face_rows(rows,field):
+    """Keep all tied faces visible without changing the maximum check value."""
+    included=[r for r in rows if r.get('included',True)]
+    if not included:return []
+    maximum=max(r[field] for r in included)
+    return [r for r in included if math.isclose(r[field],maximum,rel_tol=1e-9,abs_tol=1e-12)
+            and (r[field]>1+1e-8)==(maximum>1+1e-8)]
+
+
 def _aggregate(key,label,rows,field,basis,*,pending=False,inherit_pending=True):
     if not rows:return _check(key,label,'N/A',basis+' No applicable stations.',na=True)
     worst=max(rows,key=lambda r:r[field])
     location=worst.get('id',worst.get('face',''))
-    if 'face' in worst:location+=' · '+worst.get('direction','')
-    return _check(key,label,worst[field],basis+f' Governing: {location}; ratio {worst[field]:.6g}.',
-                  pending=pending or inherit_pending and any(r.get('pending',False) for r in rows),
+    face_check=key in ('Chk_shrink_area','Chk_shrink_space')
+    if face_check:
+        leaders=governing_face_rows(rows,field)
+        location='; '.join(r['face']+' · '+r['direction'] for r in leaders)
+        if len(leaders)>1:location+=' (tie)'
+    elif 'face' in worst:location+=' · '+worst.get('direction','')
+    check=_check(key,label,worst[field],basis+f' Governing: {location}; ratio {worst[field]:.6g}.',
+                  pending=pending or inherit_pending and any(r.get('pending',False) or r.get(field.replace('_ratio','_pending'),False) for r in rows),
                   pending_reasons=[reason for row in rows for reason in row.get('pending_reasons',())] if key.startswith('Chk_shear_') else ())
+    if face_check:check.governing=location
+    return check
 
 
 def surface_checks(e):
@@ -424,13 +440,30 @@ def surface_checks(e):
         coords=sorted(b[axis] for b in selected)
         pitch=max([2*coords[0],2*(width-coords[-1]),*(v-u for u,v in zip(coords,coords[1:]))]) if coords else width
         spacing_basis=''
+        spacing_bars=selected;corners=[]
         if axis=='x':
             from .detailing import row_spacing
             spacing=row_spacing(e,selected,at_pile=True,edges=True)
             pitch=spacing['pitch_in'];spacing_basis=' '+spacing['basis']
+        else:
+            # The outer continuous top/bottom bars bound the side-face chain.
+            # Use their actual 2D center distances so an inset main bar cannot
+            # hide a large gap by its vertical projection alone.
+            left=face=='Side left'
+            for kind in ('Bottom row 1','Top row 1'):
+                candidates=[b for b in bars if b['kind']==kind and not b.get('additional',False)
+                            and (b['x']<p['b']/2 if left else b['x']>p['b']/2)]
+                if candidates:corners.append((min if left else max)(candidates,key=lambda b:b['x']))
+            spacing_bars=sorted([*selected,*corners],key=lambda b:b['y'])
+            pitch=max((math.hypot(b['x']-a['x'],b['y']-a['y']) for a,b in zip(spacing_bars,spacing_bars[1:])),default=width)
+            spacing_basis=' Side spacing uses actual center-to-center distances through side bars and the outer continuous top/bottom bars. Concrete-edge distances are not doubled into bar spacing. Corner bars contribute to spacing only; side-area credit uses dedicated side bars.'
+            if len(corners)<2:spacing_basis+=' PENDING: an outer top or bottom longitudinal bar is missing on this side; complete face coverage is not established.'
         add(face,'Longitudinal',sum(BAR_AREA[b['bar']] for b in selected)*12/width,pitch,
-            'Continuous face bars only; corner/added bars not double-counted. Twice edge distance included conservatively.'+spacing_basis)
+            ('Continuous face bars only; corner/added bars not double-counted. Twice edge distance included conservatively.' if axis=='x'
+             else 'Continuous side-face reinforcement.')+spacing_basis)
         if axis=='x':rows[-1]['excluded_pile_interval_in']=spacing['excluded_pile_interval_in']
+        else:rows[-1].update(spacing_pending=len(corners)<2,spacing_corner_count=len(corners),
+                            spacing_bar_centers_in=[dict(kind=b['kind'],x=b['x'],y=b['y']) for b in spacing_bars])
     for face in ('Top','Bottom','Side left','Side right'):
         selected=[b for b in physical if face!='Bottom' or b['kind']=='hoop']
         gaps=[(a,b,b['station_in']-a['station_in']) for a,b in zip(selected,selected[1:])]
@@ -477,6 +510,10 @@ def surface_checks(e):
     basis=f'{CODE} 5.10.6-1/-2, pp. 5-182–183. Each included face and direction. '
     if open_pile_runs:
         basis+='Bottom · Transverse excluded for open pile stirrups (project check scope, not a code exemption). '
+    for row in rows:
+        for field in ('area','spacing'):
+            row[field+'_status']=(_check('','',row[field+'_ratio'],'',pending=row.get('pending',False) or row.get(field+'_pending',False)).status
+                                  if row.get('included',True) else 'EXCLUDED')
     included=[r for r in rows if r.get('included',True)]
     return rows,[_aggregate('Chk_shrink_area','Actual face shrinkage / temperature area',included,'area_ratio',basis),
         _aggregate('Chk_shrink_space','Actual face shrinkage / temperature spacing',included,'spacing_ratio',basis+f'Code spacing {code_spacing:g} in; adopted project spacing {limit:g} in.')]

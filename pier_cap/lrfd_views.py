@@ -101,8 +101,8 @@ def working_html(e,*,full=False):
         ['Run','Type','#','Bend','Min bend','Hook extension (in)','LRFD min extension (in)','Available le','Required le','D/C','Notes'],
         [[r['run'],r['kind'],r['bar'],r['bend_in'],r['bend_required_in'],r['tail_in'],r['tail_required_in'],r['embed_available_in'],r['embed_required_in'],r['ratio'],r['notes']] for r in d['transverse_development']])+'</details>')
     out.append('<details><summary>Face reinforcement working</summary>'+_table(
-        ['Face','Direction','Scope','Provided in²/ft','Required in²/ft','Area D/C','Spacing','Code max','Project max','Spacing D/C','Basis'],
-        [[r['face'],r['direction'],'Included' if r.get('included',True) else 'EXCLUDED',r['provided_in2_ft'],r['required_in2_ft'],r['area_ratio'] if r.get('included',True) else 'N/A',r['spacing_in'],r['code_spacing_in'],r['adopted_spacing_in'],r['spacing_ratio'] if r.get('included',True) else 'N/A',r['notes']] for r in d['faces']])+'</details></section>')
+        ['Face','Direction','Scope','Provided in²/ft','Required in²/ft','Area D/C','Area status','Spacing','Code max','Project max','Spacing D/C','Spacing status','Basis'],
+        [[r['face'],r['direction'],'Included' if r.get('included',True) else 'EXCLUDED',r['provided_in2_ft'],r['required_in2_ft'],r['area_ratio'] if r.get('included',True) else 'N/A',r['area_status'],r['spacing_in'],r['code_spacing_in'],r['adopted_spacing_in'],r['spacing_ratio'] if r.get('included',True) else 'N/A',r['spacing_status'],r['notes']] for r in d['faces']])+'</details></section>')
     return ''.join(out)
 
 
