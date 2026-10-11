@@ -1,9 +1,9 @@
 {
-  "checked_at_utc": "2026-10-11T00:54:18.076233+00:00",
+  "checked_at_utc": "2026-10-11T01:16:33.458869+00:00",
   "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
-  "register_sha256": "4857febeb61f9105ad6ee9d03ae87ee14e8d0dc2f687c3cf1465d6f5a3d27124",
+  "register_sha256": "7474a7faa12facc52cda5ba18f8226accd1c350ff6a67fa12258f34d81e0ae2f",
   "tracker_sha256": "23566cca474c5ddc62f4d36208b05018bfb387e614db406a589572de56948a1a",
-  "source_count": 16,
+  "source_count": 18,
   "item_count": 22,
   "outstanding_count": 19,
   "status_counts": {
@@ -13,10 +13,10 @@
     "Awaiting source": 3
   },
   "check_counts": {
-    "MATCH": 30,
+    "MATCH": 34,
     "CHANGED": 1,
-    "MISSING": 6,
-    "REVIEW": 6
+    "MISSING": 4,
+    "REVIEW": 4
   },
   "checks": [
     {
@@ -120,14 +120,14 @@
     },
     {
       "check_id": "SOURCE:EB-XML",
-      "status": "MISSING",
-      "detail": "Registered file is absent.",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
       "source_ids": [
         "EB-XML"
       ],
-      "path": "project_current/fbmp/end_bents/End Bent 1.XML",
+      "path": "project_current/fbmp/end_bents/End Bent 1_Fixed.XML",
       "expected_sha256": "8414fbedfbf1270fbd65b2cf940f2dc2050818c282cc6f66db2d20b2f3ff17ee",
-      "actual_sha256": ""
+      "actual_sha256": "8414fbedfbf1270fbd65b2cf940f2dc2050818c282cc6f66db2d20b2f3ff17ee"
     },
     {
       "check_id": "SOURCE:MCAD-S1",
@@ -196,22 +196,26 @@
       "actual_sha256": ""
     },
     {
-      "check_id": "DEP:EB-REPORT:EB-XML",
-      "status": "REVIEW",
-      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "check_id": "SOURCE:PIER-MINTIP-XML",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
       "source_ids": [
-        "EB-REPORT",
-        "EB-XML"
-      ]
+        "PIER-MINTIP-XML"
+      ],
+      "path": "project_current/fbmp/pier/Pier_MinTip.XML",
+      "expected_sha256": "a3210e99418f8b56d7b6a475a9db6edab152cceb77f0300f6f7245d27dee93cb",
+      "actual_sha256": "a3210e99418f8b56d7b6a475a9db6edab152cceb77f0300f6f7245d27dee93cb"
     },
     {
-      "check_id": "DEP:EB-CASE:EB-XML",
-      "status": "REVIEW",
-      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "check_id": "SOURCE:EB-MINTIP-XML",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
       "source_ids": [
-        "EB-CASE",
-        "EB-XML"
-      ]
+        "EB-MINTIP-XML"
+      ],
+      "path": "project_current/fbmp/end_bents/End Bent 1_Min_tip.XML",
+      "expected_sha256": "739f44c1d542464cfd536493ce1ed6cb240f98a75ed3e1188c6f6812742d6fe2",
+      "actual_sha256": "739f44c1d542464cfd536493ce1ed6cb240f98a75ed3e1188c6f6812742d6fe2"
     },
     {
       "check_id": "DEP:MCAD-S1:MCAD-DAT1",
@@ -286,8 +290,8 @@
     },
     {
       "check_id": "EB:analysis-identity",
-      "status": "MISSING",
-      "detail": "Exact XML required by the case is absent: 8414fbedfbf1270fbd65b2cf940f2dc2050818c282cc6f66db2d20b2f3ff17ee",
+      "status": "MATCH",
+      "detail": "Raw XML matches the case analysis fingerprint.",
       "source_ids": [
         "EB-CASE",
         "EB-XML"

@@ -17,6 +17,7 @@ design-completion status.
 | Geometry notebook | [Bridge geometry](../Bridge_Geometry_2%20Beam_V2.ipynb) and [roadway XML](../Geometry%20Report.xml) |
 | Pier cap | [Report](cap_design/pier/Pier%20Cap%20Design%2010-10.html), [saved case](cap_design/pier/selected_case.json), [FBMP export](fbmp/pier/Pier_Fixed.XML) |
 | End-bent cap | [Report](cap_design/end_bents/End%20Bent%201%20Cap%20Design%2010-10.html), [saved case](cap_design/end_bents/selected_case.json) |
+| FBMP source variants | [All four fixed/minimum-tip exports](fbmp/README.md) |
 | Mathcad | [Span 1](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd), [Span 2](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd) |
 | Calculation tool | [Cap and pile notebook](../Cap_and_Pile_Design.ipynb) |
 | PSBeam packages | [Awaiting source files](psbeam/README.md) |
@@ -90,13 +91,19 @@ The 10 October review has **19 outstanding items**: 13 open, three awaiting
 source and three deferred. Three closed rows remain for history. The review
 adopts the two supplied 10 October reports and their embedded cases, adds the
 exact matching `Pier_Fixed.XML`, and reconciles the existing T006 journal receipt
-and recorded responses. Earlier report/XML files remain historical.
+and recorded responses. Earlier reports and the archived prior pier minimum-tip XML remain historical.
 
 Both reports flag end-face U-grid pile clearance. Each report's two FAIL entries
-are that failure and its aggregate summary. The new end-bent XML is still missing,
-and CAP-TOOL remains changed against its registered revision. Report pending
+are that failure and its aggregate summary. The subsequent four-file FBMP import supplies the exact matching end-bent XML.
+Fixed and minimum-tip variants are now [registered separately](fbmp/README.md).
+CAP-TOOL remains changed against its registered revision. Report pending
 counts are 67 for the pier and 50 for End Bent 1; these are report entries, not
 tracker item counts. Service III remains N/A by D-007 despite its pending report
 label. See the [source update review](coherence/evidence/2026-10-10/review.md).
 This is a bounded data-coherence review, not a new native calculation or complete
 design audit. Prior recorded decisions and deferrals remain in effect.
+
+The subsequent FBMP import updates source identity checks only. Tracker status
+and responses are unchanged: COH-013's raw-export gap is now resolved, while its
+native-run documentation and workbook disposition remain outstanding. See the
+[FBMP source receipt](coherence/evidence/2026-10-10-fbmp/source_receipt.json).

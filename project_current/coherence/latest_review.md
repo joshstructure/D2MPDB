@@ -1,31 +1,35 @@
 # Latest project coherence review
 
-Checked at 2026-10-11T00:54:18.076233+00:00. **19 outstanding items remain.**
+Checked at 2026-10-11T01:16:33.458869+00:00. **19 outstanding items remain.**
 
 The [workbook](Coherence_Tracker.xlsx) owns item status and responses. This report is a generated view.
 The initial findings were carried forward from the latest adopted pier/end-bent reviews plus source-inventory gaps.
 Previously resolved decisions were excluded. This run did not perform native calculations or a complete engineering review.
 
-Registered sources: 16. Tracker items: 22.
-Automatic results: 1 changed, 30 match, 6 missing, 6 review.
+Registered sources: 18. Tracker items: 22.
+Automatic results: 1 changed, 34 match, 4 missing, 4 review.
+
+## FBMP source receipt
+
+Four current XML variants are registered. Both fixed exports exactly match their
+current cap reports/cases. The end-bent raw XML is now present. Workbook statuses
+are preserved: COH-013 still carries its prior action pending native-run
+documentation and workbook disposition. See the
+[source receipt](evidence/2026-10-10-fbmp/source_receipt.json).
 
 ## Files and relationships needing attention
 
 | Check | Status | Finding |
 | --- | --- | --- |
 | SOURCE:CAP-TOOL | CHANGED | File differs from the registered revision; review its consumers before adoption. |
-| SOURCE:EB-XML | MISSING | Registered file is absent. |
 | SOURCE:MCAD-DAT1 | MISSING | Registered file is absent. |
 | SOURCE:PSB-S1 | MISSING | No source file has been selected. |
 | SOURCE:MCAD-DAT2 | MISSING | Registered file is absent. |
 | SOURCE:PSB-S2 | MISSING | No source file has been selected. |
-| DEP:EB-REPORT:EB-XML | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
-| DEP:EB-CASE:EB-XML | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S1:MCAD-DAT1 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S1:PSB-S1 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S2:MCAD-DAT2 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S2:PSB-S2 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
-| EB:analysis-identity | MISSING | Exact XML required by the case is absent: 8414fbedfbf1270fbd65b2cf940f2dc2050818c282cc6f66db2d20b2f3ff17ee |
 
 ## Outstanding items
 
