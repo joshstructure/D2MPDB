@@ -1,0 +1,24 @@
+"""Open the registered bridge using the controllers stored beside it. Never saves."""
+from pathlib import Path
+import sys
+import FreeCAD as App
+import FreeCADGui as Gui
+
+folder = Path(__file__).resolve().parent
+runtime = folder/'runtime'
+for module_name, module in tuple(sys.modules.items()):
+    if module_name == 'freecad_tools' or module_name.startswith('freecad_tools.') or module_name == 'pier_cap' or module_name.startswith('pier_cap.'):
+        filename = getattr(module, '__file__', None)
+        if filename and not Path(filename).resolve().is_relative_to(runtime):
+            raise RuntimeError('Different bridge controllers are already loaded. Save any wanted edits, restart FreeCAD, then run this macro first.')
+if str(runtime) not in sys.path:
+    sys.path.insert(0, str(runtime))
+from freecad_tools import cap_cages, mse, bridge, drainage_trial, adopt_drainage, current_source
+path = folder/'B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd'
+matches = [d for d in App.listDocuments().values() if d.FileName and Path(d.FileName).resolve() == path.resolve()]
+if len(matches) > 1:
+    raise RuntimeError('More than one copy of the registered bridge is open')
+doc = matches[0] if matches else App.openDocument(str(path))
+App.setActiveDocument(doc.Name)
+Gui.activeDocument().activeView().viewAxonometric()
+Gui.activeDocument().activeView().fitAll()

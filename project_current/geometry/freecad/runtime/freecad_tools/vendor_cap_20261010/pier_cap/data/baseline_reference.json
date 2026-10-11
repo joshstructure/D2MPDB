@@ -1,0 +1,2158 @@
+{
+  "BridgeGeometry_2Beam.PierCap_width": {
+    "value": 48,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "BridgeGeometry_2Beam.PierCap_ht": {
+    "value": 48,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "PedBridge.Cap_cover": {
+    "value": 3,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "b": {
+    "value": 48,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "h": {
+    "value": 48,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "C_t": {
+    "value": 3,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "C_b": {
+    "value": 3,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "C_s": {
+    "value": 3,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "N_pile": {
+    "value": 4.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "S_pile": {
+    "value": 60.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "D_pile": {
+    "value": 20.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "E_clear": {
+    "value": 9.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Tol_pile": {
+    "value": 3.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "E_detail": {
+    "value": 0.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "E_end": {
+    "value": 12.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "E_CL": {
+    "value": 22.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "L_cap": {
+    "value": 224.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "S_pile_min": {
+    "value": 60.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "fc": {
+    "value": 5.5,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "fy": {
+    "value": 60.0,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Es": {
+    "value": 29000.0,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "phi_f": {
+    "value": 0.9,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "phi_v": {
+    "value": 0.9,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "gamma_e": {
+    "value": 1.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "gamma_fat": {
+    "value": 1.75,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "beta_v": {
+    "value": 2.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "theta": {
+    "value": 0.7853981633974483,
+    "dimensions": [
+      0.0,
+      0.0,
+      1.0
+    ]
+  },
+  "alpha_v": {
+    "value": 1.5707963267948966,
+    "dimensions": [
+      0.0,
+      0.0,
+      1.0
+    ]
+  },
+  "fpc": {
+    "value": 0.0,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Chk_piles": "✓ PASS",
+  "Status_layout": "SOURCE PILE LAYOUT",
+  "Status_section": "SOURCE SECTION",
+  "Mu_N": {
+    "value": 2033.28,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "MI_N": {
+    "value": 1778.28,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Mu_P": {
+    "value": 1722.72,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "MI_P": {
+    "value": 1241.52,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Mu_B": {
+    "value": 4051.32,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "MI_B": {
+    "value": 3524.3999999999996,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Vu_G": {
+    "value": 205.11,
+    "dimensions": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Vu_L": {
+    "value": 43.73,
+    "dimensions": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Tu": {
+    "value": 405.96,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Ready_III": false,
+  "Ready_fatigue": false,
+  "MIII_N": {
+    "value": 0.0,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "MDL_N": {
+    "value": 0.0,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "DMLL_N": {
+    "value": 0.0,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "MIII_P": {
+    "value": 0.0,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "MDL_P": {
+    "value": 0.0,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "DMLL_P": {
+    "value": 0.0,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "MIII_B": {
+    "value": 0.0,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "MDL_B": {
+    "value": 0.0,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "DMLL_B": {
+    "value": 0.0,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Chk_loads": "✓ PASS",
+  "Bar_N1": {
+    "value": 8.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Bar_N2": {
+    "value": 8.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Bar_N3": {
+    "value": 8.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "n_N1": {
+    "value": 8.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "n_N2": {
+    "value": 0.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "n_N3": {
+    "value": 0.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Bar_pos": {
+    "value": 8.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Bar_U": {
+    "value": 8.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "n_P1": {
+    "value": 8.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "n_P2": {
+    "value": 0.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "n_PU": {
+    "value": 0.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "n_B1": {
+    "value": 8.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "n_B2": {
+    "value": 0.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "n_BU": {
+    "value": 0.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Bar_v": {
+    "value": 5.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "n_loop": {
+    "value": 1.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Bar_skin": {
+    "value": 5.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "n_skin": {
+    "value": 6.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "s_row": {
+    "value": 4.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "s_G": {
+    "value": 8.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "s_L": {
+    "value": 8.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Manual_spacing": false,
+  "SP_detail_N": {
+    "value": 5.67857142857143,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "SP_detail_P": {
+    "value": 5.67857142857143,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "SP_detail_B": {
+    "value": 5.67857142857143,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "SP_detail_skin": {
+    "value": 5.67857142857143,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "S_leg_detail": {
+    "value": 41.375,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "d_vbar": {
+    "value": 0.625,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "As_N": {
+    "value": 6.32,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "As_P": {
+    "value": 6.32,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "As_B": {
+    "value": 6.32,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Av": {
+    "value": 0.62,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "As_side": {
+    "value": 1.8599999999999999,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "y_N1": {
+    "value": 4.125,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "y_N2": {
+    "value": 8.125,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "y_N3": {
+    "value": 12.125,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "dc_N": {
+    "value": 4.125,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "y_pos1": {
+    "value": 4.125,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "y_pos2": {
+    "value": 8.125,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "y_U": {
+    "value": 4.125,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "dc_P": {
+    "value": 4.125,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "dc_B": {
+    "value": 4.125,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "d_N": {
+    "value": 43.875,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "d_P": {
+    "value": 43.875,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "d_B": {
+    "value": 43.875,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "do_N": {
+    "value": 4.125,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "do_P": {
+    "value": 4.125,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "do_B": {
+    "value": 4.125,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "SP_N_auto": {
+    "value": 5.678571428571429,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "SP_P_auto": {
+    "value": 5.678571428571429,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "SP_B_auto": {
+    "value": 5.678571428571429,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "SP_skin_auto": {
+    "value": 5.678571428571429,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "SP_N": {
+    "value": 5.678571428571429,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "SP_P": {
+    "value": 5.678571428571429,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "SP_B": {
+    "value": 5.678571428571429,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "SP_skin": {
+    "value": 5.678571428571429,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "S_leg": {
+    "value": 41.375,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "Chk_bars": "✓ PASS",
+  "Chk_counts": "✓ PASS",
+  "Chk_geometry": "✓ PASS",
+  "alpha_1": {
+    "value": 0.85,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "beta_1": {
+    "value": 0.7749999999999999,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "fr": {
+    "value": 0.5628498911788116,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Ig": {
+    "value": 442368.0,
+    "dimensions": [
+      4.0,
+      0.0,
+      0.0
+    ]
+  },
+  "yt": {
+    "value": 24.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Mcr": {
+    "value": 10374.449194207855,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Mmin_cr": {
+    "value": 11121.40953619082,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "a_N": {
+    "value": 1.6898395721925137,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "c_N": {
+    "value": 2.18043815766776,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Mn_N": {
+    "value": 16317.006417112301,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Mr_N": {
+    "value": 14685.305775401072,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Asreq_N": {
+    "value": 0.8750467846250239,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Mmin_N": {
+    "value": 2704.2624,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Asmin_N": {
+    "value": 1.1638122235512818,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "DC_flex_N": {
+    "value": 0.13845676971914933,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "DC_min_N": {
+    "value": 0.18414750372646863,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "eps_t_N": {
+    "value": 0.05736630735759492,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Chk_flex_N": "✓ PASS",
+  "Chk_min_N": "✓ PASS",
+  "Chk_strain_N": "✓ PASS",
+  "a_P": {
+    "value": 1.6898395721925137,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "c_P": {
+    "value": 2.18043815766776,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Mn_P": {
+    "value": 16317.006417112301,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Mr_P": {
+    "value": 14685.305775401072,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Asreq_P": {
+    "value": 0.7413935103916929,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Mmin_P": {
+    "value": 2291.2176,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Asmin_P": {
+    "value": 0.9860533688209514,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "DC_flex_P": {
+    "value": 0.117309099745521,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "DC_min_P": {
+    "value": 0.15602110266154293,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "eps_t_P": {
+    "value": 0.05736630735759492,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Chk_flex_P": "✓ PASS",
+  "Chk_min_P": "✓ PASS",
+  "Chk_strain_P": "✓ PASS",
+  "a_B": {
+    "value": 1.6898395721925137,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "c_B": {
+    "value": 2.18043815766776,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Mn_B": {
+    "value": 16317.006417112301,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Mr_B": {
+    "value": 14685.305775401072,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Asreq_B": {
+    "value": 1.7435348498421526,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Mmin_B": {
+    "value": 5388.2556,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Asmin_B": {
+    "value": 2.318901350290063,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "DC_flex_B": {
+    "value": 0.2758757673800874,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "DC_min_B": {
+    "value": 0.36691477061551625,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "eps_t_B": {
+    "value": 0.05736630735759492,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Chk_flex_B": "✓ PASS",
+  "Chk_min_B": "✓ PASS",
+  "Chk_strain_B": "✓ PASS",
+  "DC_flex_max": {
+    "value": 0.2758757673800874,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Ec": {
+    "value": 4428.299011907674,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "n_mod": {
+    "value": 6.55,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "fs_I_limit": {
+    "value": 48.0,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "nAs_N": {
+    "value": 41.396,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "ccr_N": {
+    "value": 7.87948387079911,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Icr_N": {
+    "value": 61463.176315117846,
+    "dimensions": [
+      4.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Ss_N": {
+    "value": 1707.5231285614666,
+    "dimensions": [
+      3.0,
+      0.0,
+      0.0
+    ]
+  },
+  "bs_N": {
+    "value": 1.1343101343101343,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "fs_I_N": {
+    "value": 6.8214209255325535,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "SI_N": {
+    "value": 82.217247857477,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "fs_III_N": {
+    "value": 0.0,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "fo_III_N": {
+    "value": 0.0,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "SIII_N": {
+    "value": 1000000.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Chk_I_N": "✓ PASS",
+  "Chk_III_N": "PENDING",
+  "nAs_P": {
+    "value": 41.396,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "ccr_P": {
+    "value": 7.87948387079911,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Icr_P": {
+    "value": 61463.176315117846,
+    "dimensions": [
+      4.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Ss_P": {
+    "value": 1707.5231285614666,
+    "dimensions": [
+      3.0,
+      0.0,
+      0.0
+    ]
+  },
+  "bs_P": {
+    "value": 1.1343101343101343,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "fs_I_P": {
+    "value": 4.762428024533355,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "SI_P": {
+    "value": 121.32994838584497,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "fs_III_P": {
+    "value": 0.0,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "fo_III_P": {
+    "value": 0.0,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "SIII_P": {
+    "value": 1000000.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Chk_I_P": "✓ PASS",
+  "Chk_III_P": "PENDING",
+  "nAs_B": {
+    "value": 41.396,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "ccr_B": {
+    "value": 7.87948387079911,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Icr_B": {
+    "value": 61463.176315117846,
+    "dimensions": [
+      4.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Ss_B": {
+    "value": 1707.5231285614666,
+    "dimensions": [
+      3.0,
+      0.0,
+      0.0
+    ]
+  },
+  "bs_B": {
+    "value": 1.1343101343101343,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "fs_I_B": {
+    "value": 13.519477197036982,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "SI_B": {
+    "value": 37.39637882192551,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "fs_III_B": {
+    "value": 0.0,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "fo_III_B": {
+    "value": 0.0,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "SIII_B": {
+    "value": 1000000.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Chk_I_B": "✓ PASS",
+  "Chk_III_B": "PENDING",
+  "fs_I_max": {
+    "value": 13.519477197036982,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Status_III": "PENDING — three Service III moments",
+  "fmin_N": {
+    "value": 0.0,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Df_N": {
+    "value": 0.0,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "FTH_N": {
+    "value": 26.0,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "DC_fat_N": {
+    "value": 0.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Chk_fat_N": "PENDING",
+  "fmin_P": {
+    "value": 0.0,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Df_P": {
+    "value": 0.0,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "FTH_P": {
+    "value": 26.0,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "DC_fat_P": {
+    "value": 0.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Chk_fat_P": "PENDING",
+  "fmin_B": {
+    "value": 0.0,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Df_B": {
+    "value": 0.0,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "FTH_B": {
+    "value": 26.0,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "DC_fat_B": {
+    "value": 0.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Chk_fat_B": "PENDING",
+  "Status_fatigue": "PENDING — applicability and fatigue loads",
+  "dv": {
+    "value": 43.030080213903744,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "cot_theta": {
+    "value": 1.0000000000000002,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "g_shear": {
+    "value": 1.0000000000000002,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Vn_limit": {
+    "value": 2839.9852941176473,
+    "dimensions": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Vc": {
+    "value": 306.1341762078543,
+    "dimensions": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Av_min_rate": {
+    "value": 0.05928685520416816,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "s_minsteel": {
+    "value": 10.45763007440494,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Vn_req_G": {
+    "value": 227.9,
+    "dimensions": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Vs_req_G": {
+    "value": 0.0,
+    "dimensions": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Vs_G": {
+    "value": 200.0898729946525,
+    "dimensions": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Vr_G": {
+    "value": 455.6016442822561,
+    "dimensions": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "vu_G": {
+    "value": 0.11033947980260876,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "s_strength_G": {
+    "value": 1000000.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "s_code_G": {
+    "value": 24.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "s_allow_G": {
+    "value": 10.45763007440494,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "s_suggest_G": {
+    "value": 8.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Sw_G": {
+    "value": 42.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "DC_shear_G": {
+    "value": 0.4501959169245875,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Status_shearsteel_G": "Required by source shear trigger",
+  "Chk_shear_G": "✓ PASS",
+  "Chk_spacing_G": "✓ PASS",
+  "Vn_req_L": {
+    "value": 48.58888888888888,
+    "dimensions": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Vs_req_L": {
+    "value": 0.0,
+    "dimensions": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Vs_L": {
+    "value": 200.0898729946525,
+    "dimensions": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Vr_L": {
+    "value": 455.6016442822561,
+    "dimensions": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "vu_L": {
+    "value": 0.023524671891999808,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "s_strength_L": {
+    "value": 1000000.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "s_code_L": {
+    "value": 24.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "s_allow_L": {
+    "value": 10.45763007440494,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "s_suggest_L": {
+    "value": 8.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Sw_L": {
+    "value": 42.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "DC_shear_L": {
+    "value": 0.09598297229346306,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Status_shearsteel_L": "Below source trigger; minimum/detailing steel retained",
+  "Chk_shear_L": "✓ PASS",
+  "Chk_spacing_L": "✓ PASS",
+  "Ao_factor": {
+    "value": 0.85,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Ag": {
+    "value": 2304,
+    "dimensions": [
+      2,
+      0,
+      0
+    ]
+  },
+  "Pcp": {
+    "value": 192.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "K_limit": {
+    "value": 0.4455894971832258,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "tstress": {
+    "value": 0.21979817708333335,
+    "dimensions": [
+      -2.0,
+      1.0,
+      0.0
+    ]
+  },
+  "K_t": {
+    "value": 1.0,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Tcr": {
+    "value": 8169.878740438686,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "T_threshold": {
+    "value": 1838.2227165987044,
+    "dimensions": [
+      1.0,
+      1.0,
+      0.0
+    ]
+  },
+  "Aoh": {
+    "value": 1711.890625,
+    "dimensions": [
+      2,
+      0,
+      0
+    ]
+  },
+  "Ao": {
+    "value": 1455.1070312499999,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "ph": {
+    "value": 165.5,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Status_torsion": "Below investigation threshold",
+  "At_G": {
+    "value": 0.02066591011197212,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Av_shear_G": {
+    "value": 0.4742948416333453,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Acomb_G": {
+    "value": 0.5156266618572896,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Chk_torsteel_G": "✓ PASS",
+  "Chk_tordetail_G": "NOT REQUIRED",
+  "At_L": {
+    "value": 0.02066591011197212,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Av_shear_L": {
+    "value": 0.4742948416333453,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Acomb_L": {
+    "value": 0.5156266618572896,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Chk_torsteel_L": "✓ PASS",
+  "Chk_tordetail_L": "NOT REQUIRED",
+  "F_vt": {
+    "value": 228.19214605686582,
+    "dimensions": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "As_skin_eff": {
+    "value": 1.8599999999999999,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "F_long_N": {
+    "value": 280.69495313436727,
+    "dimensions": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "As_add_N": {
+    "value": 0.0,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "DC_long_N": {
+    "value": 0.5719131074457361,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Chk_long_N": "✓ PASS",
+  "F_long_P": {
+    "value": 272.6757566803674,
+    "dimensions": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "As_add_P": {
+    "value": 0.0,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "DC_long_P": {
+    "value": 0.5555740763658668,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Chk_long_P": "✓ PASS",
+  "F_long_B": {
+    "value": 332.80423704739496,
+    "dimensions": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "As_add_B": {
+    "value": 0.0,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "DC_long_B": {
+    "value": 0.6780852425578545,
+    "dimensions": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Chk_long_B": "✓ PASS",
+  "Skin_required": true,
+  "As_skin_half": {
+    "value": 0.9299999999999999,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "d_pos_max": {
+    "value": 43.875,
+    "dimensions": [
+      1,
+      0,
+      0
+    ]
+  },
+  "As_skin_P": {
+    "value": 0.3043828125,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "As_skin_N": {
+    "value": 0.3043828125,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "As_skin_req": {
+    "value": 0.3043828125,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "s_skin_limit": {
+    "value": 7.3125,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Ash_raw": {
+    "value": 0.021666666666666667,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Ash_req": {
+    "value": 0.021666666666666667,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Ash_top": {
+    "value": 0.13166666666666668,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Ash_bottom": {
+    "value": 0.13166666666666668,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Ash_side": {
+    "value": 0.03875,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Ash_hoop": {
+    "value": 0.03875,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Ash_prov": {
+    "value": 0.03875,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "s_shrink_limit": {
+    "value": 12.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "s_shrink": {
+    "value": 8.0,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "V_cap": {
+    "value": 516096.0,
+    "dimensions": [
+      3.0,
+      0.0,
+      0.0
+    ]
+  },
+  "A_surface": {
+    "value": 47616.0,
+    "dimensions": [
+      2.0,
+      0.0,
+      0.0
+    ]
+  },
+  "VS_cap": {
+    "value": 10.838709677419354,
+    "dimensions": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Mass_required": false,
+  "Status_mass": "Regular concrete under ordinary pile-cap size criterion",
+  "Chk_skin_area": "✓ PASS",
+  "Chk_skin_space": "✓ PASS",
+  "Chk_shrink_area": "✓ PASS",
+  "Chk_shrink_space": "✓ PASS",
+  "Group_inputs": true,
+  "Group_flexure": true,
+  "Group_service": true,
+  "Group_shear": true,
+  "Group_torsion": true,
+  "Group_ancillary": true,
+  "Known_checks_ok": true,
+  "Pending_checks_ok": false,
+  "Status_overall": "PROVISIONAL — SERVICE III / FATIGUE INPUTS PENDING"
+}

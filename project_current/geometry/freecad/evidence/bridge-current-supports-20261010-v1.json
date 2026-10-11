@@ -1,0 +1,3946 @@
+{
+  "operation": "update_bridge_from_current_sources",
+  "document": "ProductionWorkingCopy",
+  "transaction_id": "bridge-current-supports-20261010-v1",
+  "request": {
+    "operation": "update_bridge_from_current_sources",
+    "document": "ProductionWorkingCopy",
+    "request_id": "bridge-current-supports-20261010-v1",
+    "dimensions": {
+      "EndCapWidth": "42 in",
+      "EndCapDepth": "36 in",
+      "EndCapLength": "212 in",
+      "EndPedestalLength": "30 in",
+      "EndPadThickness": "2.5625 in",
+      "PierPileEmbedment": "12 in"
+    },
+    "sources": [
+      {
+        "id": "JOURNAL",
+        "path": "C:\\github\\D2MPDB\\journal\\D2_I95_Project_Journal.bpad",
+        "sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351",
+        "hash_basis": "exact_bytes"
+      },
+      {
+        "id": "GEOMETRY",
+        "path": "C:\\github\\D2MPDB\\Bridge_Geometry_2 Beam_V2.ipynb",
+        "sha256": "76b8e0251a12f225a83a2869caa557cd14d240f3f616f7a5cd903180da50ce63",
+        "hash_basis": "lf_text"
+      },
+      {
+        "id": "ROADWAY",
+        "path": "C:\\github\\D2MPDB\\Geometry Report.xml",
+        "sha256": "9880ef7adeeac4228666146f5d5bb4dd17ef93f66ffeaf465a2c813eb69489e4",
+        "hash_basis": "exact_bytes"
+      },
+      {
+        "id": "PIER-REPORT",
+        "path": "C:\\github\\D2MPDB\\project_current\\cap_design\\pier\\Pier Cap Design 10-10.html",
+        "sha256": "376d94786da3160e28e36b380721a23acead336d0b5df23cb78c427e52d1072e",
+        "hash_basis": "exact_bytes"
+      },
+      {
+        "id": "PIER-CASE",
+        "path": "C:\\github\\D2MPDB\\project_current\\cap_design\\pier\\selected_case.json",
+        "sha256": "43fc3f9909233fbf6caee02f23d66dd9aaffd99a279669ffea8df613fb79a59c",
+        "hash_basis": "exact_bytes"
+      },
+      {
+        "id": "PIER-XML",
+        "path": "C:\\github\\D2MPDB\\project_current\\fbmp\\pier\\Pier_Fixed.XML",
+        "sha256": "a992aa331e11b4eb9bc426a3f811938a8f71b22b3300bae3431eb2931eaff9d8",
+        "hash_basis": "exact_bytes"
+      },
+      {
+        "id": "EB-REPORT",
+        "path": "C:\\github\\D2MPDB\\project_current\\cap_design\\end_bents\\End Bent 1 Cap Design 10-10.html",
+        "sha256": "3d5f82b7a39056052ea6b3ff08efc52b496668e2909b0d7d0db308af86d57790",
+        "hash_basis": "exact_bytes"
+      },
+      {
+        "id": "EB-CASE",
+        "path": "C:\\github\\D2MPDB\\project_current\\cap_design\\end_bents\\selected_case.json",
+        "sha256": "b379a468a90ccb6f44afa6be015b04380dddb2bb344f0f87aabb361808283fa7",
+        "hash_basis": "exact_bytes"
+      },
+      {
+        "id": "EB-XML",
+        "path": "C:\\github\\D2MPDB\\project_current\\fbmp\\end_bents\\End Bent 1_Fixed.XML",
+        "sha256": "8414fbedfbf1270fbd65b2cf940f2dc2050818c282cc6f66db2d20b2f3ff17ee",
+        "hash_basis": "exact_bytes"
+      },
+      {
+        "id": "MCAD-S1",
+        "path": "C:\\github\\D2MPDB\\project_current\\mathcad\\PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd",
+        "sha256": "b514ba288a859054bae7e8556ce978bcf1c4310bc6820517759d1ed73300a76f",
+        "hash_basis": "exact_bytes"
+      },
+      {
+        "id": "MCAD-S2",
+        "path": "C:\\github\\D2MPDB\\project_current\\mathcad\\PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd",
+        "sha256": "fa6693a473770e088665283631b099a0b61a0cabecac1f577ee9473b3569585b",
+        "hash_basis": "exact_bytes"
+      },
+      {
+        "id": "PIER-MINTIP-XML",
+        "path": "C:\\github\\D2MPDB\\project_current\\fbmp\\pier\\Pier_MinTip.XML",
+        "sha256": "a3210e99418f8b56d7b6a475a9db6edab152cceb77f0300f6f7245d27dee93cb",
+        "hash_basis": "exact_bytes"
+      },
+      {
+        "id": "EB-MINTIP-XML",
+        "path": "C:\\github\\D2MPDB\\project_current\\fbmp\\end_bents\\End Bent 1_Min_tip.XML",
+        "sha256": "739f44c1d542464cfd536493ce1ed6cb240f98a75ed3e1188c6f6812742d6fe2",
+        "hash_basis": "exact_bytes"
+      },
+      {
+        "id": "coherence/Coherence_Tracker.xlsx",
+        "path": "C:\\github\\D2MPDB\\project_current\\coherence\\Coherence_Tracker.xlsx",
+        "sha256": "ff75030a7f3b77edaa26788405a056a1087c166d5c43b3a4fa6a1fb55216e84b",
+        "hash_basis": "exact_bytes"
+      },
+      {
+        "id": "source_register.csv",
+        "path": "C:\\github\\D2MPDB\\project_current\\source_register.csv",
+        "sha256": "7474a7faa12facc52cda5ba18f8226accd1c350ff6a67fa12258f34d81e0ae2f",
+        "hash_basis": "exact_bytes"
+      },
+      {
+        "id": "decisions.md",
+        "path": "C:\\github\\D2MPDB\\project_current\\decisions.md",
+        "sha256": "dd4b9780e0bbafa20dc1664a2c53186791b2a864288d8ea6e8fdf8cfc269fa51",
+        "hash_basis": "exact_bytes"
+      }
+    ],
+    "notebook_configuration": {
+      "profile": {
+        "mode": "brokeback",
+        "start_sta_ft": 1593.22,
+        "end_sta_ft": 1805.47,
+        "start_elev_ft": 47.661,
+        "end_elev_ft": 47.673,
+        "intersection_sta_ft": 1700.57,
+        "nominal_grade": 0.005,
+        "parabolic_grade_change": -0.01
+      },
+      "deck": {
+        "mode": "crowned",
+        "width_ft": 13.583333333333334,
+        "center_offset_ft": 0.0,
+        "thickness_ft": 0.5,
+        "crown_slope": -0.02,
+        "uniform_slope": -0.02,
+        "transition_start_ft": 1603.22,
+        "transition_end_ft": 1643.22,
+        "slope_start": -0.02,
+        "slope_end": 0.04
+      },
+      "beams": {
+        "count": 2,
+        "spacing_ft": 8.583333333333334,
+        "first_offset_ft": null,
+        "gaps_ft": null,
+        "raise_in": 0.0,
+        "depth_ft": 3,
+        "top_flange_width_in": 48.0,
+        "minimum_haunch_in": 0.5
+      },
+      "spans": [
+        {
+          "id": 1,
+          "start_ft": 1593.22,
+          "end_ft": 1700.57,
+          "camber_in": 1.0
+        },
+        {
+          "id": 2,
+          "start_ft": 1700.57,
+          "end_ft": 1805.47,
+          "camber_in": 1.0
+        }
+      ],
+      "roadway": {
+        "xml_path": "Geometry Report.xml",
+        "alignment_name": "Unnamed",
+        "bridge_station_at_xml_zero_ft": 1593.22,
+        "clearance_required_ft": 17.0
+      },
+      "pier": {
+        "station_ft": 1700.57,
+        "pad_height_in": 2.5625,
+        "depth_ft": 3,
+        "length_ft": null,
+        "width_ft": 4,
+        "pile_count": 4,
+        "pile_diameter_in": 20,
+        "pile_embedment_in": 12.0,
+        "pile_spacing_diameters": 3,
+        "pile_end_clear_in": 15,
+        "minimum_pedestal_cl_in": 6,
+        "top_center_ft": null,
+        "center_offset_ft": 0.0,
+        "cross_slope": 0.0,
+        "pedestal_width_in": 42.0,
+        "pad_width_in": 32.0
+      },
+      "evaluation": {
+        "points_per_span": 121
+      }
+    },
+    "exceptions": [
+      "Both saved model cambers retained by explicit user direction; dependent support elevations use those cambers.",
+      "Journal bearing geometry retained: 3 in end clear, 9 in bearing setback; conflicting Mathcad length basis COH-017 remains open.",
+      "Nominal steel pipe wall 0.625 in retained; 0.48 in selected analysis section represents effective corroded wall.",
+      "Final backwall/cheek-wall details deferred D-005; existing provisional walls follow revised cap perimeter.",
+      "90 ft trial piles retained; fixed/minimum-tip analysis variants do not select final construction tips.",
+      "Pier pipe bores remain unfilled as selected case specifies.",
+      "Native design reruns, missing PSBeam/DAT sources, and unreviewed CAP-TOOL revision are not resolved by CAD geometry."
+    ],
+    "assumptions": [
+      "Source update 2026-10-10 uses project_current and latest tracker.",
+      "Both model cambers retained by user direction.",
+      "Cap top elevations follow actual retained-camber bearing seats with minimum 6 in pedestal center height.",
+      "Current source section is 212 x 42 x 36 in for both end caps; pier cap 230 x 48 x 36 in.",
+      "End walls provisional under D-005. Existing backwall thickness 12 in and cheek thickness 8 in retained; perimeter follows revised cap.",
+      "Pier wall geometry remains provisional, 36 in thick and 219 in long.",
+      "Four 18 in square piles per end bent; four nominal 20 x 0.625 in unfilled pipe piles at pier. All embed 12 in.",
+      "All 90 ft pile lengths remain trial values; final tips unselected.",
+      "Current cap cages modeled as supplied, with physical cover/clearance failures retained. No structural or fabrication approval."
+    ]
+  },
+  "timestamp": "2026-10-11T02:14:58.767781+00:00",
+  "status": "UPDATED - COORDINATION FAIL",
+  "report_path": "C:\\Users\\joshs\\Desktop\\CAD_AI\\reports\\transactions\\bridge-current-supports-20261010-v1.json",
+  "model_saved": false,
+  "old_parameters": {
+    "EndCapLength": "5333.999999999999 mm",
+    "EndCapWidth": "914.3999999999999 mm",
+    "EndPadThickness": "73.914 mm",
+    "EndPedestalLength": "609.5999999999999 mm",
+    "EndCapDepth": "1066.8 mm",
+    "PierPileEmbedment": null
+  },
+  "new_parameters": {
+    "EndCapWidth": "42 in",
+    "EndCapDepth": "36 in",
+    "EndCapLength": "212 in",
+    "EndPedestalLength": "30 in",
+    "EndPadThickness": "2.5625 in",
+    "PierPileEmbedment": "12 in"
+  },
+  "checks": [
+    {
+      "name": "Deck_count",
+      "status": "PASS",
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "Beam_count",
+      "status": "PASS",
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "Haunch_count",
+      "status": "PASS",
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "Pad_count",
+      "status": "PASS",
+      "actual": 8,
+      "expected": 8
+    },
+    {
+      "name": "Pedestal_count",
+      "status": "PASS",
+      "actual": 6,
+      "expected": 6
+    },
+    {
+      "name": "Cap_count",
+      "status": "PASS",
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "Pile_count",
+      "status": "PASS",
+      "actual": 12,
+      "expected": 12
+    },
+    {
+      "name": "Wall_count",
+      "status": "PASS",
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "Backwall_count",
+      "status": "PASS",
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "Cheek_count",
+      "status": "PASS",
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "BridgeDeckS1_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgeDeckS1_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeDeckS1_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeBeamS1B1_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgeBeamS1B1_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeBeamS1B1_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeHaunchS1B1_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgeHaunchS1B1_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeHaunchS1B1_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeBeamS1B2_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgeBeamS1B2_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeBeamS1B2_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeHaunchS1B2_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgeHaunchS1B2_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeHaunchS1B2_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeDeckS2_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgeDeckS2_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeDeckS2_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeBeamS2B1_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgeBeamS2B1_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeBeamS2B1_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeHaunchS2B1_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgeHaunchS2B1_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeHaunchS2B1_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeBeamS2B2_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgeBeamS2B2_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeBeamS2B2_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeHaunchS2B2_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgeHaunchS2B2_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeHaunchS2B2_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeCapEB1_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgeCapEB1_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeCapEB1_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePedestalEB1B1_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePedestalEB1B1_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePedestalEB1B1_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePadEB1S1B1_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePadEB1S1B1_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePadEB1S1B1_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePedestalEB1B2_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePedestalEB1B2_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePedestalEB1B2_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePadEB1S1B2_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePadEB1S1B2_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePadEB1S1B2_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB1P1_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePileEB1P1_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB1P1_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB1P2_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePileEB1P2_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB1P2_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB1P3_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePileEB1P3_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB1P3_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB1P4_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePileEB1P4_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB1P4_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeCapPier_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgeCapPier_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeCapPier_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePedestalPierB1_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePedestalPierB1_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePedestalPierB1_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePadPierS1B1_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePadPierS1B1_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePadPierS1B1_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePadPierS2B1_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePadPierS2B1_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePadPierS2B1_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePedestalPierB2_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePedestalPierB2_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePedestalPierB2_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePadPierS1B2_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePadPierS1B2_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePadPierS1B2_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePadPierS2B2_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePadPierS2B2_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePadPierS2B2_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePilePierP1_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePilePierP1_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePilePierP1_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePilePierP2_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePilePierP2_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePilePierP2_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePilePierP3_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePilePierP3_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePilePierP3_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePilePierP4_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePilePierP4_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePilePierP4_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeCapEB2_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgeCapEB2_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeCapEB2_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePedestalEB2B1_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePedestalEB2B1_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePedestalEB2B1_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePadEB2S2B1_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePadEB2S2B1_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePadEB2S2B1_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePedestalEB2B2_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePedestalEB2B2_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePedestalEB2B2_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePadEB2S2B2_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePadEB2S2B2_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePadEB2S2B2_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB2P1_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePileEB2P1_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB2P1_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB2P2_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePileEB2P2_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB2P2_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB2P3_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePileEB2P3_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB2P3_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB2P4_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePileEB2P4_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB2P4_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePierWallSolid_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgePierWallSolid_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePierWallSolid_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeBackwallEB1_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgeBackwallEB1_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeBackwallEB1_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeCheekEB11_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgeCheekEB11_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeCheekEB11_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeCheekEB12_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgeCheekEB12_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeCheekEB12_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeBackwallEB2_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgeBackwallEB2_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeBackwallEB2_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeCheekEB21_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgeCheekEB21_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeCheekEB21_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeCheekEB22_valid",
+      "status": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "BridgeCheekEB22_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeCheekEB22_source_links",
+      "status": "PASS"
+    },
+    {
+      "name": "deck1_volume",
+      "status": "PASS"
+    },
+    {
+      "name": "deck1_PGL_1614.8899999999999",
+      "status": "PASS"
+    },
+    {
+      "name": "deck1_PGL_1679.1499999999996",
+      "status": "PASS"
+    },
+    {
+      "name": "deck1_actual_longitudinal_grade",
+      "status": "PASS",
+      "actual_percent": 0.4998835584175306
+    },
+    {
+      "name": "deck1_actual_cross_grade_-1",
+      "status": "PASS",
+      "actual_percent": -2.000000000000012
+    },
+    {
+      "name": "deck1_actual_cross_grade_1",
+      "status": "PASS",
+      "actual_percent": -2.000000000000012
+    },
+    {
+      "name": "beam1_1_physical_camber",
+      "status": "PASS",
+      "actual_in": 0.030455438593596378,
+      "expected_in": 0.030455438593645807
+    },
+    {
+      "name": "beam1_1_depth",
+      "status": "PASS"
+    },
+    {
+      "name": "beam1_1_physical_volume",
+      "status": "PASS"
+    },
+    {
+      "name": "haunch1_1_physical_volume",
+      "status": "PASS"
+    },
+    {
+      "name": "haunch1_1_surface_1594.2199999999998_-1",
+      "status": "PASS",
+      "thickness_in": 0.9830954173228418
+    },
+    {
+      "name": "haunch1_1_surface_1594.2199999999998_1",
+      "status": "PASS",
+      "thickness_in": 1.9430954173228425
+    },
+    {
+      "name": "haunch1_1_surface_1646.9574999999998_-1",
+      "status": "PASS",
+      "thickness_in": 0.9526399787401307
+    },
+    {
+      "name": "haunch1_1_surface_1646.9574999999998_1",
+      "status": "PASS",
+      "thickness_in": 1.9126399787401314
+    },
+    {
+      "name": "haunch1_1_surface_1699.6949999999997_-1",
+      "status": "PASS",
+      "thickness_in": 0.9830954173228418
+    },
+    {
+      "name": "haunch1_1_surface_1699.6949999999997_1",
+      "status": "PASS",
+      "thickness_in": 1.9430954173228425
+    },
+    {
+      "name": "beam1_2_physical_camber",
+      "status": "PASS",
+      "actual_in": 0.030455438593596378,
+      "expected_in": 0.030455438593645807
+    },
+    {
+      "name": "beam1_2_depth",
+      "status": "PASS"
+    },
+    {
+      "name": "beam1_2_physical_volume",
+      "status": "PASS"
+    },
+    {
+      "name": "haunch1_2_physical_volume",
+      "status": "PASS"
+    },
+    {
+      "name": "haunch1_2_surface_1594.2199999999998_-1",
+      "status": "PASS",
+      "thickness_in": 1.9430954173228425
+    },
+    {
+      "name": "haunch1_2_surface_1594.2199999999998_1",
+      "status": "PASS",
+      "thickness_in": 0.9830954173228418
+    },
+    {
+      "name": "haunch1_2_surface_1646.9574999999998_-1",
+      "status": "PASS",
+      "thickness_in": 1.9126399787401314
+    },
+    {
+      "name": "haunch1_2_surface_1646.9574999999998_1",
+      "status": "PASS",
+      "thickness_in": 0.9526399787401307
+    },
+    {
+      "name": "haunch1_2_surface_1699.6949999999997_-1",
+      "status": "PASS",
+      "thickness_in": 1.9430954173228425
+    },
+    {
+      "name": "haunch1_2_surface_1699.6949999999997_1",
+      "status": "PASS",
+      "thickness_in": 0.9830954173228418
+    },
+    {
+      "name": "deck2_volume",
+      "status": "PASS"
+    },
+    {
+      "name": "deck2_PGL_1721.4999999999998",
+      "status": "PASS"
+    },
+    {
+      "name": "deck2_PGL_1784.2899999999997",
+      "status": "PASS"
+    },
+    {
+      "name": "deck2_actual_longitudinal_grade",
+      "status": "PASS",
+      "actual_percent": -0.5001191611082086
+    },
+    {
+      "name": "deck2_actual_cross_grade_-1",
+      "status": "PASS",
+      "actual_percent": -2.000000000000012
+    },
+    {
+      "name": "deck2_actual_cross_grade_1",
+      "status": "PASS",
+      "actual_percent": -2.000000000000012
+    },
+    {
+      "name": "beam2_1_physical_camber",
+      "status": "PASS",
+      "actual_in": 0.4830954171601067,
+      "expected_in": 0.48309541716006704
+    },
+    {
+      "name": "beam2_1_depth",
+      "status": "PASS"
+    },
+    {
+      "name": "beam2_1_physical_volume",
+      "status": "PASS"
+    },
+    {
+      "name": "haunch2_1_physical_volume",
+      "status": "PASS"
+    },
+    {
+      "name": "haunch2_1_surface_1701.4449999999997_-1",
+      "status": "PASS",
+      "thickness_in": 0.9830954173228418
+    },
+    {
+      "name": "haunch2_1_surface_1701.4449999999997_1",
+      "status": "PASS",
+      "thickness_in": 1.9430954173228425
+    },
+    {
+      "name": "haunch2_1_surface_1752.9574999999998_-1",
+      "status": "PASS",
+      "thickness_in": 0.49999999999995703
+    },
+    {
+      "name": "haunch2_1_surface_1752.9574999999998_1",
+      "status": "PASS",
+      "thickness_in": 1.4599999999999578
+    },
+    {
+      "name": "haunch2_1_surface_1804.4699999999998_-1",
+      "status": "PASS",
+      "thickness_in": 0.9830954169291094
+    },
+    {
+      "name": "haunch2_1_surface_1804.4699999999998_1",
+      "status": "PASS",
+      "thickness_in": 1.94309541692911
+    },
+    {
+      "name": "beam2_2_physical_camber",
+      "status": "PASS",
+      "actual_in": 0.4830954171601067,
+      "expected_in": 0.48309541716006704
+    },
+    {
+      "name": "beam2_2_depth",
+      "status": "PASS"
+    },
+    {
+      "name": "beam2_2_physical_volume",
+      "status": "PASS"
+    },
+    {
+      "name": "haunch2_2_physical_volume",
+      "status": "PASS"
+    },
+    {
+      "name": "haunch2_2_surface_1701.4449999999997_-1",
+      "status": "PASS",
+      "thickness_in": 1.9430954173228425
+    },
+    {
+      "name": "haunch2_2_surface_1701.4449999999997_1",
+      "status": "PASS",
+      "thickness_in": 0.9830954173228418
+    },
+    {
+      "name": "haunch2_2_surface_1752.9574999999998_-1",
+      "status": "PASS",
+      "thickness_in": 1.4599999999999578
+    },
+    {
+      "name": "haunch2_2_surface_1752.9574999999998_1",
+      "status": "PASS",
+      "thickness_in": 0.49999999999995703
+    },
+    {
+      "name": "haunch2_2_surface_1804.4699999999998_-1",
+      "status": "PASS",
+      "thickness_in": 1.94309541692911
+    },
+    {
+      "name": "haunch2_2_surface_1804.4699999999998_1",
+      "status": "PASS",
+      "thickness_in": 0.9830954169291094
+    },
+    {
+      "name": "actual_minimum_haunch",
+      "status": "PASS",
+      "minimum_in": 0.49999999999995703
+    },
+    {
+      "name": "EB1_cap_dimensions",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_pedestal1_footprint",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_pad1_1_dimensions",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_pad1_1_soffit_fit",
+      "status": "PASS",
+      "mid_pad_gap_in": 1.901192972152384e-06
+    },
+    {
+      "name": "EB1_pedestal2_footprint",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_pad1_2_dimensions",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_pad1_2_soffit_fit",
+      "status": "PASS",
+      "mid_pad_gap_in": 1.901192972152384e-06
+    },
+    {
+      "name": "EB1_pile1_physical",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_pile2_physical",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_pile3_physical",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_pile4_physical",
+      "status": "PASS"
+    },
+    {
+      "name": "Pier_cap_dimensions",
+      "status": "PASS"
+    },
+    {
+      "name": "Pier_pedestal1_footprint",
+      "status": "PASS"
+    },
+    {
+      "name": "Pier_pad1_1_dimensions",
+      "status": "PASS"
+    },
+    {
+      "name": "Pier_pad1_1_soffit_fit",
+      "status": "PASS",
+      "mid_pad_gap_in": 1.9009346613343293e-06
+    },
+    {
+      "name": "Pier_pad2_1_dimensions",
+      "status": "PASS"
+    },
+    {
+      "name": "Pier_pad2_1_soffit_fit",
+      "status": "PASS",
+      "mid_pad_gap_in": 3.160714429865526e-05
+    },
+    {
+      "name": "Pier_pedestal2_footprint",
+      "status": "PASS"
+    },
+    {
+      "name": "Pier_pad1_2_dimensions",
+      "status": "PASS"
+    },
+    {
+      "name": "Pier_pad1_2_soffit_fit",
+      "status": "PASS",
+      "mid_pad_gap_in": 1.9009346613343293e-06
+    },
+    {
+      "name": "Pier_pad2_2_dimensions",
+      "status": "PASS"
+    },
+    {
+      "name": "Pier_pad2_2_soffit_fit",
+      "status": "PASS",
+      "mid_pad_gap_in": 3.160714429865526e-05
+    },
+    {
+      "name": "Pier_pile1_physical",
+      "status": "PASS"
+    },
+    {
+      "name": "Pier_pile2_physical",
+      "status": "PASS"
+    },
+    {
+      "name": "Pier_pile3_physical",
+      "status": "PASS"
+    },
+    {
+      "name": "Pier_pile4_physical",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_cap_dimensions",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_pedestal1_footprint",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_pad2_1_dimensions",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_pad2_1_soffit_fit",
+      "status": "PASS",
+      "mid_pad_gap_in": 3.1606975863101036e-05
+    },
+    {
+      "name": "EB2_pedestal2_footprint",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_pad2_2_dimensions",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_pad2_2_soffit_fit",
+      "status": "PASS",
+      "mid_pad_gap_in": 3.1606975863101036e-05
+    },
+    {
+      "name": "EB2_pile1_physical",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_pile2_physical",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_pile3_physical",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_pile4_physical",
+      "status": "PASS"
+    },
+    {
+      "name": "bridge_component_interferences",
+      "status": "PASS",
+      "clashes": []
+    },
+    {
+      "name": "Structural design and code approval",
+      "status": "NOT CONFIGURED"
+    },
+    {
+      "name": "Reinforcement and reinforcement cover",
+      "status": "NOT CONFIGURED"
+    },
+    {
+      "name": "Final pile tip elevations",
+      "status": "NOT CONFIGURED"
+    },
+    {
+      "name": "Full roadway clearance: XML has a coverage gap",
+      "status": "NOT CONFIGURED"
+    },
+    {
+      "name": "Construction stage deformation: selected net-camber geometry only",
+      "status": "NOT CONFIGURED"
+    },
+    {
+      "name": "EB1_physical_deck_FFBW_gap",
+      "status": "PASS",
+      "actual_in": 2.99999999999996,
+      "required_in": 2.9999999999999996
+    },
+    {
+      "name": "EB1_solid_backwall_clearance",
+      "status": "PASS",
+      "actual_in": 2.999999999999964
+    },
+    {
+      "name": "EB1_FFBW_station",
+      "status": "PASS",
+      "actual_station_ft": 1593.2199999999998
+    },
+    {
+      "name": "EB1_full_width_deck_end_face",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_deck_end_PGL_elevation",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_physical_deck_FFBW_gap",
+      "status": "PASS",
+      "actual_in": 2.9999999999998854,
+      "required_in": 2.9999999999999996
+    },
+    {
+      "name": "EB2_solid_backwall_clearance",
+      "status": "PASS",
+      "actual_in": 2.9999999999998854
+    },
+    {
+      "name": "EB2_FFBW_station",
+      "status": "PASS",
+      "actual_station_ft": 1805.4699999999998
+    },
+    {
+      "name": "EB2_full_width_deck_end_face",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_deck_end_PGL_elevation",
+      "status": "PASS"
+    },
+    {
+      "name": "deck_pier_joint_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_source_cap_section_and_length",
+      "status": "PASS",
+      "actual_in": [
+        42.00000000000006,
+        211.99999999999997,
+        35.999999999999986
+      ],
+      "expected_in": [
+        42,
+        212,
+        36
+      ]
+    },
+    {
+      "name": "EB1_net_concrete_excludes_embedded_piles",
+      "status": "PASS",
+      "net_ft3": 176.49999999999994,
+      "gross_ft3": 185.5
+    },
+    {
+      "name": "EB1_pile1_12in_embedment",
+      "status": "PASS",
+      "actual_in": 11.999999999999972
+    },
+    {
+      "name": "EB1_pile2_12in_embedment",
+      "status": "PASS",
+      "actual_in": 11.999999999999972
+    },
+    {
+      "name": "EB1_pile3_12in_embedment",
+      "status": "PASS",
+      "actual_in": 11.999999999999972
+    },
+    {
+      "name": "EB1_pile4_12in_embedment",
+      "status": "PASS",
+      "actual_in": 11.999999999999972
+    },
+    {
+      "name": "EB1_pile_end_clearance",
+      "status": "PASS",
+      "actual_in": 16.0
+    },
+    {
+      "name": "EB1_pile_spacing",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_1_0_seat_contacts",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_1_0_source_pad_thickness",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_1_six_in_seat_center",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_1_three_in_bearing_offset",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_2_0_seat_contacts",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_2_0_source_pad_thickness",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_2_six_in_seat_center",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_2_three_in_bearing_offset",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_backwall_nominal_thickness",
+      "status": "PASS"
+    },
+    {
+      "name": "Pier_source_cap_section_and_length",
+      "status": "PASS",
+      "actual_in": [
+        48.00000000000003,
+        230.0,
+        35.999999999999986
+      ],
+      "expected_in": [
+        48,
+        230,
+        36
+      ]
+    },
+    {
+      "name": "Pier_net_concrete_excludes_embedded_piles",
+      "status": "PASS",
+      "net_ft3": 221.2733537400284,
+      "gross_ft3": 230.0
+    },
+    {
+      "name": "Pier_pile1_12in_embedment",
+      "status": "PASS",
+      "actual_in": 12.000000000000044
+    },
+    {
+      "name": "Pier_pile1_nominal_pipe_wall",
+      "status": "PASS",
+      "wall_in": 0.625
+    },
+    {
+      "name": "Pier_pile2_12in_embedment",
+      "status": "PASS",
+      "actual_in": 12.000000000000044
+    },
+    {
+      "name": "Pier_pile2_nominal_pipe_wall",
+      "status": "PASS",
+      "wall_in": 0.625
+    },
+    {
+      "name": "Pier_pile3_12in_embedment",
+      "status": "PASS",
+      "actual_in": 12.000000000000044
+    },
+    {
+      "name": "Pier_pile3_nominal_pipe_wall",
+      "status": "PASS",
+      "wall_in": 0.625
+    },
+    {
+      "name": "Pier_pile4_12in_embedment",
+      "status": "PASS",
+      "actual_in": 12.000000000000044
+    },
+    {
+      "name": "Pier_pile4_nominal_pipe_wall",
+      "status": "PASS",
+      "wall_in": 0.625
+    },
+    {
+      "name": "Pier_pile_end_clearance",
+      "status": "PASS",
+      "actual_in": 15.0
+    },
+    {
+      "name": "Pier_pile_spacing",
+      "status": "PASS"
+    },
+    {
+      "name": "Pier_1_0_seat_contacts",
+      "status": "PASS"
+    },
+    {
+      "name": "Pier_1_0_source_pad_thickness",
+      "status": "PASS"
+    },
+    {
+      "name": "Pier_1_1_seat_contacts",
+      "status": "PASS"
+    },
+    {
+      "name": "Pier_1_1_source_pad_thickness",
+      "status": "PASS"
+    },
+    {
+      "name": "Pier_2_0_seat_contacts",
+      "status": "PASS"
+    },
+    {
+      "name": "Pier_2_0_source_pad_thickness",
+      "status": "PASS"
+    },
+    {
+      "name": "Pier_2_1_seat_contacts",
+      "status": "PASS"
+    },
+    {
+      "name": "Pier_2_1_source_pad_thickness",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_source_cap_section_and_length",
+      "status": "PASS",
+      "actual_in": [
+        42.000000000000114,
+        211.99999999999997,
+        35.999999999999986
+      ],
+      "expected_in": [
+        42,
+        212,
+        36
+      ]
+    },
+    {
+      "name": "EB2_net_concrete_excludes_embedded_piles",
+      "status": "PASS",
+      "net_ft3": 176.50000000000045,
+      "gross_ft3": 185.5
+    },
+    {
+      "name": "EB2_pile1_12in_embedment",
+      "status": "PASS",
+      "actual_in": 11.999999999999972
+    },
+    {
+      "name": "EB2_pile2_12in_embedment",
+      "status": "PASS",
+      "actual_in": 11.999999999999972
+    },
+    {
+      "name": "EB2_pile3_12in_embedment",
+      "status": "PASS",
+      "actual_in": 11.999999999999972
+    },
+    {
+      "name": "EB2_pile4_12in_embedment",
+      "status": "PASS",
+      "actual_in": 11.999999999999972
+    },
+    {
+      "name": "EB2_pile_end_clearance",
+      "status": "PASS",
+      "actual_in": 16.000000000000018
+    },
+    {
+      "name": "EB2_pile_spacing",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_1_1_seat_contacts",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_1_1_source_pad_thickness",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_1_six_in_seat_center",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_1_three_in_bearing_offset",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_2_1_seat_contacts",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_2_1_source_pad_thickness",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_2_six_in_seat_center",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_2_three_in_bearing_offset",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_backwall_nominal_thickness",
+      "status": "PASS"
+    },
+    {
+      "name": "protected_native_geometry_links_expressions_exact",
+      "status": "PASS"
+    },
+    {
+      "name": "both_camber_controls_exact",
+      "status": "PASS"
+    },
+    {
+      "name": "MSE_bridge_concrete_interferences",
+      "status": "FAIL",
+      "clashes": [
+        {
+          "bridge": "BridgeCapEB1",
+          "mse": "WallA7Finished",
+          "common_volume_ft3": 0.21539070709548355
+        },
+        {
+          "bridge": "BridgeCapEB2",
+          "mse": "WallB2",
+          "common_volume_ft3": 0.004937432289715414
+        },
+        {
+          "bridge": "BridgeCapEB2",
+          "mse": "WallB6",
+          "common_volume_ft3": 0.0049843892349546205
+        },
+        {
+          "bridge": "BridgeCheekEB11",
+          "mse": "A_BridgeLandingSlabFinished",
+          "common_volume_ft3": 0.16593339938808346
+        },
+        {
+          "bridge": "BridgeCheekEB12",
+          "mse": "WallA7Finished",
+          "common_volume_ft3": 0.3604718610388208
+        },
+        {
+          "bridge": "BridgeCheekEB12",
+          "mse": "A_BridgeLandingSlabFinished",
+          "common_volume_ft3": 0.16740072222524424
+        },
+        {
+          "bridge": "BridgeCheekEB21",
+          "mse": "WallB6",
+          "common_volume_ft3": 0.008341718590845912
+        },
+        {
+          "bridge": "BridgeCheekEB21",
+          "mse": "B_BridgeLandingSlab",
+          "common_volume_ft3": 0.16740085212930508
+        },
+        {
+          "bridge": "BridgeCheekEB22",
+          "mse": "WallB2",
+          "common_volume_ft3": 0.008229833942254034
+        },
+        {
+          "bridge": "BridgeCheekEB22",
+          "mse": "WallB7Finished",
+          "common_volume_ft3": 6.877328055149154e-06
+        },
+        {
+          "bridge": "BridgeCheekEB22",
+          "mse": "B_BridgeLandingSlab",
+          "common_volume_ft3": 0.16591090484805968
+        }
+      ]
+    },
+    {
+      "name": "A_BridgeLandingSlabFinished_connection",
+      "status": "FAIL",
+      "mse_slab": "A_BridgeLandingSlabFinished",
+      "horizontal_gap_in": 2.9999999999999285,
+      "required_deck_joint_gap_in": 2.999999999999999,
+      "deck_end_station_ft": 1593.4699999999998,
+      "ramp_top_ft": 47.660999999999994,
+      "bridge_PGL_top_ft": 47.66224970889613,
+      "ramp_minus_PGL_in": -0.01499650675359021
+    },
+    {
+      "name": "B_BridgeLandingSlab_connection",
+      "status": "FAIL",
+      "mse_slab": "B_BridgeLandingSlab",
+      "horizontal_gap_in": 3.0,
+      "required_deck_joint_gap_in": 2.999999999999999,
+      "deck_end_station_ft": 1805.2199999999998,
+      "ramp_top_ft": 47.672999999999995,
+      "bridge_PGL_top_ft": 47.67425029790276,
+      "ramp_minus_PGL_in": -0.015003574833173161
+    }
+  ],
+  "errors": [],
+  "rollback": "NOT NEEDED",
+  "geometry": {
+    "checks": [
+      {
+        "name": "Deck_count",
+        "status": "PASS",
+        "actual": 2,
+        "expected": 2
+      },
+      {
+        "name": "Beam_count",
+        "status": "PASS",
+        "actual": 4,
+        "expected": 4
+      },
+      {
+        "name": "Haunch_count",
+        "status": "PASS",
+        "actual": 4,
+        "expected": 4
+      },
+      {
+        "name": "Pad_count",
+        "status": "PASS",
+        "actual": 8,
+        "expected": 8
+      },
+      {
+        "name": "Pedestal_count",
+        "status": "PASS",
+        "actual": 6,
+        "expected": 6
+      },
+      {
+        "name": "Cap_count",
+        "status": "PASS",
+        "actual": 3,
+        "expected": 3
+      },
+      {
+        "name": "Pile_count",
+        "status": "PASS",
+        "actual": 12,
+        "expected": 12
+      },
+      {
+        "name": "Wall_count",
+        "status": "PASS",
+        "actual": 1,
+        "expected": 1
+      },
+      {
+        "name": "Backwall_count",
+        "status": "PASS",
+        "actual": 2,
+        "expected": 2
+      },
+      {
+        "name": "Cheek_count",
+        "status": "PASS",
+        "actual": 4,
+        "expected": 4
+      },
+      {
+        "name": "BridgeDeckS1_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgeDeckS1_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeDeckS1_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeBeamS1B1_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgeBeamS1B1_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeBeamS1B1_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeHaunchS1B1_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgeHaunchS1B1_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeHaunchS1B1_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeBeamS1B2_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgeBeamS1B2_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeBeamS1B2_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeHaunchS1B2_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgeHaunchS1B2_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeHaunchS1B2_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeDeckS2_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgeDeckS2_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeDeckS2_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeBeamS2B1_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgeBeamS2B1_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeBeamS2B1_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeHaunchS2B1_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgeHaunchS2B1_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeHaunchS2B1_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeBeamS2B2_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgeBeamS2B2_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeBeamS2B2_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeHaunchS2B2_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgeHaunchS2B2_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeHaunchS2B2_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCapEB1_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgeCapEB1_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCapEB1_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePedestalEB1B1_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePedestalEB1B1_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePedestalEB1B1_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePadEB1S1B1_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePadEB1S1B1_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePadEB1S1B1_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePedestalEB1B2_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePedestalEB1B2_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePedestalEB1B2_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePadEB1S1B2_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePadEB1S1B2_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePadEB1S1B2_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePileEB1P1_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePileEB1P1_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePileEB1P1_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePileEB1P2_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePileEB1P2_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePileEB1P2_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePileEB1P3_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePileEB1P3_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePileEB1P3_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePileEB1P4_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePileEB1P4_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePileEB1P4_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCapPier_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgeCapPier_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCapPier_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePedestalPierB1_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePedestalPierB1_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePedestalPierB1_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePadPierS1B1_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePadPierS1B1_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePadPierS1B1_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePadPierS2B1_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePadPierS2B1_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePadPierS2B1_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePedestalPierB2_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePedestalPierB2_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePedestalPierB2_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePadPierS1B2_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePadPierS1B2_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePadPierS1B2_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePadPierS2B2_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePadPierS2B2_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePadPierS2B2_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePilePierP1_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePilePierP1_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePilePierP1_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePilePierP2_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePilePierP2_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePilePierP2_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePilePierP3_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePilePierP3_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePilePierP3_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePilePierP4_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePilePierP4_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePilePierP4_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCapEB2_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgeCapEB2_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCapEB2_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePedestalEB2B1_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePedestalEB2B1_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePedestalEB2B1_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePadEB2S2B1_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePadEB2S2B1_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePadEB2S2B1_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePedestalEB2B2_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePedestalEB2B2_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePedestalEB2B2_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePadEB2S2B2_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePadEB2S2B2_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePadEB2S2B2_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePileEB2P1_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePileEB2P1_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePileEB2P1_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePileEB2P2_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePileEB2P2_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePileEB2P2_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePileEB2P3_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePileEB2P3_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePileEB2P3_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePileEB2P4_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePileEB2P4_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePileEB2P4_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePierWallSolid_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgePierWallSolid_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgePierWallSolid_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeBackwallEB1_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgeBackwallEB1_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeBackwallEB1_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekEB11_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgeCheekEB11_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekEB11_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekEB12_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgeCheekEB12_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekEB12_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeBackwallEB2_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgeBackwallEB2_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeBackwallEB2_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekEB21_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgeCheekEB21_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekEB21_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekEB22_valid",
+        "status": "PASS",
+        "solids": 1
+      },
+      {
+        "name": "BridgeCheekEB22_quantity",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekEB22_source_links",
+        "status": "PASS"
+      },
+      {
+        "name": "deck1_volume",
+        "status": "PASS"
+      },
+      {
+        "name": "deck1_PGL_1614.8899999999999",
+        "status": "PASS"
+      },
+      {
+        "name": "deck1_PGL_1679.1499999999996",
+        "status": "PASS"
+      },
+      {
+        "name": "deck1_actual_longitudinal_grade",
+        "status": "PASS",
+        "actual_percent": 0.4998835584175306
+      },
+      {
+        "name": "deck1_actual_cross_grade_-1",
+        "status": "PASS",
+        "actual_percent": -2.000000000000012
+      },
+      {
+        "name": "deck1_actual_cross_grade_1",
+        "status": "PASS",
+        "actual_percent": -2.000000000000012
+      },
+      {
+        "name": "beam1_1_physical_camber",
+        "status": "PASS",
+        "actual_in": 0.030455438593596378,
+        "expected_in": 0.030455438593645807
+      },
+      {
+        "name": "beam1_1_depth",
+        "status": "PASS"
+      },
+      {
+        "name": "beam1_1_physical_volume",
+        "status": "PASS"
+      },
+      {
+        "name": "haunch1_1_physical_volume",
+        "status": "PASS"
+      },
+      {
+        "name": "haunch1_1_surface_1594.2199999999998_-1",
+        "status": "PASS",
+        "thickness_in": 0.9830954173228418
+      },
+      {
+        "name": "haunch1_1_surface_1594.2199999999998_1",
+        "status": "PASS",
+        "thickness_in": 1.9430954173228425
+      },
+      {
+        "name": "haunch1_1_surface_1646.9574999999998_-1",
+        "status": "PASS",
+        "thickness_in": 0.9526399787401307
+      },
+      {
+        "name": "haunch1_1_surface_1646.9574999999998_1",
+        "status": "PASS",
+        "thickness_in": 1.9126399787401314
+      },
+      {
+        "name": "haunch1_1_surface_1699.6949999999997_-1",
+        "status": "PASS",
+        "thickness_in": 0.9830954173228418
+      },
+      {
+        "name": "haunch1_1_surface_1699.6949999999997_1",
+        "status": "PASS",
+        "thickness_in": 1.9430954173228425
+      },
+      {
+        "name": "beam1_2_physical_camber",
+        "status": "PASS",
+        "actual_in": 0.030455438593596378,
+        "expected_in": 0.030455438593645807
+      },
+      {
+        "name": "beam1_2_depth",
+        "status": "PASS"
+      },
+      {
+        "name": "beam1_2_physical_volume",
+        "status": "PASS"
+      },
+      {
+        "name": "haunch1_2_physical_volume",
+        "status": "PASS"
+      },
+      {
+        "name": "haunch1_2_surface_1594.2199999999998_-1",
+        "status": "PASS",
+        "thickness_in": 1.9430954173228425
+      },
+      {
+        "name": "haunch1_2_surface_1594.2199999999998_1",
+        "status": "PASS",
+        "thickness_in": 0.9830954173228418
+      },
+      {
+        "name": "haunch1_2_surface_1646.9574999999998_-1",
+        "status": "PASS",
+        "thickness_in": 1.9126399787401314
+      },
+      {
+        "name": "haunch1_2_surface_1646.9574999999998_1",
+        "status": "PASS",
+        "thickness_in": 0.9526399787401307
+      },
+      {
+        "name": "haunch1_2_surface_1699.6949999999997_-1",
+        "status": "PASS",
+        "thickness_in": 1.9430954173228425
+      },
+      {
+        "name": "haunch1_2_surface_1699.6949999999997_1",
+        "status": "PASS",
+        "thickness_in": 0.9830954173228418
+      },
+      {
+        "name": "deck2_volume",
+        "status": "PASS"
+      },
+      {
+        "name": "deck2_PGL_1721.4999999999998",
+        "status": "PASS"
+      },
+      {
+        "name": "deck2_PGL_1784.2899999999997",
+        "status": "PASS"
+      },
+      {
+        "name": "deck2_actual_longitudinal_grade",
+        "status": "PASS",
+        "actual_percent": -0.5001191611082086
+      },
+      {
+        "name": "deck2_actual_cross_grade_-1",
+        "status": "PASS",
+        "actual_percent": -2.000000000000012
+      },
+      {
+        "name": "deck2_actual_cross_grade_1",
+        "status": "PASS",
+        "actual_percent": -2.000000000000012
+      },
+      {
+        "name": "beam2_1_physical_camber",
+        "status": "PASS",
+        "actual_in": 0.4830954171601067,
+        "expected_in": 0.48309541716006704
+      },
+      {
+        "name": "beam2_1_depth",
+        "status": "PASS"
+      },
+      {
+        "name": "beam2_1_physical_volume",
+        "status": "PASS"
+      },
+      {
+        "name": "haunch2_1_physical_volume",
+        "status": "PASS"
+      },
+      {
+        "name": "haunch2_1_surface_1701.4449999999997_-1",
+        "status": "PASS",
+        "thickness_in": 0.9830954173228418
+      },
+      {
+        "name": "haunch2_1_surface_1701.4449999999997_1",
+        "status": "PASS",
+        "thickness_in": 1.9430954173228425
+      },
+      {
+        "name": "haunch2_1_surface_1752.9574999999998_-1",
+        "status": "PASS",
+        "thickness_in": 0.49999999999995703
+      },
+      {
+        "name": "haunch2_1_surface_1752.9574999999998_1",
+        "status": "PASS",
+        "thickness_in": 1.4599999999999578
+      },
+      {
+        "name": "haunch2_1_surface_1804.4699999999998_-1",
+        "status": "PASS",
+        "thickness_in": 0.9830954169291094
+      },
+      {
+        "name": "haunch2_1_surface_1804.4699999999998_1",
+        "status": "PASS",
+        "thickness_in": 1.94309541692911
+      },
+      {
+        "name": "beam2_2_physical_camber",
+        "status": "PASS",
+        "actual_in": 0.4830954171601067,
+        "expected_in": 0.48309541716006704
+      },
+      {
+        "name": "beam2_2_depth",
+        "status": "PASS"
+      },
+      {
+        "name": "beam2_2_physical_volume",
+        "status": "PASS"
+      },
+      {
+        "name": "haunch2_2_physical_volume",
+        "status": "PASS"
+      },
+      {
+        "name": "haunch2_2_surface_1701.4449999999997_-1",
+        "status": "PASS",
+        "thickness_in": 1.9430954173228425
+      },
+      {
+        "name": "haunch2_2_surface_1701.4449999999997_1",
+        "status": "PASS",
+        "thickness_in": 0.9830954173228418
+      },
+      {
+        "name": "haunch2_2_surface_1752.9574999999998_-1",
+        "status": "PASS",
+        "thickness_in": 1.4599999999999578
+      },
+      {
+        "name": "haunch2_2_surface_1752.9574999999998_1",
+        "status": "PASS",
+        "thickness_in": 0.49999999999995703
+      },
+      {
+        "name": "haunch2_2_surface_1804.4699999999998_-1",
+        "status": "PASS",
+        "thickness_in": 1.94309541692911
+      },
+      {
+        "name": "haunch2_2_surface_1804.4699999999998_1",
+        "status": "PASS",
+        "thickness_in": 0.9830954169291094
+      },
+      {
+        "name": "actual_minimum_haunch",
+        "status": "PASS",
+        "minimum_in": 0.49999999999995703
+      },
+      {
+        "name": "EB1_cap_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "EB1_pedestal1_footprint",
+        "status": "PASS"
+      },
+      {
+        "name": "EB1_pad1_1_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "EB1_pad1_1_soffit_fit",
+        "status": "PASS",
+        "mid_pad_gap_in": 1.901192972152384e-06
+      },
+      {
+        "name": "EB1_pedestal2_footprint",
+        "status": "PASS"
+      },
+      {
+        "name": "EB1_pad1_2_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "EB1_pad1_2_soffit_fit",
+        "status": "PASS",
+        "mid_pad_gap_in": 1.901192972152384e-06
+      },
+      {
+        "name": "EB1_pile1_physical",
+        "status": "PASS"
+      },
+      {
+        "name": "EB1_pile2_physical",
+        "status": "PASS"
+      },
+      {
+        "name": "EB1_pile3_physical",
+        "status": "PASS"
+      },
+      {
+        "name": "EB1_pile4_physical",
+        "status": "PASS"
+      },
+      {
+        "name": "Pier_cap_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "Pier_pedestal1_footprint",
+        "status": "PASS"
+      },
+      {
+        "name": "Pier_pad1_1_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "Pier_pad1_1_soffit_fit",
+        "status": "PASS",
+        "mid_pad_gap_in": 1.9009346613343293e-06
+      },
+      {
+        "name": "Pier_pad2_1_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "Pier_pad2_1_soffit_fit",
+        "status": "PASS",
+        "mid_pad_gap_in": 3.160714429865526e-05
+      },
+      {
+        "name": "Pier_pedestal2_footprint",
+        "status": "PASS"
+      },
+      {
+        "name": "Pier_pad1_2_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "Pier_pad1_2_soffit_fit",
+        "status": "PASS",
+        "mid_pad_gap_in": 1.9009346613343293e-06
+      },
+      {
+        "name": "Pier_pad2_2_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "Pier_pad2_2_soffit_fit",
+        "status": "PASS",
+        "mid_pad_gap_in": 3.160714429865526e-05
+      },
+      {
+        "name": "Pier_pile1_physical",
+        "status": "PASS"
+      },
+      {
+        "name": "Pier_pile2_physical",
+        "status": "PASS"
+      },
+      {
+        "name": "Pier_pile3_physical",
+        "status": "PASS"
+      },
+      {
+        "name": "Pier_pile4_physical",
+        "status": "PASS"
+      },
+      {
+        "name": "EB2_cap_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "EB2_pedestal1_footprint",
+        "status": "PASS"
+      },
+      {
+        "name": "EB2_pad2_1_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "EB2_pad2_1_soffit_fit",
+        "status": "PASS",
+        "mid_pad_gap_in": 3.1606975863101036e-05
+      },
+      {
+        "name": "EB2_pedestal2_footprint",
+        "status": "PASS"
+      },
+      {
+        "name": "EB2_pad2_2_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "EB2_pad2_2_soffit_fit",
+        "status": "PASS",
+        "mid_pad_gap_in": 3.1606975863101036e-05
+      },
+      {
+        "name": "EB2_pile1_physical",
+        "status": "PASS"
+      },
+      {
+        "name": "EB2_pile2_physical",
+        "status": "PASS"
+      },
+      {
+        "name": "EB2_pile3_physical",
+        "status": "PASS"
+      },
+      {
+        "name": "EB2_pile4_physical",
+        "status": "PASS"
+      },
+      {
+        "name": "bridge_component_interferences",
+        "status": "PASS",
+        "clashes": []
+      },
+      {
+        "name": "Structural design and code approval",
+        "status": "NOT CONFIGURED"
+      },
+      {
+        "name": "Reinforcement and reinforcement cover",
+        "status": "NOT CONFIGURED"
+      },
+      {
+        "name": "Final pile tip elevations",
+        "status": "NOT CONFIGURED"
+      },
+      {
+        "name": "Full roadway clearance: XML has a coverage gap",
+        "status": "NOT CONFIGURED"
+      },
+      {
+        "name": "Construction stage deformation: selected net-camber geometry only",
+        "status": "NOT CONFIGURED"
+      },
+      {
+        "name": "EB1_physical_deck_FFBW_gap",
+        "status": "PASS",
+        "actual_in": 2.99999999999996,
+        "required_in": 2.9999999999999996
+      },
+      {
+        "name": "EB1_solid_backwall_clearance",
+        "status": "PASS",
+        "actual_in": 2.999999999999964
+      },
+      {
+        "name": "EB1_FFBW_station",
+        "status": "PASS",
+        "actual_station_ft": 1593.2199999999998
+      },
+      {
+        "name": "EB1_full_width_deck_end_face",
+        "status": "PASS"
+      },
+      {
+        "name": "EB1_deck_end_PGL_elevation",
+        "status": "PASS"
+      },
+      {
+        "name": "EB2_physical_deck_FFBW_gap",
+        "status": "PASS",
+        "actual_in": 2.9999999999998854,
+        "required_in": 2.9999999999999996
+      },
+      {
+        "name": "EB2_solid_backwall_clearance",
+        "status": "PASS",
+        "actual_in": 2.9999999999998854
+      },
+      {
+        "name": "EB2_FFBW_station",
+        "status": "PASS",
+        "actual_station_ft": 1805.4699999999998
+      },
+      {
+        "name": "EB2_full_width_deck_end_face",
+        "status": "PASS"
+      },
+      {
+        "name": "EB2_deck_end_PGL_elevation",
+        "status": "PASS"
+      },
+      {
+        "name": "deck_pier_joint_unchanged",
+        "status": "PASS"
+      },
+      {
+        "name": "EB1_source_cap_section_and_length",
+        "status": "PASS",
+        "actual_in": [
+          42.00000000000006,
+          211.99999999999997,
+          35.999999999999986
+        ],
+        "expected_in": [
+          42,
+          212,
+          36
+        ]
+      },
+      {
+        "name": "EB1_net_concrete_excludes_embedded_piles",
+        "status": "PASS",
+        "net_ft3": 176.49999999999994,
+        "gross_ft3": 185.5
+      },
+      {
+        "name": "EB1_pile1_12in_embedment",
+        "status": "PASS",
+        "actual_in": 11.999999999999972
+      },
+      {
+        "name": "EB1_pile2_12in_embedment",
+        "status": "PASS",
+        "actual_in": 11.999999999999972
+      },
+      {
+        "name": "EB1_pile3_12in_embedment",
+        "status": "PASS",
+        "actual_in": 11.999999999999972
+      },
+      {
+        "name": "EB1_pile4_12in_embedment",
+        "status": "PASS",
+        "actual_in": 11.999999999999972
+      },
+      {
+        "name": "EB1_pile_end_clearance",
+        "status": "PASS",
+        "actual_in": 16.0
+      },
+      {
+        "name": "EB1_pile_spacing",
+        "status": "PASS"
+      },
+      {
+        "name": "EB1_1_0_seat_contacts",
+        "status": "PASS"
+      },
+      {
+        "name": "EB1_1_0_source_pad_thickness",
+        "status": "PASS"
+      },
+      {
+        "name": "EB1_1_six_in_seat_center",
+        "status": "PASS"
+      },
+      {
+        "name": "EB1_1_three_in_bearing_offset",
+        "status": "PASS"
+      },
+      {
+        "name": "EB1_2_0_seat_contacts",
+        "status": "PASS"
+      },
+      {
+        "name": "EB1_2_0_source_pad_thickness",
+        "status": "PASS"
+      },
+      {
+        "name": "EB1_2_six_in_seat_center",
+        "status": "PASS"
+      },
+      {
+        "name": "EB1_2_three_in_bearing_offset",
+        "status": "PASS"
+      },
+      {
+        "name": "EB1_backwall_nominal_thickness",
+        "status": "PASS"
+      },
+      {
+        "name": "Pier_source_cap_section_and_length",
+        "status": "PASS",
+        "actual_in": [
+          48.00000000000003,
+          230.0,
+          35.999999999999986
+        ],
+        "expected_in": [
+          48,
+          230,
+          36
+        ]
+      },
+      {
+        "name": "Pier_net_concrete_excludes_embedded_piles",
+        "status": "PASS",
+        "net_ft3": 221.2733537400284,
+        "gross_ft3": 230.0
+      },
+      {
+        "name": "Pier_pile1_12in_embedment",
+        "status": "PASS",
+        "actual_in": 12.000000000000044
+      },
+      {
+        "name": "Pier_pile1_nominal_pipe_wall",
+        "status": "PASS",
+        "wall_in": 0.625
+      },
+      {
+        "name": "Pier_pile2_12in_embedment",
+        "status": "PASS",
+        "actual_in": 12.000000000000044
+      },
+      {
+        "name": "Pier_pile2_nominal_pipe_wall",
+        "status": "PASS",
+        "wall_in": 0.625
+      },
+      {
+        "name": "Pier_pile3_12in_embedment",
+        "status": "PASS",
+        "actual_in": 12.000000000000044
+      },
+      {
+        "name": "Pier_pile3_nominal_pipe_wall",
+        "status": "PASS",
+        "wall_in": 0.625
+      },
+      {
+        "name": "Pier_pile4_12in_embedment",
+        "status": "PASS",
+        "actual_in": 12.000000000000044
+      },
+      {
+        "name": "Pier_pile4_nominal_pipe_wall",
+        "status": "PASS",
+        "wall_in": 0.625
+      },
+      {
+        "name": "Pier_pile_end_clearance",
+        "status": "PASS",
+        "actual_in": 15.0
+      },
+      {
+        "name": "Pier_pile_spacing",
+        "status": "PASS"
+      },
+      {
+        "name": "Pier_1_0_seat_contacts",
+        "status": "PASS"
+      },
+      {
+        "name": "Pier_1_0_source_pad_thickness",
+        "status": "PASS"
+      },
+      {
+        "name": "Pier_1_1_seat_contacts",
+        "status": "PASS"
+      },
+      {
+        "name": "Pier_1_1_source_pad_thickness",
+        "status": "PASS"
+      },
+      {
+        "name": "Pier_2_0_seat_contacts",
+        "status": "PASS"
+      },
+      {
+        "name": "Pier_2_0_source_pad_thickness",
+        "status": "PASS"
+      },
+      {
+        "name": "Pier_2_1_seat_contacts",
+        "status": "PASS"
+      },
+      {
+        "name": "Pier_2_1_source_pad_thickness",
+        "status": "PASS"
+      },
+      {
+        "name": "EB2_source_cap_section_and_length",
+        "status": "PASS",
+        "actual_in": [
+          42.000000000000114,
+          211.99999999999997,
+          35.999999999999986
+        ],
+        "expected_in": [
+          42,
+          212,
+          36
+        ]
+      },
+      {
+        "name": "EB2_net_concrete_excludes_embedded_piles",
+        "status": "PASS",
+        "net_ft3": 176.50000000000045,
+        "gross_ft3": 185.5
+      },
+      {
+        "name": "EB2_pile1_12in_embedment",
+        "status": "PASS",
+        "actual_in": 11.999999999999972
+      },
+      {
+        "name": "EB2_pile2_12in_embedment",
+        "status": "PASS",
+        "actual_in": 11.999999999999972
+      },
+      {
+        "name": "EB2_pile3_12in_embedment",
+        "status": "PASS",
+        "actual_in": 11.999999999999972
+      },
+      {
+        "name": "EB2_pile4_12in_embedment",
+        "status": "PASS",
+        "actual_in": 11.999999999999972
+      },
+      {
+        "name": "EB2_pile_end_clearance",
+        "status": "PASS",
+        "actual_in": 16.000000000000018
+      },
+      {
+        "name": "EB2_pile_spacing",
+        "status": "PASS"
+      },
+      {
+        "name": "EB2_1_1_seat_contacts",
+        "status": "PASS"
+      },
+      {
+        "name": "EB2_1_1_source_pad_thickness",
+        "status": "PASS"
+      },
+      {
+        "name": "EB2_1_six_in_seat_center",
+        "status": "PASS"
+      },
+      {
+        "name": "EB2_1_three_in_bearing_offset",
+        "status": "PASS"
+      },
+      {
+        "name": "EB2_2_1_seat_contacts",
+        "status": "PASS"
+      },
+      {
+        "name": "EB2_2_1_source_pad_thickness",
+        "status": "PASS"
+      },
+      {
+        "name": "EB2_2_six_in_seat_center",
+        "status": "PASS"
+      },
+      {
+        "name": "EB2_2_three_in_bearing_offset",
+        "status": "PASS"
+      },
+      {
+        "name": "EB2_backwall_nominal_thickness",
+        "status": "PASS"
+      },
+      {
+        "name": "protected_native_geometry_links_expressions_exact",
+        "status": "PASS"
+      },
+      {
+        "name": "both_camber_controls_exact",
+        "status": "PASS"
+      },
+      {
+        "name": "MSE_bridge_concrete_interferences",
+        "status": "FAIL",
+        "clashes": [
+          {
+            "bridge": "BridgeCapEB1",
+            "mse": "WallA7Finished",
+            "common_volume_ft3": 0.21539070709548355
+          },
+          {
+            "bridge": "BridgeCapEB2",
+            "mse": "WallB2",
+            "common_volume_ft3": 0.004937432289715414
+          },
+          {
+            "bridge": "BridgeCapEB2",
+            "mse": "WallB6",
+            "common_volume_ft3": 0.0049843892349546205
+          },
+          {
+            "bridge": "BridgeCheekEB11",
+            "mse": "A_BridgeLandingSlabFinished",
+            "common_volume_ft3": 0.16593339938808346
+          },
+          {
+            "bridge": "BridgeCheekEB12",
+            "mse": "WallA7Finished",
+            "common_volume_ft3": 0.3604718610388208
+          },
+          {
+            "bridge": "BridgeCheekEB12",
+            "mse": "A_BridgeLandingSlabFinished",
+            "common_volume_ft3": 0.16740072222524424
+          },
+          {
+            "bridge": "BridgeCheekEB21",
+            "mse": "WallB6",
+            "common_volume_ft3": 0.008341718590845912
+          },
+          {
+            "bridge": "BridgeCheekEB21",
+            "mse": "B_BridgeLandingSlab",
+            "common_volume_ft3": 0.16740085212930508
+          },
+          {
+            "bridge": "BridgeCheekEB22",
+            "mse": "WallB2",
+            "common_volume_ft3": 0.008229833942254034
+          },
+          {
+            "bridge": "BridgeCheekEB22",
+            "mse": "WallB7Finished",
+            "common_volume_ft3": 6.877328055149154e-06
+          },
+          {
+            "bridge": "BridgeCheekEB22",
+            "mse": "B_BridgeLandingSlab",
+            "common_volume_ft3": 0.16591090484805968
+          }
+        ]
+      },
+      {
+        "name": "A_BridgeLandingSlabFinished_connection",
+        "status": "FAIL",
+        "mse_slab": "A_BridgeLandingSlabFinished",
+        "horizontal_gap_in": 2.9999999999999285,
+        "required_deck_joint_gap_in": 2.999999999999999,
+        "deck_end_station_ft": 1593.4699999999998,
+        "ramp_top_ft": 47.660999999999994,
+        "bridge_PGL_top_ft": 47.66224970889613,
+        "ramp_minus_PGL_in": -0.01499650675359021
+      },
+      {
+        "name": "B_BridgeLandingSlab_connection",
+        "status": "FAIL",
+        "mse_slab": "B_BridgeLandingSlab",
+        "horizontal_gap_in": 3.0,
+        "required_deck_joint_gap_in": 2.999999999999999,
+        "deck_end_station_ft": 1805.2199999999998,
+        "ramp_top_ft": 47.672999999999995,
+        "bridge_PGL_top_ft": 47.67425029790276,
+        "ramp_minus_PGL_in": -0.015003574833173161
+      }
+    ],
+    "component_details": {
+      "BridgeDeckS1": {
+        "volume_ft3": 727.3874999999977,
+        "kind": "Deck"
+      },
+      "BridgeBeamS1B1": {
+        "volume_ft3": 599.1912910109571,
+        "kind": "Beam"
+      },
+      "BridgeHaunchS1B1": {
+        "volume_ft3": 51.45792002807214,
+        "kind": "Haunch"
+      },
+      "BridgeBeamS1B2": {
+        "volume_ft3": 599.1912910109572,
+        "kind": "Beam"
+      },
+      "BridgeHaunchS1B2": {
+        "volume_ft3": 51.45792002807214,
+        "kind": "Haunch"
+      },
+      "BridgeDeckS2": {
+        "volume_ft3": 710.7479166666656,
+        "kind": "Deck"
+      },
+      "BridgeBeamS2B1": {
+        "volume_ft3": 585.4682841123634,
+        "kind": "Beam"
+      },
+      "BridgeHaunchS2B1": {
+        "volume_ft3": 39.92001553601369,
+        "kind": "Haunch"
+      },
+      "BridgeBeamS2B2": {
+        "volume_ft3": 585.4682841123634,
+        "kind": "Beam"
+      },
+      "BridgeHaunchS2B2": {
+        "volume_ft3": 39.92001553601369,
+        "kind": "Haunch"
+      },
+      "BridgeCapEB1": {
+        "volume_ft3": 176.49999999999994,
+        "kind": "Cap"
+      },
+      "BridgePedestalEB1B1": {
+        "volume_ft3": 4.3763798714831665,
+        "kind": "Pedestal"
+      },
+      "BridgePadEB1S1B1": {
+        "volume_ft3": 0.47453703703712063,
+        "kind": "Pad"
+      },
+      "BridgePedestalEB1B2": {
+        "volume_ft3": 4.3763798714831665,
+        "kind": "Pedestal"
+      },
+      "BridgePadEB1S1B2": {
+        "volume_ft3": 0.4745370370371206,
+        "kind": "Pad"
+      },
+      "BridgePileEB1P1": {
+        "volume_ft3": 202.5,
+        "kind": "Pile"
+      },
+      "BridgePileEB1P2": {
+        "volume_ft3": 202.5,
+        "kind": "Pile"
+      },
+      "BridgePileEB1P3": {
+        "volume_ft3": 202.49999999999991,
+        "kind": "Pile"
+      },
+      "BridgePileEB1P4": {
+        "volume_ft3": 202.49999999999994,
+        "kind": "Pile"
+      },
+      "BridgeCapPier": {
+        "volume_ft3": 221.2733537400284,
+        "kind": "Cap"
+      },
+      "BridgePedestalPierB1": {
+        "volume_ft3": 6.974042373048628,
+        "kind": "Pedestal"
+      },
+      "BridgePadPierS1B1": {
+        "volume_ft3": 0.474537037037116,
+        "kind": "Pad"
+      },
+      "BridgePadPierS2B1": {
+        "volume_ft3": 0.4745370370371092,
+        "kind": "Pad"
+      },
+      "BridgePedestalPierB2": {
+        "volume_ft3": 6.9740423730486265,
+        "kind": "Pedestal"
+      },
+      "BridgePadPierS1B2": {
+        "volume_ft3": 0.474537037037116,
+        "kind": "Pad"
+      },
+      "BridgePadPierS2B2": {
+        "volume_ft3": 0.47453703703710925,
+        "kind": "Pad"
+      },
+      "BridgePilePierP1": {
+        "volume_ft3": 23.776702212229505,
+        "kind": "Pile"
+      },
+      "BridgePilePierP2": {
+        "volume_ft3": 23.776702212229505,
+        "kind": "Pile"
+      },
+      "BridgePilePierP3": {
+        "volume_ft3": 23.776702212229505,
+        "kind": "Pile"
+      },
+      "BridgePilePierP4": {
+        "volume_ft3": 23.776702212229505,
+        "kind": "Pile"
+      },
+      "BridgeCapEB2": {
+        "volume_ft3": 176.50000000000045,
+        "kind": "Cap"
+      },
+      "BridgePedestalEB2B1": {
+        "volume_ft3": 4.379593623362505,
+        "kind": "Pedestal"
+      },
+      "BridgePadEB2S2B1": {
+        "volume_ft3": 0.47453703703712274,
+        "kind": "Pad"
+      },
+      "BridgePedestalEB2B2": {
+        "volume_ft3": 4.379593623362505,
+        "kind": "Pedestal"
+      },
+      "BridgePadEB2S2B2": {
+        "volume_ft3": 0.4745370370371227,
+        "kind": "Pad"
+      },
+      "BridgePileEB2P1": {
+        "volume_ft3": 202.49999999999866,
+        "kind": "Pile"
+      },
+      "BridgePileEB2P2": {
+        "volume_ft3": 202.49999999999866,
+        "kind": "Pile"
+      },
+      "BridgePileEB2P3": {
+        "volume_ft3": 202.49999999999864,
+        "kind": "Pile"
+      },
+      "BridgePileEB2P4": {
+        "volume_ft3": 202.49999999999866,
+        "kind": "Pile"
+      },
+      "BridgePierWallSolid": {
+        "volume_ft3": 747.6745427188872,
+        "kind": "Wall"
+      },
+      "BridgeBackwallEB1": {
+        "volume_ft3": 65.35458203529639,
+        "kind": "Backwall"
+      },
+      "BridgeCheekEB11": {
+        "volume_ft3": 12.62267536658639,
+        "kind": "Cheek"
+      },
+      "BridgeCheekEB12": {
+        "volume_ft3": 12.62267536658639,
+        "kind": "Cheek"
+      },
+      "BridgeBackwallEB2": {
+        "volume_ft3": 65.35458398675915,
+        "kind": "Backwall"
+      },
+      "BridgeCheekEB21": {
+        "volume_ft3": 12.62267564536679,
+        "kind": "Cheek"
+      },
+      "BridgeCheekEB22": {
+        "volume_ft3": 12.62267564536679,
+        "kind": "Cheek"
+      }
+    },
+    "component_count": 46,
+    "clashes": [],
+    "deck_backwall_gaps": [
+      {
+        "support": "EB1",
+        "horizontal_gap_in": 2.99999999999996,
+        "solid_distance_in": 2.999999999999964,
+        "FFBW_station_ft": 1593.2199999999998,
+        "deck_end_station_ft": 1593.4699999999998,
+        "deck_end_centerline_elevation_ft": 47.66224970889613
+      },
+      {
+        "support": "EB2",
+        "horizontal_gap_in": 2.9999999999998854,
+        "solid_distance_in": 2.9999999999998854,
+        "FFBW_station_ft": 1805.4699999999998,
+        "deck_end_station_ft": 1805.2199999999998,
+        "deck_end_centerline_elevation_ft": 47.67425029790276
+      }
+    ],
+    "contacts": [
+      [
+        "BridgeDeckS1",
+        "BridgeHaunchS1B1"
+      ],
+      [
+        "BridgeDeckS1",
+        "BridgeHaunchS1B2"
+      ],
+      [
+        "BridgeDeckS1",
+        "BridgeDeckS2"
+      ],
+      [
+        "BridgeBeamS1B1",
+        "BridgeHaunchS1B1"
+      ],
+      [
+        "BridgeBeamS1B1",
+        "BridgePadEB1S1B1"
+      ],
+      [
+        "BridgeBeamS1B1",
+        "BridgePadPierS1B1"
+      ],
+      [
+        "BridgeBeamS1B2",
+        "BridgeHaunchS1B2"
+      ],
+      [
+        "BridgeBeamS1B2",
+        "BridgePadEB1S1B2"
+      ],
+      [
+        "BridgeBeamS1B2",
+        "BridgePadPierS1B2"
+      ],
+      [
+        "BridgeDeckS2",
+        "BridgeHaunchS2B1"
+      ],
+      [
+        "BridgeDeckS2",
+        "BridgeHaunchS2B2"
+      ],
+      [
+        "BridgeBeamS2B1",
+        "BridgeHaunchS2B1"
+      ],
+      [
+        "BridgeBeamS2B1",
+        "BridgePadPierS2B1"
+      ],
+      [
+        "BridgeBeamS2B1",
+        "BridgePadEB2S2B1"
+      ],
+      [
+        "BridgeBeamS2B2",
+        "BridgeHaunchS2B2"
+      ],
+      [
+        "BridgeBeamS2B2",
+        "BridgePadPierS2B2"
+      ],
+      [
+        "BridgeBeamS2B2",
+        "BridgePadEB2S2B2"
+      ],
+      [
+        "BridgeCapEB1",
+        "BridgePedestalEB1B1"
+      ],
+      [
+        "BridgeCapEB1",
+        "BridgePedestalEB1B2"
+      ],
+      [
+        "BridgeCapEB1",
+        "BridgePileEB1P1"
+      ],
+      [
+        "BridgeCapEB1",
+        "BridgePileEB1P2"
+      ],
+      [
+        "BridgeCapEB1",
+        "BridgePileEB1P3"
+      ],
+      [
+        "BridgeCapEB1",
+        "BridgePileEB1P4"
+      ],
+      [
+        "BridgeCapEB1",
+        "BridgeBackwallEB1"
+      ],
+      [
+        "BridgeCapEB1",
+        "BridgeCheekEB11"
+      ],
+      [
+        "BridgeCapEB1",
+        "BridgeCheekEB12"
+      ],
+      [
+        "BridgePedestalEB1B1",
+        "BridgePadEB1S1B1"
+      ],
+      [
+        "BridgePedestalEB1B1",
+        "BridgeBackwallEB1"
+      ],
+      [
+        "BridgePedestalEB1B2",
+        "BridgePadEB1S1B2"
+      ],
+      [
+        "BridgePedestalEB1B2",
+        "BridgeBackwallEB1"
+      ],
+      [
+        "BridgeCapPier",
+        "BridgePedestalPierB1"
+      ],
+      [
+        "BridgeCapPier",
+        "BridgePedestalPierB2"
+      ],
+      [
+        "BridgeCapPier",
+        "BridgePilePierP1"
+      ],
+      [
+        "BridgeCapPier",
+        "BridgePilePierP2"
+      ],
+      [
+        "BridgeCapPier",
+        "BridgePilePierP3"
+      ],
+      [
+        "BridgeCapPier",
+        "BridgePilePierP4"
+      ],
+      [
+        "BridgePedestalPierB1",
+        "BridgePadPierS1B1"
+      ],
+      [
+        "BridgePedestalPierB1",
+        "BridgePadPierS2B1"
+      ],
+      [
+        "BridgePedestalPierB2",
+        "BridgePadPierS1B2"
+      ],
+      [
+        "BridgePedestalPierB2",
+        "BridgePadPierS2B2"
+      ],
+      [
+        "BridgePilePierP1",
+        "BridgePierWallSolid"
+      ],
+      [
+        "BridgePilePierP2",
+        "BridgePierWallSolid"
+      ],
+      [
+        "BridgePilePierP3",
+        "BridgePierWallSolid"
+      ],
+      [
+        "BridgePilePierP4",
+        "BridgePierWallSolid"
+      ],
+      [
+        "BridgeCapEB2",
+        "BridgePedestalEB2B1"
+      ],
+      [
+        "BridgeCapEB2",
+        "BridgePedestalEB2B2"
+      ],
+      [
+        "BridgeCapEB2",
+        "BridgePileEB2P1"
+      ],
+      [
+        "BridgeCapEB2",
+        "BridgePileEB2P2"
+      ],
+      [
+        "BridgeCapEB2",
+        "BridgePileEB2P3"
+      ],
+      [
+        "BridgeCapEB2",
+        "BridgePileEB2P4"
+      ],
+      [
+        "BridgeCapEB2",
+        "BridgeBackwallEB2"
+      ],
+      [
+        "BridgeCapEB2",
+        "BridgeCheekEB21"
+      ],
+      [
+        "BridgeCapEB2",
+        "BridgeCheekEB22"
+      ],
+      [
+        "BridgePedestalEB2B1",
+        "BridgePadEB2S2B1"
+      ],
+      [
+        "BridgePedestalEB2B1",
+        "BridgeBackwallEB2"
+      ],
+      [
+        "BridgePedestalEB2B2",
+        "BridgePadEB2S2B2"
+      ],
+      [
+        "BridgePedestalEB2B2",
+        "BridgeBackwallEB2"
+      ],
+      [
+        "BridgeBackwallEB1",
+        "BridgeCheekEB11"
+      ],
+      [
+        "BridgeBackwallEB1",
+        "BridgeCheekEB12"
+      ],
+      [
+        "BridgeBackwallEB2",
+        "BridgeCheekEB21"
+      ],
+      [
+        "BridgeBackwallEB2",
+        "BridgeCheekEB22"
+      ]
+    ],
+    "maximum_pad_chord_gap_in": 3.160714429865526e-05,
+    "actual_beam_lengths_ft": [
+      106.97499999999991,
+      104.52500000000009
+    ],
+    "bearing_stations_ft": [
+      [
+        1594.2199999999998,
+        1699.6949999999997
+      ],
+      [
+        1701.4449999999997,
+        1804.4699999999998
+      ]
+    ],
+    "support_elevations_ft": {
+      "EB1": {
+        "top": 43.24469905906348,
+        "bottom": 40.24469905906348
+      },
+      "Pier": {
+        "top": 43.77194670531545,
+        "bottom": 40.77194670531545
+      },
+      "EB2": {
+        "top": 43.25669893958618,
+        "bottom": 40.25669893958618
+      }
+    },
+    "actual_cambers_in": [
+      0.030455438593596378,
+      0.4830954171601067
+    ],
+    "requested_cambers_in": [
+      0.030455438593645807,
+      0.48309541716006704
+    ],
+    "minimum_haunch_in": 0.49999999999995703,
+    "longitudinal_grades_percent": [
+      0.4998835584175306,
+      -0.5001191611082086
+    ],
+    "unconfigured": [
+      "Structural design and code approval",
+      "Reinforcement and reinforcement cover",
+      "Final pile tip elevations",
+      "Full roadway clearance: XML has a coverage gap",
+      "Construction stage deformation: selected net-camber geometry only"
+    ]
+  },
+  "preservation_differences": {},
+  "coordination": {
+    "checks": [
+      {
+        "name": "MSE_bridge_concrete_interferences",
+        "status": "FAIL",
+        "clashes": [
+          {
+            "bridge": "BridgeCapEB1",
+            "mse": "WallA7Finished",
+            "common_volume_ft3": 0.21539070709548355
+          },
+          {
+            "bridge": "BridgeCapEB2",
+            "mse": "WallB2",
+            "common_volume_ft3": 0.004937432289715414
+          },
+          {
+            "bridge": "BridgeCapEB2",
+            "mse": "WallB6",
+            "common_volume_ft3": 0.0049843892349546205
+          },
+          {
+            "bridge": "BridgeCheekEB11",
+            "mse": "A_BridgeLandingSlabFinished",
+            "common_volume_ft3": 0.16593339938808346
+          },
+          {
+            "bridge": "BridgeCheekEB12",
+            "mse": "WallA7Finished",
+            "common_volume_ft3": 0.3604718610388208
+          },
+          {
+            "bridge": "BridgeCheekEB12",
+            "mse": "A_BridgeLandingSlabFinished",
+            "common_volume_ft3": 0.16740072222524424
+          },
+          {
+            "bridge": "BridgeCheekEB21",
+            "mse": "WallB6",
+            "common_volume_ft3": 0.008341718590845912
+          },
+          {
+            "bridge": "BridgeCheekEB21",
+            "mse": "B_BridgeLandingSlab",
+            "common_volume_ft3": 0.16740085212930508
+          },
+          {
+            "bridge": "BridgeCheekEB22",
+            "mse": "WallB2",
+            "common_volume_ft3": 0.008229833942254034
+          },
+          {
+            "bridge": "BridgeCheekEB22",
+            "mse": "WallB7Finished",
+            "common_volume_ft3": 6.877328055149154e-06
+          },
+          {
+            "bridge": "BridgeCheekEB22",
+            "mse": "B_BridgeLandingSlab",
+            "common_volume_ft3": 0.16591090484805968
+          }
+        ]
+      },
+      {
+        "name": "A_BridgeLandingSlabFinished_connection",
+        "status": "FAIL",
+        "mse_slab": "A_BridgeLandingSlabFinished",
+        "horizontal_gap_in": 2.9999999999999285,
+        "required_deck_joint_gap_in": 2.999999999999999,
+        "deck_end_station_ft": 1593.4699999999998,
+        "ramp_top_ft": 47.660999999999994,
+        "bridge_PGL_top_ft": 47.66224970889613,
+        "ramp_minus_PGL_in": -0.01499650675359021
+      },
+      {
+        "name": "B_BridgeLandingSlab_connection",
+        "status": "FAIL",
+        "mse_slab": "B_BridgeLandingSlab",
+        "horizontal_gap_in": 3.0,
+        "required_deck_joint_gap_in": 2.999999999999999,
+        "deck_end_station_ft": 1805.2199999999998,
+        "ramp_top_ft": 47.672999999999995,
+        "bridge_PGL_top_ft": 47.67425029790276,
+        "ramp_minus_PGL_in": -0.015003574833173161
+      }
+    ],
+    "clashes": [
+      {
+        "bridge": "BridgeCapEB1",
+        "mse": "WallA7Finished",
+        "common_volume_ft3": 0.21539070709548355
+      },
+      {
+        "bridge": "BridgeCapEB2",
+        "mse": "WallB2",
+        "common_volume_ft3": 0.004937432289715414
+      },
+      {
+        "bridge": "BridgeCapEB2",
+        "mse": "WallB6",
+        "common_volume_ft3": 0.0049843892349546205
+      },
+      {
+        "bridge": "BridgeCheekEB11",
+        "mse": "A_BridgeLandingSlabFinished",
+        "common_volume_ft3": 0.16593339938808346
+      },
+      {
+        "bridge": "BridgeCheekEB12",
+        "mse": "WallA7Finished",
+        "common_volume_ft3": 0.3604718610388208
+      },
+      {
+        "bridge": "BridgeCheekEB12",
+        "mse": "A_BridgeLandingSlabFinished",
+        "common_volume_ft3": 0.16740072222524424
+      },
+      {
+        "bridge": "BridgeCheekEB21",
+        "mse": "WallB6",
+        "common_volume_ft3": 0.008341718590845912
+      },
+      {
+        "bridge": "BridgeCheekEB21",
+        "mse": "B_BridgeLandingSlab",
+        "common_volume_ft3": 0.16740085212930508
+      },
+      {
+        "bridge": "BridgeCheekEB22",
+        "mse": "WallB2",
+        "common_volume_ft3": 0.008229833942254034
+      },
+      {
+        "bridge": "BridgeCheekEB22",
+        "mse": "WallB7Finished",
+        "common_volume_ft3": 6.877328055149154e-06
+      },
+      {
+        "bridge": "BridgeCheekEB22",
+        "mse": "B_BridgeLandingSlab",
+        "common_volume_ft3": 0.16591090484805968
+      }
+    ],
+    "landings": [
+      {
+        "mse_slab": "A_BridgeLandingSlabFinished",
+        "horizontal_gap_in": 2.9999999999999285,
+        "required_deck_joint_gap_in": 2.999999999999999,
+        "deck_end_station_ft": 1593.4699999999998,
+        "ramp_top_ft": 47.660999999999994,
+        "bridge_PGL_top_ft": 47.66224970889613,
+        "ramp_minus_PGL_in": -0.01499650675359021
+      },
+      {
+        "mse_slab": "B_BridgeLandingSlab",
+        "horizontal_gap_in": 3.0,
+        "required_deck_joint_gap_in": 2.999999999999999,
+        "deck_end_station_ft": 1805.2199999999998,
+        "ramp_top_ft": 47.672999999999995,
+        "bridge_PGL_top_ft": 47.67425029790276,
+        "ramp_minus_PGL_in": -0.015003574833173161
+      }
+    ]
+  },
+  "changed_objects": [
+    "BridgeBackwallEB1",
+    "BridgeBackwallEB2",
+    "BridgeCapEB1",
+    "BridgeCapEB2",
+    "BridgeCapPier",
+    "BridgeCheekEB11",
+    "BridgeCheekEB12",
+    "BridgeCheekEB21",
+    "BridgeCheekEB22",
+    "BridgeGeometryChecks",
+    "BridgePGL",
+    "BridgePadEB1S1B1",
+    "BridgePadEB1S1B2",
+    "BridgePadEB2S2B1",
+    "BridgePadEB2S2B2",
+    "BridgePedestalEB1B1",
+    "BridgePedestalEB1B2",
+    "BridgePedestalEB2B1",
+    "BridgePedestalEB2B2",
+    "BridgePileEB1P1",
+    "BridgePileEB1P2",
+    "BridgePileEB1P3",
+    "BridgePileEB1P4",
+    "BridgePileEB2P1",
+    "BridgePileEB2P2",
+    "BridgePileEB2P3",
+    "BridgePileEB2P4",
+    "BridgePilePierP1",
+    "BridgePilePierP2",
+    "BridgePilePierP3",
+    "BridgePilePierP4"
+  ]
+}

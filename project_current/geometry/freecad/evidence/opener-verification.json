@@ -1,0 +1,5 @@
+{
+  "status": "NOT CONFIGURED",
+  "detail": "Isolated offscreen GUI startup did not reach the verification macro. Preference/cache failures and a GUI resource-deadlock exception are retained in local diagnostics. No visual review claimed. The 864-object model, 737 controllers, 722 expressions, native schedules, physical geometry and hook dependency passed the independent headless reopen checks. The opening macro is syntax-checked.",
+  "model_saved": false
+}

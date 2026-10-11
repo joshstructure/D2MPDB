@@ -14,6 +14,7 @@ design-completion status.
 | Exact source revisions and missing files | [Source register](source_register.csv) |
 | Recorded decisions and ownership | [Decisions](decisions.md) |
 | Native project journal | [D2 I-95 Project Journal](../journal/D2_I95_Project_Journal.bpad) with [References](../journal/References/) |
+| Current editable FreeCAD model and live quantities | [Open the bridge model](geometry/freecad/README.md) — authoritative model home; cambers deferred and detailing failures retained |
 | Geometry notebook | [Bridge geometry](../Bridge_Geometry_2%20Beam_V2.ipynb) and [roadway XML](../Geometry%20Report.xml) |
 | Pier cap | [Report](cap_design/pier/Pier%20Cap%20Design%2010-10.html), [saved case](cap_design/pier/selected_case.json), [FBMP export](fbmp/pier/Pier_Fixed.XML) |
 | End-bent cap | [Report](cap_design/end_bents/End%20Bent%201%20Cap%20Design%2010-10.html), [saved case](cap_design/end_bents/selected_case.json) |

@@ -1,0 +1,59 @@
+{
+  "timestamp": "2026-10-11T02:23:15.299517+00:00",
+  "status": "SAVED_AND_VERIFIED_WITH_DETAILING_AND_COORDINATION_FAILURES",
+  "file": {
+    "path": "C:\\Users\\joshs\\Desktop\\CAD_AI\\Models\\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+    "bytes": 2175286,
+    "sha256": "eda9060bcaaf3969a6927a256b0bdbdcf2fbcd7a2a81cb5952b054efdce08599",
+    "objects": 864,
+    "archive_integrity": "PASS"
+  },
+  "original_preserved": true,
+  "original_sha256": "954aa33304f3fc8c7e5292cd262ee9a31f32e90832d3bf4c9884d33fcddbe623",
+  "cambers_in": [
+    0.030455438593645807,
+    0.48309541716006704
+  ],
+  "cages": {
+    "EB1": {
+      "count": 67,
+      "length_ft": 679.9269248599971,
+      "weight_lb": 923.3179492956453
+    },
+    "Pier": {
+      "count": 90,
+      "length_ft": 956.1816890678047,
+      "weight_lb": 1284.6708350310562
+    },
+    "EB2": {
+      "count": 67,
+      "length_ft": 679.9269248599971,
+      "weight_lb": 923.3179492956453
+    }
+  },
+  "report_path": "C:\\Users\\joshs\\Desktop\\CAD_AI\\reports\\bridge-source-update-20261010\\Model-update-report.txt",
+  "opener": "C:\\Users\\joshs\\Desktop\\CAD_AI\\tools\\Open_B4_Current_Source.FCMacro",
+  "transactions": [
+    "bridge-current-proxies-20261010-v1",
+    "bridge-current-supports-20261010-v1",
+    "bridge-current-cages-20261010-v1"
+  ],
+  "cold_reopen": {
+    "PASS": 1440,
+    "NOT CONFIGURED": 5
+  },
+  "remaining_bridge_mse_clashes": 11,
+  "remaining_bar_overlap_pairs": 13,
+  "remaining_cover_failures": 56,
+  "remaining_source_end_grid_pile_envelope_conflicts": 18,
+  "do_not_repeat_creation_jobs": true,
+  "source_scope_exceptions": [
+    "Both saved model cambers retained by explicit user direction; dependent support elevations use those cambers.",
+    "Journal bearing geometry retained: 3 in end clear, 9 in bearing setback; conflicting Mathcad length basis COH-017 remains open.",
+    "Nominal steel pipe wall 0.625 in retained; 0.48 in selected analysis section represents effective corroded wall.",
+    "Final backwall/cheek-wall details deferred D-005; existing provisional walls follow revised cap perimeter.",
+    "90 ft trial piles retained; fixed/minimum-tip analysis variants do not select final construction tips.",
+    "Pier pipe bores remain unfilled as selected case specifies.",
+    "Native design reruns, missing PSBeam/DAT sources, and unreviewed CAP-TOOL revision are not resolved by CAD geometry."
+  ]
+}

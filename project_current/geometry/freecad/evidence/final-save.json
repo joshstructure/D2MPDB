@@ -1,0 +1,15 @@
+{
+  "status": "SAVED",
+  "file": {
+    "path": "C:\\Users\\joshs\\Desktop\\CAD_AI\\Models\\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+    "bytes": 2175286,
+    "sha256": "eda9060bcaaf3969a6927a256b0bdbdcf2fbcd7a2a81cb5952b054efdce08599",
+    "objects": 864,
+    "archive_integrity": "PASS"
+  },
+  "source_original_preserved": true,
+  "geometry_links_expressions_preserved": true,
+  "rendered_rebars": 224,
+  "empty_rebar_views": 0,
+  "view_changes": "Three cap solids set to 80 percent transparency; new centerlines hidden, native bars visible. Original model file unchanged."
+}

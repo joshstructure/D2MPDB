@@ -1,0 +1,36 @@
+{
+  "operation": "restore_missing_project_proxies",
+  "transaction_id": "bridge-current-proxies-20261010-v1",
+  "request": {
+    "document": "ProductionWorkingCopy",
+    "request_id": "bridge-current-proxies-20261010-v1",
+    "source": "Models/Archive/B4 before B5 B8 B9 footing raise and terrain 20261003.FCStd",
+    "source_sha256": "6852befdf6c0f63cd3756b57ce3a29798d7f6f078b9d11485a73f0ae4329b33e"
+  },
+  "document": "ProductionWorkingCopy",
+  "timestamp": "2026-10-11T02:14:57.848346+00:00",
+  "report_path": "C:\\Users\\joshs\\Desktop\\CAD_AI\\reports\\transactions\\bridge-current-proxies-20261010-v1.json",
+  "status": "PASS",
+  "model_saved": false,
+  "restored_count": 280,
+  "checks": [
+    {
+      "name": "all_geometry_links_placements_and_views_exact",
+      "status": "PASS"
+    },
+    {
+      "name": "all_nonproxy_native_properties_exact",
+      "status": "PASS"
+    },
+    {
+      "name": "all_expected_proxies_available",
+      "status": "PASS"
+    },
+    {
+      "name": "no_pending_objects",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "rollback": "NOT NEEDED"
+}
