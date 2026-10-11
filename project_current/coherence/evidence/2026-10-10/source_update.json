@@ -1,0 +1,1399 @@
+{
+  "PIER": {
+    "report_sha256": "376d94786da3160e28e36b380721a23acead336d0b5df23cb78c427e52d1072e",
+    "case_sha256": "43fc3f9909233fbf6caee02f23d66dd9aaffd99a279669ffea8df613fb79a59c",
+    "analysis": {
+      "filename": "Pier_Fixed.XML",
+      "sha256": "a992aa331e11b4eb9bc426a3f811938a8f71b22b3300bae3431eb2931eaff9d8",
+      "cap_length_ft": 19.166666666666668
+    },
+    "check_count": 297,
+    "failed_count": 2,
+    "pending_count": 67,
+    "failed_checks": [
+      [
+        "End U grid · pile envelope clearance",
+        "⊗ FAIL",
+        "2",
+        "Conservative square pile envelope includes the current horizontal placement allowance, pile embedment and required clear gap, enlarged by bar radius. Review shape-specific and fabrication tolerances separately."
+      ],
+      [
+        "Actual-cage check summary",
+        "⊗ FAIL",
+        "N/A",
+        "Collects actual-cage numerical results and outstanding applicability/detailing requirements. No reference result is treated as a passed check."
+      ]
+    ],
+    "input_changes": [
+      {
+        "path": "/inputs/Bar_B",
+        "old": 6,
+        "new": 5
+      },
+      {
+        "path": "/inputs/MI_B",
+        "old": 315.31,
+        "new": 317.57
+      },
+      {
+        "path": "/inputs/MI_N",
+        "old": 20.83,
+        "new": 21.14
+      },
+      {
+        "path": "/inputs/MI_P",
+        "old": 125.69,
+        "new": 128.71
+      },
+      {
+        "path": "/inputs/Mu_B",
+        "old": 369.38,
+        "new": 369.55
+      },
+      {
+        "path": "/inputs/Mu_N",
+        "old": 33.65,
+        "new": 26.59
+      },
+      {
+        "path": "/inputs/Mu_P",
+        "old": 163.18,
+        "new": 163.41
+      },
+      {
+        "path": "/inputs/Tu",
+        "old": 24.97,
+        "new": 26.1
+      },
+      {
+        "path": "/inputs/Vu_G",
+        "old": 218.27,
+        "new": 218.28
+      },
+      {
+        "path": "/inputs/Vu_L",
+        "old": 218.27,
+        "new": 218.28
+      },
+      {
+        "path": "/inputs/n_B1",
+        "old": 4,
+        "new": 5
+      },
+      {
+        "path": "/inputs/n_N1",
+        "old": 4,
+        "new": 5
+      },
+      {
+        "path": "/inputs/n_skin",
+        "old": 3,
+        "new": 4
+      }
+    ],
+    "settings_changes": [
+      {
+        "path": "/added_bar_layout/rows/1/pitch_in",
+        "old": 6.0,
+        "new": 5.5
+      },
+      {
+        "path": "/end_face_grid",
+        "old": null,
+        "new": {
+          "version": 2,
+          "enabled": true,
+          "left": true,
+          "right": true,
+          "placement_mode": "aligned",
+          "face_offset_in": 0.0,
+          "layer_clear_in": 0.0,
+          "perimeter_inset_in": 3.0,
+          "horizontal": {
+            "bar": 5,
+            "count": 2,
+            "hook_mode": "standard",
+            "spacing_in": 0.0,
+            "return_in": 7.5,
+            "bend_diameter_in": 3.75
+          },
+          "vertical": {
+            "bar": 5,
+            "count": 3,
+            "hook_mode": "standard",
+            "spacing_in": 0.0,
+            "return_in": 7.5,
+            "bend_diameter_in": 3.75
+          }
+        }
+      },
+      {
+        "path": "/fdot_detailing",
+        "old": null,
+        "new": {
+          "exposure": "unknown",
+          "top": "unknown",
+          "bottom": "unknown",
+          "sides": "unknown"
+        }
+      },
+      {
+        "path": "/lrfd_checks",
+        "old": null,
+        "new": {
+          "version": 3,
+          "bearing_loading": "top",
+          "pile_connection": "pinned",
+          "load_path_basis": "",
+          "density_factor": 1.0,
+          "coating": "uncoated",
+          "phi_axial": 0.9,
+          "hoop_closure": "hooks",
+          "closure_angle": 135,
+          "closure_tail_in": 0.0,
+          "closure_lap_in": 0.0,
+          "closure_extension_mode": "standard",
+          "closure_engages_bars": true,
+          "continuous_splices": "none",
+          "shrinkage_project_spacing_in": 12.0,
+          "support_overrides": {}
+        }
+      },
+      {
+        "path": "/name",
+        "old": "Pier_MinTip — XML analysis",
+        "new": "Pier_Fixed — XML analysis"
+      },
+      {
+        "path": "/pile_visual/source",
+        "old": "FBMP XML: Pier_MinTip.XML · SHA256 cb094424ed16",
+        "new": "FBMP XML: Pier_Fixed.XML · SHA256 a992aa331e11"
+      },
+      {
+        "path": "/schema_version",
+        "old": 4,
+        "new": 5
+      },
+      {
+        "path": "/transverse_detail/runs",
+        "old": [
+          {
+            "id": "R1",
+            "kind": "hoop",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 3.375,
+            "end_in": 9.625,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R2",
+            "kind": "pile_u",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 12.375,
+            "end_in": 37.625,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R3",
+            "kind": "hoop",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 40.375,
+            "end_in": 69.625,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R4",
+            "kind": "pile_u",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 72.375,
+            "end_in": 97.625,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R5",
+            "kind": "hoop",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 100.375,
+            "end_in": 129.625,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R6",
+            "kind": "pile_u",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 132.375,
+            "end_in": 157.625,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R7",
+            "kind": "hoop",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 160.375,
+            "end_in": 189.625,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R8",
+            "kind": "pile_u",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 192.375,
+            "end_in": 217.625,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R9",
+            "kind": "hoop",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 220.375,
+            "end_in": 226.625,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          }
+        ],
+        "new": [
+          {
+            "id": "R1",
+            "kind": "hoop",
+            "bar": 5,
+            "zone": "G",
+            "first_in": 3.3125,
+            "end_in": 9.6875,
+            "pitch_in": 6.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R2",
+            "kind": "pile_u",
+            "bar": 5,
+            "zone": "G",
+            "first_in": 12.3125,
+            "end_in": 37.6875,
+            "pitch_in": 6.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": "",
+            "shape": {
+              "end_angle": 90,
+              "inside_diameter_in": 3.75,
+              "tail_in": 7.5,
+              "end_raise_in": 0.0,
+              "side_inset_in": 0.0,
+              "hook_rotation_left_deg": 50.0,
+              "hook_rotation_right_deg": 50.0
+            }
+          },
+          {
+            "id": "R3",
+            "kind": "hoop",
+            "bar": 5,
+            "zone": "G",
+            "first_in": 40.3125,
+            "end_in": 69.6875,
+            "pitch_in": 6.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R4",
+            "kind": "pile_u",
+            "bar": 5,
+            "zone": "G",
+            "first_in": 72.3125,
+            "end_in": 97.6875,
+            "pitch_in": 6.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": "",
+            "shape": {
+              "end_angle": 90,
+              "inside_diameter_in": 3.75,
+              "tail_in": 7.5,
+              "end_raise_in": 0.0,
+              "side_inset_in": 0.0,
+              "hook_rotation_left_deg": 50.0,
+              "hook_rotation_right_deg": 50.0
+            }
+          },
+          {
+            "id": "R5",
+            "kind": "hoop",
+            "bar": 5,
+            "zone": "G",
+            "first_in": 100.3125,
+            "end_in": 129.6875,
+            "pitch_in": 6.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R6",
+            "kind": "pile_u",
+            "bar": 5,
+            "zone": "G",
+            "first_in": 132.3125,
+            "end_in": 157.6875,
+            "pitch_in": 6.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": "",
+            "shape": {
+              "end_angle": 90,
+              "inside_diameter_in": 3.75,
+              "tail_in": 7.5,
+              "end_raise_in": 0.0,
+              "side_inset_in": 0.0,
+              "hook_rotation_left_deg": 50.0,
+              "hook_rotation_right_deg": 50.0
+            }
+          },
+          {
+            "id": "R7",
+            "kind": "hoop",
+            "bar": 5,
+            "zone": "G",
+            "first_in": 160.3125,
+            "end_in": 189.6875,
+            "pitch_in": 6.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R8",
+            "kind": "pile_u",
+            "bar": 5,
+            "zone": "G",
+            "first_in": 192.3125,
+            "end_in": 217.6875,
+            "pitch_in": 6.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": "",
+            "shape": {
+              "end_angle": 90,
+              "inside_diameter_in": 3.75,
+              "tail_in": 7.5,
+              "end_raise_in": 0.0,
+              "side_inset_in": 0.0,
+              "hook_rotation_left_deg": -50.0,
+              "hook_rotation_right_deg": -50.0
+            }
+          },
+          {
+            "id": "R9",
+            "kind": "hoop",
+            "bar": 5,
+            "zone": "G",
+            "first_in": 220.3125,
+            "end_in": 226.6875,
+            "pitch_in": 6.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          }
+        ]
+      },
+      {
+        "path": "/transverse_detail/version",
+        "old": 3,
+        "new": 4
+      }
+    ],
+    "geometry_dimensions": [
+      [
+        "Dimension",
+        "Feet",
+        "Inches"
+      ],
+      [
+        "Overall cap length",
+        "19.166667",
+        "230"
+      ],
+      [
+        "Cap width",
+        "4",
+        "48"
+      ],
+      [
+        "Cap depth",
+        "3",
+        "36"
+      ],
+      [
+        "Pile width / outside diameter",
+        "1.666667",
+        "20"
+      ],
+      [
+        "Left cap end → first pile center",
+        "2.083333",
+        "25"
+      ],
+      [
+        "Last pile center → right cap end",
+        "2.083333",
+        "25"
+      ],
+      [
+        "Left cap end → first pile face (nominal)",
+        "1.25",
+        "15"
+      ],
+      [
+        "Last pile face → right cap end (nominal)",
+        "1.25",
+        "15"
+      ],
+      [
+        "Pile center-to-center spacing",
+        "5",
+        "60"
+      ],
+      [
+        "Clear gap between pile faces",
+        "3.333333",
+        "40"
+      ],
+      [
+        "Top concrete cover",
+        "0.25",
+        "3"
+      ],
+      [
+        "Bottom concrete cover",
+        "0.25",
+        "3"
+      ],
+      [
+        "Side concrete cover",
+        "0.25",
+        "3"
+      ],
+      [
+        "Pile embedment",
+        "1",
+        "12"
+      ],
+      [
+        "Required pile-to-bar clear gap",
+        "0.083333",
+        "1"
+      ]
+    ],
+    "quantity": [
+      [
+        "Quantity",
+        "Evaluated result",
+        "Basis"
+      ],
+      [
+        "Estimated gross reinforcing steel",
+        "1260.94 lb",
+        "Drawn continuous bars and hooked additions; actual hoop/U outlines when enabled. Excludes laps, hoop closure extensions, end anchorage not drawn, and waste."
+      ],
+      [
+        "Concrete volume",
+        "230 ft³",
+        "Gross rectangular cap, without pile deductions."
+      ]
+    ]
+  },
+  "EB": {
+    "report_sha256": "3d5f82b7a39056052ea6b3ff08efc52b496668e2909b0d7d0db308af86d57790",
+    "case_sha256": "b379a468a90ccb6f44afa6be015b04380dddb2bb344f0f87aabb361808283fa7",
+    "analysis": {
+      "filename": "End Bent 1.XML",
+      "sha256": "8414fbedfbf1270fbd65b2cf940f2dc2050818c282cc6f66db2d20b2f3ff17ee",
+      "cap_length_ft": 17.666666666666668
+    },
+    "check_count": 229,
+    "failed_count": 2,
+    "pending_count": 50,
+    "failed_checks": [
+      [
+        "End U grid · pile envelope clearance",
+        "⊗ FAIL",
+        "2",
+        "Conservative square pile envelope includes the current horizontal placement allowance, pile embedment and required clear gap, enlarged by bar radius. Review shape-specific and fabrication tolerances separately."
+      ],
+      [
+        "Actual-cage check summary",
+        "⊗ FAIL",
+        "N/A",
+        "Collects actual-cage numerical results and outstanding applicability/detailing requirements. No reference result is treated as a passed check."
+      ]
+    ],
+    "input_changes": [
+      {
+        "path": "/inputs/Bar_skin",
+        "old": 4,
+        "new": 6
+      },
+      {
+        "path": "/inputs/Bar_v",
+        "old": 4,
+        "new": 6
+      },
+      {
+        "path": "/inputs/MI_B",
+        "old": 146.82,
+        "new": 149.31
+      },
+      {
+        "path": "/inputs/MI_N",
+        "old": 45.82,
+        "new": 43.88
+      },
+      {
+        "path": "/inputs/MI_P",
+        "old": 57.5,
+        "new": 59.37
+      },
+      {
+        "path": "/inputs/Mu_B",
+        "old": 190.92,
+        "new": 194.68
+      },
+      {
+        "path": "/inputs/Mu_N",
+        "old": 67.13,
+        "new": 66.8
+      },
+      {
+        "path": "/inputs/Mu_P",
+        "old": 75.96,
+        "new": 81.81
+      },
+      {
+        "path": "/inputs/Tu",
+        "old": 2.93,
+        "new": 3.18
+      },
+      {
+        "path": "/inputs/Vu_G",
+        "old": 91.79,
+        "new": 90.17
+      },
+      {
+        "path": "/inputs/Vu_L",
+        "old": 91.79,
+        "new": 90.17
+      },
+      {
+        "path": "/inputs/n_B1",
+        "old": 2,
+        "new": 3
+      },
+      {
+        "path": "/inputs/n_N1",
+        "old": 4,
+        "new": 5
+      },
+      {
+        "path": "/inputs/n_P1",
+        "old": 2,
+        "new": 4
+      },
+      {
+        "path": "/inputs/n_skin",
+        "old": 7,
+        "new": 4
+      },
+      {
+        "path": "/inputs/s_G",
+        "old": 6.0,
+        "new": 9.0
+      },
+      {
+        "path": "/inputs/s_L",
+        "old": 6.0,
+        "new": 9.0
+      }
+    ],
+    "settings_changes": [
+      {
+        "path": "/added_bar_layout",
+        "old": null,
+        "new": {
+          "version": 1,
+          "mode": "spacing",
+          "rows": {
+            "1": {
+              "pitch_in": 5.5,
+              "offset_in": 0.0
+            },
+            "2": {
+              "pitch_in": 6.0,
+              "offset_in": 0.0
+            }
+          }
+        }
+      },
+      {
+        "path": "/end_face_grid",
+        "old": null,
+        "new": {
+          "version": 2,
+          "enabled": true,
+          "left": true,
+          "right": true,
+          "placement_mode": "aligned",
+          "face_offset_in": 0.0,
+          "layer_clear_in": 0.0,
+          "perimeter_inset_in": 3.0,
+          "horizontal": {
+            "bar": 5,
+            "count": 2,
+            "hook_mode": "standard",
+            "spacing_in": 0.0,
+            "return_in": 7.5,
+            "bend_diameter_in": 3.75
+          },
+          "vertical": {
+            "bar": 5,
+            "count": 3,
+            "hook_mode": "standard",
+            "spacing_in": 0.0,
+            "return_in": 7.5,
+            "bend_diameter_in": 3.75
+          }
+        }
+      },
+      {
+        "path": "/fdot_detailing",
+        "old": null,
+        "new": {
+          "exposure": "unknown",
+          "top": "unknown",
+          "bottom": "unknown",
+          "sides": "unknown"
+        }
+      },
+      {
+        "path": "/lrfd_checks",
+        "old": null,
+        "new": {
+          "version": 3,
+          "bearing_loading": "top",
+          "pile_connection": "pinned",
+          "load_path_basis": "",
+          "density_factor": 1.0,
+          "coating": "uncoated",
+          "phi_axial": 0.9,
+          "hoop_closure": "hooks",
+          "closure_angle": 135,
+          "closure_tail_in": 0.0,
+          "closure_lap_in": 0.0,
+          "closure_extension_mode": "standard",
+          "closure_engages_bars": true,
+          "continuous_splices": "none",
+          "shrinkage_project_spacing_in": 12.0,
+          "support_overrides": {}
+        }
+      },
+      {
+        "path": "/name",
+        "old": "End Bent 1 â€” XML analysis",
+        "new": "End Bent 1 — XML analysis"
+      },
+      {
+        "path": "/pile_visual/source",
+        "old": "FBMP XML: End Bent 1.XML Â· SHA256 739f44c1d542",
+        "new": "FBMP XML: End Bent 1.XML · SHA256 8414fbedfbf1"
+      },
+      {
+        "path": "/schema_version",
+        "old": 3,
+        "new": 5
+      },
+      {
+        "path": "/transverse_detail/runs",
+        "old": [
+          {
+            "id": "R1",
+            "kind": "hoop",
+            "bar": 4,
+            "zone": "G",
+            "first_in": 3.25,
+            "end_in": 9.25,
+            "pitch_in": 6.0,
+            "development_confirmed": false,
+            "development_basis": "",
+            "shape": {
+              "inside_diameter_in": 3.0,
+              "tail_in": 6.0,
+              "end_raise_in": 0.0,
+              "side_inset_in": 0.0,
+              "end_angle": 90
+            }
+          },
+          {
+            "id": "R2",
+            "kind": "pile_u",
+            "bar": 4,
+            "zone": "G",
+            "first_in": 15.25,
+            "end_in": 33.25,
+            "pitch_in": 6,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R3",
+            "kind": "hoop",
+            "bar": 4,
+            "zone": "G",
+            "first_in": 39.25,
+            "end_in": 63.25,
+            "pitch_in": 6,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R4",
+            "kind": "pile_u",
+            "bar": 4,
+            "zone": "G",
+            "first_in": 69.25,
+            "end_in": 87.25,
+            "pitch_in": 6,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R5",
+            "kind": "hoop",
+            "bar": 4,
+            "zone": "G",
+            "first_in": 93.25,
+            "end_in": 117.25,
+            "pitch_in": 6,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R6",
+            "kind": "pile_u",
+            "bar": 4,
+            "zone": "G",
+            "first_in": 123.25,
+            "end_in": 141.25,
+            "pitch_in": 6,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R7",
+            "kind": "hoop",
+            "bar": 4,
+            "zone": "G",
+            "first_in": 147.25,
+            "end_in": 171.25,
+            "pitch_in": 6,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R8",
+            "kind": "pile_u",
+            "bar": 4,
+            "zone": "G",
+            "first_in": 177.25,
+            "end_in": 195.25,
+            "pitch_in": 6,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R9",
+            "kind": "hoop",
+            "bar": 4,
+            "zone": "G",
+            "first_in": 201.25,
+            "end_in": 207.25,
+            "pitch_in": 6,
+            "development_confirmed": false,
+            "development_basis": ""
+          }
+        ],
+        "new": [
+          {
+            "id": "R1",
+            "kind": "hoop",
+            "bar": 5,
+            "zone": "G",
+            "first_in": 3.3125,
+            "end_in": 10.6875,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R2",
+            "kind": "pile_u",
+            "bar": 5,
+            "zone": "G",
+            "first_in": 13.3125,
+            "end_in": 36.6875,
+            "pitch_in": 9.0,
+            "include_end_bar": false,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": "",
+            "shape": {
+              "end_angle": 90,
+              "inside_diameter_in": 3.75,
+              "tail_in": 3.75,
+              "end_raise_in": 0.0,
+              "side_inset_in": 0.0,
+              "hook_rotation_left_deg": 50.0,
+              "hook_rotation_right_deg": 50.0,
+              "extension_mode": "standard"
+            }
+          },
+          {
+            "id": "R3",
+            "kind": "hoop",
+            "bar": 5,
+            "zone": "G",
+            "first_in": 39.3125,
+            "end_in": 64.6875,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R4",
+            "kind": "pile_u",
+            "bar": 5,
+            "zone": "G",
+            "first_in": 67.3125,
+            "end_in": 90.6875,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": "",
+            "shape": {
+              "end_angle": 90,
+              "inside_diameter_in": 3.75,
+              "tail_in": 3.75,
+              "end_raise_in": 0.0,
+              "side_inset_in": 0.0,
+              "hook_rotation_left_deg": 50.0,
+              "hook_rotation_right_deg": 50.0,
+              "extension_mode": "standard"
+            }
+          },
+          {
+            "id": "R5",
+            "kind": "hoop",
+            "bar": 5,
+            "zone": "G",
+            "first_in": 93.3125,
+            "end_in": 118.6875,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R6",
+            "kind": "pile_u",
+            "bar": 5,
+            "zone": "G",
+            "first_in": 121.3125,
+            "end_in": 144.6875,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": "",
+            "shape": {
+              "end_angle": 90,
+              "inside_diameter_in": 3.75,
+              "tail_in": 3.75,
+              "end_raise_in": 0.0,
+              "side_inset_in": 0.0,
+              "hook_rotation_left_deg": 50.0,
+              "hook_rotation_right_deg": 50.0,
+              "extension_mode": "standard"
+            }
+          },
+          {
+            "id": "R7",
+            "kind": "hoop",
+            "bar": 5,
+            "zone": "G",
+            "first_in": 147.3125,
+            "end_in": 172.6875,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R8",
+            "kind": "pile_u",
+            "bar": 5,
+            "zone": "G",
+            "first_in": 175.3125,
+            "end_in": 198.6875,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": "",
+            "shape": {
+              "end_angle": 90,
+              "inside_diameter_in": 3.75,
+              "tail_in": 3.75,
+              "end_raise_in": 0.0,
+              "side_inset_in": 0.0,
+              "hook_rotation_left_deg": -50.0,
+              "hook_rotation_right_deg": -50.0,
+              "extension_mode": "standard"
+            }
+          },
+          {
+            "id": "R9",
+            "kind": "hoop",
+            "bar": 5,
+            "zone": "G",
+            "first_in": 201.3125,
+            "end_in": 208.6875,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          }
+        ]
+      },
+      {
+        "path": "/transverse_detail/version",
+        "old": 1,
+        "new": 4
+      }
+    ],
+    "geometry_dimensions": [
+      [
+        "Dimension",
+        "Feet",
+        "Inches"
+      ],
+      [
+        "Overall cap length",
+        "17.666667",
+        "212"
+      ],
+      [
+        "Cap width",
+        "3.5",
+        "42"
+      ],
+      [
+        "Cap depth",
+        "3",
+        "36"
+      ],
+      [
+        "Pile width / outside diameter",
+        "1.5",
+        "18"
+      ],
+      [
+        "Left cap end → first pile center",
+        "2.083333",
+        "25"
+      ],
+      [
+        "Last pile center → right cap end",
+        "2.083333",
+        "25"
+      ],
+      [
+        "Left cap end → first pile face (nominal)",
+        "1.333333",
+        "16"
+      ],
+      [
+        "Last pile face → right cap end (nominal)",
+        "1.333333",
+        "16"
+      ],
+      [
+        "Pile center-to-center spacing",
+        "4.5",
+        "54"
+      ],
+      [
+        "Clear gap between pile faces",
+        "3",
+        "36"
+      ],
+      [
+        "Top concrete cover",
+        "0.25",
+        "3"
+      ],
+      [
+        "Bottom concrete cover",
+        "0.25",
+        "3"
+      ],
+      [
+        "Side concrete cover",
+        "0.25",
+        "3"
+      ],
+      [
+        "Pile embedment",
+        "1",
+        "12"
+      ],
+      [
+        "Required pile-to-bar clear gap",
+        "0.083333",
+        "1"
+      ]
+    ],
+    "quantity": [
+      [
+        "Quantity",
+        "Evaluated result",
+        "Basis"
+      ],
+      [
+        "Estimated gross reinforcing steel",
+        "907.865 lb",
+        "Drawn continuous bars and hooked additions; actual hoop/U outlines when enabled. Excludes laps, hoop closure extensions, end anchorage not drawn, and waste."
+      ],
+      [
+        "Concrete volume",
+        "185.5 ft³",
+        "Gross rectangular cap, without pile deductions."
+      ]
+    ]
+  },
+  "pier_xml_coordinates_in": {
+    "5": {
+      "X": -25.0,
+      "Y": 0.0,
+      "Z": -497.01
+    },
+    "44": {
+      "X": 205.0,
+      "Y": 0.0,
+      "Z": -497.01
+    },
+    "16": {
+      "X": 38.5,
+      "Y": 0.0,
+      "Z": -497.01
+    },
+    "33": {
+      "X": 141.49,
+      "Y": 0.0,
+      "Z": -497.01
+    },
+    "181": {
+      "X": 38.5,
+      "Y": -10.5,
+      "Z": -497.01
+    },
+    "182": {
+      "X": 141.49,
+      "Y": -10.5,
+      "Z": -497.01
+    },
+    "183": {
+      "X": 38.5,
+      "Y": 10.5,
+      "Z": -497.01
+    },
+    "184": {
+      "X": 141.49,
+      "Y": 10.5,
+      "Z": -497.01
+    }
+  },
+  "source_dispositions": [
+    {
+      "source_id": "JOURNAL",
+      "prior": {
+        "source_id": "JOURNAL",
+        "topic": "Project journal",
+        "path": "journal/D2_I95_Project_Journal.bpad",
+        "status": "Current - bounded review",
+        "scope": "Adopted project geometry, assumptions, decisions and live journal quantities",
+        "sha256": "829f5450a34c76bee03ebbce06a389de76883ccaa8007b5e9bb50b17ec83de33",
+        "registered_on": "2026-10-09",
+        "depends_on": "",
+        "origin": "workflow/accepted.json",
+        "notes": "T005 adopted geometry/source bookkeeping. C005 unchanged. Pier steel and forces remain in the separate report. Full design adequacy is open.",
+        "hash_basis": "exact_bytes"
+      },
+      "selected": {
+        "source_id": "JOURNAL",
+        "topic": "Project journal",
+        "path": "journal/D2_I95_Project_Journal.bpad",
+        "status": "Current - bounded review",
+        "scope": "Adopted project geometry, assumptions, decisions and live journal quantities",
+        "sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351",
+        "registered_on": "2026-10-10",
+        "depends_on": "",
+        "origin": "workflow/accepted.json",
+        "notes": "Reconciled to existing T006 acceptance and verified receipt evidence. Geometry/source bookkeeping, 230-in wind width, historical-sketch labels and three repaired reference links only; C005 preserved. New cap report results are not incorporated into BPAD.",
+        "hash_basis": "exact_bytes"
+      }
+    },
+    {
+      "source_id": "PIER-REPORT",
+      "prior": {
+        "source_id": "PIER-REPORT",
+        "topic": "Pier cap report",
+        "path": "project_current/cap_design/pier/Pier Cap Design 10-9.html",
+        "status": "Current source",
+        "scope": "Current pier cage and recorded calculation results",
+        "sha256": "806a47bb50962827f5fd3e6fdd4c42c8b41851bddd23ff3948f377fe6a48b7b2",
+        "registered_on": "2026-10-09",
+        "depends_on": "PIER-CASE;PIER-XML",
+        "origin": "tasks/T005/sources/Pier Cap Design 10-9.html",
+        "notes": "Source snapshot; open design/currency items are tracked in the coherence workbook.",
+        "hash_basis": "exact_bytes"
+      },
+      "selected": {
+        "source_id": "PIER-REPORT",
+        "topic": "Pier cap report",
+        "path": "project_current/cap_design/pier/Pier Cap Design 10-10.html",
+        "status": "User-selected current",
+        "scope": "Current pier cage and recorded calculation results",
+        "sha256": "376d94786da3160e28e36b380721a23acead336d0b5df23cb78c427e52d1072e",
+        "registered_on": "2026-10-10",
+        "depends_on": "PIER-CASE;PIER-XML",
+        "origin": "User-supplied Pier Cap Design 10-10.html",
+        "notes": "Selected by the 10 October update request. Replaces the prior registered source; exact prior identities and impacts are in coherence/evidence/2026-10-10/source_update.json. Report failures and pending checks remain open.",
+        "hash_basis": "exact_bytes"
+      }
+    },
+    {
+      "source_id": "PIER-CASE",
+      "prior": {
+        "source_id": "PIER-CASE",
+        "topic": "Pier saved cap case",
+        "path": "project_current/cap_design/pier/selected_case.json",
+        "status": "Current source",
+        "scope": "Editable case extracted from the supplied pier report",
+        "sha256": "3f368f577d7269ef67cf4c0f04f89046191bacd798ce3f348c760b449f83cf2a",
+        "registered_on": "2026-10-09",
+        "depends_on": "PIER-XML",
+        "origin": "tasks/T005/sources/report-case-0.json",
+        "notes": "Source snapshot; open design/currency items are tracked in the coherence workbook.",
+        "hash_basis": "exact_bytes"
+      },
+      "selected": {
+        "source_id": "PIER-CASE",
+        "topic": "Pier saved cap case",
+        "path": "project_current/cap_design/pier/selected_case.json",
+        "status": "User-selected current",
+        "scope": "Editable case extracted from the supplied pier report",
+        "sha256": "43fc3f9909233fbf6caee02f23d66dd9aaffd99a279669ffea8df613fb79a59c",
+        "registered_on": "2026-10-10",
+        "depends_on": "PIER-XML",
+        "origin": "User-supplied Pier Cap Design 10-10.html / embedded case JSON",
+        "notes": "Selected by the 10 October update request. Replaces the prior registered source; exact prior identities and impacts are in coherence/evidence/2026-10-10/source_update.json. Report failures and pending checks remain open.",
+        "hash_basis": "exact_bytes"
+      }
+    },
+    {
+      "source_id": "PIER-XML",
+      "prior": {
+        "source_id": "PIER-XML",
+        "topic": "Pier FBMP results",
+        "path": "project_current/fbmp/pier/Pier_MinTip.XML",
+        "status": "Current source",
+        "scope": "Exact analysis export identified by the pier report",
+        "sha256": "cb094424ed16e60b16957ed84a62aea21533fb61671c58a27ca73a997eaf70e4",
+        "registered_on": "2026-10-09",
+        "depends_on": "",
+        "origin": "tasks/T005/sources/Pier_MinTip.XML",
+        "notes": "Source snapshot; open design/currency items are tracked in the coherence workbook.",
+        "hash_basis": "exact_bytes"
+      },
+      "selected": {
+        "source_id": "PIER-XML",
+        "topic": "Pier FBMP results",
+        "path": "project_current/fbmp/pier/Pier_Fixed.XML",
+        "status": "Current source",
+        "scope": "Exact analysis export identified by the pier report",
+        "sha256": "a992aa331e11b4eb9bc426a3f811938a8f71b22b3300bae3431eb2931eaff9d8",
+        "registered_on": "2026-10-10",
+        "depends_on": "",
+        "origin": "Local Pier_Fixed.XML identified by exact hash in the supplied pier report",
+        "notes": "Exact bytes match the selected 10 October report. Prior Pier_MinTip.XML retained as historical. Bearing coordinate correction verified; full model loading/convergence remains unreviewed.",
+        "hash_basis": "exact_bytes"
+      }
+    },
+    {
+      "source_id": "EB-REPORT",
+      "prior": {
+        "source_id": "EB-REPORT",
+        "topic": "End-bent cap report",
+        "path": "project_current/cap_design/end_bents/End bent 1 Cap Design Report_10-8.html",
+        "status": "Current source",
+        "scope": "End Bent 1 report; common end-bent design adopted by user",
+        "sha256": "42120857965352febea29e4a672b2ba93f45199430360a89f8e1e529d2df50ef",
+        "registered_on": "2026-10-09",
+        "depends_on": "EB-CASE;EB-XML",
+        "origin": "tasks/T002/sources/End bent 1 Cap Design Report_10-8.html",
+        "notes": "Source snapshot; open design/currency items are tracked in the coherence workbook.",
+        "hash_basis": "exact_bytes"
+      },
+      "selected": {
+        "source_id": "EB-REPORT",
+        "topic": "End-bent cap report",
+        "path": "project_current/cap_design/end_bents/End Bent 1 Cap Design 10-10.html",
+        "status": "User-selected current",
+        "scope": "End Bent 1 report; common end-bent design adopted by user",
+        "sha256": "3d5f82b7a39056052ea6b3ff08efc52b496668e2909b0d7d0db308af86d57790",
+        "registered_on": "2026-10-10",
+        "depends_on": "EB-CASE;EB-XML",
+        "origin": "User-supplied End Bent 1 Cap Design 10-10.html",
+        "notes": "Selected by the 10 October update request. Replaces the prior registered source; exact prior identities and impacts are in coherence/evidence/2026-10-10/source_update.json. Report failures and pending checks remain open.",
+        "hash_basis": "exact_bytes"
+      }
+    },
+    {
+      "source_id": "EB-CASE",
+      "prior": {
+        "source_id": "EB-CASE",
+        "topic": "End-bent saved cap case",
+        "path": "project_current/cap_design/end_bents/selected_case.json",
+        "status": "Current source",
+        "scope": "Editable case extracted from adopted end-bent report",
+        "sha256": "ab2c7fff9b4a955c8964bb2c0d2c253b1b0581661c6f84d0150723cc415edec6",
+        "registered_on": "2026-10-09",
+        "depends_on": "EB-XML",
+        "origin": "tasks/T002/sources/end_bent_1_report_case.json",
+        "notes": "Source snapshot; open design/currency items are tracked in the coherence workbook.",
+        "hash_basis": "exact_bytes"
+      },
+      "selected": {
+        "source_id": "EB-CASE",
+        "topic": "End-bent saved cap case",
+        "path": "project_current/cap_design/end_bents/selected_case.json",
+        "status": "User-selected current",
+        "scope": "Editable case extracted from adopted end-bent report",
+        "sha256": "b379a468a90ccb6f44afa6be015b04380dddb2bb344f0f87aabb361808283fa7",
+        "registered_on": "2026-10-10",
+        "depends_on": "EB-XML",
+        "origin": "User-supplied End Bent 1 Cap Design 10-10.html / embedded case JSON",
+        "notes": "Selected by the 10 October update request. Replaces the prior registered source; exact prior identities and impacts are in coherence/evidence/2026-10-10/source_update.json. Report failures and pending checks remain open.",
+        "hash_basis": "exact_bytes"
+      }
+    },
+    {
+      "source_id": "EB-XML",
+      "prior": {
+        "source_id": "EB-XML",
+        "topic": "Matching end-bent FBMP export",
+        "path": "project_current/fbmp/end_bents/End Bent 1.XML",
+        "status": "Missing",
+        "scope": "Exact export used by EB-REPORT",
+        "sha256": "739f44c1d542464cfd536493ce1ed6cb240f98a75ed3e1188c6f6812742d6fe2",
+        "registered_on": "2026-10-09",
+        "depends_on": "",
+        "origin": "tasks/T002/sources/provenance.json",
+        "notes": "The same-named Downloads file does not match the report. Do not substitute it.",
+        "hash_basis": "exact_bytes"
+      },
+      "selected": {
+        "source_id": "EB-XML",
+        "topic": "Matching end-bent FBMP export",
+        "path": "project_current/fbmp/end_bents/End Bent 1.XML",
+        "status": "Missing",
+        "scope": "Exact export used by EB-REPORT",
+        "sha256": "8414fbedfbf1270fbd65b2cf940f2dc2050818c282cc6f66db2d20b2f3ff17ee",
+        "registered_on": "2026-10-10",
+        "depends_on": "",
+        "origin": "Embedded audit in End Bent 1 Cap Design 10-10.html",
+        "notes": "Revised report requires this new fingerprint. Available End Bent 1.XML hashes to 739f44c1d542464cfd536493ce1ed6cb240f98a75ed3e1188c6f6812742d6fe2 and matches the superseded report only. No substitute imported.",
+        "hash_basis": "exact_bytes"
+      }
+    }
+  ],
+  "date": "2026-10-10",
+  "scope": "Supplied-report ingestion, exact source identity, report check inventory, selected geometry, accepted T006 bookkeeping and tracker reconciliation. No native design rerun or new engineering acceptance.",
+  "cap_tool": {
+    "registered_sha256": "1af14e6efa5095a973b88ced422bee1656596ec8cba4e5c6b6b31ee9796c4c74",
+    "github_parent_sha256": "2ded0cdab30dba01e2126840ff459c3765775514f696c5366aa4a99ef2680045",
+    "local_working_sha256": "ea2e818debcdb82c5de2807056be838a83a9a80b1e2995892c7ca457f3dae8ec",
+    "disposition": "Expected hash retained. Published and local tool revisions both differ from the old register. No tool revision is adopted or published by this source update; COH-021 remains open."
+  }
+}

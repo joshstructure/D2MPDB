@@ -1,0 +1,21 @@
+{
+  "scope": "Planned GitHub tree: project_current changes plus unchanged tracked source bytes from parent commit; unrelated working-tree code excluded.",
+  "parent_commit": "c10ff7d3c94e92d61685a872bb3655dafc4251ad",
+  "report_bytes_and_embedded_case_checks": "pass",
+  "pier_xml_identity": "pass",
+  "geometry_checks": "14 match",
+  "tracker_preservation": "Stable IDs, existing responses, formulas, styles, table, dropdowns, freeze panes, protection and closure rows verified.",
+  "summary_cache": [
+    19,
+    3,
+    3,
+    3
+  ],
+  "machine_counts": {
+    "MATCH": 30,
+    "CHANGED": 1,
+    "MISSING": 6,
+    "REVIEW": 6
+  },
+  "native_design_rerun": false
+}

@@ -1,7 +1,7 @@
 # Current project record
 
 Start here for the D2 I-95 pedestrian bridge's current source files, adopted
-decisions and outstanding coherence items. Initial inventory: **9 October 2026**.
+decisions and outstanding coherence items. Initial inventory: **9 October 2026**. Source update: **10 October 2026**.
 "Current" identifies the selected source. Each source retains its own review and
 design-completion status.
 
@@ -15,8 +15,8 @@ design-completion status.
 | Recorded decisions and ownership | [Decisions](decisions.md) |
 | Native project journal | [D2 I-95 Project Journal](../journal/D2_I95_Project_Journal.bpad) with [References](../journal/References/) |
 | Geometry notebook | [Bridge geometry](../Bridge_Geometry_2%20Beam_V2.ipynb) and [roadway XML](../Geometry%20Report.xml) |
-| Pier cap | [Report](cap_design/pier/Pier%20Cap%20Design%2010-9.html), [saved case](cap_design/pier/selected_case.json), [FBMP export](fbmp/pier/Pier_MinTip.XML) |
-| End-bent cap | [Report](cap_design/end_bents/End%20bent%201%20Cap%20Design%20Report_10-8.html), [saved case](cap_design/end_bents/selected_case.json) |
+| Pier cap | [Report](cap_design/pier/Pier%20Cap%20Design%2010-10.html), [saved case](cap_design/pier/selected_case.json), [FBMP export](fbmp/pier/Pier_Fixed.XML) |
+| End-bent cap | [Report](cap_design/end_bents/End%20Bent%201%20Cap%20Design%2010-10.html), [saved case](cap_design/end_bents/selected_case.json) |
 | Mathcad | [Span 1](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd), [Span 2](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd) |
 | Calculation tool | [Cap and pile notebook](../Cap_and_Pile_Design.ipynb) |
 | PSBeam packages | [Awaiting source files](psbeam/README.md) |
@@ -86,7 +86,17 @@ Exit code 0 means no automatic findings or outstanding items, 1 means an error o
 changed source, and 2 means known missing sources/review items remain. A zero code
 still applies only to the documented automated scope.
 
-The initial workbook contains 18 outstanding items, including three awaiting
-source items and one deferred item. This is an initial review of the available
-records, not a complete code/design audit. Previously resolved pedestal, node
-label, utility-module and Service III decisions have not been reopened.
+The 10 October review has **19 outstanding items**: 13 open, three awaiting
+source and three deferred. Three closed rows remain for history. The review
+adopts the two supplied 10 October reports and their embedded cases, adds the
+exact matching `Pier_Fixed.XML`, and reconciles the existing T006 journal receipt
+and recorded responses. Earlier report/XML files remain historical.
+
+Both reports flag end-face U-grid pile clearance. Each report's two FAIL entries
+are that failure and its aggregate summary. The new end-bent XML is still missing,
+and CAP-TOOL remains changed against its registered revision. Report pending
+counts are 67 for the pier and 50 for End Bent 1; these are report entries, not
+tracker item counts. Service III remains N/A by D-007 despite its pending report
+label. See the [source update review](coherence/evidence/2026-10-10/review.md).
+This is a bounded data-coherence review, not a new native calculation or complete
+design audit. Prior recorded decisions and deferrals remain in effect.

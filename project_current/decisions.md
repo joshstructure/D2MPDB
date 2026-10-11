@@ -13,8 +13,18 @@ database in this file. Coherence responses remain in the working spreadsheet.
 | D-005 | 2026-10-08 | Defer final backwall and cheek-wall geometry/quantities. | Recorded response item 02. Deferred quantities are not zero or complete. |
 | D-006 | 2026-10-08 | Record field adjustment of interfering end-bent U-bar hooks. | Recorded response item 06. This does not close revised geometry/anchorage checks or decide the pier detail. |
 | D-007 | 2026-10-08 | Treat Service III as not applicable to the current nonprestressed substructure. | Recorded response item 07. Other pending checks retain their individual status. |
+| D-008 | 2026-10-10 | Select the supplied `Pier Cap Design 10-10.html` and `End Bent 1 Cap Design 10-10.html`, with their embedded cases, as current cap sources. | User request to update project_current with these files. Exact bytes preserved. Selection does not close reported failures or pending engineering checks. See [source update](coherence/evidence/2026-10-10/source_update.json). |
+| D-009 | 2026-10-10 | Select exact-hash `Pier_Fixed.XML` as the pier analysis export. Update the missing end-bent XML identity to the new report requirement. | Pier XML hash matches the supplied report. Available End Bent 1.XML matches only the superseded report and is not substituted. |
+| D-010 | 2026-10-10 | Reconcile the register and tracker to the already accepted T006 journal and its recorded human responses. | Journal and all receipt evidence hashes match. Close corrected bearing coordinates, historical-sketch labels and repaired reference links with evidence. Preserve field-bending direction and design/shop deferrals. No new BPAD edit or acceptance is performed. |
+| D-011 | 2026-10-10 | Retain the registered CAP-TOOL fingerprint pending tool revision review. | Both GitHub and local notebook revisions differ from the register. Do not reset the expected hash to clear the finding. COH-021 records the remaining review. |
 
 The current journal at setup matches the T005 acceptance receipt. That review
 accepted geometry/source bookkeeping. Full analysis currency, convergence,
 unresolved offsets, detailing and structural adequacy remain outside that scope.
 See [acceptance at setup](coherence/evidence/journal_acceptance_at_setup.json).
+
+The 10 October reconciliation verifies that the current journal matches T006,
+whose acceptance remains limited to geometry/source bookkeeping, the user-directed
+230-in wind width, historical labels and reference repairs. Its source notes
+still identify the prior pier report (COH-022). New cap calculations remain in
+the separate selected reports/cases and C005 remains unchanged.

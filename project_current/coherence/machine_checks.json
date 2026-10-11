@@ -1,18 +1,20 @@
 {
-  "checked_at_utc": "2026-10-09T21:20:56.164175+00:00",
+  "checked_at_utc": "2026-10-11T00:54:18.076233+00:00",
   "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
-  "register_sha256": "6ae24e0c850b5172b8c9e7d4627dbb70745f62cc8c4ee597d22993d742b8c9b4",
-  "tracker_sha256": "92c8fb072acf53a52b0be36ae6cea729dbfeef4e184693b0c6ff65b92fe12cd4",
+  "register_sha256": "4857febeb61f9105ad6ee9d03ae87ee14e8d0dc2f687c3cf1465d6f5a3d27124",
+  "tracker_sha256": "23566cca474c5ddc62f4d36208b05018bfb387e614db406a589572de56948a1a",
   "source_count": 16,
-  "item_count": 18,
-  "outstanding_count": 18,
+  "item_count": 22,
+  "outstanding_count": 19,
   "status_counts": {
-    "Open": 14,
-    "Deferred": 1,
+    "Closed": 3,
+    "Open": 13,
+    "Deferred": 3,
     "Awaiting source": 3
   },
   "check_counts": {
-    "MATCH": 31,
+    "MATCH": 30,
+    "CHANGED": 1,
     "MISSING": 6,
     "REVIEW": 6
   },
@@ -25,8 +27,8 @@
         "JOURNAL"
       ],
       "path": "journal/D2_I95_Project_Journal.bpad",
-      "expected_sha256": "829f5450a34c76bee03ebbce06a389de76883ccaa8007b5e9bb50b17ec83de33",
-      "actual_sha256": "829f5450a34c76bee03ebbce06a389de76883ccaa8007b5e9bb50b17ec83de33"
+      "expected_sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351",
+      "actual_sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351"
     },
     {
       "check_id": "SOURCE:GEOMETRY",
@@ -52,14 +54,14 @@
     },
     {
       "check_id": "SOURCE:CAP-TOOL",
-      "status": "MATCH",
-      "detail": "Registered text content matches after CRLF/LF normalization.",
+      "status": "CHANGED",
+      "detail": "File differs from the registered revision; review its consumers before adoption.",
       "source_ids": [
         "CAP-TOOL"
       ],
       "path": "Cap_and_Pile_Design.ipynb",
       "expected_sha256": "1af14e6efa5095a973b88ced422bee1656596ec8cba4e5c6b6b31ee9796c4c74",
-      "actual_sha256": "1af14e6efa5095a973b88ced422bee1656596ec8cba4e5c6b6b31ee9796c4c74"
+      "actual_sha256": "2ded0cdab30dba01e2126840ff459c3765775514f696c5366aa4a99ef2680045"
     },
     {
       "check_id": "SOURCE:PIER-REPORT",
@@ -68,9 +70,9 @@
       "source_ids": [
         "PIER-REPORT"
       ],
-      "path": "project_current/cap_design/pier/Pier Cap Design 10-9.html",
-      "expected_sha256": "806a47bb50962827f5fd3e6fdd4c42c8b41851bddd23ff3948f377fe6a48b7b2",
-      "actual_sha256": "806a47bb50962827f5fd3e6fdd4c42c8b41851bddd23ff3948f377fe6a48b7b2"
+      "path": "project_current/cap_design/pier/Pier Cap Design 10-10.html",
+      "expected_sha256": "376d94786da3160e28e36b380721a23acead336d0b5df23cb78c427e52d1072e",
+      "actual_sha256": "376d94786da3160e28e36b380721a23acead336d0b5df23cb78c427e52d1072e"
     },
     {
       "check_id": "SOURCE:PIER-CASE",
@@ -80,8 +82,8 @@
         "PIER-CASE"
       ],
       "path": "project_current/cap_design/pier/selected_case.json",
-      "expected_sha256": "3f368f577d7269ef67cf4c0f04f89046191bacd798ce3f348c760b449f83cf2a",
-      "actual_sha256": "3f368f577d7269ef67cf4c0f04f89046191bacd798ce3f348c760b449f83cf2a"
+      "expected_sha256": "43fc3f9909233fbf6caee02f23d66dd9aaffd99a279669ffea8df613fb79a59c",
+      "actual_sha256": "43fc3f9909233fbf6caee02f23d66dd9aaffd99a279669ffea8df613fb79a59c"
     },
     {
       "check_id": "SOURCE:PIER-XML",
@@ -90,9 +92,9 @@
       "source_ids": [
         "PIER-XML"
       ],
-      "path": "project_current/fbmp/pier/Pier_MinTip.XML",
-      "expected_sha256": "cb094424ed16e60b16957ed84a62aea21533fb61671c58a27ca73a997eaf70e4",
-      "actual_sha256": "cb094424ed16e60b16957ed84a62aea21533fb61671c58a27ca73a997eaf70e4"
+      "path": "project_current/fbmp/pier/Pier_Fixed.XML",
+      "expected_sha256": "a992aa331e11b4eb9bc426a3f811938a8f71b22b3300bae3431eb2931eaff9d8",
+      "actual_sha256": "a992aa331e11b4eb9bc426a3f811938a8f71b22b3300bae3431eb2931eaff9d8"
     },
     {
       "check_id": "SOURCE:EB-REPORT",
@@ -101,9 +103,9 @@
       "source_ids": [
         "EB-REPORT"
       ],
-      "path": "project_current/cap_design/end_bents/End bent 1 Cap Design Report_10-8.html",
-      "expected_sha256": "42120857965352febea29e4a672b2ba93f45199430360a89f8e1e529d2df50ef",
-      "actual_sha256": "42120857965352febea29e4a672b2ba93f45199430360a89f8e1e529d2df50ef"
+      "path": "project_current/cap_design/end_bents/End Bent 1 Cap Design 10-10.html",
+      "expected_sha256": "3d5f82b7a39056052ea6b3ff08efc52b496668e2909b0d7d0db308af86d57790",
+      "actual_sha256": "3d5f82b7a39056052ea6b3ff08efc52b496668e2909b0d7d0db308af86d57790"
     },
     {
       "check_id": "SOURCE:EB-CASE",
@@ -113,8 +115,8 @@
         "EB-CASE"
       ],
       "path": "project_current/cap_design/end_bents/selected_case.json",
-      "expected_sha256": "ab2c7fff9b4a955c8964bb2c0d2c253b1b0581661c6f84d0150723cc415edec6",
-      "actual_sha256": "ab2c7fff9b4a955c8964bb2c0d2c253b1b0581661c6f84d0150723cc415edec6"
+      "expected_sha256": "b379a468a90ccb6f44afa6be015b04380dddb2bb344f0f87aabb361808283fa7",
+      "actual_sha256": "b379a468a90ccb6f44afa6be015b04380dddb2bb344f0f87aabb361808283fa7"
     },
     {
       "check_id": "SOURCE:EB-XML",
@@ -124,7 +126,7 @@
         "EB-XML"
       ],
       "path": "project_current/fbmp/end_bents/End Bent 1.XML",
-      "expected_sha256": "739f44c1d542464cfd536493ce1ed6cb240f98a75ed3e1188c6f6812742d6fe2",
+      "expected_sha256": "8414fbedfbf1270fbd65b2cf940f2dc2050818c282cc6f66db2d20b2f3ff17ee",
       "actual_sha256": ""
     },
     {
@@ -250,7 +252,7 @@
     {
       "check_id": "JOURNAL:acceptance",
       "status": "MATCH",
-      "detail": "Journal matches acceptance receipt T005. Review scope remains as recorded.",
+      "detail": "Journal matches acceptance receipt T006. Review scope remains as recorded.",
       "source_ids": [
         "JOURNAL"
       ]
@@ -285,7 +287,7 @@
     {
       "check_id": "EB:analysis-identity",
       "status": "MISSING",
-      "detail": "Exact XML required by the case is absent: 739f44c1d542464cfd536493ce1ed6cb240f98a75ed3e1188c6f6812742d6fe2",
+      "detail": "Exact XML required by the case is absent: 8414fbedfbf1270fbd65b2cf940f2dc2050818c282cc6f66db2d20b2f3ff17ee",
       "source_ids": [
         "EB-CASE",
         "EB-XML"
@@ -437,17 +439,17 @@
   "items": [
     {
       "Item ID": "COH-001",
-      "Status": "Open",
+      "Status": "Closed",
       "Area": "Pier",
       "Item": "Right bearing-row offset",
-      "Finding": "Model right row is +10.14 in; journal is +10.50 in. Difference is 0.36 in. Left row agrees at -10.50 in.",
-      "Next action": "Choose the intended offset, then reconcile the model/journal and affected load transfers.",
-      "Your response": "",
+      "Finding": "Historical right row was +10.14 in. The matching Pier_Fixed.XML now has nodes 183/184 at +10.50 in and nodes 181/182 at -10.50 in, matching the journal.",
+      "Next action": "Coordinate discrepancy resolved. Full model load and convergence review remains COH-004.",
+      "Your response": "I need to correct the FBMP model I think there is a typo in it. I'll update the model and reupload the report. — recorded response, 9 October 2026.",
       "Owner": "",
       "Due date": "",
-      "Resolution / evidence": "",
-      "Source references": "PIER-XML; JOURNAL; coherence/evidence/pier_review_2026-10-09.xlsx, item 02",
-      "Last reviewed": "2026-10-09",
+      "Resolution / evidence": "10 October: exact report/XML fingerprint matched; PIER-XML nodal coordinates 181–184 verified. See source_update.json.",
+      "Source references": "PIER-XML; JOURNAL; coherence/evidence/pier_review_2026-10-09.xlsx, item 02; tasks/T006/response-disposition.json, item 02; coherence/evidence/2026-10-10/source_update.json",
+      "Last reviewed": "2026-10-10",
       "_row": 9
     },
     {
@@ -455,14 +457,14 @@
       "Status": "Open",
       "Area": "Pier",
       "Item": "U-bar / pile conflicts",
-      "Finding": "Report R2/R4/R6/R8 U-bars intersect pile-clearance envelopes. End-bent hook direction has not been applied to the pier.",
-      "Next action": "Provide or develop the pier hook detail and check clearance, development and anchorage.",
-      "Your response": "",
+      "Finding": "The new pier cage uses #5 U-bars with 50-degree trial hook rotations. Hook development and engagement remain pending. Field bending was permitted in the recorded T006 response.",
+      "Next action": "Verify the revised U-bar clearance, development and engagement. Separate end-face U-grid failure is COH-019.",
+      "Your response": "U bars tails can be field bent to accommodate a potential clash — recorded response, 9 October 2026.",
       "Owner": "",
       "Due date": "",
       "Resolution / evidence": "",
-      "Source references": "PIER-REPORT; coherence/evidence/pier_review_2026-10-09.xlsx, item 03",
-      "Last reviewed": "2026-10-09",
+      "Source references": "PIER-REPORT; coherence/evidence/pier_review_2026-10-09.xlsx, item 03; tasks/T006/response-disposition.json, item 03; coherence/evidence/2026-10-10/source_update.json",
+      "Last reviewed": "2026-10-10",
       "_row": 10
     },
     {
@@ -470,14 +472,14 @@
       "Status": "Open",
       "Area": "Pier",
       "Item": "Longitudinal tension reference",
-      "Finding": "Historical report reference: required 4.287 in2; credited 3.080 in2; shortfall 1.207 in2. This is a reference check, not an established actual-cage failure.",
-      "Next action": "Evaluate the actual cage/load path or document the disposition of the reference check.",
-      "Your response": "",
+      "Finding": "Historical uniform-reference shortfall is retained in prior evidence. New actual-cage longitudinal tension is PENDING: N 0.946947, P 0.776624, B 0.863733. Ratios below 1 do not close prerequisites.",
+      "Next action": "Resolve developed-steel and load-path prerequisites and document actual-cage acceptance.",
+      "Your response": "Explain to me in chat what the N uniform check is all about — recorded response, 9 October 2026.",
       "Owner": "",
       "Due date": "",
       "Resolution / evidence": "",
-      "Source references": "PIER-REPORT; coherence/evidence/pier_review_2026-10-09.xlsx, item 04",
-      "Last reviewed": "2026-10-09",
+      "Source references": "PIER-REPORT; coherence/evidence/pier_review_2026-10-09.xlsx, item 04; tasks/T006/response-disposition.json, item 04; coherence/evidence/2026-10-10/source_update.json",
+      "Last reviewed": "2026-10-10",
       "_row": 11
     },
     {
@@ -485,14 +487,14 @@
       "Status": "Open",
       "Area": "Pier",
       "Item": "Complete model load comparison",
-      "Finding": "Exact XML identity is established. Full wind, below-pad weights, transfer moments, combinations and convergence remain unverified against the current journal.",
-      "Next action": "Compare the adopted load inputs and document any corrections and required rerun.",
-      "Your response": "",
+      "Finding": "New Pier_Fixed report/XML fingerprints match and bearing offsets reconcile. Full current wind, below-pad weights, transfer moments, combinations and convergence remain unverified against T006.",
+      "Next action": "Compare the exact current model loading with T006 and document needed reruns and convergence evidence.",
+      "Your response": "Will need to provide an update cap design report as the latest. — recorded response, 9 October 2026.",
       "Owner": "",
       "Due date": "",
       "Resolution / evidence": "",
-      "Source references": "PIER-XML; JOURNAL; coherence/evidence/pier_review_2026-10-09.xlsx, item 05",
-      "Last reviewed": "2026-10-09",
+      "Source references": "PIER-XML; JOURNAL; coherence/evidence/pier_review_2026-10-09.xlsx, item 05; tasks/T006/response-disposition.json, item 05; coherence/evidence/2026-10-10/source_update.json",
+      "Last reviewed": "2026-10-10",
       "_row": 12
     },
     {
@@ -500,74 +502,74 @@
       "Status": "Open",
       "Area": "Pier",
       "Item": "Wind and wall geometry",
-      "Finding": "Cap length is 230 in; retained wind face is 231 in. Wall, fin and crash-wall dimensions may represent different envelopes.",
-      "Next action": "Establish the wall/wind dimensions and update only the affected loads and quantities.",
-      "Your response": "",
+      "Finding": "T006 linked wind width to the 230-in cap length. The 231-in discrepancy is resolved in the accepted journal. Separate wall/fin dimensions and model wind-load currency remain open.",
+      "Next action": "Establish remaining wall/fin geometry and compare current model wind loads with the T006 basis.",
+      "Your response": "Use the cap length from the report — recorded response, 9 October 2026.",
       "Owner": "",
       "Due date": "",
-      "Resolution / evidence": "",
-      "Source references": "JOURNAL; coherence/evidence/pier_review_2026-10-09.xlsx, item 06",
-      "Last reviewed": "2026-10-09",
+      "Resolution / evidence": "Partial: T006 receipt and final review verify 230-in width and dependent wind quantities; wall quantities were excluded.",
+      "Source references": "JOURNAL; coherence/evidence/pier_review_2026-10-09.xlsx, item 06; tasks/T006/response-disposition.json, item 06; coherence/evidence/2026-10-10/source_update.json",
+      "Last reviewed": "2026-10-10",
       "_row": 13
     },
     {
       "Item ID": "COH-006",
-      "Status": "Open",
+      "Status": "Closed",
       "Area": "Journal",
       "Item": "Historical quantity sketches",
-      "Finding": "The quantity sheet retains earlier three-beam / 19-ft-3-in sketches. Live cap quantity is 230 ft3.",
-      "Next action": "Update or explicitly label the historical sketches without changing current calculation records.",
-      "Your response": "",
+      "Finding": "T006 labeled the older cap sketches historical; the live cap quantity remains 230 ft3.",
+      "Next action": "No action for historical labels. Separate wall quantities remain open.",
+      "Your response": "Use the cap length from the report — recorded response, 9 October 2026.",
       "Owner": "",
       "Due date": "",
-      "Resolution / evidence": "",
-      "Source references": "JOURNAL; coherence/evidence/pier_review_2026-10-09.xlsx, item 06",
-      "Last reviewed": "2026-10-09",
+      "Resolution / evidence": "Existing T006 acceptance fingerprint and all listed evidence hashes verified. Accepted final review records native inspection of the quantity note.",
+      "Source references": "JOURNAL; coherence/evidence/pier_review_2026-10-09.xlsx, item 06; tasks/T006/response-disposition.json, item 06; coherence/evidence/2026-10-10/source_update.json",
+      "Last reviewed": "2026-10-10",
       "_row": 14
     },
     {
       "Item ID": "COH-007",
-      "Status": "Open",
+      "Status": "Deferred",
       "Area": "Pier",
       "Item": "Remaining design checks",
-      "Finding": "Historical report has 48 pending/conditional checks. Service III is already N/A by recorded direction. Other detail, fatigue, load-path and omitted-action checks remain open.",
-      "Next action": "Separate the remaining checks into actionable items and document applicable criteria and completion evidence.",
-      "Your response": "",
+      "Finding": "New pier report: 67 pending entries and two FAIL entries (one end-grid clearance failure and its aggregate summary). Service III remains N/A by D-007 despite the report label.",
+      "Next action": "Retain the recorded deferral. Resolve individual checks when directed; address new end-grid failure under COH-019.",
+      "Your response": "Leave as is — recorded response, 9 October 2026.",
       "Owner": "",
       "Due date": "",
       "Resolution / evidence": "",
-      "Source references": "PIER-REPORT; coherence/evidence/pier_review_2026-10-09.xlsx, item 07",
-      "Last reviewed": "2026-10-09",
+      "Source references": "PIER-REPORT; coherence/evidence/pier_review_2026-10-09.xlsx, item 07; tasks/T006/response-disposition.json, item 07; coherence/evidence/2026-10-10/source_update.json",
+      "Last reviewed": "2026-10-10",
       "_row": 15
     },
     {
       "Item ID": "COH-008",
-      "Status": "Open",
+      "Status": "Deferred",
       "Area": "Pier",
       "Item": "Spacing and fabrication takeoff",
-      "Finding": "Adjacent-run clearance is 2.00 in, equal to the entered minimum. The gross 1171.89-lb steel estimate omits laps, closures, undrawn anchorage and waste.",
-      "Next action": "Confirm tolerance/spacing allowance and complete the fabrication takeoff if required.",
-      "Your response": "",
+      "Finding": "New pier gross steel is 1260.94 lb and excludes laps, closures, undrawn anchorage and waste. Spacing/fabrication review remains deferred to shops by recorded direction.",
+      "Next action": "Complete the tolerance and fabrication takeoff review at shops, preserving the deferral.",
+      "Your response": "Leave as is we can deal with this issue in shops later — recorded response, 9 October 2026.",
       "Owner": "",
       "Due date": "",
       "Resolution / evidence": "",
-      "Source references": "PIER-REPORT; coherence/evidence/pier_review_2026-10-09.xlsx, item 08",
-      "Last reviewed": "2026-10-09",
+      "Source references": "PIER-REPORT; coherence/evidence/pier_review_2026-10-09.xlsx, item 08; tasks/T006/response-disposition.json, item 08; coherence/evidence/2026-10-10/source_update.json",
+      "Last reviewed": "2026-10-10",
       "_row": 16
     },
     {
       "Item ID": "COH-009",
-      "Status": "Open",
+      "Status": "Closed",
       "Area": "Journal",
       "Item": "Three reference links",
-      "Finding": "Three inherited LoadCombinations links remain unresolved: CodePage42 twice and CodePage14 once. The prior 110 stored errors were removed with retired modules.",
-      "Next action": "Identify and repair the intended references through the existing journal workflow.",
-      "Your response": "",
+      "Finding": "T006 repaired the two CodePage42 references and the CodePage14 reference using verified existing targets.",
+      "Next action": "No action for these three historical links.",
+      "Your response": "repair now — recorded response, 9 October 2026.",
       "Owner": "",
       "Due date": "",
-      "Resolution / evidence": "",
-      "Source references": "JOURNAL; coherence/evidence/pier_review_2026-10-09.xlsx, item 09; coherence/evidence/end_bent_response_review.md",
-      "Last reviewed": "2026-10-09",
+      "Resolution / evidence": "Existing T006 acceptance and evidence hashes verified; its final review records zero stored errors and zero broken links.",
+      "Source references": "JOURNAL; coherence/evidence/pier_review_2026-10-09.xlsx, item 09; coherence/evidence/end_bent_response_review.md; tasks/T006/response-disposition.json, item 09; coherence/evidence/2026-10-10/source_update.json",
+      "Last reviewed": "2026-10-10",
       "_row": 17
     },
     {
@@ -590,14 +592,14 @@
       "Status": "Open",
       "Area": "End bents",
       "Item": "Revised U-bar hooks",
-      "Finding": "Field adjustment of interfering hooks is the recorded direction. Revised coordinates, clearance and anchorage verification have not been supplied.",
-      "Next action": "Document the adjusted detail and verify clearance/development/anchorage.",
+      "Finding": "The new end-bent report includes #5 U-bars with 50-degree trial rotations and 3.75-in tails. Rotated-hook development and engagement remain PENDING.",
+      "Next action": "Verify revised hook clearance, development and engagement. Separate end-face U-grid failure is COH-020.",
       "Your response": "Field-bend interfering hooks for clearance — recorded user direction, 8 October 2026.",
       "Owner": "",
       "Due date": "",
       "Resolution / evidence": "",
-      "Source references": "EB-REPORT; coherence/evidence/end_bent_response_review.md, item 06",
-      "Last reviewed": "2026-10-09",
+      "Source references": "EB-REPORT; coherence/evidence/end_bent_response_review.md, item 06; coherence/evidence/2026-10-10/source_update.json",
+      "Last reviewed": "2026-10-10",
       "_row": 19
     },
     {
@@ -605,14 +607,14 @@
       "Status": "Open",
       "Area": "End bents",
       "Item": "Remaining design checks",
-      "Finding": "Service III is already N/A. Fatigue, anchorage/development, D-regions, force zones, exposure/code basis and omitted-action checks remain separate.",
-      "Next action": "Record a disposition and evidence for each applicable outstanding design check.",
+      "Finding": "New end-bent report: 50 pending entries and two FAIL entries (end-grid clearance and aggregate summary). Service III remains N/A by D-007; other pending checks remain separate.",
+      "Next action": "Record evidence/disposition for remaining fatigue, anchorage, shear prerequisites, face reinforcement, D-regions and exposure checks.",
       "Your response": "",
       "Owner": "",
       "Due date": "",
       "Resolution / evidence": "",
-      "Source references": "EB-REPORT; coherence/evidence/end_bent_response_review.md, item 07",
-      "Last reviewed": "2026-10-09",
+      "Source references": "EB-REPORT; coherence/evidence/end_bent_response_review.md, item 07; coherence/evidence/2026-10-10/source_update.json",
+      "Last reviewed": "2026-10-10",
       "_row": 20
     },
     {
@@ -620,14 +622,14 @@
       "Status": "Awaiting source",
       "Area": "End bents",
       "Item": "Matching raw analysis export",
-      "Finding": "The report is adopted as the current source, but its exact analyzed XML is absent. The available same-named file has a different fingerprint.",
-      "Next action": "Add the exact matching XML and its native input/run record. Expected hash is in source_register.csv.",
+      "Finding": "New end-bent report requires XML SHA256 8414fbedfbf1270fbd65b2cf940f2dc2050818c282cc6f66db2d20b2f3ff17ee. Available same-named XML matches only the superseded report.",
+      "Next action": "Supply the matching new End Bent 1 XML and native run record; do not substitute the older export.",
       "Your response": "",
       "Owner": "",
       "Due date": "",
       "Resolution / evidence": "",
-      "Source references": "EB-REPORT; EB-XML; coherence/evidence/end_bent_provenance.json",
-      "Last reviewed": "2026-10-09",
+      "Source references": "EB-REPORT; EB-XML; coherence/evidence/end_bent_provenance.json; coherence/evidence/2026-10-10/source_update.json",
+      "Last reviewed": "2026-10-10",
       "_row": 21
     },
     {
@@ -635,14 +637,14 @@
       "Status": "Open",
       "Area": "End bents",
       "Item": "Common controlling design basis",
-      "Finding": "The user adopted the controlling End Bent 1 configuration for both ends. Independent End Bent 2 action verification remains outside the recorded review.",
-      "Next action": "Document how End Bent 1 bounds the relevant End Bent 2 actions and conditions.",
+      "Finding": "D-004 common end-bent design direction is preserved. New End Bent 1 data do not establish that its actions bound End Bent 2.",
+      "Next action": "Document how the revised End Bent 1 actions bound both end bents.",
       "Your response": "Use the common controlling end-bent design — recorded user direction, 8 October 2026.",
       "Owner": "",
       "Due date": "",
       "Resolution / evidence": "",
-      "Source references": "EB-REPORT; coherence/evidence/end_bent_response_review.md, item 08",
-      "Last reviewed": "2026-10-09",
+      "Source references": "EB-REPORT; coherence/evidence/end_bent_response_review.md, item 08; coherence/evidence/2026-10-10/source_update.json",
+      "Last reviewed": "2026-10-10",
       "_row": 22
     },
     {
@@ -695,15 +697,75 @@
       "Status": "Open",
       "Area": "Geometry",
       "Item": "Complete notebook comparison",
-      "Finding": "The notebook cites the 8 October journal for end-bent inputs. The journal now includes the 9 October pier update. Selected dimensions can be compared automatically; full elevations, offsets and dependencies need review.",
-      "Next action": "Reconcile the complete saved geometry inputs and derived schedules with the current journal, documenting agreed conventions.",
+      "Finding": "Selected cap dimensions match the new saved cases. Geometry notebook still cites the earlier journal; full schedules, elevations, offsets and T006 wind dependencies need review.",
+      "Next action": "Reconcile complete saved geometry and derived schedules with accepted T006, documenting conventions.",
       "Your response": "",
       "Owner": "",
       "Due date": "",
       "Resolution / evidence": "",
-      "Source references": "GEOMETRY; JOURNAL; ROADWAY",
-      "Last reviewed": "2026-10-09",
+      "Source references": "GEOMETRY; JOURNAL; ROADWAY; coherence/evidence/2026-10-10/source_update.json",
+      "Last reviewed": "2026-10-10",
       "_row": 26
+    },
+    {
+      "Item ID": "COH-019",
+      "Status": "Open",
+      "Area": "Pier",
+      "Item": "End-face U-grid pile clearance",
+      "Finding": "New pier report flags End U grid pile-envelope clearance FAIL. Displayed 2 is a failure flag; the second FAIL is the aggregate actual-cage summary.",
+      "Next action": "Review and revise the end-face U-grid detail against pile envelopes and fabrication tolerances; regenerate and verify the report.",
+      "Your response": "",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "PIER-REPORT; PIER-CASE; coherence/evidence/2026-10-10/source_update.json",
+      "Last reviewed": "2026-10-10",
+      "_row": 27
+    },
+    {
+      "Item ID": "COH-020",
+      "Status": "Open",
+      "Area": "End bents",
+      "Item": "End-face U-grid pile clearance",
+      "Finding": "New end-bent report flags End U grid pile-envelope clearance FAIL. Displayed 2 is a failure flag; the second FAIL is the aggregate actual-cage summary.",
+      "Next action": "Review and revise the end-face U-grid detail and verify it for both ends; regenerate and verify the report.",
+      "Your response": "",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "EB-REPORT; EB-CASE; coherence/evidence/2026-10-10/source_update.json",
+      "Last reviewed": "2026-10-10",
+      "_row": 28
+    },
+    {
+      "Item ID": "COH-021",
+      "Status": "Open",
+      "Area": "Calculation tool",
+      "Item": "Unregistered tool revisions",
+      "Finding": "The GitHub notebook and local working notebook both differ from the registered CAP-TOOL fingerprint. Their relationship to the supplied report export code is not established.",
+      "Next action": "Identify the report-generating tool revision, review its changes and consumers, then record an explicit adoption.",
+      "Your response": "",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "CAP-TOOL; coherence/evidence/2026-10-10/source_update.json",
+      "Last reviewed": "2026-10-10",
+      "_row": 29
+    },
+    {
+      "Item ID": "COH-022",
+      "Status": "Open",
+      "Area": "Journal",
+      "Item": "Current cap source references",
+      "Finding": "T006 journal source notes cite the prior 9 October pier report. Current project reports are the two supplied 10 October snapshots; C005 remains historical by D-003.",
+      "Next action": "Refresh journal source references through the bounded BPAD workflow when directed; preserve C005 and distinguish selected sources from accepted calculations.",
+      "Your response": "",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "",
+      "Source references": "JOURNAL; PIER-REPORT; EB-REPORT; coherence/evidence/2026-10-10/source_update.json",
+      "Last reviewed": "2026-10-10",
+      "_row": 30
     }
   ]
 }
