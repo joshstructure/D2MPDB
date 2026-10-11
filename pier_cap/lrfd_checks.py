@@ -763,7 +763,7 @@ def cached_calculations(e):
     from .shear import CALCULATION_VERSION
     # End bars cannot move the longitudinal cage or receive sectional strength
     # credit. Only the face area/spacing rows depend on their local geometry.
-    sectional_case={k:v for k,v in e.case.items() if k!='end_face_grid'}
+    sectional_case={k:v for k,v in e.case.items() if k not in ('end_face_grid','check_reviews')}
     key=sha256(json.dumps([CALCULATION_VERSION,id(transverse_development),sectional_case,e.value('dv'),e.value('Ec','ksi')],
         sort_keys=True,allow_nan=False).encode()).hexdigest()
     if key not in _CALCULATION_CACHE:

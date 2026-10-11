@@ -158,6 +158,7 @@ class LRFDActualTests(unittest.TestCase):
             self.assertEqual(app.plot_tabs.get_title(6),'LRFD regions & checks')
             app.lrfd_panel.controls['coating'].value='uncoated'
             app.lrfd_panel.piles['2'].value='moment'
+            app.recalc_button.click()
             self.assertEqual(app.current.lrfd['settings']['support_overrides'],{'2':'moment'})
             new=deepcopy(app.case);new['lrfd_checks']['support_overrides']={'1':'pinned'}
             app.load(new)

@@ -223,7 +223,7 @@ class ForceDiagramPanel:
         self._key=None
         self._resistance_key=None
 
-    def refresh(self,case,evaluation=None):
+    def refresh(self,case,evaluation=None,*,show_resistance=True):
         audit=case['analysis'].get('xml_audit',{})
         self.notice.value='<p>'+html.escape(diagram_notice(case))+'</p>'
         # Case edits deep-copy the audit. Object identity would rebuild identical
@@ -231,10 +231,13 @@ class ForceDiagramPanel:
         key=json.dumps(audit,sort_keys=True)
         # Local end-face bars have no sectional flexure/shear/torsion credit.
         # Their detailing edits cannot change a resistance trace.
-        resistance_key=json.dumps({k:v for k,v in case.items() if k not in ('analysis','end_face_grid','schema_version')},sort_keys=True)
+        resistance_key=(json.dumps({k:v for k,v in case.items() if k not in ('analysis','end_face_grid','schema_version')},sort_keys=True)
+                        if show_resistance else 'awaiting-recalc')
+        pending_note='<p><b>Recalc needed.</b> Imported demand curves are shown; resistance checks are out of date.</p>'
         if key == self._key and resistance_key == self._resistance_key and (self.figure is not None or not audit.get('end_records')):
             self.output.children=[self.figure] if self.figure is not None else []
-            self.resistance_notice.value=('<p>'+html.escape(self.figure.layout.meta['resistance_notice'])+'</p>') if self.figure is not None else ''
+            self.resistance_notice.value=((('<p>'+html.escape(self.figure.layout.meta['resistance_notice'])+'</p>') if show_resistance else pending_note)
+                                          if self.figure is not None else '')
             return
         same_source=key == self._key
         if not audit.get('end_records'):
@@ -243,8 +246,8 @@ class ForceDiagramPanel:
             self._key=key;self._resistance_key=resistance_key
             return
         try:
-            fresh=cap_force_figure(case,show_resistance=True,evaluation=evaluation)
-            self.resistance_notice.value='<p>'+html.escape(fresh.layout.meta['resistance_notice'])+'</p>'
+            fresh=cap_force_figure(case,show_resistance=show_resistance,evaluation=evaluation)
+            self.resistance_notice.value=('<p>'+html.escape(fresh.layout.meta['resistance_notice'])+'</p>') if show_resistance else pending_note
             if self.figure is None:self.figure=FigureWidget(fresh)
             else:
                 active=(self.figure.layout.updatemenus[0].active or 0) if same_source else 0

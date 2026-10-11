@@ -35,6 +35,7 @@ class GeometrySearchTests(unittest.TestCase):
             with self.subTest(dimension=key):
                 self.app.load(original)
                 self.app.controls[key].value=value
+                self.app.recalc_button.click()
                 self.assertIn('TRIAL CAP SIZE',self.app.search_force_notice.value)
                 self.assertIn('TRIAL CAP SIZE',self.app.banner.value)
                 # The strict matched-analysis API must not be called here.
@@ -50,6 +51,7 @@ class GeometrySearchTests(unittest.TestCase):
                 for force in ('Mu_N','Mu_P','Mu_B','Vu_G','Vu_L','Tu','MI_N','MI_P','MI_B'):
                     self.assertEqual(self.app.case['inputs'][force],original['inputs'][force])
                 self.app.apply_button.click()
+                self.app.recalc_button.click()
                 self.assertEqual(self.app.case['inputs'][key],value)
                 self.assertEqual(self.app.case['analysis'],original['analysis'])
                 self.assertTrue(sectional_checks_pass(self.app.current))
@@ -64,6 +66,7 @@ class GeometrySearchTests(unittest.TestCase):
         self.app.dc_limit.value=.95
         self.app.dc_limit.value=1
         self.app.apply_button.click()
+        self.app.recalc_button.click()
         self.app._export(None)
         self.assertIsNotNone(self.app.last_export,self.app.message.value)
         folder=self.app.last_export
@@ -96,6 +99,7 @@ class GeometrySearchTests(unittest.TestCase):
             self.app.run_button.click()
         self.assertEqual(self.app.search_result.force_mode,'matched')
         self.app.apply_button.click()
+        self.app.recalc_button.click()
         self.assertTrue(self.app.current.eligible)
 
     def test_no_passing_cages_is_a_completed_search_not_a_geometry_error(self):

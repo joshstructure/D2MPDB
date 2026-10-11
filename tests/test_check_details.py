@@ -103,10 +103,12 @@ class CheckDetailsTests(unittest.TestCase):
 
     def test_live_edits_replace_controlling_text_in_place(self):
         app=CapNotebook(default_case());self.addCleanup(app.close)
+        app.recalc_button.click()
         app.plot_tabs.selected_index=1
         readout=app.steel_readouts['top'];plots=dict(app.views.plots)
         self.assertIn('Controls: Steel stress',readout.value)
         app.controls['Manual_spacing'].value=True;app.controls['SP_detail_N'].value=30
+        app.recalc_button.click()
         self.assertIn('Controls: Bar spacing',readout.value)
         self.assertEqual(plots,app.views.plots);self.assertIs(readout,app.steel_readouts['top'])
         self.assertIn('Controls: Bar spacing',app.register.value)

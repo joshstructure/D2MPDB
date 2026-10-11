@@ -7,6 +7,7 @@ import json
 import ipywidgets as W
 from .plotly_compat import FigureWidget
 from .live_views import LiveViews
+from .recalc_control import RecalcControl
 from .model import default_case,upgrade_case,evaluate,geometry_evaluation,INPUTS,GEOMETRY,formula_trace,analysis_match,sectional_checks_pass,bar_positions
 from .optimizer import search,sensitivity_search,SearchConfig,candidate_case,filter_candidates,candidate_dc,candidate_governing,governing_check,DC_SCOPES,same_design_basis
 from .io import export_bundle,export_blockpad
@@ -67,13 +68,14 @@ class CapNotebook:
     def __init__(self,case=None,export_root='exports'):
         self.case=upgrade_case(case or default_case());self.export_root=Path(export_root)
         self.controls={};self.busy=False;self.search_result=None;self.current=None;self.figures=[];self.last_export=None
+        self.dirty=True;self.calculating=False
         self.browsing=False;self.filtered_indices=[];self.alternative_figure=None;self.cage_3d_widget=None
         self.views=LiveViews();self._view_geometry=None;self._aux_geometry={};self._aux_basis={}
         self.case_listeners=[]
         self.import_receipt=None;self.import_notice=W.HTML()
         self.banner=W.HTML(layout=W.Layout(height='130px',overflow='auto'));self.metrics=W.HTML();self.message=W.HTML()
         self.cage=W.VBox(layout=W.Layout(width='100%',min_width='0'));self.results=W.VBox();self.dimensions=W.VBox();self.register=W.HTML();self.trace=W.HTML()
-        self.check_view=W.Dropdown(options=[('All checks','all'),('Failures first','failures_first'),('Failures only','failures_only')],
+        self.check_view=W.Dropdown(options=[('All checks','all'),('Largest D/C first','dc_descending'),('Failures first','failures_first'),('Failures only','failures_only'),('Pending only','pending_only'),('Reviewed checks','reviewed_only')],
             value='all',description='View',style={'description_width':'40px'},layout=W.Layout(width='260px'))
         self.check_view.observe(self._check_view_changed,names='value')
         self.clearance=W.BoundedFloatText(value=self.case['screening']['minimum_clear_in'],min=0,max=12,step=.25,description='Project min clear (in)',style={'description_width':'120px'},layout=W.Layout(width='260px'))
@@ -91,7 +93,9 @@ class CapNotebook:
         from .lrfd_views import LRFDPanel
         self.lrfd_panel=LRFDPanel(self)
         self.force_diagrams=ForceDiagramPanel()
-        check_panel=W.VBox([self.check_view,W.VBox([self.register],layout=W.Layout(max_height='850px',overflow='auto'))])
+        from .check_review_widgets import CheckReviewPanel
+        self.check_reviews=CheckReviewPanel(self)
+        check_panel=W.VBox([self.check_reviews.ui,self.check_view,W.VBox([self.register],layout=W.Layout(max_height='850px',overflow='auto'))])
         self.plot_tabs=Tab(children=[self.cage,self.results,check_panel,W.VBox([self.trace],layout=W.Layout(max_height='750px',overflow='auto')),self.force_diagrams.ui,self.dimensions],layout=W.Layout(width='100%',min_width='0',flex='0 0 auto'))
         for i,title in enumerate(['Live cage','Plots','D/C checks','Equations','Force diagrams','Dimensions']):self.plot_tabs.set_title(i,title)
         self.plot_tabs.children=(*self.plot_tabs.children,self.lrfd_panel.ui)
@@ -124,26 +128,27 @@ class CapNotebook:
             W.HBox([self.case_import.upload,self.save_both],layout=W.Layout(flex_flow='row wrap')),
             self.case_import.upload_output,self.case_import.status,self.notebook_status,self.notebook_download_output])
         self.minimum_tip_ui=W.VBox([self.session_ui,self.pile_review.ui],layout=W.Layout(width='100%'))
-        self.cap_ui=W.VBox([W.HTML('<style>.cap-input .widget-label{white-space:normal!important;text-overflow:clip!important;line-height:1.25!important;height:auto!important;text-align:left!important;align-self:center}</style><h2 style="color:#213649;margin-bottom:4px">2. Fixed-depth cap design</h2><p>Import the fixed-depth model, inspect the cap cage and checks, then search practical steel layouts.</p>'),
+        self.recalc_control=RecalcControl(self.recalculate)
+        self.recalc_button=self.recalc_control.button
+        self.cap_ui=self.recalc_control.wrap([W.HTML('<style>.cap-input .widget-label{white-space:normal!important;text-overflow:clip!important;line-height:1.25!important;height:auto!important;text-align:left!important;align-self:center}</style><h2 style="color:#213649;margin-bottom:4px;padding-right:170px">2. Fixed-depth cap design</h2><p>Arrange the steel with live drawings, then click <b>Recalc</b> at the top right to update the checks. Scroll inside this output to keep the button in view.</p>'),
             self.cap_type,W.HTML('<p>Shared sectional workflow for pier and end-bent caps supported directly on a single pile row. The cap type labels the case; it does not add loads or change the design method. Backwall/wingwall, earth-pressure load generation, footing/column caps and strut-and-tie design are outside this calculation.</p>'),
             self.case_import.ui,self.xml_import.ui,self.import_notice,
             self.source_label,source,self.banner,self.metrics,
             self.workbench,
-            self.search_panel,self.export_panel,self.message],layout=W.Layout(width='100%'))
-        self.ui=W.VBox([self.session_ui,self.pile_review.ui,*self.cap_ui.children],layout=W.Layout(width='100%'))
+            self.search_panel,self.export_panel,self.message])
+        self.ui=W.VBox([self.session_ui,self.pile_review.ui,self.cap_ui],layout=W.Layout(width='100%'))
         from .live_refresh import LatestRefresh
-        self.calculating=False
         self.refresh_driver=LatestRefresh(geometry_evaluation,self._calculate_refresh,
             self._geometry_ready,self._calculation_ready,self._refresh_error)
         self.refresh()
 
     def _check_view_changed(self,change):
-        if self.current is not None and not self.calculating:
+        if self.current is not None and not self.dirty and not self.calculating:
             self.register.value=checks_html(self.current,view=self.check_view.value)
 
     def _plot_tab_changed(self,change):
         self._refresh_auxiliary_view(change['new'])
-        if change['new']==4 and not self.calculating:self.force_diagrams.refresh(self.case,evaluation=self.current)
+        if change['new']==4 and not self.calculating:self._refresh_force_diagrams()
         # Every plot now occupies the full row; inputs live under the sections.
         figure=self.force_diagrams.figure
         if change['new']==4 and figure is not None:
@@ -153,6 +158,7 @@ class CapNotebook:
     def _cap_type_changed(self,change):
         if not self.busy:
             self.case['cap_type']=change['new']
+            self.refresh()
             self.case_import._case_changed()
 
     def _inputs(self):
@@ -230,7 +236,45 @@ class CapNotebook:
 
     def _set_calculating(self,value):
         self.calculating=value
-        for button in (self.run_button,self.case_export_button,self.case_report_button):button.disabled=value
+        self.check_reviews.set_available(not value and not self.dirty)
+        self.run_button.disabled=value
+        for button in (self.case_export_button,self.case_report_button,self.blockpad_export.export_button):
+            button.disabled=value or self.dirty
+
+    def _pending_message(self):
+        return ('<p><b>Calculating…</b> Checking the current layout.</p>' if self.calculating else
+                '<p><b>Checks out of date · Recalc needed.</b> Drawings show the current inputs. Click <b>Recalc</b> to update results.</p>')
+
+    def _clear_check_results(self):
+        message=self._pending_message()
+        self.banner.value=message;self.metrics.value=''
+        self.register.value=message;self.trace.value=message;self.lrfd_panel.result.value=message
+        self._aux_basis.clear()
+        self.results.children=[self.views.text('calculating',message)]
+        for readout in self.steel_readouts.values():readout.value=message
+        for card in self.transverse_panel._cards.values():card.feedback.value=message
+        for key in ('side','clearance','hoop'):
+            if key in self.views.texts:self.views.texts[key].value=message
+        self.force_diagrams.output.layout.display='none'
+        self.force_diagrams.resistance_notice.value=message
+
+    def recalculate(self,_=None):
+        # A queued second click after completion must not start another run.
+        if self.calculating or not self.dirty or self.refresh_driver.pending is None:return
+        self._set_calculating(True);self.recalc_control.set_state('running')
+        self._clear_check_results()
+        try:self.refresh_driver.recalculate()
+        finally:
+            self._set_calculating(False)
+            if self.recalc_control.state not in ('error','invalid'):
+                self.recalc_control.set_state('dirty' if self.dirty else 'done')
+                if self.dirty:
+                    self._clear_check_results()
+                    if self.plot_tabs.selected_index==4:self._refresh_force_diagrams()
+
+    def _refresh_force_diagrams(self):
+        self.force_diagrams.refresh(self.case,evaluation=self.current,show_resistance=not self.dirty)
+        self.force_diagrams.output.layout.display=''
 
     def refresh(self):
         self.source_label.value=source_html(self.case)
@@ -238,22 +282,22 @@ class CapNotebook:
         for key in FORCE_LABELS:
             self.controls[key].tooltip=input_tooltip(key,force_basis(self.case,key))
         self.import_notice.value=receipt_html(self.import_receipt,self.case)
-        self._set_calculating(True);self.current=None
-        message='<p><b>Calculating…</b> Drawings update first; check results follow.</p>'
-        self.banner.value=message;self.metrics.value=''
-        self.register.value=message;self.trace.value=message;self.lrfd_panel.result.value=message
-        self._aux_basis.clear()
-        self.results.children=[self.views.text('calculating',message)]
-        for readout in self.steel_readouts.values():readout.value='<small>Calculating…</small>'
-        for card in self.transverse_panel._cards.values():card.feedback.value='<small>Calculating…</small>'
-        for key in ('side','clearance','hoop'):
-            if key in self.views.texts:self.views.texts[key].value=message
-        self.force_diagrams.output.layout.display='none'
-        self.force_diagrams.resistance_notice.value=message
+        self.dirty=True;self.current=None
+        self._set_calculating(self.calculating)
+        self.recalc_control.set_state('running' if self.calculating else 'dirty')
+        self._clear_check_results()
         self.refresh_driver.submit(self.case)
 
     def _refresh_error(self,exc):
+        self.dirty=True
+        calculation_error=self.refresh_driver.running and self.current is not None
         self._set_calculating(False)
+        self.recalc_control.set_state('error' if calculation_error else 'invalid')
+        if calculation_error:
+            self._clear_check_results()
+            self.banner.value=f'<p role="alert" style="color:#9d302b"><b>Calculation failed.</b> {html.escape(str(exc))}<br>Drawings remain available. Correct the inputs or click Retry calc.</p>'
+            self.register.value=self.trace.value=self.lrfd_panel.result.value=self.banner.value
+            return
         self._aux_basis.clear()
         self.force_diagrams.output.children=[]
         self.current=None;self.banner.value=f'<div style="padding:14px;background:#ffe9e7;color:#9d302b"><b>INPUT ERROR</b><br>{html.escape(str(exc))}</div>'
@@ -266,6 +310,8 @@ class CapNotebook:
 
     def _geometry_ready(self,e):
         self.current=e
+        self.lrfd_panel.sync_piles()
+        self.lrfd_panel.sync_extensions()
         self.end_grid.refresh(e)
         self.transverse_panel.sync_zones(e)
         geometry=tuple((n,self.case['inputs'][n]) for n in (*GEOMETRY,'C_t','C_b','C_s','Pile_embed','C_pile'))
@@ -284,13 +330,16 @@ class CapNotebook:
                 key='end_grid_'+end
                 if key in self.views.plots:fw(key,lambda end=end:end_figure(e,end))
         footer=('Every transverse station is drawn. Pink U-bars are open downward; the section shows the selected run of that shape, or the first run of that shape. Bend / tail fit and pile conflicts are screened; development, closure and 3D congestion at longitudinal hook ends require review.' if actual_transverse(self.case) else 'Dashed transverse shapes are reference illustrations. Set actual hoops and open-bottom U-bars in the zone controls below the elevation.')
-        self.views.mount(self.cage,[txt('configuration',configuration_html(e)+reinforcement_summary_html(e)),txt('side','<p>Calculating side-face checks…</p>'),self.cage_3d_widget,self.views.plots['sectionB'],self.views.plots['sectionP'],self.input_panel,fw('plan',lambda:reinforcement_plan_figure(e)),fw('elevation',lambda:elevation_figure(e,zone_labels=True)),self.transverse_panel.ui,txt('hoop','<p>Calculating transverse checks…</p>'),
-            *end_views,*([fw('reference_hoop',lambda:hoop_figure(e))] if not actual_transverse(self.case) else []),txt('clearance','<p>Calculating detailing checks…</p>'),txt('footer','<small>'+footer+' Pile lengths below the cap are schematic. The 3D cage uses bar centerlines; displayed line thickness is for visibility.</small>')])
+        message=self._pending_message()
+        self.views.mount(self.cage,[txt('configuration',configuration_html(e)+reinforcement_summary_html(e)),txt('side',message),self.cage_3d_widget,self.views.plots['sectionB'],self.views.plots['sectionP'],self.input_panel,fw('plan',lambda:reinforcement_plan_figure(e)),fw('elevation',lambda:elevation_figure(e,zone_labels=True)),self.transverse_panel.ui,txt('hoop',message),
+            *end_views,*([fw('reference_hoop',lambda:hoop_figure(e))] if not actual_transverse(self.case) else []),txt('clearance',message),txt('footer','<small>'+footer+' Pile lengths below the cap are schematic. The 3D cage uses bar centerlines; displayed line thickness is for visibility.</small>')])
         self.figures=list(self.views.plots.values())
-        self.banner.value='<p><b>Drawing updated · Calculating checks…</b></p>'
+        self.banner.value=message
         if self.plot_tabs.selected_index==5:self._refresh_auxiliary_view(5)
+        if self.plot_tabs.selected_index==4 and not self.calculating:self._refresh_force_diagrams()
 
     def _calculation_ready(self,e,side_html):
+        self.dirty=False
         self._set_calculating(False)
         self.current=e
         self.lrfd_panel.refresh(e)
@@ -301,7 +350,7 @@ class CapNotebook:
         self.transverse_panel.sync_zones(e)
         self.force_diagrams.output.layout.display=''
         if self.plot_tabs.selected_index==4 or self.force_diagrams.figure is None:
-            self.force_diagrams.refresh(self.case,evaluation=e)
+            self._refresh_force_diagrams()
         self.pile_appearance.sync()
         trial_section=self._search_force_mode()=='fixed'
         color='#fff3d9' if e.eligible or (trial_section and sectional_checks_pass(e)) else '#ffe9e7'
@@ -326,6 +375,7 @@ class CapNotebook:
         self._refresh_auxiliary_view(self.plot_tabs.selected_index)
         self.figures=list(self.views.plots.values())
         self.register.value=checks_html(e,view=self.check_view.value)
+        self.check_reviews.refresh(e)
         rows=''.join(f'<tr><td>{html.escape(t["name"])}</td><td>{html.escape(t["formula"])}</td><td>{html.escape(str(t["value"]))}</td></tr>' for t in formula_trace(e))
         table='<table class="cap-table">'+table_caption('live_equations')+'<tr><th>Name</th><th>Equation</th><th>Value</th></tr>'+rows+'</table>'
         self.trace.value=('<p><b>Active sectional equations and numerical working are in LRFD regions &amp; checks.</b> The inherited equation archive below includes superseded uniform-cage values; use the shared LRFD check register.</p><details><summary>Inherited sectional equation archive</summary>'+table+'</details>' if e.lrfd else '<p>Live equations use independent pile and between-pile reinforcement.</p>'+table)
@@ -338,7 +388,7 @@ class CapNotebook:
 
     def _refresh_auxiliary_view(self,index):
         """Render hidden plots on entry using the latest evaluated case."""
-        if self.current is None or index not in (1,5) or (self.calculating and index==1):return
+        if self.current is None or index not in (1,5) or ((self.calculating or self.dirty) and index==1):return
         e=self.current
         basis=json.dumps(e.case,sort_keys=True)
         if self._aux_basis.get(index)==basis:return
@@ -541,6 +591,8 @@ class CapNotebook:
         if not same_design_basis(self.search_result.base_case,self.case):
             self._update_search_basis();return
         result=self.search_result;index=self.candidates.value;chosen=candidate_case(result,index)
+        from .check_reviews import retain_reviews
+        retain_reviews(self.case,chosen)
         if 'cap_type' in self.case:chosen['cap_type']=self.case['cap_type']
         if 'pile_visual' in self.case:chosen['pile_visual']=deepcopy(self.case['pile_visual'])
         self.busy=True
@@ -551,7 +603,7 @@ class CapNotebook:
             self.added_steel.sync()
             self.pile_appearance.sync()
         finally:self.busy=False
-        self.refresh();self._update_search_basis();self.message.value=f'Applied candidate #{index+1}. Live drawings and checks now show that layout.'
+        self.refresh();self._update_search_basis();self.message.value=f'Applied candidate #{index+1}. Live drawings show that layout. Click Recalc to update the checks.'
         self._notify_case_change()
 
     def _export_panel(self):
@@ -578,7 +630,7 @@ class CapNotebook:
                   'Use that link to save a copy on the computer where your browser is open.')
         return W.VBox([W.HTML('<h3>Save / reuse a selected case</h3><p><b>selected_case.json</b> is the file to load next time. '
             'The full bundle also includes the calculation report, checks, drawings, equation trace and search alternatives.</p>'
-            '<p><b>Generate calculation report</b> evaluates the current inputs and downloads a standalone HTML report with '
+            '<p>Click <b>Recalc</b> after editing to enable exports. <b>Generate calculation report</b> downloads a standalone HTML report with '
             'mathematical equations, results, numeric substitutions, and collapsible calculation sections. '
             'Use <b>Geometry plots</b> at the top of the report for the dimensioned plan, elevation, pile and between-pile sections, '
             'reinforcement plan, 3D cage, and exact dimension tables. '
@@ -630,6 +682,9 @@ class CapNotebook:
                 '<br>Use the saved JSON, HTML report or full bundle download button to retry. Runtime folder: <code>'+html.escape(str(folder.resolve()))+'</code>','pending')
 
     def _export(self,button,download_kind='json'):
+        if self.dirty or self.calculating:
+            self._case_export_notice('RECALC NEEDED','Click Recalc to update the cap checks before exporting.','pending')
+            return
         self.case_export_button.disabled=self.case_report_button.disabled=True
         try:
             folder=export_bundle(self.case,self.export_root,self.search_result,search_filter=self._search_filter())
@@ -642,7 +697,7 @@ class CapNotebook:
         except Exception as exc:
             previous=('<br>Download buttons still refer to the previous successful export: <code>'+html.escape(str(self.case_export_folder))+'</code>') if self.case_export_folder else ''
             self._case_export_notice('EXPORT STOPPED',html.escape(str(exc))+previous,'error')
-        finally:self.case_export_button.disabled=self.case_report_button.disabled=False
+        finally:self._set_calculating(False)
 
     def _export_bpad(self,button):
         self.blockpad_export.export(button)
@@ -659,7 +714,7 @@ class CapNotebook:
         from .pile_review import require
         require(isinstance(state,dict) and state.get('format')=='d2mpdb-notebook'
                 and state.get('schema_version')==1, 'Unsupported notebook state file.')
-        case=load_case(json.dumps(state.get('cap_case'),allow_nan=False).encode())
+        case=load_case(json.dumps(state.get('cap_case'),allow_nan=False).encode(),calculate=False)
         minimum_tip=self.pile_review.validate_snapshot(state.get('minimum_tip'))
         return case,minimum_tip
 
@@ -700,7 +755,9 @@ class CapNotebook:
 
     def close(self):
         self.refresh_driver.close()
+        self.recalc_control.close()
         self.check_view.close()
+        self.check_reviews.close()
         self.end_grid.close()
         self.added_steel.close()
         for readout in self.steel_readouts.values():readout.close()

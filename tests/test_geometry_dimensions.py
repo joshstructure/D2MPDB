@@ -40,9 +40,12 @@ class GeometryDimensionTests(unittest.TestCase):
         app=CapNotebook(self.case)
         self.addCleanup(app.close)
         self.assertEqual(app.plot_tabs.get_title(5),'Dimensions')
+        app.recalc_button.click()
+        app.plot_tabs.selected_index=4
         fig=app.force_diagrams.figure
         old=next(t.y for t in fig.data if (t.meta or {}).get('capacity')=='Mr_N')
         app.controls['Bar_N1'].value=11
+        app.recalc_button.click()
         self.assertNotEqual(next(t.y for t in fig.data if (t.meta or {}).get('capacity')=='Mr_N'),old)
         app.controls['S_pile'].value=6
         app.controls['h'].value=42
@@ -52,7 +55,7 @@ class GeometryDimensionTests(unittest.TestCase):
         self.assertAlmostEqual(length.meta['feet'],22.24)
         self.assertIn('22.24',app.dimensions.children[1].value)
         self.assertIn('differ from analyzed',app.dimensions.children[1].value)
-        self.assertIn('UNAVAILABLE',app.force_diagrams.resistance_notice.value)
+        self.assertIn('Recalc needed',app.force_diagrams.resistance_notice.value)
         app.controls['b'].value=0
         self.assertEqual(app.dimensions.children,())
 

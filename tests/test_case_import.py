@@ -25,7 +25,8 @@ class CaseImportTests(unittest.TestCase):
 
     def test_loader_status_is_next_to_upload_and_full_case_refreshes(self):
         panel, app = self.panel, self.app
-        self.assertIn(panel.ui, app.ui.children)
+        self.assertIn(app.cap_ui, app.ui.children)
+        self.assertIn(panel.ui, app.cap_ui.children[-1].children)
         self.assertIn(app.upload, panel.actions.children)
         self.assertIn(panel.status, panel.ui.children)
         self.assertIn('READY TO LOAD', panel.status.value)
@@ -38,12 +39,14 @@ class CaseImportTests(unittest.TestCase):
         self.assertEqual(app.current.case, case)
         for name, control in app.controls.items():
             self.assertEqual(control.value, case['inputs'][name], name)
+        self.assertTrue(app.dirty)
+        app.recalc_button.click()
         self.assertNotEqual(app.metrics.value, before_metrics)
         self.assertNotEqual(app.register.value, before_register)
         self.assertIn('6 × #9', app.cage.children[0].value)
         self.assertIsNone(app.pile_review.review)
         for text in ('LOADED SUCCESSFULLY', 'my &lt;cap&gt;.json', 'UTC', '183.15',
-                     'Cap plots and checks recalculated', 'were not loaded from this file'):
+                     'Cap inputs and drawings loaded', 'were not loaded from this file'):
             self.assertIn(text, panel.status.value)
         app.controls['Bar_N1'].value = 8
         self.assertIn('DIFFERS FROM LOADED JSON', panel.status.value)

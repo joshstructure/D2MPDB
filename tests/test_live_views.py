@@ -76,10 +76,13 @@ class LiveViewTests(unittest.TestCase):
 
     def test_hidden_tabs_render_latest_case_on_entry_and_remain_mounted(self):
         app=self.app;self.assertNotIn('results',app.views.plots);self.assertNotIn('dimensions',app.views.plots)
+        app.recalc_button.click()
         app.plot_tabs.selected_index=1;results=app.results.children;old=app.views.plots['results'].to_plotly_json()
         app.plot_tabs.selected_index=0;app.controls['Mu_N'].value+=100
         self.assertEqual(app.views.plots['results'].to_plotly_json(),old)
         app.plot_tabs.selected_index=1
+        self.assertIn('Recalc',app.results.children[0].value)
+        app.recalc_button.click()
         self.assertEqual(app.results.children,results);self.assertNotEqual(app.views.plots['results'].to_plotly_json(),old)
         app.controls['h'].value=42;app.plot_tabs.selected_index=5
         depth=next(t for t in app.views.plots['dimensions'].data if (t.meta or {}).get('dimension')=='section_depth')
@@ -90,17 +93,20 @@ class LiveViewTests(unittest.TestCase):
 
     def test_unchanged_force_and_resistance_inputs_do_not_redraw_after_case_deepcopy(self):
         app=self.app;app.load(import_fbmp_xml('tests/fixtures/fbmp_610_cap.xml'))
+        app.recalc_button.click()
         with patch('pier_cap.force_diagrams.cap_force_figure',side_effect=AssertionError('Unchanged force/resistance inputs')):
             app.force_diagrams.refresh(deepcopy(app.case),evaluation=app.current)
 
     def test_auxiliary_views_remount_after_invalid_input_restores_same_case(self):
         app=self.app
+        app.recalc_button.click()
         for index,container in ((1,app.results),(5,app.dimensions)):
             app.plot_tabs.selected_index=index;children=container.children
             width=app.controls['b'].value
             app.controls['b'].value=0
             self.assertIsNone(app.current);self.assertFalse(container.children)
             app.controls['b'].value=width
+            app.recalc_button.click()
             self.assertIsNotNone(app.current);self.assertEqual(container.children,children)
 
 

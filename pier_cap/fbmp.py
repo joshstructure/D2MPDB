@@ -9,7 +9,7 @@ from pathlib import Path
 import hashlib
 import math
 from lxml import etree as ET
-from .model import upgrade_case, default_case, evaluate, validate_case, GEOMETRY
+from .model import upgrade_case, default_case, geometry_evaluation, validate_case, GEOMETRY
 from .pile_visual import appearance_from_xml
 from .axial import CONVENTION, SCHEMA, PRINTED_EQUILIBRIUM_KIP, PRINTED_SUMMARY_KIP
 
@@ -227,7 +227,7 @@ def import_fbmp_xml(source, base=None, filename=None):
     case = upgrade_case(base or default_case())
     validate_case(case)
     p = case['inputs']
-    tolerance = evaluate(case).value('Tol_pile')
+    tolerance = geometry_evaluation(case).value('Tol_pile')
     nominal_extension = cantilever-diameter/2
     extra = nominal_extension-p['E_clear']-tolerance
     _require(extra >= -1e-8, 'Analyzed cap end is shorter than the current actual-clearance plus pile-tolerance allowance. Review end detailing before import.')
@@ -373,6 +373,6 @@ def import_fbmp_xml(source, base=None, filename=None):
     case.pop('section_study',None)
     case['lrfd_checks']['version']=3
     validate_case(case)
-    evaluated = evaluate(case)
+    evaluated = geometry_evaluation(case)
     _require(_close(evaluated.value('L_cap'),xs[-1]-xs[0]), 'Imported cap length does not match analyzed geometry.')
     return case

@@ -210,8 +210,9 @@ def _search(case,config,progress,section_sensitivity):
                 good.append(Candidate(changes,e.weight_lb,e.max_dc,complexity,label,strength.ratio,overall.label,strength.label,
                     overall.governing,strength.governing))
             else:
+                from .check_reviews import original_status
                 for ch in e.checks:
-                    if 'FAIL' in ch.status:rejected[ch.label]+=1
+                    if 'FAIL' in original_status(ch):rejected[ch.label]+=1
                 if e.issues:rejected['Cage fit / unresolved topology']+=1
         except (ValueError,ZeroDivisionError,OverflowError) as exc:
             # A malformed configuration is a rejected candidate, never a hidden pass.

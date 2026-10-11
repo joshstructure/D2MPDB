@@ -120,6 +120,9 @@ class BlockpadExportPanel:
             self.upload.disabled = self.export_button.disabled = False
 
     def export(self, _=None):
+        if getattr(self.app,'dirty',False) or getattr(self.app,'calculating',False):
+            self._notice('RECALC NEEDED','Click Recalc to update the cap checks before exporting.','pending')
+            return
         self.last_file = None
         self.download_button.disabled = True
         self.download_output.clear_output()

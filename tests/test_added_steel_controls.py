@@ -102,9 +102,11 @@ class AddedSteelTests(unittest.TestCase):
 
     def test_card_readouts_are_relevant_live_and_preserve_widgets(self):
         app=CapNotebook(entered_case());self.addCleanup(app.close)
+        app.recalc_button.click()
         cards=dict(app.steel_readouts);plots=dict(app.views.plots)
         before=cards['added'].value
         app.controls['n_B1'].value=4
+        app.recalc_button.click()
         self.assertNotEqual(cards['added'].value,before)
         self.assertEqual(app.steel_readouts,cards)
         self.assertEqual(app.views.plots,plots)
@@ -115,6 +117,7 @@ class AddedSteelTests(unittest.TestCase):
         self.assertIn('Skin area',cards['side'].value)
         self.assertIn('added–continuous',cards['added'].value)
         app.added_steel.rows[1]['pitch_in'].value=.5
+        app.recalc_button.click()
         self.assertIn('FAIL',cards['added'].value)
         self.assertFalse(app.added_steel.rows[1]['pitch_in'].disabled)
         app.controls['b'].value=0

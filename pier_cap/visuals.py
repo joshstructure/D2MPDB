@@ -340,7 +340,7 @@ def hoop_figure(e):
         fig.add_annotation(x=length/2,y=p['h']+6,text=f'<b>#{p["Bar_v"]:g} @ {s:g} in c/c</b> · {clear:.3f} in clear',showarrow=False,font=dict(color=color,size=12),row=row,col=1)
         fig.add_trace(go.Scatter(x=[0,s],y=[y1/2,y1/2],mode='lines+markers',line=dict(color=INK),marker=dict(symbol='line-ns',size=12),
             showlegend=False,hovertemplate=f'Pitch: {s:g} in center to center<extra></extra>'),row=row,col=1)
-        pitch_note='Calculating spacing checks…' if pending else 'Pitch acceptance: see shared LRFD checks' if e.lrfd else f'Max pitch {limit:.2f} in'
+        pitch_note='Spacing checks need Recalc' if pending else 'Pitch acceptance: see shared LRFD checks' if e.lrfd else f'Max pitch {limit:.2f} in'
         fig.add_annotation(x=length/2,y=-9,text=f'{pitch_note} · min clear gap {minimum:.2f} in',showarrow=False,font=dict(size=11),row=row,col=1)
         fig.update_xaxes(title='Distance along illustrative sample (in)',range=[-3,length+3],row=row,col=1)
         fig.update_yaxes(title='Above underside (in)',range=[-12,p['h']+13],row=row,col=1)
@@ -348,7 +348,7 @@ def hoop_figure(e):
     fig.add_trace(go.Scatter(x=[x0,x1,x1,x0,x0],y=[y0,y0,y1,y1,y0],mode='lines',line=dict(color=HOOP,width=4),showlegend=False,
         hovertemplate=f'One #{p["Bar_v"]:g} outer hoop<br>Nominal cross-section outline<extra></extra>'),row=nr,col=1)
     actual=x1-x0;limit=min(e.value('Sw_G'),e.value('Sw_L'))
-    limit_note='Calculating spacing checks…' if pending else 'Acceptance: see shared LRFD checks' if e.lrfd else f'Allowed ≤ {limit:.3f} in'
+    limit_note='Spacing checks need Recalc' if pending else 'Acceptance: see shared LRFD checks' if e.lrfd else f'Allowed ≤ {limit:.3f} in'
     fig.add_annotation(x=p['b']/2,y=p['h']/2,text=f'Across-cap leg centers<br><b>{actual:.3f} in</b><br>{limit_note}',showarrow=False,font=dict(color=RED if not pending and not e.lrfd and actual>limit else INK),row=nr,col=1)
     fig.update_xaxes(title='Across cap (in)',range=[-3,p['b']+3],constrain='domain',row=nr,col=1)
     fig.update_yaxes(title='Above underside (in)',range=[-3,p['h']+3],scaleanchor=f'x{nr}',scaleratio=1,row=nr,col=1)
@@ -460,19 +460,28 @@ def alternatives_figure(result,indices=None,*,dc_scope='all',max_dc=1.0):
 @numbered_tables('cap_checks')
 def checks_html(e,view='all'):
     from .check_working import details_html,STYLE
+    from .check_reviews import review_note_html,history_html,is_pending
     failed=[c for c in e.checks if 'FAIL' in c.status]
     if view=='failures_first':checks=failed+[c for c in e.checks if 'FAIL' not in c.status]
     elif view=='failures_only':checks=failed
+    elif view=='pending_only':checks=[c for c in e.checks if is_pending(c.status)]
+    elif view=='reviewed_only':checks=[c for c in e.checks if getattr(c,'review',None)]
+    elif view=='dc_descending':
+        from math import isnan
+        numeric=lambda c:isinstance(c.ratio,(int,float)) and not isinstance(c.ratio,bool) and not isnan(c.ratio)
+        checks=sorted(e.checks,key=lambda c:(0,-c.ratio) if numeric(c) else (1,0))
     else:checks=e.checks
     rows=[]
     for c in checks:
         ratio=f'{c.ratio:.3f}' if isinstance(c.ratio,(int,float)) else str(c.ratio)
         color=RED if 'FAIL' in c.status else AMBER if 'PENDING' in c.status or 'PROVISIONAL' in c.status else TEAL
         controller='<br><small>Controls: '+html.escape(c.governing)+'</small>' if c.governing else ''
-        rows.append(f'<tr><td>{html.escape(c.label)}</td><td style="color:{color}">{html.escape(c.status)}</td><td title="{html.escape(c.basis,quote=True)}"><b>{ratio}</b>{controller}</td><td>{details_html(e,c)}</td></tr>')
+        rows.append(f'<tr><td>{html.escape(c.label)}</td><td style="color:{color}">{html.escape(c.status)}</td><td title="{html.escape(c.basis,quote=True)}"><b>{ratio}</b>{controller}</td><td>{review_note_html(c)}{details_html(e,c)}</td></tr>')
     summary=f'<p><b>Showing {len(checks)} of {len(e.checks)} checks · {len(failed)} failed.</b></p>'
     if view=='failures_only' and not failed:summary+='<p>No failed checks. Pending checks and additional notebook gates may still require review.</p>'
+    if view=='dc_descending':summary+='<p>Largest numerical check ratios first; checks without a numerical ratio follow. Equal ratios retain their original order.</p>'
     extra='<p><b>Additional notebook gates:</b> '+html.escape('; '.join(e.issues) if e.issues else 'Drawn cage passes the available numerical spacing and fit checks; pending checks remain part of the full register.')+'</p><p><b>Combined notebook status:</b> '+html.escape(e.status)+'</p>'
+    extra+=history_html(e)
     return '<style>.cap-table{border-collapse:collapse;width:100%;font:12px Arial}.cap-table td,.cap-table th{padding:8px;border-bottom:1px solid #dce5ec;text-align:left;vertical-align:top}.cap-table th{background:#e7eef4;position:sticky;top:0}'+STYLE+'</style><p>Strength rows show D/C; maximum-spacing rows show actual / allowed; minimum-clearance rows show required / actual, and minimum-steel rows show required / provided. Expand Equation &amp; values for the current working. Values are rounded for display; checks retain full precision.</p>'+summary+'<table class="cap-table"><thead><tr><th>Check</th><th>Status</th><th>Check ratio</th><th>Calculation details</th></tr></thead><tbody>'+''.join(rows)+'</tbody></table>'+extra
 
 @numbered_figure('cap_snapshot')

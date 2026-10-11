@@ -167,6 +167,7 @@ class Report:
         return f'<figure><div class="plot" id="plot-{index}" data-figure="{key}" style="height:{height}px"></div><figcaption>{reference}. {escape(caption)}</figcaption></figure>'
 
     def result(self, name):
+        if name in self.checks and self.checks[name].review_state=='Active':return badge(self.checks[name].status)
         if pending(name,self.e):return badge('PENDING — inputs / applicability not confirmed')
         if name in self.checks:return badge(self.checks[name].status)
         return mathml(quantity(self.e.engine.get(name),self.e.engine,BY_NAME[name]['unit']))
@@ -383,6 +384,8 @@ def calculation_report(case=None, *, evaluation=None, search_result=None, search
         ['Force basis',e.lrfd['source_notice'] if e.lrfd else 'Independent envelopes; not concurrent actions'],
         ['Analysis consistency','Geometry changed: '+', '.join(e.stale) if e.stale else 'Recorded analysis geometry matches current inputs']], 'output'))
     if e.issues:parts.append('<div class="notice"><b>Detailing findings</b><ul>'+''.join('<li>'+escape(issue)+'</li>' for issue in e.issues)+'</ul></div>')
+    from .check_reviews import history_html
+    parts.append(history_html(e))
     parts.append('<p>Available ratios do not close pending Service III, fatigue, anchorage, force-zone or detailing reviews. Green result tables identify outputs; only an explicit PASS denotes a passed check.</p>')
     parts.append('<h2 id="strategy">Calculation strategy</h2><ol class="links">'+''.join('<li><a href="#'+s[0]+'">'+escape(s[1])+'</a> — '+escape(s[3])+'</li>' for s in SECTIONS)+'</ol><ul class="flow"><li>Geometry &amp; actions</li><li>Steel coordinates</li><li>Section resistance</li><li>Service &amp; fatigue</li><li>Shear &amp; torsion</li><li>Detail review</li></ul>')
     parts.append('<noscript>Equations, results and tables work without JavaScript. Interactive plots and expand-all controls require JavaScript enabled in your browser.</noscript>')

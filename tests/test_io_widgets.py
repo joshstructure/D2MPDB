@@ -48,6 +48,7 @@ class WidgetTests(unittest.TestCase):
         self.assertGreater(len(r.candidates),20)
         app=CapNotebook(default_case())
         try:
+            app.recalc_button.click()
             self.assertEqual(app.dc_scope.value,'strength')
             self.assertIn('Strength D/C',app.metrics.value);self.assertIn('0.832',app.metrics.value)
             self.assertIn('All-check utilization',app.metrics.value);self.assertIn('0.985',app.metrics.value)
@@ -90,11 +91,12 @@ class WidgetTests(unittest.TestCase):
             self.assertEqual(len(bar_positions(app.current)),before+4)
             self.assertAlmostEqual(app.current.value('As_N'),9.48)
             app.controls['N_pile'].value=5
+            app.recalc_button.click()
             self.assertIn('REIMPORT',app.current.status);self.assertFalse(app.current.eligible)
             app.controls['s_G'].value=0
             self.assertIsNone(app.current);self.assertIn('INPUT ERROR',app.banner.value)
             self.assertEqual(app.cage.children,(app.input_panel,app.transverse_panel.ui))
-            app.load(default_case());self.assertTrue(app.current.eligible)
+            app.load(default_case());app.recalc_button.click();self.assertTrue(app.current.eligible)
         finally:
             for f in app.figures:f.close()
             app.ui.close()
@@ -117,7 +119,7 @@ class WidgetTests(unittest.TestCase):
                 app._run_search(None)
                 self.assertEqual(app.search_result.passed,1)
                 self.assertFalse(app.apply_button.disabled)
-                app._apply(None);self.assertTrue(app.current.eligible)
+                app._apply(None);app.recalc_button.click();self.assertTrue(app.current.eligible)
                 app._export(None);self.assertEqual(load_case(app.last_export/'selected_case.json'),app.case)
                 self.assertTrue((app.last_export/'alternatives.csv').exists())
                 self.assertTrue((app.last_export/'filtered_alternatives.csv').exists())

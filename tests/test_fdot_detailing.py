@@ -60,13 +60,16 @@ class FDOTDetailingTests(unittest.TestCase):
         app = CapNotebook(default_case()); self.addCleanup(app.close)
         app.fdot_panel.controls['exposure'].value = 'extreme'
         app.fdot_panel.controls['top'].value = 'formed'
+        app.recalc_button.click()
         self.assertEqual(next(c for c in app.current.checks if c.key == 'Chk_fdot_cover_top').status, 'FAIL')
         app.controls['C_t'].value = 4.
+        app.recalc_button.click()
         self.assertEqual(next(c for c in app.current.checks if c.key == 'Chk_fdot_cover_top').status, 'PASS')
         saved = load_case(json.dumps(app.case).encode())
         self.assertEqual(saved['fdot_detailing']['exposure'], 'extreme')
         app.load(default_case()); self.assertEqual(app.fdot_panel.controls['exposure'].value, 'unknown')
         app.load(saved); self.assertEqual(app.fdot_panel.controls['top'].value, 'formed')
+        app.recalc_button.click()
         doc = html.fromstring(app.register.value)
         row = doc.xpath('//details[@data-check="Chk_fdot_cover_top"]')[0]
         self.assertIn('Table 1.4.2-1', row.text_content())

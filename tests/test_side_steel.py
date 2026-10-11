@@ -96,6 +96,7 @@ class SideSteelTests(unittest.TestCase):
 class SideSteelWidgetTests(unittest.TestCase):
     def setUp(self):
         self.app=CapNotebook(shallow_case())
+        self.app.recalc_button.click()
         self.study=SectionStudy(self.app)
 
     def tearDown(self):
@@ -115,6 +116,7 @@ class SideSteelWidgetTests(unittest.TestCase):
         self.assertIn('not required',self.study.selection_info.value)
         self.assertIn('Shrinkage reinforcement area',self.study.selection_info.value)
         self.app.controls['n_skin'].value=0
+        self.app.recalc_button.click()
         self.assertIn('no side bars',self.app.cage.children[1].value)
         self.assertFalse(self.app.current.eligible)
 

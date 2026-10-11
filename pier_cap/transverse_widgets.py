@@ -120,6 +120,7 @@ class RunCard:
         c['error'].value=''
         from .steel_feedback import run_feedback
         self.feedback.value=('<small>Calculating…</small>' if getattr(self.panel.owner,'calculating',False) else
+            '<small>Checks out of date · click Recalc.</small>' if getattr(self.panel.owner,'dirty',False) else
             run_feedback(self.panel.owner.current,run['id']) if active and self.panel.owner.current else '<small>Actual layout inactive.</small>')
 
     def close(self):
@@ -296,9 +297,9 @@ class TransversePanel:
         self._attempt(lambda:self._commit(detail))
 
     def _generate(self,_):
-        from .model import evaluate
+        from .model import geometry_evaluation
         def perform():
-            detail=starting_zone_detail(evaluate(self.owner.case),self.start_bar.value,self.start_pitch.value)
+            detail=starting_zone_detail(geometry_evaluation(self.owner.case),self.start_bar.value,self.start_pitch.value)
             previous=deepcopy(self.owner.case.get('transverse_detail',empty_detail()))
             self._rebuild_order=True
             try:self._commit(detail,selected=detail['runs'][0]['id'])
@@ -317,8 +318,8 @@ class TransversePanel:
 
     def _add_zone(self,key):
         def perform():
-            from .model import evaluate
-            e=self.owner.current or evaluate(self.owner.case);c=self._empty_zones[key]
+            from .model import geometry_evaluation
+            e=self.owner.current or geometry_evaluation(self.owner.case);c=self._empty_zones[key]
             run=new_zone_run(e,key,c['bar'].value,c['pitch'].value,allow_overlap=True)
             detail=deepcopy(self.owner.case.get('transverse_detail',empty_detail()));detail['enabled']=True;detail['runs'].append(run)
             self._commit(detail,selected=run['id'])

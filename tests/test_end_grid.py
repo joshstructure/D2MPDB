@@ -126,9 +126,10 @@ class EndGridTests(unittest.TestCase):
 
     def test_plot_paths_are_shared_and_sections_label_projections(self):
         e=evaluate(case());bars=geometry(e)
-        for draw in (layout_3d,reinforcement_plan_figure,elevation_figure,section_figure,dimensions_figure):
+        for draw in (layout_3d,reinforcement_plan_figure,elevation_figure,section_figure):
             fig=draw(e);traces=[t for t in fig.data if (t.meta or {}).get('part')=='end_grid']
             self.assertGreaterEqual(len(traces),len(bars))
+        self.assertFalse(any((t.meta or {}).get('part')=='end_grid' for t in dimensions_figure(e).data))
         fig=layout_3d(e);traces=[t for t in fig.data if (t.meta or {}).get('part')=='end_grid']
         for t,b in zip(traces,bars):self.assertEqual(list(zip(t.x,t.y,t.z)),b['points'])
         self.assertTrue(all('projected from end' in t.name for t in section_figure(e).data if (t.meta or {}).get('part')=='end_grid'))

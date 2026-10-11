@@ -108,6 +108,7 @@ class EndBarScheduleTests(unittest.TestCase):
 
     def test_endpoint_bars_survive_json_export_drawings_and_short_gap_checks(self):
         case,run=self.run_case(20.25);app=CapNotebook(case);self.addCleanup(app.close)
+        app.recalc_button.click()
         stations=run_stations(run)
         self.assertTrue(any(c.status=='FAIL' and c.key.startswith('Chk_actual_clear_') for c in app.current.checks))
         self.assertIn('fails clear spacing',app.transverse_panel.zone_controls['R1']['warning'].value)

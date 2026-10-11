@@ -87,6 +87,8 @@ def set_inputs(case,**changes):
     return result
 
 def validate_case(case):
+    from .check_reviews import validate_reviews
+    validate_reviews(case)
     validate_detail(case)
     from .lrfd_checks import validate_settings
     validate_settings(case)
@@ -143,6 +145,10 @@ class Check:
     governing:str=''
     component_rule:str=''
     working:object=None
+    calculated_status:str=''
+    calculated_basis:str=''
+    review:object=None
+    review_state:str=''
 
 @dataclass
 class Evaluation:
@@ -381,7 +387,8 @@ def detailing_checks(e):
 
 def sectional_checks_pass(e):
     """Numerical/detail screens only; analysis provenance is a separate gate."""
-    return not any('FAIL' in c.status for c in e.checks) and not e.issues
+    from .check_reviews import original_status
+    return not any('FAIL' in original_status(c) for c in e.checks) and not e.issues
 
 def geometry_evaluation(case=None,fast=False):
     """Validated drawing geometry with no completed calculation/check claims."""
@@ -488,6 +495,8 @@ def evaluate(case=None,fast=False):
     if actual_transverse(case):
         e.eligible=False
         if not stale and not failure and not e.issues:e.status='ACTUAL CAGE · LRFD CALCULATIONS / DETAIL REVIEW PENDING'
+    from .check_reviews import apply_reviews
+    apply_reviews(e)
     return e
 
 def formula_trace(e):

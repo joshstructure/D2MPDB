@@ -17,6 +17,7 @@ class CaseDownloadTests(unittest.TestCase):
     def setUp(self):
         self.directory=tempfile.TemporaryDirectory()
         self.app=CapNotebook(default_case(),export_root=self.directory.name)
+        self.app.recalc_button.click()
 
     def tearDown(self):
         self.app.close()
@@ -41,6 +42,7 @@ class CaseDownloadTests(unittest.TestCase):
         self.assertEqual(download.call_args.args,(str(folder/'selected_case.json'),))
         self.assertEqual(load_case(folder/'selected_case.json'),saved)
         self.assertNotEqual(saved,app.case)
+        app.recalc_button.click()
         app.case_export_button.click()
         self.assertNotEqual(app.case_export_folder,folder)
         self.assertEqual(load_case(app.case_export_folder/'selected_case.json'),app.case)
@@ -99,6 +101,7 @@ class CaseDownloadTests(unittest.TestCase):
         app.case_html_button.click()
         self.assertEqual(download.call_args.args,(str(report),))
         self.assertEqual(report.read_bytes(),snapshot)
+        app.recalc_button.click()
         app.case_report_button.click()
         self.assertNotEqual(app.case_export_folder,folder)
         self.assertEqual(load_case(app.case_export_folder/'selected_case.json'),app.case)

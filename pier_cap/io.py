@@ -10,7 +10,7 @@ import re
 from .model import INPUTS,DEFINITIONS,GEOMETRY,validate_case,evaluate,default_case,formula_trace,upgrade_case
 from .force_audit import strength_audit
 
-def load_case(source):
+def load_case(source,*,calculate=True):
     try:
         if isinstance(source,(bytes,bytearray,memoryview)):data=json.loads(bytes(source).decode('utf-8-sig'))
         else:data=json.loads(Path(source).read_text(encoding='utf-8-sig'))
@@ -24,7 +24,10 @@ def load_case(source):
         raise ValueError('This is not a saved cap case. Select selected_case.json from Export case + checks, not a report, equation trace or pile review JSON.')
     data=upgrade_case(data)
     validate_case(data)
-    evaluate(data)
+    if calculate:evaluate(data)
+    else:
+        from .model import geometry_evaluation
+        geometry_evaluation(data)
     return data
 
 def write_case(case,path):
@@ -65,8 +68,16 @@ def export_bundle(case,root='exports',search_result=None,search_filter=None):
         shapes=[dict(run=r,geometry=bar_shape(e,r),issues=shape_issues(e,r)) for r in case['transverse_detail']['runs']]
         (path/'transverse_shapes.json').write_text(json.dumps(shapes,indent=2,ensure_ascii=False),encoding='utf-8')
     with (path/'checks.csv').open('w',newline='',encoding='utf-8-sig') as f:
-        w=csv.writer(f);w.writerow(['Check','Status','D/C','Basis'])
-        for c in e.checks:w.writerow([c.label,c.status,c.ratio,c.basis])
+        w=csv.writer(f);w.writerow(['Check','Status','D/C','Basis','Check key','Calculated status','Review action','Review state','Reason / closure note','Reviewer','Recorded (UTC)'])
+        for c in e.checks:
+            review=c.review or {}
+            w.writerow([c.label,c.status,c.ratio,c.basis,c.key,c.calculated_status,review.get('action',''),
+                c.review_state,review.get('reason',''),review.get('reviewed_by',''),review.get('recorded_at','')])
+    from .check_reviews import review_history
+    check_export=dict(checks=[dict(key=c.key,label=c.label,status=c.status,ratio=c.ratio,basis=c.basis,
+        calculated_status=c.calculated_status,calculated_basis=c.calculated_basis,review=c.review) for c in e.checks],
+        review_history=review_history(e))
+    (path/'checks.json').write_text(json.dumps(check_export,indent=2,ensure_ascii=False,allow_nan=False),encoding='utf-8')
     from .model import bar_positions
     from .detailing import spacing_records
     with (path/'longitudinal_bar_positions.csv').open('w',newline='',encoding='utf-8-sig') as f:

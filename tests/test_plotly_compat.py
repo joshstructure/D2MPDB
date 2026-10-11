@@ -98,6 +98,8 @@ class WorkbenchTraceDeltaTests(unittest.TestCase):
     def test_live_redraw_handles_delayed_3d_and_force_messages(self):
         root = Path(__file__).resolve().parents[1]
         app = CapNotebook(import_fbmp_xml(root/'tests/fixtures/fbmp_610_cap.xml'))
+        app.recalc_button.click()
+        app.plot_tabs.selected_index=4
         self.addCleanup(app.close)
         cage, force = app.cage_3d_widget, app.force_diagrams.figure
         self.assertIsInstance(cage, FigureWidget)
@@ -109,6 +111,7 @@ class WorkbenchTraceDeltaTests(unittest.TestCase):
             previous_force = [t.uid for t in force.data]
             cage_edit=cage._last_trace_edit_id;force_edit=force._last_trace_edit_id
             app.controls['Bar_N1'].value = size
+            app.recalc_button.click()
             expected_cage = cage.to_plotly_json()
             expected_force = force.to_plotly_json()
             # Reused traces keep their IDs. Their previous edit acknowledgements
@@ -125,5 +128,6 @@ class WorkbenchTraceDeltaTests(unittest.TestCase):
         # A mismatch with the analyzed pile layout retires resistance traces.
         overlay_uids = [t.uid for t in force.data if (t.meta or {}).get('role')]
         app.controls['S_pile'].value += 1
+        app.recalc_button.click()
         acknowledge(force, [{'uid': uid, 'visible': True} for uid in overlay_uids])
         self.assertFalse(any((t.meta or {}).get('role') for t in force.data))

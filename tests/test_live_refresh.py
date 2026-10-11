@@ -11,6 +11,8 @@ class LatestRefreshTests(unittest.TestCase):
         driver=LatestRefresh(lambda c:c['id'],calculate,draw,
                              lambda n:events.append(('result',n)),self.fail)
         driver.submit(source)
+        self.assertEqual(events,[('draw',1)])
+        driver.recalculate();driver.recalculate()
         self.assertEqual(events,[('draw',1),('calculate',1),('result',1)])
         driver.close();driver.submit({'id':2})
         self.assertEqual(len(events),3)
@@ -22,10 +24,10 @@ class LatestRefreshTests(unittest.TestCase):
                 driver=LatestRefresh(lambda c:c,lambda c:(c,),lambda e:None,results.append,errors.append)
                 original=getattr(driver,stage)
                 def fail(*_):raise ValueError('test failure')
-                setattr(driver,stage,fail);driver.submit(1)
+                setattr(driver,stage,fail);driver.submit(1);driver.recalculate()
                 self.assertEqual(str(errors[0]),'test failure')
                 self.assertFalse(results)
-                setattr(driver,stage,original);driver.submit(2)
+                setattr(driver,stage,original);driver.submit(2);driver.recalculate()
                 self.assertEqual(results,[2]);driver.close()
 
     def test_reentrant_edit_cannot_publish_superseded_result(self):
@@ -34,7 +36,10 @@ class LatestRefreshTests(unittest.TestCase):
             if case==1:driver.submit(2)
             return case,
         driver=LatestRefresh(lambda c:c,calculate,lambda e:None,results.append,self.fail)
-        driver.submit(1)
+        driver.submit(1);driver.recalculate()
+        self.assertEqual(results,[])
+        self.assertTrue(driver.dirty)
+        driver.recalculate()
         self.assertEqual(results,[2]);driver.close()
 
 
@@ -47,6 +52,8 @@ class NotebookCallbackTests(unittest.IsolatedAsyncioTestCase):
                              lambda c:events.append('draw'),lambda c:events.append('result'),self.fail)
         with patch('asyncio.get_running_loop',side_effect=AssertionError('must not schedule')):
             driver.submit({})
+            self.assertEqual(events,['draw'])
+            driver.recalculate()
             self.assertEqual(events,['draw','result'])
         driver.close()
 
@@ -69,6 +76,8 @@ class NotebookCallbackTests(unittest.IsolatedAsyncioTestCase):
                     return original(c)
                 app.refresh_driver.calculate=inspect_pending
                 app.end_grid.rows['horizontal']['count'].value=5
+                self.assertTrue(app.dirty)
+                app.recalc_button.click()
                 self.assertFalse(app.calculating)
                 self.assertIs(chart,app.cage_3d_widget)
                 self.assertFalse(app.current.calculating)
@@ -81,10 +90,10 @@ class NotebookCallbackTests(unittest.IsolatedAsyncioTestCase):
                     if hasattr(panel,'children'):self.assertTrue(panel.children)
                     else:self.assertTrue(panel.value)
                 def fail(_):raise ValueError('test calculation error')
-                app.refresh_driver.calculate=fail;app.refresh()
+                app.refresh_driver.calculate=fail;app.refresh();app.recalc_button.click()
                 self.assertFalse(app.calculating)
                 self.assertIn('test calculation error',app.banner.value)
-                app.refresh_driver.calculate=original;app.refresh()
+                app.refresh_driver.calculate=original;app.refresh();app.recalc_button.click()
                 self.assertFalse(app.calculating)
                 self.assertIsNotNone(app.current)
                 self.assertNotIn('Calculating',app.register.value)

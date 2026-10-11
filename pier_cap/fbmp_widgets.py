@@ -62,13 +62,18 @@ class XMLImportPanel:
             'The current calculation is unchanged until you apply the preview.','pending')
         self.upload_output.layout.display = ''
         try:
+            transfer_error=None
             with self.upload_output:
                 clear_output(wait=True)
                 # Keep upload scratch files out of the project and preserve the
                 # original basename in the import audit.
                 with TemporaryDirectory(prefix='pier-cap-upload-') as folder:
-                    received = self.colab_files.upload(target_dir=folder)
+                    # Output contexts can suppress exceptions in a live kernel.
+                    # Preserve the real transfer error for the status message.
+                    try:received = self.colab_files.upload(target_dir=folder)
+                    except Exception as exc:transfer_error=exc
                 clear_output(wait=False)
+            if transfer_error is not None:raise transfer_error
             if not received:
                 self.status.value = notice_html('UPLOAD CANCELLED','No new XML inputs were applied.')
                 return

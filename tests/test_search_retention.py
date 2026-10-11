@@ -70,6 +70,7 @@ class SearchRetentionTests(unittest.TestCase):
         self.assertFalse(self.app.apply_button.disabled)
         self.app.apply_button.click()
         self.assertIsNotNone(self.app.current)
+        self.app.recalc_button.click()
         self.assertTrue(self.app.current.eligible)
 
     def test_study_selection_remains_after_loading_a_different_section_and_editing_bars(self):
@@ -103,6 +104,7 @@ class SearchRetentionTests(unittest.TestCase):
     def test_export_distinguishes_edited_cage_from_completed_search_basis(self):
         self.app.controls['n_skin'].value=0
         self.app.controls['S_leg_detail'].value=30
+        self.app.recalc_button.click()
         self.app._export(None)
         out=self.app.last_export
         self.assertIsNotNone(out,self.app.message.value)

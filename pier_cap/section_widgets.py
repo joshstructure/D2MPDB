@@ -210,7 +210,8 @@ class SectionStudy:
                 'Analysis-matched mode also uses the separate saved cases in the analysis library at their matching sections.')
         self.source_status.value = source_html(self.app.case,'FORCE SOURCE FOR SECTION STUDY',note)
         p = self.app.case['inputs']
-        tolerance = evaluate(self.app.case).value('Tol_pile')
+        from .model import geometry_evaluation
+        tolerance = geometry_evaluation(self.app.case).value('Tol_pile')
         width = max(self.min_width.value, p['D_pile'] + 2 * (p['E_clear'] + tolerance))
         self.width_screen.value = (
             f'<p><b>Transverse width screen: {width:g} in.</b> '
@@ -497,6 +498,8 @@ class SectionStudy:
             self.selection_info.value = f'<p><b>No selectable cage at this point.</b> {html.escape(point.reason)}<br>{rejected}</p>'
             return
         case = selected_section_case(self.study, self.section.value, self.cage.value)
+        from .check_reviews import retain_reviews
+        retain_reviews(self.app.case, case)
         e = evaluate(case)
         candidate = point.result.candidates[self.cage.value]
         self.selection_info.value = f'<p><b>{study_label(self.study)}</b> · {point.width:g} × {point.depth:g} in · all {row["matches"]} matching cages are selectable.<br>'

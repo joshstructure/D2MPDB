@@ -142,6 +142,7 @@ class CheckWorkingTests(unittest.TestCase):
         self.addCleanup(app.close)
         before = app.register
         app.controls['Mu_N'].value = 123.456
+        app.recalc_button.click()
         self.assertIs(app.register, before)
         doc = html.fromstring(app.register.value)
         detail = doc.xpath('//details[@data-check="Chk_flex_N"]')[0]

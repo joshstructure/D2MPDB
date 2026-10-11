@@ -12,7 +12,7 @@ from .source_status import notice_html, upload_entries
 
 CASE_CONTENTS = (
     'Restores saved cap force inputs, geometry, materials, reinforcement, hoop/U-bar runs, '
-    'pile appearance and design settings. Cap plots and checks are recalculated. '
+    'pile appearance, design settings and recorded check closures / overrides with their reasons and history. Cap plots and checks are recalculated. '
     'Force diagrams return when their source records are in the file. '
     'This does not restore completed steel searches or section studies. '
     '<b>notebook_state.json</b> restores both sections, including the minimum-tip XML results, trials and reaction margin. '
@@ -125,7 +125,7 @@ class CaseImportPanel:
     def load(self, content, filename):
         self.receipt = None
         self.status.value = notice_html('READING CASE JSON',
-            '<b>' + html.escape(filename) + '</b><br>Checking saved inputs and calculating the cap…', 'pending')
+            '<b>' + html.escape(filename) + '</b><br>Checking saved inputs and drawing the cap…', 'pending')
         try:
             if Path(filename).suffix.lower() != '.json':
                 raise ValueError('Select a .json file: notebook_state.json for both sections, or selected_case.json for the cap.')
@@ -133,13 +133,13 @@ class CaseImportPanel:
                 data=json.loads(bytes(content).decode('utf-8-sig'))
             except (json.JSONDecodeError,UnicodeDecodeError):
                 # Keep the existing actionable parse/encoding diagnostics.
-                load_case(content)
+                load_case(content,calculate=False)
                 raise
             minimum_tip=None
             if isinstance(data,dict) and data.get('format')=='d2mpdb-notebook':
                 proposed,minimum_tip=self.app.validate_notebook_state(data)
             else:
-                proposed = load_case(content)
+                proposed = load_case(content,calculate=False)
         except Exception as exc:
             self._failed(exc, filename)
             return
@@ -148,7 +148,7 @@ class CaseImportPanel:
             if minimum_tip is not None:
                 self.app.pile_review.restore(minimum_tip)
             if self.app.current is None:
-                raise ValueError('The cap calculation could not be refreshed. See the input error below.')
+                raise ValueError('The cap drawing could not be refreshed. See the input error below.')
         except Exception as exc:
             self._failed(exc, filename, applied=True)
             return
@@ -176,8 +176,8 @@ class CaseImportPanel:
             f'<br>Cap: <b>{p["b"]:g} × {p["h"]:g} in</b> · {p["N_pile"]:g} piles at {p["S_pile"]:g} ft'
             f'<br>Strength moments N / P / B: <b>{p["Mu_N"]:g} / {p["Mu_P"]:g} / {p["Mu_B"]:g} kip-ft</b>'
             f' · Shear G / L: <b>{p["Vu_G"]:g} / {p["Vu_L"]:g} kip</b> · Torsion: <b>{p["Tu"]:g} kip-ft</b>'
-            '<br><b>Cap plots and checks recalculated.</b> No Apply button or cell rerun is needed. '
-            'Saved check failures or pending items still require review.'
+            '<br><b>Cap inputs and drawings loaded.</b> Click Recalc to update the checks. '
+            'No Apply button or cell rerun is needed.'
             + ('<br>Minimum-tip study and reaction margin also restored. Completed searches/studies need a new run.'
                if r.get('includes_minimum_tip') else '<br>Pile review and completed search/study results were not loaded from this file.'))
         self.status.value = notice_html('CASE JSON LOADED SUCCESSFULLY', detail, 'success')
