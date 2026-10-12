@@ -1,5 +1,6 @@
 <div id="bridge-station-report">
   <h2>Bridge geometry · station explorer</h2>
+  <div class="text-small" id="bridge-geometry-status">Physical support geometry · continuous station cuts</div>
   <div class="viz-controls">
     <label class="form-label">Station (ft or 16+99.46)
       <input class="form-control" id="bridge-station-entry" type="text" inputmode="decimal" value="17+00.57" aria-describedby="bridge-station-error">
@@ -11,7 +12,12 @@
   <div id="bridge-station-error" class="text-destructive text-small" role="alert" hidden></div>
   <div class="bridge-range-header text-small tabular-nums"><span id="bridge-range-start"></span><span id="bridge-station-label"></span><span id="bridge-range-end"></span></div>
   <input class="form-range" id="bridge-station-slider" type="range" step="0.01" aria-label="Inspection station in feet">
+  <div class="bridge-step-controls">
+    <button type="button" id="bridge-step-back" aria-label="Move station back 0.01 feet">−0.01 ft</button>
+    <button type="button" id="bridge-step-forward" aria-label="Move station forward 0.01 feet">+0.01 ft</button>
+  </div>
   <div id="bridge-station-summary" class="text-small tabular-nums" aria-live="polite"></div>
+  <div id="bridge-support-extent" class="text-small tabular-nums" aria-live="polite"></div>
   <section aria-labelledby="bridge-elevation-heading">
     <h3 id="bridge-elevation-heading">Longitudinal elevation</h3>
     <div id="bridge-line-legend" class="bridge-legend"></div>
@@ -39,6 +45,8 @@
   #bridge-station-report section { margin-top:20px; }
   #bridge-station-report h2 { padding-right:92px; }
   #bridge-station-report .bridge-range-header { display:flex; justify-content:space-between; gap:8px; margin-top:12px; }
+  #bridge-station-report .bridge-step-controls { display:flex; gap:8px; margin:6px 0 10px; }
+  #bridge-station-report .bridge-step-controls button { min-height:36px; padding:6px 12px; font:inherit; color:var(--foreground); background:var(--background); border:1px solid var(--border); border-radius:4px; cursor:pointer; }
   #bridge-station-report .bridge-plot { width:100%; min-width:0; }
   #bridge-station-report .bridge-chart { display:block; width:100%; overflow:visible; }
   #bridge-station-report .bridge-chart text { fill:var(--foreground); font-size:12px; font-weight:400; }
@@ -54,7 +62,7 @@
   #bridge-station-report .bridge-tooltip div { display:flex; justify-content:space-between; gap:16px; }
   #bridge-station-report #bridge-source-label { margin-top:16px; overflow-wrap:anywhere; }
   #bridge-station-report #bridge-support-results { margin-top:8px; }
-  @media (pointer:coarse) { #bridge-station-report .bridge-legend button { min-height:44px; } }
+  @media (pointer:coarse) { #bridge-station-report .bridge-legend button, #bridge-station-report .bridge-step-controls button { min-height:44px; } }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
 <script>

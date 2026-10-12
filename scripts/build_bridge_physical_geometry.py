@@ -9,11 +9,12 @@ MARKER='# --- Source-derived physical bridge geometry ---'
 def main():
     path=ROOT/'Bridge_Geometry_2 Beam_V2.ipynb'
     nb=json.loads(path.read_text(encoding='utf-8'))
-    base=''.join(nb['cells'][6]['source']).split(MARKER)[0].rstrip()
+    cell=next(c for c in nb['cells'] if c.get('id')=='bridge-05')
+    base=''.join(cell['source']).split(MARKER)[0].rstrip()
     adapter=(ROOT/'bridge_geometry/physical.py').read_text(encoding='utf-8')
     source=base+'\n\n'+MARKER+'\n_StationPlaneBridgeModel = BridgeModel\n\n'+adapter
     source+='\n\nclass BridgeModel(PhysicalBridgeMixin, _StationPlaneBridgeModel):\n    """Shared model with source-derived volumetric support station cuts."""\n    pass\n'
-    nb['cells'][6]['source']=source.splitlines(keepends=True)
+    cell['source']=source.splitlines(keepends=True)
     path.write_text(json.dumps(nb,ensure_ascii=False,indent=1)+'\n',encoding='utf-8')
     print('Embedded physical support geometry adapter.')
 

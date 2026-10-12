@@ -36,6 +36,8 @@ def coefficients(samples):
     return np.stack([a, linear, quadratic]).tolist()
 
 def report_data(model, section_geometry, initial_station=None):
+    if not getattr(model,'physical',False) or getattr(model,'geometry_version',None)!='physical-station-cuts-2':
+        raise ValueError('The applied model has older station-only support geometry. Reopen the updated notebook and Run all before exporting.')
     keys = ('pgl', 'camber', 'bottom', 'top', 'deck', 'haunch')
     pieces = []
     for span_index in range(len(model.spans)):
@@ -70,7 +72,7 @@ def report_data(model, section_geometry, initial_station=None):
             seats=support['seats'].to_dict('records'), piles=support['pile_elevations'].to_dict('records'),
             datum_station=support.get('datum_station',support['station']),
             solid_geometry=support.get('solid_geometry')))
-    data = dict(version=1, source='Bridge_Geometry_2 Beam_V2.ipynb',
+    data = dict(version=2, geometry_version=model.geometry_version, source='Bridge_Geometry_2 Beam_V2.ipynb',
         generated_utc=datetime.now(timezone.utc).isoformat(),
         geometry_source={k:model.cfg.get('physical_geometry',{}).get(k) for k in ('source_file','source_sha256')},
         model_id=model.model_id, profile=model.profile_mode, deck_mode=model.deck_mode,
@@ -117,7 +119,7 @@ def export_interactive_report(model=None, path=None, station=None):
             raise RuntimeError('Run the geometry model before exporting a report.')
         if configuration_id(CONFIG)!=model.model_id:
             raise ValueError('Inputs changed. Click Apply input changes, then export the report again.')
-    target=Path(path or f'Bridge_Geometry_Interactive_Report_{model.model_id}.html')
+    target=Path(path or f'Bridge_Geometry_Interactive_Report_physical_v2_{model.model_id}.html')
     text=render_report(model,section_geometry,station,assets=globals().get('_BRIDGE_REPORT_ASSETS'))
     target.write_text(text,encoding='utf-8')
     return target

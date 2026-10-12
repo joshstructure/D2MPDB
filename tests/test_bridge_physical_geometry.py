@@ -15,10 +15,11 @@ ROOT=Path(__file__).resolve().parents[1]
 
 def load_model():
     notebook=json.loads((ROOT/'Bridge_Geometry_2 Beam_V2.ipynb').read_text(encoding='utf-8'))
+    cells={c['id']:c for c in notebook['cells']}
     env=dict(Path=Path,np=np)
-    for i in (4,6):exec(''.join(notebook['cells'][i]['source']),env)
+    for ident in ('bridge-03','bridge-05'):exec(''.join(cells[ident]['source']),env)
     env['CONFIG']['roadway']['xml_path']=str(ROOT/'Geometry Report.xml')
-    tree=ast.parse(''.join(notebook['cells'][7]['source']))
+    tree=ast.parse(''.join(cells['bridge-06']['source']))
     functions=[n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name in ('fib_polygon','section_geometry')]
     exec(compile(ast.Module(body=functions,type_ignores=[]),'section-functions','exec'),env)
     return env,env['BridgeModel'](env['CONFIG'])
@@ -78,6 +79,22 @@ class PhysicalGeometryTests(unittest.TestCase):
         self.assertTrue(model.support_section(model.inspection_start))
         self.assertFalse(model.inspect(model.inspection_start)['beam_present'][0])
 
+    def test_caps_remain_at_user_reported_stations_after_one_hundredth_foot_move(self):
+        for station,name in ((1593.22,'End Bent 1'),(1700.57,'Pier'),(1805.47,'End Bent 2')):
+            for delta in (-.01,0,.01):
+                with self.subTest(station=station,delta=delta):
+                    section=self.env['section_geometry'](self.model,station+delta)[0]
+                    self.assertEqual(section['support']['name'],name)
+                    self.assertEqual(sum(c['kind']=='Cap' for c in section['components']),1)
+
+    def test_public_model_cannot_silently_use_the_old_station_only_mode(self):
+        for mode in ('missing','disabled'):
+            config=copy.deepcopy(self.env['CONFIG'])
+            if mode=='missing':config.pop('physical_geometry')
+            else:config['physical_geometry']['enabled']=False
+            with self.subTest(mode=mode),self.assertRaisesRegex(ValueError,'Physical support geometry is required'):
+                self.env['BridgeModel'](config)
+
     def test_camber_is_zero_at_bearings_and_pipe_wall_is_nominal(self):
         np.testing.assert_allclose(self.model.evaluate(np.array(self.model.bearing_limits).ravel())['camber'],0,atol=1e-10)
         pipes=[c for c in self.model.support_section(1700.57) if c['kind']=='Pile']
@@ -104,6 +121,7 @@ class PhysicalGeometryTests(unittest.TestCase):
     def test_browser_engine_matches_notebook_at_physical_boundaries(self):
         model=self.model
         stations=[sample['station'] for sample in self.reference['samples']]
+        stations += [s+delta for s in (1593.22,1700.57,1805.47) for delta in (-.01,0,.01)]
         stations += [a+delta for pair in model.beam_limits+model.bearing_limits+model.deck_limits
                      for a in pair for delta in (-1e-6,0,1e-6)]
         for support in model.supports:

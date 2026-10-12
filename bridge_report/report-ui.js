@@ -1,6 +1,8 @@
 const root=document.getElementById('bridge-station-report');
 const $=id=>root.querySelector('#'+id);
-const engine=makeBridgeReportEngine(DATA), {evaluate,parseStation,stationLabel}=engine;
+let engine;
+try{engine=makeBridgeReportEngine(DATA);}catch(error){root.textContent=error.message;throw error;}
+const {evaluate,parseStation,stationLabel}=engine;
 const inspectionStart=DATA.inspection_start??DATA.start,inspectionEnd=DATA.inspection_end??DATA.end;
 const format=(x,digits=3)=>x===null||!Number.isFinite(x)?'Not available':x.toFixed(digits);
 const colors={Deck:'var(--viz-series-1)',Beam:'var(--viz-series-2)',Haunch:'var(--viz-series-3)',
@@ -9,8 +11,7 @@ const slider=$('bridge-station-slider'),entry=$('bridge-station-entry'),jump=$('
 const tooltip=$('bridge-hover');tooltip.classList.add('bridge-tooltip');
 let selected=DATA.initial_station??DATA.supports.find(s=>s.name==='Pier')?.station??DATA.start;
 let hiddenSeries=new Set(),hiddenKinds=new Set(),elevationChart=null,sectionChart=null,dragging=false;
-let current=evaluate(selected),rendered=false;
-const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+let current=evaluate(selected);
 const jumps=[...DATA.supports.map(s=>({name:s.name+' cap center',station:s.station})),
   ...(DATA.physical?DATA.bearing_limits.flatMap((b,i)=>b.map((station,j)=>({name:`Span ${i+1} ${j?'end':'start'} bearing`,station}))):[]),
   ...DATA.spans.map(s=>({name:`Span ${s.id} midpoint`,station:(s.start_ft+s.end_ft)/2})),
@@ -35,7 +36,6 @@ function saveState(){
     privateContent:{hiddenSeries:[...hiddenSeries],hiddenKinds:[...hiddenKinds]}};
   window.openai?.setWidgetState?.(state)?.catch(()=>{});
 }
-function transition(selection){return rendered&&!reduced.matches?selection.interrupt().transition().duration(dragging?0:110):selection;}
 function makeChart(id,height,xExtent,yExtent,equal=false){
   const host=$(id),width=Math.max(260,host.getBoundingClientRect().width);
   const margin={left:64,right:16,top:22,bottom:52};
@@ -161,7 +161,7 @@ function showHover(event,station){
 function drawSelected(){
   if(!elevationChart)return;
   const {x,plot}=elevationChart;
-  transition(plot.select('.selected-guide')).attr('x1',x(selected)).attr('x2',x(selected));
+  plot.select('.selected-guide').interrupt().attr('x1',x(selected)).attr('x2',x(selected));
 }
 function drawSection(){
   const allPoints=current.components.flatMap(c=>c.xy);
@@ -214,6 +214,9 @@ function updateReadouts(){
   table.querySelector('thead').innerHTML='<tr><th>Result</th>'+DATA.offsets.map((_,i)=>`<th class="text-end">Beam ${i+1}</th>`).join('')+'</tr>';
   $('bridge-beam-results').innerHTML=rows.map(([label,values])=>`<tr><th scope="row">${label}</th>${values.map(v=>`<td class="text-end">${typeof v==='string'?v:format(v)}</td>`).join('')}</tr>`).join('');
   const p=current.support;
+  const nearest=p||DATA.supports.filter(s=>s.solid_geometry).reduce((a,b)=>!a||Math.abs(b.station-selected)<Math.abs(a.station-selected)?b:a,null);
+  $('bridge-support-extent').textContent=nearest
+    ?`${p?'Cut intersects':'No substructure at this station. Nearest support:'} ${nearest.name} · cap limits ${stationLabel(nearest.solid_geometry.cap_bounds[0])}–${stationLabel(nearest.solid_geometry.cap_bounds[1])}`:'';
   const visiblePiles=(p?.piles||[]).filter(v=>!DATA.physical||current.components.some(c=>c.kind==='Pile'&&c.pile===v.Pile));
   $('bridge-support-results').textContent=p?`Cap center top ${format(p.top,4)} ft · cap center underside ${format(p.top-p.depth,4)} ft${visiblePiles.length?` · intersected pile cutoffs ${visiblePiles.map(v=>`P${v.Pile}: ${format(v['Pile cutoff (ft)'],4)} ft`).join(' / ')}`:' · no piles intersect this station'}`:'';
 }
@@ -224,10 +227,12 @@ function setStation(station,persist=true){
     entry.setAttribute('aria-invalid','true');return false;
   }
   selected=station;current=evaluate(station);$('bridge-station-error').hidden=true;entry.removeAttribute('aria-invalid');
-  updateReadouts();drawSelected();drawSection();rendered=true;if(persist)saveState();return true;
+  updateReadouts();drawSelected();drawSection();if(persist)saveState();return true;
 }
 slider.addEventListener('input',()=>{dragging=true;setStation(Number(slider.value),false);dragging=false;});
 slider.addEventListener('change',saveState);
+$('bridge-step-back').addEventListener('click',()=>setStation(Math.max(inspectionStart,Math.round((selected-.01)*1e8)/1e8)));
+$('bridge-step-forward').addEventListener('click',()=>setStation(Math.min(inspectionEnd,Math.round((selected+.01)*1e8)/1e8)));
 entry.addEventListener('change',()=>setStation(parseStation(entry.value)));
 entry.addEventListener('keydown',event=>{if(event.key==='Enter')setStation(parseStation(entry.value));});
 jump.addEventListener('change',()=>{if(jump.value!=='custom')setStation(jumps[Number(jump.value)].station);});

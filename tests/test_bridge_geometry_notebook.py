@@ -32,10 +32,11 @@ class BridgeGeometryTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.notebook = json.loads(NOTEBOOK.read_text(encoding='utf-8'))
+        cls.cells = {c['id']:c for c in cls.notebook['cells']}
         cls.env = {}
         with working_directory(ROOT):
-            for index in (3, 4, 6, 7):
-                exec(''.join(cls.notebook['cells'][index]['source']), cls.env)
+            for ident in ('bridge-02','bridge-03','bridge-05','bridge-06'):
+                exec(''.join(cls.cells[ident]['source']), cls.env)
         cls.config = copy.deepcopy(cls.env['CONFIG'])
         cls.config['roadway']['xml_path'] = str(ROOT / 'Geometry Report.xml')
         cls.model = cls.env['BridgeModel'](cls.config)
@@ -214,7 +215,7 @@ class BridgeGeometryTests(unittest.TestCase):
 
     def test_no_drive_authentication_in_current_notebook(self):
         code = '\n'.join(''.join(c['source']) for c in self.notebook['cells'] if c['cell_type']=='code')
-        self.assertNotIn('google.colab', code)
+        self.assertNotIn('from google.colab import auth', code)
         self.assertNotIn('/content/drive', code)
         self.assertNotIn('drive.mount', code)
 

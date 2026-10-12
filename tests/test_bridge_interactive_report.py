@@ -22,15 +22,16 @@ class InteractiveReportTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.notebook=json.loads((ROOT/'Bridge_Geometry_2 Beam_V2.ipynb').read_text(encoding='utf-8'))
+        cls.cells={c['id']:c for c in cls.notebook['cells']}
         cls.env=dict(Path=Path,np=np)
         old=os.getcwd()
         os.chdir(ROOT)
         try:
-            for index in (4,6):exec(''.join(cls.notebook['cells'][index]['source']),cls.env)
+            for ident in ('bridge-03','bridge-05'):exec(''.join(cls.cells[ident]['source']),cls.env)
         finally:
             os.chdir(old)
         cls.env['CONFIG']['roadway']['xml_path']=str(ROOT/'Geometry Report.xml')
-        tree=ast.parse(''.join(cls.notebook['cells'][7]['source']))
+        tree=ast.parse(''.join(cls.cells['bridge-06']['source']))
         selected=[n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name in ('fib_polygon','section_geometry')]
         exec(compile(ast.Module(body=selected,type_ignores=[]),'notebook-section','exec'),cls.env)
         cls.config=copy.deepcopy(cls.env['CONFIG'])
@@ -95,7 +96,7 @@ class InteractiveReportTests(unittest.TestCase):
             try:
                 with redirect_stdout(io.StringIO()):
                     env['report_export']['button'].click()
-                downloaded=Path(f'Bridge_Geometry_Interactive_Report_{applied.model_id}.html')
+                downloaded=Path(f'Bridge_Geometry_Interactive_Report_physical_v2_{applied.model_id}.html')
                 self.assertTrue(downloaded.is_file())
                 self.assertIn('"initial_station":1630.25',downloaded.read_text(encoding='utf-8'))
                 self.assertFalse(env['report_export']['button'].disabled)
@@ -105,6 +106,17 @@ class InteractiveReportTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'Apply input changes'):
                 env['export_interactive_report'](path=target)
             self.assertEqual(target.read_text(encoding='utf-8'),text)
+
+    def test_export_rejects_an_older_applied_model_without_overwriting_report(self):
+        env=dict(self.env);env['CONFIG']=copy.deepcopy(self.config)
+        env['MODEL']=SimpleNamespace(model_id=self.model.model_id,physical=False)
+        with patch('IPython.display.display'),redirect_stdout(io.StringIO()):
+            exec(''.join(self.cells['bridge-report-export']['source']),env)
+        with tempfile.TemporaryDirectory() as directory:
+            target=Path(directory)/'report.html';target.write_text('previous report')
+            with self.assertRaisesRegex(ValueError,'Reopen the updated notebook and Run all'):
+                env['export_interactive_report'](path=target)
+            self.assertEqual(target.read_text(),'previous report')
 
 
 if __name__=='__main__':

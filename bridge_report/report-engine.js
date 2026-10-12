@@ -1,4 +1,6 @@
 function makeBridgeReportEngine(data) {
+  if(data.version!==2||!data.physical||data.geometry_version!=='physical-station-cuts-2')
+    throw new Error('This report needs physical support geometry. Reopen the updated notebook, Run all, and export a new report.');
   const within=(s,b)=>s>=b[0]-1e-9&&s<=b[1]+1e-9;
   function sliceSupport(support,station){
     const solid=support.solid_geometry;
@@ -60,7 +62,7 @@ function makeBridgeReportEngine(data) {
     const beamPresent=!data.physical||data.beam_limits.some(b=>within(station,b));
     const deckPresent=!data.physical||data.deck_limits.some(b=>within(station,b));
     value.clearance = value.bottom.map(bottom => road&&beamPresent ? bottom-value.roadway : null);
-    const support = data.supports.find(p => data.physical?p.solid_geometry&&within(station,p.solid_geometry.cap_bounds):Math.abs(p.station-station)<1e-7) || null;
+    const support = data.supports.find(p => p.solid_geometry&&within(station,p.solid_geometry.cap_bounds)) || null;
     let components=piece.components.map((c,i) => ({kind:c.kind,id:`${c.kind}-${c.beam??i}`,beam:c.beam,
       xy:polynomial(c.y,t).map((y,j) => [c.x[j],y])}));
     if(data.physical){

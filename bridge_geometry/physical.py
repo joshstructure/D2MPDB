@@ -10,6 +10,12 @@ import numpy as np
 TOL = 1e-9
 
 
+def require_physical_geometry(model):
+    if not getattr(model,'physical',False) or getattr(model,'geometry_version',None)!='physical-station-cuts-2':
+        raise ValueError('An older geometry model is still loaded. Reopen the updated notebook and Run all '
+                         'to load caps, bearings and piles with physical station extents.')
+
+
 def in_interval(station, limits):
     return limits[0]-TOL <= station <= limits[1]+TOL
 
@@ -70,8 +76,13 @@ def section_of_support(support, station, pile_heads=True):
 
 
 class PhysicalBridgeMixin:
+    geometry_version = 'physical-station-cuts-2'
+
     def __init__(self,config):
         self.physical=config.get('physical_geometry',{}).get('enabled',False)
+        if self.physical is not True:
+            raise ValueError('Physical support geometry is required. Run the updated Project inputs cell, then Run all. '
+                             'The older station-only mode is no longer used by this notebook.')
         spans=sorted(config['spans'],key=lambda s:s['start_ft']);physical=config.get('physical_geometry',{})
         self.beam_limits=[];self.bearing_limits=[];self.deck_limits=[]
         for i,span in enumerate(spans):
