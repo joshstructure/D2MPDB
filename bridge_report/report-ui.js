@@ -1,6 +1,7 @@
 const root=document.getElementById('bridge-station-report');
 const $=id=>root.querySelector('#'+id);
 const engine=makeBridgeReportEngine(DATA), {evaluate,parseStation,stationLabel}=engine;
+const inspectionStart=DATA.inspection_start??DATA.start,inspectionEnd=DATA.inspection_end??DATA.end;
 const format=(x,digits=3)=>x===null||!Number.isFinite(x)?'Not available':x.toFixed(digits);
 const colors={Deck:'var(--viz-series-1)',Beam:'var(--viz-series-2)',Haunch:'var(--viz-series-3)',
   Cap:'var(--viz-series-4)',Pile:'var(--viz-series-5)',Pedestal:'var(--viz-series-4)',Bearing:'var(--foreground)'};
@@ -10,19 +11,20 @@ let selected=DATA.initial_station??DATA.supports.find(s=>s.name==='Pier')?.stati
 let hiddenSeries=new Set(),hiddenKinds=new Set(),elevationChart=null,sectionChart=null,dragging=false;
 let current=evaluate(selected),rendered=false;
 const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
-const jumps=[...DATA.supports.map(s=>({name:s.name,station:s.station})),
+const jumps=[...DATA.supports.map(s=>({name:s.name+' cap center',station:s.station})),
+  ...(DATA.physical?DATA.bearing_limits.flatMap((b,i)=>b.map((station,j)=>({name:`Span ${i+1} ${j?'end':'start'} bearing`,station}))):[]),
   ...DATA.spans.map(s=>({name:`Span ${s.id} midpoint`,station:(s.start_ft+s.end_ft)/2})),
   ...(DATA.minimum_clearance.available?[{name:'Minimum clearance',station:DATA.minimum_clearance.station}]:[])];
 jumps.sort((a,b)=>a.station-b.station);
 jump.innerHTML='<option value="custom">Custom station</option>'+jumps.map((j,i)=>`<option value="${i}">${j.name} · ${stationLabel(j.station)}</option>`).join('');
-slider.min=DATA.start;slider.max=DATA.end;
-$('bridge-range-start').textContent=stationLabel(DATA.start);
-$('bridge-range-end').textContent=stationLabel(DATA.end);
-$('bridge-source-label').textContent=`${DATA.source} · model ${DATA.model_id} · ${DATA.profile} profile / ${DATA.deck_mode} deck`;
+slider.min=inspectionStart;slider.max=inspectionEnd;
+$('bridge-range-start').textContent=stationLabel(inspectionStart);
+$('bridge-range-end').textContent=stationLabel(inspectionEnd);
+$('bridge-source-label').textContent=`${DATA.source} · model ${DATA.model_id} · ${DATA.profile} profile / ${DATA.deck_mode} deck${DATA.geometry_source?.source_file?` · Base geometry: ${DATA.geometry_source.source_file.split('/').at(-1)}`:''}`;
 const savedState=state=>{
   const saved=state?.modelContent;
   if(saved?.modelId!==DATA.model_id)return;
-  if(Number.isFinite(saved.station)&&saved.station>=DATA.start&&saved.station<=DATA.end)selected=saved.station;
+  if(Number.isFinite(saved.station)&&saved.station>=inspectionStart&&saved.station<=inspectionEnd)selected=saved.station;
   hiddenSeries=new Set(state?.privateContent?.hiddenSeries||[]);
   hiddenKinds=new Set(state?.privateContent?.hiddenKinds||[]);
 };
@@ -94,9 +96,9 @@ DATA.offsets.forEach((offset,b)=>{
 const lineSeries=[{id:'pgl',name:'PGL',color:'var(--foreground)',dash:'4 4',get:e=>e.pgl},
   ...groups.flatMap(g=>{
     const b=g.beams[0],name=g.beams.map(b=>`B${b+1}`).join('/');
-    return [{id:`deck-${b}`,name:`Deck CL · ${name}`,color:colors.Deck,get:e=>e.deck[b][1]},
-      {id:`top-${b}`,name:`Beam top · ${name}`,color:colors.Beam,get:e=>e.top[b]},
-      {id:`bottom-${b}`,name:`Beam bottom · ${name}`,color:colors.Beam,dash:'2 3',get:e=>e.bottom[b]}];
+    return [{id:`deck-${b}`,name:`Deck CL · ${name}`,color:colors.Deck,get:e=>e.deckPresent?e.deck[b][1]:null},
+      {id:`top-${b}`,name:`Beam top · ${name}`,color:colors.Beam,get:e=>e.beamPresent?e.top[b]:null},
+      {id:`bottom-${b}`,name:`Beam bottom · ${name}`,color:colors.Beam,dash:'2 3',get:e=>e.beamPresent?e.bottom[b]:null}];
   }),{id:'road',name:'Roadway',color:colors.Pile,get:e=>e.roadway},
   {id:'envelope',name:`${DATA.required_clearance}-ft clearance envelope`,color:colors.Haunch,dash:'7 4',get:e=>e.roadway===null?null:e.roadway+DATA.required_clearance}];
 function makeLegend(id,items,hidden,onChange){
@@ -136,7 +138,7 @@ function drawElevation(){
     .attr('data-chart-hit','').attr('data-chart-hover-overlay','cross-series').attr('fill','transparent')
     .attr('x',frame.left).attr('y',frame.top).attr('width',frame.right-frame.left).attr('height',frame.bottom-frame.top)
     .style('touch-action','pan-y').style('cursor','crosshair');
-  const stationAt=event=>Math.max(DATA.start,Math.min(DATA.end,x.invert(d3.pointer(event,svg.node())[0])));
+  const stationAt=event=>Math.max(inspectionStart,Math.min(inspectionEnd,x.invert(d3.pointer(event,svg.node())[0])));
   overlay.on('pointermove',event=>{const station=stationAt(event);if(dragging)setStation(Math.round(station*100)/100,false);showHover(event,station);})
     .on('pointerleave',()=>{if(!dragging)hideHover();})
     .on('pointerdown',event=>{dragging=true;event.currentTarget.setPointerCapture(event.pointerId);setStation(Math.round(stationAt(event)*100)/100,false);showHover(event,selected);})
@@ -163,30 +165,33 @@ function drawSelected(){
 }
 function drawSection(){
   const allPoints=current.components.flatMap(c=>c.xy);
+  if(!allPoints.length)allPoints.push([-DATA.deck_width/2,0],[DATA.deck_width/2,DATA.depth]);
   sectionChart=makeChart('bridge-section-chart',320,d3.extent(allPoints,p=>p[0]),d3.extent(allPoints,p=>p[1]),true);
   const {svg,x,y,plot,labels,frame}=sectionChart;
-  svg.attr('aria-label',`Cross-section at station ${stationLabel(selected)}, ${current.support?.name||`span ${current.span}`}. Approximate FIB36 outlines.`);
+  svg.attr('aria-label',`Cross-section at station ${stationLabel(selected)}, ${current.support?.name||`span ${current.span}`}. Physical station cut.`);
   const components=current.components.filter(c=>!hiddenKinds.has(c.kind));
   const shape=d3.line().x(p=>x(p[0])).y(p=>y(p[1]));
-  const paths=plot.selectAll('path.component').data(components,(c,i)=>`${c.kind}-${c.beam}-${i}`).join('path')
+  const paths=plot.selectAll('path.component').data(components,(c,i)=>c.id||`${c.kind}-${c.beam}-${i}`).join('path')
     .attr('class','component').attr('fill',c=>colors[c.kind]).attr('fill-opacity',c=>c.kind==='Bearing'?.65:.28)
     .attr('stroke',c=>colors[c.kind]).attr('stroke-width',1)
     .attr('data-tooltip',c=>`${c.kind}${c.beam?` · beam ${c.beam}`:''} · EL ${format(d3.min(c.xy,p=>p[1]))}–${format(d3.max(c.xy,p=>p[1]))} ft`);
-  transition(paths).attr('d',c=>shape(c.xy)+'Z');
+  // A station cut changes topology at solid boundaries; never morph between them.
+  paths.interrupt().attr('d',c=>shape(c.xy)+'Z');
   plot.selectAll('line.center-line').data([0]).join('line').attr('class','center-line').attr('x1',x(0)).attr('x2',x(0))
     .attr('y1',frame.top).attr('y2',frame.bottom).attr('stroke','var(--border)').attr('stroke-width',1);
-  labels.selectAll('text.beam-label').data(DATA.offsets).join('text').attr('class','beam-label value-label')
+  labels.selectAll('text.beam-label').data(current.beamPresent?DATA.offsets:[]).join('text').attr('class','beam-label value-label')
     .attr('x',d=>x(d)).attr('y',(_,i)=>y(current.deck[i][1]) - 10).attr('text-anchor','middle').text((_,i)=>`B${i+1}`);
-  const piles=current.support?.piles||[];
-  plot.selectAll('line.pile-cutoff').data(hiddenKinds.has('Pile')?[]:piles).join('line').attr('class','pile-cutoff')
-    .attr('x1',p=>x(p['Offset (ft)']-p['Diameter (in)']/24)).attr('x2',p=>x(p['Offset (ft)']+p['Diameter (in)']/24))
-    .attr('y1',p=>y(p['Pile cutoff (ft)'])).attr('y2',p=>y(p['Pile cutoff (ft)'])).attr('stroke',colors.Pile).attr('stroke-width',2.5);
+  const pileCuts=components.filter(c=>c.kind==='Pile');
+  const piles=(current.support?.piles||[]).filter(p=>!DATA.physical||pileCuts.some(c=>c.pile===p.Pile));
+  plot.selectAll('line.pile-cutoff').data(pileCuts).join('line').attr('class','pile-cutoff')
+    .attr('x1',p=>x(d3.min(p.xy,v=>v[0]))).attr('x2',p=>x(d3.max(p.xy,v=>v[0])))
+    .attr('y1',p=>y(d3.max(p.xy,v=>v[1]))).attr('y2',p=>y(d3.max(p.xy,v=>v[1]))).attr('stroke',colors.Pile).attr('stroke-width',2.5);
   labels.selectAll('text.pile-label').data(piles).join('text').attr('class','pile-label value-label')
     .attr('x',p=>x(p['Offset (ft)'])).attr('y',p=>y(p['Cap underside (ft)']-1.25)).attr('text-anchor','middle').text(p=>`P${p.Pile}`);
   $('bridge-section-heading').textContent=`Cross-section · ${current.support?.name||`span ${current.span}`} · ${stationLabel(selected)}`;
-  $('bridge-section-note').textContent=current.support
-    ?'Approximate FIB36 outline · pile heads only; pile tips undefined'+(current.support.name.startsWith('End Bent')?' · backwall height undefined':'')
-    :'Approximate FIB36 outline · support components appear at support stations';
+  $('bridge-section-note').textContent=DATA.physical
+    ?`Source geometry · FIB36 fillets tessellated${current.support?` · ${(selected-current.support.station).toFixed(3)} ft from cap center · pile heads cropped; tips remain trial values`:''}${!current.beamPresent?' · no beam intersects this station':''} · provisional walls omitted`
+    :'Approximate FIB36 outline · pile heads only; final tips undefined';
   makeLegend('bridge-component-legend',[...new Set(current.components.map(c=>c.kind))].map(kind=>({id:kind,name:kind,color:colors[kind]})),hiddenKinds,drawSection);
   sectionChart.checkLabels();
 }
@@ -197,23 +202,25 @@ function updateReadouts(){
   const index=jumps.findIndex(j=>Math.abs(j.station-selected)<1e-7);jump.value=index<0?'custom':String(index);
   const clearance=current.clearance.filter(v=>v!==null);
   const hmin=Math.min(...current.haunch.flat())*12;
-  $('bridge-station-summary').textContent=`${current.support?.name||`Span ${current.span}`} · minimum flange haunch ${format(hmin)} in · ${clearance.length?`clearance ${format(Math.min(...clearance))} ft`:'roadway / clearance unavailable'}`;
+  $('bridge-station-summary').textContent=`${current.support?.name||`Span ${current.span}`} · ${current.beamPresent?`minimum flange haunch ${format(hmin)} in · ${clearance.length?`clearance ${format(Math.min(...clearance))} ft`:'roadway / clearance unavailable'}`:'No beam at this station'}`;
   const rows=[['Offset from PGL (ft)',DATA.offsets],['Deck at beam CL (ft)',current.deck.map(v=>v[1])],
     ['Beam top (ft)',current.top],['Beam bottom (ft)',current.bottom],['Camber (in)',DATA.offsets.map(()=>current.camber*12)],
     ['Haunch left (in)',current.haunch.map(h=>h[0]*12)],
     ['Haunch CL (in)',current.haunch.map(h=>h[1]*12)],
     ['Haunch right (in)',current.haunch.map(h=>h[2]*12)],
     ['Vertical clearance (ft)',current.clearance]];
+  rows.forEach((row,i)=>{if((i===1&&!current.deckPresent)||(i>=2&&!current.beamPresent))row[1]=DATA.offsets.map(()=>null);});
   const table=$('bridge-beam-results').closest('table');
   table.querySelector('thead').innerHTML='<tr><th>Result</th>'+DATA.offsets.map((_,i)=>`<th class="text-end">Beam ${i+1}</th>`).join('')+'</tr>';
   $('bridge-beam-results').innerHTML=rows.map(([label,values])=>`<tr><th scope="row">${label}</th>${values.map(v=>`<td class="text-end">${typeof v==='string'?v:format(v)}</td>`).join('')}</tr>`).join('');
   const p=current.support;
-  $('bridge-support-results').textContent=p?`Cap top ${format(p.top,4)} ft · cap underside ${format(p.top-p.depth,4)} ft · pile cutoffs ${p.piles.map(v=>`P${v.Pile}: ${format(v['Pile cutoff (ft)'],4)} ft`).join(' / ')}`:'';
+  const visiblePiles=(p?.piles||[]).filter(v=>!DATA.physical||current.components.some(c=>c.kind==='Pile'&&c.pile===v.Pile));
+  $('bridge-support-results').textContent=p?`Cap center top ${format(p.top,4)} ft · cap center underside ${format(p.top-p.depth,4)} ft${visiblePiles.length?` · intersected pile cutoffs ${visiblePiles.map(v=>`P${v.Pile}: ${format(v['Pile cutoff (ft)'],4)} ft`).join(' / ')}`:' · no piles intersect this station'}`:'';
 }
 function setStation(station,persist=true){
-  if(!Number.isFinite(station)||station<DATA.start||station>DATA.end){
+  if(!Number.isFinite(station)||station<inspectionStart||station>inspectionEnd){
     $('bridge-station-error').hidden=false;
-    $('bridge-station-error').textContent=`Enter a station from ${stationLabel(DATA.start)} to ${stationLabel(DATA.end)}.`;
+    $('bridge-station-error').textContent=`Enter a station from ${stationLabel(inspectionStart)} to ${stationLabel(inspectionEnd)}.`;
     entry.setAttribute('aria-invalid','true');return false;
   }
   selected=station;current=evaluate(station);$('bridge-station-error').hidden=true;entry.removeAttribute('aria-invalid');

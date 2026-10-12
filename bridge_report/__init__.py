@@ -45,8 +45,9 @@ def report_data(model, section_geometry, initial_station=None):
             evaluation = model.evaluate(stations, span_index)
             sections = []
             for station in stations:
-                section = serialize_components(section_geometry(model, station)[0])
-                sections.append([c for c in section if c['kind'] in ('Deck','Beam','Haunch')])
+                section = serialize_components(section_geometry(model, station, span_index=span_index,
+                    include_supports=False, include_absent=True)[0]) if model.physical else serialize_components(section_geometry(model,station)[0])
+                sections.append([c for c in section if c['kind'] in (('Deck','Haunch') if model.physical else ('Deck','Beam','Haunch'))])
             mid = sections[1]
             for group in sections:
                 assert len(group) == len(mid)
@@ -60,23 +61,30 @@ def report_data(model, section_geometry, initial_station=None):
     supports = []
     for support in sorted(model.supports, key=lambda s:s['station']):
         sections = section_geometry(model,support['station'])
-        assert len(sections) == 1, 'This report requires a separate view for unequal support faces.'
+        if not model.physical:
+            assert len(sections)==1, 'The legacy report requires a separate view for unequal support faces.'
         supports.append(dict(name=support['name'], station=support['station'],
             components=serialize_components(sections[0]),
             width=support['width'], top=support['top'], depth=support['depth'],
             length=support['length'], center=support['center'], slope=support['slope'],
-            seats=support['seats'].to_dict('records'), piles=support['pile_elevations'].to_dict('records')))
+            seats=support['seats'].to_dict('records'), piles=support['pile_elevations'].to_dict('records'),
+            datum_station=support.get('datum_station',support['station']),
+            solid_geometry=support.get('solid_geometry')))
     data = dict(version=1, source='Bridge_Geometry_2 Beam_V2.ipynb',
         generated_utc=datetime.now(timezone.utc).isoformat(),
+        geometry_source={k:model.cfg.get('physical_geometry',{}).get(k) for k in ('source_file','source_sha256')},
         model_id=model.model_id, profile=model.profile_mode, deck_mode=model.deck_mode,
         start=model.start,end=model.end,offsets=model.offsets,depth=model.depth,flange=model.flange,
+        physical=model.physical,inspection_start=model.inspection_start,inspection_end=model.inspection_end,
+        beam_limits=model.beam_limits,deck_limits=model.deck_limits,bearing_limits=model.bearing_limits,
+        beam_outline=model.beam_outline(0,0) if model.physical else None,
         deck_width=model.deck_width,deck_thickness=model.deck_thickness,
         pieces=pieces, road=model.road, supports=supports, spans=model.spans.to_dict('records'),
         minimum_clearance=model.clearance_details(),minimum_haunch=dict(value=model.haunch_min*12,station=model.haunch_station),
         required_clearance=model.clearance_required,required_haunch=model.minimum_haunch*12)
 
     data['initial_station'] = float(initial_station if initial_station is not None else model.pier.get('station', model.start))
-    if not model.start <= data['initial_station'] <= model.end:
+    if not model.inspection_start <= data['initial_station'] <= model.inspection_end:
         raise ValueError('Initial report station is outside the bridge.')
     return clean(data)
 
