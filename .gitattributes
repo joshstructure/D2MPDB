@@ -10,3 +10,6 @@ tests/test_bpad_workflow.py text eol=lf
 # Registered source fingerprints are byte identities across clones.
 project_current/** -text
 "Geometry Report.xml" -text
+# Preserve the delivered notebook and its exact embedded-source fingerprints.
+Ring_Supported_Wall_STM.ipynb -text
+ring_wall/** -text

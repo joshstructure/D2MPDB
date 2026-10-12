@@ -1,5 +1,11 @@
 # D2MPDB notebooks
 
+## Ring-supported pier wall — new STM study
+
+[Open Ring_Supported_Wall_STM in Colab](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Ring_Supported_Wall_STM.ipynb) and choose **Runtime → Run all**. This portable notebook starts with minimum wall steel each way on both faces and matching end U-bars, then computes tied arches, vertical collectors, ring reactions and a vertical-spacing comparison. Its report follows the cap/end-wall formatting. No installation or repository clone is needed.
+
+The initial case uses five ring rows at 3 ft spacing and selects **#5 at 5 in each way each face**, with matching end U-bars. The **23-in OD ring trial fails end-cover and face-grid fit at the current 3-in pile tolerance**. Three-dimensional concrete nodes/breakout, compatibility, anchorage, welds and pipe-shell checks remain open; this is a preliminary gravity study. See [scope, equations and validation](RING_WALL_STM.md) and the [example report](ring_wall/examples/ring_wall_report.html).
+
 **Current project record:** start at [project_current](project_current/README.md)
 for the source register, journal, cap reports, Mathcad sheets, analysis files and
 the editable [coherence tracker](project_current/coherence/Coherence_Tracker.xlsx).
