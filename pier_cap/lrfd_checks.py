@@ -317,6 +317,20 @@ def window_steel(physical,left,right,length,development=None):
     return dict(area_in2=area,station_in=x,bar_ids=ids,length_in=length)
 
 
+def section_window(physical,station,length,beam_length):
+    """Count the nominal centered window; normalize over concrete inside it.
+
+    Cap coordinates run from 0 to L_cap, including end cover. Keep length_in
+    nominal for bar selection, development credit and moving-window events.
+    Only available_length_in is truncated for the intersected steel rate.
+    """
+    window=window_steel(physical,station,station,length)
+    left=max(0.,min(beam_length,station-length/2))
+    right=max(0.,min(beam_length,station+length/2))
+    return dict(window,left_in=left,right_in=right,beam_length_in=beam_length,
+                available_length_in=max(0.,right-left))
+
+
 def transverse_development(e):
     from .transverse import run_summary,bar_shape,shape_parameters,shape_issues,hook_rotations,rotation_note
     from .model import BAR_DIAMETER,BAR_AREA,bar_positions
@@ -641,7 +655,7 @@ def actual_calculations(e):
             _check('Chk_actual_clear_'+suffix,row['id']+' clear spacing',row['clear_ratio'],
                 f'5.10.3.1.1 plus project minimum: clear {clear:.4f} in; required {clearance:.4f} in.'),
             _check('Chk_actual_min_'+suffix,row['id']+' minimum shear steel',row['min_ratio'],
-                f'5.7.2.5-1 / FDOT 2026 4.1.4A: actual intersected steel / dv cotθ; minimum={minimum:.6f} in²/in.')])
+                f'5.7.2.5-1 / FDOT 2026 4.1.4A: actual intersected steel / available window length inside the cap; project end truncation of dv cotθ; minimum={minimum:.6f} in²/in.')])
     for z in 'GL':
         selected=[r for r in rows if z in r['zone']]
         for prefix,label,field in [('Chk_shear_','Actual shear · ','ratio'),('Chk_spacing_','Actual transverse spacing · ','spacing_ratio'),

@@ -37,8 +37,11 @@ def working_html(check, equation):
     elif equation.startswith('ratio = required clear gap'):
         lines = ['ratio == "required clear gap" / Max("actual clear gap", 10^(-9) * in)']
     elif equation.startswith('ratio = required minimum rate'):
-        lines = ['"intersected rate" == Sigma_Av / (dv * Cot(theta))',
+        lines = ['L_window == dv * Cot(theta)',
+                 'L_int == Max(0 * in, Min(L_cap, x + L_window / 2) - Max(0 * in, x - L_window / 2))',
+                 '"intersected rate" == Sigma_Av / Max(L_int, 10^(-9) * in)',
                  'ratio == "required minimum rate" / Max("intersected rate", 10^(-9) * in^2 / in)']
+        notes = 'The intersected-rate denominator is limited to the concrete cap ends, including end cover. The centered bar-counting window retains its full nominal length.'
     elif equation.startswith('required rate = Av'):
         lines = ['"required combined rate" == Av_req / s + 2 * At_req / s',
                  '"provided rate" == Min("adjacent rate", "intersected rate")',

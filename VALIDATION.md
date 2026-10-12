@@ -1,4 +1,12 @@
-# Current verification · 2026-10-10 · pile spacing and end-hook contact
+# Current verification · 2026-10-12 · cap-end intersected shear-steel rate
+
+The intersected-rate denominator is now the overlap of the centered `dv cot(theta)` window with the concrete cap from 0 to `L_cap`, including end cover. The nominal window continues to select actual stirrup legs and developed shear credit. Minimum steel, shear-method eligibility and the combined shear/torsion provided rate share the clipped denominator. Equation details and the LRFD working table disclose both lengths. The calculation version is `signed-concurrent-lrfd-2024-v4-end-window-rate`; this invalidates prior cached station calculations.
+
+All 99 targeted tests passed across `test_shear_end_window`, `test_signed_sectional`, `test_critical_locations`, `test_numerical_locations`, `test_lrfd_actual`, `test_check_working`, `test_check_details`, `test_calculation_report`, `test_force_resistance` and `test_portable_build`. Coverage includes hand-counted left/right windows, end cover, interior windows, a window longer than the beam, missing stirrups, general-angle/torsion consistency, unchanged nominal-window development credit and independent dense station scans at both ends. Four export/build tests were rerun with a workspace temporary directory after Windows denied access to the default sandbox temporary directory; all four passed.
+
+All 75 files in portable package `33ce076855f1` matched the source bytes. All five notebook code cells executed successfully in a fresh local IPython process using that embedded package. A drawn-cage verification exercised 32 truncated section windows and 27 minimum-steel check disclosures. Evidence and a copy of the delivered notebook are in workspace `outputs/shear-end-window-20261012`. This verifies the requested software behavior; hosted Google Colab and independent engineering acceptance were not exercised.
+
+# Verification · 2026-10-10 · pile spacing and end-hook contact
 
 The requested project scope excludes Bottom / Transverse from face shrinkage/temperature area and spacing checks when actual open pile stirrups occupy an embedded-pile zone. Excluded rows retain diagnostic geometry with EXCLUDED status and null D/C values; they cannot govern a passing or failing aggregate. Other face checks stay active. Pile-region Service I/III and face spacing omit the embedded-pile/placement/clearance gap and check the concrete strips beside it. Between-pile gaps, rows above the pile head, physical pile conflicts and missing steel remain checked. Failed placement trials use the same spacing scope without clearing their fit failures.
 

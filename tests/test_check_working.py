@@ -102,6 +102,10 @@ class CheckWorkingTests(unittest.TestCase):
             if c.key.startswith('Chk_actual_min_'):
                 values = {name: value for name, value, unit in _actual(e, c)[1]}
                 self.assertAlmostEqual(c.ratio, values['required minimum rate']/max(values['intersected rate'], 1e-9))
+                self.assertAlmostEqual(values['intersected rate'], values['ΣAv']/values['available window length Lint'])
+                self.assertAlmostEqual(values['available window length Lint'],
+                                       values['window end inside cap']-values['window start inside cap'])
+                self.assertLessEqual(values['available window length Lint'], values['dv cot θ']+1e-9)
         # Force different torsion and shear winners in an isolated presentation
         # fixture. A dropdown must not borrow the shear winner's torque or steel.
         e = deepcopy(e)

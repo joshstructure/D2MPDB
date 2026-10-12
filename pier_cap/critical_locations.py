@@ -51,6 +51,9 @@ def algebraic_search(e,m,left,right,inventory,physical,dev,rate,region,evaluate)
     from .axial import NUMERICAL_ZERO_KIP
     from .lrfd_checks import forces,torsion_threshold,window_steel,settings
     p=e.case['inputs'];dv=e.value('dv');s=settings(e.case)
+    # This fast path assumes a constant rate denominator between bar events.
+    # End-truncated windows use the numerical search with explicit end margins.
+    if left<dv/2 or right>e.value('L_cap')-dv/2:return None
     ends=[forces(m,x) for x in (left,right)]
     if p['fpc']!=0 or any(q['nu']>NUMERICAL_ZERO_KIP or q['tu']>torsion_threshold(e,q['nu']) for q in ends):return None
     origin=left;t=P([(origin-m['left'])/m['length'],1/m['length']])

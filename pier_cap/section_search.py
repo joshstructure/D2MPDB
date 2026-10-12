@@ -3,8 +3,9 @@ import math
 
 
 def section(e, action, x, inventory, physical, dev, rate, ao, ph, closed, region=None):
-    from .lrfd_checks import steel_at,shear_parameters,window_steel,settings
+    from .lrfd_checks import steel_at,shear_parameters,window_steel,section_window,settings
     p=e.case['inputs'];s=e.case.get('lrfd_checks') or settings(e.case);dv=e.value('dv')
+    beam_length=e.value('L_cap')
     face='top' if action['moment']<0 else 'bottom'
     tension=steel_at(inventory,x,p['h'],face)
     compression=steel_at(inventory,x,p['h'],'bottom' if face=='top' else 'top')
@@ -15,17 +16,18 @@ def section(e, action, x, inventory, physical, dev, rate, ao, ph, closed, region
     # is consequently no stale one-pass minimum-steel classification.
     general=shear_parameters(e,action,area,rate,ao,ph,force_general=True,**kwargs)
     general_length=max(1e-8,dv*general['cot'])
-    w45=window_steel(physical,x,x,dv)
-    simple=shear_parameters(e,action,area,min(rate,w45['area_in2']/dv),ao,ph,**kwargs)
+    w45=section_window(physical,x,dv,beam_length)
+    rate45=w45['area_in2']/max(w45['available_length_in'],1e-9)
+    simple=shear_parameters(e,action,area,min(rate,rate45),ao,ph,**kwargs)
     if simple['method']=='5.7.3.4.1':params=simple;window=w45
     else:
-        window=window_steel(physical,x,x,general_length)
-        params=shear_parameters(e,action,area,min(rate,window['area_in2']/general_length),ao,ph,force_general=True,**kwargs)
+        window=section_window(physical,x,general_length,beam_length)
+        params=shear_parameters(e,action,area,min(rate,window['area_in2']/max(window['available_length_in'],1e-9)),ao,ph,force_general=True,**kwargs)
     # Eligibility belongs to the 45-degree candidate, even if the general
     # method's different window happens to satisfy minimum reinforcement.
     params['simplified_eligible']=simple['simplified_eligible']
     params['simplified_reason']=simple['simplified_reason']+' (45-degree transverse window)'
-    effective_rate=window['area_in2']/window['length_in']
+    effective_rate=window['area_in2']/max(window['available_length_in'],1e-9)
     developed=window_steel(physical,x,x,window['length_in'],dev)
     params['vs']=window['area_in2']*min(p['fy'],100.)
     params['vr']=p['phi_v']*min(params['vc']+params['vs'],params['nominal_limit']) if params['valid'] or all('aggregate size' in w for w in params['applicability_warnings']) else 0.
@@ -63,6 +65,10 @@ def section(e, action, x, inventory, physical, dev, rate, ao, ph, closed, region
         angle_limit=general['theta']-90.,
         capacity_floor=capacity-1e-9,
         minimum_window=effective_rate+1e-12-params['minimum_rate'],
+        minimum_45=(min(rate,rate45)+1e-12-params['minimum_rate']) if action['nu']<=NUMERICAL_ZERO_KIP else 1.,
+        end_window_45_left=x-dv/2,end_window_45_right=x+dv/2-beam_length,
+        end_window_general_left=x-general_length/2,
+        end_window_general_right=x+general_length/2-beam_length,
         shear_cap=params['vc']+params['vs']-params['nominal_limit'],
         developed_credit=developed['area_in2']*min(p['fy'],100.)-action['vu']/p['phi_v'],
         tension_zero=moment_tension+axial_tension+diagonal,
@@ -93,7 +99,7 @@ def section(e, action, x, inventory, physical, dev, rate, ao, ph, closed, region
         exception_applied=applies,classification='DIRECT — flexural maximum limit' if applies else 'FULL INTERACTION',
         av_required_rate=av,at_required_rate=at,combined_required_rate=av+2*at,
         ao_in2=ao,ph_in=ph,closed=closed,torsion_ratio=tor,tor_ratio=tor,
-        transverse_basis='FDOT 2026 SDG 4.1.4A: actual twin legs in centered dv cot(theta) window')
+        transverse_basis='FDOT 2026 SDG 4.1.4A: actual twin legs in centered dv cot(theta) window; project intersected-rate denominator truncated to concrete cap ends')
 
 
 def signature(r):

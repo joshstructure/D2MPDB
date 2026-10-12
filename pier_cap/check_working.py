@@ -157,10 +157,15 @@ def _actual(e, check):
             values += [('actual clear gap', r['clear_in'], 'in'), ('required clear gap', r['clear_required_in'], 'in')]
         elif field == 'min_ratio':
             segment = r['minimum_segment']
-            equation = 'ratio = required minimum rate / max(intersected rate, 10⁻⁹ in²/in); intersected rate = ΣAv / (dv cot θ)'
+            equation = 'ratio = required minimum rate / max(intersected rate, 10⁻⁹ in²/in); intersected rate = ΣAv / max(Lint, 10⁻⁹ in); Lwindow = dv cot θ; Lint = max(0, min(Lcap, x + Lwindow/2) − max(0, x − Lwindow/2))'
             values = [('Governing segment', segment['id'], ''), ('required minimum rate', segment['minimum_rate'], 'in²/in'),
                       ('intersected rate', segment['effective_rate'], 'in²/in'), ('ΣAv', segment['window']['area_in2'], 'in²'),
-                      ('dv cot θ', segment['window']['length_in'], 'in')]
+                      ('dv cot θ', segment['window']['length_in'], 'in'),
+                      ('available window length Lint', segment['window']['available_length_in'], 'in'),
+                      ('design station x', segment['station_in'], 'in'),
+                      ('cap length Lcap', segment['window']['beam_length_in'], 'in'),
+                      ('window start inside cap', segment['window']['left_in'], 'in'),
+                      ('window end inside cap', segment['window']['right_in'], 'in')]
         else:
             segment = r['torsion_segment']
             equation = 'required rate = Av,req/s + 2At,req/s; provided rate = min(adjacent rate, intersected rate); ratio = required / max(provided, 10⁻⁹ in²/in). Required torsion with an open path uses failure flag 2; below threshold uses 0.'

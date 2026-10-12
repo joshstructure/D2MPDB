@@ -61,7 +61,10 @@ def working_html(e,*,full=False):
         'Added hooked bars cannot establish this exemption. Each noneligible segment uses the full equation.</p>'
         '<p><b>Shear, 5.7.3.3:</b> V<sub>c</sub> = 0.0316λβ√f′<sub>c</sub>bd<sub>v</sub>; '
         'V<sub>s</sub> = ΣA<sub>v,intersected</sub>f<sub>y</sub>; V<sub>r</sub> = φ<sub>v</sub> min(V<sub>c</sub> + V<sub>s</sub>, 0.25f′<sub>c</sub>bd<sub>v</sub>). '
-        'FDOT 2026 SDG 4.1.4A requires actual legs within 0.5d<sub>v</sub>cotθ on each side. Every bar-entry/exit event is examined for the minimum intersected area over the segment, including truncated end windows. '
+        'FDOT 2026 SDG 4.1.4A requires actual legs within 0.5d<sub>v</sub>cotθ on each side. Every bar-entry/exit event is examined. '
+        'For the project intersected-rate calculation, ΣA<sub>v</sub> is divided by the portion of that centered window inside the concrete cap: '
+        'L<sub>int</sub> = max[0, min(L<sub>cap</sub>, x + d<sub>v</sub>cotθ/2) − max(0, x − d<sub>v</sub>cotθ/2)]. '
+        'This denominator includes end cover and is used consistently for minimum steel, shear-method eligibility and the combined shear/torsion provided rate. '
         'The simplified β=2, θ=45° route is used only when 5.7.3.4.1 permits it. '
         'Otherwise the calculated strain uses signed Nu and developed tension-half steel. The compression-half flange check uses actual moment, shear and axial force with C5.7.3.4.2 Figures 3/4 and the finite C5.4.2.7 tensile threshold. '
         'Strain doubles only when net tension cracks that flange. Negative base strain adopts the permitted zero value. General strain above 0.006 has no adopted resistance. '
@@ -108,8 +111,8 @@ def working_html(e,*,full=False):
         ['Bar','Kind','Span','#','Across cap (in)','Above bottom (in)','cb (in)','Fh (kip)','Basic ld (in)','λrl','λcf','λrc','Required (in)','Left end','Right end'],
         [[r['id'],r['kind'],f'P{r["span"]}–P{r["span"]+1}' if r['additional'] else 'Continuous',r['bar'],r['x'],r['y'],r['cb_in'],r['fh'],r['basic_in'],r['location_factor'],r['coating_factor'],r['confinement_factor'],r['required_in'],r['left_in'],r['right_in']] for r in d['inventory']])+'</details>')
     out.append('<details><summary>FDOT intersected stirrup legs and torsion operands · every segment</summary>'+_table(
-        ['Segment','Window length (in)','Window center (in)','Intersected bar IDs','ΣAv (in²)','Developed ΣAv (in²)','Ao (in²)','ph (in)','Av/s req','At/s req','Combined req','Torsion D/C'],
-        [[r['id'],r['window']['length_in'],r['window']['station_in'],', '.join(r['window']['bar_ids']),r['window']['area_in2'],r['developed_window_area_in2'],r['ao_in2'],r['ph_in'],r['av_required_rate'],r['at_required_rate'],r['combined_required_rate'],r['torsion_ratio']] for r in d['longitudinal']])+'</details>')
+        ['Segment','Full dv cot θ (in)','Available window Lint (in)','Window center (in)','Intersected bar IDs','ΣAv (in²)','Intersected rate (in²/in)','Developed ΣAv (in²)','Ao (in²)','ph (in)','Av/s req','At/s req','Combined req','Torsion D/C'],
+        [[r['id'],r['window']['length_in'],r['window']['available_length_in'],r['window']['station_in'],', '.join(r['window']['bar_ids']),r['window']['area_in2'],r['effective_rate'],r['developed_window_area_in2'],r['ao_in2'],r['ph_in'],r['av_required_rate'],r['at_required_rate'],r['combined_required_rate'],r['torsion_ratio']] for r in d['longitudinal']])+'</details>')
     out.append('<details><summary>Stirrup anchorage / closure working</summary>'+_table(
         ['Run','Type','#','Bend','Min bend','Hook extension (in)','LRFD min extension (in)','Available le','Required le','D/C','Notes'],
         [[r['run'],r['kind'],r['bar'],r['bend_in'],r['bend_required_in'],r['tail_in'],r['tail_required_in'],r['embed_available_in'],r['embed_required_in'],r['ratio'],r['notes']] for r in d['transverse_development']])+'</details>')

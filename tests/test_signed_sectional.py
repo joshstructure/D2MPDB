@@ -20,7 +20,7 @@ FIXTURE=Path(__file__).parent/'fixtures/fbmp_610_cap.xml'
 def simple_engine():
     c=default_case();c['inputs'].update(fc=6,b=48,h=36,Es=29000,fy=60,fpc=0)
     c['screening']['aggregate_confirmed']=True
-    values={'dv':30.,'Ec':4000.}
+    values={'dv':30.,'Ec':4000.,'L_cap':200.}
     return SimpleNamespace(case=c,value=lambda k,*_:values[k])
 
 
