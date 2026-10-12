@@ -240,6 +240,18 @@ class MathcadEdition(unittest.TestCase):
         ns = '{http://schemas.mathsoft.com/worksheet30}'
         self.assertEqual(len(root.findall(f'{ns}binaryContent/{ns}item')), 2)
 
+    def test_results_beside_equations_follow_them_in_mathcad_order(self):
+        from scripts import build_backwall_mathcad as m
+        w = m.layout(m.sheet(m.notebook_revision()))
+        m.check_order(w.log)
+        beside = [r for r in w.log if r['label'].startswith('tr(') and r['left'] > m.LEFT + 1]
+        self.assertGreater(len(beside), 10)
+        # A result whose baseline sits above its equation's baseline is caught.
+        bad = [dict(top=0, align=20, left=18, defines={'d'}, uses=set(), label='d'),
+               dict(top=1, align=13, left=200, defines=set(), uses={'d'}, label='tr(d)')]
+        with self.assertRaisesRegex(AssertionError, 'by align'):
+            m.check_order(bad)
+
     def test_vector_products_are_rejected_like_mathcad(self):
         from scripts import build_backwall_mathcad as m
         env = {'a': [m.U(1), m.U(2)], 'b': [m.U(3), m.U(4)]}

@@ -854,9 +854,58 @@ LEFT, RIGHT = 18, 590
 HL_INPUT, HL_KEY = '#ffff80', '#ccffcc'
 
 
+ORDER_GAP = 5.0     # points by which a right-hand region sits below its left-hand neighbour
+BUILTINS = UNITS | FUNCTIONS | {'IF', 'row', 'col', 'tr', 'sqrt', 'abs'}
+
+
+def uses_in(t, out=None):
+    """Variables and user functions an expression refers to."""
+    out = set() if out is None else out
+    if t[0] == 'id':
+        out.add(t[1])
+    if t[0] == 'call' and t[1] not in BUILTINS:
+        out.add(t[1])
+    for part in t[1:]:
+        if isinstance(part, tuple):
+            uses_in(part, out)
+        elif isinstance(part, list):
+            for p in part:
+                uses_in(p, out)
+    return out
+
+
+def defines_of(item):
+    return {item.name} if item.kind in ('input', 'eq', 'def', 'idef', 'range', 'fdef') else set()
+
+
+def uses_of(item):
+    if item.kind == 'range':
+        return set()
+    names = uses_in(item.tree) - BUILTINS
+    if item.kind == 'fdef':
+        names -= set(item.params)
+    if item.kind == 'idef':
+        names |= set(item.index if isinstance(item.index, tuple) else (item.index,))
+    return names
+
+
+def check_order(log):
+    """Every region must follow the regions it depends on, ordered by top edge or by baseline."""
+    problems = []
+    for key in ('top', 'align'):
+        defined = set()
+        for region in sorted(log, key=lambda r: (round(r[key], 3), r['left'])):
+            missing = region['uses'] - defined
+            if missing:
+                problems.append(f'by {key}: {region["label"]} is evaluated before {sorted(missing)}')
+            defined |= region['defines']
+    if problems:
+        raise AssertionError('Mathcad evaluation order:\n  ' + '\n  '.join(problems))
+
+
 class Writer:
     def __init__(self):
-        self.regions, self.items, self.y, self.next_id = [], [], 18.0, 1
+        self.regions, self.items, self.y, self.next_id, self.log = [], [], 18.0, 1, []
 
     def _region(self, left, top, width, height, body, highlight=None, border=False, align_y=None):
         rid = self.next_id; self.next_id += 1
@@ -885,49 +934,63 @@ class Writer:
         self.y += h + gap
 
     # math
-    def math(self, item, left, top):
-        """Write one math region; returns (width, height)."""
+    def measure(self, item):
+        """(width, height, anchor) of a math region; anchor = baseline below the region top."""
         if item.kind == 'range':
-            lo, hi = item.index
-            inner = (f'<ml:define xmlns:ml="{ML}">{x_id(item.name)}<ml:range><ml:real>{lo}</ml:real>'
-                     f'<ml:real>{hi}</ml:real></ml:range></ml:define>')
             w, asc, desc = len(item.name) * CW + 60, 9, 4
         elif item.kind == 'fdef':
-            head = (f'<ml:function>{x_id(item.name)}<ml:boundVars>' + ''.join(x_id(p) for p in item.params)
-                    + '</ml:boundVars></ml:function>')
-            inner = f'<ml:define xmlns:ml="{ML}">{head}{x_expr(item.tree)}</ml:define>'
             w0, asc, desc = size(item.tree)
             w = w0 + len(item.name) * CW + 40 + 12 * len(item.params)
         elif item.kind == 'show':
-            override = self._override(item.unit)
-            inner = (f'<ml:eval placeholderMultiplicationStyle="default" xmlns:ml="{ML}">{x_expr(item.tree)}{override}</ml:eval>')
             w0, asc, desc = size(item.tree)
             w = w0 + 20 + self._result_width(item)
         else:
-            lhs = x_id(item.name)
-            if item.kind == 'idef':
-                index = item.index if isinstance(item.index, tuple) else (item.index,)
-                idx = x_id(index[0]) if len(index) == 1 else '<ml:sequence>' + ''.join(x_id(i) for i in index) + '</ml:sequence>'
-                lhs = f'<ml:apply><ml:indexer/>{lhs}{idx}</ml:apply>'
-            rhs = x_expr(item.tree)
             lw = size(('id', item.name))[0] + (14 if item.kind == 'idef' else 0)
             w0, asc, desc = size(item.tree)
-            if item.kind == 'eq':
-                rhs = f'<ml:eval placeholderMultiplicationStyle="default">{rhs}{self._override(item.unit)}</ml:eval>'
-                w = lw + 18 + w0 + 20 + self._result_width(item)
-            else:
-                w = lw + 18 + w0
-            inner = f'<ml:define xmlns:ml="{ML}">{lhs}{rhs}</ml:define>'
-        height = max(16.0, asc + desc + 5)
-        w = w * 1.08 + 6
+            w = lw + 18 + w0 + (20 + self._result_width(item) if item.kind == 'eq' else 0)
+        return w * 1.08 + 6, max(16.0, asc + desc + 5), asc + 2
+
+    @staticmethod
+    def _inner(item):
+        if item.kind == 'range':
+            lo, hi = item.index
+            return (f'<ml:define xmlns:ml="{ML}">{x_id(item.name)}<ml:range><ml:real>{lo}</ml:real>'
+                    f'<ml:real>{hi}</ml:real></ml:range></ml:define>')
+        if item.kind == 'fdef':
+            head = (f'<ml:function>{x_id(item.name)}<ml:boundVars>' + ''.join(x_id(p) for p in item.params)
+                    + '</ml:boundVars></ml:function>')
+            return f'<ml:define xmlns:ml="{ML}">{head}{x_expr(item.tree)}</ml:define>'
+        if item.kind == 'show':
+            return (f'<ml:eval placeholderMultiplicationStyle="default" xmlns:ml="{ML}">{x_expr(item.tree)}'
+                    f'{Writer._override(item.unit)}</ml:eval>')
+        lhs = x_id(item.name)
+        if item.kind == 'idef':
+            index = item.index if isinstance(item.index, tuple) else (item.index,)
+            idx = x_id(index[0]) if len(index) == 1 else '<ml:sequence>' + ''.join(x_id(i) for i in index) + '</ml:sequence>'
+            lhs = f'<ml:apply><ml:indexer/>{lhs}{idx}</ml:apply>'
+        rhs = x_expr(item.tree)
+        if item.kind == 'eq':
+            rhs = f'<ml:eval placeholderMultiplicationStyle="default">{rhs}{Writer._override(item.unit)}</ml:eval>'
+        return f'<ml:define xmlns:ml="{ML}">{lhs}{rhs}</ml:define>'
+
+    def math(self, item, left, top):
+        """Write one math region; returns (width, height, anchor)."""
+        w, height, anchor = self.measure(item)
         highlight = HL_INPUT if item.kind == 'input' else (HL_KEY if item.key else None)
         precision = ('<resultFormat numeric-only="false"><decimal precision="3" show-trailing-zeros="true" radix="dec" '
                      'complex-threshold="10" zero-threshold="15" imaginary-value="i"/><matrix display-style="auto" '
                      'expand-nested-arrays="false"/><unit format-units="true" simplify-units="true" fractional-unit-exponent="false"/>'
                      '</resultFormat>') if item.kind in ('eq', 'show') else ''
-        body = f'<math optimize="false" disable-calc="false">{inner}{precision}</math>'
-        self._region(left, top, w, height, body, highlight=highlight, border=item.key, align_y=top + asc + 2)
-        return w, height
+        body = f'<math optimize="false" disable-calc="false">{self._inner(item)}{precision}</math>'
+        self._region(left, top, w, height, body, highlight=highlight, border=item.key, align_y=top + anchor)
+        self.log.append(dict(top=top, align=top + anchor, left=left, defines=defines_of(item), uses=uses_of(item),
+                             label=item.name or item.expr))
+        return w, height, anchor
+
+    def right_of(self, prev_top, prev_anchor, item):
+        """Top for a region placed to the right of another so that both its top edge and its
+        baseline lie lower: Mathcad then evaluates it afterwards whichever reference it uses."""
+        return prev_top + max(ORDER_GAP, prev_anchor - self.measure(item)[2] + ORDER_GAP)
 
     @staticmethod
     def _override(unit):
@@ -989,28 +1052,30 @@ def layout(blocks):
                 heights = []
                 for col, item in enumerate(items[n:n + 2]):
                     left = LEFT + col * half
-                    mw, mh = w.math(item, left, w.y)
+                    mw, mh, _ = w.math(item, left, w.y)
                     ch = w.caption(item.caption, left + max(mw, 92) + 6, w.y, half - max(mw, 92) - 10)
                     heights.append(max(mh, ch))
                 w.y += max(heights) + 4
             w.y += 6
         elif kind == 'row':
-            x = LEFT; heights = []
-            for n, item in enumerate(block.payload):
-                mw, mh = w.math(item, x, w.y + 0.75 * n)
-                heights.append(mh); x += mw + 18
-            w.y += max(heights) + 8
+            x, top, bottom, anchor = LEFT, w.y, w.y, None
+            for item in block.payload:
+                if anchor is not None:
+                    top = w.right_of(top, anchor, item)
+                mw, mh, anchor = w.math(item, x, top)
+                bottom = max(bottom, top + mh); x += mw + 18
+            w.y = bottom + 8
         elif kind == 'eqs':
             for item in block.payload:
                 if item.kind == 'idef' and isinstance(item.index, str):
                     show = Item('show', None, f'tr({item.name})', item.unit)
-                    mw, mh = w.math(item, LEFT, w.y)
+                    mw, mh, ma = w.math(item, LEFT, w.y)
                     sw_est = (size(show.tree)[0] + 20 + w._result_width(show)) * 1.08 + 6
                     if LEFT + mw + 16 + sw_est <= RIGHT:
-                        left, top = LEFT + mw + 16, w.y + 0.75
+                        left, top = LEFT + mw + 16, w.right_of(w.y, ma, show)
                     else:                       # result row on its own line, indented
                         left, top = LEFT + 36, w.y + mh + 3
-                    sw, sh = w.math(show, left, top)
+                    sw, sh, _ = w.math(show, left, top)
                     room = RIGHT - (left + sw + 8)
                     bottom = max(top + sh, w.y + mh)
                     if item.caption and room >= 110:
@@ -1020,7 +1085,7 @@ def layout(blocks):
                     w.y = max(w.y + mh, bottom) + 6
                     continue
                 left = LEFT
-                mw, mh = w.math(item, left, w.y)
+                mw, mh, _ = w.math(item, left, w.y)
                 room = RIGHT - (left + mw + 10)
                 if item.caption and room >= 120:
                     ch = w.caption(item.caption, left + mw + 10, w.y, room)
@@ -1107,6 +1172,7 @@ SETTINGS = r'''<settings>
 
 def document(blocks, rev, seed):
     w = layout(blocks)
+    check_order(w.log)
     ids = [str(uuid.UUID(int=(seed + n) % (1 << 128), version=4)).upper() for n in range(3)]
     binary = ''.join(f'<item item-id="{n}">{_b64(data)}</item>\n' for n, data in w.items)
     return (
