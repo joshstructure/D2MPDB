@@ -8,9 +8,11 @@ from datetime import datetime, timezone
 import html
 from pier_cap.engine import parse
 from .model import (SECTIONS, INPUTS, COMBINATIONS, STRENGTH, SERVICE, REFERENCES, SOURCES, CONFIRMATIONS,
-                    COMBINATION_DATA, formula_trace, strap_table)
+                    COMBINATION_DATA, EXTERNAL_CAPTIONS, formula_trace, strap_table)
 from .notation import symbol, mathml
 from .reviews import review_html
+from .schematics import schematic, meaning
+from pier_cap.engine import UNITS
 from . import visuals
 
 STYLE = '''
@@ -31,8 +33,18 @@ details>summary{cursor:pointer;color:#245c85}.toolbar{position:sticky;top:0;back
 .toolbar button{margin-right:6px}.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:10pt}
 .flow span{border:1px solid #7189a6;background:#fff;border-radius:3px;padding:4px 7px}.flow b{color:#7189a6}
 .ebw-review{margin:4px 0;padding:4px 6px;background:#fff3d6;border-left:3px solid #805600;font-size:9.5pt}
-@media print{.toolbar{display:none}details{display:block}details>*{display:block}}
+details.qc{margin:-6px 0 14px;border-left:3px solid #a4bdce;background:#f7fafc;padding:3px 8px}
+details.qc>summary{color:#1f2a36;font-size:10pt;list-style-position:outside}
+details.qc>summary b{color:#245c85}details.qc[open]{background:#f1f5fa}
+.qc-body{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start;padding:8px 0 4px}
+.qc-body figure{margin:0;flex:0 1 760px}.qc-body figcaption{font-size:9pt;color:#485969;margin-top:2px}
+.qc-terms{flex:1 1 320px}.qc-terms table{font-size:9pt}.qc-terms td{padding:2px 5px}.qc-terms math{font-size:11pt}
+.qc-note{font-size:9pt;color:#485969;margin:4px 0}
+@media print{.toolbar{display:none}details.qc{break-inside:avoid}svg{max-width:100%}}
 '''
+
+QC_NOTE = ('Under every equation: <b>What it represents</b> is always visible. Open it for a schematic drawn from the current case, '
+           'with the defined quantity in red, and a legend of every term with its value and source.')
 
 SECTION_TEXT = {
     'geometry': 'Arms are measured about the pile top. Vertical-load arms use the pile line shifted 3 in toward the fill, as SDG 3.13.2.N.3 requires the strap loading to include pile placement tolerance; that shift increases overturning toward the span.',
@@ -73,6 +85,39 @@ def _names(ast, out):
 
 def _refs(keys):
     return '; '.join(f'{REFERENCES[k]["code"]} {REFERENCES[k]["article"]}' for k in keys if k in REFERENCES)
+
+
+def qc_blocks(e):
+    """Collapsible QC row for every formula: meaning (always visible), schematic and term legend."""
+    defs = {d['name']: d for d in e.definitions}
+    titles = dict(SECTIONS)
+    blocks = {}
+    for d in e.definitions:
+        svg, drawing = schematic(e, d['name'])
+        rows = []
+        names = []
+        for n in sorted(_names(parse(d['expr']), set())):
+            if n not in UNITS and n not in names:
+                names.append(n)
+        for n in names:
+            value = e.text(n, 4) if n in e.units else ''
+            if n in INPUTS:
+                src = e.case['sources'].get(n, {})
+                what, where = INPUTS[n]['caption'], f'input · {src.get("source", INPUTS[n]["source"])} ({src.get("status", INPUTS[n]["status"])})'
+            elif n in defs:
+                what, where = defs[n]['caption'], f'calculated · {titles[defs[n]["section"]]}'
+            else:
+                what, where = EXTERNAL_CAPTIONS.get(n, ''), 'AASHTO M31 nominal bar dimensions'
+            rows.append(f'<tr><td>{mathml(symbol(n))}</td><td>{html.escape(what)}</td><td class="num">{html.escape(value)}</td>'
+                        f'<td>{html.escape(where)}</td></tr>')
+        legend = ('<div class="qc-terms"><table><tr><th>Term</th><th>Meaning</th><th>Value</th><th>Source</th></tr>'
+                  + ''.join(rows) + '</table></div>') if rows else '<div class="qc-terms"><p class="qc-note">Constant; no input terms.</p></div>'
+        text = meaning(d['name']) or d['caption']
+        caption = f'<figcaption>{html.escape(drawing)}</figcaption>' if drawing and drawing != text else ''
+        figure = f'<figure>{svg}{caption}</figure>' if svg else ''
+        blocks[d['name']] = (f'<details class="qc"><summary><b>What it represents:</b> {html.escape(text)}</summary>'
+                             f'<div class="qc-body">{figure}{legend}</div></details>')
+    return blocks
 
 
 def _input_rows(e, names):
@@ -139,12 +184,13 @@ def summary_html(e):
                  + (f'<p><b>Pending items</b></p><ul>{pend}</ul>' if pend else '')))
 
 
-def checks_html(e):
+def checks_html(e, qc=None):
     trace = {t['name']: t for t in formula_trace(e)}
+    qc = qc or {}
     rows = []
     for c in e.checks:
         ratio = f'{c.ratio:.3f}' if isinstance(c.ratio, (int, float)) else '—'
-        details = ''.join(f'<div class="eq">{trace[n]["mathml"]}</div>' for n in c.names if n in trace)
+        details = ''.join(f'<div class="eq">{trace[n]["mathml"]}</div>{qc.get(n, "")}' for n in c.names if n in trace)
         refs = _refs(c.refs)
         body = (f'<p>{html.escape(c.basis)}</p>' + (f'<p class="ref">{html.escape(refs)}</p>' if refs else '') + details
                 + (f'<p><i>{html.escape(c.note)}</i></p>' if c.note else ''))
@@ -158,10 +204,15 @@ def build_report(e, title=None):
     import plotly.offline
     title = title or 'End Bent Backwall, Cheek Walls and Tie-Back Straps'
     trace = formula_trace(e)
+    qc = qc_blocks(e)
     figures = {name: fn(e) for name, fn in visuals.FIGURES}
-    parts = [f'<div class="toolbar"><button onclick="document.querySelectorAll(\'details\').forEach(d=>d.open=true)">Expand all</button>'
-             f'<button onclick="document.querySelectorAll(\'details\').forEach(d=>d.open=false)">Collapse all</button>'
-             f'<button onclick="document.querySelectorAll(\'details\').forEach(d=>d.open=true);window.print()">Print / save PDF</button></div>',
+    toggle = lambda sel, state: f"document.querySelectorAll('{sel}').forEach(d=>d.open={state})"
+    parts = [f'<div class="toolbar"><button onclick="{toggle("details", "true")}">Expand all</button>'
+             f'<button onclick="{toggle("details", "false")}">Collapse all</button>'
+             f'<button onclick="{toggle("details.qc", "true")}">Open all QC schematics</button>'
+             f'<button onclick="{toggle("details.qc", "false")}">Close all QC schematics</button>'
+             f'<button title="Opens equations and tables; QC schematics print as currently shown" '
+             f'onclick="{toggle("details:not(.qc)", "true")};window.print()">Print / save PDF</button></div>',
              f'<p><b>D2 I-95 Pedestrian Bridge · FDOT District 2</b></p><h1>{html.escape(title)}</h1>',
              f'<p>{html.escape(e.case["name"])}<br>Generated {datetime.now(timezone.utc):%Y-%m-%d %H:%M UTC} · '
              f'{html.escape(SOURCES["editions"])}</p>']
@@ -173,7 +224,8 @@ def build_report(e, title=None):
         'Mathcad backwall/strap calculation with project data: two FIB-36 bearings on a 17\'-8" cap, four 18 in square piles (effectively pinned), '
         'a 4 in MSE landing slab on the backwall, pedestrian loading only and FDOT January 2026 criteria.</p>'
         f'<div class="flow">{flow}</div>'
-        '<p>Outside this calculation: strap/pullout design (Specialty Engineer), revised FBMP analysis, final wall geometry (D-005) and detailing.</p>'))
+        '<p>Outside this calculation: strap/pullout design (Specialty Engineer), revised FBMP analysis, final wall geometry (D-005) and detailing.</p>'
+        f'<p>{QC_NOTE}</p>'))
     parts.append(summary_html(e))
     by_section = {}
     for t in trace:
@@ -188,21 +240,30 @@ def build_report(e, title=None):
         section = [f'<h2>{html.escape(heading)}</h2>', _box('discussion', 'Purpose', f'<p>{html.escape(SECTION_TEXT.get(key, ""))}</p>')]
         if inputs:
             section.append(_box('inputs', 'Inputs', _input_rows(e, inputs)))
-        eqs = ''.join(f'<p class="cap">{html.escape(t["caption"])}' + (f' <span class="ref">({html.escape(_refs(t["refs"]))})</span>' if t['refs'] else '')
-                      + f'</p><div class="eq">{t["mathml"]}</div>' for t in items)
-        if key == 'strap':
-            tables = ''.join(f'<details{" open" if c["key"] == "STRI" else ""}><summary><b>{html.escape(c["label"])}</b> overturning table</summary>'
-                             f'{strap_table_html(e, c)}</details>' for c in COMBINATIONS)
-            section.append(_box('outputs', 'Overturning tables by combination', '<p>' + html.escape(COMBINATION_DATA['basis']) + '</p>' + tables))
-            section.append(f'<details><summary>Equations for every combination ({len(items)} lines)</summary>{eqs}</details>')
+        def equations(subset):
+            return ''.join(f'<p class="cap">{html.escape(t["caption"])}' + (f' <span class="ref">({html.escape(_refs(t["refs"]))})</span>' if t['refs'] else '')
+                           + f'</p><div class="eq">{t["mathml"]}</div>{qc.get(t["name"], "")}' for t in subset)
+        if key in ('strap', 'bw_load'):
+            if key == 'strap':
+                tables = ''.join(f'<details{" open" if c["key"] == "STRI" else ""}><summary><b>{html.escape(c["label"])}</b> overturning table</summary>'
+                                 f'{strap_table_html(e, c)}</details>' for c in COMBINATIONS)
+                section.append(_box('outputs', 'Overturning tables by combination', '<p>' + html.escape(COMBINATION_DATA['basis']) + '</p>' + tables))
+            grouped = [t for t in items if not any(t['name'].endswith('_' + c['key']) for c in COMBINATIONS)]
+            if key == 'bw_load':
+                section.append(equations([t for t in grouped if t['name'].endswith('_bw') and not t['name'].startswith('V_u')]))
+            for c in COMBINATIONS:
+                subset = [t for t in items if t['name'].endswith('_' + c['key'])]
+                section.append(f'<details{" open" if c["key"] == "STRI" else ""}><summary><b>{html.escape(c["label"])}</b> · '
+                               f'{len(subset)} equations</summary>{equations(subset)}</details>')
+            section.append(equations([t for t in grouped if not (key == 'bw_load' and t['name'].endswith('_bw') and not t['name'].startswith('V_u'))]))
         else:
-            section.append(eqs)
+            section.append(equations(items))
         for name in FIGURE_AFTER.get(key, []):
             section.append(figures[name].to_html(full_html=False, include_plotlyjs=False))
         parts.append(''.join(section))
     parts.append('<h2>14. Check register</h2>')
     parts.append(figures['ratios'].to_html(full_html=False, include_plotlyjs=False))
-    parts.append(checks_html(e))
+    parts.append(checks_html(e, qc))
     conf = ''.join(f'<li>{"Confirmed" if e.case["confirmations"][k] else "<b>Pending</b>"}: {html.escape(text)}</li>' for k, text in CONFIRMATIONS.items())
     receipts = ''.join(f'<tr><td>{html.escape(r["source_id"])}</td><td>{html.escape(r["filename"])}</td><td><code>{r["sha256"][:16]}…</code></td>'
                        f'<td>{"matches register" if r["matches_register"] else "<b>differs from register</b>"}</td><td>{html.escape("; ".join(r["notes"]))}</td></tr>'

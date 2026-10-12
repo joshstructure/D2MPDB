@@ -188,6 +188,35 @@ class SourcesAndExports(unittest.TestCase):
             upgrade_case({'inputs': {}})
 
 
+class QCSchematics(unittest.TestCase):
+    """Every equation in the report carries a collapsible QC drawing of what it represents."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.e = evaluate()
+
+    def test_every_definition_has_a_drawing_meaning_and_its_result(self):
+        from html import escape
+        from end_bent_walls.schematics import schematic, meaning
+        for d in self.e.definitions:
+            name = d['name']
+            svg, label = schematic(self.e, name)
+            self.assertTrue(svg and svg.startswith('<svg') and label, name)
+            self.assertTrue(meaning(name), name)
+            shown = {escape(self.e.text(name, places)) for places in range(5)}
+            self.assertTrue(any(text in svg for text in shown), f'{name}: result value not shown')
+
+    def test_report_places_a_collapsible_block_under_every_equation(self):
+        import re
+        from end_bent_walls.report import build_report
+        text = build_report(self.e)
+        equations = text.count('<div class="eq">')
+        self.assertGreater(equations, 220)
+        self.assertEqual(len(re.findall(r'<div class="eq">.*?</div>\s*<details class="qc">', text, re.S)), equations)
+        self.assertEqual(text.count('<details class="qc"><summary><b>What it represents:</b>'), equations)
+        self.assertIn('Open all QC schematics', text)
+
+
 class PortableNotebook(unittest.TestCase):
     def test_embedded_package_is_current_and_intact(self):
         from scripts.build_backwall_notebook import NOTEBOOK, SETUP_ID, package_files
