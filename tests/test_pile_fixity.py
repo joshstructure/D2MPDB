@@ -269,6 +269,9 @@ class FixityWidgetTests(unittest.TestCase):
         self.app.xml_import.stage((FIXTURES/'fbmp_610_piles.xml').read_bytes(),'fbmp_610_piles.xml')
         self.assertFalse(p.minimum_tip_result['comparison_complete'])
         p._import((FIXTURES/'fbmp_610_piles.xml').read_bytes(),'fbmp_610_piles.xml')
+        self.assertAlmostEqual(float(p.cutoff.value),41.4175)
+        self.assertEqual(p.reference.value,'')  # Reduced fixture has no soil input block.
+        p.cutoff.value='40';p.reference.value='30'
         self.assertTrue(p.minimum_tip_result['comparison_complete'])
         self.assertEqual(p.cutoff.value,'40');self.assertEqual(p.reference.value,'30')
         self.assertEqual(p.trial_text.value,state['controls']['trial_text'])
@@ -278,6 +281,9 @@ class FixityWidgetTests(unittest.TestCase):
         self.assertEqual(p.review['combination_factors'],saved['review']['combination_factors'])
         p.restore(state)
         p._import((FIXTURES/'fbmp_610_piles.xml').read_bytes(),'fbmp_610_piles.xml')
+        self.assertAlmostEqual(float(p.cutoff.value),41.4175)
+        self.assertEqual(p.reference.value,'')
+        p.cutoff.value='40';p.reference.value='30'
         self.assertTrue(p.minimum_tip_result['comparison_complete'])
         self.assertEqual(p.cutoff.value,'40');self.assertEqual(p.reference.value,'30')
 
@@ -286,7 +292,9 @@ class FixityWidgetTests(unittest.TestCase):
         p = self.panel
         p.set_review(import_pile_xml(FIXTURES/'fbmp_610_piles.xml'))
         self.assertIn('MINIMUM-TIP INPUTS RESET',p.trial_status.value)
-        self.assertEqual((p.cutoff.value,p.reference.value,p.trial_text.value),('','',''))
+        self.assertAlmostEqual(float(p.cutoff.value),41.4175)
+        self.assertEqual((p.reference.value,p.trial_text.value),('',''))
+        p.cutoff.value=''  # Clearing an imported datum must keep the result pending.
         p.reference.value='24.5'
         p.trial_text.value=(FIXTURES/'pile_minimum_tip_reference.csv').read_text()
         statuses=[]

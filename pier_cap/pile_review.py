@@ -131,6 +131,7 @@ def review_elevations(review):
     """XML defaults, including cutoff recovery for saved reviews predating soil import."""
     heads = []
     for pile in review['piles'].values():
+        require(isinstance(pile, dict), 'Invalid saved pile geometry.')
         xyz = pile.get('head_xyz_in')
         require(isinstance(xyz, (list, tuple)) and len(xyz) == 3 and
                 all(type(v) in (float, int) and math.isfinite(v) for v in xyz),

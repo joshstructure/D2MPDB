@@ -27,7 +27,7 @@ class PileWidgetTests(unittest.TestCase):
     def test_review_is_above_steel_and_independent_source_is_explicit(self):
         self.panel.set_review(self.review)
         children=list(self.app.ui.children)
-        self.assertLess(children.index(self.panel.ui),children.index(self.app.search_panel))
+        self.assertLess(children.index(self.panel.ui),children.index(self.app.cap_ui))
         self.assertIn('No fixed-depth cap XML',self.panel.source_match.value)
         self.assertEqual(self.panel.combo.value,'4')
         self.panel.combo.value='2';self.panel.piles.value=('1',)
@@ -198,7 +198,7 @@ class PileWidgetTests(unittest.TestCase):
         self.panel._import(E.tostring(root), 'shared.xml')
         self.assertEqual(self.panel.review['section']['issues'], [])
         self.assertEqual(self.panel.piles.value, ('2','4'))
-        self.assertEqual(self.panel.cutoff.value, '40')
+        self.assertAlmostEqual(float(self.panel.cutoff.value), 41.4175)
 
     def test_previous_single_pile_save_still_loads(self):
         self.panel.set_review(self.review)

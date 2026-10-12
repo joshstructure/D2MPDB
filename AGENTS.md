@@ -1,5 +1,14 @@
 # D2MPDB project guidance
 
+## GitHub delivery
+
+The user has requested that completed project changes be committed and pushed
+from the local checkout to GitHub after verification. This applies across project
+chats. Include only completed work; preserve concurrent unfinished changes and
+never force-push. Do not commit or push for read-only or planning-only requests.
+
+## BPAD workflow
+
 Existing notebook workflows are documented in README.md. These additional rules
 apply to BPAD work; do not broaden a journal task into unrelated notebook changes.
 

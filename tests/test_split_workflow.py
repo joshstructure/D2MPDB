@@ -78,15 +78,20 @@ class SplitNotebookTests(unittest.TestCase):
         cap=deepcopy(self.app.case)
         self.p._import((FIXTURES/'fbmp_610_piles.xml').read_bytes(),'MinimumTip.xml')
         self.assertEqual(self.app.case,cap)
+        self.assertAlmostEqual(float(self.p.cutoff.value),41.4175)
+        self.assertEqual(self.p.reference.value,'')
+        self.assertEqual(self.p.trial_text.value,before['controls']['trial_text'])
+        self.p.cutoff.value='40';self.p.reference.value='24.5'
         self.assertEqual(self.p.snapshot(),before)
         self.assertIn('as intended',self.p.source_match.value)
         self.assertTrue(all(r['source_xml']=='MinimumTip.xml' for r in self.p.handoff_data()['loads']))
         self.app.xml_import.stage(b'<broken','invalid.xml')
         self.assertEqual(self.app.case,cap)
         self.assertEqual(self.p.snapshot(),before)
-        # A new study clears only its trial/datum inputs; cap design stays intact.
+        # A new study clears trials and loads its own XML elevations; cap stays intact.
         self.p._import((FIXTURES/'fbmp_610_piles.xml').read_bytes()+b'\n','NextStudy.xml')
-        self.assertEqual(self.p.cutoff.value,'')
+        self.assertAlmostEqual(float(self.p.cutoff.value),41.4175)
+        self.assertEqual((self.p.reference.value,self.p.trial_text.value),('',''))
         self.assertEqual(self.app.case,cap)
 
     def test_margin_exports_once_without_changing_cap_or_minimum_tip(self):
