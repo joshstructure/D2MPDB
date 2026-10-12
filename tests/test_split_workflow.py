@@ -1,12 +1,11 @@
 """Independent analysis sources and a once-only internal geotech margin."""
 from copy import deepcopy
-import csv
-import io
 import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
 import unittest
+from openpyxl import load_workbook
 from IPython.core.interactiveshell import InteractiveShell
 from IPython.utils.capture import capture_output
 
@@ -99,12 +98,14 @@ class SplitNotebookTests(unittest.TestCase):
         for _ in range(2):
             with TemporaryDirectory() as directory:
                 self.p.save_handoff(directory)
-                rows=list(csv.DictReader(io.StringIO((Path(directory)/'factored_pile_loads_tons.csv').read_text(encoding='utf-8-sig'))))
-                self.assertAlmostEqual(float(rows[0]['short_tons']),raw*1.075)
-                self.assertEqual(float(rows[0]['raw_short_tons']),raw)
-                self.assertEqual(float(rows[0]['margin_percent']),7.5)
-                self.assertEqual(rows[0]['source_xml'],'MinimumTip.xml')
-                html=(Path(directory)/'geotech_handoff.html').read_text(encoding='utf-8')
+                workbook=load_workbook(Path(directory)/'geotech_handoff.xlsx')
+                rows=list(workbook.active.values)
+                row=next(r for r in rows if r[0]=='Maximum factored compression')
+                self.assertAlmostEqual(row[1],raw*1.075)
+                self.assertNotIn('MinimumTip.xml',str(rows))
+                self.assertNotIn('margin',str(rows))
+                workbook.close()
+                html=self.p.handoff.value
                 self.assertIn('original × 1.075',html)
                 self.assertIn('MinimumTip.xml',html)
                 self.assertNotIn('FixedDepth.xml',html)

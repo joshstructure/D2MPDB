@@ -21,6 +21,7 @@ from .widget_compat import Tab, Accordion
 from .model import analysis_match
 from .pile_reporting import (stress_limits, elastic_stress_checks, reported_cracking_check,
                              selected_trial_handoff, geotech_section_and_loads)
+from .geotech_handoff import handoff_tables, handoff_qualification, write_handoff_xlsx
 from .pile_fixity import displacement_fixity, compare_minimum_tip
 from .pile_fixity_visual import mark_fixity, fixity_overview, minimum_tip_html, comparison_issues_html
 
@@ -238,7 +239,7 @@ class PileReviewPanel:
         self.download_output, self.handoff_download_output = W.Output(), W.Output()
         self.handoff_refresh = W.Button(description='Update selected results', icon='refresh', disabled=True,
                                         layout=W.Layout(width='210px'))
-        self.handoff_export = W.Button(description='Download geotech handoff', icon='download', disabled=True,
+        self.handoff_export = W.Button(description='Download Excel handoff', icon='download', disabled=True,
                                        layout=W.Layout(width='230px'))
         self.handoff_refresh.on_click(self._update_handoff)
         self.handoff_export.on_click(self._export_handoff)
@@ -327,23 +328,40 @@ class PileReviewPanel:
             W.HBox([self.zero_band,self.fixity_allowance], layout=W.Layout(flex_flow='row wrap')),
             self.trial_basis, self.rounding, self.run_trials, self.trial_status, self.minimum_tip_summary,
             W.HTML('<h4>Displacement-change trial calculation</h4>'), self.trial_summary, self.trial_output])
+        handoff_settings = Accordion(children=[W.VBox([
+            W.HTML('<p class="gh-help">Optional pile details and project notes are included in the Excel handoff.</p>'),
+            W.HBox([self.nominal_weight, self.nominal_diameter, self.toe], layout=W.Layout(flex_flow='row wrap')),
+            self.geotech_notes]), W.VBox([
+            self.reaction_margin,
+            W.HTML('<p class="gh-help">The reaction margin increases the original minimum-tip model compression and uplift '
+                'by 1 + margin / 100 (5% = 1.05). Enter 0 to use the original reactions. '
+                'This project setting is additional to the FBMP load factors; it is not a code resistance factor. '
+                'The workbook contains the final FDL only.</p>')])], selected_index=None)
+        handoff_settings.set_title(0, 'Pile information and project notes')
+        handoff_settings.set_title(1, 'Reaction margin · notebook setting')
+        handoff_panel = W.VBox([
+            W.HTML('<style>.geotech-handoff{font-family:Arial,sans-serif;font-size:14px;line-height:1.5;color:#243746}'
+                '.geotech-handoff p{margin:8px 0 14px}.geotech-handoff h3{font-size:20px;margin:12px 0 6px;color:#213649}'
+                '.geotech-handoff h4{font-size:15px;margin:18px 0 8px;color:#213649}'
+                '.geotech-handoff .gh-help{color:#526674}.geotech-handoff .gh-table{margin:10px 0 22px}'
+                '.geotech-handoff table{font:inherit}.geotech-handoff caption{font-size:15px}'
+                '.geotech-handoff td,.geotech-handoff th{vertical-align:middle}'
+                '.geotech-handoff details{border:1px solid #dde3e8;border-radius:6px;padding:12px;margin-top:18px}'
+                '.geotech-handoff summary{cursor:pointer;font-weight:600;color:#213649}'
+                '</style><h3>Geotechnical handoff</h3>'
+                '<p class="gh-help">Review Tables 11–13, then download the Excel handoff. '
+                'Set elevations and trial inputs in Minimum tip.</p>'),
+            handoff_settings,
+            W.HBox([self.handoff_refresh, self.handoff_export], layout=W.Layout(flex_flow='row wrap', margin='12px 0')),
+            self.handoff_status, self.handoff_download_output, self.handoff])
+        handoff_panel.add_class('geotech-handoff')
         self.tabs = Tab(children=[W.VBox([self.summary, self.head_output]),
             W.VBox([self.combo, W.HTML('<b>Compare piles</b> · check any combination of piles; colors stay the same on every plot.'),
                 self.piles, W.HBox([self.all_piles, self.no_piles, self.governing_pile]),
                 W.HTML('<p>Solid: DX / |M2| / maximum stress. Dashed: DY / |M3| / minimum stress. '
                        'Click a pile in the legend to hide or show its curves on every plot. '
                        'Set <b>Pile cutoff EL (ft)</b> at the top of <b>Minimum tip</b> to show project elevations.</p>'), self.fixity_summary, self.profile_output, self.reported]),
-            W.VBox([self.section_output, self.properties, manual]), trials,
-            W.VBox([W.HTML('<p>Share pile section information, minimum tip elevation and maximum factored loads in short tons. '
-                'Paste trials and enter the design ground / scour elevation in Minimum tip, then update or download here. '
-                'Critical embedment and minimum tip are calculated automatically.</p>'),
-                W.HBox([self.nominal_weight,self.nominal_diameter,self.toe],layout=W.Layout(flex_flow='row wrap')),
-                self.reaction_margin, W.HTML('<p><b>Geotech load source: minimum-tip model.</b> '
-                    'Internal margin multiplies the original factored pile-head compression and uplift magnitudes by '
-                    '1 + margin / 100 (5% = 1.05). Enter 0 to use the original reactions. '
-                    'This project setting is additional to the FBMP load factors; it is not a code resistance factor.</p>'),
-                self.geotech_notes, W.HBox([self.handoff_refresh, self.handoff_export], layout=W.Layout(flex_flow='row wrap')),
-                self.handoff_status, self.handoff_download_output, self.handoff])])
+            W.VBox([self.section_output, self.properties, manual]), trials, handoff_panel])
         for i, name in enumerate(['Pile loads', 'Profiles and stresses', 'Pile section', 'Minimum tip', 'Geotech handoff']):
             self.tabs.set_title(i, name)
         self.ui = W.VBox([W.HTML('<h2 style="color:#213649">1. Minimum-tip study and geotech handoff</h2>'
@@ -716,31 +734,43 @@ class PileReviewPanel:
     def handoff_html(self, data):
         result = self.minimum_tip_result
         tip = result['tip_elevation_ft'] if data['selected'] else None
-        tip_text = f'{tip:.3f} ft' if tip is not None else 'Not calculated — enter trial results and ground / scour elevation in Minimum tip.'
-        markup = '<h3>Geotechnical handoff</h3>'+table(data['section'], [('item','Pile information'), ('value','Value')], scroll=False, reference='handoff_section')
-        markup += '<p><b>Minimum tip elevation: '+html.escape(tip_text)+'</b></p>'
+        markup = '<div class="geotech-handoff">'
+        for report_table in handoff_tables(data, result, self.optional(self.reference)):
+            markup += '<div class="gh-table">'+table(report_table['rows'], report_table['columns'],
+                scroll=False, decimals=3, reference=report_table['reference'])+'</div>'
+            if report_table['reference'] == 'handoff_tip':
+                qualification = handoff_qualification(data, result)
+                if qualification:
+                    markup += notice_html('MINIMUM TIP NEEDS REVIEW', html.escape(qualification), 'pending')
+        markup += '<p class="gh-help">FDL = factored design load. Compression and uplift are positive magnitudes. 1 short ton = 2 kip.</p>'
+        if self.geotech_notes.value.strip():
+            markup += '<h4>Project notes</h4><p>'+html.escape(self.geotech_notes.value).replace('\n','<br>')+'</p>'
+        markup += '<details><summary>Calculation details and sources · notebook only</summary>'
+        markup += '<h4>Minimum-tip comparison</h4>'
+        if tip is not None:
+            markup += f'<p>Minimum tip elevation: {tip:.3f} ft</p>'
         if data['selected']:
             markup += '<p><b>Controls: '+html.escape(result['controlling_criterion'])+'</b>. '
             markup += ('All applicable criteria evaluated.' if result['comparison_complete'] else '<b>Comparison incomplete — available criteria only.</b>')+'</p>'
             markup += comparison_issues_html(result)
             markup += table([dict(c, control_label='Yes' if c['controls'] else 'No') for c in result['candidates']], [('criterion','Criterion'),
                 ('critical_elevation_ft','Critical EL before allowance (ft)'), ('extension_ft','Allowance (ft)'), ('raw_tip_elevation_ft','Criterion tip EL before rounding (ft)'),
-                ('control_label','Controls'), ('source','Source'), ('status','Status')], scroll=False, decimals=3, reference='handoff_tip')
+                ('control_label','Controls'), ('source','Source'), ('status','Status')], scroll=False, decimals=3)
             markup += fixity_overview(result['fixity'], result)
         if tip is not None:
             markup += f'<p>Design ground / scour elevation: {self.optional(self.reference):.3f} ft. '
             if result['total_length_ft'] is not None:
                 markup += f'Selected total length: {result["total_length_ft"]:.3f} ft; cutoff elevation: {self.optional(self.cutoff):.3f} ft. '
             markup += '</p>'
+        markup += '<h4>Reaction calculation</h4>'
         markup += table(data['loads'], [('load','Pile-head design load'), ('raw_short_tons','Original · Short tons'),
-            ('margin_percent','Internal margin (%)'), ('short_tons','Handoff · Short tons'), ('governing','Governing record')], scroll=False, reference='handoff_loads')
+            ('margin_percent','Internal margin (%)'), ('short_tons','Final FDL · Short tons'), ('governing','Governing record')], scroll=False, decimals=3)
         margin = data['loads'][0]['margin_percent']
         markup += f'<p><b>Handoff demand = original factored pile-head demand × (1 + {margin:g}/100) = original × {1+margin/100:g}.</b> '
         markup += 'Compression and uplift are positive magnitudes. The internal project margin is applied once to the original XML demands; '
         markup += 'it does not modify cap forces, pile profiles, or the minimum-tip calculation. It is not a code load or resistance factor.</p>'
         markup += '<p>1 short ton = 2 kip. Envelopes use strength and extreme-event combinations from the minimum-tip XML; service and fatigue combinations are excluded.</p>'
-        if self.geotech_notes.value.strip():
-            markup += '<p><b>Project notes:</b> '+html.escape(self.geotech_notes.value).replace('\n','<br>')+'</p>'
+        markup += '<h4>Sources and basis</h4>'
         markup += '<p><b>Section / reaction source: minimum-tip model</b> · '+html.escape(self.review['filename'])+'.<br>SHA256: '+html.escape(self.review['sha256'])+'</p>'
         if data['selected']:
             markup += '<p>Tip calculation: '+html.escape(self.trial_label.value.strip() or 'Pasted trials — source not named')+'. '
@@ -748,7 +778,7 @@ class PileReviewPanel:
             if self.trial_basis.value.strip():
                 markup += ' '+html.escape(self.trial_basis.value)
             markup += '</p>'
-        return markup
+        return markup+'</details></div>'
 
     def refresh_handoff(self):
         self.handoff_status.value = ''
@@ -780,10 +810,11 @@ class PileReviewPanel:
         return folder
 
     def _write_handoff(self, folder, data):
-        (folder/'geotech_handoff.html').write_text('<!doctype html><html><head><meta charset="utf-8"><title>Geotechnical handoff</title>'
-            '<style>body{font:14px Arial;max-width:1000px;margin:30px auto;color:#203040}td,th{vertical-align:top}p{line-height:1.4}'
-            '@media print{body{margin:0;font-size:11pt}tr{break-inside:avoid}}</style></head><body>'
-            +self.handoff_html(data)+'</body></html>', encoding='utf-8')
+        return write_handoff_xlsx(folder/'geotech_handoff.xlsx', data, self.minimum_tip_result,
+                                  self.optional(self.reference), self.geotech_notes.value)
+
+    def _write_handoff_details(self, folder, data):
+        """Audit rows belong only to the full pile-review bundle."""
         (folder/'factored_pile_loads_tons.csv').write_text(csv_text(data['loads']), encoding='utf-8-sig')
         (folder/'pile_section.csv').write_text(csv_text(data['section']), encoding='utf-8-sig')
         if data['selected']:
@@ -796,10 +827,7 @@ class PileReviewPanel:
         try:
             folder = self.app.export_root/datetime.now(timezone.utc).strftime('geotech-handoff-%Y%m%d-%H%M%S-%f')
             self.save_handoff(folder)
-            path = folder.with_suffix('.zip')
-            with zipfile.ZipFile(path, 'w', zipfile.ZIP_DEFLATED) as z:
-                for file in folder.iterdir():
-                    z.write(file, file.name)
+            path = folder/'geotech_handoff.xlsx'
             self._download(path, self.handoff_status, self.handoff_download_output)
         except Exception as exc:
             self.handoff_status.value = notice_html('HANDOFF NOT DOWNLOADED', html.escape(str(exc)), 'error')
@@ -896,7 +924,9 @@ class PileReviewPanel:
             (folder/'minimum_tip_result.json').write_text(json.dumps(self.minimum_tip_result, indent=2, allow_nan=False), encoding='utf-8')
         for name, rows in datasets.items():
             (folder/name).write_text(csv_text(rows), encoding='utf-8-sig')
-        self._write_handoff(folder, self.handoff_data())
+        handoff = self.handoff_data()
+        self._write_handoff(folder, handoff)
+        self._write_handoff_details(folder, handoff)
         parts = [head_figure(self.review).to_html(full_html=False, include_plotlyjs=True),
                  section_figure(self.review['section']).to_html(full_html=False, include_plotlyjs=False),
                  profile_figure(self.review, self.combo.value, self.piles.value, self.optional(self.cutoff), s,
@@ -906,7 +936,7 @@ class PileReviewPanel:
         (folder/'pile_review.html').write_text('<!doctype html><html><head><meta charset="utf-8"><title>Pile review</title></head><body style="font-family:Arial">'
             + '<h1>FBMP pile review</h1><p>'+html.escape(self.review['filename'])+' · '+self.review['sha256']+'</p>'
             + self.source_match.value + self.summary.value + self.properties.value + ''.join(parts) + self.reported.value
-            + self.minimum_tip_summary.value + self.trial_summary.value + self.handoff.value + '<p>'+'<br>'.join(html.escape(n) for n in self.review['notes'])+'</p></body></html>', encoding='utf-8')
+            + self.minimum_tip_summary.value + self.trial_summary.value + '<h2>Geotechnical handoff</h2>' + self.handoff.value + '<p>'+'<br>'.join(html.escape(n) for n in self.review['notes'])+'</p></body></html>', encoding='utf-8')
         return folder
 
     def _download(self, path, status=None, output=None):

@@ -3,6 +3,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import json
 import unittest
+from openpyxl import load_workbook
 from pier_cap.pile_fixity import zero_crossings, displacement_fixity, compare_minimum_tip
 from pier_cap.pile_review import evaluate_trials, parse_trials, import_pile_xml
 from pier_cap.pile_fixity_visual import crossing_rows
@@ -231,7 +232,9 @@ class FixityWidgetTests(unittest.TestCase):
             result=json.loads((folder/'minimum_tip_result.json').read_text())
             self.assertEqual(result['controlling_criterion'],'Second zero crossing')
             self.assertEqual(result['tip_elevation_ft'],-5)
-            self.assertIn('Second zero crossing',(folder/'geotech_handoff.html').read_text(encoding='utf-8'))
+            workbook=load_workbook(folder/'geotech_handoff.xlsx')
+            self.assertIn('Second zero crossing',str(list(workbook.active.values)))
+            workbook.close()
             self.assertTrue((folder/'pile_zero_crossings.csv').exists())
             self.assertTrue((folder/'minimum_tip_criteria.csv').exists())
 

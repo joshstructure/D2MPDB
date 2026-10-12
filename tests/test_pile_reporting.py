@@ -4,13 +4,14 @@ from tempfile import TemporaryDirectory
 from unittest.mock import patch
 import csv
 import io
-import json
 import unittest
-import zipfile
 from lxml import etree as E
+from lxml import html as H
+from openpyxl import load_workbook
 from pier_cap.pile_review import import_pile_xml, section_from_xml, parse_trials, evaluate_trials
 from pier_cap.pile_reporting import (elastic_stress_checks, reported_cracking_check,
                                      geotech_section_and_loads, selected_trial_handoff)
+from pier_cap.geotech_handoff import write_handoff_xlsx
 from pier_cap.pile_widgets import profile_figure, trial_figure
 from pier_cap.widgets import CapNotebook
 
@@ -155,16 +156,23 @@ class HandoffWidgetTests(unittest.TestCase):
                 self.panel.handoff_export.click()
                 download.assert_called_once()
                 path = download.call_args.args[0]
-            with zipfile.ZipFile(path) as z:
-                self.assertEqual(len(z.namelist()),5)
-                self.assertNotIn('pile_forces.csv',z.namelist())
-                html = z.read('geotech_handoff.html').decode()
-                self.assertIn('Minimum tip elevation: -30.013 ft',html)
-                self.assertIn('Separate workbook reference trials',html)
-                trials = list(csv.DictReader(io.StringIO(z.read('selected_trial_results.csv').decode('utf-8-sig'))))
-                self.assertEqual(len(trials),1)
-                self.assertAlmostEqual(float(trials[0]['embedment_ft']),49.513,places=3)
-                self.assertIn('not interpolated',trials[0]['status'])
+            self.assertEqual(path.suffix, '.xlsx')
+            self.assertEqual([p.name for p in path.parent.iterdir()], ['geotech_handoff.xlsx'])
+            workbook = load_workbook(path)
+            self.assertEqual(workbook.sheetnames, ['Geotech handoff'])
+            rows = list(workbook.active.values)
+            tip_row = next(r for r in rows if r[0] == 'Second zero crossing')
+            self.assertAlmostEqual(tip_row[1],54.512631,places=5)
+            self.assertAlmostEqual(tip_row[2],-30.012631,places=5)
+            for source_row in self.panel.handoff_data()['loads']:
+                row = next(r for r in rows if r[0] == source_row['load'])
+                self.assertAlmostEqual(row[1],source_row['short_tons'])
+            text = str(rows)
+            for internal in ('Separate workbook reference trials', 'fbmp_610_piles.xml', 'SHA256',
+                             'margin', 'combo', 'Original', 'before allowance', 'not interpolated'):
+                self.assertNotIn(internal,text)
+            self.assertFalse(any(c.data_type == 'f' for row in workbook.active for c in row))
+            workbook.close()
         self.panel.extension.value = 4
         self.assertNotIn('-30.013 ft', self.panel.handoff.value)
         self.assertNotIn('HANDOFF READY', self.panel.handoff_status.value)
@@ -191,8 +199,66 @@ class HandoffWidgetTests(unittest.TestCase):
         self.panel.override['fy_ksi'].value = -1
         with TemporaryDirectory() as folder:
             self.panel.save_handoff(folder)
-            self.assertTrue((Path(folder)/'geotech_handoff.html').exists())
+            self.assertTrue((Path(folder)/'geotech_handoff.xlsx').exists())
         self.assertIn('PROFILE INPUT NEEDS REVIEW',self.panel.reported.value)
+
+    def test_clean_preview_and_notebook_only_details_share_final_values(self):
+        self.select_trials()
+        self.panel.handoff_refresh.click()
+        doc = H.fromstring(self.panel.handoff.value)
+        tables = doc.xpath('.//table[caption]')
+        self.assertEqual([t.xpath('./caption/@data-reference')[0] for t in tables[:3]],
+                         ['handoff_section', 'handoff_tip', 'handoff_loads'])
+        tip = tables[1].xpath('./tr[2]/td/text()')
+        self.assertEqual(tip, ['Second zero crossing','54.513','-30.013'])
+        self.assertEqual(len(tables[2].xpath('./tr[1]/th')),2)
+        details = doc.xpath('./details')[0]
+        self.assertNotIn('open', details.attrib)
+        self.assertIn('Internal margin',details.text_content())
+        self.assertIn('fbmp_610_piles.xml',details.text_content())
+        self.assertIn('Separate workbook reference trials',details.text_content())
+
+    def test_rounded_export_uses_adopted_tip_and_keeps_notes_as_text(self):
+        self.select_trials()
+        self.panel.rounding.value = True
+        self.panel.geotech_notes.value = '=1+1\nProject note <review>'
+        with TemporaryDirectory() as folder:
+            self.panel.save_handoff(folder)
+            workbook = load_workbook(Path(folder)/'geotech_handoff.xlsx')
+            rows = list(workbook.active.values)
+            tip = next(r for r in rows if r[0] == 'Second zero crossing')
+            self.assertEqual(tip[1:], (55.5,-31))
+            self.assertEqual(tip[1]+tip[2],24.5)
+            note = next(c for row in workbook.active for c in row if c.value == '=1+1')
+            self.assertEqual(note.data_type, 's')
+            self.assertIn('Project note <review>',str(rows))
+            workbook.close()
+
+    def test_partial_comparison_stays_qualified_without_exporting_internal_details(self):
+        self.select_trials()
+        self.panel.handoff_refresh.click()
+        result = deepcopy(self.panel.minimum_tip_result)
+        result['comparison_complete'] = False
+        with TemporaryDirectory() as folder:
+            path = Path(folder)/'partial.xlsx'
+            write_handoff_xlsx(path, self.panel.handoff_data(), result, 24.5)
+            workbook = load_workbook(path)
+            rows = list(workbook.active.values)
+            self.assertIn('comparison incomplete', str(rows))
+            self.assertNotIn('fbmp_610_piles.xml', str(rows))
+            workbook.close()
+
+    def test_incomplete_full_bundle_retains_working_data_outside_clean_workbook(self):
+        self.select_trials()
+        with TemporaryDirectory() as folder:
+            self.panel.save_bundle(folder)
+            folder = Path(folder)
+            self.assertTrue((folder/'geotech_handoff.xlsx').exists())
+            self.assertFalse((folder/'geotech_handoff.html').exists())
+            loads = list(csv.DictReader(io.StringIO((folder/'factored_pile_loads_tons.csv').read_text(encoding='utf-8-sig'))))
+            self.assertEqual(float(loads[0]['margin_percent']),5)
+            self.assertEqual(loads[0]['source_xml'],'fbmp_610_piles.xml')
+            self.assertTrue((folder/'selected_trial_results.csv').exists())
 
     def test_old_manual_depth_is_recomputed_and_new_state_has_no_depth_input(self):
         self.select_trials()
