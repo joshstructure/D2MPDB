@@ -1,7 +1,21 @@
 """Presentation-only geotechnical handoff; calculation provenance stays in the notebook."""
 from pathlib import Path
+import re
+import textwrap
 
 from .output_labels import table_reference
+
+
+def handoff_filename(trial_source=''):
+    """Use the study label as a portable filename, never as a directory path."""
+    name = re.sub(r'[<>:"/\\|?*\x00-\x1f]', '-', trial_source.strip()).strip(' .')
+    suffix = Path(name).suffix
+    if suffix.lower() in ('.csv', '.tsv', '.txt', '.xls', '.xlsx', '.xlsm'):
+        name = name[:-len(suffix)]
+    name = name[:120].rstrip(' .') or 'geotech_handoff'
+    if re.fullmatch(r'CON|PRN|AUX|NUL|COM[1-9¹²³]|LPT[1-9¹²³]', name.split('.')[0].rstrip(), re.I):
+        name = '_'+name
+    return name+'.xlsx'
 
 
 def handoff_tables(data, result, ground):
@@ -32,7 +46,7 @@ def handoff_qualification(data, result):
     return ''
 
 
-def write_handoff_xlsx(path, data, result, ground, notes=''):
+def write_handoff_xlsx(path, data, result, ground, notes='', *, trial_source=''):
     """Write a standalone, values-only workbook using the notebook's Excel dependency."""
     from openpyxl import Workbook
     from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
@@ -68,8 +82,11 @@ def write_handoff_xlsx(path, data, result, ground, notes=''):
         sheet.merge_cells(start_row=row, start_column=1, end_row=row, end_column=3)
         cell(row, 1, value, **style)
 
-    wide_row(1, 'Geotechnical handoff', bold=True, fill=navy, color='FFFFFF', size=20)
-    sheet.row_dimensions[1].height = 40
+    title = trial_source.strip() or 'Geotechnical handoff'
+    workbook.properties.title = title
+    wide_row(1, title, bold=True, fill=navy, color='FFFFFF', size=20)
+    title_lines = sum(max(1, len(textwrap.wrap(line, width=60))) for line in title.splitlines())
+    sheet.row_dimensions[1].height = min(409, max(40, 26*title_lines+12))
     row = 3
     qualification = handoff_qualification(data, result)
     for table in handoff_tables(data, result, ground):
@@ -110,7 +127,6 @@ def write_handoff_xlsx(path, data, result, ground, notes=''):
         sheet.row_dimensions[row].height = 28
         row += 1
         # Split long notes into ordinary rows so printing can continue on the next page.
-        import textwrap
         for paragraph in notes.strip().splitlines():
             for part in textwrap.wrap(paragraph, width=110) or ['']:
                 wide_row(row, part)

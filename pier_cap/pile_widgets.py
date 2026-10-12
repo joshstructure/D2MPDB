@@ -15,13 +15,13 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from .plotly_compat import FigureWidget
 from .pile_review import (import_pile_xml, elastic_profile, pile_heads, governors,
-                          parse_trials, evaluate_trials, csv_text, require, validate_saved_review)
+                          parse_trials, evaluate_trials, csv_text, require, validate_saved_review, review_elevations)
 from .source_status import upload_entries, notice_html
 from .widget_compat import Tab, Accordion
 from .model import analysis_match
 from .pile_reporting import (stress_limits, elastic_stress_checks, reported_cracking_check,
                              selected_trial_handoff, geotech_section_and_loads)
-from .geotech_handoff import handoff_tables, handoff_qualification, write_handoff_xlsx
+from .geotech_handoff import handoff_tables, handoff_qualification, handoff_filename, write_handoff_xlsx
 from .pile_fixity import displacement_fixity, compare_minimum_tip
 from .pile_fixity_visual import mark_fixity, fixity_overview, minimum_tip_html, comparison_issues_html
 
@@ -276,7 +276,8 @@ class PileReviewPanel:
         manual.set_title(0, 'Optional verified section properties'); manual.selected_index = None
         self.trial_text = W.Textarea(placeholder='trial,combination,pile,embedment_ft,displacement_in\n',
                                     layout=W.Layout(width='100%', height='150px'))
-        self.trial_label = W.Text(description='Trial source', placeholder='Run/study identifier', layout=W.Layout(width='440px'))
+        self.trial_label = W.Text(description='Trial source', placeholder='Run/study identifier',
+            tooltip='Used as the heading and filename for the Excel geotech handoff.', layout=W.Layout(width='440px'))
         self.trial_upload = self._uploader('Load trial CSV', '.csv,.tsv,.txt', self._import_trials)
         self.tolerance = W.FloatText(value=.1, description='Δ limit (in)')
         self.extension = W.FloatText(value=5, description='Extension (ft)')
@@ -287,6 +288,10 @@ class PileReviewPanel:
                                          description='Method', layout=W.Layout(width='410px'))
         self.reference = W.Text(description='Ground EL (ft)', placeholder='Required for tip elevation', continuous_update=False,
                                 style={'description_width':'105px'}, layout=W.Layout(width='330px'))
+        self.elevation_source = W.HTML('<p>Load the minimum-tip XML to fill both elevations.</p>')
+        self.use_xml_elevations = W.Button(description='Use XML elevations', icon='refresh', disabled=True,
+                                           layout=W.Layout(width='190px'))
+        self.use_xml_elevations.on_click(self._use_xml_elevations)
         self.accepted = W.Text(description='Trial Lcrit (ft)', placeholder='Calculated from trials', disabled=True, layout=W.Layout(width='330px'))
         self.zero_band = W.FloatText(value=1e-6, description='Zero band (in)', style={'description_width':'100px'})
         self.fixity_allowance = W.Checkbox(value=True, description='Add selected allowance below second crossing', indent=False, layout=W.Layout(width='390px'))
@@ -310,8 +315,10 @@ class PileReviewPanel:
         self.trial_template = W.Button(description='Download CSV template', icon='download', layout=W.Layout(width='210px'))
         self.trial_template.on_click(self._template)
         trials = W.VBox([W.HTML('<b>Elevations for minimum tip</b>'),
-            W.HBox([self.cutoff, self.reference], layout=W.Layout(flex_flow='row wrap', width='100%')),
-            W.HTML('<small>Use the same project datum for pile-head cutoff and design ground / scour. These elevations also update the displacement plot.</small>'),
+            W.HBox([self.cutoff, self.reference, self.use_xml_elevations], layout=W.Layout(flex_flow='row wrap', width='100%')),
+            self.elevation_source,
+            W.HTML('<small>XML fills Ground EL from the top soil layer and Pile cutoff EL from the pile head. '
+                'Values remain editable for design ground / scour or a datum override; Use XML elevations restores the imported values.</small>'),
             W.HTML('<p>Paste the five workbook columns (trial, combination, pile, embedment in ft, displacement in in), '
             'or upload the CSV template. A single solved XML does not contain the shortened-pile trial history. '
             'Each row is the governing result for that embedment. Use <b>series</b> for separate studies; combination and pile may change as governors change. '
@@ -319,7 +326,7 @@ class PileReviewPanel:
             'The second-zero criterion uses the deepest second crossing among signed DX and DY profiles for all piles in combinations with nonzero wind load factors (WS/WL). '
             '<b>The deeper required tip controls.</b> The selected allowance (normally 5 ft) applies to trials and, when checked below, the second crossing. '
             '<b>Tip elevation = design ground/scour elevation − required embedment.</b> '
-            'Enter Pile cutoff EL and Ground EL above to compare both criteria in one datum. '
+            'Review the XML elevations above to compare both criteria in one datum. '
             'The trial-based 5-ft default follows January 2026 FDOT SDG 3.5.9.B.4 for driven piles; '
             'check any greater required penetration and Service-limit deflections separately.</p>'),
             W.HBox([self.trial_upload, self.trial_template]), self.trial_label, self.trial_text,
@@ -418,6 +425,9 @@ class PileReviewPanel:
         if self.review is not None and self.review['sha256']==review['sha256']:
             saved = self.snapshot()
             saved['review'] = review
+            elevations = review_elevations(review)
+            for name, key in [('cutoff', 'cutoff_ft'), ('reference', 'ground_ft')]:
+                saved['controls'][name] = '' if elevations[key] is None else str(elevations[key])
             self.restore(saved)
         else:
             self.set_review(review)
@@ -427,8 +437,12 @@ class PileReviewPanel:
         self.busy = True
         try:
             self.use_override.value = False
-            # Trial/datum records belong to a run; never carry them into a new run silently.
+            # Trial records belong to a run; elevation defaults belong to its XML.
             self.trial_text.value = self.trial_label.value = self.accepted.value = self.reference.value = self.cutoff.value = self.trial_basis.value = ''
+            elevations = review_elevations(review)
+            self.cutoff.value = '' if elevations['cutoff_ft'] is None else str(elevations['cutoff_ft'])
+            self.reference.value = '' if elevations['ground_ft'] is None else str(elevations['ground_ft'])
+            self.use_xml_elevations.disabled = False
             self.nominal_weight.value = self.nominal_diameter.value = self.geotech_notes.value = ''
             self.toe.value = 'Unknown'
             self.trial_result = None; self.trial_error = ''; self.trial_summary.value = ''; self.trial_output.children = []
@@ -436,8 +450,8 @@ class PileReviewPanel:
             self.zero_band.value = 1e-6; self.fixity_allowance.value = True
             self.run_trials.disabled = False
             self.trial_status.value = notice_html('NEW XML — MINIMUM-TIP INPUTS RESET',
-                'The previous trial rows, Pile cutoff EL and Ground EL were cleared for this analysis. '
-                'Enter the two elevations above and the corresponding trial rows. Crossing depths are already calculated from the new XML.', 'pending')
+                'Previous trial rows were cleared. Elevations were filled from this XML where available. '
+                'Review the elevations above and enter the corresponding trial rows.', 'pending')
             self.combo.options = [(c+' · '+s, c) for c, s in review['combinations'].items()]
             self.combo.value = next((c for c, s in review['combinations'].items() if s == 'SERVICE-I'), next(iter(review['combinations'])))
             self.piles.set_piles(review['piles'])
@@ -528,6 +542,7 @@ class PileReviewPanel:
         return max(rows, key=lambda r:r['model_dc'])['pile'] if rows else next(iter(self.review['piles']))
 
     def refresh_profiles(self):
+        self.refresh_elevation_source()
         try:
             self._refresh_minimum_tip()
             if self.review is None:
@@ -571,6 +586,35 @@ class PileReviewPanel:
         except Exception as exc:
             self.profile_output.children = []
             self.reported.value = notice_html('PROFILE INPUT NEEDS REVIEW', html.escape(str(exc)), 'error')
+
+    def refresh_elevation_source(self):
+        if self.review is None:
+            return
+        values = review_elevations(self.review)
+        parts = []
+        for control, key, label in [(self.reference, 'ground_ft', 'Ground EL · top soil layer'),
+                                    (self.cutoff, 'cutoff_ft', 'Pile cutoff EL · pile head')]:
+            value = values[key]
+            if value is not None:
+                try:
+                    current = self.optional(control)
+                except ValueError:
+                    current = None
+                same = current is not None and math.isclose(current, value, rel_tol=0, abs_tol=1e-8)
+                parts.append(f'{label}: {value:.4f} ft from XML'+('' if same else ' (current field differs)'))
+        self.elevation_source.value = '<p>'+html.escape('. '.join(parts+values['issues']))+'</p>'
+
+    def _use_xml_elevations(self, _=None):
+        if self.review is None:
+            return
+        values = review_elevations(self.review)
+        self.busy = True
+        try:
+            self.cutoff.value = '' if values['cutoff_ft'] is None else str(values['cutoff_ft'])
+            self.reference.value = '' if values['ground_ft'] is None else str(values['ground_ft'])
+        finally:
+            self.busy = False
+        self._trials()
 
     def _import_trials(self, raw, name):
         text = raw.decode('utf-8-sig')
@@ -810,8 +854,9 @@ class PileReviewPanel:
         return folder
 
     def _write_handoff(self, folder, data):
-        return write_handoff_xlsx(folder/'geotech_handoff.xlsx', data, self.minimum_tip_result,
-                                  self.optional(self.reference), self.geotech_notes.value)
+        return write_handoff_xlsx(folder/handoff_filename(self.trial_label.value), data, self.minimum_tip_result,
+                                  self.optional(self.reference), self.geotech_notes.value,
+                                  trial_source=self.trial_label.value)
 
     def _write_handoff_details(self, folder, data):
         """Audit rows belong only to the full pile-review bundle."""
@@ -827,7 +872,7 @@ class PileReviewPanel:
         try:
             folder = self.app.export_root/datetime.now(timezone.utc).strftime('geotech-handoff-%Y%m%d-%H%M%S-%f')
             self.save_handoff(folder)
-            path = folder/'geotech_handoff.xlsx'
+            path = folder/handoff_filename(self.trial_label.value)
             self._download(path, self.handoff_status, self.handoff_download_output)
         except Exception as exc:
             self.handoff_status.value = notice_html('HANDOFF NOT DOWNLOADED', html.escape(str(exc)), 'error')

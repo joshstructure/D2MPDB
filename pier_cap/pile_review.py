@@ -127,6 +127,51 @@ def section_from_xml(segment):
                 issues=issues, source='XML exported gross section properties')
 
 
+def review_elevations(review):
+    """XML defaults, including cutoff recovery for saved reviews predating soil import."""
+    heads = []
+    for pile in review['piles'].values():
+        xyz = pile.get('head_xyz_in')
+        require(isinstance(xyz, (list, tuple)) and len(xyz) == 3 and
+                all(type(v) in (float, int) and math.isfinite(v) for v in xyz),
+                'Invalid saved pile-head coordinates.')
+        # FBMP coordinates increase downward; project elevations increase upward.
+        heads.append(-xyz[2]/12)
+    cutoff = heads[0] if heads and all(math.isclose(v, heads[0], rel_tol=0, abs_tol=1e-6) for v in heads) else None
+    tops = review.get('soil_top_elevations_ft', {})
+    require(isinstance(tops, dict) and all(isinstance(k, str) and k and
+            type(v) in (int, float) and math.isfinite(v) for k, v in tops.items()),
+            'Invalid saved top-soil elevations.')
+    values = list(tops.values())
+    ground = values[0] if values and all(math.isclose(v, values[0], rel_tol=0, abs_tol=1e-6) for v in values) else None
+    issues = []
+    if cutoff is None:
+        issues.append('Pile heads have different elevations; enter the pile cutoff elevation for this study.')
+    if not values:
+        issues.append('Top soil-layer elevation is unavailable; load the full XML or enter Ground EL.')
+    elif ground is None:
+        issues.append('Soil sets have different top elevations; enter the design ground / scour elevation for this study.')
+    return dict(cutoff_ft=cutoff, ground_ft=ground, issues=issues)
+
+
+def soil_tops_from_xml(group):
+    """FBMP 6.1.0 exports the soil-layer elevations in the axial soil input block."""
+    layers = group.findall('SOIL_INPUT_DATA/AXIAL/LAYER')
+    if not layers:
+        return {}
+    first = {}
+    sets = set()
+    for layer in layers:
+        soilset = layer.get('soilset')
+        require(soilset, 'Soil layer is missing its soil-set identifier.')
+        sets.add(soilset)
+        if layer.get('number') == '1':
+            require(soilset not in first, 'Duplicate top soil layer for soil set '+soilset+'.')
+            first[soilset] = number(layer, 'TOP/ELEV', 'ft')
+    require(first.keys() == sets, 'Missing top soil layer (layer 1) for a soil set.')
+    return first
+
+
 def import_pile_xml(source, filename=None):
     if isinstance(source, (bytes, bytearray, memoryview)):
         raw = bytes(source)
@@ -145,6 +190,7 @@ def import_pile_xml(source, filename=None):
     groups = root.findall('.//PILE_GROUP')
     require(len(groups) == 1, 'Pile review currently supports one pile group per XML.')
     group = groups[0]
+    soil_tops = soil_tops_from_xml(group)
     geometries = root.findall('.//PILE_GEOMETRY/SEGMENT')
     require(len(geometries) == 1, 'Pile review currently requires one homogeneous pile section.')
     section = section_from_xml(geometries[0])
@@ -238,10 +284,11 @@ def import_pile_xml(source, filename=None):
         project=root.findtext('PROJECT_INFO/PROJECT_NAME') or '', version='6.1.0', section=section,
         combinations={k: v.get('limitstate') for k, v in definitions.items()},
         combination_factors=combination_factors,
+        soil_top_elevations_ft=soil_tops,
         piles={p: dict(length_ft=distances[p][-1], head_xyz_in=coords[p][0], tip_xyz_in=coords[p][-1]) for p in coords},
         forces=forces, displacements=displacements, reported_stresses=reported, reported_summary=summary,
         notes=['Force values are original XML element-end values; axial stress reverses the J-end axial sign.',
-               'Distances follow actual pile nodes. Elevation requires a project cutoff datum; XML Z is not labeled as project elevation.',
+               'XML elevation defaults: ground is the top of soil layer 1; pile cutoff is minus pile-head Z (in) / 12. Manual elevation overrides remain available.',
                'Model D/C is the FBMP interaction result. Elastic stress/Fy is a separate screening ratio.',
                'XML does not establish convergence, OUT cracking warnings, or the minimum-tip trial sequence.'])
 
@@ -439,6 +486,7 @@ def validate_saved_review(review):
             require(isinstance(values, dict) and all(isinstance(k, str) and k and type(v) in (int,float) and math.isfinite(v)
                     for k,v in values.items()), f'Combination {combo}: invalid load factors.')
     require(isinstance(review.get('piles'), dict) and bool(review['piles']), 'Missing pile geometry.')
+    review_elevations(review)
     for key in ('reported_stresses', 'reported_summary', 'notes'):
         require(isinstance(review.get(key), list), f'Missing {key}.')
     for collection, fields in [('forces', ['distance_ft','vertical_ft','axial_tension_kip',*FIELDS]),

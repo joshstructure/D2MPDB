@@ -98,7 +98,7 @@ class SplitNotebookTests(unittest.TestCase):
         for _ in range(2):
             with TemporaryDirectory() as directory:
                 self.p.save_handoff(directory)
-                workbook=load_workbook(Path(directory)/'geotech_handoff.xlsx')
+                workbook=load_workbook(Path(directory)/'Lateral trial study.xlsx')
                 rows=list(workbook.active.values)
                 row=next(r for r in rows if r[0]=='Maximum factored compression')
                 self.assertAlmostEqual(row[1],raw*1.075)

@@ -1,0 +1,66 @@
+<div id="bridge-station-report">
+  <h2>Bridge geometry · station explorer</h2>
+  <div class="viz-controls">
+    <label class="form-label">Station (ft or 16+99.46)
+      <input class="form-control" id="bridge-station-entry" type="text" inputmode="decimal" value="17+00.57" aria-describedby="bridge-station-error">
+    </label>
+    <label class="form-label">Go to
+      <select class="form-select" id="bridge-station-jump" aria-label="Go to bridge station"></select>
+    </label>
+  </div>
+  <div id="bridge-station-error" class="text-destructive text-small" role="alert" hidden></div>
+  <div class="bridge-range-header text-small tabular-nums"><span id="bridge-range-start"></span><span id="bridge-station-label"></span><span id="bridge-range-end"></span></div>
+  <input class="form-range" id="bridge-station-slider" type="range" step="0.01" aria-label="Inspection station in feet">
+  <div id="bridge-station-summary" class="text-small tabular-nums" aria-live="polite"></div>
+  <section aria-labelledby="bridge-elevation-heading">
+    <h3 id="bridge-elevation-heading">Longitudinal elevation</h3>
+    <div id="bridge-line-legend" class="bridge-legend"></div>
+    <div class="bridge-plot" id="bridge-elevation-chart"></div>
+    <div class="text-small text-muted">Vertical scale exaggerated · roadway shown only where supplied</div>
+  </section>
+  <section aria-labelledby="bridge-section-heading">
+    <h3 id="bridge-section-heading">Cross-section</h3>
+    <div id="bridge-component-legend" class="bridge-legend"></div>
+    <div class="bridge-plot" id="bridge-section-chart"></div>
+    <div id="bridge-section-note" class="text-small text-muted"></div>
+  </section>
+  <div class="table-responsive">
+    <table class="table table-sm" aria-label="Beam results at selected station">
+      <thead><tr><th>Result</th><th class="text-end">Beam 1</th><th class="text-end">Beam 2</th></tr></thead>
+      <tbody id="bridge-beam-results"></tbody>
+    </table>
+  </div>
+  <div id="bridge-support-results" class="text-small tabular-nums"></div>
+  <div id="bridge-source-label" class="text-small text-muted"></div>
+  <div class="tooltip" id="bridge-hover" role="tooltip" hidden></div>
+</div>
+<style>
+  #bridge-station-report { position:relative; min-width:0; }
+  #bridge-station-report section { margin-top:20px; }
+  #bridge-station-report h2 { padding-right:92px; }
+  #bridge-station-report .bridge-range-header { display:flex; justify-content:space-between; gap:8px; margin-top:12px; }
+  #bridge-station-report .bridge-plot { width:100%; min-width:0; }
+  #bridge-station-report .bridge-chart { display:block; width:100%; overflow:visible; }
+  #bridge-station-report .bridge-chart text { fill:var(--foreground); font-size:12px; font-weight:400; }
+  #bridge-station-report .bridge-chart .domain { display:none; }
+  #bridge-station-report .bridge-chart .tick line { stroke:var(--border); }
+  #bridge-station-report .bridge-chart rect[data-chart-frame] { fill:none; stroke:var(--border); stroke-width:1; }
+  #bridge-station-report .bridge-legend { display:flex; gap:8px 14px; flex-wrap:wrap; margin-bottom:8px; }
+  #bridge-station-report .bridge-legend button { display:inline-flex; align-items:center; gap:6px; padding:0; border:0; border-radius:0; background:transparent; color:var(--foreground); font:inherit; font-weight:400; }
+  #bridge-station-report .bridge-legend button[aria-pressed="false"] { opacity:.48; text-decoration:line-through; }
+  #bridge-station-report .bridge-legend button[aria-pressed="true"] { background:transparent; color:var(--foreground); }
+  #bridge-station-report .bridge-swatch { display:inline-block; width:16px; height:3px; background:var(--series-color); }
+  #bridge-station-report .bridge-tooltip { position:absolute; pointer-events:none; z-index:10; background:var(--popover); color:var(--popover-foreground); padding:10px; border:1px solid var(--border); border-radius:6px; }
+  #bridge-station-report .bridge-tooltip div { display:flex; justify-content:space-between; gap:16px; }
+  #bridge-station-report #bridge-source-label { margin-top:16px; overflow-wrap:anywhere; }
+  #bridge-station-report #bridge-support-results { margin-top:8px; }
+  @media (pointer:coarse) { #bridge-station-report .bridge-legend button { min-height:44px; } }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<script>
+(() => {
+const DATA = __BRIDGE_DATA__;
+/*__ENGINE__*/
+/*__UI__*/
+})();
+</script>
