@@ -21,6 +21,7 @@ design-completion status.
 | FBMP source variants | [All four fixed/minimum-tip exports](fbmp/README.md) |
 | Mathcad | [Span 1](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd), [Span 2](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd) |
 | Calculation tool | [Cap and pile notebook](../Cap_and_Pile_Design.ipynb) |
+| End-bent backwall, cheek walls and tie-back straps | [Backwall notebook](../End_Bent_Backwall_Design.ipynb) and [calculation basis](../BACKWALL_DESIGN.md); decisions D-014 to D-019 |
 | PSBeam packages | [Awaiting source files](psbeam/README.md) |
 
 GitHub may require downloading HTML reports and native calculation files to view

@@ -1,0 +1,17 @@
+{
+ "note": "Registered identities copied from project_current/source_register.csv on 2026-10-12. An upload that differs is reported, never silently adopted.",
+ "sources": {
+  "EB-CASE": {"label": "End-bent saved cap case", "path": "project_current/cap_design/end_bents/selected_case.json",
+              "sha256": "b379a468a90ccb6f44afa6be015b04380dddb2bb344f0f87aabb361808283fa7"},
+  "EB-XML": {"label": "End Bent 1 FBMP fixed results", "path": "project_current/fbmp/end_bents/End Bent 1_Fixed.XML",
+             "sha256": "8414fbedfbf1270fbd65b2cf940f2dc2050818c282cc6f66db2d20b2f3ff17ee"},
+  "CAD-MODEL": {"label": "Current FreeCAD bridge model", "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+                "sha256": "eda9060bcaaf3969a6927a256b0bdbdcf2fbcd7a2a81cb5952b054efdce08599"},
+  "JOURNAL": {"label": "Project journal (bearing pad, temperature, span, wind basis)", "path": "journal/D2_I95_Project_Journal.bpad",
+              "sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351"},
+  "MCAD-S1": {"label": "Span 1 Mathcad (pedestrian load q_PL)", "path": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd",
+              "sha256": "b514ba288a859054bae7e8556ce978bcf1c4310bc6820517759d1ed73300a76f"}
+ },
+ "decisions": ["D-004", "D-005", "D-014", "D-015", "D-016", "D-017", "D-018", "D-019"],
+ "editions": "AASHTO LRFD Bridge Design Specifications, 10th edition (2024); AASHTO LRFD Guide Specifications for the Design of Pedestrian Bridges; FDOT Structures Manual January 2026 (SDG Volume 1, SDM Volume 2)"
+}

@@ -1,0 +1,225 @@
+"""Self-contained HTML calculation report (offline MathML and Plotly).
+
+Layout follows standards/BPAD_Ref_V5.txt §16: project and scope, overview,
+result summary, numbered technical sections with discussion (blue), input
+(amber) and output (green) boxes, then the check register.
+"""
+from datetime import datetime, timezone
+import html
+from pier_cap.engine import parse
+from .model import (SECTIONS, INPUTS, COMBINATIONS, STRENGTH, SERVICE, REFERENCES, SOURCES, CONFIRMATIONS,
+                    COMBINATION_DATA, formula_trace, strap_table)
+from .notation import symbol, mathml
+from .reviews import review_html
+from . import visuals
+
+STYLE = '''
+:root{color-scheme:light}html{background:#ffffff}
+body{font-family:"Times New Roman",serif;font-size:11pt;color:#1f2a36;background:#ffffff;max-width:1100px;margin:24px auto;padding:0 18px;line-height:1.35}
+h1{font-size:16pt;margin:4px 0}h2{font-size:13pt;margin:26px 0 8px;border-bottom:2px solid #7189a6;padding-bottom:3px}
+h3{font-size:11.5pt;margin:16px 0 6px}
+.box{border:1px solid;border-radius:3px;margin:8px 0 12px;padding:0}.box>.hd{padding:5px 10px;font-weight:bold}.box>.bd{padding:8px 10px}
+.discussion{border-color:#7189a6;background:#f1f5fa}.discussion>.hd{background:#dce7f3}
+.inputs{border-color:#a78638;background:#fff8e9}.inputs>.hd{background:#f7e6b9}
+.outputs{border-color:#6a9075;background:#eff7f1}.outputs>.hd{background:#dcece0}
+table{border-collapse:collapse;width:100%;font-size:10pt;margin:4px 0}td,th{border:1px solid #c9d3dc;padding:4px 6px;text-align:left;vertical-align:top}
+th{background:rgba(0,0,0,.05)}.num{text-align:right;font-variant-numeric:tabular-nums}
+.eq{margin:6px 0 12px;overflow-x:auto}.eq math{font-size:12.5pt}.cap{color:#485969;font-size:9.5pt;margin:0 0 2px}
+.ref{color:#7a2e2e;font-size:9pt}.PASS{color:#17633b;font-weight:bold}.FAIL{color:#bb3e39;font-weight:bold}
+.PENDING{color:#a06500;font-weight:bold}.INFO,.CONFIRMED{color:#245674;font-weight:bold}
+details>summary{cursor:pointer;color:#245c85}.toolbar{position:sticky;top:0;background:#fff;padding:6px 0;border-bottom:1px solid #dce5ec;z-index:5}
+.toolbar button{margin-right:6px}.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:10pt}
+.flow span{border:1px solid #7189a6;background:#fff;border-radius:3px;padding:4px 7px}.flow b{color:#7189a6}
+.ebw-review{margin:4px 0;padding:4px 6px;background:#fff3d6;border-left:3px solid #805600;font-size:9.5pt}
+@media print{.toolbar{display:none}details{display:block}details>*{display:block}}
+'''
+
+SECTION_TEXT = {
+    'geometry': 'Arms are measured about the pile top. Vertical-load arms use the pile line shifted 3 in toward the fill, as SDG 3.13.2.N.3 requires the strap loading to include pile placement tolerance; that shift increases overturning toward the span.',
+    'earth': 'Active Coulomb pressure acts on the full retained height from the cap soffit to the backwall crown over the cap length. The pedestrian load and the landing slab weight act as uniform surcharges (LRFD 3.11.6.1). No vehicular surcharge applies (D-015).',
+    'bearing': 'DC, PL and wind at the bearings come from the selected FBMP export. Temperature fall and beam shrinkage pull the bearing tops toward the span through the elastomeric pads (upper-bound shear modulus), adding to the earth pressure.',
+    'dead': 'Self-weights of the cap, pedestals, cheek walls and backwall enter the overturning sum with the maximum or minimum factor according to their arm. The landing slab reaction is counted for gravity design only (D-017).',
+    'strap': 'The single pile row is effectively pinned (FBMP fixity 0.10), so straps attached to the backwall resist the overturning moment about the pile top. The design strap force is the larger of the total horizontal force and the moment-equilibrium force M / y_strap. When M / y_strap exceeds H, the piles supply the difference at the pile top.',
+    'bw_load': 'The backwall is a vertical cantilever from the construction joint. Strap slack: soil pressure causes fill-face tension. Strap engaged: the strap pull at z above the joint exceeds the soil moment and causes span-face tension. Both states are designed.',
+    'materials': 'Material constants for the rectangular 1-ft strip design.',
+    'bw_FF': 'Fill-face vertical steel resists the cantilever soil moment (strap slack).',
+    'bw_SF': 'Span-face vertical steel resists the reversed moment when the strap carries the end-bent horizontal load.',
+    'bw_joint': 'Shear, interface shear across the cap/backwall construction joint (SDG 1.15 factors), and distribution steel.',
+    'ck': 'The cheek walls retain no fill (D-018). They are designed for transverse wind as 1-ft vertical cantilever strips.',
+    'ck_sec': 'Cheek wall strip design; wind reverses, so both faces carry the same steel.',
+    'cap': 'Actions created by the walls, eccentric bearings and straps are not in the FBMP cap model. Torsion is screened against the LRFD threshold below which it may be neglected.',
+}
+
+FIGURE_AFTER = {'geometry': ['section', 'plan'], 'strap': ['waterfall', 'strap'], 'bw_load': ['backwall'],
+                'bw_joint': ['reinforcement'], 'ck': ['cheek'], 'cap': ['cap']}
+
+
+def _box(kind, title, body):
+    return f'<div class="box {kind}"><div class="hd">{html.escape(title)}</div><div class="bd">{body}</div></div>'
+
+
+def _names(ast, out):
+    if ast[0] == 'name':
+        out.add(ast[1])
+    elif ast[0] in ('bin',):
+        _names(ast[2], out); _names(ast[3], out)
+    elif ast[0] == 'unary':
+        _names(ast[2], out)
+    elif ast[0] == 'call':
+        for a in ast[2]:
+            _names(a, out)
+    return out
+
+
+def _refs(keys):
+    return '; '.join(f'{REFERENCES[k]["code"]} {REFERENCES[k]["article"]}' for k in keys if k in REFERENCES)
+
+
+def _input_rows(e, names):
+    rows = []
+    for name in sorted(names, key=lambda n: list(INPUTS).index(n)):
+        spec = INPUTS[name]
+        src = e.case['sources'].get(name, {})
+        unit = spec['unit'] if spec['unit'] not in (None, 'bar') else ''
+        value = e.case['inputs'][name]
+        value = f'#{int(value)}' if spec['unit'] == 'bar' else f'{value:g}'
+        rows.append(f'<tr><td>{mathml(symbol(name))}</td><td class="num">{value} {html.escape(unit)}</td>'
+                    f'<td>{html.escape(spec["caption"])}</td><td>{html.escape(src.get("source", spec["source"]))}'
+                    f' <i>({html.escape(src.get("status", spec["status"]))})</i></td></tr>')
+    return ('<table><tr><th>Symbol</th><th>Value</th><th>Meaning</th><th>Source / basis</th></tr>' + ''.join(rows) + '</table>') if rows else ''
+
+
+def _status_cell(status):
+    css = 'FAIL' if 'FAIL' in status else 'PENDING' if 'PENDING' in status else 'PASS' if 'PASS' in status else status.split()[0]
+    return f'<span class="{css}">{html.escape(status)}</span>'
+
+
+def strap_table_html(e, combo):
+    rows = strap_table(e, combo['key'])
+    body = ''.join(
+        f'<tr><td>{html.escape(r["label"])}</td><td>{"Horizontal" if r["kind"] == "H" else "Vertical"}</td>'
+        f'<td class="num">{r["force_kip"]:.2f}</td><td class="num">{r["arm_ft"]:.3f}</td><td class="num">{r["moment"]:.2f}</td>'
+        f'<td class="num">{r["factor"]:g}</td><td class="num">{r["factored_force"]:.2f}</td><td class="num">{r["factored_moment"]:.2f}</td>'
+        f'<td>{html.escape(r["basis"])}</td></tr>' for r in rows)
+    k = combo['key']
+    total = (f'<tr><th colspan="6">Totals</th><th class="num">H = {e.value("H_" + k):.2f}</th><th class="num">M = {e.value("M_" + k):.2f}</th>'
+             f'<th>e = {e.value("e_" + k):.3f} ft; F = max(H, M/y) = {e.value("F_str_" + k):.2f} kip; {e.value("f_str_" + k):.3f} klf</th></tr>')
+    return ('<table><tr><th>Load</th><th>Direction</th><th>Force (kip)</th><th>Arm (ft)</th><th>Moment (kip-ft)</th>'
+            '<th>γ</th><th>γ·H (kip)</th><th>γ·M (kip-ft)</th><th>Factor basis</th></tr>' + body + total + '</table>')
+
+
+def summary_html(e):
+    gov = max(STRENGTH, key=lambda c: e.value('f_str_' + c['key']))
+    plan = (f'<table><tr><th>Soil reinforcement attached to the backwall</th><th>Service</th><th>Factored</th></tr>'
+            f'<tr><td>Load per foot along the backwall (SDM 12.3.F)</td><td class="num"><b>{e.value("f_str_s"):.2f} kip/ft</b></td>'
+            f'<td class="num"><b>{e.value("f_str_u"):.2f} kip/ft</b> ({html.escape(gov["label"])})</td></tr>'
+            f'<tr><td>Total for the {e.value("L_bw", "ft"):.2f} ft backwall</td><td class="num">{e.value("F_str_s"):.1f} kip</td>'
+            f'<td class="num">{e.value("F_str_u"):.1f} kip</td></tr>'
+            f'<tr><td>Strap elevation</td><td colspan="2">{e.value("z_strap", "ft"):.2f} ft above the cap top '
+            f'({e.value("y_strap", "ft"):.2f} ft above the pile top)</td></tr></table>'
+            '<p><b>Plan note (SDM 12.3.F):</b> The soil reinforcement attached to the backwall shall be designed by a Specialty Engineer '
+            'for the service and factored loads as shown using the design criteria for permanent MSE walls. Cost of furnishing and '
+            'installing the soil reinforcement is considered incidental to the cost of the end bent.</p>'
+            '<p><b>Plan note (SDG 1.15):</b> Intentionally roughen the backwall and cheek-wall construction joints to a minimum '
+            '1/4-inch amplitude.</p>')
+    numeric = [c for c in e.checks if isinstance(c.ratio, (int, float))]
+    top = sorted(numeric, key=lambda c: -c.ratio)[:6]
+    rows = ''.join(f'<tr><td>{html.escape(c.group)} · {html.escape(c.label)}</td><td class="num">{c.ratio:.3f}</td><td>{_status_cell(c.status)}</td></tr>' for c in top)
+    pending = [c for c in e.checks if 'PENDING' in c.status]
+    pend = ''.join(f'<li>{html.escape(c.label)}</li>' for c in pending)
+    finding = ''
+    worst = max(COMBINATIONS, key=lambda c: e.value('V_pile_' + c['key']))
+    if e.value('V_pile_' + worst['key']) > 0.5:
+        finding = (f'<p><b>Strap location:</b> the resultant lies {e.value("e_" + gov["key"], "ft"):.2f} ft above the pile top, above the '
+                   f'strap at {e.value("y_strap", "ft"):.2f} ft, so moment equilibrium governs the strap load and the piles supply up to '
+                   f'{e.value("V_pile_" + worst["key"]):.1f} kip ({html.escape(worst["label"])}) toward the span. Raising the strap toward '
+                   'the resultant reduces both. The pile-tolerance shift required by SDG 3.13.2.N.3 is the main contributor.</p>')
+    return (_box('outputs', 'Result summary · tie-back loads for the plans', plan + finding) +
+            _box('outputs', 'Largest check ratios', f'<p>{html.escape(e.status)}</p><table><tr><th>Check</th><th>Ratio</th><th>Status</th></tr>{rows}</table>'
+                 + (f'<p><b>Pending items</b></p><ul>{pend}</ul>' if pend else '')))
+
+
+def checks_html(e):
+    trace = {t['name']: t for t in formula_trace(e)}
+    rows = []
+    for c in e.checks:
+        ratio = f'{c.ratio:.3f}' if isinstance(c.ratio, (int, float)) else '—'
+        details = ''.join(f'<div class="eq">{trace[n]["mathml"]}</div>' for n in c.names if n in trace)
+        refs = _refs(c.refs)
+        body = (f'<p>{html.escape(c.basis)}</p>' + (f'<p class="ref">{html.escape(refs)}</p>' if refs else '') + details
+                + (f'<p><i>{html.escape(c.note)}</i></p>' if c.note else ''))
+        rows.append(f'<tr><td>{html.escape(c.group)}</td><td>{html.escape(c.label)}{review_html(c)}<details><summary>Equation &amp; values</summary>{body}</details></td>'
+                    f'<td>{html.escape(c.demand)}</td><td>{html.escape(c.capacity)}</td><td class="num">{ratio}</td><td>{_status_cell(c.status)}</td></tr>')
+    return ('<table><tr><th>Group</th><th>Check</th><th>Demand / required</th><th>Capacity / limit</th><th>Ratio</th><th>Status</th></tr>'
+            + ''.join(rows) + '</table>')
+
+
+def build_report(e, title=None):
+    import plotly.offline
+    title = title or 'End Bent Backwall, Cheek Walls and Tie-Back Straps'
+    trace = formula_trace(e)
+    figures = {name: fn(e) for name, fn in visuals.FIGURES}
+    parts = [f'<div class="toolbar"><button onclick="document.querySelectorAll(\'details\').forEach(d=>d.open=true)">Expand all</button>'
+             f'<button onclick="document.querySelectorAll(\'details\').forEach(d=>d.open=false)">Collapse all</button>'
+             f'<button onclick="document.querySelectorAll(\'details\').forEach(d=>d.open=true);window.print()">Print / save PDF</button></div>',
+             f'<p><b>D2 I-95 Pedestrian Bridge · FDOT District 2</b></p><h1>{html.escape(title)}</h1>',
+             f'<p>{html.escape(e.case["name"])}<br>Generated {datetime.now(timezone.utc):%Y-%m-%d %H:%M UTC} · '
+             f'{html.escape(SOURCES["editions"])}</p>']
+    flow = ' <b>→</b> '.join(f'<span>{s}</span>' for s in (
+        'Geometry &amp; arms', 'Earth pressure &amp; surcharges', 'Bearing actions', 'Dead loads', 'Combinations',
+        'Overturning about the pile top', 'Tie-back strap load', 'Backwall · slack &amp; engaged', 'Cheek walls (wind)', 'Cap supplement', 'Checks'))
+    parts.append(_box('discussion', 'Objective, method and scope',
+        '<p>Determine the tie-back strap loads for the end bents and design the backwall and cheek walls. This replaces the template '
+        'Mathcad backwall/strap calculation with project data: two FIB-36 bearings on a 17\'-8" cap, four 18 in square piles (effectively pinned), '
+        'a 4 in MSE landing slab on the backwall, pedestrian loading only and FDOT January 2026 criteria.</p>'
+        f'<div class="flow">{flow}</div>'
+        '<p>Outside this calculation: strap/pullout design (Specialty Engineer), revised FBMP analysis, final wall geometry (D-005) and detailing.</p>'))
+    parts.append(summary_html(e))
+    by_section = {}
+    for t in trace:
+        by_section.setdefault(t['section'], []).append(t)
+    for key, heading in SECTIONS:
+        items = by_section.get(key, [])
+        names = set()
+        for d in e.definitions:
+            if d['section'] == key:
+                _names(parse(d['expr']), names)
+        inputs = [n for n in names if n in INPUTS]
+        section = [f'<h2>{html.escape(heading)}</h2>', _box('discussion', 'Purpose', f'<p>{html.escape(SECTION_TEXT.get(key, ""))}</p>')]
+        if inputs:
+            section.append(_box('inputs', 'Inputs', _input_rows(e, inputs)))
+        eqs = ''.join(f'<p class="cap">{html.escape(t["caption"])}' + (f' <span class="ref">({html.escape(_refs(t["refs"]))})</span>' if t['refs'] else '')
+                      + f'</p><div class="eq">{t["mathml"]}</div>' for t in items)
+        if key == 'strap':
+            tables = ''.join(f'<details{" open" if c["key"] == "STRI" else ""}><summary><b>{html.escape(c["label"])}</b> overturning table</summary>'
+                             f'{strap_table_html(e, c)}</details>' for c in COMBINATIONS)
+            section.append(_box('outputs', 'Overturning tables by combination', '<p>' + html.escape(COMBINATION_DATA['basis']) + '</p>' + tables))
+            section.append(f'<details><summary>Equations for every combination ({len(items)} lines)</summary>{eqs}</details>')
+        else:
+            section.append(eqs)
+        for name in FIGURE_AFTER.get(key, []):
+            section.append(figures[name].to_html(full_html=False, include_plotlyjs=False))
+        parts.append(''.join(section))
+    parts.append('<h2>14. Check register</h2>')
+    parts.append(figures['ratios'].to_html(full_html=False, include_plotlyjs=False))
+    parts.append(checks_html(e))
+    conf = ''.join(f'<li>{"Confirmed" if e.case["confirmations"][k] else "<b>Pending</b>"}: {html.escape(text)}</li>' for k, text in CONFIRMATIONS.items())
+    receipts = ''.join(f'<tr><td>{html.escape(r["source_id"])}</td><td>{html.escape(r["filename"])}</td><td><code>{r["sha256"][:16]}…</code></td>'
+                       f'<td>{"matches register" if r["matches_register"] else "<b>differs from register</b>"}</td><td>{html.escape("; ".join(r["notes"]))}</td></tr>'
+                       for r in e.case.get('receipts', {}).values())
+    parts.append('<h2>15. Sources, decisions and confirmations</h2>')
+    parts.append(_box('inputs', 'Registered sources and decisions',
+        f'<p>Decisions: {", ".join(SOURCES["decisions"])} (project_current/decisions.md).</p>'
+        + (f'<table><tr><th>Source</th><th>File</th><th>SHA-256</th><th>Register</th><th>Notes</th></tr>{receipts}</table>' if receipts else
+           '<p>Inputs use the registered defaults embedded in the notebook; no source file was uploaded in this session.</p>')
+        + f'<ul>{conf}</ul>'))
+    body = ''.join(parts)
+    script = f'<script type="text/javascript">{plotly.offline.get_plotlyjs()}</script>'
+    return (f'<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
+            f'<title>{html.escape(title)}</title><style>{STYLE}</style>{script}</head><body>{body}</body></html>')
+
+
+def write_report(e, path):
+    from pathlib import Path
+    Path(path).write_text(build_report(e), encoding='utf-8')
+    return Path(path)

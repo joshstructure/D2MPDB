@@ -1,0 +1,15 @@
+{
+ "basis": "LRFD 10th edition Tables 3.4.1-1 and 3.4.1-2; combinations mirror the End Bent 1 FB-MultiPier set (Strength I, Strength III in two wind directions, Service I) plus Strength IV for the permanent-load overturning screen. Strength V is not required for this pedestrian bridge (journal load-combination table). TU/SH use the force-effect factor. Wind vertical forces count only when they increase overturning.",
+ "combinations": [
+  {"key": "SERI", "label": "Service I", "limit": "service", "wind": "WS3",
+   "DC": [1.0, 1.0], "EH": [1.0, 1.0], "ES": [1.0, 1.0], "LS": 1.0, "PL": 1.0, "TU": 1.0, "SH": 1.0, "WS": 1.0},
+  {"key": "STRI", "label": "Strength I", "limit": "strength", "wind": null,
+   "DC": [1.25, 0.90], "EH": [1.50, 0.90], "ES": [1.50, 0.75], "LS": 1.75, "PL": 1.75, "TU": 0.50, "SH": 0.50, "WS": 0.0},
+  {"key": "STRIII1", "label": "Strength III · wind 1", "limit": "strength", "wind": "WS1",
+   "DC": [1.25, 0.90], "EH": [1.50, 0.90], "ES": [1.50, 0.75], "LS": 0.0, "PL": 0.0, "TU": 0.50, "SH": 0.50, "WS": 1.0},
+  {"key": "STRIII2", "label": "Strength III · wind 2", "limit": "strength", "wind": "WS2",
+   "DC": [1.25, 0.90], "EH": [1.50, 0.90], "ES": [1.50, 0.75], "LS": 0.0, "PL": 0.0, "TU": 0.50, "SH": 0.50, "WS": 1.0},
+  {"key": "STRIV", "label": "Strength IV", "limit": "strength", "wind": null,
+   "DC": [1.50, 0.90], "EH": [1.50, 0.90], "ES": [1.50, 0.75], "LS": 0.0, "PL": 0.0, "TU": 0.50, "SH": 0.50, "WS": 0.0}
+ ]
+}

@@ -45,6 +45,21 @@ Open **[FBMP_Envelope_Extractor.ipynb](FBMP_Envelope_Extractor.ipynb)**, choose 
 
 The reported FBMP summary and original XML element-end envelopes remain separately labeled, with source discrepancies flagged. See [the extractor guide](FBMP_ENVELOPE_EXTRACTOR.md). The Colab link becomes available after the notebook is pushed to `main`.
 
+## End-bent backwall, cheek walls and tie-back straps
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/End_Bent_Backwall_Design.ipynb)
+
+Open **[End_Bent_Backwall_Design.ipynb](End_Bent_Backwall_Design.ipynb)** and choose **Runtime → Run all**. The notebook reads the registered end-bent case, FBMP XML and FreeCAD model, and produces the following:
+- the SDG 3.13.2.N overturning tables with pile placement tolerance
+- the service and factored tie-back strap loads per foot of backwall for the plans (SDM 12.3.F)
+- backwall design for both strap states
+- cheek-wall design for wind
+- a cap torsion supplement
+
+It shares the cap notebook's formula engine, MathML equations, Recalc control and D/C register with *Equation & values*, reviews and exports. See [BACKWALL_DESIGN.md](BACKWALL_DESIGN.md) for the basis, decisions D-014 to D-019, differences from the template Mathcad and pending items.
+
+Refresh the embedded package after code changes with `python scripts/build_backwall_notebook.py`. Validate with `python -m unittest tests.test_end_bent_walls`.
+
 ## Cap and pile design notebook
 
 **Controlling stations:** Constant-angle, no-torsion segments solve for controlling locations algebraically. Variable-angle and torsion segments now solve numerically for transition roots and interior D/C peaks, using locally validated polynomial models instead of a uniform station grid. Interval ends, pile faces/centers, bearing stations, force zeros, hook cutoffs, development transitions and changes in contributing stirrups remain boundaries; both sides are checked. Failed numerical models use the retained adaptive sweep, and unresolved force imports retain pending diagnostics. **LRFD regions & checks → Controlling locations** shows algebraic/numerical/fallback counts, trial evaluations and retained results; the longitudinal working table explains why each location was selected. Numerical convergence is a tolerance-based check, not a formal global bound. This changes station selection only; it creates no pile-offset exemption or D-region design replacement.
