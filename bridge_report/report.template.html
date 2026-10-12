@@ -37,6 +37,7 @@
     </table>
   </div>
   <div id="bridge-support-results" class="text-small tabular-nums"></div>
+  <details><summary>Camber and calculation basis</summary><p id="bridge-camber-basis" class="text-small"></p></details>
   <div id="bridge-source-label" class="text-small text-muted"></div>
   <div class="tooltip" id="bridge-hover" role="tooltip" hidden></div>
 </div>
@@ -50,6 +51,7 @@
   #bridge-station-report .bridge-plot { width:100%; min-width:0; }
   #bridge-station-report .bridge-chart { display:block; width:100%; overflow:visible; }
   #bridge-station-report .bridge-chart text { fill:var(--foreground); font-size:12px; font-weight:400; }
+  #bridge-station-report .bridge-chart .pile-top-label { font-size:10px; paint-order:stroke; stroke:var(--background); stroke-width:3px; stroke-linejoin:round; }
   #bridge-station-report .bridge-chart .domain { display:none; }
   #bridge-station-report .bridge-chart .tick line { stroke:var(--border); }
   #bridge-station-report .bridge-chart rect[data-chart-frame] { fill:none; stroke:var(--border); stroke-width:1; }

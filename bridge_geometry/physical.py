@@ -1,8 +1,8 @@
-"""Station cuts through source-derived bridge solids (feet, local bridge axes).
+"""Notebook-owned geometry equations and station cuts (feet, local bridge axes).
 
-Support construction follows the registered FreeCAD model's bridge_layout,
-bridge_supports, end_bents and current_source controllers. No native model is
-modified. Station is longitudinal X, offset is transverse Y, elevation is Z.
+Support dimensions were reconciled with the registered project geometry;
+all elevations and curves are recalculated from notebook inputs. No native
+model is modified. Station is longitudinal X, offset is transverse Y, elevation is Z.
 """
 import math
 import numpy as np
@@ -124,6 +124,20 @@ class PhysicalBridgeMixin:
         a=np.array([self.bearing_limits[i][0] for i in index]);b=np.array([self.bearing_limits[i][1] for i in index])
         t=(s-a)/(b-a)
         return index,self.pgl(a)+(self.pgl(b)-self.pgl(a))*t,4*self.spans.camber_in.to_numpy()[index]/12*t*(1-t)
+
+    def camber_summary(self):
+        """Calculated haunch effects beside traceable structural camber inputs."""
+        rows=[]
+        for i,span in self.spans.iterrows():
+            a,b=self.bearing_limits[i];mid=(a+b)/2
+            basis=next((v for v in self.cfg.get('camber_basis',[]) if v['span']==int(span['id'])),None)
+            matches=basis is not None and abs(span.camber_in-basis['net_camber_in'])<1e-12
+            rows.append({'Span':int(span['id']),'Bearing start (ft)':a,'Bearing end (ft)':b,
+                'Bearing midpoint (ft)':mid,'Input peak camber (in)':float(span.camber_in),
+                'Midpoint min flange haunch (in)':float(self.evaluate([mid],i)['haunch'].min()*12),
+                'Common support drop (ft)':self.support_drop,
+                'Input basis':'Mathcad saved NetCamber, 120 day' if matches else 'Notebook input override / source not matched'})
+        return pd.DataFrame(rows)
 
     def breakpoints(self,span_index):
         points=super().breakpoints(span_index)

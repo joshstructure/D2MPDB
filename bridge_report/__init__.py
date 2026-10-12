@@ -1,5 +1,6 @@
 """Offline station report using results from the notebook's resolved geometry model."""
 import base64
+import hashlib
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -76,6 +77,8 @@ def report_data(model, section_geometry, initial_station=None):
         generated_utc=datetime.now(timezone.utc).isoformat(),
         geometry_source={k:model.cfg.get('physical_geometry',{}).get(k) for k in ('source_file','source_sha256')},
         model_id=model.model_id, profile=model.profile_mode, deck_mode=model.deck_mode,
+        authority='Notebook CONFIG and geometry equations; CAD consumes the exported results.',
+        camber_basis=model.cfg.get('camber_basis',[]),
         start=model.start,end=model.end,offsets=model.offsets,depth=model.depth,flange=model.flange,
         physical=model.physical,inspection_start=model.inspection_start,inspection_end=model.inspection_end,
         beam_limits=model.beam_limits,deck_limits=model.deck_limits,bearing_limits=model.bearing_limits,
@@ -89,6 +92,55 @@ def report_data(model, section_geometry, initial_station=None):
     if not model.inspection_start <= data['initial_station'] <= model.inspection_end:
         raise ValueError('Initial report station is outside the bridge.')
     return clean(data)
+
+
+def cad_geometry_data(model, section_geometry):
+    """Portable analytic curves and solid parameters for downstream CAD rebuilds."""
+    geometry=report_data(model,section_geometry)
+    # Reject an unsupported nonquadratic future model rather than silently sample it.
+    for piece in geometry['pieces']:
+        span=next(i for i,row in model.spans.iterrows() if row['id']==piece['span'])
+        for t in (.2113248654,.7886751346):
+            expected=model.evaluate([piece['start']+t*(piece['end']-piece['start'])],span)
+            for key,c in piece['fields'].items():
+                a,b,q=np.asarray(c)
+                if not np.allclose(a+b*t+q*t*t,expected[key][0],rtol=0,atol=1e-9):
+                    raise ValueError(f'CAD export cannot represent {key} as a quadratic on this interval.')
+    payload=clean(dict(schema='d2mpdb.notebook-cad-geometry',schema_version=1,
+        authority='Bridge_Geometry_2 Beam_V2.ipynb applied inputs and equations',
+        model_id=model.model_id,configuration=model.cfg,
+        coordinates=dict(length_unit='international foot',feet_to_mm=304.8,
+            x='Absolute bridge station',y='Transverse offset from PGL',z='Absolute elevation',
+            station_origin_ft=model.start,
+            cad_local_mm='X=(station-station_origin_ft)*304.8; Y=offset*304.8; Z=elevation*304.8; apply site placement separately'),
+        polynomial_contract=dict(parameter='t=(station-piece.start)/(piece.end-piece.start)',
+            evaluation='value=c[0]+c[1]*t+c[2]*t*t',coefficient_axis=0,
+            field_units='All curve fields are feet, including camber and haunch.',
+            array_axes='bottom/top: beam; deck/haunch: beam then left flange edge, center, right flange edge',
+            applicability='Use beam_limits/deck_limits for solid presence. Do not bridge open joints.',
+            support_geometry='Cap plane from top/slope/center and cap_bounds; pedestals piecewise linear in station; bearing planes from top/slope/station; square/pipe piles from dimensions and cutoff.'),
+        support_drop_ft=model.support_drop,camber_diagnostics=model.camber_summary().to_dict('records'),
+        limitations=['FIB36 outline fillets are tessellated; longitudinal curves are polynomial.',
+            'Pile bottom values use trial lengths, not final design tips. Provisional walls are omitted.',
+            'This export does not automatically rebuild or certify an existing CAD model.'],
+        geometry=geometry))
+    canonical=json.dumps(payload,sort_keys=True,separators=(',',':'),allow_nan=False).encode('utf-8')
+    payload['payload_sha256']=hashlib.sha256(canonical).hexdigest()
+    return payload
+
+
+def export_cad_geometry(model=None,path=None):
+    """Export the applied notebook configuration, analytic curves and support geometry."""
+    if model is None:
+        active=globals().get('dashboard')
+        model=active['state']['model'] if isinstance(active,dict) else globals().get('MODEL')
+        if model is None:raise RuntimeError('Run the geometry model before exporting CAD geometry.')
+        if configuration_id(CONFIG)!=model.model_id:
+            raise ValueError('Inputs changed. Click Apply input changes, then export CAD geometry again.')
+    payload=cad_geometry_data(model,section_geometry)
+    target=Path(path or f'Bridge_Geometry_CAD_{model.model_id}.json')
+    target.write_text(json.dumps(payload,indent=2,allow_nan=False)+'\n',encoding='utf-8')
+    return target
 
 
 def render_report(model, section_geometry, initial_station=None, assets=None):
@@ -126,11 +178,12 @@ def export_interactive_report(model=None, path=None, station=None):
 
 
 def show_interactive_report_export():
-    """One button for local Jupyter and Colab, with a durable HTML download."""
+    """Report and CAD handoff downloads from the same applied notebook model."""
     import ipywidgets as W
     from IPython.display import HTML, FileLink, display
     button=W.Button(description='Export interactive report',icon='download',button_style='primary',
                     layout=W.Layout(width='auto'))
+    cad_button=W.Button(description='Export CAD geometry',icon='download',layout=W.Layout(width='auto'))
     output=W.Output()
     def download(_):
         button.disabled=True
@@ -150,5 +203,23 @@ def show_interactive_report_export():
             finally:
                 button.disabled=False
     button.on_click(download)
-    display(W.VBox([button,output]))
-    return dict(button=button,output=output)
+    def download_cad(_):
+        cad_button.disabled=True
+        with output:
+            output.clear_output(wait=True)
+            try:
+                path=export_cad_geometry()
+                print(f'Exported {path.name}: notebook equations, curves, support geometry and input provenance for CAD.')
+                try:
+                    from google.colab import files
+                except ImportError:
+                    display(FileLink(str(path)))
+                else:
+                    files.download(str(path))
+            except Exception as error:
+                print(f'CAD geometry not exported: {error}')
+            finally:
+                cad_button.disabled=False
+    cad_button.on_click(download_cad)
+    display(W.VBox([W.HBox([button,cad_button]),output]))
+    return dict(button=button,cad_button=cad_button,output=output)

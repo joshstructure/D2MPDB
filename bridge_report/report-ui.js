@@ -188,9 +188,13 @@ function drawSection(){
     .attr('y1',p=>y(d3.max(p.xy,v=>v[1]))).attr('y2',p=>y(d3.max(p.xy,v=>v[1]))).attr('stroke',colors.Pile).attr('stroke-width',2.5);
   labels.selectAll('text.pile-label').data(piles).join('text').attr('class','pile-label value-label')
     .attr('x',p=>x(p['Offset (ft)'])).attr('y',p=>y(p['Cap underside (ft)']-1.25)).attr('text-anchor','middle').text(p=>`P${p.Pile}`);
+  const pileTops=labels.selectAll('text.pile-top-label').data(piles).join('text').attr('class','pile-top-label')
+    .attr('x',p=>x(p['Offset (ft)'])).attr('y',p=>y(p['Pile cutoff (ft)'])-19).attr('text-anchor','middle');
+  pileTops.selectAll('tspan').data(p=>[`P${p.Pile} top`,`${format(p['Pile cutoff (ft)'],4)}`]).join('tspan')
+    .attr('x',function(){return this.parentNode.getAttribute('x');}).attr('dy',(_,i)=>i?'1.1em':0).text(d=>d);
   $('bridge-section-heading').textContent=`Cross-section · ${current.support?.name||`span ${current.span}`} · ${stationLabel(selected)}`;
   $('bridge-section-note').textContent=DATA.physical
-    ?`Source geometry · FIB36 fillets tessellated${current.support?` · ${(selected-current.support.station).toFixed(3)} ft from cap center · pile heads cropped; tips remain trial values`:''}${!current.beamPresent?' · no beam intersects this station':''} · provisional walls omitted`
+    ?`Notebook geometry · FIB36 fillets tessellated${current.support?` · ${(selected-current.support.station).toFixed(3)} ft from cap center · pile-top elevations in ft; top = local cap underside + embedment · pile heads cropped; tips remain trial values`:''}${!current.beamPresent?' · no beam intersects this station':''} · provisional walls omitted`
     :'Approximate FIB36 outline · pile heads only; final tips undefined';
   makeLegend('bridge-component-legend',[...new Set(current.components.map(c=>c.kind))].map(kind=>({id:kind,name:kind,color:colors[kind]})),hiddenKinds,drawSection);
   sectionChart.checkLabels();
@@ -219,6 +223,10 @@ function updateReadouts(){
     ?`${p?'Cut intersects':'No substructure at this station. Nearest support:'} ${nearest.name} · cap limits ${stationLabel(nearest.solid_geometry.cap_bounds[0])}–${stationLabel(nearest.solid_geometry.cap_bounds[1])}`:'';
   const visiblePiles=(p?.piles||[]).filter(v=>!DATA.physical||current.components.some(c=>c.kind==='Pile'&&c.pile===v.Pile));
   $('bridge-support-results').textContent=p?`Cap center top ${format(p.top,4)} ft · cap center underside ${format(p.top-p.depth,4)} ft${visiblePiles.length?` · intersected pile cutoffs ${visiblePiles.map(v=>`P${v.Pile}: ${format(v['Pile cutoff (ft)'],4)} ft`).join(' / ')}`:' · no piles intersect this station'}`:'';
+  $('bridge-camber-basis').textContent=`Applied camber inputs: ${DATA.spans.map(s=>`Span ${s.id}: ${format(s.camber_in,5)} in`).join(' / ')}. `+
+    'The notebook uses c = 4C t(1 − t), with t measured between physical bearing centers. Haunch = deck surface − deck thickness − beam top. '+
+    'One support drop enforces the minimum haunch across all spans, so unequal cambers produce unequal haunch curves. '+
+    'Default inputs come from the Mathcad beam sheets’ saved 120-day net-camber results; they are not a new prestress analysis.';
 }
 function setStation(station,persist=true){
   if(!Number.isFinite(station)||station<inspectionStart||station>inspectionEnd){

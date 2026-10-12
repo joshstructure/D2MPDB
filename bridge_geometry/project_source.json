@@ -82,5 +82,7 @@
     ],
     "changed_results": "Saved source cambers and physical bearing positions change seat/cap/pile elevations, beam-length haunch quantities and minimum covered roadway clearance.",
     "other_consumers": "Journal, design notebooks, analyses and the coherence tracker were not updated by this geometry incorporation; their prior source fingerprints and dispositions remain in place."
-  }
+  },
+  "calculation_authority": "Notebook CONFIG and equations drive derived geometry; this receipt records the imported dimensional baseline only.",
+  "camber_provenance": "bridge_geometry/camber_sources.json: registered Mathcad NetCamber saved results, independently matched to the former CAD controls."
 }

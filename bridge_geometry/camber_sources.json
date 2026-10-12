@@ -1,0 +1,22 @@
+[
+  {
+    "span": 1,
+    "source_file": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd",
+    "source_sha256": "b514ba288a859054bae7e8556ce978bcf1c4310bc6820517759d1ed73300a76f",
+    "variable": "NetCamber",
+    "stage": "End of construction, 120 days",
+    "net_camber_in": 0.030455438593645807,
+    "source_equation": "max(Defl_120day) + min(Defl_dl.nc) + min(Defl_dl.c)",
+    "status": "Saved Mathcad calculation result; not independently rerun by this notebook"
+  },
+  {
+    "span": 2,
+    "source_file": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd",
+    "source_sha256": "fa6693a473770e088665283631b099a0b61a0cabecac1f577ee9473b3569585b",
+    "variable": "NetCamber",
+    "stage": "End of construction, 120 days",
+    "net_camber_in": 0.48309541716006704,
+    "source_equation": "max(Defl_120day) + min(Defl_dl.nc) + min(Defl_dl.c)",
+    "status": "Saved Mathcad calculation result; not independently rerun by this notebook"
+  }
+]
