@@ -160,7 +160,7 @@ class HandoffWidgetTests(unittest.TestCase):
             self.assertEqual(path.name, 'Separate workbook reference trials.xlsx')
             self.assertEqual([p.name for p in path.parent.iterdir()], [path.name])
             workbook = load_workbook(path)
-            self.assertEqual(workbook.sheetnames, ['Geotech handoff'])
+            self.assertEqual(workbook.sheetnames, ['Pile summary', 'Soil properties', 'Minimum tip trials'])
             self.assertEqual(workbook.active['A1'].value, 'Separate workbook reference trials')
             rows = list(workbook.active.values)
             tip_row = next(r for r in rows if r[0] == 'Second zero crossing')
@@ -271,7 +271,7 @@ class HandoffWidgetTests(unittest.TestCase):
             for label, filename, heading in [
                 ('Pier 2 - Minimum Tip', 'Pier 2 - Minimum Tip.xlsx', 'Pier 2 - Minimum Tip'),
                 ('End Bent 1 / Trial: A.csv', 'End Bent 1 - Trial- A.xlsx', 'End Bent 1 / Trial: A.csv'),
-                ('   ', 'geotech_handoff.xlsx', 'Geotechnical handoff'),
+                ('   ', 'geotechnical_report.xlsx', 'Geotechnical report'),
             ]:
                 with self.subTest(label=label), patch.object(self.panel, '_download') as download:
                     self.panel.trial_label.value = label
@@ -285,7 +285,7 @@ class HandoffWidgetTests(unittest.TestCase):
                     workbook.close()
 
     def test_trial_source_filename_is_safe_on_windows(self):
-        for label, expected in [('', 'geotech_handoff.xlsx'), ('CON', '_CON.xlsx'),
+        for label, expected in [('', 'geotechnical_report.xlsx'), ('CON', '_CON.xlsx'),
                                 ('Pier 2.xlsx', 'Pier 2.xlsx'), ('../Pier 2', '-Pier 2.xlsx')]:
             with self.subTest(label=label):
                 self.assertEqual(handoff_filename(label), expected)

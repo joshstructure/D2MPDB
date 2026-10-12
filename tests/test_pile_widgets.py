@@ -103,7 +103,7 @@ class PileWidgetTests(unittest.TestCase):
             self.panel.restore(saved)
             self.assertEqual(self.panel.piles.value,('1','3'))
             self.assertIn('uplift_kip',(Path(folder)/'pile_heads.csv').read_text(encoding='utf-8-sig'))
-            self.assertIn('Geotechnical handoff',(Path(folder)/'pile_review.html').read_text(encoding='utf-8'))
+            self.assertIn('Geotechnical report',(Path(folder)/'pile_review.html').read_text(encoding='utf-8'))
             self.panel.reference.value='bad'
             with self.assertRaises(ValueError):self.panel.save_bundle(Path(folder)/'invalid')
 

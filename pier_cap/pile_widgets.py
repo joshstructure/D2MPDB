@@ -356,7 +356,8 @@ class PileReviewPanel:
                 '.geotech-handoff details{border:1px solid #dde3e8;border-radius:6px;padding:12px;margin-top:18px}'
                 '.geotech-handoff summary{cursor:pointer;font-weight:600;color:#213649}'
                 '</style><h3>Geotechnical handoff</h3>'
-                '<p class="gh-help">Review Tables 11–13, then download the Excel handoff. '
+                '<p class="gh-help">Review Tables 11–13, then download the Excel report. '
+                'The workbook also includes Soil properties and Minimum tip trials tabs. '
                 'Set elevations and trial inputs in Minimum tip.</p>'),
             handoff_settings,
             W.HBox([self.handoff_refresh, self.handoff_export], layout=W.Layout(flex_flow='row wrap', margin='12px 0')),
@@ -773,7 +774,12 @@ class PileReviewPanel:
             require(self.minimum_tip_result['tip_elevation_ft'] is not None,
                     'Enter the design ground / scour elevation in Minimum tip to calculate minimum tip elevation.')
             require(all(r['short_tons'] is not None for r in loads), 'No strength / extreme-event pile-head loads are available.')
-        return dict(section=section, loads=loads, selected=selected)
+        elevations = review_elevations(self.review)
+        return dict(section=section, loads=loads, selected=selected,
+                    elevations=dict(soil_top_ft=elevations['ground_ft'], pile_head_ft=elevations['cutoff_ft'],
+                                    cutoff_ft=self.optional(self.cutoff)),
+                    soil_properties=self.review.get('soil_properties', []),
+                    trials=self.trial_result['rows'] if self.trial_result else [])
 
     def handoff_html(self, data):
         result = self.minimum_tip_result
@@ -787,6 +793,8 @@ class PileReviewPanel:
                 if qualification:
                     markup += notice_html('MINIMUM TIP NEEDS REVIEW', html.escape(qualification), 'pending')
         markup += '<p class="gh-help">FDL = factored design load. Compression and uplift are positive magnitudes. 1 short ton = 2 kip.</p>'
+        if not data.get('soil_properties'):
+            markup += '<p class="gh-help">Reload the full minimum-tip XML to include its soil properties in the Excel report.</p>'
         if self.geotech_notes.value.strip():
             markup += '<h4>Project notes</h4><p>'+html.escape(self.geotech_notes.value).replace('\n','<br>')+'</p>'
         markup += '<details><summary>Calculation details and sources · notebook only</summary>'
@@ -810,7 +818,7 @@ class PileReviewPanel:
         markup += table(data['loads'], [('load','Pile-head design load'), ('raw_short_tons','Original · Short tons'),
             ('margin_percent','Internal margin (%)'), ('short_tons','Final FDL · Short tons'), ('governing','Governing record')], scroll=False, decimals=3)
         margin = data['loads'][0]['margin_percent']
-        markup += f'<p><b>Handoff demand = original factored pile-head demand × (1 + {margin:g}/100) = original × {1+margin/100:g}.</b> '
+        markup += f'<p><b>Design demand = original factored pile-head demand × (1 + {margin:g}/100) = original × {1+margin/100:g}.</b> '
         markup += 'Compression and uplift are positive magnitudes. The internal project margin is applied once to the original XML demands; '
         markup += 'it does not modify cap forces, pile profiles, or the minimum-tip calculation. It is not a code load or resistance factor.</p>'
         markup += '<p>1 short ton = 2 kip. Envelopes use strength and extreme-event combinations from the minimum-tip XML; service and fatigue combinations are excluded.</p>'
@@ -981,7 +989,7 @@ class PileReviewPanel:
         (folder/'pile_review.html').write_text('<!doctype html><html><head><meta charset="utf-8"><title>Pile review</title></head><body style="font-family:Arial">'
             + '<h1>FBMP pile review</h1><p>'+html.escape(self.review['filename'])+' · '+self.review['sha256']+'</p>'
             + self.source_match.value + self.summary.value + self.properties.value + ''.join(parts) + self.reported.value
-            + self.minimum_tip_summary.value + self.trial_summary.value + '<h2>Geotechnical handoff</h2>' + self.handoff.value + '<p>'+'<br>'.join(html.escape(n) for n in self.review['notes'])+'</p></body></html>', encoding='utf-8')
+            + self.minimum_tip_summary.value + self.trial_summary.value + '<h2>Geotechnical report</h2>' + self.handoff.value + '<p>'+'<br>'.join(html.escape(n) for n in self.review['notes'])+'</p></body></html>', encoding='utf-8')
         return folder
 
     def _download(self, path, status=None, output=None):

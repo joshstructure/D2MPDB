@@ -115,6 +115,10 @@ class ElevationWidgetTests(unittest.TestCase):
             row = next(r for r in workbook.active.values if r[0] == 'Second zero crossing')
             self.assertAlmostEqual(row[1], 21.5 - tip)
             self.assertAlmostEqual(row[2], tip)
+            summary = {r[0]: r[1] for r in workbook.active.values}
+            self.assertAlmostEqual(summary['Total pile length at minimum tip (ft)'], 41.4175-tip)
+            self.assertEqual(summary['Soil-top elevation (ft)'], 21.5)
+            self.assertEqual(summary['Pile-head elevation (ft)'], 41.4175)
 
     def test_override_restore_reset_and_same_file_reload(self):
         p = self.panel

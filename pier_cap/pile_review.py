@@ -12,6 +12,7 @@ import json
 import math
 import re
 from lxml import etree as ET
+from .soil_properties import soil_properties_from_xml, validate_soil_properties
 
 FIELDS = {'axial': ('AXIAL', 'kip'), 'v2': ('SHEAR-2', 'kip'),
           'v3': ('SHEAR-3', 'kip'), 'm2': ('MOMENT-2', 'kip-ft'),
@@ -285,7 +286,7 @@ def import_pile_xml(source, filename=None):
         project=root.findtext('PROJECT_INFO/PROJECT_NAME') or '', version='6.1.0', section=section,
         combinations={k: v.get('limitstate') for k, v in definitions.items()},
         combination_factors=combination_factors,
-        soil_top_elevations_ft=soil_tops,
+        soil_top_elevations_ft=soil_tops, soil_properties=soil_properties_from_xml(group),
         piles={p: dict(length_ft=distances[p][-1], head_xyz_in=coords[p][0], tip_xyz_in=coords[p][-1]) for p in coords},
         forces=forces, displacements=displacements, reported_stresses=reported, reported_summary=summary,
         notes=['Force values are original XML element-end values; axial stress reverses the J-end axial sign.',
@@ -488,6 +489,7 @@ def validate_saved_review(review):
                     for k,v in values.items()), f'Combination {combo}: invalid load factors.')
     require(isinstance(review.get('piles'), dict) and bool(review['piles']), 'Missing pile geometry.')
     review_elevations(review)
+    validate_soil_properties(review.get('soil_properties', []))
     for key in ('reported_stresses', 'reported_summary', 'notes'):
         require(isinstance(review.get(key), list), f'Missing {key}.')
     for collection, fields in [('forces', ['distance_ft','vertical_ft','axial_tension_kip',*FIELDS]),

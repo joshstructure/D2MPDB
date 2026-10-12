@@ -232,7 +232,7 @@ class FixityWidgetTests(unittest.TestCase):
             result=json.loads((folder/'minimum_tip_result.json').read_text())
             self.assertEqual(result['controlling_criterion'],'Second zero crossing')
             self.assertEqual(result['tip_elevation_ft'],-5)
-            workbook=load_workbook(folder/'geotech_handoff.xlsx')
+            workbook=load_workbook(folder/'geotechnical_report.xlsx')
             self.assertIn('Second zero crossing',str(list(workbook.active.values)))
             workbook.close()
             self.assertTrue((folder/'pile_zero_crossings.csv').exists())
