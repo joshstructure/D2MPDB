@@ -1,0 +1,75 @@
+{
+  "query": {
+    "support": "EB2",
+    "cap_object_name": "BridgeCapEB2",
+    "location_definition": "Intersection of physical support cap/pile centerline and bridge PGL centerline",
+    "station_native_ft": 1804.7199999999998,
+    "model_point_mm": [
+      -28539.79829161436,
+      -63224.13978271565,
+      0.0
+    ],
+    "units": "mm",
+    "model_sha256": "eda9060bcaaf3969a6927a256b0bdbdcf2fbcd7a2a81cb5952b054efdce08599",
+    "station_helper_difference_mm": 0.0,
+    "cap_and_pile_centerline_geometry_check": "PASS",
+    "tolerance_mm": 0.0254
+  },
+  "coordinate_basis": "Native saved model point; verified rigid placement to user-confirmed FL83/2011-EF NAVD88",
+  "projection_service": null,
+  "survey_point_us_ft": {
+    "easting": 461225.68214755354,
+    "northing": 2161427.9275796977
+  },
+  "projection_output_resolution_us_ft": null,
+  "vertical_datum": "NAVD88, user confirmed",
+  "model": "C:\\github\\D2MPDB\\project_current\\geometry\\freecad\\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "model_sha256": "eda9060bcaaf3969a6927a256b0bdbdcf2fbcd7a2a81cb5952b054efdce08599",
+  "model_mutated": false,
+  "model_saved": false,
+  "transaction_id": null,
+  "scope": "Saved model terrain only; live connection unavailable. No full-model coordination checks rerun.",
+  "comparison_tolerance_mm": 0.0254,
+  "surfaces": [
+    {
+      "object_name": "ExistingTerrainB4",
+      "label": "Existing terrain \u2014 Ex_I-95_Middle (survey reference)",
+      "mesh_facets": 5239,
+      "local_point_mm": [
+        -28539.79829161436,
+        -63224.13978271565
+      ],
+      "mesh_covers_point": true,
+      "source_landxml": "C:\\Users\\joshs\\Desktop\\CAD_AI\\inputs\\terrain-20261003\\Ex_I-95_Middle.xml",
+      "source_sha256": "b720a56be37dc3abdf985d13ad412e0acc763b899d13b34e59957642ddbaa6a8",
+      "source_hash_matches_model": true,
+      "source_triangles_in_query_bounds": 3,
+      "source_triangle_count": 1599505,
+      "source_covers_point": true,
+      "source_elevation_us_ft_NAVD88": 23.58542183065307,
+      "mesh_elevation_us_ft_NAVD88": 23.5854210385982,
+      "mesh_source_difference_mm": -0.00024141880711960875,
+      "independent_physical_face_distance_mm": 9.094947017729282e-13,
+      "geometry_check": "PASS"
+    },
+    {
+      "object_name": "Pond14DTerrain",
+      "label": "Pond 14D - supplied terrain",
+      "mesh_facets": 692,
+      "local_point_mm": [
+        -28539.79829161436,
+        -63224.13978271565
+      ],
+      "mesh_covers_point": false,
+      "source_landxml": "C:\\Users\\joshs\\Desktop\\CAD_AI\\inputs\\pond14d-sections-20261003\\Pond 14D.xml",
+      "source_sha256": "c76ecb46f20c8bd7174a043787d54acdf4667bacbdc014608c6aacef3810baba",
+      "source_hash_matches_model": true,
+      "source_triangles_in_query_bounds": 0,
+      "source_triangle_count": 692,
+      "source_covers_point": false,
+      "source_elevation_us_ft_NAVD88": null,
+      "geometry_check": "SKIPPED: point outside saved mesh; no extrapolation"
+    }
+  ],
+  "model_file_preserved": true
+}

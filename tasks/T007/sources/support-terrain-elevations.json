@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "location_definition": "Intersection of each physical support cap/pile centerline with the bridge PGL centerline",
+  "terrain": "ExistingTerrainB4 / Ex_I-95_Middle",
+  "elevation_units": "US survey feet",
+  "vertical_datum": "NAVD88, user confirmed",
+  "model": "C:\\github\\D2MPDB\\project_current\\geometry\\freecad\\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "model_sha256": "eda9060bcaaf3969a6927a256b0bdbdcf2fbcd7a2a81cb5952b054efdce08599",
+  "points": [
+    {
+      "support": "EB1",
+      "support_centerline_station_native_ft": 1593.9699999999998,
+      "terrain_elevation_us_ft_NAVD88": 24.006389273251813,
+      "survey_easting_northing_us_ft": {
+        "easting": 461045.51564247324,
+        "northing": 2161318.586758021
+      },
+      "model_point_mm": [
+        -28541.12399017845,
+        1012.4602036046424,
+        0.0
+      ],
+      "centerline_check": "PASS",
+      "terrain_check": "PASS",
+      "detailed_report": "C:\\Users\\joshs\\Desktop\\CAD_AI\\reports\\terrain-support-centers-20261012\\EB1\\terrain-elevation.json"
+    },
+    {
+      "support": "Pier",
+      "support_centerline_station_native_ft": 1700.5699999999997,
+      "terrain_elevation_us_ft_NAVD88": 26.053908929449307,
+      "survey_easting_northing_us_ft": {
+        "easting": 461136.6461261817,
+        "northing": 2161373.892720492
+      },
+      "model_point_mm": [
+        -28540.453435175215,
+        -31479.21978947596,
+        0.0
+      ],
+      "centerline_check": "PASS",
+      "terrain_check": "PASS",
+      "detailed_report": "C:\\Users\\joshs\\Desktop\\CAD_AI\\reports\\terrain-support-centers-20261012\\Pier\\terrain-elevation.json"
+    },
+    {
+      "support": "EB2",
+      "support_centerline_station_native_ft": 1804.7199999999998,
+      "terrain_elevation_us_ft_NAVD88": 23.5854210385982,
+      "survey_easting_northing_us_ft": {
+        "easting": 461225.68214755354,
+        "northing": 2161427.9275796977
+      },
+      "model_point_mm": [
+        -28539.79829161436,
+        -63224.13978271565,
+        0.0
+      ],
+      "centerline_check": "PASS",
+      "terrain_check": "PASS",
+      "detailed_report": "C:\\Users\\joshs\\Desktop\\CAD_AI\\reports\\terrain-support-centers-20261012\\EB2\\terrain-elevation.json"
+    }
+  ],
+  "model_mutated": false,
+  "model_saved": false,
+  "transaction_id": null,
+  "limitations": [
+    "Saved model terrain lookup only. Existing whole-model coordination failures were not rerun.",
+    "Stations retain the model native station labels; end profile limit stations are front faces of backwalls, distinct from cap/pile centerline stations."
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "summary": "Dated support-terrain quick reference in Notes plus Project Index link.",
+  "published_outputs": [
+    [
+      "End Bent 1",
+      "15+93.97",
+      "24.01"
+    ],
+    [
+      "Pier",
+      "17+00.57",
+      "26.05"
+    ],
+    [
+      "End Bent 2",
+      "18+04.72",
+      "23.59"
+    ]
+  ],
+  "assumptions_and_conventions": [
+    "Intersection of each physical support cap/pile centerline with the bridge PGL centerline",
+    "US survey feet NAVD88; native model station labels; values are dated observations, not new calculation inputs."
+  ],
+  "downstream_impact": [
+    "No formula, result cache, design-input or analysis changes."
+  ],
+  "external_analysis": "Excluded: no external analysis or structural design is changed.",
+  "checks_performed": [
+    {
+      "formula_elements_and_caches_exact": true,
+      "unchanged_components": 268,
+      "changed_components": [
+        "report:Notes",
+        "report:PedBridge"
+      ],
+      "source_values_match": true,
+      "new_formulas": 0,
+      "source_model_saved": false,
+      "native_review": "PENDING"
+    }
+  ],
+  "open_items": [
+    "Native opening, appearance and scoped review pending."
+  ]
+}

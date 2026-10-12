@@ -1,0 +1,14 @@
+{
+  "task": "T007",
+  "base_sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351",
+  "components": {
+    "report:PedBridge": {
+      "file": "000.xml",
+      "sha256": "9d5ebecb025c4c69bb3f4bd1eb78f77d4de9b6225674a40492245a8b079d114b"
+    },
+    "report:Notes": {
+      "file": "001.xml",
+      "sha256": "713b2ab25f5a5be1b1078821ec9cff758b9699faa790ab9c4ae9d95f5d787824"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+<report name="Notes" title="Notes" unit="in" pagesize="816, 1056">
+        <paragraph>
+            <span fontweight="bold">Conversation timestamp:</span>
+             2026-09-24 2:13 PM EDT
+            <break type="line" />
+             
+            <span fontweight="bold">Topic:</span>
+             PBeam spreadsheet update / bearing DL &amp; LL reconciliation
+        </paragraph>
+        <paragraph />
+        <paragraph>Updated bearing spreadsheet from both Mathcad runs and project data. Confirmed LL is pedestrian load only; DL should represent full permanent superstructure reaction at each individual bearing. PSBeam’s DL already closely matches beam + deck + haunch + parapet/fence + forms, so those loads should not be added again. FB-MultiPier node gravity combines adjacent span bearing reactions and separate cap/pedestal/cheek-wall effects.</paragraph>
+        <paragraph />
+        <paragraph>Was worried the DL and LL were from the PSBeam Program and weren't capturing the true structure. The assumptions in the program match the true structure closely enough to not bother using actual structure loads of the Fencing and so forth.</paragraph>
+        <paragraph />
+        <paragraph>
+            Chat Timestamp: 
+            <span fontweight="bold">September 28, 2026 — 1:11 PM EDT</span>
+        </paragraph>
+        <paragraph />
+        <paragraph>Discussed the bearing pad width currently at 42" but bigger then required N values and came to the conclusion its a reasonable width.</paragraph>
+        <paragraph />
+        <paragraph>2026-10-9</paragraph>
+        <paragraph />
+        <paragraph>
+            Discussed with Matt the allowable transverse deflection at the pier. SDG 10.2.G.4 says span/500. Assuming the "span" for the pier is both connected spans especially since the slab is continuous we are going to call the limit 
+            <dynexp formula="BridgeGeometry_2Beam.TotalSpan/500 to in">
+                <expbody>BridgeGeometry_2Beam.TotalSpan/500 to in</expbody>
+                <expresult> = 5.094 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph />
+    
+<section name="TerrainSupportCenterlines20261012" capture="False" hide="false"><heading level="1" keepwithnext="True" pagebreakbefore="break">2026-10-12 — Terrain elevations at support centerlines</heading><paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Existing ground at the intersection of each support cap/pile centerline with the bridge centerline. Elevations are US survey feet, NAVD88. Horizontal reference: FL83/2011-EF (NAD83(2011), Florida East, US survey feet), confirmed by the user.</paragraph><embed spacingbefore="8" spacingafter="12" leftindent="0"><table name="TerrainSupportSummary20261012" capture="False" colwidths="1:165, 2:150, 3:205"><stylerule range="A1:C4" fontfamily="Times New Roman" fontsize="11" vertalign="Center" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.7, &quot;#6A9075&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.35, &quot;#6A9075&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.35, &quot;#6A9075&quot;);" /><stylerule range="A1:C1" background="#DCECE0" fontweight="bold" /><stylerule range="A2:C4" background="#EFF7F1" /><row><textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Support</paragraph></textcell><textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">CL station</paragraph></textcell><textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Terrain EL (US ft NAVD88)</paragraph></textcell></row><row><textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">End Bent 1</paragraph></textcell><textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">15+93.97</paragraph></textcell><textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">24.01</paragraph></textcell></row><row><textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Pier</paragraph></textcell><textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">17+00.57</paragraph></textcell><textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">26.05</paragraph></textcell></row><row><textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">End Bent 2</paragraph></textcell><textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">18+04.72</paragraph></textcell><textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">23.59</paragraph></textcell></row></table></embed><paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Station labels follow the native model. End-bent cap/pile centerline stations differ from the front-face-of-backwall profile limits. This is a dated measurement record; no existing terrain input or design calculation is replaced.</paragraph><paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Source: saved B4 Pedestrian Bridge and Ramps — Pond14D — Source Update 20261010.FCStd; ExistingTerrainB4 / Ex_I-95_Middle. Physical cap and pile centerlines, mesh-face interpolation and agreement with the original survey triangles passed the recorded geometry checks. The model was not changed or saved.</paragraph><paragraph fontfamily="Times New Roman" fontsize="9" leftindent="0" spacingafter="7">Full-precision calculation and source checks: tasks/T007/sources/support-terrain-elevations.json (repository root).</paragraph><paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7"><link address="C:/Users/joshs/Desktop/CAD_AI/reports/terrain-support-centers-20261012/support-terrain-elevations.json">Open local calculation report</link></paragraph><paragraph fontfamily="Times New Roman" fontsize="9" leftindent="0" spacingafter="7">Lookup values are not structural design approval. Existing model coordination issues and unrelated calculations were not rechecked.</paragraph></section>
+</report>
