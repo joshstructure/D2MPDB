@@ -23,8 +23,11 @@ def preserve(source,candidate,destination,retained,source_hash):
     for name,node in newdata.items():
         if name.startswith('SteelBridge') and node.find('./Properties/Property[@name="CageInputs"]') is not None:
             proxy=node.find('./Properties/Property[@name="Proxy"]/Python')
-            if proxy is None or proxy.get('module')!='freecad_tools.cap_cages' or proxy.get('class')!='RebarProxy':raise ValueError('Unexpected new wall bar controller')
-            proxy.set('module','freecad_tools.design_steel');proxy.set('class','WallRebarProxy')
+            identity=None if proxy is None else (proxy.get('module'),proxy.get('class'))
+            if identity==('freecad_tools.cap_cages','RebarProxy'):
+                proxy.set('module','freecad_tools.design_steel');proxy.set('class','WallRebarProxy')
+            elif identity!=('freecad_tools.design_steel','WallRebarProxy'):
+                raise ValueError('Unexpected new wall bar controller')
     candidate_refs={el.get('file') for n,o in newdata.items() if n not in retained for el in o.iter() if el.get('file')}
     copied=[]
     for name in sorted(retained):

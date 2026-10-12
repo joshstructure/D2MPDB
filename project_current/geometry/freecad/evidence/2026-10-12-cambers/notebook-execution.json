@@ -1,0 +1,28 @@
+{
+  "executed_cells": [
+    "bridge-output-layout",
+    "bridge-02",
+    "bridge-03",
+    "bridge-05",
+    "bridge-06",
+    "bridge-17",
+    "bridge-07",
+    "bridge-11",
+    "bridge-snapshots",
+    "bridge-report-export"
+  ],
+  "model_id": "34ec9ea573",
+  "clearance": {
+    "available": true,
+    "value": 18.361569093606256,
+    "station": 1699.462329,
+    "beam_label": "B1/B2",
+    "bottom": 44.477415058606255,
+    "roadway": 26.115845965,
+    "required": 17.0,
+    "margin": 1.3615690936062563,
+    "status": "Covered region only",
+    "full_coverage": false
+  },
+  "internal_qc": null
+}

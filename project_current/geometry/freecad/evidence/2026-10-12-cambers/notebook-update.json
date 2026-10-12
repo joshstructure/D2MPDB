@@ -1,0 +1,89 @@
+{
+  "notebook_before_sha256": "a989a55fffbf5477b26fff61ac3947d747301caa8ed28d0e4bf626ae9c2f2fca",
+  "notebook_after_sha256": "826183693e11a2d896b50df3d1d69a25dc3bedc5814911923a8beea1e907e26e",
+  "notebook_model_id": "34ec9ea573",
+  "payload_sha256": "402c9a863092b48de842c83b360554ddc5047bbd7dbbc4c842c7ca4b5052cc92",
+  "old_cambers_in": [
+    0.030455438593645807,
+    0.48309541716006704
+  ],
+  "new_cambers_in": [
+    0.12459274400657395,
+    0.5671714630550072
+  ],
+  "support_drop_ft_before": 3.7077579514300063,
+  "support_drop_ft_after": 3.7147642885879173,
+  "beam_lengths_ft": [
+    106.97499999999991,
+    104.52500000000009
+  ],
+  "bearing_spans_ft": [
+    105.47499999999991,
+    103.02500000000009
+  ],
+  "supports_before": [
+    {
+      "name": "Pier",
+      "station": 1700.57,
+      "top": 43.77194670531545,
+      "pile_cutoff": 41.77194670531545
+    },
+    {
+      "name": "End Bent 1",
+      "station": 1593.97,
+      "top": 43.24469905906348,
+      "pile_cutoff": 41.24469905906348
+    },
+    {
+      "name": "End Bent 2",
+      "station": 1804.72,
+      "top": 43.25669893958618,
+      "pile_cutoff": 41.25669893958618
+    }
+  ],
+  "supports_after": [
+    {
+      "name": "Pier",
+      "station": 1700.57,
+      "top": 43.76493990975893,
+      "pile_cutoff": 41.76493990975893
+    },
+    {
+      "name": "End Bent 1",
+      "station": 1593.97,
+      "top": 43.23769223221814,
+      "pile_cutoff": 41.23769223221814
+    },
+    {
+      "name": "End Bent 2",
+      "station": 1804.72,
+      "top": 43.24969214402966,
+      "pile_cutoff": 41.24969214402966
+    }
+  ],
+  "camber_summary": [
+    {
+      "Span": 1,
+      "Bearing start (ft)": 1594.22,
+      "Bearing end (ft)": 1699.695,
+      "Bearing midpoint (ft)": 1646.9575,
+      "Input peak camber (in)": 0.12459274400657395,
+      "Midpoint min flange haunch (in)": 0.9425787190482993,
+      "Common support drop (ft)": 3.7147642885879173,
+      "Input basis": "Mathcad saved NetCamber, 120 day"
+    },
+    {
+      "Span": 2,
+      "Bearing start (ft)": 1701.445,
+      "Bearing end (ft)": 1804.47,
+      "Bearing midpoint (ft)": 1752.9575,
+      "Input peak camber (in)": 0.5671714630550072,
+      "Midpoint min flange haunch (in)": 0.4999999999999716,
+      "Common support drop (ft)": 3.7147642885879173,
+      "Input basis": "Mathcad saved NetCamber, 120 day"
+    }
+  ],
+  "qc": null,
+  "notebook_lf_sha256": "974b6b4fe3ae79bb89831f6b332f46745c77f0c83ac673f19e6de4c30f4b0027",
+  "notebook_fingerprint_note": "The notebook SHA above identifies the exact Windows file tested. This LF-normalized SHA matches the portable source register across Git checkout line endings."
+}

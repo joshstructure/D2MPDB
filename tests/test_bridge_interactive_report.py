@@ -54,7 +54,7 @@ class InteractiveReportTests(unittest.TestCase):
 
     def test_support_cutoffs_and_uncovered_roadway_tail_are_preserved(self):
         data=report_data(self.model,self.env['section_geometry'])
-        expected=[41.24469905906348,41.77194670531545,41.25669893958618]
+        expected=[41.23769223221814,41.76493990975893,41.24969214402966]
         for support,cutoff in zip(data['supports'],expected):
             np.testing.assert_allclose([p['Pile cutoff (ft)'] for p in support['piles']],cutoff,rtol=0,atol=1e-9)
         self.assertLess(data['road'][-1]['end'],data['end'])

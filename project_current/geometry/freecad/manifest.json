@@ -3,18 +3,19 @@
   "authority": "Current editable FreeCAD geometry and modeled quantities; engineering acceptance remains separate",
   "model": {
     "path": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-    "sha256": "63b2e92eaa4de16ebc00e3811e9ed8b6d392ffed97057d0e7dce6fda650d9fed",
-    "bytes": 2617619,
+    "sha256": "e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118",
+    "bytes": 2673095,
     "objects": 1230
   },
   "source_revision": "01a1fcc34d6345ceacf96245bcf0c931d118a1ab",
   "tracker_used_sha256": "ff75030a7f3b77edaa26788405a056a1087c166d5c43b3a4fa6a1fb55216e84b",
   "native_file_changed_during_ingestion": false,
   "runtime_changes": [
-    "cap_cages.py: resolve Reinforcement from FreeCAD user directory instead of one hard-coded Windows user path. No geometry logic change."
+    "cap_cages.py: resolve Reinforcement from FreeCAD user directory instead of one hard-coded Windows user path. No geometry logic change.",
+    "12 October camber update: add file-only notebook_update adapter; accept existing WallRebarProxy in native_archive preservation. Existing parametric bridge/cage builders are retained."
   ],
   "runtime_files": {
-    "runtime/API.md": "ad63a83ca2b85c337e4801711a2bfb064d7b7bc1ac62a610b9af3fb524d5b278",
+    "runtime/API.md": "3a4dfa4f21d9c86ed2de16dedeaf9ba65ed0e07173155b7ea63ed26e987cf3c6",
     "runtime/freecad_tools/__init__.py": "54fc72e62296f90ef30d4395023d10589142c7979df962a5fa1669cf01886a32",
     "runtime/freecad_tools/adopt_drainage.py": "df2e4d293383aa5de9e425a8af75b7640524d07e71eebd541d42d2e81342eb07",
     "runtime/freecad_tools/api.py": "4f5d129384cf8b68bf10564f59141a31bd83921d47e8e477754ad2ea3ade71ca",
@@ -123,8 +124,9 @@
     "runtime/freecad_tools/vendor_cap_20261010/pier_cap/widgets.py": "f6482d1a6ac4c787135e24c9e364ccfc12d132c1c9ae5b949947b81b40ac042e",
     "runtime/freecad_tools/vendor_cap_20261010/pier_cap/zone_visuals.py": "f4f47a4f4308fe7a7c641dd45714d15ad0ca722324c15faf469686cdcdc0f331",
     "runtime/freecad_tools/design_steel.py": "2a4bccca960737d3cbc9cca17480d035c816d817e162a399b1d27205b6b32216",
-    "runtime/freecad_tools/native_archive.py": "b976209a22570ff72c28946284e0944b460862ae05287ff4efc6f86153ab1cf8",
-    "runtime/freecad_tools/file_install.py": "f00c34f8ef44f66800ef656832ba772e8422001ed4b289cbfb214ec48a0fdbd6"
+    "runtime/freecad_tools/native_archive.py": "075016d6666d7ae2bf534fe0c16a870b1114026e3856bd1990ee53169441c54f",
+    "runtime/freecad_tools/file_install.py": "f00c34f8ef44f66800ef656832ba772e8422001ed4b289cbfb214ec48a0fdbd6",
+    "runtime/freecad_tools/notebook_update.py": "3ccc61a21e20201c35e1db5065beef7e0f9b79f0bdb78c9a056252dc4b5157a1"
   },
   "opener_sha256": "31f181a3bb1469bb6736b5026e23f0be9f20403ef29a332c2ddd717bf3527a70",
   "evidence_files": {
@@ -148,5 +150,14 @@
   },
   "known_review_status": "DETAILING AND COORDINATION FAILURES REMAIN; cambers deferred by user",
   "portability_verification": "12 October file candidate: 1482 native cold-reopen, exact preservation, physical geometry, schedule and dependency checks PASS; detailing failures remain.",
-  "updated_on": "2026-10-12"
+  "updated_on": "2026-10-12",
+  "current_update": {
+    "date": "2026-10-12",
+    "decision": "D-023",
+    "scope": "Notebook-driven camber and dependent native bridge geometry/reinforcement update",
+    "summary": "evidence/2026-10-12-cambers/update-summary.json",
+    "previous_model_sha256": "63b2e92eaa4de16ebc00e3811e9ed8b6d392ffed97057d0e7dce6fda650d9fed",
+    "notebook_model_id": "34ec9ea573",
+    "geometry_export_payload_sha256": "402c9a863092b48de842c83b360554ddc5047bbd7dbbc4c842c7ca4b5052cc92"
+  }
 }

@@ -1,40 +1,32 @@
-B4 BRIDGE — 12 OCTOBER 2026 SOURCE AND STEEL FILE UPDATE
+B4 BRIDGE - 12 OCTOBER 2026 NOTEBOOK CAMBER UPDATE
 
-The four supplied HTML reports are registered in project_current with three
-embedded cap cases. EB2 now has a distinct case and analysis identity.
+The new Span 1 / Span 2 beam worksheets are selected unchanged. Their saved
+120-day net cambers are 0.12459274400657395 in and 0.5671714630550072 in.
+The geometry notebook now uses those values and exact source fingerprints.
+Its 106.975 / 104.525 ft physical beam lengths and 9 in bearing setbacks
+already match the new worksheets.
 
-CHANGE SUMMARY
-  EB1 cap: 67 -> 57 bars; 923.317949 -> 881.812800 nominal lb.
-  Pier cap: 90 bars and 1284.670835 nominal lb, unchanged steel geometry.
-  EB2 cap: 67 -> 57 bars; 923.317949 -> 881.812800 nominal lb.
-  Remove only the disabled ten-bar end-face U-grids at each end bent.
-  Add 184 native wall bars: 44 per backwall and 24 per cheekwall.
-  Wall steel: #5 vertical and #4 horizontal, maximum 12 in each face;
-  3 in backwall cover, 2 in cheekwall cover. Nominal wall steel 959.722264 lb.
-  Vertical bars extend 16 in into the cap as the source's schematic dowels.
-  Anchorage, laps, hooks and MSE straps are NOT CONFIGURED for fabrication.
+The current native CAD model was rebuilt through its editable controllers from
+the notebook configuration and checked against its exported polynomial geometry.
+Cap tops are now 43.237692232 ft (EB1), 43.764939910 ft (Pier), and
+43.249692144 ft (EB2). Corresponding pile cutoffs are 41.237692232,
+41.764939910, and 41.249692144 ft. Minimum haunch remains 0.5 in.
+The minimum clearance within roadway coverage is 18.361569094 ft.
 
-PRESERVATION AND VERIFICATION
-  All concrete, cheekwall geometry, ramps, terrain, placements, links,
-  expressions and both cambers are unchanged. Four cheekwalls already match
-  the source's 8 x 42 in dimensions and rounded 5.4097 ft height; full saved
-  precision is retained. 802 unchanged native object records are preserved.
-  Cold reopen: 1,482 checks PASS, including physical nominal bar geometry,
-  diameters/volumes, native quantities/schedules and a wall-spacing dependency
-  test. The model contains 1,230 native editable objects and 388 bars.
-  This is a file-only update. A disposable live undo test failed; it is not
-  represented as PASS. Direct live mutation is disallowed in the new helper.
-  The original file is backed up byte-for-byte before atomic replacement.
+All ten notebook code cells execute and 36 geometry regression tests pass.
+The candidate has 5,098 PASS and five NOT CONFIGURED geometric checks.
+Cold reopen passes 8,255 checks; 93 independent native support-section cuts
+match the notebook. Native controls, links, expressions, schedules, view records
+and all 347 protected objects, including ramps/terrain/decks, are preserved.
+The 57/90/57 cap cages and 184 wall bars remain editable. Dependent wall steel
+lengths follow the updated wall height. The prior model is archived unchanged.
 
-REMAINING FAILURES AND LIMITS
-  56 cap cover failures, 13 cap bar-overlap pairs, and 36 wall-to-cap steel
-  overlap pairs remain FAIL. Nominal cap bar-to-pile clearance passes.
-  Pier end-grid pile tolerance-envelope conflicts remain open.
-  Previously recorded bridge/MSE coordination clashes are unchanged.
-  All three current reports identify newer FBMP raw-analysis hashes; the two
-  registered prior XMLs differ and the EB2 XML was not supplied.
-  The source tracker is preserved. Broader coherence errors remain reported.
-  No structural/code/fabrication acceptance or new PDF/DXF issue is claimed.
+Existing detailing failures remain. The current checks identify 11 bridge/MSE
+overlap pairs and 27 wall-to-wall/cap-steel overlap pairs. Landing discrepancies
+and cap-cage cover/clash failures are still FAIL. No engineering finding is
+closed by this geometry update. Native Mathcad/analysis reruns, design report
+updates, final pile tips, anchorage/development, and fabrication remain outside
+scope. No native GUI visual review or earlier PDF/DXF package refresh is claimed.
 
-Transaction: design-steel-filecandidate-20261012-v1
-Evidence: evidence/2026-10-12/update-summary.json and file-candidate-verification.json
+See evidence/2026-10-12-cambers/update-summary.json for exact fingerprints,
+checks, schedules, limits and the notebook-driven geometry export.

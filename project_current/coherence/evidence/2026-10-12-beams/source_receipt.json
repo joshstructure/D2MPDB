@@ -1,0 +1,331 @@
+{
+  "date": "2026-10-12",
+  "decision": "D-022",
+  "scope": "Initial source-ingestion phase, before the subsequently authorized notebook/CAD update under D-023. Preserved-file hashes below record this earlier phase.",
+  "authorization": "Update my project source with these new beam runs",
+  "native_recalculation_performed": false,
+  "saved_results_basis": "Read direct Mathcad definition/eval/result/unitedValue scalars with verified stored units. These are saved worksheet results, not independent calculations.",
+  "sources": [
+    {
+      "source_id": "MCAD-S1",
+      "path": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd",
+      "supplied_filename": "PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd",
+      "previous_sha256": "b514ba288a859054bae7e8556ce978bcf1c4310bc6820517759d1ed73300a76f",
+      "sha256": "a6b0f967d271c193591d477e219ac66f98b72309d19958a04c6cd08e575a8dcd",
+      "bytes": 8019646,
+      "archive_path": "project_current/mathcad/archive/2026-10-09/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd",
+      "supplied_copy_exact": true,
+      "archive_copy_exact": true,
+      "previous_saved_results": {
+        "q_PL": {
+          "saved_value": 89.99999999999999,
+          "unit": "pounds_per_sq_foot"
+        },
+        "L_beam": {
+          "saved_value": 107.35000000000001,
+          "unit": "foot"
+        },
+        "BearingDistance": {
+          "saved_value": 8.0,
+          "unit": "inch"
+        },
+        "Span_beam": {
+          "saved_value": 106.01666666666668,
+          "unit": "foot"
+        },
+        "NetCamber": {
+          "saved_value": 0.030455438593645807,
+          "unit": "inch"
+        }
+      },
+      "current_saved_results": {
+        "q_PL": {
+          "saved_value": 89.99999999999999,
+          "unit": "pounds_per_sq_foot"
+        },
+        "L_beam": {
+          "saved_value": 106.97500000000001,
+          "unit": "foot"
+        },
+        "BearingDistance": {
+          "saved_value": 9.0,
+          "unit": "inch"
+        },
+        "Span_beam": {
+          "saved_value": 105.47500000000001,
+          "unit": "foot"
+        },
+        "NetCamber": {
+          "saved_value": 0.12459274400657395,
+          "unit": "inch"
+        }
+      },
+      "companion_file": "PedestrianBridge2Beam_Span1.dat",
+      "companion_present_at_registered_path": false
+    },
+    {
+      "source_id": "MCAD-S2",
+      "path": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd",
+      "supplied_filename": "PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd",
+      "previous_sha256": "fa6693a473770e088665283631b099a0b61a0cabecac1f577ee9473b3569585b",
+      "sha256": "182e3471f169d3a379c437ad12f359d567813bd4631bcc0b82e78ad860fa91b8",
+      "bytes": 7729570,
+      "archive_path": "project_current/mathcad/archive/2026-10-09/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd",
+      "supplied_copy_exact": true,
+      "archive_copy_exact": true,
+      "previous_saved_results": {
+        "q_PL": {
+          "saved_value": 89.99999999999999,
+          "unit": "pounds_per_sq_foot"
+        },
+        "L_beam": {
+          "saved_value": 104.9,
+          "unit": "foot"
+        },
+        "BearingDistance": {
+          "saved_value": 8.0,
+          "unit": "inch"
+        },
+        "Span_beam": {
+          "saved_value": 103.56666666666668,
+          "unit": "foot"
+        },
+        "NetCamber": {
+          "saved_value": 0.48309541716006704,
+          "unit": "inch"
+        }
+      },
+      "current_saved_results": {
+        "q_PL": {
+          "saved_value": 89.99999999999999,
+          "unit": "pounds_per_sq_foot"
+        },
+        "L_beam": {
+          "saved_value": 104.525,
+          "unit": "foot"
+        },
+        "BearingDistance": {
+          "saved_value": 9.0,
+          "unit": "inch"
+        },
+        "Span_beam": {
+          "saved_value": 103.025,
+          "unit": "foot"
+        },
+        "NetCamber": {
+          "saved_value": 0.5671714630550072,
+          "unit": "inch"
+        }
+      },
+      "companion_file": "PedestrianBridge2Beam_Span2.dat",
+      "companion_present_at_registered_path": false
+    }
+  ],
+  "downstream_review": [
+    {
+      "consumer": "bridge_geometry/camber_sources.json and embedded Bridge_Geometry_2 Beam_V2.ipynb camber_basis",
+      "source_id": "MCAD-S1",
+      "status": "REVIEW",
+      "retained_source_sha256": "b514ba288a859054bae7e8556ce978bcf1c4310bc6820517759d1ed73300a76f",
+      "retained_camber_in": 0.030455438593645807,
+      "new_saved_camber_in": 0.12459274400657395,
+      "action": "Reconcile beam/bearing geometry and camber together, then regenerate geometry schedules and CAD export. Retained provenance identifies the archived worksheet. Do not reset its hash without reviewing the changed value.",
+      "tracker_ids": [
+        "COH-017",
+        "COH-018"
+      ]
+    },
+    {
+      "consumer": "bridge_geometry/camber_sources.json and embedded Bridge_Geometry_2 Beam_V2.ipynb camber_basis",
+      "source_id": "MCAD-S2",
+      "status": "REVIEW",
+      "retained_source_sha256": "fa6693a473770e088665283631b099a0b61a0cabecac1f577ee9473b3569585b",
+      "retained_camber_in": 0.48309541716006704,
+      "new_saved_camber_in": 0.5671714630550072,
+      "action": "Reconcile beam/bearing geometry and camber together, then regenerate geometry schedules and CAD export. Retained provenance identifies the archived worksheet. Do not reset its hash without reviewing the changed value.",
+      "tracker_ids": [
+        "COH-017",
+        "COH-018"
+      ]
+    },
+    {
+      "consumer": "end_bent_walls/data/sources.json and embedded End_Bent_Backwall_Design.ipynb source record",
+      "source_id": "MCAD-S1",
+      "status": "REVIEW",
+      "observation": "q_PL remains 90 psf in the saved definition/result. The existing source hash still identifies the archived worksheet.",
+      "action": "Refresh backwall source provenance in a calculation update after reviewing consumers. No backwall report regeneration in this source ingestion.",
+      "tracker_ids": [
+        "COH-017"
+      ]
+    },
+    {
+      "consumer": "JOURNAL, selected cap/analysis sources and CAD-MODEL",
+      "status": "REVIEW",
+      "action": "Existing complete load and geometry comparisons remain open. No native model, reaction, quantity, geometry or camber update is inferred from selecting the new worksheets.",
+      "tracker_ids": [
+        "COH-004",
+        "COH-017",
+        "COH-018"
+      ]
+    }
+  ],
+  "preserved_files": {
+    "journal/D2_I95_Project_Journal.bpad": "a78dbced339445d0e7b2403e069b1da4dc12db890516fd997f757dc9a05a83fa",
+    "Bridge_Geometry_2 Beam_V2.ipynb": "a989a55fffbf5477b26fff61ac3947d747301caa8ed28d0e4bf626ae9c2f2fca",
+    "bridge_geometry/camber_sources.json": "d539eb558ec327d9cc42426995223e3bbe1a142ba6c57d0f27867c8d6cda9568",
+    "End_Bent_Backwall_Design.ipynb": "b788f6c425d1c5dc086b4712d71ee815af71d2578a5fd298755e2936e01dd609",
+    "end_bent_walls/data/sources.json": "092e2ec84fb07bb33b71bf3ab3e99e2ac652c9b34af5e834e859d5de26b63558",
+    "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd": "63b2e92eaa4de16ebc00e3811e9ed8b6d392ffed97057d0e7dce6fda650d9fed",
+    "project_current/geometry/freecad/manifest.json": "30ce886f95e47b7587889f47becf08d0ed161dd377f54b9ce3c1a19756d0f86c",
+    "project_current/cap_design/backwall/Backwall Design 10-12.html": "a92c2540cc54515019ecf65bedf1c0ad0ea84a4df60eec927e0c8045de026fc9",
+    "project_current/coherence/Coherence_Tracker.xlsx": "ff75030a7f3b77edaa26788405a056a1087c166d5c43b3a4fa6a1fb55216e84b"
+  },
+  "tracker": {
+    "path": "project_current/coherence/Coherence_Tracker.xlsx",
+    "sha256_before": "ff75030a7f3b77edaa26788405a056a1087c166d5c43b3a4fa6a1fb55216e84b",
+    "action": "Preserve all recorded statuses, responses and closure evidence. Existing COH-017 and COH-018 cover beam/project and geometry reconciliation.",
+    "sha256_after": "ff75030a7f3b77edaa26788405a056a1087c166d5c43b3a4fa6a1fb55216e84b",
+    "related_items": [
+      {
+        "Item ID": "COH-015",
+        "Status": "Closed",
+        "Area": "Superstructure",
+        "Item": "Mathcad companion data",
+        "Finding": "The selected worksheets name PedestrianBridge2Beam_Span1.dat and PedestrianBridge2Beam_Span2.dat. Neither file was supplied.",
+        "Next action": "Add the matching .dat files and verify the worksheets load the intended project inputs.",
+        "Your response": "Added",
+        "Owner": "",
+        "Due date": "",
+        "Resolution / evidence": "",
+        "Source references": "MCAD-S1; MCAD-S2; MCAD-DAT1; MCAD-DAT2",
+        "Last reviewed": "2026-10-09",
+        "_row": 23
+      },
+      {
+        "Item ID": "COH-016",
+        "Status": "Closed",
+        "Area": "Superstructure",
+        "Item": "PSBeam run packages",
+        "Finding": "No native PSBeam runs or current output reports have been selected for either span.",
+        "Next action": "Add each span input/run file and matching output report, with software version and run date.",
+        "Your response": "Added",
+        "Owner": "",
+        "Due date": "",
+        "Resolution / evidence": "",
+        "Source references": "PSB-S1; PSB-S2",
+        "Last reviewed": "2026-10-09",
+        "_row": 24
+      },
+      {
+        "Item ID": "COH-017",
+        "Status": "Open",
+        "Area": "Superstructure",
+        "Item": "Mathcad / project comparison",
+        "Finding": "The sheets are user-selected current. A full comparison of spans, bearing offsets, loads and reactions with the journal and geometry model has not been performed.",
+        "Next action": "Recalculate with the companion data and compare inputs/outputs. Review the repeated 107.35-ft PSBeam narrative in the Span 2 sheet.",
+        "Your response": "Need to look closely at the L_Beam assumptions given bearing details.",
+        "Owner": "",
+        "Due date": "",
+        "Resolution / evidence": "",
+        "Source references": "MCAD-S1; MCAD-S2; GEOMETRY; JOURNAL",
+        "Last reviewed": "2026-10-09",
+        "_row": 25
+      },
+      {
+        "Item ID": "COH-018",
+        "Status": "Open",
+        "Area": "Geometry",
+        "Item": "Complete notebook comparison",
+        "Finding": "Selected cap dimensions match the new saved cases. Geometry notebook still cites the earlier journal; full schedules, elevations, offsets and T006 wind dependencies need review.",
+        "Next action": "Reconcile complete saved geometry and derived schedules with accepted T006, documenting conventions.",
+        "Your response": "",
+        "Owner": "",
+        "Due date": "",
+        "Resolution / evidence": "",
+        "Source references": "GEOMETRY; JOURNAL; ROADWAY; coherence/evidence/2026-10-10/source_update.json",
+        "Last reviewed": "2026-10-10",
+        "_row": 26
+      }
+    ],
+    "note": "COH-015/016 retain the user Closed/Added dispositions. The registered companion and PSBeam paths remain absent/unselected; no closure evidence or native run identity is invented."
+  },
+  "source_register_sha256_before": "9bb42f20f22d038dc45f4bc63f911554f8f424bb225da7aab4e07402bc2db025",
+  "pre_update_check_counts": {
+    "CHANGED": 7,
+    "MATCH": 35,
+    "MISSING": 5,
+    "REVIEW": 11,
+    "ERROR": 9
+  },
+  "source_register_sha256_after": "0f2bd4ace41d0d0bd0f8b84229648e4b1650fbcb8da1e53ee72aebfaeb4c5ef7",
+  "post_update_check_counts": {
+    "CHANGED": 7,
+    "MATCH": 35,
+    "MISSING": 5,
+    "REVIEW": 11,
+    "ERROR": 9
+  },
+  "automatic_status_changes": [],
+  "limits": "The automatic checker does not inspect consumer-embedded Mathcad fingerprints. Downstream review above explicitly records those newly stale references. Existing geometry authority tests will require a deliberate camber/geometry update before they match the new selected sources.",
+  "verification": {
+    "supplied_bytes_and_registered_hashes": "PASS for both spans",
+    "archives_match_previous_git_HEAD_bytes": "PASS for both spans",
+    "unrelated_source_register_rows": "Unchanged",
+    "preserved_consumer_and_tracker_hashes": "All unchanged",
+    "geometry_authority_test": {
+      "test": "GeometryAuthorityTests.test_default_cambers_match_registered_mathcad_results_and_hashes",
+      "tests_run": 1,
+      "result": "FAIL - retained geometry source fingerprint differs from newly selected beam run",
+      "disposition": "Recorded downstream review under COH-017/COH-018. No numerical geometry changes or expected-hash resets during source ingestion."
+    },
+    "project_coherence_exit_code": 1,
+    "project_coherence_disposition": "Pre-existing 7 CHANGED, 5 MISSING, 11 REVIEW and 9 ERROR findings are retained; no automatic status changes after importing the two worksheets. Consumer-embedded camber/backwall fingerprints are reviewed separately in this receipt.",
+    "new_mathcad_source_checks": [
+      {
+        "check_id": "SOURCE:MCAD-S1",
+        "status": "MATCH",
+        "detail": "Exact registered bytes are present.",
+        "source_ids": [
+          "MCAD-S1"
+        ],
+        "path": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd",
+        "expected_sha256": "a6b0f967d271c193591d477e219ac66f98b72309d19958a04c6cd08e575a8dcd",
+        "actual_sha256": "a6b0f967d271c193591d477e219ac66f98b72309d19958a04c6cd08e575a8dcd"
+      },
+      {
+        "check_id": "SOURCE:MCAD-S2",
+        "status": "MATCH",
+        "detail": "Exact registered bytes are present.",
+        "source_ids": [
+          "MCAD-S2"
+        ],
+        "path": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd",
+        "expected_sha256": "182e3471f169d3a379c437ad12f359d567813bd4631bcc0b82e78ad860fa91b8",
+        "actual_sha256": "182e3471f169d3a379c437ad12f359d567813bd4631bcc0b82e78ad860fa91b8"
+      },
+      {
+        "check_id": "MCAD-S1:parse",
+        "status": "MATCH",
+        "detail": "Native worksheet XML is readable. No native recalculation or engineering acceptance is implied.",
+        "source_ids": [
+          "MCAD-S1"
+        ]
+      },
+      {
+        "check_id": "MCAD-S2:parse",
+        "status": "MATCH",
+        "detail": "Native worksheet XML is readable. No native recalculation or engineering acceptance is implied.",
+        "source_ids": [
+          "MCAD-S2"
+        ]
+      }
+    ]
+  },
+  "follow_up": {
+    "decision": "D-023",
+    "status": "Notebook cambers and downstream saved CAD updated and verified",
+    "evidence": "project_current/geometry/freecad/evidence/2026-10-12-cambers/update-summary.json",
+    "geometry_source_hash_mismatch": "Resolved by adopting the new saved values and source hashes; geometry authority test now passes.",
+    "remaining": "Native analysis/full project-load review and prior backwall provenance are unchanged."
+  }
+}

@@ -6,6 +6,7 @@ Station planes use local X after removing each shape's global placement.
 The fixture is tied to the exact registered source hash in project_source.json.
 """
 import hashlib
+import argparse
 import json
 from pathlib import Path
 import tempfile
@@ -20,10 +21,17 @@ FT=304.8
 
 
 def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--source',type=Path,help='Verified candidate or installed native model')
+    parser.add_argument('--expected-sha256',help='Exact reviewed native file fingerprint')
+    parser.add_argument('--model-id',help='Notebook geometry export model ID')
+    args=parser.parse_args()
     receipt=json.loads((ROOT/'bridge_geometry/project_source.json').read_text())
-    source=ROOT/receipt['source_file']
+    current=receipt.get('current_geometry_source',receipt)
+    source=args.source or ROOT/current['source_file']
     digest=hashlib.sha256(source.read_bytes()).hexdigest()
-    if digest!=receipt['sha256']:
+    expected=args.expected_sha256 or current['sha256']
+    if digest!=expected:
         raise ValueError('Registered source changed; review the source incorporation before replacing this reference.')
     archive=zipfile.ZipFile(source)
     xml=ET.fromstring(archive.read('Document.xml'))
@@ -60,6 +68,9 @@ def main():
                 results.append(dict(support=sid,station=station,components=measured))
     data=dict(source_sha256=digest,samples=results,
         method='Saved native BRep intersection with station plane; placements removed; pile heads cropped 1.8 ft below cap underside; no document recompute or save.')
+    model_id=args.model_id or current.get('notebook_model_id')
+    if model_id:
+        data.update(notebook_model_id=model_id,dimensional_baseline_sha256=receipt['sha256'])
     path=ROOT/'tests/data/bridge_native_sections.json'
     path.write_text(json.dumps(data,indent=2)+'\n',encoding='utf-8')
     print(f'Measured {len(results)} station cuts directly from saved native solids.')

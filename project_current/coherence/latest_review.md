@@ -1,57 +1,61 @@
 # Latest project coherence review
 
-Checked at 2026-10-11T01:16:33.458869+00:00. **19 outstanding items remain.**
+Checked at 2026-10-12T22:07:05.251542+00:00. **10 outstanding items remain.**
 
 The [workbook](Coherence_Tracker.xlsx) owns item status and responses. This report is a generated view.
 The initial findings were carried forward from the latest adopted pier/end-bent reviews plus source-inventory gaps.
 Previously resolved decisions were excluded. This run did not perform native calculations or a complete engineering review.
 
-Registered sources: 18. Tracker items: 22.
-Automatic results: 1 changed, 34 match, 4 missing, 4 review.
-
-## FBMP source receipt
-
-Four current XML variants are registered. Both fixed exports exactly match their
-current cap reports/cases. The end-bent raw XML is now present. Workbook statuses
-are preserved: COH-013 still carries its prior action pending native-run
-documentation and workbook disposition. See the
-[source receipt](evidence/2026-10-10-fbmp/source_receipt.json).
+Registered sources: 26. Tracker items: 22.
+Automatic results: 6 changed, 9 error, 36 match, 5 missing, 10 review.
 
 ## Files and relationships needing attention
 
 | Check | Status | Finding |
 | --- | --- | --- |
+| SOURCE:JOURNAL | CHANGED | File differs from the registered revision; review its consumers before adoption. |
 | SOURCE:CAP-TOOL | CHANGED | File differs from the registered revision; review its consumers before adoption. |
 | SOURCE:MCAD-DAT1 | MISSING | Registered file is absent. |
 | SOURCE:PSB-S1 | MISSING | No source file has been selected. |
 | SOURCE:MCAD-DAT2 | MISSING | Registered file is absent. |
 | SOURCE:PSB-S2 | MISSING | No source file has been selected. |
+| SOURCE:BACKWALL-TOOL | CHANGED | File differs from the registered revision; review its consumers before adoption. |
+| SOURCE:EB2-XML | MISSING | Registered file is absent. |
+| DEP:GEOMETRY:JOURNAL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S1:MCAD-DAT1 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S1:PSB-S1 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S2:MCAD-DAT2 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S2:PSB-S2 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
+| DEP:CAD-MODEL:JOURNAL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
+| DEP:BACKWALL-TOOL:JOURNAL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
+| DEP:EB2-REPORT:EB2-XML | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
+| DEP:EB2-CASE:EB2-XML | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
+| DEP:BACKWALL-REPORT:BACKWALL-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
+| JOURNAL:acceptance | CHANGED | Journal differs from acceptance receipt T006. Review scope remains as recorded. |
+| PIER:analysis-identity | CHANGED | Raw XML does not match the case analysis fingerprint. |
+| EB:analysis-identity | CHANGED | Raw XML does not match the case analysis fingerprint. |
+| TRACKER:10 | ERROR | Closed / not-applicable item requires resolution evidence. |
+| TRACKER:11 | ERROR | Closed / not-applicable item requires resolution evidence. |
+| TRACKER:15 | ERROR | Closed / not-applicable item requires resolution evidence. |
+| TRACKER:16 | ERROR | Closed / not-applicable item requires resolution evidence. |
+| TRACKER:19 | ERROR | Closed / not-applicable item requires resolution evidence. |
+| TRACKER:20 | ERROR | Closed / not-applicable item requires resolution evidence. |
+| TRACKER:23 | ERROR | Closed / not-applicable item requires resolution evidence. |
+| TRACKER:24 | ERROR | Closed / not-applicable item requires resolution evidence. |
+| TRACKER:28 | ERROR | Closed / not-applicable item requires resolution evidence. |
 
 ## Outstanding items
 
 | ID | Status | Subject | Next action |
 | --- | --- | --- | --- |
-| COH-002 | Open | U-bar / pile conflicts | Verify the revised U-bar clearance, development and engagement. Separate end-face U-grid failure is COH-019. |
-| COH-003 | Open | Longitudinal tension reference | Resolve developed-steel and load-path prerequisites and document actual-cage acceptance. |
 | COH-004 | Open | Complete model load comparison | Compare the exact current model loading with T006 and document needed reruns and convergence evidence. |
 | COH-005 | Open | Wind and wall geometry | Establish remaining wall/fin geometry and compare current model wind loads with the T006 basis. |
-| COH-007 | Deferred | Remaining design checks | Retain the recorded deferral. Resolve individual checks when directed; address new end-grid failure under COH-019. |
-| COH-008 | Deferred | Spacing and fabrication takeoff | Complete the tolerance and fabrication takeoff review at shops, preserving the deferral. |
 | COH-010 | Deferred | Backwall and cheek-wall quantities | Supply final wall details, then reconcile quantities and dead loads. |
-| COH-011 | Open | Revised U-bar hooks | Verify revised hook clearance, development and engagement. Separate end-face U-grid failure is COH-020. |
-| COH-012 | Open | Remaining design checks | Record evidence/disposition for remaining fatigue, anchorage, shear prerequisites, face reinforcement, D-regions and exposure checks. |
 | COH-013 | Awaiting source | Matching raw analysis export | Supply the matching new End Bent 1 XML and native run record; do not substitute the older export. |
 | COH-014 | Open | Common controlling design basis | Document how the revised End Bent 1 actions bound both end bents. |
-| COH-015 | Awaiting source | Mathcad companion data | Add the matching .dat files and verify the worksheets load the intended project inputs. |
-| COH-016 | Awaiting source | PSBeam run packages | Add each span input/run file and matching output report, with software version and run date. |
 | COH-017 | Open | Mathcad / project comparison | Recalculate with the companion data and compare inputs/outputs. Review the repeated 107.35-ft PSBeam narrative in the Span 2 sheet. |
 | COH-018 | Open | Complete notebook comparison | Reconcile complete saved geometry and derived schedules with accepted T006, documenting conventions. |
 | COH-019 | Open | End-face U-grid pile clearance | Review and revise the end-face U-grid detail against pile envelopes and fabrication tolerances; regenerate and verify the report. |
-| COH-020 | Open | End-face U-grid pile clearance | Review and revise the end-face U-grid detail and verify it for both ends; regenerate and verify the report. |
 | COH-021 | Open | Unregistered tool revisions | Identify the report-generating tool revision, review its changes and consumers, then record an explicit adoption. |
 | COH-022 | Open | Current cap source references | Refresh journal source references through the bounded BPAD workflow when directed; preserve C005 and distinguish selected sources from accepted calculations. |
 

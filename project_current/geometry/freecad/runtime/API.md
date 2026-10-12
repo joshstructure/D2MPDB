@@ -303,3 +303,16 @@ Optional schematic fill is excluded. The preceding combined export failed to rec
 The exporter calls `export_step` with `writer: native_units`, then independently reads the STEP and 3D DXF. The native STEP adapter uses `tools/native_step_writer.py` in the existing bundled FreeCAD Python, isolated from the GUI, and preserves component product names. Do not use the older downscaled-shape route for cambered beams/pedestals: the retained development file failed validity despite matching gross dimensions. Do not instantiate XDE/OCAF inside FreeCAD: the development test reset the document session. Main and rollback were reopened and the latest unsaved PGL display restored through the tested helper. Source colors are recorded in the manifest.
 
 Validation measures analytic bounds with triangulation disabled, solid count/validity, physical dimensions/volume/area/vertices, 6-inch footing thickness, curved slab grids, actual PGL-to-top-face distances, exact 3D spline roundtrips, annotation text and coordinates, and source preservation. No tolerance was loosened; the same 0.001 in limit applies. The imported curved landing had a spurious vertical-ray intersection exactly at a spline knot; its actual upward-face distance was near zero. Direct physical face distance is therefore used. Geometry/annotations passed; Bentley import itself remains NOT CONFIGURED, and the 12 existing overlaps remain explicit. Current exports use local model coordinates and US survey feet. Neither the editable model nor project placement is changed or saved.
+
+
+## Notebook camber file update (12 October 2026)
+
+`notebook_update.update_file` is a file-only adapter. It verifies the notebook
+export fingerprint, updates a disposable copy through the existing bridge and
+reinforcement controllers, compares the native engine with the exported
+polynomials and saved solid sections, and preserves unrelated native records.
+It does not modify a live working document or install its candidate. Cold reopen
+and exact source/candidate checks precede installation with `file_install.install`.
+Geometry validation and detailing/coordination failures remain separate.
+`native_archive.preserve` now accepts an already restored WallRebarProxy and
+continues rejecting unknown wall controllers.

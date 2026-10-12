@@ -1,6 +1,7 @@
 """Physical station cuts checked against saved FreeCAD solids and the HTML engine."""
 import ast
 import copy
+import hashlib
 import json
 from pathlib import Path
 import shutil
@@ -53,7 +54,16 @@ class PhysicalGeometryTests(unittest.TestCase):
         cls.reference=json.loads((ROOT/'tests/data/bridge_native_sections.json').read_text())
 
     def test_sections_match_native_saved_solids(self):
-        self.assertEqual(self.model.cfg['physical_geometry']['source_sha256'],self.reference['source_sha256'])
+        self.assertEqual(self.model.cfg['physical_geometry']['source_sha256'],self.reference.get('dimensional_baseline_sha256',self.reference['source_sha256']))
+        if 'notebook_model_id' in self.reference:
+            # Native measurements track the updated geometry, while the imported
+            # dimensional baseline remains historical provenance (not CAD input).
+            config=copy.deepcopy(self.model.cfg)
+            config['roadway']['xml_path']='Geometry Report.xml'
+            self.assertEqual(self.env['configuration_id'](config),self.reference['notebook_model_id'])
+            current=json.loads((ROOT/'bridge_geometry/project_source.json').read_text())['current_geometry_source']
+            self.assertEqual(current['sha256'],self.reference['source_sha256'])
+            self.assertEqual(hashlib.sha256((ROOT/current['source_file']).read_bytes()).hexdigest(),self.reference['source_sha256'])
         for sample in self.reference['samples']:
             with self.subTest(station=sample['station'],support=sample['support']):
                 measured=native_measures(self.model.support_section(sample['station']),sample['support'])

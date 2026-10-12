@@ -52,8 +52,8 @@ class BridgeGeometryTests(unittest.TestCase):
     def test_default_cutoff_matches_registered_source(self):
         piles = self.model.pier['pile_elevations']
         self.assertEqual(len(piles), 4)
-        np.testing.assert_allclose(piles['Cap underside (ft)'], 40.77194670531545, rtol=0, atol=1e-8)
-        np.testing.assert_allclose(piles['Pile cutoff (ft)'], 41.77194670531545, rtol=0, atol=1e-8)
+        np.testing.assert_allclose(piles['Cap underside (ft)'], 40.76493990975893, rtol=0, atol=1e-8)
+        np.testing.assert_allclose(piles['Pile cutoff (ft)'], 41.76493990975893, rtol=0, atol=1e-8)
         np.testing.assert_allclose(piles['Offset (ft)'], [-7.5, -2.5, 2.5, 7.5])
         self.assertAlmostEqual(self.model.pier['length'], 19 + 2/12)
         self.assertAlmostEqual(self.model.pier['volume_ft3'], 230)
@@ -71,14 +71,14 @@ class BridgeGeometryTests(unittest.TestCase):
         for inches in (0, 6, 12, 24, 36):
             with self.subTest(inches=inches):
                 piles = self.build(pile_embedment_in=inches).pier['pile_elevations']
-                np.testing.assert_allclose(piles['Pile cutoff (ft)'], 40.77194670531545 + inches/12, atol=1e-8)
+                np.testing.assert_allclose(piles['Pile cutoff (ft)'], 40.76493990975893 + inches/12, atol=1e-8)
         piles = self.build(depth_ft=4).pier['pile_elevations']
-        np.testing.assert_allclose(piles['Pile cutoff (ft)'], 40.77194670531545, atol=1e-8)
+        np.testing.assert_allclose(piles['Pile cutoff (ft)'], 40.76493990975893, atol=1e-8)
         config = copy.deepcopy(self.config)
         config['profile']['start_elev_ft'] += 2
         config['profile']['end_elev_ft'] += 2
         elevated = self.env['BridgeModel'](config)
-        np.testing.assert_allclose(elevated.pier['pile_elevations']['Pile cutoff (ft)'], 43.77194670531545, atol=1e-8)
+        np.testing.assert_allclose(elevated.pier['pile_elevations']['Pile cutoff (ft)'], 43.76493990975893, atol=1e-8)
 
     def test_invalid_embedment_rejected(self):
         for value in (-1, 36.01, float('nan'), float('inf'), True, [12]):
@@ -94,11 +94,11 @@ class BridgeGeometryTests(unittest.TestCase):
         figure = self.env['longitudinal_figure'](self.model, self.model.pier['station'])
         collection = next(c for c in figure.axes[0].collections if c.get_label() == 'Pile cutoff')
         np.testing.assert_allclose(collection.get_offsets()[:, 0], 1700.57)
-        np.testing.assert_allclose(collection.get_offsets()[:, 1], 41.77194670531545, atol=1e-8)
+        np.testing.assert_allclose(collection.get_offsets()[:, 1], 41.76493990975893, atol=1e-8)
         geometry = self.env['section_geometry'](self.model, 1700.57)[0]
         piles = [c for c in geometry['components'] if c['kind'] == 'Pile']
         self.assertEqual(len(piles), 8)  # two steel wall strips per hollow pipe
-        np.testing.assert_allclose([c['xy'][:, 1].max() for c in piles], 41.77194670531545, atol=1e-8)
+        np.testing.assert_allclose([c['xy'][:, 1].max() for c in piles], 41.76493990975893, atol=1e-8)
         between = self.env['section_geometry'](self.model, (self.model.start+1700.57)/2)[0]
         self.assertFalse(any(c['kind'] == 'Pile' for c in between['components']))
         hidden = self.env['longitudinal_figure'](self.model, 1700.57, layers=('Deck',))
@@ -107,7 +107,7 @@ class BridgeGeometryTests(unittest.TestCase):
     def test_end_bents_match_current_project_geometry(self):
         self.assertEqual([p['name'] for p in self.model.supports], ['Pier','End Bent 1','End Bent 2'])
         for support,station,top,cutoff in zip(self.model.end_bents,
-                [1593.97,1804.72],[43.24469905906348,43.25669893958618],[41.24469905906348,41.25669893958618]):
+                [1593.97,1804.72],[43.23769223221814,43.24969214402966],[41.23769223221814,41.24969214402966]):
             with self.subTest(support=support['name']):
                 self.assertEqual(support['station'],station)
                 self.assertAlmostEqual(support['length']*12,212)
@@ -133,8 +133,8 @@ class BridgeGeometryTests(unittest.TestCase):
         config=copy.deepcopy(self.config)
         config['end_bents']['start']['depth_ft']=4
         model=self.env['BridgeModel'](config)
-        np.testing.assert_allclose(model.end_bents[0]['pile_elevations']['Pile cutoff (ft)'],40.24469905906348,atol=1e-9)
-        np.testing.assert_allclose(model.end_bents[1]['pile_elevations']['Pile cutoff (ft)'],41.25669893958618,atol=1e-9)
+        np.testing.assert_allclose(model.end_bents[0]['pile_elevations']['Pile cutoff (ft)'],40.23769223221814,atol=1e-9)
+        np.testing.assert_allclose(model.end_bents[1]['pile_elevations']['Pile cutoff (ft)'],41.24969214402966,atol=1e-9)
         self.assertAlmostEqual(model.pier['top'],self.model.pier['top'])
         config=copy.deepcopy(self.config)
         config['profile']['start_elev_ft']+=2
@@ -163,10 +163,10 @@ class BridgeGeometryTests(unittest.TestCase):
         self.assertLess(sampled-detail['value'],.0001)
         self.assertAlmostEqual(detail['bottom']-detail['roadway'],detail['value'])
         self.assertAlmostEqual(detail['station'],1699.462329)
-        self.assertAlmostEqual(detail['value'],18.368506363198875)
+        self.assertAlmostEqual(detail['value'],18.361569093606256)
         self.assertEqual(detail['beam_label'],'B1/B2')
         card=self.env['clearance_card'](self.model).data
-        self.assertIn('18.369 ft',card)
+        self.assertIn('18.362 ft',card)
         self.assertIn('16+99.46',card)
         self.assertIn('Covered region only',card)
         self.assertNotIn('Meets requirement',card)

@@ -14,14 +14,14 @@ design-completion status.
 | Exact source revisions and missing files | [Source register](source_register.csv) |
 | Recorded decisions and ownership | [Decisions](decisions.md) |
 | Native project journal | [D2 I-95 Project Journal](../journal/D2_I95_Project_Journal.bpad) with [References](../journal/References/) |
-| Current editable FreeCAD model and live quantities | [Open the bridge model](geometry/freecad/README.md) — authoritative model home; cambers deferred and detailing failures retained |
+| Current editable FreeCAD model and live quantities | [Open the bridge model](geometry/freecad/README.md) — updated notebook cambers; detailing failures retained |
 | Geometry notebook | [Bridge geometry](../Bridge_Geometry_2%20Beam_V2.ipynb) and [roadway XML](../Geometry%20Report.xml) |
 | Pier cap | [Report](cap_design/pier/Pier%20Cap%20Design%2010-12.html), [saved case](cap_design/pier/selected_case.json), [FBMP export](fbmp/pier/Pier_Fixed.XML) |
 | End Bent 1 cap | [Report](cap_design/end_bents/End%20Bent%201%20Cap%20Design%2010-12.html), [saved case](cap_design/end_bents/selected_case.json) |
 | End Bent 2 cap | [Report](cap_design/end_bent_2/End%20Bent%202%20Cap%20Design.html), [saved case](cap_design/end_bent_2/selected_case.json) |
 | Selected backwall and cheekwall design | [12 October report](cap_design/backwall/Backwall%20Design%2010-12.html) — provisional dimensions; trial reinforcement; pending detailing |
 | FBMP source variants | [All four fixed/minimum-tip exports](fbmp/README.md) |
-| Mathcad | [Span 1](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd), [Span 2](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd) |
+| Mathcad | [Span 1](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd), [Span 2](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd) — 12 October beam runs; [changes and downstream review](mathcad/README.md) |
 | Calculation tool | [Cap and pile notebook](../Cap_and_Pile_Design.ipynb) |
 | End-bent backwall, cheek walls and tie-back straps | [Backwall notebook](../End_Bent_Backwall_Design.ipynb) and [calculation basis](../BACKWALL_DESIGN.md); decisions D-014 to D-019 |
 | PSBeam packages | [Awaiting source files](psbeam/README.md) |
@@ -117,3 +117,21 @@ native-run documentation and workbook disposition remain outstanding. See the
 The four supplied reports are now selected with their embedded cap cases. Both end-bent cases disable the end-face U-grid (67 to 57 modeled cap bars each); pier steel remains 90 bars. Wall Figure B8 specifies #5 vertical and #4 horizontal at 12 in each face. Existing cheekwall dimensions match the report and retain their full precision. The 16 in dowels in that figure are explicitly schematic, not approved development lengths.
 
 The new reports reference different raw FBMP hashes: the two prior registered XMLs are preserved and do not match, and the End Bent 2 XML is missing. No analysis rerun or tracker closure is implied. The existing workbook is preserved. See [source receipt](coherence/evidence/2026-10-12/source_update.json).
+
+## 12 October beam source update
+
+The newly supplied Span 1 and Span 2 Mathcad runs replace the previously selected
+worksheets under D-022. Previous native files are archived unchanged. Both runs
+use 9-in beam-end bearing distances and shorter beam lengths; their saved net
+cambers are now 0.124592744 in and 0.567171463 in. Under the subsequent D-023
+follow-up, those cambers now drive the geometry notebook and saved CAD model.
+The notebook's beam lengths and bearing setbacks already match the new runs.
+The journal, other calculation notebooks, design reports and all tracker
+responses are preserved; backwall source provenance remains for review. See the [comparison](mathcad/README.md) and
+[exact source receipt](coherence/evidence/2026-10-12-beams/source_receipt.json).
+
+The [notebook/CAD verification](geometry/freecad/evidence/2026-10-12-cambers/update-summary.json)
+records 36 passing geometry tests, 93 measured native support sections and the
+saved-model reopen checks. Cap and pile elevations and dependent reinforcement
+follow the new geometry; ramps, terrain and decks are preserved. Existing
+detailing and bridge/MSE coordination failures remain recorded.

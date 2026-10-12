@@ -36,8 +36,8 @@ journal and selected engineering cases remain the authorities for their inputs,
 design decisions and calculations. Differences require reconciliation; this
 registration does not override them or close coherence items.
 
-- Both saved cambers are retained for the user's later update.
-- The three cap cages contain 224 native bars with live schedules.
+- Both saved cambers now follow the 12 October notebook update: 0.1245927440 in and 0.5671714631 in.
+- The three cap cages contain 204 native bars with live schedules, plus 184 trial wall bars.
 - Cover failures, bar overlaps, bridge/MSE clashes, landing-level differences
   and source pile-envelope conflicts remain recorded FAIL.
 - Final wall details, pile tips, anchorage, fabrication quantities and omitted
@@ -72,3 +72,25 @@ The copied model passed 1,546 reopen, geometry, controller, schedule and hook-de
 Both end-bent cap grids are disabled, reducing their cages to 57 bars each. Pier steel stays at 90 bars. Backwall/cheekwall Figure B8 adds 184 trial bars with editable source inputs and live schedules. All concrete and cambers are unchanged. Existing cheekwall dimensions already match the report. The new dated wall-check object is a snapshot; rerun its check after edits. Dowels are schematic, and cover/clash failures remain open. Current native-file verification is in evidence/2026-10-12; earlier verification above describes the preserved 10 October revision.
 
 The new adapter is qualified only for disposable file-copy preparation followed by exact native-record preservation and cold-reopen verification. Its failed live undo test is retained in CAD_AI diagnostics; do not invoke it on an authoritative open document.
+
+## 12 October notebook camber update
+
+The current saved model now follows the updated geometry notebook under D-023.
+Its physical beam lengths and bearing setbacks already matched the new beam
+runs; changed cambers update beams, haunches, bearings, pedestals, cap elevations,
+pile heads and dependent wall geometry/reinforcement through native controllers.
+Ramps, terrain and decks are preserved. The prior model is saved in
+[archive/B4-before-camber-update-20261012.FCStd](archive/B4-before-camber-update-20261012.FCStd).
+
+All ten notebook code cells execute and 36 geometry tests pass. The saved model
+passes 8,255 cold-reopen checks, and 93 independent native support-section cuts
+match the notebook. Existing native controls, links, expressions, schedules and
+view records remain editable. No native GUI visual review is claimed.
+
+See the [interactive geometry report](evidence/2026-10-12-cambers/Bridge_Geometry_Report.html),
+[notebook geometry export](evidence/2026-10-12-cambers/notebook-geometry.json), and
+[verification summary](evidence/2026-10-12-cambers/update-summary.json).
+There are 11 bridge/MSE overlap pairs and 27 wall-to-wall/cap-steel overlap pairs
+in the current checks. Cap-cage detailing and landing discrepancies remain FAIL.
+Final pile tips, anchorage, fabrication and final wall design remain outside this
+geometry update. Prior cap/backwall reports and drawing packages were not rerun.

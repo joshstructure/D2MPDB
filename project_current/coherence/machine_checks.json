@@ -1,34 +1,35 @@
 {
-  "checked_at_utc": "2026-10-11T01:16:33.458869+00:00",
+  "checked_at_utc": "2026-10-12T22:07:05.251542+00:00",
   "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
-  "register_sha256": "7474a7faa12facc52cda5ba18f8226accd1c350ff6a67fa12258f34d81e0ae2f",
-  "tracker_sha256": "23566cca474c5ddc62f4d36208b05018bfb387e614db406a589572de56948a1a",
-  "source_count": 18,
+  "register_sha256": "e0468a75e5ddfc26759e52c6487338aa08b1da76c5a57caae0106d30cb413536",
+  "tracker_sha256": "ff75030a7f3b77edaa26788405a056a1087c166d5c43b3a4fa6a1fb55216e84b",
+  "source_count": 26,
   "item_count": 22,
-  "outstanding_count": 19,
+  "outstanding_count": 10,
   "status_counts": {
-    "Closed": 3,
-    "Open": 13,
-    "Deferred": 3,
-    "Awaiting source": 3
+    "Closed": 12,
+    "Open": 8,
+    "Deferred": 1,
+    "Awaiting source": 1
   },
   "check_counts": {
-    "MATCH": 34,
-    "CHANGED": 1,
-    "MISSING": 4,
-    "REVIEW": 4
+    "CHANGED": 6,
+    "MATCH": 36,
+    "MISSING": 5,
+    "REVIEW": 10,
+    "ERROR": 9
   },
   "checks": [
     {
       "check_id": "SOURCE:JOURNAL",
-      "status": "MATCH",
-      "detail": "Exact registered bytes are present.",
+      "status": "CHANGED",
+      "detail": "File differs from the registered revision; review its consumers before adoption.",
       "source_ids": [
         "JOURNAL"
       ],
       "path": "journal/D2_I95_Project_Journal.bpad",
       "expected_sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351",
-      "actual_sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351"
+      "actual_sha256": "a78dbced339445d0e7b2403e069b1da4dc12db890516fd997f757dc9a05a83fa"
     },
     {
       "check_id": "SOURCE:GEOMETRY",
@@ -38,8 +39,8 @@
         "GEOMETRY"
       ],
       "path": "Bridge_Geometry_2 Beam_V2.ipynb",
-      "expected_sha256": "76b8e0251a12f225a83a2869caa557cd14d240f3f616f7a5cd903180da50ce63",
-      "actual_sha256": "76b8e0251a12f225a83a2869caa557cd14d240f3f616f7a5cd903180da50ce63"
+      "expected_sha256": "974b6b4fe3ae79bb89831f6b332f46745c77f0c83ac673f19e6de4c30f4b0027",
+      "actual_sha256": "974b6b4fe3ae79bb89831f6b332f46745c77f0c83ac673f19e6de4c30f4b0027"
     },
     {
       "check_id": "SOURCE:ROADWAY",
@@ -61,7 +62,7 @@
       ],
       "path": "Cap_and_Pile_Design.ipynb",
       "expected_sha256": "1af14e6efa5095a973b88ced422bee1656596ec8cba4e5c6b6b31ee9796c4c74",
-      "actual_sha256": "2ded0cdab30dba01e2126840ff459c3765775514f696c5366aa4a99ef2680045"
+      "actual_sha256": "54fc70f67f372b6594ec88d007716beff9743f899cb2cda1d241d2c71255e268"
     },
     {
       "check_id": "SOURCE:PIER-REPORT",
@@ -70,9 +71,9 @@
       "source_ids": [
         "PIER-REPORT"
       ],
-      "path": "project_current/cap_design/pier/Pier Cap Design 10-10.html",
-      "expected_sha256": "376d94786da3160e28e36b380721a23acead336d0b5df23cb78c427e52d1072e",
-      "actual_sha256": "376d94786da3160e28e36b380721a23acead336d0b5df23cb78c427e52d1072e"
+      "path": "project_current/cap_design/pier/Pier Cap Design 10-12.html",
+      "expected_sha256": "26f10adba3cedb11194cde91ba5ccb63668d44ba0f7667976f1ac0305123ea0a",
+      "actual_sha256": "26f10adba3cedb11194cde91ba5ccb63668d44ba0f7667976f1ac0305123ea0a"
     },
     {
       "check_id": "SOURCE:PIER-CASE",
@@ -82,8 +83,8 @@
         "PIER-CASE"
       ],
       "path": "project_current/cap_design/pier/selected_case.json",
-      "expected_sha256": "43fc3f9909233fbf6caee02f23d66dd9aaffd99a279669ffea8df613fb79a59c",
-      "actual_sha256": "43fc3f9909233fbf6caee02f23d66dd9aaffd99a279669ffea8df613fb79a59c"
+      "expected_sha256": "2045ab5fb71a85d7a3b7f6382eb18688bc826f3f9aec6a4d4d0b9bc6022e9dc8",
+      "actual_sha256": "2045ab5fb71a85d7a3b7f6382eb18688bc826f3f9aec6a4d4d0b9bc6022e9dc8"
     },
     {
       "check_id": "SOURCE:PIER-XML",
@@ -103,9 +104,9 @@
       "source_ids": [
         "EB-REPORT"
       ],
-      "path": "project_current/cap_design/end_bents/End Bent 1 Cap Design 10-10.html",
-      "expected_sha256": "3d5f82b7a39056052ea6b3ff08efc52b496668e2909b0d7d0db308af86d57790",
-      "actual_sha256": "3d5f82b7a39056052ea6b3ff08efc52b496668e2909b0d7d0db308af86d57790"
+      "path": "project_current/cap_design/end_bents/End Bent 1 Cap Design 10-12.html",
+      "expected_sha256": "e3bc549ca8f3f2e6f408bfdd6e7a56628a5166040cd64bbb5f7c57f65d649a5f",
+      "actual_sha256": "e3bc549ca8f3f2e6f408bfdd6e7a56628a5166040cd64bbb5f7c57f65d649a5f"
     },
     {
       "check_id": "SOURCE:EB-CASE",
@@ -115,8 +116,8 @@
         "EB-CASE"
       ],
       "path": "project_current/cap_design/end_bents/selected_case.json",
-      "expected_sha256": "b379a468a90ccb6f44afa6be015b04380dddb2bb344f0f87aabb361808283fa7",
-      "actual_sha256": "b379a468a90ccb6f44afa6be015b04380dddb2bb344f0f87aabb361808283fa7"
+      "expected_sha256": "232e5135b0a302fa0f2a225f875577526ada7f840979b5e73da3ec71cf72f4fc",
+      "actual_sha256": "232e5135b0a302fa0f2a225f875577526ada7f840979b5e73da3ec71cf72f4fc"
     },
     {
       "check_id": "SOURCE:EB-XML",
@@ -137,8 +138,8 @@
         "MCAD-S1"
       ],
       "path": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd",
-      "expected_sha256": "b514ba288a859054bae7e8556ce978bcf1c4310bc6820517759d1ed73300a76f",
-      "actual_sha256": "b514ba288a859054bae7e8556ce978bcf1c4310bc6820517759d1ed73300a76f"
+      "expected_sha256": "a6b0f967d271c193591d477e219ac66f98b72309d19958a04c6cd08e575a8dcd",
+      "actual_sha256": "a6b0f967d271c193591d477e219ac66f98b72309d19958a04c6cd08e575a8dcd"
     },
     {
       "check_id": "SOURCE:MCAD-DAT1",
@@ -170,8 +171,8 @@
         "MCAD-S2"
       ],
       "path": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd",
-      "expected_sha256": "fa6693a473770e088665283631b099a0b61a0cabecac1f577ee9473b3569585b",
-      "actual_sha256": "fa6693a473770e088665283631b099a0b61a0cabecac1f577ee9473b3569585b"
+      "expected_sha256": "182e3471f169d3a379c437ad12f359d567813bd4631bcc0b82e78ad860fa91b8",
+      "actual_sha256": "182e3471f169d3a379c437ad12f359d567813bd4631bcc0b82e78ad860fa91b8"
     },
     {
       "check_id": "SOURCE:MCAD-DAT2",
@@ -218,6 +219,103 @@
       "actual_sha256": "739f44c1d542464cfd536493ce1ed6cb240f98a75ed3e1188c6f6812742d6fe2"
     },
     {
+      "check_id": "SOURCE:CAD-MODEL",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "CAD-MODEL"
+      ],
+      "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+      "expected_sha256": "e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118",
+      "actual_sha256": "e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118"
+    },
+    {
+      "check_id": "SOURCE:CAD-RUNTIME",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "CAD-RUNTIME"
+      ],
+      "path": "project_current/geometry/freecad/manifest.json",
+      "expected_sha256": "194d483259bb8ec19e214acc6fe0cfb7fa7c9ada24fd4cca7965802001639b82",
+      "actual_sha256": "194d483259bb8ec19e214acc6fe0cfb7fa7c9ada24fd4cca7965802001639b82"
+    },
+    {
+      "check_id": "SOURCE:CAD-REPORT",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "CAD-REPORT"
+      ],
+      "path": "project_current/geometry/freecad/evidence/Model-update-report.txt",
+      "expected_sha256": "e45250cb4d98ee8c07bc928cfeae8f754d4a17b6d5e89929e5bd4c58d156f732",
+      "actual_sha256": "e45250cb4d98ee8c07bc928cfeae8f754d4a17b6d5e89929e5bd4c58d156f732"
+    },
+    {
+      "check_id": "SOURCE:BACKWALL-TOOL",
+      "status": "CHANGED",
+      "detail": "File differs from the registered revision; review its consumers before adoption.",
+      "source_ids": [
+        "BACKWALL-TOOL"
+      ],
+      "path": "End_Bent_Backwall_Design.ipynb",
+      "expected_sha256": "2ce2e271ae8f678b749a10bed23760d792c017e14e4dee0b8f45b0e0b8909356",
+      "actual_sha256": "f75707bf99a9bbb6b0cae2135d613c72489a2891af38489d126e5f946e6c95e9"
+    },
+    {
+      "check_id": "SOURCE:EB2-REPORT",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "EB2-REPORT"
+      ],
+      "path": "project_current/cap_design/end_bent_2/End Bent 2 Cap Design.html",
+      "expected_sha256": "a1492932e033d0b95188a60cccc2a3747f91efd6f9cc31196ac479e47e99060c",
+      "actual_sha256": "a1492932e033d0b95188a60cccc2a3747f91efd6f9cc31196ac479e47e99060c"
+    },
+    {
+      "check_id": "SOURCE:EB2-CASE",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "EB2-CASE"
+      ],
+      "path": "project_current/cap_design/end_bent_2/selected_case.json",
+      "expected_sha256": "24af4370346960d5c4a14e9333912b2734c16a1b1f6a6d18080966ec0b4d2516",
+      "actual_sha256": "24af4370346960d5c4a14e9333912b2734c16a1b1f6a6d18080966ec0b4d2516"
+    },
+    {
+      "check_id": "SOURCE:EB2-XML",
+      "status": "MISSING",
+      "detail": "Registered file is absent.",
+      "source_ids": [
+        "EB2-XML"
+      ],
+      "path": "project_current/fbmp/end_bents/End Bent 2_Fixed.XML",
+      "expected_sha256": "43ac05ac121fd90934f8860c1e9c6542fb0eb652cd0561f191456bf2c16c2d37",
+      "actual_sha256": ""
+    },
+    {
+      "check_id": "SOURCE:BACKWALL-REPORT",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "BACKWALL-REPORT"
+      ],
+      "path": "project_current/cap_design/backwall/Backwall Design 10-12.html",
+      "expected_sha256": "a92c2540cc54515019ecf65bedf1c0ad0ea84a4df60eec927e0c8045de026fc9",
+      "actual_sha256": "a92c2540cc54515019ecf65bedf1c0ad0ea84a4df60eec927e0c8045de026fc9"
+    },
+    {
+      "check_id": "DEP:GEOMETRY:JOURNAL",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "GEOMETRY",
+        "JOURNAL"
+      ]
+    },
+    {
       "check_id": "DEP:MCAD-S1:MCAD-DAT1",
       "status": "REVIEW",
       "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
@@ -254,9 +352,54 @@
       ]
     },
     {
+      "check_id": "DEP:CAD-MODEL:JOURNAL",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "CAD-MODEL",
+        "JOURNAL"
+      ]
+    },
+    {
+      "check_id": "DEP:BACKWALL-TOOL:JOURNAL",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "BACKWALL-TOOL",
+        "JOURNAL"
+      ]
+    },
+    {
+      "check_id": "DEP:EB2-REPORT:EB2-XML",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "EB2-REPORT",
+        "EB2-XML"
+      ]
+    },
+    {
+      "check_id": "DEP:EB2-CASE:EB2-XML",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "EB2-CASE",
+        "EB2-XML"
+      ]
+    },
+    {
+      "check_id": "DEP:BACKWALL-REPORT:BACKWALL-TOOL",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "BACKWALL-REPORT",
+        "BACKWALL-TOOL"
+      ]
+    },
+    {
       "check_id": "JOURNAL:acceptance",
-      "status": "MATCH",
-      "detail": "Journal matches acceptance receipt T006. Review scope remains as recorded.",
+      "status": "CHANGED",
+      "detail": "Journal differs from acceptance receipt T006. Review scope remains as recorded.",
       "source_ids": [
         "JOURNAL"
       ]
@@ -272,8 +415,8 @@
     },
     {
       "check_id": "PIER:analysis-identity",
-      "status": "MATCH",
-      "detail": "Raw XML matches the case analysis fingerprint.",
+      "status": "CHANGED",
+      "detail": "Raw XML does not match the case analysis fingerprint.",
       "source_ids": [
         "PIER-CASE",
         "PIER-XML"
@@ -290,8 +433,8 @@
     },
     {
       "check_id": "EB:analysis-identity",
-      "status": "MATCH",
-      "detail": "Raw XML matches the case analysis fingerprint.",
+      "status": "CHANGED",
+      "detail": "Raw XML does not match the case analysis fingerprint.",
       "source_ids": [
         "EB-CASE",
         "EB-XML"
@@ -438,6 +581,69 @@
       "source_ids": [
         "MCAD-S2"
       ]
+    },
+    {
+      "check_id": "TRACKER:10",
+      "status": "ERROR",
+      "detail": "Closed / not-applicable item requires resolution evidence.",
+      "source_ids": [],
+      "issue_id": "COH-002"
+    },
+    {
+      "check_id": "TRACKER:11",
+      "status": "ERROR",
+      "detail": "Closed / not-applicable item requires resolution evidence.",
+      "source_ids": [],
+      "issue_id": "COH-003"
+    },
+    {
+      "check_id": "TRACKER:15",
+      "status": "ERROR",
+      "detail": "Closed / not-applicable item requires resolution evidence.",
+      "source_ids": [],
+      "issue_id": "COH-007"
+    },
+    {
+      "check_id": "TRACKER:16",
+      "status": "ERROR",
+      "detail": "Closed / not-applicable item requires resolution evidence.",
+      "source_ids": [],
+      "issue_id": "COH-008"
+    },
+    {
+      "check_id": "TRACKER:19",
+      "status": "ERROR",
+      "detail": "Closed / not-applicable item requires resolution evidence.",
+      "source_ids": [],
+      "issue_id": "COH-011"
+    },
+    {
+      "check_id": "TRACKER:20",
+      "status": "ERROR",
+      "detail": "Closed / not-applicable item requires resolution evidence.",
+      "source_ids": [],
+      "issue_id": "COH-012"
+    },
+    {
+      "check_id": "TRACKER:23",
+      "status": "ERROR",
+      "detail": "Closed / not-applicable item requires resolution evidence.",
+      "source_ids": [],
+      "issue_id": "COH-015"
+    },
+    {
+      "check_id": "TRACKER:24",
+      "status": "ERROR",
+      "detail": "Closed / not-applicable item requires resolution evidence.",
+      "source_ids": [],
+      "issue_id": "COH-016"
+    },
+    {
+      "check_id": "TRACKER:28",
+      "status": "ERROR",
+      "detail": "Closed / not-applicable item requires resolution evidence.",
+      "source_ids": [],
+      "issue_id": "COH-020"
     }
   ],
   "items": [
@@ -458,7 +664,7 @@
     },
     {
       "Item ID": "COH-002",
-      "Status": "Open",
+      "Status": "Closed",
       "Area": "Pier",
       "Item": "U-bar / pile conflicts",
       "Finding": "The new pier cage uses #5 U-bars with 50-degree trial hook rotations. Hook development and engagement remain pending. Field bending was permitted in the recorded T006 response.",
@@ -473,12 +679,12 @@
     },
     {
       "Item ID": "COH-003",
-      "Status": "Open",
+      "Status": "Closed",
       "Area": "Pier",
       "Item": "Longitudinal tension reference",
       "Finding": "Historical uniform-reference shortfall is retained in prior evidence. New actual-cage longitudinal tension is PENDING: N 0.946947, P 0.776624, B 0.863733. Ratios below 1 do not close prerequisites.",
       "Next action": "Resolve developed-steel and load-path prerequisites and document actual-cage acceptance.",
-      "Your response": "Explain to me in chat what the N uniform check is all about — recorded response, 9 October 2026.",
+      "Your response": "Updates design have fixed these.",
       "Owner": "",
       "Due date": "",
       "Resolution / evidence": "",
@@ -493,7 +699,7 @@
       "Item": "Complete model load comparison",
       "Finding": "New Pier_Fixed report/XML fingerprints match and bearing offsets reconcile. Full current wind, below-pad weights, transfer moments, combinations and convergence remain unverified against T006.",
       "Next action": "Compare the exact current model loading with T006 and document needed reruns and convergence evidence.",
-      "Your response": "Will need to provide an update cap design report as the latest. — recorded response, 9 October 2026.",
+      "Your response": "",
       "Owner": "",
       "Due date": "",
       "Resolution / evidence": "",
@@ -508,7 +714,7 @@
       "Item": "Wind and wall geometry",
       "Finding": "T006 linked wind width to the 230-in cap length. The 231-in discrepancy is resolved in the accepted journal. Separate wall/fin dimensions and model wind-load currency remain open.",
       "Next action": "Establish remaining wall/fin geometry and compare current model wind loads with the T006 basis.",
-      "Your response": "Use the cap length from the report — recorded response, 9 October 2026.",
+      "Your response": "",
       "Owner": "",
       "Due date": "",
       "Resolution / evidence": "Partial: T006 receipt and final review verify 230-in width and dependent wind quantities; wall quantities were excluded.",
@@ -523,7 +729,7 @@
       "Item": "Historical quantity sketches",
       "Finding": "T006 labeled the older cap sketches historical; the live cap quantity remains 230 ft3.",
       "Next action": "No action for historical labels. Separate wall quantities remain open.",
-      "Your response": "Use the cap length from the report — recorded response, 9 October 2026.",
+      "Your response": "",
       "Owner": "",
       "Due date": "",
       "Resolution / evidence": "Existing T006 acceptance fingerprint and all listed evidence hashes verified. Accepted final review records native inspection of the quantity note.",
@@ -533,12 +739,12 @@
     },
     {
       "Item ID": "COH-007",
-      "Status": "Deferred",
+      "Status": "Closed",
       "Area": "Pier",
       "Item": "Remaining design checks",
       "Finding": "New pier report: 67 pending entries and two FAIL entries (one end-grid clearance failure and its aggregate summary). Service III remains N/A by D-007 despite the report label.",
       "Next action": "Retain the recorded deferral. Resolve individual checks when directed; address new end-grid failure under COH-019.",
-      "Your response": "Leave as is — recorded response, 9 October 2026.",
+      "Your response": "Updated design should have rectified.",
       "Owner": "",
       "Due date": "",
       "Resolution / evidence": "",
@@ -548,12 +754,12 @@
     },
     {
       "Item ID": "COH-008",
-      "Status": "Deferred",
+      "Status": "Closed",
       "Area": "Pier",
       "Item": "Spacing and fabrication takeoff",
       "Finding": "New pier gross steel is 1260.94 lb and excludes laps, closures, undrawn anchorage and waste. Spacing/fabrication review remains deferred to shops by recorded direction.",
       "Next action": "Complete the tolerance and fabrication takeoff review at shops, preserving the deferral.",
-      "Your response": "Leave as is we can deal with this issue in shops later — recorded response, 9 October 2026.",
+      "Your response": "We will model the rebar in cad to get exact quantities.",
       "Owner": "",
       "Due date": "",
       "Resolution / evidence": "",
@@ -593,7 +799,7 @@
     },
     {
       "Item ID": "COH-011",
-      "Status": "Open",
+      "Status": "Closed",
       "Area": "End bents",
       "Item": "Revised U-bar hooks",
       "Finding": "The new end-bent report includes #5 U-bars with 50-degree trial rotations and 3.75-in tails. Rotated-hook development and engagement remain PENDING.",
@@ -608,12 +814,12 @@
     },
     {
       "Item ID": "COH-012",
-      "Status": "Open",
+      "Status": "Closed",
       "Area": "End bents",
       "Item": "Remaining design checks",
       "Finding": "New end-bent report: 50 pending entries and two FAIL entries (end-grid clearance and aggregate summary). Service III remains N/A by D-007; other pending checks remain separate.",
       "Next action": "Record evidence/disposition for remaining fatigue, anchorage, shear prerequisites, face reinforcement, D-regions and exposure checks.",
-      "Your response": "",
+      "Your response": "These are ok.",
       "Owner": "",
       "Due date": "",
       "Resolution / evidence": "",
@@ -653,12 +859,12 @@
     },
     {
       "Item ID": "COH-015",
-      "Status": "Awaiting source",
+      "Status": "Closed",
       "Area": "Superstructure",
       "Item": "Mathcad companion data",
       "Finding": "The selected worksheets name PedestrianBridge2Beam_Span1.dat and PedestrianBridge2Beam_Span2.dat. Neither file was supplied.",
       "Next action": "Add the matching .dat files and verify the worksheets load the intended project inputs.",
-      "Your response": "",
+      "Your response": "Added",
       "Owner": "",
       "Due date": "",
       "Resolution / evidence": "",
@@ -668,12 +874,12 @@
     },
     {
       "Item ID": "COH-016",
-      "Status": "Awaiting source",
+      "Status": "Closed",
       "Area": "Superstructure",
       "Item": "PSBeam run packages",
       "Finding": "No native PSBeam runs or current output reports have been selected for either span.",
       "Next action": "Add each span input/run file and matching output report, with software version and run date.",
-      "Your response": "",
+      "Your response": "Added",
       "Owner": "",
       "Due date": "",
       "Resolution / evidence": "",
@@ -688,7 +894,7 @@
       "Item": "Mathcad / project comparison",
       "Finding": "The sheets are user-selected current. A full comparison of spans, bearing offsets, loads and reactions with the journal and geometry model has not been performed.",
       "Next action": "Recalculate with the companion data and compare inputs/outputs. Review the repeated 107.35-ft PSBeam narrative in the Span 2 sheet.",
-      "Your response": "",
+      "Your response": "Need to look closely at the L_Beam assumptions given bearing details.",
       "Owner": "",
       "Due date": "",
       "Resolution / evidence": "",
@@ -728,12 +934,12 @@
     },
     {
       "Item ID": "COH-020",
-      "Status": "Open",
+      "Status": "Closed",
       "Area": "End bents",
       "Item": "End-face U-grid pile clearance",
       "Finding": "New end-bent report flags End U grid pile-envelope clearance FAIL. Displayed 2 is a failure flag; the second FAIL is the aggregate actual-cage summary.",
       "Next action": "Review and revise the end-face U-grid detail and verify it for both ends; regenerate and verify the report.",
-      "Your response": "",
+      "Your response": "These are ok. They can be rotated in field if necessary.",
       "Owner": "",
       "Due date": "",
       "Resolution / evidence": "",

@@ -84,5 +84,12 @@
     "other_consumers": "Journal, design notebooks, analyses and the coherence tracker were not updated by this geometry incorporation; their prior source fingerprints and dispositions remain in place."
   },
   "calculation_authority": "Notebook CONFIG and equations drive derived geometry; this receipt records the imported dimensional baseline only.",
-  "camber_provenance": "bridge_geometry/camber_sources.json: registered Mathcad NetCamber saved results, independently matched to the former CAD controls."
+  "camber_provenance": "bridge_geometry/camber_sources.json: 12 October user-selected Mathcad NetCamber saved results, adopted in the notebook and verified against the updated downstream CAD model.",
+  "current_geometry_source": {
+    "source_file": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+    "sha256": "e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118",
+    "notebook_model_id": "34ec9ea573",
+    "decision": "D-023",
+    "role": "Downstream saved CAD verification; original dimensional baseline above remains historical provenance."
+  }
 }
