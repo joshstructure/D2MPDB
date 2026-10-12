@@ -1,100 +1,40 @@
-B4 BRIDGE - CURRENT SOURCE MODEL UPDATE
-Issue: 2026-10-10 (America/New_York)
-STATUS: Saved and verified. Source geometry updated; detailing/coordination FAILURES remain.
+B4 BRIDGE — 12 OCTOBER 2026 SOURCE AND STEEL FILE UPDATE
 
-UPDATED FILE
-C:\Users\joshs\Desktop\CAD_AI\Models\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd
-SHA-256: eda9060bcaaf3969a6927a256b0bdbdcf2fbcd7a2a81cb5952b054efdce08599
-Original Pond14D saved file preserved byte-for-byte. No live working document was edited.
-Open with: C:\Users\joshs\Desktop\CAD_AI\tools\Open_B4_Current_Source.FCMacro
-The macro loads the project controllers before opening the model. It does not start RPC.
+The four supplied HTML reports are registered in project_current with three
+embedded cap cases. EB2 now has a distinct case and analysis identity.
 
-IMPLEMENTED
-- Restored 280 missing project controllers, preserving existing native model geometry, expressions and links.
-- Both end caps: old 210 x 36 x 42 in; new 212 x 42 x 36 in (transverse length x longitudinal width x depth).
-- Both end pedestal footprints: old 24 x 42 in; new 30 x 42 in. Minimum seat-center height is 6 in.
-- End Type F bearing pads: old 2.91 in thickness; new 2.5625 in. Plan dimensions remain 10 x 32 in.
-- End bearing offset from cap/pile center: old 6 in; new 3 in. Pile-face end clearance: old 15 in; new 16 in.
-- Pier pipe embedment: old 0 in; new 12 in. Pier cap remains 230 x 48 x 36 in.
-- Pipe outside diameter remains 20 in and nominal wall 0.625 in. Selected analysis wall 0.48 in is an effective corroded section, not the physical nominal wall.
-- Pier pipes remain unfilled, as selected case specifies. Cap concrete excludes the full embedded pipe envelope.
-- Backwalls and cheek walls retain their provisional definitions and follow the revised cap perimeter/elevation.
-- Existing decks, beams, haunches, pier seats, MSE ramps, footing revisions and terrain are preserved.
-- Added native Arch rebars, analytic linked centerlines, editable cage inputs, live quantity objects, live bar schedules and live check objects.
-- Added a native live bridge-component volume schedule. Three cap solids have 80% transparency; new centerlines are hidden and bars visible.
+CHANGE SUMMARY
+  EB1 cap: 67 -> 57 bars; 923.317949 -> 881.812800 nominal lb.
+  Pier cap: 90 bars and 1284.670835 nominal lb, unchanged steel geometry.
+  EB2 cap: 67 -> 57 bars; 923.317949 -> 881.812800 nominal lb.
+  Remove only the disabled ten-bar end-face U-grids at each end bent.
+  Add 184 native wall bars: 44 per backwall and 24 per cheekwall.
+  Wall steel: #5 vertical and #4 horizontal, maximum 12 in each face;
+  3 in backwall cover, 2 in cheekwall cover. Nominal wall steel 959.722264 lb.
+  Vertical bars extend 16 in into the cap as the source's schematic dowels.
+  Anchorage, laps, hooks and MSE straps are NOT CONFIGURED for fabrication.
 
-CAMBERS - UNCHANGED BY EXPLICIT USER DIRECTION
-Span 1: 0.030455438593645807 in
-Span 2: 0.48309541716006704 in
-Their actual native beam geometry was preserved. Support elevations use these cambers rather than the source notebook's 1 in values.
+PRESERVATION AND VERIFICATION
+  All concrete, cheekwall geometry, ramps, terrain, placements, links,
+  expressions and both cambers are unchanged. Four cheekwalls already match
+  the source's 8 x 42 in dimensions and rounded 5.4097 ft height; full saved
+  precision is retained. 802 unchanged native object records are preserved.
+  Cold reopen: 1,482 checks PASS, including physical nominal bar geometry,
+  diameters/volumes, native quantities/schedules and a wall-spacing dependency
+  test. The model contains 1,230 native editable objects and 388 bars.
+  This is a file-only update. A disposable live undo test failed; it is not
+  represented as PASS. Direct live mutation is disallowed in the new helper.
+  The original file is backed up byte-for-byte before atomic replacement.
 
-RESULTING SUPPORT ELEVATIONS (INTERNATIONAL FT)
-EB1: top 43.244699059063; bottom 40.244699059063
-Pier: top 43.771946705315; bottom 40.771946705315
-EB2: top 43.256698939586; bottom 40.256698939586
+REMAINING FAILURES AND LIMITS
+  56 cap cover failures, 13 cap bar-overlap pairs, and 36 wall-to-cap steel
+  overlap pairs remain FAIL. Nominal cap bar-to-pile clearance passes.
+  Pier end-grid pile tolerance-envelope conflicts remain open.
+  Previously recorded bridge/MSE coordination clashes are unchanged.
+  All three current reports identify newer FBMP raw-analysis hashes; the two
+  registered prior XMLs differ and the EB2 XML was not supplied.
+  The source tracker is preserved. Broader coherence errors remain reported.
+  No structural/code/fabrication acceptance or new PDF/DXF issue is claimed.
 
-LIVE REINFORCEMENT QUANTITIES
-Support   Bars   Modeled centerline ft   Nominal weight lb
-EB1        67          679.926924860       923.317949296
-Pier       90          956.181689068      1284.670835031
-EB2        67          679.926924860       923.317949296
-TOTAL     224         2316.035538788      3131.306733622
-Quantities use native bar counts, exact analytic paths, nominal round diameters and US nominal lb/ft factors.
-They exclude ribs, tie wire, waste, undeveloped laps and unspecified fabrication additions.
-Both end bents use the selected End Bent 1 case per D-004.
-Hoops include the source-specified 135-degree closure hooks using the tested concrete-beam example helper.
-The top-left closure location and its nonplanar fabrication arrangement are modeling assumptions; the selected source drawing showed an outline. These assumptions produce real check failures below and are not approved details.
-End-grid and pile-U hooks retain the selected case positions, bend dimensions and rotations. No field-bending decision was invented.
-
-CONCRETE QUANTITIES
-Each end cap: gross 185.5 ft3; net 176.5 ft3 after square-pile embedment deductions.
-Pier cap: gross 230 ft3; net 221.273353740 ft3 after unfilled pipe-envelope deductions.
-Concrete quantities do not subtract reinforcing steel; nominal and net component quantities are identified separately.
-
-REMAINING FAILURES - NOT WAIVED
-Bridge/MSE: 11 positive overlaps, plus both landing-elevation checks fail.
-Deck/backwall horizontal openings remain the required 3 in. Landing walking surfaces are about 0.015 in below the adjacent shortened deck ends; the geometry tolerance remains 0.001 in.
-No ramp trimming or undocumented wall-detail redesign was performed.
-EB1: 16 cover failures; 3 physical bar-overlap pairs; 6 source end-grid/pile-tolerance conflicts.
-Pier: 24 cover failures; 7 physical bar-overlap pairs; 6 source end-grid/pile-tolerance conflicts.
-EB2: 16 cover failures; 3 physical bar-overlap pairs; 6 source end-grid/pile-tolerance conflicts.
-All 896 nominal bar-to-pile solid-pair checks pass the 1 in minimum. This does not close the separate source pile-placement envelope failures.
-Modeled hoop closures reduce first-end cover to approximately 2.1505 in. Other hoop-cover shortfalls are approximately 0.0022 in; they still FAIL the unchanged 0.001 in tolerance.
-There are 13 positive-volume bar-overlap pairs in total. They remain visible in the three cage Checks objects and transaction report.
-
-SOURCE COVERAGE AND LIMITS
-GitHub main verified at 01a1fcc34d6345ceacf96245bcf0c931d118a1ab. Current local tracked sources match that commit; the latest user-edited coherence workbook is separately fingerprinted in the model manifest.
-Journal, geometry notebook, roadway XML, both selected cap cases/reports, four FBMP variants, both Mathcad sheets, decisions, source register and latest tracker are recorded by exact or registered normalized hash.
-The tracker and GitHub source files were not edited. Human closures were preserved; a tracker closure is not a substitute for the physical checks reported here.
-Journal bearing layout governs: 3 in beam-end clear, 9 in beam-end-to-bearing center. COH-017 Mathcad length-basis conflict remains open; stale Mathcad overall lengths were not imposed on the native beams.
-D-005 final backwall/cheek-wall geometry and quantities remain deferred. Existing wall geometry is provisional.
-90 ft trial pile lengths remain; final construction tip selection is not established by the fixed/minimum-tip variants.
-The inferred pier-wall thickness/length remains provisional; the journal wind-face width is not a final wall-detail instruction.
-Missing PSBeam/DAT packages, cap-tool revision review, structural calculations, development/anchorage, fabrication approval, complete roadway clearance and construction-stage behavior are not resolved by this CAD update.
-Superstructure rebar/prestressing, parapet/fence fabrication geometry and other unspecified details are not generated from load/envelope quantities. This update covers the existing bridge solids and the three selected cap cages.
-
-VERIFICATION
-Support revision: 306 construction/preservation checks PASS; 3 coordination checks FAIL; 5 broader design checks NOT CONFIGURED.
-Cage creation: 1,134 construction/quantity/schedule checks PASS; 9 detailing summary checks FAIL; 3 anchorage/fabrication checks NOT CONFIGURED.
-Disposable cage count/spacing dependency test: 1,809 checks PASS. Native count changes create/remove bars and update live quantities while preserving existing bridge/ramp/terrain geometry.
-Both support and cage deliberately failed transactions restored their pre-edit states exactly. Development failures are retained in their diagnostic records.
-Cold reopen of the delivered file: 1,440 geometry, quantity, controller, schedule and persistence checks PASS; 5 broader bridge design checks NOT CONFIGURED. This is not a clearance PASS; stored detailing/coordination failures remain visible.
-Delivered document: 864 objects, 737 active parametric proxies, 722 expressions. The three remaining null proxies are intentional data holders (MSEInputs, MSEAssembly, ModelDesignation).
-All 224 native rebar view providers have nonempty geometry. GUI save used an isolated hidden process and did not change the live user document.
-
-USING THE UPDATED FILE
-Run tools/Open_B4_Current_Source.FCMacro in FreeCAD. Keep the CAD_AI helper folder with the model.
-Expand CageEB1, CagePier or CageEB2. Inputs exposes bar sizes/counts, cover and row spacing; advanced run/grid controls retain their JSON unit schema.
-After editing cage inputs, recompute until the document is clean (the count synchronization may require a second recompute). Check Quantities, Schedule and Checks.
-SourceCaseJSON retains the received case separately from live edits. Source geometry changes still require a new coherence/design review.
-Native bar Amount can create additional copies; quantities count every copy. The source-count check identifies departures from the selected source layout.
-Use the bridge PGL camber properties when updating cambers later; recompute and rerun the support and cage checks.
-
-TRANSACTIONS
-bridge-current-proxies-20261010-v1
-bridge-current-supports-20261010-v1
-bridge-current-cages-20261010-v1
-Native save evidence: final-save.json
-Cold reopen evidence: final-reopen-verification.json
-Full support/clash record: C:\Users\joshs\Desktop\CAD_AI\reports\transactions\bridge-current-supports-20261010-v1.json
-Full cage/cover/clearance record: C:\Users\joshs\Desktop\CAD_AI\reports\transactions\bridge-current-cages-20261010-v1.json
+Transaction: design-steel-filecandidate-20261012-v1
+Evidence: evidence/2026-10-12/update-summary.json and file-candidate-verification.json

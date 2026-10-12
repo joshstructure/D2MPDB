@@ -1,0 +1,42 @@
+{
+  "status": "SAVED_AND_VERIFIED_WITH_DETAILING_FAILURES",
+  "date": "2026-10-12",
+  "source_report_count": 4,
+  "old_model_sha256": "eda9060bcaaf3969a6927a256b0bdbdcf2fbcd7a2a81cb5952b054efdce08599",
+  "new_model_sha256": "63b2e92eaa4de16ebc00e3811e9ed8b6d392ffed97057d0e7dce6fda650d9fed",
+  "native_objects": 1230,
+  "exact_retained_objects": 802,
+  "verification_checks": {
+    "PASS": 1482
+  },
+  "old_cap_counts": [
+    67,
+    90,
+    67
+  ],
+  "new_cap_counts": [
+    57,
+    90,
+    57
+  ],
+  "new_wall_bars": 184,
+  "new_wall_weight_lb": 959.7222637643946,
+  "geometry_preserved": true,
+  "cambers_preserved": true,
+  "cheekwall_geometry": "Existing 8 x 42 in dimensions and full-precision heights match source; unchanged.",
+  "remaining_cap_cover_failures": 56,
+  "remaining_cap_bar_overlap_pairs": 13,
+  "remaining_wall_cap_bar_overlap_pairs": 36,
+  "raw_analysis_exports": "Current EB1/Pier hashes differ from registered older exports; EB2 raw XML missing.",
+  "wall_dowels": "16 in as schematic Figure B8 only; development/laps/straps NOT CONFIGURED",
+  "drawing_exports": "Existing PDFs/DXFs are not regenerated",
+  "transaction": "design-steel-filecandidate-20261012-v1",
+  "file_workflow": "Source file remains intact until verified candidate is atomically installed with a byte-identical backup. Live helper undo failed and is not qualified; helper is restricted to disposable file copies.",
+  "native_views": {
+    "status": "NOT CONFIGURED",
+    "detail": "Offscreen GUI opener did not finish; native serialized view records exist for all 1230 objects; no screenshot review requested."
+  },
+  "installation_transaction": "design-file-install-20261012-v1",
+  "backup": "C:\\Users\\joshs\\Desktop\\CAD_AI\\Models\\Archive\\B4-before-steel-update-20261012.FCStd",
+  "backup_verified": true
+}

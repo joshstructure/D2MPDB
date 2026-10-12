@@ -1,3 +1,5 @@
+Current file update: **12 October 2026**. The dated native filename is retained for existing links. See [current update report](evidence/Model-update-report.txt) and [verification](evidence/2026-10-12/update-summary.json).
+
 # Current FreeCAD bridge model
 
 This folder is the authoritative home of the **current editable FreeCAD bridge
@@ -14,7 +16,7 @@ baseline. A filename date identifies this selected issue, not design approval.
    repository ZIP. Downloading only the FCStd file omits its editable controllers.
 2. Use FreeCAD 1.1.3 with the existing Reinforcement v0.6 workbench. No MCP server
    or AI connection is required. Other versions have not been verified.
-3. In FreeCAD, open `Open_Current_Bridge.FCMacro`, then use **Macro Ã¢â€ â€™ Execute**
+3. In FreeCAD, open `Open_Current_Bridge.FCMacro`, then use **Macro ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ Execute**
    (or the macro editor's Execute button). It opens the adjacent model using the
    adjacent `runtime` controllers. If another controller copy is already loaded,
    save any wanted work, restart FreeCAD and run this macro first.
@@ -64,3 +66,9 @@ for the current calculation notebook or engineering review.
 ## Package verification
 
 The copied model passed 1,546 reopen, geometry, controller, schedule and hook-dependency checks; five broader design checks remain not configured. The native model bytes are unchanged. The automated offscreen GUI launch could not complete, so no new visual or GUI-opener review is claimed. See the package verification evidence.
+
+## 12 October reinforcement update
+
+Both end-bent cap grids are disabled, reducing their cages to 57 bars each. Pier steel stays at 90 bars. Backwall/cheekwall Figure B8 adds 184 trial bars with editable source inputs and live schedules. All concrete and cambers are unchanged. Existing cheekwall dimensions already match the report. The new dated wall-check object is a snapshot; rerun its check after edits. Dowels are schematic, and cover/clash failures remain open. Current native-file verification is in evidence/2026-10-12; earlier verification above describes the preserved 10 October revision.
+
+The new adapter is qualified only for disposable file-copy preparation followed by exact native-record preservation and cold-reopen verification. Its failed live undo test is retained in CAD_AI diagnostics; do not invoke it on an authoritative open document.

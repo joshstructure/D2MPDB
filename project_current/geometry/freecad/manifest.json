@@ -3,8 +3,9 @@
   "authority": "Current editable FreeCAD geometry and modeled quantities; engineering acceptance remains separate",
   "model": {
     "path": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-    "sha256": "eda9060bcaaf3969a6927a256b0bdbdcf2fbcd7a2a81cb5952b054efdce08599",
-    "bytes": 2175286
+    "sha256": "63b2e92eaa4de16ebc00e3811e9ed8b6d392ffed97057d0e7dce6fda650d9fed",
+    "bytes": 2617619,
+    "objects": 1230
   },
   "source_revision": "01a1fcc34d6345ceacf96245bcf0c931d118a1ab",
   "tracker_used_sha256": "ff75030a7f3b77edaa26788405a056a1087c166d5c43b3a4fa6a1fb55216e84b",
@@ -120,9 +121,12 @@
     "runtime/freecad_tools/vendor_cap_20261010/pier_cap/visuals.py": "12feb6f3aa18baa18cf0f2abb2f184644a20959bc8026a237e8a22d8def75162",
     "runtime/freecad_tools/vendor_cap_20261010/pier_cap/widget_compat.py": "c3246efcc871bfd58b56965a593de03605a37f75d78ed3866b61177ceda1a9da",
     "runtime/freecad_tools/vendor_cap_20261010/pier_cap/widgets.py": "f6482d1a6ac4c787135e24c9e364ccfc12d132c1c9ae5b949947b81b40ac042e",
-    "runtime/freecad_tools/vendor_cap_20261010/pier_cap/zone_visuals.py": "f4f47a4f4308fe7a7c641dd45714d15ad0ca722324c15faf469686cdcdc0f331"
+    "runtime/freecad_tools/vendor_cap_20261010/pier_cap/zone_visuals.py": "f4f47a4f4308fe7a7c641dd45714d15ad0ca722324c15faf469686cdcdc0f331",
+    "runtime/freecad_tools/design_steel.py": "2a4bccca960737d3cbc9cca17480d035c816d817e162a399b1d27205b6b32216",
+    "runtime/freecad_tools/native_archive.py": "b976209a22570ff72c28946284e0944b460862ae05287ff4efc6f86153ab1cf8",
+    "runtime/freecad_tools/file_install.py": "f00c34f8ef44f66800ef656832ba772e8422001ed4b289cbfb214ec48a0fdbd6"
   },
-  "opener_sha256": "0f462379cf7407b12173f991903a79c22636d99aa5bcbc52d0354b52f8db2a4f",
+  "opener_sha256": "31f181a3bb1469bb6736b5026e23f0be9f20403ef29a332c2ddd717bf3527a70",
   "evidence_files": {
     "evidence/bridge-current-cages-20261010-v1.json": "5daf358f8b140a1b5c8db4b1d33df5ab565d4299e9c1fb90d0aa15cd679ce1ee",
     "evidence/bridge-current-proxies-20261010-v1.json": "bc8d1595534050f961bece023cae100958064388e1b2e7d45ddd424666c834ba",
@@ -131,11 +135,18 @@
     "evidence/delivery-helper-fingerprints.json": "2eda36676cc40916485c708e385818c6e99ead3be41e5754a55bc5e772e58c62",
     "evidence/final-reopen-verification.json": "fde89e9b9c8bb47433a964e3d0b3faedcb00c201b8ada10b348c086e4bfaeec9",
     "evidence/final-save.json": "7767f925bccdf426225cf1d4269ce59919cdcf71267f7c56c7484547f758e946",
-    "evidence/Model-update-report.txt": "e7af1c18a1f47e965c80583e30e305847cf52c1def9365a0217e5fad94242d94",
+    "evidence/Model-update-report.txt": "b4ccd1ab676c673a0b97ab4542e8da1df50469ae5246a11e1eadff9d1e7a89e4",
     "evidence/opener-verification.json": "7cfd370f32a419bd160ce2f914df4e861372addcab97d9e64896fb6135d40fdf",
     "evidence/portable-verification.json": "5daa7dfc49c7f7b11c641a51d2e425ce853dc08ee134356c02746d93d028ec36",
-    "evidence/session-checkpoint.json": "c22fc947838b3ed99425beeab12c10e80b62b12be04d01444f2a0677135096c5"
+    "evidence/session-checkpoint.json": "c22fc947838b3ed99425beeab12c10e80b62b12be04d01444f2a0677135096c5",
+    "evidence/2026-10-12/disk-install-tests.json": "8d0d7560fa580ed78120a6d44a1e93706320f2a72a68eabe57b2d826c83704d7",
+    "evidence/2026-10-12/file-candidate-verification.json": "14ba5a2e5dfd59327998133b0088c15805065783be72acfca15d8fa1b1c97bee",
+    "evidence/2026-10-12/native-preservation-v2.json": "8bbac643d5a294cb896645b3336941a1f7242debdcba25cf778730f320527652",
+    "evidence/2026-10-12/source-coherence-check.json": "ab918fcdf0ccb3329c1c34f81c6510f391a17018683f42137bc394616672b10e",
+    "evidence/2026-10-12/update-summary.json": "aa348132dc0de5900ce2627d1f0e861399df5a5582784550f3a824f4914ffc7c",
+    "evidence/2026-10-12/file-installation.json": "8581c28b1b5ab37049629400e29ff5c1a16f4c445f0976005d53393dfaf3f9c9"
   },
   "known_review_status": "DETAILING AND COORDINATION FAILURES REMAIN; cambers deferred by user",
-  "portability_verification": "PASS: 1546 checks; 5 design checks NOT CONFIGURED. Automated GUI opener review NOT CONFIGURED; see evidence."
+  "portability_verification": "12 October file candidate: 1482 native cold-reopen, exact preservation, physical geometry, schedule and dependency checks PASS; detailing failures remain.",
+  "updated_on": "2026-10-12"
 }

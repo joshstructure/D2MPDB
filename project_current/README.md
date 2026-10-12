@@ -1,7 +1,7 @@
 # Current project record
 
 Start here for the D2 I-95 pedestrian bridge's current source files, adopted
-decisions and outstanding coherence items. Initial inventory: **9 October 2026**. Source update: **10 October 2026**.
+decisions and outstanding coherence items. Initial inventory: **9 October 2026**. Source update: **12 October 2026**.
 "Current" identifies the selected source. Each source retains its own review and
 design-completion status.
 
@@ -16,8 +16,10 @@ design-completion status.
 | Native project journal | [D2 I-95 Project Journal](../journal/D2_I95_Project_Journal.bpad) with [References](../journal/References/) |
 | Current editable FreeCAD model and live quantities | [Open the bridge model](geometry/freecad/README.md) — authoritative model home; cambers deferred and detailing failures retained |
 | Geometry notebook | [Bridge geometry](../Bridge_Geometry_2%20Beam_V2.ipynb) and [roadway XML](../Geometry%20Report.xml) |
-| Pier cap | [Report](cap_design/pier/Pier%20Cap%20Design%2010-10.html), [saved case](cap_design/pier/selected_case.json), [FBMP export](fbmp/pier/Pier_Fixed.XML) |
-| End-bent cap | [Report](cap_design/end_bents/End%20Bent%201%20Cap%20Design%2010-10.html), [saved case](cap_design/end_bents/selected_case.json) |
+| Pier cap | [Report](cap_design/pier/Pier%20Cap%20Design%2010-12.html), [saved case](cap_design/pier/selected_case.json), [FBMP export](fbmp/pier/Pier_Fixed.XML) |
+| End Bent 1 cap | [Report](cap_design/end_bents/End%20Bent%201%20Cap%20Design%2010-12.html), [saved case](cap_design/end_bents/selected_case.json) |
+| End Bent 2 cap | [Report](cap_design/end_bent_2/End%20Bent%202%20Cap%20Design.html), [saved case](cap_design/end_bent_2/selected_case.json) |
+| Selected backwall and cheekwall design | [12 October report](cap_design/backwall/Backwall%20Design%2010-12.html) — provisional dimensions; trial reinforcement; pending detailing |
 | FBMP source variants | [All four fixed/minimum-tip exports](fbmp/README.md) |
 | Mathcad | [Span 1](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd), [Span 2](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd) |
 | Calculation tool | [Cap and pile notebook](../Cap_and_Pile_Design.ipynb) |
@@ -37,7 +39,7 @@ Use the paths in the register for current work.
 | Project assumptions, adopted geometry, decisions, live journal quantities | Current journal's designated modules | Compare notebook and report inputs with these modules |
 | Geometry computations and elevation schedules | Current geometry notebook using identified project inputs and roadway XML | A difference from adopted journal geometry becomes an issue |
 | Current pier cage, forces and cap calculation results | Registered pier report and saved case | C005 remains unchanged; it does not verify the current cage |
-| Common end-bent cage and source results | Registered End Bent 1 report/case, with recorded user decisions | Shared configuration is adopted; analysis verification remains separately tracked |
+| End-bent cages and source results | Registered separate End Bent 1 and End Bent 2 report/cases | Current cages share a configuration; actions and source identities remain separate |
 | Span calculations in Mathcad | User-selected Span 1 and Span 2 sheets | Missing companion data and calculation review remain visible |
 | PSBeam and FBMP analysis results | Exact identified input/output pair for each run | A report name or export date does not establish matching input identity |
 | Open coherence items and responses | `coherence/Coherence_Tracker.xlsx` | CSV and Markdown outputs are generated views, never parallel editable logs |
@@ -109,3 +111,9 @@ The subsequent FBMP import updates source identity checks only. Tracker status
 and responses are unchanged: COH-013's raw-export gap is now resolved, while its
 native-run documentation and workbook disposition remain outstanding. See the
 [FBMP source receipt](coherence/evidence/2026-10-10-fbmp/source_receipt.json).
+
+## 12 October source and reinforcement update
+
+The four supplied reports are now selected with their embedded cap cases. Both end-bent cases disable the end-face U-grid (67 to 57 modeled cap bars each); pier steel remains 90 bars. Wall Figure B8 specifies #5 vertical and #4 horizontal at 12 in each face. Existing cheekwall dimensions match the report and retain their full precision. The 16 in dowels in that figure are explicitly schematic, not approved development lengths.
+
+The new reports reference different raw FBMP hashes: the two prior registered XMLs are preserved and do not match, and the End Bent 2 XML is missing. No analysis rerun or tracker closure is implied. The existing workbook is preserved. See [source receipt](coherence/evidence/2026-10-12/source_update.json).

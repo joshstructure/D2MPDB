@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "rollback": {
+    "status": "TEST_ROLLBACK_VERIFIED",
+    "old_sha256": "eda9060bcaaf3969a6927a256b0bdbdcf2fbcd7a2a81cb5952b054efdce08599"
+  },
+  "success": {
+    "status": "INSTALLED",
+    "backup": "C:\\Users\\joshs\\Desktop\\CAD_AI\\reports\\design-update-20261012\\AtomicSuccessBackup.FCStd",
+    "old_sha256": "eda9060bcaaf3969a6927a256b0bdbdcf2fbcd7a2a81cb5952b054efdce08599",
+    "new_sha256": "63b2e92eaa4de16ebc00e3811e9ed8b6d392ffed97057d0e7dce6fda650d9fed"
+  }
+}

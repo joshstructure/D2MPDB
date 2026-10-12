@@ -1,0 +1,7190 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "exact_retained_native_geometry_links_placements_expressions",
+      "status": "PASS",
+      "differences": {}
+    },
+    {
+      "name": "CageEB1Long01_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Long01_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long01_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666666746,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB1Long01_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB1Long01_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long02_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Long02_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long02_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666666696,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB1Long02_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB1Long02_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long03_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Long03_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long03_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666666707,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB1Long03_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB1Long03_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long04_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Long04_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long04_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.1666666666667,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB1Long04_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB1Long04_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long05_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Long05_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long05_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.1666666666667,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB1Long05_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB1Long05_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long06_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Long06_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long06_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666666643,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB1Long06_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB1Long06_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long07_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Long07_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long07_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666666632,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB1Long07_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB1Long07_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long08_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Long08_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long08_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.16666666666666,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB1Long08_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB1Long08_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long09_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Long09_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long09_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.16666666666666,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB1Long09_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB1Long09_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long10_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Long10_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long10_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.1666666666666,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB1Long10_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB1Long10_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long11_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Long11_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long11_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.1666666666666,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB1Long11_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB1Long11_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long12_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Long12_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long12_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666666664,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB1Long12_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB1Long12_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long13_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Long13_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long13_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666666664,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB1Long13_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB1Long13_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long14_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Long14_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long14_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666666575,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB1Long14_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB1Long14_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long15_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Long15_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long15_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666666575,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB1Long15_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB1Long15_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long16_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Long16_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long16_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.16666666666664,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB1Long16_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB1Long16_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long17_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Long17_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Long17_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.16666666666664,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB1Long17_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB1Long17_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Added01_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Added01_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Added01_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.73935282747725,
+      "path_length_ft": 3.7393528274773056
+    },
+    {
+      "name": "CageEB1Added01_live_links",
+      "status": "PASS",
+      "reported_length": 1139.7547418150828,
+      "expected_length": 1139.7547418150828
+    },
+    {
+      "name": "CageEB1Added01_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Added02_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Added02_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Added02_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.7393528274772674,
+      "path_length_ft": 3.7393528274773047
+    },
+    {
+      "name": "CageEB1Added02_live_links",
+      "status": "PASS",
+      "reported_length": 1139.7547418150825,
+      "expected_length": 1139.7547418150825
+    },
+    {
+      "name": "CageEB1Added02_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Added03_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Added03_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Added03_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.739352827477248,
+      "path_length_ft": 3.7393528274773034
+    },
+    {
+      "name": "CageEB1Added03_live_links",
+      "status": "PASS",
+      "reported_length": 1139.754741815082,
+      "expected_length": 1139.754741815082
+    },
+    {
+      "name": "CageEB1Added03_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Added04_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Added04_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Added04_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.7393528274772674,
+      "path_length_ft": 3.7393528274773056
+    },
+    {
+      "name": "CageEB1Added04_live_links",
+      "status": "PASS",
+      "reported_length": 1139.7547418150828,
+      "expected_length": 1139.7547418150828
+    },
+    {
+      "name": "CageEB1Added04_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Added05_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Added05_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Added05_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.7393528274772496,
+      "path_length_ft": 3.7393528274773047
+    },
+    {
+      "name": "CageEB1Added05_live_links",
+      "status": "PASS",
+      "reported_length": 1139.7547418150825,
+      "expected_length": 1139.7547418150825
+    },
+    {
+      "name": "CageEB1Added05_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Added06_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Added06_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Added06_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.739352827477245,
+      "path_length_ft": 3.7393528274773034
+    },
+    {
+      "name": "CageEB1Added06_live_links",
+      "status": "PASS",
+      "reported_length": 1139.754741815082,
+      "expected_length": 1139.754741815082
+    },
+    {
+      "name": "CageEB1Added06_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Added07_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Added07_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Added07_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.739352827477257,
+      "path_length_ft": 3.7393528274773056
+    },
+    {
+      "name": "CageEB1Added07_live_links",
+      "status": "PASS",
+      "reported_length": 1139.7547418150828,
+      "expected_length": 1139.7547418150828
+    },
+    {
+      "name": "CageEB1Added07_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Added08_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Added08_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Added08_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.7393528274772576,
+      "path_length_ft": 3.7393528274773047
+    },
+    {
+      "name": "CageEB1Added08_live_links",
+      "status": "PASS",
+      "reported_length": 1139.7547418150825,
+      "expected_length": 1139.7547418150825
+    },
+    {
+      "name": "CageEB1Added08_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Added09_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Added09_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Added09_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.739352827477266,
+      "path_length_ft": 3.7393528274773034
+    },
+    {
+      "name": "CageEB1Added09_live_links",
+      "status": "PASS",
+      "reported_length": 1139.754741815082,
+      "expected_length": 1139.754741815082
+    },
+    {
+      "name": "CageEB1Added09_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R1_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R1_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R1_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258097,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB1Trans_R1_1_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB1Trans_R1_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R1_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R1_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R1_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258124,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB1Trans_R1_2_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB1Trans_R1_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R2_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R2_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R2_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621265,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB1Trans_R2_1_live_links",
+      "status": "PASS",
+      "reported_length": 2597.0094836301655,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB1Trans_R2_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R2_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R2_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R2_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621238,
+      "path_length_ft": 8.520372321621275
+    },
+    {
+      "name": "CageEB1Trans_R2_2_live_links",
+      "status": "PASS",
+      "reported_length": 2597.009483630165,
+      "expected_length": 2597.009483630165
+    },
+    {
+      "name": "CageEB1Trans_R2_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R2_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R2_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R2_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.52037232162128,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB1Trans_R2_3_live_links",
+      "status": "PASS",
+      "reported_length": 2597.0094836301655,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB1Trans_R2_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R3_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R3_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R3_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258108,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB1Trans_R3_1_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB1Trans_R3_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R3_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R3_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R3_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258065,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB1Trans_R3_2_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB1Trans_R3_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R3_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R3_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R3_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258156,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB1Trans_R3_3_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB1Trans_R3_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R3_4_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R3_4_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R3_4_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.6774890252581,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB1Trans_R3_4_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB1Trans_R3_4_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R4_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R4_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R4_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621238,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB1Trans_R4_1_live_links",
+      "status": "PASS",
+      "reported_length": 2597.0094836301655,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB1Trans_R4_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R4_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R4_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R4_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621295,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB1Trans_R4_2_live_links",
+      "status": "PASS",
+      "reported_length": 2597.0094836301655,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB1Trans_R4_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R4_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R4_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R4_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621242,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB1Trans_R4_3_live_links",
+      "status": "PASS",
+      "reported_length": 2597.0094836301655,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB1Trans_R4_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R4_4_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R4_4_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R4_4_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621272,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB1Trans_R4_4_live_links",
+      "status": "PASS",
+      "reported_length": 2597.0094836301655,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB1Trans_R4_4_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R5_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R5_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R5_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258124,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB1Trans_R5_1_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB1Trans_R5_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R5_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R5_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R5_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258117,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB1Trans_R5_2_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB1Trans_R5_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R5_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R5_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R5_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258128,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB1Trans_R5_3_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB1Trans_R5_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R5_4_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R5_4_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R5_4_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258112,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB1Trans_R5_4_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB1Trans_R5_4_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R6_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R6_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R6_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621254,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB1Trans_R6_1_live_links",
+      "status": "PASS",
+      "reported_length": 2597.0094836301655,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB1Trans_R6_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R6_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R6_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R6_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621291,
+      "path_length_ft": 8.520372321621275
+    },
+    {
+      "name": "CageEB1Trans_R6_2_live_links",
+      "status": "PASS",
+      "reported_length": 2597.009483630165,
+      "expected_length": 2597.009483630165
+    },
+    {
+      "name": "CageEB1Trans_R6_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R6_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R6_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R6_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621373,
+      "path_length_ft": 8.520372321621275
+    },
+    {
+      "name": "CageEB1Trans_R6_3_live_links",
+      "status": "PASS",
+      "reported_length": 2597.0094836301646,
+      "expected_length": 2597.009483630165
+    },
+    {
+      "name": "CageEB1Trans_R6_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R6_4_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R6_4_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R6_4_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621313,
+      "path_length_ft": 8.520372321621275
+    },
+    {
+      "name": "CageEB1Trans_R6_4_live_links",
+      "status": "PASS",
+      "reported_length": 2597.009483630165,
+      "expected_length": 2597.009483630165
+    },
+    {
+      "name": "CageEB1Trans_R6_4_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R7_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R7_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R7_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258058,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB1Trans_R7_1_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB1Trans_R7_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R7_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R7_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R7_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258117,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB1Trans_R7_2_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB1Trans_R7_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R7_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R7_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R7_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.67748902525817,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB1Trans_R7_3_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB1Trans_R7_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R7_4_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R7_4_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R7_4_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.67748902525817,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB1Trans_R7_4_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB1Trans_R7_4_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R8_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R8_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R8_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621437,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB1Trans_R8_1_live_links",
+      "status": "PASS",
+      "reported_length": 2597.0094836301655,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB1Trans_R8_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R8_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R8_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R8_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621526,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB1Trans_R8_2_live_links",
+      "status": "PASS",
+      "reported_length": 2597.009483630165,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB1Trans_R8_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R8_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R8_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R8_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621235,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB1Trans_R8_3_live_links",
+      "status": "PASS",
+      "reported_length": 2597.009483630165,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB1Trans_R8_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R8_4_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R8_4_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R8_4_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.52037232162141,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB1Trans_R8_4_live_links",
+      "status": "PASS",
+      "reported_length": 2597.009483630165,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB1Trans_R8_4_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R9_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R9_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R9_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258174,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB1Trans_R9_1_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB1Trans_R9_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R9_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB1Trans_R9_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R9_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258172,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB1Trans_R9_2_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB1Trans_R9_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_live_totals",
+      "status": "PASS",
+      "physical_bars": 57,
+      "length_ft": 640.1329180090778,
+      "weight_lb": 881.8128001501364
+    },
+    {
+      "name": "EB1_source_count",
+      "status": "PASS",
+      "source_count": 57,
+      "physical_count": 57
+    },
+    {
+      "name": "EB1_saved_counts_and_schedule",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong01_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierLong01_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong01_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 18.666666666666654,
+      "path_length_ft": 18.66666666666666
+    },
+    {
+      "name": "CagePierLong01_live_links",
+      "status": "PASS",
+      "reported_length": 5689.5999999999985,
+      "expected_length": 5689.5999999999985
+    },
+    {
+      "name": "CagePierLong01_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong02_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierLong02_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong02_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 18.666666666666657,
+      "path_length_ft": 18.66666666666666
+    },
+    {
+      "name": "CagePierLong02_live_links",
+      "status": "PASS",
+      "reported_length": 5689.5999999999985,
+      "expected_length": 5689.5999999999985
+    },
+    {
+      "name": "CagePierLong02_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong03_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierLong03_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong03_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 18.666666666666647,
+      "path_length_ft": 18.66666666666666
+    },
+    {
+      "name": "CagePierLong03_live_links",
+      "status": "PASS",
+      "reported_length": 5689.5999999999985,
+      "expected_length": 5689.5999999999985
+    },
+    {
+      "name": "CagePierLong03_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong04_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierLong04_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong04_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 18.66666666666669,
+      "path_length_ft": 18.66666666666666
+    },
+    {
+      "name": "CagePierLong04_live_links",
+      "status": "PASS",
+      "reported_length": 5689.5999999999985,
+      "expected_length": 5689.5999999999985
+    },
+    {
+      "name": "CagePierLong04_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong05_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierLong05_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong05_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 18.666666666666913,
+      "path_length_ft": 18.66666666666666
+    },
+    {
+      "name": "CagePierLong05_live_links",
+      "status": "PASS",
+      "reported_length": 5689.5999999999985,
+      "expected_length": 5689.5999999999985
+    },
+    {
+      "name": "CagePierLong05_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong06_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierLong06_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong06_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 18.66666666666665,
+      "path_length_ft": 18.66666666666666
+    },
+    {
+      "name": "CagePierLong06_live_links",
+      "status": "PASS",
+      "reported_length": 5689.5999999999985,
+      "expected_length": 5689.5999999999985
+    },
+    {
+      "name": "CagePierLong06_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong07_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierLong07_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong07_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 18.666666666666657,
+      "path_length_ft": 18.66666666666666
+    },
+    {
+      "name": "CagePierLong07_live_links",
+      "status": "PASS",
+      "reported_length": 5689.5999999999985,
+      "expected_length": 5689.5999999999985
+    },
+    {
+      "name": "CagePierLong07_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong08_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierLong08_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong08_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 18.66666666666666,
+      "path_length_ft": 18.66666666666666
+    },
+    {
+      "name": "CagePierLong08_live_links",
+      "status": "PASS",
+      "reported_length": 5689.5999999999985,
+      "expected_length": 5689.5999999999985
+    },
+    {
+      "name": "CagePierLong08_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong09_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierLong09_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong09_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 18.66666666666657,
+      "path_length_ft": 18.66666666666666
+    },
+    {
+      "name": "CagePierLong09_live_links",
+      "status": "PASS",
+      "reported_length": 5689.5999999999985,
+      "expected_length": 5689.5999999999985
+    },
+    {
+      "name": "CagePierLong09_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong10_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierLong10_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong10_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 18.66666666666671,
+      "path_length_ft": 18.66666666666666
+    },
+    {
+      "name": "CagePierLong10_live_links",
+      "status": "PASS",
+      "reported_length": 5689.5999999999985,
+      "expected_length": 5689.5999999999985
+    },
+    {
+      "name": "CagePierLong10_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong11_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierLong11_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong11_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 18.666666666666547,
+      "path_length_ft": 18.66666666666666
+    },
+    {
+      "name": "CagePierLong11_live_links",
+      "status": "PASS",
+      "reported_length": 5689.5999999999985,
+      "expected_length": 5689.5999999999985
+    },
+    {
+      "name": "CagePierLong11_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong12_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierLong12_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong12_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 18.666666666666547,
+      "path_length_ft": 18.66666666666666
+    },
+    {
+      "name": "CagePierLong12_live_links",
+      "status": "PASS",
+      "reported_length": 5689.5999999999985,
+      "expected_length": 5689.5999999999985
+    },
+    {
+      "name": "CagePierLong12_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong13_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierLong13_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong13_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 18.66666666666671,
+      "path_length_ft": 18.66666666666666
+    },
+    {
+      "name": "CagePierLong13_live_links",
+      "status": "PASS",
+      "reported_length": 5689.5999999999985,
+      "expected_length": 5689.5999999999985
+    },
+    {
+      "name": "CagePierLong13_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong14_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierLong14_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong14_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 18.666666666666913,
+      "path_length_ft": 18.66666666666666
+    },
+    {
+      "name": "CagePierLong14_live_links",
+      "status": "PASS",
+      "reported_length": 5689.5999999999985,
+      "expected_length": 5689.5999999999985
+    },
+    {
+      "name": "CagePierLong14_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong15_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierLong15_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong15_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 18.666666666666746,
+      "path_length_ft": 18.66666666666666
+    },
+    {
+      "name": "CagePierLong15_live_links",
+      "status": "PASS",
+      "reported_length": 5689.5999999999985,
+      "expected_length": 5689.5999999999985
+    },
+    {
+      "name": "CagePierLong15_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong16_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierLong16_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong16_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 18.666666666666746,
+      "path_length_ft": 18.66666666666666
+    },
+    {
+      "name": "CagePierLong16_live_links",
+      "status": "PASS",
+      "reported_length": 5689.5999999999985,
+      "expected_length": 5689.5999999999985
+    },
+    {
+      "name": "CagePierLong16_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong17_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierLong17_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierLong17_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 18.666666666666913,
+      "path_length_ft": 18.66666666666666
+    },
+    {
+      "name": "CagePierLong17_live_links",
+      "status": "PASS",
+      "reported_length": 5689.5999999999985,
+      "expected_length": 5689.5999999999985
+    },
+    {
+      "name": "CagePierLong17_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded01_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierAdded01_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded01_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 4.072686160810639,
+      "path_length_ft": 4.072686160810638
+    },
+    {
+      "name": "CagePierAdded01_live_links",
+      "status": "PASS",
+      "reported_length": 1241.3547418150824,
+      "expected_length": 1241.3547418150824
+    },
+    {
+      "name": "CagePierAdded01_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded02_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierAdded02_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded02_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 4.072686160810644,
+      "path_length_ft": 4.072686160810639
+    },
+    {
+      "name": "CagePierAdded02_live_links",
+      "status": "PASS",
+      "reported_length": 1241.354741815083,
+      "expected_length": 1241.3547418150827
+    },
+    {
+      "name": "CagePierAdded02_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded03_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierAdded03_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded03_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 4.07268616081064,
+      "path_length_ft": 4.072686160810638
+    },
+    {
+      "name": "CagePierAdded03_live_links",
+      "status": "PASS",
+      "reported_length": 1241.3547418150824,
+      "expected_length": 1241.3547418150824
+    },
+    {
+      "name": "CagePierAdded03_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded04_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierAdded04_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded04_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 4.072686160810659,
+      "path_length_ft": 4.072686160810638
+    },
+    {
+      "name": "CagePierAdded04_live_links",
+      "status": "PASS",
+      "reported_length": 1241.3547418150824,
+      "expected_length": 1241.3547418150824
+    },
+    {
+      "name": "CagePierAdded04_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded05_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierAdded05_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded05_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 4.0726861608106395,
+      "path_length_ft": 4.072686160810639
+    },
+    {
+      "name": "CagePierAdded05_live_links",
+      "status": "PASS",
+      "reported_length": 1241.354741815083,
+      "expected_length": 1241.3547418150827
+    },
+    {
+      "name": "CagePierAdded05_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded06_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierAdded06_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded06_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 4.072686160810617,
+      "path_length_ft": 4.072686160810638
+    },
+    {
+      "name": "CagePierAdded06_live_links",
+      "status": "PASS",
+      "reported_length": 1241.3547418150824,
+      "expected_length": 1241.3547418150824
+    },
+    {
+      "name": "CagePierAdded06_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded07_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierAdded07_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded07_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 4.072686160810603,
+      "path_length_ft": 4.072686160810638
+    },
+    {
+      "name": "CagePierAdded07_live_links",
+      "status": "PASS",
+      "reported_length": 1241.3547418150824,
+      "expected_length": 1241.3547418150824
+    },
+    {
+      "name": "CagePierAdded07_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded08_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierAdded08_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded08_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 4.072686160810648,
+      "path_length_ft": 4.072686160810639
+    },
+    {
+      "name": "CagePierAdded08_live_links",
+      "status": "PASS",
+      "reported_length": 1241.354741815083,
+      "expected_length": 1241.3547418150827
+    },
+    {
+      "name": "CagePierAdded08_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded09_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierAdded09_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded09_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 4.07268616081066,
+      "path_length_ft": 4.072686160810638
+    },
+    {
+      "name": "CagePierAdded09_live_links",
+      "status": "PASS",
+      "reported_length": 1241.3547418150824,
+      "expected_length": 1241.3547418150824
+    },
+    {
+      "name": "CagePierAdded09_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded10_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierAdded10_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded10_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 4.072686160810623,
+      "path_length_ft": 4.072686160810638
+    },
+    {
+      "name": "CagePierAdded10_live_links",
+      "status": "PASS",
+      "reported_length": 1241.3547418150824,
+      "expected_length": 1241.3547418150824
+    },
+    {
+      "name": "CagePierAdded10_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded11_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierAdded11_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded11_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 4.0726861608106315,
+      "path_length_ft": 4.072686160810639
+    },
+    {
+      "name": "CagePierAdded11_live_links",
+      "status": "PASS",
+      "reported_length": 1241.354741815083,
+      "expected_length": 1241.3547418150827
+    },
+    {
+      "name": "CagePierAdded11_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded12_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierAdded12_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded12_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 4.072686160810656,
+      "path_length_ft": 4.072686160810638
+    },
+    {
+      "name": "CagePierAdded12_live_links",
+      "status": "PASS",
+      "reported_length": 1241.3547418150824,
+      "expected_length": 1241.3547418150824
+    },
+    {
+      "name": "CagePierAdded12_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded13_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierAdded13_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded13_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 4.072686160810661,
+      "path_length_ft": 4.072686160810638
+    },
+    {
+      "name": "CagePierAdded13_live_links",
+      "status": "PASS",
+      "reported_length": 1241.3547418150824,
+      "expected_length": 1241.3547418150824
+    },
+    {
+      "name": "CagePierAdded13_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded14_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierAdded14_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded14_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 4.072686160810689,
+      "path_length_ft": 4.072686160810639
+    },
+    {
+      "name": "CagePierAdded14_live_links",
+      "status": "PASS",
+      "reported_length": 1241.354741815083,
+      "expected_length": 1241.3547418150827
+    },
+    {
+      "name": "CagePierAdded14_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded15_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierAdded15_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierAdded15_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 4.072686160810631,
+      "path_length_ft": 4.072686160810638
+    },
+    {
+      "name": "CagePierAdded15_live_links",
+      "status": "PASS",
+      "reported_length": 1241.3547418150824,
+      "expected_length": 1241.3547418150824
+    },
+    {
+      "name": "CagePierAdded15_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R1_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R1_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R1_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698104084,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R1_1_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R1_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R1_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R1_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R1_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698104096,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R1_2_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R1_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R1_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R1_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R1_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698104094,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R1_3_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R1_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R2_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R2_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R2_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.64537232162122,
+      "path_length_ft": 9.645372321621277
+    },
+    {
+      "name": "CagePierTrans_R2_1_live_links",
+      "status": "PASS",
+      "reported_length": 2939.909483630165,
+      "expected_length": 2939.909483630165
+    },
+    {
+      "name": "CagePierTrans_R2_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R2_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R2_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R2_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.645372321621432,
+      "path_length_ft": 9.645372321621277
+    },
+    {
+      "name": "CagePierTrans_R2_2_live_links",
+      "status": "PASS",
+      "reported_length": 2939.909483630165,
+      "expected_length": 2939.909483630165
+    },
+    {
+      "name": "CagePierTrans_R2_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R2_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R2_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R2_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.645372321621261,
+      "path_length_ft": 9.645372321621277
+    },
+    {
+      "name": "CagePierTrans_R2_3_live_links",
+      "status": "PASS",
+      "reported_length": 2939.909483630165,
+      "expected_length": 2939.909483630165
+    },
+    {
+      "name": "CagePierTrans_R2_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R2_4_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R2_4_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R2_4_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.645372321621403,
+      "path_length_ft": 9.645372321621277
+    },
+    {
+      "name": "CagePierTrans_R2_4_live_links",
+      "status": "PASS",
+      "reported_length": 2939.909483630165,
+      "expected_length": 2939.909483630165
+    },
+    {
+      "name": "CagePierTrans_R2_4_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R2_5_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R2_5_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R2_5_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.645372321621405,
+      "path_length_ft": 9.645372321621277
+    },
+    {
+      "name": "CagePierTrans_R2_5_live_links",
+      "status": "PASS",
+      "reported_length": 2939.909483630165,
+      "expected_length": 2939.909483630165
+    },
+    {
+      "name": "CagePierTrans_R2_5_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R2_6_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R2_6_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R2_6_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.645372321621352,
+      "path_length_ft": 9.645372321621277
+    },
+    {
+      "name": "CagePierTrans_R2_6_live_links",
+      "status": "PASS",
+      "reported_length": 2939.909483630165,
+      "expected_length": 2939.909483630165
+    },
+    {
+      "name": "CagePierTrans_R2_6_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R3_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R3_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R3_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698104108,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R3_1_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R3_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R3_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R3_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R3_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698104101,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R3_2_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R3_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R3_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R3_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R3_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698104121,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R3_3_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R3_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R3_4_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R3_4_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R3_4_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698104029,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R3_4_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R3_4_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R3_5_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R3_5_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R3_5_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698104142,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R3_5_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R3_5_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R3_6_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R3_6_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R3_6_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698104094,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R3_6_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R3_6_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R4_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R4_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R4_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.645372321621231,
+      "path_length_ft": 9.645372321621277
+    },
+    {
+      "name": "CagePierTrans_R4_1_live_links",
+      "status": "PASS",
+      "reported_length": 2939.909483630165,
+      "expected_length": 2939.909483630165
+    },
+    {
+      "name": "CagePierTrans_R4_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R4_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R4_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R4_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.64537232162128,
+      "path_length_ft": 9.645372321621277
+    },
+    {
+      "name": "CagePierTrans_R4_2_live_links",
+      "status": "PASS",
+      "reported_length": 2939.909483630165,
+      "expected_length": 2939.909483630165
+    },
+    {
+      "name": "CagePierTrans_R4_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R4_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R4_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R4_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.645372321621288,
+      "path_length_ft": 9.645372321621275
+    },
+    {
+      "name": "CagePierTrans_R4_3_live_links",
+      "status": "PASS",
+      "reported_length": 2939.9094836301647,
+      "expected_length": 2939.9094836301647
+    },
+    {
+      "name": "CagePierTrans_R4_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R4_4_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R4_4_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R4_4_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.645372321621247,
+      "path_length_ft": 9.645372321621277
+    },
+    {
+      "name": "CagePierTrans_R4_4_live_links",
+      "status": "PASS",
+      "reported_length": 2939.909483630165,
+      "expected_length": 2939.909483630165
+    },
+    {
+      "name": "CagePierTrans_R4_4_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R4_5_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R4_5_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R4_5_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.645372321621387,
+      "path_length_ft": 9.645372321621277
+    },
+    {
+      "name": "CagePierTrans_R4_5_live_links",
+      "status": "PASS",
+      "reported_length": 2939.909483630165,
+      "expected_length": 2939.909483630165
+    },
+    {
+      "name": "CagePierTrans_R4_5_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R4_6_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R4_6_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R4_6_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.6453723216214,
+      "path_length_ft": 9.645372321621277
+    },
+    {
+      "name": "CagePierTrans_R4_6_live_links",
+      "status": "PASS",
+      "reported_length": 2939.909483630165,
+      "expected_length": 2939.909483630165
+    },
+    {
+      "name": "CagePierTrans_R4_6_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R5_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R5_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R5_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.67743369810411,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R5_1_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R5_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R5_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R5_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R5_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.67743369810411,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R5_2_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R5_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R5_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R5_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R5_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698104075,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R5_3_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R5_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R5_4_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R5_4_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R5_4_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698104082,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R5_4_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R5_4_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R5_5_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R5_5_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R5_5_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698104101,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R5_5_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R5_5_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R5_6_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R5_6_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R5_6_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698104101,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R5_6_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R5_6_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R6_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R6_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R6_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.645372321621405,
+      "path_length_ft": 9.645372321621277
+    },
+    {
+      "name": "CagePierTrans_R6_1_live_links",
+      "status": "PASS",
+      "reported_length": 2939.909483630165,
+      "expected_length": 2939.909483630165
+    },
+    {
+      "name": "CagePierTrans_R6_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R6_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R6_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R6_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.645372321621261,
+      "path_length_ft": 9.645372321621275
+    },
+    {
+      "name": "CagePierTrans_R6_2_live_links",
+      "status": "PASS",
+      "reported_length": 2939.9094836301647,
+      "expected_length": 2939.9094836301647
+    },
+    {
+      "name": "CagePierTrans_R6_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R6_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R6_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R6_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.64537232162124,
+      "path_length_ft": 9.645372321621277
+    },
+    {
+      "name": "CagePierTrans_R6_3_live_links",
+      "status": "PASS",
+      "reported_length": 2939.909483630165,
+      "expected_length": 2939.909483630165
+    },
+    {
+      "name": "CagePierTrans_R6_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R6_4_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R6_4_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R6_4_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.645372321621267,
+      "path_length_ft": 9.645372321621277
+    },
+    {
+      "name": "CagePierTrans_R6_4_live_links",
+      "status": "PASS",
+      "reported_length": 2939.909483630165,
+      "expected_length": 2939.909483630165
+    },
+    {
+      "name": "CagePierTrans_R6_4_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R6_5_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R6_5_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R6_5_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.645372321621371,
+      "path_length_ft": 9.645372321621275
+    },
+    {
+      "name": "CagePierTrans_R6_5_live_links",
+      "status": "PASS",
+      "reported_length": 2939.9094836301647,
+      "expected_length": 2939.9094836301647
+    },
+    {
+      "name": "CagePierTrans_R6_5_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R6_6_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R6_6_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R6_6_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.645372321621398,
+      "path_length_ft": 9.645372321621275
+    },
+    {
+      "name": "CagePierTrans_R6_6_live_links",
+      "status": "PASS",
+      "reported_length": 2939.9094836301647,
+      "expected_length": 2939.9094836301647
+    },
+    {
+      "name": "CagePierTrans_R6_6_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R7_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R7_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R7_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698104062,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R7_1_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R7_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R7_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R7_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R7_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698103997,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R7_2_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R7_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R7_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R7_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R7_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698104084,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R7_3_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R7_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R7_4_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R7_4_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R7_4_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698104032,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R7_4_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R7_4_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R7_5_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R7_5_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R7_5_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698104018,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R7_5_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R7_5_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R7_6_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R7_6_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R7_6_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698104057,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R7_6_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R7_6_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R8_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R8_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R8_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.645372321621387,
+      "path_length_ft": 9.645372321621277
+    },
+    {
+      "name": "CagePierTrans_R8_1_live_links",
+      "status": "PASS",
+      "reported_length": 2939.909483630165,
+      "expected_length": 2939.9094836301656
+    },
+    {
+      "name": "CagePierTrans_R8_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R8_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R8_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R8_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.645372321621347,
+      "path_length_ft": 9.645372321621277
+    },
+    {
+      "name": "CagePierTrans_R8_2_live_links",
+      "status": "PASS",
+      "reported_length": 2939.909483630165,
+      "expected_length": 2939.909483630165
+    },
+    {
+      "name": "CagePierTrans_R8_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R8_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R8_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R8_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.645372321621606,
+      "path_length_ft": 9.645372321621277
+    },
+    {
+      "name": "CagePierTrans_R8_3_live_links",
+      "status": "PASS",
+      "reported_length": 2939.909483630165,
+      "expected_length": 2939.909483630165
+    },
+    {
+      "name": "CagePierTrans_R8_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R8_4_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R8_4_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R8_4_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.645372321621416,
+      "path_length_ft": 9.645372321621279
+    },
+    {
+      "name": "CagePierTrans_R8_4_live_links",
+      "status": "PASS",
+      "reported_length": 2939.9094836301656,
+      "expected_length": 2939.909483630166
+    },
+    {
+      "name": "CagePierTrans_R8_4_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R8_5_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R8_5_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R8_5_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.645372321621332,
+      "path_length_ft": 9.645372321621277
+    },
+    {
+      "name": "CagePierTrans_R8_5_live_links",
+      "status": "PASS",
+      "reported_length": 2939.909483630165,
+      "expected_length": 2939.9094836301656
+    },
+    {
+      "name": "CagePierTrans_R8_5_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R8_6_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R8_6_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R8_6_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 9.645372321621396,
+      "path_length_ft": 9.645372321621277
+    },
+    {
+      "name": "CagePierTrans_R8_6_live_links",
+      "status": "PASS",
+      "reported_length": 2939.909483630165,
+      "expected_length": 2939.909483630165
+    },
+    {
+      "name": "CagePierTrans_R8_6_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R9_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R9_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R9_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698104021,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R9_1_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R9_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R9_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R9_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R9_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698104037,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R9_2_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R9_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R9_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierTrans_R9_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierTrans_R9_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 12.677433698104013,
+      "path_length_ft": 12.677433698104055
+    },
+    {
+      "name": "CagePierTrans_R9_3_live_links",
+      "status": "PASS",
+      "reported_length": 3864.0817911821164,
+      "expected_length": 3864.0817911821164
+    },
+    {
+      "name": "CagePierTrans_R9_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierEnd_left_H1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierEnd_left_H1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierEnd_left_H1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 4.801072059907988,
+      "path_length_ft": 4.801072059908045
+    },
+    {
+      "name": "CagePierEnd_left_H1_live_links",
+      "status": "PASS",
+      "reported_length": 1463.3667638599723,
+      "expected_length": 1463.3667638599723
+    },
+    {
+      "name": "CagePierEnd_left_H1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierEnd_left_H2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierEnd_left_H2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierEnd_left_H2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 4.801072059907988,
+      "path_length_ft": 4.801072059908045
+    },
+    {
+      "name": "CagePierEnd_left_H2_live_links",
+      "status": "PASS",
+      "reported_length": 1463.3667638599723,
+      "expected_length": 1463.3667638599723
+    },
+    {
+      "name": "CagePierEnd_left_H2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierEnd_left_V1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierEnd_left_V1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierEnd_left_V1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.8010717682120805,
+      "path_length_ft": 3.8010717682121693
+    },
+    {
+      "name": "CagePierEnd_left_V1_live_links",
+      "status": "PASS",
+      "reported_length": 1158.5666749510692,
+      "expected_length": 1158.5666749510692
+    },
+    {
+      "name": "CagePierEnd_left_V1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierEnd_left_V2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierEnd_left_V2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierEnd_left_V2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.8010717682121484,
+      "path_length_ft": 3.8010717682121693
+    },
+    {
+      "name": "CagePierEnd_left_V2_live_links",
+      "status": "PASS",
+      "reported_length": 1158.5666749510692,
+      "expected_length": 1158.5666749510692
+    },
+    {
+      "name": "CagePierEnd_left_V2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierEnd_left_V3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierEnd_left_V3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierEnd_left_V3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.801071768212107,
+      "path_length_ft": 3.8010717682121693
+    },
+    {
+      "name": "CagePierEnd_left_V3_live_links",
+      "status": "PASS",
+      "reported_length": 1158.5666749510692,
+      "expected_length": 1158.5666749510692
+    },
+    {
+      "name": "CagePierEnd_left_V3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierEnd_right_H1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierEnd_right_H1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierEnd_right_H1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 4.801072059907969,
+      "path_length_ft": 4.801072059908043
+    },
+    {
+      "name": "CagePierEnd_right_H1_live_links",
+      "status": "PASS",
+      "reported_length": 1463.3667638599718,
+      "expected_length": 1463.3667638599718
+    },
+    {
+      "name": "CagePierEnd_right_H1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierEnd_right_H2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierEnd_right_H2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierEnd_right_H2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 4.8010720599080114,
+      "path_length_ft": 4.801072059908043
+    },
+    {
+      "name": "CagePierEnd_right_H2_live_links",
+      "status": "PASS",
+      "reported_length": 1463.3667638599718,
+      "expected_length": 1463.3667638599718
+    },
+    {
+      "name": "CagePierEnd_right_H2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierEnd_right_V1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierEnd_right_V1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierEnd_right_V1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.801071768212129,
+      "path_length_ft": 3.8010717682121675
+    },
+    {
+      "name": "CagePierEnd_right_V1_live_links",
+      "status": "PASS",
+      "reported_length": 1158.5666749510688,
+      "expected_length": 1158.5666749510688
+    },
+    {
+      "name": "CagePierEnd_right_V1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierEnd_right_V2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierEnd_right_V2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierEnd_right_V2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.801071768212151,
+      "path_length_ft": 3.8010717682121675
+    },
+    {
+      "name": "CagePierEnd_right_V2_live_links",
+      "status": "PASS",
+      "reported_length": 1158.5666749510688,
+      "expected_length": 1158.5666749510688
+    },
+    {
+      "name": "CagePierEnd_right_V2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierEnd_right_V3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CagePierEnd_right_V3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CagePierEnd_right_V3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.801071768212167,
+      "path_length_ft": 3.8010717682121675
+    },
+    {
+      "name": "CagePierEnd_right_V3_live_links",
+      "status": "PASS",
+      "reported_length": 1158.5666749510688,
+      "expected_length": 1158.5666749510688
+    },
+    {
+      "name": "CagePierEnd_right_V3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "Pier_live_totals",
+      "status": "PASS",
+      "physical_bars": 90,
+      "length_ft": 956.1816890678047,
+      "weight_lb": 1284.6708350310562
+    },
+    {
+      "name": "Pier_source_count",
+      "status": "PASS",
+      "source_count": 90,
+      "physical_count": 90
+    },
+    {
+      "name": "Pier_saved_counts_and_schedule",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long01_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Long01_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long01_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666666476,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB2Long01_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB2Long01_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long02_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Long02_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long02_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.16666666666665,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB2Long02_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB2Long02_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long03_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Long03_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long03_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666667126,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB2Long03_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB2Long03_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long04_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Long04_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long04_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.16666666666654,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB2Long04_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB2Long04_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long05_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Long05_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long05_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666666504,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB2Long05_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB2Long05_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long06_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Long06_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long06_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666666945,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB2Long06_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB2Long06_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long07_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Long07_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long07_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666666448,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB2Long07_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB2Long07_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long08_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Long08_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long08_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666666863,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB2Long08_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB2Long08_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long09_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Long09_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long09_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666666398,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB2Long09_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB2Long09_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long10_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Long10_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long10_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666667062,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB2Long10_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB2Long10_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long11_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Long11_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long11_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666667187,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB2Long11_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB2Long11_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long12_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Long12_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long12_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666667187,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB2Long12_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB2Long12_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long13_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Long13_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long13_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666667187,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB2Long13_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB2Long13_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long14_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Long14_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long14_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.16666666666691,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB2Long14_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB2Long14_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long15_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Long15_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long15_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666667037,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB2Long15_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB2Long15_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long16_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Long16_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long16_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666667037,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB2Long16_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB2Long16_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long17_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Long17_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Long17_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 17.166666666667037,
+      "path_length_ft": 17.16666666666666
+    },
+    {
+      "name": "CageEB2Long17_live_links",
+      "status": "PASS",
+      "reported_length": 5232.399999999999,
+      "expected_length": 5232.399999999999
+    },
+    {
+      "name": "CageEB2Long17_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Added01_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Added01_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Added01_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.739352827477206,
+      "path_length_ft": 3.7393528274773056
+    },
+    {
+      "name": "CageEB2Added01_live_links",
+      "status": "PASS",
+      "reported_length": 1139.7547418150828,
+      "expected_length": 1139.7547418150828
+    },
+    {
+      "name": "CageEB2Added01_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Added02_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Added02_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Added02_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.739352827477233,
+      "path_length_ft": 3.7393528274773047
+    },
+    {
+      "name": "CageEB2Added02_live_links",
+      "status": "PASS",
+      "reported_length": 1139.7547418150825,
+      "expected_length": 1139.7547418150825
+    },
+    {
+      "name": "CageEB2Added02_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Added03_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Added03_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Added03_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.7393528274772057,
+      "path_length_ft": 3.7393528274773034
+    },
+    {
+      "name": "CageEB2Added03_live_links",
+      "status": "PASS",
+      "reported_length": 1139.754741815082,
+      "expected_length": 1139.754741815082
+    },
+    {
+      "name": "CageEB2Added03_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Added04_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Added04_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Added04_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.7393528274773176,
+      "path_length_ft": 3.7393528274773056
+    },
+    {
+      "name": "CageEB2Added04_live_links",
+      "status": "PASS",
+      "reported_length": 1139.7547418150828,
+      "expected_length": 1139.7547418150828
+    },
+    {
+      "name": "CageEB2Added04_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Added05_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Added05_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Added05_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.739352827477285,
+      "path_length_ft": 3.7393528274773047
+    },
+    {
+      "name": "CageEB2Added05_live_links",
+      "status": "PASS",
+      "reported_length": 1139.7547418150825,
+      "expected_length": 1139.7547418150825
+    },
+    {
+      "name": "CageEB2Added05_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Added06_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Added06_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Added06_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.73935282747731,
+      "path_length_ft": 3.7393528274773034
+    },
+    {
+      "name": "CageEB2Added06_live_links",
+      "status": "PASS",
+      "reported_length": 1139.754741815082,
+      "expected_length": 1139.754741815082
+    },
+    {
+      "name": "CageEB2Added06_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Added07_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Added07_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Added07_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.7393528274773025,
+      "path_length_ft": 3.7393528274773056
+    },
+    {
+      "name": "CageEB2Added07_live_links",
+      "status": "PASS",
+      "reported_length": 1139.7547418150828,
+      "expected_length": 1139.7547418150828
+    },
+    {
+      "name": "CageEB2Added07_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Added08_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Added08_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Added08_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.7393528274773242,
+      "path_length_ft": 3.7393528274773047
+    },
+    {
+      "name": "CageEB2Added08_live_links",
+      "status": "PASS",
+      "reported_length": 1139.7547418150825,
+      "expected_length": 1139.7547418150825
+    },
+    {
+      "name": "CageEB2Added08_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Added09_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Added09_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Added09_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 3.7393528274772376,
+      "path_length_ft": 3.7393528274773034
+    },
+    {
+      "name": "CageEB2Added09_live_links",
+      "status": "PASS",
+      "reported_length": 1139.754741815082,
+      "expected_length": 1139.754741815082
+    },
+    {
+      "name": "CageEB2Added09_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R1_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R1_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R1_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.67748902525814,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB2Trans_R1_1_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB2Trans_R1_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R1_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R1_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R1_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.67748902525814,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB2Trans_R1_2_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB2Trans_R1_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R2_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R2_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R2_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621146,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB2Trans_R2_1_live_links",
+      "status": "PASS",
+      "reported_length": 2597.0094836301655,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB2Trans_R2_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R2_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R2_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R2_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.52037232162112,
+      "path_length_ft": 8.520372321621275
+    },
+    {
+      "name": "CageEB2Trans_R2_2_live_links",
+      "status": "PASS",
+      "reported_length": 2597.009483630165,
+      "expected_length": 2597.009483630165
+    },
+    {
+      "name": "CageEB2Trans_R2_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R2_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R2_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R2_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621164,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB2Trans_R2_3_live_links",
+      "status": "PASS",
+      "reported_length": 2597.0094836301655,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB2Trans_R2_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R3_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R3_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R3_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258168,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB2Trans_R3_1_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB2Trans_R3_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R3_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R3_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R3_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258097,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB2Trans_R3_2_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB2Trans_R3_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R3_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R3_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R3_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258179,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB2Trans_R3_3_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB2Trans_R3_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R3_4_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R3_4_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R3_4_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.67748902525812,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB2Trans_R3_4_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB2Trans_R3_4_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R4_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R4_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R4_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621123,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB2Trans_R4_1_live_links",
+      "status": "PASS",
+      "reported_length": 2597.0094836301655,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB2Trans_R4_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R4_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R4_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R4_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.52037232162118,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB2Trans_R4_2_live_links",
+      "status": "PASS",
+      "reported_length": 2597.0094836301655,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB2Trans_R4_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R4_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R4_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R4_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621132,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB2Trans_R4_3_live_links",
+      "status": "PASS",
+      "reported_length": 2597.0094836301655,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB2Trans_R4_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R4_4_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R4_4_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R4_4_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621203,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB2Trans_R4_4_live_links",
+      "status": "PASS",
+      "reported_length": 2597.0094836301655,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB2Trans_R4_4_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R5_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R5_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R5_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258122,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB2Trans_R5_1_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB2Trans_R5_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R5_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R5_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R5_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258105,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB2Trans_R5_2_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB2Trans_R5_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R5_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R5_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R5_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258108,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB2Trans_R5_3_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB2Trans_R5_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R5_4_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R5_4_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R5_4_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.67748902525815,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB2Trans_R5_4_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB2Trans_R5_4_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R6_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R6_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R6_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621112,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB2Trans_R6_1_live_links",
+      "status": "PASS",
+      "reported_length": 2597.0094836301655,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB2Trans_R6_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R6_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R6_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R6_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621256,
+      "path_length_ft": 8.520372321621275
+    },
+    {
+      "name": "CageEB2Trans_R6_2_live_links",
+      "status": "PASS",
+      "reported_length": 2597.009483630165,
+      "expected_length": 2597.009483630165
+    },
+    {
+      "name": "CageEB2Trans_R6_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R6_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R6_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R6_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621327,
+      "path_length_ft": 8.520372321621275
+    },
+    {
+      "name": "CageEB2Trans_R6_3_live_links",
+      "status": "PASS",
+      "reported_length": 2597.0094836301646,
+      "expected_length": 2597.009483630165
+    },
+    {
+      "name": "CageEB2Trans_R6_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R6_4_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R6_4_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R6_4_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621247,
+      "path_length_ft": 8.520372321621275
+    },
+    {
+      "name": "CageEB2Trans_R6_4_live_links",
+      "status": "PASS",
+      "reported_length": 2597.009483630165,
+      "expected_length": 2597.009483630165
+    },
+    {
+      "name": "CageEB2Trans_R6_4_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R7_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R7_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R7_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258046,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB2Trans_R7_1_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB2Trans_R7_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R7_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R7_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R7_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258092,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB2Trans_R7_2_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB2Trans_R7_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R7_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R7_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R7_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258126,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB2Trans_R7_3_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB2Trans_R7_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R7_4_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R7_4_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R7_4_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258197,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB2Trans_R7_4_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB2Trans_R7_4_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R8_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R8_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R8_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.52037232162134,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB2Trans_R8_1_live_links",
+      "status": "PASS",
+      "reported_length": 2597.0094836301655,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB2Trans_R8_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R8_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R8_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R8_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621435,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB2Trans_R8_2_live_links",
+      "status": "PASS",
+      "reported_length": 2597.009483630165,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB2Trans_R8_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R8_3_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R8_3_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R8_3_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.520372321621133,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB2Trans_R8_3_live_links",
+      "status": "PASS",
+      "reported_length": 2597.009483630165,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB2Trans_R8_3_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R8_4_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R8_4_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R8_4_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 8.52037232162142,
+      "path_length_ft": 8.520372321621277
+    },
+    {
+      "name": "CageEB2Trans_R8_4_live_links",
+      "status": "PASS",
+      "reported_length": 2597.009483630165,
+      "expected_length": 2597.0094836301655
+    },
+    {
+      "name": "CageEB2Trans_R8_4_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R9_1_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R9_1_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R9_1_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258147,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB2Trans_R9_1_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB2Trans_R9_1_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R9_2_native_geometry",
+      "status": "PASS",
+      "solids": 1,
+      "expected": 1
+    },
+    {
+      "name": "CageEB2Trans_R9_2_nominal_diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R9_2_independent_volume_length",
+      "status": "PASS",
+      "measured_length_ft": 11.677489025258186,
+      "path_length_ft": 11.677489025258108
+    },
+    {
+      "name": "CageEB2Trans_R9_2_live_links",
+      "status": "PASS",
+      "reported_length": 3559.2986548986714,
+      "expected_length": 3559.2986548986714
+    },
+    {
+      "name": "CageEB2Trans_R9_2_physical_source_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_live_totals",
+      "status": "PASS",
+      "physical_bars": 57,
+      "length_ft": 640.1329180090778,
+      "weight_lb": 881.8128001501364
+    },
+    {
+      "name": "EB2_source_count",
+      "status": "PASS",
+      "source_count": 57,
+      "physical_count": 57
+    },
+    {
+      "name": "EB2_saved_counts_and_schedule",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V08_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V08_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V09_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V09_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V10_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V10_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V11_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V11_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V12_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V12_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V13_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V13_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V14_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V14_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V15_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V15_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V16_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V16_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V17_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V17_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V08_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V08_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V09_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V09_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V10_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V10_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V11_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V11_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V12_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V12_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V13_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V13_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V14_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V14_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V15_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V15_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V16_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V16_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V17_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V17_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1_live_totals",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1_saved_schedule",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11_live_totals",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11_saved_schedule",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1H06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1H06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1H07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F1H07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2H06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2H06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2H07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12F2H07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12_live_totals",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12_saved_schedule",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V08_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V08_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V09_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V09_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V10_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V10_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V11_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V11_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V12_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V12_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V13_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V13_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V14_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V14_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V15_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V15_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V16_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V16_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V17_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V17_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V08_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V08_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V09_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V09_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V10_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V10_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V11_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V11_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V12_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V12_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V13_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V13_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V14_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V14_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V15_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V15_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V16_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V16_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V17_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V17_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2_live_totals",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2_saved_schedule",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1H06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1H06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1H07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F1H07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2H06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2H06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2H07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21F2H07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21_live_totals",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21_saved_schedule",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1H06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1H06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1H07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F1H07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2H06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2H06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2H07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22F2H07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22_live_totals",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22_saved_schedule",
+      "status": "PASS"
+    },
+    {
+      "name": "all_six_wall_cages_present",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeCheekEB11_source_dimensions_preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeCheekEB12_source_dimensions_preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeCheekEB21_source_dimensions_preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgeCheekEB22_source_dimensions_preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "both_cambers_exact",
+      "status": "PASS"
+    },
+    {
+      "name": "native_controllers_available",
+      "status": "PASS",
+      "intentionally_inert": [
+        "MSEAssembly",
+        "MSEInputs",
+        "ModelDesignation",
+        "WallSteelChecks"
+      ]
+    },
+    {
+      "name": "native_views_for_every_object",
+      "status": "PASS"
+    },
+    {
+      "name": "wall_spacing_drives_native_count",
+      "status": "PASS",
+      "old": 24,
+      "new": 30
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V08_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1V08_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F1H07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V08_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2V08_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11F2H07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11_live_totals",
+      "status": "PASS"
+    },
+    {
+      "name": "wall_count_restored",
+      "status": "PASS"
+    },
+    {
+      "name": "wall_edit_preserves_existing_bridge",
+      "status": "PASS",
+      "differences": {}
+    }
+  ],
+  "counts": {
+    "PASS": 1482
+  },
+  "objects": 1230,
+  "candidate": "C:\\Users\\joshs\\Desktop\\CAD_AI\\source-handoff\\design-file-20261012\\project_current\\geometry\\freecad\\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "candidate_sha256": "63b2e92eaa4de16ebc00e3811e9ed8b6d392ffed97057d0e7dce6fda650d9fed",
+  "candidate_unchanged": true,
+  "authoritative_file_unchanged": true
+}
