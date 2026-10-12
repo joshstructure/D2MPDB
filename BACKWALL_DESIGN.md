@@ -73,3 +73,17 @@ Run all cells in Colab. Cell 1 re-reads registered files and records confirmatio
 **QC dropdowns in the report.** Each equation is followed by a collapsible row. The row's summary, *What it represents*, is visible when collapsed. Opening it shows a drawing built from the current case (`end_bent_walls/schematics.py`) with the defined quantity in red. A panel beside the drawing gives the result and the substituted values. Free-body rows add a numbered table of γ, arm, γ·F and γ·M. A legend lists each term's value and source. The report toolbar opens or closes all QC rows. Printing opens the report sections and leaves the QC rows as they are.
 
 After changing `end_bent_walls/` or the shared `pier_cap/` modules, run `python scripts/build_backwall_notebook.py`. Then run `python -m unittest tests.test_end_bent_walls`. The tests reproduce the template's flexure, crack-control and shear values with its own inputs, pin the project statics, and verify that the embedded package matches the repository files.
+
+## Mathcad edition
+
+[End_Bent_Backwall_Design.xmcd](End_Bent_Backwall_Design.xmcd) is a Mathcad 15 worksheet with the same inputs, equations and load combinations as the notebook. Mathcad Prime opens it through its XMCD converter. It runs in 12 sections, from design basis and inputs to the summary of checks. The five combinations are vectors and the three wall strips (backwall fill face, backwall span face, cheek wall) use a range variable, so each equation appears once and shows every case. It has two figures: the end-bent free body and the backwall strip in both strap states. Inputs are yellow and the plan values are boxed.
+
+`scripts/build_backwall_mathcad.py` writes the worksheet from a compact equation list. It evaluates every expression with unit checking and compares more than 240 results with the notebook to 1 part in 10⁹. It stops if any result differs, if an input differs from the notebook, or if two names would display the same in Mathcad. Rebuild it after rebuilding the notebook:
+
+```
+python scripts/build_backwall_notebook.py
+python scripts/build_backwall_mathcad.py
+python -m unittest tests.test_end_bent_walls
+```
+
+Add `--render-figures` to redraw `end_bent_walls/mathcad/*.png` (requires Microsoft Edge). The tests fail when the committed worksheet is out of date. The worksheet is generated, so edits made in Mathcad are lost on the next rebuild. Change the equation list instead, or treat an edited copy as a separate calculation.

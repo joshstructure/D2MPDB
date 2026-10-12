@@ -66,6 +66,8 @@ It shares the cap notebook's formula engine, MathML equations, Recalc control an
 
 Refresh the embedded package after code changes with `python scripts/build_backwall_notebook.py`. Validate with `python -m unittest tests.test_end_bent_walls`.
 
+A Mathcad 15 edition with the same equations is in **[End_Bent_Backwall_Design.xmcd](End_Bent_Backwall_Design.xmcd)**. Rebuild it with `python scripts/build_backwall_mathcad.py`; see [its notes](BACKWALL_DESIGN.md#mathcad-edition).
+
 ## Cap and pile design notebook
 
 **Controlling stations:** Constant-angle, no-torsion segments solve for controlling locations algebraically. Variable-angle and torsion segments now solve numerically for transition roots and interior D/C peaks, using locally validated polynomial models instead of a uniform station grid. Interval ends, pile faces/centers, bearing stations, force zeros, hook cutoffs, development transitions and changes in contributing stirrups remain boundaries; both sides are checked. Failed numerical models use the retained adaptive sweep, and unresolved force imports retain pending diagnostics. **LRFD regions & checks → Controlling locations** shows algebraic/numerical/fallback counts, trial evaluations and retained results; the longitudinal working table explains why each location was selected. Numerical convergence is a tolerance-based check, not a formal global bound. This changes station selection only; it creates no pile-offset exemption or D-region design replacement.

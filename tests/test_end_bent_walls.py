@@ -217,6 +217,38 @@ class QCSchematics(unittest.TestCase):
         self.assertIn('Open all QC schematics', text)
 
 
+class MathcadEdition(unittest.TestCase):
+    """End_Bent_Backwall_Design.xmcd carries the notebook's equations and stays current."""
+
+    def test_every_worksheet_equation_matches_the_notebook(self):
+        from scripts import build_backwall_mathcad as m
+        e = evaluate()
+        blocks = m.sheet(m.notebook_revision())
+        m.check_names(blocks)
+        m.check_inputs(blocks, e)
+        env = m.verify(blocks, e)
+        self.assertGreaterEqual(len(m.comparisons(env, e)), 240)
+
+    def test_worksheet_file_is_current_and_well_formed(self):
+        import xml.etree.ElementTree as ET
+        from scripts import build_backwall_mathcad as m
+        path = ROOT / m.OUTPUT
+        text = path.read_text(encoding='utf-8')
+        self.assertEqual(text.replace('\r\n', '\n'), m.build().replace('\r\n', '\n'),
+                         'run scripts/build_backwall_mathcad.py after changing the notebook or the generator')
+        root = ET.fromstring(text.encode('utf-8'))
+        ns = '{http://schemas.mathsoft.com/worksheet30}'
+        self.assertEqual(len(root.findall(f'{ns}binaryContent/{ns}item')), 2)
+
+    def test_vector_products_are_rejected_like_mathcad(self):
+        from scripts import build_backwall_mathcad as m
+        env = {'a': [m.U(1), m.U(2)], 'b': [m.U(3), m.U(4)]}
+        with self.assertRaises(m.UnitError):
+            m.ev(m.parse('a*b'), env)
+        with self.assertRaises(m.UnitError):
+            m.ev(m.parse('1*in + 1*kip'), {})
+
+
 class PortableNotebook(unittest.TestCase):
     def test_embedded_package_is_current_and_intact(self):
         from scripts.build_backwall_notebook import NOTEBOOK, SETUP_ID, package_files
