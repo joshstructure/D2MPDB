@@ -4,14 +4,14 @@ The completed gravity calculation was retained and extended with a live notebook
 workbench and the broad-face cone-transfer trial. Cap and end-wall engines were
 not changed.
 
-- **23 targeted tests passed** with Python 3.12.14 on Windows, using
+- **27 targeted tests passed** with Python 3.12.14 on Windows, using
   `python -m unittest discover -s tests -p "test_ring_wall*.py" -v`.
 - Both notebook code cells executed in order. Tests verify no exports on startup,
   exact embedded-source bytes, current-result export gates, case preservation on
   rerun, separate export folders and preservation of earlier saved downloads.
 - Embedded package SHA-256:
-  `5e2cb28bfbd64772c3d5c1cb35b2cc79ddf9811c46e67a43b67fc702701a9bcc`.
-- The same 23 tests also passed with the Colab-pinned ipywidgets 7.7.1 and Plotly
+  `be7454769dc518a04912f38fe71ff25706fcb351f09a6d85ae974676c82c190b`.
+- The same 27 tests also passed with the Colab-pinned ipywidgets 7.7.1 and Plotly
   5.24.1 packages. Navigation regressions click every input/result panel button,
   verify that the selected content is the sole mounted page, and check that
   switching pages preserves calculations and stale-result/export gates.
@@ -24,7 +24,7 @@ not changed.
   their distinct plots/tables. Switching back to Live layout, Cone transfer and
   Ring forces also worked. This tests the browser callback/content path, not just
   Python selection values. The Google-hosted runtime remains unverified.
-- The final notebook build also executed in a real local JupyterLab browser with
+- The initial live-workbench build also executed in a local JupyterLab browser with
   ipywidgets 8.1.9 and Plotly 6.9.0. Live geometry, the reaction heatmap and table,
   and the 3-D cone rendered. Browser interactions verified row filtering, a typed
   cone-slope edit, stale-result clearing, Recalc, and the optional report button.
@@ -51,6 +51,18 @@ not changed.
   integration of the radial plate strip, invalid inputs and stale export rejection.
 - Widget tests cover live plot data, changed row/pile counts, filters, case
   loading and failed-calculation handling.
+- Every numerical check now has a shared notebook/report derivation containing
+  governing formulas, substituted values, intermediate results, units and D/C.
+  Regression tests independently evaluate the displayed scalar arithmetic for
+  all checks in default, edited/manual-grid and original-ring-level cases and
+  compare it with the calculation results. Tests also verify refreshed values,
+  identical notebook/report disclosures, negative available dimensions and the
+  strict angle threshold. Calculation-engine results are unchanged.
+- The current notebook also ran in the local JupyterLab browser with the pinned
+  7.7.1 / 5.24.1 packages. Expanding GRID-A and R1-T in D/C checks visibly showed
+  formulas, substituted values and results, including 0.648 in²/ft required grid
+  area and 4.21875 kip bay-tie demand against 33.48 kip resistance. The current
+  default result object exactly matches the previously published result JSON.
 - Cone tests check the 1.5 H:1 V face intersection, tolerance reaches, wall-end
   truncation, unchanged gravity/reactions/span, shifted arch-fit elevations,
   symmetric transfer-link equilibrium and additional transverse-tie demand.

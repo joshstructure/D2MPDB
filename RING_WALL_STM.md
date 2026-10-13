@@ -33,7 +33,9 @@ copy contains its own embedded package and does not automatically update.
    **Cone transfer** adds a live 3-D envelope and trial transfer-force tables.
 4. In **D/C checks**, select all checks, largest D/C first, failures first,
    failures only, or pending only. Equation/value disclosures retain the model's
-   numeric demands, capacities and basis. Filtering never changes the calculation.
+   governing formulas, substituted input values, intermediate results, units,
+   and the final demand/capacity comparison. The notebook and exported report
+   use the same derivations. Filtering never changes the calculation.
 5. Use **Ring spacing** to compare reaction and tie forces with the grid and
    failure table for each spacing. This remains an assumed strength allocation.
 6. When ready, expand **Report and exports**. **Generate calculation report**

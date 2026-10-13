@@ -6,6 +6,14 @@ import io
 import json
 from pathlib import Path
 from .model import BAR, analyze
+from .equations import check_steps, number
+
+EQUATION_STYLE='''
+.check-equations .check-step{margin:10px 0;padding:8px 10px;border-left:3px solid #a8c4af;background:#f5f9f6;line-height:1.5;overflow-wrap:anywhere}
+.check-equations .check-formula{font-family:"Cambria Math","Times New Roman",serif;font-size:14px;margin:4px 0}
+.check-equations .check-values{font-variant-numeric:tabular-nums;color:#213649}
+.check-equations .check-ratio{padding:8px 0;font-weight:bold}
+'''
 
 STYLE='''
 :root{color-scheme:light}body{font-family:"Times New Roman",serif;font-size:11pt;color:#1f2a36;background:#fff;max-width:1100px;margin:24px auto;padding:0 18px;line-height:1.38}
@@ -16,6 +24,7 @@ table{border-collapse:collapse;width:100%;font-size:10pt;margin:7px 0}th,td{bord
 .PASS{color:#17633b;font-weight:bold}.FAIL{color:#b53333;font-weight:bold}.PENDING{color:#98600d;font-weight:bold}.ref{color:#7a2e2e;font-size:9pt}.subtle{color:#586777;font-size:9.5pt}.eq{padding:8px 0;font-size:12pt;overflow-x:auto}details{margin:5px 0}summary{cursor:pointer;color:#245c85}.toolbar{background:#fff;padding:8px 0;border-bottom:1px solid #dce5ec}.toolbar button{margin-right:8px;padding:7px 12px}.cards{display:flex;gap:12px;flex-wrap:wrap}.card{flex:1;min-width:170px;padding:12px;border:1px solid #bac8d4;background:#f8fafc}.card b{font-size:17pt;display:block}.status{border-left:5px solid #a56d15;background:#fff4d9;padding:10px 14px;margin:14px 0}.plot{background:#fff;border:1px solid #c9d3dc;padding:10px;margin:12px 0}svg{max-width:100%;height:auto}code{font-size:9pt}a{color:#245c85}
 @media print{body{max-width:none;margin:0;font-size:10pt}.toolbar{display:none}h2{break-after:avoid}.box,.plot{break-inside:avoid}details{display:block}details>*{display:block}th{background:#eee}}
 '''
+STYLE+=EQUATION_STYLE
 
 
 def esc(x): return html.escape(str(x))
@@ -25,6 +34,26 @@ def table(headers,rows):
     return '<table><thead><tr>'+''.join('<th>'+esc(v)+'</th>' for v in headers)+'</tr></thead><tbody>'+''.join('<tr>'+''.join('<td>'+str(v)+'</td>' for v in row)+'</tr>' for row in rows)+'</tbody></table>'
 def eq(formula,values,ref):
     return f'<div class="eq">{formula}<br><span class="subtle">{values}</span><br><span class="ref">{ref}</span></div>'
+
+
+def check_details(r, check):
+    """Shared derivation display: symbolic equation, substitution, result, unit."""
+    out=[f'<details class="check-equations" data-check-id="{esc(check["id"])}">'
+         '<summary>Equation &amp; values</summary>',
+         '<p class="ref">'+esc(check['ref'])+'</p>']
+    for item in check_steps(r, check):
+        out.append('<div class="check-step"><b>'+esc(item['label'])+'</b>'
+                   '<div class="check-formula">'+esc(item['formula'])+'</div>'
+                   '<div class="check-values">= '+esc(item['substitution'])+'<br>= <b>'
+                   +esc(number(item['value']))+' '+esc(item['unit'])+'</b></div></div>')
+    if check['capacity'] > 0:
+        ratio=f'D/C = {number(check["demand"])} / {number(check["capacity"])} = {number(check["ratio"])}'
+    else:
+        ratio='D/C is undefined: the available resistance / dimension is nonpositive. This check fails.'
+    out.append('<div class="check-ratio">'+esc(ratio)+' · <span class="'+check['status']+'">'+check['status']+'</span></div>')
+    if check['note']:out.append('<p>'+esc(check['note'])+'</p>')
+    out.append('</details>')
+    return ''.join(out)
 
 
 def cone_section(r):
@@ -180,7 +209,7 @@ def render_report(r):
         ['WU','Both wall ends',f'#{g["bar"]} U-bars @ {g["spacing"]:g} in vertically; one leg laps each face horizontal bar'],
         ['WE','Vertical steel across each narrow end face',f'{g["end_vertical_count"]}–#{g["bar"]}, equally spaced at {g["end_vertical_pitch"]:.3f} in; same cover'],
         ['WT','Through-thickness ties',f'#{p["transverse_bar"]} at {p["transverse_spacing_in"]:g} × {p["transverse_spacing_in"]:g} in trial grid; route around pipe; no strength credit'],
-        ['ST-H','ADDITIONAL horizontal primary ties',f'{p["primary_bars_per_face"]}–#{p["primary_bar"]} per face at each ring tier, centered {p["tie_offset_in"]:g} in above ring top'],
+        ['ST-H','ADDITIONAL horizontal primary ties',f'{p["primary_bars_per_face"]}–#{p["primary_bar"]} per face at each ring tier, centered {p["tie_offset_in"]:g} in above the trial node-region base'],
         ['ST-V','ADDITIONAL vertical collectors',f'{p["hanger_bars_per_face"]}–#{p["primary_bar"]} per face at each arch joint and pile node; end-region layout and all anchorage remain open'],
     ])))
     out.append('<div class="plot">'+plan(r)+'</div>')
@@ -280,7 +309,7 @@ def render_report(r):
     out.append('<p class="subtle">CHECK / STRENGTH: equation results for the stated model. SCREEN: additional modeling assumptions remain open. FIT: entered geometry and tolerance only.</p>')
     out.append(table(['ID / scope','Check','Demand','Resistance / limit','D/C','Result'],[
         [esc(c['id'])+'<br><span class="subtle">'+esc(c['scope'])+'</span>',
-         esc(c['title'])+f'<details><summary>Equation &amp; values / basis</summary><p>{esc(c["ref"])}</p><p>D/C = {c["demand"]:.6g} / {c["capacity"]:.6g} = {fmt(c["ratio"],4)}. A nonpositive available dimension fails the check.</p><p>{esc(c["note"])}</p></details>',
+         esc(c['title'])+check_details(r,c),
          f'{c["demand"]:.4f} {esc(c["unit"])}',f'{c["capacity"]:.4f} {esc(c["unit"])}',fmt(c['ratio']),f'<span class="{c["status"]}">{c["status"]}</span>'] for c in r['checks']]))
     out.append('<h2>7 · Open design items and source basis</h2>')
     out.append(table(['Item','Required resolution'],[[f'<span class="PENDING">{a}</span>',esc(b)] for a,b in r['pending']]))

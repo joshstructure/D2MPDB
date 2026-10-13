@@ -6,7 +6,7 @@ from plotly.subplots import make_subplots
 
 from .model import BAR
 from .cone import geometry as cone_geometry
-from .report import esc, fmt, table
+from .report import EQUATION_STYLE, check_details, esc, fmt, table
 
 BLUE, GREEN, ORANGE, PURPLE, RED = '#315d82', '#258875', '#bf6c2d', '#77539c', '#b53333'
 CSS = '''<style>
@@ -33,7 +33,7 @@ CSS = '''<style>
 .ring-workbench .box{border:1px solid #c9d3dc;margin:8px 0}.ring-workbench .hd{padding:7px 10px;font-weight:bold;background:#dce7f3}
 .ring-workbench .bd{padding:9px 11px;background:#f1f5fa;line-height:1.45}.ring-workbench .eq{padding:8px 0;line-height:1.5}
 .ring-workbench .subtle,.ring-workbench .ref{color:#586777;font-size:12px}
-</style>'''
+</style>'''+'<style>'+EQUATION_STYLE+'</style>'
 
 
 def note(text, status=False):
@@ -225,9 +225,7 @@ def checks_table(r, view='all'):
     rows=[]
     if view!='pending':
         for c in checks:
-            details=(f'<details><summary>Equation &amp; values</summary><p>{esc(c["ref"])}</p>'
-                     f'<p>D/C = {c["demand"]:.6g} / {c["capacity"]:.6g} = {fmt(c["ratio"],4)}.</p>'
-                     f'<p>{esc(c["note"])} Nonpositive available dimensions fail the check.</p></details>')
+            details=check_details(r,c)
             rows.append([esc(c['id']),esc(c['scope']),esc(c['title'])+details,
                          f'{fmt(c["demand"],4)} {esc(c["unit"])}',f'{fmt(c["capacity"],4)} {esc(c["unit"])}',fmt(c['ratio']),f'<span class="{c["status"]}">{c["status"]}</span>'])
     if view!='fail':
