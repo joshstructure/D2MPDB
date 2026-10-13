@@ -2,6 +2,7 @@
 from copy import deepcopy
 from math import floor
 from .model import analyze
+from .cone import geometry as cone_geometry
 
 
 def spacing_study(case,spacings=(24.,30.,36.,42.,48.)):
@@ -10,7 +11,8 @@ def spacing_study(case,spacings=(24.,30.,36.,42.,48.)):
         p=deepcopy(case)
         p['ring_spacing_in']=float(s)
         # Leave physical room for the entered arch above the highest ring.
-        room=p['height_in']-p['cover_in']-p['tie_offset_in']-p['arch_rise_in']-p['first_ring_in']
+        cone=cone_geometry(p)
+        room=p['height_in']-p['cover_in']-p['tie_offset_in']-p['arch_rise_in']-p['first_ring_in']-(cone['face_rise_in'] if cone['enabled'] else 0.)
         p['ring_count']=max(1,floor(room/s)+1)
         try:
             r=analyze(p)

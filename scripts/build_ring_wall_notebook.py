@@ -1,9 +1,4 @@
-"""Build a reproducible portable Colab notebook from ring_wall/*.py.
-
-Run from the repository root: python scripts/build_ring_wall_notebook.py
-Embedded source is identical to the maintained Python package. No git clone,
-pip install, token, Drive mount or network access is needed by the notebook.
-"""
+"""Build the portable live workbench with the maintained ring_wall package."""
 import base64
 import hashlib
 import io
@@ -13,37 +8,43 @@ import zipfile
 
 ROOT=Path(__file__).resolve().parents[1]
 buffer=io.BytesIO()
-with zipfile.ZipFile(buffer,'w',compression=zipfile.ZIP_DEFLATED) as z:
+with zipfile.ZipFile(buffer,'w',compression=zipfile.ZIP_DEFLATED) as archive:
     for file in sorted((ROOT/'ring_wall').glob('*.py')):
         info=zipfile.ZipInfo('ring_wall/'+file.name,date_time=(2026,10,12,0,0,0))
         info.compress_type=zipfile.ZIP_DEFLATED
-        z.writestr(info,file.read_bytes())
+        archive.writestr(info,file.read_bytes())
 payload=buffer.getvalue()
 digest=hashlib.sha256(payload).hexdigest()
 encoded=base64.b64encode(payload).decode()
 
 
 def cell(kind,source):
-    d=dict(cell_type=kind,metadata={},source=source.splitlines(keepends=True))
-    if kind=='code':d.update(execution_count=None,outputs=[])
-    return d
+    item=dict(cell_type=kind,metadata={},source=source.splitlines(keepends=True))
+    if kind=='code':
+        item.update(execution_count=None,outputs=[])
+        item['metadata']={'cellView':'form','jupyter':{'source_hidden':True},'scrolled':False}
+    return item
 
 
 cells=[cell('markdown','''<a href="https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Ring_Supported_Wall_STM.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
-# Ring-supported pier wall — strut-and-tie calculation
+# Ring-supported pier wall — live STM workbench
 
-**D2 I-95 pedestrian bridge.** Choose **Runtime → Run all**. The complete calculation package is embedded in this notebook. No repository clone, credentials, uploads or installation are required.
+Choose **Runtime → Run all** to open the starting calculation. Expand **Inputs**, edit the case, inspect the live layout, click **Recalc**, and review **Cone transfer**, **Ring forces**, **Struts & ties**, **Reinforcement**, **D/C checks** and **Ring spacing**. Zoom and hover over the plots; filter ring-force tables by row and sort the check register.
 
-Start with minimum reinforcement **each way, each face**, then matching end U-bars, dedicated arch ties/collectors, ring reactions, concrete/plate screens, and a ring-spacing study. Inputs appear in Colab forms and remain ordinary editable Python variables.
+The controls follow the cap-design notebook: amber input cards, live plots, output tables, and a floating Recalc button. Edits clear calculated outputs until Recalc. Green **Calc done** means results match the inputs, not that the design passes. Rerunning the workbench preserves the active inputs.
 
-The report uses the cap/end-wall calculation style: blue discussion, amber inputs, green results, equation substitutions and a D/C register. The initial geometry is the earlier C006 wall study; current pier-cap material/pile data were checked separately. The default **23-in OD ring has cover/grid conflicts at 3-in pile tolerance**. An executed calculation is not a completed connection design.
+**Report and exports** is an optional panel at the bottom. **Generate calculation report** saves/downloads a standalone HTML report. **Export case + checks ZIP** includes inputs, results, report, CSV tables and the spacing study. Running the notebook does not export files. Save your case before ending the runtime, then reload `ring_wall_case.json` with **Load saved case** next time.
 
-**Workflow:** run setup → edit the three input cells → run calculation → review the spacing comparison → export the HTML report, case JSON, checks and ring-force CSV. After changing inputs, rerun all three input cells and everything below them. The minimum grid is not counted again as primary tie steel.
+The package is embedded. Colab setup automatically installs the same widget/chart versions used by the cap notebook; no repository clone, Drive mount or token is needed. Local Jupyter needs ipywidgets and Plotly (Plotly 6 also needs anywidget).
+
+The default **Broad-face cone transfer (trial)** projects an ACI-style 1.5 H:1 V breakout envelope from the rings to the two broad wall faces. The live 3-D view and tables show the transfer elevation, trial compression links and additional transverse-tie demands. The intersections create no extra reaction or span reduction; finite interior nodes, cover, tie anchorage and ring breakout resistance remain open.
+
+This remains a **preliminary gravity study**. The default rings have end-cover and face-grid conflicts, and the raised trial node region causes arch-fit failures in rows 1–4. Minimum grid steel is not counted again as primary tie steel. Select **Original ring level** to compare the earlier support geometry.
 ''')]
-setup='''# @title 0 · Start the portable calculation
+setup='''# @title 0 · Start the portable workbench
 from pathlib import Path
-import base64, hashlib, html, io, json, sys, zipfile
+import base64, hashlib, importlib, io, sys, zipfile
 PACKAGE_SHA256 = "DIGEST"
 PACKAGE = "ENCODED"
 _payload = base64.b64decode(PACKAGE)
@@ -52,169 +53,70 @@ ROOT = Path.cwd() / ".ring_wall_runtime" / PACKAGE_SHA256[:12]
 ROOT.mkdir(parents=True, exist_ok=True)
 with zipfile.ZipFile(io.BytesIO(_payload)) as _z:
     for _name in _z.namelist():
-        if not _name.startswith("ring_wall/") or ".." in Path(_name).parts:
+        _target = (ROOT / _name).resolve()
+        if not _name.startswith("ring_wall/") or not _target.is_relative_to(ROOT.resolve()):
             raise ValueError("Unexpected embedded package path")
-    _z.extractall(ROOT)
+        _contents = _z.read(_name)
+        if _target.exists() and _target.read_bytes() != _contents:
+            raise RuntimeError("An extracted package file was edited. Preserve your edits before starting a fresh runtime folder.")
+        _target.parent.mkdir(parents=True, exist_ok=True)
+        if not _target.exists():
+            _target.write_bytes(_contents)
+try:
+    from google.colab import output as colab_output
+except ImportError:
+    IN_COLAB = False
+else:
+    IN_COLAB = True
+    import subprocess
+    subprocess.run([sys.executable, "-m", "pip", "install", "--quiet", "ipywidgets==7.7.1", "plotly==5.24.1"], check=True)
+    import ipywidgets as _widgets
+    import plotly as _plotly
+    from importlib.metadata import version as _installed_version
+    if _widgets.__version__ != "7.7.1" or _installed_version("ipywidgets") != "7.7.1" or _plotly.__version__ != "5.24.1" or _installed_version("plotly") != "5.24.1":
+        raise RuntimeError("Save your case, use Runtime → Restart session, reload this browser page, then Run all. The live plots require the cap notebook's widget/chart versions.")
+    _widgets.register_comm_target(get_ipython().kernel)
+    colab_output.enable_custom_widget_manager()
 for _key in list(sys.modules):
     if _key == "ring_wall" or _key.startswith("ring_wall."):
         del sys.modules[_key]
+if str(ROOT) in sys.path:
+    sys.path.remove(str(ROOT))
 sys.path.insert(0, str(ROOT))
-from ring_wall import default_case, analyze, render_report, export_results
-from ring_wall.report import table, box, STYLE
-from ring_wall.study import spacing_study
-try:
-    from IPython.display import HTML, Javascript, display
-except ImportError:
-    def show_html(value):
-        print("HTML generated; available in the export folder.")
-else:
-    def show_html(value):
-        display(HTML(value))
-    try:
-        import google.colab
-    except ImportError:
-        pass
-    else:
-        display(Javascript('google.colab.output.setIframeHeight(0, true, {maxHeight: 60000})'))
-case = default_case()
-print("Ring wall calculation ready. Source checksum:", PACKAGE_SHA256[:12])
+importlib.invalidate_caches()
+from ring_wall.widgets import RingWallNotebook
+print("Ring wall workbench ready. Source checksum:", PACKAGE_SHA256[:12])
 '''.replace('DIGEST',digest).replace('ENCODED',encoded)
 cells.append(cell('code',setup))
-cells.append(cell('markdown','''## Inputs
-
-Wall self-weight only unless additional downward gravity is entered. This is not a lateral-wall, collision, pile-foundation or cap-load design. Ring elevations are measured to the **top bearing surface**, from the wall bottom. Piles are centered along the wall and through its thickness. For advanced parameters (resistance factors, equivalent node width, finite-node height), edit `case` at the end of the input cells.
-'''))
-cells.append(cell('code','''# @title 1 · Wall, piles, materials and gravity
-wall_length_in = 213.0 # @param {type:"number"}
-wall_thickness_in = 36.0 # @param {type:"number"}
-wall_height_in = 172.375 # @param {type:"number"}
-pile_count = 4 # @param {type:"integer"}
-pile_spacing_in = 60.0 # @param {type:"number"}
-pile_od_in = 20.0 # @param {type:"number"}
-pile_effective_wall_in = 0.475 # @param {type:"number"}
-pile_tolerance_in = 3.0 # @param {type:"number"}
-concrete_fc_ksi = 5.5 # @param {type:"number"}
-rebar_fy_ksi = 60.0 # @param {type:"number"}
-concrete_density_kcf = 0.150 # @param {type:"number"}
-gamma_dc = 1.25 # @param {type:"number"}
-additional_service_gravity_ksf = 0.0 # @param {type:"number"}
-gamma_additional = 1.75 # @param {type:"number"}
-case.update(length_in=wall_length_in, thickness_in=wall_thickness_in,
-    height_in=wall_height_in, pile_count=pile_count, pile_spacing_in=pile_spacing_in,
-    pile_od_in=pile_od_in, pile_t_effective_in=pile_effective_wall_in,
-    placement_tolerance_in=pile_tolerance_in, fc_ksi=concrete_fc_ksi,
-    fy_ksi=rebar_fy_ksi, density_kcf=concrete_density_kcf, gamma_dc=gamma_dc,
-    additional_service_ksf=additional_service_gravity_ksf, gamma_additional=gamma_additional)
-print("Wall and material inputs applied.")
-'''))
-cells.append(cell('code','''# @title 2 · Minimum grid and matching U-bars
-clear_cover_in = 3.0 # @param {type:"number"}
-maximum_aggregate_in = 0.75 # @param {type:"number"}
-grid_bar_number = 5 # @param [4,5,6,7,8] {type:"raw"}
-automatically_select_grid_spacing = True # @param {type:"boolean"}
-manual_grid_spacing_in = 5.0 # @param {type:"number"}
-spacing_increment_in = 0.5 # @param {type:"number"}
-u_bar_straight_leg_in = 72.0 # @param {type:"number"}
-bar_coating = "uncoated" # @param ["uncoated","epoxy","unknown"]
-additional_primary_bar_number = 5 # @param [4,5,6,7,8] {type:"raw"}
-horizontal_tie_bars_per_face = 1 # @param {type:"integer"}
-collector_bars_per_face = 1 # @param {type:"integer"}
-case.update(cover_in=clear_cover_in, aggregate_in=maximum_aggregate_in,
-    grid_bar=grid_bar_number, auto_grid_spacing=automatically_select_grid_spacing,
-    grid_spacing_in=manual_grid_spacing_in, spacing_increment_in=spacing_increment_in,
-    u_leg_in=u_bar_straight_leg_in, coating=bar_coating,
-    primary_bar=additional_primary_bar_number,
-    primary_bars_per_face=horizontal_tie_bars_per_face,
-    hanger_bars_per_face=collector_bars_per_face)
-print("Grid, U-bar and additional tie inputs applied. No double-counting of grid steel.")
-'''))
-cells.append(cell('code','''# @title 3 · Ring spacing, section and arch geometry
-first_ring_top_in = 6.0 # @param {type:"number"}
-vertical_ring_spacing_ft = 3.0 # @param {type:"number"}
-number_of_ring_rows = 5 # @param {type:"integer"}
-ring_inside_diameter_in = 20.125 # @param {type:"number"}
-ring_outside_diameter_in = 23.0 # @param {type:"number"}
-ring_thickness_in = 0.75 # @param {type:"number"}
-ring_steel_fy_ksi = 50.0 # @param {type:"number"}
-effective_bearing_fraction = 0.50 # @param {type:"number"}
-arch_rise_in = 10.0 # @param {type:"number"}
-arch_segment_count = 4 # @param {type:"integer"}
-tie_centroid_above_ring_in = 2.0 # @param {type:"number"}
-node_height_in = 4.0 # @param {type:"number"}
-equivalent_node_width_in = 16.0 # @param {type:"number"}
-case.update(first_ring_in=first_ring_top_in, ring_spacing_in=vertical_ring_spacing_ft*12,
-    ring_count=number_of_ring_rows, ring_id_in=ring_inside_diameter_in,
-    ring_od_in=ring_outside_diameter_in, ring_t_in=ring_thickness_in,
-    ring_fy_ksi=ring_steel_fy_ksi, bearing_fraction=effective_bearing_fraction,
-    arch_rise_in=arch_rise_in, arch_panels=arch_segment_count,
-    tie_offset_in=tie_centroid_above_ring_in, node_height_in=node_height_in,
-    node_width_in=equivalent_node_width_in)
-print("Ring and arch inputs applied. Bearing fraction is an assumption to investigate.")
-'''))
-cells.append(cell('code','''# @title 4 · Calculate and display the design report
-# Clear stale results before validation: a failed rerun must not export an old case.
-result = None
-report_html = None
-result = analyze(case)
-report_html = render_report(result)
-show_html(report_html)
-print(result["overall"])
-print("Equilibrium residuals:", result["totals"])
-'''))
-cells.append(cell('code','''# @title 5 · Compare rings at 2, 2½, 3, 3½ and 4 ft spacing
-if result is None or result["case"] != case:
-    raise RuntimeError("Calculate the current inputs first.")
-spacing_results = spacing_study(case)
-_rows = []
-for item in spacing_results:
-    if "error" in item:
-        _rows.append([item["spacing_in"]/12, item["error"], "", "", "", "", ""])
-    else:
-        _rows.append([f'{item["spacing_in"]/12:g} ft', item["ring_count"],
-            f'#{item["grid_bar"]} @ {item["grid_spacing_in"]:g} in',
-            f'{item["max_ring_kip"]:.3f}',f'{item["max_tie_kip"]:.3f}',
-            f'{item["minimum_angle"]:.2f}',", ".join(item["failed_checks"]) or "No equation failures; open checks remain"])
-study_html = '<style>'+STYLE+'</style>'+box("discussion", "Ring-spacing comparison",
-    "The top row count is selected to leave room for the entered arch. First-ring elevation, section and arch rise are held fixed. "
-    "A short terminal band may control the minimum cage. This compares assumed strength allocations; it does not establish reaction sharing.")+table(
-    ["Spacing","Rows","Uniform grid / face","Max ring (kip)","Max bay tie (kip)","Min angle (°)","Failed checks"], _rows)
-show_html(study_html)
-'''))
-cells.append(cell('code','''# @title 6 · Export the current case, report and ring-force handoff
-if result is None or result["case"] != case:
-    raise RuntimeError("Current inputs differ from calculated results. Recalculate before export.")
-EXPORT = Path.cwd() / "ring_wall_exports"
-export_paths = export_results(result, EXPORT)
-(EXPORT / "ring_spacing_study.json").write_text(json.dumps(spacing_results, indent=2), encoding="utf-8")
-(EXPORT / "ring_spacing_study.html").write_text(study_html, encoding="utf-8")
-bundle = EXPORT / "Ring_Wall_STM_Exports.zip"
-with zipfile.ZipFile(bundle, "w", zipfile.ZIP_DEFLATED) as z:
-    for path in export_paths + [EXPORT / "ring_spacing_study.json", EXPORT / "ring_spacing_study.html"]:
-        z.write(path, path.name)
-print("Created:", bundle)
-try:
-    from google.colab import files
-    import ipywidgets as widgets
-except ImportError:
-    print("Open the export folder for the report, case, CSV checks and connection demands.")
-else:
-    download = widgets.Button(description="Download calculation ZIP", layout=widgets.Layout(width="240px"))
-    download.on_click(lambda _: files.download(str(bundle)))
-    display(download)
+cells.append(cell('code','''# @title 1 · Work with live plots and output tables
+from copy import deepcopy
+_previous_app = globals().get("app")
+_case = deepcopy(_previous_app.case) if _previous_app is not None else None
+_saved_export = getattr(_previous_app, "last_export", None)
+if _previous_app is not None:
+    _previous_app.close()
+app = RingWallNotebook(_case, export_root=Path.cwd() / "ring_wall_exports")
+if _saved_export is not None and _saved_export.is_dir():
+    app.last_export = _saved_export
+    app.saved_html_button.disabled = app.saved_zip_button.disabled = False
+    app.export_status.value = "Saved-download buttons still refer to the previous export. Generate again to save the current calculation."
+app.display()
 '''))
 cells.append(cell('markdown','''## Design basis and interpretation
 
-- **AASHTO LRFD, 10th edition (2024):** 5.5.4.2, 5.8.2.2–5.8.2.6, 5.10.2, 5.10.3.1.1, 5.10.6, 5.10.8.2.1 and 5.10.8.4.3. Equations are identified in the report. Normalweight concrete and Grade 60 defaults.
-- [FHWA-NHI-17-071](https://www.fhwa.dot.gov/bridge/concrete/nhi17071.pdf): background STM examples; its older code edition does not override the 2024 equation basis.
-- [FDOT Structures Manual](https://www.fdot.gov/structures/structuresmanual/currentrelease): verify governing project edition, modifications, exposure/cover, reinforcement and weld detailing.
-- **Unresolved:** actual ring-row compatibility; 3-D concrete load paths, splitting and breakout; all tie/collector anchorage; local wall-end STM; welds and pipe-shell response; fatigue where applicable; lateral and other project load cases. The notebook cannot produce an overall design PASS while these remain open.
+- **AASHTO LRFD, 10th edition (2024):** 5.5.4.2, 5.8.2.2–5.8.2.6, 5.10.2, 5.10.3.1.1, 5.10.6, 5.10.8.2.1 and 5.10.8.4.3. Equations and substitutions remain in the D/C register and report.
+- [FHWA-NHI-17-071](https://www.fhwa.dot.gov/bridge/concrete/nhi17071.pdf): background examples; its older edition does not override the 2024 equation basis.
+- [FDOT Structures Manual](https://www.fdot.gov/structures/structuresmanual/currentrelease): confirm project edition, exposure/cover, reinforcement and weld detailing.
+- **Unresolved:** actual row engagement/compatibility; 3-D concrete paths, splitting and breakout; all tie/collector anchorage; wall-end STM; welds, splices and pipe-shell response; applicable fatigue and additional loads. No overall design PASS is possible while these remain open.
 
-Maintained source: `ring_wall/`; builder: `scripts/build_ring_wall_notebook.py`; tests: `tests/test_ring_wall.py`. The embedded source checksum is printed at startup.
+Wall dimensions are an earlier C006 snapshot, not a fresh CAD import. Ring bearing and plate results are screens. Mid-height bands are assumed strength allocations, not a compatibility solution.
+
+Maintained source: `ring_wall/`; builder: `scripts/build_ring_wall_notebook.py`; tests: `tests/test_ring_wall.py` and `tests/test_ring_wall_widgets.py`.
 '''))
 notebook=dict(cells=cells,metadata=dict(colab=dict(name='Ring_Supported_Wall_STM.ipynb',provenance=[]),
-    kernelspec=dict(display_name='Python 3',language='python',name='python3'),
-    language_info=dict(name='python',version='3.11')),nbformat=4,nbformat_minor=0)
+    kernelspec=dict(display_name='Python 3',language='python',name='python3'),language_info=dict(name='python',version='3.11')),
+    nbformat=4,nbformat_minor=0)
 path=ROOT/'Ring_Supported_Wall_STM.ipynb'
-path.write_text(json.dumps(notebook,indent=1,ensure_ascii=False)+'\n',encoding='utf-8')
+path.write_text(json.dumps(notebook,indent=1,ensure_ascii=False)+'\n',encoding='utf-8',newline='\n')
 print(path)
 print('Embedded source SHA-256:',digest)

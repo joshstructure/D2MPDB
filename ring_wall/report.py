@@ -27,6 +27,42 @@ def eq(formula,values,ref):
     return f'<div class="eq">{formula}<br><span class="subtle">{values}</span><br><span class="ref">{ref}</span></div>'
 
 
+def cone_section(r):
+    c=r['cone'];p=r['case']
+    if not c['enabled']:
+        return box('discussion','Support model','Original pile-center, ring-level STM. Cone geometry is available in the workbench for comparison; it does not change this calculation.')
+    text=box('discussion','ACI-style envelope and broad-face transfer trial',
+        'The CCD sketch uses 1.5 horizontal to 1 vertical, labeled approximately 35°. '
+        'The exact angle of that projection is 33.69°. Applying it from an annular ring perimeter is an explicit study assumption, '
+        'not an ACI provision establishing ring bearing or breakout strength. '
+        'The first broad-face intersections define the base elevation of the trial STM node region. '
+        'Its centroid is raised by the entered tie offset. At first contact x remains at the pile center, so the bay span is unchanged. '
+        'No external support or rigid cone is introduced. The existing ring reactions and end couples remain the external support actions. '
+        '<a href="'+esc(c['source'])+'">ACI reference, slide 2</a>.')
+    text+=eq('r(z) = r<sub>o</sub> + s(z−z<sub>ring</sub>); &nbsp; h<sub>face</sub> = (t/2−r<sub>o</sub>)/s',
+             f's = {c["slope_hv"]:g} H:1 V; angle from horizontal = {c["angle_deg"]:.3f}°; '
+             f'hface = ({p["thickness_in"]/2:g}−{c["ring_radius_in"]:g})/{c["slope_hv"]:g} = {c["face_rise_in"]:.3f} in. '
+             f'Near/far face reaches at ±{p["placement_tolerance_in"]:g}-in transverse pile offset: '
+             f'{c["near_face_rise_in"]:.3f} / {c["far_face_rise_in"]:.3f} in.',
+             'Geometry adapted from the ACI 318-19 CCD breakout sketch; finite interior nodes and ring applicability remain unverified.')
+    text+=table(['Row','Ring top (in)','First face contact (in)','Trial node centroid (in)','Bay span (in)'],[
+        [a['row'],fmt(a['z']),fmt(a['node_base_z']),fmt(a['node_base_z']+p['tie_offset_in']),fmt(p['pile_spacing_in'])] for a in r['rows']])
+    text+=box('discussion','Wall edges and actual connection',
+        ('The outer-pile envelope reaches a wall end before the broad faces: end reach '
+         f'{c["end_first_rise_in"]:.3f} in above the ring versus face reach {c["face_rise_in"]:.3f} in. '
+         if c['end_truncated'] else 'The nominal first-face envelope does not reach a wall end first. ')+
+        'Projection onto a free surface does not create bearing capacity. Reference nodes need finite area and cover inside the wall. '
+        'The transverse tie shown as a resultant must be routed and anchored around the hollow pipe. '
+        'Offset piles, end truncation, interacting rows, nodal strength and breakout resistance require a 3-D connection model.')
+    text+=eq('V<sub>face</sub> = R/2; &nbsp; T<sub>trans</sub> = (R/2) Δy/Δz; &nbsp; C = √[(R/2)² + T<sub>trans</sub>²]',
+             f'Δy = {max(0,c["radial_gap_in"]):.3f} in; Δz = {c["face_rise_in"]+p["tie_offset_in"]:.3f} in; '
+             'As,req = Ttrans/(ϕt fy). No existing grid or transverse bar is automatically credited.',
+             'Symmetric ring-to-face force equilibrium only; longitudinal end moments remain separate.')
+    text+=table(['Row / pile','V per face (kip)','Transfer C (kip)','Transverse tie (kip)','Additional As,req (in²)'],[
+        [f'{a["row"]}/{a["pile"]}',fmt(a['face_vertical_kip']),fmt(a['link_compression_kip']),fmt(a['transverse_tie_kip']),fmt(a['transverse_area_req_in2'],4)] for a in r['rings']])
+    return text
+
+
 def elevation(r):
     p=r['case']; L=p['length_in']; H=p['height_in']; sc=min(820/L,470/H)
     ox,oy=60,525
@@ -43,9 +79,10 @@ def elevation(r):
         s.append(f'<rect x="{x}" y="{y}" width="{p["pile_od_in"]*sc}" height="{H*sc+10}" fill="#d5dce3" opacity=".75"/>')
     for b in r['geometry']['bounds'][1:-1]:s.append(line(0,b,L,b,'#aebac6',1,'5 5'))
     for row in r['rows']:
-        zr=row['z']; base=zr+p['tie_offset_in']
+        zr=row['z']; base=row.get('node_base_z',zr)+p['tie_offset_in']
         for xp in r['pile_x']:
             s.append(line(xp-p['ring_od_in']/2,zr,xp+p['ring_od_in']/2,zr,'#263e54',4))
+            s.append(line(xp,zr,xp,base,'#258875',3))
         for xp in r['pile_x'][:-1]:
             a=row['arch'];s.append(line(xp,base,xp+p['pile_spacing_in'],base,'#bf6c2d',2.5))
             for seg in a['segments']:
@@ -104,7 +141,7 @@ def render_report(r):
     out.append(box('discussion','Purpose and load path',
         'Design the initial steel cage, then investigate ring-supported wall bands using an equilibrated tied arch between each pair of piles. '
         'Concrete carries compression; dedicated horizontal ties close arch thrust; dedicated vertical collectors lift tributary concrete weight into the arch. '
-        'The ring is a finite steel bearing surface. An assumed concrete cone does not shorten the pile-center span or establish breakout capacity. '
+        'The ring is a finite steel bearing surface. The optional ACI-style envelope defines a trial face-transfer elevation; it does not shorten the pile-center span or establish breakout capacity. '
         'The wall-end strips deliver vertical force and a couple to the outer rings and require their own local load-path verification.'))
     out.append('<div class="cards">'+''.join(f'<div class="card">{a}<b>{b}</b>{c}</div>' for a,b,c in [
         ('Wall gravity',fmt(tot['service_weight'])+' kip','Unfactored, gross wall volume'),
@@ -175,6 +212,7 @@ def render_report(r):
         'The lowest band includes all concrete below the lowest ring: collectors must carry that weight upward and be anchored into the compression field. '
         'A support cone or equal division by the number of rings cannot establish compatibility.'))
     out.append('<h2>3 · Equilibrated tied arches between piles</h2>')
+    out.append(cone_section(r))
     out.append('<div class="plot">'+elevation(r)+'</div>')
     out.append(box('discussion','Discrete distributed-load model',
         f'Each bay uses {p["arch_panels"]} straight compression segments on a parabolic polygon. '

@@ -43,7 +43,9 @@
     "phi_plate": 0.9,
     "bearing_fraction": 0.5,
     "transverse_bar": 4,
-    "transverse_spacing_in": 8.0
+    "transverse_spacing_in": 8.0,
+    "support_model": "face_transfer",
+    "cone_slope_hv": 1.5
   },
   "grid": {
     "bar": 5,
@@ -140,6 +142,7 @@
     {
       "row": 1,
       "z": 6.0,
+      "node_base_z": 10.333333333333332,
       "lo": 0.0,
       "hi": 24.0,
       "height": 24.0,
@@ -294,7 +297,7 @@
       "node_area": 68.13043102298059,
       "node_capacity": 118.03597174731387,
       "vcr": 110.3847135332606,
-      "arch_top": 18.0,
+      "arch_top": 22.333333333333332,
       "fit_top": 18.870924030531857,
       "end_weight": 1.546875,
       "end_moment": 12.76171875,
@@ -303,6 +306,7 @@
     {
       "row": 2,
       "z": 42.0,
+      "node_base_z": 46.333333333333336,
       "lo": 24.0,
       "hi": 60.0,
       "height": 36.0,
@@ -457,7 +461,7 @@
       "node_area": 68.13043102298059,
       "node_capacity": 118.03597174731387,
       "vcr": 298.6622235067569,
-      "arch_top": 54.0,
+      "arch_top": 58.333333333333336,
       "fit_top": 54.87092403053185,
       "end_weight": 2.3203125,
       "end_moment": 19.142578125,
@@ -466,6 +470,7 @@
     {
       "row": 3,
       "z": 78.0,
+      "node_base_z": 82.33333333333333,
       "lo": 60.0,
       "hi": 96.0,
       "height": 36.0,
@@ -620,7 +625,7 @@
       "node_area": 68.13043102298059,
       "node_capacity": 118.03597174731387,
       "vcr": 298.6622235067569,
-      "arch_top": 90.0,
+      "arch_top": 94.33333333333333,
       "fit_top": 90.87092403053185,
       "end_weight": 2.3203125,
       "end_moment": 19.142578125,
@@ -629,6 +634,7 @@
     {
       "row": 4,
       "z": 114.0,
+      "node_base_z": 118.33333333333333,
       "lo": 96.0,
       "hi": 132.0,
       "height": 36.0,
@@ -783,7 +789,7 @@
       "node_area": 68.13043102298059,
       "node_capacity": 118.03597174731387,
       "vcr": 298.6622235067569,
-      "arch_top": 126.0,
+      "arch_top": 130.33333333333331,
       "fit_top": 126.87092403053185,
       "end_weight": 2.3203125,
       "end_moment": 19.142578125,
@@ -792,6 +798,7 @@
     {
       "row": 5,
       "z": 150.0,
+      "node_base_z": 154.33333333333334,
       "lo": 132.0,
       "hi": 172.375,
       "height": 40.375,
@@ -946,7 +953,7 @@
       "node_area": 68.13043102298059,
       "node_capacity": 118.03597174731387,
       "vcr": 372.536271723976,
-      "arch_top": 162.0,
+      "arch_top": 166.33333333333334,
       "fit_top": 167.24592403053185,
       "end_weight": 2.602294921875,
       "end_moment": 21.46893310546875,
@@ -967,7 +974,15 @@
       "plate_capacity": 4.21875,
       "t_req": 0.15250024280576338,
       "weld_vertical_per_in": 0.1100034204323436,
-      "pipe_membrane_ksi": 0.23158614827861812
+      "pipe_membrane_ksi": 0.23158614827861812,
+      "face_vertical_kip": 2.1796875,
+      "link_compression_kip": 3.123366772884287,
+      "transverse_tie_kip": 2.2370476973684212,
+      "transverse_area_req_in2": 0.04142680921052632,
+      "link_rise_in": 6.333333333333333,
+      "link_run_in": 6.5,
+      "vertical_residual_kip": 0.0,
+      "status": "PENDING \u2014 force demands only; finite nodes and tie anchorage unresolved"
     },
     {
       "row": 1,
@@ -982,7 +997,15 @@
       "plate_capacity": 4.21875,
       "t_req": 0.1379575246639552,
       "weld_vertical_per_in": 0.08952465548919113,
-      "pipe_membrane_ksi": 0.1884729589246129
+      "pipe_membrane_ksi": 0.1884729589246129,
+      "face_vertical_kip": 2.8125,
+      "link_compression_kip": 4.030150674689403,
+      "transverse_tie_kip": 2.886513157894737,
+      "transverse_area_req_in2": 0.05345394736842106,
+      "link_rise_in": 6.333333333333333,
+      "link_run_in": 6.5,
+      "vertical_residual_kip": 0.0,
+      "status": "PENDING \u2014 force demands only; finite nodes and tie anchorage unresolved"
     },
     {
       "row": 1,
@@ -997,7 +1020,15 @@
       "plate_capacity": 4.21875,
       "t_req": 0.1379575246639552,
       "weld_vertical_per_in": 0.08952465548919113,
-      "pipe_membrane_ksi": 0.1884729589246129
+      "pipe_membrane_ksi": 0.1884729589246129,
+      "face_vertical_kip": 2.8125,
+      "link_compression_kip": 4.030150674689403,
+      "transverse_tie_kip": 2.886513157894737,
+      "transverse_area_req_in2": 0.05345394736842106,
+      "link_rise_in": 6.333333333333333,
+      "link_run_in": 6.5,
+      "vertical_residual_kip": 0.0,
+      "status": "PENDING \u2014 force demands only; finite nodes and tie anchorage unresolved"
     },
     {
       "row": 1,
@@ -1012,7 +1043,15 @@
       "plate_capacity": 4.21875,
       "t_req": 0.15250024280576338,
       "weld_vertical_per_in": 0.1100034204323436,
-      "pipe_membrane_ksi": 0.23158614827861812
+      "pipe_membrane_ksi": 0.23158614827861812,
+      "face_vertical_kip": 2.1796875,
+      "link_compression_kip": 3.123366772884287,
+      "transverse_tie_kip": 2.2370476973684212,
+      "transverse_area_req_in2": 0.04142680921052632,
+      "link_rise_in": 6.333333333333333,
+      "link_run_in": 6.5,
+      "vertical_residual_kip": 0.0,
+      "status": "PENDING \u2014 force demands only; finite nodes and tie anchorage unresolved"
     },
     {
       "row": 2,
@@ -1027,7 +1066,15 @@
       "plate_capacity": 4.21875,
       "t_req": 0.1867738902623308,
       "weld_vertical_per_in": 0.1650051306485154,
-      "pipe_membrane_ksi": 0.3473792224179272
+      "pipe_membrane_ksi": 0.3473792224179272,
+      "face_vertical_kip": 3.26953125,
+      "link_compression_kip": 4.685050159326431,
+      "transverse_tie_kip": 3.355571546052632,
+      "transverse_area_req_in2": 0.06214021381578948,
+      "link_rise_in": 6.333333333333333,
+      "link_run_in": 6.5,
+      "vertical_residual_kip": 0.0,
+      "status": "PENDING \u2014 force demands only; finite nodes and tie anchorage unresolved"
     },
     {
       "row": 2,
@@ -1042,7 +1089,15 @@
       "plate_capacity": 4.21875,
       "t_req": 0.16896277080205777,
       "weld_vertical_per_in": 0.13428698323378668,
-      "pipe_membrane_ksi": 0.28270943838691937
+      "pipe_membrane_ksi": 0.28270943838691937,
+      "face_vertical_kip": 4.21875,
+      "link_compression_kip": 6.045226012034104,
+      "transverse_tie_kip": 4.329769736842105,
+      "transverse_area_req_in2": 0.08018092105263158,
+      "link_rise_in": 6.333333333333333,
+      "link_run_in": 6.5,
+      "vertical_residual_kip": 0.0,
+      "status": "PENDING \u2014 force demands only; finite nodes and tie anchorage unresolved"
     },
     {
       "row": 2,
@@ -1057,7 +1112,15 @@
       "plate_capacity": 4.21875,
       "t_req": 0.16896277080205777,
       "weld_vertical_per_in": 0.13428698323378668,
-      "pipe_membrane_ksi": 0.28270943838691937
+      "pipe_membrane_ksi": 0.28270943838691937,
+      "face_vertical_kip": 4.21875,
+      "link_compression_kip": 6.045226012034104,
+      "transverse_tie_kip": 4.329769736842105,
+      "transverse_area_req_in2": 0.08018092105263158,
+      "link_rise_in": 6.333333333333333,
+      "link_run_in": 6.5,
+      "vertical_residual_kip": 0.0,
+      "status": "PENDING \u2014 force demands only; finite nodes and tie anchorage unresolved"
     },
     {
       "row": 2,
@@ -1072,7 +1135,15 @@
       "plate_capacity": 4.21875,
       "t_req": 0.1867738902623308,
       "weld_vertical_per_in": 0.1650051306485154,
-      "pipe_membrane_ksi": 0.3473792224179272
+      "pipe_membrane_ksi": 0.3473792224179272,
+      "face_vertical_kip": 3.26953125,
+      "link_compression_kip": 4.685050159326431,
+      "transverse_tie_kip": 3.355571546052632,
+      "transverse_area_req_in2": 0.06214021381578948,
+      "link_rise_in": 6.333333333333333,
+      "link_run_in": 6.5,
+      "vertical_residual_kip": 0.0,
+      "status": "PENDING \u2014 force demands only; finite nodes and tie anchorage unresolved"
     },
     {
       "row": 3,
@@ -1087,7 +1158,15 @@
       "plate_capacity": 4.21875,
       "t_req": 0.1867738902623308,
       "weld_vertical_per_in": 0.1650051306485154,
-      "pipe_membrane_ksi": 0.3473792224179272
+      "pipe_membrane_ksi": 0.3473792224179272,
+      "face_vertical_kip": 3.26953125,
+      "link_compression_kip": 4.685050159326431,
+      "transverse_tie_kip": 3.355571546052632,
+      "transverse_area_req_in2": 0.06214021381578948,
+      "link_rise_in": 6.333333333333333,
+      "link_run_in": 6.5,
+      "vertical_residual_kip": 0.0,
+      "status": "PENDING \u2014 force demands only; finite nodes and tie anchorage unresolved"
     },
     {
       "row": 3,
@@ -1102,7 +1181,15 @@
       "plate_capacity": 4.21875,
       "t_req": 0.16896277080205777,
       "weld_vertical_per_in": 0.13428698323378668,
-      "pipe_membrane_ksi": 0.28270943838691937
+      "pipe_membrane_ksi": 0.28270943838691937,
+      "face_vertical_kip": 4.21875,
+      "link_compression_kip": 6.045226012034104,
+      "transverse_tie_kip": 4.329769736842105,
+      "transverse_area_req_in2": 0.08018092105263158,
+      "link_rise_in": 6.333333333333333,
+      "link_run_in": 6.5,
+      "vertical_residual_kip": 0.0,
+      "status": "PENDING \u2014 force demands only; finite nodes and tie anchorage unresolved"
     },
     {
       "row": 3,
@@ -1117,7 +1204,15 @@
       "plate_capacity": 4.21875,
       "t_req": 0.16896277080205777,
       "weld_vertical_per_in": 0.13428698323378668,
-      "pipe_membrane_ksi": 0.28270943838691937
+      "pipe_membrane_ksi": 0.28270943838691937,
+      "face_vertical_kip": 4.21875,
+      "link_compression_kip": 6.045226012034104,
+      "transverse_tie_kip": 4.329769736842105,
+      "transverse_area_req_in2": 0.08018092105263158,
+      "link_rise_in": 6.333333333333333,
+      "link_run_in": 6.5,
+      "vertical_residual_kip": 0.0,
+      "status": "PENDING \u2014 force demands only; finite nodes and tie anchorage unresolved"
     },
     {
       "row": 3,
@@ -1132,7 +1227,15 @@
       "plate_capacity": 4.21875,
       "t_req": 0.1867738902623308,
       "weld_vertical_per_in": 0.1650051306485154,
-      "pipe_membrane_ksi": 0.3473792224179272
+      "pipe_membrane_ksi": 0.3473792224179272,
+      "face_vertical_kip": 3.26953125,
+      "link_compression_kip": 4.685050159326431,
+      "transverse_tie_kip": 3.355571546052632,
+      "transverse_area_req_in2": 0.06214021381578948,
+      "link_rise_in": 6.333333333333333,
+      "link_run_in": 6.5,
+      "vertical_residual_kip": 0.0,
+      "status": "PENDING \u2014 force demands only; finite nodes and tie anchorage unresolved"
     },
     {
       "row": 4,
@@ -1147,7 +1250,15 @@
       "plate_capacity": 4.21875,
       "t_req": 0.1867738902623308,
       "weld_vertical_per_in": 0.1650051306485154,
-      "pipe_membrane_ksi": 0.3473792224179272
+      "pipe_membrane_ksi": 0.3473792224179272,
+      "face_vertical_kip": 3.26953125,
+      "link_compression_kip": 4.685050159326431,
+      "transverse_tie_kip": 3.355571546052632,
+      "transverse_area_req_in2": 0.06214021381578948,
+      "link_rise_in": 6.333333333333333,
+      "link_run_in": 6.5,
+      "vertical_residual_kip": 0.0,
+      "status": "PENDING \u2014 force demands only; finite nodes and tie anchorage unresolved"
     },
     {
       "row": 4,
@@ -1162,7 +1273,15 @@
       "plate_capacity": 4.21875,
       "t_req": 0.16896277080205777,
       "weld_vertical_per_in": 0.13428698323378668,
-      "pipe_membrane_ksi": 0.28270943838691937
+      "pipe_membrane_ksi": 0.28270943838691937,
+      "face_vertical_kip": 4.21875,
+      "link_compression_kip": 6.045226012034104,
+      "transverse_tie_kip": 4.329769736842105,
+      "transverse_area_req_in2": 0.08018092105263158,
+      "link_rise_in": 6.333333333333333,
+      "link_run_in": 6.5,
+      "vertical_residual_kip": 0.0,
+      "status": "PENDING \u2014 force demands only; finite nodes and tie anchorage unresolved"
     },
     {
       "row": 4,
@@ -1177,7 +1296,15 @@
       "plate_capacity": 4.21875,
       "t_req": 0.16896277080205777,
       "weld_vertical_per_in": 0.13428698323378668,
-      "pipe_membrane_ksi": 0.28270943838691937
+      "pipe_membrane_ksi": 0.28270943838691937,
+      "face_vertical_kip": 4.21875,
+      "link_compression_kip": 6.045226012034104,
+      "transverse_tie_kip": 4.329769736842105,
+      "transverse_area_req_in2": 0.08018092105263158,
+      "link_rise_in": 6.333333333333333,
+      "link_run_in": 6.5,
+      "vertical_residual_kip": 0.0,
+      "status": "PENDING \u2014 force demands only; finite nodes and tie anchorage unresolved"
     },
     {
       "row": 4,
@@ -1192,7 +1319,15 @@
       "plate_capacity": 4.21875,
       "t_req": 0.1867738902623308,
       "weld_vertical_per_in": 0.1650051306485154,
-      "pipe_membrane_ksi": 0.3473792224179272
+      "pipe_membrane_ksi": 0.3473792224179272,
+      "face_vertical_kip": 3.26953125,
+      "link_compression_kip": 4.685050159326431,
+      "transverse_tie_kip": 3.355571546052632,
+      "transverse_area_req_in2": 0.06214021381578948,
+      "link_rise_in": 6.333333333333333,
+      "link_run_in": 6.5,
+      "vertical_residual_kip": 0.0,
+      "status": "PENDING \u2014 force demands only; finite nodes and tie anchorage unresolved"
     },
     {
       "row": 5,
@@ -1207,7 +1342,15 @@
       "plate_capacity": 4.21875,
       "t_req": 0.19779767480028707,
       "weld_vertical_per_in": 0.18505783749816135,
-      "pipe_membrane_ksi": 0.3895954473645502
+      "pipe_membrane_ksi": 0.3895954473645502,
+      "face_vertical_kip": 3.6668701171875,
+      "link_compression_kip": 5.254413893966795,
+      "transverse_tie_kip": 3.76336669921875,
+      "transverse_area_req_in2": 0.06969197591145833,
+      "link_rise_in": 6.333333333333333,
+      "link_run_in": 6.5,
+      "vertical_residual_kip": 0.0,
+      "status": "PENDING \u2014 force demands only; finite nodes and tie anchorage unresolved"
     },
     {
       "row": 5,
@@ -1222,7 +1365,15 @@
       "plate_capacity": 4.21875,
       "t_req": 0.1789353059226888,
       "weld_vertical_per_in": 0.1506065818906705,
-      "pipe_membrane_ksi": 0.3170664881908853
+      "pipe_membrane_ksi": 0.3170664881908853,
+      "face_vertical_kip": 4.7314453125,
+      "link_compression_kip": 6.779888895441026,
+      "transverse_tie_kip": 4.85595703125,
+      "transverse_area_req_in2": 0.08992513020833333,
+      "link_rise_in": 6.333333333333333,
+      "link_run_in": 6.5,
+      "vertical_residual_kip": 0.0,
+      "status": "PENDING \u2014 force demands only; finite nodes and tie anchorage unresolved"
     },
     {
       "row": 5,
@@ -1237,7 +1388,15 @@
       "plate_capacity": 4.21875,
       "t_req": 0.1789353059226888,
       "weld_vertical_per_in": 0.1506065818906705,
-      "pipe_membrane_ksi": 0.3170664881908853
+      "pipe_membrane_ksi": 0.3170664881908853,
+      "face_vertical_kip": 4.7314453125,
+      "link_compression_kip": 6.779888895441026,
+      "transverse_tie_kip": 4.85595703125,
+      "transverse_area_req_in2": 0.08992513020833333,
+      "link_rise_in": 6.333333333333333,
+      "link_run_in": 6.5,
+      "vertical_residual_kip": 0.0,
+      "status": "PENDING \u2014 force demands only; finite nodes and tie anchorage unresolved"
     },
     {
       "row": 5,
@@ -1252,9 +1411,32 @@
       "plate_capacity": 4.21875,
       "t_req": 0.19779767480028707,
       "weld_vertical_per_in": 0.18505783749816135,
-      "pipe_membrane_ksi": 0.3895954473645502
+      "pipe_membrane_ksi": 0.3895954473645502,
+      "face_vertical_kip": 3.6668701171875,
+      "link_compression_kip": 5.254413893966795,
+      "transverse_tie_kip": 3.76336669921875,
+      "transverse_area_req_in2": 0.06969197591145833,
+      "link_rise_in": 6.333333333333333,
+      "link_run_in": 6.5,
+      "vertical_residual_kip": 0.0,
+      "status": "PENDING \u2014 force demands only; finite nodes and tie anchorage unresolved"
     }
   ],
+  "cone": {
+    "enabled": true,
+    "slope_hv": 1.5,
+    "angle_deg": 33.690067525979785,
+    "ring_radius_in": 11.5,
+    "face_distance_in": 18.0,
+    "radial_gap_in": 6.5,
+    "face_rise_in": 4.333333333333333,
+    "near_face_rise_in": 2.3333333333333335,
+    "far_face_rise_in": 6.333333333333333,
+    "end_first_rise_in": 3.3333333333333335,
+    "end_truncated": true,
+    "enclosed": true,
+    "source": "https://www.concrete.org/portals/0/files/pdf/webinars/ws_F23_Worsford.pdf"
+  },
   "checks": [
     {
       "id": "GRID-A",
@@ -1365,6 +1547,18 @@
       "note": "Worst radial envelope; horizontal bars outside vertical bars. No credit for rebar weaving."
     },
     {
+      "id": "CONE-ENCLOSED",
+      "title": "Ring perimeter inside broad faces before cone projection",
+      "demand": 11.500001,
+      "capacity": 18.0,
+      "unit": "in",
+      "ratio": 0.6388889444444444,
+      "status": "PASS",
+      "ref": "Trial annular breakout-envelope geometry",
+      "scope": "FIT",
+      "note": "A cone outside the concrete cannot define an enclosed transfer region."
+    },
+    {
       "id": "R1-T",
       "title": "Bay horizontal tie",
       "demand": 4.21875,
@@ -1451,11 +1645,11 @@
     {
       "id": "R1-FIT",
       "title": "Arch plus finite strut half-width inside band",
-      "demand": 18.0,
+      "demand": 22.333333333333332,
       "capacity": 18.870924030531857,
       "unit": "in above wall bottom",
-      "ratio": 0.9538483632744872,
-      "status": "PASS",
+      "ratio": 1.1834785248035302,
+      "status": "FAIL",
       "ref": "Entered node geometry",
       "scope": "FIT",
       "note": ""
@@ -1691,11 +1885,11 @@
     {
       "id": "R2-FIT",
       "title": "Arch plus finite strut half-width inside band",
-      "demand": 54.0,
+      "demand": 58.333333333333336,
       "capacity": 54.87092403053185,
       "unit": "in above wall bottom",
-      "ratio": 0.9841277681045203,
-      "status": "PASS",
+      "ratio": 1.063100984063525,
+      "status": "FAIL",
       "ref": "Entered node geometry",
       "scope": "FIT",
       "note": ""
@@ -1931,11 +2125,11 @@
     {
       "id": "R3-FIT",
       "title": "Arch plus finite strut half-width inside band",
-      "demand": 90.0,
+      "demand": 94.33333333333333,
       "capacity": 90.87092403053185,
       "unit": "in above wall bottom",
-      "ratio": 0.990415811880165,
-      "status": "PASS",
+      "ratio": 1.0381024991188395,
+      "status": "FAIL",
       "ref": "Entered node geometry",
       "scope": "FIT",
       "note": ""
@@ -2171,11 +2365,11 @@
     {
       "id": "R4-FIT",
       "title": "Arch plus finite strut half-width inside band",
-      "demand": 126.0,
+      "demand": 130.33333333333331,
       "capacity": 126.87092403053185,
       "unit": "in above wall bottom",
-      "ratio": 0.9931353536108694,
-      "status": "PASS",
+      "ratio": 1.0272908022800262,
+      "status": "FAIL",
       "ref": "Entered node geometry",
       "scope": "FIT",
       "note": ""
@@ -2411,10 +2605,10 @@
     {
       "id": "R5-FIT",
       "title": "Arch plus finite strut half-width inside band",
-      "demand": 162.0,
+      "demand": 166.33333333333334,
       "capacity": 167.24592403053185,
       "unit": "in above wall bottom",
-      "ratio": 0.9686334715722329,
+      "ratio": 0.9945434204002968,
       "status": "PASS",
       "ref": "Entered node geometry",
       "scope": "FIT",
@@ -2597,6 +2791,10 @@
     [
       "DETAIL",
       "Resolve ring/grid clashes and end cover at pile tolerance; detail through-thickness ties around the pipe and access for concrete placement/welding."
+    ],
+    [
+      "CONE-TRANSFER",
+      "The ACI-style breakout envelope defines trial broad-face transfer locations only. Establish applicability to an annular ring, breakout resistance, finite interior nodes with cover, and transverse tie routing/anchorage around the hollow pile. The cone is not rigid and creates no external reaction; longitudinal end moments remain separate."
     ]
   ],
   "overall": "REVISE TRIAL \u2014 NOT RELEASED",

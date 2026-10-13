@@ -12,6 +12,7 @@ import random
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 import zipfile
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -19,9 +20,44 @@ sys.path.insert(0,str(ROOT))
 from ring_wall.model import analyze, arch, default_case
 from ring_wall.report import export_results, render_report
 from ring_wall.study import spacing_study
+from ring_wall.cone import geometry as cone_geometry
 
 
 class RingWallTests(unittest.TestCase):
+    def test_cone_face_intersection_geometry_and_tolerance(self):
+        p=default_case();c=cone_geometry(p)
+        self.assertAlmostEqual(c['face_rise_in'],6.5/1.5)
+        self.assertAlmostEqual(c['ring_radius_in']+c['slope_hv']*c['face_rise_in'],p['thickness_in']/2)
+        self.assertAlmostEqual(c['angle_deg'],33.690067525979785)
+        self.assertAlmostEqual(c['near_face_rise_in'],3.5/1.5)
+        self.assertAlmostEqual(c['far_face_rise_in'],9.5/1.5)
+        self.assertTrue(c['end_truncated'])
+        self.assertAlmostEqual(c['end_first_rise_in'],5./1.5)
+
+    def test_cone_moves_transfer_elevation_without_inventing_span_reduction(self):
+        trial=analyze();p=default_case();p['support_model']='ring_centers';original=analyze(p)
+        self.assertEqual(trial['totals'],original['totals'])
+        for new,old in zip(trial['rows'],original['rows']):
+            self.assertAlmostEqual(new['node_base_z']-old['node_base_z'],6.5/1.5)
+            self.assertAlmostEqual(new['arch_top']-old['arch_top'],6.5/1.5)
+            self.assertEqual(new['arch'],old['arch'])
+            self.assertEqual(new['arch']['x'][-1],60.)
+        self.assertIn('CONE-TRANSFER',dict(trial['pending']))
+        self.assertNotIn('CONE-TRANSFER',dict(original['pending']))
+
+    def test_trial_transfer_links_and_transverse_tie_close_joint_equilibrium(self):
+        for slope in (1.,1.5,2.):
+            p=default_case();p['cone_slope_hv']=slope;r=analyze(p)
+            for ring in r['rings']:
+                run,rise=ring['link_run_in'],ring['link_rise_in']
+                length=(run**2+rise**2)**.5
+                self.assertAlmostEqual(ring['link_compression_kip']*rise/length,ring['R']/2)
+                self.assertAlmostEqual(ring['link_compression_kip']*run/length,ring['transverse_tie_kip'])
+                self.assertAlmostEqual(ring['transverse_area_req_in2']*p['phi_tie']*p['fy_ksi'],ring['transverse_tie_kip'])
+                self.assertEqual(ring['vertical_residual_kip'],0.)
+                self.assertIn('PENDING',ring['status'])
+            self.assertNotIn('PASS',r['overall'])
+
     def test_gross_weight_and_global_equilibrium(self):
         p=default_case();r=analyze(p)
         expected=213*36*172.375/1728*.150
@@ -112,7 +148,8 @@ class RingWallTests(unittest.TestCase):
         changes=[dict(ring_id_in=19.),dict(ring_spacing_in=0.),dict(arch_panels=3),
                  dict(ring_count=100),dict(first_ring_in=0),dict(node_width_in=36),
                  dict(height_in=float('nan')),dict(pile_count=1),dict(coating='guess'),
-                 dict(phi_tie=1.1),dict(fy_ksi=100),dict(thickness_in=12)]
+                 dict(phi_tie=1.1),dict(fy_ksi=100),dict(thickness_in=12),
+                 dict(cone_slope_hv=0),dict(support_model='rigid_cone')]
         for change in changes:
             with self.subTest(change=change):
                 p=default_case();p.update(change)
@@ -138,14 +175,17 @@ class RingWallTests(unittest.TestCase):
         notebook=json.loads((ROOT/'Ring_Supported_Wall_STM.ipynb').read_text(encoding='utf-8'))
         namespace={}
         oldcwd=Path.cwd();oldpath=sys.path[:]
+        oldmodules={key:value for key,value in sys.modules.items() if key=='ring_wall' or key.startswith('ring_wall.')}
         try:
-            with tempfile.TemporaryDirectory(dir=ROOT,prefix='.ring-wall-test-') as temp, chdir(temp):
+            with tempfile.TemporaryDirectory(dir=ROOT,prefix='.ring-wall-test-') as temp, chdir(temp), patch('IPython.display.display'):
                 for index,c in enumerate(notebook['cells']):
                     if c['cell_type']=='code':
                         exec(compile(''.join(c['source']),f'notebook-cell-{index}','exec'),namespace)
-                self.assertEqual(namespace['result']['grid']['spacing'],5.)
-                self.assertTrue(namespace['bundle'].exists())
-                with zipfile.ZipFile(namespace['bundle']) as z:
+                app=namespace['app']
+                self.assertEqual(app.current['grid']['spacing'],5.)
+                self.assertFalse(app.export_root.exists(), 'Run all must not export a report')
+                folder=app.export()
+                with zipfile.ZipFile(folder/'Ring_Wall_STM_Exports.zip') as z:
                     self.assertEqual(len(z.namelist()),7)
                 embedded=base64.b64decode(namespace['PACKAGE'])
                 self.assertEqual(hashlib.sha256(embedded).hexdigest(),namespace['PACKAGE_SHA256'])
@@ -153,11 +193,20 @@ class RingWallTests(unittest.TestCase):
                     for name in z.namelist():
                         self.assertEqual(z.read(name),(ROOT/name).read_bytes())
                 # Stale results cannot be exported after an input change.
-                namespace['case']['ring_t_in']=1.
+                app.controls['ring_t_in'].value=1.
                 with self.assertRaises(RuntimeError):
-                    exec(''.join(notebook['cells'][-2]['source']),namespace)
+                    app.export()
+                # Rerunning the workbench retains edited inputs and saved exports.
+                exec(''.join(notebook['cells'][2]['source']),namespace)
+                self.assertEqual(namespace['app'].case['ring_t_in'],1.)
+                self.assertEqual(namespace['app'].last_export,folder)
+                namespace['app'].close()
         finally:
+            if 'app' in namespace:namespace['app'].close()
             os.chdir(oldcwd);sys.path[:]=oldpath
+            for key in list(sys.modules):
+                if key=='ring_wall' or key.startswith('ring_wall.'):del sys.modules[key]
+            sys.modules.update(oldmodules)
 
 
 if __name__=='__main__':unittest.main()

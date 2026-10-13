@@ -5,6 +5,7 @@ is credited. Local 3-D node, ring attachment and compatibility remain open.
 """
 from copy import deepcopy
 from math import atan, ceil, cos, degrees, floor, hypot, isfinite, pi, sin
+from .cone import geometry as cone_geometry, transfer_forces
 
 BAR = {4: (.5, .20), 5: (.625, .31), 6: (.75, .44),
        7: (.875, .60), 8: (1., .79), 9: (1.128, 1.00), 10: (1.27, 1.27)}
@@ -30,10 +31,15 @@ def default_case():
         ring_id_in=20.125, ring_od_in=23., ring_t_in=.75,
         ring_fy_ksi=50., phi_plate=.90, bearing_fraction=.50,
         transverse_bar=4, transverse_spacing_in=8.,
+        support_model='face_transfer', cone_slope_hv=1.5,
     )
 
 
 def validate(p):
+    if p.get('support_model','ring_centers') not in ('ring_centers','face_transfer'):
+        raise ValueError('Support model must be ring_centers or face_transfer.')
+    if not 0 < p.get('cone_slope_hv',1.5) <= 5:
+        raise ValueError('Cone spread must be positive and no greater than 5 H:1 V.')
     for name, value in p.items():
         if isinstance(value, (int, float)) and not isinstance(value, bool):
             if not isfinite(value) or value < 0:
@@ -131,12 +137,16 @@ def arch(w, length, rise, panels):
 
 def analyze(case=None):
     p=deepcopy(default_case() if case is None else case)
+    # Old saved cases retain their original ring-level support geometry.
+    p.setdefault('support_model','ring_centers');p.setdefault('cone_slope_hv',1.5)
     validate(p)
     L,t,H=p['length_in'],p['thickness_in'],p['height_in']
     n,S,D=p['pile_count'],p['pile_spacing_in'],p['pile_od_in']
     end=(L-(n-1)*S)/2
     pile_x=[end+i*S for i in range(n)]
     z=[p['first_ring_in']+i*p['ring_spacing_in'] for i in range(p['ring_count'])]
+    cone=cone_geometry(p)
+    transfer_rise=cone['face_rise_in'] if cone['enabled'] else 0.
     bounds=[0.]+[(a+b)/2 for a,b in zip(z[:-1],z[1:])]+[H]
     heights=[b-a for a,b in zip(bounds[:-1],bounds[1:])]
     min_depth=min(heights)
@@ -217,6 +227,10 @@ def analyze(case=None):
     ck('RING-GRID','Ring clearance to innermost face-grid steel',
        max(1.,1.5*p['aggregate_in']),grid_gap,'in','Trial placement clearance','FIT',
        'Worst radial envelope; horizontal bars outside vertical bars. No credit for rebar weaving.')
+    if cone['enabled']:
+        ck('CONE-ENCLOSED','Ring perimeter inside broad faces before cone projection',
+           ro+1e-6,t/2,'in','Trial annular breakout-envelope geometry','FIT',
+           'A cone outside the concrete cannot define an enclosed transfer region.')
     wc_service=p['density_kcf']*(t/12)/144 + p['additional_service_ksf']/144
     wc_u=p['gamma_dc']*p['density_kcf']*(t/12)/144 + p['gamma_additional']*p['additional_service_ksf']/144
     rows=[]; ring_forces=[]
@@ -237,14 +251,15 @@ def analyze(case=None):
         # LRFD C5.8.2.2 shear-cracking estimate; gross regional bw=t, not an annular breakout rule.
         coefficient=max(.0632,min(.158,.2-.1*(S/2)/band_d)) if band_d>0 else 0
         vcr=coefficient*p['fc_ksi']**.5*t*max(band_d,0)
-        arch_top=zr+p['tie_offset_in']+p['arch_rise_in']
+        node_base=zr+transfer_rise
+        arch_top=node_base+p['tie_offset_in']+p['arch_rise_in']
         fit_top=hi-cover-wn/2
         end_W=w*end
         end_M=end_W*end/2
         # End strip is a separate cantilever/local-node demand. It is NOT silently
         # inserted into the bay arch. Ring/pile moments explicitly close equilibrium.
         end_tie=end_M/p['arch_rise_in']
-        row=dict(row=k,z=zr,lo=lo,hi=hi,height=bh,w=w,ws=ws,arch=a,
+        row=dict(row=k,z=zr,node_base_z=node_base,lo=lo,hi=hi,height=bh,w=w,ws=ws,arch=a,
                  service_arch=service,weight=w*L,service_weight=ws*L,
                  lb=lb,wn=wn,node_area=node_area,node_capacity=node_capacity,
                  vcr=vcr,arch_top=arch_top,fit_top=fit_top,
@@ -284,6 +299,8 @@ def analyze(case=None):
                       m_per_in=m,plate_capacity=plate_capacity,t_req=t_req,
                       weld_vertical_per_in=weld_vertical,
                       pipe_membrane_ksi=weld_vertical/p['pile_t_effective_in'])
+            if cone['enabled']:
+                ring.update(transfer_forces(R,p,cone))
             ring_forces.append(ring)
             ck(f'R{k}-P{j+1}-BEAR','Annular concrete bearing pressure',qmax,p['phi_concrete']*fcu,
                'ksi','LRFD 5.8.2.5; nu=0.45, m=1','SCREEN',
@@ -307,7 +324,10 @@ def analyze(case=None):
         ('DETAIL','Resolve ring/grid clashes and end cover at pile tolerance; detail through-thickness ties around the pipe and access for concrete placement/welding.'),
     ]
     overall='REVISE TRIAL — NOT RELEASED' if any(c['status']=='FAIL' for c in checks) else 'PRELIMINARY — OPEN CHECKS'
+    if cone['enabled']:
+        pending.append(('CONE-TRANSFER','The ACI-style breakout envelope defines trial broad-face transfer locations only. Establish applicability to an annular ring, breakout resistance, finite interior nodes with cover, and transverse tie routing/anchorage around the hollow pile. The cone is not rigid and creates no external reaction; longitudinal end moments remain separate.'))
     return dict(case=p,grid=grid,pile_x=pile_x,end=end,rows=rows,rings=ring_forces,
+                cone=cone,
                 checks=checks,pending=pending,overall=overall,
                 geometry=dict(ring_area=A,ring_I=I,edge_clear=edge_clear,face_clear=face_clear,
                               grid_gap=grid_gap,bounds=bounds),

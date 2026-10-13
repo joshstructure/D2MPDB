@@ -42,5 +42,7 @@
   "phi_plate": 0.9,
   "bearing_fraction": 0.5,
   "transverse_bar": 4,
-  "transverse_spacing_in": 8.0
+  "transverse_spacing_in": 8.0,
+  "support_model": "face_transfer",
+  "cone_slope_hv": 1.5
 }

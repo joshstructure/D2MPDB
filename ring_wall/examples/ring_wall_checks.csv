@@ -8,6 +8,7 @@ NODE-TIE,Tie centroid at node mid-height,0.0,1e-06,in,0.0,PASS,Entered finite-no
 RING-END,Ring outer edge / wall-end cover,3.0,2.0,in,1.5,FAIL,Entered cover and pile tolerance,FIT,
 RING-FACE,Ring outer edge / broad-face cover,3.0,3.5,in,0.8571428571428571,PASS,Entered cover and pile tolerance,FIT,
 RING-GRID,Ring clearance to innermost face-grid steel,1.125,-0.75,in,,FAIL,Trial placement clearance,FIT,Worst radial envelope; horizontal bars outside vertical bars. No credit for rebar weaving.
+CONE-ENCLOSED,Ring perimeter inside broad faces before cone projection,11.500001,18.0,in,0.6388889444444444,PASS,Trial annular breakout-envelope geometry,FIT,A cone outside the concrete cannot define an enclosed transfer region.
 R1-T,Bay horizontal tie,4.21875,33.48,kip,0.12600806451612903,PASS,LRFD 5.8.2.4.1,STRENGTH,
 R1-V,Interior vertical collector tie,1.40625,33.48,kip,0.042002688172043015,PASS,LRFD 5.8.2.4.1,STRENGTH,Dedicated bars for full tributary column weight. Grid is not double-counted.
 R1-V-NODE,Collector at pile node / end strip,2.25,33.48,kip,0.06720430107526883,PASS,LRFD 5.8.2.4.1,STRENGTH,Full joint tributary weight including overhang; anchorage into the actual support node is open.
@@ -15,7 +16,7 @@ R1-END-T,Wall-end cantilever tie demand,1.276171875,33.48,kip,0.0381174395161290
 R1-ANGLE,Minimum strut-to-tie angle (strictly >25°),25.000001,26.56505117707799,deg,0.941086122264714,PASS,LRFD 5.8.2.2,GEOMETRY,
 R1-NODE,Equivalent strut-to-node face,4.716705890038619,118.03597174731387,kip,0.03995990222485678,PASS,"LRFD 5.8.2.5; nu=0.45, m=1",SCREEN,Annulus-to-planar-node mapping requires 3-D substantiation.
 R1-CRACK,Bay service shear / diagonal-cracking estimate,2.25,110.3847135332606,kip,0.020383257137520594,PASS,LRFD C5.8.2.2-1,SCREEN,"Service estimate for assigned wall band, not local ring punching."
-R1-FIT,Arch plus finite strut half-width inside band,18.0,18.870924030531857,in above wall bottom,0.9538483632744872,PASS,Entered node geometry,FIT,
+R1-FIT,Arch plus finite strut half-width inside band,22.333333333333332,18.870924030531857,in above wall bottom,1.1834785248035302,FAIL,Entered node geometry,FIT,
 R1-P1-BEAR,Annular concrete bearing pressure,0.1411711548964305,1.7325,ksi,0.08148407209029178,PASS,"LRFD 5.8.2.5; nu=0.45, m=1",SCREEN,Reduced annulus A and I; active contact must be established separately.
 R1-P1-CONTACT,No tension under assumed annular contact,0.051635217157020206,0.0895359377394103,ksi,0.5766982338120121,PASS,Elastic annular pressure distribution,SCREEN,
 R1-P1-PLATE,Ring radial strip elastic bending,0.1744224304186259,4.21875,kip-in/in,0.04134457609922984,PASS,Elastic cantilever strip; entered steel factor,SCREEN,Not a complete annular-plate/weld/shell limit-state check.
@@ -35,7 +36,7 @@ R2-END-T,Wall-end cantilever tie demand,1.9142578125,33.48,kip,0.057176159274193
 R2-ANGLE,Minimum strut-to-tie angle (strictly >25°),25.000001,26.56505117707799,deg,0.941086122264714,PASS,LRFD 5.8.2.2,GEOMETRY,
 R2-NODE,Equivalent strut-to-node face,7.075058835057928,118.03597174731387,kip,0.05993985333728516,PASS,"LRFD 5.8.2.5; nu=0.45, m=1",SCREEN,Annulus-to-planar-node mapping requires 3-D substantiation.
 R2-CRACK,Bay service shear / diagonal-cracking estimate,3.3749999999999996,298.6622235067569,kip,0.011300391326269102,PASS,LRFD C5.8.2.2-1,SCREEN,"Service estimate for assigned wall band, not local ring punching."
-R2-FIT,Arch plus finite strut half-width inside band,54.0,54.87092403053185,in above wall bottom,0.9841277681045203,PASS,Entered node geometry,FIT,
+R2-FIT,Arch plus finite strut half-width inside band,58.333333333333336,54.87092403053185,in above wall bottom,1.063100984063525,FAIL,Entered node geometry,FIT,
 R2-P1-BEAR,Annular concrete bearing pressure,0.21175673234464576,1.7325,ksi,0.12222610813543767,PASS,"LRFD 5.8.2.5; nu=0.45, m=1",SCREEN,Reduced annulus A and I; active contact must be established separately.
 R2-P1-CONTACT,No tension under assumed annular contact,0.0774528257355303,0.13430390660911545,ksi,0.5766982338120121,PASS,Elastic annular pressure distribution,SCREEN,
 R2-P1-PLATE,Ring radial strip elastic bending,0.2616336456279389,4.21875,kip-in/in,0.062016864148844775,PASS,Elastic cantilever strip; entered steel factor,SCREEN,Not a complete annular-plate/weld/shell limit-state check.
@@ -55,7 +56,7 @@ R3-END-T,Wall-end cantilever tie demand,1.9142578125,33.48,kip,0.057176159274193
 R3-ANGLE,Minimum strut-to-tie angle (strictly >25°),25.000001,26.56505117707799,deg,0.941086122264714,PASS,LRFD 5.8.2.2,GEOMETRY,
 R3-NODE,Equivalent strut-to-node face,7.075058835057928,118.03597174731387,kip,0.05993985333728516,PASS,"LRFD 5.8.2.5; nu=0.45, m=1",SCREEN,Annulus-to-planar-node mapping requires 3-D substantiation.
 R3-CRACK,Bay service shear / diagonal-cracking estimate,3.3749999999999996,298.6622235067569,kip,0.011300391326269102,PASS,LRFD C5.8.2.2-1,SCREEN,"Service estimate for assigned wall band, not local ring punching."
-R3-FIT,Arch plus finite strut half-width inside band,90.0,90.87092403053185,in above wall bottom,0.990415811880165,PASS,Entered node geometry,FIT,
+R3-FIT,Arch plus finite strut half-width inside band,94.33333333333333,90.87092403053185,in above wall bottom,1.0381024991188395,FAIL,Entered node geometry,FIT,
 R3-P1-BEAR,Annular concrete bearing pressure,0.21175673234464576,1.7325,ksi,0.12222610813543767,PASS,"LRFD 5.8.2.5; nu=0.45, m=1",SCREEN,Reduced annulus A and I; active contact must be established separately.
 R3-P1-CONTACT,No tension under assumed annular contact,0.0774528257355303,0.13430390660911545,ksi,0.5766982338120121,PASS,Elastic annular pressure distribution,SCREEN,
 R3-P1-PLATE,Ring radial strip elastic bending,0.2616336456279389,4.21875,kip-in/in,0.062016864148844775,PASS,Elastic cantilever strip; entered steel factor,SCREEN,Not a complete annular-plate/weld/shell limit-state check.
@@ -75,7 +76,7 @@ R4-END-T,Wall-end cantilever tie demand,1.9142578125,33.48,kip,0.057176159274193
 R4-ANGLE,Minimum strut-to-tie angle (strictly >25°),25.000001,26.56505117707799,deg,0.941086122264714,PASS,LRFD 5.8.2.2,GEOMETRY,
 R4-NODE,Equivalent strut-to-node face,7.075058835057928,118.03597174731387,kip,0.05993985333728516,PASS,"LRFD 5.8.2.5; nu=0.45, m=1",SCREEN,Annulus-to-planar-node mapping requires 3-D substantiation.
 R4-CRACK,Bay service shear / diagonal-cracking estimate,3.3749999999999996,298.6622235067569,kip,0.011300391326269102,PASS,LRFD C5.8.2.2-1,SCREEN,"Service estimate for assigned wall band, not local ring punching."
-R4-FIT,Arch plus finite strut half-width inside band,126.0,126.87092403053185,in above wall bottom,0.9931353536108694,PASS,Entered node geometry,FIT,
+R4-FIT,Arch plus finite strut half-width inside band,130.33333333333331,126.87092403053185,in above wall bottom,1.0272908022800262,FAIL,Entered node geometry,FIT,
 R4-P1-BEAR,Annular concrete bearing pressure,0.21175673234464576,1.7325,ksi,0.12222610813543767,PASS,"LRFD 5.8.2.5; nu=0.45, m=1",SCREEN,Reduced annulus A and I; active contact must be established separately.
 R4-P1-CONTACT,No tension under assumed annular contact,0.0774528257355303,0.13430390660911545,ksi,0.5766982338120121,PASS,Elastic annular pressure distribution,SCREEN,
 R4-P1-PLATE,Ring radial strip elastic bending,0.2616336456279389,4.21875,kip-in/in,0.062016864148844775,PASS,Elastic cantilever strip; entered steel factor,SCREEN,Not a complete annular-plate/weld/shell limit-state check.
@@ -95,7 +96,7 @@ R5-END-T,Wall-end cantilever tie demand,2.146893310546875,33.48,kip,0.0641246508
 R5-ANGLE,Minimum strut-to-tie angle (strictly >25°),25.000001,26.56505117707799,deg,0.941086122264714,PASS,LRFD 5.8.2.2,GEOMETRY,
 R5-NODE,Equivalent strut-to-node face,7.9348750129295516,118.03597174731387,kip,0.06722421051369135,PASS,"LRFD 5.8.2.5; nu=0.45, m=1",SCREEN,Annulus-to-planar-node mapping requires 3-D substantiation.
 R5-CRACK,Bay service shear / diagonal-cracking estimate,3.7851562499999996,372.536271723976,kip,0.010160503922164504,PASS,LRFD C5.8.2.2-1,SCREEN,"Service estimate for assigned wall band, not local ring punching."
-R5-FIT,Arch plus finite strut half-width inside band,162.0,167.24592403053185,in above wall bottom,0.9686334715722329,PASS,Entered node geometry,FIT,
+R5-FIT,Arch plus finite strut half-width inside band,166.33333333333334,167.24592403053185,in above wall bottom,0.9945434204002968,PASS,Entered node geometry,FIT,
 R5-P1-BEAR,Annular concrete bearing pressure,0.23749105745597426,1.7325,ksi,0.1370799754435638,PASS,"LRFD 5.8.2.5; nu=0.45, m=1",SCREEN,Reduced annulus A and I; active contact must be established separately.
 R5-P1-CONTACT,No tension under assumed annular contact,0.08686549552977878,0.15062556192619547,ksi,0.576698233812012,PASS,Elastic annular pressure distribution,SCREEN,
 R5-P1-PLATE,Ring radial strip elastic bending,0.2934294011730009,4.21875,kip-in/in,0.06955363583360022,PASS,Elastic cantilever strip; entered steel factor,SCREEN,Not a complete annular-plate/weld/shell limit-state check.
