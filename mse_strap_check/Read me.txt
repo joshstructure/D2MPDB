@@ -1,0 +1,53 @@
+MSE STRAP CLEARANCE - BOTH END BENTS
+13 October 2026
+
+Open "MSE Strap Clearance - Both End Bents.bpad" in Blockpad and recalculate.
+The first tab has shared inputs. The next two tabs have live plan drawings,
+wall/pile route selectors and all-origin results. Amber equations are editable.
+Expand EditableGeometry in each bent tab to change wall lines and pile offsets.
+
+Starting inputs: 2 in trial strap, 0 in required pile gap, 0 in placement
+tolerance, 15-degree test angle, 38 ft trial layer, ordinary minimum length.
+These are explicit trial inputs, not confirmed vendor dimensions or tolerances.
+The current model contains 18 in square, plumb piles. Each strap anchor is the
+perpendicular projection of the chosen pile center onto the BACK of facing.
+
+Both signs are checked against every pile and the full nearby wall segments.
+The plan shows the cap projection, but the default layer is below the cap.
+Changing TestAngle checks a different straight route; no dog-leg is assumed.
+Max width and extra separation are target-only geometric outputs. Final vendor
+length, connections, design clearance, tolerances, coping height, battered-pile
+envelopes and all reinforcement layers require separate coordination.
+
+STARTING RESULT
+Front wall maximum nominal strip width at 15 degrees:
+  EB1: 1.8598 in governing across four piles.
+  EB2: 1.5674 in governing across four piles.
+A 2 in strip therefore fails both front-wall target checks. Return wall routes
+also fail; their nearest piles require roughly 36.1-36.2 degrees for this width.
+Front cap setbacks are 25.18 / 24.62 in, but cap footprints overlap the return
+wall lines about 2 in. These are separate conditions, not an overall layout pass.
+
+VERIFICATION
+934 native scalar definitions and 9 helper functions were independently
+evaluated with units; 120 independent distance cases and 48 signed actual
+routes were checked. Additional scenarios test width, tolerance, layer, length
+and out-of-limit skew. Model and journal source hashes are unchanged.
+Blockpad access was not granted by Computer Use, so native recalculation and
+native screen/print pagination have NOT been verified. Display caches and the
+PNG preview are independently calculated, not a native review or design approval.
+
+SOURCE
+The layout snapshot and SHA-256 identify the registered FreeCAD model.
+FDOT Structures Manual, January 2026: SDG 3.13.2.F, K.8, K.9, N.2;
+SDM 19.6.E. The saved model's wall profile is the back face; the panel extrudes
+outward. Coordinates in the BPAD are local to each cap center.
+The companion JSON is provenance only; calculations require no external file.
+
+REBUILD (repository Python environment)
+  python mse_strap_check/extract_layout.py
+  python mse_strap_check/build_check.py
+  python mse_strap_check/finalize_check.py
+
+Keep the delivered BPAD and this readme together. This is a new standalone
+check; it does not modify or promote the existing project journal.

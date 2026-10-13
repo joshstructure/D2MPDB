@@ -1,0 +1,34 @@
+MSE strap plan clearance - standalone BPAD - 13 October 2026
+
+Authorized output: a new, standalone geometry check for BOTH end bents.
+No existing journal report, native model, source register or workbook is edited.
+This is a separate topology addition; it is not an edit/integration/promotion of
+the canonical journal. The journal prepare/check/assemble commands do not support
+new modules and are therefore not used to insert this standalone document.
+
+Inputs: exact saved properties from the registered FreeCAD model; the registered
+notebook CAD export establishes end-bent stations; FDOT January 2026 SDG
+3.13.2.F, K.8, K.9 and N.2 and SDM 19.6.E. Full source hashes accompany extraction.
+Start/Normal/LengthFwd in the model put facing thickness outward of the wall
+profile. The profile line is consequently the back of facing for these landing
+walls. Native profile joints and coping refinements are not used to gain clearance.
+
+Output: editable native scalar equations, live plan plots, all four pile routes
+from each landing wall, signed edge clearances in inches and required skew in
+degrees. Both plus/minus test angles are evaluated through the full input length.
+Opposing/return walls and all piles are checked. Cap footprint remains visible;
+strap layer is assumed below cap, not approved for routing through the cap.
+
+Finite straight strap is a capsule of width w; added pile clearance and a square
+placement envelope are explicit. Tiny source rotation is conservatively enclosed
+by an axis-aligned square; the excess half-width is about 0.00019 in. Zero width
+is a geometric reference. Two-inch width is an illustrative, unconfirmed input.
+No intentional pile clearance or location tolerance is invented as a code rule.
+
+Checks: independent segment/rectangle distance, angle/tangency boundary tests,
+all-pile and full-length wall checks, native recalculation and appearance review
+where available. Native verification must be recorded separately from Python
+checks. Vendor connection details, design length/stability, battered-pile depth
+envelopes, elevation routing and engineering acceptance remain outside this plan
+screen. A rejected test angle does not by itself prove all other angles fail;
+the separate target-angle limit is the necessary test for the aligned pile.

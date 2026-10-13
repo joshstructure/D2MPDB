@@ -1,0 +1,5 @@
+__pycache__/
+evaluated_values.json
+formulas.json
+extraction-log.json
+native-preview-*.png

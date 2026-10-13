@@ -1,0 +1,354 @@
+{
+  "native_recalculation": "not established by this script",
+  "definitions_evaluated": 934,
+  "checks": [
+    "120 independent distance cases, including axis-parallel / zero-length / crossing segments",
+    "All 48 signed routes independently checked against every pile and five wall rectangles per bent",
+    "Tangency identity and six meaningful width/tolerance/layer/angle/length scenarios"
+  ],
+  "scenarios": [
+    {
+      "case": "zero-width",
+      "EB1_front_P2_plus": "PASS"
+    },
+    {
+      "case": "one-inch-strip",
+      "EB1_front_P2_plus": "PASS"
+    },
+    {
+      "case": "three-inch-tolerance",
+      "EB1_front_P2_plus": "FAIL"
+    },
+    {
+      "case": "layer-above-wall",
+      "EB1_front_P2_plus": "FAIL"
+    },
+    {
+      "case": "invalid-angle",
+      "EB1_front_P2_plus": "FAIL"
+    },
+    {
+      "case": "short-strap",
+      "EB1_front_P2_plus": "FAIL"
+    }
+  ],
+  "summary": {
+    "EB1": {
+      "front_line_gap_in": 0.9298954582985353,
+      "front_max_strip_width_in": 1.8597909165970705,
+      "front_cap_setback_in": 25.181660405294522,
+      "left_cap_setback_in": -2.0265214480666742,
+      "right_cap_setback_in": -1.9743169582875453,
+      "left_nearest_required_deg": 36.23394889231383,
+      "right_nearest_required_deg": 36.127662966926295
+    },
+    "EB2": {
+      "front_line_gap_in": 0.7837196266087378,
+      "front_max_strip_width_in": 1.5674392532174757,
+      "front_cap_setback_in": 24.616880361260762,
+      "left_cap_setback_in": -1.9743122817406658,
+      "right_cap_setback_in": -2.0273312515088264,
+      "left_nearest_required_deg": 36.127653470349244,
+      "right_nearest_required_deg": 36.23560195970729
+    }
+  },
+  "routes": [
+    {
+      "bent": "EB1",
+      "wall": 1,
+      "pile": 1,
+      "d_ft": 3.8485146953704086,
+      "max_width_in": 1.8597909165970705,
+      "required_angle_deg": 15.105029216248118,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -0.07010454170146496,
+      "minus_edge_gap_in": -0.07010454170146674
+    },
+    {
+      "bent": "EB1",
+      "wall": 1,
+      "pile": 2,
+      "d_ft": 3.8486075652224634,
+      "max_width_in": 1.8603677922713349,
+      "required_angle_deg": 15.104594130983294,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -0.06981610386432846,
+      "minus_edge_gap_in": -0.06981610386434389
+    },
+    {
+      "bent": "EB1",
+      "wall": 1,
+      "pile": 3,
+      "d_ft": 3.8487004350745173,
+      "max_width_in": 1.8609446679455912,
+      "required_angle_deg": 15.104159070285224,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -0.06952766602721605,
+      "minus_edge_gap_in": -0.06952766602720062
+    },
+    {
+      "bent": "EB1",
+      "wall": 1,
+      "pile": 4,
+      "d_ft": 3.8487933049265717,
+      "max_width_in": 1.861521543619853,
+      "required_angle_deg": 15.103724034151861,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -0.069239228190078,
+      "minus_edge_gap_in": -0.06923922819007633
+    },
+    {
+      "bent": "EB1",
+      "wall": 2,
+      "pile": 1,
+      "d_ft": 1.9144926616043587,
+      "max_width_in": 0,
+      "required_angle_deg": 36.23394889231383,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -1.0,
+      "minus_edge_gap_in": -1.0
+    },
+    {
+      "bent": "EB1",
+      "wall": 2,
+      "pile": 2,
+      "d_ft": 6.41449266064605,
+      "max_width_in": 17.798766118039083,
+      "required_angle_deg": 8.378126955710144,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -1.0,
+      "minus_edge_gap_in": -1.0
+    },
+    {
+      "bent": "EB1",
+      "wall": 2,
+      "pile": 3,
+      "d_ft": 10.91449265968773,
+      "max_width_in": 45.75122298315857,
+      "required_angle_deg": 4.688557993914369,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -1.0,
+      "minus_edge_gap_in": -1.0
+    },
+    {
+      "bent": "EB1",
+      "wall": 2,
+      "pile": 4,
+      "d_ft": 15.41449265872942,
+      "max_width_in": 73.70367984827811,
+      "required_angle_deg": 3.253014158375967,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -1.0,
+      "minus_edge_gap_in": -1.0
+    },
+    {
+      "bent": "EB1",
+      "wall": 3,
+      "pile": 1,
+      "d_ft": 15.41884303287768,
+      "max_width_in": 73.73070288066751,
+      "required_angle_deg": 3.252051163709888,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -1.0,
+      "minus_edge_gap_in": -1.0
+    },
+    {
+      "bent": "EB1",
+      "wall": 3,
+      "pile": 2,
+      "d_ft": 10.91884303383599,
+      "max_width_in": 45.77824601554797,
+      "required_angle_deg": 4.686559758249357,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -1.0,
+      "minus_edge_gap_in": -1.0
+    },
+    {
+      "bent": "EB1",
+      "wall": 3,
+      "pile": 3,
+      "d_ft": 6.4188430347943095,
+      "max_width_in": 17.82578915042847,
+      "required_angle_deg": 8.371774966047143,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -1.0,
+      "minus_edge_gap_in": -1.0
+    },
+    {
+      "bent": "EB1",
+      "wall": 3,
+      "pile": 4,
+      "d_ft": 1.9188430357526194,
+      "max_width_in": 0,
+      "required_angle_deg": 36.127662966926295,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -1.0,
+      "minus_edge_gap_in": -1.0
+    },
+    {
+      "bent": "EB2",
+      "wall": 1,
+      "pile": 1,
+      "d_ft": 3.801728301257098,
+      "max_width_in": 1.569169880240338,
+      "required_angle_deg": 15.327386424728557,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -0.21541505987983534,
+      "minus_edge_gap_in": -0.21541505987983534
+    },
+    {
+      "bent": "EB2",
+      "wall": 1,
+      "pile": 2,
+      "d_ft": 3.80163543140503,
+      "max_width_in": 1.568593004565991,
+      "required_angle_deg": 15.327834175881138,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -0.21570349771700092,
+      "minus_edge_gap_in": -0.21570349771701303
+    },
+    {
+      "bent": "EB2",
+      "wall": 1,
+      "pile": 3,
+      "d_ft": 3.8015425615529903,
+      "max_width_in": 1.5680161288918226,
+      "required_angle_deg": 15.32828195265992,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -0.2159919355540978,
+      "minus_edge_gap_in": -0.2159919355540857
+    },
+    {
+      "bent": "EB2",
+      "wall": 1,
+      "pile": 4,
+      "d_ft": 3.801449691700922,
+      "max_width_in": 1.5674392532174757,
+      "required_angle_deg": 15.32872975506732,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -0.2162803733912635,
+      "minus_edge_gap_in": -0.2162803733912635
+    },
+    {
+      "bent": "EB2",
+      "wall": 2,
+      "pile": 1,
+      "d_ft": 1.9188434254648594,
+      "max_width_in": 0,
+      "required_angle_deg": 36.127653470349244,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -1.0,
+      "minus_edge_gap_in": -1.0
+    },
+    {
+      "bent": "EB2",
+      "wall": 2,
+      "pile": 2,
+      "d_ft": 6.418843424506551,
+      "max_width_in": 17.825791571187274,
+      "required_angle_deg": 8.371774397456381,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -1.0,
+      "minus_edge_gap_in": -1.0
+    },
+    {
+      "bent": "EB2",
+      "wall": 2,
+      "pile": 3,
+      "d_ft": 10.91884342354823,
+      "max_width_in": 45.77824843630677,
+      "required_angle_deg": 4.686559579320931,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -1.0,
+      "minus_edge_gap_in": -1.0
+    },
+    {
+      "bent": "EB2",
+      "wall": 2,
+      "pile": 4,
+      "d_ft": 15.418843422589921,
+      "max_width_in": 73.73070530142631,
+      "required_angle_deg": 3.252051077469075,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -1.0,
+      "minus_edge_gap_in": -1.0
+    },
+    {
+      "bent": "EB2",
+      "wall": 3,
+      "pile": 1,
+      "d_ft": 15.414425175109239,
+      "max_width_in": 73.70326066317088,
+      "required_angle_deg": 3.2530291009736656,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -1.0,
+      "minus_edge_gap_in": -1.0
+    },
+    {
+      "bent": "EB2",
+      "wall": 3,
+      "pile": 2,
+      "d_ft": 10.914425176067551,
+      "max_width_in": 45.75080379805134,
+      "required_angle_deg": 4.688589004225084,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -1.0,
+      "minus_edge_gap_in": -1.0
+    },
+    {
+      "bent": "EB2",
+      "wall": 3,
+      "pile": 3,
+      "d_ft": 6.414425177025869,
+      "max_width_in": 17.798346932931842,
+      "required_angle_deg": 8.378225564134224,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -1.0,
+      "minus_edge_gap_in": -1.0
+    },
+    {
+      "bent": "EB2",
+      "wall": 3,
+      "pile": 4,
+      "d_ft": 1.9144251779841792,
+      "max_width_in": 0,
+      "required_angle_deg": 36.23560195970729,
+      "plus": "FAIL",
+      "minus": "FAIL",
+      "plus_edge_gap_in": -1.0,
+      "minus_edge_gap_in": -1.0
+    }
+  ],
+  "bpad_sha256": "b5fd3da5e88e904b525f914ca584ee6d598e3ee388fc64a93074301327a8ea3c",
+  "independent_display_caches": 1122,
+  "native_review": {
+    "recalculation": false,
+    "appearance": false,
+    "reason": "Computer Use was not approved to use Blockpad."
+  },
+  "preview": "Independent plan preview and direct PlotLines geometry render; not native pagination.",
+  "source_model_and_journal_unchanged": true
+}
