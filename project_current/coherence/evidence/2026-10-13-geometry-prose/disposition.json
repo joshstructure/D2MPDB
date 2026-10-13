@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-13",
+  "decision": "D-025",
+  "source_id": "GEOMETRY",
+  "path": "Bridge_Geometry_2 Beam_V2.ipynb",
+  "hash_basis": "lf_text",
+  "previous_sha256": "974b6b4fe3ae79bb89831f6b332f46745c77f0c83ac673f19e6de4c30f4b0027",
+  "sha256": "f222fe4cd0d695786101295736928be11f07b0b70eba55493a30cfaea4644400",
+  "authorization": "User request to update only the stale Section 1 prose so it matches the current CONFIG cambers adopted under D-022/D-023, without changing CONFIG, equations or code behavior, and to record the disposition required by project_current/AGENTS.md.",
+  "change": {
+    "cell_id": "bridge-01",
+    "cell_heading": "## 1. Inputs, equations and source of truth",
+    "changed_source_line_indices": [6, 16],
+    "replacements": [
+      {
+        "before": "saved 120-day net cambers of **0.0304554386 in for Span 1** and **0.4830954172 in for Span 2**.",
+        "after": "saved 120-day net cambers of **0.124592744 in for Span 1** and **0.567171463 in for Span 2**."
+      },
+      {
+        "before": "the minimum flange haunch is **0.95264 in in Span 1** and **0.50000 in in Span 2**;",
+        "after": "the minimum flange haunch is **0.94258 in in Span 1** and **0.50000 in in Span 2**;"
+      }
+    ],
+    "unchanged": "Every other cell (code, outputs, metadata), the notebook metadata and the CRLF/LF line-ending count are identical, so CONFIG, equations and code behavior are unchanged. No other markdown cell cites a camber or haunch value; the superseded values appeared nowhere else in the notebook."
+  },
+  "value_basis": {
+    "cambers": "CONFIG['spans'][*].camber_in and CONFIG['camber_basis'][*].net_camber_in are 0.12459274400657395 in (Span 1) and 0.5671714630550072 in (Span 2), the saved NetCamber values selected under D-022/D-023. The prose quotes them to the nine decimals used in project_current/mathcad/README.md.",
+    "midpoint_haunch": "Computed, not estimated: BridgeModel(CONFIG).camber_summary() column 'Midpoint min flange haunch (in)' gives 0.9425787190482993 at the Span 1 bearing midpoint (1646.9575 ft) and 0.4999999999999716 at the Span 2 bearing midpoint (1752.9575 ft), with common support drop 3.7147642885879173 ft. The model was built the same way as tests/test_bridge_physical_geometry.load_model. The values are identical before and after the edit.",
+    "superseded_prose_values": "0.0304554386 / 0.4830954172 in cambers and the 0.95264 / 0.50000 in haunches correspond to the 9 October worksheets superseded by D-022."
+  },
+  "downstream_review": [
+    {
+      "consumer": "CAD-MODEL",
+      "result": "No rebuild required. The notebook model ID (configuration_id) is 34ec9ea573 before and after the edit. It equals notebook_model_id in project_current/geometry/freecad/manifest.json and tests/data/bridge_native_sections.json. No notebook code reads or hashes the notebook file, so the CAD export payload is unchanged."
+    },
+    {
+      "consumer": "Historical evidence",
+      "result": "project_current/geometry/freecad/evidence/2026-10-12-cambers/notebook-update.json and update-summary.json keep the D-023-time notebook fingerprint 974b6b4f... as historical records and are not edited."
+    }
+  ],
+  "verification": {
+    "test_modules": [
+      "tests/test_bridge_geometry_notebook.py",
+      "tests/test_bridge_physical_geometry.py",
+      "tests/test_bridge_interactive_report.py",
+      "tests/test_bridge_geometry_authority.py",
+      "tests/test_bridge_notebook_workflow.py",
+      "tests/test_project_coherence.py"
+    ],
+    "result": "49 of 50 tests pass (35 of the 36 geometry tests and all 14 coherence-tool tests).",
+    "pre_existing_failure": "test_bridge_physical_geometry.PhysicalGeometryTests.test_sections_match_native_saved_solids fails at its CAD-file hash assertion with the same message on an unmodified HEAD (cc760ad) export. The D-024 model bytes (7368774487c1456238df13c80e33ddf3871907982ff91938e1ae1b4eebf52676) differ from the D-023 native-section reference (e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118). That failure is independent of this prose change and is not addressed here. Its preceding notebook model-ID assertion passes.",
+    "coherence_before_adoption": "SOURCE:GEOMETRY was CHANGED (actual f222fe4c...) and DEP:CAD-MODEL:GEOMETRY was REVIEW. All other check results matched the pre-edit baseline."
+  },
+  "not_performed": "No native Mathcad or FreeCAD recalculation, CAD rebuild, tracker workbook edit, or change to D-023 evidence records. COH-017 and COH-018 retain their existing scope."
+}

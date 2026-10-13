@@ -1,7 +1,7 @@
 {
-  "checked_at_utc": "2026-10-12T22:07:05.251542+00:00",
+  "checked_at_utc": "2026-10-13T13:45:23.952414+00:00",
   "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
-  "register_sha256": "e0468a75e5ddfc26759e52c6487338aa08b1da76c5a57caae0106d30cb413536",
+  "register_sha256": "821b63fec7aa207785aa4cfbd41244f2cd4355f6c0729992f183e381bfa7fc35",
   "tracker_sha256": "ff75030a7f3b77edaa26788405a056a1087c166d5c43b3a4fa6a1fb55216e84b",
   "source_count": 26,
   "item_count": 22,
@@ -39,8 +39,8 @@
         "GEOMETRY"
       ],
       "path": "Bridge_Geometry_2 Beam_V2.ipynb",
-      "expected_sha256": "974b6b4fe3ae79bb89831f6b332f46745c77f0c83ac673f19e6de4c30f4b0027",
-      "actual_sha256": "974b6b4fe3ae79bb89831f6b332f46745c77f0c83ac673f19e6de4c30f4b0027"
+      "expected_sha256": "f222fe4cd0d695786101295736928be11f07b0b70eba55493a30cfaea4644400",
+      "actual_sha256": "f222fe4cd0d695786101295736928be11f07b0b70eba55493a30cfaea4644400"
     },
     {
       "check_id": "SOURCE:ROADWAY",
@@ -226,8 +226,8 @@
         "CAD-MODEL"
       ],
       "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-      "expected_sha256": "e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118",
-      "actual_sha256": "e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118"
+      "expected_sha256": "7368774487c1456238df13c80e33ddf3871907982ff91938e1ae1b4eebf52676",
+      "actual_sha256": "7368774487c1456238df13c80e33ddf3871907982ff91938e1ae1b4eebf52676"
     },
     {
       "check_id": "SOURCE:CAD-RUNTIME",
@@ -237,8 +237,8 @@
         "CAD-RUNTIME"
       ],
       "path": "project_current/geometry/freecad/manifest.json",
-      "expected_sha256": "194d483259bb8ec19e214acc6fe0cfb7fa7c9ada24fd4cca7965802001639b82",
-      "actual_sha256": "194d483259bb8ec19e214acc6fe0cfb7fa7c9ada24fd4cca7965802001639b82"
+      "expected_sha256": "cc08aacad4f08980a8d146666d9e1365a25fa501c6d1b10011d63b5db18a01d5",
+      "actual_sha256": "cc08aacad4f08980a8d146666d9e1365a25fa501c6d1b10011d63b5db18a01d5"
     },
     {
       "check_id": "SOURCE:CAD-REPORT",
@@ -248,8 +248,8 @@
         "CAD-REPORT"
       ],
       "path": "project_current/geometry/freecad/evidence/Model-update-report.txt",
-      "expected_sha256": "e45250cb4d98ee8c07bc928cfeae8f754d4a17b6d5e89929e5bd4c58d156f732",
-      "actual_sha256": "e45250cb4d98ee8c07bc928cfeae8f754d4a17b6d5e89929e5bd4c58d156f732"
+      "expected_sha256": "d72d55dd7068cd6ff0e3ce4712411d956b95355202e155a1eda8caa5d2e12e0b",
+      "actual_sha256": "d72d55dd7068cd6ff0e3ce4712411d956b95355202e155a1eda8caa5d2e12e0b"
     },
     {
       "check_id": "SOURCE:BACKWALL-TOOL",
