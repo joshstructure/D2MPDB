@@ -1,0 +1,53 @@
+{
+  "minimum_nominal_in": 37.452853756135966,
+  "placement_allowance_in": 3.0,
+  "minimum_face_clear_in": 51.6490061788426,
+  "adopted_face_clear_in": 51.75,
+  "box_side_in": 121.50037147557498,
+  "row_box_width_in": 283.50037144107574,
+  "row_box_depth_in": 121.503714790249,
+  "checks": [
+    "200 independently computed corner/ray boundaries; 0.01 inch less than each boundary fails",
+    "Quarter-inch upward rounding and box dimensions",
+    "Six width/gap/tolerance/skew scenarios",
+    "All eight centers match registered CAD snapshot; six finite wall/box intersections"
+  ],
+  "scenarios": [
+    {
+      "case": "zero-tolerance",
+      "minimum_face_clear_in": 37.452853756135966,
+      "state": "VALID"
+    },
+    {
+      "case": "one-inch-strap",
+      "minimum_face_clear_in": 49.71715452626446,
+      "state": "VALID"
+    },
+    {
+      "case": "one-inch-gap",
+      "minimum_face_clear_in": 55.51270948399887,
+      "state": "VALID"
+    },
+    {
+      "case": "ten-degree-skew",
+      "minimum_face_clear_in": 76.81520568989356,
+      "state": "VALID"
+    },
+    {
+      "case": "zero-angle",
+      "minimum_face_clear_in": 51.6490061788426,
+      "state": "INVALID - DO NOT USE"
+    },
+    {
+      "case": "excess-skew",
+      "minimum_face_clear_in": 51.6490061788426,
+      "state": "INVALID - DO NOT USE"
+    }
+  ],
+  "native": {
+    "native_file": "tasks\\T008\\native-final-review.bpad",
+    "sha256": "c01d41fd23fe97e0a1899457c665029057c755abef7ff019d322f6c457d84f7e",
+    "native_module_errors": 0,
+    "native_table_and_dimension_values_compared": 67
+  }
+}

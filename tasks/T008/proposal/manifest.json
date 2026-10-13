@@ -1,0 +1,14 @@
+{
+  "task": "T008",
+  "base_sha256": "a78dbced339445d0e7b2403e069b1da4dc12db890516fd997f757dc9a05a83fa",
+  "components": {
+    "report:PedBridge": {
+      "file": "000.xml",
+      "sha256": "a17c13636d9f3a02d3b02e883b83c8800880c82ac5df4c62162942c26519d488"
+    },
+    "report:MSEWallExclusion": {
+      "file": "001.xml",
+      "sha256": "b34e1765dc0fdbad34aae8434c8b44096e7dbc8cba085795af8e7f8d8a2d8d74"
+    }
+  }
+}

@@ -1,0 +1,587 @@
+[
+  {
+    "formula": "PileSize = BridgeGeometry_2Beam.EndBent_pileWidth"
+  },
+  {
+    "formula": "PileSpacing = BridgeGeometry_2Beam.EndBent_pileSpacing"
+  },
+  {
+    "formula": "Tolerance = BridgeGeometry_2Beam.EndBent_pileTolerance"
+  },
+  {
+    "formula": "Width = 2 in"
+  },
+  {
+    "formula": "Clear = 0 in"
+  },
+  {
+    "formula": "α = 15 deg"
+  },
+  {
+    "formula": "RoundStep = 0.25 in"
+  },
+  {
+    "formula": "Half = PileSize/2*(Abs(Sin(FrameAngle))+Abs(Cos(FrameAngle)))"
+  },
+  {
+    "formula": "NominalClear = (Half*Cos(CalcAngle)+Width/2+Clear)/Sin(CalcAngle) to in"
+  },
+  {
+    "formula": "MinClear = Tolerance+((Half+Tolerance)*Cos(CalcAngle)+Width/2+Clear)/Sin(CalcAngle) to in"
+  },
+  {
+    "formula": "LayoutClear = -Floor(-MinClear/Max(RoundStep,0.001 in),1)*Max(RoundStep,0.001 in) to in"
+  },
+  {
+    "formula": "BoxHalf = Half+LayoutClear"
+  },
+  {
+    "formula": "BoxSide = 2*BoxHalf to in"
+  },
+  {
+    "formula": "FrameAngle = -89.9988175443184 deg"
+  },
+  {
+    "formula": "CalcAngle = If(And(α > 0 deg,α <= 15 deg),α,15 deg)"
+  },
+  {
+    "formula": "PileCount = BridgeGeometry_2Beam.EndBent_pileCount"
+  },
+  {
+    "formula": "CapLength = BridgeGeometry_2Beam.EndBentCap_length"
+  },
+  {
+    "formula": "CapWidth = BridgeGeometry_2Beam.EndBentCap_width"
+  },
+  {
+    "formula": "CapX = (CapLength*Abs(Sin(FrameAngle))+CapWidth*Abs(Cos(FrameAngle)))/2"
+  },
+  {
+    "formula": "CapY = (CapWidth*Abs(Sin(FrameAngle))+CapLength*Abs(Cos(FrameAngle)))/2"
+  },
+  {
+    "formula": "InputsValid = And(PileSize > 0 in,PileSpacing > PileSize,PileCount == 4,Width >= 0 in,Clear >= 0 in,Tolerance >= 0 in,α > 0 deg,α <= 15 deg,RoundStep > 0 in)"
+  },
+  {
+    "formula": "InputStatus = If(InputsValid,\"VALID\",\"INVALID - DO NOT USE\")"
+  },
+  {
+    "formula": "TypicalScale = 2.5/(BoxSide/(1 ft))"
+  },
+  {
+    "formula": "PlotScale = Min(6/((3*PileSpacing+BoxSide)/(1 ft)),2.5/((BoxSide+3 ft)/(1 ft)))"
+  },
+  {
+    "formula": "PanelThickness = 0.458333333333333 ft"
+  },
+  {
+    "formula": "Bent1P1x = -1.5*PileSpacing*Abs(Sin(FrameAngle))"
+  },
+  {
+    "formula": "Bent1P1y = -1.5*PileSpacing*Cos(FrameAngle)"
+  },
+  {
+    "formula": "Bent1P2x = -0.5*PileSpacing*Abs(Sin(FrameAngle))"
+  },
+  {
+    "formula": "Bent1P2y = -0.5*PileSpacing*Cos(FrameAngle)"
+  },
+  {
+    "formula": "Bent1P3x = 0.5*PileSpacing*Abs(Sin(FrameAngle))"
+  },
+  {
+    "formula": "Bent1P3y = 0.5*PileSpacing*Cos(FrameAngle)"
+  },
+  {
+    "formula": "Bent1P4x = 1.5*PileSpacing*Abs(Sin(FrameAngle))"
+  },
+  {
+    "formula": "Bent1P4y = 1.5*PileSpacing*Cos(FrameAngle)"
+  },
+  {
+    "formula": "Bent1Left = Bent1P1x-BoxHalf"
+  },
+  {
+    "formula": "Bent1Right = Bent1P4x+BoxHalf"
+  },
+  {
+    "formula": "Bent1Bottom = Min(Bent1P1y,Bent1P4y)-BoxHalf"
+  },
+  {
+    "formula": "Bent1Top = Max(Bent1P1y,Bent1P4y)+BoxHalf"
+  },
+  {
+    "formula": "Bent1TotalX = Bent1Right-Bent1Left"
+  },
+  {
+    "formula": "Bent1TotalY = Bent1Top-Bent1Bottom"
+  },
+  {
+    "formula": "Bent1W1x = -8.66449266016689 ft"
+  },
+  {
+    "formula": "Bent1W1y = -3.84865400014849 ft"
+  },
+  {
+    "formula": "Bent1W1len = 17.333335694482 ft"
+  },
+  {
+    "formula": "Bent1W1tx = 1.0"
+  },
+  {
+    "formula": "Bent1W1ty = 0.0"
+  },
+  {
+    "formula": "Bent1W1nx = -0.0"
+  },
+  {
+    "formula": "Bent1W1ny = 1.0"
+  },
+  {
+    "formula": "Bent1W1xend = Bent1W1x+Bent1W1tx*Bent1W1len"
+  },
+  {
+    "formula": "Bent1W1yend = Bent1W1y+Bent1W1ty*Bent1W1len"
+  },
+  {
+    "formula": "Bent1Wall1Pile1u = (Bent1P1x-Bent1W1x)*Bent1W1tx+(Bent1P1y-Bent1W1y)*Bent1W1ty"
+  },
+  {
+    "formula": "Bent1Wall1Pile1Face = (Bent1P1x-Bent1W1x)*Bent1W1nx+(Bent1P1y-Bent1W1y)*Bent1W1ny-Half"
+  },
+  {
+    "formula": "Bent1Wall1Pile1Extra = Max(0 in,LayoutClear-Bent1Wall1Pile1Face)"
+  },
+  {
+    "formula": "Bent1Wall1Pile2u = (Bent1P2x-Bent1W1x)*Bent1W1tx+(Bent1P2y-Bent1W1y)*Bent1W1ty"
+  },
+  {
+    "formula": "Bent1Wall1Pile2Face = (Bent1P2x-Bent1W1x)*Bent1W1nx+(Bent1P2y-Bent1W1y)*Bent1W1ny-Half"
+  },
+  {
+    "formula": "Bent1Wall1Pile2Extra = Max(0 in,LayoutClear-Bent1Wall1Pile2Face)"
+  },
+  {
+    "formula": "Bent1Wall1Pile3u = (Bent1P3x-Bent1W1x)*Bent1W1tx+(Bent1P3y-Bent1W1y)*Bent1W1ty"
+  },
+  {
+    "formula": "Bent1Wall1Pile3Face = (Bent1P3x-Bent1W1x)*Bent1W1nx+(Bent1P3y-Bent1W1y)*Bent1W1ny-Half"
+  },
+  {
+    "formula": "Bent1Wall1Pile3Extra = Max(0 in,LayoutClear-Bent1Wall1Pile3Face)"
+  },
+  {
+    "formula": "Bent1Wall1Pile4u = (Bent1P4x-Bent1W1x)*Bent1W1tx+(Bent1P4y-Bent1W1y)*Bent1W1ty"
+  },
+  {
+    "formula": "Bent1Wall1Pile4Face = (Bent1P4x-Bent1W1x)*Bent1W1nx+(Bent1P4y-Bent1W1y)*Bent1W1ny-Half"
+  },
+  {
+    "formula": "Bent1Wall1Pile4Extra = Max(0 in,LayoutClear-Bent1Wall1Pile4Face)"
+  },
+  {
+    "formula": "Bent1W1Hit = And(Max(Bent1W1x,Bent1W1xend) > Bent1Left,Min(Bent1W1x,Bent1W1xend) < Bent1Right,Max(Bent1W1y,Bent1W1yend) > Bent1Bottom,Min(Bent1W1y,Bent1W1yend) < Bent1Top)"
+  },
+  {
+    "formula": "Bent1W1Status = If(InputsValid,If(Bent1W1Hit,\"INSIDE BOX\",\"OUTSIDE BOX\"),\"INVALID\")"
+  },
+  {
+    "formula": "Bent1W2x = -8.66449266016689 ft"
+  },
+  {
+    "formula": "Bent1W2y = -3.84865400014849 ft"
+  },
+  {
+    "formula": "Bent1W2len = 22.624998822406 ft"
+  },
+  {
+    "formula": "Bent1W2tx = 0.0"
+  },
+  {
+    "formula": "Bent1W2ty = 1.0"
+  },
+  {
+    "formula": "Bent1W2nx = 1.0"
+  },
+  {
+    "formula": "Bent1W2ny = -0.0"
+  },
+  {
+    "formula": "Bent1W2xend = Bent1W2x+Bent1W2tx*Bent1W2len"
+  },
+  {
+    "formula": "Bent1W2yend = Bent1W2y+Bent1W2ty*Bent1W2len"
+  },
+  {
+    "formula": "Bent1Wall2Pile1u = (Bent1P1x-Bent1W2x)*Bent1W2tx+(Bent1P1y-Bent1W2y)*Bent1W2ty"
+  },
+  {
+    "formula": "Bent1Wall2Pile1Face = (Bent1P1x-Bent1W2x)*Bent1W2nx+(Bent1P1y-Bent1W2y)*Bent1W2ny-Half"
+  },
+  {
+    "formula": "Bent1Wall2Pile1Extra = Max(0 in,LayoutClear-Bent1Wall2Pile1Face)"
+  },
+  {
+    "formula": "Bent1Wall2Pile2u = (Bent1P2x-Bent1W2x)*Bent1W2tx+(Bent1P2y-Bent1W2y)*Bent1W2ty"
+  },
+  {
+    "formula": "Bent1Wall2Pile2Face = (Bent1P2x-Bent1W2x)*Bent1W2nx+(Bent1P2y-Bent1W2y)*Bent1W2ny-Half"
+  },
+  {
+    "formula": "Bent1Wall2Pile2Extra = Max(0 in,LayoutClear-Bent1Wall2Pile2Face)"
+  },
+  {
+    "formula": "Bent1Wall2Pile3u = (Bent1P3x-Bent1W2x)*Bent1W2tx+(Bent1P3y-Bent1W2y)*Bent1W2ty"
+  },
+  {
+    "formula": "Bent1Wall2Pile3Face = (Bent1P3x-Bent1W2x)*Bent1W2nx+(Bent1P3y-Bent1W2y)*Bent1W2ny-Half"
+  },
+  {
+    "formula": "Bent1Wall2Pile3Extra = Max(0 in,LayoutClear-Bent1Wall2Pile3Face)"
+  },
+  {
+    "formula": "Bent1Wall2Pile4u = (Bent1P4x-Bent1W2x)*Bent1W2tx+(Bent1P4y-Bent1W2y)*Bent1W2ty"
+  },
+  {
+    "formula": "Bent1Wall2Pile4Face = (Bent1P4x-Bent1W2x)*Bent1W2nx+(Bent1P4y-Bent1W2y)*Bent1W2ny-Half"
+  },
+  {
+    "formula": "Bent1Wall2Pile4Extra = Max(0 in,LayoutClear-Bent1Wall2Pile4Face)"
+  },
+  {
+    "formula": "Bent1W2Hit = And(Max(Bent1W2x,Bent1W2xend) > Bent1Left,Min(Bent1W2x,Bent1W2xend) < Bent1Right,Max(Bent1W2y,Bent1W2yend) > Bent1Bottom,Min(Bent1W2y,Bent1W2yend) < Bent1Top)"
+  },
+  {
+    "formula": "Bent1W2Status = If(InputsValid,If(Bent1W2Hit,\"INSIDE BOX\",\"OUTSIDE BOX\"),\"INVALID\")"
+  },
+  {
+    "formula": "Bent1W3x = 8.66884303431515 ft"
+  },
+  {
+    "formula": "Bent1W3y = -3.84865400014849 ft"
+  },
+  {
+    "formula": "Bent1W3len = 9.66666607722765 ft"
+  },
+  {
+    "formula": "Bent1W3tx = 0.0"
+  },
+  {
+    "formula": "Bent1W3ty = 1.0"
+  },
+  {
+    "formula": "Bent1W3nx = -1.0"
+  },
+  {
+    "formula": "Bent1W3ny = -0.0"
+  },
+  {
+    "formula": "Bent1W3xend = Bent1W3x+Bent1W3tx*Bent1W3len"
+  },
+  {
+    "formula": "Bent1W3yend = Bent1W3y+Bent1W3ty*Bent1W3len"
+  },
+  {
+    "formula": "Bent1Wall3Pile1u = (Bent1P1x-Bent1W3x)*Bent1W3tx+(Bent1P1y-Bent1W3y)*Bent1W3ty"
+  },
+  {
+    "formula": "Bent1Wall3Pile1Face = (Bent1P1x-Bent1W3x)*Bent1W3nx+(Bent1P1y-Bent1W3y)*Bent1W3ny-Half"
+  },
+  {
+    "formula": "Bent1Wall3Pile1Extra = Max(0 in,LayoutClear-Bent1Wall3Pile1Face)"
+  },
+  {
+    "formula": "Bent1Wall3Pile2u = (Bent1P2x-Bent1W3x)*Bent1W3tx+(Bent1P2y-Bent1W3y)*Bent1W3ty"
+  },
+  {
+    "formula": "Bent1Wall3Pile2Face = (Bent1P2x-Bent1W3x)*Bent1W3nx+(Bent1P2y-Bent1W3y)*Bent1W3ny-Half"
+  },
+  {
+    "formula": "Bent1Wall3Pile2Extra = Max(0 in,LayoutClear-Bent1Wall3Pile2Face)"
+  },
+  {
+    "formula": "Bent1Wall3Pile3u = (Bent1P3x-Bent1W3x)*Bent1W3tx+(Bent1P3y-Bent1W3y)*Bent1W3ty"
+  },
+  {
+    "formula": "Bent1Wall3Pile3Face = (Bent1P3x-Bent1W3x)*Bent1W3nx+(Bent1P3y-Bent1W3y)*Bent1W3ny-Half"
+  },
+  {
+    "formula": "Bent1Wall3Pile3Extra = Max(0 in,LayoutClear-Bent1Wall3Pile3Face)"
+  },
+  {
+    "formula": "Bent1Wall3Pile4u = (Bent1P4x-Bent1W3x)*Bent1W3tx+(Bent1P4y-Bent1W3y)*Bent1W3ty"
+  },
+  {
+    "formula": "Bent1Wall3Pile4Face = (Bent1P4x-Bent1W3x)*Bent1W3nx+(Bent1P4y-Bent1W3y)*Bent1W3ny-Half"
+  },
+  {
+    "formula": "Bent1Wall3Pile4Extra = Max(0 in,LayoutClear-Bent1Wall3Pile4Face)"
+  },
+  {
+    "formula": "Bent1W3Hit = And(Max(Bent1W3x,Bent1W3xend) > Bent1Left,Min(Bent1W3x,Bent1W3xend) < Bent1Right,Max(Bent1W3y,Bent1W3yend) > Bent1Bottom,Min(Bent1W3y,Bent1W3yend) < Bent1Top)"
+  },
+  {
+    "formula": "Bent1W3Status = If(InputsValid,If(Bent1W3Hit,\"INSIDE BOX\",\"OUTSIDE BOX\"),\"INVALID\")"
+  },
+  {
+    "formula": "Bent1CapGap = -Bent1W1x*Bent1W1nx-Bent1W1y*Bent1W1ny-CapX*Abs(Bent1W1nx)-CapY*Abs(Bent1W1ny)"
+  },
+  {
+    "formula": "Bent1CapStatus = If(Bent1CapGap >= 24 in,\"✓ PASS\",\"⊗ FAIL\")"
+  },
+  {
+    "formula": "Bent2P1x = -1.5*PileSpacing*Abs(Sin(FrameAngle))"
+  },
+  {
+    "formula": "Bent2P1y = 1.5*PileSpacing*Cos(FrameAngle)"
+  },
+  {
+    "formula": "Bent2P2x = -0.5*PileSpacing*Abs(Sin(FrameAngle))"
+  },
+  {
+    "formula": "Bent2P2y = 0.5*PileSpacing*Cos(FrameAngle)"
+  },
+  {
+    "formula": "Bent2P3x = 0.5*PileSpacing*Abs(Sin(FrameAngle))"
+  },
+  {
+    "formula": "Bent2P3y = -0.5*PileSpacing*Cos(FrameAngle)"
+  },
+  {
+    "formula": "Bent2P4x = 1.5*PileSpacing*Abs(Sin(FrameAngle))"
+  },
+  {
+    "formula": "Bent2P4y = -1.5*PileSpacing*Cos(FrameAngle)"
+  },
+  {
+    "formula": "Bent2Left = Bent2P1x-BoxHalf"
+  },
+  {
+    "formula": "Bent2Right = Bent2P4x+BoxHalf"
+  },
+  {
+    "formula": "Bent2Bottom = Min(Bent2P1y,Bent2P4y)-BoxHalf"
+  },
+  {
+    "formula": "Bent2Top = Max(Bent2P1y,Bent2P4y)+BoxHalf"
+  },
+  {
+    "formula": "Bent2TotalX = Bent2Right-Bent2Left"
+  },
+  {
+    "formula": "Bent2TotalY = Bent2Top-Bent2Bottom"
+  },
+  {
+    "formula": "Bent2W1x = -8.66884342402739 ft"
+  },
+  {
+    "formula": "Bent2W1y = -3.80158899647901 ft"
+  },
+  {
+    "formula": "Bent2W1len = 17.3332686005741 ft"
+  },
+  {
+    "formula": "Bent2W1tx = 1.0"
+  },
+  {
+    "formula": "Bent2W1ty = -0.0"
+  },
+  {
+    "formula": "Bent2W1nx = -0.0"
+  },
+  {
+    "formula": "Bent2W1ny = 1.0"
+  },
+  {
+    "formula": "Bent2W1xend = Bent2W1x+Bent2W1tx*Bent2W1len"
+  },
+  {
+    "formula": "Bent2W1yend = Bent2W1y+Bent2W1ty*Bent2W1len"
+  },
+  {
+    "formula": "Bent2Wall1Pile1u = (Bent2P1x-Bent2W1x)*Bent2W1tx+(Bent2P1y-Bent2W1y)*Bent2W1ty"
+  },
+  {
+    "formula": "Bent2Wall1Pile1Face = (Bent2P1x-Bent2W1x)*Bent2W1nx+(Bent2P1y-Bent2W1y)*Bent2W1ny-Half"
+  },
+  {
+    "formula": "Bent2Wall1Pile1Extra = Max(0 in,LayoutClear-Bent2Wall1Pile1Face)"
+  },
+  {
+    "formula": "Bent2Wall1Pile2u = (Bent2P2x-Bent2W1x)*Bent2W1tx+(Bent2P2y-Bent2W1y)*Bent2W1ty"
+  },
+  {
+    "formula": "Bent2Wall1Pile2Face = (Bent2P2x-Bent2W1x)*Bent2W1nx+(Bent2P2y-Bent2W1y)*Bent2W1ny-Half"
+  },
+  {
+    "formula": "Bent2Wall1Pile2Extra = Max(0 in,LayoutClear-Bent2Wall1Pile2Face)"
+  },
+  {
+    "formula": "Bent2Wall1Pile3u = (Bent2P3x-Bent2W1x)*Bent2W1tx+(Bent2P3y-Bent2W1y)*Bent2W1ty"
+  },
+  {
+    "formula": "Bent2Wall1Pile3Face = (Bent2P3x-Bent2W1x)*Bent2W1nx+(Bent2P3y-Bent2W1y)*Bent2W1ny-Half"
+  },
+  {
+    "formula": "Bent2Wall1Pile3Extra = Max(0 in,LayoutClear-Bent2Wall1Pile3Face)"
+  },
+  {
+    "formula": "Bent2Wall1Pile4u = (Bent2P4x-Bent2W1x)*Bent2W1tx+(Bent2P4y-Bent2W1y)*Bent2W1ty"
+  },
+  {
+    "formula": "Bent2Wall1Pile4Face = (Bent2P4x-Bent2W1x)*Bent2W1nx+(Bent2P4y-Bent2W1y)*Bent2W1ny-Half"
+  },
+  {
+    "formula": "Bent2Wall1Pile4Extra = Max(0 in,LayoutClear-Bent2Wall1Pile4Face)"
+  },
+  {
+    "formula": "Bent2W1Hit = And(Max(Bent2W1x,Bent2W1xend) > Bent2Left,Min(Bent2W1x,Bent2W1xend) < Bent2Right,Max(Bent2W1y,Bent2W1yend) > Bent2Bottom,Min(Bent2W1y,Bent2W1yend) < Bent2Top)"
+  },
+  {
+    "formula": "Bent2W1Status = If(InputsValid,If(Bent2W1Hit,\"INSIDE BOX\",\"OUTSIDE BOX\"),\"INVALID\")"
+  },
+  {
+    "formula": "Bent2W2x = -8.66884342402739 ft"
+  },
+  {
+    "formula": "Bent2W2y = 41.0730327708297 ft"
+  },
+  {
+    "formula": "Bent2W2len = 44.8746217673087 ft"
+  },
+  {
+    "formula": "Bent2W2tx = 0.0"
+  },
+  {
+    "formula": "Bent2W2ty = -1.0"
+  },
+  {
+    "formula": "Bent2W2nx = 1.0"
+  },
+  {
+    "formula": "Bent2W2ny = 0.0"
+  },
+  {
+    "formula": "Bent2W2xend = Bent2W2x+Bent2W2tx*Bent2W2len"
+  },
+  {
+    "formula": "Bent2W2yend = Bent2W2y+Bent2W2ty*Bent2W2len"
+  },
+  {
+    "formula": "Bent2Wall2Pile1u = (Bent2P1x-Bent2W2x)*Bent2W2tx+(Bent2P1y-Bent2W2y)*Bent2W2ty"
+  },
+  {
+    "formula": "Bent2Wall2Pile1Face = (Bent2P1x-Bent2W2x)*Bent2W2nx+(Bent2P1y-Bent2W2y)*Bent2W2ny-Half"
+  },
+  {
+    "formula": "Bent2Wall2Pile1Extra = Max(0 in,LayoutClear-Bent2Wall2Pile1Face)"
+  },
+  {
+    "formula": "Bent2Wall2Pile2u = (Bent2P2x-Bent2W2x)*Bent2W2tx+(Bent2P2y-Bent2W2y)*Bent2W2ty"
+  },
+  {
+    "formula": "Bent2Wall2Pile2Face = (Bent2P2x-Bent2W2x)*Bent2W2nx+(Bent2P2y-Bent2W2y)*Bent2W2ny-Half"
+  },
+  {
+    "formula": "Bent2Wall2Pile2Extra = Max(0 in,LayoutClear-Bent2Wall2Pile2Face)"
+  },
+  {
+    "formula": "Bent2Wall2Pile3u = (Bent2P3x-Bent2W2x)*Bent2W2tx+(Bent2P3y-Bent2W2y)*Bent2W2ty"
+  },
+  {
+    "formula": "Bent2Wall2Pile3Face = (Bent2P3x-Bent2W2x)*Bent2W2nx+(Bent2P3y-Bent2W2y)*Bent2W2ny-Half"
+  },
+  {
+    "formula": "Bent2Wall2Pile3Extra = Max(0 in,LayoutClear-Bent2Wall2Pile3Face)"
+  },
+  {
+    "formula": "Bent2Wall2Pile4u = (Bent2P4x-Bent2W2x)*Bent2W2tx+(Bent2P4y-Bent2W2y)*Bent2W2ty"
+  },
+  {
+    "formula": "Bent2Wall2Pile4Face = (Bent2P4x-Bent2W2x)*Bent2W2nx+(Bent2P4y-Bent2W2y)*Bent2W2ny-Half"
+  },
+  {
+    "formula": "Bent2Wall2Pile4Extra = Max(0 in,LayoutClear-Bent2Wall2Pile4Face)"
+  },
+  {
+    "formula": "Bent2W2Hit = And(Max(Bent2W2x,Bent2W2xend) > Bent2Left,Min(Bent2W2x,Bent2W2xend) < Bent2Right,Max(Bent2W2y,Bent2W2yend) > Bent2Bottom,Min(Bent2W2y,Bent2W2yend) < Bent2Top)"
+  },
+  {
+    "formula": "Bent2W2Status = If(InputsValid,If(Bent2W2Hit,\"INSIDE BOX\",\"OUTSIDE BOX\"),\"INVALID\")"
+  },
+  {
+    "formula": "Bent2W3x = 8.66442517654671 ft"
+  },
+  {
+    "formula": "Bent2W3y = 2.19841103276201 ft"
+  },
+  {
+    "formula": "Bent2W3len = 6.00000002924105 ft"
+  },
+  {
+    "formula": "Bent2W3tx = 0.0"
+  },
+  {
+    "formula": "Bent2W3ty = -1.0"
+  },
+  {
+    "formula": "Bent2W3nx = -1.0"
+  },
+  {
+    "formula": "Bent2W3ny = 0.0"
+  },
+  {
+    "formula": "Bent2W3xend = Bent2W3x+Bent2W3tx*Bent2W3len"
+  },
+  {
+    "formula": "Bent2W3yend = Bent2W3y+Bent2W3ty*Bent2W3len"
+  },
+  {
+    "formula": "Bent2Wall3Pile1u = (Bent2P1x-Bent2W3x)*Bent2W3tx+(Bent2P1y-Bent2W3y)*Bent2W3ty"
+  },
+  {
+    "formula": "Bent2Wall3Pile1Face = (Bent2P1x-Bent2W3x)*Bent2W3nx+(Bent2P1y-Bent2W3y)*Bent2W3ny-Half"
+  },
+  {
+    "formula": "Bent2Wall3Pile1Extra = Max(0 in,LayoutClear-Bent2Wall3Pile1Face)"
+  },
+  {
+    "formula": "Bent2Wall3Pile2u = (Bent2P2x-Bent2W3x)*Bent2W3tx+(Bent2P2y-Bent2W3y)*Bent2W3ty"
+  },
+  {
+    "formula": "Bent2Wall3Pile2Face = (Bent2P2x-Bent2W3x)*Bent2W3nx+(Bent2P2y-Bent2W3y)*Bent2W3ny-Half"
+  },
+  {
+    "formula": "Bent2Wall3Pile2Extra = Max(0 in,LayoutClear-Bent2Wall3Pile2Face)"
+  },
+  {
+    "formula": "Bent2Wall3Pile3u = (Bent2P3x-Bent2W3x)*Bent2W3tx+(Bent2P3y-Bent2W3y)*Bent2W3ty"
+  },
+  {
+    "formula": "Bent2Wall3Pile3Face = (Bent2P3x-Bent2W3x)*Bent2W3nx+(Bent2P3y-Bent2W3y)*Bent2W3ny-Half"
+  },
+  {
+    "formula": "Bent2Wall3Pile3Extra = Max(0 in,LayoutClear-Bent2Wall3Pile3Face)"
+  },
+  {
+    "formula": "Bent2Wall3Pile4u = (Bent2P4x-Bent2W3x)*Bent2W3tx+(Bent2P4y-Bent2W3y)*Bent2W3ty"
+  },
+  {
+    "formula": "Bent2Wall3Pile4Face = (Bent2P4x-Bent2W3x)*Bent2W3nx+(Bent2P4y-Bent2W3y)*Bent2W3ny-Half"
+  },
+  {
+    "formula": "Bent2Wall3Pile4Extra = Max(0 in,LayoutClear-Bent2Wall3Pile4Face)"
+  },
+  {
+    "formula": "Bent2W3Hit = And(Max(Bent2W3x,Bent2W3xend) > Bent2Left,Min(Bent2W3x,Bent2W3xend) < Bent2Right,Max(Bent2W3y,Bent2W3yend) > Bent2Bottom,Min(Bent2W3y,Bent2W3yend) < Bent2Top)"
+  },
+  {
+    "formula": "Bent2W3Status = If(InputsValid,If(Bent2W3Hit,\"INSIDE BOX\",\"OUTSIDE BOX\"),\"INVALID\")"
+  },
+  {
+    "formula": "Bent2CapGap = -Bent2W1x*Bent2W1nx-Bent2W1y*Bent2W1ny-CapX*Abs(Bent2W1nx)-CapY*Abs(Bent2W1ny)"
+  },
+  {
+    "formula": "Bent2CapStatus = If(Bent2CapGap >= 24 in,\"✓ PASS\",\"⊗ FAIL\")"
+  }
+]

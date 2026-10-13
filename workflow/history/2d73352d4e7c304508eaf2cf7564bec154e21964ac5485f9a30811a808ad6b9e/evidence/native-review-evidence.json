@@ -1,0 +1,33 @@
+{
+  "candidate_sha256": "2d73352d4e7c304508eaf2cf7564bec154e21964ac5485f9a30811a808ad6b9e",
+  "native_save_sha256": "c01d41fd23fe97e0a1899457c665029057c755abef7ff019d322f6c457d84f7e",
+  "native_module_sha256": "b34e1765dc0fdbad34aae8434c8b44096e7dbc8cba085795af8e7f8d8a2d8d74",
+  "native_module_byte_identical_to_candidate": true,
+  "review_date": "2026-10-13",
+  "reviewer": "Codex - bounded geometry, formula, and native appearance review",
+  "native_review": [
+    "Opened exact final candidate in Blockpad and allowed dependency resolution/recalculation",
+    "Reviewed the project index and used Follow Link to navigate to MSEWallExclusion",
+    "Saved the final candidate through native Save As to tasks/T008/native-final-review.bpad; all formulas matched and all 67 numerical/text table and dimension values agreed with independent calculation",
+    "Native-saved final evidence is byte-identical to the previously reviewed five-page native copy",
+    "All five pages reviewed: typical box, inputs/derivation, End Bent 1, End Bent 2, separate cap checks and scope notes",
+    "Live input trial: strap width changed 2 to 1 inch; clearance changed 51.75 to 49.75 inches and all four box labels followed; undo restored exact original formulas"
+  ],
+  "engineering_review": {
+    "scope": "Centered straight strip against conservative nominal square-pile envelope, with coordinate placement allowance, for wall faces parallel to drawing axes",
+    "boundary": "(S-t) sin(alpha) - (h+t) cos(alpha) = w/2+c; explicit finite-width normal separation and both plan-coordinate tolerances",
+    "checks": "Independent ray/corner boundaries, upward rounding, sensitivities, source pile coordinates, finite wall/box intersections, native values",
+    "outcome": "Current front and both return faces at both end bents intersect the conservative pile exclusion boxes. Separate cap-front 24-inch checks pass.",
+    "limitations": "2-inch trial strap and zero added edge clearance; vendor and construction dimensions remain to be confirmed. Outside a box only satisfies this screen; complete routing, elevation, connection/development and structural wall design excluded."
+  },
+  "preservation": {
+    "unchanged_existing_components": 269,
+    "only_existing_component_changed": "report:PedBridge (one index link)",
+    "added_modules": [
+      "report:MSEWallExclusion"
+    ],
+    "preserved_document_shell": true
+  },
+  "whole_journal_design_approval": false,
+  "checked_at_utc": "2026-10-13T16:26:53.368708+00:00"
+}

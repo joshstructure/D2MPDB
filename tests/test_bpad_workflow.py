@@ -179,6 +179,56 @@ class WorkflowTests(unittest.TestCase):
         with self.assertRaisesRegex(w.WorkflowError, "Prerequisite"):
             w.check(self.root, "T002")
 
+    def test_registered_module_addition_preserves_existing_bytes_and_restores(self):
+        w.prepare(self.root, "T008", "Append geometry check", ["Notes"], add_names=["report:WallCheck"])
+        package = self.root / "tasks/T008"
+        mapping = w.read_json(package / "components.json")
+        fragment = b'<report name="WallCheck"><paragraph><dynexp formula="Setback = Geometry.h"/></paragraph></report>'
+        (package / "components" / mapping["report:WallCheck"]).write_bytes(fragment)
+        w.import_components(self.root, "T008")
+        candidate, report = w.check(self.root, "T008")
+        base = w.Journal(SAMPLE)
+        self.assertEqual(candidate.shell, base.shell)
+        self.assertEqual(report["added_components"], ["report:WallCheck"])
+        for key in base.order:
+            self.assertEqual(base.part(key), candidate.part(key))
+        self.assertEqual(candidate.part("report:WallCheck"), fragment)
+        w.assemble(self.root, "T008", self.root / "generated/addition")
+        (package / "working.bpad").unlink()
+        w.restore_task(self.root, "T008")
+        self.assertEqual((package / "working.bpad").read_bytes(), candidate.data)
+
+    def test_registered_addition_rejects_unregistered_module_and_reordering(self):
+        w.prepare(self.root, "T008", "Append", [], add_names=["report:WallCheck"])
+        base = w.Journal(SAMPLE)
+        fragment = b'<report name="WallCheck"/>'
+        data = base.replace({"report:WallCheck": fragment}, ["report:WallCheck"])
+        with self.assertRaisesRegex(w.WorkflowError, "addition/removal"):
+            w.check(self.root, "T008", data.replace(fragment, b'<report name="Other"/>'))
+        moved = data.replace(fragment, b'').replace(b'<report name="Geometry">', fragment+b'<report name="Geometry">')
+        with self.assertRaisesRegex(w.WorkflowError, "addition/removal"):
+            w.check(self.root, "T008", moved)
+
+    def test_added_module_errors_and_broken_links_are_rejected(self):
+        w.prepare(self.root, "T008", "Append", [], add_names=["report:WallCheck"])
+        base = w.Journal(SAMPLE)
+        for content, message in [(b'<error>bad math</error>', 'New stored native errors'), (b'<link address="#Missing"/>', 'New structural issues')]:
+            fragment = b'<report name="WallCheck"><paragraph>'+content+b'</paragraph></report>'
+            data = base.replace({"report:WallCheck":fragment}, ["report:WallCheck"])
+            with self.assertRaisesRegex(w.WorkflowError, message):
+                w.check(self.root, "T008", data)
+
+    def test_addition_watches_all_existing_components(self):
+        w.prepare(self.root, "T008", "Append", [], add_names=["report:WallCheck"])
+        self.edit_current(b"h = 4 ft", b"h = 5 ft")
+        with self.assertRaisesRegex(w.WorkflowError, "Stale upstream"):
+            w.check(self.root, "T008")
+
+    def test_addition_scope_rejects_existing_identity_resources_and_duplicate_names(self):
+        for adds in [["report:Geometry"], ["resource:Image"], ["report:New", "drawing:New"]]:
+            with self.assertRaises(w.WorkflowError):
+                w.prepare(self.root, "T008", "Append", [], add_names=adds)
+
     def test_assembly_does_not_change_current_and_requires_review(self):
         self.prepare()
         self.edit("T001", b"Original notes", b"Revised notes")

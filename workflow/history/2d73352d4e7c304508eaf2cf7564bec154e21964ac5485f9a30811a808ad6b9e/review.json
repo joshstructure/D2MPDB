@@ -1,0 +1,29 @@
+{
+  "candidate_sha256": "2d73352d4e7c304508eaf2cf7564bec154e21964ac5485f9a30811a808ad6b9e",
+  "reviewer": "Codex - bounded geometry, formula, and native appearance review",
+  "native_recalculation": true,
+  "native_visual_review": true,
+  "engineering_review": true,
+  "design_outcome": "fails",
+  "external_analysis_disposition": "This task adds a bounded geometric screen. The fingerprinted CAD wall layout and its eight pile-center coordinates were checked. FreeCAD geometry and all structural-analysis inputs/results are unchanged. Vendor-specific reinforcement, full routing, foundation forces, wall stability and other external structural results are outside this acceptance.",
+  "external_analysis_status": "excluded_from_accepted_scope",
+  "inherited_issues_disposition": "All 269 unassigned components and the original document shell are byte-identical to the accepted base. PedBridge receives one tested index link. The added module has zero native errors; all 67 table/dimension values agree with independent equations. Unrelated inherited journal calculations and overall design currency are not accepted by this bounded review.",
+  "evidence_files": [
+    {
+      "path": "native-review-evidence.json",
+      "sha256": "8965ac80a78f18d12364bb86f3c0f8528962824dcfa4c9975231a8425456c276"
+    },
+    {
+      "path": "independent-checks.json",
+      "sha256": "888d011272176acf95514ecf1a24e9ee700f6060e660a87cb2d24f0764ce8994"
+    },
+    {
+      "path": "workflow-tests.txt",
+      "sha256": "4b6164ca8e16167a78787195202916a4e17ac025e5a05e7ee1a72f2e819c19bd"
+    },
+    {
+      "path": "native-reviewed-module.xml",
+      "sha256": "b34e1765dc0fdbad34aae8434c8b44096e7dbc8cba085795af8e7f8d8a2d8d74"
+    }
+  ]
+}

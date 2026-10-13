@@ -163,14 +163,16 @@ class Journal:
         begin, end = self.spans[key]
         return self.data[begin:end]
 
-    def replace(self, replacements):
-        require(set(replacements) <= self.spans.keys(), "Adding components requires a separate topology change.")
+    def replace(self, replacements, allowed_additions=()):
+        require(set(replacements) <= self.spans.keys() | set(allowed_additions), "Adding components requires a separate topology change.")
         parts = []
         cursor = 0
         for key in self.order:
             begin, end = self.spans[key]
             parts.extend((self.data[cursor:begin], replacements.get(key, self.data[begin:end])))
             cursor = end
+        # Append registered modules without changing the original document shell.
+        parts.extend(replacements[k] for k in allowed_additions if k in replacements and k not in self.spans)
         parts.append(self.data[cursor:])
         return b"".join(parts)
 
@@ -181,13 +183,15 @@ class Journal:
         require(len(matches) == 1, f"Use an exact component key for {name!r}; found {matches}")
         return matches[0]
 
-    def changes(self, other, allowed_deletions=()):
+    def changes(self, other, allowed_deletions=(), allowed_additions=()):
         removed = set(self.order) - set(other.order)
-        require(removed <= set(allowed_deletions) and
-                other.order == [key for key in self.order if key not in removed],
-                "Component addition/removal/reordering requires an explicitly registered deletion; additions and reordering are unsupported.")
+        added = set(other.order) - set(self.order)
+        require(removed <= set(allowed_deletions) and added <= set(allowed_additions) and
+                other.order == [key for key in self.order if key not in removed] + [key for key in allowed_additions if key in added],
+                "Component addition/removal/reordering requires a registered deletion or appended module addition; reordering is unsupported.")
+        require(all(other.elements[k].tag in MODULE_TAGS for k in added), "Only registered modules may be added.")
         require(self.shell == other.shell, "Document wrapper or inter-component whitespace changed outside scope.")
-        return [k for k in self.order if k in removed or self.hashes[k] != other.hashes[k]]
+        return [k for k in self.order if k in removed or self.hashes[k] != other.hashes[k]] + [k for k in allowed_additions if k in added]
 
 
 def scan(journal):
@@ -363,7 +367,7 @@ def task_dependencies(root, j, writes):
     return sorted(reads - set(writes)), modes
 
 
-def prepare(root, task_id, objective, write_names, prerequisites=(), delete_names=()):
+def prepare(root, task_id, objective, write_names, prerequisites=(), delete_names=(), add_names=()):
     require(re.fullmatch(r"T[0-9]{3,}[A-Za-z0-9_-]*", task_id), "Use a task ID such as T001.")
     with writer_lock(root):
         package = root / "tasks" / task_id
@@ -371,20 +375,30 @@ def prepare(root, task_id, objective, write_names, prerequisites=(), delete_name
         plan_only = package.is_dir() and {p.name for p in package.iterdir()} <= {"plan.md"}
         require((not package.exists() or plan_only) and not registry.exists(), "Task already exists; use a new task ID.")
         j = Journal.load(root / JOURNAL)
+        adds = sorted(set(add_names))
+        existing_names = {el.get("name") for el in j.root if el.get("name")}
+        for key in adds:
+            match = re.fullmatch(r"(report|spreadsheet|drawing):([A-Za-z_][A-Za-z0-9_]*)", key)
+            require(match is not None, "Use an exact new module key such as report:NewCalc; resources and styles cannot be added here.")
+            require(key not in j.spans and match[2] not in existing_names, f"Added module identity already exists: {key}")
+        require(len({key.split(":", 1)[1] for key in adds}) == len(adds), "Added module names must be unique across module types.")
         deletes = sorted({j.resolve(x) for x in delete_names})
         require(all(j.elements[k].tag in MODULE_TAGS for k in deletes),
                 "Only explicitly named report, spreadsheet or drawing modules may be deleted; resources and styles remain protected.")
-        writes = sorted({j.resolve(x) for x in write_names} | set(deletes))
+        writes = sorted({j.resolve(x) for x in write_names} | set(deletes) | set(adds))
         require(writes, "A task needs an explicit write scope.")
-        reads, modes = task_dependencies(root, j, writes)
+        if adds:
+            reads, modes = sorted(set(j.order) - set(writes)), {key: "all components: registered topology addition" for key in writes}
+        else:
+            reads, modes = task_dependencies(root, j, writes)
         for prerequisite in prerequisites:
             require(re.fullmatch(r"T[0-9]{3,}[A-Za-z0-9_-]*", prerequisite), "Invalid prerequisite ID.")
             require((root / "workflow/registry" / f"{prerequisite}.json").is_file(), f"Unknown prerequisite: {prerequisite}")
         record = {"schema": 1, "id": task_id, "created": stamp(), "objective": objective,
-                  "base_journal_sha256": j.sha256, "writes": writes, "deletes": deletes, "reads": reads,
+                  "base_journal_sha256": j.sha256, "writes": writes, "deletes": deletes, "adds": adds, "reads": reads,
                   "dependency_modes": modes, "prerequisites": list(prerequisites),
                   "component_hashes": j.hashes, "source_files": snapshot_files(root),
-                  "exclusions": ["No unassigned components or document wrapper changes; no topology changes except registered module deletions", "No automatic engineering approval"],
+                  "exclusions": ["No unassigned components or document wrapper changes; topology changes limited to registered appended modules and deletions", "No automatic engineering approval"],
                   "output_contract": "Retain existing published names and scopes; describe units, signs, cases and any interface change in submission.json.",
                   "acceptance": ["bounded changes", "unchanged dependencies", "structural delta review", "Blockpad recalculation", "native visual review", "engineering and external-analysis review"],
                   "stop_conditions": ["Missing inputs or reference sources", "Required change outside assigned scope", "Changed upstream inputs", "Unresolved engineering assumptions"]}
@@ -395,7 +409,9 @@ def prepare(root, task_id, objective, write_names, prerequisites=(), delete_name
         (package / "components").mkdir()
         for index, key in enumerate(writes):
             filename = f"{index:03d}.xml"
-            (package / "components" / filename).write_bytes(j.part(key))
+            tag, name = key.split(":", 1)
+            fragment = f'<{tag} name="{name}" />'.encode() if key in adds else j.part(key)
+            (package / "components" / filename).write_bytes(fragment)
             components[key] = filename
         write_json(package / "components.json", components)
         shutil.copytree(root / "journal/References", package / "References", dirs_exist_ok=True)
@@ -403,7 +419,7 @@ def prepare(root, task_id, objective, write_names, prerequisites=(), delete_name
         write_json(package / "submission.json", {"summary": "", "published_outputs": [], "assumptions_and_conventions": [],
                                                     "downstream_impact": [], "external_analysis": "not assessed", "checks_performed": [], "open_items": []})
         write_json(registry, record)
-        return {"task": task_id, "writes": writes, "deletes": deletes, "reads": len(reads), "package": str(package)}
+        return {"task": task_id, "writes": writes, "deletes": deletes, "adds": adds, "reads": len(reads), "package": str(package)}
 
 
 def load_task(root, task_id):
@@ -421,11 +437,12 @@ def check(root, task_id, proposed_data=None):
     record, package, base = load_task(root, task_id)
     current = Journal.load(root / JOURNAL)
     proposed = Journal(proposed_data) if proposed_data is not None else Journal.load(package / "working.bpad")
-    changed = base.changes(proposed, record.get("deletes", []))
+    adds = record.get("adds", [])
+    changed = base.changes(proposed, record.get("deletes", []), adds)
     deleted = [key for key in changed if key not in proposed.elements]
     base.changes(current)  # Verify topology and document envelope compatibility.
     require(set(changed) <= set(record["writes"]), f"Out-of-scope edits: {sorted(set(changed) - set(record['writes']))}")
-    conflicts = [k for k in record["writes"] if base.hashes[k] != current.hashes[k]]
+    conflicts = [k for k in record["writes"] if base.hashes.get(k) != current.hashes.get(k)]
     require(not conflicts, f"Conflicting owned components: {conflicts}")
     stale = [k for k in record["reads"] if base.hashes[k] != current.hashes[k]]
     require(not stale, f"Stale upstream dependencies: {stale}")
@@ -436,7 +453,7 @@ def check(root, task_id, proposed_data=None):
     require(expected == actual, "Task reference resources changed outside the registered scope.")
     for prerequisite in record["prerequisites"]:
         require((root / "workflow/completed" / f"{prerequisite}.json").exists(), f"Prerequisite has not been promoted: {prerequisite}")
-    candidate = Journal(current.replace({key: proposed.part(key) if key not in deleted else b"" for key in changed}))
+    candidate = Journal(current.replace({key: proposed.part(key) if key not in deleted else b"" for key in changed}, adds))
     for key in deleted:
         owner = current.elements[key].get("name")
         if not owner:
@@ -447,7 +464,7 @@ def check(root, task_id, proposed_data=None):
                             for attr in ("formula", "condition", "source", "target", "valuedef"))]
         require(not consumers, f"Deleted module {owner} still referenced by {consumers}")
     for key in changed:
-        if key in deleted:
+        if key in deleted or key in adds:
             continue
         owner = current.elements[key].get("name")
         if current.elements[key].tag not in MODULE_TAGS or not owner:
@@ -472,7 +489,7 @@ def check(root, task_id, proposed_data=None):
     for key in changed:
         if key in deleted:
             continue
-        errors = lambda j: Counter("".join(e.itertext()) for e in j.elements[key].iter("error"))
+        errors = lambda j: Counter("".join(e.itertext()) for e in j.elements[key].iter("error")) if key in j.elements else Counter()
         new_errors.extend({"component": key, "message": e, "count": n} for e, n in (errors(candidate) - errors(current)).items())
     require(not new_errors, f"New stored native errors: {new_errors}")
     detected = {r["key"]: r["candidate_dependencies"] for r in scan(candidate)["components"]}
@@ -487,6 +504,7 @@ def check(root, task_id, proposed_data=None):
         affected = next_set
     report = {"task": task_id, "base_sha256": base.sha256, "current_sha256": current.sha256,
               "candidate_sha256": candidate.sha256, "changed_components": changed, "deleted_components": deleted,
+              "added_components": [k for k in adds if k in candidate.elements],
               "detected_downstream_impact": sorted(affected - set(changed)),
               "impact_coverage": "partial; all external results require review if any component changed",
               "inherited_structural_issues": dict(structural_issues(current)),
@@ -506,7 +524,7 @@ def import_components(root, task_id):
     working = Journal.load(package / "working.bpad")
     # Avoid overwriting direct native edits with older extracted components.
     require(working.data == base.data, "Working journal already edited. Use import-native or create a fresh task before importing component fragments.")
-    data = base.replace({k: within(package / "components", v).read_bytes() for k, v in mapping.items()})
+    data = base.replace({k: within(package / "components", v).read_bytes() for k, v in mapping.items()}, record.get("adds", []))
     _, report = check(root, task_id, data)
     atomic_write(package / "working.bpad", data)
     return {"task": task_id, "changed_components": report["changed_components"]}
@@ -596,8 +614,8 @@ def restore_task(root, task_id, base_path=None):
                 data = within(package / "proposal", item["file"]).read_bytes()
                 require(digest(data) == item["sha256"], f"Proposal component changed: {key}")
                 replacements[key] = data
-        proposed = Journal(base.replace(replacements))
-        require(set(base.changes(proposed, record.get("deletes", []))) <= set(record["writes"]), "Restored proposal exceeds scope.")
+        proposed = Journal(base.replace(replacements, record.get("adds", [])))
+        require(set(base.changes(proposed, record.get("deletes", []), record.get("adds", []))) <= set(record["writes"]), "Restored proposal exceeds scope.")
         atomic_write(package / "base.bpad", base.data)
         atomic_write(package / "working.bpad", proposed.data)
         shutil.copytree(root / "journal/References", package / "References", dirs_exist_ok=True)
@@ -667,6 +685,7 @@ def main(argv=None):
     p.add_argument("id")
     p.add_argument("--objective", required=True)
     p.add_argument("--write", action="append", default=[])
+    p.add_argument("--add", action="append", default=[], help="Register a new module key (for example report:NewCalc) to append; protects all existing components")
     p.add_argument("--delete", action="append", default=[], help="Explicitly authorize removal of an existing module; include affected link/consumer modules in --write")
     p.add_argument("--prerequisite", action="append", default=[])
     p = commands.add_parser("import-references", help="Copy verified reference filenames without modifying PDFs or journal")
@@ -696,7 +715,7 @@ def main(argv=None):
         elif args.command == "roundtrip":
             result = roundtrip(args.journal or root / JOURNAL, args.output)
         elif args.command == "prepare":
-            result = prepare(root, args.id, args.objective, args.write, args.prerequisite, args.delete)
+            result = prepare(root, args.id, args.objective, args.write, args.prerequisite, args.delete, args.add)
         elif args.command == "import-references":
             result = import_references(root, args.source)
         elif args.command == "import-components":

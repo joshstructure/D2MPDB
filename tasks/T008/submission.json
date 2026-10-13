@@ -1,0 +1,36 @@
+{
+  "summary": "One new native MSEWallExclusion module solves minimum nominal pile-face setbacks and presents dimensioned exclusion boxes for both end bents; the project index gains one link.",
+  "published_outputs": [
+    "MinClear: exact minimum nominal-face setback, inches, with shared journal pile tolerance",
+    "LayoutClear: minimum rounded upward to RoundStep, inches",
+    "BoxHalf / BoxSide: per-pile exclusion dimensions, lengths",
+    "Bent1/Bent2 row bounds, current wall setbacks and encroachment status",
+    "Separate current front-cap 24-inch check"
+  ],
+  "assumptions_and_conventions": [
+    "2-inch trial strap width; zero added strap-edge clearance; 15-degree maximum skew",
+    "3-inch x/y pile placement envelope from BridgeGeometry_2Beam.EndBent_pileTolerance",
+    "Wall origin on the normal through each pile center; back of facing is wall reference",
+    "Live shared pile/cap dimensions; saved registered CAD wall positions and frame angle",
+    "Four-sided boxes apply to parallel plan axes; row box conservatively encloses their union",
+    "No global structural pass or approval of vendor width/tolerance is implied"
+  ],
+  "downstream_impact": [
+    "New report reads shared geometry; no existing calculation reads the new report",
+    "Only PedBridge index is edited; all other prior components preserved exactly"
+  ],
+  "external_analysis": "FreeCAD model and structural-analysis results unchanged; outside-box condition is only the scoped geometry screen, not complete reinforcement routing or wall design.",
+  "checks_performed": [
+    "46 workflow unit tests including registered addition/restore and byte preservation",
+    "200 independent corner-to-ray boundary checks",
+    "Upward rounding and six parameter sensitivities",
+    "Eight CAD center comparisons and six finite wall/box intersection checks",
+    "Native Blockpad recalculation: zero new-module errors and 67 table/dimension results match independent values",
+    "All five report pages reviewed in Blockpad, including both bent plans and the dimensioned typical box",
+    "Live native strap-width change from 2 inches to 1 inch updated adopted clearance from 51.75 to 49.75 inches; undo restored 2 inches and all formulas were compared"
+  ],
+  "open_items": [
+    "Vendor strap width and required construction clearance confirmation",
+    "Full strap route, connection, length/stability, elevation and battered-pile/pad coordination remain outside this module"
+  ]
+}

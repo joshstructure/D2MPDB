@@ -69,6 +69,13 @@ has a full journal so native scopes and upstream definitions remain available.
 Repeat `--write` for multiple permitted components. Exact keys such as
 `report:PierWallFins`, `xref:ReferencePDF01` or `resource:Resource32` are supported.
 
+For a requested new module, register its exact key with `prepare --add
+report:NewCalc` (or spreadsheet/drawing). Register affected index modules with
+`--write`. Added modules are appended in registered key order. Existing component
+bytes and the document shell remain protected; all existing components are
+watched as dependencies. Resources, global styles and reordering remain outside
+this addition path. The same check, assembly, restore and review gates apply.
+
 For an explicitly requested module removal, register each existing module with
 `--delete`, and include affected index/link/consumer modules with `--write`.
 Only report, spreadsheet and drawing modules may be deleted. The check rejects
@@ -119,8 +126,8 @@ owned components, changed upstream components, changed supporting files, changed
 resource copies, unmet prerequisites, new detected broken native links/images,
 duplicate IDs, new stored errors, and removal of simple published names still used
 by qualified formulas. It preserves unrelated accepted updates. Explicitly
-registered module deletions are supported; additions, other deletions, component
-reordering and wrapper changes remain unsupported.
+registered module additions and deletions are supported; other topology changes,
+component reordering and wrapper changes remain unsupported.
 
 The expression index is a partial reference inventory, not a complete Blockpad
 language interpreter. Arbitrary symbol/scope resolution, complex function exports,
