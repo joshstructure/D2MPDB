@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "portable_runtime": "C:\\Users\\joshs\\Desktop\\CAD_AI\\output\\pedestal-ubars-resolved-20261012\\runtime\\freecad_tools\\pedestal_ubars.py",
+  "model_objects": 1412,
+  "new_bars": 72,
+  "geometry_checks": 318,
+  "manifest_files": 119,
+  "clash_status": "PASS",
+  "clash_pairs": 0
+}

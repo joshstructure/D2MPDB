@@ -3,19 +3,20 @@
   "authority": "Current editable FreeCAD geometry and modeled quantities; engineering acceptance remains separate",
   "model": {
     "path": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-    "sha256": "e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118",
-    "bytes": 2673095,
-    "objects": 1230
+    "sha256": "7368774487c1456238df13c80e33ddf3871907982ff91938e1ae1b4eebf52676",
+    "bytes": 2998045,
+    "objects": 1412
   },
   "source_revision": "01a1fcc34d6345ceacf96245bcf0c931d118a1ab",
   "tracker_used_sha256": "ff75030a7f3b77edaa26788405a056a1087c166d5c43b3a4fa6a1fb55216e84b",
   "native_file_changed_during_ingestion": false,
   "runtime_changes": [
     "cap_cages.py: resolve Reinforcement from FreeCAD user directory instead of one hard-coded Windows user path. No geometry logic change.",
-    "12 October camber update: add file-only notebook_update adapter; accept existing WallRebarProxy in native_archive preservation. Existing parametric bridge/cage builders are retained."
+    "12 October camber update: add file-only notebook_update adapter; accept existing WallRebarProxy in native_archive preservation. Existing parametric bridge/cage builders are retained.",
+    "12 October D-024: add native pedestal_ubars controller, editable signed local shifts, physical checks and LRFD straight development; import in the project opener."
   ],
   "runtime_files": {
-    "runtime/API.md": "3a4dfa4f21d9c86ed2de16dedeaf9ba65ed0e07173155b7ea63ed26e987cf3c6",
+    "runtime/API.md": "1284cff1406f65234b29ac17bfde50d188c20155e74c2235ed2fc8207fddaece",
     "runtime/freecad_tools/__init__.py": "54fc72e62296f90ef30d4395023d10589142c7979df962a5fa1669cf01886a32",
     "runtime/freecad_tools/adopt_drainage.py": "df2e4d293383aa5de9e425a8af75b7640524d07e71eebd541d42d2e81342eb07",
     "runtime/freecad_tools/api.py": "4f5d129384cf8b68bf10564f59141a31bd83921d47e8e477754ad2ea3ade71ca",
@@ -126,9 +127,10 @@
     "runtime/freecad_tools/design_steel.py": "2a4bccca960737d3cbc9cca17480d035c816d817e162a399b1d27205b6b32216",
     "runtime/freecad_tools/native_archive.py": "075016d6666d7ae2bf534fe0c16a870b1114026e3856bd1990ee53169441c54f",
     "runtime/freecad_tools/file_install.py": "f00c34f8ef44f66800ef656832ba772e8422001ed4b289cbfb214ec48a0fdbd6",
-    "runtime/freecad_tools/notebook_update.py": "3ccc61a21e20201c35e1db5065beef7e0f9b79f0bdb78c9a056252dc4b5157a1"
+    "runtime/freecad_tools/notebook_update.py": "3ccc61a21e20201c35e1db5065beef7e0f9b79f0bdb78c9a056252dc4b5157a1",
+    "runtime/freecad_tools/pedestal_ubars.py": "50617ad926c0c370d7144a76626b466124ae2d69b1f75dea80faa4f284468c1c"
   },
-  "opener_sha256": "31f181a3bb1469bb6736b5026e23f0be9f20403ef29a332c2ddd717bf3527a70",
+  "opener_sha256": "536a5dd84ef1cb9bb763b9c522ba2af817384eefed947a1e4737d9edf6b86f81",
   "evidence_files": {
     "evidence/bridge-current-cages-20261010-v1.json": "5daf358f8b140a1b5c8db4b1d33df5ab565d4299e9c1fb90d0aa15cd679ce1ee",
     "evidence/bridge-current-proxies-20261010-v1.json": "bc8d1595534050f961bece023cae100958064388e1b2e7d45ddd424666c834ba",
@@ -137,7 +139,7 @@
     "evidence/delivery-helper-fingerprints.json": "2eda36676cc40916485c708e385818c6e99ead3be41e5754a55bc5e772e58c62",
     "evidence/final-reopen-verification.json": "fde89e9b9c8bb47433a964e3d0b3faedcb00c201b8ada10b348c086e4bfaeec9",
     "evidence/final-save.json": "7767f925bccdf426225cf1d4269ce59919cdcf71267f7c56c7484547f758e946",
-    "evidence/Model-update-report.txt": "b4ccd1ab676c673a0b97ab4542e8da1df50469ae5246a11e1eadff9d1e7a89e4",
+    "evidence/Model-update-report.txt": "d72d55dd7068cd6ff0e3ce4712411d956b95355202e155a1eda8caa5d2e12e0b",
     "evidence/opener-verification.json": "7cfd370f32a419bd160ce2f914df4e861372addcab97d9e64896fb6135d40fdf",
     "evidence/portable-verification.json": "5daa7dfc49c7f7b11c641a51d2e425ce853dc08ee134356c02746d93d028ec36",
     "evidence/session-checkpoint.json": "c22fc947838b3ed99425beeab12c10e80b62b12be04d01444f2a0677135096c5",
@@ -146,12 +148,30 @@
     "evidence/2026-10-12/native-preservation-v2.json": "8bbac643d5a294cb896645b3336941a1f7242debdcba25cf778730f320527652",
     "evidence/2026-10-12/source-coherence-check.json": "ab918fcdf0ccb3329c1c34f81c6510f391a17018683f42137bc394616672b10e",
     "evidence/2026-10-12/update-summary.json": "aa348132dc0de5900ce2627d1f0e861399df5a5582784550f3a824f4914ffc7c",
-    "evidence/2026-10-12/file-installation.json": "8581c28b1b5ab37049629400e29ff5c1a16f4c445f0976005d53393dfaf3f9c9"
+    "evidence/2026-10-12/file-installation.json": "8581c28b1b5ab37049629400e29ff5c1a16f4c445f0976005d53393dfaf3f9c9",
+    "evidence/2026-10-12-pedestal-ubars/adoption-summary.json": "91563f7073f2dc3c77339f8f44824d02b967af646c52c53b3428074327eef7fa",
+    "evidence/2026-10-12-pedestal-ubars/cold-reopen-verification.json": "2c156a81499cc70aadb7435da2c74dcaeef8466eec48db40043871aef83f8952",
+    "evidence/2026-10-12-pedestal-ubars/portable-verification.json": "daa3614234540817edb63180241e2f60fe415f511841a2ea26fe19cf3caf5c96",
+    "evidence/2026-10-12-pedestal-ubars/Read-me-and-checks.txt": "1cd5e54a36fd634f9e02326e7166fef74d045ecd39abcde263f7b6e12e2a3c3c",
+    "evidence/2026-10-12-pedestal-ubars/summary.json": "cc5cccdd03268bbad66a1dc3def04da883d4b7e0aa7a1e16dd8eb3c9b8f8257a",
+    "evidence/2026-10-12-pedestal-ubars/transaction.json": "e699db653c160da9ea886be06d92eb6bd0f9593dd87067472e2e1b63f5201ca3",
+    "evidence/2026-10-12-pedestal-ubars/installation.json": "d6734294ce2f72e381440e3cb44ec4aa32086461c2a13f6dc0700a190f19dbda",
+    "evidence/2026-10-12-pedestal-ubars/installed-native-verification.json": "37c6def2141a2b64e8398e78ea95ec452f9328c45d21d7d6c92d105fb41bac7f"
   },
-  "known_review_status": "DETAILING AND COORDINATION FAILURES REMAIN; cambers deferred by user",
-  "portability_verification": "12 October file candidate: 1482 native cold-reopen, exact preservation, physical geometry, schedule and dependency checks PASS; detailing failures remain.",
+  "known_review_status": "New pedestal U-bar geometry, cover, development and clash checks PASS; existing cap/wall/bridge findings remain. Notebook cambers retained.",
+  "portability_verification": "398 native candidate checks PASS; adopted main cold-reopen 325 checks PASS using registered runtime. New pedestal bars have zero overlaps; existing findings unchanged.",
   "updated_on": "2026-10-12",
   "current_update": {
+    "date": "2026-10-12",
+    "decision": "D-024",
+    "scope": "Adopt reviewed native pedestal U-bars on all six pedestals",
+    "summary": "evidence/2026-10-12-pedestal-ubars/adoption-summary.json",
+    "previous_model_sha256": "e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118"
+  },
+  "archive_files": {
+    "archive/B4-before-pedestal-ubars-20261012.FCStd": "e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118"
+  },
+  "previous_update": {
     "date": "2026-10-12",
     "decision": "D-023",
     "scope": "Notebook-driven camber and dependent native bridge geometry/reinforcement update",

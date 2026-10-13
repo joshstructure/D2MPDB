@@ -1,0 +1,72 @@
+B4 PEDESTAL U-BAR GRIDS - RESOLVED MODEL COPY
+
+PASS - ALL SIX PEDESTAL U-BAR CLASHES RESOLVED
+
+72 native #4 U-bars on all six pedestals; average spacing exactly 6 in in each direction.
+Individual spacings range from 5.25 to 6.75 in. Family end stations remain unchanged.
+User authorized slightly tighter/looser spacings provided they average out, and allowed surface contact.
+Any positive nominal BRep common volume remains a failure; the overlap check was not relaxed.
+At least 2 in physical pedestal cover, including actual slopes/chamfers; at least 3 in cap cover.
+Inside bend diameter 3 in; crossing horizontal grid layers separated by 1 in clear.
+End-bent grids: 7 longitudinal U-bars and 4 transverse U-bars each.
+Pier grids: 7 longitudinal U-bars and 7 transverse U-bars each.
+
+LOCAL ADJUSTMENTS FROM PREVIOUS REVIEW COPY (inches)
+Station adjustment shifts the grid position normal to the U-bar plane.
+Span adjustment shifts the entire U-bar along its horizontal span, preserving its shape.
+Signed adjustments are native editable properties under each affected pedestal input.
+PedSteelEB1B1X03: station 0.75 in; span 0.0 in.
+PedSteelEB1B2X02: station -0.125 in; span 0.0 in.
+PedSteelEB1B2X05: station -0.125 in; span 0.0 in.
+PedSteelEB1B2Y04: station 0 in; span 0.625 in.
+PedSteelPierB1X05: station -0.5 in; span 0.0 in.
+PedSteelPierB2X02: station -0.5 in; span 0.0 in.
+
+PHYSICAL SPACING AND DEVELOPMENT
+BridgePedestalEB1B1: 11 bars; X spacing 5.250-6.750 in (mean 6.000); Y spacing 6.000-6.000 in (mean 6.000).
+  Required development 12.000000 in; provided straight embedment 12 in. Minimum physical pedestal cover 2.029633 in.
+BridgePedestalEB1B2: 11 bars; X spacing 5.875-6.125 in (mean 6.000); Y spacing 6.000-6.000 in (mean 6.000).
+  Required development 12.000000 in; provided straight embedment 12 in. Minimum physical pedestal cover 2.029633 in.
+BridgePedestalPierB1: 14 bars; X spacing 5.500-6.500 in (mean 6.000); Y spacing 6.000-6.000 in (mean 6.000).
+  Required development 16.680572 in; provided straight embedment 17 in. Minimum physical pedestal cover 2.000000 in.
+BridgePedestalPierB2: 14 bars; X spacing 5.500-6.500 in (mean 6.000); Y spacing 6.000-6.000 in (mean 6.000).
+  Required development 12.486440 in; provided straight embedment 13 in. Minimum physical pedestal cover 2.036822 in.
+BridgePedestalEB2B1: 11 bars; X spacing 6.000-6.000 in (mean 6.000); Y spacing 6.000-6.000 in (mean 6.000).
+  Required development 12.000000 in; provided straight embedment 12 in. Minimum physical pedestal cover 2.037558 in.
+BridgePedestalEB2B2: 11 bars; X spacing 6.000-6.000 in (mean 6.000); Y spacing 6.000-6.000 in (mean 6.000).
+  Required development 12.000000 in; provided straight embedment 12 in. Minimum physical pedestal cover 2.037558 in.
+
+DEVELOPMENT BASIS
+AASHTO LRFD Bridge Design Specifications, 10th edition (2024), 5.10.8.2.1a-c.
+Straight tension development measured from cap top/pedestal interface to flat bar tip.
+db=0.5 in; fy=60 ksi; fc=5.5 ksi; uncoated Grade 60 in normal-weight concrete.
+ldb = 0.17 db [fy / (1.97 lambda fc^0.25)]^2.
+lambda_rl=lambda_cf=lambda_er=lambda=1; Fh=0; ktr=0; beta_t=0.
+lambda_rc=max(0.3,min(1,db/cb)); ld=max(12 in, ldb*lambda_rc).
+cb uses smaller side center cover and half nearest developed pedestal-leg spacing.
+Pedestal side cover also bounds cb conservatively. No tie/clamping/excess-steel credit.
+Provided embedment rounds required length UP to the next whole inch.
+
+VERIFICATION
+Cold reopen / physical geometry / native dependency checks: {'PASS': 398}.
+Clash and pile check: PASS; 484 bounding-box candidate pairs checked using actual native solids.
+Zero positive-volume overlaps among new U-bars or with existing reinforcement; at least 1 in pile clearance.
+All 1,230 original objects, native geometry, expressions, controls, placements and view records preserved.
+New bars, paths, source links, live quantities and schedules remain natively editable.
+These checks cover the new pedestal reinforcement. Previously recorded cap/wall/bridge issues remain unchanged.
+General aggregate/concreting clearance and overall pedestal structural adequacy are NOT CONFIGURED.
+Existing PDF/DXF exports were not regenerated; no GUI appearance review is claimed.
+Saved as a separate corrected model copy; authoritative source unchanged.
+
+OPENING
+Keep this folder with its runtime. In FreeCAD, run Open_Pedestal_Model.FCMacro.
+Restart FreeCAD first if controllers from a different package are already loaded.
+
+REFERENCES
+FDOT 2026 Structures Manual, Introduction I.6.B.5 and SDG Table 1.4.2-1.
+https://www.fdot.gov/Structures/StructuresManual/CurrentRelease
+Project-local manual: reports/references/2026-fdot-structures-manual.pdf, PDF pages 5, 32, 139.
+Project LRFD page images: Desktop/D2 MPDB/tmp/pdfs/lrfd-10-longitudinal/dev-0520.png through dev-0522.png.
+Selected cap cases supply fc, fy, density and coating; no engineering source cases were edited.
+
+Transaction: pedestal-ubars-20261012-v7

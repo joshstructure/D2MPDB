@@ -1,4 +1,4 @@
-Current file update: **12 October 2026**. The dated native filename is retained for existing links. See [current update report](evidence/Model-update-report.txt) and [verification](evidence/2026-10-12/update-summary.json).
+Current file update: **12 October 2026**. The dated native filename is retained for existing links. See [current update report](evidence/Model-update-report.txt) and [latest verification](evidence/2026-10-12-pedestal-ubars/adoption-summary.json).
 
 # Current FreeCAD bridge model
 
@@ -37,7 +37,7 @@ design decisions and calculations. Differences require reconciliation; this
 registration does not override them or close coherence items.
 
 - Both saved cambers now follow the 12 October notebook update: 0.1245927440 in and 0.5671714631 in.
-- The three cap cages contain 204 native bars with live schedules, plus 184 trial wall bars.
+- The three cap cages contain 204 native bars with live schedules, plus 184 trial wall bars and 72 pedestal U-bars.
 - Cover failures, bar overlaps, bridge/MSE clashes, landing-level differences
   and source pile-envelope conflicts remain recorded FAIL.
 - Final wall details, pile tips, anchorage, fabrication quantities and omitted
@@ -94,3 +94,23 @@ There are 11 bridge/MSE overlap pairs and 27 wall-to-wall/cap-steel overlap pair
 in the current checks. Cap-cage detailing and landing discrepancies remain FAIL.
 Final pile tips, anchorage, fabrication and final wall design remain outside this
 geometry update. Prior cap/backwall reports and drawing packages were not rerun.
+
+
+## 12 October pedestal reinforcement adoption
+
+Under D-024, the user selected the reviewed model with 72 native #4 U-bars on
+all six pedestals. Mean spacing is 6 in each way, with local 5.25-6.75 in
+intervals resolving six intersections. Physical pedestal/cap cover and LRFD
+straight development checks pass. End-bent embedment is 12 in; Pier B1/B2
+embedments are 17/13 in. No new U-bar-to-U-bar or U-bar-to-existing-steel solid
+overlaps remain, and pile clearance passes. Surface contact is allowed.
+
+Use the usual opening macro. The `PedestalReinforcement` group contains editable
+inputs, native bars and paths, and six live schedules. All 1,230 prior native
+objects, existing cambers and geometry are preserved. Prior cap/wall/bridge
+issues retain their status; previous drawing exports have not been regenerated.
+
+The [adoption evidence](evidence/2026-10-12-pedestal-ubars/adoption-summary.json)
+records the exact selected bytes and 398 passing native checks. The previous
+main model is preserved in
+[archive/B4-before-pedestal-ubars-20261012.FCStd](archive/B4-before-pedestal-ubars-20261012.FCStd).

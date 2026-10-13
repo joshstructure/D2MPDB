@@ -1,3 +1,30 @@
+B4 BRIDGE - 12 OCTOBER 2026 PEDESTAL U-BAR ADOPTION
+
+User direction: "Looks great incorporate into the main project model".
+Decision D-024 adopts the verified native model with 72 #4 U-bars on all six
+pedestals. Spacing averages 6 in each way; local spacings are 5.25-6.75 in.
+Six bar translations of 0.125-0.75 in resolve all six remaining intersections.
+No solid overlaps involve the new pedestal bars. Surface contact is allowed.
+Minimum cover: 2 in to pedestal faces and 3 in to cap sides/bottom. Pile
+clearance passes at 1 in. Straight cap embedments: 12 in at both end bents,
+17 in at Pier B1 and 13 in at Pier B2. Development follows LRFD 10th edition
+5.10.8.2.1 with the recorded 60 ksi steel / 5.5 ksi concrete basis.
+
+All 1,230 original native objects and both notebook cambers are preserved;
+the model now has 1,412 editable objects. The cap cages remain 57/90/57 bars
+and the wall reinforcement remains 184 bars. Native cold-reopen, geometry,
+cover, development, spacing, source-preservation and dependency checks:
+398 PASS. The normal project opener now loads the new pedestal controller.
+The previous main file is backed up with exact byte verification.
+
+See evidence/2026-10-12-pedestal-ubars/adoption-summary.json and its accompanying
+reports. Existing cap/wall/bridge issues remain open. General concreting
+clearance and overall pedestal structural adequacy are not configured by these
+checks. Drawing exports and broader design reports were not regenerated.
+
+PREVIOUS CAMBER UPDATE (historical scope retained below)
+------------------------------------------------------
+
 B4 BRIDGE - 12 OCTOBER 2026 NOTEBOOK CAMBER UPDATE
 
 The new Span 1 / Span 2 beam worksheets are selected unchanged. Their saved

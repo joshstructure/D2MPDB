@@ -316,3 +316,22 @@ and exact source/candidate checks precede installation with `file_install.instal
 Geometry validation and detailing/coordination failures remain separate.
 `native_archive.preserve` now accepts an already restored WallRebarProxy and
 continues rejecting unknown wall controllers.
+
+
+## Pedestal U-bar grids (12 October 2026)
+
+`freecad_tools.pedestal_ubars` controls the six `PedSteel*Inputs` objects and
+their native paths, rebars, live quantities and schedules. Dimensions require
+explicit units. Signed local placement controls use PropertyDistance. Spacing
+is the mean each-way pitch; user-authorized local intervals may differ by up
+to one inch while retaining the mean. Current intervals are 5.25 to 6.75 in.
+
+For an editable disposable copy, call `regenerate(inputs)` after an input edit,
+then `validate(inputs)` for physical geometry, spacing, cover and development,
+and `clash_check(document, all_six_inputs)` for all new bars against existing
+steel and piles. Any positive common volume fails; surface contact is allowed.
+`PedestalSteelChecks` is a dated snapshot and must be rerun after edits.
+The adapter supports the documented #4, uncoated Grade 60, normal-weight,
+straight tension development basis. Unsupported materials/detailing reject.
+`prepare_file` only creates a disposable native candidate; it does not overwrite
+the authoritative model. Intentional main-file saves require authorization.
