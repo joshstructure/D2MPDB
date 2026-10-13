@@ -1,0 +1,23 @@
+MSE WALL EXCLUSION - 13 OCTOBER 2026
+
+Dimensioned.dxf: editable full-size plans for both end bents plus a typical pile box.
+All geometry is in feet (1 CAD unit = 1 ft); dimension text reports inches.
+Views are translated side by side. EB2 Y is reversed to show the approach upward.
+Return walls are cropped and marked with break strokes in this review drawing.
+
+CAD Coordinate Overlay.dxf: the same eight pile boxes, row boxes, pile profiles,
+caps and six untrimmed MSE walls at the saved FreeCAD model's original XY feet.
+Z = 0. This is model-local XY, not a survey/georeferenced coordinate claim.
+Insert at 0,0,0 with scale 1 and rotation 0 into a drawing using the same feet frame.
+If the destination drawing uses inches, scale the overlay by 12.
+
+Current result: 51.75 in from every nominal projected pile face.
+Includes the journal's 3 in coordinate placement allowance; do not add it again.
+Trial inputs: 2 in strap, 15 deg plan skew, zero added edge gap.
+Boundary references the BACK OF FACING. All six checked current wall faces
+intersect the conservative row exclusion boxes. DXFs do not relocate the walls.
+This is a bounded geometry screen. Vendor dimensions, full routing, elevation,
+development, pad clearance and wall stability remain separate.
+
+Source: journal/D2_I95_Project_Journal.bpad, MSEWallExclusion module.
+verification.json records exact source hashes, dimensions and file audit results.

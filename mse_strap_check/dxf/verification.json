@@ -1,0 +1,43 @@
+{
+  "journal": "journal\\D2_I95_Project_Journal.bpad",
+  "journal_sha256": "2d73352d4e7c304508eaf2cf7564bec154e21964ac5485f9a30811a808ad6b9e",
+  "module": "MSEWallExclusion",
+  "source_model": "project_current\\geometry\\freecad\\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "source_model_sha256": "7368774487c1456238df13c80e33ddf3871907982ff91938e1ae1b4eebf52676",
+  "export_date": "2026-10-13",
+  "clearance_in": 51.75,
+  "exact_minimum_in": 51.6490061788426,
+  "individual_box_side_in": 121.50037147557498,
+  "placement_allowance_in": 3.0,
+  "native_journal_values_compared": 67,
+  "checked": [
+    "DXF reopen and audit",
+    "feet insertion units",
+    "all eight box sides",
+    "eight overlay centers at source CAD XY coordinates",
+    "two caps and six walls",
+    "all native dimensions have rendered blocks and positive measured distances"
+  ],
+  "files": [
+    {
+      "file": "MSE Wall Exclusion - Both End Bents - Dimensioned.dxf",
+      "sha256": "73e2363084a5886572657a83a001d7f3b2b08ea73ae127d0673a17e31912730f",
+      "audit_errors": 0,
+      "audit_fixes": 0,
+      "units": "ft",
+      "entities": 143,
+      "native_dimensions": 18,
+      "individual_pile_boxes": 8
+    },
+    {
+      "file": "MSE Wall Exclusion - CAD Coordinate Overlay.dxf",
+      "sha256": "9b6de28168bc0d8f8938c9b465ee07351747befcd631cf0a26743dd3250e5e0f",
+      "audit_errors": 0,
+      "audit_fixes": 0,
+      "units": "ft",
+      "entities": 48,
+      "native_dimensions": 0,
+      "individual_pile_boxes": 8
+    }
+  ]
+}
