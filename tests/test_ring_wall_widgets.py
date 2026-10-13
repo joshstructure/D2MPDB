@@ -9,6 +9,7 @@ import zipfile
 
 from ring_wall.model import analyze, default_case
 from ring_wall.widgets import RingWallNotebook
+from ring_wall.ui_support import PanelTabs
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -33,6 +34,33 @@ class RingWallWorkbenchTests(unittest.TestCase):
         self.assertAlmostEqual(sum(sum(row) for row in z),app.current['totals']['factored_weight'])
         self.assertEqual(list(app.figures['forces'].data[0].y),[r['arch']['tie'] for r in app.current['rows']])
         self.assertIn('0.744',app.steel_panel.value)
+
+    def test_panel_buttons_mount_requested_content_and_keep_case(self):
+        app=self.app;result=app.current
+        for tabs in (app.plot_tabs,app.input_tabs):
+            self.assertIsInstance(tabs,PanelTabs)
+            self.assertEqual(tabs.get_state()['_model_name'],'VBoxModel')
+            for index in list(range(len(tabs.panels)))+[0,2,1]:
+                with self.subTest(panel=tabs.titles[index]):
+                    tabs.buttons[index].click()
+                    self.assertEqual(tabs.selected_index,index)
+                    self.assertEqual(tabs.content.children,(tabs.panels[index],))
+                    self.assertEqual(sum(b.button_style=='info' for b in tabs.buttons),1)
+                    self.assertIs(app.current,result)
+
+    def test_navigation_keeps_stale_gate_and_refreshes_selected_panel(self):
+        app=self.app
+        app.plot_tabs.buttons[2].click()
+        app.controls['ring_spacing_in'].value=34.
+        self.assertIn('need Recalc',app.rings_panel.children[0].value)
+        app.plot_tabs.buttons[1].click()
+        self.assertIn('Current envelope',app.cone_values.value)
+        app.recalc_button.click()
+        self.assertEqual(app.plot_tabs.content.children,(app.cone_panel,))
+        self.assertIn('Additional As,req',app.cone_values.value)
+        app.plot_tabs.buttons[2].click()
+        self.assertIs(app.rings_panel.children[0],app.figures['reactions'])
+        self.assertFalse(app.report_button.disabled)
 
     def test_edits_refresh_layout_clear_results_and_recalc_updates_tables(self):
         app=self.app;figure=app.figures['layout'];before=list(figure.data[2].y)

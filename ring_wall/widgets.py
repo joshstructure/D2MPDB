@@ -13,7 +13,7 @@ from .model import BAR, analyze, default_case, validate
 from .report import cone_section, esc, export_results, plan, STYLE
 from .cone import geometry as cone_geometry
 from .study import spacing_study
-from .ui_support import Accordion, FigureWidget, Tab, update_figure
+from .ui_support import Accordion, FigureWidget, PanelTabs, update_figure
 from . import views as V
 
 
@@ -64,10 +64,9 @@ class RingWallNotebook:
         self.steel_panel=W.HTML(); self.checks_panel=W.HTML(); self.spacing_panel=W.VBox()
         self.cone_panel=W.VBox();self.cone_values=W.HTML()
         self.ring_values=W.HTML(); self.force_values=W.HTML(); self.spacing_values=W.HTML()
-        self.plot_tabs=Tab(children=[self.layout_panel,self.cone_panel,W.VBox([self.row_filter,self.rings_panel]),self.forces_panel,
-                                    self.steel_panel,W.VBox([self.check_view,self.checks_panel]),self.spacing_panel])
-        for i,title in enumerate(['Live layout','Cone transfer','Ring forces','Struts & ties','Reinforcement','D/C checks','Ring spacing']):
-            self.plot_tabs.set_title(i,title)
+        self.plot_tabs=PanelTabs([self.layout_panel,self.cone_panel,W.VBox([self.row_filter,self.rings_panel]),self.forces_panel,
+                                 self.steel_panel,W.VBox([self.check_view,self.checks_panel]),self.spacing_panel],
+                                ['Live layout','Cone transfer','Ring forces','Struts & ties','Reinforcement','D/C checks','Ring spacing'])
         self.plot_tabs.observe(self._tab_changed,names='selected_index')
         self.report_button=W.Button(description='Generate calculation report',icon='file-text-o',button_style='info',layout=W.Layout(width='250px'))
         self.bundle_button=W.Button(description='Export case + checks ZIP',icon='download',button_style='success',layout=W.Layout(width='240px'))
@@ -117,9 +116,7 @@ class RingWallNotebook:
                 card=W.VBox([W.HTML('<b>'+title+'</b>'),W.HBox(controls,layout=W.Layout(flex_flow='row wrap',grid_gap='6px',width='100%'))])
                 card.add_class('ring-section');cards.append(card)
             tabs.append(W.VBox(cards))
-        result=Tab(children=tabs)
-        for i,title in enumerate(GROUPS):result.set_title(i,title)
-        return result
+        return PanelTabs(tabs,list(GROUPS))
 
     def _refresh_inputs(self):
         self.controls['grid_spacing_in'].disabled=self.case['auto_grid_spacing']
@@ -212,8 +209,10 @@ class RingWallNotebook:
     def _checks_changed(self,_):
         if self._has_current():self.checks_panel.value=V.checks_table(self.current,self.check_view.value)
 
-    def _tab_changed(self,_):
-        for figure in self.figures.values():
+    def _tab_changed(self,change):
+        name={0:'layout',1:'cone',2:'reactions',3:'forces',6:'spacing'}.get(change['new'])
+        figure=self.figures.get(name)
+        if figure is not None:
             figure.layout.autosize=False;figure.layout.autosize=True
 
     def load_case(self,case):
@@ -294,6 +293,7 @@ class RingWallNotebook:
             if id(widget) in seen:return
             seen.add(id(widget))
             for child in getattr(widget,'children',()):close(child)
+            for panel in getattr(widget,'panels',()):close(panel)
             widget.close()
         close(self.ui)
         for widget in self.figures.values():close(widget)

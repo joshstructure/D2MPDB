@@ -34,6 +34,8 @@ Choose **Runtime → Run all** to open the starting calculation. Expand **Inputs
 
 The controls follow the cap-design notebook: amber input cards, live plots, output tables, and a floating Recalc button. Edits clear calculated outputs until Recalc. Green **Calc done** means results match the inputs, not that the design passes. Rerunning the workbench preserves the active inputs.
 
+Use the labeled panel buttons to switch views. The active panel has a blue button and its name above the content. If you have an older notebook open, save your case, reopen this published notebook, and **Run all** to load the updated workbench.
+
 **Report and exports** is an optional panel at the bottom. **Generate calculation report** saves/downloads a standalone HTML report. **Export case + checks ZIP** includes inputs, results, report, CSV tables and the spacing study. Running the notebook does not export files. Save your case before ending the runtime, then reload `ring_wall_case.json` with **Load saved case** next time.
 
 The package is embedded. Colab setup automatically installs the same widget/chart versions used by the cap notebook; no repository clone, Drive mount or token is needed. Local Jupyter needs ipywidgets and Plotly (Plotly 6 also needs anywidget).

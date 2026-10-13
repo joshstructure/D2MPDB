@@ -16,6 +16,12 @@ equations with substituted values, drawings and a D/C register.
 
 ## Working in the notebook
 
+The labeled panel buttons explicitly display the selected content, avoiding
+Colab's native tab-selection behavior. The active button is blue and the panel
+name appears above its content. If an older copy stays on Live layout, save the
+case, reopen the published notebook linked above, and **Run all**. An already-open
+copy contains its own embedded package and does not automatically update.
+
 1. Edit the **Wall & loads**, **Reinforcement**, **Rings & STM**, and **Factors**
    tabs inside **Inputs**. The wall elevation and end-pile plan update with inputs.
 2. Click the floating **Recalc** button. The starting case calculates when the

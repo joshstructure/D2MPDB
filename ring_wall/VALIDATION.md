@@ -4,13 +4,26 @@ The completed gravity calculation was retained and extended with a live notebook
 workbench and the broad-face cone-transfer trial. Cap and end-wall engines were
 not changed.
 
-- **21 targeted tests passed** with Python 3.12.14 on Windows, using
+- **23 targeted tests passed** with Python 3.12.14 on Windows, using
   `python -m unittest discover -s tests -p "test_ring_wall*.py" -v`.
 - Both notebook code cells executed in order. Tests verify no exports on startup,
   exact embedded-source bytes, current-result export gates, case preservation on
   rerun, separate export folders and preservation of earlier saved downloads.
 - Embedded package SHA-256:
-  `1df50430b7a8b931feadad51488166001c46698f0de7b24f5d92d12377c5fc65`.
+  `5e2cb28bfbd64772c3d5c1cb35b2cc79ddf9811c46e67a43b67fc702701a9bcc`.
+- The same 23 tests also passed with the Colab-pinned ipywidgets 7.7.1 and Plotly
+  5.24.1 packages. Navigation regressions click every input/result panel button,
+  verify that the selected content is the sole mounted page, and check that
+  switching pages preserves calculations and stale-result/export gates.
+- Following a report that Colab stayed on Live layout after tab clicks, the
+  workbench now uses ordinary button callbacks and a single visible VBox page.
+  It no longer depends on TabModel/TabView selection. Only the selected chart is
+  resized, and its current data is prepared before mounting the view.
+- Local JupyterLab browser verification with the pinned 7.7.1 / 5.24.1 packages
+  and matching widget-7 renderer clicked all seven result buttons and confirmed
+  their distinct plots/tables. Switching back to Live layout, Cone transfer and
+  Ring forces also worked. This tests the browser callback/content path, not just
+  Python selection values. The Google-hosted runtime remains unverified.
 - The final notebook build also executed in a real local JupyterLab browser with
   ipywidgets 8.1.9 and Plotly 6.9.0. Live geometry, the reaction heatmap and table,
   and the 3-D cone rendered. Browser interactions verified row filtering, a typed

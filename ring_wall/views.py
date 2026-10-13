@@ -15,6 +15,7 @@ CSS = '''<style>
 .ring-workbench .widget-tab{min-width:0;flex-shrink:0}
 .ring-workbench .widget-tab-contents{padding:12px;overflow-x:auto}
 .ring-workbench .widget-tab-bar{overflow-x:auto;flex-wrap:nowrap}
+.ring-workbench .ring-panel-nav button{font-weight:600;border-radius:3px;margin:2px!important}
 .ring-workbench .ring-dock{position:sticky;top:8px;z-index:100;height:0!important;min-height:0!important;overflow:visible!important;pointer-events:none;justify-content:flex-end}
 .ring-workbench .ring-recalc{pointer-events:auto;border-radius:20px!important;font-weight:600;box-shadow:0 2px 8px #0003;margin-right:12px!important}
 .ring-workbench .ring-section{border:1px solid #d4dde5;border-radius:4px;padding:8px;margin:4px 0;background:#fff8e9}
