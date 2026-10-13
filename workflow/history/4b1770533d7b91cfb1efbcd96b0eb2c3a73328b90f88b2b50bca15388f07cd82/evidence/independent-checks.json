@@ -1,0 +1,103 @@
+{
+  "front_minimum_in": 37.452160573276174,
+  "front_adopted_in": 37.5,
+  "side_minimum_in": 24.0,
+  "alpha_deg": 14.999999999999998,
+  "pile_tolerance_included": false,
+  "nominal_pile_width_in": 18.0,
+  "checks": [
+    "400 independent corner/ray boundaries for both skew directions; 0.01 inch less fails",
+    "Upward quarter-inch rounding",
+    "Side criteria independent of alpha/strap width",
+    "12-inch shared pile-tolerance sensitivity leaves front/side setbacks unchanged",
+    "All eight CAD centers and six independent wall-face gaps/shortfalls"
+  ],
+  "scenarios": [
+    {
+      "case": "one-inch-strap",
+      "front_minimum_in": 35.520308920698035,
+      "side_minimum_in": 24,
+      "skew_basis": "Within ordinary 15 deg limit"
+    },
+    {
+      "case": "one-inch-gap",
+      "front_minimum_in": 41.315863878432445,
+      "side_minimum_in": 24,
+      "skew_basis": "Within ordinary 15 deg limit"
+    },
+    {
+      "case": "ten-degree-skew",
+      "front_minimum_in": 56.80030685970302,
+      "side_minimum_in": 24,
+      "skew_basis": "Within ordinary 15 deg limit"
+    },
+    {
+      "case": "twenty-seven-degree-skew",
+      "front_minimum_in": 19.866183814131624,
+      "side_minimum_in": 24,
+      "skew_basis": "Above ordinary 15 deg limit"
+    },
+    {
+      "case": "large-placement-tolerance",
+      "front_minimum_in": 37.452160573276174,
+      "side_minimum_in": 24,
+      "skew_basis": "Within ordinary 15 deg limit"
+    }
+  ],
+  "walls": [
+    {
+      "bent": 1,
+      "wall": "A5",
+      "basis": "front strap",
+      "required_in": 37.5,
+      "current_gap_in": 37.18217634444495,
+      "extra_setback_in": 0.31782365555505265
+    },
+    {
+      "bent": 1,
+      "wall": "A6",
+      "basis": "specified side offset",
+      "required_in": 24.0,
+      "current_gap_in": 13.973911939252275,
+      "extra_setback_in": 10.026088060747725
+    },
+    {
+      "bent": 1,
+      "wall": "A7",
+      "basis": "specified side offset",
+      "required_in": 24.0,
+      "current_gap_in": 14.02611642903139,
+      "extra_setback_in": 9.97388357096861
+    },
+    {
+      "bent": 2,
+      "wall": "B1",
+      "basis": "front strap",
+      "required_in": 37.5,
+      "current_gap_in": 36.61739630041109,
+      "extra_setback_in": 0.8826036995889126
+    },
+    {
+      "bent": 2,
+      "wall": "B6",
+      "basis": "specified side offset",
+      "required_in": 24.0,
+      "current_gap_in": 14.026121105578284,
+      "extra_setback_in": 9.973878894421716
+    },
+    {
+      "bent": 2,
+      "wall": "B7",
+      "basis": "specified side offset",
+      "required_in": 24.0,
+      "current_gap_in": 13.973102135810223,
+      "extra_setback_in": 10.026897864189777
+    }
+  ],
+  "native": {
+    "native_file": "C:\\github\\D2MPDB\\generated\\T009-front-side-final\\candidate.bpad",
+    "sha256": "4b1770533d7b91cfb1efbcd96b0eb2c3a73328b90f88b2b50bca15388f07cd82",
+    "native_module_errors": 0,
+    "native_table_and_dimension_values_compared": 74
+  }
+}

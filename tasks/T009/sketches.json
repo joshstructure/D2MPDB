@@ -1,0 +1,1205 @@
+[
+  {
+    "name": "TypicalBox",
+    "height": 3.3,
+    "scale": "TypicalScale",
+    "ox": "3.1",
+    "oy": "2.1",
+    "lines": [
+      {
+        "points": [
+          [
+            "-SideExtent",
+            "DrawTop"
+          ],
+          [
+            "-SideExtent",
+            "-FrontExtent"
+          ],
+          [
+            "SideExtent",
+            "-FrontExtent"
+          ],
+          [
+            "SideExtent",
+            "DrawTop"
+          ]
+        ],
+        "color": "#B44840",
+        "width": 2
+      },
+      {
+        "points": [
+          [
+            "-Half",
+            "-Half"
+          ],
+          [
+            "Half",
+            "-Half"
+          ],
+          [
+            "Half",
+            "Half"
+          ],
+          [
+            "-Half",
+            "Half"
+          ],
+          [
+            "-Half",
+            "-Half"
+          ]
+        ],
+        "color": "#246B7B",
+        "width": 2
+      },
+      {
+        "points": [
+          [
+            "-1*Half",
+            "0 ft"
+          ],
+          [
+            "-1*SideExtent",
+            "0 ft"
+          ]
+        ],
+        "color": "#1766A0",
+        "width": 1
+      },
+      {
+        "points": [
+          [
+            "-1*Half",
+            "-0.15 ft"
+          ],
+          [
+            "-1*Half",
+            "0.15 ft"
+          ]
+        ],
+        "color": "#1766A0",
+        "width": 1
+      },
+      {
+        "points": [
+          [
+            "-1*SideExtent",
+            "-0.15 ft"
+          ],
+          [
+            "-1*SideExtent",
+            "0.15 ft"
+          ]
+        ],
+        "color": "#1766A0",
+        "width": 1
+      },
+      {
+        "points": [
+          [
+            "1*Half",
+            "0 ft"
+          ],
+          [
+            "1*SideExtent",
+            "0 ft"
+          ]
+        ],
+        "color": "#1766A0",
+        "width": 1
+      },
+      {
+        "points": [
+          [
+            "1*Half",
+            "-0.15 ft"
+          ],
+          [
+            "1*Half",
+            "0.15 ft"
+          ]
+        ],
+        "color": "#1766A0",
+        "width": 1
+      },
+      {
+        "points": [
+          [
+            "1*SideExtent",
+            "-0.15 ft"
+          ],
+          [
+            "1*SideExtent",
+            "0.15 ft"
+          ]
+        ],
+        "color": "#1766A0",
+        "width": 1
+      },
+      {
+        "points": [
+          [
+            "0 ft",
+            "-Half"
+          ],
+          [
+            "0 ft",
+            "-FrontExtent"
+          ]
+        ],
+        "color": "#1766A0",
+        "width": 1
+      },
+      {
+        "points": [
+          [
+            "-0.15 ft",
+            "-Half"
+          ],
+          [
+            "0.15 ft",
+            "-Half"
+          ]
+        ],
+        "color": "#1766A0",
+        "width": 1
+      },
+      {
+        "points": [
+          [
+            "-0.15 ft",
+            "-FrontExtent"
+          ],
+          [
+            "0.15 ft",
+            "-FrontExtent"
+          ]
+        ],
+        "color": "#1766A0",
+        "width": 1
+      }
+    ],
+    "labels": [
+      {
+        "x": 0.15,
+        "y": 3.06,
+        "text": "RED: MINIMUM BACK-OF-FACING LIMITS",
+        "formula": null,
+        "color": "#9F332B",
+        "size": 10
+      },
+      {
+        "x": 1.86,
+        "y": 2.19,
+        "text": null,
+        "formula": "SideClear to in",
+        "color": "#1766A0",
+        "size": 9
+      },
+      {
+        "x": 3.63,
+        "y": 2.19,
+        "text": null,
+        "formula": "SideClear to in",
+        "color": "#1766A0",
+        "size": 9
+      },
+      {
+        "x": 3.23,
+        "y": 1.02,
+        "text": null,
+        "formula": "LayoutClear to in",
+        "color": "#1766A0",
+        "size": 9
+      },
+      {
+        "x": 2.87,
+        "y": 2.06,
+        "text": "PILE",
+        "formula": null,
+        "color": "#246B7B",
+        "size": 9
+      },
+      {
+        "x": 1.92,
+        "y": 2.79,
+        "text": "OPEN \u2014 no rear-wall criterion",
+        "formula": null,
+        "color": "#263F49",
+        "size": 9
+      },
+      {
+        "x": 0.15,
+        "y": 0.16,
+        "text": "FRONT: calculated | SIDES: specified | pile tolerance excluded",
+        "formula": null,
+        "color": "#263F49",
+        "size": 9
+      }
+    ]
+  },
+  {
+    "name": "Bent1Plan",
+    "height": 4.0,
+    "scale": "PlotScale",
+    "ox": "3.25",
+    "oy": "2.23",
+    "lines": [
+      {
+        "points": [
+          [
+            "Bent1Left",
+            "Bent1Top"
+          ],
+          [
+            "Bent1Left",
+            "Bent1Bottom"
+          ],
+          [
+            "Bent1Right",
+            "Bent1Bottom"
+          ],
+          [
+            "Bent1Right",
+            "Bent1Top"
+          ]
+        ],
+        "color": "#B44840",
+        "width": 2.2
+      },
+      {
+        "points": [
+          [
+            "Bent1P1x-Half",
+            "Bent1P1y-Half"
+          ],
+          [
+            "Bent1P1x+Half",
+            "Bent1P1y-Half"
+          ],
+          [
+            "Bent1P1x+Half",
+            "Bent1P1y+Half"
+          ],
+          [
+            "Bent1P1x-Half",
+            "Bent1P1y+Half"
+          ],
+          [
+            "Bent1P1x-Half",
+            "Bent1P1y-Half"
+          ]
+        ],
+        "color": "#246B7B",
+        "width": 1.7
+      },
+      {
+        "points": [
+          [
+            "Bent1P1x",
+            "Bent1P1y-Half"
+          ],
+          [
+            "(1.8250000000000002-3.25)/PlotScale*1 ft",
+            "(1.98-2.23)/PlotScale*1 ft"
+          ]
+        ],
+        "color": "#246B7B",
+        "width": 0.65
+      },
+      {
+        "points": [
+          [
+            "Bent1P2x-Half",
+            "Bent1P2y-Half"
+          ],
+          [
+            "Bent1P2x+Half",
+            "Bent1P2y-Half"
+          ],
+          [
+            "Bent1P2x+Half",
+            "Bent1P2y+Half"
+          ],
+          [
+            "Bent1P2x-Half",
+            "Bent1P2y+Half"
+          ],
+          [
+            "Bent1P2x-Half",
+            "Bent1P2y-Half"
+          ]
+        ],
+        "color": "#246B7B",
+        "width": 1.7
+      },
+      {
+        "points": [
+          [
+            "Bent1P2x",
+            "Bent1P2y-Half"
+          ],
+          [
+            "(2.775-3.25)/PlotScale*1 ft",
+            "(1.98-2.23)/PlotScale*1 ft"
+          ]
+        ],
+        "color": "#246B7B",
+        "width": 0.65
+      },
+      {
+        "points": [
+          [
+            "Bent1P3x-Half",
+            "Bent1P3y-Half"
+          ],
+          [
+            "Bent1P3x+Half",
+            "Bent1P3y-Half"
+          ],
+          [
+            "Bent1P3x+Half",
+            "Bent1P3y+Half"
+          ],
+          [
+            "Bent1P3x-Half",
+            "Bent1P3y+Half"
+          ],
+          [
+            "Bent1P3x-Half",
+            "Bent1P3y-Half"
+          ]
+        ],
+        "color": "#246B7B",
+        "width": 1.7
+      },
+      {
+        "points": [
+          [
+            "Bent1P3x",
+            "Bent1P3y-Half"
+          ],
+          [
+            "(3.725-3.25)/PlotScale*1 ft",
+            "(1.98-2.23)/PlotScale*1 ft"
+          ]
+        ],
+        "color": "#246B7B",
+        "width": 0.65
+      },
+      {
+        "points": [
+          [
+            "Bent1P4x-Half",
+            "Bent1P4y-Half"
+          ],
+          [
+            "Bent1P4x+Half",
+            "Bent1P4y-Half"
+          ],
+          [
+            "Bent1P4x+Half",
+            "Bent1P4y+Half"
+          ],
+          [
+            "Bent1P4x-Half",
+            "Bent1P4y+Half"
+          ],
+          [
+            "Bent1P4x-Half",
+            "Bent1P4y-Half"
+          ]
+        ],
+        "color": "#246B7B",
+        "width": 1.7
+      },
+      {
+        "points": [
+          [
+            "Bent1P4x",
+            "Bent1P4y-Half"
+          ],
+          [
+            "(4.675-3.25)/PlotScale*1 ft",
+            "(1.98-2.23)/PlotScale*1 ft"
+          ]
+        ],
+        "color": "#246B7B",
+        "width": 0.65
+      },
+      {
+        "points": [
+          [
+            "-CapX",
+            "-CapY"
+          ],
+          [
+            "CapX",
+            "-CapY"
+          ],
+          [
+            "CapX",
+            "CapY"
+          ],
+          [
+            "-CapX",
+            "CapY"
+          ],
+          [
+            "-CapX",
+            "-CapY"
+          ]
+        ],
+        "color": "#87949C",
+        "width": 1
+      },
+      {
+        "points": [
+          [
+            "Bent1W1x",
+            "Min(Bent1Top+0.5 ft,Max(Bent1Bottom-0.5 ft,Bent1W1y))"
+          ],
+          [
+            "Bent1W1xend",
+            "Min(Bent1Top+0.5 ft,Max(Bent1Bottom-0.5 ft,Bent1W1yend))"
+          ]
+        ],
+        "color": "#263F49",
+        "width": 1.7
+      },
+      {
+        "points": [
+          [
+            "Bent1W2x",
+            "Min(Bent1Top+0.5 ft,Max(Bent1Bottom-0.5 ft,Bent1W2y))"
+          ],
+          [
+            "Bent1W2xend",
+            "Min(Bent1Top+0.5 ft,Max(Bent1Bottom-0.5 ft,Bent1W2yend))"
+          ]
+        ],
+        "color": "#263F49",
+        "width": 1.7
+      },
+      {
+        "points": [
+          [
+            "Bent1W3x",
+            "Min(Bent1Top+0.5 ft,Max(Bent1Bottom-0.5 ft,Bent1W3y))"
+          ],
+          [
+            "Bent1W3xend",
+            "Min(Bent1Top+0.5 ft,Max(Bent1Bottom-0.5 ft,Bent1W3yend))"
+          ]
+        ],
+        "color": "#263F49",
+        "width": 1.7
+      },
+      {
+        "points": [
+          [
+            "Bent1Left",
+            "Bent1Bottom-0.8 ft"
+          ],
+          [
+            "Bent1Right",
+            "Bent1Bottom-0.8 ft"
+          ]
+        ],
+        "color": "#1766A0",
+        "width": 1
+      },
+      {
+        "points": [
+          [
+            "Bent1Left",
+            "Bent1Bottom"
+          ],
+          [
+            "Bent1Left",
+            "Bent1Bottom-1 ft"
+          ]
+        ],
+        "color": "#1766A0",
+        "width": 0.7
+      },
+      {
+        "points": [
+          [
+            "Bent1Right",
+            "Bent1Bottom"
+          ],
+          [
+            "Bent1Right",
+            "Bent1Bottom-1 ft"
+          ]
+        ],
+        "color": "#1766A0",
+        "width": 0.7
+      },
+      {
+        "points": [
+          [
+            "Bent1P1x-Half",
+            "Bent1P1y"
+          ],
+          [
+            "Bent1Left",
+            "Bent1P1y"
+          ]
+        ],
+        "color": "#1766A0",
+        "width": 1
+      },
+      {
+        "points": [
+          [
+            "Bent1P4x+Half",
+            "Bent1P4y"
+          ],
+          [
+            "Bent1Right",
+            "Bent1P4y"
+          ]
+        ],
+        "color": "#1766A0",
+        "width": 1
+      },
+      {
+        "points": [
+          [
+            "Bent1P2x",
+            "Bent1P2y-Half"
+          ],
+          [
+            "Bent1P2x",
+            "Bent1P2y-FrontExtent"
+          ]
+        ],
+        "color": "#1766A0",
+        "width": 1
+      }
+    ],
+    "labels": [
+      {
+        "x": 1.745,
+        "y": 1.82,
+        "text": "P1",
+        "formula": null,
+        "color": "#263F49",
+        "size": 9
+      },
+      {
+        "x": 2.695,
+        "y": 1.82,
+        "text": "P2",
+        "formula": null,
+        "color": "#263F49",
+        "size": 9
+      },
+      {
+        "x": 3.645,
+        "y": 1.82,
+        "text": "P3",
+        "formula": null,
+        "color": "#263F49",
+        "size": 9
+      },
+      {
+        "x": 4.595,
+        "y": 1.82,
+        "text": "P4",
+        "formula": null,
+        "color": "#263F49",
+        "size": 9
+      },
+      {
+        "x": 0.12,
+        "y": 3.69,
+        "text": "FRONT: STRAP CHECK | SIDES: SPECIFIED MINIMUM",
+        "formula": null,
+        "color": "#9F332B",
+        "size": 10
+      },
+      {
+        "x": 0.12,
+        "y": 3.41,
+        "text": "Front clear:",
+        "formula": null,
+        "color": "#263F49",
+        "size": 9
+      },
+      {
+        "x": 1.04,
+        "y": 3.41,
+        "text": null,
+        "formula": "LayoutClear to in",
+        "color": "#1766A0",
+        "size": 9
+      },
+      {
+        "x": 3.4,
+        "y": 3.41,
+        "text": "Side clear:",
+        "formula": null,
+        "color": "#263F49",
+        "size": 9
+      },
+      {
+        "x": 4.35,
+        "y": 3.41,
+        "text": null,
+        "formula": "SideClear to in",
+        "color": "#1766A0",
+        "size": 9
+      },
+      {
+        "x": 2.76,
+        "y": 0.39,
+        "text": null,
+        "formula": "Bent1TotalX to in",
+        "color": "#1766A0",
+        "size": 9
+      },
+      {
+        "x": 1.97,
+        "y": 1.23,
+        "text": null,
+        "formula": "LayoutClear to in",
+        "color": "#1766A0",
+        "size": 9
+      },
+      {
+        "x": 0.43,
+        "y": 2.35,
+        "text": null,
+        "formula": "SideClear to in",
+        "color": "#1766A0",
+        "size": 9
+      },
+      {
+        "x": 5.3,
+        "y": 2.35,
+        "text": null,
+        "formula": "SideClear to in",
+        "color": "#1766A0",
+        "size": 9
+      },
+      {
+        "x": 0.13,
+        "y": 0.09,
+        "text": "No rear limit | current walls are not relocated | tolerance excluded",
+        "formula": null,
+        "color": "#263F49",
+        "size": 9
+      },
+      {
+        "x": 0.22,
+        "y": 2.95,
+        "text": "A6 / left",
+        "formula": null,
+        "color": "#263F49",
+        "size": 8
+      },
+      {
+        "x": 4.87,
+        "y": 2.95,
+        "text": "A7 / right",
+        "formula": null,
+        "color": "#263F49",
+        "size": 8
+      },
+      {
+        "x": 2.72,
+        "y": 0.8,
+        "text": "A5 / front",
+        "formula": null,
+        "color": "#263F49",
+        "size": 8
+      }
+    ]
+  },
+  {
+    "name": "Bent2Plan",
+    "height": 4.0,
+    "scale": "PlotScale",
+    "ox": "3.25",
+    "oy": "2.23",
+    "lines": [
+      {
+        "points": [
+          [
+            "Bent2Left",
+            "Bent2Top"
+          ],
+          [
+            "Bent2Left",
+            "Bent2Bottom"
+          ],
+          [
+            "Bent2Right",
+            "Bent2Bottom"
+          ],
+          [
+            "Bent2Right",
+            "Bent2Top"
+          ]
+        ],
+        "color": "#B44840",
+        "width": 2.2
+      },
+      {
+        "points": [
+          [
+            "Bent2P1x-Half",
+            "Bent2P1y-Half"
+          ],
+          [
+            "Bent2P1x+Half",
+            "Bent2P1y-Half"
+          ],
+          [
+            "Bent2P1x+Half",
+            "Bent2P1y+Half"
+          ],
+          [
+            "Bent2P1x-Half",
+            "Bent2P1y+Half"
+          ],
+          [
+            "Bent2P1x-Half",
+            "Bent2P1y-Half"
+          ]
+        ],
+        "color": "#246B7B",
+        "width": 1.7
+      },
+      {
+        "points": [
+          [
+            "Bent2P1x",
+            "Bent2P1y-Half"
+          ],
+          [
+            "(1.8250000000000002-3.25)/PlotScale*1 ft",
+            "(1.98-2.23)/PlotScale*1 ft"
+          ]
+        ],
+        "color": "#246B7B",
+        "width": 0.65
+      },
+      {
+        "points": [
+          [
+            "Bent2P2x-Half",
+            "Bent2P2y-Half"
+          ],
+          [
+            "Bent2P2x+Half",
+            "Bent2P2y-Half"
+          ],
+          [
+            "Bent2P2x+Half",
+            "Bent2P2y+Half"
+          ],
+          [
+            "Bent2P2x-Half",
+            "Bent2P2y+Half"
+          ],
+          [
+            "Bent2P2x-Half",
+            "Bent2P2y-Half"
+          ]
+        ],
+        "color": "#246B7B",
+        "width": 1.7
+      },
+      {
+        "points": [
+          [
+            "Bent2P2x",
+            "Bent2P2y-Half"
+          ],
+          [
+            "(2.775-3.25)/PlotScale*1 ft",
+            "(1.98-2.23)/PlotScale*1 ft"
+          ]
+        ],
+        "color": "#246B7B",
+        "width": 0.65
+      },
+      {
+        "points": [
+          [
+            "Bent2P3x-Half",
+            "Bent2P3y-Half"
+          ],
+          [
+            "Bent2P3x+Half",
+            "Bent2P3y-Half"
+          ],
+          [
+            "Bent2P3x+Half",
+            "Bent2P3y+Half"
+          ],
+          [
+            "Bent2P3x-Half",
+            "Bent2P3y+Half"
+          ],
+          [
+            "Bent2P3x-Half",
+            "Bent2P3y-Half"
+          ]
+        ],
+        "color": "#246B7B",
+        "width": 1.7
+      },
+      {
+        "points": [
+          [
+            "Bent2P3x",
+            "Bent2P3y-Half"
+          ],
+          [
+            "(3.725-3.25)/PlotScale*1 ft",
+            "(1.98-2.23)/PlotScale*1 ft"
+          ]
+        ],
+        "color": "#246B7B",
+        "width": 0.65
+      },
+      {
+        "points": [
+          [
+            "Bent2P4x-Half",
+            "Bent2P4y-Half"
+          ],
+          [
+            "Bent2P4x+Half",
+            "Bent2P4y-Half"
+          ],
+          [
+            "Bent2P4x+Half",
+            "Bent2P4y+Half"
+          ],
+          [
+            "Bent2P4x-Half",
+            "Bent2P4y+Half"
+          ],
+          [
+            "Bent2P4x-Half",
+            "Bent2P4y-Half"
+          ]
+        ],
+        "color": "#246B7B",
+        "width": 1.7
+      },
+      {
+        "points": [
+          [
+            "Bent2P4x",
+            "Bent2P4y-Half"
+          ],
+          [
+            "(4.675-3.25)/PlotScale*1 ft",
+            "(1.98-2.23)/PlotScale*1 ft"
+          ]
+        ],
+        "color": "#246B7B",
+        "width": 0.65
+      },
+      {
+        "points": [
+          [
+            "-CapX",
+            "-CapY"
+          ],
+          [
+            "CapX",
+            "-CapY"
+          ],
+          [
+            "CapX",
+            "CapY"
+          ],
+          [
+            "-CapX",
+            "CapY"
+          ],
+          [
+            "-CapX",
+            "-CapY"
+          ]
+        ],
+        "color": "#87949C",
+        "width": 1
+      },
+      {
+        "points": [
+          [
+            "Bent2W1x",
+            "Min(Bent2Top+0.5 ft,Max(Bent2Bottom-0.5 ft,Bent2W1y))"
+          ],
+          [
+            "Bent2W1xend",
+            "Min(Bent2Top+0.5 ft,Max(Bent2Bottom-0.5 ft,Bent2W1yend))"
+          ]
+        ],
+        "color": "#263F49",
+        "width": 1.7
+      },
+      {
+        "points": [
+          [
+            "Bent2W2x",
+            "Min(Bent2Top+0.5 ft,Max(Bent2Bottom-0.5 ft,Bent2W2y))"
+          ],
+          [
+            "Bent2W2xend",
+            "Min(Bent2Top+0.5 ft,Max(Bent2Bottom-0.5 ft,Bent2W2yend))"
+          ]
+        ],
+        "color": "#263F49",
+        "width": 1.7
+      },
+      {
+        "points": [
+          [
+            "Bent2W3x",
+            "Min(Bent2Top+0.5 ft,Max(Bent2Bottom-0.5 ft,Bent2W3y))"
+          ],
+          [
+            "Bent2W3xend",
+            "Min(Bent2Top+0.5 ft,Max(Bent2Bottom-0.5 ft,Bent2W3yend))"
+          ]
+        ],
+        "color": "#263F49",
+        "width": 1.7
+      },
+      {
+        "points": [
+          [
+            "Bent2Left",
+            "Bent2Bottom-0.8 ft"
+          ],
+          [
+            "Bent2Right",
+            "Bent2Bottom-0.8 ft"
+          ]
+        ],
+        "color": "#1766A0",
+        "width": 1
+      },
+      {
+        "points": [
+          [
+            "Bent2Left",
+            "Bent2Bottom"
+          ],
+          [
+            "Bent2Left",
+            "Bent2Bottom-1 ft"
+          ]
+        ],
+        "color": "#1766A0",
+        "width": 0.7
+      },
+      {
+        "points": [
+          [
+            "Bent2Right",
+            "Bent2Bottom"
+          ],
+          [
+            "Bent2Right",
+            "Bent2Bottom-1 ft"
+          ]
+        ],
+        "color": "#1766A0",
+        "width": 0.7
+      },
+      {
+        "points": [
+          [
+            "Bent2P1x-Half",
+            "Bent2P1y"
+          ],
+          [
+            "Bent2Left",
+            "Bent2P1y"
+          ]
+        ],
+        "color": "#1766A0",
+        "width": 1
+      },
+      {
+        "points": [
+          [
+            "Bent2P4x+Half",
+            "Bent2P4y"
+          ],
+          [
+            "Bent2Right",
+            "Bent2P4y"
+          ]
+        ],
+        "color": "#1766A0",
+        "width": 1
+      },
+      {
+        "points": [
+          [
+            "Bent2P2x",
+            "Bent2P2y-Half"
+          ],
+          [
+            "Bent2P2x",
+            "Bent2P2y-FrontExtent"
+          ]
+        ],
+        "color": "#1766A0",
+        "width": 1
+      }
+    ],
+    "labels": [
+      {
+        "x": 1.745,
+        "y": 1.82,
+        "text": "P1",
+        "formula": null,
+        "color": "#263F49",
+        "size": 9
+      },
+      {
+        "x": 2.695,
+        "y": 1.82,
+        "text": "P2",
+        "formula": null,
+        "color": "#263F49",
+        "size": 9
+      },
+      {
+        "x": 3.645,
+        "y": 1.82,
+        "text": "P3",
+        "formula": null,
+        "color": "#263F49",
+        "size": 9
+      },
+      {
+        "x": 4.595,
+        "y": 1.82,
+        "text": "P4",
+        "formula": null,
+        "color": "#263F49",
+        "size": 9
+      },
+      {
+        "x": 0.12,
+        "y": 3.69,
+        "text": "FRONT: STRAP CHECK | SIDES: SPECIFIED MINIMUM",
+        "formula": null,
+        "color": "#9F332B",
+        "size": 10
+      },
+      {
+        "x": 0.12,
+        "y": 3.41,
+        "text": "Front clear:",
+        "formula": null,
+        "color": "#263F49",
+        "size": 9
+      },
+      {
+        "x": 1.04,
+        "y": 3.41,
+        "text": null,
+        "formula": "LayoutClear to in",
+        "color": "#1766A0",
+        "size": 9
+      },
+      {
+        "x": 3.4,
+        "y": 3.41,
+        "text": "Side clear:",
+        "formula": null,
+        "color": "#263F49",
+        "size": 9
+      },
+      {
+        "x": 4.35,
+        "y": 3.41,
+        "text": null,
+        "formula": "SideClear to in",
+        "color": "#1766A0",
+        "size": 9
+      },
+      {
+        "x": 2.76,
+        "y": 0.39,
+        "text": null,
+        "formula": "Bent2TotalX to in",
+        "color": "#1766A0",
+        "size": 9
+      },
+      {
+        "x": 1.97,
+        "y": 1.23,
+        "text": null,
+        "formula": "LayoutClear to in",
+        "color": "#1766A0",
+        "size": 9
+      },
+      {
+        "x": 0.43,
+        "y": 2.35,
+        "text": null,
+        "formula": "SideClear to in",
+        "color": "#1766A0",
+        "size": 9
+      },
+      {
+        "x": 5.3,
+        "y": 2.35,
+        "text": null,
+        "formula": "SideClear to in",
+        "color": "#1766A0",
+        "size": 9
+      },
+      {
+        "x": 0.13,
+        "y": 0.09,
+        "text": "No rear limit | current walls are not relocated | tolerance excluded",
+        "formula": null,
+        "color": "#263F49",
+        "size": 9
+      },
+      {
+        "x": 0.22,
+        "y": 2.95,
+        "text": "B6 / left",
+        "formula": null,
+        "color": "#263F49",
+        "size": 8
+      },
+      {
+        "x": 4.87,
+        "y": 2.95,
+        "text": "B7 / right",
+        "formula": null,
+        "color": "#263F49",
+        "size": 8
+      },
+      {
+        "x": 2.72,
+        "y": 0.8,
+        "text": "B1 / front",
+        "formula": null,
+        "color": "#263F49",
+        "size": 8
+      }
+    ]
+  }
+]

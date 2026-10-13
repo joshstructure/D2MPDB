@@ -1,23 +1,22 @@
-MSE WALL EXCLUSION - 13 OCTOBER 2026
+MSE FRONT / SIDE CLEARANCE - 13 OCTOBER 2026 - T009
 
-Dimensioned.dxf: editable full-size plans for both end bents plus a typical pile box.
-All geometry is in feet (1 CAD unit = 1 ft); dimension text reports inches.
-Views are translated side by side. EB2 Y is reversed to show the approach upward.
-Return walls are cropped and marked with break strokes in this review drawing.
+Supersedes the previous four-sided, 51.75-inch exclusion boxes.
+Front wall: alpha=15 degrees, 2-inch strap, zero edge gap, nominal pile width.
+Pile placement tolerance is excluded. Computed front clear is 37.452 inches;
+adopted front clear is 37.50 inches after upward quarter-inch rounding.
+Side walls: specified 24.00-inch minimum from nominal end-pile faces.
+Side strap feasibility and rear walls are NOT evaluated.
+All wall clearances are to BACK OF FACING. Front cap clearance is separate.
 
-CAD Coordinate Overlay.dxf: the same eight pile boxes, row boxes, pile profiles,
-caps and six untrimmed MSE walls at the saved FreeCAD model's original XY feet.
-Z = 0. This is model-local XY, not a survey/georeferenced coordinate claim.
-Insert at 0,0,0 with scale 1 and rotation 0 into a drawing using the same feet frame.
-If the destination drawing uses inches, scale the overlay by 12.
+Dimensioned.dxf: translated side-by-side plans; EB2 Y is mirrored so approach
+is upward. Return walls are cropped at break strokes. Dimensions are editable.
+CAD Coordinate Overlay.dxf: original saved model-local XY, feet, Z=0.
+The overlay includes untrimmed current walls, piles, caps and open front/side limits.
+This is not a survey/georeferenced coordinate claim. Insert at 0,0,0 with scale 1
+and rotation 0 in the same feet frame; use scale 12 for an inch-unit drawing.
+Both DXFs use feet; dimension text displays inches.
 
-Current result: 51.75 in from every nominal projected pile face.
-Includes the journal's 3 in coordinate placement allowance; do not add it again.
-Trial inputs: 2 in strap, 15 deg plan skew, zero added edge gap.
-Boundary references the BACK OF FACING. All six checked current wall faces
-intersect the conservative row exclusion boxes. DXFs do not relocate the walls.
-This is a bounded geometry screen. Vendor dimensions, full routing, elevation,
-development, pad clearance and wall stability remain separate.
-
-Source: journal/D2_I95_Project_Journal.bpad, MSEWallExclusion module.
-verification.json records exact source hashes, dimensions and file audit results.
+These are nominal geometry and specified layout checks. Vendor details, actual
+pile positions, full reinforcement routing, elevation, pad clearance and wall
+stability remain separate. Current walls have not been relocated.
+Source: accepted MSEWallExclusion journal module; see verification.json.

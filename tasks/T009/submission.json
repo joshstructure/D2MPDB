@@ -1,0 +1,36 @@
+{
+  "summary": "Keep one MSE module; evaluate front straps at alpha 15 degrees without pile tolerance; specify independent 24-inch side offsets and open three-sided limits.",
+  "published_outputs": [
+    "MinClear and LayoutClear: front nominal pile-face clear in inches",
+    "SideClear: specified minimum nominal pile-face clear in inches",
+    "FrontExtent and SideExtent: direction-specific center offsets",
+    "Both bent plans and current front/side gap/shortfall tables",
+    "Separate cap/front-facing check"
+  ],
+  "assumptions_and_conventions": [
+    "Nominal 18-inch pile width only; no placement envelope",
+    "2-inch trial front strap and zero added edge gap; alpha is a direct input set to 15 degrees",
+    "SideClear=24 inches; side reinforcement routing is not evaluated",
+    "Front and side clearances end at back of facing",
+    "Either front strap skew direction is permitted in the symmetric nominal screen",
+    "Open front/side boundary has no rear criterion"
+  ],
+  "downstream_impact": [
+    "Only report:MSEWallExclusion changes; shared geometry and index preserved",
+    "DXFs regenerated to the new direction-specific criteria"
+  ],
+  "external_analysis": "Saved CAD model fingerprint and eight pile centers checked; source model and structural analysis unchanged. Full reinforcement routing and wall stability outside scope.",
+  "checks_performed": [
+    "400 corner/ray boundary checks for both skew directions",
+    "Five sensitivities including 12-inch shared placement allowance with no front/side setback effect",
+    "Eight source CAD centers and six independent gap/shortfall checks",
+    "Bounded component import passed",
+    "Native Blockpad recalculation/save: zero module errors and 74 table/dimension values agree with independent equations",
+    "All five module pages inspected in native Blockpad, including three dimensioned canvases",
+    "DXF preview reopened and audited; original-coordinate limits and 18 native dimensions checked",
+    "Only the reviewed native module imported; 270 other components and document shell preserved byte-for-byte"
+  ],
+  "open_items": [
+    "Vendor width, actual pile positions and full reinforcement routing remain outside this nominal screen"
+  ]
+}

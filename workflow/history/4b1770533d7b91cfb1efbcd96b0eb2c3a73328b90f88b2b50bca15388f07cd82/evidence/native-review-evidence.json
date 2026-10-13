@@ -1,0 +1,23 @@
+{
+  "candidate_sha256": "4b1770533d7b91cfb1efbcd96b0eb2c3a73328b90f88b2b50bca15388f07cd82",
+  "native_saved_file_sha256": "4b1770533d7b91cfb1efbcd96b0eb2c3a73328b90f88b2b50bca15388f07cd82",
+  "entire_candidate_matches_native_save": true,
+  "module_sha256": "faa511ff0152eb42c71de0e895480d03857addb6a8f385b397efa3be0260b625",
+  "native_application": "Blockpad desktop",
+  "reviewed_date": "2026-10-13",
+  "native_review": "Opened, recalculated and saved first candidate in Blockpad. Inspected all five pages. Imported only assigned native component, assembled final candidate, and verified entire final file identical to reviewed native save. Reopened exact final candidate and inspected its index and MSE summary.",
+  "native_pages": [
+    "Page 1: 37.452 in exact / 37.5 in adopted front, 24 in sides, alpha 15 deg, 2 in strap, VALID; open U sketch dimensioned 24/24/37.5",
+    "Page 2: live nominal pile inputs and tangent-clearance derivation; no pile tolerance term",
+    "Page 3: End Bent 1 native plan and front-pile/wall shortfall tables, readable and unclipped",
+    "Page 4: End Bent 2 native plan and front-pile/wall shortfall tables, readable and unclipped",
+    "Page 5: separate cap PASS results, ordinary 15-degree skew basis, explicit front/side scope and provenance"
+  ],
+  "native_module_errors": 0,
+  "native_table_and_dimension_values_compared": 74,
+  "preserved_other_components": 270,
+  "preserved_shell": true,
+  "engineering_disposition": "Bounded centered-strap tangent screen on nominal 18-inch square piles, 2-inch trial strap, zero gap, alpha 15 deg, either skew direction, front only. Side 24-inch offset is separately specified; side strap routing and rear walls are not evaluated. Current six wall locations show shortfalls; separate cap/front-wall gaps pass 24 inches. No complete wall design acceptance.",
+  "source_model_sha256": "7368774487c1456238df13c80e33ddf3871907982ff91938e1ae1b4eebf52676",
+  "dxf_preview": "Both DXFs reopened without audit errors/fixes. Eight front limits, four side limits and source coordinate positions checked; 18 editable dimension entities rendered. Dimensioned drawing preview inspected."
+}

@@ -1,0 +1,10 @@
+{
+  "task": "T009",
+  "base_sha256": "01e52e58171e3b92c7a00eb23090a1cc1679f3159ff0ad204be6f8874d6d98c5",
+  "components": {
+    "report:MSEWallExclusion": {
+      "file": "000.xml",
+      "sha256": "faa511ff0152eb42c71de0e895480d03857addb6a8f385b397efa3be0260b625"
+    }
+  }
+}
