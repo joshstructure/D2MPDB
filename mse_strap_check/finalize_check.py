@@ -55,7 +55,7 @@ fig,axs=plt.subplots(2,2,figsize=(14,12.5),gridspec_kw={'height_ratios':[1.25,.7
 fig.get_layout_engine().set(rect=(0,.045,1,.955))
 fig.patch.set_facecolor('#F5F8FA')
 fig.suptitle('MSE STRAP CLEARANCE | BOTH END BENTS\n2 in trial strap - 15 degree skew - nominal pile positions',fontsize=18,fontweight='bold',color='#163947')
-for col,r in enumerate(['EB1','EB2']):
+for col,r in enumerate(['EndBentOne','EndBentTwo']):
     ax=axs[0,col];ax.set_facecolor('white')
     for k in range(1,6):
         xa,xb,ya,yb=[get(r,f'W{k}'+t) for t in ['xmin','xmax','ymin','ymax']]
@@ -129,7 +129,7 @@ for report in tree.findall('report'):
     fig.savefig(HERE/f'native-preview-{report.get("name")}.png',dpi=140,bbox_inches='tight');plt.close(fig)
 
 verification=json.loads((HERE/'verification.json').read_text())
-verification.update({'bpad_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'independent_display_caches':count,'native_review':{'recalculation':False,'appearance':False,'reason':'Computer Use was not approved to use Blockpad.'},'preview':'Independent plan preview and direct PlotLines geometry render; not native pagination.'})
+verification.update({'bpad_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'independent_display_caches':count,'native_review':{'recalculation':False,'appearance':False,'reason':'Freshly rebuilt file; native review must be repeated for these exact bytes.'},'preview':'Independent plan preview and direct PlotLines geometry render; not native pagination.'})
 snapshot=json.loads((HERE/'layout_snapshot.json').read_text())
 for file,key in [(HERE.parent/snapshot['model_path'],'model_sha256'),(HERE.parent/'journal/D2_I95_Project_Journal.bpad','journal_sha256')]:
     assert hashlib.sha256(file.read_bytes()).hexdigest()==snapshot[key]

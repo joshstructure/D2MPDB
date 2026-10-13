@@ -1,39 +1,40 @@
 {
-  "native_recalculation": "not established by this script",
+  "native_recalculation": "Completed in Blockpad, saved through the native UI on 2026-10-13",
   "definitions_evaluated": 934,
   "checks": [
     "120 independent distance cases, including axis-parallel / zero-length / crossing segments",
     "All 48 signed routes independently checked against every pile and five wall rectangles per bent",
-    "Tangency identity and six meaningful width/tolerance/layer/angle/length scenarios"
+    "Tangency identity and six meaningful width/tolerance/layer/angle/length scenarios",
+    "Native function capitalization and report names avoid the observed Blockpad evaluation errors"
   ],
   "scenarios": [
     {
       "case": "zero-width",
-      "EB1_front_P2_plus": "PASS"
+      "EndBentOne_front_P2_plus": "PASS"
     },
     {
       "case": "one-inch-strip",
-      "EB1_front_P2_plus": "PASS"
+      "EndBentOne_front_P2_plus": "PASS"
     },
     {
       "case": "three-inch-tolerance",
-      "EB1_front_P2_plus": "FAIL"
+      "EndBentOne_front_P2_plus": "FAIL"
     },
     {
       "case": "layer-above-wall",
-      "EB1_front_P2_plus": "FAIL"
+      "EndBentOne_front_P2_plus": "FAIL"
     },
     {
       "case": "invalid-angle",
-      "EB1_front_P2_plus": "FAIL"
+      "EndBentOne_front_P2_plus": "FAIL"
     },
     {
       "case": "short-strap",
-      "EB1_front_P2_plus": "FAIL"
+      "EndBentOne_front_P2_plus": "FAIL"
     }
   ],
   "summary": {
-    "EB1": {
+    "EndBentOne": {
       "front_line_gap_in": 0.9298954582985353,
       "front_max_strip_width_in": 1.8597909165970705,
       "front_cap_setback_in": 25.181660405294522,
@@ -42,7 +43,7 @@
       "left_nearest_required_deg": 36.23394889231383,
       "right_nearest_required_deg": 36.127662966926295
     },
-    "EB2": {
+    "EndBentTwo": {
       "front_line_gap_in": 0.7837196266087378,
       "front_max_strip_width_in": 1.5674392532174757,
       "front_cap_setback_in": 24.616880361260762,
@@ -54,7 +55,7 @@
   },
   "routes": [
     {
-      "bent": "EB1",
+      "bent": "EndBentOne",
       "wall": 1,
       "pile": 1,
       "d_ft": 3.8485146953704086,
@@ -66,7 +67,7 @@
       "minus_edge_gap_in": -0.07010454170146674
     },
     {
-      "bent": "EB1",
+      "bent": "EndBentOne",
       "wall": 1,
       "pile": 2,
       "d_ft": 3.8486075652224634,
@@ -78,7 +79,7 @@
       "minus_edge_gap_in": -0.06981610386434389
     },
     {
-      "bent": "EB1",
+      "bent": "EndBentOne",
       "wall": 1,
       "pile": 3,
       "d_ft": 3.8487004350745173,
@@ -90,7 +91,7 @@
       "minus_edge_gap_in": -0.06952766602720062
     },
     {
-      "bent": "EB1",
+      "bent": "EndBentOne",
       "wall": 1,
       "pile": 4,
       "d_ft": 3.8487933049265717,
@@ -102,7 +103,7 @@
       "minus_edge_gap_in": -0.06923922819007633
     },
     {
-      "bent": "EB1",
+      "bent": "EndBentOne",
       "wall": 2,
       "pile": 1,
       "d_ft": 1.9144926616043587,
@@ -114,7 +115,7 @@
       "minus_edge_gap_in": -1.0
     },
     {
-      "bent": "EB1",
+      "bent": "EndBentOne",
       "wall": 2,
       "pile": 2,
       "d_ft": 6.41449266064605,
@@ -126,7 +127,7 @@
       "minus_edge_gap_in": -1.0
     },
     {
-      "bent": "EB1",
+      "bent": "EndBentOne",
       "wall": 2,
       "pile": 3,
       "d_ft": 10.91449265968773,
@@ -138,7 +139,7 @@
       "minus_edge_gap_in": -1.0
     },
     {
-      "bent": "EB1",
+      "bent": "EndBentOne",
       "wall": 2,
       "pile": 4,
       "d_ft": 15.41449265872942,
@@ -150,7 +151,7 @@
       "minus_edge_gap_in": -1.0
     },
     {
-      "bent": "EB1",
+      "bent": "EndBentOne",
       "wall": 3,
       "pile": 1,
       "d_ft": 15.41884303287768,
@@ -162,7 +163,7 @@
       "minus_edge_gap_in": -1.0
     },
     {
-      "bent": "EB1",
+      "bent": "EndBentOne",
       "wall": 3,
       "pile": 2,
       "d_ft": 10.91884303383599,
@@ -174,7 +175,7 @@
       "minus_edge_gap_in": -1.0
     },
     {
-      "bent": "EB1",
+      "bent": "EndBentOne",
       "wall": 3,
       "pile": 3,
       "d_ft": 6.4188430347943095,
@@ -186,7 +187,7 @@
       "minus_edge_gap_in": -1.0
     },
     {
-      "bent": "EB1",
+      "bent": "EndBentOne",
       "wall": 3,
       "pile": 4,
       "d_ft": 1.9188430357526194,
@@ -198,7 +199,7 @@
       "minus_edge_gap_in": -1.0
     },
     {
-      "bent": "EB2",
+      "bent": "EndBentTwo",
       "wall": 1,
       "pile": 1,
       "d_ft": 3.801728301257098,
@@ -210,7 +211,7 @@
       "minus_edge_gap_in": -0.21541505987983534
     },
     {
-      "bent": "EB2",
+      "bent": "EndBentTwo",
       "wall": 1,
       "pile": 2,
       "d_ft": 3.80163543140503,
@@ -222,7 +223,7 @@
       "minus_edge_gap_in": -0.21570349771701303
     },
     {
-      "bent": "EB2",
+      "bent": "EndBentTwo",
       "wall": 1,
       "pile": 3,
       "d_ft": 3.8015425615529903,
@@ -234,7 +235,7 @@
       "minus_edge_gap_in": -0.2159919355540857
     },
     {
-      "bent": "EB2",
+      "bent": "EndBentTwo",
       "wall": 1,
       "pile": 4,
       "d_ft": 3.801449691700922,
@@ -246,7 +247,7 @@
       "minus_edge_gap_in": -0.2162803733912635
     },
     {
-      "bent": "EB2",
+      "bent": "EndBentTwo",
       "wall": 2,
       "pile": 1,
       "d_ft": 1.9188434254648594,
@@ -258,7 +259,7 @@
       "minus_edge_gap_in": -1.0
     },
     {
-      "bent": "EB2",
+      "bent": "EndBentTwo",
       "wall": 2,
       "pile": 2,
       "d_ft": 6.418843424506551,
@@ -270,7 +271,7 @@
       "minus_edge_gap_in": -1.0
     },
     {
-      "bent": "EB2",
+      "bent": "EndBentTwo",
       "wall": 2,
       "pile": 3,
       "d_ft": 10.91884342354823,
@@ -282,7 +283,7 @@
       "minus_edge_gap_in": -1.0
     },
     {
-      "bent": "EB2",
+      "bent": "EndBentTwo",
       "wall": 2,
       "pile": 4,
       "d_ft": 15.418843422589921,
@@ -294,7 +295,7 @@
       "minus_edge_gap_in": -1.0
     },
     {
-      "bent": "EB2",
+      "bent": "EndBentTwo",
       "wall": 3,
       "pile": 1,
       "d_ft": 15.414425175109239,
@@ -306,7 +307,7 @@
       "minus_edge_gap_in": -1.0
     },
     {
-      "bent": "EB2",
+      "bent": "EndBentTwo",
       "wall": 3,
       "pile": 2,
       "d_ft": 10.914425176067551,
@@ -318,7 +319,7 @@
       "minus_edge_gap_in": -1.0
     },
     {
-      "bent": "EB2",
+      "bent": "EndBentTwo",
       "wall": 3,
       "pile": 3,
       "d_ft": 6.414425177025869,
@@ -330,7 +331,7 @@
       "minus_edge_gap_in": -1.0
     },
     {
-      "bent": "EB2",
+      "bent": "EndBentTwo",
       "wall": 3,
       "pile": 4,
       "d_ft": 1.9144251779841792,
@@ -342,13 +343,21 @@
       "minus_edge_gap_in": -1.0
     }
   ],
-  "bpad_sha256": "b5fd3da5e88e904b525f914ca584ee6d598e3ee388fc64a93074301327a8ea3c",
-  "independent_display_caches": 1122,
+  "bpad_sha256": "705e3a56a2c33fe117d3635593a8baefc43f57938d97709621c640c7aad103a6",
   "native_review": {
-    "recalculation": false,
-    "appearance": false,
-    "reason": "Computer Use was not approved to use Blockpad."
+    "date": "2026-10-13",
+    "recalculation": true,
+    "appearance": true,
+    "appearance_scope": "Start summary and both end-bent plan/selected-result views; overview note wrapping",
+    "full_print_pagination": false,
+    "error_elements": 0,
+    "error_equation_results": 0,
+    "native_table_results_compared": 188,
+    "native_table_results_match_independent_calculation": true,
+    "all_formulas_preserved_after_native_edit_test": true,
+    "live_edit_test": "Width changed from 2 in to 1 in in Blockpad: both front-wall target checks changed from FAIL to PASS; restored to 2 in and both returned to FAIL before saving.",
+    "saved_bpad_sha256": "705e3a56a2c33fe117d3635593a8baefc43f57938d97709621c640c7aad103a6"
   },
-  "preview": "Independent plan preview and direct PlotLines geometry render; not native pagination.",
+  "preview": "Independent plan preview; native screen review is separately recorded above.",
   "source_model_and_journal_unchanged": true
 }

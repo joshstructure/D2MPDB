@@ -11,9 +11,9 @@ class Extended(Engine):
         if name=='null':return None
         return super().get(name)
     def eval(self,a,scope):
-        if a[0]=='call' and a[1] in ['ATan','ASin']:
+        if a[0]=='call' and a[1] in ['Atan','Asin']:
             q=self.eval(a[2][0],scope);assert q.d==(0,0,0)
-            return Q((math.atan if a[1]=='ATan' else math.asin)(q.v),(0,0,1))
+            return Q((math.atan if a[1]=='Atan' else math.asin)(q.v),(0,0,1))
         return super().eval(a,scope)
 
 source=json.loads((HERE/'formulas.json').read_text())
@@ -59,7 +59,7 @@ for i in range(120):
     assert abs(actual-expected)<1e-8,(actual,expected,vals,box)
 checks.append('120 independent distance cases, including axis-parallel / zero-length / crossing segments')
 results=[]
-for r in ['EB1','EB2']:
+for r in ['EndBentOne','EndBentTwo']:
     for wi in range(1,4):
         for j in range(1,5):
             q=f'{r}.C{wi}{j}';a=(scalar(q+'x',12),scalar(q+'y',12));env=scalar(r+'.Envelope',12)
@@ -84,10 +84,10 @@ for name,overrides in [
  ('three-inch-tolerance',{'Basis.Tolerance':Q(3,(1,0,0))}),
  ('layer-above-wall',{'Basis.Layer':Q(42*12,(1,0,0))}),
  ('invalid-angle',{'Basis.TestAngle':Q(math.radians(16),(0,0,1))}),
- ('short-strap',{'EB1.LengthOverride':Q(2*12,(1,0,0))})]:
-    e=Extended(definitions,overrides=overrides);front=e.get('EB1.C12PlusStatus');scenarios.append({'case':name,'EB1_front_P2_plus':front})
+ ('short-strap',{'EndBentOne.LengthOverride':Q(2*12,(1,0,0))})]:
+    e=Extended(definitions,overrides=overrides);front=e.get('EndBentOne.C12PlusStatus');scenarios.append({'case':name,'EndBentOne_front_P2_plus':front})
     assert front==('PASS' if name in ['zero-width','one-inch-strip'] else 'FAIL'),(name,front)
-for r in ['EB1','EB2']:
+for r in ['EndBentOne','EndBentTwo']:
     d=scalar(r+'.C12d');a=scalar(r+'.Envelope');rr=scalar('Basis.Width')/2
     theta=scalar(r+'.C12theta')
     assert abs((d-a)*math.sin(theta)-a*math.cos(theta)-rr)<1e-8
@@ -96,7 +96,10 @@ tree=E.parse(str(HERE/'MSE Strap Clearance - Both End Bents.bpad'))
 assert not tree.findall('.//error')
 names_all=[el.get('name') for el in tree.getroot() if el.get('name')]
 assert len(names_all)==len(set(names_all))
-summary={r:{'front_line_gap_in':scalar(r+'.FrontGap'),'front_max_strip_width_in':scalar(r+'.FrontMaxWidth'),'front_cap_setback_in':scalar(r+'.CapSetback1'),'left_cap_setback_in':scalar(r+'.CapSetback2'),'right_cap_setback_in':scalar(r+'.CapSetback3'),'left_nearest_required_deg':scalar(r+'.C21theta',math.pi/180),'right_nearest_required_deg':scalar(r+'.C34theta',math.pi/180)} for r in ['EB1','EB2']}
+assert all(not re.fullmatch(r'[A-Za-z]+[1-9][0-9]*',name) for name in names_all), 'Report names must not be cell addresses'
+assert not any(re.search(r'\b(?:ATan|ASin)\s*\(',el.get('formula','')) for el in tree.iter()), 'Native inverse-trig names are case-sensitive'
+checks.append('Native function capitalization and report names avoid the observed Blockpad evaluation errors')
+summary={r:{'front_line_gap_in':scalar(r+'.FrontGap'),'front_max_strip_width_in':scalar(r+'.FrontMaxWidth'),'front_cap_setback_in':scalar(r+'.CapSetback1'),'left_cap_setback_in':scalar(r+'.CapSetback2'),'right_cap_setback_in':scalar(r+'.CapSetback3'),'left_nearest_required_deg':scalar(r+'.C21theta',math.pi/180),'right_nearest_required_deg':scalar(r+'.C34theta',math.pi/180)} for r in ['EndBentOne','EndBentTwo']}
 record={'native_recalculation':'not established by this script','definitions_evaluated':len(engine.defs),'checks':checks,'scenarios':scenarios,'summary':summary,'routes':results}
 (HERE/'verification.json').write_text(json.dumps(record,indent=2))
 serial={k:({'value':v.v,'dimensions':v.d} if isinstance(v,Q) else v) for k,v in values.items()}

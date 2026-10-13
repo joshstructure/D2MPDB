@@ -36,7 +36,11 @@ def table(r,name,headers,rows,widths):
     E.SubElement(t,'stylerule',range=f'A1:{last}1',background='#DCE7F3',fontweight='bold')
     for i,row in enumerate([headers]+rows):
         tr=E.SubElement(t,'row')
-        for v in row:
+        for col,v in enumerate(row):
+            if not isinstance(v,tuple) and (len(str(v)) > 70 or len(str(v)) > widths[col]/4):
+                cell=E.SubElement(tr,'textcell',name=f'Note{i}_{col}',capture='False',background='#DCE7F3' if i==0 else '#F3F7F8')
+                p(cell,str(v),fontsize='9',spacingafter='2')
+                continue
             cell=E.SubElement(tr,'c',capture='False',background='#DCE7F3' if i==0 else '#F3F7F8')
             if isinstance(v,tuple):cell.set('formula',v[0])
             else:E.SubElement(cell,'textvalue').text=str(v)
@@ -87,7 +91,7 @@ table(basis,'Criteria',['Provision','Applied meaning'],[
 link(basis,'FDOT Structures Manual - January 2026 (SDG pp. 3-55, 3-62, 3-63; SDM 19.6)','https://www.fdot.gov/structures/structuresmanual/currentrelease')
 p(basis,'Basis: saved native model registered under project_current/geometry/freecad. Wall profiles mark the back of the modeled facing; facing thickness extends outward. This standalone file contains an editable source snapshot, not a live connection to CAD. Refresh deliberately when CAD changes.')
 p(basis,'The modeled front-wall top is used as the coping proxy. Final vendor coping and wall height are not confirmed. Current model piles are plumb and have provisional tips. Layer shifts may be entered per pile for a separately established batter/as-built section; this does not check the entire battered shaft.',background='#FFF8E9')
-p(basis,'VERIFICATION: native equations were independently evaluated with dimensional checks and compared with separate segment geometry. Display caches are independently computed starting values. Blockpad native recalculation and print pagination have not been verified; recalculate on opening.',background='#FFF8E9',fontsize='9')
+p(basis,'VERIFICATION: native equations are independently evaluated with dimensional checks and compared with separate segment geometry. See the accompanying verification.json for native recalculation and screen-review evidence tied to the delivered file. Rebuilding this file requires a new native check. Full print pagination is a separate review.',background='#FFF8E9',fontsize='9')
 link(basis,'Source snapshot and exact model fingerprint','layout_snapshot.json')
 
 methods=report('RouteMath','04 - Geometry method')
@@ -281,6 +285,23 @@ for bi,b in enumerate(data['bents']):
         el.set('formula',f)
 
 doc.remove(methods);doc.append(methods)
+# Native table formulas interpret EB1/EB2 as A1-style cell addresses. Report
+# names must not look like spreadsheet addresses. Native math is case-sensitive.
+native_names={'EB1':'EndBentOne','EB2':'EndBentTwo'}
+def native_formula(formula):
+    formula=formula.replace('ATan(', 'Atan(').replace('ASin(', 'Asin(')
+    for old,new in native_names.items():formula=formula.replace(old+'.',new+'.')
+    return formula
+for el in doc.iter():
+    if el.tag=='report' and el.get('name') in native_names:el.set('name',native_names[el.get('name')])
+    if el.get('formula'):el.set('formula',native_formula(el.get('formula')))
+    if el.tag=='expbody' and el.text:el.text=native_formula(el.text)
+    if el.tag=='link' and el.get('address','').lstrip('#') in native_names:
+        el.set('address','#'+native_names[el.get('address')[1:]])
+    if el.tag=='paragraph' and el.text:el.text=el.text.replace('ATan[','Atan[').replace('ASin[','Asin[')
+for definition in defs:
+    definition['report']=native_names.get(definition['report'],definition['report'])
+    definition['formula']=native_formula(definition['formula'])
 path=HERE/'MSE Strap Clearance - Both End Bents.bpad'
 E.ElementTree(doc).write(str(path),encoding='utf-8',xml_declaration=True,pretty_print=True)
 (HERE/'formulas.json').write_text(json.dumps(defs,indent=2))

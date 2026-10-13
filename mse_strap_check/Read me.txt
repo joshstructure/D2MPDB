@@ -33,9 +33,17 @@ VERIFICATION
 evaluated with units; 120 independent distance cases and 48 signed actual
 routes were checked. Additional scenarios test width, tolerance, layer, length
 and out-of-limit skew. Model and journal source hashes are unchanged.
-Blockpad access was not granted by Computer Use, so native recalculation and
-native screen/print pagination have NOT been verified. Display caches and the
-PNG preview are independently calculated, not a native review or design approval.
+The delivered file was recalculated and saved in Blockpad on 13 October 2026.
+There are zero native formula errors. All 188 native table results agree with
+the independent calculation. The summary and both bent plan/result views were
+reviewed in the app. A live width change to 1 in made both front-wall target
+checks PASS; restoring 2 in returned them to FAIL. Full print pagination was
+not reviewed. The PNG preview is an independent rendering.
+
+REPAIR NOTE
+Native Atan/Asin names are case-sensitive. Report names EndBentOne/EndBentTwo
+avoid the EB1/EB2 cell-address ambiguity in cross-report summary references.
+The repair also wraps the longer overview and criteria notes.
 
 SOURCE
 The layout snapshot and SHA-256 identify the registered FreeCAD model.
@@ -48,6 +56,9 @@ REBUILD (repository Python environment)
   python mse_strap_check/extract_layout.py
   python mse_strap_check/build_check.py
   python mse_strap_check/finalize_check.py
+
+Rebuilding resets native-review evidence. Reopen and recalculate the rebuilt
+file in Blockpad, repeat the native checks, and record its new SHA-256.
 
 Keep the delivered BPAD and this readme together. This is a new standalone
 check; it does not modify or promote the existing project journal.
