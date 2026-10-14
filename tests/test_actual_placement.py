@@ -154,7 +154,12 @@ class ActualPlacementTests(unittest.TestCase):
 
     def test_live_shape_edit_moves_bars_and_can_record_current_confirmation(self):
         from pier_cap.widgets import CapNotebook
-        app=CapNotebook(actual_case())
+        case=actual_case()
+        # Leave end cover for the larger trial bar; a size edit at the old
+        # cover-limited station must now be rejected by the run controls.
+        case['transverse_detail']['runs'][0]['first_in']+=1
+        case['transverse_detail']['runs'][0]['end_in']+=1
+        app=CapNotebook(case)
         try:
             panel=app.transverse_panel
             run=app.case['transverse_detail']['runs'][0]

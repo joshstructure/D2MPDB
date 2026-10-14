@@ -199,6 +199,7 @@ def elevation_figure(e,*,zone_labels=True):
     p=e.case['inputs'];L=e.value('L_cap');h=p['h'];D=p['D_pile']
     fig=go.Figure()
     fig.add_shape(type='rect',x0=0,x1=L/12,y0=0,y1=h,fillcolor='#eef3f7',line=dict(color=INK,width=2),layer='below')
+    end_cover_bands(fig,e,h)
     centers=[e.value('E_CL')+j*p['S_pile']*12 for j in range(int(p['N_pile']))]
     for j,x in enumerate(centers,1):
         fig.add_shape(type='rect',name='part:piles',x0=(x-D/2)/12,x1=(x+D/2)/12,y0=-18,y1=p['Pile_embed'],fillcolor='#b8c7d1',line=dict(color=INK),layer='below')
@@ -257,10 +258,23 @@ def elevation_figure(e,*,zone_labels=True):
     return drawing_controls(fig,zone_case=e if zone_labels else None,fit_cap=True)
 
 
+def end_cover_bands(fig,e,height):
+    """Keep the physical end-cover zones visible at any drawing zoom."""
+    cover=e.case['inputs']['C_s'];length=e.value('L_cap')
+    for side,left,right in [('left',0,cover),('right',length-cover,length)]:
+        fig.add_shape(type='rect',name='end-cover-'+side,x0=left/12,x1=right/12,y0=0,y1=height,
+            line=dict(width=0),fillcolor='rgba(194,133,38,0.18)',layer='below')
+        x=right if side=='left' else left
+        fig.add_trace(go.Scatter(x=[x/12,x/12],y=[0,height],mode='lines',showlegend=False,
+            name=side.title()+' end cover',meta=dict(part='cap'),line=dict(color='#a9721d',width=1,dash='dot'),
+            hovertemplate=f'{side.title()} end · {cover:g} in clear cover to steel surface<extra></extra>'))
+
+
 @numbered_figure('cap_plan')
 def reinforcement_plan_figure(e,*,zone_labels=True):
     p=e.case['inputs'];L=e.value('L_cap');fig=go.Figure()
     fig.add_shape(type='rect',x0=0,x1=L/12,y0=0,y1=p['b'],line=dict(color=INK),fillcolor='#f2f5f7',layer='below')
+    end_cover_bands(fig,e,p['b'])
     for i in range(int(p['N_pile'])):
         c=e.value('E_CL')+i*p['S_pile']*12
         fig.add_shape(type='rect',name='part:piles',x0=(c-p['D_pile']/2)/12,x1=(c+p['D_pile']/2)/12,y0=(p['b']-p['D_pile'])/2,y1=(p['b']+p['D_pile'])/2,line=dict(color=GREY),fillcolor='#d2dde5',layer='below')

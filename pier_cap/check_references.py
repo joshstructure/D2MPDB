@@ -125,7 +125,7 @@ def references_for(e, check):
         return CLEARANCE, 'The larger entered project clearance also applies.'
     if key.startswith('Chk_alignment_'):
         return (lrfd('Art. 5.10.3.1.3', 'Vertical alignment of bars in closely spaced layers'),), ''
-    if key in ('Chk_added_fit', 'Chk_actual_longitudinal_fit'):
+    if key in ('Chk_added_fit', 'Chk_actual_longitudinal_fit') or key.startswith('Chk_actual_cover_'):
         return (sdm('Art. 4.3.4', 'Reinforcing fit and clearance'),), 'Geometric screen using entered cover and cage geometry; exposure-based cover selection is separate.'
     if key == 'Chk_hook_fit':
         return HOOKS, 'Fit screen only; development is checked separately.'

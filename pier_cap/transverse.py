@@ -165,6 +165,32 @@ def station_issues(e):
     return issues
 
 
+def run_end_cover(e,run):
+    """Clear cover to physical steel at both cap ends, including turned hooks.
+
+    Stations locate the bar centerline. The radius is measured toward each
+    concrete end; an unused run limit does not create an extra physical bar.
+    The hook's along-cap extrema occur at its bend or tail endpoints for the
+    supported 0/90/135/180 degree bends, which are included in points_3d.
+    """
+    from .model import BAR_DIAMETER
+    radius=BAR_DIAMETER[run['bar']]/2
+    offsets=[p[0] for p in bar_shape(e,run)['points_3d']] if any(hook_rotations(run)) else [0.]
+    low=min(offsets)-radius;high=max(offsets)+radius
+    required=e.case['inputs']['C_s'];length=e.value('L_cap')
+    left=run['first_in']+low;right=length-run_last_station(run)-high
+    return dict(left_in=left,right_in=right,required_in=required,
+                minimum_station_in=required-low,maximum_station_in=length-required-high,
+                ok=min(left,right)>=required-1e-8)
+
+
+def end_cover_message(run,cover):
+    return (f"{run['id']}: cap end cover requires {cover['required_in']:g} in clear; "
+            f"left {cover['left_in']:g} in, right {cover['right_in']:g} in. "
+            f"Keep physical bar stations from {cover['minimum_station_in']:g} to "
+            f"{cover['maximum_station_in']:g} in from the left cap end (bar radius and rotated hooks included).")
+
+
 def shape_parameters(run):
     from .model import BAR_DIAMETER
     d=BAR_DIAMETER[run['bar']]
@@ -340,9 +366,9 @@ def shape_issues(e,run):
         issues.append('Bar or end tail violates cap cover.')
     bars=[b for b in scheduled_bars(e.case) if b['run']==run['id']]
     rotated=any(hook_rotations(run));points_3d=shape['points_3d']
-    if rotated and any(b['station_in']+x-d/2<p['C_s']-1e-8 or
-            b['station_in']+x+d/2>e.value('L_cap')-p['C_s']+1e-8 for b in bars for x,_,_ in points_3d):
-        issues.append('Rotated hook violates cap end cover along the cap.')
+    cover=run_end_cover(e,run)
+    if bars and not cover['ok']:
+        issues.append(('Rotated hook violates cap end cover along the cap. ' if rotated else '')+end_cover_message(run,cover))
     inset=p['D_pile']/2+e.value('Tol_pile')+p['C_pile']+d/2
     centers=[e.value('E_CL')+i*p['S_pile']*12 for i in range(int(p['N_pile']))]
     # Exact line intersection and conservative allowance for discretized arcs.
@@ -427,6 +453,12 @@ def transverse_checks(e):
     p=e.case['inputs'];bars=scheduled_bars(e.case);checks=[]
     runs={r['id']:r for r in e.case['transverse_detail']['runs']}
     for run in runs.values():
+        cover=run_end_cover(e,run);actual=min(cover['left_in'],cover['right_in']);required=cover['required_in']
+        ratio=1. if math.isclose(actual,required,rel_tol=0,abs_tol=1e-8) else required/max(actual,1e-6)
+        checks.append(Check('Chk_actual_cover_'+run['id'],run['id']+' clear cover at cap ends',
+            'PASS' if cover['ok'] else 'FAIL',ratio,end_cover_message(run,cover)))
+        from .check_working import clearance
+        clearance(checks[-1],actual,required)
         confirmed=development_current(e.case,run)
         checks.append(Check('Status_transverse_development_'+run['id'],run['id']+' end development / closure',
             'RECORDED' if confirmed else 'PENDING','N/A',

@@ -109,6 +109,12 @@ class RunCard:
         ids=', '.join(o['id'] for o in overlaps)
         ranges='; '.join(o['id']+': '+station_range(o['first'],o['last']) for o in overlaps)
         c['warning'].value=('<small style="color:#9b6012" title="'+html.escape(ranges,quote=True)+'"><b>⚠ Limits overlap '+html.escape(ids)+'.</b> Edit first / limit to resolve.</small>' if overlaps else '')
+        if self.panel.owner.current:
+            from .transverse import run_end_cover,end_cover_message
+            cover=run_end_cover(self.panel.owner.current,run)
+            c['info'].value+=f'<br><small>Bar centers: {cover["minimum_station_in"]:g}–{cover["maximum_station_in"]:g} in for {cover["required_in"]:g} in end cover.</small>'
+            if not cover['ok']:
+                c['warning'].value+='<br><small style="color:#bb3e39"><b>⚠ '+html.escape(end_cover_message(run,cover))+'</b></small>'
         if run.get('include_end_bar',False) and len(stations)>1 and self.panel.owner.current:
             from .detailing import required_clear
             from .model import BAR_DIAMETER
@@ -153,7 +159,8 @@ class TransversePanel:
         self.ui=W.VBox([W.HTML('<style>.cap-hoop-track {flex-wrap:nowrap!important;overflow-x:scroll!important;overflow-y:hidden!important;overscroll-behavior-x:contain;}'
             '.cap-hoop-card {flex-shrink:0!important;}</style>'
             '<h3 style="margin:4px 0">Actual hoops and pile U-bars · by zone</h3><p style="margin:4px 0"><small>'
-            'First / limit: from the <b>left cap end</b>; inches and feet are linked. '
+            'First / limit: bar-center stations from the <b>left cap end</b>; inches and feet are linked. '
+            'End cover is measured to the bar surface: a straight stirrup center needs cover + half its diameter. '
             '<b>Details</b> opens shape / development; <b>Delete R…</b> removes that run.</small></p>'),
             W.HBox([self.active,self.start_bar,self.start_pitch,self.generate,self.undo_start,self.add],layout=W.Layout(flex_flow='row wrap')),
             W.HTML('<small>Starting layout replaces current runs. Zone edges get half the minimum allowable clear spacing to the bar surface, independent of Start c/c. Cap-end cover still governs. Bars near each run end shift as needed to meet minimum clear spacing; first and last bars stay fixed.</small>'),
@@ -276,11 +283,25 @@ class TransversePanel:
             self.sync_zones(self.owner.current);self.owner.refresh_sections()
             self.zone_controls[rid]['details'].selected_index=0
 
-    def _commit(self,detail,selected=None):
+    def _commit(self,detail,selected=None,*,enforce_cover=True):
         if any(any(shape_parameters(r)[key] for key in HOOK_ROTATIONS) for r in detail['runs']):detail['version']=4
         elif any('end_min_clear_in' in r for r in detail['runs']):detail['version']=max(3,detail['version'])
         elif any(r.get('include_end_bar',False) for r in detail['runs']):detail['version']=max(2,detail['version'])
         case=deepcopy(self.owner.case);case['transverse_detail']=detail;validate_detail(case)
+        # Reject new cover encroachments before applying a run edit. Retained
+        # cases remain inspectable and can be repaired one end/run at a time.
+        from .model import geometry_evaluation
+        from .transverse import run_end_cover,end_cover_message
+        e=self.owner.current or geometry_evaluation(self.owner.case)
+        previous={r['id']:r for r in self.owner.case.get('transverse_detail',empty_detail())['runs']}
+        for run in detail['runs'] if enforce_cover else ():
+            old=previous.get(run['id'])
+            if old==run:continue
+            cover=run_end_cover(e,run)
+            if cover['ok']:continue
+            before=run_end_cover(e,old) if old else None
+            if before is None or any(cover[k]<min(cover['required_in'],before[k])-1e-8 for k in ('left_in','right_in')):
+                raise ValueError(end_cover_message(run,cover))
         self.owner.case=case
         if selected:self._selected_run_id=selected
         self.sync();self.owner._update_search_basis();self.owner.refresh();self.owner._notify_case_change()
@@ -311,7 +332,7 @@ class TransversePanel:
     def _undo_start(self,_):
         if self._previous_detail is None:return
         def perform():
-            self._commit(deepcopy(self._previous_detail))
+            self._commit(deepcopy(self._previous_detail),enforce_cover=False)
             self._previous_detail=None;self.undo_start.disabled=True
             self.status.value='<small>Previous transverse layout restored.</small>'
         self._attempt(perform)
