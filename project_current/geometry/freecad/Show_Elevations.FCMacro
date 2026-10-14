@@ -1,0 +1,10 @@
+"""Show the linked elevation callouts in plan without saving the model."""
+from pathlib import Path
+import runpy
+import FreeCADGui as Gui
+folder=Path(__file__).resolve().parent
+session=runpy.run_path(str(folder/'Open_Current_Bridge.FCMacro'))
+doc=session['doc']
+for o in doc.SlabElevations.Group:o.ViewObject.Visibility=True
+Gui.activeDocument().activeView().viewTop()
+Gui.activeDocument().activeView().fitAll()

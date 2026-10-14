@@ -1,0 +1,59 @@
+{
+  "status": "RAISED_MSE_WALL_TOPS_VERIFIED",
+  "model": "C:\\Users\\joshs\\Desktop\\CAD_AI\\output\\mse-wall-tops-20261014\\Delivery\\B4 Bridge - Raised MSE Wall Tops.FCStd",
+  "sha256": "2e0f12c674c238545c7c620a2c2641ddd528f9474af9ffba25a5e92ae3758dfb",
+  "wall_changes": [
+    {
+      "wall": "A5",
+      "end_bent": "EB1",
+      "old_top_ft": 39.38799999999999,
+      "new_top_ft": 40.19602556555146,
+      "raise_in": 9.69630678661758
+    },
+    {
+      "wall": "A6",
+      "end_bent": "EB1",
+      "old_top_ft": 39.38799999999999,
+      "new_top_ft": 40.19602556555146,
+      "raise_in": 9.69630678661758
+    },
+    {
+      "wall": "A7",
+      "end_bent": "EB1",
+      "old_top_ft": 39.38799999999999,
+      "new_top_ft": 40.19602556555146,
+      "raise_in": 9.69630678661758
+    },
+    {
+      "wall": "B1",
+      "end_bent": "EB2",
+      "old_top_ft": 39.38799999999999,
+      "new_top_ft": 40.208025477362995,
+      "raise_in": 9.840305728355988
+    },
+    {
+      "wall": "B6",
+      "end_bent": "EB2",
+      "old_top_ft": 39.38799999999999,
+      "new_top_ft": 40.208025477362995,
+      "raise_in": 9.840305728355988
+    },
+    {
+      "wall": "B7",
+      "end_bent": "EB2",
+      "old_top_ft": 39.38799999999999,
+      "new_top_ft": 40.208025477362995,
+      "raise_in": 9.840305728355988
+    }
+  ],
+  "vertical_gap_in": 0.5,
+  "horizontal_gap_in": 0.5,
+  "gap_checks": 52,
+  "geometry_checks": 621,
+  "pgl_checks": 110,
+  "annotations": 170,
+  "visible_piles": 12,
+  "protected_original_records": 216,
+  "previous_model_and_dxf_unchanged": true,
+  "reinforcement_detailing_open": true
+}

@@ -1,13 +1,13 @@
 # Latest project coherence review
 
-Checked at 2026-10-13T13:45:23.952414+00:00. **10 outstanding items remain.**
+Checked at 2026-10-14T21:16:17.969458+00:00. **11 outstanding items remain.**
 
 The [workbook](Coherence_Tracker.xlsx) owns item status and responses. This report is a generated view.
 The initial findings were carried forward from the latest adopted pier/end-bent reviews plus source-inventory gaps.
 Previously resolved decisions were excluded. This run did not perform native calculations or a complete engineering review.
 
-Registered sources: 26. Tracker items: 22.
-Automatic results: 6 changed, 9 error, 36 match, 5 missing, 10 review.
+Registered sources: 27. Tracker items: 23.
+Automatic results: 5 changed, 9 error, 38 match, 5 missing, 10 review.
 
 ## Files and relationships needing attention
 
@@ -31,7 +31,6 @@ Automatic results: 6 changed, 9 error, 36 match, 5 missing, 10 review.
 | DEP:EB2-REPORT:EB2-XML | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:EB2-CASE:EB2-XML | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:BACKWALL-REPORT:BACKWALL-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
-| JOURNAL:acceptance | CHANGED | Journal differs from acceptance receipt T006. Review scope remains as recorded. |
 | PIER:analysis-identity | CHANGED | Raw XML does not match the case analysis fingerprint. |
 | EB:analysis-identity | CHANGED | Raw XML does not match the case analysis fingerprint. |
 | TRACKER:10 | ERROR | Closed / not-applicable item requires resolution evidence. |
@@ -58,6 +57,7 @@ Automatic results: 6 changed, 9 error, 36 match, 5 missing, 10 review.
 | COH-019 | Open | End-face U-grid pile clearance | Review and revise the end-face U-grid detail against pile envelopes and fabrication tolerances; regenerate and verify the report. |
 | COH-021 | Open | Unregistered tool revisions | Identify the report-generating tool revision, review its changes and consumers, then record an explicit adoption. |
 | COH-022 | Open | Current cap source references | Refresh journal source references through the bounded BPAD workflow when directed; preserve C005 and distinguish selected sources from accepted calculations. |
+| COH-023 | Open | Reconcile adopted MSE and cheek revision | Reconcile cap/wall calculations, loads and quantities with adopted CAD. Review anchorage, lug steel and strap interfaces before issuing details. |
 
 ## Verified scope
 

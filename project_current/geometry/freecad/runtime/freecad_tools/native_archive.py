@@ -8,7 +8,7 @@ import copy,hashlib,json,zipfile,xml.etree.ElementTree as ET
 
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 
-def preserve(source,candidate,destination,retained,source_hash):
+def preserve(source,candidate,destination,retained,source_hash,keep_candidate_views=False):
     source=Path(source);candidate=Path(candidate);destination=Path(destination)
     if sha(source)!=source_hash:raise ValueError('Authoritative source changed')
     if destination.exists() or destination in [source,candidate]:raise ValueError('Use a fresh disposable output')
@@ -53,8 +53,10 @@ def preserve(source,candidate,destination,retained,source_hash):
         if name in views:node=copy.deepcopy(views[name])
         else:
             typ=types[name]
-            template='CageEB1' if typ=='App::DocumentObjectGroup' else 'CageEB1Schedule' if typ=='Spreadsheet::Sheet' else 'CageEB1Inputs' if typ=='App::FeaturePython' else 'CageEB1Long01Path' if name.endswith('Path') else 'CageEB1Long01'
-            if typ not in ['App::DocumentObjectGroup','Spreadsheet::Sheet','App::FeaturePython','Part::FeaturePython']:raise ValueError('Unsupported new view type '+typ)
+            template='CageEB1' if typ=='App::DocumentObjectGroup' else 'CageEB1Schedule' if typ=='Spreadsheet::Sheet' else 'CageEB1Inputs' if typ=='App::FeaturePython' else 'CageEB1Long01Path' if name.endswith('Path') else 'BridgeCapEB1'
+            if name.startswith(('DXFDetailElevation','DXFWallTopElevation')) and not name.endswith('Leader'):
+                template=next(n for n in views if n in olddata and olddata[n].find('./Properties/Property[@name="PointDefinitions"]') is not None)
+            if typ not in ['App::DocumentObjectGroup','Spreadsheet::Sheet','App::FeaturePython','Part::FeaturePython','Part::Cut','Part::Compound']:raise ValueError('Unsupported new view type '+typ)
             node=copy.deepcopy(views[template]);node.set('name',name)
         for el in node.iter():
             filename=el.get('file')
@@ -65,7 +67,13 @@ def preserve(source,candidate,destination,retained,source_hash):
         vp.append(node)
     vp.set('Count',str(len(newnames)))
     updated['Document.xml']=ET.tostring(new,encoding='utf-8',xml_declaration=True)
-    updated['GuiDocument.xml']=ET.tostring(gui,encoding='utf-8',xml_declaration=True)
+    if keep_candidate_views:
+        candidate_gui=ET.fromstring(updated['GuiDocument.xml'])
+        if {v.get('name') for v in candidate_gui.find('ViewProviderData')}!=newnames:raise ValueError('Candidate GUI name table mismatch')
+        for v in candidate_gui.find('ViewProviderData'):
+            for el in v.iter():
+                if el.get('file') and el.get('file') not in updated:raise ValueError('Missing candidate GUI resource '+el.get('file'))
+    else:updated['GuiDocument.xml']=ET.tostring(gui,encoding='utf-8',xml_declaration=True)
     with zipfile.ZipFile(destination,'w',zipfile.ZIP_DEFLATED) as z:
         for name,data in updated.items():z.writestr(name,data)
     with zipfile.ZipFile(destination) as z:

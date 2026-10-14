@@ -1,0 +1,58 @@
+B4 BRIDGE — CENTERED CHEEK WALL REINFORCEMENT
+14 October 2026
+
+All four cheek walls now have a SINGLE MAT of #4 (1/2 in nominal diameter)
+bars each way. The existing 12 in typical / maximum spacing is retained.
+The vertical and horizontal bar layers touch at crossings; their combined
+1 in envelope is centered in each 8 in cheek web, leaving 3.5 in side cover
+to both faces. Bar ends retain at least 2 in cover.
+
+Each cheek has five vertical bars and eight horizontal bars, 13 bars total.
+The source two-face arrangement had 28 bars per cheek. The new totals are:
+  Bars: 52 (previously 112)
+  Nominal modeled length: 238.249490 ft
+  Nominal modeled weight: 159.150659 lb
+Spacing is 12 in with closer closure bars at the edges. At the short edge,
+the final vertical spacing is 1.5 in; the final horizontal spacing is about
+10.95 in. Native schedules list each actual bar length and linked quantity.
+
+The mat fits the main cheek web. The obsolete 16 in schematic dowel tails
+were removed with the old two-face arrangement. No replacement anchorage,
+laps, development lengths or separate lug reinforcement have been devised;
+these remain NOT CONFIGURED. This is a model layout change, not a fabrication
+detail or structural approval.
+
+VERIFICATION
+282 geometry, actual-host cover, centering, spacing, native-link,
+quantity and schedule checks PASS after reopening the final delivery file.
+Actual nominal solids were checked; no positive-volume interference involves
+the new cheek bars, either internally or with other wall/cap reinforcement.
+The new controller was also exercised at 6 in vertical spacing and restored
+to 12 in, verifying that native bar counts and quantities regenerate.
+
+All 1534 protected native records and associated resources match the prior
+raised-wall-top model exactly. This includes the concrete, MSE walls, half-inch
+vertical/horizontal cheek joints, mitred corners, barriers, ramps and all 170
+elevation annotations. Ramp slopes are unchanged; the previously verified
+main ramps remain at or below 5%. All 12 piles remain visible.
+
+The aggregate wall/cap check was refreshed: 26 pre-existing backwall/cap bar
+intersections remain FAIL. None involves the new cheek bars. Other existing
+cap detailing checks remain in the model. Cover checks for wall steel PASS.
+
+NATIVE REVIEW / OPENING
+Run Open centered cheek steel.FCMacro in a fresh FreeCAD session; keep runtime
+beside the FCStd file. The revised bars are visible through translucent cheek
+concrete: blue vertical and orange horizontal. Existing pile visibility is
+retained. Review views contains actual FreeCAD model images. Show elevations
+displays the existing source-linked elevation labels.
+
+The isolated GUI review saved successfully, then reported an application
+shutdown error. The delivered file was independently reopened and all the
+checks above passed; native controller and archive integrity checks passed.
+
+The prior model and original DXF are unchanged. Older external drawing/export
+packages are not revised by this reinforcement-only update.
+
+Model: B4 Bridge - Centered Cheek Wall Steel.FCStd
+SHA-256: 38ddeecf176e93063682b6101c74031ae8b4933eb8ade94f2aeafbc3dd16d2eb

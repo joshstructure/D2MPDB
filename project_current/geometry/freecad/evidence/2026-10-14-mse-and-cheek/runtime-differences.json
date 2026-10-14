@@ -1,0 +1,16 @@
+{
+  "added": [
+    "freecad_tools/cheek_steel.py",
+    "freecad_tools/mse_corrections.py",
+    "freecad_tools/mse_revision.py",
+    "freecad_tools/mse_wall_tops.py"
+  ],
+  "changed": [
+    "freecad_tools/cap_cages.py",
+    "freecad_tools/current_source.py",
+    "freecad_tools/design_steel.py",
+    "freecad_tools/drainage_trial.py",
+    "freecad_tools/native_archive.py"
+  ],
+  "only_in_repository": []
+}

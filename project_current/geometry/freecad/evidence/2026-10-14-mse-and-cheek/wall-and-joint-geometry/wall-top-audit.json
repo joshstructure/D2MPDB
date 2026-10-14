@@ -1,0 +1,2690 @@
+{
+  "model": "C:\\Users\\joshs\\Desktop\\CAD_AI\\output\\mse-wall-tops-20261014\\Delivery\\B4 Bridge - Raised MSE Wall Tops.FCStd",
+  "sha256": "2e0f12c674c238545c7c620a2c2641ddd528f9474af9ffba25a5e92ae3758dfb",
+  "checks": [
+    {
+      "name": "EB1_1_vertical_under_web_0.1",
+      "status": "PASS",
+      "measured_in": 0.5000000000001003,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_1_horizontal_inside_bottom_lug_0.1",
+      "status": "PASS",
+      "measured_in": 0.500160975687777,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_1_vertical_under_web_0.5",
+      "status": "PASS",
+      "measured_in": 0.49999999999995703,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_1_horizontal_inside_bottom_lug_0.5",
+      "status": "PASS",
+      "measured_in": 0.5000000000001705,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_1_vertical_under_web_0.9",
+      "status": "PASS",
+      "measured_in": 0.4999999999997422,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_1_horizontal_inside_bottom_lug_0.9",
+      "status": "PASS",
+      "measured_in": 0.5000000000001705,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_1_horizontal_inside_rear_lug_1",
+      "status": "PASS",
+      "measured_in": 0.5002682919612624,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_1_horizontal_inside_rear_lug_3",
+      "status": "PASS",
+      "measured_in": 0.5003095674510405,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_1_horizontal_inside_rear_lug_5",
+      "status": "PASS",
+      "measured_in": 0.5003508429409464,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_1_horizontal_rear_web_setback_114.5",
+      "status": "PASS",
+      "measured_in": 0.49999999999997496,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_1_horizontal_rear_web_setback_116",
+      "status": "PASS",
+      "measured_in": 0.4999999999999839,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_1_horizontal_rear_web_setback_118.5",
+      "status": "PASS",
+      "measured_in": 0.49999999999997496,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_1_minimum_solid_clearance",
+      "status": "PASS",
+      "measured_in": 0.49999999979656345,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_1_no_wall_cheek_overlap",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_2_vertical_under_web_0.1",
+      "status": "PASS",
+      "measured_in": 0.5000000000002435,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_2_horizontal_inside_bottom_lug_0.1",
+      "status": "PASS",
+      "measured_in": 0.5000000000021743,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_2_vertical_under_web_0.5",
+      "status": "PASS",
+      "measured_in": 0.5000000000000286,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_2_horizontal_inside_bottom_lug_0.5",
+      "status": "PASS",
+      "measured_in": 0.5001857409820047,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_2_vertical_under_web_0.9",
+      "status": "PASS",
+      "measured_in": 0.4999999999998138,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_2_horizontal_inside_bottom_lug_0.9",
+      "status": "PASS",
+      "measured_in": 0.500532455096419,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_2_horizontal_inside_rear_lug_1",
+      "status": "PASS",
+      "measured_in": 0.5000000000008811,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_2_horizontal_inside_rear_lug_3",
+      "status": "PASS",
+      "measured_in": 0.5000000000004547,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_2_horizontal_inside_rear_lug_5",
+      "status": "PASS",
+      "measured_in": 0.5000000000000284,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_2_horizontal_rear_web_setback_114.5",
+      "status": "PASS",
+      "measured_in": 0.5000000000000286,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_2_horizontal_rear_web_setback_116",
+      "status": "PASS",
+      "measured_in": 0.5000000000000376,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_2_horizontal_rear_web_setback_118.5",
+      "status": "PASS",
+      "measured_in": 0.5000000000000286,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_2_minimum_solid_clearance",
+      "status": "PASS",
+      "measured_in": 0.4999999999998033,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB1_2_no_wall_cheek_overlap",
+      "status": "PASS"
+    },
+    {
+      "name": "A5_raised_top_property",
+      "status": "PASS"
+    },
+    {
+      "name": "A5_valid_finished_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "A6_raised_top_property",
+      "status": "PASS"
+    },
+    {
+      "name": "A6_valid_finished_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "A7_raised_top_property",
+      "status": "PASS"
+    },
+    {
+      "name": "A7_valid_finished_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_1_vertical_under_web_0.1",
+      "status": "PASS",
+      "measured_in": 0.4999999999997422,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_1_horizontal_inside_bottom_lug_0.1",
+      "status": "PASS",
+      "measured_in": 0.500532455096419,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_1_vertical_under_web_0.5",
+      "status": "PASS",
+      "measured_in": 0.49999999999995703,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_1_horizontal_inside_bottom_lug_0.5",
+      "status": "PASS",
+      "measured_in": 0.5001857409820047,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_1_vertical_under_web_0.9",
+      "status": "PASS",
+      "measured_in": 0.5000000000002435,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_1_horizontal_inside_bottom_lug_0.9",
+      "status": "PASS",
+      "measured_in": 0.500000000055735,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_1_horizontal_inside_rear_lug_1",
+      "status": "PASS",
+      "measured_in": 0.5000000000206484,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_1_horizontal_inside_rear_lug_3",
+      "status": "PASS",
+      "measured_in": 0.500000000007617,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_1_horizontal_inside_rear_lug_5",
+      "status": "PASS",
+      "measured_in": 0.49999999999458566,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_1_horizontal_rear_web_setback_114.5",
+      "status": "PASS",
+      "measured_in": 0.5000000000007448,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_1_horizontal_rear_web_setback_116",
+      "status": "PASS",
+      "measured_in": 0.5000000000007448,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_1_horizontal_rear_web_setback_118.5",
+      "status": "PASS",
+      "measured_in": 0.5000000000007448,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_1_minimum_solid_clearance",
+      "status": "PASS",
+      "measured_in": 0.49999999998863154,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_1_no_wall_cheek_overlap",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_2_vertical_under_web_0.1",
+      "status": "PASS",
+      "measured_in": 0.5000000000000286,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_2_horizontal_inside_bottom_lug_0.1",
+      "status": "PASS",
+      "measured_in": 0.4999999999998721,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_2_vertical_under_web_0.5",
+      "status": "PASS",
+      "measured_in": 0.5000000000000286,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_2_horizontal_inside_bottom_lug_0.5",
+      "status": "PASS",
+      "measured_in": 0.49999999999973,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_2_vertical_under_web_0.9",
+      "status": "PASS",
+      "measured_in": 0.5000000000000286,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_2_horizontal_inside_bottom_lug_0.9",
+      "status": "PASS",
+      "measured_in": 0.500160975687777,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_2_horizontal_inside_rear_lug_1",
+      "status": "PASS",
+      "measured_in": 0.49999999999973,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_2_horizontal_inside_rear_lug_3",
+      "status": "PASS",
+      "measured_in": 0.49999999999973,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_2_horizontal_inside_rear_lug_5",
+      "status": "PASS",
+      "measured_in": 0.49999999999973,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_2_horizontal_rear_web_setback_114.5",
+      "status": "PASS",
+      "measured_in": 0.5000000000004584,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_2_horizontal_rear_web_setback_116",
+      "status": "PASS",
+      "measured_in": 0.5000000000001719,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_2_horizontal_rear_web_setback_118.5",
+      "status": "PASS",
+      "measured_in": 0.5000000000001719,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_2_minimum_solid_clearance",
+      "status": "PASS",
+      "measured_in": 0.4999999999945144,
+      "required_in": 0.5
+    },
+    {
+      "name": "EB2_2_no_wall_cheek_overlap",
+      "status": "PASS"
+    },
+    {
+      "name": "B1_raised_top_property",
+      "status": "PASS"
+    },
+    {
+      "name": "B1_valid_finished_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "B6_raised_top_property",
+      "status": "PASS"
+    },
+    {
+      "name": "B6_valid_finished_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "B7_raised_top_property",
+      "status": "PASS"
+    },
+    {
+      "name": "B7_valid_finished_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "SlabElevation001_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation002_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation003_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation004_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation005_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation006_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation007_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation008_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation009_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 3.4345706751089786e-06
+    },
+    {
+      "name": "SlabElevation010_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 3.434570675108978e-06
+    },
+    {
+      "name": "SlabElevation011_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation012_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation013_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation014_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation015_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation016_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation017_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation018_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation019_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation020_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation021_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation022_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation023_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation024_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation025_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation026_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation027_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation028_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation029_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation030_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation031_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation032_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation033_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation034_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation035_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation036_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation037_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 1.443421398898675e-13
+    },
+    {
+      "name": "SlabElevation038_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation039_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 1.7903439011278115e-14
+    },
+    {
+      "name": "SlabElevation040_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 5.905421608424279e-13
+    },
+    {
+      "name": "SlabElevation041_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 5.164141388984444e-13
+    },
+    {
+      "name": "SlabElevation042_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 5.164141388984444e-13
+    },
+    {
+      "name": "SlabElevation043_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 8.102171604118102e-13
+    },
+    {
+      "name": "SlabElevation044_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 8.102171604118102e-13
+    },
+    {
+      "name": "SlabElevation045_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 9.171035541321256e-13
+    },
+    {
+      "name": "SlabElevation046_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 7.161375604511246e-13
+    },
+    {
+      "name": "SlabElevation047_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation048_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation049_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation050_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation051_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 1.0127714505147628e-13
+    },
+    {
+      "name": "SlabElevation052_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation053_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 1.7903439011278115e-14
+    },
+    {
+      "name": "SlabElevation054_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 1.0127714505147628e-13
+    },
+    {
+      "name": "SlabElevation055_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation056_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 3.580687802255623e-14
+    },
+    {
+      "name": "SlabElevation057_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation058_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation059_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 1.4322751209022492e-13
+    },
+    {
+      "name": "SlabElevation060_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation061_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation062_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation063_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 2.148412681353374e-13
+    },
+    {
+      "name": "SlabElevation064_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation065_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation066_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation067_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation068_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation069_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation070_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 7.161375604511246e-14
+    },
+    {
+      "name": "SlabElevation071_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "SlabElevation072_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 7.161375604511246e-14
+    },
+    {
+      "name": "RampCornerElevation001_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "RampCornerElevation002_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "RampCornerElevation003_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "RampCornerElevation004_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "RampCornerElevation005_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "RampCornerElevation006_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "RampCornerElevation007_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "RampCornerElevation008_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "RampCornerElevation009_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "RampCornerElevation010_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "RampCornerElevation011_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "RampCornerElevation012_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation010_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation011_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation020_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation021_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation030_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation031_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation040_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation041_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation050_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation051_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation060_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation061_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation070_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation071_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation080_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation081_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation090_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation091_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation100_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation101_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation110_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation111_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation120_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation121_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation130_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation131_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation140_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation141_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation150_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation151_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation160_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation161_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation170_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation171_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation180_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation181_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation190_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation191_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation200_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation201_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation210_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation211_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation220_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation221_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation230_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation231_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation240_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation241_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation250_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation251_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation260_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation261_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation270_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation271_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation280_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation281_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation290_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation291_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation300_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation301_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation310_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation311_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation320_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation321_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation330_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation331_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation340_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevation341_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevationBarrierReturnEB1L0_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevationBarrierReturnEB1L1_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevationBarrierReturnEB1R0_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevationBarrierReturnEB1R1_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevationBarrierReturnEB2L0_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevationBarrierReturnEB2L1_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevationBarrierReturnEB2R0_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevationBarrierReturnEB2R1_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevationBridgeCheekEB110_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevationBridgeCheekEB120_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevationBridgeCheekEB210_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFDetailElevationBridgeCheekEB220_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFWallTopElevationA5_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFWallTopElevationA6_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFWallTopElevationA7_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFWallTopElevationB1_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFWallTopElevationB6_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "DXFWallTopElevationB7_saved_physical_label",
+      "status": "PASS",
+      "distance_in": 0.0
+    },
+    {
+      "name": "no_bridge_concrete_clash",
+      "status": "PASS",
+      "clashes": []
+    },
+    {
+      "name": "main_ramps_at_most_5",
+      "status": "PASS"
+    },
+    {
+      "name": "no_invalid_objects",
+      "status": "PASS"
+    }
+  ],
+  "measurements": [
+    {
+      "check": "EB1_1_vertical_under_web_0.1",
+      "gap_in": 0.5000000000001003
+    },
+    {
+      "check": "EB1_1_horizontal_inside_bottom_lug_0.1",
+      "gap_in": 0.500160975687777
+    },
+    {
+      "check": "EB1_1_vertical_under_web_0.5",
+      "gap_in": 0.49999999999995703
+    },
+    {
+      "check": "EB1_1_horizontal_inside_bottom_lug_0.5",
+      "gap_in": 0.5000000000001705
+    },
+    {
+      "check": "EB1_1_vertical_under_web_0.9",
+      "gap_in": 0.4999999999997422
+    },
+    {
+      "check": "EB1_1_horizontal_inside_bottom_lug_0.9",
+      "gap_in": 0.5000000000001705
+    },
+    {
+      "check": "EB1_1_horizontal_inside_rear_lug_1",
+      "gap_in": 0.5002682919612624
+    },
+    {
+      "check": "EB1_1_horizontal_inside_rear_lug_3",
+      "gap_in": 0.5003095674510405
+    },
+    {
+      "check": "EB1_1_horizontal_inside_rear_lug_5",
+      "gap_in": 0.5003508429409464
+    },
+    {
+      "check": "EB1_1_horizontal_rear_web_setback_114.5",
+      "gap_in": 0.49999999999997496
+    },
+    {
+      "check": "EB1_1_horizontal_rear_web_setback_116",
+      "gap_in": 0.4999999999999839
+    },
+    {
+      "check": "EB1_1_horizontal_rear_web_setback_118.5",
+      "gap_in": 0.49999999999997496
+    },
+    {
+      "check": "EB1_1_minimum_solid_clearance",
+      "gap_in": 0.49999999979656345
+    },
+    {
+      "check": "EB1_2_vertical_under_web_0.1",
+      "gap_in": 0.5000000000002435
+    },
+    {
+      "check": "EB1_2_horizontal_inside_bottom_lug_0.1",
+      "gap_in": 0.5000000000021743
+    },
+    {
+      "check": "EB1_2_vertical_under_web_0.5",
+      "gap_in": 0.5000000000000286
+    },
+    {
+      "check": "EB1_2_horizontal_inside_bottom_lug_0.5",
+      "gap_in": 0.5001857409820047
+    },
+    {
+      "check": "EB1_2_vertical_under_web_0.9",
+      "gap_in": 0.4999999999998138
+    },
+    {
+      "check": "EB1_2_horizontal_inside_bottom_lug_0.9",
+      "gap_in": 0.500532455096419
+    },
+    {
+      "check": "EB1_2_horizontal_inside_rear_lug_1",
+      "gap_in": 0.5000000000008811
+    },
+    {
+      "check": "EB1_2_horizontal_inside_rear_lug_3",
+      "gap_in": 0.5000000000004547
+    },
+    {
+      "check": "EB1_2_horizontal_inside_rear_lug_5",
+      "gap_in": 0.5000000000000284
+    },
+    {
+      "check": "EB1_2_horizontal_rear_web_setback_114.5",
+      "gap_in": 0.5000000000000286
+    },
+    {
+      "check": "EB1_2_horizontal_rear_web_setback_116",
+      "gap_in": 0.5000000000000376
+    },
+    {
+      "check": "EB1_2_horizontal_rear_web_setback_118.5",
+      "gap_in": 0.5000000000000286
+    },
+    {
+      "check": "EB1_2_minimum_solid_clearance",
+      "gap_in": 0.4999999999998033
+    },
+    {
+      "check": "EB2_1_vertical_under_web_0.1",
+      "gap_in": 0.4999999999997422
+    },
+    {
+      "check": "EB2_1_horizontal_inside_bottom_lug_0.1",
+      "gap_in": 0.500532455096419
+    },
+    {
+      "check": "EB2_1_vertical_under_web_0.5",
+      "gap_in": 0.49999999999995703
+    },
+    {
+      "check": "EB2_1_horizontal_inside_bottom_lug_0.5",
+      "gap_in": 0.5001857409820047
+    },
+    {
+      "check": "EB2_1_vertical_under_web_0.9",
+      "gap_in": 0.5000000000002435
+    },
+    {
+      "check": "EB2_1_horizontal_inside_bottom_lug_0.9",
+      "gap_in": 0.500000000055735
+    },
+    {
+      "check": "EB2_1_horizontal_inside_rear_lug_1",
+      "gap_in": 0.5000000000206484
+    },
+    {
+      "check": "EB2_1_horizontal_inside_rear_lug_3",
+      "gap_in": 0.500000000007617
+    },
+    {
+      "check": "EB2_1_horizontal_inside_rear_lug_5",
+      "gap_in": 0.49999999999458566
+    },
+    {
+      "check": "EB2_1_horizontal_rear_web_setback_114.5",
+      "gap_in": 0.5000000000007448
+    },
+    {
+      "check": "EB2_1_horizontal_rear_web_setback_116",
+      "gap_in": 0.5000000000007448
+    },
+    {
+      "check": "EB2_1_horizontal_rear_web_setback_118.5",
+      "gap_in": 0.5000000000007448
+    },
+    {
+      "check": "EB2_1_minimum_solid_clearance",
+      "gap_in": 0.49999999998863154
+    },
+    {
+      "check": "EB2_2_vertical_under_web_0.1",
+      "gap_in": 0.5000000000000286
+    },
+    {
+      "check": "EB2_2_horizontal_inside_bottom_lug_0.1",
+      "gap_in": 0.4999999999998721
+    },
+    {
+      "check": "EB2_2_vertical_under_web_0.5",
+      "gap_in": 0.5000000000000286
+    },
+    {
+      "check": "EB2_2_horizontal_inside_bottom_lug_0.5",
+      "gap_in": 0.49999999999973
+    },
+    {
+      "check": "EB2_2_vertical_under_web_0.9",
+      "gap_in": 0.5000000000000286
+    },
+    {
+      "check": "EB2_2_horizontal_inside_bottom_lug_0.9",
+      "gap_in": 0.500160975687777
+    },
+    {
+      "check": "EB2_2_horizontal_inside_rear_lug_1",
+      "gap_in": 0.49999999999973
+    },
+    {
+      "check": "EB2_2_horizontal_inside_rear_lug_3",
+      "gap_in": 0.49999999999973
+    },
+    {
+      "check": "EB2_2_horizontal_inside_rear_lug_5",
+      "gap_in": 0.49999999999973
+    },
+    {
+      "check": "EB2_2_horizontal_rear_web_setback_114.5",
+      "gap_in": 0.5000000000004584
+    },
+    {
+      "check": "EB2_2_horizontal_rear_web_setback_116",
+      "gap_in": 0.5000000000001719
+    },
+    {
+      "check": "EB2_2_horizontal_rear_web_setback_118.5",
+      "gap_in": 0.5000000000001719
+    },
+    {
+      "check": "EB2_2_minimum_solid_clearance",
+      "gap_in": 0.4999999999945144
+    }
+  ],
+  "annotations": [
+    {
+      "id": "R01-C1",
+      "source": "A_ApproachSlab",
+      "x_ft": -290.43574775942386,
+      "y_ft": 22.09806465035673,
+      "z_ft": 24.170999258557927
+    },
+    {
+      "id": "R01-C2",
+      "source": "A_ApproachSlab",
+      "x_ft": 45.70184420372728,
+      "y_ft": 22.09806465035673,
+      "z_ft": 40.977878856715485
+    },
+    {
+      "id": "R01-C3",
+      "source": "A_ApproachSlab",
+      "x_ft": 45.70184420372728,
+      "y_ft": 34.59799050615003,
+      "z_ft": 40.85287959815755
+    },
+    {
+      "id": "R01-C4",
+      "source": "A_ApproachSlab",
+      "x_ft": -290.43574775942386,
+      "y_ft": 34.59799050615003,
+      "z_ft": 24.045999999999996
+    },
+    {
+      "id": "R02-C1",
+      "source": "A_TurnLandingSlab",
+      "x_ft": 45.70184420372728,
+      "y_ft": 9.139731905178378,
+      "z_ft": 41.10746218416727
+    },
+    {
+      "id": "R02-C2",
+      "source": "A_TurnLandingSlab",
+      "x_ft": 58.20165696857268,
+      "y_ft": 9.139731905178378,
+      "z_ft": 41.23246031181572
+    },
+    {
+      "id": "R02-C3",
+      "source": "A_TurnLandingSlab",
+      "x_ft": 58.20165696857268,
+      "y_ft": 34.59799050615003,
+      "z_ft": 40.977877725806
+    },
+    {
+      "id": "R03-C1",
+      "source": "A_ReturnRunSlabFinished",
+      "x_ft": -84.13887371602947,
+      "y_ft": 9.139731905178378,
+      "z_ft": 47.402046384937506
+    },
+    {
+      "id": "R03-C3",
+      "source": "A_ReturnRunSlabFinished",
+      "x_ft": 45.70184420372728,
+      "y_ft": 21.639731889451845,
+      "z_ft": 40.98246218432454
+    },
+    {
+      "id": "R03-C4",
+      "source": "A_ReturnRunSlabFinished",
+      "x_ft": -84.13887371602947,
+      "y_ft": 21.639731889451845,
+      "z_ft": 47.15948458551032
+    },
+    {
+      "id": "R04-C1",
+      "source": "A_BridgeLandingSlabFinishedBentJoint",
+      "x_ft": -103.13887371157509,
+      "y_ft": 4.071523769362949,
+      "z_ft": 47.525166666666664
+    },
+    {
+      "id": "R04-C2",
+      "source": "A_BridgeLandingSlabFinishedBentJoint",
+      "x_ft": -84.13887371602947,
+      "y_ft": 4.071915886516055,
+      "z_ft": 47.525166666666664
+    },
+    {
+      "id": "R04-C4",
+      "source": "A_BridgeLandingSlabFinishedBentJoint",
+      "x_ft": -103.13887371157509,
+      "y_ft": 21.63973160323762,
+      "z_ft": 47.349484585465774
+    },
+    {
+      "id": "R05-C1",
+      "source": "B_ApproachSlab",
+      "x_ft": 47.80536034726807,
+      "y_ft": -288.8181970337585,
+      "z_ft": 24.758999999999997
+    },
+    {
+      "id": "R05-C2",
+      "source": "B_ApproachSlab",
+      "x_ft": 60.30471023180452,
+      "y_ft": -288.8181970337585,
+      "z_ft": 24.88399349884536
+    },
+    {
+      "id": "R05-C3",
+      "source": "B_ApproachSlab",
+      "x_ft": 60.30471023180452,
+      "y_ft": -248.04298074681043,
+      "z_ft": 26.922754313192765
+    },
+    {
+      "id": "R05-C4",
+      "source": "B_ApproachSlab",
+      "x_ft": 47.80536034726807,
+      "y_ft": -248.04298074681043,
+      "z_ft": 26.7977608143474
+    },
+    {
+      "id": "R06-C3",
+      "source": "B_LowerEastLandingSlabFinished",
+      "x_ft": 60.30471023180452,
+      "y_ft": -235.54298018618564,
+      "z_ft": 27.04775431879901
+    },
+    {
+      "id": "R06-C4",
+      "source": "B_LowerEastLandingSlabFinished",
+      "x_ft": 47.80536034726807,
+      "y_ft": -235.54298018618564,
+      "z_ft": 26.922760819953645
+    },
+    {
+      "id": "R07-C1",
+      "source": "B_LowerRunSlabFinished",
+      "x_ft": -89.80335202524164,
+      "y_ft": -248.04298074681043,
+      "z_ft": 33.67819643297288
+    },
+    {
+      "id": "R07-C4",
+      "source": "B_LowerRunSlabFinished",
+      "x_ft": -89.80335202524164,
+      "y_ft": -235.54298018618564,
+      "z_ft": 33.803196438579135
+    },
+    {
+      "id": "R08-C1",
+      "source": "B_WestTurnLandingSlabFinished",
+      "x_ft": -103.1344933502199,
+      "y_ft": -248.04298074681043,
+      "z_ft": 33.81150784622267
+    },
+    {
+      "id": "R08-C3",
+      "source": "B_WestTurnLandingSlabFinished",
+      "x_ft": -89.80335202524164,
+      "y_ft": -222.58464637553922,
+      "z_ft": 33.9327797766856
+    },
+    {
+      "id": "R08-C4",
+      "source": "B_WestTurnLandingSlabFinished",
+      "x_ft": -103.1344933502199,
+      "y_ft": -222.58464637553922,
+      "z_ft": 34.06609118993538
+    },
+    {
+      "id": "R09-C1",
+      "source": "B_MiddleRunSlabFinished",
+      "x_ft": -89.80335202524164,
+      "y_ft": -235.08464703709805,
+      "z_ft": 33.807779770070006
+    },
+    {
+      "id": "R09-C2",
+      "source": "B_MiddleRunSlabFinished",
+      "x_ft": 47.80536034726807,
+      "y_ft": -235.08464703709805,
+      "z_ft": 40.6882153886955
+    },
+    {
+      "id": "R09-C3",
+      "source": "B_MiddleRunSlabFinished",
+      "x_ft": 47.80536034726807,
+      "y_ft": -222.58464637553922,
+      "z_ft": 40.81321539531108
+    },
+    {
+      "id": "R10-C2",
+      "source": "B_UpperEastLandingSlab",
+      "x_ft": 60.30471023180452,
+      "y_ft": -235.08464703709805,
+      "z_ft": 40.81320888754086
+    },
+    {
+      "id": "R10-C3",
+      "source": "B_UpperEastLandingSlab",
+      "x_ft": 60.30471023180452,
+      "y_ft": -209.62669115978187,
+      "z_ft": 41.067788446314026
+    },
+    {
+      "id": "R10-C4",
+      "source": "B_UpperEastLandingSlab",
+      "x_ft": 47.80536034726807,
+      "y_ft": -209.62669115978187,
+      "z_ft": 40.94279494746866
+    },
+    {
+      "id": "R11-C1",
+      "source": "B_UpperRunSlabBentJoint",
+      "x_ft": -84.13449335467429,
+      "y_ft": -222.12631321118664,
+      "z_ft": 47.20768829645371
+    },
+    {
+      "id": "R11-C2",
+      "source": "B_UpperRunSlabBentJoint",
+      "x_ft": 47.80536034726807,
+      "y_ft": -222.12631321118664,
+      "z_ft": 40.817798726954614
+    },
+    {
+      "id": "R11-C4",
+      "source": "B_UpperRunSlabBentJoint",
+      "x_ft": -84.13449335467429,
+      "y_ft": -209.62669115978187,
+      "z_ft": 47.509802877755384
+    },
+    {
+      "id": "R12-C1",
+      "source": "B_BridgeLandingSlabBentJoint",
+      "x_ft": -103.1344933502199,
+      "y_ft": -208.17847618543666,
+      "z_ft": 47.537166666666664
+    },
+    {
+      "id": "R12-C2",
+      "source": "B_BridgeLandingSlabBentJoint",
+      "x_ft": -84.13449335467429,
+      "y_ft": -208.17808406828354,
+      "z_ft": 47.537166666666664
+    },
+    {
+      "id": "R12-C4",
+      "source": "B_BridgeLandingSlabBentJoint",
+      "x_ft": -103.1344933502199,
+      "y_ft": -222.12631321118664,
+      "z_ft": 47.39768829640917
+    },
+    {
+      "id": "D1-SL",
+      "source": "BridgeDeckS1",
+      "x_ft": -100.43053521958637,
+      "y_ft": 3.821579663308624,
+      "z_ft": 47.52641637556281
+    },
+    {
+      "id": "D1-SCL",
+      "source": "BridgeDeckS1",
+      "x_ft": -93.63886855436606,
+      "y_ft": 3.8217198279927413,
+      "z_ft": 47.66224970889614
+    },
+    {
+      "id": "D1-SR",
+      "source": "BridgeDeckS1",
+      "x_ft": -86.84720188914572,
+      "y_ft": 3.8218599926768593,
+      "z_ft": 47.52641637556281
+    },
+    {
+      "id": "D1-EL/D2-SL",
+      "source": "BridgeDeckS1",
+      "x_ft": -100.4283249171075,
+      "y_ft": -103.27842031388344,
+      "z_ft": 48.06179166666668
+    },
+    {
+      "id": "D1-ECL/D2-SCL",
+      "source": "BridgeDeckS1",
+      "x_ft": -93.63665825188718,
+      "y_ft": -103.27828014919933,
+      "z_ft": 48.19762500000001
+    },
+    {
+      "id": "D1-ER/D2-SR",
+      "source": "BridgeDeckS1",
+      "x_ft": -86.84499158666686,
+      "y_ft": -103.2781399845152,
+      "z_ft": 48.06179166666668
+    },
+    {
+      "id": "D2-EL",
+      "source": "BridgeDeckS2",
+      "x_ft": -100.42616517710364,
+      "y_ft": -207.92842029159746,
+      "z_ft": 47.53841696456944
+    },
+    {
+      "id": "D2-ECL",
+      "source": "BridgeDeckS2",
+      "x_ft": -93.63449851188331,
+      "y_ft": -207.92828012691334,
+      "z_ft": 47.67425029790277
+    },
+    {
+      "id": "D2-ER",
+      "source": "BridgeDeckS2",
+      "x_ft": -86.842831846663,
+      "y_ft": -207.9281399622292,
+      "z_ft": 47.53841696456944
+    },
+    {
+      "id": "A-P01",
+      "source": "A_ApproachSlab",
+      "x_ft": 45.70184420372735,
+      "y_ft": 28.348027578253383,
+      "z_ft": 40.91537922743652
+    },
+    {
+      "id": "A-P02",
+      "source": "A_TurnLandingSlab",
+      "x_ft": 51.951750586149984,
+      "y_ft": 28.348027578253383,
+      "z_ft": 40.977878291260744
+    },
+    {
+      "id": "A-P03",
+      "source": "A_TurnLandingSlab",
+      "x_ft": 51.951750586149984,
+      "y_ft": 15.389731897315112,
+      "z_ft": 41.10746124807014
+    },
+    {
+      "id": "A-P04",
+      "source": "A_TurnLandingSlab",
+      "x_ft": 45.70184420372728,
+      "y_ft": 15.389731897315112,
+      "z_ft": 41.044962184245904
+    },
+    {
+      "id": "A-P05",
+      "source": "A_ReturnRunSlabFinished",
+      "x_ft": -84.13887371602947,
+      "y_ft": 15.389731897315112,
+      "z_ft": 47.221984585431684
+    },
+    {
+      "id": "A-P06",
+      "source": "A_BridgeLandingSlabFinishedBentJoint",
+      "x_ft": -93.6391072920482,
+      "y_ft": 15.389731897315112,
+      "z_ft": 47.31698692119187
+    },
+    {
+      "id": "A-ENTRY",
+      "source": "A_BridgeLandingSlabFinishedBentJoint",
+      "x_ft": -93.63887371380227,
+      "y_ft": 4.071719827939502,
+      "z_ft": 47.660999999999994
+    },
+    {
+      "id": "A-MID",
+      "source": "A_BridgeLandingSlabFinishedBentJoint",
+      "x_ft": -93.63887371380227,
+      "y_ft": 9.730725862627308,
+      "z_ft": 47.49606769760659
+    },
+    {
+      "id": "A-TURN",
+      "source": "A_BridgeLandingSlabFinishedBentJoint",
+      "x_ft": -93.63887371380227,
+      "y_ft": 15.389731897315112,
+      "z_ft": 47.316984585409415
+    },
+    {
+      "id": "A-FADE",
+      "source": "A_ReturnRunSlabFinished",
+      "x_ft": 35.861126283970506,
+      "y_ft": 15.389731897315112,
+      "z_ft": 41.5131229893306
+    },
+    {
+      "id": "B-P01",
+      "source": "B_ApproachSlab",
+      "x_ft": 54.0550352895363,
+      "y_ft": -248.04298074681043,
+      "z_ft": 26.86025756377008
+    },
+    {
+      "id": "B-P02",
+      "source": "B_LowerEastLandingSlabFinished",
+      "x_ft": 54.0550352895363,
+      "y_ft": -241.79298046649805,
+      "z_ft": 26.9227575665732
+    },
+    {
+      "id": "B-P03",
+      "source": "B_LowerEastLandingSlabFinished",
+      "x_ft": 47.80536034726807,
+      "y_ft": -241.79298046649805,
+      "z_ft": 26.860260817150518
+    },
+    {
+      "id": "B-P04",
+      "source": "B_LowerRunSlabFinished",
+      "x_ft": -89.80335202524165,
+      "y_ft": -241.79298046649805,
+      "z_ft": 33.740696435776
+    },
+    {
+      "id": "B-P05",
+      "source": "B_WestTurnLandingSlabFinished",
+      "x_ft": -96.05335214001236,
+      "y_ft": -241.79298046649805,
+      "z_ft": 33.803196436923706
+    },
+    {
+      "id": "B-P06",
+      "source": "B_WestTurnLandingSlabFinished",
+      "x_ft": -96.05335214001236,
+      "y_ft": -228.83464670631864,
+      "z_ft": 33.93277977452551
+    },
+    {
+      "id": "B-P07",
+      "source": "B_WestTurnLandingSlabFinished",
+      "x_ft": -89.80335202524164,
+      "y_ft": -228.83464670631864,
+      "z_ft": 33.8702797733778
+    },
+    {
+      "id": "B-P08",
+      "source": "B_MiddleRunSlabFinished",
+      "x_ft": 47.805360347268085,
+      "y_ft": -228.83464670631864,
+      "z_ft": 40.75071539200329
+    },
+    {
+      "id": "B-P09",
+      "source": "B_UpperEastLandingSlab",
+      "x_ft": 54.0550352895363,
+      "y_ft": -228.83464670631864,
+      "z_ft": 40.81321214142597
+    },
+    {
+      "id": "B-P10",
+      "source": "B_UpperEastLandingSlab",
+      "x_ft": 54.0550352895363,
+      "y_ft": -215.87650218548424,
+      "z_ft": 40.942793586634316
+    },
+    {
+      "id": "B-P11",
+      "source": "B_UpperEastLandingSlab",
+      "x_ft": 47.80536034726807,
+      "y_ft": -215.87650218548424,
+      "z_ft": 40.88029683721163
+    },
+    {
+      "id": "B-P12",
+      "source": "B_UpperRunSlabBentJoint",
+      "x_ft": -84.13449335467429,
+      "y_ft": -215.87650218548424,
+      "z_ft": 47.270186406710735
+    },
+    {
+      "id": "B-P13",
+      "source": "B_BridgeLandingSlabBentJoint",
+      "x_ft": -93.63433447850403,
+      "y_ft": -215.87650218548424,
+      "z_ft": 47.36518481794903
+    },
+    {
+      "id": "B-ENTRY",
+      "source": "B_BridgeLandingSlabBentJoint",
+      "x_ft": -93.6344933524471,
+      "y_ft": -208.1782801268601,
+      "z_ft": 47.672999999999995
+    },
+    {
+      "id": "B-MID",
+      "source": "B_BridgeLandingSlabBentJoint",
+      "x_ft": -93.6344933524471,
+      "y_ft": -212.02739115617217,
+      "z_ft": 47.52390344547006
+    },
+    {
+      "id": "B-TURN",
+      "source": "B_BridgeLandingSlabBentJoint",
+      "x_ft": -93.6344933524471,
+      "y_ft": -215.87650218548424,
+      "z_ft": 47.36518640668846
+    },
+    {
+      "id": "B-FADE",
+      "source": "B_UpperRunSlabBentJoint",
+      "x_ft": 47.70536034726806,
+      "y_ft": -215.87650218548424,
+      "z_ft": 40.88513986938896
+    },
+    {
+      "id": "R02-C4",
+      "source": "A_TurnLandingSlab",
+      "x_ft": 45.70184420372728,
+      "y_ft": 34.59799050615003,
+      "z_ft": 40.85287959815755
+    },
+    {
+      "id": "R03-C2",
+      "source": "A_ReturnRunSlabFinished",
+      "x_ft": 45.70184420372728,
+      "y_ft": 9.139731905178378,
+      "z_ft": 41.10746218416727
+    },
+    {
+      "id": "R04-C3",
+      "source": "A_BridgeLandingSlabFinishedBentJoint",
+      "x_ft": -84.13887371602947,
+      "y_ft": 21.63973160323762,
+      "z_ft": 47.15948458551032
+    },
+    {
+      "id": "R06-C2",
+      "source": "B_LowerEastLandingSlabFinished",
+      "x_ft": 60.30471023180452,
+      "y_ft": -248.04298074681043,
+      "z_ft": 26.922754313192765
+    },
+    {
+      "id": "R06-C1",
+      "source": "B_LowerEastLandingSlabFinished",
+      "x_ft": 47.80536034726807,
+      "y_ft": -248.04298074681043,
+      "z_ft": 26.7977608143474
+    },
+    {
+      "id": "R07-C2",
+      "source": "B_LowerRunSlabFinished",
+      "x_ft": 47.80536034726807,
+      "y_ft": -248.04298074681043,
+      "z_ft": 26.7977608143474
+    },
+    {
+      "id": "R07-C3",
+      "source": "B_LowerRunSlabFinished",
+      "x_ft": 47.80536034726807,
+      "y_ft": -235.54298018618564,
+      "z_ft": 26.922760819953645
+    },
+    {
+      "id": "R08-C2",
+      "source": "B_WestTurnLandingSlabFinished",
+      "x_ft": -89.80335202524164,
+      "y_ft": -248.04298074681043,
+      "z_ft": 33.67819643297288
+    },
+    {
+      "id": "R09-C4",
+      "source": "B_MiddleRunSlabFinished",
+      "x_ft": -89.80335202524164,
+      "y_ft": -222.58464637553922,
+      "z_ft": 33.9327797766856
+    },
+    {
+      "id": "R10-C1",
+      "source": "B_UpperEastLandingSlab",
+      "x_ft": 47.80536034726807,
+      "y_ft": -235.08464703709805,
+      "z_ft": 40.6882153886955
+    },
+    {
+      "id": "R11-C3",
+      "source": "B_UpperRunSlabBentJoint",
+      "x_ft": 47.80536034726807,
+      "y_ft": -209.62669115978187,
+      "z_ft": 40.94279494746866
+    },
+    {
+      "id": "R12-C3",
+      "source": "B_BridgeLandingSlabBentJoint",
+      "x_ft": -84.13449335467429,
+      "y_ft": -222.12631321118664,
+      "z_ft": 47.20768829645371
+    },
+    {
+      "id": "CP-A1-S",
+      "source": "CopingA1",
+      "x_ft": -290.43574775942386,
+      "y_ft": 34.59799050615003,
+      "z_ft": 24.795999999999996
+    },
+    {
+      "id": "CP-A1-E",
+      "source": "CopingA1",
+      "x_ft": 59.159990301905985,
+      "y_ft": 35.55632383948337,
+      "z_ft": 41.72787772580601
+    },
+    {
+      "id": "PB-A1-S",
+      "source": "BarrierA1",
+      "x_ft": -290.43574775942386,
+      "y_ft": 35.2021571728167,
+      "z_ft": 28.295999999999996
+    },
+    {
+      "id": "PB-A1-E",
+      "source": "BarrierA1",
+      "x_ft": 58.86832363523932,
+      "y_ft": 35.2646571728167,
+      "z_ft": 45.16537772580601
+    },
+    {
+      "id": "CP-A2-S",
+      "source": "CopingA2Corrected",
+      "x_ft": -104.09720704490842,
+      "y_ft": 22.59806465035673,
+      "z_ft": 48.09948458546578
+    },
+    {
+      "id": "CP-A2-E",
+      "source": "CopingA2Corrected",
+      "x_ft": 45.7018442037273,
+      "y_ft": 21.639731317023397,
+      "z_ft": 41.73246218432454
+    },
+    {
+      "id": "PB-A2-S",
+      "source": "BarrierA2",
+      "x_ft": -103.80554037824176,
+      "y_ft": 22.30639798369006,
+      "z_ft": 51.536984585465774
+    },
+    {
+      "id": "PB-A2-E",
+      "source": "BarrierA2",
+      "x_ft": 45.7018442037273,
+      "y_ft": 22.24389798369006,
+      "z_ft": 45.23246218432454
+    },
+    {
+      "id": "CP-A3-S",
+      "source": "CopingA3",
+      "x_ft": -290.43574775942386,
+      "y_ft": 22.09806465035673,
+      "z_ft": 24.92099925855793
+    },
+    {
+      "id": "CP-A3-E",
+      "source": "CopingA3",
+      "x_ft": -103.13887371157509,
+      "y_ft": 22.09806465035673,
+      "z_ft": 34.285842960950376
+    },
+    {
+      "id": "PB-A3-S",
+      "source": "BarrierA3",
+      "x_ft": -290.43574775942386,
+      "y_ft": 21.49389798369006,
+      "z_ft": 28.42099925855793
+    },
+    {
+      "id": "PB-A3-E",
+      "source": "BarrierA3",
+      "x_ft": -103.13887371157509,
+      "y_ft": 21.49389798369006,
+      "z_ft": 37.78584296095037
+    },
+    {
+      "id": "CP-A4-S",
+      "source": "CopingA4",
+      "x_ft": -84.13887371602947,
+      "y_ft": 9.139731905178378,
+      "z_ft": 48.152046384937506
+    },
+    {
+      "id": "CP-A4-E",
+      "source": "CopingA4",
+      "x_ft": 59.15999030190601,
+      "y_ft": 8.181398571845046,
+      "z_ft": 41.98246031181573
+    },
+    {
+      "id": "PB-A4-S",
+      "source": "BarrierA4",
+      "x_ft": -84.13887371602947,
+      "y_ft": 9.139731905178378,
+      "z_ft": 51.589546384937506
+    },
+    {
+      "id": "PB-A4-E",
+      "source": "BarrierA4",
+      "x_ft": 58.86832363523935,
+      "y_ft": 8.473065238511712,
+      "z_ft": 45.41996031181573
+    },
+    {
+      "id": "CP-A8-S",
+      "source": "CopingA8",
+      "x_ft": 59.15999030190601,
+      "y_ft": 8.181398571845046,
+      "z_ft": 41.98246031181573
+    },
+    {
+      "id": "CP-A8-E",
+      "source": "CopingA8",
+      "x_ft": 59.15999030190601,
+      "y_ft": 35.55632383948337,
+      "z_ft": 41.72787772580601
+    },
+    {
+      "id": "PB-A8-S",
+      "source": "BarrierA8",
+      "x_ft": 58.86832363523935,
+      "y_ft": 8.473065238511712,
+      "z_ft": 45.41996031181573
+    },
+    {
+      "id": "PB-A8-E",
+      "source": "BarrierA8",
+      "x_ft": 58.86832363523935,
+      "y_ft": 35.2646571728167,
+      "z_ft": 45.16537772580601
+    },
+    {
+      "id": "CP-A6-S",
+      "source": "CopingA6",
+      "x_ft": -103.13887371157509,
+      "y_ft": 5.072975180765964,
+      "z_ft": 48.26931348145202
+    },
+    {
+      "id": "CP-A6-E",
+      "source": "CopingA6",
+      "x_ft": -104.09720704490842,
+      "y_ft": 22.59806465035673,
+      "z_ft": 48.09948458546578
+    },
+    {
+      "id": "PB-A6-S",
+      "source": "BarrierA6",
+      "x_ft": -103.74304037824176,
+      "y_ft": 5.072975180765964,
+      "z_ft": 51.76931348145202
+    },
+    {
+      "id": "PB-A6-E",
+      "source": "BarrierA6",
+      "x_ft": -103.80554037824176,
+      "y_ft": 22.30639798369006,
+      "z_ft": 51.536984585465774
+    },
+    {
+      "id": "CP-A7-S",
+      "source": "CopingA7BentJoint",
+      "x_ft": -84.13887371602947,
+      "y_ft": 5.113582553404787,
+      "z_ft": 48.264512455291474
+    },
+    {
+      "id": "CP-A7-E",
+      "source": "CopingA4",
+      "x_ft": -84.13887371602947,
+      "y_ft": 9.139731905178378,
+      "z_ft": 48.152046384937506
+    },
+    {
+      "id": "PB-A7-S",
+      "source": "BarrierA7BentJoint",
+      "x_ft": -84.07637371602947,
+      "y_ft": 5.11358384326361,
+      "z_ft": 51.76451243577526
+    },
+    {
+      "id": "PB-A7-E",
+      "source": "BarrierA7BentJoint",
+      "x_ft": -84.13887371602947,
+      "y_ft": 9.139731905178378,
+      "z_ft": 51.589546384937506
+    },
+    {
+      "id": "CP-B2-S",
+      "source": "CopingB2BentJoint",
+      "x_ft": -84.13449335467429,
+      "y_ft": -209.62669115978187,
+      "z_ft": 48.25980287775539
+    },
+    {
+      "id": "CP-B2-E",
+      "source": "CopingB2BentJoint",
+      "x_ft": 61.26304356513785,
+      "y_ft": -208.66835782644856,
+      "z_ft": 41.817788446314026
+    },
+    {
+      "id": "PB-B2-S",
+      "source": "BarrierB2BentJoint",
+      "x_ft": -84.13449335467429,
+      "y_ft": -209.62669115978187,
+      "z_ft": 51.69730287775539
+    },
+    {
+      "id": "PB-B2-E",
+      "source": "BarrierB2BentJoint",
+      "x_ft": 60.971376898471185,
+      "y_ft": -208.9600244931152,
+      "z_ft": 45.255288446314026
+    },
+    {
+      "id": "CP-B3-S",
+      "source": "CopingB3Corrected",
+      "x_ft": -103.1344933502199,
+      "y_ft": -222.12631321118664,
+      "z_ft": 48.14768829640917
+    },
+    {
+      "id": "CP-B3-E",
+      "source": "CopingB3Corrected",
+      "x_ft": 47.80536034726807,
+      "y_ft": -222.12631321118664,
+      "z_ft": 41.567798726954614
+    },
+    {
+      "id": "PB-B3-S",
+      "source": "BarrierB3",
+      "x_ft": -103.1344933502199,
+      "y_ft": -222.73047987785327,
+      "z_ft": 51.647688296409164
+    },
+    {
+      "id": "PB-B3-E",
+      "source": "BarrierB3",
+      "x_ft": 47.80536034726807,
+      "y_ft": -222.73047987785327,
+      "z_ft": 45.067798726954614
+    },
+    {
+      "id": "CP-B4-S",
+      "source": "CopingB4Corrected",
+      "x_ft": -89.80335202524164,
+      "y_ft": -235.08464703709805,
+      "z_ft": 34.557779770070006
+    },
+    {
+      "id": "CP-B4-E",
+      "source": "CopingB4Corrected",
+      "x_ft": 60.30471023180453,
+      "y_ft": -235.08464703709805,
+      "z_ft": 41.56320888754086
+    },
+    {
+      "id": "PB-B4-S",
+      "source": "BarrierB4",
+      "x_ft": -89.80335202524164,
+      "y_ft": -235.68881370376468,
+      "z_ft": 38.057779770070006
+    },
+    {
+      "id": "PB-B4-E",
+      "source": "BarrierB4",
+      "x_ft": 60.30471023180453,
+      "y_ft": -235.68881370376468,
+      "z_ft": 45.06320888754086
+    },
+    {
+      "id": "CP-B6-S",
+      "source": "CopingB6BentJoint",
+      "x_ft": -104.09282668355323,
+      "y_ft": -249.0013140801438,
+      "z_ft": 34.56150784622267
+    },
+    {
+      "id": "CP-B6-E",
+      "source": "CopingB6BentJoint",
+      "x_ft": -103.13449335021987,
+      "y_ft": -209.22014285232515,
+      "z_ft": 48.27704269571653
+    },
+    {
+      "id": "PB-B6-S",
+      "source": "BarrierB6BentJoint",
+      "x_ft": -103.80116001688657,
+      "y_ft": -248.7096474134771,
+      "z_ft": 37.99900784622267
+    },
+    {
+      "id": "PB-B6-E",
+      "source": "BarrierB6BentJoint",
+      "x_ft": -103.1969933502199,
+      "y_ft": -209.22014414218427,
+      "z_ft": 51.7770426853588
+    },
+    {
+      "id": "CP-B9-S",
+      "source": "CopingB9",
+      "x_ft": 60.30471023180452,
+      "y_ft": -288.8181970337585,
+      "z_ft": 25.63399349884536
+    },
+    {
+      "id": "CP-B9-E",
+      "source": "CopingB9",
+      "x_ft": 61.26304356513785,
+      "y_ft": -208.66835782644856,
+      "z_ft": 41.817788446314026
+    },
+    {
+      "id": "PB-B9-S",
+      "source": "BarrierB9",
+      "x_ft": 60.90887689847119,
+      "y_ft": -288.8181970337585,
+      "z_ft": 29.13399349884536
+    },
+    {
+      "id": "PB-B9-E",
+      "source": "BarrierB9",
+      "x_ft": 60.971376898471185,
+      "y_ft": -208.9600244931152,
+      "z_ft": 45.255288446314026
+    },
+    {
+      "id": "CP-B5-S",
+      "source": "CopingB5",
+      "x_ft": -104.09282668355323,
+      "y_ft": -249.0013140801438,
+      "z_ft": 34.56150784622267
+    },
+    {
+      "id": "CP-B5-E",
+      "source": "CopingB5",
+      "x_ft": 47.805360347268106,
+      "y_ft": -248.04298074681043,
+      "z_ft": 27.547760814347395
+    },
+    {
+      "id": "PB-B5-S",
+      "source": "BarrierB5",
+      "x_ft": -103.80116001688657,
+      "y_ft": -248.7096474134771,
+      "z_ft": 37.99900784622267
+    },
+    {
+      "id": "PB-B5-E",
+      "source": "BarrierB5",
+      "x_ft": 47.805360347268106,
+      "y_ft": -248.04298074681043,
+      "z_ft": 30.985260814347395
+    },
+    {
+      "id": "CP-B7-S",
+      "source": "CopingB2BentJoint",
+      "x_ft": -84.13449335467429,
+      "y_ft": -209.62669115978187,
+      "z_ft": 48.25980287775539
+    },
+    {
+      "id": "CP-B7-E",
+      "source": "CopingB2BentJoint",
+      "x_ft": -83.13448323611254,
+      "y_ft": -208.66835782644856,
+      "z_ft": 48.21085741382666
+    },
+    {
+      "id": "PB-B7-S",
+      "source": "BarrierB7BentJoint",
+      "x_ft": -84.13449335467429,
+      "y_ft": -209.62669115978187,
+      "z_ft": 51.69730287775539
+    },
+    {
+      "id": "PB-B7-E",
+      "source": "BarrierB7BentJoint",
+      "x_ft": -84.07199335467429,
+      "y_ft": -209.21974944531306,
+      "z_ft": 51.759802877755384
+    },
+    {
+      "id": "CP-B8-S",
+      "source": "CopingB8",
+      "x_ft": 47.80536034726807,
+      "y_ft": -288.8181970337585,
+      "z_ft": 25.508999999999997
+    },
+    {
+      "id": "CP-B8-E",
+      "source": "CopingB8",
+      "x_ft": 47.80536034726807,
+      "y_ft": -248.04298074681043,
+      "z_ft": 27.547760814347395
+    },
+    {
+      "id": "PB-B8-S",
+      "source": "BarrierB8",
+      "x_ft": 47.2011936806014,
+      "y_ft": -288.8181970337585,
+      "z_ft": 29.008999999999997
+    },
+    {
+      "id": "PB-B8-E",
+      "source": "BarrierB8",
+      "x_ft": 47.80536034726807,
+      "y_ft": -248.04298074681043,
+      "z_ft": 30.985260814347395
+    },
+    {
+      "id": "PB-S1L-S",
+      "source": "BarrierDeckS1LCorrected",
+      "x_ft": -99.82636855304837,
+      "y_ft": 3.821592131946168,
+      "z_ft": 51.026416375562796
+    },
+    {
+      "id": "PB-S1L-E",
+      "source": "BarrierDeckS1LCorrected",
+      "x_ft": -99.8241582505695,
+      "y_ft": -103.2784078452459,
+      "z_ft": 51.561791666666664
+    },
+    {
+      "id": "PB-S1R-S",
+      "source": "BarrierDeckS1RCorrected",
+      "x_ft": -87.45136855568373,
+      "y_ft": 3.8218475240393146,
+      "z_ft": 51.026416375562796
+    },
+    {
+      "id": "PB-S1R-E",
+      "source": "BarrierDeckS1RCorrected",
+      "x_ft": -87.44915825320487,
+      "y_ft": -103.27815245315276,
+      "z_ft": 51.561791666666664
+    },
+    {
+      "id": "PB-S2L-S",
+      "source": "BarrierDeckS2LCorrected",
+      "x_ft": -99.8241582505695,
+      "y_ft": -103.2784078452459,
+      "z_ft": 51.561791666666664
+    },
+    {
+      "id": "PB-S2L-E",
+      "source": "BarrierDeckS2LCorrected",
+      "x_ft": -99.82199851056563,
+      "y_ft": -207.9284078229599,
+      "z_ft": 51.03841696456943
+    },
+    {
+      "id": "PB-S2R-S",
+      "source": "BarrierDeckS2RCorrected",
+      "x_ft": -87.44915825320487,
+      "y_ft": -103.27815245315276,
+      "z_ft": 51.561791666666664
+    },
+    {
+      "id": "PB-S2R-E",
+      "source": "BarrierDeckS2RCorrected",
+      "x_ft": -87.44699851320101,
+      "y_ft": -207.92815243086676,
+      "z_ft": 51.03841696456943
+    },
+    {
+      "id": "PB-EB1L-RETURN-S",
+      "source": "BarrierReturnEB1LCorrected",
+      "x_ft": -100.09720704576026,
+      "y_ft": 4.071586542503683,
+      "z_ft": 51.7690447560991
+    },
+    {
+      "id": "PB-EB1L-RETURN-E",
+      "source": "BarrierA6",
+      "x_ft": -103.4722070449084,
+      "y_ft": 5.113190436251447,
+      "z_ft": 51.76904475609909
+    },
+    {
+      "id": "PB-EB1R-RETURN-S",
+      "source": "BarrierReturnEB1R",
+      "x_ft": -87.1805403818443,
+      "y_ft": 4.071853113375321,
+      "z_ft": 51.76451245529145
+    },
+    {
+      "id": "PB-EB1R-RETURN-E",
+      "source": "BarrierReturnEB1R",
+      "x_ft": -83.80554038269612,
+      "y_ft": 5.113582553404559,
+      "z_ft": 51.76451245529145
+    },
+    {
+      "id": "PB-EB2L-RETURN-S",
+      "source": "BarrierReturnEB2L",
+      "x_ft": -100.09282668440501,
+      "y_ft": -208.17841341229598,
+      "z_ft": 51.777042695716595
+    },
+    {
+      "id": "PB-EB2L-RETURN-E",
+      "source": "BarrierReturnEB2L",
+      "x_ft": -103.46782668355316,
+      "y_ft": -209.22014285232518,
+      "z_ft": 51.777042695716595
+    },
+    {
+      "id": "PB-EB2R-RETURN-S",
+      "source": "BarrierReturnEB2R",
+      "x_ft": -87.17616002048905,
+      "y_ft": -208.17814684142436,
+      "z_ft": 51.7598028777554
+    },
+    {
+      "id": "PB-EB2R-RETURN-E",
+      "source": "BarrierB7BentJoint",
+      "x_ft": -83.80116002134089,
+      "y_ft": -209.2197507351721,
+      "z_ft": 51.759802877755384
+    },
+    {
+      "id": "CHEEK-EB11-S",
+      "source": "BridgeCheekEB11",
+      "x_ft": -103.63890466829005,
+      "y_ft": 5.571513450171055,
+      "z_ft": 47.52516666666668
+    },
+    {
+      "id": "CHEEK-EB12-S",
+      "source": "BridgeCheekEB12",
+      "x_ft": -83.18057133931347,
+      "y_ft": 5.571935664035488,
+      "z_ft": 47.52516666666668
+    },
+    {
+      "id": "CHEEK-EB21-S",
+      "source": "BridgeCheekEB21",
+      "x_ft": -103.42621161139074,
+      "y_ft": -205.6784822053114,
+      "z_ft": 47.53716666666668
+    },
+    {
+      "id": "CHEEK-EB22-S",
+      "source": "BridgeCheekEB22",
+      "x_ft": -83.17621161570315,
+      "y_ft": -205.67806429097715,
+      "z_ft": 47.53716666666668
+    },
+    {
+      "id": "MSE-A5-TOP",
+      "source": "WallA5Mitred",
+      "x_ft": -93.63887371380227,
+      "y_ft": -0.7826016214944852,
+      "z_ft": 40.19602556555146
+    },
+    {
+      "id": "MSE-A6-TOP",
+      "source": "WallA6Mitred",
+      "x_ft": -103.36804037824174,
+      "y_ft": 2.0306034463024063,
+      "z_ft": 40.19602556555148
+    },
+    {
+      "id": "MSE-A7-TOP",
+      "source": "WallA7Mitred",
+      "x_ft": -83.90970704936281,
+      "y_ft": 1.811783583122919,
+      "z_ft": 40.19602556555148
+    },
+    {
+      "id": "MSE-B1-TOP",
+      "source": "WallB1Mitred",
+      "x_ft": -93.6344933524471,
+      "y_ft": -203.32395867742622,
+      "z_ft": 40.208025477363
+    },
+    {
+      "id": "MSE-B6-TOP",
+      "source": "WallB6Mitred",
+      "x_ft": -103.36366001688656,
+      "y_ft": -206.13157491473356,
+      "z_ft": 40.208025477363016
+    },
+    {
+      "id": "MSE-B7-TOP",
+      "source": "WallB7Mitred",
+      "x_ft": -83.90532668800762,
+      "y_ft": -206.13157491473353,
+      "z_ft": 40.208025477362995
+    }
+  ],
+  "slopes": [
+    {
+      "side": "A",
+      "centerline_percent": 4.7573846634175725,
+      "maximum_longitudinal_percent": 4.866238181552066,
+      "analytic_maximum_percent": 4.866238181551328,
+      "limit_percent": 5.0,
+      "status": "PASS",
+      "run_ft": 129.84071791975677,
+      "blend_ft": 119.99999999999997
+    },
+    {
+      "side": "B",
+      "centerline_percent": 4.843032177323864,
+      "maximum_longitudinal_percent": 4.978732748979063,
+      "analytic_maximum_percent": 4.978732748976109,
+      "limit_percent": 5.0,
+      "status": "PASS",
+      "run_ft": 131.93985370194235,
+      "blend_ft": 131.83985370194236
+    },
+    {
+      "surface": "A_ApproachSurface",
+      "maximum_longitudinal_percent": 5.0,
+      "status": "PASS"
+    },
+    {
+      "surface": "B_ApproachSurface",
+      "maximum_longitudinal_percent": 5.0,
+      "status": "PASS"
+    },
+    {
+      "surface": "B_LowerRunSurface",
+      "maximum_longitudinal_percent": 4.999999999999998,
+      "status": "PASS"
+    },
+    {
+      "surface": "B_MiddleRunSurface",
+      "maximum_longitudinal_percent": 5.000000000000001,
+      "status": "PASS"
+    }
+  ],
+  "failures": []
+}

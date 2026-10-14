@@ -1,0 +1,69 @@
+{
+  "status": "SAVED_FOR_AUDIT",
+  "transaction": "raise-end-bent-mse-tops-v1",
+  "wall_changes": [
+    {
+      "wall": "A5",
+      "end_bent": "EB1",
+      "old_top_ft": 39.38799999999999,
+      "new_top_ft": 40.19602556555146,
+      "raise_in": 9.69630678661758
+    },
+    {
+      "wall": "A6",
+      "end_bent": "EB1",
+      "old_top_ft": 39.38799999999999,
+      "new_top_ft": 40.19602556555146,
+      "raise_in": 9.69630678661758
+    },
+    {
+      "wall": "A7",
+      "end_bent": "EB1",
+      "old_top_ft": 39.38799999999999,
+      "new_top_ft": 40.19602556555146,
+      "raise_in": 9.69630678661758
+    },
+    {
+      "wall": "B1",
+      "end_bent": "EB2",
+      "old_top_ft": 39.38799999999999,
+      "new_top_ft": 40.208025477362995,
+      "raise_in": 9.840305728355988
+    },
+    {
+      "wall": "B6",
+      "end_bent": "EB2",
+      "old_top_ft": 39.38799999999999,
+      "new_top_ft": 40.208025477362995,
+      "raise_in": 9.840305728355988
+    },
+    {
+      "wall": "B7",
+      "end_bent": "EB2",
+      "old_top_ft": 39.38799999999999,
+      "new_top_ft": 40.208025477362995,
+      "raise_in": 9.840305728355988
+    }
+  ],
+  "new_annotations": [
+    "DXFWallTopElevationA5",
+    "DXFWallTopElevationA6",
+    "DXFWallTopElevationA7",
+    "DXFWallTopElevationB1",
+    "DXFWallTopElevationB6",
+    "DXFWallTopElevationB7"
+  ],
+  "vertical_gap_in": 0.5,
+  "horizontal_gap_in": 0.5,
+  "clashes": [],
+  "invalid": [],
+  "preservation": {
+    "status": "STAGED",
+    "source_sha256": "7368774487c1456238df13c80e33ddf3871907982ff91938e1ae1b4eebf52676",
+    "output_sha256": "0d22f9ca3b9f36ffbc3ea657a8550ed38c0ee9e3b41828bd6e2674f1b3f668cf",
+    "retained_objects": 216,
+    "native_resources_copied": 396,
+    "view_count": 1784,
+    "source_unchanged": true
+  }
+}

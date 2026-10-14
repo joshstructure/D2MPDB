@@ -34,7 +34,8 @@ def settings(c,side):
     b.update(q=1 if side=='A' else -1,center=origin.x,front_center=origin.y,
              skew=transverse.y/transverse.x,low=float(m.deck_top(station,m.deck_left))*FT,
              crown=float(m.pgl(station))*FT,halfwidth=m.deck_width*FT/2 if hasattr(m,'deck_width') else pgl.DeckWidth.Value/2,
-             slope=mse.grade(c.LandingSlope)/100,blend=c.RunBlendLength.Value,
+             slope=mse.grade(c.LandingSlope)/100,blend=getattr(c,side+'RunBlendLength',c.RunBlendLength).Value,
+             taper=getattr(c,side+'BlendTaperFraction',.1),
              incoming=abs(m.g1 if side=='A' else m.g2))
     b['halfwidth']*=transverse.x
     b['turn']=(b['run_y0']+b['run_y1'])/2
@@ -65,15 +66,17 @@ def upper_height(b,x,y):
     # A C1 quadratic/linear/quadratic fade limits the peak added grade.
     # Its derivative is bounded by 1/(0.9*blend), unlike a cubic smoothstep's
     # 1.5/blend peak. Long blending preserves a shallower-than-5% run at edges.
-    weight=(1-s*s/.18 if s<.1 else (1-(s-.05)/.9 if s<.9 else (1-s)**2/.18))
+    a=b.get('taper',.1)
+    if not 0<a<.5:raise ValueError('Blend taper fraction must be between zero and one half')
+    weight=(1-s*s/(2*a*(1-a)) if s<a else (1-(s-a/2)/(1-a) if s<1-a else (1-s)**2/(2*a*(1-a))))
     return base+weight*(landing_height(b,b['join'],y)-plane(b,b['join'],y))
 
 def surface_height(o,x,y):
     b=settings(o.DrainageTrial,o.TrialSide)
     return (landing_height if o.TrialRole=='Landing' else upper_height)(b,x,y)
 
-def landing_face(b):
-    xs=[b['xmin'],b['center']-b['halfwidth'],b['center'],b['center']+b['halfwidth'],b['join']]
+def landing_face(b,xmin=None,xmax=None):
+    xs=[b['xmin'] if xmin is None else xmin,b['center']-b['halfwidth'],b['center'],b['center']+b['halfwidth'],b['join'] if xmax is None else xmax]
     poles=[]
     for x in xs:
         y0=front(b,x);dy=b['turn']-y0;dy2=b['far']-b['turn'];total=abs(dy)
@@ -91,7 +94,9 @@ def upper_face(b):
     nodes=np.array([0.,1/3,2/3,1.])
     bern=np.array([[(1-t)**3,3*t*(1-t)**2,3*t*t*(1-t),t**3] for t in nodes])
     inv=np.linalg.inv(bern)
-    xs=[b['join'],b['join']+.1*b['blend'],b['join']+.9*b['blend'],b['join']+b['blend'],b['end']];ys=[b['near'],b['turn'],b['far']]
+    a=b.get('taper',.1)
+    xs=[b['join'],b['join']+a*b['blend'],b['join']+(1-a)*b['blend'],b['join']+b['blend'],b['end']];ys=[b['near'],b['turn'],b['far']]
+    if not all(x<y for x,y in zip(xs,xs[1:])):raise ValueError('Blend must fit strictly within the descending run')
     poles=[[None]*7 for _ in range(13)]
     for ix in range(4):
         for iy in range(2):
@@ -156,7 +161,8 @@ def parameter_curve(surface,p,q):
     cuts=[0.,1.]
     if 'DrainageTrial' in surface.PropertiesList:
         b=settings(surface.DrainageTrial,surface.TrialSide)
-        for coordinate,value in [('y',b['turn'])]+[('x',b['join']+f*b['blend']) for f in [.1,.9,1.]]:
+        a=b.get('taper',.1)
+        for coordinate,value in [('y',b['turn'])]+[('x',b['join']+f*b['blend']) for f in [a,1-a,1.]]:
             a=getattr(p,coordinate);d=getattr(q,coordinate)-a
             if abs(d)>1e-10:
                 t=(value-a)/d
@@ -191,8 +197,43 @@ def slab_map(doc):return {a.Name:b for a,b in zip(doc.MSEAssembly.NominalConcret
 
 def point_from_spec(doc,spec):
     kind=spec['kind']
+    if kind=='wall_under_cheek':
+        w=doc.getObject(spec['profile']);controls=[p for p,n in zip(w.TopControls,w.TopSourceNames) if not n]
+        station=(min(p.x for p in controls)+max(p.x for p in controls))/2
+        p=w.Start+w.Tangent*station+w.Normal*(w.Inputs.WallThickness.Value/2)
+        p.z=top_at(doc.getObject(spec['source']).Shape.copy(),p.x,p.y)
+        return p
+    if kind in ['detail_reference','return_top']:
+        if kind=='return_top':
+            raw=doc.getObject(spec['nominal']);target=raw.Path.Vertexes[0 if spec['end']==0 else -1].Point
+            normal=raw.PGL.Frame.Rotation.multVec(App.Vector(0,raw.Side,0)) if spec['end']==0 else raw.WallBarrier.WallProfile.Normal
+            target=target+normal*(4*25.4)+App.Vector(0,0,42*25.4)
+        else:
+            reference=dict(spec,kind='detail',source=spec['nominal'])
+            target=point_from_spec(doc,reference)
+        host=doc.getObject(spec['source'])
+        tops=[f for f in host.Shape.Faces if f.normalAt(sum(f.ParameterRange[:2])/2,sum(f.ParameterRange[2:])/2).z>.5]
+        if not tops:raise ValueError('No physical assembled coping top')
+        distance,pairs,_=Part.Vertex(target).distToShape(Part.makeCompound(tops))
+        if distance>25.4:raise ValueError('Coping corner reference moved over one inch from its physical host')
+        return pairs[0][1]
+    if kind=='detail':
+        host=doc.getObject(spec['source']);direction=App.Vector(*spec['direction'])
+        tops=[f for f in host.Shape.Faces if f.normalAt(sum(f.ParameterRange[:2])/2,sum(f.ParameterRange[2:])/2).z>.5]
+        points=[v.Point for f in tops for v in f.Vertexes]
+        if not points:raise ValueError('No detail top face')
+        extent=(min if spec['end']==0 else max)(p.dot(direction) for p in points)
+        return max([p for p in points if abs(p.dot(direction)-extent)<.0254],key=lambda p:p.z)
     if kind=='corner':
         s=doc.getObject(spec['surface']);p=s.ComputedCorners[spec['index']]
+        host=doc.getObject(spec['source'])
+        if host.Name.endswith('BentJoint'):
+            # A joint cut creates a notched boundary. Keep this original
+            # corner callout on the nearest physical upper-face corner.
+            tops=[f for f in host.Shape.Faces if f.normalAt(sum(f.ParameterRange[:2])/2,sum(f.ParameterRange[2:])/2).z>.5]
+            corners=[v.Point for f in tops for v in f.Vertexes]
+            if not corners:raise ValueError('No upper-face corners on jointed slab')
+            return min(corners,key=lambda q:q.distanceToPoint(p))
         return App.Vector(p.x,p.y,top_at(doc.getObject(spec['source']).Shape.copy(),p.x,p.y))
     if kind=='deck':
         c=doc.BridgePGL;m=bridge.model(c);station=bridge.deck_limits(c,spec['span'])[spec['end']]

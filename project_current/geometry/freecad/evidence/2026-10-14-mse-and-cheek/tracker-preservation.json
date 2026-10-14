@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "prior_items_preserved": 22,
+  "added_item": "COH-023",
+  "edited_cells": [
+    "A3",
+    "A31:L31"
+  ],
+  "updated_formula_cache": "B4",
+  "outstanding": 11,
+  "all_other_archive_parts_exact": true,
+  "original_sha256": "ff75030a7f3b77edaa26788405a056a1087c166d5c43b3a4fa6a1fb55216e84b",
+  "revised_sha256": "f2d9b051bdce9a20671bd5e3b4c5b1c8fbfc8c0412bd74adbbeee448ee9d1f51"
+}

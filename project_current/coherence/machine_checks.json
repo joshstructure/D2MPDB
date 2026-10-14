@@ -1,20 +1,20 @@
 {
-  "checked_at_utc": "2026-10-13T13:45:23.952414+00:00",
+  "checked_at_utc": "2026-10-14T21:16:17.969458+00:00",
   "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
-  "register_sha256": "821b63fec7aa207785aa4cfbd41244f2cd4355f6c0729992f183e381bfa7fc35",
-  "tracker_sha256": "ff75030a7f3b77edaa26788405a056a1087c166d5c43b3a4fa6a1fb55216e84b",
-  "source_count": 26,
-  "item_count": 22,
-  "outstanding_count": 10,
+  "register_sha256": "57a24d8c8197bd942d421c54ee57564d4e4da5c38083a65239384ac255c8d51a",
+  "tracker_sha256": "f2d9b051bdce9a20671bd5e3b4c5b1c8fbfc8c0412bd74adbbeee448ee9d1f51",
+  "source_count": 27,
+  "item_count": 23,
+  "outstanding_count": 11,
   "status_counts": {
     "Closed": 12,
-    "Open": 8,
+    "Open": 9,
     "Deferred": 1,
     "Awaiting source": 1
   },
   "check_counts": {
-    "CHANGED": 6,
-    "MATCH": 36,
+    "CHANGED": 5,
+    "MATCH": 38,
     "MISSING": 5,
     "REVIEW": 10,
     "ERROR": 9
@@ -29,7 +29,7 @@
       ],
       "path": "journal/D2_I95_Project_Journal.bpad",
       "expected_sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351",
-      "actual_sha256": "a78dbced339445d0e7b2403e069b1da4dc12db890516fd997f757dc9a05a83fa"
+      "actual_sha256": "4b1770533d7b91cfb1efbcd96b0eb2c3a73328b90f88b2b50bca15388f07cd82"
     },
     {
       "check_id": "SOURCE:GEOMETRY",
@@ -226,8 +226,8 @@
         "CAD-MODEL"
       ],
       "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-      "expected_sha256": "7368774487c1456238df13c80e33ddf3871907982ff91938e1ae1b4eebf52676",
-      "actual_sha256": "7368774487c1456238df13c80e33ddf3871907982ff91938e1ae1b4eebf52676"
+      "expected_sha256": "38ddeecf176e93063682b6101c74031ae8b4933eb8ade94f2aeafbc3dd16d2eb",
+      "actual_sha256": "38ddeecf176e93063682b6101c74031ae8b4933eb8ade94f2aeafbc3dd16d2eb"
     },
     {
       "check_id": "SOURCE:CAD-RUNTIME",
@@ -237,8 +237,8 @@
         "CAD-RUNTIME"
       ],
       "path": "project_current/geometry/freecad/manifest.json",
-      "expected_sha256": "cc08aacad4f08980a8d146666d9e1365a25fa501c6d1b10011d63b5db18a01d5",
-      "actual_sha256": "cc08aacad4f08980a8d146666d9e1365a25fa501c6d1b10011d63b5db18a01d5"
+      "expected_sha256": "ca73965a257f88df472e22cb53751368cfcc7269a8ccb2bf5645bcbb1d27ae6a",
+      "actual_sha256": "ca73965a257f88df472e22cb53751368cfcc7269a8ccb2bf5645bcbb1d27ae6a"
     },
     {
       "check_id": "SOURCE:CAD-REPORT",
@@ -248,8 +248,8 @@
         "CAD-REPORT"
       ],
       "path": "project_current/geometry/freecad/evidence/Model-update-report.txt",
-      "expected_sha256": "d72d55dd7068cd6ff0e3ce4712411d956b95355202e155a1eda8caa5d2e12e0b",
-      "actual_sha256": "d72d55dd7068cd6ff0e3ce4712411d956b95355202e155a1eda8caa5d2e12e0b"
+      "expected_sha256": "8c13ae88a96391dc497f52326a4c24d6655b831c84c6e1d3b05ea26a0385ae7d",
+      "actual_sha256": "8c13ae88a96391dc497f52326a4c24d6655b831c84c6e1d3b05ea26a0385ae7d"
     },
     {
       "check_id": "SOURCE:BACKWALL-TOOL",
@@ -305,6 +305,17 @@
       "path": "project_current/cap_design/backwall/Backwall Design 10-12.html",
       "expected_sha256": "a92c2540cc54515019ecf65bedf1c0ad0ea84a4df60eec927e0c8045de026fc9",
       "actual_sha256": "a92c2540cc54515019ecf65bedf1c0ad0ea84a4df60eec927e0c8045de026fc9"
+    },
+    {
+      "check_id": "SOURCE:MSE-DETAIL-DXF",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "MSE-DETAIL-DXF"
+      ],
+      "path": "project_current/geometry/details/B4 Pedestrian Bridge - Working.dxf",
+      "expected_sha256": "dcf8bfdb441372e08a24c903f88cd3c3d772bb1f2ccce8f0eb35859fd6d8ea07",
+      "actual_sha256": "dcf8bfdb441372e08a24c903f88cd3c3d772bb1f2ccce8f0eb35859fd6d8ea07"
     },
     {
       "check_id": "DEP:GEOMETRY:JOURNAL",
@@ -398,8 +409,8 @@
     },
     {
       "check_id": "JOURNAL:acceptance",
-      "status": "CHANGED",
-      "detail": "Journal differs from acceptance receipt T006. Review scope remains as recorded.",
+      "status": "MATCH",
+      "detail": "Journal matches acceptance receipt T009. Review scope remains as recorded.",
       "source_ids": [
         "JOURNAL"
       ]
@@ -976,6 +987,21 @@
       "Source references": "JOURNAL; PIER-REPORT; EB-REPORT; coherence/evidence/2026-10-10/source_update.json",
       "Last reviewed": "2026-10-10",
       "_row": 30
+    },
+    {
+      "Item ID": "COH-023",
+      "Status": "Open",
+      "Area": "CAD / calculations",
+      "Item": "Reconcile adopted MSE and cheek revision",
+      "Finding": "D-026 adopts 235 in end caps, revised walls and single centered #4 cheek mats. Current notebook/report geometry and Figure B8 do not represent these details.",
+      "Next action": "Reconcile cap/wall calculations, loads and quantities with adopted CAD. Review anchorage, lug steel and strap interfaces before issuing details.",
+      "Your response": "Incorporate all these changes into the main model and add to the project source.",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "CAD adoption verified; calculation reconciliation remains open.",
+      "Source references": "D-026; CAD-MODEL; MSE-DETAIL-DXF; EB-CASE; EB2-CASE; BACKWALL-REPORT; GEOMETRY",
+      "Last reviewed": "2026-10-14T00:00:00.000Z",
+      "_row": 31
     }
   ]
 }

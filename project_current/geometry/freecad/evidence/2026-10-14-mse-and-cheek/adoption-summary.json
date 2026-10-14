@@ -1,0 +1,67 @@
+{
+  "status": "ADOPTED_IN_MAIN_PROJECT_AND_NATIVE_VERIFIED",
+  "date": "2026-10-14",
+  "decision": "D-026",
+  "authorization": "Ok lets incorporate all these changes into the main model and add to the project source",
+  "model": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "old_model_sha256": "7368774487c1456238df13c80e33ddf3871907982ff91938e1ae1b4eebf52676",
+  "new_model_sha256": "38ddeecf176e93063682b6101c74031ae8b4933eb8ade94f2aeafbc3dd16d2eb",
+  "source_dxf": "project_current/geometry/details/B4 Pedestrian Bridge - Working.dxf",
+  "source_dxf_sha256": "dcf8bfdb441372e08a24c903f88cd3c3d772bb1f2ccce8f0eb35859fd6d8ea07",
+  "backup_model": "archive/B4-before-MSE-and-cheek-revision-20261014.FCStd",
+  "backup_runtime": "archive/B4-before-MSE-and-cheek-runtime-20261014.zip",
+  "cap_dimensions_in": [
+    235,
+    42,
+    36
+  ],
+  "cheek_web_in": 8,
+  "lug_projection_in": 6,
+  "joints_in": {
+    "vertical": 0.5,
+    "horizontal": 0.5
+  },
+  "mitred_corners": 12,
+  "visible_piles": 12,
+  "annotations": 170,
+  "main_ramp_maxima_percent": {
+    "A": 4.866238181552,
+    "B": 4.978732748979
+  },
+  "cheek_steel": {
+    "bar": 4,
+    "mats": 1,
+    "spacing_max_in": 12,
+    "total_bars": 52
+  },
+  "retained_caps_bars": [
+    57,
+    90,
+    57
+  ],
+  "retained_pedestal_bars": 72,
+  "cheek_checks_pass": 282,
+  "prior_geometry_checks_pass": 621,
+  "prior_pgl_checks_pass": 110,
+  "prior_geometry_evidence_basis": "Wall-top delivery; its 1534 protected native records/resources are identical in the final cheek-steel model.",
+  "follow_up": "COH-023",
+  "limitations": [
+    "Calculation notebook, cap cases/reports and backwall report require reconciliation with adopted CAD geometry/steel.",
+    "Anchorage, development, laps and separate lug steel not detailed.",
+    "26 backwall/cap bar intersections remain; existing cap review findings retained.",
+    "Older external drawing/export packages not regenerated."
+  ],
+  "installed_verification": "installed-native-verification.json",
+  "installed_checks": {
+    "PASS": 299,
+    "FAIL": 0
+  },
+  "notebook_regression_tests": {
+    "status": "PASS",
+    "tests": 28,
+    "failures": 0,
+    "errors": 0,
+    "environment": "Project Python 3.12 with existing bundled pandas dependencies appended for this process only"
+  },
+  "notebook_geometry_basis": "D-023 exact archived native source remains the comparison fixture; current adopted CAD under latest_adopted_cad_source requires COH-023 reconciliation."
+}

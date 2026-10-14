@@ -1,0 +1,3500 @@
+{
+  "transaction_id": "cheek-single-mat-20261014-v1",
+  "status": "VALIDATED",
+  "timestamp": "2026-10-14T20:35:00.817793+00:00",
+  "request": {
+    "request_id": "cheek-single-mat-20261014-v1",
+    "output": "C:\\Users\\joshs\\Desktop\\CAD_AI\\output\\cheek-single-mat-20261014\\build-v1",
+    "disposable_copy": "C:\\Users\\joshs\\Desktop\\CAD_AI\\output\\cheek-single-mat-20261014\\build-v1\\Disposable.FCStd",
+    "vertical_spacing": "12 in",
+    "horizontal_spacing": "12 in",
+    "cover": "2 in"
+  },
+  "parametric_regeneration": {
+    "status": "PASS",
+    "baseline_bars": 13,
+    "six_inch_vertical_bars": 16,
+    "restored_bars": 13
+  },
+  "validation": {
+    "checks": [
+      {
+        "name": "SteelBridgeCheekEB11MV01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH06_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH06_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH07_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH07_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH08_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH08_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11_live_totals",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV01_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.249999999999986,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV01_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV01_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV02_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.249999999999986,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV02_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV02_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV03_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.249999999999986,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV03_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV03_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV04_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.249999999999986,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV04_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV04_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV05_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.0000000000000058,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV05_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV05_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH01_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000000098,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH01_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH01_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH02_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000000098,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH02_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH02_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH03_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000000098,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH03_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH03_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH04_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000000098,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH04_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH04_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH05_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000000098,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH05_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH05_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH06_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000000098,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH06_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH06_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH07_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000000098,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH07_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH07_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH08_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 1.9999999999999714,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH08_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH08_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekEB11_one_centered_mat",
+        "status": "PASS",
+        "mat_envelope_in": 0.9999999999999857,
+        "side_cover_in": [
+          3.5000000000000218,
+          3.500000000000004
+        ]
+      },
+      {
+        "name": "BridgeCheekEB11_vertical_spacing",
+        "status": "PASS",
+        "spacings_in": [
+          11.999999999999998,
+          11.999999999999998,
+          11.999999999999998,
+          1.500000000000059
+        ]
+      },
+      {
+        "name": "BridgeCheekEB11_horizontal_spacing",
+        "status": "PASS",
+        "spacings_in": [
+          11.999999999999972,
+          12.000000000000044,
+          11.999999999999972,
+          11.999999999999972,
+          12.000000000000044,
+          11.999999999999972,
+          10.949693213382503
+        ]
+      },
+      {
+        "name": "BridgeCheekEB11_schedule_links",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH06_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH06_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH07_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH07_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH08_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH08_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12_live_totals",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV01_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000002007,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV01_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV01_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV02_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000002007,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV02_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV02_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV03_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000002007,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV03_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV03_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV04_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000002007,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV04_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV04_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV05_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 1.9999999999999314,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV05_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV05_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH01_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2499999999999316,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH01_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH01_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH02_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2499999999999316,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH02_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH02_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH03_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2499999999999316,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH03_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH03_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH04_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2499999999999316,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH04_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH04_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH05_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2499999999999316,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH05_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH05_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH06_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2499999999999316,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH06_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH06_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH07_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2499999999999316,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH07_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH07_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH08_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.0000000000001865,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH08_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH08_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekEB12_one_centered_mat",
+        "status": "PASS",
+        "mat_envelope_in": 0.9999999999999857,
+        "side_cover_in": [
+          3.5000000000000218,
+          3.500000000000004
+        ]
+      },
+      {
+        "name": "BridgeCheekEB12_vertical_spacing",
+        "status": "PASS",
+        "spacings_in": [
+          11.999999999999998,
+          11.999999999999996,
+          11.999999999999998,
+          1.500000000000059
+        ]
+      },
+      {
+        "name": "BridgeCheekEB12_horizontal_spacing",
+        "status": "PASS",
+        "spacings_in": [
+          11.999999999999972,
+          12.000000000000044,
+          11.999999999999972,
+          11.999999999999972,
+          12.000000000000044,
+          11.999999999999972,
+          10.949693213382503
+        ]
+      },
+      {
+        "name": "BridgeCheekEB12_schedule_links",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH06_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH06_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH07_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH07_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH08_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH08_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21_live_totals",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV01_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.0000000000001203,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV01_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV01_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV02_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000000573,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV02_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV02_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV03_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000000573,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV03_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV03_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV04_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000000573,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV04_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV04_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV05_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000000573,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV05_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV05_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH01_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000002607,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH01_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH01_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH02_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000002607,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH02_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH02_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH03_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000002607,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH03_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH03_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH04_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000002607,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH04_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH04_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH05_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000002607,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH05_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH05_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH06_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000002607,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH06_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH06_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH07_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000002607,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH07_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH07_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH08_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.000000000000043,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH08_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH08_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekEB21_one_centered_mat",
+        "status": "PASS",
+        "mat_envelope_in": 1.0000000000000036,
+        "side_cover_in": [
+          3.4999999999994307,
+          3.500000000000577
+        ]
+      },
+      {
+        "name": "BridgeCheekEB21_vertical_spacing",
+        "status": "PASS",
+        "spacings_in": [
+          12.000000000000115,
+          12.000000000000115,
+          11.99999999999983,
+          1.4999999999999427
+        ]
+      },
+      {
+        "name": "BridgeCheekEB21_horizontal_spacing",
+        "status": "PASS",
+        "spacings_in": [
+          11.999999999999972,
+          12.000000000000044,
+          11.999999999999972,
+          11.9999999999999,
+          12.000000000000115,
+          12.000000000000044,
+          10.949694271644042
+        ]
+      },
+      {
+        "name": "BridgeCheekEB21_schedule_links",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH06_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH06_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH07_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH07_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH08_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH08_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22_live_totals",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV01_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.0000000000002354,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV01_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV01_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV02_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000000573,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV02_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV02_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV03_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000000573,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV03_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV03_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV04_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000000573,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV04_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV04_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV05_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000000573,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV05_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV05_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH01_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000002607,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH01_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH01_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH02_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000002607,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH02_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH02_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH03_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000002607,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH03_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH03_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH04_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000002607,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH04_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH04_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH05_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000002607,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH05_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH05_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH06_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000002607,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH06_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH06_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH07_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.2500000000002607,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH07_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH07_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH08_actual_host_cover",
+        "status": "PASS",
+        "minimum_in": 2.000000000000043,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH08_inside_main_web",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH08_number4",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekEB22_one_centered_mat",
+        "status": "PASS",
+        "mat_envelope_in": 1.0000000000000036,
+        "side_cover_in": [
+          3.4999999999994307,
+          3.500000000000577
+        ]
+      },
+      {
+        "name": "BridgeCheekEB22_vertical_spacing",
+        "status": "PASS",
+        "spacings_in": [
+          12.000000000000115,
+          12.000000000000115,
+          11.99999999999983,
+          1.4999999999999427
+        ]
+      },
+      {
+        "name": "BridgeCheekEB22_horizontal_spacing",
+        "status": "PASS",
+        "spacings_in": [
+          11.999999999999972,
+          12.000000000000044,
+          11.999999999999972,
+          11.9999999999999,
+          12.000000000000115,
+          12.000000000000044,
+          10.949694271644042
+        ]
+      },
+      {
+        "name": "BridgeCheekEB22_schedule_links",
+        "status": "PASS"
+      },
+      {
+        "name": "cheek_mat_internal_and_other_wall_cap_bar_clashes",
+        "status": "PASS",
+        "failures": []
+      },
+      {
+        "name": "no_invalid_native_objects",
+        "status": "PASS",
+        "objects": []
+      }
+    ],
+    "failures": [],
+    "measurements": [
+      {
+        "wall": "BridgeCheekEB11",
+        "vertical_bars": 5,
+        "horizontal_bars": 8,
+        "total_bars": 13,
+        "steel_length_ft": 59.56237217224273,
+        "weight_lb": 39.78766461105815,
+        "side_cover_in": [
+          3.5000000000000218,
+          3.500000000000004
+        ],
+        "mat_thickness_in": 0.9999999999999857
+      },
+      {
+        "wall": "BridgeCheekEB12",
+        "vertical_bars": 5,
+        "horizontal_bars": 8,
+        "total_bars": 13,
+        "steel_length_ft": 59.56237217224273,
+        "weight_lb": 39.78766461105815,
+        "side_cover_in": [
+          3.5000000000000218,
+          3.500000000000004
+        ],
+        "mat_thickness_in": 0.9999999999999857
+      },
+      {
+        "wall": "BridgeCheekEB21",
+        "vertical_bars": 5,
+        "horizontal_bars": 8,
+        "total_bars": 13,
+        "steel_length_ft": 59.56237261318504,
+        "weight_lb": 39.78766490560759,
+        "side_cover_in": [
+          3.4999999999994307,
+          3.500000000000577
+        ],
+        "mat_thickness_in": 1.0000000000000036
+      },
+      {
+        "wall": "BridgeCheekEB22",
+        "vertical_bars": 5,
+        "horizontal_bars": 8,
+        "total_bars": 13,
+        "steel_length_ft": 59.56237261318504,
+        "weight_lb": 39.78766490560759,
+        "side_cover_in": [
+          3.4999999999994307,
+          3.500000000000577
+        ],
+        "mat_thickness_in": 1.0000000000000036
+      }
+    ],
+    "schedule": [
+      {
+        "wall": "BridgeCheekEB11",
+        "mark": "BridgeCheekEB11-MV01",
+        "direction": "Vertical",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 6.912474434448539,
+        "weight_lb": 4.617532922211624
+      },
+      {
+        "wall": "BridgeCheekEB11",
+        "mark": "BridgeCheekEB11-MV02",
+        "direction": "Vertical",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 6.912474434448539,
+        "weight_lb": 4.617532922211624
+      },
+      {
+        "wall": "BridgeCheekEB11",
+        "mark": "BridgeCheekEB11-MV03",
+        "direction": "Vertical",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 6.912474434448539,
+        "weight_lb": 4.617532922211624
+      },
+      {
+        "wall": "BridgeCheekEB11",
+        "mark": "BridgeCheekEB11-MV04",
+        "direction": "Vertical",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 6.912474434448539,
+        "weight_lb": 4.617532922211624
+      },
+      {
+        "wall": "BridgeCheekEB11",
+        "mark": "BridgeCheekEB11-MV05",
+        "direction": "Vertical",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 6.912474434448539,
+        "weight_lb": 4.617532922211624
+      },
+      {
+        "wall": "BridgeCheekEB11",
+        "mark": "BridgeCheekEB11-MH01",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.1250000000000044,
+        "weight_lb": 2.087500000000003
+      },
+      {
+        "wall": "BridgeCheekEB11",
+        "mark": "BridgeCheekEB11-MH02",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.1250000000000044,
+        "weight_lb": 2.087500000000003
+      },
+      {
+        "wall": "BridgeCheekEB11",
+        "mark": "BridgeCheekEB11-MH03",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.1250000000000044,
+        "weight_lb": 2.087500000000003
+      },
+      {
+        "wall": "BridgeCheekEB11",
+        "mark": "BridgeCheekEB11-MH04",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.1250000000000044,
+        "weight_lb": 2.087500000000003
+      },
+      {
+        "wall": "BridgeCheekEB11",
+        "mark": "BridgeCheekEB11-MH05",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.1250000000000044,
+        "weight_lb": 2.087500000000003
+      },
+      {
+        "wall": "BridgeCheekEB11",
+        "mark": "BridgeCheekEB11-MH06",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.1250000000000044,
+        "weight_lb": 2.087500000000003
+      },
+      {
+        "wall": "BridgeCheekEB11",
+        "mark": "BridgeCheekEB11-MH07",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.1250000000000044,
+        "weight_lb": 2.087500000000003
+      },
+      {
+        "wall": "BridgeCheekEB11",
+        "mark": "BridgeCheekEB11-MH08",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.1250000000000044,
+        "weight_lb": 2.087500000000003
+      },
+      {
+        "wall": "BridgeCheekEB12",
+        "mark": "BridgeCheekEB12-MV01",
+        "direction": "Vertical",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 6.912474434448539,
+        "weight_lb": 4.617532922211624
+      },
+      {
+        "wall": "BridgeCheekEB12",
+        "mark": "BridgeCheekEB12-MV02",
+        "direction": "Vertical",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 6.912474434448539,
+        "weight_lb": 4.617532922211624
+      },
+      {
+        "wall": "BridgeCheekEB12",
+        "mark": "BridgeCheekEB12-MV03",
+        "direction": "Vertical",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 6.912474434448539,
+        "weight_lb": 4.617532922211624
+      },
+      {
+        "wall": "BridgeCheekEB12",
+        "mark": "BridgeCheekEB12-MV04",
+        "direction": "Vertical",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 6.912474434448539,
+        "weight_lb": 4.617532922211624
+      },
+      {
+        "wall": "BridgeCheekEB12",
+        "mark": "BridgeCheekEB12-MV05",
+        "direction": "Vertical",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 6.912474434448539,
+        "weight_lb": 4.617532922211624
+      },
+      {
+        "wall": "BridgeCheekEB12",
+        "mark": "BridgeCheekEB12-MH01",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.1250000000000044,
+        "weight_lb": 2.087500000000003
+      },
+      {
+        "wall": "BridgeCheekEB12",
+        "mark": "BridgeCheekEB12-MH02",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.1250000000000044,
+        "weight_lb": 2.087500000000003
+      },
+      {
+        "wall": "BridgeCheekEB12",
+        "mark": "BridgeCheekEB12-MH03",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.1250000000000044,
+        "weight_lb": 2.087500000000003
+      },
+      {
+        "wall": "BridgeCheekEB12",
+        "mark": "BridgeCheekEB12-MH04",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.1250000000000044,
+        "weight_lb": 2.087500000000003
+      },
+      {
+        "wall": "BridgeCheekEB12",
+        "mark": "BridgeCheekEB12-MH05",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.1250000000000044,
+        "weight_lb": 2.087500000000003
+      },
+      {
+        "wall": "BridgeCheekEB12",
+        "mark": "BridgeCheekEB12-MH06",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.1250000000000044,
+        "weight_lb": 2.087500000000003
+      },
+      {
+        "wall": "BridgeCheekEB12",
+        "mark": "BridgeCheekEB12-MH07",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.1250000000000044,
+        "weight_lb": 2.087500000000003
+      },
+      {
+        "wall": "BridgeCheekEB12",
+        "mark": "BridgeCheekEB12-MH08",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.1250000000000044,
+        "weight_lb": 2.087500000000003
+      },
+      {
+        "wall": "BridgeCheekEB21",
+        "mark": "BridgeCheekEB21-MV01",
+        "direction": "Vertical",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 6.912474522637007,
+        "weight_lb": 4.617532981121521
+      },
+      {
+        "wall": "BridgeCheekEB21",
+        "mark": "BridgeCheekEB21-MV02",
+        "direction": "Vertical",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 6.912474522637007,
+        "weight_lb": 4.617532981121521
+      },
+      {
+        "wall": "BridgeCheekEB21",
+        "mark": "BridgeCheekEB21-MV03",
+        "direction": "Vertical",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 6.912474522637007,
+        "weight_lb": 4.617532981121521
+      },
+      {
+        "wall": "BridgeCheekEB21",
+        "mark": "BridgeCheekEB21-MV04",
+        "direction": "Vertical",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 6.912474522637007,
+        "weight_lb": 4.617532981121521
+      },
+      {
+        "wall": "BridgeCheekEB21",
+        "mark": "BridgeCheekEB21-MV05",
+        "direction": "Vertical",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 6.912474522637007,
+        "weight_lb": 4.617532981121521
+      },
+      {
+        "wall": "BridgeCheekEB21",
+        "mark": "BridgeCheekEB21-MH01",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.125,
+        "weight_lb": 2.0875
+      },
+      {
+        "wall": "BridgeCheekEB21",
+        "mark": "BridgeCheekEB21-MH02",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.125,
+        "weight_lb": 2.0875
+      },
+      {
+        "wall": "BridgeCheekEB21",
+        "mark": "BridgeCheekEB21-MH03",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.125,
+        "weight_lb": 2.0875
+      },
+      {
+        "wall": "BridgeCheekEB21",
+        "mark": "BridgeCheekEB21-MH04",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.125,
+        "weight_lb": 2.0875
+      },
+      {
+        "wall": "BridgeCheekEB21",
+        "mark": "BridgeCheekEB21-MH05",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.125,
+        "weight_lb": 2.0875
+      },
+      {
+        "wall": "BridgeCheekEB21",
+        "mark": "BridgeCheekEB21-MH06",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.125,
+        "weight_lb": 2.0875
+      },
+      {
+        "wall": "BridgeCheekEB21",
+        "mark": "BridgeCheekEB21-MH07",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.125,
+        "weight_lb": 2.0875
+      },
+      {
+        "wall": "BridgeCheekEB21",
+        "mark": "BridgeCheekEB21-MH08",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.125,
+        "weight_lb": 2.0875
+      },
+      {
+        "wall": "BridgeCheekEB22",
+        "mark": "BridgeCheekEB22-MV01",
+        "direction": "Vertical",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 6.912474522637007,
+        "weight_lb": 4.617532981121521
+      },
+      {
+        "wall": "BridgeCheekEB22",
+        "mark": "BridgeCheekEB22-MV02",
+        "direction": "Vertical",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 6.912474522637007,
+        "weight_lb": 4.617532981121521
+      },
+      {
+        "wall": "BridgeCheekEB22",
+        "mark": "BridgeCheekEB22-MV03",
+        "direction": "Vertical",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 6.912474522637007,
+        "weight_lb": 4.617532981121521
+      },
+      {
+        "wall": "BridgeCheekEB22",
+        "mark": "BridgeCheekEB22-MV04",
+        "direction": "Vertical",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 6.912474522637007,
+        "weight_lb": 4.617532981121521
+      },
+      {
+        "wall": "BridgeCheekEB22",
+        "mark": "BridgeCheekEB22-MV05",
+        "direction": "Vertical",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 6.912474522637007,
+        "weight_lb": 4.617532981121521
+      },
+      {
+        "wall": "BridgeCheekEB22",
+        "mark": "BridgeCheekEB22-MH01",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.125,
+        "weight_lb": 2.0875
+      },
+      {
+        "wall": "BridgeCheekEB22",
+        "mark": "BridgeCheekEB22-MH02",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.125,
+        "weight_lb": 2.0875
+      },
+      {
+        "wall": "BridgeCheekEB22",
+        "mark": "BridgeCheekEB22-MH03",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.125,
+        "weight_lb": 2.0875
+      },
+      {
+        "wall": "BridgeCheekEB22",
+        "mark": "BridgeCheekEB22-MH04",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.125,
+        "weight_lb": 2.0875
+      },
+      {
+        "wall": "BridgeCheekEB22",
+        "mark": "BridgeCheekEB22-MH05",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.125,
+        "weight_lb": 2.0875
+      },
+      {
+        "wall": "BridgeCheekEB22",
+        "mark": "BridgeCheekEB22-MH06",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.125,
+        "weight_lb": 2.0875
+      },
+      {
+        "wall": "BridgeCheekEB22",
+        "mark": "BridgeCheekEB22-MH07",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.125,
+        "weight_lb": 2.0875
+      },
+      {
+        "wall": "BridgeCheekEB22",
+        "mark": "BridgeCheekEB22-MH08",
+        "direction": "Horizontal",
+        "bar": 4,
+        "quantity": 1,
+        "length_ft": 3.125,
+        "weight_lb": 2.0875
+      }
+    ],
+    "all_wall_detailing": {
+      "checks": [
+        {
+          "name": "wall_steel_cover",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "wall_to_wall_and_cap_steel_clashes",
+          "status": "FAIL",
+          "failures": [
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.060341295052012835,
+              "minimum_in": 0.0,
+              "a": "CageEB1Trans_R3_4",
+              "b": "SteelBridgeBackwallEB1F2V07"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.36607256268449184,
+              "minimum_in": 0.0,
+              "a": "CageEB1Trans_R4_2",
+              "b": "SteelBridgeBackwallEB1F1V08"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 3.580687802255623e-14,
+              "common_volume_in3": 0.013784239766906414,
+              "minimum_in": 0.0,
+              "a": "CageEB1Trans_R4_2",
+              "b": "SteelBridgeBackwallEB1F2V08"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.06034016786878214,
+              "minimum_in": 0.0,
+              "a": "CageEB1Trans_R7_4",
+              "b": "SteelBridgeBackwallEB1F2V16"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.3660724474390294,
+              "minimum_in": 0.0,
+              "a": "CageEB1Trans_R8_2",
+              "b": "SteelBridgeBackwallEB1F1V17"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 8.951719505639057e-15,
+              "common_volume_in3": 0.013784239831934587,
+              "minimum_in": 0.0,
+              "a": "CageEB1Trans_R8_2",
+              "b": "SteelBridgeBackwallEB1F2V17"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.060340167878748414,
+              "minimum_in": 0.0,
+              "a": "CageEB1Trans_R9_2",
+              "b": "SteelBridgeBackwallEB1F2V19"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.07765967488885983,
+              "minimum_in": 0.0,
+              "a": "CageEB2Trans_R1_1",
+              "b": "SteelBridgeBackwallEB2F1V02"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.07765967546856287,
+              "minimum_in": 0.0,
+              "a": "CageEB2Trans_R3_1",
+              "b": "SteelBridgeBackwallEB2F1V05"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.16704254873295443,
+              "minimum_in": 0.0,
+              "a": "CageEB2Trans_R3_1",
+              "b": "SteelBridgeBackwallEB2F2V05"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.10086374990300429,
+              "minimum_in": 0.0,
+              "a": "CageEB2Trans_R3_4",
+              "b": "SteelBridgeBackwallEB2F1V07"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.5102610680447948,
+              "minimum_in": 0.0,
+              "a": "CageEB2Trans_R3_4",
+              "b": "SteelBridgeBackwallEB2F2V07"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 1.4322751209022492e-13,
+              "common_volume_in3": 0.013784239787555967,
+              "minimum_in": 0.0,
+              "a": "CageEB2Trans_R4_2",
+              "b": "SteelBridgeBackwallEB2F1V08"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.3649747391423754,
+              "minimum_in": 0.0,
+              "a": "CageEB2Trans_R4_2",
+              "b": "SteelBridgeBackwallEB2F2V08"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.07765677428231602,
+              "minimum_in": 0.0,
+              "a": "CageEB2Trans_R5_3",
+              "b": "SteelBridgeBackwallEB2F1V11"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.07765677410037536,
+              "minimum_in": 0.0,
+              "a": "CageEB2Trans_R7_1",
+              "b": "SteelBridgeBackwallEB2F1V14"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.10086406904317902,
+              "minimum_in": 0.0,
+              "a": "CageEB2Trans_R7_4",
+              "b": "SteelBridgeBackwallEB2F1V16"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.5102610685758228,
+              "minimum_in": 0.0,
+              "a": "CageEB2Trans_R7_4",
+              "b": "SteelBridgeBackwallEB2F2V16"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.013784239805825419,
+              "minimum_in": 0.0,
+              "a": "CageEB2Trans_R8_2",
+              "b": "SteelBridgeBackwallEB2F1V17"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.365348888815049,
+              "minimum_in": 0.0,
+              "a": "CageEB2Trans_R8_2",
+              "b": "SteelBridgeBackwallEB2F2V17"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.10086406904291559,
+              "minimum_in": 0.0,
+              "a": "CageEB2Trans_R9_2",
+              "b": "SteelBridgeBackwallEB2F1V19"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.510261068179496,
+              "minimum_in": 0.0,
+              "a": "CageEB2Trans_R9_2",
+              "b": "SteelBridgeBackwallEB2F2V19"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 5.196555348770118,
+              "minimum_in": 0.0,
+              "a": "SteelBridgeBackwallEB1F1V20",
+              "b": "SteelBridgeBackwallEB1F1V21"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 5.1965553505287705,
+              "minimum_in": 0.0,
+              "a": "SteelBridgeBackwallEB1F2V20",
+              "b": "SteelBridgeBackwallEB1F2V21"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 5.196555450016725,
+              "minimum_in": 0.0,
+              "a": "SteelBridgeBackwallEB2F1V20",
+              "b": "SteelBridgeBackwallEB2F1V21"
+            },
+            {
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 5.196555450014092,
+              "minimum_in": 0.0,
+              "a": "SteelBridgeBackwallEB2F2V20",
+              "b": "SteelBridgeBackwallEB2F2V21"
+            }
+          ],
+          "checked": 43914
+        },
+        {
+          "name": "wall_development_laps_straps_and_fabrication",
+          "status": "NOT CONFIGURED",
+          "basis": "Source Figure B8 dowels schematic; no approved detail supplied."
+        }
+      ],
+      "covers": [
+        {
+          "name": "SteelBridgeBackwallEB1F1V01_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.9161023367027337,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V02_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.674587930930512,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V03_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.4330745802241824,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V04_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.252096249342754,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V05_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.2477313809153885,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V06_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.243351796445871,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V07_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.238958076356025,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V08_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.234550818577994,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V09_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.2301306276367696,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V10_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.2256981052010207,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V11_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.2240532879870436,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V12_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.2255328778299717,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V13_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.2270111822284813,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V14_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.2284881798956984,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V15_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.2299638493700717,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V16_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.23143816903979,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V17_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.232911117169896,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V18_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.402751803682614,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V19_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.641209693479574,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V20_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.879664805388263,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V21_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.887116496053133,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H01_wall_cover",
+          "status": "PASS",
+          "minimum_in": 4.250247653151936,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H02_wall_cover",
+          "status": "PASS",
+          "minimum_in": 4.250247653151936,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H03_wall_cover",
+          "status": "PASS",
+          "minimum_in": 4.250247653151936,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H04_wall_cover",
+          "status": "PASS",
+          "minimum_in": 4.250247653151936,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H05_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.5858694175303847,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V01_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.000000000000038,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V02_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.0000000000000404,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V03_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.0000000000000435,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V04_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.000000000000046,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V05_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.000000000000049,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V06_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.000000000000051,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V07_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.000000000000054,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V08_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.000000000000057,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V09_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.0000000000000595,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V10_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.000000000000062,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V11_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.000000000000065,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V12_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.0000000000000675,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V13_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.00000000000007,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V14_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.000000000000073,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V15_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.000000000000075,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V16_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.000000000000078,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V17_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.000000000000081,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V18_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.0000000000000835,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V19_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.0000000000000857,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V20_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.000000000000089,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V21_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.000000000000089,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H01_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.625000000000038,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H02_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.625000000000038,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H03_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.625000000000038,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H04_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.625000000000038,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H05_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.625000000000038,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB11MV01_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.249999999999843,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB11MV02_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.249999999999843,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB11MV03_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.249999999999843,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB11MV04_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.249999999999843,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB11MV05_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.0000000000000253,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB11MH01_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.250000000000026,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB11MH02_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.250000000000026,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB11MH03_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.250000000000026,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB11MH04_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.250000000000026,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB11MH05_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.250000000000026,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB11MH06_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.250000000000026,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB11MH07_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.250000000000026,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB11MH08_wall_cover",
+          "status": "PASS",
+          "minimum_in": 1.9999999999998281,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB12MV01_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2500000000000573,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB12MV02_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2500000000000573,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB12MV03_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2500000000000573,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB12MV04_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2500000000000573,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB12MV05_wall_cover",
+          "status": "PASS",
+          "minimum_in": 1.9999999999999178,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB12MH01_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2499999999999187,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB12MH02_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2499999999999187,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB12MH03_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2499999999999187,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB12MH04_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2499999999999187,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB12MH05_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2499999999999187,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB12MH06_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2499999999999187,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB12MH07_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2499999999999187,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB12MH08_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.000000000000043,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V01_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.99999999999942,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V02_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V03_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V04_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V05_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V06_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V07_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V08_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V09_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V10_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V11_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V12_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V13_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V14_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V15_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V16_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V17_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V18_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V19_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V20_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V21_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H01_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.000000000000029,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H02_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.2499999999994165,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H03_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.2499999999994165,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H04_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.2499999999994165,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H05_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.999400179940078,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V01_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.99999999999942,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V02_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V03_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V04_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V05_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V06_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V07_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V08_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V09_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V10_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V11_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V12_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V13_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V14_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V15_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V16_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V17_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V18_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V19_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V20_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V21_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H01_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.000000000000029,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H02_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.2499999999994165,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H03_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.2499999999994165,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H04_wall_cover",
+          "status": "PASS",
+          "minimum_in": 3.2499999999994165,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H05_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.999400179940078,
+          "required_in": 2.9999999999999996,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB21MV01_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.0000000000001146,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB21MV02_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2499999999999143,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB21MV03_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2499999999999143,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB21MV04_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2499999999999143,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB21MV05_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2499999999999143,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB21MH01_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2500000000000573,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB21MH02_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2500000000000573,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB21MH03_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2500000000000573,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB21MH04_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2500000000000573,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB21MH05_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2500000000000573,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB21MH06_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2500000000000573,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB21MH07_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2500000000000573,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB21MH08_wall_cover",
+          "status": "PASS",
+          "minimum_in": 1.9999999999998999,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB22MV01_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.0000000000001146,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB22MV02_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2499999999999143,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB22MV03_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2499999999999143,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB22MV04_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2499999999999143,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB22MV05_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2499999999999143,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB22MH01_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2500000000000573,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB22MH02_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2500000000000573,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB22MH03_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2500000000000573,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB22MH04_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2500000000000573,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB22MH05_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2500000000000573,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB22MH06_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2500000000000573,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB22MH07_wall_cover",
+          "status": "PASS",
+          "minimum_in": 2.2500000000000573,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        },
+        {
+          "name": "SteelBridgeCheekEB22MH08_wall_cover",
+          "status": "PASS",
+          "minimum_in": 1.9999999999998999,
+          "required_in": 2.0,
+          "outside_in3": 0.0
+        }
+      ],
+      "clashes": [
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.060341295052012835,
+          "minimum_in": 0.0,
+          "a": "CageEB1Trans_R3_4",
+          "b": "SteelBridgeBackwallEB1F2V07"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.36607256268449184,
+          "minimum_in": 0.0,
+          "a": "CageEB1Trans_R4_2",
+          "b": "SteelBridgeBackwallEB1F1V08"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 3.580687802255623e-14,
+          "common_volume_in3": 0.013784239766906414,
+          "minimum_in": 0.0,
+          "a": "CageEB1Trans_R4_2",
+          "b": "SteelBridgeBackwallEB1F2V08"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.06034016786878214,
+          "minimum_in": 0.0,
+          "a": "CageEB1Trans_R7_4",
+          "b": "SteelBridgeBackwallEB1F2V16"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.3660724474390294,
+          "minimum_in": 0.0,
+          "a": "CageEB1Trans_R8_2",
+          "b": "SteelBridgeBackwallEB1F1V17"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 8.951719505639057e-15,
+          "common_volume_in3": 0.013784239831934587,
+          "minimum_in": 0.0,
+          "a": "CageEB1Trans_R8_2",
+          "b": "SteelBridgeBackwallEB1F2V17"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.060340167878748414,
+          "minimum_in": 0.0,
+          "a": "CageEB1Trans_R9_2",
+          "b": "SteelBridgeBackwallEB1F2V19"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.07765967488885983,
+          "minimum_in": 0.0,
+          "a": "CageEB2Trans_R1_1",
+          "b": "SteelBridgeBackwallEB2F1V02"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.07765967546856287,
+          "minimum_in": 0.0,
+          "a": "CageEB2Trans_R3_1",
+          "b": "SteelBridgeBackwallEB2F1V05"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.16704254873295443,
+          "minimum_in": 0.0,
+          "a": "CageEB2Trans_R3_1",
+          "b": "SteelBridgeBackwallEB2F2V05"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.10086374990300429,
+          "minimum_in": 0.0,
+          "a": "CageEB2Trans_R3_4",
+          "b": "SteelBridgeBackwallEB2F1V07"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.5102610680447948,
+          "minimum_in": 0.0,
+          "a": "CageEB2Trans_R3_4",
+          "b": "SteelBridgeBackwallEB2F2V07"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 1.4322751209022492e-13,
+          "common_volume_in3": 0.013784239787555967,
+          "minimum_in": 0.0,
+          "a": "CageEB2Trans_R4_2",
+          "b": "SteelBridgeBackwallEB2F1V08"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.3649747391423754,
+          "minimum_in": 0.0,
+          "a": "CageEB2Trans_R4_2",
+          "b": "SteelBridgeBackwallEB2F2V08"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.07765677428231602,
+          "minimum_in": 0.0,
+          "a": "CageEB2Trans_R5_3",
+          "b": "SteelBridgeBackwallEB2F1V11"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.07765677410037536,
+          "minimum_in": 0.0,
+          "a": "CageEB2Trans_R7_1",
+          "b": "SteelBridgeBackwallEB2F1V14"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.10086406904317902,
+          "minimum_in": 0.0,
+          "a": "CageEB2Trans_R7_4",
+          "b": "SteelBridgeBackwallEB2F1V16"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.5102610685758228,
+          "minimum_in": 0.0,
+          "a": "CageEB2Trans_R7_4",
+          "b": "SteelBridgeBackwallEB2F2V16"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.013784239805825419,
+          "minimum_in": 0.0,
+          "a": "CageEB2Trans_R8_2",
+          "b": "SteelBridgeBackwallEB2F1V17"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.365348888815049,
+          "minimum_in": 0.0,
+          "a": "CageEB2Trans_R8_2",
+          "b": "SteelBridgeBackwallEB2F2V17"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.10086406904291559,
+          "minimum_in": 0.0,
+          "a": "CageEB2Trans_R9_2",
+          "b": "SteelBridgeBackwallEB2F1V19"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.510261068179496,
+          "minimum_in": 0.0,
+          "a": "CageEB2Trans_R9_2",
+          "b": "SteelBridgeBackwallEB2F2V19"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 5.196555348770118,
+          "minimum_in": 0.0,
+          "a": "SteelBridgeBackwallEB1F1V20",
+          "b": "SteelBridgeBackwallEB1F1V21"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 5.1965553505287705,
+          "minimum_in": 0.0,
+          "a": "SteelBridgeBackwallEB1F2V20",
+          "b": "SteelBridgeBackwallEB1F2V21"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 5.196555450016725,
+          "minimum_in": 0.0,
+          "a": "SteelBridgeBackwallEB2F1V20",
+          "b": "SteelBridgeBackwallEB2F1V21"
+        },
+        {
+          "name": "clearance",
+          "status": "FAIL",
+          "classification": "OVERLAP",
+          "distance_in": 0.0,
+          "common_volume_in3": 5.196555450014092,
+          "minimum_in": 0.0,
+          "a": "SteelBridgeBackwallEB2F2V20",
+          "b": "SteelBridgeBackwallEB2F2V21"
+        }
+      ]
+    },
+    "limitations": "Anchorage, development, laps, lug reinforcement and fabrication are NOT CONFIGURED. Existing backwall and cap detailing checks retain actual failures."
+  }
+}

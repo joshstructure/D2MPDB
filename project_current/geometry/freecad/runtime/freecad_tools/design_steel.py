@@ -116,7 +116,7 @@ def write_wall_schedule(inp,sh,bars):
         for col,expr in {'C':b.Base.Name+'.BarNumber','D':b.Name+'.Amount','E':b.Name+'.Diameter/(1 in)','F':b.Name+'.Length/(1 ft)','G':b.Name+'.TotalLength/(1 ft)','H':b.Name+'.NominalWeightLb'}.items():sh.set(col+str(r),'='+expr)
     r=len(bars)+2;q=inp.Prefix+'Quantities';sh.set('A'+str(r),'TOTAL')
     for col,expr in [('D',q+'.TotalBars'),('G',q+'.TotalSteelLength/(1 ft)'),('H',q+'.NominalSteelWeightLb')]:sh.set(col+str(r),'='+expr)
-    sh.set('A'+str(r+2),'TRIAL STEEL: 16 in dowels schematic; anchorage, laps and straps not detailed.')
+    sh.set('A'+str(r+2),getattr(inp,'ScheduleNote','TRIAL STEEL: 16 in dowels schematic; anchorage, laps and straps not detailed.'))
     sh.BarNames=[b.Name for b in bars];sh.TotalRow=r
 
 def build_wall(doc,host,source):

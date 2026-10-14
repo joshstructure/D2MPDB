@@ -32,7 +32,8 @@ def validate_supports(doc):
     c=doc.BridgePGL;m=bridge.model(c);checks=[];rows=[];tol=.0254
     for sid in ('EB1','Pier','EB2'):
         cap=bridge.local_shape(doc.getObject('BridgeCap'+sid));bb=cap.BoundBox
-        end=sid!='Pier';wanted=(42,212,36) if end else (48,230,36)
+        end=sid!='Pier';revised='EndBentOverallWidth' in c.PropertiesList
+        wanted=((42,235,36) if revised else (42,212,36)) if end else (48,230,36)
         checks.append(result(sid+'_source_cap_section_and_length',all(abs(v-w*IN)<=tol for v,w in zip((bb.XLength,bb.YLength,bb.ZLength),wanted)),actual_in=[bb.XLength/IN,bb.YLength/IN,bb.ZLength/IN],expected_in=wanted))
         removed=4*(18**2 if end else math.pi*10**2)*12/1728
         checks.append(result(sid+'_net_concrete_excludes_embedded_piles',abs(cap.Volume/FT**3-(math.prod(wanted)/1728-removed))<=1e-7,net_ft3=cap.Volume/FT**3,gross_ft3=math.prod(wanted)/1728))
@@ -45,7 +46,7 @@ def validate_supports(doc):
                 cylinders=[f.Surface.Radius/IN for f in pile.Faces if isinstance(f.Surface,Part.Cylinder)]
                 checks.append(result(f'{sid}_pile{j+1}_nominal_pipe_wall',len(cylinders)==2 and abs(max(cylinders)-min(cylinders)-.625)<=.001,wall_in=max(cylinders)-min(cylinders)))
         clearance=min(centers[0]-(9 if end else 10)*IN-bb.YMin,bb.YMax-centers[-1]-(9 if end else 10)*IN)
-        checks.append(result(sid+'_pile_end_clearance',abs(clearance-(16 if end else 15)*IN)<=tol,actual_in=clearance/IN))
+        checks.append(result(sid+'_pile_end_clearance',abs(clearance-((27.5 if revised else 16) if end else 15)*IN)<=tol,actual_in=clearance/IN))
         checks.append(result(sid+'_pile_spacing',all(abs(b-a-(54 if end else 60)*IN)<=tol for a,b in zip(centers,centers[1:]))))
         row=bridge.support_data(c)[sid]
         for b in range(2):
@@ -64,7 +65,14 @@ def validate_supports(doc):
                     checks.append(result(f'{sid}_{b+1}_three_in_bearing_offset',abs(abs(x-(bb.XMin+bb.XMax)/2)-3*IN)<=tol))
         if end:
             back=bridge.local_shape(doc.getObject('BridgeBackwall'+sid))
-            checks.append(result(sid+'_backwall_nominal_thickness',abs(back.BoundBox.XLength-12*IN)<=tol))
+            # A trimmed spline seat retains control poles outside its physical
+            # footprint. Measure three solid cross-sections, not that loose box.
+            z=row['top']*FT+3*IN;thicknesses=[]
+            for y in [-.49*c.EndCapLength.Value,0,.49*c.EndCapLength.Value]:
+                section=back.common(Part.makeLine(App.Vector(-100000,y,z),App.Vector(100000,y,z)))
+                xs=[v.Point.x for v in section.Vertexes]
+                thicknesses.append(max(xs)-min(xs) if len(xs)>=2 else -1)
+            checks.append(result(sid+'_backwall_nominal_thickness',all(abs(t-12*IN)<=tol for t in thicknesses),measured_in=[t/IN for t in thicknesses]))
     return {'checks':checks,'pedestal_height_differences':rows}
 
 class CheckProxy(bridge.CheckProxy):

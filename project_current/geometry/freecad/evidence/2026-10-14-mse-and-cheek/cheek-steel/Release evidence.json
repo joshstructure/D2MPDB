@@ -1,0 +1,18 @@
+{
+  "status": "CENTERED_CHEEK_STEEL_VERIFIED",
+  "transaction_id": "cheek-single-mat-20261014-v1",
+  "model": "C:\\Users\\joshs\\Desktop\\CAD_AI\\output\\cheek-single-mat-20261014\\Delivery\\B4 Bridge - Centered Cheek Wall Steel.FCStd",
+  "sha256": "38ddeecf176e93063682b6101c74031ae8b4933eb8ade94f2aeafbc3dd16d2eb",
+  "bars": 52,
+  "bar_number": 4,
+  "mat_count_per_wall": 1,
+  "typical_max_spacing_in": 12,
+  "side_cover_in": 3.5,
+  "checks_passed": 282,
+  "protected_native_records": 1534,
+  "piles_visible": 12,
+  "annotations_preserved": 170,
+  "existing_other_wall_cap_clashes": 26,
+  "anchorage_and_lug_steel": "NOT CONFIGURED",
+  "prior_model_and_dxf_unchanged": true
+}

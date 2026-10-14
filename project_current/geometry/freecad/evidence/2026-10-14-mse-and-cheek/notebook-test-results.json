@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "tests": 28,
+  "failures": 0,
+  "errors": 0,
+  "environment": "Project Python 3.12 with existing bundled pandas dependencies appended for this process only"
+}

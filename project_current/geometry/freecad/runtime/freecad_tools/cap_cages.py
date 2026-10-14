@@ -93,7 +93,10 @@ def analytic_wire(row):
 
 def cage_frame(o):
     c=o.PGL;row=bridge.support_data(c)[o.SupportID];m=bridge.model(c)
-    origin=App.Vector((row['station']-m.start+row['width']/2)*FT,-row['length']*FT/2,row['bottom']*FT)
+    # Retain the selected engineering cage's own length and center it in its
+    # host. A concrete widening does not authorize a reinforcement redesign.
+    cage_length=geometry_evaluation(live_case(o)).value('L_cap')*IN
+    origin=App.Vector((row['station']-m.start+row['width']/2)*FT,-cage_length/2,row['bottom']*FT)
     return c.Frame.multiply(App.Placement(origin,App.Rotation(App.Vector(0,0,1),90)))
 
 class InputsProxy(Serializable):

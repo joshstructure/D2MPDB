@@ -335,3 +335,19 @@ The adapter supports the documented #4, uncoated Grade 60, normal-weight,
 straight tension development basis. Unsupported materials/detailing reject.
 `prepare_file` only creates a disposable native candidate; it does not overwrite
 the authoritative model. Intentional main-file saves require authorization.
+
+
+## Adopted DXF/MSE and centered cheek reinforcement (14 October 2026)
+
+The matching mse_revision, mse_corrections and mse_wall_tops controllers retain
+editable copings, barriers, level returns, cheek webs/lugs, mitres and top-step
+interfaces. The selected source DXF is ../details/B4 Pedestrian Bridge - Working.dxf
+relative to the freecad folder. Historical creation jobs are not live-edit commands.
+
+cheek_steel.InputsProxy controls the four single centered cheek mats. Use the
+existing native paths/rebars and linked schedules; refresh(inputs) resynchronizes
+the mat, and validate(document) checks physical solids, cover, centering, spacing,
+quantities and wall/cap-steel clashes. CheekSteelChecks and WallSteelChecks are
+dated snapshots. Rerun checks after edits. Anchorage/laps/lug steel are not detailed.
+The cap cages retain the selected cases' length and remain centered when concrete
+caps are widened; their engineering redesign is a separate unresolved item.

@@ -86,10 +86,19 @@
   "calculation_authority": "Notebook CONFIG and equations drive derived geometry; this receipt records the imported dimensional baseline only.",
   "camber_provenance": "bridge_geometry/camber_sources.json: 12 October user-selected Mathcad NetCamber saved results, adopted in the notebook and verified against the updated downstream CAD model.",
   "current_geometry_source": {
-    "source_file": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+    "source_file": "project_current/geometry/freecad/archive/B4-before-pedestal-ubars-20261012.FCStd",
     "sha256": "e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118",
     "notebook_model_id": "34ec9ea573",
     "decision": "D-023",
-    "role": "Downstream saved CAD verification; original dimensional baseline above remains historical provenance."
+    "role": "D-023 notebook-to-native verification snapshot, retained at its exact archived source. See latest_adopted_cad_source for the current main CAD model; COH-023 tracks reconciliation."
+  },
+  "latest_adopted_cad_source": {
+    "source_file": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+    "sha256": "38ddeecf176e93063682b6101c74031ae8b4933eb8ade94f2aeafbc3dd16d2eb",
+    "decision": "D-026",
+    "role": "Adopted CAD model. Notebook baseline and D-023 comparison remain historical; reconcile revised caps/walls under COH-023.",
+    "cad_details_dxf": "project_current/geometry/details/B4 Pedestrian Bridge - Working.dxf",
+    "notebook_reconciled": false,
+    "review_item": "COH-023"
   }
 }

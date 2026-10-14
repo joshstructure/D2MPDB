@@ -1,0 +1,323 @@
+{
+  "checks": [
+    {
+      "name": "FootingA1_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "FootingA2_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "FootingA3_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "FootingA4_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "FootingA5_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "FootingA6Finished_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "FootingA7Finished_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "FootingA8Corrected_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "FootingB1_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "FootingB2_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "FootingB3_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "FootingB4_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "FootingB5Finished_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "FootingB6Finished_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "FootingB7Finished_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "FootingB8Finished_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "FootingB9Finished_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "WallA1Mitred_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "WallA2Mitred_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "WallA3Mitred_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "WallA4Mitred_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "WallA5Mitred_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "WallA6Mitred_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "WallA7Mitred_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "WallA8Mitred_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "WallB1Mitred_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "WallB2Mitred_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "WallB3Mitred_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "WallB4Mitred_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "WallB5Mitred_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "WallB6Mitred_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "WallB7Mitred_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "WallB8Mitred_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "WallB9Mitred_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "A_ApproachSlab_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "A_TurnLandingSlab_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "A_ReturnRunSlabFinished_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "A_BridgeLandingSlabFinishedBentJoint_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "B_ApproachSlab_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "B_LowerEastLandingSlabFinished_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "B_LowerRunSlabFinished_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "B_WestTurnLandingSlabFinished_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "B_MiddleRunSlabFinished_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "B_UpperEastLandingSlab_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "B_UpperRunSlabBentJoint_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "B_BridgeLandingSlabBentJoint_native_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_cap_235_by_42_by_36",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_8in_cheeks",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_251in_overall",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_bottom_lug_6in",
+      "status": "PASS"
+    },
+    {
+      "name": "EB1_37_5in_front_pile_clearance",
+      "status": "PASS",
+      "inches": 37.499999999995104
+    },
+    {
+      "name": "EB2_cap_235_by_42_by_36",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_8in_cheeks",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_251in_overall",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_bottom_lug_6in",
+      "status": "PASS"
+    },
+    {
+      "name": "EB2_37_5in_front_pile_clearance",
+      "status": "PASS",
+      "inches": 37.49999999999427
+    },
+    {
+      "name": "BridgePileEB1P1_retained_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB1P2_retained_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB1P3_retained_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB1P4_retained_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePilePierP1_retained_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePilePierP2_retained_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePilePierP3_retained_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePilePierP4_retained_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB2P1_retained_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB2P2_retained_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB2P3_retained_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "BridgePileEB2P4_retained_solid",
+      "status": "PASS"
+    },
+    {
+      "name": "native_bridge_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "all_170_annotations_present",
+      "status": "PASS"
+    },
+    {
+      "name": "twelve_piles_visible_in_saved_model",
+      "status": "PASS"
+    },
+    {
+      "name": "finished_mitred_walls_visible",
+      "status": "PASS"
+    }
+  ],
+  "native_design_check_status": {
+    "MSESlopeChecks": {
+      "Status": "PASS"
+    },
+    "BridgeGeometryChecks": {
+      "CoordinationStatus": "PASS",
+      "GeometryStatus": "PASS"
+    },
+    "CageEB1Checks": {
+      "DetailingStatus": "FAIL",
+      "GeometryStatus": "PASS"
+    },
+    "CagePierChecks": {
+      "DetailingStatus": "FAIL",
+      "GeometryStatus": "PASS"
+    },
+    "CageEB2Checks": {
+      "DetailingStatus": "FAIL",
+      "GeometryStatus": "PASS"
+    },
+    "WallSteelChecks": {
+      "Status": "FAIL"
+    },
+    "PedestalSteelChecks": {
+      "Status": "PASS"
+    }
+  },
+  "failures": [],
+  "sha256": "2e0f12c674c238545c7c620a2c2641ddd528f9474af9ffba25a5e92ae3758dfb"
+}
