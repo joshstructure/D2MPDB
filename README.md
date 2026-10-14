@@ -1,5 +1,14 @@
 # D2MPDB notebooks
 
+## Quick links — open in Colab
+
+- [Ring-supported pier wall STM study](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Ring_Supported_Wall_STM.ipynb)
+- [Bridge geometry](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Bridge_Geometry_2%20Beam_V2.ipynb)
+- [FBMP envelope extractor](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/FBMP_Envelope_Extractor.ipynb)
+- [End-bent backwall, cheek walls and tie-back straps](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/End_Bent_Backwall_Design.ipynb)
+- [Cap and pile design](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Cap_and_Pile_Design.ipynb)
+- [Pier cap design optimizer](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Pier_Cap_Design_Optimizer.ipynb)
+
 ## Ring-supported pier wall — new STM study
 
 [Open Ring_Supported_Wall_STM in Colab](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Ring_Supported_Wall_STM.ipynb) and choose **Runtime → Run all**. The cap-style workbench opens with live plots and output tables: edit the amber input cards, inspect **Live layout**, and click **Recalc** to refresh **Ring forces**, **Struts & ties**, **Reinforcement**, **D/C checks**, and **Ring spacing**. Edits clear stale calculated outputs and block new exports until Recalc. Green **Calc done** means the results match the inputs, not that the design passes.
