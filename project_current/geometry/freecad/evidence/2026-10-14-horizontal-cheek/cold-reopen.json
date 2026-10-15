@@ -1,0 +1,95 @@
+{
+  "status": "PASS",
+  "file": "C:\\Users\\joshs\\Desktop\\CAD_AI\\reports\\horizontal-cheek-20261014\\build-v1\\ReviewCandidate.FCStd",
+  "sha256": "ab1b6e652183f78dd027adce4683b40e4fdf0e34364181f56f2699f83f0efb5a",
+  "native_objects": 1677,
+  "retained_native_records": 1655,
+  "deleted_objects": [],
+  "geometry_checks": 724,
+  "targeted_clearance_checks": 248,
+  "totals": {
+    "EB1": {
+      "count": 62,
+      "length_ft": 766.9915954069344,
+      "weight_lb": 1231.9607764375742,
+      "net_cap_ft3": 196.62500000000006
+    },
+    "EB2": {
+      "count": 62,
+      "length_ft": 766.9915954069344,
+      "weight_lb": 1231.9607764375742,
+      "net_cap_ft3": 196.62500000000074
+    }
+  },
+  "positions": {
+    "CageEB1Trans_R1_1": {
+      "station_in": 6.0,
+      "solid_x_in": [
+        4.588836885866071,
+        6.582177782049003
+      ]
+    },
+    "CageEB1Trans_R9_4": {
+      "station_in": 245.875,
+      "solid_x_in": [
+        244.46383688586513,
+        246.45717778204897
+      ]
+    },
+    "SteelBridgeCheekEB11MV01": {
+      "across_cap_center_in": 36.750000000029395
+    },
+    "SteelBridgeCheekEB11MV04": {
+      "across_cap_center_in": 5.25000000002939
+    },
+    "SteelBridgeCheekEB11MH03": {
+      "height_above_cap_underside_in": 25.875000000000014
+    },
+    "SteelBridgeCheekEB12MV01": {
+      "across_cap_center_in": 36.7500000019375
+    },
+    "SteelBridgeCheekEB12MV04": {
+      "across_cap_center_in": 5.250000001937503
+    },
+    "SteelBridgeCheekEB12MH03": {
+      "height_above_cap_underside_in": 25.875000000000014
+    },
+    "CageEB2Trans_R1_1": {
+      "station_in": 6.0,
+      "solid_x_in": [
+        4.588836885866071,
+        6.582177782049003
+      ]
+    },
+    "CageEB2Trans_R9_4": {
+      "station_in": 245.875,
+      "solid_x_in": [
+        244.46383688586513,
+        246.45717778204897
+      ]
+    },
+    "SteelBridgeCheekEB21MV01": {
+      "across_cap_center_in": 36.750000000029395
+    },
+    "SteelBridgeCheekEB21MV04": {
+      "across_cap_center_in": 5.250000000029162
+    },
+    "SteelBridgeCheekEB21MH03": {
+      "height_above_cap_underside_in": 25.875000000000014
+    },
+    "SteelBridgeCheekEB22MV01": {
+      "across_cap_center_in": 36.75000000193776
+    },
+    "SteelBridgeCheekEB22MV04": {
+      "across_cap_center_in": 5.250000001937525
+    },
+    "SteelBridgeCheekEB22MH03": {
+      "height_above_cap_underside_in": 25.875000000000014
+    }
+  },
+  "cheek_bars": 48,
+  "pier_bars": 90,
+  "source_cases_preserved": true,
+  "parametric_dependency_tests": "PASS: MH03 horizontal override moved native bar 0.25 in; test copy discarded without saving",
+  "full_GUI_reopen": "Not repeated; prior standalone GUI loader unavailable even on unchanged baseline. Native headless reopen verified."
+}

@@ -1,6 +1,6 @@
 # Current FreeCAD bridge model
 
-**Current model: 14 October 2026, decision D-028.** This is the authoritative
+**Current model: 14 October 2026, decision D-029.** This is the authoritative
 editable bridge geometry and modeled-quantity source. The established native
 filename is retained for existing links; its date is not the current revision date.
 
@@ -18,7 +18,8 @@ source-linked elevation labels. Intentional model edits remain native and editab
 - Extended 235 in end caps, 8 in cheek webs, 6 in rear/bottom lugs, revised MSE
   offsets and landing transitions, 12 mitred wall corners and level barrier returns.
 - Raised end-bent MSE tops with 0.5 in vertical and horizontal cheek/lug joints.
-- One centered mat of #4 bars each way in all four cheeks at 12 in maximum spacing.
+- One centered mat of #4 bars each way in all four cheeks, with a 12 in spacing limit.
+  D-029 leaves one 12 3/8 in horizontal gap per cheek flagged for review.
   Each cheek has four vertical and eight horizontal bars. Live schedules are inside
   the cheek reinforcement groups. The bars are visible through translucent concrete.
 - All 12 piles and the prior notebook cambers and 72 pedestal U-bars are retained.
@@ -35,8 +36,9 @@ Its retained geometry is tied to 621 prior geometry checks and 110 route-grade c
 Physical model checks do not constitute engineering or fabrication acceptance.
 
 The cap cages are now 62/90/62 bars under D-027. Backwalls retain 72 bars and cheeks now have
-48 bars. Eight cap/cheek and 33 backwall/cap bar intersections and cap detailing
-findings remain open. Anchorage, development, laps, lug reinforcement and strap
+48 bars. Cap/cheek intersections are resolved. Four horizontal spacing findings,
+33 backwall/cap bar intersections and cap detailing findings remain open.
+Anchorage, development, laps, lug reinforcement and strap
 details remain unresolved. COH-023 tracks reconciliation of the adopted CAD with
 the geometry notebook, cap calculations and backwall report. Those calculation
 sources keep their recorded authority and are not silently updated by this adoption.
@@ -85,3 +87,16 @@ Original supplied design cases remain unchanged; explicit editable CAD overrides
 record this coordination. Contact is allowed and positive overlaps remain FAIL.
 The immediately previous model and matching runtime are in
 `archive/B4-before-cap-cheek-coordination-20261014.FCStd` and its runtime ZIP.
+
+
+## Horizontal cheek-bar coordination (D-029)
+
+MH03 is lowered 3/8 in at each cheek, resolving all eight cap/cheek intersections.
+End stirrups remain at D-028 stations 6 and 245.875 in; every other bar and all
+concrete are unchanged. Counts remain 62/90/62 cap bars and 48 cheek bars.
+The user elected to move only MH03: the four resulting 12 3/8 in spacings exceed
+the existing 12 in maximum and remain flagged under open item COH-024.
+Native checks pass for geometry and clearance; the spacing findings remain FAIL.
+The supplied design cases are unchanged. This revision remains local.
+
+[Latest review](evidence/2026-10-14-horizontal-cheek/update-summary.json) and [updated view](evidence/2026-10-14-horizontal-cheek/views/EB1-cheek2-clashes.png).

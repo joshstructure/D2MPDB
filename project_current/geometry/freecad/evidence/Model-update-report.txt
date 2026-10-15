@@ -1,3 +1,32 @@
+B4 BRIDGE - 14 OCTOBER 2026 HORIZONTAL CHEEK BAR COORDINATION (D-029)
+
+User corrected the requested stirrup movement: retain prior stirrup positions
+and shift only the clashing horizontal row. MH03 is lowered 3/8 in on all four
+cheeks, from 26.250 to 25.875 in above the cap underside. All other bars and
+concrete are exactly preserved, including end-hoop stations 6 and 245.875 in.
+The exploratory additional hoop move was never installed in the current model.
+
+All eight cap/cheek intersections are resolved. Measured minimum clearance at
+those crossings is 0.017417145 in. The 248 moved-bar/cap checks and 724 cold
+native-reopen geometry checks pass. 1,655 original native records/resources
+are preserved exactly. A discarded dependency test verifies native MH03 moves
+through its editable horizontal-station override. Cap counts stay 62/90/62;
+cheek counts stay 48. Supplied calculation/design case files are unchanged.
+
+Per the user's explicit choice, ONLY MH03 moves. The resulting MH03-to-MH04
+spacing is 12 3/8 in on each cheek, exceeding the existing 12 in maximum.
+All four spacing checks remain FAIL and COH-024 stays Open. No tolerance or
+spacing limit was increased. All other cheek geometry/cover/clash checks pass.
+The 33 backwall/cap intersections and existing cap cover, pile-clearance and
+internal steel findings remain. Anchorage/development/fabrication not configured.
+
+Native headless reopen verified; prior standalone GUI loader limitation remains.
+Views are orthographic renderings of exact exported CAD solids. Previous model
+and matching runtime archived. This revision is LOCAL ONLY by user instruction.
+
+PRIOR REPORTS (HISTORICAL)
+------------------------
+
 B4 BRIDGE - 14 OCTOBER 2026 CAP/CHEEK COORDINATION (D-028)
 
 User-directed changes applied to all four cheek walls and both end-cap cages:

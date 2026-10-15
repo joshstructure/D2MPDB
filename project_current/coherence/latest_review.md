@@ -1,6 +1,6 @@
 # Latest project coherence review
 
-Checked at 2026-10-15T00:38:12.484990+00:00. **12 outstanding items remain.**
+Checked at 2026-10-15T00:48:43.405354+00:00. **12 outstanding items remain.**
 
 The [workbook](Coherence_Tracker.xlsx) owns item status and responses. This report is a generated view.
 The initial findings were carried forward from the latest adopted pier/end-bent reviews plus source-inventory gaps.
@@ -59,7 +59,7 @@ Automatic results: 6 changed, 9 error, 37 match, 5 missing, 10 review.
 | COH-021 | Open | Unregistered tool revisions | Identify the report-generating tool revision, review its changes and consumers, then record an explicit adoption. |
 | COH-022 | Open | Current cap source references | Refresh journal source references through the bounded BPAD workflow when directed; preserve C005 and distinguish selected sources from accepted calculations. |
 | COH-023 | Open | Reconcile adopted MSE and cheek revision | Reconcile cap/wall calculations, loads and quantities with adopted CAD. Review anchorage, lug steel and strap interfaces before issuing details. |
-| COH-024 | Open | Coordinate cap and cheek steel | Coordinate the third horizontal cheek bar with the cap side bars, then rerun physical checks. Keep cover, pile-clearance and other detailing findings open. |
+| COH-024 | Open | Coordinate cap and cheek steel | Review the four 12 3/8 in horizontal spacings. Other cover, pile-clearance, cap and backwall steel findings remain open. |
 
 ## Verified scope
 

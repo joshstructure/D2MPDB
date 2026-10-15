@@ -383,3 +383,13 @@ Full nominal-solid checks are required because the hooked hoop projects beyond
 its nominal station. The helper never installs the main model or suppresses
 remaining overlap/cover/pile findings. Verified dependency tests exercise hoop
 station movement and removal/restoration of native cheek bars on a discarded copy.
+
+
+## Horizontal cheek station overrides (D-029)
+
+`HorizontalStationOverridesJSON` maps existing MH IDs to unit-bearing heights
+above the main web bottom. The native layout, path and rebar controllers apply
+these editable overrides. All other rows keep their generated positions.
+Covered-web limits remain enforced; full physical and spacing checks are still
+required. D-029 intentionally records four 12.375 in spacing failures against
+the existing 12 in maximum, as directed by the user. No limit is relaxed.

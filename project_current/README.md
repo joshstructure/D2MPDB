@@ -172,3 +172,14 @@ The requested changes pass 544 physical clearance checks. Cap/cheek flags reduce
 from 40 to 8, all at unchanged horizontal cheek bars. COH-024 remains open.
 Original design-case files and concrete are unchanged; editable CAD station
 overrides, the updated model, evidence and prior-model backup are registered.
+
+
+## Horizontal cheek-bar coordination (D-029)
+
+MH03 is lowered 3/8 in at each cheek, resolving all eight cap/cheek intersections.
+End stirrups remain at D-028 stations 6 and 245.875 in; every other bar and all
+concrete are unchanged. Counts remain 62/90/62 cap bars and 48 cheek bars.
+The user elected to move only MH03: the four resulting 12 3/8 in spacings exceed
+the existing 12 in maximum and remain flagged under open item COH-024.
+Native checks pass for geometry and clearance; the spacing findings remain FAIL.
+The supplied design cases are unchanged. This revision remains local.

@@ -1,8 +1,8 @@
 {
-  "checked_at_utc": "2026-10-15T00:38:12.484990+00:00",
+  "checked_at_utc": "2026-10-15T00:48:43.405354+00:00",
   "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
-  "register_sha256": "9251d88529fdd2927404dc7884a76b31aa4a95d30815e2895eddc85522cfdc5d",
-  "tracker_sha256": "317f8e79b6ea10fa1b0bb5e255a53956acc9128ae3d29c4cb7fe61f850b7601c",
+  "register_sha256": "e41286574756b8bb389c9f27579b589d61ac160d92488fc3abf9964e2c491e96",
+  "tracker_sha256": "d9a42d95e0a5a44c114278bb2cbd4c48fc5f7dbd42ca43f36ba7e2b6ff8eb88b",
   "source_count": 27,
   "item_count": 24,
   "outstanding_count": 12,
@@ -226,8 +226,8 @@
         "CAD-MODEL"
       ],
       "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-      "expected_sha256": "830f2593370ea96914ecc366b5ff263458e095b873151aa13080244737ab6fde",
-      "actual_sha256": "830f2593370ea96914ecc366b5ff263458e095b873151aa13080244737ab6fde"
+      "expected_sha256": "ab1b6e652183f78dd027adce4683b40e4fdf0e34364181f56f2699f83f0efb5a",
+      "actual_sha256": "ab1b6e652183f78dd027adce4683b40e4fdf0e34364181f56f2699f83f0efb5a"
     },
     {
       "check_id": "SOURCE:CAD-RUNTIME",
@@ -237,8 +237,8 @@
         "CAD-RUNTIME"
       ],
       "path": "project_current/geometry/freecad/manifest.json",
-      "expected_sha256": "6d581724610d58c4793cdd45a21bce7b62ddad6f100ba933e68d4a55d78cfdca",
-      "actual_sha256": "6d581724610d58c4793cdd45a21bce7b62ddad6f100ba933e68d4a55d78cfdca"
+      "expected_sha256": "7f39b1c9694a231481fbe0e2f85dda4c45e372976a72fe56b2f32fa338c3096b",
+      "actual_sha256": "7f39b1c9694a231481fbe0e2f85dda4c45e372976a72fe56b2f32fa338c3096b"
     },
     {
       "check_id": "SOURCE:CAD-REPORT",
@@ -248,8 +248,8 @@
         "CAD-REPORT"
       ],
       "path": "project_current/geometry/freecad/evidence/Model-update-report.txt",
-      "expected_sha256": "143b2fa22e2772f1ae81394e1c32f2aa1f1fe1f1556e15541db4c93beaf917ef",
-      "actual_sha256": "143b2fa22e2772f1ae81394e1c32f2aa1f1fe1f1556e15541db4c93beaf917ef"
+      "expected_sha256": "3ba7e6fc7d46674bcbd99ec2543120592a973b0f2cff3d8069ac4fb7790de9e9",
+      "actual_sha256": "3ba7e6fc7d46674bcbd99ec2543120592a973b0f2cff3d8069ac4fb7790de9e9"
     },
     {
       "check_id": "SOURCE:BACKWALL-TOOL",
@@ -1008,13 +1008,13 @@
       "Status": "Open",
       "Area": "CAD / reinforcement",
       "Item": "Coordinate cap and cheek steel",
-      "Finding": "D-028 reduced cap/cheek overlap flags from 40 to 8. Requested vertical-bar and end-hoop changes pass 544 clearance checks. Remaining intersections are the third horizontal cheek bar crossing two cap side bars on each wall.",
-      "Next action": "Coordinate the third horizontal cheek bar with the cap side bars, then rerun physical checks. Keep cover, pile-clearance and other detailing findings open.",
-      "Your response": "I ran the cage designs for the out to out distance and expected the cheek wall steel to coincide with the cap steel.\nFollow-up: Remove one bar of the close left pair, pull outer verticals inside the long bars, and move the first stirrup inside the cheek mats. They can touch; they cannot clash. Bring them just inside.",
+      "Finding": "D-029 resolves all eight cap/cheek overlaps by lowering MH03 3/8 in on each cheek. Four MH03-MH04 spacings are now 12 3/8 in, exceeding the existing 12 in maximum. These spacing findings remain open by user direction.",
+      "Next action": "Review the four 12 3/8 in horizontal spacings. Other cover, pile-clearance, cap and backwall steel findings remain open.",
+      "Your response": "I ran the cage designs for the out to out distance and expected the cheek wall steel to coincide with the cap steel.\nFollow-up: Remove one bar of the close left pair, pull outer verticals inside the long bars, and move the first stirrup inside the cheek mats. They can touch; they cannot clash. Bring them just inside.\nFollow-up: Keep the stirrup at its prior position. Shift only the clashing horizontal row vertically and flag the resulting 12 3/8 in spacing. Keep this revision local.",
       "Owner": "",
       "Due date": "",
-      "Resolution / evidence": "D-027: 62 cap bars per end bent modeled from supplied cases. Concrete and cheek steel unchanged. No clash repair or detailing acceptance yet.\nD-028: One vertical removed per cheek, outer verticals moved just inside cap bars, and end hoops moved inward of the mats. 48 cheek bars; 62 cap bars per end. Concrete, other bars and original case files preserved. Eight horizontal-bar intersections remain.",
-      "Source references": "D-027; CAD-MODEL; EB-CASE; EB2-CASE; geometry/freecad/evidence/2026-10-14-end-caps/; D-028; geometry/freecad/evidence/2026-10-14-cap-cheek-coordination/",
+      "Resolution / evidence": "D-027: 62 cap bars per end bent modeled from supplied cases. Concrete and cheek steel unchanged. No clash repair or detailing acceptance yet.\nD-028: One vertical removed per cheek, outer verticals moved just inside cap bars, and end hoops moved inward of the mats. 48 cheek bars; 62 cap bars per end. Concrete, other bars and original case files preserved. Eight horizontal-bar intersections remain.\nD-029: Lowered only MH03 by 3/8 in at all four cheeks. All eight cap/cheek intersections resolved. Prior stirrup stations and all other bars preserved. Four spacing checks remain FAIL at 12 3/8 in; no threshold relaxed.",
+      "Source references": "D-027; CAD-MODEL; EB-CASE; EB2-CASE; geometry/freecad/evidence/2026-10-14-end-caps/; D-028; geometry/freecad/evidence/2026-10-14-cap-cheek-coordination/; D-029; geometry/freecad/evidence/2026-10-14-horizontal-cheek/",
       "Last reviewed": "2026-10-14",
       "_row": 32
     }

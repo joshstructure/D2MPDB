@@ -1,0 +1,31 @@
+{
+  "summary": [
+    [
+      "Outstanding",
+      12,
+      "Awaiting source",
+      1,
+      "Deferred",
+      1,
+      "Marked closed / N.A.",
+      12
+    ]
+  ],
+  "errors": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+  "row": [
+    [
+      "COH-024",
+      "Open",
+      "CAD / reinforcement",
+      "Coordinate cap and cheek steel",
+      "D-029 resolves all eight cap/cheek overlaps by lowering MH03 3/8 in on each cheek. Four MH03-MH04 spacings are now 12 3/8 in, exceeding the existing 12 in maximum. These spacing findings remain open by user direction.",
+      "Review the four 12 3/8 in horizontal spacings. Other cover, pile-clearance, cap and backwall steel findings remain open.",
+      "I ran the cage designs for the out to out distance and expected the cheek wall steel to coincide with the cap steel.\nFollow-up: Remove one bar of the close left pair, pull outer verticals inside the long bars, and move the first stirrup inside the cheek mats. They can touch; they cannot clash. Bring them just inside.\nFollow-up: Keep the stirrup at its prior position. Shift only the clashing horizontal row vertically and flag the resulting 12 3/8 in spacing. Keep this revision local.",
+      null,
+      null,
+      "D-027: 62 cap bars per end bent modeled from supplied cases. Concrete and cheek steel unchanged. No clash repair or detailing acceptance yet.\nD-028: One vertical removed per cheek, outer verticals moved just inside cap bars, and end hoops moved inward of the mats. 48 cheek bars; 62 cap bars per end. Concrete, other bars and original case files preserved. Eight horizontal-bar intersections remain.\nD-029: Lowered only MH03 by 3/8 in at all four cheeks. All eight cap/cheek intersections resolved. Prior stirrup stations and all other bars preserved. Four spacing checks remain FAIL at 12 3/8 in; no threshold relaxed.",
+      "D-027; CAD-MODEL; EB-CASE; EB2-CASE; geometry/freecad/evidence/2026-10-14-end-caps/; D-028; geometry/freecad/evidence/2026-10-14-cap-cheek-coordination/; D-029; geometry/freecad/evidence/2026-10-14-horizontal-cheek/",
+      46309
+    ]
+  ]
+}

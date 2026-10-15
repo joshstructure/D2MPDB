@@ -42,6 +42,12 @@ def layout(inp):
     for k,z in enumerate(steel.stations(z0+cv+dh/2,z1-cv-dh/2,inp.HorizontalSpacing.Value),1):
         ident=f'MH{k:02}'
         rows[ident]=dict(id=ident,kind='wall_horizontal',bar=inp.HorizontalBar,diameter=dh/IN,family='Single centered mat horizontal',points=[(x/IN,nh/IN,z/IN) for x in (a+cv+dh/2,b-cv-dh/2)],segments=[('line',0,1)])
+    overrides=json.loads(getattr(inp,'HorizontalStationOverridesJSON','') or '{}')
+    for ident,offset in overrides.items():
+        if ident not in rows or not ident.startswith('MH'):raise ValueError('Existing horizontal bar identity required')
+        z=z0+length(offset)
+        if z<z0+cv+dh/2-TOL or z>z1-cv-dh/2+TOL:raise ValueError('Horizontal station outside covered web')
+        rows[ident]['points']=[(x,y,z/IN) for x,y,_ in rows[ident]['points']]
     return rows
 
 class InputsProxy(Serializable):

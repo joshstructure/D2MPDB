@@ -1,0 +1,68 @@
+{
+  "status": "CLASHES_RESOLVED_WITH_SPACING_FINDINGS",
+  "preservation": {
+    "status": "STAGED",
+    "source_sha256": "830f2593370ea96914ecc366b5ff263458e095b873151aa13080244737ab6fde",
+    "output_sha256": "ab1b6e652183f78dd027adce4683b40e4fdf0e34364181f56f2699f83f0efb5a",
+    "retained_objects": 1655,
+    "native_resources_copied": 2836,
+    "view_count": 1677,
+    "source_unchanged": true
+  },
+  "remaining_cheek_clashes": [],
+  "spacing_failures": [
+    {
+      "name": "BridgeCheekEB11_horizontal_spacing",
+      "status": "FAIL",
+      "spacings_in": [
+        11.999999999999972,
+        11.625000000000059,
+        12.374999999999957,
+        11.999999999999972,
+        12.000000000000044,
+        11.999999999999972,
+        10.949693213382503
+      ]
+    },
+    {
+      "name": "BridgeCheekEB12_horizontal_spacing",
+      "status": "FAIL",
+      "spacings_in": [
+        11.999999999999972,
+        11.625000000000059,
+        12.374999999999957,
+        11.999999999999972,
+        12.000000000000044,
+        11.999999999999972,
+        10.949693213382503
+      ]
+    },
+    {
+      "name": "BridgeCheekEB21_horizontal_spacing",
+      "status": "FAIL",
+      "spacings_in": [
+        11.999999999999972,
+        11.625000000000059,
+        12.374999999999957,
+        11.9999999999999,
+        12.000000000000115,
+        12.000000000000044,
+        10.949694271644042
+      ]
+    },
+    {
+      "name": "BridgeCheekEB22_horizontal_spacing",
+      "status": "FAIL",
+      "spacings_in": [
+        11.999999999999972,
+        11.625000000000059,
+        12.374999999999957,
+        11.9999999999999,
+        12.000000000000115,
+        12.000000000000044,
+        10.949694271644042
+      ]
+    }
+  ],
+  "targeted_clearance_checks": 248
+}
