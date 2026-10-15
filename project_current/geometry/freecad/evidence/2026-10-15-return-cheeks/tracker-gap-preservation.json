@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "prior_items": 26,
+  "new_item": "COH-027",
+  "changed_cells": "A35:L35",
+  "formula_cache": "B4",
+  "all_other_archive_parts_exact": true,
+  "sha256": "2942130513bdc35d8b0447ec49cf86efd8ae6476c3405824e7f27690cf77c4e1"
+}

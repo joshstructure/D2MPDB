@@ -1,0 +1,38 @@
+[
+  {
+    "connection": "EB1L",
+    "top_error_mm": 0.0,
+    "cheek_barrier_distance_mm": 0.0,
+    "barrier_slab_distance_mm": 0.0,
+    "return_steel_clashes": [],
+    "coping_stop_vertex_error_mm": 4.808953235624358e-11,
+    "coping_beyond_stop_mm3": 0.0
+  },
+  {
+    "connection": "EB1R",
+    "top_error_mm": 0.0,
+    "cheek_barrier_distance_mm": 0.0,
+    "barrier_slab_distance_mm": 0.0,
+    "return_steel_clashes": [],
+    "coping_stop_vertex_error_mm": 4.8544279707130045e-11,
+    "coping_beyond_stop_mm3": 0.0
+  },
+  {
+    "connection": "EB2L",
+    "top_error_mm": 0.0,
+    "cheek_barrier_distance_mm": 0.0,
+    "barrier_slab_distance_mm": 0.0,
+    "return_steel_clashes": [],
+    "coping_stop_vertex_error_mm": -7.275957614183426e-12,
+    "coping_beyond_stop_mm3": 0.0
+  },
+  {
+    "connection": "EB2R",
+    "top_error_mm": 0.0,
+    "cheek_barrier_distance_mm": 0.0,
+    "barrier_slab_distance_mm": 0.0,
+    "return_steel_clashes": [],
+    "coping_stop_vertex_error_mm": null,
+    "coping_beyond_stop_mm3": 0
+  }
+]

@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "objects": 2037,
+  "physical_objects": 750,
+  "shape_volume_solid_count_matches": 750,
+  "native_controllers": [
+    {
+      "connection": "EB1L",
+      "cheek_proxy": "freecad_tools.return_cheek_details.CheekProxy",
+      "barrier_proxy": "freecad_tools.return_cheek_details.ReturnProxy"
+    },
+    {
+      "connection": "EB1R",
+      "cheek_proxy": "freecad_tools.return_cheek_details.CheekProxy",
+      "barrier_proxy": "freecad_tools.return_cheek_details.ReturnProxy"
+    },
+    {
+      "connection": "EB2L",
+      "cheek_proxy": "freecad_tools.return_cheek_details.CheekProxy",
+      "barrier_proxy": "freecad_tools.return_cheek_details.ReturnProxy"
+    },
+    {
+      "connection": "EB2R",
+      "cheek_proxy": "freecad_tools.return_cheek_details.CheekProxy",
+      "barrier_proxy": "freecad_tools.return_cheek_details.ReturnProxy"
+    }
+  ],
+  "native_rebuilds": 8,
+  "invalid": [],
+  "existing_concrete_overlaps": [
+    {
+      "a": "CopingA6AtCheek",
+      "b": "WallA6Mitred",
+      "volume_in3": 8605.016082165548
+    },
+    {
+      "a": "CopingA7AtCheek",
+      "b": "WallA7Mitred",
+      "volume_in3": 1762.8031111464798
+    },
+    {
+      "a": "CopingB6AtCheek",
+      "b": "WallB6Mitred",
+      "volume_in3": 20377.449523392894
+    }
+  ]
+}

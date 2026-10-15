@@ -1,0 +1,51 @@
+{
+  "decision": "D-033",
+  "date": "2026-10-15",
+  "status": "ADOPTED_IN_PROJECT_SOURCE",
+  "model_sha256": "5deb683a61b19847191ebd2d8668405688ac3c30e2c69d35ef0aed0a871f0961",
+  "previous_model_sha256": "a9d52b11504828f4fa887f4c4267d2fffd3eb91e673e951564344b06ac923045",
+  "scope": "All four cheeks raised flush to return bases. Transverse return lower bands extend to native slab surfaces. Return-to-ramp corner notches removed. Copings stop at outer rear lug faces. Both 4-inch landings continue into the four return voids, and the outer barrier lower legs meet the continued slabs. All 5,974 finished faces retain the component and reinforcement palette.",
+  "connections": [
+    {
+      "connection": "EB1L",
+      "old_cheek_top_ft": 47.525166666666664,
+      "new_cheek_top_ft": 48.2690447560991,
+      "raise_in": 8.926537073189246,
+      "coping_stop_local_in": -18.000000000000025
+    },
+    {
+      "connection": "EB1R",
+      "old_cheek_top_ft": 47.525166666666664,
+      "new_cheek_top_ft": 48.26451245529145,
+      "raise_in": 8.87214946349745,
+      "coping_stop_local_in": -18.000000000000025
+    },
+    {
+      "connection": "EB2L",
+      "old_cheek_top_ft": 47.537166666666664,
+      "new_cheek_top_ft": 48.277042695716595,
+      "raise_in": 8.878512348599143,
+      "coping_stop_local_in": 2565.0000000000005
+    },
+    {
+      "connection": "EB2R",
+      "old_cheek_top_ft": 47.537166666666664,
+      "new_cheek_top_ft": 48.2598028777554,
+      "raise_in": 8.67163453306481,
+      "coping_stop_local_in": 2565.0000000000005
+    }
+  ],
+  "steel": "52 cheek bars (four vertical and nine horizontal per cheek), 180 WWR wires in eight sheets. Existing MH03 overrides and all cap/backwall/pedestal steel retained. Bottom WWR retained.",
+  "verification": "750 physical objects and all face colors verified after native reopen. Twelve gap controllers rebuilt with zero bidirectional material difference. 2,005 existing object records/resources, including all 622 steel objects, preserved exactly during the gap closure. Four physical slab/barrier gap checks pass with no new concrete or steel intersections.",
+  "existing_findings": "Four 12 3/8 in cheek spacings remain COH-024 Open. Fourteen U-bar/hoop pairs remain COH-025 Deferred. Three pre-existing coping/MSE overlaps recorded as COH-026 Open. Calculation reconciliation remains COH-023 Open. COH-027 Open records non-additive native curved-landing volume totals; geometry is verified and raw landing quantities require reconciliation.",
+  "objects": 2039,
+  "physical_objects": 750,
+  "steel_objects": 622,
+  "elevation_labels": 168,
+  "authority": "CAD geometry and modeled quantities. Calculation sources and engineering/fabrication acceptance unchanged.",
+  "backups": [
+    "archive/B4-before-return-cheeks-20261015.FCStd",
+    "archive/B4-before-return-cheeks-record-20261015.zip"
+  ],
+  "quantity_status": "REVIEW: COH-027. Added material and zero original material loss independently verified; raw native mass-property totals are not accepted as reconciled quantities."
+}

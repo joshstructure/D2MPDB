@@ -1,0 +1,79 @@
+{
+  "changed": [
+    "BridgeCheekEB11",
+    "BarrierReturnEB1L",
+    "PlinthReturnEB1L",
+    "BarrierReturnEB1LCorrected",
+    "PlinthReturnEB1LCorrected",
+    "CopingA6AtCheek",
+    "BarrierA6AtCheek",
+    "BridgeCheekEB12",
+    "BarrierReturnEB1R",
+    "PlinthReturnEB1R",
+    "CopingA7AtCheek",
+    "BarrierA7AtCheek",
+    "BridgeCheekEB21",
+    "BarrierReturnEB2L",
+    "PlinthReturnEB2L",
+    "CopingB6AtCheek",
+    "BarrierB6AtCheek",
+    "BridgeCheekEB22",
+    "BarrierReturnEB2R",
+    "PlinthReturnEB2R",
+    "CopingB7AtCheek",
+    "BarrierB7AtCheek",
+    "BarrierB2AtReturn"
+  ],
+  "connections": [
+    {
+      "connection": "EB1L",
+      "old_cheek_top_ft": 47.525166666666664,
+      "new_cheek_top_ft": 48.2690447560991,
+      "raise_in": 8.926537073189246,
+      "coping_stop_local_in": -18.000000000000025
+    },
+    {
+      "connection": "EB1R",
+      "old_cheek_top_ft": 47.525166666666664,
+      "new_cheek_top_ft": 48.26451245529145,
+      "raise_in": 8.87214946349745,
+      "coping_stop_local_in": -18.000000000000025
+    },
+    {
+      "connection": "EB2L",
+      "old_cheek_top_ft": 47.537166666666664,
+      "new_cheek_top_ft": 48.277042695716595,
+      "raise_in": 8.878512348599143,
+      "coping_stop_local_in": 2565.0000000000005
+    },
+    {
+      "connection": "EB2R",
+      "old_cheek_top_ft": 47.537166666666664,
+      "new_cheek_top_ft": 48.2598028777554,
+      "raise_in": 8.67163453306481,
+      "coping_stop_local_in": 2565.0000000000005
+    }
+  ],
+  "checks": {
+    "physical_objects": 738,
+    "concrete_overlaps": [
+      {
+        "a": "CopingA6AtCheek",
+        "b": "WallA6Mitred",
+        "volume_in3": 8605.016082165548
+      },
+      {
+        "a": "CopingA7AtCheek",
+        "b": "WallA7Mitred",
+        "volume_in3": 1762.8031111458913
+      },
+      {
+        "a": "CopingB6AtCheek",
+        "b": "WallB6Mitred",
+        "volume_in3": 20377.449523413146
+      }
+    ],
+    "invalid": [],
+    "steel": "Not refreshed yet; concrete prototype only"
+  }
+}

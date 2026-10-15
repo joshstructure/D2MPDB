@@ -3,12 +3,12 @@
   "authority": "Current editable FreeCAD geometry and modeled quantities; engineering acceptance remains separate",
   "model": {
     "path": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-    "sha256": "a9d52b11504828f4fa887f4c4267d2fffd3eb91e673e951564344b06ac923045",
-    "bytes": 6830450,
-    "objects": 2003
+    "sha256": "5deb683a61b19847191ebd2d8668405688ac3c30e2c69d35ef0aed0a871f0961",
+    "bytes": 5901794,
+    "objects": 2039
   },
   "source_revision": "01a1fcc34d6345ceacf96245bcf0c931d118a1ab",
-  "tracker_used_sha256": "6d15e3262ed1ff2973b84a2429e8faf8fefb1a1b2daaf10883ad9be12870ce89",
+  "tracker_used_sha256": "2942130513bdc35d8b0447ec49cf86efd8ae6476c3405824e7f27690cf77c4e1",
   "native_file_changed_during_ingestion": false,
   "runtime_changes": [
     "cap_cages.py: resolve Reinforcement from FreeCAD user directory instead of one hard-coded Windows user path. No geometry logic change.",
@@ -20,10 +20,11 @@
     "D-029: native editable horizontal cheek station overrides; all original source cases and spacing limits preserved.",
     "D-030: editable lug_wwr native Arch wires, linked analytic paths, inputs, live quantities/schedule and strict physical checks; all previous controllers unchanged.",
     "15 October D-031: deck_edge_details native controllers, physical detail checks, and independent chamfer/groove volume deduction in bridge validation. Verified deck-edge geometry and viewing palette adopted in the saved main FCStd; prior model archived.",
-    "15 October D-032: dependency-guarded model_cleanup helper; exact native geometry and editable source records preserved. Only 42 unused stages removed and construction visibility cleaned."
+    "15 October D-032: dependency-guarded model_cleanup helper; exact native geometry and editable source records preserved. Only 42 unused stages removed and construction visibility cleaned.",
+    "D-033: native return_cheek_details controllers, shared editable elevations, deep transverse barriers and rear-lug coping stops. Native steel/WWR and affected label refresh; unchanged geometry preserved. Native 4-inch landing continuations and outer barrier lower legs close the four return voids. All finished face colors retained. Raw curved-landing quantities flagged COH-027."
   ],
   "runtime_files": {
-    "runtime/API.md": "034110c2b7cc5bc6e747c992e8b00ec41b730f2e0730a259ccfa644eade47703",
+    "runtime/API.md": "e11c929c9189349662d488ca26aba030c38d168abf9a27b714eb0cbe26210dab",
     "runtime/freecad_tools/__init__.py": "54fc72e62296f90ef30d4395023d10589142c7979df962a5fa1669cf01886a32",
     "runtime/freecad_tools/adopt_drainage.py": "df2e4d293383aa5de9e425a8af75b7640524d07e71eebd541d42d2e81342eb07",
     "runtime/freecad_tools/api.py": "4f5d129384cf8b68bf10564f59141a31bd83921d47e8e477754ad2ea3ade71ca",
@@ -144,9 +145,11 @@
     "runtime/freecad_tools/cap_cheek_coordination.py": "59c4bfb4e636104253c3bef968baa71b30ac3d05f41d1e6d0a1edfc2026e1f15",
     "runtime/freecad_tools/lug_wwr.py": "f78fdc93dd05217e5999b977183bfd60d7b7aad4be715486e00454586d22a0b2",
     "runtime/freecad_tools/deck_edge_details.py": "046d3614f85839f3a4b0860f462efe815a29cb21b890a0e423d0256efe7e42a6",
-    "runtime/freecad_tools/model_cleanup.py": "5bc3fcd969df0e09bae9fc30cb9dd34cb4f82922310dfb401bf22b09041f2424"
+    "runtime/freecad_tools/model_cleanup.py": "5bc3fcd969df0e09bae9fc30cb9dd34cb4f82922310dfb401bf22b09041f2424",
+    "runtime/freecad_tools/return_cheek_details.py": "a51d302e2f4a79d2f8af82055ac1abc0a83f5fdb63e11a78a7580e846ed65330",
+    "viewing_palette.py": "9c513ba64dd8b4e120b5e833d0b041f0abef6dceb179f5082821b40ce5a67cb1"
   },
-  "opener_sha256": "74ea7876c70118c835c8bbd7fc08d5d4e155e91b0a5578e020b2c69dc2025216",
+  "opener_sha256": "02f54477fda7a5d4c0de2c8a79bb52e20971d511df44b3b782a99d091e034495",
   "evidence_files": {
     "evidence/bridge-current-cages-20261010-v1.json": "5daf358f8b140a1b5c8db4b1d33df5ab565d4299e9c1fb90d0aa15cd679ce1ee",
     "evidence/bridge-current-proxies-20261010-v1.json": "bc8d1595534050f961bece023cae100958064388e1b2e7d45ddd424666c834ba",
@@ -155,7 +158,7 @@
     "evidence/delivery-helper-fingerprints.json": "2eda36676cc40916485c708e385818c6e99ead3be41e5754a55bc5e772e58c62",
     "evidence/final-reopen-verification.json": "fde89e9b9c8bb47433a964e3d0b3faedcb00c201b8ada10b348c086e4bfaeec9",
     "evidence/final-save.json": "7767f925bccdf426225cf1d4269ce59919cdcf71267f7c56c7484547f758e946",
-    "evidence/Model-update-report.txt": "9aeaf47670b1f4a1656446d2063f343b894ee613f80c6b8d680abd38ed92bb0a",
+    "evidence/Model-update-report.txt": "4cdcf896b190407b510a676aba5b1a82f1b6820dfb69ad7d321ccd8dd422735a",
     "evidence/opener-verification.json": "7cfd370f32a419bd160ce2f914df4e861372addcab97d9e64896fb6135d40fdf",
     "evidence/portable-verification.json": "5daa7dfc49c7f7b11c641a51d2e425ce853dc08ee134356c02746d93d028ec36",
     "evidence/session-checkpoint.json": "c22fc947838b3ed99425beeab12c10e80b62b12be04d01444f2a0677135096c5",
@@ -301,18 +304,34 @@
     "evidence/2026-10-15-deck-edges/adoption-cold-reopen.json": "c6771d7511c43ba8c948e7d66ef00270501b76e3d2f79abcb2a8968c99ac2851",
     "evidence/2026-10-15-deck-edges/adoption-summary.json": "6b66fac8551de0c057f460c2714e7d3f92ae4b8f7a55116e4d7f57ecf9d28c87",
     "evidence/2026-10-15-model-cleanup/adoption-summary.json": "d10cedfc86ee0c708c347ec8bd3125912d31d592e6c293d6a46fe1c279154f45",
-    "evidence/2026-10-15-model-cleanup/cleanup-checks.json": "620c54492b855c3b5a1a64b948781bba86060578c67d1f2a3a2c49f021862e63"
+    "evidence/2026-10-15-model-cleanup/cleanup-checks.json": "620c54492b855c3b5a1a64b948781bba86060578c67d1f2a3a2c49f021862e63",
+    "evidence/2026-10-15-return-cheeks/adoption-summary.json": "a395b933980b346590d4d4efa672c4a78ac149561a0716d7a0339f817bb87842",
+    "evidence/2026-10-15-return-cheeks/cheek-checks.json": "6a4bcc984ca871806d8ad9995460973aa5f7e2bc9d7fd2c113d33c8c8139a37b",
+    "evidence/2026-10-15-return-cheeks/cold-reopen.json": "556c9a1be0f8d3b711e0eb26c927a6d0a97169441277e8ee50cd3eeb5a722cc3",
+    "evidence/2026-10-15-return-cheeks/concrete-trial.json": "dc01c824b175fbd7fb23fc74a8731cd567794b5ed8381d5c6f31abbe4ec0c83f",
+    "evidence/2026-10-15-return-cheeks/connection-review.png": "d31116724aa14b83acb1d50a320d6af9a09470de4d51a021728e48aca33beffc",
+    "evidence/2026-10-15-return-cheeks/native-preservation.json": "d33c931b46132c8987cdaf7eda3eb0d814a3f792157a293acb316b2bf4f810a0",
+    "evidence/2026-10-15-return-cheeks/physical-proof.json": "c4e21fa6917297cad41dfe13a8fa7c13710d64e699b1c2a4cc38937185441670",
+    "evidence/2026-10-15-return-cheeks/tracker-artifact-checks.json": "6faf7e0a10f3e426b43f8d3b976e15fbc7a1898ef84aeba21e070ddd757b71b2",
+    "evidence/2026-10-15-return-cheeks/tracker-preservation.json": "504b2f286d667ce15321fd4cc019a4274ebbe742a48863098218d24fa02c783b",
+    "evidence/2026-10-15-return-cheeks/wwr-checks.json": "6ad5baaf65d53930da2024700293d1bbf6ff6e74e1b28130db9911b712dce210",
+    "evidence/2026-10-15-return-cheeks/gap-cold-reopen.json": "9b92dbcfc936b6c9d892bed3e2915e85a44d4343baa33bb143476dc79d0ab4f6",
+    "evidence/2026-10-15-return-cheeks/gap-native-preservation.json": "f56cdfdd5aac166983894db6a8a179de6ac4f65bf175e295c9418190474d11a3",
+    "evidence/2026-10-15-return-cheeks/gap-review.png": "a71d368cc1c05efcf8d883af2e68177b607506366564250d6a9adaa756fae86d",
+    "evidence/2026-10-15-return-cheeks/tracker-gap-artifact-checks.json": "8040916ebc14aad8bc2335dd84379835a0ecf96ab513b1d12cb8de0595c19923",
+    "evidence/2026-10-15-return-cheeks/tracker-gap-preservation.json": "b8eb4861bc727321ba76bdafd8a260936b3381a0c835876a913248e083eaa4fa",
+    "evidence/2026-10-15-return-cheeks/void-proof.json": "6a0c2bf99c3975aed2a9bdb4acca7c72bd4f1332e7d931e670bebc9057a77b81"
   },
   "known_review_status": "0 new WWR overlaps; 14 existing U-bar/hoop pairs Deferred in COH-025. Four cheek spacing findings Open in COH-024; 29 cap/backwall and 4 backwall internal overlaps and other existing findings retained.",
   "portability_verification": "Cold native reopen and live dependency test PASS; 172 accepted-trial solid matches; all 1677 prior native object/view records exact. Previous standalone GUI loader limitation retained.",
   "updated_on": "2026-10-15",
   "current_update": {
     "date": "2026-10-15",
-    "decision": "D-032",
-    "scope": "Remove 42 unused superseded boolean stages; hide 610 necessary reinforcement construction paths in 19 groups, the pier envelope and the duplicate complete PGL source.",
-    "summary": "evidence/2026-10-15-model-cleanup/adoption-summary.json",
-    "previous_model_sha256": "0f684dc5781f5497efb4f7fc44419f06e8cf43f3e73753b41548f79b0c959d22",
-    "follow_up": "Existing COH-023; COH-024; COH-025 unchanged",
+    "decision": "D-033",
+    "scope": "All four cheeks raised flush to return bases. Transverse return lower bands extend to native slab surfaces. Return-to-ramp corner notches removed. Copings stop at outer rear lug faces. Both 4-inch landings continue into the four return voids, and the outer barrier lower legs meet the continued slabs. All 5,974 finished faces retain the component and reinforcement palette.",
+    "summary": "evidence/2026-10-15-return-cheeks/adoption-summary.json",
+    "previous_model_sha256": "a9d52b11504828f4fa887f4c4267d2fffd3eb91e673e951564344b06ac923045",
+    "follow_up": "COH-023; COH-024; COH-025; COH-026; COH-027",
     "publication": "Standing project GitHub delivery instructions"
   },
   "archive_files": {
@@ -329,19 +348,22 @@
     "archive/B4-before-lug-WWR-runtime-20261014.zip": "a526376025407983c3da26d0df2f75f19b37a5eec447abeb4c67e0dbbf55d60b",
     "archive/B4-before-deck-edge-details-20261015.FCStd": "1b4765f4dd2fc87c42a7b512943b2fb900a3260fc686d281c7208420c29575f7",
     "archive/B4-before-deck-edge-details-record-20261015.zip": "cae56ba436b553aa4447d281ef04413d7396c3d41d24b542d24f630f7c28b4ca",
-    "archive/B4-before-model-cleanup-20261015.FCStd": "0f684dc5781f5497efb4f7fc44419f06e8cf43f3e73753b41548f79b0c959d22"
+    "archive/B4-before-model-cleanup-20261015.FCStd": "0f684dc5781f5497efb4f7fc44419f06e8cf43f3e73753b41548f79b0c959d22",
+    "archive/B4-before-return-cheeks-20261015.FCStd": "a9d52b11504828f4fa887f4c4267d2fffd3eb91e673e951564344b06ac923045",
+    "archive/B4-before-return-cheeks-record-20261015.zip": "48e2fe03fe73d6f46438c718d64d0f5371082f4994404cb4f63a2d7763d5bc08"
   },
   "previous_update": {
     "date": "2026-10-15",
-    "decision": "D-031",
-    "scope": "Both bridge spans: 1.5 in barrier setback, 0.75 in top/bottom deck-edge chamfers, 1 in wide by 0.5 in deep V grooves centered 3 in along the soffit from the virtual outer corner; 12 ft clear between barrier faces.",
-    "summary": "evidence/2026-10-15-deck-edges/adoption-summary.json",
-    "previous_model_sha256": "1b4765f4dd2fc87c42a7b512943b2fb900a3260fc686d281c7208420c29575f7",
-    "follow_up": "COH-023; COH-024; COH-025",
+    "decision": "D-032",
+    "scope": "Remove 42 unused superseded boolean stages; hide 610 necessary reinforcement construction paths in 19 groups, the pier envelope and the duplicate complete PGL source.",
+    "summary": "evidence/2026-10-15-model-cleanup/adoption-summary.json",
+    "previous_model_sha256": "0f684dc5781f5497efb4f7fc44419f06e8cf43f3e73753b41548f79b0c959d22",
+    "follow_up": "Existing COH-023; COH-024; COH-025 unchanged",
     "publication": "Standing project GitHub delivery instructions"
   },
   "extra_macros": {
-    "Show_Elevations.FCMacro": "f27415eb7d8fe05a5ff8d05a01a5298b36ac1d3cf987ec8738ed541d085a3fc4"
+    "Show_Elevations.FCMacro": "f27415eb7d8fe05a5ff8d05a01a5298b36ac1d3cf987ec8738ed541d085a3fc4",
+    "Apply_Bridge_Colors.FCMacro": "9df6b81d43e95aabd39ab1551b8be65e6b581452ce592670700cded0e1271de2"
   },
   "deck_edge_review_20261015": {
     "date": "2026-10-15",

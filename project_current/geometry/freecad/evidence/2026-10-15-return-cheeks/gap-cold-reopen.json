@@ -1,0 +1,372 @@
+{
+  "status": "PASS",
+  "objects": 2039,
+  "physical_objects": 750,
+  "faces": 5974,
+  "rebuilt_controllers": [
+    "A_BridgeLandingAtReturns",
+    "B_BridgeLandingAtReturns",
+    "BarrierReturnEB1L",
+    "BarrierReturnEB1LCorrected",
+    "BarrierReturnEB1R",
+    "BarrierReturnEB2L",
+    "BarrierReturnEB2R",
+    "BarrierA6AtCheek",
+    "BarrierA7AtCheek",
+    "BarrierB6AtCheek",
+    "BarrierB7AtCheek",
+    "BarrierB2AtReturn"
+  ],
+  "all_colors_reopened": true,
+  "native_geometry_matches": true,
+  "normalizations_verified_by_zero_bidirectional_material_difference": [
+    {
+      "name": "A_BridgeLandingAtReturns",
+      "raw_volume_drift_mm3": 9.5367431640625e-07
+    },
+    {
+      "name": "B_BridgeLandingAtReturns",
+      "raw_volume_drift_mm3": -4.76837158203125e-07
+    },
+    {
+      "name": "BarrierA6AtCheek",
+      "raw_volume_drift_mm3": -1.1920928955078125e-07
+    },
+    {
+      "name": "BarrierA7AtCheek",
+      "raw_volume_drift_mm3": -2.9802322387695312e-08
+    },
+    {
+      "name": "BarrierB2AtReturn",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "BarrierB6AtCheek",
+      "raw_volume_drift_mm3": 3.0040740966796875e-05
+    },
+    {
+      "name": "BarrierDeckS1LCorrected",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "BarrierDeckS1RCorrected",
+      "raw_volume_drift_mm3": -1.9073486328125e-06
+    },
+    {
+      "name": "BarrierReturnEB1LCorrected",
+      "raw_volume_drift_mm3": 4.172325134277344e-07
+    },
+    {
+      "name": "BarrierReturnEB1R",
+      "raw_volume_drift_mm3": 2.384185791015625e-07
+    },
+    {
+      "name": "BarrierReturnEB2L",
+      "raw_volume_drift_mm3": 1.5497207641601562e-06
+    },
+    {
+      "name": "BarrierReturnEB2R",
+      "raw_volume_drift_mm3": 1.1920928955078125e-07
+    },
+    {
+      "name": "BridgeDeckS1",
+      "raw_volume_drift_mm3": -3.814697265625e-06
+    },
+    {
+      "name": "BridgeDeckS2",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "BridgeCheekEB12",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "BridgeCheekEB21",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "BridgeCheekEB22",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CageEB1Trans_R1_1",
+      "raw_volume_drift_mm3": -2.3283064365386963e-10
+    },
+    {
+      "name": "CageEB1Trans_R1_2",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CageEB1Trans_R3_1",
+      "raw_volume_drift_mm3": 2.3283064365386963e-10
+    },
+    {
+      "name": "CageEB1Trans_R3_2",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CageEB1Trans_R3_3",
+      "raw_volume_drift_mm3": -2.3283064365386963e-10
+    },
+    {
+      "name": "CageEB1Trans_R3_4",
+      "raw_volume_drift_mm3": -4.656612873077393e-10
+    },
+    {
+      "name": "CageEB1Trans_R5_1",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CageEB1Trans_R5_2",
+      "raw_volume_drift_mm3": 2.3283064365386963e-10
+    },
+    {
+      "name": "CageEB1Trans_R5_3",
+      "raw_volume_drift_mm3": -2.3283064365386963e-10
+    },
+    {
+      "name": "CageEB1Trans_R5_4",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CageEB1Trans_R7_1",
+      "raw_volume_drift_mm3": -4.656612873077393e-10
+    },
+    {
+      "name": "CageEB1Trans_R7_2",
+      "raw_volume_drift_mm3": -2.3283064365386963e-10
+    },
+    {
+      "name": "CageEB1Trans_R7_3",
+      "raw_volume_drift_mm3": -4.656612873077393e-10
+    },
+    {
+      "name": "CageEB1Trans_R7_4",
+      "raw_volume_drift_mm3": -2.3283064365386963e-10
+    },
+    {
+      "name": "CageEB1Trans_R9_1",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CageEB1Trans_R9_2",
+      "raw_volume_drift_mm3": -4.656612873077393e-10
+    },
+    {
+      "name": "CagePierTrans_R1_1",
+      "raw_volume_drift_mm3": 1.1641532182693481e-10
+    },
+    {
+      "name": "CagePierTrans_R1_2",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CagePierTrans_R1_3",
+      "raw_volume_drift_mm3": -2.3283064365386963e-10
+    },
+    {
+      "name": "CagePierTrans_R3_1",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CagePierTrans_R3_2",
+      "raw_volume_drift_mm3": -1.1641532182693481e-10
+    },
+    {
+      "name": "CagePierTrans_R3_3",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CagePierTrans_R3_4",
+      "raw_volume_drift_mm3": 1.1641532182693481e-10
+    },
+    {
+      "name": "CagePierTrans_R3_5",
+      "raw_volume_drift_mm3": 2.3283064365386963e-10
+    },
+    {
+      "name": "CagePierTrans_R3_6",
+      "raw_volume_drift_mm3": 1.1641532182693481e-10
+    },
+    {
+      "name": "CagePierTrans_R5_1",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CagePierTrans_R5_2",
+      "raw_volume_drift_mm3": -1.1641532182693481e-10
+    },
+    {
+      "name": "CagePierTrans_R5_3",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CagePierTrans_R5_4",
+      "raw_volume_drift_mm3": -1.1641532182693481e-10
+    },
+    {
+      "name": "CagePierTrans_R5_5",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CagePierTrans_R5_6",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CagePierTrans_R7_1",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CagePierTrans_R7_2",
+      "raw_volume_drift_mm3": 3.4924596548080444e-10
+    },
+    {
+      "name": "CagePierTrans_R7_3",
+      "raw_volume_drift_mm3": 2.3283064365386963e-10
+    },
+    {
+      "name": "CagePierTrans_R7_4",
+      "raw_volume_drift_mm3": 2.3283064365386963e-10
+    },
+    {
+      "name": "CagePierTrans_R7_5",
+      "raw_volume_drift_mm3": -1.1641532182693481e-10
+    },
+    {
+      "name": "CagePierTrans_R7_6",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CagePierTrans_R9_1",
+      "raw_volume_drift_mm3": -1.1641532182693481e-10
+    },
+    {
+      "name": "CagePierTrans_R9_2",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CagePierTrans_R9_3",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CageEB2Trans_R1_1",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CageEB2Trans_R1_2",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CageEB2Trans_R3_1",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CageEB2Trans_R3_2",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CageEB2Trans_R3_3",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CageEB2Trans_R3_4",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CageEB2Trans_R5_1",
+      "raw_volume_drift_mm3": 2.3283064365386963e-10
+    },
+    {
+      "name": "CageEB2Trans_R5_2",
+      "raw_volume_drift_mm3": 6.984919309616089e-10
+    },
+    {
+      "name": "CageEB2Trans_R5_3",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CageEB2Trans_R5_4",
+      "raw_volume_drift_mm3": 4.656612873077393e-10
+    },
+    {
+      "name": "CageEB2Trans_R7_1",
+      "raw_volume_drift_mm3": -2.3283064365386963e-10
+    },
+    {
+      "name": "CageEB2Trans_R7_2",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CageEB2Trans_R7_3",
+      "raw_volume_drift_mm3": -4.656612873077393e-10
+    },
+    {
+      "name": "CageEB2Trans_R7_4",
+      "raw_volume_drift_mm3": -4.656612873077393e-10
+    },
+    {
+      "name": "CageEB2Trans_R9_1",
+      "raw_volume_drift_mm3": -2.3283064365386963e-10
+    },
+    {
+      "name": "CageEB2Trans_R9_2",
+      "raw_volume_drift_mm3": -2.3283064365386963e-10
+    },
+    {
+      "name": "SteelBridgeCheekEB22MH08",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CageEB1Trans_R1_3",
+      "raw_volume_drift_mm3": -2.3283064365386963e-10
+    },
+    {
+      "name": "CageEB1Trans_R1_4",
+      "raw_volume_drift_mm3": 4.656612873077393e-10
+    },
+    {
+      "name": "CageEB1Trans_R9_3",
+      "raw_volume_drift_mm3": -2.3283064365386963e-10
+    },
+    {
+      "name": "CageEB1Trans_R9_4",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CageEB2Trans_R1_3",
+      "raw_volume_drift_mm3": -2.3283064365386963e-10
+    },
+    {
+      "name": "CageEB2Trans_R1_4",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "CageEB2Trans_R9_3",
+      "raw_volume_drift_mm3": -2.3283064365386963e-10
+    },
+    {
+      "name": "CageEB2Trans_R9_4",
+      "raw_volume_drift_mm3": 4.656612873077393e-10
+    },
+    {
+      "name": "WWRCheekEB22SideV4",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "WWRCheekEB22SideV5",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "WWRCheekEB22SideH24",
+      "raw_volume_drift_mm3": 0.0
+    },
+    {
+      "name": "WWRCheekEB22SideH25",
+      "raw_volume_drift_mm3": 0.0
+    }
+  ],
+  "model_sha256": "5deb683a61b19847191ebd2d8668405688ac3c30e2c69d35ef0aed0a871f0961",
+  "controller_sha256": "a51d302e2f4a79d2f8af82055ac1abc0a83f5fdb63e11a78a7580e846ed65330",
+  "tested_controller_original_sha256": "a6217915ce121d2ebd5035d0e80c1fff6151a5a9db5d8e2b69b217acd4e28614",
+  "controller_line_endings_normalized_only_ast_identical": true
+}

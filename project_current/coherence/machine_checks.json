@@ -1,14 +1,14 @@
 {
-  "checked_at_utc": "2026-10-15T14:42:53.717537+00:00",
+  "checked_at_utc": "2026-10-15T16:48:33.938350+00:00",
   "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
-  "register_sha256": "03f7b29e8feeeaa1bb8bae52f7100b5047c28bc41cccc0606ef0fc8783aafff2",
-  "tracker_sha256": "6d15e3262ed1ff2973b84a2429e8faf8fefb1a1b2daaf10883ad9be12870ce89",
+  "register_sha256": "dfd99e7d8ff6a24501c5c5cfd51f7a008e4f5d2083afaec282ea04d640caa476",
+  "tracker_sha256": "2942130513bdc35d8b0447ec49cf86efd8ae6476c3405824e7f27690cf77c4e1",
   "source_count": 27,
-  "item_count": 25,
-  "outstanding_count": 13,
+  "item_count": 27,
+  "outstanding_count": 15,
   "status_counts": {
     "Closed": 12,
-    "Open": 10,
+    "Open": 12,
     "Deferred": 2,
     "Awaiting source": 1
   },
@@ -226,8 +226,8 @@
         "CAD-MODEL"
       ],
       "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-      "expected_sha256": "a9d52b11504828f4fa887f4c4267d2fffd3eb91e673e951564344b06ac923045",
-      "actual_sha256": "a9d52b11504828f4fa887f4c4267d2fffd3eb91e673e951564344b06ac923045"
+      "expected_sha256": "5deb683a61b19847191ebd2d8668405688ac3c30e2c69d35ef0aed0a871f0961",
+      "actual_sha256": "5deb683a61b19847191ebd2d8668405688ac3c30e2c69d35ef0aed0a871f0961"
     },
     {
       "check_id": "SOURCE:CAD-RUNTIME",
@@ -237,8 +237,8 @@
         "CAD-RUNTIME"
       ],
       "path": "project_current/geometry/freecad/manifest.json",
-      "expected_sha256": "9a8352563339d1f11e04a25c1d6b01d2c70300b9941c7cd115ae68e5890b5338",
-      "actual_sha256": "9a8352563339d1f11e04a25c1d6b01d2c70300b9941c7cd115ae68e5890b5338"
+      "expected_sha256": "19e41a4172d33172f9a538761ee72f045f1b24564493c0997456bfb4fb385c33",
+      "actual_sha256": "19e41a4172d33172f9a538761ee72f045f1b24564493c0997456bfb4fb385c33"
     },
     {
       "check_id": "SOURCE:CAD-REPORT",
@@ -248,8 +248,8 @@
         "CAD-REPORT"
       ],
       "path": "project_current/geometry/freecad/evidence/Model-update-report.txt",
-      "expected_sha256": "9aeaf47670b1f4a1656446d2063f343b894ee613f80c6b8d680abd38ed92bb0a",
-      "actual_sha256": "9aeaf47670b1f4a1656446d2063f343b894ee613f80c6b8d680abd38ed92bb0a"
+      "expected_sha256": "4cdcf896b190407b510a676aba5b1a82f1b6820dfb69ad7d321ccd8dd422735a",
+      "actual_sha256": "4cdcf896b190407b510a676aba5b1a82f1b6820dfb69ad7d321ccd8dd422735a"
     },
     {
       "check_id": "SOURCE:BACKWALL-TOOL",
@@ -998,7 +998,7 @@
       "Your response": "Incorporate all these changes into the main model and add to the project source.",
       "Owner": "",
       "Due date": "",
-      "Resolution / evidence": "CAD adoption verified; calculation reconciliation remains open.",
+      "Resolution / evidence": "CAD adoption verified; calculation reconciliation remains open. D-033 raises cheek tops to the return bases and deepens transverse return bottoms to the slab. Cheek mats total 52 bars and lug WWR totals 180 wires. Reconcile revised quantities and loads.",
       "Source references": "D-026; CAD-MODEL; MSE-DETAIL-DXF; EB-CASE; EB2-CASE; BACKWALL-REPORT; GEOMETRY",
       "Last reviewed": "2026-10-14T00:00:00.000Z",
       "_row": 31
@@ -1032,6 +1032,36 @@
       "Source references": "CAD-MODEL; EB-CASE; EB2-CASE; geometry/freecad/evidence/2026-10-14-lug-wwr/stirrup-review/; D-030",
       "Last reviewed": "2026-10-14",
       "_row": 33
+    },
+    {
+      "Item ID": "COH-026",
+      "Status": "Open",
+      "Area": "CAD / concrete",
+      "Item": "Coping and MSE wall overlaps",
+      "Finding": "Three pre-existing coping/wall intersections remain at A6, A7 and B6. D-033 reduces them to 8,605.016, 1,762.803 and 20,377.450 in3. These are concrete ownership overlaps, separate from steel clashes.",
+      "Next action": "Agree concrete ownership and trim the coping/wall interfaces. Recheck concrete quantities and contact geometry.",
+      "Your response": "",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "Native positive-volume intersections confirmed against the prior model. D-033 introduces no new affected concrete or steel intersections. Existing overlaps remain unresolved.",
+      "Source references": "D-033; CAD-MODEL; geometry/freecad/evidence/2026-10-15-return-cheeks/concrete-trial.json",
+      "Last reviewed": "2026-10-15T00:00:00.000Z",
+      "_row": 34
+    },
+    {
+      "Item ID": "COH-027",
+      "Status": "Open",
+      "Area": "CAD / quantities",
+      "Item": "Curved landing volume totals",
+      "Finding": "FreeCAD mass properties for both curved landing slabs are not additive. Raw totals decrease after positive material is added. The original slabs already differ from independent triangulated volumes.",
+      "Next action": "Reconcile landing quantities using a converged independent volume method before relying on native totals or quantity schedules.",
+      "Your response": "",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "D-033 gap checks confirm zero original concrete loss and about 375 / 378 in3 added at A / B. Triangulated volume increases agree. Geometry and contact checks pass; raw quantity totals remain flagged.",
+      "Source references": "D-033; CAD-MODEL; geometry/freecad/evidence/2026-10-15-return-cheeks/void-proof.json",
+      "Last reviewed": "2026-10-15T00:00:00.000Z",
+      "_row": 35
     }
   ]
 }

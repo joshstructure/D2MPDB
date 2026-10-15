@@ -1,0 +1,1706 @@
+{
+  "status": "PASS",
+  "results": [
+    {
+      "support": "EB1",
+      "wires": 90,
+      "cover_checks": [
+        {
+          "wire": "WWRCheekEB11BottomL1",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11BottomL2",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11BottomL3",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11BottomL4",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11BottomL5",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11BottomL6",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11BottomL7",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11BottomL8",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11BottomL9",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11BottomL10",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11BottomCross4",
+          "minimum_cover_in": 2.1249999999739297,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11BottomCross5",
+          "minimum_cover_in": 2.124999999963225,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11BottomCross6",
+          "minimum_cover_in": 2.124999999931882,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11BottomCross7",
+          "minimum_cover_in": 2.1249999999005387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11BottomCross8",
+          "minimum_cover_in": 2.1249999998691944,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideV1",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideV2",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideV3",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideV4",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideV5",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH1",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH2",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH3",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH4",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH5",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH6",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH7",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH8",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH9",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH10",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH11",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH12",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH13",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH14",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH15",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH16",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH17",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH18",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH19",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH20",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH21",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH22",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH23",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH24",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB11SideH25",
+          "minimum_cover_in": 2.125000000022125,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12BottomL1",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12BottomL2",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12BottomL3",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12BottomL4",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12BottomL5",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12BottomL6",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12BottomL7",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12BottomL8",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12BottomL9",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12BottomL10",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12BottomCross4",
+          "minimum_cover_in": 2.124999998058184,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12BottomCross5",
+          "minimum_cover_in": 2.124999998068888,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12BottomCross6",
+          "minimum_cover_in": 2.1249999981002317,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12BottomCross7",
+          "minimum_cover_in": 2.1249999981315755,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12BottomCross8",
+          "minimum_cover_in": 2.124999998162919,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideV1",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideV2",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideV3",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideV4",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideV5",
+          "minimum_cover_in": 2.1249999999999427,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH1",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH2",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH3",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH4",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH5",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH6",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH7",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH8",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH9",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH10",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH11",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH12",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH13",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH14",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH15",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH16",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH17",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH18",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH19",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH20",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH21",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH22",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH23",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH24",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB12SideH25",
+          "minimum_cover_in": 2.1250000019436746,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        }
+      ],
+      "physical_candidate_pairs": [
+        {
+          "a": "WWRCheekEB11BottomL1",
+          "b": "CageEB1Trans_R1_1",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL1",
+          "b": "CageEB1Trans_R1_2",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL1",
+          "b": "SteelBridgeCheekEB11MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL2",
+          "b": "CageEB1Trans_R1_1",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL2",
+          "b": "CageEB1Trans_R1_2",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL2",
+          "b": "SteelBridgeCheekEB11MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL3",
+          "b": "CageEB1Trans_R1_1",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL3",
+          "b": "CageEB1Trans_R1_2",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL3",
+          "b": "SteelBridgeCheekEB11MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL4",
+          "b": "CageEB1Trans_R1_1",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL4",
+          "b": "CageEB1Trans_R1_2",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL4",
+          "b": "SteelBridgeCheekEB11MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL5",
+          "b": "CageEB1Trans_R1_1",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL5",
+          "b": "CageEB1Trans_R1_2",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL5",
+          "b": "SteelBridgeCheekEB11MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL6",
+          "b": "CageEB1Trans_R1_1",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL6",
+          "b": "CageEB1Trans_R1_2",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL6",
+          "b": "SteelBridgeCheekEB11MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL7",
+          "b": "CageEB1Trans_R1_1",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL7",
+          "b": "CageEB1Trans_R1_2",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL7",
+          "b": "SteelBridgeCheekEB11MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL8",
+          "b": "CageEB1Trans_R1_1",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL8",
+          "b": "CageEB1Trans_R1_2",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL8",
+          "b": "SteelBridgeCheekEB11MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL9",
+          "b": "CageEB1Trans_R1_1",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL9",
+          "b": "CageEB1Trans_R1_2",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL9",
+          "b": "SteelBridgeCheekEB11MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL10",
+          "b": "CageEB1Trans_R1_1",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL10",
+          "b": "CageEB1Trans_R1_2",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB11BottomL10",
+          "b": "SteelBridgeCheekEB11MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL1",
+          "b": "SteelBridgeCheekEB12MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL1",
+          "b": "CageEB1Trans_R9_3",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL1",
+          "b": "CageEB1Trans_R9_4",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL2",
+          "b": "SteelBridgeCheekEB12MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL2",
+          "b": "CageEB1Trans_R9_3",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL2",
+          "b": "CageEB1Trans_R9_4",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL3",
+          "b": "SteelBridgeCheekEB12MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL3",
+          "b": "CageEB1Trans_R9_3",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL3",
+          "b": "CageEB1Trans_R9_4",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL4",
+          "b": "SteelBridgeCheekEB12MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL4",
+          "b": "CageEB1Trans_R9_3",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL4",
+          "b": "CageEB1Trans_R9_4",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL5",
+          "b": "SteelBridgeCheekEB12MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL5",
+          "b": "CageEB1Trans_R9_3",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL5",
+          "b": "CageEB1Trans_R9_4",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL6",
+          "b": "SteelBridgeCheekEB12MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL6",
+          "b": "CageEB1Trans_R9_3",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL6",
+          "b": "CageEB1Trans_R9_4",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL7",
+          "b": "SteelBridgeCheekEB12MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL7",
+          "b": "CageEB1Trans_R9_3",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL7",
+          "b": "CageEB1Trans_R9_4",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL8",
+          "b": "SteelBridgeCheekEB12MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL8",
+          "b": "CageEB1Trans_R9_3",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL8",
+          "b": "CageEB1Trans_R9_4",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL9",
+          "b": "SteelBridgeCheekEB12MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL9",
+          "b": "CageEB1Trans_R9_3",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL9",
+          "b": "CageEB1Trans_R9_4",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL10",
+          "b": "SteelBridgeCheekEB12MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL10",
+          "b": "CageEB1Trans_R9_3",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB12BottomL10",
+          "b": "CageEB1Trans_R9_4",
+          "common_volume_in3": 0.0
+        }
+      ],
+      "clashes": [],
+      "intended_welded_crossings": 350
+    },
+    {
+      "support": "EB2",
+      "wires": 90,
+      "cover_checks": [
+        {
+          "wire": "WWRCheekEB21BottomL1",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21BottomL2",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21BottomL3",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21BottomL4",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21BottomL5",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21BottomL6",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21BottomL7",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21BottomL8",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21BottomL9",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21BottomL10",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21BottomCross4",
+          "minimum_cover_in": 2.1250000000248868,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21BottomCross5",
+          "minimum_cover_in": 2.125000000035584,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21BottomCross6",
+          "minimum_cover_in": 2.124999999932117,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21BottomCross7",
+          "minimum_cover_in": 2.1249999999007736,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21BottomCross8",
+          "minimum_cover_in": 2.1249999998694884,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideV1",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideV2",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideV3",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideV4",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideV5",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH1",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH2",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH3",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH4",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH5",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH6",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH7",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH8",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH9",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH10",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH11",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH12",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH13",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH14",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH15",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH16",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH17",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH18",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH19",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH20",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH21",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH22",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH23",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH24",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB21SideH25",
+          "minimum_cover_in": 2.124999999978029,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22BottomL1",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22BottomL2",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22BottomL3",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22BottomL4",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22BottomL5",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22BottomL6",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22BottomL7",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22BottomL8",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22BottomL9",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22BottomL10",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22BottomCross4",
+          "minimum_cover_in": 2.125000001940537,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22BottomCross5",
+          "minimum_cover_in": 2.1250000019298305,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22BottomCross6",
+          "minimum_cover_in": 2.1249999981002055,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22BottomCross7",
+          "minimum_cover_in": 2.1249999981318353,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22BottomCross8",
+          "minimum_cover_in": 2.124999998163178,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideV1",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideV2",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideV3",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideV4",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideV5",
+          "minimum_cover_in": 2.1250000000000147,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH1",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH2",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH3",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH4",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH5",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH6",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH7",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH8",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH9",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH10",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH11",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH12",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH13",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH14",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH15",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH16",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH17",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH18",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH19",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH20",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH21",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH22",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH23",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH24",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        },
+        {
+          "wire": "WWRCheekEB22SideH25",
+          "minimum_cover_in": 2.1249999980558387,
+          "outside_volume_in3": 0.0,
+          "status": "PASS"
+        }
+      ],
+      "physical_candidate_pairs": [
+        {
+          "a": "WWRCheekEB21BottomL1",
+          "b": "CageEB2Trans_R1_1",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL1",
+          "b": "CageEB2Trans_R1_2",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL1",
+          "b": "SteelBridgeCheekEB21MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL2",
+          "b": "CageEB2Trans_R1_1",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL2",
+          "b": "CageEB2Trans_R1_2",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL2",
+          "b": "SteelBridgeCheekEB21MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL3",
+          "b": "CageEB2Trans_R1_1",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL3",
+          "b": "CageEB2Trans_R1_2",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL3",
+          "b": "SteelBridgeCheekEB21MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL4",
+          "b": "CageEB2Trans_R1_1",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL4",
+          "b": "CageEB2Trans_R1_2",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL4",
+          "b": "SteelBridgeCheekEB21MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL5",
+          "b": "CageEB2Trans_R1_1",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL5",
+          "b": "CageEB2Trans_R1_2",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL5",
+          "b": "SteelBridgeCheekEB21MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL6",
+          "b": "CageEB2Trans_R1_1",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL6",
+          "b": "CageEB2Trans_R1_2",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL6",
+          "b": "SteelBridgeCheekEB21MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL7",
+          "b": "CageEB2Trans_R1_1",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL7",
+          "b": "CageEB2Trans_R1_2",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL7",
+          "b": "SteelBridgeCheekEB21MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL8",
+          "b": "CageEB2Trans_R1_1",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL8",
+          "b": "CageEB2Trans_R1_2",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL8",
+          "b": "SteelBridgeCheekEB21MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL9",
+          "b": "CageEB2Trans_R1_1",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL9",
+          "b": "CageEB2Trans_R1_2",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL9",
+          "b": "SteelBridgeCheekEB21MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL10",
+          "b": "CageEB2Trans_R1_1",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL10",
+          "b": "CageEB2Trans_R1_2",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB21BottomL10",
+          "b": "SteelBridgeCheekEB21MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL1",
+          "b": "SteelBridgeCheekEB22MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL1",
+          "b": "CageEB2Trans_R9_3",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL1",
+          "b": "CageEB2Trans_R9_4",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL2",
+          "b": "SteelBridgeCheekEB22MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL2",
+          "b": "CageEB2Trans_R9_3",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL2",
+          "b": "CageEB2Trans_R9_4",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL3",
+          "b": "SteelBridgeCheekEB22MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL3",
+          "b": "CageEB2Trans_R9_3",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL3",
+          "b": "CageEB2Trans_R9_4",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL4",
+          "b": "SteelBridgeCheekEB22MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL4",
+          "b": "CageEB2Trans_R9_3",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL4",
+          "b": "CageEB2Trans_R9_4",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL5",
+          "b": "SteelBridgeCheekEB22MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL5",
+          "b": "CageEB2Trans_R9_3",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL5",
+          "b": "CageEB2Trans_R9_4",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL6",
+          "b": "SteelBridgeCheekEB22MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL6",
+          "b": "CageEB2Trans_R9_3",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL6",
+          "b": "CageEB2Trans_R9_4",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL7",
+          "b": "SteelBridgeCheekEB22MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL7",
+          "b": "CageEB2Trans_R9_3",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL7",
+          "b": "CageEB2Trans_R9_4",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL8",
+          "b": "SteelBridgeCheekEB22MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL8",
+          "b": "CageEB2Trans_R9_3",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL8",
+          "b": "CageEB2Trans_R9_4",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL9",
+          "b": "SteelBridgeCheekEB22MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL9",
+          "b": "CageEB2Trans_R9_3",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL9",
+          "b": "CageEB2Trans_R9_4",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL10",
+          "b": "SteelBridgeCheekEB22MH01",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL10",
+          "b": "CageEB2Trans_R9_3",
+          "common_volume_in3": 0.0
+        },
+        {
+          "a": "WWRCheekEB22BottomL10",
+          "b": "CageEB2Trans_R9_4",
+          "common_volume_in3": 0.0
+        }
+      ],
+      "clashes": [],
+      "intended_welded_crossings": 350
+    }
+  ],
+  "scope": "New WWR geometry only. Existing steel clashes and other findings remain unresolved."
+}

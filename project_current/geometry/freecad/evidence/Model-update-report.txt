@@ -253,3 +253,15 @@ and physical object inventory pass. Prior model archived. Current deck-edge
 geometry and viewing colors retained. COH-023/024/025 and other engineering
 findings remain unchanged; no fresh clash run is claimed for this cleanup.
 Evidence: 2026-10-15-model-cleanup/adoption-summary.json.
+
+
+15 OCTOBER 2026 - D-033 RETURN AND CHEEK CONNECTIONS
+All four cheeks raised flush to return bases. Transverse return lower bands extend to native slab surfaces. Return-to-ramp corner notches removed. Copings stop at outer rear lug faces.
+52 cheek bars (four vertical and nine horizontal per cheek), 180 WWR wires in eight sheets. Existing MH03 overrides and all cap/backwall/pedestal steel retained. Bottom WWR retained.
+750 physical objects checked after native reopen. Eight changed native controllers rebuilt. 1,804 unchanged native object records/resources preserved exactly. Four cheek/base and slab contacts verified. No new affected concrete or reinforcement intersections. WWR cover/clashes pass.
+Four 12 3/8 in cheek spacings remain COH-024 Open. Fourteen U-bar/hoop pairs remain COH-025 Deferred. Three pre-existing coping/MSE overlaps recorded as COH-026 Open. Calculation reconciliation remains COH-023 Open.
+CAD geometry and modeled quantities. Calculation sources and engineering/fabrication acceptance unchanged.
+Evidence: 2026-10-15-return-cheeks/adoption-summary.json
+
+D-033 completed gap closure and face colors: 750 physical objects and all face colors verified after native reopen. Twelve gap controllers rebuilt with zero bidirectional material difference. 2,005 existing object records/resources, including all 622 steel objects, preserved exactly during the gap closure. Four physical slab/barrier gap checks pass with no new concrete or steel intersections.
+REVIEW: COH-027. Added material and zero original material loss independently verified; raw native mass-property totals are not accepted as reconciled quantities.

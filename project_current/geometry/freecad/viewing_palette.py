@@ -39,7 +39,7 @@ def category(name, family='', is_bar=False):
         return 'barriers'
     if re.match(r'^Wall[AB]\d+(?:Finished|Mitred)?$', name):
         return 'mse_walls'
-    if name.startswith('BridgeDeckS') or re.match(r'^[AB]_\w+Slab(?:Finished|BentJoint)?$', name):
+    if name.startswith('BridgeDeckS') or name in ('A_BridgeLandingAtReturns','B_BridgeLandingAtReturns') or re.match(r'^[AB]_\w+Slab(?:Finished|BentJoint)?$', name):
         return 'slabs'
     return None
 
@@ -51,17 +51,15 @@ def rgb(key):
 
 def apply(doc):
     """Change only surface RGB; retain visibility, transparency and geometry."""
+    from freecad_tools.deck_edge_details import physical_objects
     if not all(doc.getObject(n) for n in ('BridgePGL', 'CageEB1Bars', 'CageEB2Bars')):
         raise ValueError('Select the B4 bridge document before applying its colors.')
     plan = []
-    for obj in doc.Objects:
-        if not hasattr(obj, 'Shape') or obj.Shape.isNull():
-            continue
+    for obj in physical_objects(doc).values():
         is_bar = hasattr(obj, 'Diameter') and hasattr(obj, 'Base')
         family = getattr(getattr(obj, 'Base', None), 'Family', '') if is_bar else ''
         key = category(obj.Name, family, is_bar)
-        if key:
-            plan.append((obj, key))
+        plan.append((obj, key))
     if not plan:
         raise ValueError('No supported bridge objects found.')
     before = [(o, tuple(o.ViewObject.ShapeColor), list(o.ViewObject.DiffuseColor),
@@ -71,13 +69,17 @@ def apply(doc):
             view = obj.ViewObject
             old_faces = list(view.DiffuseColor)
             transparency = view.Transparency
-            color = rgb(key)
+            color = rgb(key) if key else tuple(view.ShapeColor[:3])
             view.ShapeColor = color
-            if old_faces:
-                view.DiffuseColor = [color + tuple(c[3:]) for c in old_faces]
+            alpha = tuple(old_faces[0][3:]) if old_faces else ()
+            view.DiffuseColor = [color + alpha] * len(obj.Shape.Faces)
             view.Transparency = transparency
         for obj, key in plan:
-            assert max(abs(a-b) for a,b in zip(obj.ViewObject.ShapeColor[:3], rgb(key))) < 1e-6, obj.Name
+            expected = rgb(key) if key else tuple(obj.ViewObject.ShapeColor[:3])
+            assert max(abs(a-b) for a,b in zip(obj.ViewObject.ShapeColor[:3], expected)) < 1e-6, obj.Name
+            faces = obj.ViewObject.DiffuseColor
+            assert len(faces) == len(obj.Shape.Faces), obj.Name
+            assert all(max(abs(a-b) for a,b in zip(c[:3],expected)) < 1e-6 for c in faces), obj.Name
         for obj, _, _, visible, transparency in before:
             assert obj.ViewObject.Visibility == visible, obj.Name
             assert obj.ViewObject.Transparency == transparency, obj.Name
@@ -86,9 +88,9 @@ def apply(doc):
             obj.ViewObject.ShapeColor = color
             obj.ViewObject.DiffuseColor = faces
             obj.ViewObject.Transparency = transparency
-            obj.ViewObject.Visibility = visible
         raise
     return {'document': doc.Name, 'objects': len(plan),
-            'categories': dict(Counter(key for _, key in plan)),
+            'categories': dict(Counter(key or 'existing_component_color' for _, key in plan)),
+            'faces': sum(len(o.Shape.Faces) for o,_ in plan),
             'saved': False, 'recomputed': False,
             'visibility_and_transparency_preserved': True}

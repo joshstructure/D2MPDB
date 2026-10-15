@@ -460,3 +460,26 @@ shape cache and alter shared source flags. `preserve_archive` uses the existing
 native archive helper to preserve original resource precision through save,
 changing only audited group memberships and visibility. Test in a disposable
 copy, verify exact native records and a cold reopen, then adopt with a backup.
+
+
+# Return and cheek connections - D-033, 15 October 2026
+
+`return_cheek_details.configure(doc)` installs four shared editable controls,
+raised native cheek controllers, deep return lower bands and native coping
+stop/contact wrappers. Use once on a disposable copy. `refresh_dependents(doc)`
+updates the cheek mats, lug WWR, affected labels and live schedules. It retires
+the duplicated B7 labels and empty return plinth shapes. No save is performed.
+`inspect(doc)` reports affected concrete intersections without suppressing
+existing coping/wall overlaps. Shared BaseElevation avoids a cheek/wall/return
+dependency cycle. CopingStopBasis is the outer rear lug face. Physical
+reinforcement checks use the existing cheek_steel and lug_wwr validators.
+
+`return_cheek_details.close_return_voids(doc)` adds two editable landing
+wrappers and deepens the four outer return legs. It continues the original
+4-inch surface, preserves the original slab material, and trims shared concrete
+against existing walls, copings and the adjacent slab. Run on a disposable copy.
+`refine_void_contacts(doc)` rebuilds those explicit ownership cuts. Native spline
+trim edges are retained where unification produces invalid topology.
+`viewing_palette.apply(doc)` colors each face of the 750 finished physical
+objects, preserving geometry, visibility and transparency.
+The curved landing raw mass-property totals require review under COH-027.
