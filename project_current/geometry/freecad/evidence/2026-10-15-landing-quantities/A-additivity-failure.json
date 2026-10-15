@@ -1,0 +1,68 @@
+{
+  "base": {
+    "status": "VERIFIED",
+    "volume_mm3": 3150647790.665308,
+    "raw_kernel_volume_mm3": 3178531840.8069696,
+    "relative_change": 0.0,
+    "samples": [
+      {
+        "requested_relative_error": 1e-08,
+        "reported_relative_error": 6.305962789769607e-16,
+        "volume_mm3": 3150647790.665308
+      },
+      {
+        "requested_relative_error": 1e-10,
+        "reported_relative_error": 6.305962789769607e-16,
+        "volume_mm3": 3150647790.665308
+      }
+    ],
+    "method": "Adaptive Gauss-Kronrod integration with spline spans",
+    "shape_sha256": "d3c5637d33b0a09ef595c34017ac7b50ebe13368314e4bd7ccd8cf6d65527d15",
+    "kernel_version": "7.8.1",
+    "pythonocc_version": "7.8.1.1"
+  },
+  "current": {
+    "status": "VERIFIED",
+    "volume_mm3": 3156793945.83791,
+    "raw_kernel_volume_mm3": 3131721078.5600715,
+    "relative_change": 2.917791924277799e-10,
+    "samples": [
+      {
+        "requested_relative_error": 1e-08,
+        "reported_relative_error": 1.5028513006384854e-09,
+        "volume_mm3": 3156793944.9168234
+      },
+      {
+        "requested_relative_error": 1e-10,
+        "reported_relative_error": 1.7165274080100202e-11,
+        "volume_mm3": 3156793945.83791
+      }
+    ],
+    "method": "Adaptive Gauss-Kronrod integration with spline spans",
+    "shape_sha256": "5cf400584c61058e99721f7990d519fefe3d214bb674b43054bdf362124239cf",
+    "kernel_version": "7.8.1",
+    "pythonocc_version": "7.8.1.1"
+  },
+  "addition": {
+    "status": "VERIFIED",
+    "volume_mm3": 6145741.240882513,
+    "raw_kernel_volume_mm3": 6146164.2638351945,
+    "relative_change": 0.0,
+    "samples": [
+      {
+        "requested_relative_error": 1e-08,
+        "reported_relative_error": 2.0617276667139004e-13,
+        "volume_mm3": 6145741.240882513
+      },
+      {
+        "requested_relative_error": 1e-10,
+        "reported_relative_error": 2.0599829729690572e-13,
+        "volume_mm3": 6145741.240882513
+      }
+    ],
+    "method": "Adaptive Gauss-Kronrod integration with spline spans",
+    "shape_sha256": "73695a3ab29cac83c8ea9da235fa2f689431b832d1b39fb936c96aba64de61c9",
+    "kernel_version": "7.8.1",
+    "pythonocc_version": "7.8.1.1"
+  }
+}

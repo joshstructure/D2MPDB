@@ -1,14 +1,14 @@
 {
-  "checked_at_utc": "2026-10-15T16:48:33.938350+00:00",
+  "checked_at_utc": "2026-10-15T17:23:58.678674+00:00",
   "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
-  "register_sha256": "dfd99e7d8ff6a24501c5c5cfd51f7a008e4f5d2083afaec282ea04d640caa476",
-  "tracker_sha256": "2942130513bdc35d8b0447ec49cf86efd8ae6476c3405824e7f27690cf77c4e1",
+  "register_sha256": "d2a1b67e38ea88c7cf26d7b41beb0231ff85028013fae54e00ca28cbb99a1573",
+  "tracker_sha256": "cd314128fa8c1eb70708244661f1524563470c64288987454376d1a80552f1a3",
   "source_count": 27,
   "item_count": 27,
-  "outstanding_count": 15,
+  "outstanding_count": 14,
   "status_counts": {
-    "Closed": 12,
-    "Open": 12,
+    "Closed": 13,
+    "Open": 11,
     "Deferred": 2,
     "Awaiting source": 1
   },
@@ -226,8 +226,8 @@
         "CAD-MODEL"
       ],
       "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-      "expected_sha256": "5deb683a61b19847191ebd2d8668405688ac3c30e2c69d35ef0aed0a871f0961",
-      "actual_sha256": "5deb683a61b19847191ebd2d8668405688ac3c30e2c69d35ef0aed0a871f0961"
+      "expected_sha256": "517d08ddd6c0b01c0bb279919d3648835a8a77cbc7727a42ba4312013b701a20",
+      "actual_sha256": "517d08ddd6c0b01c0bb279919d3648835a8a77cbc7727a42ba4312013b701a20"
     },
     {
       "check_id": "SOURCE:CAD-RUNTIME",
@@ -237,8 +237,8 @@
         "CAD-RUNTIME"
       ],
       "path": "project_current/geometry/freecad/manifest.json",
-      "expected_sha256": "19e41a4172d33172f9a538761ee72f045f1b24564493c0997456bfb4fb385c33",
-      "actual_sha256": "19e41a4172d33172f9a538761ee72f045f1b24564493c0997456bfb4fb385c33"
+      "expected_sha256": "c96010e9627c4d699bfbf7365c1d983b28b9bcab65d01c8de0f173b1b113f556",
+      "actual_sha256": "c96010e9627c4d699bfbf7365c1d983b28b9bcab65d01c8de0f173b1b113f556"
     },
     {
       "check_id": "SOURCE:CAD-REPORT",
@@ -248,8 +248,8 @@
         "CAD-REPORT"
       ],
       "path": "project_current/geometry/freecad/evidence/Model-update-report.txt",
-      "expected_sha256": "4cdcf896b190407b510a676aba5b1a82f1b6820dfb69ad7d321ccd8dd422735a",
-      "actual_sha256": "4cdcf896b190407b510a676aba5b1a82f1b6820dfb69ad7d321ccd8dd422735a"
+      "expected_sha256": "640f251fd67b9a8a56d88fa7a0d4631f5e2b15c8533900509751fc9b3ea88a0b",
+      "actual_sha256": "640f251fd67b9a8a56d88fa7a0d4631f5e2b15c8533900509751fc9b3ea88a0b"
     },
     {
       "check_id": "SOURCE:BACKWALL-TOOL",
@@ -1050,16 +1050,16 @@
     },
     {
       "Item ID": "COH-027",
-      "Status": "Open",
+      "Status": "Closed",
       "Area": "CAD / quantities",
       "Item": "Curved landing volume totals",
       "Finding": "FreeCAD mass properties for both curved landing slabs are not additive. Raw totals decrease after positive material is added. The original slabs already differ from independent triangulated volumes.",
-      "Next action": "Reconcile landing quantities using a converged independent volume method before relying on native totals or quantity schedules.",
+      "Next action": "Completed D-034: use the verified NetVolume property for the two finished landings. The built-in Shape.Volume remains unsuitable for these curved solids.",
       "Your response": "",
       "Owner": "",
       "Due date": "",
-      "Resolution / evidence": "D-033 gap checks confirm zero original concrete loss and about 375 / 378 in3 added at A / B. Triangulated volume increases agree. Geometry and contact checks pass; raw quantity totals remain flagged.",
-      "Source references": "D-033; CAD-MODEL; geometry/freecad/evidence/2026-10-15-return-cheeks/void-proof.json",
+      "Resolution / evidence": "D-034: A 111.481112 ft3; B 88.556269 ft3. Adaptive vertical integration passes convergence, independent mesh and added-material checks. Native rebuild/reopen passes. Geometry, steel and colors unchanged.",
+      "Source references": "D-034; CAD-MODEL; geometry/freecad/evidence/2026-10-15-landing-quantities/update-summary.json",
       "Last reviewed": "2026-10-15T00:00:00.000Z",
       "_row": 35
     }

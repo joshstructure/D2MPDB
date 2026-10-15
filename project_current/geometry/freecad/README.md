@@ -6,7 +6,15 @@ copings stop at the outer rear lug faces. The taller cheeks have 52 mat bars
 and 180 lug WWR wires. No new affected clashes; existing concrete overlaps are
 logged in COH-026. Both 4-inch landing slabs now continue into the four return
 voids, and the barrier lower legs meet them. All finished faces retain the viewing
-palette. Curved-landing volume totals require review under COH-027. See [D-033 evidence](evidence/2026-10-15-return-cheeks/adoption-summary.json).
+palette. Curved-landing quantities are corrected under D-034; COH-027 is closed. See [D-033 evidence](evidence/2026-10-15-return-cheeks/adoption-summary.json).
+
+The two finished landing slabs now have verified **NetVolume** values:
+**A = 111.481112 ft3 (4.128930 yd3)** and **B = 88.556269 ft3 (3.279862 yd3)**.
+Select **A/B landing slab - continued beneath returns** and read **NetVolume**;
+**VolumeStatus** should say **Verified**. The native controller maintains these
+quantities on rebuild. FreeCAD's built-in `Shape.Volume` remains inaccurate for
+these two curved solids. Geometry, reinforcement, colors and visibility are
+unchanged. See [D-034 evidence](evidence/2026-10-15-landing-quantities/update-summary.json).
 
 The four shared height controls are under **Bridge assembly → Return and cheek
 connection controls**. Existing construction sources remain necessary and hidden.
@@ -27,7 +35,7 @@ See [adoption evidence](evidence/2026-10-15-deck-edges/adoption-summary.json).
 On each deck, use the **Deck edge details** properties; the four original deck
 barrier objects have **DeckEdgeSetback**. The opener loads their native controllers.
 
-**Current model: 15 October 2026, decision D-033.** This is the authoritative
+**Current model: 15 October 2026, decision D-034.** This is the authoritative
 editable bridge geometry and modeled-quantity source. The established native
 filename is retained for existing links; its date is not the current revision date.
 

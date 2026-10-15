@@ -482,4 +482,20 @@ against existing walls, copings and the adjacent slab. Run on a disposable copy.
 trim edges are retained where unification produces invalid topology.
 `viewing_palette.apply(doc)` colors each face of the 750 finished physical
 objects, preserving geometry, visibility and transparency.
-The curved landing raw mass-property totals require review under COH-027.
+D-034 corrects the finished landing NetVolume fields; COH-027 is closed.
+The default Shape.Volume for those two solids remains unsuitable for quantities.
+
+# Curved landing quantities - D-034, 15 October 2026
+
+`landing_quantities.measure(shape)` validates a closed solid and returns the
+verified quantity plus integration evidence without modifying its geometry.
+It uses the PythonOCC bundled with FreeCAD 1.1.3; its OCCT version must match
+FreeCAD (tested 7.8.1 / PythonOCC 7.8.1.1). Missing or mismatched dependencies
+fail explicitly; no package installation or fallback to raw Volume occurs.
+`update(obj)` maintains read-only NetVolume, VolumeMethod and VolumeStatus,
+with hidden VolumeCheckJSON evidence. ReturnLandingProxy calls it after each
+shape rebuild. Status is Needs review until successful integration.
+`refresh(doc)` updates only A_BridgeLandingAtReturns and B_BridgeLandingAtReturns
+in one transaction, verifies unchanged BRep strings, and returns a receipt.
+It does not save. The caller records the receipt with the project change journal.
+Use NetVolume, not Shape.Volume, for those two finished landing quantities.

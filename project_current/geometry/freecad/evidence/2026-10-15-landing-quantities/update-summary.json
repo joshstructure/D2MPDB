@@ -1,0 +1,35 @@
+{
+  "status": "ADOPTED_AND_VERIFIED",
+  "decision": "D-034",
+  "date": "2026-10-15",
+  "model": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "model_sha256": "517d08ddd6c0b01c0bb279919d3648835a8a77cbc7727a42ba4312013b701a20",
+  "previous_model_sha256": "5deb683a61b19847191ebd2d8668405688ac3c30e2c69d35ef0aed0a871f0961",
+  "scope": "Correct the two finished curved landing NetVolume properties and their parametric quantity calculation. No geometry or viewing changes.",
+  "quantities": {
+    "A": {
+      "volume_mm3": 3156793537.2290616,
+      "volume_ft3": 111.48111167579339,
+      "volume_yd3": 4.128930062066422,
+      "added_ft3": 0.2170353124476915,
+      "prior_raw_ft3": 110.5956861540097
+    },
+    "B": {
+      "volume_mm3": 2507634291.1337285,
+      "volume_ft3": 88.5562692507639,
+      "volume_yd3": 3.2798618241023667,
+      "added_ft3": 0.21872640408870658,
+      "prior_raw_ft3": 88.16240631183587
+    }
+  },
+  "method": "OCCT Gauss-Kronrod vertical-plane integration with spline spans; two converged precision levels.",
+  "native_preservation": "Only NetVolume, VolumeMethod, VolumeStatus and VolumeCheckJSON change on A_BridgeLandingAtReturns and B_BridgeLandingAtReturns. All 2,037 other object records and every geometry/view resource are byte-exact.",
+  "verification": "Closed valid solids; integration convergence; added-material reconciliation; three independent triangulated-volume comparisons; translated box/cylinder analytic checks; open-face rejection; two native controller rebuilds with zero bidirectional material difference and unchanged colors; saved native reopen.",
+  "objects": 2039,
+  "physical_objects": 750,
+  "steel_objects": 622,
+  "colored_faces": 5974,
+  "quantity_authority": "Use NetVolume for these two finished landing objects. FreeCAD Shape.Volume still uses its inaccurate default integration; it is not a reconciled quantity for these solids.",
+  "coherence": "COH-027 Closed. All other dispositions preserved; 14 outstanding items remain.",
+  "runtime": "Tested in FreeCAD 1.1.3 with OCCT 7.8.1 and bundled PythonOCC 7.8.1.1. No dependency changes."
+}

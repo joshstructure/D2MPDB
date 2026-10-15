@@ -1,0 +1,61 @@
+{
+  "status": "PASS",
+  "document": "QuantityReview",
+  "old_net_volume_mm3": {
+    "A_BridgeLandingAtReturns": 3131721078.5600715,
+    "B_BridgeLandingAtReturns": 2496481334.7138543
+  },
+  "landings": {
+    "A_BridgeLandingAtReturns": {
+      "status": "VERIFIED",
+      "volume_mm3": 3156793537.2290616,
+      "raw_kernel_volume_mm3": 3131721078.5600724,
+      "relative_change": 3.866908337855685e-14,
+      "samples": [
+        {
+          "integration_request": 1e-12,
+          "required_relative_error": 1e-08,
+          "reported_relative_error": 1.8150575105931734e-10,
+          "volume_mm3": 3156793537.2289395
+        },
+        {
+          "integration_request": 1e-14,
+          "required_relative_error": 1e-10,
+          "reported_relative_error": 2.234795004693948e-12,
+          "volume_mm3": 3156793537.2290616
+        }
+      ],
+      "method": "Adaptive vertical integration with spline spans",
+      "shape_sha256": "b84522de3868d703b2000b2b157e25e149d8a50f6d27a5806ce7c37372a82855",
+      "kernel_version": "7.8.1",
+      "pythonocc_version": "7.8.1.1"
+    },
+    "B_BridgeLandingAtReturns": {
+      "status": "VERIFIED",
+      "volume_mm3": 2507634291.1337285,
+      "raw_kernel_volume_mm3": 2496481334.713854,
+      "relative_change": 9.735894339266727e-14,
+      "samples": [
+        {
+          "integration_request": 1e-12,
+          "required_relative_error": 1e-08,
+          "reported_relative_error": 2.389219431823402e-10,
+          "volume_mm3": 2507634291.1334844
+        },
+        {
+          "integration_request": 1e-14,
+          "required_relative_error": 1e-10,
+          "reported_relative_error": 3.741822349332384e-12,
+          "volume_mm3": 2507634291.1337285
+        }
+      ],
+      "method": "Adaptive vertical integration with spline spans",
+      "shape_sha256": "ccb2811b2f5f8a901c89ebfe437b0a6bf62d2fe5bd43bc7850e2ae4685ed4547",
+      "kernel_version": "7.8.1",
+      "pythonocc_version": "7.8.1.1"
+    }
+  },
+  "geometry_unchanged": true,
+  "saved": false,
+  "source_sha256": "5deb683a61b19847191ebd2d8668405688ac3c30e2c69d35ef0aed0a871f0961"
+}

@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "changed_cells": [
+    "B35",
+    "F35",
+    "J35",
+    "K35"
+  ],
+  "formula_caches": [
+    "B4",
+    "H4"
+  ],
+  "all_other_cell_values_and_styles_preserved": true,
+  "all_other_archive_parts_byte_exact": true,
+  "sha256": "cd314128fa8c1eb70708244661f1524563470c64288987454376d1a80552f1a3"
+}

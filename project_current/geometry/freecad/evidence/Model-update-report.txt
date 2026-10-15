@@ -265,3 +265,12 @@ Evidence: 2026-10-15-return-cheeks/adoption-summary.json
 
 D-033 completed gap closure and face colors: 750 physical objects and all face colors verified after native reopen. Twelve gap controllers rebuilt with zero bidirectional material difference. 2,005 existing object records/resources, including all 622 steel objects, preserved exactly during the gap closure. Four physical slab/barrier gap checks pass with no new concrete or steel intersections.
 REVIEW: COH-027. Added material and zero original material loss independently verified; raw native mass-property totals are not accepted as reconciled quantities.
+
+D-034, 15 October 2026: corrected landing quantities
+Correct the two finished curved landing NetVolume properties and their parametric quantity calculation. No geometry or viewing changes.
+Use NetVolume for these two finished landing objects. FreeCAD Shape.Volume still uses its inaccurate default integration; it is not a reconciled quantity for these solids.
+Landing A: 111.481111676 ft3; 4.128930062 yd3.
+Landing B: 88.556269251 ft3; 3.279861824 yd3.
+Only NetVolume, VolumeMethod, VolumeStatus and VolumeCheckJSON change on A_BridgeLandingAtReturns and B_BridgeLandingAtReturns. All 2,037 other object records and every geometry/view resource are byte-exact.
+Closed valid solids; integration convergence; added-material reconciliation; three independent triangulated-volume comparisons; translated box/cylinder analytic checks; open-face rejection; two native controller rebuilds with zero bidirectional material difference and unchanged colors; saved native reopen.
+COH-027 Closed. All other dispositions preserved; 14 outstanding items remain.

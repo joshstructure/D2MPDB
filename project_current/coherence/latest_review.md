@@ -1,6 +1,6 @@
 # Latest project coherence review
 
-Checked at 2026-10-15T16:48:33.938350+00:00. **15 outstanding items remain.**
+Checked at 2026-10-15T17:23:58.678674+00:00. **14 outstanding items remain.**
 
 The [workbook](Coherence_Tracker.xlsx) owns item status and responses. This report is a generated view.
 The initial findings were carried forward from the latest adopted pier/end-bent reviews plus source-inventory gaps.
@@ -62,7 +62,6 @@ Automatic results: 6 changed, 9 error, 37 match, 5 missing, 10 review.
 | COH-024 | Open | Coordinate cap and cheek steel | Review the four 12 3/8 in horizontal spacings. Other cover, pile-clearance, cap and backwall steel findings remain open. |
 | COH-025 | Deferred | End-bent U-bar / hoop overlaps | Review the U-bar / hoop intersections later and agree revisions. Recheck affected steel, cover, spacing, piles and WWR before closing. Leave current stirrups and U-bars unchanged. |
 | COH-026 | Open | Coping and MSE wall overlaps | Agree concrete ownership and trim the coping/wall interfaces. Recheck concrete quantities and contact geometry. |
-| COH-027 | Open | Curved landing volume totals | Reconcile landing quantities using a converged independent volume method before relying on native totals or quantity schedules. |
 
 ## Verified scope
 

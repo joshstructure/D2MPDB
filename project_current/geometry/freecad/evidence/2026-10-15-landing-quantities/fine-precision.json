@@ -1,0 +1,54 @@
+[
+  {
+    "side": "A",
+    "state": "current",
+    "samples": [
+      {
+        "deflection_mm": 0.003125,
+        "volume_in3": 192639.35931132408,
+        "triangles": 16174
+      },
+      {
+        "deflection_mm": 0.0015625,
+        "volume_in3": 192639.5404370155,
+        "triangles": 111520
+      },
+      {
+        "deflection_mm": 0.00078125,
+        "volume_in3": 165499.68628167931,
+        "triangles": 81865
+      },
+      {
+        "deflection_mm": 0.000390625,
+        "volume_in3": 192639.35792036273,
+        "triangles": 85702
+      }
+    ]
+  },
+  {
+    "side": "B",
+    "state": "current",
+    "samples": [
+      {
+        "deflection_mm": 0.003125,
+        "volume_in3": 153025.22807781675,
+        "triangles": 15952
+      },
+      {
+        "deflection_mm": 0.0015625,
+        "volume_in3": 153025.22972551518,
+        "triangles": 111844
+      },
+      {
+        "deflection_mm": 0.00078125,
+        "volume_in3": 153025.22615395446,
+        "triangles": 119587
+      },
+      {
+        "deflection_mm": 0.000390625,
+        "volume_in3": 153025.22639619,
+        "triangles": 69880
+      }
+    ]
+  }
+]

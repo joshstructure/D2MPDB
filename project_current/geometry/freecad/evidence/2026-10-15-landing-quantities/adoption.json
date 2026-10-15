@@ -1,0 +1,32 @@
+{
+  "status": "ADOPTED",
+  "date": "2026-10-15T17:20:09.701835+00:00",
+  "decision": "D-034",
+  "model": "C:\\github\\D2MPDB\\project_current\\geometry\\freecad\\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "sha256": "517d08ddd6c0b01c0bb279919d3648835a8a77cbc7727a42ba4312013b701a20",
+  "before_sha256": "5deb683a61b19847191ebd2d8668405688ac3c30e2c69d35ef0aed0a871f0961",
+  "scope": "Only quantity metadata on two finished landings; native geometry, steel, expressions, links and all display resources preserved.",
+  "objects": 2039,
+  "physical_objects": 750,
+  "steel_objects": 622,
+  "colored_faces": 5974,
+  "landings": [
+    {
+      "name": "A_BridgeLandingAtReturns",
+      "net_volume_mm3": 3156793537.2290616,
+      "volume_status": "Verified",
+      "valid": true,
+      "colors_unchanged": true,
+      "proxy": "ReturnLandingProxy"
+    },
+    {
+      "name": "B_BridgeLandingAtReturns",
+      "net_volume_mm3": 2507634291.1337285,
+      "volume_status": "Verified",
+      "valid": true,
+      "colors_unchanged": true,
+      "proxy": "ReturnLandingProxy"
+    }
+  ],
+  "saved_source_reopened": true
+}

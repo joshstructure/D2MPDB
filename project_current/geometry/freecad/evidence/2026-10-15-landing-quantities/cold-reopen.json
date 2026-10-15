@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "model_sha256": "517d08ddd6c0b01c0bb279919d3648835a8a77cbc7727a42ba4312013b701a20",
+  "objects": 2039,
+  "physical_objects": 750,
+  "landings": [
+    {
+      "name": "A_BridgeLandingAtReturns",
+      "net_volume_mm3": 3156793537.2290616,
+      "volume_status": "Verified",
+      "valid": true,
+      "colors_unchanged": true,
+      "proxy": "ReturnLandingProxy"
+    },
+    {
+      "name": "B_BridgeLandingAtReturns",
+      "net_volume_mm3": 2507634291.1337285,
+      "volume_status": "Verified",
+      "valid": true,
+      "colors_unchanged": true,
+      "proxy": "ReturnLandingProxy"
+    }
+  ]
+}

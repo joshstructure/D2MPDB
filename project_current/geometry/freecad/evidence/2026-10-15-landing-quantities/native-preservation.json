@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "before_sha256": "5deb683a61b19847191ebd2d8668405688ac3c30e2c69d35ef0aed0a871f0961",
+  "output_sha256": "517d08ddd6c0b01c0bb279919d3648835a8a77cbc7727a42ba4312013b701a20",
+  "objects": 2039,
+  "unchanged_object_records": 2037,
+  "changed_objects": [
+    "A_BridgeLandingAtReturns",
+    "B_BridgeLandingAtReturns"
+  ],
+  "allowed_property_changes": [
+    "NetVolume",
+    "VolumeCheckJSON",
+    "VolumeMethod",
+    "VolumeStatus"
+  ],
+  "all_other_native_resources_byte_exact": true,
+  "geometry_and_gui_resources_byte_exact": true,
+  "runtime_sha256": {
+    "landing_quantities.py": "7a0f584b62f00041641dc0b6ce4ecaa0603ec1dfdfd9e92568e7eccf46ee68af",
+    "return_cheek_details.py": "5fbc47c0919011611f7aaaa832b6cf878365b77e8d3850bac16a4a934aff4403"
+  }
+}

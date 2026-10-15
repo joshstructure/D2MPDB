@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "objects": 2039,
+  "checks": [
+    {
+      "name": "A_BridgeLandingAtReturns",
+      "valid": true,
+      "bidirectional_difference_mm3": [
+        0.0,
+        0.0
+      ],
+      "face_colors_unchanged": true,
+      "faces": 31,
+      "net_volume_mm3": 3156793537.229058,
+      "proxy": "ReturnLandingProxy"
+    },
+    {
+      "name": "B_BridgeLandingAtReturns",
+      "valid": true,
+      "bidirectional_difference_mm3": [
+        0.0,
+        0.0
+      ],
+      "face_colors_unchanged": true,
+      "faces": 37,
+      "net_volume_mm3": 2507634291.133848,
+      "proxy": "ReturnLandingProxy"
+    }
+  ],
+  "candidate_sha256": "c2a491bac6efa4c32c6f68ee3aab86fb4e72ee53fe31f9b2b61e6590f0cf4bb9"
+}

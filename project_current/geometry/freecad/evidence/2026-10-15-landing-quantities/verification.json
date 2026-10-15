@@ -1,0 +1,250 @@
+{
+  "status": "PASS",
+  "landings": [
+    {
+      "side": "A",
+      "status": "PASS",
+      "values": {
+        "base": {
+          "status": "VERIFIED",
+          "volume_mm3": 3150647808.824707,
+          "raw_kernel_volume_mm3": 3178531840.8069696,
+          "relative_change": 0.0,
+          "samples": [
+            {
+              "integration_request": 1e-12,
+              "required_relative_error": 1e-08,
+              "reported_relative_error": 2.4092131882969627e-15,
+              "volume_mm3": 3150647808.824707
+            },
+            {
+              "integration_request": 1e-14,
+              "required_relative_error": 1e-10,
+              "reported_relative_error": 2.4092131882969627e-15,
+              "volume_mm3": 3150647808.824707
+            }
+          ],
+          "method": "Adaptive vertical integration with spline spans",
+          "shape_sha256": "d3c5637d33b0a09ef595c34017ac7b50ebe13368314e4bd7ccd8cf6d65527d15",
+          "kernel_version": "7.8.1",
+          "pythonocc_version": "7.8.1.1"
+        },
+        "current": {
+          "status": "VERIFIED",
+          "volume_mm3": 3156793537.2290616,
+          "raw_kernel_volume_mm3": 3131721078.5600715,
+          "relative_change": 3.866908337855685e-14,
+          "samples": [
+            {
+              "integration_request": 1e-12,
+              "required_relative_error": 1e-08,
+              "reported_relative_error": 1.8150575105931734e-10,
+              "volume_mm3": 3156793537.2289395
+            },
+            {
+              "integration_request": 1e-14,
+              "required_relative_error": 1e-10,
+              "reported_relative_error": 2.234795004693948e-12,
+              "volume_mm3": 3156793537.2290616
+            }
+          ],
+          "method": "Adaptive vertical integration with spline spans",
+          "shape_sha256": "5cf400584c61058e99721f7990d519fefe3d214bb674b43054bdf362124239cf",
+          "kernel_version": "7.8.1",
+          "pythonocc_version": "7.8.1.1"
+        },
+        "addition": {
+          "status": "VERIFIED",
+          "volume_mm3": 6145755.647628069,
+          "raw_kernel_volume_mm3": 6146164.2638351945,
+          "relative_change": 0.0,
+          "samples": [
+            {
+              "integration_request": 1e-12,
+              "required_relative_error": 1e-08,
+              "reported_relative_error": 1.3960929498551281e-12,
+              "volume_mm3": 6145755.647628069
+            },
+            {
+              "integration_request": 1e-14,
+              "required_relative_error": 1e-10,
+              "reported_relative_error": 1.3960412301329805e-12,
+              "volume_mm3": 6145755.647628069
+            }
+          ],
+          "method": "Adaptive vertical integration with spline spans",
+          "shape_sha256": "73695a3ab29cac83c8ea9da235fa2f689431b832d1b39fb936c96aba64de61c9",
+          "kernel_version": "7.8.1",
+          "pythonocc_version": "7.8.1.1"
+        }
+      },
+      "additivity_residual_mm3": -27.243273496627808,
+      "original_material_lost_mm3": 0.0,
+      "independent_mesh_comparisons": [
+        {
+          "state": "base",
+          "deflection_mm": 0.025,
+          "relative_difference": 1.4177061934496505e-08
+        },
+        {
+          "state": "base",
+          "deflection_mm": 0.0125,
+          "relative_difference": 1.4045184707058753e-08
+        },
+        {
+          "state": "base",
+          "deflection_mm": 0.00625,
+          "relative_difference": 1.4168158112625447e-08
+        },
+        {
+          "state": "current",
+          "deflection_mm": 0.025,
+          "relative_difference": 5.301384593147566e-08
+        },
+        {
+          "state": "current",
+          "deflection_mm": 0.0125,
+          "relative_difference": 1.4401374850522428e-08
+        },
+        {
+          "state": "current",
+          "deflection_mm": 0.00625,
+          "relative_difference": 9.716302215971099e-09
+        }
+      ]
+    },
+    {
+      "side": "B",
+      "status": "PASS",
+      "values": {
+        "base": {
+          "status": "VERIFIED",
+          "volume_mm3": 2501440649.103882,
+          "raw_kernel_volume_mm3": 2513156682.625129,
+          "relative_change": 0.0,
+          "samples": [
+            {
+              "integration_request": 1e-12,
+              "required_relative_error": 1e-08,
+              "reported_relative_error": 2.474083782876536e-10,
+              "volume_mm3": 2501440649.103882
+            },
+            {
+              "integration_request": 1e-14,
+              "required_relative_error": 1e-10,
+              "reported_relative_error": 3.869764479655646e-12,
+              "volume_mm3": 2501440649.103882
+            }
+          ],
+          "method": "Adaptive vertical integration with spline spans",
+          "shape_sha256": "1f74a9174d5086f1cc4de4734312765661c50f0931cf5b27b6a32060ece37ba0",
+          "kernel_version": "7.8.1",
+          "pythonocc_version": "7.8.1.1"
+        },
+        "current": {
+          "status": "VERIFIED",
+          "volume_mm3": 2507634291.134326,
+          "raw_kernel_volume_mm3": 2496481334.713829,
+          "relative_change": 1.460384150889661e-13,
+          "samples": [
+            {
+              "integration_request": 1e-12,
+              "required_relative_error": 1e-08,
+              "reported_relative_error": 2.3867862520177197e-10,
+              "volume_mm3": 2507634291.13396
+            },
+            {
+              "integration_request": 1e-14,
+              "required_relative_error": 1e-10,
+              "reported_relative_error": 3.738303434691195e-12,
+              "volume_mm3": 2507634291.134326
+            }
+          ],
+          "method": "Adaptive vertical integration with spline spans",
+          "shape_sha256": "cd7e33d3267431cb2d369e86d35610c38473e5a6be425f6249eba17b536324e2",
+          "kernel_version": "7.8.1",
+          "pythonocc_version": "7.8.1.1"
+        },
+        "addition": {
+          "status": "VERIFIED",
+          "volume_mm3": 6193642.030199707,
+          "raw_kernel_volume_mm3": 6193645.922358699,
+          "relative_change": 0.0,
+          "samples": [
+            {
+              "integration_request": 1e-12,
+              "required_relative_error": 1e-08,
+              "reported_relative_error": 2.532413981835457e-12,
+              "volume_mm3": 6193642.030199707
+            },
+            {
+              "integration_request": 1e-14,
+              "required_relative_error": 1e-10,
+              "reported_relative_error": 2.4903365112444425e-12,
+              "volume_mm3": 6193642.030199707
+            }
+          ],
+          "method": "Adaptive vertical integration with spline spans",
+          "shape_sha256": "2d899250448bdc4778351748fdb4a94919813b8f54ff33d63679cf40e56f41f8",
+          "kernel_version": "7.8.1",
+          "pythonocc_version": "7.8.1.1"
+        }
+      },
+      "additivity_residual_mm3": 0.00024443864822387695,
+      "original_material_lost_mm3": 0.0,
+      "independent_mesh_comparisons": [
+        {
+          "state": "base",
+          "deflection_mm": 0.025,
+          "relative_difference": 4.728384439686935e-14
+        },
+        {
+          "state": "base",
+          "deflection_mm": 0.0125,
+          "relative_difference": 4.633054108241634e-14
+        },
+        {
+          "state": "base",
+          "deflection_mm": 0.00625,
+          "relative_difference": 4.633054108241634e-14
+        },
+        {
+          "state": "current",
+          "deflection_mm": 0.025,
+          "relative_difference": 2.3715478137050342e-08
+        },
+        {
+          "state": "current",
+          "deflection_mm": 0.0125,
+          "relative_difference": 2.3813119080885933e-08
+        },
+        {
+          "state": "current",
+          "deflection_mm": 0.00625,
+          "relative_difference": 2.6301152447203665e-08
+        }
+      ]
+    }
+  ],
+  "known_volume_checks": [
+    {
+      "name": "box",
+      "expected_mm3": 6000,
+      "actual_mm3": 5999.999999999069
+    },
+    {
+      "name": "cylinder",
+      "expected_mm3": 3540.5749205956968,
+      "actual_mm3": 3540.574920593761
+    },
+    {
+      "name": "open_face_rejected",
+      "status": "PASS"
+    }
+  ],
+  "acceptance": {
+    "successive_integration_relative_change": 1e-09,
+    "additivity_relative_to_total": 1e-08,
+    "independent_mesh_relative_difference": 1e-06
+  }
+}

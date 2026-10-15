@@ -299,7 +299,9 @@ class ReturnLandingProxy(mse.Serializable):
         for contact in getattr(obj,'ContactSources',[]):
             if contact.Shape.Solids:shape=shape.cut(contact.Shape.copy(),0.0).removeSplitter()
         if not shape.isValid() or len(shape.Solids)!=1:raise ValueError('Invalid continued landing '+obj.Name)
-        obj.Shape=shape;obj.NetVolume=shape.Volume
+        obj.Shape=shape
+        from . import landing_quantities
+        landing_quantities.update(obj)
 
 
 def close_return_voids(doc):

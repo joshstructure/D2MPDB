@@ -1,0 +1,198 @@
+[
+  {
+    "side": "A",
+    "state": "base",
+    "samples": [
+      {
+        "method": "Gauss",
+        "eps": 1e-06,
+        "reported_relative_error": 4.496497998132513e-07,
+        "volume_in3": 188098.25952787732,
+        "seconds": 0.031000000002677552
+      },
+      {
+        "method": "Gauss",
+        "eps": 1e-08,
+        "reported_relative_error": 5.527702488624428e-09,
+        "volume_in3": 193115.11253174616,
+        "seconds": 0.01600000000325963
+      },
+      {
+        "method": "Gauss",
+        "eps": 1e-10,
+        "reported_relative_error": 7.361561120185285e-11,
+        "volume_in3": 189429.27137930525,
+        "seconds": 0.0629999999946449
+      },
+      {
+        "method": "GaussKronrodSpans",
+        "eps": 1e-06,
+        "reported_relative_error": 1.4239837707293954e-07,
+        "volume_in3": 192264.33583750713,
+        "seconds": 0.0
+      },
+      {
+        "method": "GaussKronrodSpans",
+        "eps": 1e-08,
+        "reported_relative_error": 6.305962789769607e-16,
+        "volume_in3": 192264.32451019343,
+        "seconds": 0.0
+      },
+      {
+        "method": "GaussKronrodSpans",
+        "eps": 1e-10,
+        "reported_relative_error": 6.305962789769607e-16,
+        "volume_in3": 192264.32451019343,
+        "seconds": 0.0
+      }
+    ],
+    "direct_in3": 193965.91365036287
+  },
+  {
+    "side": "A",
+    "state": "current",
+    "samples": [
+      {
+        "method": "Gauss",
+        "eps": 1e-06,
+        "reported_relative_error": 1.0571794907183354e-07,
+        "volume_in3": 192660.53947256046,
+        "seconds": 0.01600000000325963
+      },
+      {
+        "method": "Gauss",
+        "eps": 1e-08,
+        "reported_relative_error": 3.0203612584272835e-09,
+        "volume_in3": 191319.02957089254,
+        "seconds": 0.031000000002677552
+      },
+      {
+        "method": "Gauss",
+        "eps": 1e-10,
+        "reported_relative_error": 5.932734029035392e-11,
+        "volume_in3": 193224.2972361222,
+        "seconds": 0.07799999999406282
+      },
+      {
+        "method": "GaussKronrodSpans",
+        "eps": 1e-06,
+        "reported_relative_error": 1.5112692528011863e-07,
+        "volume_in3": 192639.37519376085,
+        "seconds": 0.0
+      },
+      {
+        "method": "GaussKronrodSpans",
+        "eps": 1e-08,
+        "reported_relative_error": 1.5028513006384854e-09,
+        "volume_in3": 192639.38585440465,
+        "seconds": 0.01600000000325963
+      },
+      {
+        "method": "GaussKronrodSpans",
+        "eps": 1e-10,
+        "reported_relative_error": 1.7165274080100202e-11,
+        "volume_in3": 192639.38591061282,
+        "seconds": 0.42199999999138527
+      }
+    ],
+    "direct_in3": 191109.3456741288
+  },
+  {
+    "side": "B",
+    "state": "base",
+    "samples": [
+      {
+        "method": "Gauss",
+        "eps": 1e-06,
+        "reported_relative_error": 4.445815065147893e-07,
+        "volume_in3": 151603.50351821183,
+        "seconds": 0.01600000000325963
+      },
+      {
+        "method": "Gauss",
+        "eps": 1e-08,
+        "reported_relative_error": 6.824975184014808e-09,
+        "volume_in3": 153004.75680800035,
+        "seconds": 0.01600000000325963
+      },
+      {
+        "method": "Gauss",
+        "eps": 1e-10,
+        "reported_relative_error": 1.0845492220083461e-11,
+        "volume_in3": 151975.25621398503,
+        "seconds": 0.046000000002095476
+      },
+      {
+        "method": "GaussKronrodSpans",
+        "eps": 1e-06,
+        "reported_relative_error": 1.9498688111908255e-07,
+        "volume_in3": 152647.26966292036,
+        "seconds": 0.01600000000325963
+      },
+      {
+        "method": "GaussKronrodSpans",
+        "eps": 1e-08,
+        "reported_relative_error": 1.2690321411185324e-09,
+        "volume_in3": 152647.2741537483,
+        "seconds": 0.0
+      },
+      {
+        "method": "GaussKronrodSpans",
+        "eps": 1e-10,
+        "reported_relative_error": 2.0287761225954186e-11,
+        "volume_in3": 152647.2740389277,
+        "seconds": 0.0
+      }
+    ],
+    "direct_in3": 153362.23027048222
+  },
+  {
+    "side": "B",
+    "state": "current",
+    "samples": [
+      {
+        "method": "Gauss",
+        "eps": 1e-06,
+        "reported_relative_error": 4.2523727826881897e-07,
+        "volume_in3": 152183.44470277047,
+        "seconds": 0.031000000002677552
+      },
+      {
+        "method": "Gauss",
+        "eps": 1e-08,
+        "reported_relative_error": 9.037896190417465e-09,
+        "volume_in3": 153539.99944819813,
+        "seconds": 0.062000000005355105
+      },
+      {
+        "method": "Gauss",
+        "eps": 1e-10,
+        "reported_relative_error": 8.630230401438749e-11,
+        "volume_in3": 152543.3941358511,
+        "seconds": 0.09399999999732245
+      },
+      {
+        "method": "GaussKronrodSpans",
+        "eps": 1e-06,
+        "reported_relative_error": 1.5983550045425796e-07,
+        "volume_in3": 153025.22718018817,
+        "seconds": 0.0
+      },
+      {
+        "method": "GaussKronrodSpans",
+        "eps": 1e-08,
+        "reported_relative_error": 1.8883170034650962e-09,
+        "volume_in3": 153025.23355941608,
+        "seconds": 0.01600000000325963
+      },
+      {
+        "method": "GaussKronrodSpans",
+        "eps": 1e-10,
+        "reported_relative_error": 1.3097762371930764e-11,
+        "volume_in3": 153025.233521585,
+        "seconds": 1.375
+      }
+    ],
+    "direct_in3": 152344.63810685242
+  }
+]

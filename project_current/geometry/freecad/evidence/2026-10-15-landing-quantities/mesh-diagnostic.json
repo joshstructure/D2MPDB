@@ -1,0 +1,154 @@
+[
+  {
+    "side": "A",
+    "state": "base",
+    "native_in3": 193965.91365036287,
+    "samples": [
+      {
+        "deflection_mm": 0.2,
+        "volume_in3": 192264.32291039394,
+        "triangles": 9896
+      },
+      {
+        "deflection_mm": 0.1,
+        "volume_in3": 192264.3228897116,
+        "triangles": 18328
+      },
+      {
+        "deflection_mm": 0.05,
+        "volume_in3": 192264.32291545472,
+        "triangles": 35232
+      },
+      {
+        "deflection_mm": 0.025,
+        "volume_in3": 192264.3228926047,
+        "triangles": 54072
+      },
+      {
+        "deflection_mm": 0.0125,
+        "volume_in3": 192264.32291795997,
+        "triangles": 93294
+      },
+      {
+        "deflection_mm": 0.00625,
+        "volume_in3": 192264.32289431657,
+        "triangles": 155368
+      }
+    ],
+    "seconds": 3.7659999999887077
+  },
+  {
+    "side": "A",
+    "state": "current",
+    "native_in3": 191109.3456741288,
+    "samples": [
+      {
+        "deflection_mm": 0.2,
+        "volume_in3": 192639.35189478597,
+        "triangles": 6336
+      },
+      {
+        "deflection_mm": 0.1,
+        "volume_in3": 192639.3507614696,
+        "triangles": 12212
+      },
+      {
+        "deflection_mm": 0.05,
+        "volume_in3": 192639.3507629044,
+        "triangles": 13772
+      },
+      {
+        "deflection_mm": 0.025,
+        "volume_in3": 192639.3507632176,
+        "triangles": 13292
+      },
+      {
+        "deflection_mm": 0.0125,
+        "volume_in3": 192639.35820149936,
+        "triangles": 13760
+      },
+      {
+        "deflection_mm": 0.00625,
+        "volume_in3": 192639.35910402876,
+        "triangles": 14298
+      }
+    ],
+    "seconds": 0.46800000000803266
+  },
+  {
+    "side": "B",
+    "state": "base",
+    "native_in3": 153362.23027048222,
+    "samples": [
+      {
+        "deflection_mm": 0.2,
+        "volume_in3": 152647.27403908334,
+        "triangles": 6380
+      },
+      {
+        "deflection_mm": 0.1,
+        "volume_in3": 152647.27403908342,
+        "triangles": 12968
+      },
+      {
+        "deflection_mm": 0.05,
+        "volume_in3": 152647.2740390835,
+        "triangles": 24184
+      },
+      {
+        "deflection_mm": 0.025,
+        "volume_in3": 152647.27403908354,
+        "triangles": 49264
+      },
+      {
+        "deflection_mm": 0.0125,
+        "volume_in3": 152647.2740390834,
+        "triangles": 90426
+      },
+      {
+        "deflection_mm": 0.00625,
+        "volume_in3": 152647.2740390834,
+        "triangles": 164360
+      }
+    ],
+    "seconds": 3.2819999999919673
+  },
+  {
+    "side": "B",
+    "state": "current",
+    "native_in3": 152344.63810685242,
+    "samples": [
+      {
+        "deflection_mm": 0.2,
+        "volume_in3": 153024.87312094728,
+        "triangles": 5650
+      },
+      {
+        "deflection_mm": 0.1,
+        "volume_in3": 153025.26680195372,
+        "triangles": 11966
+      },
+      {
+        "deflection_mm": 0.05,
+        "volume_in3": 153025.14083088542,
+        "triangles": 13242
+      },
+      {
+        "deflection_mm": 0.025,
+        "volume_in3": 153025.22963628994,
+        "triangles": 12950
+      },
+      {
+        "deflection_mm": 0.0125,
+        "volume_in3": 153025.2296213484,
+        "triangles": 13524
+      },
+      {
+        "deflection_mm": 0.00625,
+        "volume_in3": 153025.22924061652,
+        "triangles": 13660
+      }
+    ],
+    "seconds": 0.4840000000112923
+  }
+]
