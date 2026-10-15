@@ -240,3 +240,16 @@ Existing crown, PGL grades, end gaps, beam cambers and all reinforcement retaine
 COH-023/024 remain Open; COH-025 remains Deferred. Existing engineering findings
 and calculation-source reconciliation are unchanged. Prior model archived.
 Evidence: 2026-10-15-deck-edges/adoption-summary.json and adoption-cold-reopen.json.
+
+
+15 OCTOBER 2026 — D-032 MODEL CLEANUP
+Removed 42 unused superseded wall, coping, barrier and contact-tool objects.
+Retained and hid all 610 editable reinforcement paths in 19 groups, the nominal
+pier envelope and the duplicate complete PGL source. All 744 current physical
+objects remain exact, including 610 bars/wires (172 WWR wires). Object count
+reduced from 2,045 to 2,003. Original native resources and full precision retained;
+only group memberships and source visibility changed. Saved-file/native reopen
+and physical object inventory pass. Prior model archived. Current deck-edge
+geometry and viewing colors retained. COH-023/024/025 and other engineering
+findings remain unchanged; no fresh clash run is claimed for this cleanup.
+Evidence: 2026-10-15-model-cleanup/adoption-summary.json.

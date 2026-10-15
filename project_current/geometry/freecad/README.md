@@ -1,5 +1,12 @@
 # Current FreeCAD bridge model
 
+The model was cleaned under D-032: 42 unused superseded wall/detail objects
+were removed. Necessary rebar construction paths are hidden, along with the
+nominal pier envelope and duplicate complete PGL source. All current physical
+geometry and reinforcement remain unchanged. Keep each reinforcement **Paths**
+group hidden; **Bars**, **Bottom** and **Side** contain the physical steel.
+See [cleanup evidence](evidence/2026-10-15-model-cleanup/adoption-summary.json).
+
 The DXF deck-edge correction is saved in the main model: 1.5 in barrier
 setback, 0.75 in top/bottom edge chamfers, and 1 x 0.5 in V grooves centered
 3 in along the soffit from the virtual outside corner. Both spans retain their
@@ -9,7 +16,7 @@ See [adoption evidence](evidence/2026-10-15-deck-edges/adoption-summary.json).
 On each deck, use the **Deck edge details** properties; the four original deck
 barrier objects have **DeckEdgeSetback**. The opener loads their native controllers.
 
-**Current model: 15 October 2026, decision D-031.** This is the authoritative
+**Current model: 15 October 2026, decision D-032.** This is the authoritative
 editable bridge geometry and modeled-quantity source. The established native
 filename is retained for existing links; its date is not the current revision date.
 
@@ -44,7 +51,7 @@ The prior D-026 cheek-steel revision passed 282 geometry/cover/clash/schedule ch
 Its retained geometry is tied to 621 prior geometry checks and 110 route-grade checks.
 Physical model checks do not constitute engineering or fabrication acceptance.
 
-The cap cages are now 62/90/62 bars under D-027. Backwalls retain 72 bars and cheeks now have
+The cap cages are now 62/90/62 bars under D-027. Backwalls retain 104 bars and cheeks now have
 48 bars. Cap/cheek intersections are resolved. Four horizontal spacing findings,
 33 backwall/cap bar intersections and cap detailing findings remain open.
 Lug WWR is modeled under D-030. Anchorage, development, fabrication and strap
