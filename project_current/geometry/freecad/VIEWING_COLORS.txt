@@ -1,0 +1,37 @@
+B4 viewing palette — 15 October 2026
+
+Open the bridge, then run Apply_Bridge_Colors.FCMacro. It applies colors to
+the active B4 bridge without saving, recomputing, or changing visibility or
+transparency. Save in FreeCAD when you want to retain the display changes.
+Reapply after creating new reinforcement to color its new objects.
+
+Concrete components
+Copings and return plinths: muted gold #D8B36A
+Barriers: lavender #98A6CF
+Bridge deck and ramp slabs: pale blue-gray #D5DFE5
+MSE walls: sage green #A8BEA1
+
+Cap steel (exact colors from the cap report's cage_3d.py COLORS)
+Top longitudinal bars: dark blue #1F5B91
+Bottom longitudinal bars: light blue #448BC1
+Side/skin bars: teal #167B75
+Added span bars: orange #D88822
+Closed hoops: purple #7952A3
+Pile U-bars: magenta #BD407D
+
+Additional steel
+End horizontal/vertical bars: teal/dark blue
+Wall vertical bars: green #24734B
+Wall horizontal bars: brown-orange #B46A29
+Pedestal U-bars: olive #757129
+Cheek lug WWR: turquoise #00A6A6
+
+Color represents component or bar family, never clash or approval status.
+Sources, paths, contact tools, and annotations are excluded. Hidden physical
+components receive the palette but remain hidden. Dimensions, placements,
+native controls, quantities, and outstanding review issues are unchanged.
+
+Live application verified: 747 objects, all 1,716 stored native Shape properties
+preserved, all 2,045 object names preserved. Dynamically assembled group Shapes
+are not persistent geometry and cannot be compared using native identity.
+The registered FCStd file was not overwritten by this display-only operation.

@@ -1,0 +1,16 @@
+"""Apply the report-based viewing colors to the active B4 model. Never saves."""
+from pathlib import Path
+import importlib.util
+import json
+import FreeCAD as App
+import FreeCADGui as Gui
+
+path = Path(__file__).resolve().with_name('viewing_palette.py')
+spec = importlib.util.spec_from_file_location('b4_viewing_palette', path)
+palette = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(palette)
+if App.ActiveDocument is None:
+    raise RuntimeError('Open and select the B4 bridge model first.')
+result = palette.apply(App.ActiveDocument)
+Gui.updateGui()
+App.Console.PrintMessage('Bridge colors applied: ' + json.dumps(result) + '\n')
