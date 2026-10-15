@@ -13,7 +13,7 @@ for module_name, module in tuple(sys.modules.items()):
             raise RuntimeError('Different bridge controllers are already loaded. Save any wanted edits, restart FreeCAD, then run this macro first.')
 if str(runtime) not in sys.path:
     sys.path.insert(0, str(runtime))
-from freecad_tools import cap_cages, mse, bridge, drainage_trial, adopt_drainage, current_source, design_steel, pedestal_ubars, mse_revision, mse_corrections, mse_wall_tops, cheek_steel
+from freecad_tools import cap_cages, mse, bridge, drainage_trial, adopt_drainage, current_source, design_steel, pedestal_ubars, mse_revision, mse_corrections, mse_wall_tops, cheek_steel, lug_wwr
 path = folder/'B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd'
 matches = [d for d in App.listDocuments().values() if d.FileName and Path(d.FileName).resolve() == path.resolve()]
 if len(matches) > 1:

@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "prior_items_preserved": 24,
+  "added": "COH-025",
+  "status_value": "Deferred",
+  "changed_cells": "A33:L33",
+  "formula_caches": [
+    "B4",
+    "F4"
+  ],
+  "other_archive_parts_exact": true,
+  "source_sha256": "d9a42d95e0a5a44c114278bb2cbd4c48fc5f7dbd42ca43f36ba7e2b6ff8eb88b",
+  "output_sha256": "6d15e3262ed1ff2973b84a2429e8faf8fefb1a1b2daaf10883ad9be12870ce89"
+}

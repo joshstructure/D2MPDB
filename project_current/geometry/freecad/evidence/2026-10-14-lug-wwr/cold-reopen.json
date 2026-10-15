@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "model_sha256": "1b4765f4dd2fc87c42a7b512943b2fb900a3260fc686d281c7208420c29575f7",
+  "old_model_sha256": "ab1b6e652183f78dd027adce4683b40e4fdf0e34364181f56f2699f83f0efb5a",
+  "native_objects": 2045,
+  "preserved_native_records": 1677,
+  "preserved_view_records": 1677,
+  "wire_count": 172,
+  "sheet_count": 8,
+  "valid_single_wire_solids": 172,
+  "accepted_trial_matches": 172,
+  "new_overlap_pairs": 0,
+  "cover_checks": 172,
+  "minimum_cover_in": 2.1249999980554874,
+  "native_arch_wire_controllers_restored": true,
+  "parametric_dependency_test": "PASS: 0.25 in bottom-extension edit changed each of ten bent wires by 0.25 in and live quantity/schedule by 2.5 in. Disposable edit discarded without saving.",
+  "gui_reopen": "Not performed: previously established standalone GUI loader limitation. Native saved model and all new proxies reopened headlessly.",
+  "prior_diagnostics": [
+    "build-v1 signed-coordinate property correction",
+    "build-v2 lug-side identification correction"
+  ],
+  "existing_findings_retained": true
+}

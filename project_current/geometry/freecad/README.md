@@ -1,6 +1,6 @@
 # Current FreeCAD bridge model
 
-**Current model: 14 October 2026, decision D-029.** This is the authoritative
+**Current model: 14 October 2026, decision D-030.** This is the authoritative
 editable bridge geometry and modeled-quantity source. The established native
 filename is retained for existing links; its date is not the current revision date.
 
@@ -38,7 +38,7 @@ Physical model checks do not constitute engineering or fabrication acceptance.
 The cap cages are now 62/90/62 bars under D-027. Backwalls retain 72 bars and cheeks now have
 48 bars. Cap/cheek intersections are resolved. Four horizontal spacing findings,
 33 backwall/cap bar intersections and cap detailing findings remain open.
-Anchorage, development, laps, lug reinforcement and strap
+Lug WWR is modeled under D-030. Anchorage, development, fabrication and strap
 details remain unresolved. COH-023 tracks reconciliation of the adopted CAD with
 the geometry notebook, cap calculations and backwall report. Those calculation
 sources keep their recorded authority and are not silently updated by this adoption.
@@ -100,3 +100,24 @@ Native checks pass for geometry and clearance; the spacing findings remain FAIL.
 The supplied design cases are unchanged. This revision remains local.
 
 [Latest review](evidence/2026-10-14-horizontal-cheek/update-summary.json) and [updated view](evidence/2026-10-14-horizontal-cheek/views/EB1-cheek2-clashes.png).
+
+
+## Cheek lug welded wire reinforcement (D-030)
+
+The accepted **4x4 W1.4xW1.4** layout is installed on all four cheeks: eight
+separate sheets and 172 editable native wires. The bottom sheet folds beneath
+the cap steel and extends **8 7/8 in into the cap**; the side sheet laps the cheek
+steel by **8 1/8 in**. Both include two full 4 in squares. Wire diameter is 0.134 in,
+centerline fold radius is 1 in, and minimum measured cover is 2 1/8 in.
+
+Expand `CheekLugWWR` for per-cheek Inputs, Bottom and Side sheets, live quantities,
+and `CheekLugWWRSchedule`. All 172 wires match the accepted trial and pass the new
+clash/cover review. Existing concrete and steel are unchanged. The 14 existing
+U-bar/hoop overlap pairs remain **Deferred in COH-025**, with [location and close-up
+views](evidence/2026-10-14-lug-wwr/stirrup-review/stirrup-overlap-locations.png).
+The four cheek spacing findings remain Open in COH-024; other findings persist.
+
+See the [WWR adoption evidence](evidence/2026-10-14-lug-wwr/update-summary.json).
+The prior model and runtime are archived as `B4-before-lug-WWR-20261014.FCStd`
+and `B4-before-lug-WWR-runtime-20261014.zip`. The user authorized publication of
+this source update; the previous D-029 revision was also subsequently published.

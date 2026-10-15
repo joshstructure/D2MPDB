@@ -393,3 +393,32 @@ these editable overrides. All other rows keep their generated positions.
 Covered-web limits remain enforced; full physical and spacing checks are still
 required. D-029 intentionally records four 12.375 in spacing failures against
 the existing 12 in maximum, as directed by the user. No limit is relaxed.
+
+
+## Cheek lug WWR (D-030, 14 October 2026)
+
+`lug_wwr.add(doc)` creates the accepted 4x4 W1.4xW1.4 layout once in an explicit
+document. Do not replay it on the current model. Four linked Inputs objects drive
+eight separate Bottom/Side groups, 172 native Arch wires, analytic editable paths,
+live sheet quantities and the CheekLugWWRSchedule. Each input is linked to its
+existing cheek, cap and cage frame. Length dimensions require units; signed local
+Z coordinates use native Distance properties. Wire diameter is nominal 0.134 in.
+
+The bottom mesh has a 1 in centerline fold radius, extends 8.875 in into the cap,
+and uses the accepted 0.625 in along-fold / 0.875 in across-sheet grid offsets.
+Side mesh laps 8.125 in past the outer cheek vertical. Both include two full
+4 in squares. Minimum cover is 2 in; measured minimum is 2.125 in. Nominal
+weight uses W1.4 area 0.014 in^2 and 490 pcf; length excludes fabrication waste.
+
+After a deliberate parameter edit, recompute the WWR objects and run
+`lug_wwr.validate(doc)`. It checks nominal solids against existing steel, piles,
+the combined cap/cheek exterior and other sheets. Factory-welded crossings
+within one sheet are identified separately. Check objects are dated snapshots;
+changed geometry requires fresh physical checks. No existing steel is moved.
+All 1677 prior native object/view records are preserved. Cold reopen restores
+all wire controllers; changing bottom extension by 0.25 in changes ten wire
+lengths and the live schedule total by 2.5 in. This is modeled geometry, not
+development, weld, bend, fabrication or structural design approval.
+
+The 14 U-bar/hoop overlap pairs remain Deferred in COH-025. The four 12.375 in
+cheek spacings stay Open in COH-024; cap/backwall and other findings remain.

@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "basis": "Orthographic review of actual nominal CAD solids, including detached trial WWR. No GUI screenshot or saved model change.",
+  "supports": [
+    {
+      "support": "EB1",
+      "new_wires": 86,
+      "clash_markers": 0
+    },
+    {
+      "support": "EB2",
+      "new_wires": 86,
+      "clash_markers": 0
+    }
+  ]
+}

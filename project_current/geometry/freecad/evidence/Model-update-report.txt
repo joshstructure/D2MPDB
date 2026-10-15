@@ -208,3 +208,21 @@ scope. No native GUI visual review or earlier PDF/DXF package refresh is claimed
 
 See evidence/2026-10-12-cambers/update-summary.json for exact fingerprints,
 checks, schedules, limits and the notebook-driven geometry export.
+
+
+14 OCTOBER 2026 - D-030: CHEEK LUG WWR AND DEFERRED STIRRUP REVIEW
+4x4 W1.4xW1.4 WWR is installed on all four bottom and side lugs: eight sheets,
+172 editable native Arch wires with linked paths, inputs, quantities and schedule.
+The accepted bottom fold extends 8.875 in into the cap; side lap is 8.125 in.
+Both have at least two full 4 in squares. Nominal wire diameter: 0.134 in.
+Centerline fold radius: 1 in. Minimum measured exterior cover: 2.125 in.
+All 172 solids match the accepted trial. No new WWR overlaps were found.
+All 1677 previous native object/view records are preserved; existing steel and
+concrete have not moved. Native reopen and live quantity dependency tests PASS.
+GUI reopen remains unavailable under the previously documented loader limitation.
+The user deferred the 14 existing U-bar/hoop overlap pairs (seven per end bent)
+under COH-025. Four groups occur at each end bent; each pair crosses both sides.
+These remain physical failures. Four cheek spacing findings in COH-024 and all
+other existing cap/backwall, cover, pile, anchorage and fabrication findings remain.
+Native calculation sources/cases are unchanged. This revision is authorized for
+GitHub publication. See evidence/2026-10-14-lug-wwr/update-summary.json.

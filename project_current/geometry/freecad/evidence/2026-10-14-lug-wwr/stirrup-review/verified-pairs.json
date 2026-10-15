@@ -1,0 +1,938 @@
+{
+  "source": {
+    "source": "C:\\github\\D2MPDB\\project_current\\geometry\\freecad\\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+    "sha256": "ab1b6e652183f78dd027adce4683b40e4fdf0e34364181f56f2699f83f0efb5a",
+    "objects": 1677,
+    "existing_bar_counts": {
+      "EB1": 160,
+      "EB2": 160
+    },
+    "trial_only": true,
+    "source_unchanged": true
+  },
+  "pairs": [
+    {
+      "support": "EB1",
+      "a": "CageEB1Trans_R2_3",
+      "b": "CageEB1Trans_R3_1",
+      "kinds": [
+        "pile_u",
+        "hoop"
+      ],
+      "stations_in": [
+        50.875,
+        58.875
+      ],
+      "common_volume_in3": 0.7343221629130795,
+      "recorded_world_frame_common_volume_in3": 0.734322162907956,
+      "common_volume_difference_in3": 5.123457214040172e-12,
+      "exact_common_volume_reproduction_status": "PASS",
+      "common_file": "EB1-overlap-1.brep",
+      "center_in": [
+        58.56348234233824,
+        21.11024368158911,
+        3.375000000047888
+      ],
+      "bounds_in": {
+        "XMin": 57.87731136379454,
+        "XMax": 59.248420657806186,
+        "YMin": 9.081548835128185,
+        "YMax": 33.03883449378279,
+        "ZMin": 2.9999999999999987,
+        "ZMax": 3.7500000000000013
+      },
+      "components": [
+        {
+          "volume_in3": 0.3653497501095614,
+          "center_in": [
+            58.62949807237271,
+            9.881796473016456,
+            3.3750000000011795
+          ],
+          "bounds_in": {
+            "XMin": 58.018151156401025,
+            "XMax": 59.248420657806186,
+            "YMin": 9.081548835128185,
+            "YMax": 10.691933274128347,
+            "ZMin": 2.9999999999999987,
+            "ZMax": 3.7500000000000013
+          }
+        },
+        {
+          "volume_in3": 0.36897241281363247,
+          "center_in": [
+            58.498114769516704,
+            32.228447208715615,
+            3.375000000001621
+          ],
+          "bounds_in": {
+            "XMin": 57.87731136379454,
+            "XMax": 59.11891817524105,
+            "YMin": 31.418059923660433,
+            "YMax": 33.03883449378279,
+            "ZMin": 2.9999999999999996,
+            "ZMax": 3.7500000000000013
+          }
+        }
+      ]
+    },
+    {
+      "support": "EB1",
+      "a": "CageEB1Trans_R2_4",
+      "b": "CageEB1Trans_R3_1",
+      "kinds": [
+        "pile_u",
+        "hoop"
+      ],
+      "stations_in": [
+        56.125,
+        58.875
+      ],
+      "common_volume_in3": 0.6862816719656165,
+      "recorded_world_frame_common_volume_in3": 0.6862816719665816,
+      "common_volume_difference_in3": -9.651168753066486e-13,
+      "exact_common_volume_reproduction_status": "PASS",
+      "common_file": "EB1-overlap-2.brep",
+      "center_in": [
+        58.58134051355834,
+        20.81176331269521,
+        3.411159917131407
+      ],
+      "bounds_in": {
+        "XMin": 57.653809778552464,
+        "XMax": 59.51219748587252,
+        "YMin": 4.545518805574622,
+        "YMax": 37.60616599474464,
+        "ZMin": 2.7528356959821796,
+        "ZMax": 3.988279946447465
+      },
+      "components": [
+        {
+          "volume_in3": 0.3489566654623266,
+          "center_in": [
+            58.66177730509999,
+            5.515507095916882,
+            3.4033816748986214
+          ],
+          "bounds_in": {
+            "XMin": 57.84660593889811,
+            "XMax": 59.51219748587252,
+            "YMin": 4.545518805574622,
+            "YMax": 6.304316010171183,
+            "ZMin": 2.7528356959821796,
+            "ZMax": 3.988279946447465
+          }
+        },
+        {
+          "volume_in3": 0.33741543092353765,
+          "center_in": [
+            58.48245310281125,
+            36.62564786808661,
+            3.4182900513645897
+          ],
+          "bounds_in": {
+            "XMin": 57.653809778552464,
+            "XMax": 59.33393507366021,
+            "YMin": 35.84695652824793,
+            "YMax": 37.60616599474464,
+            "ZMin": 2.752839015284055,
+            "ZMax": 3.948051267372504
+          }
+        }
+      ]
+    },
+    {
+      "support": "EB1",
+      "a": "CageEB1Trans_R4_3",
+      "b": "CageEB1Trans_R5_1",
+      "kinds": [
+        "pile_u",
+        "hoop"
+      ],
+      "stations_in": [
+        104.875,
+        112.875
+      ],
+      "common_volume_in3": 0.7343221629264687,
+      "recorded_world_frame_common_volume_in3": 0.7343221629064747,
+      "common_volume_difference_in3": 1.9994006450474444e-11,
+      "exact_common_volume_reproduction_status": "PASS",
+      "common_file": "EB1-overlap-3.brep",
+      "center_in": [
+        112.56348234070222,
+        21.110243681474866,
+        3.374999999975015
+      ],
+      "bounds_in": {
+        "XMin": 111.87731136378835,
+        "XMax": 113.24842065780508,
+        "YMin": 9.081548835546357,
+        "YMax": 33.03883449421123,
+        "ZMin": 2.9999999999999987,
+        "ZMax": 3.7500000000000013
+      },
+      "components": [
+        {
+          "volume_in3": 0.36534975011154924,
+          "center_in": [
+            112.62949807237183,
+            9.881796473438284,
+            3.3750000000008016
+          ],
+          "bounds_in": {
+            "XMin": 112.01815115639508,
+            "XMax": 113.24842065780508,
+            "YMin": 9.081548835546357,
+            "YMax": 10.691933274550577,
+            "ZMin": 2.9999999999999987,
+            "ZMax": 3.7500000000000013
+          }
+        },
+        {
+          "volume_in3": 0.3689724128095225,
+          "center_in": [
+            112.4981147695124,
+            32.22844720914237,
+            3.3749999999988485
+          ],
+          "bounds_in": {
+            "XMin": 111.87731136378835,
+            "XMax": 113.11891817523525,
+            "YMin": 31.418059924088386,
+            "YMax": 33.03883449421123,
+            "ZMin": 2.9999999999999996,
+            "ZMax": 3.7500000000000013
+          }
+        }
+      ]
+    },
+    {
+      "support": "EB1",
+      "a": "CageEB1Trans_R4_4",
+      "b": "CageEB1Trans_R5_1",
+      "kinds": [
+        "pile_u",
+        "hoop"
+      ],
+      "stations_in": [
+        110.125,
+        112.875
+      ],
+      "common_volume_in3": 0.686281671956746,
+      "recorded_world_frame_common_volume_in3": 0.6862816719746714,
+      "common_volume_difference_in3": -1.792532788869039e-11,
+      "exact_common_volume_reproduction_status": "PASS",
+      "common_file": "EB1-overlap-4.brep",
+      "center_in": [
+        112.58845555026818,
+        20.811763313191886,
+        3.411159917158526
+      ],
+      "bounds_in": {
+        "XMin": 111.65380977855241,
+        "XMax": 113.51219748587246,
+        "YMin": 4.545518805997817,
+        "YMax": 37.60616599516784,
+        "ZMin": 2.7528356959821796,
+        "ZMax": 3.9882799464474528
+      },
+      "components": [
+        {
+          "volume_in3": 0.3489566654624328,
+          "center_in": [
+            112.6617773051001,
+            5.515507096340079,
+            3.403381674898638
+          ],
+          "bounds_in": {
+            "XMin": 111.84660593889816,
+            "XMax": 113.51219748587246,
+            "YMin": 4.545518805997817,
+            "YMax": 6.304316010594266,
+            "ZMin": 2.7528356959821796,
+            "ZMax": 3.9882799464474528
+          }
+        },
+        {
+          "volume_in3": 0.33741543091984905,
+          "center_in": [
+            112.48245310281163,
+            36.62564786851067,
+            3.4182900513663514
+          ],
+          "bounds_in": {
+            "XMin": 111.65380977855241,
+            "XMax": 113.3339350736534,
+            "YMin": 35.84695652867683,
+            "YMax": 37.60616599516784,
+            "ZMin": 2.7528390152840556,
+            "ZMax": 3.9480512673725205
+          }
+        }
+      ]
+    },
+    {
+      "support": "EB1",
+      "a": "CageEB1Trans_R6_3",
+      "b": "CageEB1Trans_R7_1",
+      "kinds": [
+        "pile_u",
+        "hoop"
+      ],
+      "stations_in": [
+        158.875,
+        166.875
+      ],
+      "common_volume_in3": 0.7343221629835139,
+      "recorded_world_frame_common_volume_in3": 0.734322162858481,
+      "common_volume_difference_in3": 1.2503298396637774e-10,
+      "exact_common_volume_reproduction_status": "PASS",
+      "common_file": "EB1-overlap-5.brep",
+      "center_in": [
+        166.56348232897264,
+        21.11024368052361,
+        3.3749999997451843
+      ],
+      "bounds_in": {
+        "XMin": 165.8773113637913,
+        "XMax": 167.24842065780715,
+        "YMin": 9.081548835962133,
+        "YMax": 33.03883449462382,
+        "ZMin": 2.9999999999999987,
+        "ZMax": 3.7500000000000013
+      },
+      "components": [
+        {
+          "volume_in3": 0.36534975011293186,
+          "center_in": [
+            166.62949807237356,
+            9.88179647386235,
+            3.3749999999997526
+          ],
+          "bounds_in": {
+            "XMin": 166.01815115638533,
+            "XMax": 167.24842065780715,
+            "YMin": 9.081548835962133,
+            "YMax": 10.691933274975806,
+            "ZMin": 2.9999999999999987,
+            "ZMax": 3.7500000000000013
+          }
+        },
+        {
+          "volume_in3": 0.36897241281519966,
+          "center_in": [
+            166.498114769522,
+            32.228447209560144,
+            3.3749999999996994
+          ],
+          "bounds_in": {
+            "XMin": 165.8773113637913,
+            "XMax": 167.11891817524685,
+            "YMin": 31.418059924501954,
+            "YMax": 33.03883449462382,
+            "ZMin": 2.9999999999999996,
+            "ZMax": 3.7500000000000013
+          }
+        }
+      ]
+    },
+    {
+      "support": "EB1",
+      "a": "CageEB1Trans_R6_4",
+      "b": "CageEB1Trans_R7_1",
+      "kinds": [
+        "pile_u",
+        "hoop"
+      ],
+      "stations_in": [
+        164.125,
+        166.875
+      ],
+      "common_volume_in3": 0.6862816720113311,
+      "recorded_world_frame_common_volume_in3": 0.6862816719714356,
+      "common_volume_difference_in3": 3.989542030069515e-11,
+      "exact_common_volume_reproduction_status": "PASS",
+      "common_file": "EB1-overlap-6.brep",
+      "center_in": [
+        166.59557057383546,
+        20.811763312113644,
+        3.411159916897991
+      ],
+      "bounds_in": {
+        "XMin": 165.65380977855236,
+        "XMax": 167.51219748587238,
+        "YMin": 4.54551880642099,
+        "YMax": 37.606165995590956,
+        "ZMin": 2.7528356959821783,
+        "ZMax": 3.988279946447447
+      },
+      "components": [
+        {
+          "volume_in3": 0.34895666546178206,
+          "center_in": [
+            166.6617773050996,
+            5.515507096764797,
+            3.403381674898669
+          ],
+          "bounds_in": {
+            "XMin": 165.84660593889822,
+            "XMax": 167.51219748587238,
+            "YMin": 4.54551880642099,
+            "YMax": 6.30431601102037,
+            "ZMin": 2.7528356959821783,
+            "ZMax": 3.988279946447447
+          }
+        },
+        {
+          "volume_in3": 0.3374154309228124,
+          "center_in": [
+            166.48245310281087,
+            36.625647868934124,
+            3.4182900513647856
+          ],
+          "bounds_in": {
+            "XMin": 165.65380977855236,
+            "XMax": 167.3339350736669,
+            "YMin": 35.84695652908904,
+            "YMax": 37.606165995590956,
+            "ZMin": 2.7528390152840547,
+            "ZMax": 3.9480512673724983
+          }
+        }
+      ]
+    },
+    {
+      "support": "EB1",
+      "a": "CageEB1Trans_R7_4",
+      "b": "CageEB1Trans_R8_1",
+      "kinds": [
+        "hoop",
+        "pile_u"
+      ],
+      "stations_in": [
+        192.125,
+        194.875
+      ],
+      "common_volume_in3": 0.7311999589333139,
+      "recorded_world_frame_common_volume_in3": 0.7311231929410232,
+      "common_volume_difference_in3": 7.676599229067271e-05,
+      "exact_common_volume_reproduction_status": "FAIL",
+      "common_file": "EB1-overlap-7.brep",
+      "center_in": [
+        192.08982041427726,
+        20.90399821570826,
+        3.384708015426859
+      ],
+      "bounds_in": {
+        "XMin": 191.0412434688301,
+        "XMax": 192.7524465476636,
+        "YMin": 4.953700340843676,
+        "YMax": 36.87532238167386,
+        "ZMin": 2.953338777129768,
+        "ZMax": 3.886797955845371
+      },
+      "components": [
+        {
+          "volume_in3": 0.3674008696037081,
+          "center_in": [
+            191.9021991623986,
+            5.8711768706900935,
+            3.3817285751512904
+          ],
+          "bounds_in": {
+            "XMin": 191.0412434688301,
+            "XMax": 192.7524465476636,
+            "YMin": 4.953700340843676,
+            "YMax": 6.678757251831416,
+            "ZMin": 2.953338777129768,
+            "ZMax": 3.886797955845371
+          }
+        },
+        {
+          "volume_in3": 0.36484964384346963,
+          "center_in": [
+            191.72564679084306,
+            35.98174582462102,
+            3.377962301467502
+          ],
+          "bounds_in": {
+            "XMin": 191.11469530486414,
+            "XMax": 192.3303302550081,
+            "YMin": 35.18246305276115,
+            "YMax": 36.87532238167386,
+            "ZMin": 2.967578263391986,
+            "ZMax": 3.8458484572780773
+          }
+        }
+      ]
+    },
+    {
+      "support": "EB2",
+      "a": "CageEB2Trans_R2_3",
+      "b": "CageEB2Trans_R3_1",
+      "kinds": [
+        "pile_u",
+        "hoop"
+      ],
+      "stations_in": [
+        50.875,
+        58.875
+      ],
+      "common_volume_in3": 0.7343221629130795,
+      "recorded_world_frame_common_volume_in3": 0.734322162907956,
+      "common_volume_difference_in3": 5.123457214040172e-12,
+      "exact_common_volume_reproduction_status": "PASS",
+      "common_file": "EB2-overlap-1.brep",
+      "center_in": [
+        58.56348234233824,
+        21.11024368158911,
+        3.375000000047888
+      ],
+      "bounds_in": {
+        "XMin": 57.87731136379454,
+        "XMax": 59.248420657806186,
+        "YMin": 9.081548835128185,
+        "YMax": 33.03883449378279,
+        "ZMin": 2.9999999999999987,
+        "ZMax": 3.7500000000000013
+      },
+      "components": [
+        {
+          "volume_in3": 0.3653497501095614,
+          "center_in": [
+            58.62949807237271,
+            9.881796473016456,
+            3.3750000000011795
+          ],
+          "bounds_in": {
+            "XMin": 58.018151156401025,
+            "XMax": 59.248420657806186,
+            "YMin": 9.081548835128185,
+            "YMax": 10.691933274128347,
+            "ZMin": 2.9999999999999987,
+            "ZMax": 3.7500000000000013
+          }
+        },
+        {
+          "volume_in3": 0.36897241281363247,
+          "center_in": [
+            58.498114769516704,
+            32.228447208715615,
+            3.375000000001621
+          ],
+          "bounds_in": {
+            "XMin": 57.87731136379454,
+            "XMax": 59.11891817524105,
+            "YMin": 31.418059923660433,
+            "YMax": 33.03883449378279,
+            "ZMin": 2.9999999999999996,
+            "ZMax": 3.7500000000000013
+          }
+        }
+      ]
+    },
+    {
+      "support": "EB2",
+      "a": "CageEB2Trans_R2_4",
+      "b": "CageEB2Trans_R3_1",
+      "kinds": [
+        "pile_u",
+        "hoop"
+      ],
+      "stations_in": [
+        56.125,
+        58.875
+      ],
+      "common_volume_in3": 0.6862816719656148,
+      "recorded_world_frame_common_volume_in3": 0.6862816719665815,
+      "common_volume_difference_in3": -9.666711875411238e-13,
+      "exact_common_volume_reproduction_status": "PASS",
+      "common_file": "EB2-overlap-2.brep",
+      "center_in": [
+        58.58134051355847,
+        20.811763312695263,
+        3.4111599171314153
+      ],
+      "bounds_in": {
+        "XMin": 57.653809778552464,
+        "XMax": 59.51219748587252,
+        "YMin": 4.545518805574622,
+        "YMax": 37.60616599474464,
+        "ZMin": 2.7528356959821796,
+        "ZMax": 3.988279946447465
+      },
+      "components": [
+        {
+          "volume_in3": 0.3489566654623267,
+          "center_in": [
+            58.66177730509995,
+            5.515507095916879,
+            3.4033816748986205
+          ],
+          "bounds_in": {
+            "XMin": 57.84660593889811,
+            "XMax": 59.51219748587252,
+            "YMin": 4.545518805574622,
+            "YMax": 6.304316010171183,
+            "ZMin": 2.7528356959821796,
+            "ZMax": 3.988279946447465
+          }
+        },
+        {
+          "volume_in3": 0.3374154309235377,
+          "center_in": [
+            58.48245310281125,
+            36.625647868086595,
+            3.4182900513645897
+          ],
+          "bounds_in": {
+            "XMin": 57.653809778552464,
+            "XMax": 59.33393507366021,
+            "YMin": 35.84695652824793,
+            "YMax": 37.60616599474464,
+            "ZMin": 2.752839015284055,
+            "ZMax": 3.948051267372504
+          }
+        }
+      ]
+    },
+    {
+      "support": "EB2",
+      "a": "CageEB2Trans_R4_3",
+      "b": "CageEB2Trans_R5_1",
+      "kinds": [
+        "pile_u",
+        "hoop"
+      ],
+      "stations_in": [
+        104.875,
+        112.875
+      ],
+      "common_volume_in3": 0.7343221629264687,
+      "recorded_world_frame_common_volume_in3": 0.7343221629064747,
+      "common_volume_difference_in3": 1.9994006450474444e-11,
+      "exact_common_volume_reproduction_status": "PASS",
+      "common_file": "EB2-overlap-3.brep",
+      "center_in": [
+        112.56348234070222,
+        21.110243681474866,
+        3.374999999975015
+      ],
+      "bounds_in": {
+        "XMin": 111.87731136378835,
+        "XMax": 113.24842065780508,
+        "YMin": 9.081548835546357,
+        "YMax": 33.03883449421123,
+        "ZMin": 2.9999999999999987,
+        "ZMax": 3.7500000000000013
+      },
+      "components": [
+        {
+          "volume_in3": 0.36534975011154924,
+          "center_in": [
+            112.62949807237183,
+            9.881796473438284,
+            3.3750000000008016
+          ],
+          "bounds_in": {
+            "XMin": 112.01815115639508,
+            "XMax": 113.24842065780508,
+            "YMin": 9.081548835546357,
+            "YMax": 10.691933274550577,
+            "ZMin": 2.9999999999999987,
+            "ZMax": 3.7500000000000013
+          }
+        },
+        {
+          "volume_in3": 0.3689724128095225,
+          "center_in": [
+            112.4981147695124,
+            32.22844720914237,
+            3.3749999999988485
+          ],
+          "bounds_in": {
+            "XMin": 111.87731136378835,
+            "XMax": 113.11891817523525,
+            "YMin": 31.418059924088386,
+            "YMax": 33.03883449421123,
+            "ZMin": 2.9999999999999996,
+            "ZMax": 3.7500000000000013
+          }
+        }
+      ]
+    },
+    {
+      "support": "EB2",
+      "a": "CageEB2Trans_R4_4",
+      "b": "CageEB2Trans_R5_1",
+      "kinds": [
+        "pile_u",
+        "hoop"
+      ],
+      "stations_in": [
+        110.125,
+        112.875
+      ],
+      "common_volume_in3": 0.6862816719567464,
+      "recorded_world_frame_common_volume_in3": 0.6862816719746714,
+      "common_volume_difference_in3": -1.7924994821783002e-11,
+      "exact_common_volume_reproduction_status": "PASS",
+      "common_file": "EB2-overlap-4.brep",
+      "center_in": [
+        112.58845555026812,
+        20.811763313191875,
+        3.411159917158524
+      ],
+      "bounds_in": {
+        "XMin": 111.65380977855241,
+        "XMax": 113.51219748587246,
+        "YMin": 4.545518805997817,
+        "YMax": 37.60616599516784,
+        "ZMin": 2.7528356959821796,
+        "ZMax": 3.9882799464474528
+      },
+      "components": [
+        {
+          "volume_in3": 0.34895666546243276,
+          "center_in": [
+            112.6617773051001,
+            5.5155070963400785,
+            3.403381674898637
+          ],
+          "bounds_in": {
+            "XMin": 111.84660593889816,
+            "XMax": 113.51219748587246,
+            "YMin": 4.545518805997817,
+            "YMax": 6.304316010594266,
+            "ZMin": 2.7528356959821796,
+            "ZMax": 3.9882799464474528
+          }
+        },
+        {
+          "volume_in3": 0.3374154309198491,
+          "center_in": [
+            112.48245310281163,
+            36.62564786851066,
+            3.4182900513663514
+          ],
+          "bounds_in": {
+            "XMin": 111.65380977855241,
+            "XMax": 113.3339350736534,
+            "YMin": 35.84695652867683,
+            "YMax": 37.60616599516784,
+            "ZMin": 2.7528390152840556,
+            "ZMax": 3.9480512673725205
+          }
+        }
+      ]
+    },
+    {
+      "support": "EB2",
+      "a": "CageEB2Trans_R6_3",
+      "b": "CageEB2Trans_R7_1",
+      "kinds": [
+        "pile_u",
+        "hoop"
+      ],
+      "stations_in": [
+        158.875,
+        166.875
+      ],
+      "common_volume_in3": 0.7343221629835139,
+      "recorded_world_frame_common_volume_in3": 0.734322162858481,
+      "common_volume_difference_in3": 1.2503298396637774e-10,
+      "exact_common_volume_reproduction_status": "PASS",
+      "common_file": "EB2-overlap-5.brep",
+      "center_in": [
+        166.56348232897264,
+        21.11024368052361,
+        3.3749999997451843
+      ],
+      "bounds_in": {
+        "XMin": 165.8773113637913,
+        "XMax": 167.24842065780715,
+        "YMin": 9.081548835962133,
+        "YMax": 33.03883449462382,
+        "ZMin": 2.9999999999999987,
+        "ZMax": 3.7500000000000013
+      },
+      "components": [
+        {
+          "volume_in3": 0.36534975011293186,
+          "center_in": [
+            166.62949807237356,
+            9.88179647386235,
+            3.3749999999997526
+          ],
+          "bounds_in": {
+            "XMin": 166.01815115638533,
+            "XMax": 167.24842065780715,
+            "YMin": 9.081548835962133,
+            "YMax": 10.691933274975806,
+            "ZMin": 2.9999999999999987,
+            "ZMax": 3.7500000000000013
+          }
+        },
+        {
+          "volume_in3": 0.36897241281519966,
+          "center_in": [
+            166.498114769522,
+            32.228447209560144,
+            3.3749999999996994
+          ],
+          "bounds_in": {
+            "XMin": 165.8773113637913,
+            "XMax": 167.11891817524685,
+            "YMin": 31.418059924501954,
+            "YMax": 33.03883449462382,
+            "ZMin": 2.9999999999999996,
+            "ZMax": 3.7500000000000013
+          }
+        }
+      ]
+    },
+    {
+      "support": "EB2",
+      "a": "CageEB2Trans_R6_4",
+      "b": "CageEB2Trans_R7_1",
+      "kinds": [
+        "pile_u",
+        "hoop"
+      ],
+      "stations_in": [
+        164.125,
+        166.875
+      ],
+      "common_volume_in3": 0.6862816720113315,
+      "recorded_world_frame_common_volume_in3": 0.6862816719714352,
+      "common_volume_difference_in3": 3.989630847911485e-11,
+      "exact_common_volume_reproduction_status": "PASS",
+      "common_file": "EB2-overlap-6.brep",
+      "center_in": [
+        166.5955705738354,
+        20.811763312113634,
+        3.411159916897989
+      ],
+      "bounds_in": {
+        "XMin": 165.65380977855236,
+        "XMax": 167.51219748587238,
+        "YMin": 4.54551880642099,
+        "YMax": 37.606165995590956,
+        "ZMin": 2.7528356959821783,
+        "ZMax": 3.988279946447447
+      },
+      "components": [
+        {
+          "volume_in3": 0.3489566654617821,
+          "center_in": [
+            166.6617773050996,
+            5.515507096764797,
+            3.403381674898669
+          ],
+          "bounds_in": {
+            "XMin": 165.84660593889822,
+            "XMax": 167.51219748587238,
+            "YMin": 4.54551880642099,
+            "YMax": 6.30431601102037,
+            "ZMin": 2.7528356959821783,
+            "ZMax": 3.988279946447447
+          }
+        },
+        {
+          "volume_in3": 0.3374154309228124,
+          "center_in": [
+            166.4824531028109,
+            36.62564786893412,
+            3.418290051364786
+          ],
+          "bounds_in": {
+            "XMin": 165.65380977855236,
+            "XMax": 167.3339350736669,
+            "YMin": 35.84695652908904,
+            "YMax": 37.606165995590956,
+            "ZMin": 2.7528390152840547,
+            "ZMax": 3.9480512673724983
+          }
+        }
+      ]
+    },
+    {
+      "support": "EB2",
+      "a": "CageEB2Trans_R7_4",
+      "b": "CageEB2Trans_R8_1",
+      "kinds": [
+        "hoop",
+        "pile_u"
+      ],
+      "stations_in": [
+        192.125,
+        194.875
+      ],
+      "common_volume_in3": 0.7311999589333134,
+      "recorded_world_frame_common_volume_in3": 0.7311231929410232,
+      "common_volume_difference_in3": 7.67659922901176e-05,
+      "exact_common_volume_reproduction_status": "FAIL",
+      "common_file": "EB2-overlap-7.brep",
+      "center_in": [
+        192.08982041427745,
+        20.90399821570828,
+        3.384708015426861
+      ],
+      "bounds_in": {
+        "XMin": 191.0412434688301,
+        "XMax": 192.7524465476636,
+        "YMin": 4.953700340843676,
+        "YMax": 36.87532238167386,
+        "ZMin": 2.953338777129768,
+        "ZMax": 3.886797955845371
+      },
+      "components": [
+        {
+          "volume_in3": 0.367400869603708,
+          "center_in": [
+            191.9021991623987,
+            5.871176870690093,
+            3.3817285751512904
+          ],
+          "bounds_in": {
+            "XMin": 191.0412434688301,
+            "XMax": 192.7524465476636,
+            "YMin": 4.953700340843676,
+            "YMax": 6.678757251831416,
+            "ZMin": 2.953338777129768,
+            "ZMax": 3.886797955845371
+          }
+        },
+        {
+          "volume_in3": 0.36484964384346963,
+          "center_in": [
+            191.7256467908431,
+            35.98174582462103,
+            3.377962301467502
+          ],
+          "bounds_in": {
+            "XMin": 191.11469530486414,
+            "XMax": 192.3303302550081,
+            "YMin": 35.18246305276115,
+            "YMax": 36.87532238167386,
+            "ZMin": 2.967578263391986,
+            "ZMax": 3.8458484572780773
+          }
+        }
+      ]
+    }
+  ],
+  "status": "CONFIRMED_14_POSITIVE_VOLUME_OVERLAPS",
+  "model_changed": false,
+  "visual_review": {
+    "basis": "Exact exported current nominal BRep solids, rendered orthographically. Upper steel clipped above 12 in for visibility.",
+    "images": [
+      "stirrup-overlap-locations.png",
+      "stirrup-overlap-closeups.png"
+    ],
+    "all_overlap_classifications_reproduced": true,
+    "physical_intersection_components_per_end": 14,
+    "diagnostics": "Initial strict reproduction assertion stopped at pair 7. Original-frame volume 0.7311231929410232 in3; cap-frame recomputation 0.7311999589333139 in3. Both EB1/EB2 differences retained as FAIL for exact volume reproduction; both remain positive-volume physical overlaps. No tolerance changed, geometry changed or clash suppressed.",
+    "model_changed": false
+  }
+}

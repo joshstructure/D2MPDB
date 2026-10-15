@@ -183,3 +183,15 @@ The user elected to move only MH03: the four resulting 12 3/8 in spacings exceed
 the existing 12 in maximum and remain flagged under open item COH-024.
 Native checks pass for geometry and clearance; the spacing findings remain FAIL.
 The supplied design cases are unchanged. This revision remains local.
+
+
+## 14 October cheek lug WWR adoption and stirrup deferral
+
+D-030 installs the accepted 4x4 W1.4xW1.4 bottom/side lug mesh in the current
+CAD source: eight sheets, 172 editable wires, bottom extension 8 7/8 in and
+side lap 8 1/8 in. No new WWR clashes occur; minimum measured cover is 2 1/8 in.
+The model preserves all existing concrete and steel. COH-025 defers the 14
+existing U-bar/hoop overlap pairs for later review without treating them as clear.
+COH-024's four 12 3/8 in spacing findings and the other existing findings remain.
+The user authorized this model/source update and GitHub publication. See the
+[adoption summary](geometry/freecad/evidence/2026-10-14-lug-wwr/update-summary.json).

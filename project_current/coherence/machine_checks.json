@@ -1,15 +1,15 @@
 {
-  "checked_at_utc": "2026-10-15T00:48:43.405354+00:00",
+  "checked_at_utc": "2026-10-15T02:29:44.651176+00:00",
   "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
-  "register_sha256": "e41286574756b8bb389c9f27579b589d61ac160d92488fc3abf9964e2c491e96",
-  "tracker_sha256": "d9a42d95e0a5a44c114278bb2cbd4c48fc5f7dbd42ca43f36ba7e2b6ff8eb88b",
+  "register_sha256": "c79e8f26bc77110e496aca232ef2b13e2934e4ab4d5af231f5bed95566953aec",
+  "tracker_sha256": "6d15e3262ed1ff2973b84a2429e8faf8fefb1a1b2daaf10883ad9be12870ce89",
   "source_count": 27,
-  "item_count": 24,
-  "outstanding_count": 12,
+  "item_count": 25,
+  "outstanding_count": 13,
   "status_counts": {
     "Closed": 12,
     "Open": 10,
-    "Deferred": 1,
+    "Deferred": 2,
     "Awaiting source": 1
   },
   "check_counts": {
@@ -226,8 +226,8 @@
         "CAD-MODEL"
       ],
       "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-      "expected_sha256": "ab1b6e652183f78dd027adce4683b40e4fdf0e34364181f56f2699f83f0efb5a",
-      "actual_sha256": "ab1b6e652183f78dd027adce4683b40e4fdf0e34364181f56f2699f83f0efb5a"
+      "expected_sha256": "1b4765f4dd2fc87c42a7b512943b2fb900a3260fc686d281c7208420c29575f7",
+      "actual_sha256": "1b4765f4dd2fc87c42a7b512943b2fb900a3260fc686d281c7208420c29575f7"
     },
     {
       "check_id": "SOURCE:CAD-RUNTIME",
@@ -237,8 +237,8 @@
         "CAD-RUNTIME"
       ],
       "path": "project_current/geometry/freecad/manifest.json",
-      "expected_sha256": "7f39b1c9694a231481fbe0e2f85dda4c45e372976a72fe56b2f32fa338c3096b",
-      "actual_sha256": "7f39b1c9694a231481fbe0e2f85dda4c45e372976a72fe56b2f32fa338c3096b"
+      "expected_sha256": "d9f46cac6255ddfbb56a87503fbd5941fd696829ff021baabaf1b0acdda96498",
+      "actual_sha256": "d9f46cac6255ddfbb56a87503fbd5941fd696829ff021baabaf1b0acdda96498"
     },
     {
       "check_id": "SOURCE:CAD-REPORT",
@@ -248,8 +248,8 @@
         "CAD-REPORT"
       ],
       "path": "project_current/geometry/freecad/evidence/Model-update-report.txt",
-      "expected_sha256": "3ba7e6fc7d46674bcbd99ec2543120592a973b0f2cff3d8069ac4fb7790de9e9",
-      "actual_sha256": "3ba7e6fc7d46674bcbd99ec2543120592a973b0f2cff3d8069ac4fb7790de9e9"
+      "expected_sha256": "1883045912e38bcc8f215b024b72e4f5e369a075aca0bdf3e6eac7f6e431cc93",
+      "actual_sha256": "1883045912e38bcc8f215b024b72e4f5e369a075aca0bdf3e6eac7f6e431cc93"
     },
     {
       "check_id": "SOURCE:BACKWALL-TOOL",
@@ -1017,6 +1017,21 @@
       "Source references": "D-027; CAD-MODEL; EB-CASE; EB2-CASE; geometry/freecad/evidence/2026-10-14-end-caps/; D-028; geometry/freecad/evidence/2026-10-14-cap-cheek-coordination/; D-029; geometry/freecad/evidence/2026-10-14-horizontal-cheek/",
       "Last reviewed": "2026-10-14",
       "_row": 32
+    },
+    {
+      "Item ID": "COH-025",
+      "Status": "Deferred",
+      "Area": "CAD / reinforcement",
+      "Item": "End-bent U-bar / hoop overlaps",
+      "Finding": "14 overlapping bar pairs remain: seven per end bent at four groups. Turned pile U-bar ends penetrate hoop bottoms. Each pair crosses on both cap sides (14 crossing points per end). Hoop stations: 58.875, 112.875, 166.875 and 192.125 in from the left outer cheek face.",
+      "Next action": "Review the U-bar / hoop intersections later and agree revisions. Recheck affected steel, cover, spacing, piles and WWR before closing. Leave current stirrups and U-bars unchanged.",
+      "Your response": "Lets leave these clashes for now but flag them for review later in the coherence log",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "Deferred by user on 14 October 2026; unresolved positive-volume overlaps, not accepted as clear. CAD review confirms the same four groups at EB1 and EB2. This deferral concerns these 14 pairs only.",
+      "Source references": "CAD-MODEL; EB-CASE; EB2-CASE; geometry/freecad/evidence/2026-10-14-lug-wwr/stirrup-review/; D-030",
+      "Last reviewed": "2026-10-14",
+      "_row": 33
     }
   ]
 }

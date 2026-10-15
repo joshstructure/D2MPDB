@@ -1,0 +1,100 @@
+{
+  "status": "ADOPTED_WWR_EXISTING_STIRRUP_CLASHES_DEFERRED",
+  "date": "2026-10-14",
+  "decision": "D-030",
+  "model_sha256": "1b4765f4dd2fc87c42a7b512943b2fb900a3260fc686d281c7208420c29575f7",
+  "previous_model_sha256": "ab1b6e652183f78dd027adce4683b40e4fdf0e34364181f56f2699f83f0efb5a",
+  "wwr": "4x4 W1.4xW1.4",
+  "nominal_wire_diameter_in": 0.134,
+  "nominal_wire_area_in2": 0.014,
+  "wire_reference": "https://wirereinforcementinstitute.org/download_file/view/625/337",
+  "sheet_count": 8,
+  "wire_count": 172,
+  "bottom_extension_into_cap_in": 8.875,
+  "side_lap_past_outer_cheek_vertical_in": 8.125,
+  "minimum_full_squares": 2,
+  "grid_spacing_in": 4,
+  "centerline_bend_radius_in": 1,
+  "minimum_cover_in": 2.1249999980554874,
+  "new_overlap_pairs": 0,
+  "physical_cover_checks": 172,
+  "accepted_trial_matches": 172,
+  "preserved_native_records": 1677,
+  "preserved_native_view_records": 1677,
+  "native_arch_wires": true,
+  "parametric_dependency_test": "PASS: 0.25 in bottom-extension edit changed each of ten bent wires by 0.25 in and live quantity/schedule by 2.5 in. Disposable edit discarded without saving.",
+  "gui_reopen": "Not performed: previously established standalone GUI loader limitation. Native saved model and all new proxies reopened headlessly.",
+  "stirrup_overlaps": {
+    "pairs": 14,
+    "pairs_per_end_bent": 7,
+    "groups_per_end_bent": 4,
+    "status": "Deferred",
+    "coherence_id": "COH-025",
+    "geometry_changed": false
+  },
+  "remaining_findings": {
+    "horizontal_cheek_spacing": "Four 12.375 in spacings remain Open in COH-024",
+    "cap_backwall_overlap_pairs": 29,
+    "backwall_internal_overlap_pairs": 4,
+    "other_cover_pile_anchorage_fabrication": "Existing findings and review limits retained"
+  },
+  "quantities": [
+    {
+      "host": "BridgeCheekEB11",
+      "sheet": "bottom",
+      "wires": 15,
+      "length_in": 386.9579632646571,
+      "weight_lb": 1.5361872847196456
+    },
+    {
+      "host": "BridgeCheekEB11",
+      "sheet": "side",
+      "wires": 28,
+      "length_in": 842.7484660669123,
+      "weight_lb": 3.3456333780202687
+    },
+    {
+      "host": "BridgeCheekEB12",
+      "sheet": "bottom",
+      "wires": 15,
+      "length_in": 386.9579632646569,
+      "weight_lb": 1.5361872847196447
+    },
+    {
+      "host": "BridgeCheekEB12",
+      "sheet": "side",
+      "wires": 28,
+      "length_in": 842.7484660669123,
+      "weight_lb": 3.3456333780202687
+    },
+    {
+      "host": "BridgeCheekEB21",
+      "sheet": "bottom",
+      "wires": 15,
+      "length_in": 386.95796326466166,
+      "weight_lb": 1.5361872847196634
+    },
+    {
+      "host": "BridgeCheekEB21",
+      "sheet": "side",
+      "wires": 28,
+      "length_in": 842.7484713582204,
+      "weight_lb": 3.345633399026272
+    },
+    {
+      "host": "BridgeCheekEB22",
+      "sheet": "bottom",
+      "wires": 15,
+      "length_in": 386.95796326466166,
+      "weight_lb": 1.5361872847196634
+    },
+    {
+      "host": "BridgeCheekEB22",
+      "sheet": "side",
+      "wires": 28,
+      "length_in": 842.7484713582204,
+      "weight_lb": 3.345633399026272
+    }
+  ],
+  "publication": "User explicitly requested project source model update and push to GitHub."
+}
