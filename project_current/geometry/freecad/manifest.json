@@ -3,8 +3,8 @@
   "authority": "Current editable FreeCAD geometry and modeled quantities; engineering acceptance remains separate",
   "model": {
     "path": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-    "sha256": "1b4765f4dd2fc87c42a7b512943b2fb900a3260fc686d281c7208420c29575f7",
-    "bytes": 7221290,
+    "sha256": "0f684dc5781f5497efb4f7fc44419f06e8cf43f3e73753b41548f79b0c959d22",
+    "bytes": 6870038,
     "objects": 2045
   },
   "source_revision": "01a1fcc34d6345ceacf96245bcf0c931d118a1ab",
@@ -19,7 +19,7 @@
     "D-028: editable cheek vertical stations and cap hoop station overrides; tested native synchronizers, unchanged supplied cases, strict physical clearance checks.",
     "D-029: native editable horizontal cheek station overrides; all original source cases and spacing limits preserved.",
     "D-030: editable lug_wwr native Arch wires, linked analytic paths, inputs, live quantities/schedule and strict physical checks; all previous controllers unchanged.",
-    "15 October: opt-in deck_edge_details native controllers, physical detail checks, and independent chamfer/groove volume deduction in bridge validation. Registered main FCStd remains D-030; live edit has a separately saved recovery copy."
+    "15 October D-031: deck_edge_details native controllers, physical detail checks, and independent chamfer/groove volume deduction in bridge validation. Verified deck-edge geometry and viewing palette adopted in the saved main FCStd; prior model archived."
   ],
   "runtime_files": {
     "runtime/API.md": "2c5725631710c28e710ddc1ae3721d924799fd321694618133312ffd37e3ecd6",
@@ -153,7 +153,7 @@
     "evidence/delivery-helper-fingerprints.json": "2eda36676cc40916485c708e385818c6e99ead3be41e5754a55bc5e772e58c62",
     "evidence/final-reopen-verification.json": "fde89e9b9c8bb47433a964e3d0b3faedcb00c201b8ada10b348c086e4bfaeec9",
     "evidence/final-save.json": "7767f925bccdf426225cf1d4269ce59919cdcf71267f7c56c7484547f758e946",
-    "evidence/Model-update-report.txt": "1883045912e38bcc8f215b024b72e4f5e369a075aca0bdf3e6eac7f6e431cc93",
+    "evidence/Model-update-report.txt": "d0cfb3b3bec429ec33a7be1c71d0e9222db075fecdaecf8ca4c200e9d4319dec",
     "evidence/opener-verification.json": "7cfd370f32a419bd160ce2f914df4e861372addcab97d9e64896fb6135d40fdf",
     "evidence/portable-verification.json": "5daa7dfc49c7f7b11c641a51d2e425ce853dc08ee134356c02746d93d028ec36",
     "evidence/session-checkpoint.json": "c22fc947838b3ed99425beeab12c10e80b62b12be04d01444f2a0677135096c5",
@@ -291,23 +291,25 @@
     "evidence/2026-10-14-lug-wwr/views/EB2-cheek2-bottom.png": "7d25565b8d7272a35172d0077b40f55186eb7c5e27b2cbdc796e6db91abe30a1",
     "evidence/2026-10-14-lug-wwr/views/EB2-cheek2-fold.png": "9f03f2ca30a94ce30714c162f9d921d01ea796883e0471e201f725e29e90eda6",
     "evidence/2026-10-14-lug-wwr/views/EB2-cheek2-side.png": "34d0e9c0b493809364d352d141f8c88298d99aaa61bd799db3a4c4f6eaa0ffb0",
-    "evidence/2026-10-15-deck-edges/checkpoint.json": "32879de11d8ea51845a63ace0cc86c9c578f3fd3065fb7d9d8676afa3bab0718",
+    "evidence/2026-10-15-deck-edges/checkpoint.json": "9fd513223c244ddbe7c6b3787a9a432e8bac823aa3fd59ddc1d199b258a1cf59",
     "evidence/2026-10-15-deck-edges/cold-reopen.json": "7c52b33b533ab5850af14f8b61a3097c1653617111a04c49bc26e7cdbbc90d12",
     "evidence/2026-10-15-deck-edges/dxf-dimensions.json": "886a132009a078d54ac9f49d4a17ae077d829fa765c5b80672d6dcddb3d25c56",
     "evidence/2026-10-15-deck-edges/live-result.json": "ab5e2cff39720dca998c49e892d06bc4794bcb28c1183587f0ce03471444a2b3",
-    "evidence/2026-10-15-deck-edges/trial-result.json": "66f8cdde74ea4bae53a5b6e185b85eb8e924e60408eaa1f14d61f0e13a3677b2"
+    "evidence/2026-10-15-deck-edges/trial-result.json": "66f8cdde74ea4bae53a5b6e185b85eb8e924e60408eaa1f14d61f0e13a3677b2",
+    "evidence/2026-10-15-deck-edges/adoption-cold-reopen.json": "c6771d7511c43ba8c948e7d66ef00270501b76e3d2f79abcb2a8968c99ac2851",
+    "evidence/2026-10-15-deck-edges/adoption-summary.json": "6b66fac8551de0c057f460c2714e7d3f92ae4b8f7a55116e4d7f57ecf9d28c87"
   },
   "known_review_status": "0 new WWR overlaps; 14 existing U-bar/hoop pairs Deferred in COH-025. Four cheek spacing findings Open in COH-024; 29 cap/backwall and 4 backwall internal overlaps and other existing findings retained.",
   "portability_verification": "Cold native reopen and live dependency test PASS; 172 accepted-trial solid matches; all 1677 prior native object/view records exact. Previous standalone GUI loader limitation retained.",
-  "updated_on": "2026-10-14",
+  "updated_on": "2026-10-15",
   "current_update": {
-    "date": "2026-10-14",
-    "decision": "D-030",
-    "scope": "Accepted cheek-lug WWR; existing stirrup overlaps Deferred in COH-025",
-    "summary": "evidence/2026-10-14-lug-wwr/update-summary.json",
-    "previous_model_sha256": "ab1b6e652183f78dd027adce4683b40e4fdf0e34364181f56f2699f83f0efb5a",
+    "date": "2026-10-15",
+    "decision": "D-031",
+    "scope": "Both bridge spans: 1.5 in barrier setback, 0.75 in top/bottom deck-edge chamfers, 1 in wide by 0.5 in deep V grooves centered 3 in along the soffit from the virtual outer corner; 12 ft clear between barrier faces.",
+    "summary": "evidence/2026-10-15-deck-edges/adoption-summary.json",
+    "previous_model_sha256": "1b4765f4dd2fc87c42a7b512943b2fb900a3260fc686d281c7208420c29575f7",
     "follow_up": "COH-023; COH-024; COH-025",
-    "publication": "USER AUTHORIZED GITHUB PUSH"
+    "publication": "Standing project GitHub delivery instructions"
   },
   "archive_files": {
     "archive/B4-before-pedestal-ubars-20261012.FCStd": "e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118",
@@ -320,30 +322,34 @@
     "archive/B4-before-horizontal-cheek-20261014.FCStd": "830f2593370ea96914ecc366b5ff263458e095b873151aa13080244737ab6fde",
     "archive/B4-before-horizontal-cheek-runtime-20261014.zip": "c0762a1189fb1d36210eedaa572c958107d31943688b557af1ef98fc3d57552e",
     "archive/B4-before-lug-WWR-20261014.FCStd": "ab1b6e652183f78dd027adce4683b40e4fdf0e34364181f56f2699f83f0efb5a",
-    "archive/B4-before-lug-WWR-runtime-20261014.zip": "a526376025407983c3da26d0df2f75f19b37a5eec447abeb4c67e0dbbf55d60b"
+    "archive/B4-before-lug-WWR-runtime-20261014.zip": "a526376025407983c3da26d0df2f75f19b37a5eec447abeb4c67e0dbbf55d60b",
+    "archive/B4-before-deck-edge-details-20261015.FCStd": "1b4765f4dd2fc87c42a7b512943b2fb900a3260fc686d281c7208420c29575f7",
+    "archive/B4-before-deck-edge-details-record-20261015.zip": "cae56ba436b553aa4447d281ef04413d7396c3d41d24b542d24f630f7c28b4ca"
   },
   "previous_update": {
     "date": "2026-10-14",
-    "decision": "D-029",
-    "scope": "Lower only MH03 3/8 in per cheek; stirrups unchanged; spacing remains open",
-    "summary": "evidence/2026-10-14-horizontal-cheek/update-summary.json",
-    "previous_model_sha256": "830f2593370ea96914ecc366b5ff263458e095b873151aa13080244737ab6fde",
-    "follow_up": "COH-024",
-    "publication": "LOCAL ONLY"
+    "decision": "D-030",
+    "scope": "Accepted cheek-lug WWR; existing stirrup overlaps Deferred in COH-025",
+    "summary": "evidence/2026-10-14-lug-wwr/update-summary.json",
+    "previous_model_sha256": "ab1b6e652183f78dd027adce4683b40e4fdf0e34364181f56f2699f83f0efb5a",
+    "follow_up": "COH-023; COH-024; COH-025",
+    "publication": "USER AUTHORIZED GITHUB PUSH"
   },
   "extra_macros": {
     "Show_Elevations.FCMacro": "f27415eb7d8fe05a5ff8d05a01a5298b36ac1d3cf987ec8738ed541d085a3fc4"
   },
   "deck_edge_review_20261015": {
     "date": "2026-10-15",
-    "status": "LIVE_EDIT_VERIFIED_MAIN_FILE_NOT_OVERWRITTEN",
+    "status": "ADOPTED_IN_PROJECT_SOURCE",
     "scope": "Deck barrier inset, top/bottom deck-edge chamfers and soffit V grooves; both spans",
-    "main_source_unchanged_sha256": "1b4765f4dd2fc87c42a7b512943b2fb900a3260fc686d281c7208420c29575f7",
     "local_review_copy": "C:/Users/joshs/Desktop/CAD_AI/reports/deck-edge-details-20261015/B4 - Deck edge details - Review.FCStd",
     "review_copy_sha256": "ee9098498466b8b1e925f8b231d0c5c8d159d9ddeb34f9973988026520c64268",
     "verification": "Live measurement, native trial/cold reopen and no positive-volume overlaps involving the six changed final components. 1,689 protected native Shapes preserved. Native setback edit to 2 in verified and restored to 1.5 in. All bridge geometry checks pass.",
-    "remaining": "Working document changes remain unsaved to its main path. Existing unrelated coherence findings remain. User requested pause within eight minutes.",
+    "remaining": "Existing unrelated coherence findings remain; deck-edge model update complete.",
     "source": "MSE-DETAIL-DXF, unchanged source handle D4B8 and barrier block geometry",
-    "controller": "runtime/freecad_tools/deck_edge_details.py"
+    "controller": "runtime/freecad_tools/deck_edge_details.py",
+    "adoption_summary": "adoption-summary.json",
+    "current_model_sha256": "0f684dc5781f5497efb4f7fc44419f06e8cf43f3e73753b41548f79b0c959d22",
+    "previous_main_source_sha256": "1b4765f4dd2fc87c42a7b512943b2fb900a3260fc686d281c7208420c29575f7"
   }
 }

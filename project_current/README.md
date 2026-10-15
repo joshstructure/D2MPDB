@@ -1,7 +1,7 @@
 # Current project record
 
 Start here for the D2 I-95 pedestrian bridge's current source files, adopted
-decisions and outstanding coherence items. Initial inventory: **9 October 2026**. Source update: **14 October 2026**.
+decisions and outstanding coherence items. Initial inventory: **9 October 2026**. Source update: **15 October 2026**.
 "Current" identifies the selected source. Each source retains its own review and
 design-completion status.
 
@@ -14,7 +14,7 @@ design-completion status.
 | Exact source revisions and missing files | [Source register](source_register.csv) |
 | Recorded decisions and ownership | [Decisions](decisions.md) |
 | Native project journal | [D2 I-95 Project Journal](../journal/D2_I95_Project_Journal.bpad) with [References](../journal/References/) |
-| Current editable FreeCAD model and live quantities | [Open the bridge model](geometry/freecad/README.md) — adopted DXF/MSE/barriers and centered #4 cheek mats; calculation reconciliation remains open |
+| Current editable FreeCAD model and live quantities | [Open the bridge model](geometry/freecad/README.md) — adopted deck barrier inset, chamfers/drip grooves, DXF/MSE details and reinforcement; calculation reconciliation remains open |
 | Geometry notebook | [Bridge geometry](../Bridge_Geometry_2%20Beam_V2.ipynb) and [roadway XML](../Geometry%20Report.xml) |
 | Pier cap | [Report](cap_design/pier/Pier%20Cap%20Design%2010-12.html), [saved case](cap_design/pier/selected_case.json), [FBMP export](fbmp/pier/Pier_Fixed.XML) |
 | End Bent 1 cap | [Report](cap_design/end_bents/End%20Bent%201%20Cap%20Design%2010-14.html), [saved case](cap_design/end_bents/selected_case.json) |

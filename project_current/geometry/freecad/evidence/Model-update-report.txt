@@ -226,3 +226,17 @@ These remain physical failures. Four cheek spacing findings in COH-024 and all
 other existing cap/backwall, cover, pile, anchorage and fabrication findings remain.
 Native calculation sources/cases are unchanged. This revision is authorized for
 GitHub publication. See evidence/2026-10-14-lug-wwr/update-summary.json.
+
+
+15 OCTOBER 2026 — D-031 DECK-EDGE DETAILS AND VIEWING COLORS
+Main project model saved with the verified DXF correction on both spans.
+Barrier outside faces: 1.5 in inboard of deck edges; 12 ft clear between faces.
+Deck top/bottom long-edge chamfers: 0.75 in. Soffit drip V grooves: 1 in wide,
+0.5 in deep, centered 3 in along soffit from virtual outside corner.
+Requested component and report-based reinforcement colors saved.
+Native reopen passes: all 2,045 records match the verified live review; native
+editable detail proxies restore. No affected-component physical overlaps.
+Existing crown, PGL grades, end gaps, beam cambers and all reinforcement retained.
+COH-023/024 remain Open; COH-025 remains Deferred. Existing engineering findings
+and calculation-source reconciliation are unchanged. Prior model archived.
+Evidence: 2026-10-15-deck-edges/adoption-summary.json and adoption-cold-reopen.json.

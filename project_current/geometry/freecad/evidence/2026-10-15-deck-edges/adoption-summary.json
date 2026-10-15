@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-15",
+  "decision": "D-031",
+  "status": "ADOPTED_IN_PROJECT_SOURCE",
+  "model": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "model_sha256": "0f684dc5781f5497efb4f7fc44419f06e8cf43f3e73753b41548f79b0c959d22",
+  "previous_model_sha256": "1b4765f4dd2fc87c42a7b512943b2fb900a3260fc686d281c7208420c29575f7",
+  "source_id": "MSE-DETAIL-DXF",
+  "source_sha256": "dcf8bfdb441372e08a24c903f88cd3c3d772bb1f2ccce8f0eb35859fd6d8ea07",
+  "scope": "Both bridge spans: 1.5 in barrier setback, 0.75 in top/bottom deck-edge chamfers, 1 in wide by 0.5 in deep V grooves centered 3 in along the soffit from the virtual outer corner; 12 ft clear between barrier faces.",
+  "viewing_palette": "Requested component colors and report-based reinforcement colors saved from the live model.",
+  "verification": "Native saved-model reopen; all 2045 object records equal to the verified live review; editable proxies restored. Prior live/trial checks found no affected-component overlaps and preserved 1689 unrelated native Shapes. Crown, PGL grades, end gaps and cambers preserved.",
+  "unchanged_reinforcement": "All existing cap, backwall, cheek, pedestal and 172 WWR wires retained.",
+  "existing_review": "COH-023 Open, COH-024 Open, COH-025 Deferred; 14 U-bar/hoop pairs remain deferred. No engineering dispositions changed.",
+  "backups": [
+    "archive/B4-before-deck-edge-details-20261015.FCStd",
+    "archive/B4-before-deck-edge-details-record-20261015.zip"
+  ],
+  "authority": "Native CAD geometry and quantities only. Calculation sources and structural/fabrication acceptance are unchanged."
+}
