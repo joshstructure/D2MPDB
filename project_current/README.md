@@ -160,3 +160,15 @@ with the new steel; COH-024 and the saved CAD review views record those conflict
 for discussion. Cap cover, pile clearance and other steel findings remain open.
 Earlier cases and model revisions are preserved. The new exact raw FBMP exports
 were not supplied, and calculation/anchorage/fabrication acceptance is unchanged.
+
+
+## 14 October cap/cheek coordination follow-up
+
+D-028 removes one close vertical per cheek, moves the outer verticals just inside
+the cap longitudinal bars, and moves the end hoops inward of the cheek mats.
+Contact is allowed; positive solid overlap remains a failure. There are now four
+verticals/eight horizontals per cheek (48 bars total); cap counts stay 62/90/62.
+The requested changes pass 544 physical clearance checks. Cap/cheek flags reduce
+from 40 to 8, all at unchanged horizontal cheek bars. COH-024 remains open.
+Original design-case files and concrete are unchanged; editable CAD station
+overrides, the updated model, evidence and prior-model backup are registered.

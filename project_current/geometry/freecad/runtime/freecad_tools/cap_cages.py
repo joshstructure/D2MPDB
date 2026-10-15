@@ -11,7 +11,7 @@ import FreeCAD as App
 import Part
 from . import bridge,beam
 from .mse import Serializable,prop
-from .geometry import result
+from .geometry import result,length
 ROOT=bridge.ROOT;IN=25.4;FT=304.8
 VENDOR=ROOT/'freecad_tools/vendor_cap_20261010'
 for p in [VENDOR,Path(App.getResourceDir())/'Mod/BIM',Path(App.getResourceDir())/'Mod/Draft',
@@ -42,6 +42,8 @@ def live_case(o):
     case['transverse_detail']=json.loads(o.TransverseRunsJSON)
     case['end_face_grid']=json.loads(o.EndGridJSON)
     case['added_bar_layout']=json.loads(o.AddedBarsJSON)
+    if getattr(o,'TransverseStationOverridesJSON',''):
+        case['_cad_station_overrides']=json.loads(o.TransverseStationOverridesJSON)
     return case
 
 def layout(case):
@@ -72,6 +74,11 @@ def layout(case):
             points=b['points'],segments=[('line',0,1),('arc',1,13,25),('line',25,26),('arc',26,38,50),('line',50,51)]))
     out={r['id']:r for r in rows}
     if len(out)!=len(rows):raise ValueError('Duplicate bar identities')
+    for ident,station in case.get('_cad_station_overrides',{}).items():
+        if ident not in out or out[ident]['kind']!='hoop':raise ValueError('Station override requires an existing hoop identity')
+        value=length(station)/IN
+        if not 0<=value<=L:raise ValueError('Hoop station outside cage')
+        out[ident]['station']=value
     if len(_CACHE)>12:_CACHE.clear()
     _CACHE[key]=out
     return out

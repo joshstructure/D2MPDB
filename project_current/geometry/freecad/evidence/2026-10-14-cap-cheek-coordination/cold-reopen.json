@@ -1,0 +1,92 @@
+{
+  "status": "PASS",
+  "file": "C:\\Users\\joshs\\Desktop\\CAD_AI\\reports\\cap-cheek-coordination-20261014\\build-v3\\ReviewCandidate.FCStd",
+  "sha256": "830f2593370ea96914ecc366b5ff263458e095b873151aa13080244737ab6fde",
+  "native_objects": 1677,
+  "retained_native_records": 1623,
+  "deleted_objects": [
+    "SteelBridgeCheekEB11MV05",
+    "SteelBridgeCheekEB11MV05Path",
+    "SteelBridgeCheekEB12MV05",
+    "SteelBridgeCheekEB12MV05Path",
+    "SteelBridgeCheekEB21MV05",
+    "SteelBridgeCheekEB21MV05Path",
+    "SteelBridgeCheekEB22MV05",
+    "SteelBridgeCheekEB22MV05Path"
+  ],
+  "geometry_checks": 724,
+  "targeted_clearance_checks": 544,
+  "totals": {
+    "EB1": {
+      "count": 62,
+      "length_ft": 766.9915954069344,
+      "weight_lb": 1231.9607764375742,
+      "net_cap_ft3": 196.62500000000006
+    },
+    "EB2": {
+      "count": 62,
+      "length_ft": 766.9915954069344,
+      "weight_lb": 1231.9607764375742,
+      "net_cap_ft3": 196.62500000000074
+    }
+  },
+  "positions": {
+    "CageEB1Trans_R1_1": {
+      "station_in": 6.0,
+      "solid_x_in": [
+        4.588836885866071,
+        6.582177782049003
+      ]
+    },
+    "CageEB1Trans_R9_4": {
+      "station_in": 245.875,
+      "solid_x_in": [
+        244.46383688586513,
+        246.45717778204897
+      ]
+    },
+    "SteelBridgeCheekEB11MV01": {
+      "across_cap_center_in": 36.750000000029395
+    },
+    "SteelBridgeCheekEB11MV04": {
+      "across_cap_center_in": 5.25000000002939
+    },
+    "SteelBridgeCheekEB12MV01": {
+      "across_cap_center_in": 36.7500000019375
+    },
+    "SteelBridgeCheekEB12MV04": {
+      "across_cap_center_in": 5.250000001937503
+    },
+    "CageEB2Trans_R1_1": {
+      "station_in": 6.0,
+      "solid_x_in": [
+        4.588836885866071,
+        6.582177782049003
+      ]
+    },
+    "CageEB2Trans_R9_4": {
+      "station_in": 245.875,
+      "solid_x_in": [
+        244.46383688586513,
+        246.45717778204897
+      ]
+    },
+    "SteelBridgeCheekEB21MV01": {
+      "across_cap_center_in": 36.750000000029395
+    },
+    "SteelBridgeCheekEB21MV04": {
+      "across_cap_center_in": 5.250000000029162
+    },
+    "SteelBridgeCheekEB22MV01": {
+      "across_cap_center_in": 36.75000000193776
+    },
+    "SteelBridgeCheekEB22MV04": {
+      "across_cap_center_in": 5.250000001937525
+    }
+  },
+  "cheek_bars": 48,
+  "pier_bars": 90,
+  "source_cases_preserved": true,
+  "parametric_dependency_tests": "PASS: hoop moved 0.25 in; cheek count removed/restored through live controller, discarded without saving",
+  "full_GUI_reopen": "Not repeated; prior standalone GUI loader unavailable even on unchanged baseline. Native headless reopen verified."
+}

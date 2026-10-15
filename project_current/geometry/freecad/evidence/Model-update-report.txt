@@ -1,3 +1,41 @@
+B4 BRIDGE - 14 OCTOBER 2026 CAP/CHEEK COORDINATION (D-028)
+
+User-directed changes applied to all four cheek walls and both end-cap cages:
+- Removed MV05, the extra bar in the close pair. Four verticals remain per wall.
+- Moved MV01 and MV04 just inside the cap longitudinal bars, with centerlines
+  5.25 in from the 42 in web edges. Surface contact is allowed; overlap is not.
+- Moved the two outside end hoops to native stations 6.000 and 245.875 in,
+  measured from the same end of the 251 in cage. The full bent-bar envelopes,
+  including the hook projection, are inward of the cheek mat envelopes.
+
+All other cap transverse stations, longitudinal/added/pile bars, horizontal
+cheek bars, concrete, piles, cambers, pedestal bars and other native objects
+are preserved. Cap counts remain 62/90/62. Cheek count changes from 52 to 48.
+The original selected HTML/JSON cases remain byte-identical. Editable CAD-only
+vertical-station and end-hoop overrides record the user's subsequent detailing.
+
+Requested changes pass 544 measured nominal-solid clearance checks: no positive
+overlap for the moved verticals against cap steel or moved end hoops against
+cheek mats. Cold native reopen passes 724 geometry checks, with 1,623 original
+native records/resources exactly preserved. Live hoop-station and cheek-count
+edits regenerate through their native controllers on a discarded test copy.
+
+Cap/cheek flags reduce from 40 to 8. All eight remaining intersections are MH03
+(third horizontal cheek bar, 26.25 in above cap underside) against cap side bars
+Long13/Long17 (26.517417 in). These horizontal bars were not part of the requested
+movement. There are two remaining intersections per cheek wall. COH-024 stays Open.
+33 backwall/cap intersections and each end cap's 20 cover failures, eight pile
+clearance failures and seven internal cap-steel pairs remain. No check was relaxed.
+
+Native headless reopening and preservation are verified. The prior standalone
+FreeCAD GUI loader limitation remains; GUI reopening was not claimed. The views
+show the exact exported CAD solids: cap steel blue, cheek steel orange, remaining
+intersection solids red. Previous model and matching runtime are archived.
+No structural, anchorage, development, fabrication or external drawing acceptance.
+
+PRIOR REPORTS (HISTORICAL)
+--------------------------
+
 B4 BRIDGE â€” 14 OCTOBER 2026 END-CAP REINFORCEMENT UPDATE (D-027)
 
 Both supplied 14 October end-bent cases are selected and modeled as native

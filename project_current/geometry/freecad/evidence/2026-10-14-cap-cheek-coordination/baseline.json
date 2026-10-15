@@ -1,0 +1,3700 @@
+{
+  "source": "C:\\github\\D2MPDB\\project_current\\geometry\\freecad\\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "sha256": "b7ff819435dc858b55ec16518bb4e4313eb85321a294367c72ab5afb1a7d8994",
+  "supports": {
+    "EB1": {
+      "runs": {
+        "version": 4,
+        "enabled": true,
+        "runs": [
+          {
+            "id": "R1",
+            "kind": "hoop",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 3.375,
+            "end_in": 30.125,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R2",
+            "kind": "pile_u",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 32.875,
+            "end_in": 56.125,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": "",
+            "shape": {
+              "end_angle": 90,
+              "inside_diameter_in": 4.5,
+              "tail_in": 9.0,
+              "end_raise_in": 0.0,
+              "side_inset_in": 0.0,
+              "hook_rotation_left_deg": 50.0,
+              "hook_rotation_right_deg": 50.0,
+              "extension_mode": "standard"
+            }
+          },
+          {
+            "id": "R3",
+            "kind": "hoop",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 58.875,
+            "end_in": 84.125,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R4",
+            "kind": "pile_u",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 86.875,
+            "end_in": 110.125,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": "",
+            "shape": {
+              "end_angle": 90,
+              "inside_diameter_in": 4.5,
+              "tail_in": 9.0,
+              "end_raise_in": 0.0,
+              "side_inset_in": 0.0,
+              "hook_rotation_left_deg": 50.0,
+              "hook_rotation_right_deg": 50.0,
+              "extension_mode": "standard"
+            }
+          },
+          {
+            "id": "R5",
+            "kind": "hoop",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 112.875,
+            "end_in": 138.125,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R6",
+            "kind": "pile_u",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 140.875,
+            "end_in": 164.125,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": "",
+            "shape": {
+              "end_angle": 90,
+              "inside_diameter_in": 4.5,
+              "tail_in": 9.0,
+              "end_raise_in": 0.0,
+              "side_inset_in": 0.0,
+              "hook_rotation_left_deg": 50.0,
+              "hook_rotation_right_deg": 50.0,
+              "extension_mode": "standard"
+            }
+          },
+          {
+            "id": "R7",
+            "kind": "hoop",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 166.875,
+            "end_in": 192.125,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R8",
+            "kind": "pile_u",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 194.875,
+            "end_in": 218.125,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": "",
+            "shape": {
+              "end_angle": 90,
+              "inside_diameter_in": 4.5,
+              "tail_in": 9.0,
+              "end_raise_in": 0.0,
+              "side_inset_in": 0.0,
+              "hook_rotation_left_deg": -50.0,
+              "hook_rotation_right_deg": -50.0,
+              "extension_mode": "standard"
+            }
+          },
+          {
+            "id": "R9",
+            "kind": "hoop",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 220.875,
+            "end_in": 247.625,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          }
+        ]
+      },
+      "longitudinal": {
+        "Long01": {
+          "id": "Long01",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Top row 1",
+          "points": [
+            [
+              2.9999999999999996,
+              6.012317969783458,
+              31.86937713623047
+            ],
+            [
+              247.99999999999994,
+              6.012317969783458,
+              31.86937713623047
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long02": {
+          "id": "Long02",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Top row 1",
+          "points": [
+            [
+              2.9999999999999996,
+              13.506158984753664,
+              31.86937713623047
+            ],
+            [
+              247.99999999999994,
+              13.506158984753664,
+              31.86937713623047
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long03": {
+          "id": "Long03",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Top row 1",
+          "points": [
+            [
+              2.9999999999999996,
+              20.99999999972387,
+              31.86937713623047
+            ],
+            [
+              247.99999999999994,
+              20.99999999972387,
+              31.86937713623047
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long04": {
+          "id": "Long04",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Top row 1",
+          "points": [
+            [
+              2.9999999999999996,
+              28.493841014694077,
+              31.86937713623047
+            ],
+            [
+              247.99999999999994,
+              28.493841014694077,
+              31.86937713623047
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long05": {
+          "id": "Long05",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Top row 1",
+          "points": [
+            [
+              2.9999999999999996,
+              35.987682029664285,
+              31.86937713623047
+            ],
+            [
+              247.99999999999994,
+              35.987682029664285,
+              31.86937713623047
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long06": {
+          "id": "Long06",
+          "kind": "longitudinal",
+          "bar": 8,
+          "diameter": 1.0,
+          "family": "Bottom row 1",
+          "points": [
+            [
+              2.9999999999999996,
+              4.4999986145577475,
+              5.109577178955078
+            ],
+            [
+              247.99999999999994,
+              4.4999986145577475,
+              5.109577178955078
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long07": {
+          "id": "Long07",
+          "kind": "longitudinal",
+          "bar": 8,
+          "diameter": 1.0,
+          "family": "Bottom row 1",
+          "points": [
+            [
+              2.9999999999999996,
+              7.499999099776865,
+              5.109577178955078
+            ],
+            [
+              247.99999999999994,
+              7.499999099776865,
+              5.109577178955078
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long08": {
+          "id": "Long08",
+          "kind": "longitudinal",
+          "bar": 8,
+          "diameter": 1.0,
+          "family": "Bottom row 1",
+          "points": [
+            [
+              2.9999999999999996,
+              34.500001,
+              5.109577178955078
+            ],
+            [
+              247.99999999999994,
+              34.500001,
+              5.109577178955078
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long09": {
+          "id": "Long09",
+          "kind": "longitudinal",
+          "bar": 8,
+          "diameter": 1.0,
+          "family": "Bottom row 1",
+          "points": [
+            [
+              2.9999999999999996,
+              37.500001485219116,
+              5.109577178955078
+            ],
+            [
+              247.99999999999994,
+              37.500001485219116,
+              5.109577178955078
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long10": {
+          "id": "Long10",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Skin",
+          "points": [
+            [
+              2.9999999999999996,
+              4.130621326498666,
+              10.461537170410157
+            ],
+            [
+              247.99999999999994,
+              4.130621326498666,
+              10.461537170410157
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long11": {
+          "id": "Long11",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Skin",
+          "points": [
+            [
+              2.9999999999999996,
+              4.130621326498666,
+              15.813497161865234
+            ],
+            [
+              247.99999999999994,
+              4.130621326498666,
+              15.813497161865234
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long12": {
+          "id": "Long12",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Skin",
+          "points": [
+            [
+              2.9999999999999996,
+              4.130621326498666,
+              21.16545715332031
+            ],
+            [
+              247.99999999999994,
+              4.130621326498666,
+              21.16545715332031
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long13": {
+          "id": "Long13",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Skin",
+          "points": [
+            [
+              2.9999999999999996,
+              4.130621326498666,
+              26.51741714477539
+            ],
+            [
+              247.99999999999994,
+              4.130621326498666,
+              26.51741714477539
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long14": {
+          "id": "Long14",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Skin",
+          "points": [
+            [
+              2.9999999999999996,
+              37.86937867350133,
+              10.461537170410157
+            ],
+            [
+              247.99999999999994,
+              37.86937867350133,
+              10.461537170410157
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long15": {
+          "id": "Long15",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Skin",
+          "points": [
+            [
+              2.9999999999999996,
+              37.86937867350133,
+              15.813497161865234
+            ],
+            [
+              247.99999999999994,
+              37.86937867350133,
+              15.813497161865234
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long16": {
+          "id": "Long16",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Skin",
+          "points": [
+            [
+              2.9999999999999996,
+              37.86937867350133,
+              21.16545715332031
+            ],
+            [
+              247.99999999999994,
+              37.86937867350133,
+              21.16545715332031
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long17": {
+          "id": "Long17",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Skin",
+          "points": [
+            [
+              2.9999999999999996,
+              37.86937867350133,
+              26.51741714477539
+            ],
+            [
+              247.99999999999994,
+              37.86937867350133,
+              26.51741714477539
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        }
+      },
+      "hoops": {
+        "Trans_R1_1": {
+          "station": 3.375,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R1_2": {
+          "station": 12.375,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R1_3": {
+          "station": 21.375,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R1_4": {
+          "station": 30.125,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R3_1": {
+          "station": 58.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R3_2": {
+          "station": 67.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R3_3": {
+          "station": 76.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R3_4": {
+          "station": 84.125,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R5_1": {
+          "station": 112.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R5_2": {
+          "station": 121.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R5_3": {
+          "station": 130.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R5_4": {
+          "station": 138.125,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R7_1": {
+          "station": 166.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R7_2": {
+          "station": 175.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R7_3": {
+          "station": 184.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R7_4": {
+          "station": 192.125,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R9_1": {
+          "station": 220.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R9_2": {
+          "station": 229.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R9_3": {
+          "station": 238.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R9_4": {
+          "station": 247.625,
+          "bar": 6,
+          "kind": "hoop"
+        }
+      },
+      "walls": {
+        "BridgeCheekEB11": {
+          "bars": [
+            {
+              "name": "SteelBridgeCheekEB11MV01",
+              "id": "MV01",
+              "bar": 4,
+              "points_in": [
+                [
+                  3.7499999996883373,
+                  39.75000000002941,
+                  2.249999999999986
+                ],
+                [
+                  3.7499999996883373,
+                  39.75000000002941,
+                  85.19969321338246
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB11MV02",
+              "id": "MV02",
+              "bar": 4,
+              "points_in": [
+                [
+                  3.749999999782581,
+                  27.750000000029413,
+                  2.249999999999986
+                ],
+                [
+                  3.749999999782581,
+                  27.750000000029413,
+                  85.19969321338246
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB11MV03",
+              "id": "MV03",
+              "bar": 4,
+              "points_in": [
+                [
+                  3.749999999876395,
+                  15.750000000029422,
+                  2.249999999999986
+                ],
+                [
+                  3.749999999876395,
+                  15.750000000029422,
+                  85.19969321338246
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB11MV04",
+              "id": "MV04",
+              "bar": 4,
+              "points_in": [
+                [
+                  3.749999999970495,
+                  3.750000000029418,
+                  2.249999999999986
+                ],
+                [
+                  3.749999999970495,
+                  3.750000000029418,
+                  85.19969321338246
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB11MV05",
+              "id": "MV05",
+              "bar": 4,
+              "points_in": [
+                [
+                  3.74999999998224,
+                  2.2500000000293587,
+                  2.249999999999986
+                ],
+                [
+                  3.74999999998224,
+                  2.2500000000293587,
+                  85.19969321338246
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB11MH01",
+              "id": "MH01",
+              "bar": 4,
+              "points_in": [
+                [
+                  4.249999999688509,
+                  39.75000000003333,
+                  2.249999999999986
+                ],
+                [
+                  4.249999999982268,
+                  2.2500000000332796,
+                  2.249999999999986
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB11MH02",
+              "id": "MH02",
+              "bar": 4,
+              "points_in": [
+                [
+                  4.249999999688509,
+                  39.75000000003333,
+                  14.249999999999957
+                ],
+                [
+                  4.249999999982268,
+                  2.2500000000332796,
+                  14.249999999999957
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB11MH03",
+              "id": "MH03",
+              "bar": 4,
+              "points_in": [
+                [
+                  4.249999999688509,
+                  39.75000000003333,
+                  26.25
+                ],
+                [
+                  4.249999999982268,
+                  2.2500000000332796,
+                  26.25
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB11MH04",
+              "id": "MH04",
+              "bar": 4,
+              "points_in": [
+                [
+                  4.249999999688509,
+                  39.75000000003333,
+                  38.24999999999997
+                ],
+                [
+                  4.249999999982268,
+                  2.2500000000332796,
+                  38.24999999999997
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB11MH05",
+              "id": "MH05",
+              "bar": 4,
+              "points_in": [
+                [
+                  4.249999999688509,
+                  39.75000000003333,
+                  50.24999999999994
+                ],
+                [
+                  4.249999999982268,
+                  2.2500000000332796,
+                  50.24999999999994
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB11MH06",
+              "id": "MH06",
+              "bar": 4,
+              "points_in": [
+                [
+                  4.249999999688509,
+                  39.75000000003333,
+                  62.249999999999986
+                ],
+                [
+                  4.249999999982268,
+                  2.2500000000332796,
+                  62.249999999999986
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB11MH07",
+              "id": "MH07",
+              "bar": 4,
+              "points_in": [
+                [
+                  4.249999999688509,
+                  39.75000000003333,
+                  74.24999999999996
+                ],
+                [
+                  4.249999999982268,
+                  2.2500000000332796,
+                  74.24999999999996
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB11MH08",
+              "id": "MH08",
+              "bar": 4,
+              "points_in": [
+                [
+                  4.249999999688509,
+                  39.75000000003333,
+                  85.19969321338246
+                ],
+                [
+                  4.249999999982268,
+                  2.2500000000332796,
+                  85.19969321338246
+                ]
+              ]
+            }
+          ],
+          "layout": {
+            "MV01": {
+              "id": "MV01",
+              "kind": "wall_vertical",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat vertical",
+              "points": [
+                [
+                  -9.750000000000025,
+                  -121.74999999999999,
+                  485.1023067866176
+                ],
+                [
+                  -9.750000000000025,
+                  -121.74999999999999,
+                  568.052
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MV02": {
+              "id": "MV02",
+              "kind": "wall_vertical",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat vertical",
+              "points": [
+                [
+                  2.2499999999999734,
+                  -121.74999999999999,
+                  485.1023067866176
+                ],
+                [
+                  2.2499999999999734,
+                  -121.74999999999999,
+                  568.052
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MV03": {
+              "id": "MV03",
+              "kind": "wall_vertical",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat vertical",
+              "points": [
+                [
+                  14.249999999999972,
+                  -121.74999999999999,
+                  485.1023067866176
+                ],
+                [
+                  14.249999999999972,
+                  -121.74999999999999,
+                  568.052
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MV04": {
+              "id": "MV04",
+              "kind": "wall_vertical",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat vertical",
+              "points": [
+                [
+                  26.24999999999997,
+                  -121.74999999999999,
+                  485.1023067866176
+                ],
+                [
+                  26.24999999999997,
+                  -121.74999999999999,
+                  568.052
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MV05": {
+              "id": "MV05",
+              "kind": "wall_vertical",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat vertical",
+              "points": [
+                [
+                  27.75000000000003,
+                  -121.74999999999999,
+                  485.1023067866176
+                ],
+                [
+                  27.75000000000003,
+                  -121.74999999999999,
+                  568.052
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH01": {
+              "id": "MH01",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  -9.750000000000025,
+                  -121.24999999999999,
+                  485.1023067866176
+                ],
+                [
+                  27.75000000000003,
+                  -121.24999999999999,
+                  485.1023067866176
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH02": {
+              "id": "MH02",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  -9.750000000000025,
+                  -121.24999999999999,
+                  497.10230678661753
+                ],
+                [
+                  27.75000000000003,
+                  -121.24999999999999,
+                  497.10230678661753
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH03": {
+              "id": "MH03",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  -9.750000000000025,
+                  -121.24999999999999,
+                  509.1023067866176
+                ],
+                [
+                  27.75000000000003,
+                  -121.24999999999999,
+                  509.1023067866176
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH04": {
+              "id": "MH04",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  -9.750000000000025,
+                  -121.24999999999999,
+                  521.1023067866175
+                ],
+                [
+                  27.75000000000003,
+                  -121.24999999999999,
+                  521.1023067866175
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH05": {
+              "id": "MH05",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  -9.750000000000025,
+                  -121.24999999999999,
+                  533.1023067866175
+                ],
+                [
+                  27.75000000000003,
+                  -121.24999999999999,
+                  533.1023067866175
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH06": {
+              "id": "MH06",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  -9.750000000000025,
+                  -121.24999999999999,
+                  545.1023067866175
+                ],
+                [
+                  27.75000000000003,
+                  -121.24999999999999,
+                  545.1023067866175
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH07": {
+              "id": "MH07",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  -9.750000000000025,
+                  -121.24999999999999,
+                  557.1023067866175
+                ],
+                [
+                  27.75000000000003,
+                  -121.24999999999999,
+                  557.1023067866175
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH08": {
+              "id": "MH08",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  -9.750000000000025,
+                  -121.24999999999999,
+                  568.052
+                ],
+                [
+                  27.75000000000003,
+                  -121.24999999999999,
+                  568.052
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            }
+          },
+          "cover_in": 2.0,
+          "spacing_in": 11.999999999999998
+        },
+        "BridgeCheekEB12": {
+          "bars": [
+            {
+              "name": "SteelBridgeCheekEB12MV01",
+              "id": "MV01",
+              "bar": 4,
+              "points_in": [
+                [
+                  247.2499999996884,
+                  39.75000000193748,
+                  2.249999999999986
+                ],
+                [
+                  247.2499999996884,
+                  39.75000000193748,
+                  85.19969321338246
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB12MV02",
+              "id": "MV02",
+              "bar": 4,
+              "points_in": [
+                [
+                  247.24999999978237,
+                  27.750000001937472,
+                  2.249999999999986
+                ],
+                [
+                  247.24999999978237,
+                  27.750000001937472,
+                  85.19969321338246
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB12MV03",
+              "id": "MV03",
+              "bar": 4,
+              "points_in": [
+                [
+                  247.24999999987648,
+                  15.750000001937485,
+                  2.249999999999986
+                ],
+                [
+                  247.24999999987648,
+                  15.750000001937485,
+                  85.19969321338246
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB12MV04",
+              "id": "MV04",
+              "bar": 4,
+              "points_in": [
+                [
+                  247.24999999997056,
+                  3.75000000193749,
+                  2.249999999999986
+                ],
+                [
+                  247.24999999997056,
+                  3.75000000193749,
+                  85.19969321338246
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB12MV05",
+              "id": "MV05",
+              "bar": 4,
+              "points_in": [
+                [
+                  247.24999999998232,
+                  2.250000001937431,
+                  2.249999999999986
+                ],
+                [
+                  247.24999999998232,
+                  2.250000001937431,
+                  85.19969321338246
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB12MH01",
+              "id": "MH01",
+              "bar": 4,
+              "points_in": [
+                [
+                  246.74999999968838,
+                  39.75000000193356,
+                  2.249999999999986
+                ],
+                [
+                  246.7499999999823,
+                  2.2500000019335102,
+                  2.249999999999986
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB12MH02",
+              "id": "MH02",
+              "bar": 4,
+              "points_in": [
+                [
+                  246.74999999968838,
+                  39.75000000193356,
+                  14.249999999999957
+                ],
+                [
+                  246.7499999999823,
+                  2.2500000019335102,
+                  14.249999999999957
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB12MH03",
+              "id": "MH03",
+              "bar": 4,
+              "points_in": [
+                [
+                  246.74999999968838,
+                  39.75000000193356,
+                  26.25
+                ],
+                [
+                  246.7499999999823,
+                  2.2500000019335102,
+                  26.25
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB12MH04",
+              "id": "MH04",
+              "bar": 4,
+              "points_in": [
+                [
+                  246.74999999968838,
+                  39.75000000193356,
+                  38.24999999999997
+                ],
+                [
+                  246.7499999999823,
+                  2.2500000019335102,
+                  38.24999999999997
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB12MH05",
+              "id": "MH05",
+              "bar": 4,
+              "points_in": [
+                [
+                  246.74999999968838,
+                  39.75000000193356,
+                  50.24999999999994
+                ],
+                [
+                  246.7499999999823,
+                  2.2500000019335102,
+                  50.24999999999994
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB12MH06",
+              "id": "MH06",
+              "bar": 4,
+              "points_in": [
+                [
+                  246.74999999968838,
+                  39.75000000193356,
+                  62.249999999999986
+                ],
+                [
+                  246.7499999999823,
+                  2.2500000019335102,
+                  62.249999999999986
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB12MH07",
+              "id": "MH07",
+              "bar": 4,
+              "points_in": [
+                [
+                  246.74999999968838,
+                  39.75000000193356,
+                  74.24999999999996
+                ],
+                [
+                  246.7499999999823,
+                  2.2500000019335102,
+                  74.24999999999996
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB12MH08",
+              "id": "MH08",
+              "bar": 4,
+              "points_in": [
+                [
+                  246.74999999968838,
+                  39.75000000193356,
+                  85.19969321338246
+                ],
+                [
+                  246.7499999999823,
+                  2.2500000019335102,
+                  85.19969321338246
+                ]
+              ]
+            }
+          ],
+          "layout": {
+            "MV01": {
+              "id": "MV01",
+              "kind": "wall_vertical",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat vertical",
+              "points": [
+                [
+                  -9.750000000000025,
+                  121.75000000000001,
+                  485.1023067866176
+                ],
+                [
+                  -9.750000000000025,
+                  121.75000000000001,
+                  568.052
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MV02": {
+              "id": "MV02",
+              "kind": "wall_vertical",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat vertical",
+              "points": [
+                [
+                  2.2499999999999734,
+                  121.75000000000001,
+                  485.1023067866176
+                ],
+                [
+                  2.2499999999999734,
+                  121.75000000000001,
+                  568.052
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MV03": {
+              "id": "MV03",
+              "kind": "wall_vertical",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat vertical",
+              "points": [
+                [
+                  14.249999999999972,
+                  121.75000000000001,
+                  485.1023067866176
+                ],
+                [
+                  14.249999999999972,
+                  121.75000000000001,
+                  568.052
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MV04": {
+              "id": "MV04",
+              "kind": "wall_vertical",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat vertical",
+              "points": [
+                [
+                  26.24999999999997,
+                  121.75000000000001,
+                  485.1023067866176
+                ],
+                [
+                  26.24999999999997,
+                  121.75000000000001,
+                  568.052
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MV05": {
+              "id": "MV05",
+              "kind": "wall_vertical",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat vertical",
+              "points": [
+                [
+                  27.75000000000003,
+                  121.75000000000001,
+                  485.1023067866176
+                ],
+                [
+                  27.75000000000003,
+                  121.75000000000001,
+                  568.052
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH01": {
+              "id": "MH01",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  -9.750000000000025,
+                  121.25000000000003,
+                  485.1023067866176
+                ],
+                [
+                  27.75000000000003,
+                  121.25000000000003,
+                  485.1023067866176
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH02": {
+              "id": "MH02",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  -9.750000000000025,
+                  121.25000000000003,
+                  497.10230678661753
+                ],
+                [
+                  27.75000000000003,
+                  121.25000000000003,
+                  497.10230678661753
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH03": {
+              "id": "MH03",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  -9.750000000000025,
+                  121.25000000000003,
+                  509.1023067866176
+                ],
+                [
+                  27.75000000000003,
+                  121.25000000000003,
+                  509.1023067866176
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH04": {
+              "id": "MH04",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  -9.750000000000025,
+                  121.25000000000003,
+                  521.1023067866175
+                ],
+                [
+                  27.75000000000003,
+                  121.25000000000003,
+                  521.1023067866175
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH05": {
+              "id": "MH05",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  -9.750000000000025,
+                  121.25000000000003,
+                  533.1023067866175
+                ],
+                [
+                  27.75000000000003,
+                  121.25000000000003,
+                  533.1023067866175
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH06": {
+              "id": "MH06",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  -9.750000000000025,
+                  121.25000000000003,
+                  545.1023067866175
+                ],
+                [
+                  27.75000000000003,
+                  121.25000000000003,
+                  545.1023067866175
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH07": {
+              "id": "MH07",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  -9.750000000000025,
+                  121.25000000000003,
+                  557.1023067866175
+                ],
+                [
+                  27.75000000000003,
+                  121.25000000000003,
+                  557.1023067866175
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH08": {
+              "id": "MH08",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  -9.750000000000025,
+                  121.25000000000003,
+                  568.052
+                ],
+                [
+                  27.75000000000003,
+                  121.25000000000003,
+                  568.052
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            }
+          },
+          "cover_in": 2.0,
+          "spacing_in": 11.999999999999998
+        }
+      }
+    },
+    "EB2": {
+      "runs": {
+        "version": 4,
+        "enabled": true,
+        "runs": [
+          {
+            "id": "R1",
+            "kind": "hoop",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 3.375,
+            "end_in": 30.125,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R2",
+            "kind": "pile_u",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 32.875,
+            "end_in": 56.125,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": "",
+            "shape": {
+              "end_angle": 90,
+              "inside_diameter_in": 4.5,
+              "tail_in": 9.0,
+              "end_raise_in": 0.0,
+              "side_inset_in": 0.0,
+              "hook_rotation_left_deg": 50.0,
+              "hook_rotation_right_deg": 50.0,
+              "extension_mode": "standard"
+            }
+          },
+          {
+            "id": "R3",
+            "kind": "hoop",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 58.875,
+            "end_in": 84.125,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R4",
+            "kind": "pile_u",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 86.875,
+            "end_in": 110.125,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": "",
+            "shape": {
+              "end_angle": 90,
+              "inside_diameter_in": 4.5,
+              "tail_in": 9.0,
+              "end_raise_in": 0.0,
+              "side_inset_in": 0.0,
+              "hook_rotation_left_deg": 50.0,
+              "hook_rotation_right_deg": 50.0,
+              "extension_mode": "standard"
+            }
+          },
+          {
+            "id": "R5",
+            "kind": "hoop",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 112.875,
+            "end_in": 138.125,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R6",
+            "kind": "pile_u",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 140.875,
+            "end_in": 164.125,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": "",
+            "shape": {
+              "end_angle": 90,
+              "inside_diameter_in": 4.5,
+              "tail_in": 9.0,
+              "end_raise_in": 0.0,
+              "side_inset_in": 0.0,
+              "hook_rotation_left_deg": 50.0,
+              "hook_rotation_right_deg": 50.0,
+              "extension_mode": "standard"
+            }
+          },
+          {
+            "id": "R7",
+            "kind": "hoop",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 166.875,
+            "end_in": 192.125,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          },
+          {
+            "id": "R8",
+            "kind": "pile_u",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 194.875,
+            "end_in": 218.125,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": "",
+            "shape": {
+              "end_angle": 90,
+              "inside_diameter_in": 4.5,
+              "tail_in": 9.0,
+              "end_raise_in": 0.0,
+              "side_inset_in": 0.0,
+              "hook_rotation_left_deg": -50.0,
+              "hook_rotation_right_deg": -50.0,
+              "extension_mode": "standard"
+            }
+          },
+          {
+            "id": "R9",
+            "kind": "hoop",
+            "bar": 6,
+            "zone": "G",
+            "first_in": 220.875,
+            "end_in": 247.625,
+            "pitch_in": 9.0,
+            "include_end_bar": true,
+            "end_min_clear_in": 2.0,
+            "development_confirmed": false,
+            "development_basis": ""
+          }
+        ]
+      },
+      "longitudinal": {
+        "Long01": {
+          "id": "Long01",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Top row 1",
+          "points": [
+            [
+              2.9999999999999996,
+              6.012317969783458,
+              31.86937713623047
+            ],
+            [
+              247.99999999999994,
+              6.012317969783458,
+              31.86937713623047
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long02": {
+          "id": "Long02",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Top row 1",
+          "points": [
+            [
+              2.9999999999999996,
+              13.506158984753664,
+              31.86937713623047
+            ],
+            [
+              247.99999999999994,
+              13.506158984753664,
+              31.86937713623047
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long03": {
+          "id": "Long03",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Top row 1",
+          "points": [
+            [
+              2.9999999999999996,
+              20.99999999972387,
+              31.86937713623047
+            ],
+            [
+              247.99999999999994,
+              20.99999999972387,
+              31.86937713623047
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long04": {
+          "id": "Long04",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Top row 1",
+          "points": [
+            [
+              2.9999999999999996,
+              28.493841014694077,
+              31.86937713623047
+            ],
+            [
+              247.99999999999994,
+              28.493841014694077,
+              31.86937713623047
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long05": {
+          "id": "Long05",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Top row 1",
+          "points": [
+            [
+              2.9999999999999996,
+              35.987682029664285,
+              31.86937713623047
+            ],
+            [
+              247.99999999999994,
+              35.987682029664285,
+              31.86937713623047
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long06": {
+          "id": "Long06",
+          "kind": "longitudinal",
+          "bar": 8,
+          "diameter": 1.0,
+          "family": "Bottom row 1",
+          "points": [
+            [
+              2.9999999999999996,
+              4.4999986145577475,
+              5.109577178955078
+            ],
+            [
+              247.99999999999994,
+              4.4999986145577475,
+              5.109577178955078
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long07": {
+          "id": "Long07",
+          "kind": "longitudinal",
+          "bar": 8,
+          "diameter": 1.0,
+          "family": "Bottom row 1",
+          "points": [
+            [
+              2.9999999999999996,
+              7.499999099776865,
+              5.109577178955078
+            ],
+            [
+              247.99999999999994,
+              7.499999099776865,
+              5.109577178955078
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long08": {
+          "id": "Long08",
+          "kind": "longitudinal",
+          "bar": 8,
+          "diameter": 1.0,
+          "family": "Bottom row 1",
+          "points": [
+            [
+              2.9999999999999996,
+              34.500001,
+              5.109577178955078
+            ],
+            [
+              247.99999999999994,
+              34.500001,
+              5.109577178955078
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long09": {
+          "id": "Long09",
+          "kind": "longitudinal",
+          "bar": 8,
+          "diameter": 1.0,
+          "family": "Bottom row 1",
+          "points": [
+            [
+              2.9999999999999996,
+              37.500001485219116,
+              5.109577178955078
+            ],
+            [
+              247.99999999999994,
+              37.500001485219116,
+              5.109577178955078
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long10": {
+          "id": "Long10",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Skin",
+          "points": [
+            [
+              2.9999999999999996,
+              4.130621326498666,
+              10.461537170410157
+            ],
+            [
+              247.99999999999994,
+              4.130621326498666,
+              10.461537170410157
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long11": {
+          "id": "Long11",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Skin",
+          "points": [
+            [
+              2.9999999999999996,
+              4.130621326498666,
+              15.813497161865234
+            ],
+            [
+              247.99999999999994,
+              4.130621326498666,
+              15.813497161865234
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long12": {
+          "id": "Long12",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Skin",
+          "points": [
+            [
+              2.9999999999999996,
+              4.130621326498666,
+              21.16545715332031
+            ],
+            [
+              247.99999999999994,
+              4.130621326498666,
+              21.16545715332031
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long13": {
+          "id": "Long13",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Skin",
+          "points": [
+            [
+              2.9999999999999996,
+              4.130621326498666,
+              26.51741714477539
+            ],
+            [
+              247.99999999999994,
+              4.130621326498666,
+              26.51741714477539
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long14": {
+          "id": "Long14",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Skin",
+          "points": [
+            [
+              2.9999999999999996,
+              37.86937867350133,
+              10.461537170410157
+            ],
+            [
+              247.99999999999994,
+              37.86937867350133,
+              10.461537170410157
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long15": {
+          "id": "Long15",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Skin",
+          "points": [
+            [
+              2.9999999999999996,
+              37.86937867350133,
+              15.813497161865234
+            ],
+            [
+              247.99999999999994,
+              37.86937867350133,
+              15.813497161865234
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long16": {
+          "id": "Long16",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Skin",
+          "points": [
+            [
+              2.9999999999999996,
+              37.86937867350133,
+              21.16545715332031
+            ],
+            [
+              247.99999999999994,
+              37.86937867350133,
+              21.16545715332031
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        },
+        "Long17": {
+          "id": "Long17",
+          "kind": "longitudinal",
+          "bar": 6,
+          "diameter": 0.75,
+          "family": "Skin",
+          "points": [
+            [
+              2.9999999999999996,
+              37.86937867350133,
+              26.51741714477539
+            ],
+            [
+              247.99999999999994,
+              37.86937867350133,
+              26.51741714477539
+            ]
+          ],
+          "segments": [
+            [
+              "line",
+              0,
+              1
+            ]
+          ]
+        }
+      },
+      "hoops": {
+        "Trans_R1_1": {
+          "station": 3.375,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R1_2": {
+          "station": 12.375,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R1_3": {
+          "station": 21.375,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R1_4": {
+          "station": 30.125,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R3_1": {
+          "station": 58.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R3_2": {
+          "station": 67.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R3_3": {
+          "station": 76.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R3_4": {
+          "station": 84.125,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R5_1": {
+          "station": 112.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R5_2": {
+          "station": 121.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R5_3": {
+          "station": 130.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R5_4": {
+          "station": 138.125,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R7_1": {
+          "station": 166.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R7_2": {
+          "station": 175.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R7_3": {
+          "station": 184.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R7_4": {
+          "station": 192.125,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R9_1": {
+          "station": 220.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R9_2": {
+          "station": 229.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R9_3": {
+          "station": 238.875,
+          "bar": 6,
+          "kind": "hoop"
+        },
+        "Trans_R9_4": {
+          "station": 247.625,
+          "bar": 6,
+          "kind": "hoop"
+        }
+      },
+      "walls": {
+        "BridgeCheekEB21": {
+          "bars": [
+            {
+              "name": "SteelBridgeCheekEB21MV01",
+              "id": "MV01",
+              "bar": 4,
+              "points_in": [
+                [
+                  3.749999999689053,
+                  39.75000000002928,
+                  2.249999999999986
+                ],
+                [
+                  3.749999999689053,
+                  39.75000000002928,
+                  85.19969427164408
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB21MV02",
+              "id": "MV02",
+              "bar": 4,
+              "points_in": [
+                [
+                  3.7499999997830105,
+                  27.750000000029164,
+                  2.249999999999986
+                ],
+                [
+                  3.7499999997830105,
+                  27.750000000029164,
+                  85.19969427164408
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB21MV03",
+              "id": "MV03",
+              "bar": 4,
+              "points_in": [
+                [
+                  3.749999999877111,
+                  15.750000000029047,
+                  2.249999999999986
+                ],
+                [
+                  3.749999999877111,
+                  15.750000000029047,
+                  85.19969427164408
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB21MV04",
+              "id": "MV04",
+              "bar": 4,
+              "points_in": [
+                [
+                  3.749999999971068,
+                  3.7500000000292184,
+                  2.249999999999986
+                ],
+                [
+                  3.749999999971068,
+                  3.7500000000292184,
+                  85.19969427164408
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB21MV05",
+              "id": "MV05",
+              "bar": 4,
+              "points_in": [
+                [
+                  3.749999999982813,
+                  2.2500000000292757,
+                  2.249999999999986
+                ],
+                [
+                  3.749999999982813,
+                  2.2500000000292757,
+                  85.19969427164408
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB21MH01",
+              "id": "MH01",
+              "bar": 4,
+              "points_in": [
+                [
+                  4.249999999689082,
+                  39.75000000003329,
+                  2.249999999999986
+                ],
+                [
+                  4.249999999982841,
+                  2.2500000000332863,
+                  2.249999999999986
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB21MH02",
+              "id": "MH02",
+              "bar": 4,
+              "points_in": [
+                [
+                  4.249999999689082,
+                  39.75000000003329,
+                  14.249999999999957
+                ],
+                [
+                  4.249999999982841,
+                  2.2500000000332863,
+                  14.249999999999957
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB21MH03",
+              "id": "MH03",
+              "bar": 4,
+              "points_in": [
+                [
+                  4.249999999689082,
+                  39.75000000003329,
+                  26.25
+                ],
+                [
+                  4.249999999982841,
+                  2.2500000000332863,
+                  26.25
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB21MH04",
+              "id": "MH04",
+              "bar": 4,
+              "points_in": [
+                [
+                  4.249999999689082,
+                  39.75000000003329,
+                  38.24999999999997
+                ],
+                [
+                  4.249999999982841,
+                  2.2500000000332863,
+                  38.24999999999997
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB21MH05",
+              "id": "MH05",
+              "bar": 4,
+              "points_in": [
+                [
+                  4.249999999689082,
+                  39.75000000003329,
+                  50.24999999999987
+                ],
+                [
+                  4.249999999982841,
+                  2.2500000000332863,
+                  50.24999999999987
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB21MH06",
+              "id": "MH06",
+              "bar": 4,
+              "points_in": [
+                [
+                  4.249999999689082,
+                  39.75000000003329,
+                  62.249999999999986
+                ],
+                [
+                  4.249999999982841,
+                  2.2500000000332863,
+                  62.249999999999986
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB21MH07",
+              "id": "MH07",
+              "bar": 4,
+              "points_in": [
+                [
+                  4.249999999689082,
+                  39.75000000003329,
+                  74.25000000000003
+                ],
+                [
+                  4.249999999982841,
+                  2.2500000000332863,
+                  74.25000000000003
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB21MH08",
+              "id": "MH08",
+              "bar": 4,
+              "points_in": [
+                [
+                  4.249999999689082,
+                  39.75000000003329,
+                  85.19969427164408
+                ],
+                [
+                  4.249999999982841,
+                  2.2500000000332863,
+                  85.19969427164408
+                ]
+              ]
+            }
+          ],
+          "layout": {
+            "MV01": {
+              "id": "MV01",
+              "kind": "wall_vertical",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat vertical",
+              "points": [
+                [
+                  2519.2500000000005,
+                  -121.74999999999945,
+                  485.246305728356
+                ],
+                [
+                  2519.2500000000005,
+                  -121.74999999999945,
+                  568.196
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MV02": {
+              "id": "MV02",
+              "kind": "wall_vertical",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat vertical",
+              "points": [
+                [
+                  2531.2500000000005,
+                  -121.74999999999945,
+                  485.246305728356
+                ],
+                [
+                  2531.2500000000005,
+                  -121.74999999999945,
+                  568.196
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MV03": {
+              "id": "MV03",
+              "kind": "wall_vertical",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat vertical",
+              "points": [
+                [
+                  2543.2500000000005,
+                  -121.74999999999945,
+                  485.246305728356
+                ],
+                [
+                  2543.2500000000005,
+                  -121.74999999999945,
+                  568.196
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MV04": {
+              "id": "MV04",
+              "kind": "wall_vertical",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat vertical",
+              "points": [
+                [
+                  2555.2500000000005,
+                  -121.74999999999945,
+                  485.246305728356
+                ],
+                [
+                  2555.2500000000005,
+                  -121.74999999999945,
+                  568.196
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MV05": {
+              "id": "MV05",
+              "kind": "wall_vertical",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat vertical",
+              "points": [
+                [
+                  2556.7500000000005,
+                  -121.74999999999945,
+                  485.246305728356
+                ],
+                [
+                  2556.7500000000005,
+                  -121.74999999999945,
+                  568.196
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH01": {
+              "id": "MH01",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  2519.2500000000005,
+                  -121.24999999999945,
+                  485.246305728356
+                ],
+                [
+                  2556.7500000000005,
+                  -121.24999999999945,
+                  485.246305728356
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH02": {
+              "id": "MH02",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  2519.2500000000005,
+                  -121.24999999999945,
+                  497.24630572835594
+                ],
+                [
+                  2556.7500000000005,
+                  -121.24999999999945,
+                  497.24630572835594
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH03": {
+              "id": "MH03",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  2519.2500000000005,
+                  -121.24999999999945,
+                  509.246305728356
+                ],
+                [
+                  2556.7500000000005,
+                  -121.24999999999945,
+                  509.246305728356
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH04": {
+              "id": "MH04",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  2519.2500000000005,
+                  -121.24999999999945,
+                  521.246305728356
+                ],
+                [
+                  2556.7500000000005,
+                  -121.24999999999945,
+                  521.246305728356
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH05": {
+              "id": "MH05",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  2519.2500000000005,
+                  -121.24999999999945,
+                  533.2463057283559
+                ],
+                [
+                  2556.7500000000005,
+                  -121.24999999999945,
+                  533.2463057283559
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH06": {
+              "id": "MH06",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  2519.2500000000005,
+                  -121.24999999999945,
+                  545.246305728356
+                ],
+                [
+                  2556.7500000000005,
+                  -121.24999999999945,
+                  545.246305728356
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH07": {
+              "id": "MH07",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  2519.2500000000005,
+                  -121.24999999999945,
+                  557.246305728356
+                ],
+                [
+                  2556.7500000000005,
+                  -121.24999999999945,
+                  557.246305728356
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH08": {
+              "id": "MH08",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  2519.2500000000005,
+                  -121.24999999999945,
+                  568.196
+                ],
+                [
+                  2556.7500000000005,
+                  -121.24999999999945,
+                  568.196
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            }
+          },
+          "cover_in": 2.0,
+          "spacing_in": 11.999999999999998
+        },
+        "BridgeCheekEB22": {
+          "bars": [
+            {
+              "name": "SteelBridgeCheekEB22MV01",
+              "id": "MV01",
+              "bar": 4,
+              "points_in": [
+                [
+                  247.24999999968898,
+                  39.75000000193764,
+                  2.249999999999986
+                ],
+                [
+                  247.24999999968898,
+                  39.75000000193764,
+                  85.19969427164408
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB22MV02",
+              "id": "MV02",
+              "bar": 4,
+              "points_in": [
+                [
+                  247.24999999978309,
+                  27.750000001937526,
+                  2.249999999999986
+                ],
+                [
+                  247.24999999978309,
+                  27.750000001937526,
+                  85.19969427164408
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB22MV03",
+              "id": "MV03",
+              "bar": 4,
+              "points_in": [
+                [
+                  247.24999999987705,
+                  15.750000001937124,
+                  2.249999999999986
+                ],
+                [
+                  247.24999999987705,
+                  15.750000001937124,
+                  85.19969427164408
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB22MV04",
+              "id": "MV04",
+              "bar": 4,
+              "points_in": [
+                [
+                  247.24999999997115,
+                  3.7500000019372957,
+                  2.249999999999986
+                ],
+                [
+                  247.24999999997115,
+                  3.7500000019372957,
+                  85.19969427164408
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB22MV05",
+              "id": "MV05",
+              "bar": 4,
+              "points_in": [
+                [
+                  247.2499999999829,
+                  2.250000001937353,
+                  2.249999999999986
+                ],
+                [
+                  247.2499999999829,
+                  2.250000001937353,
+                  85.19969427164408
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB22MH01",
+              "id": "MH01",
+              "bar": 4,
+              "points_in": [
+                [
+                  246.7499999996891,
+                  39.75000000193363,
+                  2.249999999999986
+                ],
+                [
+                  246.74999999998272,
+                  2.2500000019333424,
+                  2.249999999999986
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB22MH02",
+              "id": "MH02",
+              "bar": 4,
+              "points_in": [
+                [
+                  246.7499999996891,
+                  39.75000000193363,
+                  14.249999999999957
+                ],
+                [
+                  246.74999999998272,
+                  2.2500000019333424,
+                  14.249999999999957
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB22MH03",
+              "id": "MH03",
+              "bar": 4,
+              "points_in": [
+                [
+                  246.7499999996891,
+                  39.75000000193363,
+                  26.25
+                ],
+                [
+                  246.74999999998272,
+                  2.2500000019333424,
+                  26.25
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB22MH04",
+              "id": "MH04",
+              "bar": 4,
+              "points_in": [
+                [
+                  246.7499999996891,
+                  39.75000000193363,
+                  38.24999999999997
+                ],
+                [
+                  246.74999999998272,
+                  2.2500000019333424,
+                  38.24999999999997
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB22MH05",
+              "id": "MH05",
+              "bar": 4,
+              "points_in": [
+                [
+                  246.7499999996891,
+                  39.75000000193363,
+                  50.24999999999987
+                ],
+                [
+                  246.74999999998272,
+                  2.2500000019333424,
+                  50.24999999999987
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB22MH06",
+              "id": "MH06",
+              "bar": 4,
+              "points_in": [
+                [
+                  246.7499999996891,
+                  39.75000000193363,
+                  62.249999999999986
+                ],
+                [
+                  246.74999999998272,
+                  2.2500000019333424,
+                  62.249999999999986
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB22MH07",
+              "id": "MH07",
+              "bar": 4,
+              "points_in": [
+                [
+                  246.7499999996891,
+                  39.75000000193363,
+                  74.25000000000003
+                ],
+                [
+                  246.74999999998272,
+                  2.2500000019333424,
+                  74.25000000000003
+                ]
+              ]
+            },
+            {
+              "name": "SteelBridgeCheekEB22MH08",
+              "id": "MH08",
+              "bar": 4,
+              "points_in": [
+                [
+                  246.7499999996891,
+                  39.75000000193363,
+                  85.19969427164408
+                ],
+                [
+                  246.74999999998272,
+                  2.2500000019333424,
+                  85.19969427164408
+                ]
+              ]
+            }
+          ],
+          "layout": {
+            "MV01": {
+              "id": "MV01",
+              "kind": "wall_vertical",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat vertical",
+              "points": [
+                [
+                  2519.2500000000005,
+                  121.75000000000055,
+                  485.246305728356
+                ],
+                [
+                  2519.2500000000005,
+                  121.75000000000055,
+                  568.196
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MV02": {
+              "id": "MV02",
+              "kind": "wall_vertical",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat vertical",
+              "points": [
+                [
+                  2531.2500000000005,
+                  121.75000000000055,
+                  485.246305728356
+                ],
+                [
+                  2531.2500000000005,
+                  121.75000000000055,
+                  568.196
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MV03": {
+              "id": "MV03",
+              "kind": "wall_vertical",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat vertical",
+              "points": [
+                [
+                  2543.2500000000005,
+                  121.75000000000055,
+                  485.246305728356
+                ],
+                [
+                  2543.2500000000005,
+                  121.75000000000055,
+                  568.196
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MV04": {
+              "id": "MV04",
+              "kind": "wall_vertical",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat vertical",
+              "points": [
+                [
+                  2555.2500000000005,
+                  121.75000000000055,
+                  485.246305728356
+                ],
+                [
+                  2555.2500000000005,
+                  121.75000000000055,
+                  568.196
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MV05": {
+              "id": "MV05",
+              "kind": "wall_vertical",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat vertical",
+              "points": [
+                [
+                  2556.7500000000005,
+                  121.75000000000055,
+                  485.246305728356
+                ],
+                [
+                  2556.7500000000005,
+                  121.75000000000055,
+                  568.196
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH01": {
+              "id": "MH01",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  2519.2500000000005,
+                  121.25000000000057,
+                  485.246305728356
+                ],
+                [
+                  2556.7500000000005,
+                  121.25000000000057,
+                  485.246305728356
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH02": {
+              "id": "MH02",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  2519.2500000000005,
+                  121.25000000000057,
+                  497.24630572835594
+                ],
+                [
+                  2556.7500000000005,
+                  121.25000000000057,
+                  497.24630572835594
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH03": {
+              "id": "MH03",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  2519.2500000000005,
+                  121.25000000000057,
+                  509.246305728356
+                ],
+                [
+                  2556.7500000000005,
+                  121.25000000000057,
+                  509.246305728356
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH04": {
+              "id": "MH04",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  2519.2500000000005,
+                  121.25000000000057,
+                  521.246305728356
+                ],
+                [
+                  2556.7500000000005,
+                  121.25000000000057,
+                  521.246305728356
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH05": {
+              "id": "MH05",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  2519.2500000000005,
+                  121.25000000000057,
+                  533.2463057283559
+                ],
+                [
+                  2556.7500000000005,
+                  121.25000000000057,
+                  533.2463057283559
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH06": {
+              "id": "MH06",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  2519.2500000000005,
+                  121.25000000000057,
+                  545.246305728356
+                ],
+                [
+                  2556.7500000000005,
+                  121.25000000000057,
+                  545.246305728356
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH07": {
+              "id": "MH07",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  2519.2500000000005,
+                  121.25000000000057,
+                  557.246305728356
+                ],
+                [
+                  2556.7500000000005,
+                  121.25000000000057,
+                  557.246305728356
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            },
+            "MH08": {
+              "id": "MH08",
+              "kind": "wall_horizontal",
+              "bar": 4,
+              "diameter": 0.5,
+              "family": "Single centered mat horizontal",
+              "points": [
+                [
+                  2519.2500000000005,
+                  121.25000000000057,
+                  568.196
+                ],
+                [
+                  2556.7500000000005,
+                  121.25000000000057,
+                  568.196
+                ]
+              ],
+              "segments": [
+                [
+                  "line",
+                  0,
+                  1
+                ]
+              ]
+            }
+          },
+          "cover_in": 2.0,
+          "spacing_in": 11.999999999999998
+        }
+      }
+    }
+  }
+}

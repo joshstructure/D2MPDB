@@ -30,8 +30,14 @@ def layout(inp):
     sign=-1 if inp.Host.BeamIndex==0 else 1; mid=(n0+n1)/2
     nv=mid+sign*dh/2; nh=mid-sign*dv/2
     rows={}
-    for k,x in enumerate(steel.stations(a+cv+dv/2,b-cv-dv/2,inp.VerticalSpacing.Value),1):
-        ident=f'MV{k:02}'
+    positions=[(f'MV{k:02}',x) for k,x in enumerate(steel.stations(a+cv+dv/2,b-cv-dv/2,inp.VerticalSpacing.Value),1)]
+    if getattr(inp,'VerticalStationsJSON',''):
+        requested=json.loads(inp.VerticalStationsJSON)
+        positions=[(r['id'],a+length(r['offset'])) for r in requested]
+        if not positions or len({ident for ident,x in positions})!=len(positions):raise ValueError('Unique vertical bar identities required')
+        if any(not ident.startswith('MV') or not ident[2:].isdigit() or x<a+cv+dv/2-TOL or x>b-cv-dv/2+TOL for ident,x in positions):raise ValueError('Vertical station outside covered web')
+        if any(v-u<dv-TOL for u,v in zip(sorted(x for _,x in positions),sorted(x for _,x in positions)[1:])):raise ValueError('Vertical bars overlap')
+    for ident,x in positions:
         rows[ident]=dict(id=ident,kind='wall_vertical',bar=inp.VerticalBar,diameter=dv/IN,family='Single centered mat vertical',points=[(x/IN,nv/IN,z/IN) for z in (z0+cv+dv/2,z1-cv-dv/2)],segments=[('line',0,1)])
     for k,z in enumerate(steel.stations(z0+cv+dh/2,z1-cv-dh/2,inp.HorizontalSpacing.Value),1):
         ident=f'MH{k:02}'

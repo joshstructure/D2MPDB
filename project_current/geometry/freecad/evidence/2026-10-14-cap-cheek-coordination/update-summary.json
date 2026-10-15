@@ -1,0 +1,279 @@
+{
+  "status": "REQUESTED_COORDINATION_COMPLETE_WITH_OTHER_FINDINGS",
+  "date": "2026-10-14",
+  "decision": "D-028",
+  "model_sha256": "830f2593370ea96914ecc366b5ff263458e095b873151aa13080244737ab6fde",
+  "previous_model_sha256": "b7ff819435dc858b55ec16518bb4e4313eb85321a294367c72ab5afb1a7d8994",
+  "concrete_unchanged": true,
+  "source_cases_unchanged": true,
+  "cap_bar_counts": [
+    62,
+    90,
+    62
+  ],
+  "cheek_bars_before": 52,
+  "cheek_bars_after": 48,
+  "vertical_bars_per_cheek": 4,
+  "horizontal_bars_per_cheek": 8,
+  "outer_verticals_from_edges_in": 5.25,
+  "end_hoop_stations_in": [
+    6,
+    245.875
+  ],
+  "basis": "User: remove one close left vertical; bring outer verticals just inside long bars and end hoops inside cheek mats. Contact allowed; positive solid overlap prohibited.",
+  "changes": [
+    {
+      "object": "CageEB1Trans_R1_1",
+      "station": "6 in"
+    },
+    {
+      "object": "CageEB1Trans_R9_4",
+      "station": "245.875 in"
+    },
+    {
+      "object": "CageEB2Trans_R1_1",
+      "station": "6 in"
+    },
+    {
+      "object": "CageEB2Trans_R9_4",
+      "station": "245.875 in"
+    },
+    {
+      "wall": "BridgeCheekEB11",
+      "removed": "MV05",
+      "vertical_stations": [
+        {
+          "id": "MV01",
+          "offset": "5.25 in"
+        },
+        {
+          "id": "MV02",
+          "offset": "14.25 in"
+        },
+        {
+          "id": "MV03",
+          "offset": "26.25 in"
+        },
+        {
+          "id": "MV04",
+          "offset": "36.75 in"
+        }
+      ]
+    },
+    {
+      "wall": "BridgeCheekEB12",
+      "removed": "MV05",
+      "vertical_stations": [
+        {
+          "id": "MV01",
+          "offset": "5.25 in"
+        },
+        {
+          "id": "MV02",
+          "offset": "14.25 in"
+        },
+        {
+          "id": "MV03",
+          "offset": "26.25 in"
+        },
+        {
+          "id": "MV04",
+          "offset": "36.75 in"
+        }
+      ]
+    },
+    {
+      "wall": "BridgeCheekEB21",
+      "removed": "MV05",
+      "vertical_stations": [
+        {
+          "id": "MV01",
+          "offset": "5.25 in"
+        },
+        {
+          "id": "MV02",
+          "offset": "14.25 in"
+        },
+        {
+          "id": "MV03",
+          "offset": "26.25 in"
+        },
+        {
+          "id": "MV04",
+          "offset": "36.75 in"
+        }
+      ]
+    },
+    {
+      "wall": "BridgeCheekEB22",
+      "removed": "MV05",
+      "vertical_stations": [
+        {
+          "id": "MV01",
+          "offset": "5.25 in"
+        },
+        {
+          "id": "MV02",
+          "offset": "14.25 in"
+        },
+        {
+          "id": "MV03",
+          "offset": "26.25 in"
+        },
+        {
+          "id": "MV04",
+          "offset": "36.75 in"
+        }
+      ]
+    }
+  ],
+  "geometry_checks": 724,
+  "targeted_clearance_checks": 544,
+  "retained_native_records": 1623,
+  "parametric_dependency_tests": "PASS: hoop moved 0.25 in; cheek count removed/restored through live controller, discarded without saving",
+  "cheek_clash_pairs_before": 40,
+  "cheek_clash_pairs_after": 8,
+  "remaining_cheek_clashes": [
+    {
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.08393123944674838,
+      "minimum_in": 0.0,
+      "a": "CageEB1Long13",
+      "b": "SteelBridgeCheekEB11MH03"
+    },
+    {
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.08393123956539437,
+      "minimum_in": 0.0,
+      "a": "CageEB1Long13",
+      "b": "SteelBridgeCheekEB12MH03"
+    },
+    {
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.08393123950146071,
+      "minimum_in": 0.0,
+      "a": "CageEB1Long17",
+      "b": "SteelBridgeCheekEB11MH03"
+    },
+    {
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.08393123960928303,
+      "minimum_in": 0.0,
+      "a": "CageEB1Long17",
+      "b": "SteelBridgeCheekEB12MH03"
+    },
+    {
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.08393123959740004,
+      "minimum_in": 0.0,
+      "a": "CageEB2Long13",
+      "b": "SteelBridgeCheekEB21MH03"
+    },
+    {
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.08393123948923091,
+      "minimum_in": 0.0,
+      "a": "CageEB2Long13",
+      "b": "SteelBridgeCheekEB22MH03"
+    },
+    {
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.0839312394473795,
+      "minimum_in": 0.0,
+      "a": "CageEB2Long17",
+      "b": "SteelBridgeCheekEB21MH03"
+    },
+    {
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.08393123958196116,
+      "minimum_in": 0.0,
+      "a": "CageEB2Long17",
+      "b": "SteelBridgeCheekEB22MH03"
+    }
+  ],
+  "backwall_cap_clashes": 33,
+  "detailing": {
+    "EB1": [
+      {
+        "name": "EB1_all_bar_cover",
+        "status": "FAIL",
+        "failures": 20
+      },
+      {
+        "name": "EB1_bar_to_pile_clearance",
+        "status": "FAIL",
+        "failures": 8
+      },
+      {
+        "name": "EB1_all_bar_pairs",
+        "status": "FAIL",
+        "failures": 7
+      },
+      {
+        "name": "EB1_source_end_grid_pile_tolerance_envelope",
+        "status": "PASS",
+        "failures": 0
+      },
+      {
+        "name": "EB1_anchorage_and_fabrication",
+        "status": "NOT CONFIGURED",
+        "failures": 0
+      }
+    ],
+    "EB2": [
+      {
+        "name": "EB2_all_bar_cover",
+        "status": "FAIL",
+        "failures": 20
+      },
+      {
+        "name": "EB2_bar_to_pile_clearance",
+        "status": "FAIL",
+        "failures": 8
+      },
+      {
+        "name": "EB2_all_bar_pairs",
+        "status": "FAIL",
+        "failures": 7
+      },
+      {
+        "name": "EB2_source_end_grid_pile_tolerance_envelope",
+        "status": "PASS",
+        "failures": 0
+      },
+      {
+        "name": "EB2_anchorage_and_fabrication",
+        "status": "NOT CONFIGURED",
+        "failures": 0
+      }
+    ]
+  },
+  "full_GUI_reopen": "Not repeated; prior standalone GUI loader unavailable even on unchanged baseline. Native headless reopen verified.",
+  "views": "Orthographic renderings of exported nominal CAD solids with export/reload volume checks.",
+  "limits": "Horizontal cheek bars, cap longitudinal bars and other bars preserved; remaining cover, pile-clearance, cap internal, anchorage and fabrication findings remain open.",
+  "tracker": "COH-024"
+}

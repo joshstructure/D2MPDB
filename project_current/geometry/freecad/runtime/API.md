@@ -365,3 +365,21 @@ CoverConcrete links the cap and both cheek solids; the cover checker requires
 one connected valid union and measures the actual envelope. Pile sockets retain
 separate C_pile checks, distinct from exterior concrete cover. Cage paths remain
 native and all source-case, schedule and quantity dependencies remain editable.
+
+
+## User-directed cap / cheek coordination (D-028)
+
+`cap_cheek_coordination.update(doc, job)` requires a disposable file copy, a new
+request ID, explicit unit-bearing stations and the existing 0.001 in tolerance.
+`VerticalStationsJSON` defines stable cheek MV IDs and centerline offsets from the
+web's local X minimum. Omitted IDs are removed through the existing synchronizer.
+`TransverseStationOverridesJSON` maps existing hoop IDs to cap-length stations.
+The original `SourceCaseJSON` and `TransverseRunsJSON` are preserved. Overrides are
+applied by the native cap layout controller and are separate from selected cases.
+For future case replacement, review these deliberate CAD overrides explicitly.
+
+The exact original records of other objects are retained with `native_archive`.
+Full nominal-solid checks are required because the hooked hoop projects beyond
+its nominal station. The helper never installs the main model or suppresses
+remaining overlap/cover/pile findings. Verified dependency tests exercise hoop
+station movement and removal/restoration of native cheek bars on a discarded copy.

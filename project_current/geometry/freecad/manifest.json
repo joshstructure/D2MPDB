@@ -3,9 +3,9 @@
   "authority": "Current editable FreeCAD geometry and modeled quantities; engineering acceptance remains separate",
   "model": {
     "path": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-    "sha256": "b7ff819435dc858b55ec16518bb4e4313eb85321a294367c72ab5afb1a7d8994",
-    "bytes": 6488000,
-    "objects": 1685
+    "sha256": "830f2593370ea96914ecc366b5ff263458e095b873151aa13080244737ab6fde",
+    "bytes": 6586119,
+    "objects": 1677
   },
   "source_revision": "01a1fcc34d6345ceacf96245bcf0c931d118a1ab",
   "tracker_used_sha256": "f2d9b051bdce9a20671bd5e3b4c5b1c8fbfc8c0412bd74adbbeee448ee9d1f51",
@@ -15,10 +15,11 @@
     "12 October camber update: add file-only notebook_update adapter; accept existing WallRebarProxy in native_archive preservation. Existing parametric bridge/cage builders are retained.",
     "12 October D-024: add native pedestal_ubars controller, editable signed local shifts, physical checks and LRFD straight development; import in the project opener.",
     "14 October D-026: adopt matching DXF/MSE/mitre/wall-top and centered-cheek controllers; cap cages retain case length within widened concrete. Update API and opener.",
-    "14 October D-027: end_cap_revision imports exact selected cases on disposable copies; cap_cages checks the combined cap/cheek exterior envelope separately from pile clearance."
+    "14 October D-027: end_cap_revision imports exact selected cases on disposable copies; cap_cages checks the combined cap/cheek exterior envelope separately from pile clearance.",
+    "D-028: editable cheek vertical stations and cap hoop station overrides; tested native synchronizers, unchanged supplied cases, strict physical clearance checks."
   ],
   "runtime_files": {
-    "runtime/API.md": "2f3afbbe7ca6a9b5dfa2977a5023c051eed0f22122c010cc6d5d1933d65ea952",
+    "runtime/API.md": "b0fe43f7f462002557068e10dc7d38e3eefc4d5e14287f2d0429d21a8c54ef1d",
     "runtime/freecad_tools/__init__.py": "54fc72e62296f90ef30d4395023d10589142c7979df962a5fa1669cf01886a32",
     "runtime/freecad_tools/adopt_drainage.py": "df2e4d293383aa5de9e425a8af75b7640524d07e71eebd541d42d2e81342eb07",
     "runtime/freecad_tools/api.py": "4f5d129384cf8b68bf10564f59141a31bd83921d47e8e477754ad2ea3ade71ca",
@@ -32,7 +33,7 @@
     "runtime/freecad_tools/bridge_notebook_engine.py": "af2f989a4b324b80a7bb669e86dc6e5d302e542628b6e81e29dc221d77a72eb9",
     "runtime/freecad_tools/bridge_shapes.py": "d1ea0a4d22fd40f81212201b84a0770f7bfef8cc5203a3ce8e809e8f06190452",
     "runtime/freecad_tools/bridge_supports.py": "8d0209af8b0b5a4093012cb2183d694c24e9d05db3e8d7b5d7f3739f15b660d2",
-    "runtime/freecad_tools/cap_cages.py": "d521ff7629102bfbce3a63ec42a59124fca958f6f911fd02348c3cb5df7d78ea",
+    "runtime/freecad_tools/cap_cages.py": "67690622670056408e6f6586a07f6ff748c7e854b47d8e6cebcebd01f94fd70a",
     "runtime/freecad_tools/current_source.py": "2fcd9874e1ff55d393f1b4513d8b181e49afbbdacd8c2c82eda6c438ec1faee8",
     "runtime/freecad_tools/deck_gaps.py": "56dcb9878433b768fdbb005aceda19981ebbe61377ce9dac5d481c2a655b5a8a",
     "runtime/freecad_tools/drainage_trial.py": "0ae71ab9633fc210d47b4451c1fc5191e0a36d0623187472ed0ac3b4013f7a95",
@@ -131,11 +132,12 @@
     "runtime/freecad_tools/file_install.py": "f00c34f8ef44f66800ef656832ba772e8422001ed4b289cbfb214ec48a0fdbd6",
     "runtime/freecad_tools/notebook_update.py": "3ccc61a21e20201c35e1db5065beef7e0f9b79f0bdb78c9a056252dc4b5157a1",
     "runtime/freecad_tools/pedestal_ubars.py": "50617ad926c0c370d7144a76626b466124ae2d69b1f75dea80faa4f284468c1c",
-    "runtime/freecad_tools/cheek_steel.py": "d7154ecb88a166fbc0e21e0904efe7e5b08ecdaeecc3d97a64ad7611acb7409d",
+    "runtime/freecad_tools/cheek_steel.py": "dabc5f01ed1990aee52b8f7e68d363f93397daff53ca0a362ba62ef3f8bb9f93",
     "runtime/freecad_tools/mse_corrections.py": "c134a1c06b72980b59695d13682a150782f76bb25f0d0f564839d113957d1c38",
     "runtime/freecad_tools/mse_revision.py": "6c0494b2328997e01784eb40f00b83905f62a1c0ee1066ac24261f0278bf7fe4",
     "runtime/freecad_tools/mse_wall_tops.py": "cbdb605ec6a50a51aafe86b2b8308dd99dfac2fd632c7eb9a5e19b110f32234a",
-    "runtime/freecad_tools/end_cap_revision.py": "55092761a9184c4ef370bf5f8b11208c7be30a6064db0ef07d294ae46a5d8262"
+    "runtime/freecad_tools/end_cap_revision.py": "55092761a9184c4ef370bf5f8b11208c7be30a6064db0ef07d294ae46a5d8262",
+    "runtime/freecad_tools/cap_cheek_coordination.py": "59c4bfb4e636104253c3bef968baa71b30ac3d05f41d1e6d0a1edfc2026e1f15"
   },
   "opener_sha256": "6de0493dd3c149be006bba7ac7fbbc77f3ce4fb33c7ffe1e7b23abe07fb09341",
   "evidence_files": {
@@ -146,7 +148,7 @@
     "evidence/delivery-helper-fingerprints.json": "2eda36676cc40916485c708e385818c6e99ead3be41e5754a55bc5e772e58c62",
     "evidence/final-reopen-verification.json": "fde89e9b9c8bb47433a964e3d0b3faedcb00c201b8ada10b348c086e4bfaeec9",
     "evidence/final-save.json": "7767f925bccdf426225cf1d4269ce59919cdcf71267f7c56c7484547f758e946",
-    "evidence/Model-update-report.txt": "8cedf09347f94bb4f7efc0851b5d4c987fc505b9849c3b726929783d0b0f8bf0",
+    "evidence/Model-update-report.txt": "143b2fa22e2772f1ae81394e1c32f2aa1f1fe1f1556e15541db4c93beaf917ef",
     "evidence/opener-verification.json": "7cfd370f32a419bd160ce2f914df4e861372addcab97d9e64896fb6135d40fdf",
     "evidence/portable-verification.json": "5daa7dfc49c7f7b11c641a51d2e425ce853dc08ee134356c02746d93d028ec36",
     "evidence/session-checkpoint.json": "c22fc947838b3ed99425beeab12c10e80b62b12be04d01444f2a0677135096c5",
@@ -216,17 +218,39 @@
     "evidence/2026-10-14-end-caps/views/EB2-cheek2-clashes.png": "8178e9f6e3024bb9ee544e71c17230cb87e041147472744fe2bbd78dea96d387",
     "evidence/2026-10-14-end-caps/views/EB2-cheek2-end.png": "3ad5024ac86900d3213b6b6cbb4cbbb799fb163d8330b4d3ec4a763cf8dd0ea9",
     "evidence/2026-10-14-end-caps/views/EB2-overall.png": "eeb749cf2c84827c24db568362acfee051998cd01005719bbae68a9072b792fd",
-    "evidence/2026-10-14-end-caps/installation.json": "20e88e61df5dbe5ab81a4e54c176ea4c5a9ab44c1c38fef6519a606a4aca5efe"
+    "evidence/2026-10-14-end-caps/installation.json": "20e88e61df5dbe5ab81a4e54c176ea4c5a9ab44c1c38fef6519a606a4aca5efe",
+    "evidence/2026-10-14-cap-cheek-coordination/baseline.json": "4bc0f8b94c0e10f89be8b7d60d2cf1c2afd4413ad7b3d5d5a2e7ad47a385b870",
+    "evidence/2026-10-14-cap-cheek-coordination/build-summary.json": "be6cd8e27871e74d5ed3a848084a4598e8607728e4b0fd85dc1dd1e25fd2fdf6",
+    "evidence/2026-10-14-cap-cheek-coordination/cold-reopen.json": "efa30160ff35fe0f77359b95d7eca07d6a26e8d05181bfc93638f5a20bfc8e8c",
+    "evidence/2026-10-14-cap-cheek-coordination/final-detailing.json": "f94147a3c13a55bc5ccbb94323a0756a47a5be2a8a020cb08f598cc7ef9b6c2e",
+    "evidence/2026-10-14-cap-cheek-coordination/preservation.json": "d3671c2221e40790d30c2010a4d0d5ad4b40f07a60a6e0051671cd1ba1b9476b",
+    "evidence/2026-10-14-cap-cheek-coordination/render-verification.json": "60e1977d019f48d7ea60d9d2ceada53bf29b2f768f4b576f65eaa4af895a354b",
+    "evidence/2026-10-14-cap-cheek-coordination/tracker-artifact-checks.json": "09b4fa158750c628944750e294915dee6cd82ceeecd8e53960f01c358c0e7e55",
+    "evidence/2026-10-14-cap-cheek-coordination/tracker-preservation.json": "9f08e8ad5faf968b79f36e8aeb43cd6043aadce9a300587e6e2ca543d7f3e422",
+    "evidence/2026-10-14-cap-cheek-coordination/transaction.json": "925aae23498578fb5088563502585437f948a7d4d57a313150ef0993a3db3a12",
+    "evidence/2026-10-14-cap-cheek-coordination/update-summary.json": "70b0654e131b78e7e88453f7b06cf851cd0dde1fc33773641a9d9f16b7946244",
+    "evidence/2026-10-14-cap-cheek-coordination/wall-cap-clashes.csv": "b743c70cf32370f25f9c39f5397df796cfc7327336912f418ce7434ddd378ab8",
+    "evidence/2026-10-14-cap-cheek-coordination/views/EB1-cheek1-clashes.png": "1d87e7eca6e5cb21e75f514ec21389b463c2c5a5d6517a82717db2493adf2513",
+    "evidence/2026-10-14-cap-cheek-coordination/views/EB1-cheek1-end.png": "b250335e8134f40205332904d789de31ee130683dcac3dc754b7bc11089e8689",
+    "evidence/2026-10-14-cap-cheek-coordination/views/EB1-cheek2-clashes.png": "2ca3db47444102ff27962b411a2ade11dc763e399bb3adf7a964b4bd27145455",
+    "evidence/2026-10-14-cap-cheek-coordination/views/EB1-cheek2-end.png": "c29053f420300bfeb1b769a7117449f676b5d3d207ba408dd80d28c3b4c9d06a",
+    "evidence/2026-10-14-cap-cheek-coordination/views/EB1-overall.png": "9001f3e4f226e41947597c069ed3f60e07567e7146070ec758c5042ce4c90145",
+    "evidence/2026-10-14-cap-cheek-coordination/views/EB2-cheek1-clashes.png": "3d491a8a598f3b4c78bfa9adec17a17b1849890b1daa4b0a944fad45929677dd",
+    "evidence/2026-10-14-cap-cheek-coordination/views/EB2-cheek1-end.png": "34ea08fa840421e1209fba433bacea67f53af80c9b236e423c8f6810995fc39f",
+    "evidence/2026-10-14-cap-cheek-coordination/views/EB2-cheek2-clashes.png": "3714faa052d9772c1f9800fa8f1d5221db8a9ff8da0289004ccf58dcf3b8a4d8",
+    "evidence/2026-10-14-cap-cheek-coordination/views/EB2-cheek2-end.png": "f0abf08a393fd97a61cd635ba08acea8e25da9ca46f5407c6b9bfb72492b2718",
+    "evidence/2026-10-14-cap-cheek-coordination/views/EB2-overall.png": "dae631465f1b4612c026163d2eb3ec287a85b8d4754719334511e92d33b31aa2",
+    "evidence/2026-10-14-cap-cheek-coordination/installation.json": "9439229c23f6af7e1b49919545e89c95cf942b9c471b0b1353cd61594a78924c"
   },
-  "known_review_status": "Native geometry/preservation checks PASS; 40 cap/cheek, 33 backwall/cap pairs and cap detailing failures remain. COH-024 coordination open.",
-  "portability_verification": "624 bar geometry checks and 1421 exact native records/resources preserved on cold headless reopen. Full-model standalone GUI loader failed on both baseline and candidate; exact-solid VTK review views separately checked.",
+  "known_review_status": "Requested changes PASS 544 clearance checks; 8 cap/cheek and 33 backwall/cap intersections and existing cap detailing failures remain.",
+  "portability_verification": "Cold native reopen: 724 geometry checks PASS; 1623 original native records/resources exact; native parametric dependency tests PASS. Prior standalone GUI-loader limitation remains.",
   "updated_on": "2026-10-14",
   "current_update": {
     "date": "2026-10-14",
-    "decision": "D-027",
-    "scope": "Supplied cap cages across combined cap/cheek envelope; unchanged concrete and cheek mats",
-    "summary": "evidence/2026-10-14-end-caps/update-summary.json",
-    "previous_model_sha256": "38ddeecf176e93063682b6101c74031ae8b4933eb8ade94f2aeafbc3dd16d2eb",
+    "decision": "D-028",
+    "scope": "Requested cheek vertical and end-hoop coordination; contact allowed, no positive overlap",
+    "summary": "evidence/2026-10-14-cap-cheek-coordination/update-summary.json",
+    "previous_model_sha256": "b7ff819435dc858b55ec16518bb4e4313eb85321a294367c72ab5afb1a7d8994",
     "follow_up": "COH-024"
   },
   "archive_files": {
@@ -234,17 +258,17 @@
     "archive/B4-before-MSE-and-cheek-revision-20261014.FCStd": "7368774487c1456238df13c80e33ddf3871907982ff91938e1ae1b4eebf52676",
     "archive/B4-before-MSE-and-cheek-runtime-20261014.zip": "e4e26ba11bd5a694eb51af2222b39dc53af3a6f80c815350ec69b190885afb5d",
     "archive/B4-before-end-cap-steel-20261014.FCStd": "38ddeecf176e93063682b6101c74031ae8b4933eb8ade94f2aeafbc3dd16d2eb",
-    "archive/B4-before-end-cap-steel-runtime-20261014.zip": "f8e4fb015e5465209d12a1e1c5927bd703def5672e80f1f1b831d84fac3c1d00"
+    "archive/B4-before-end-cap-steel-runtime-20261014.zip": "f8e4fb015e5465209d12a1e1c5927bd703def5672e80f1f1b831d84fac3c1d00",
+    "archive/B4-before-cap-cheek-coordination-20261014.FCStd": "b7ff819435dc858b55ec16518bb4e4313eb85321a294367c72ab5afb1a7d8994",
+    "archive/B4-before-cap-cheek-coordination-runtime-20261014.zip": "add4ee75ac348d67a778e3e3febec81207fff5d060424eb63bb08e4c63a97fc2"
   },
   "previous_update": {
     "date": "2026-10-14",
-    "decision": "D-026",
-    "scope": "Adopt all reviewed DXF/MSE/barrier and centered cheek reinforcement revisions",
-    "summary": "evidence/2026-10-14-mse-and-cheek/adoption-summary.json",
-    "previous_model_sha256": "7368774487c1456238df13c80e33ddf3871907982ff91938e1ae1b4eebf52676",
-    "source_dxf": "project_current/geometry/details/B4 Pedestrian Bridge - Working.dxf",
-    "source_dxf_sha256": "dcf8bfdb441372e08a24c903f88cd3c3d772bb1f2ccce8f0eb35859fd6d8ea07",
-    "follow_up": "COH-023"
+    "decision": "D-027",
+    "scope": "Supplied cap cages across combined cap/cheek envelope; unchanged concrete and cheek mats",
+    "summary": "evidence/2026-10-14-end-caps/update-summary.json",
+    "previous_model_sha256": "38ddeecf176e93063682b6101c74031ae8b4933eb8ade94f2aeafbc3dd16d2eb",
+    "follow_up": "COH-024"
   },
   "extra_macros": {
     "Show_Elevations.FCMacro": "f27415eb7d8fe05a5ff8d05a01a5298b36ac1d3cf987ec8738ed541d085a3fc4"

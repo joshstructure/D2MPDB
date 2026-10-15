@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "changed_item": "COH-024",
+  "changed_cells": [
+    "E32",
+    "F32",
+    "G32",
+    "J32",
+    "K32"
+  ],
+  "row_height": 216,
+  "previous_items_preserved": 23,
+  "previous_user_response_preserved": true,
+  "other_archive_parts_exact": true,
+  "outstanding_items": 12
+}
