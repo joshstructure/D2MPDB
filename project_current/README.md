@@ -17,8 +17,8 @@ design-completion status.
 | Current editable FreeCAD model and live quantities | [Open the bridge model](geometry/freecad/README.md) — adopted DXF/MSE/barriers and centered #4 cheek mats; calculation reconciliation remains open |
 | Geometry notebook | [Bridge geometry](../Bridge_Geometry_2%20Beam_V2.ipynb) and [roadway XML](../Geometry%20Report.xml) |
 | Pier cap | [Report](cap_design/pier/Pier%20Cap%20Design%2010-12.html), [saved case](cap_design/pier/selected_case.json), [FBMP export](fbmp/pier/Pier_Fixed.XML) |
-| End Bent 1 cap | [Report](cap_design/end_bents/End%20Bent%201%20Cap%20Design%2010-12.html), [saved case](cap_design/end_bents/selected_case.json) |
-| End Bent 2 cap | [Report](cap_design/end_bent_2/End%20Bent%202%20Cap%20Design.html), [saved case](cap_design/end_bent_2/selected_case.json) |
+| End Bent 1 cap | [Report](cap_design/end_bents/End%20Bent%201%20Cap%20Design%2010-14.html), [saved case](cap_design/end_bents/selected_case.json) |
+| End Bent 2 cap | [Report](cap_design/end_bent_2/End%20Bent%202%20Cap%20Design%2010-14.html), [saved case](cap_design/end_bent_2/selected_case.json) |
 | Selected backwall and cheekwall design | [12 October report](cap_design/backwall/Backwall%20Design%2010-12.html) — provisional dimensions; trial reinforcement; pending detailing |
 | FBMP source variants | [All four fixed/minimum-tip exports](fbmp/README.md) |
 | Mathcad | [Span 1](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd), [Span 2](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd) — 12 October beam runs; [changes and downstream review](mathcad/README.md) |
@@ -149,3 +149,14 @@ COH-023 records reconciliation with the selected cap/backwall calculations and
 geometry notebook. The CAD layout supersedes the provisional wall geometry and
 two-face cheek steel in the earlier report for modeling purposes. Calculation
 sources, historical decisions and previous tracker responses retain their scope.
+
+## 14 October end-cap reinforcement update
+
+D-027 selects both reports and exact JSON cases from `Updated End Bent Cap
+Designs.zip`. The 251 in out-to-out cage envelope is the existing 235 in cap
+plus the two 8 in cheek webs. The concrete geometry is unchanged. Both end-cap
+cages contain 62 bars with #6 transverse steel. The unchanged cheek mats clash
+with the new steel; COH-024 and the saved CAD review views record those conflicts
+for discussion. Cap cover, pile clearance and other steel findings remain open.
+Earlier cases and model revisions are preserved. The new exact raw FBMP exports
+were not supplied, and calculation/anchorage/fabrication acceptance is unchanged.

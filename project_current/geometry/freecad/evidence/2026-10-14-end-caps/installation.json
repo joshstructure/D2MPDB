@@ -1,0 +1,14 @@
+{
+  "status": "INSTALLED_AND_BYTE_VERIFIED",
+  "transaction_id": "end-caps-install-20261014-v1",
+  "model": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "old_sha256": "38ddeecf176e93063682b6101c74031ae8b4933eb8ade94f2aeafbc3dd16d2eb",
+  "new_sha256": "b7ff819435dc858b55ec16518bb4e4313eb85321a294367c72ab5afb1a7d8994",
+  "model_installation": {
+    "status": "INSTALLED",
+    "backup": "C:\\github\\D2MPDB\\project_current\\geometry\\freecad\\archive\\B4-before-end-cap-steel-20261014.FCStd",
+    "old_sha256": "38ddeecf176e93063682b6101c74031ae8b4933eb8ade94f2aeafbc3dd16d2eb",
+    "new_sha256": "b7ff819435dc858b55ec16518bb4e4313eb85321a294367c72ab5afb1a7d8994"
+  },
+  "files": 47
+}

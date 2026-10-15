@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "file": "C:\\Users\\joshs\\Desktop\\CAD_AI\\reports\\end-caps-20261014\\build-v1\\FinalCandidate.FCStd",
+  "sha256": "b7ff819435dc858b55ec16518bb4e4313eb85321a294367c72ab5afb1a7d8994",
+  "native_objects": 1685,
+  "retained_native_records": 1421,
+  "retained_resource_check": "Exact property/resource comparison after normalizing resource filenames to hashes",
+  "geometry_checks": 624,
+  "totals": {
+    "EB1": {
+      "count": 62,
+      "length_ft": 766.9915954069344,
+      "weight_lb": 1231.9607764375742,
+      "net_cap_ft3": 196.62500000000006
+    },
+    "EB2": {
+      "count": 62,
+      "length_ft": 766.9915954069344,
+      "weight_lb": 1231.9607764375742,
+      "net_cap_ft3": 196.62500000000074
+    }
+  },
+  "concrete_and_other_native_records_unchanged": true,
+  "cage_crosses_cap_into_cheeks": true,
+  "cheek_bars": 52,
+  "pier_bars": 90,
+  "piles": 12,
+  "elevations": 170,
+  "detailing": "See separate measured failures; geometry verification is not design acceptance"
+}

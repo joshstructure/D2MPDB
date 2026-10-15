@@ -351,3 +351,17 @@ quantities and wall/cap-steel clashes. CheekSteelChecks and WallSteelChecks are
 dated snapshots. Rerun checks after edits. Anchorage/laps/lug steel are not detailed.
 The cap cages retain the selected cases' length and remain centered when concrete
 caps are widened; their engineering redesign is a separate unresolved item.
+
+
+## End cap / cheek combined envelope (14 October 2026, D-027)
+
+end_cap_revision.update(doc, job) uses the existing cage inputs/synchronizer on
+an explicit disposable file copy, with checked source hashes and 0.001 in
+tolerance. The native file-copy preservation and cold-reopen workflow is required
+before installing a candidate. It does not move concrete or cheek bars, and
+does not save the main model. Detailing failures remain recorded.
+
+CoverConcrete links the cap and both cheek solids; the cover checker requires
+one connected valid union and measures the actual envelope. Pile sockets retain
+separate C_pile checks, distinct from exterior concrete cover. Cage paths remain
+native and all source-case, schedule and quantity dependencies remain editable.

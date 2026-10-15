@@ -1,0 +1,1111 @@
+{
+  "status": "PASS",
+  "basis": "Orthographic model views rendered from exact exported native solids; 0.2 mm tessellation deflection. Editable model is unchanged by rendering.",
+  "mesh_checks": [
+    {
+      "name": "BridgeCapEB1",
+      "facets": 76,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "BridgeCheekEB11",
+      "facets": 24,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "BridgeCheekEB12",
+      "facets": 24,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Long01",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Long02",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Long03",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Long04",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Long05",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Long06",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Long07",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Long08",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Long09",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Long10",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Long11",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Long12",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Long13",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Long14",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Long15",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Long16",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Long17",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Added01",
+      "facets": 17132,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Added02",
+      "facets": 17132,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Added03",
+      "facets": 17132,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Added04",
+      "facets": 17132,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Added05",
+      "facets": 17132,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Added06",
+      "facets": 17132,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Added07",
+      "facets": 17132,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Added08",
+      "facets": 17132,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Added09",
+      "facets": 17132,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R1_1",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R1_2",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R1_3",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R1_4",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R2_1",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R2_2",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R2_3",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R2_4",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R3_1",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R3_2",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R3_3",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R3_4",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R4_1",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R4_2",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R4_3",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R4_4",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R5_1",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R5_2",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R5_3",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R5_4",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R6_1",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R6_2",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R6_3",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R6_4",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R7_1",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R7_2",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R7_3",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R7_4",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R8_1",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R8_2",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R8_3",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R8_4",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R9_1",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R9_2",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R9_3",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB1Trans_R9_4",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11MV01",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11MV02",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11MV03",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11MV04",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11MV05",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH01",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH02",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH03",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH04",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH05",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH06",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH07",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH08",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12MV01",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12MV02",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12MV03",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12MV04",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12MV05",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH01",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH02",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH03",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH04",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH05",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH06",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH07",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH08",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB1Overlap0",
+      "facets": 410,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB1Overlap1",
+      "facets": 410,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB1Overlap2",
+      "facets": 410,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB1Overlap3",
+      "facets": 410,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB1Overlap4",
+      "facets": 410,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB1Overlap5",
+      "facets": 410,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB1Overlap6",
+      "facets": 410,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB1Overlap7",
+      "facets": 540,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB1Overlap8",
+      "facets": 410,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB1Overlap9",
+      "facets": 540,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB1Overlap10",
+      "facets": 540,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB1Overlap11",
+      "facets": 540,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB1Overlap12",
+      "facets": 2130,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB1Overlap13",
+      "facets": 1214,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB1Overlap14",
+      "facets": 1180,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB1Overlap15",
+      "facets": 6070,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB1Overlap16",
+      "facets": 428,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB1Overlap17",
+      "facets": 1168,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "BridgeCapEB2",
+      "facets": 76,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "BridgeCheekEB21",
+      "facets": 24,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "BridgeCheekEB22",
+      "facets": 24,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Long01",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Long02",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Long03",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Long04",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Long05",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Long06",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Long07",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Long08",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Long09",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Long10",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Long11",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Long12",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Long13",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Long14",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Long15",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Long16",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Long17",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Added01",
+      "facets": 17132,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Added02",
+      "facets": 17132,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Added03",
+      "facets": 17132,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Added04",
+      "facets": 17132,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Added05",
+      "facets": 17132,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Added06",
+      "facets": 17132,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Added07",
+      "facets": 17132,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Added08",
+      "facets": 17132,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Added09",
+      "facets": 17132,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R1_1",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R1_2",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R1_3",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R1_4",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R2_1",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R2_2",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R2_3",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R2_4",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R3_1",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R3_2",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R3_3",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R3_4",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R4_1",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R4_2",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R4_3",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R4_4",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R5_1",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R5_2",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R5_3",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R5_4",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R6_1",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R6_2",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R6_3",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R6_4",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R7_1",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R7_2",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R7_3",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R7_4",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R8_1",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R8_2",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R8_3",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R8_4",
+      "facets": 33764,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R9_1",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R9_2",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R9_3",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "CageEB2Trans_R9_4",
+      "facets": 50144,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21MV01",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21MV02",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21MV03",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21MV04",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21MV05",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21MH01",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21MH02",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21MH03",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21MH04",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21MH05",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21MH06",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21MH07",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB21MH08",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22MV01",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22MV02",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22MV03",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22MV04",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22MV05",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22MH01",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22MH02",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22MH03",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22MH04",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22MH05",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22MH06",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22MH07",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "SteelBridgeCheekEB22MH08",
+      "facets": 500,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB2Overlap0",
+      "facets": 410,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB2Overlap1",
+      "facets": 410,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB2Overlap2",
+      "facets": 410,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB2Overlap3",
+      "facets": 410,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB2Overlap4",
+      "facets": 410,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB2Overlap5",
+      "facets": 410,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB2Overlap6",
+      "facets": 410,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB2Overlap7",
+      "facets": 540,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB2Overlap8",
+      "facets": 410,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB2Overlap9",
+      "facets": 540,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB2Overlap10",
+      "facets": 540,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB2Overlap11",
+      "facets": 540,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB2Overlap12",
+      "facets": 2126,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB2Overlap13",
+      "facets": 1218,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB2Overlap14",
+      "facets": 1176,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB2Overlap15",
+      "facets": 6060,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB2Overlap16",
+      "facets": 428,
+      "volume_reload": "PASS"
+    },
+    {
+      "name": "EB2Overlap17",
+      "facets": 1168,
+      "volume_reload": "PASS"
+    }
+  ],
+  "files": [
+    "EB1-cheek1-clashes.png",
+    "EB1-cheek1-end.png",
+    "EB1-cheek2-clashes.png",
+    "EB1-cheek2-end.png",
+    "EB1-overall.png",
+    "EB2-cheek1-clashes.png",
+    "EB2-cheek1-end.png",
+    "EB2-cheek2-clashes.png",
+    "EB2-cheek2-end.png",
+    "EB2-overall.png"
+  ],
+  "renderer": "VTK orthographic nominal-solid model views",
+  "full_model_GUI": "Standalone FreeCAD GUI initialization unavailable, including new empty documents; no full-model GUI reopen claimed.",
+  "labels": "Plot titles and legends laid out with Pillow/Arial around the unchanged VTK native-solid viewport to avoid offscreen text rendering defects."
+}

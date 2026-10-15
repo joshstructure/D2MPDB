@@ -1,13 +1,13 @@
 # Latest project coherence review
 
-Checked at 2026-10-14T21:16:17.969458+00:00. **11 outstanding items remain.**
+Checked at 2026-10-15T00:16:45.716462+00:00. **12 outstanding items remain.**
 
 The [workbook](Coherence_Tracker.xlsx) owns item status and responses. This report is a generated view.
 The initial findings were carried forward from the latest adopted pier/end-bent reviews plus source-inventory gaps.
 Previously resolved decisions were excluded. This run did not perform native calculations or a complete engineering review.
 
-Registered sources: 27. Tracker items: 23.
-Automatic results: 5 changed, 9 error, 38 match, 5 missing, 10 review.
+Registered sources: 27. Tracker items: 24.
+Automatic results: 6 changed, 9 error, 37 match, 5 missing, 10 review.
 
 ## Files and relationships needing attention
 
@@ -33,6 +33,7 @@ Automatic results: 5 changed, 9 error, 38 match, 5 missing, 10 review.
 | DEP:BACKWALL-REPORT:BACKWALL-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | PIER:analysis-identity | CHANGED | Raw XML does not match the case analysis fingerprint. |
 | EB:analysis-identity | CHANGED | Raw XML does not match the case analysis fingerprint. |
+| GEOMETRY:EB:length | CHANGED | Notebook 212 in; source audit 251 in. Comparison tolerance 0.01 in for printed coordinates. |
 | TRACKER:10 | ERROR | Closed / not-applicable item requires resolution evidence. |
 | TRACKER:11 | ERROR | Closed / not-applicable item requires resolution evidence. |
 | TRACKER:15 | ERROR | Closed / not-applicable item requires resolution evidence. |
@@ -58,6 +59,7 @@ Automatic results: 5 changed, 9 error, 38 match, 5 missing, 10 review.
 | COH-021 | Open | Unregistered tool revisions | Identify the report-generating tool revision, review its changes and consumers, then record an explicit adoption. |
 | COH-022 | Open | Current cap source references | Refresh journal source references through the bounded BPAD workflow when directed; preserve C005 and distinguish selected sources from accepted calculations. |
 | COH-023 | Open | Reconcile adopted MSE and cheek revision | Reconcile cap/wall calculations, loads and quantities with adopted CAD. Review anchorage, lug steel and strap interfaces before issuing details. |
+| COH-024 | Open | Coordinate cap and cheek steel | Review marked views and coordinate cheek bars with cap longitudinal bars and end hoops. Retain all failures until revised geometry and detailing are checked. |
 
 ## Verified scope
 

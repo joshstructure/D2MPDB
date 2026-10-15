@@ -1,0 +1,149 @@
+{
+  "status": "UPDATED_WITH_OPEN_COORDINATION_FINDINGS",
+  "date": "2026-10-14",
+  "decision": "D-027",
+  "old_sha256": "38ddeecf176e93063682b6101c74031ae8b4933eb8ade94f2aeafbc3dd16d2eb",
+  "model_sha256": "b7ff819435dc858b55ec16518bb4e4313eb85321a294367c72ab5afb1a7d8994",
+  "old_counts": [
+    57,
+    90,
+    57
+  ],
+  "new_counts": [
+    62,
+    90,
+    62
+  ],
+  "cap_body_length_in": 235,
+  "cheek_web_thickness_in": 8,
+  "cage_out_to_out_in": 251,
+  "concrete_unchanged": true,
+  "cheek_steel_unchanged": true,
+  "protected_native_records": 1421,
+  "native_geometry_checks": 624,
+  "totals": {
+    "EB1": {
+      "count": 62,
+      "length_ft": 766.9915954069344,
+      "weight_lb": 1231.9607764375742,
+      "net_cap_ft3": 196.62500000000006
+    },
+    "EB2": {
+      "count": 62,
+      "length_ft": 766.9915954069344,
+      "weight_lb": 1231.9607764375742,
+      "net_cap_ft3": 196.62500000000074
+    }
+  },
+  "cheek_clash_pairs": 40,
+  "cheek_visible_overlap_pairs": 36,
+  "cheek_numerically_tiny_pairs": [
+    {
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 4.475859752819529e-15,
+      "common_volume_in3": 2.131957348694697e-12,
+      "minimum_in": 0.0,
+      "a": "CageEB1Long06",
+      "b": "SteelBridgeCheekEB11MV04"
+    },
+    {
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 4.475859752819529e-15,
+      "common_volume_in3": 2.1319576657312074e-12,
+      "minimum_in": 0.0,
+      "a": "CageEB1Long06",
+      "b": "SteelBridgeCheekEB12MV04"
+    },
+    {
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 7.161375604511246e-14,
+      "common_volume_in3": 2.131954332477515e-12,
+      "minimum_in": 0.0,
+      "a": "CageEB2Long06",
+      "b": "SteelBridgeCheekEB21MV04"
+    },
+    {
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 2.1319548628537146e-12,
+      "minimum_in": 0.0,
+      "a": "CageEB2Long06",
+      "b": "SteelBridgeCheekEB22MV04"
+    }
+  ],
+  "all_wall_cap_pairs": 73,
+  "detailing": {
+    "EB1": [
+      {
+        "name": "EB1_all_bar_cover",
+        "status": "FAIL",
+        "failures": 20
+      },
+      {
+        "name": "EB1_bar_to_pile_clearance",
+        "status": "FAIL",
+        "failures": 8
+      },
+      {
+        "name": "EB1_all_bar_pairs",
+        "status": "FAIL",
+        "failures": 7
+      },
+      {
+        "name": "EB1_source_end_grid_pile_tolerance_envelope",
+        "status": "PASS",
+        "failures": 0
+      },
+      {
+        "name": "EB1_anchorage_and_fabrication",
+        "status": "NOT CONFIGURED",
+        "failures": 0
+      }
+    ],
+    "EB2": [
+      {
+        "name": "EB2_all_bar_cover",
+        "status": "FAIL",
+        "failures": 20
+      },
+      {
+        "name": "EB2_bar_to_pile_clearance",
+        "status": "FAIL",
+        "failures": 8
+      },
+      {
+        "name": "EB2_all_bar_pairs",
+        "status": "FAIL",
+        "failures": 7
+      },
+      {
+        "name": "EB2_source_end_grid_pile_tolerance_envelope",
+        "status": "PASS",
+        "failures": 0
+      },
+      {
+        "name": "EB2_anchorage_and_fabrication",
+        "status": "NOT CONFIGURED",
+        "failures": 0
+      }
+    ]
+  },
+  "tracker": "COH-024",
+  "full_model_GUI_reopen": "Unverified: standalone graphical loader raises access violation for both unchanged original and revised model. Headless native reopen passes.",
+  "screenshots": "Orthographic VTK views of exact exported nominal solids in a disposable review scene; export/reload volumes checked. All editing remains in the original native parametric model.",
+  "limitations": [
+    "No cheek bars or cap bars moved/removed/merged to resolve clashes.",
+    "Four near-tangent numerical overlap results remain FAIL under the existing strict criterion.",
+    "Cover, cap bar clashes, and pile clearance failures remain open.",
+    "Anchorage, development, laps, lug reinforcement and structural/fabrication acceptance not configured.",
+    "Existing external PDFs/DXFs not regenerated."
+  ]
+}

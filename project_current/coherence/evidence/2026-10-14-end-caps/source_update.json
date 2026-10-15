@@ -1,0 +1,37 @@
+{
+  "decision": "D-027",
+  "date": "2026-10-14",
+  "zip_sha256": "f800d4e0bda7a9710d366435d6c6137000aaedcc40748cffe57417f463ff89f4",
+  "source_files": {
+    "EB1": {
+      "case": "project_current/cap_design/end_bents/selected_case.json",
+      "case_sha256": "37a04b9c8ab1dc8d215850cecd539dedc49b07397be2e668ac7ef9809173cf78",
+      "report": "project_current/cap_design/end_bents/End Bent 1 Cap Design 10-14.html",
+      "report_sha256": "1500c5cb8198bd31499cad2dbbec1cae5dc01b8cdb4e14694725c390afdbd2e6",
+      "previous_case_sha256": "232e5135b0a302fa0f2a225f875577526ada7f840979b5e73da3ec71cf72f4fc",
+      "required_xml_sha256": "23bb3afcb3627ba19c1e8660c05ceddfdc68e6815f23582cb84e2a5de0f16b04",
+      "label_encoding_differences": {},
+      "cap_length_in": 251,
+      "concrete_cap_length_in": 235,
+      "cheek_thickness_in": 8,
+      "report_case_comparison": "Exact parsed JSON equality"
+    },
+    "EB2": {
+      "case": "project_current/cap_design/end_bent_2/selected_case.json",
+      "case_sha256": "c00bcca92a27318eb263ee79c8eba712598ac1518ab1af33c1da63a3bd7ca865",
+      "report": "project_current/cap_design/end_bent_2/End Bent 2 Cap Design 10-14.html",
+      "report_sha256": "7f8c78e888507ab8a051408b0e427815621bccf962ed71021742c5b0e0f69d56",
+      "previous_case_sha256": "24af4370346960d5c4a14e9333912b2734c16a1b1f6a6d18080966ec0b4d2516",
+      "required_xml_sha256": "56f78267b769a237ca0d0abfdb78464f6839c3a09033d27230c06c0a384b6a47",
+      "label_encoding_differences": {},
+      "cap_length_in": 251,
+      "concrete_cap_length_in": 235,
+      "cheek_thickness_in": 8,
+      "report_case_comparison": "Exact parsed JSON equality"
+    }
+  },
+  "user_clarification": "The modeled cap says 235 in but including the cheek walls it is 251 in; the user designed the cage for the out-to-out distance.",
+  "concrete_changed": false,
+  "prior_sources_preserved": true,
+  "engineering_acceptance": false
+}

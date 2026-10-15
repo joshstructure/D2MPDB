@@ -1,0 +1,17 @@
+[
+  {
+    "path": "C:\\github\\D2MPDB\\project_current\\geometry\\freecad\\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+    "status": "FAIL",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\joshs\\Desktop\\CAD_AI\\tools\\probe_end_cap_open_20261014.py\", line 17, in <module>\n    doc=App.openDocument(str(p));r=dict(path=str(p),status='PASS',objects=len(doc.Objects),bars=[doc.getObject('Cage'+s+'Quantities').TotalBars for s in ['EB1','EB2']]);App.closeDocument(doc.Name)\n        ^^^^^^^^^^^^^^^^^^^^^^^^\nOSError: Access violation\n"
+  },
+  {
+    "path": "C:\\Users\\joshs\\Desktop\\CAD_AI\\reports\\end-caps-20261014\\build-v1\\NativeCandidate.FCStd",
+    "status": "FAIL",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\joshs\\Desktop\\CAD_AI\\tools\\probe_end_cap_open_20261014.py\", line 17, in <module>\n    doc=App.openDocument(str(p));r=dict(path=str(p),status='PASS',objects=len(doc.Objects),bars=[doc.getObject('Cage'+s+'Quantities').TotalBars for s in ['EB1','EB2']]);App.closeDocument(doc.Name)\n        ^^^^^^^^^^^^^^^^^^^^^^^^\nOSError: Access violation\n"
+  },
+  {
+    "path": "C:\\Users\\joshs\\Desktop\\CAD_AI\\reports\\end-caps-20261014\\build-v1\\ReviewCandidate.FCStd",
+    "status": "FAIL",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\joshs\\Desktop\\CAD_AI\\tools\\probe_end_cap_open_20261014.py\", line 17, in <module>\n    doc=App.openDocument(str(p));r=dict(path=str(p),status='PASS',objects=len(doc.Objects),bars=[doc.getObject('Cage'+s+'Quantities').TotalBars for s in ['EB1','EB2']]);App.closeDocument(doc.Name)\n        ^^^^^^^^^^^^^^^^^^^^^^^^\nOSError: Access violation\n"
+  }
+]

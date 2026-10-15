@@ -1,0 +1,293 @@
+{
+  "model": "C:\\github\\D2MPDB\\project_current\\geometry\\freecad\\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "sha256": "38ddeecf176e93063682b6101c74031ae8b4933eb8ade94f2aeafbc3dd16d2eb",
+  "document": "B4_Pedestrian_Bridge_and_Ramps___Pond14D___Source_Update_20261010",
+  "supports": {
+    "EB1": {
+      "shapes": {
+        "BridgeCapEB1": {
+          "bounds_in": {
+            "XMin": -12.000000000000025,
+            "XMax": 30.00000000000003,
+            "YMin": -117.5,
+            "YMax": 117.50000000000003,
+            "ZMin": 482.8523067866176,
+            "ZMax": 518.8523067866175
+          },
+          "solids": 1,
+          "valid": true,
+          "properties": {}
+        },
+        "BridgeCheekEB11": {
+          "bounds_in": {
+            "XMin": -17.999999999999975,
+            "XMax": 30.00000000000003,
+            "YMin": -125.5,
+            "YMax": -117.49999999999999,
+            "ZMin": 476.8523067866176,
+            "ZMax": 570.302
+          },
+          "solids": 1,
+          "valid": true,
+          "properties": {
+            "LugBottomElevation": "12112.048592380086 mm",
+            "TopElevation": "14485.6708 mm",
+            "WallBottomElevation": "12264.448592380086 mm"
+          }
+        },
+        "BridgeCheekEB12": {
+          "bounds_in": {
+            "XMin": -18.00000000000003,
+            "XMax": 29.999999999999975,
+            "YMin": 117.5,
+            "YMax": 125.50000000000001,
+            "ZMin": 476.8523067866176,
+            "ZMax": 570.302
+          },
+          "solids": 1,
+          "valid": true,
+          "properties": {
+            "LugBottomElevation": "12112.048592380086 mm",
+            "TopElevation": "14485.6708 mm",
+            "WallBottomElevation": "12264.448592380086 mm"
+          }
+        }
+      },
+      "old_count": 57,
+      "new_count": 62,
+      "new_length_in": 251.0,
+      "bar_families": {
+        "added": 9,
+        "hoop": 20,
+        "longitudinal": 17,
+        "pile_u": 16
+      },
+      "input_changes": {
+        "E_detail": [
+          4.0,
+          23.5
+        ],
+        "Mu_N": [
+          69.9,
+          79.19
+        ],
+        "Mu_P": [
+          82.55,
+          68.08
+        ],
+        "Mu_B": [
+          195.19,
+          182.68
+        ],
+        "Vu_G": [
+          89.99,
+          91.51
+        ],
+        "Vu_L": [
+          89.99,
+          91.51
+        ],
+        "Tu": [
+          3.23,
+          3.22
+        ],
+        "MI_N": [
+          44.71,
+          51.88
+        ],
+        "MI_P": [
+          58.97,
+          48.0
+        ],
+        "MI_B": [
+          148.77,
+          138.65
+        ]
+      },
+      "new_pile_u_shapes": [
+        {
+          "end_angle": 90,
+          "inside_diameter_in": 4.5,
+          "tail_in": 9.0,
+          "end_raise_in": 0.0,
+          "side_inset_in": 0.0,
+          "hook_rotation_left_deg": 50.0,
+          "hook_rotation_right_deg": 50.0,
+          "extension_mode": "standard"
+        },
+        {
+          "end_angle": 90,
+          "inside_diameter_in": 4.5,
+          "tail_in": 9.0,
+          "end_raise_in": 0.0,
+          "side_inset_in": 0.0,
+          "hook_rotation_left_deg": 50.0,
+          "hook_rotation_right_deg": 50.0,
+          "extension_mode": "standard"
+        },
+        {
+          "end_angle": 90,
+          "inside_diameter_in": 4.5,
+          "tail_in": 9.0,
+          "end_raise_in": 0.0,
+          "side_inset_in": 0.0,
+          "hook_rotation_left_deg": 50.0,
+          "hook_rotation_right_deg": 50.0,
+          "extension_mode": "standard"
+        },
+        {
+          "end_angle": 90,
+          "inside_diameter_in": 4.5,
+          "tail_in": 9.0,
+          "end_raise_in": 0.0,
+          "side_inset_in": 0.0,
+          "hook_rotation_left_deg": -50.0,
+          "hook_rotation_right_deg": -50.0,
+          "extension_mode": "standard"
+        }
+      ],
+      "source_piles": 251.0
+    },
+    "EB2": {
+      "shapes": {
+        "BridgeCapEB2": {
+          "bounds_in": {
+            "XMin": 2517.0000000000005,
+            "XMax": 2559.0000000000005,
+            "YMin": -117.49999999999945,
+            "YMax": 117.50000000000058,
+            "ZMin": 482.996305728356,
+            "ZMax": 518.996305728356
+          },
+          "solids": 1,
+          "valid": true,
+          "properties": {}
+        },
+        "BridgeCheekEB21": {
+          "bounds_in": {
+            "XMin": 2517.0000000000005,
+            "XMax": 2565.0000000000005,
+            "YMin": -125.49999999999945,
+            "YMax": -117.49999999999943,
+            "ZMin": 476.996305728356,
+            "ZMax": 570.446
+          },
+          "solids": 1,
+          "valid": true,
+          "properties": {
+            "LugBottomElevation": "12115.706165500242 mm",
+            "TopElevation": "14489.3284 mm",
+            "WallBottomElevation": "12268.106165500241 mm"
+          }
+        },
+        "BridgeCheekEB22": {
+          "bounds_in": {
+            "XMin": 2517.0000000000005,
+            "XMax": 2565.0000000000005,
+            "YMin": 117.50000000000057,
+            "YMax": 125.50000000000057,
+            "ZMin": 476.996305728356,
+            "ZMax": 570.446
+          },
+          "solids": 1,
+          "valid": true,
+          "properties": {
+            "LugBottomElevation": "12115.706165500242 mm",
+            "TopElevation": "14489.3284 mm",
+            "WallBottomElevation": "12268.106165500241 mm"
+          }
+        }
+      },
+      "old_count": 57,
+      "new_count": 62,
+      "new_length_in": 251.0,
+      "bar_families": {
+        "added": 9,
+        "hoop": 20,
+        "longitudinal": 17,
+        "pile_u": 16
+      },
+      "input_changes": {
+        "E_detail": [
+          4.0,
+          23.5
+        ],
+        "Mu_N": [
+          70.11,
+          79.67
+        ],
+        "Mu_P": [
+          82.94,
+          68.4
+        ],
+        "Mu_B": [
+          195.47,
+          182.92
+        ],
+        "Vu_G": [
+          89.91,
+          91.45
+        ],
+        "Vu_L": [
+          89.91,
+          91.45
+        ],
+        "MI_N": [
+          46.04,
+          53.22
+        ],
+        "MI_P": [
+          58.42,
+          48.67
+        ],
+        "MI_B": [
+          147.95,
+          137.79
+        ]
+      },
+      "new_pile_u_shapes": [
+        {
+          "end_angle": 90,
+          "inside_diameter_in": 4.5,
+          "tail_in": 9.0,
+          "end_raise_in": 0.0,
+          "side_inset_in": 0.0,
+          "hook_rotation_left_deg": 50.0,
+          "hook_rotation_right_deg": 50.0,
+          "extension_mode": "standard"
+        },
+        {
+          "end_angle": 90,
+          "inside_diameter_in": 4.5,
+          "tail_in": 9.0,
+          "end_raise_in": 0.0,
+          "side_inset_in": 0.0,
+          "hook_rotation_left_deg": 50.0,
+          "hook_rotation_right_deg": 50.0,
+          "extension_mode": "standard"
+        },
+        {
+          "end_angle": 90,
+          "inside_diameter_in": 4.5,
+          "tail_in": 9.0,
+          "end_raise_in": 0.0,
+          "side_inset_in": 0.0,
+          "hook_rotation_left_deg": 50.0,
+          "hook_rotation_right_deg": 50.0,
+          "extension_mode": "standard"
+        },
+        {
+          "end_angle": 90,
+          "inside_diameter_in": 4.5,
+          "tail_in": 9.0,
+          "end_raise_in": 0.0,
+          "side_inset_in": 0.0,
+          "hook_rotation_left_deg": -50.0,
+          "hook_rotation_right_deg": -50.0,
+          "extension_mode": "standard"
+        }
+      ],
+      "source_piles": 251.0
+    }
+  }
+}

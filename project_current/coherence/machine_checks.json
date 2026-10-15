@@ -1,20 +1,20 @@
 {
-  "checked_at_utc": "2026-10-14T21:16:17.969458+00:00",
+  "checked_at_utc": "2026-10-15T00:16:45.716462+00:00",
   "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
-  "register_sha256": "57a24d8c8197bd942d421c54ee57564d4e4da5c38083a65239384ac255c8d51a",
-  "tracker_sha256": "f2d9b051bdce9a20671bd5e3b4c5b1c8fbfc8c0412bd74adbbeee448ee9d1f51",
+  "register_sha256": "eb5904dfebbed98f6ac7fd12426faa254d18dbbc14d5ccfd596cd865234fab06",
+  "tracker_sha256": "1a8d768066942e691b1241fe005d7eb05ddd6ae992a3be24b331a66f3a481315",
   "source_count": 27,
-  "item_count": 23,
-  "outstanding_count": 11,
+  "item_count": 24,
+  "outstanding_count": 12,
   "status_counts": {
     "Closed": 12,
-    "Open": 9,
+    "Open": 10,
     "Deferred": 1,
     "Awaiting source": 1
   },
   "check_counts": {
-    "CHANGED": 5,
-    "MATCH": 38,
+    "CHANGED": 6,
+    "MATCH": 37,
     "MISSING": 5,
     "REVIEW": 10,
     "ERROR": 9
@@ -62,7 +62,7 @@
       ],
       "path": "Cap_and_Pile_Design.ipynb",
       "expected_sha256": "1af14e6efa5095a973b88ced422bee1656596ec8cba4e5c6b6b31ee9796c4c74",
-      "actual_sha256": "54fc70f67f372b6594ec88d007716beff9743f899cb2cda1d241d2c71255e268"
+      "actual_sha256": "06d0e90b4ace8f373a986d6ba81350a6010d7c33e5a12a079e5fc46577a14e74"
     },
     {
       "check_id": "SOURCE:PIER-REPORT",
@@ -104,9 +104,9 @@
       "source_ids": [
         "EB-REPORT"
       ],
-      "path": "project_current/cap_design/end_bents/End Bent 1 Cap Design 10-12.html",
-      "expected_sha256": "e3bc549ca8f3f2e6f408bfdd6e7a56628a5166040cd64bbb5f7c57f65d649a5f",
-      "actual_sha256": "e3bc549ca8f3f2e6f408bfdd6e7a56628a5166040cd64bbb5f7c57f65d649a5f"
+      "path": "project_current/cap_design/end_bents/End Bent 1 Cap Design 10-14.html",
+      "expected_sha256": "1500c5cb8198bd31499cad2dbbec1cae5dc01b8cdb4e14694725c390afdbd2e6",
+      "actual_sha256": "1500c5cb8198bd31499cad2dbbec1cae5dc01b8cdb4e14694725c390afdbd2e6"
     },
     {
       "check_id": "SOURCE:EB-CASE",
@@ -116,8 +116,8 @@
         "EB-CASE"
       ],
       "path": "project_current/cap_design/end_bents/selected_case.json",
-      "expected_sha256": "232e5135b0a302fa0f2a225f875577526ada7f840979b5e73da3ec71cf72f4fc",
-      "actual_sha256": "232e5135b0a302fa0f2a225f875577526ada7f840979b5e73da3ec71cf72f4fc"
+      "expected_sha256": "37a04b9c8ab1dc8d215850cecd539dedc49b07397be2e668ac7ef9809173cf78",
+      "actual_sha256": "37a04b9c8ab1dc8d215850cecd539dedc49b07397be2e668ac7ef9809173cf78"
     },
     {
       "check_id": "SOURCE:EB-XML",
@@ -226,8 +226,8 @@
         "CAD-MODEL"
       ],
       "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-      "expected_sha256": "38ddeecf176e93063682b6101c74031ae8b4933eb8ade94f2aeafbc3dd16d2eb",
-      "actual_sha256": "38ddeecf176e93063682b6101c74031ae8b4933eb8ade94f2aeafbc3dd16d2eb"
+      "expected_sha256": "b7ff819435dc858b55ec16518bb4e4313eb85321a294367c72ab5afb1a7d8994",
+      "actual_sha256": "b7ff819435dc858b55ec16518bb4e4313eb85321a294367c72ab5afb1a7d8994"
     },
     {
       "check_id": "SOURCE:CAD-RUNTIME",
@@ -237,8 +237,8 @@
         "CAD-RUNTIME"
       ],
       "path": "project_current/geometry/freecad/manifest.json",
-      "expected_sha256": "ca73965a257f88df472e22cb53751368cfcc7269a8ccb2bf5645bcbb1d27ae6a",
-      "actual_sha256": "ca73965a257f88df472e22cb53751368cfcc7269a8ccb2bf5645bcbb1d27ae6a"
+      "expected_sha256": "c9c95b4ee3e762518cea739b322c52393a28df724a47514cca63e11a3b290dcc",
+      "actual_sha256": "c9c95b4ee3e762518cea739b322c52393a28df724a47514cca63e11a3b290dcc"
     },
     {
       "check_id": "SOURCE:CAD-REPORT",
@@ -248,8 +248,8 @@
         "CAD-REPORT"
       ],
       "path": "project_current/geometry/freecad/evidence/Model-update-report.txt",
-      "expected_sha256": "8c13ae88a96391dc497f52326a4c24d6655b831c84c6e1d3b05ea26a0385ae7d",
-      "actual_sha256": "8c13ae88a96391dc497f52326a4c24d6655b831c84c6e1d3b05ea26a0385ae7d"
+      "expected_sha256": "8cedf09347f94bb4f7efc0851b5d4c987fc505b9849c3b726929783d0b0f8bf0",
+      "actual_sha256": "8cedf09347f94bb4f7efc0851b5d4c987fc505b9849c3b726929783d0b0f8bf0"
     },
     {
       "check_id": "SOURCE:BACKWALL-TOOL",
@@ -269,9 +269,9 @@
       "source_ids": [
         "EB2-REPORT"
       ],
-      "path": "project_current/cap_design/end_bent_2/End Bent 2 Cap Design.html",
-      "expected_sha256": "a1492932e033d0b95188a60cccc2a3747f91efd6f9cc31196ac479e47e99060c",
-      "actual_sha256": "a1492932e033d0b95188a60cccc2a3747f91efd6f9cc31196ac479e47e99060c"
+      "path": "project_current/cap_design/end_bent_2/End Bent 2 Cap Design 10-14.html",
+      "expected_sha256": "7f8c78e888507ab8a051408b0e427815621bccf962ed71021742c5b0e0f69d56",
+      "actual_sha256": "7f8c78e888507ab8a051408b0e427815621bccf962ed71021742c5b0e0f69d56"
     },
     {
       "check_id": "SOURCE:EB2-CASE",
@@ -281,8 +281,8 @@
         "EB2-CASE"
       ],
       "path": "project_current/cap_design/end_bent_2/selected_case.json",
-      "expected_sha256": "24af4370346960d5c4a14e9333912b2734c16a1b1f6a6d18080966ec0b4d2516",
-      "actual_sha256": "24af4370346960d5c4a14e9333912b2734c16a1b1f6a6d18080966ec0b4d2516"
+      "expected_sha256": "c00bcca92a27318eb263ee79c8eba712598ac1518ab1af33c1da63a3bd7ca865",
+      "actual_sha256": "c00bcca92a27318eb263ee79c8eba712598ac1518ab1af33c1da63a3bd7ca865"
     },
     {
       "check_id": "SOURCE:EB2-XML",
@@ -292,7 +292,7 @@
         "EB2-XML"
       ],
       "path": "project_current/fbmp/end_bents/End Bent 2_Fixed.XML",
-      "expected_sha256": "43ac05ac121fd90934f8860c1e9c6542fb0eb652cd0561f191456bf2c16c2d37",
+      "expected_sha256": "56f78267b769a237ca0d0abfdb78464f6839c3a09033d27230c06c0a384b6a47",
       "actual_sha256": ""
     },
     {
@@ -570,8 +570,8 @@
     },
     {
       "check_id": "GEOMETRY:EB:length",
-      "status": "MATCH",
-      "detail": "Notebook 212 in; source audit 212 in. Comparison tolerance 0.01 in for printed coordinates.",
+      "status": "CHANGED",
+      "detail": "Notebook 212 in; source audit 251 in. Comparison tolerance 0.01 in for printed coordinates.",
       "source_ids": [
         "GEOMETRY",
         "EB-CASE"
@@ -1002,6 +1002,21 @@
       "Source references": "D-026; CAD-MODEL; MSE-DETAIL-DXF; EB-CASE; EB2-CASE; BACKWALL-REPORT; GEOMETRY",
       "Last reviewed": "2026-10-14T00:00:00.000Z",
       "_row": 31
+    },
+    {
+      "Item ID": "COH-024",
+      "Status": "Open",
+      "Area": "CAD / reinforcement",
+      "Item": "Coordinate cap and cheek steel",
+      "Finding": "The 251 in cages span the 235 in cap and two 8 in cheeks. New cap steel clashes with unchanged cheek mats: 40 flagged pairs, including four near-tangent numerical results.",
+      "Next action": "Review marked views and coordinate cheek bars with cap longitudinal bars and end hoops. Retain all failures until revised geometry and detailing are checked.",
+      "Your response": "I ran the cage designs for the out to out distance and expected the cheek wall steel to coincide with the cap steel.",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "62 cap bars per end bent modeled from supplied cases. Concrete and cheek steel unchanged. No clash repair or detailing acceptance yet.",
+      "Source references": "D-027; CAD-MODEL; EB-CASE; EB2-CASE; geometry/freecad/evidence/2026-10-14-end-caps/",
+      "Last reviewed": "2026-10-14",
+      "_row": 32
     }
   ]
 }

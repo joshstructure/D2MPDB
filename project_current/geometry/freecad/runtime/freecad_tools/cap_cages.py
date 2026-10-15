@@ -276,19 +276,35 @@ def clearance_checks(inp):
     q=inp.Document.getObject('Cage'+inp.SupportID+'Quantities');case=live_case(inp);p=case['inputs']
     L=geometry_evaluation(case).value('L_cap')*IN;W=p['b']*IN;H=p['h']*IN;tol=.0254
     shapes=[];covers=[];pile_pairs=[];pair_failures=[];checked=0
-    cap=inp.Cap.Shape.copy();cap.Placement=inp.CageFrame.inverse().multiply(cap.Placement)
+    concrete=list(inp.CoverConcrete) if 'CoverConcrete' in inp.PropertiesList else [inp.Cap]
+    if not concrete or inp.Cap not in concrete:raise ValueError('Cover concrete must include the cap')
+    cap=concrete[0].Shape.copy()
+    for host in concrete[1:]:cap=cap.fuse(host.Shape.copy())
+    cap=cap.removeSplitter()
+    if not cap.isValid() or len(cap.Solids)!=1:raise ValueError('Cover concrete must form one valid connected solid')
+    cap.Placement=inp.CageFrame.inverse().multiply(cap.Placement)
     piles=[]
     for j in range(4):
         ob=inp.Document.getObject(f'BridgePile{inp.SupportID}P{j+1}');s=ob.Shape.copy()
         s.Placement=inp.CageFrame.inverse().multiply(s.Placement);piles.append((ob.Name,s))
+    # Pile sockets use the separately configured C_pile clearance. Fill only
+    # their cap-envelope portions for an independent external-face cover check.
+    base=inp.Cap.Shape.copy();base.Placement=inp.CageFrame.inverse().multiply(base.Placement)
+    bb=base.BoundBox
+    brick=Part.makeBox(bb.XLength,bb.YLength,bb.ZLength,App.Vector(bb.XMin,bb.YMin,bb.ZMin))
+    exterior=cap.copy()
+    for _,pile in piles:exterior=exterior.fuse(pile.common(brick))
+    exterior=exterior.removeSplitter()
+    if not exterior.isValid():raise ValueError('Invalid external cover envelope')
     layout_rows=json.loads(inp.LayoutJSON)
     for rb in q.Bars:
         s=rb.Shape.copy();s.Placement=inp.CageFrame.inverse().multiply(s.Placement);bb=bounds(s)
         margins=[bb.XMin,L-bb.XMax,bb.YMin,W-bb.YMax,bb.ZMin,H-bb.ZMax]
         required=[p['C_s']*IN]*4+[p['C_b']*IN,p['C_t']*IN]
         outside=abs(s.cut(cap.copy()).Volume)
-        covers.append(result(rb.Name+'_cap_cover',all(a+tol>=b for a,b in zip(margins,required)) and outside<=1e-7,
-            minimum_in=min(margins)/IN,faces_in=[x/IN for x in margins],outside_concrete_in3=outside/IN**3))
+        external_cover=min(s.distToShape(f)[0] for f in exterior.Faces)
+        covers.append(result(rb.Name+'_cap_cover',all(a+tol>=b for a,b in zip(margins,required)) and outside<=1e-7 and external_cover+tol>=min(required),
+            minimum_in=min(margins)/IN,external_surface_cover_in=external_cover/IN,faces_in=[x/IN for x in margins],outside_concrete_in3=outside/IN**3,concrete_hosts=[o.Name for o in concrete]))
         shapes.append((rb.Name,s,bb,layout_rows[rb.Base.BarID]['kind']))
         for pn,ps in piles:
             chk=pair(s.copy(),ps.copy(),p['C_pile']*IN,tol);chk.update(a=rb.Name,b=pn);pile_pairs.append(chk)

@@ -1,6 +1,6 @@
 # Current FreeCAD bridge model
 
-**Current model: 14 October 2026, decision D-026.** This is the authoritative
+**Current model: 14 October 2026, decision D-027.** This is the authoritative
 editable bridge geometry and modeled-quantity source. The established native
 filename is retained for existing links; its date is not the current revision date.
 
@@ -34,8 +34,8 @@ The exact final cheek-steel model passed 282 geometry/cover/clash/schedule check
 Its retained geometry is tied to 621 prior geometry checks and 110 route-grade checks.
 Physical model checks do not constitute engineering or fabrication acceptance.
 
-The cap cages remain 57/90/57 bars. Backwalls retain 72 bars and cheeks now have
-52 bars. Twenty-six backwall/cap bar intersections and existing cap detailing
+The cap cages are now 62/90/62 bars under D-027. Backwalls retain 72 bars and cheeks now have
+52 bars. Forty cap/cheek and 33 backwall/cap bar intersections and cap detailing
 findings remain open. Anchorage, development, laps, lug reinforcement and strap
 details remain unresolved. COH-023 tracks reconciliation of the adopted CAD with
 the geometry notebook, cap calculations and backwall report. Those calculation
@@ -54,3 +54,18 @@ Keep the model, opener and runtime together. Record later deliberate revisions
 in the source register, decisions and tracker, then update the manifest after
 verification. Existing check objects are dated snapshots; rerun affected checks
 after editing. Do not replay historical creation transactions on the main model.
+
+## Updated end-cap cages (D-027)
+
+The 251 in cage envelope includes the 235 in cap plus two 8 in cheek webs.
+Concrete and the existing centered cheek mats are unchanged. The supplied cases
+produce 62 cap bars each, including #6 transverse bars. See the [current review](evidence/2026-10-14-end-caps/update-summary.json)
+and [clash views](evidence/2026-10-14-end-caps/views/EB1-cheek2-clashes.png).
+Blue is cap steel, orange is cheek steel and red marks intersections. COH-024
+tracks discussion and repair. Clashes remain visible and failed checks remain FAIL.
+
+The former main model and matching runtime are preserved in the dated
+`archive/B4-before-end-cap-steel-20261014.FCStd` and runtime ZIP. Headless native
+reopen and preservation checks pass. Full-model GUI reopen could not be verified
+by the standalone graphical loader, which also fails on the unchanged baseline.
+The review screenshots use volume-checked exports of the exact native solids.

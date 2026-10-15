@@ -1,3 +1,41 @@
+B4 BRIDGE â€” 14 OCTOBER 2026 END-CAP REINFORCEMENT UPDATE (D-027)
+
+Both supplied 14 October end-bent cases are selected and modeled as native
+editable cages. Each end-cap cage changes from 57 to 62 bars: 17 longitudinal,
+9 added bars, 20 #6 hoops and 16 #6 pile U-bars. Each cage has 766.991595 ft of
+modeled centerline steel and 1231.960776 nominal lb. Pier cage stays at 90 bars.
+
+The user's clarified dimension is verified on the actual concrete solids:
+235 in cap body + 8 in cheek web each side = 251 in overall. Concrete, wall
+steel, pedestal steel, cambers, ramps, terrain, piles and elevations are unchanged.
+Cap cover now references the physical cap/cheek union. Pile socket clearance
+keeps its separate source requirement. No bars were moved to hide conflicts.
+
+40 cap/cheek pairs are flagged: 36 measurable intersections and four numerical
+near-tangent results around 2.13e-12 in3. All remain FAIL under the strict existing
+criterion. The main conflicts involve #6 longitudinal bars against #4 cheek
+verticals/horizontals, plus the end hoops against the cheek mat. The saved views
+show cap steel in blue, cheek steel in orange, intersection solids in red.
+There are also 33 backwall/cap pairs. Each end cap has seven internal cap-steel
+overlaps, eight pile-clearance failures, and separate cover failures. See the
+full final-detailing.json; nominal pile clearance reaches about 0.8653 in against
+the selected 1 in requirement. These findings are not automatically repaired.
+
+Native cold reopen verifies 624 bar geometry checks and 1,421 exact retained
+native records/resources. Schedules retain live links. Twelve piles, 170 linked
+elevations, 52 cheek bars and 72 pedestal bars remain. Standalone full-model GUI
+reopen is unverified: that loader fails on the original model as well. Review
+model views are rendered independently from exact exported solids with reload-volume
+checks; the visualization scene does not replace the editable project model.
+
+COH-024 records cap/cheek coordination for discussion. COH-023 broader calculation
+reconciliation remains open. New raw FBMP exports were not supplied. The supplied
+HTML embedded cases and exact JSON cases match when parsed as UTF-8. Prior sources and model/controllers are archived.
+No structural, anchorage, development, fabrication or new drawing acceptance.
+
+PRIOR REPORTS (HISTORICAL)
+--------------------------
+
 B4 BRIDGE — 14 OCTOBER 2026 MAIN MODEL ADOPTION (D-026)
 
 The user selected all reviewed DXF, MSE, barrier and cheek-steel revisions for

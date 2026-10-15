@@ -1,0 +1,29 @@
+[
+  {
+    "path": "C:\\github\\D2MPDB\\project_current\\geometry\\freecad\\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+    "status": "PASS",
+    "objects": 1665,
+    "bars": [
+      57,
+      57
+    ]
+  },
+  {
+    "path": "C:\\Users\\joshs\\Desktop\\CAD_AI\\reports\\end-caps-20261014\\build-v1\\NativeCandidate.FCStd",
+    "status": "PASS",
+    "objects": 1685,
+    "bars": [
+      62,
+      62
+    ]
+  },
+  {
+    "path": "C:\\Users\\joshs\\Desktop\\CAD_AI\\reports\\end-caps-20261014\\build-v1\\ReviewCandidate.FCStd",
+    "status": "PASS",
+    "objects": 1685,
+    "bars": [
+      62,
+      62
+    ]
+  }
+]

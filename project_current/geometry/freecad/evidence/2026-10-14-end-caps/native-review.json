@@ -1,0 +1,4 @@
+{
+  "status": "FAIL",
+  "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\joshs\\Desktop\\CAD_AI\\tools\\review_end_caps_20261014.py\", line 22, in run\n    source=OUT/'build-v1/ReviewCandidate.FCStd';doc=App.openDocument(str(source));App.setActiveDocument(doc.Name)\n                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nOSError: Access violation\n"
+}
