@@ -1,0 +1,18 @@
+{
+  "source_handle": "D4B8",
+  "source_units": "unitless header; section geometry and 251-inch dimension establish feet",
+  "barrier_outer_face_setback_in": 1.4999896014769547,
+  "groove_width_in": 1.0000043393266809,
+  "groove_depth_normal_in": 0.4999962909606108,
+  "groove_center_from_virtual_edge_along_soffit_in": 3.000003023849244,
+  "bottom_chamfer_along_soffit_in": 0.7500022585614292,
+  "bottom_chamfer_along_outer_face_in": 0.7499999802359297,
+  "adopted_in": {
+    "barrier_setback": 1.5,
+    "chamfer": 0.75,
+    "groove_width": 1,
+    "groove_depth": 0.5,
+    "groove_offset": 3
+  },
+  "scope": "Preserve existing six-inch vertical deck thickness, PGL, crown, cambers and span limits."
+}

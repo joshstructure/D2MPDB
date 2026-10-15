@@ -336,7 +336,15 @@ def validate(c,objects,check_pairs=True):
     for i,row in m.spans.iterrows():
         a,e=deck_limits(c,i)
         deck=local[f'BridgeDeckS{i+1}']; bb=deck.BoundBox
-        checks.append(result(f'deck{i+1}_volume',abs(deck.Volume-(e-a)*m.deck_width*m.deck_thickness*FT**3)<deck.Volume*1e-8))
+        expected_deck_volume=(e-a)*m.deck_width*m.deck_thickness*FT**3
+        deck_object=objects[f'BridgeDeckS{i+1}']
+        if 'EdgeChamfer' in deck_object.PropertiesList:
+            # Independent section-area deduction: four chamfer triangles and
+            # two V grooves. Groove width/depth follow the sloping soffit.
+            removed_area=2*deck_object.EdgeChamfer.Value**2/math.sqrt(1+.02**2)
+            removed_area+=deck_object.DripGrooveWidth.Value*deck_object.DripGrooveDepth.Value
+            expected_deck_volume-=removed_area*(e-a)*FT
+        checks.append(result(f'deck{i+1}_volume',abs(deck.Volume-expected_deck_volume)<deck.Volume*1e-8))
         measured=[]
         for s in [a+.2*(e-a),a+.8*(e-a)]:
             h=heights(deck,(s-m.start)*FT,0)

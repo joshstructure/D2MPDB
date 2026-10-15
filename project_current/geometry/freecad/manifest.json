@@ -18,10 +18,11 @@
     "14 October D-027: end_cap_revision imports exact selected cases on disposable copies; cap_cages checks the combined cap/cheek exterior envelope separately from pile clearance.",
     "D-028: editable cheek vertical stations and cap hoop station overrides; tested native synchronizers, unchanged supplied cases, strict physical clearance checks.",
     "D-029: native editable horizontal cheek station overrides; all original source cases and spacing limits preserved.",
-    "D-030: editable lug_wwr native Arch wires, linked analytic paths, inputs, live quantities/schedule and strict physical checks; all previous controllers unchanged."
+    "D-030: editable lug_wwr native Arch wires, linked analytic paths, inputs, live quantities/schedule and strict physical checks; all previous controllers unchanged.",
+    "15 October: opt-in deck_edge_details native controllers, physical detail checks, and independent chamfer/groove volume deduction in bridge validation. Registered main FCStd remains D-030; live edit has a separately saved recovery copy."
   ],
   "runtime_files": {
-    "runtime/API.md": "20b2a47328bbeb3b8e8c8af82a348404f33da24704e66c340945dcb75c04a3b0",
+    "runtime/API.md": "2c5725631710c28e710ddc1ae3721d924799fd321694618133312ffd37e3ecd6",
     "runtime/freecad_tools/__init__.py": "54fc72e62296f90ef30d4395023d10589142c7979df962a5fa1669cf01886a32",
     "runtime/freecad_tools/adopt_drainage.py": "df2e4d293383aa5de9e425a8af75b7640524d07e71eebd541d42d2e81342eb07",
     "runtime/freecad_tools/api.py": "4f5d129384cf8b68bf10564f59141a31bd83921d47e8e477754ad2ea3ade71ca",
@@ -30,7 +31,7 @@
     "runtime/freecad_tools/beam_dxf.py": "494d3fb284f54d1ba7fee097cbac7d07f5fcf0d4753011438db2244bf163660f",
     "runtime/freecad_tools/beam_fdot.py": "a9f359369693a48e73d867e2412e9a1a672ea224d0a79ced53e6c001c82cb363",
     "runtime/freecad_tools/beam_hooks.py": "4bb3f93d7a92460b3c995dda3f75fb9cce91877f7d65346d6b869a6bccf8471b",
-    "runtime/freecad_tools/bridge.py": "8ce8ad9cf5685d42aaa4fb8c365b634e1c669cbcb7e0cc1ba140decd56f9227e",
+    "runtime/freecad_tools/bridge.py": "d7cd926590c98e3fd5379cd54bad972b5e8a83abc3579465978e84d1560fd1d2",
     "runtime/freecad_tools/bridge_layout.py": "23380933da832ed247e68392784b43a6d3841333f682aa1eeddb74d9ce41aba4",
     "runtime/freecad_tools/bridge_notebook_engine.py": "af2f989a4b324b80a7bb669e86dc6e5d302e542628b6e81e29dc221d77a72eb9",
     "runtime/freecad_tools/bridge_shapes.py": "d1ea0a4d22fd40f81212201b84a0770f7bfef8cc5203a3ce8e809e8f06190452",
@@ -140,9 +141,10 @@
     "runtime/freecad_tools/mse_wall_tops.py": "cbdb605ec6a50a51aafe86b2b8308dd99dfac2fd632c7eb9a5e19b110f32234a",
     "runtime/freecad_tools/end_cap_revision.py": "55092761a9184c4ef370bf5f8b11208c7be30a6064db0ef07d294ae46a5d8262",
     "runtime/freecad_tools/cap_cheek_coordination.py": "59c4bfb4e636104253c3bef968baa71b30ac3d05f41d1e6d0a1edfc2026e1f15",
-    "runtime/freecad_tools/lug_wwr.py": "f78fdc93dd05217e5999b977183bfd60d7b7aad4be715486e00454586d22a0b2"
+    "runtime/freecad_tools/lug_wwr.py": "f78fdc93dd05217e5999b977183bfd60d7b7aad4be715486e00454586d22a0b2",
+    "runtime/freecad_tools/deck_edge_details.py": "046d3614f85839f3a4b0860f462efe815a29cb21b890a0e423d0256efe7e42a6"
   },
-  "opener_sha256": "699c70e7b2d83793a2d264c18ffbaf1e19587c7cd88758d5b38eb6d03e88ad85",
+  "opener_sha256": "74ea7876c70118c835c8bbd7fc08d5d4e155e91b0a5578e020b2c69dc2025216",
   "evidence_files": {
     "evidence/bridge-current-cages-20261010-v1.json": "5daf358f8b140a1b5c8db4b1d33df5ab565d4299e9c1fb90d0aa15cd679ce1ee",
     "evidence/bridge-current-proxies-20261010-v1.json": "bc8d1595534050f961bece023cae100958064388e1b2e7d45ddd424666c834ba",
@@ -288,7 +290,12 @@
     "evidence/2026-10-14-lug-wwr/views/EB2-cheek1-side.png": "7a571977f3b01bd95c6b37fff3d3d01677bd4b915053788b0226665382c9b55a",
     "evidence/2026-10-14-lug-wwr/views/EB2-cheek2-bottom.png": "7d25565b8d7272a35172d0077b40f55186eb7c5e27b2cbdc796e6db91abe30a1",
     "evidence/2026-10-14-lug-wwr/views/EB2-cheek2-fold.png": "9f03f2ca30a94ce30714c162f9d921d01ea796883e0471e201f725e29e90eda6",
-    "evidence/2026-10-14-lug-wwr/views/EB2-cheek2-side.png": "34d0e9c0b493809364d352d141f8c88298d99aaa61bd799db3a4c4f6eaa0ffb0"
+    "evidence/2026-10-14-lug-wwr/views/EB2-cheek2-side.png": "34d0e9c0b493809364d352d141f8c88298d99aaa61bd799db3a4c4f6eaa0ffb0",
+    "evidence/2026-10-15-deck-edges/checkpoint.json": "32879de11d8ea51845a63ace0cc86c9c578f3fd3065fb7d9d8676afa3bab0718",
+    "evidence/2026-10-15-deck-edges/cold-reopen.json": "7c52b33b533ab5850af14f8b61a3097c1653617111a04c49bc26e7cdbbc90d12",
+    "evidence/2026-10-15-deck-edges/dxf-dimensions.json": "886a132009a078d54ac9f49d4a17ae077d829fa765c5b80672d6dcddb3d25c56",
+    "evidence/2026-10-15-deck-edges/live-result.json": "ab5e2cff39720dca998c49e892d06bc4794bcb28c1183587f0ce03471444a2b3",
+    "evidence/2026-10-15-deck-edges/trial-result.json": "66f8cdde74ea4bae53a5b6e185b85eb8e924e60408eaa1f14d61f0e13a3677b2"
   },
   "known_review_status": "0 new WWR overlaps; 14 existing U-bar/hoop pairs Deferred in COH-025. Four cheek spacing findings Open in COH-024; 29 cap/backwall and 4 backwall internal overlaps and other existing findings retained.",
   "portability_verification": "Cold native reopen and live dependency test PASS; 172 accepted-trial solid matches; all 1677 prior native object/view records exact. Previous standalone GUI loader limitation retained.",
@@ -326,5 +333,17 @@
   },
   "extra_macros": {
     "Show_Elevations.FCMacro": "f27415eb7d8fe05a5ff8d05a01a5298b36ac1d3cf987ec8738ed541d085a3fc4"
+  },
+  "deck_edge_review_20261015": {
+    "date": "2026-10-15",
+    "status": "LIVE_EDIT_VERIFIED_MAIN_FILE_NOT_OVERWRITTEN",
+    "scope": "Deck barrier inset, top/bottom deck-edge chamfers and soffit V grooves; both spans",
+    "main_source_unchanged_sha256": "1b4765f4dd2fc87c42a7b512943b2fb900a3260fc686d281c7208420c29575f7",
+    "local_review_copy": "C:/Users/joshs/Desktop/CAD_AI/reports/deck-edge-details-20261015/B4 - Deck edge details - Review.FCStd",
+    "review_copy_sha256": "ee9098498466b8b1e925f8b231d0c5c8d159d9ddeb34f9973988026520c64268",
+    "verification": "Live measurement, native trial/cold reopen and no positive-volume overlaps involving the six changed final components. 1,689 protected native Shapes preserved. Native setback edit to 2 in verified and restored to 1.5 in. All bridge geometry checks pass.",
+    "remaining": "Working document changes remain unsaved to its main path. Existing unrelated coherence findings remain. User requested pause within eight minutes.",
+    "source": "MSE-DETAIL-DXF, unchanged source handle D4B8 and barrier block geometry",
+    "controller": "runtime/freecad_tools/deck_edge_details.py"
   }
 }

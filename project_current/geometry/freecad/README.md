@@ -1,5 +1,17 @@
 # Current FreeCAD bridge model
 
+**15 October live review:** the open bridge has the DXF deck-edge correction:
+1.5 in barrier setback, 0.75 in top/bottom edge chamfers, and 1 x 0.5 in drip
+V grooves centered 3 in along the soffit from the virtual outside corner.
+Both spans retain their original PGL, crown, six-inch vertical thickness,
+end gaps and cambers. The clear width between barrier faces is 12 ft.
+These changes are verified in the live document and a separate local recovery
+copy; the registered main FCStd below has not been overwritten. See
+[review checkpoint](evidence/2026-10-15-deck-edges/checkpoint.json).
+`deck_edge_details` is included in the opener so saved edited documents retain
+their native controls. On each deck, use the **Deck edge details** properties;
+the four original deck barrier objects have **DeckEdgeSetback**.
+
 **Current model: 14 October 2026, decision D-030.** This is the authoritative
 editable bridge geometry and modeled-quantity source. The established native
 filename is retained for existing links; its date is not the current revision date.

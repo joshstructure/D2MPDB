@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-15",
+  "status": "LIVE_EDIT_VERIFIED_MAIN_FILE_NOT_OVERWRITTEN",
+  "scope": "Deck barrier inset, top/bottom deck-edge chamfers and soffit V grooves; both spans",
+  "main_source_unchanged_sha256": "1b4765f4dd2fc87c42a7b512943b2fb900a3260fc686d281c7208420c29575f7",
+  "local_review_copy": "C:/Users/joshs/Desktop/CAD_AI/reports/deck-edge-details-20261015/B4 - Deck edge details - Review.FCStd",
+  "review_copy_sha256": "ee9098498466b8b1e925f8b231d0c5c8d159d9ddeb34f9973988026520c64268",
+  "verification": "Live measurement, native trial/cold reopen and no positive-volume overlaps involving the six changed final components. 1,689 protected native Shapes preserved. Native setback edit to 2 in verified and restored to 1.5 in. All bridge geometry checks pass.",
+  "remaining": "Working document changes remain unsaved to its main path. Existing unrelated coherence findings remain. User requested pause within eight minutes.",
+  "source": "MSE-DETAIL-DXF, unchanged source handle D4B8 and barrier block geometry",
+  "controller": "runtime/freecad_tools/deck_edge_details.py"
+}
