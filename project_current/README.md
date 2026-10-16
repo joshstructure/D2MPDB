@@ -16,7 +16,7 @@ design-completion status.
 | Native project journal | [D2 I-95 Project Journal](../journal/D2_I95_Project_Journal.bpad) with [References](../journal/References/) |
 | Current editable FreeCAD model and live quantities | [Open the bridge model](geometry/freecad/README.md) — raised cheeks, deep return barriers, rear-lug coping stops, deck-edge details and reinforcement; calculation reconciliation remains open |
 | Geometry notebook | [Bridge geometry](../Bridge_Geometry_2%20Beam_V2.ipynb) and [roadway XML](../Geometry%20Report.xml) — owns the end caps, backwalls, cheek webs and lugs (D-036) |
-| Geometry CAD tables | [Workbook](../geometry_tables/B4_Geometry_CAD_Tables.xlsx) — FDOT CAD tables and method tabs recalculated from the geometry notebook ([how to rebuild](../geometry_tables/README.md)) |
+| Geometry CAD tables | [Selected workbook](geometry/tables/B4_Geometry_CAD_Tables.xlsx) — FDOT CAD tables, method tabs and live charts recalculated from the geometry notebook (D-041; [how to rebuild](../geometry_tables/README.md)) |
 | Pier cap | [Report](cap_design/pier/Pier%20Cap%20Design%2010-12.html), [saved case](cap_design/pier/selected_case.json), [FBMP export](fbmp/pier/Pier_Fixed.XML) |
 | End Bent 1 cap | [Report](cap_design/end_bents/End%20Bent%201%20Cap%20Design%2010-14.html), [saved case](cap_design/end_bents/selected_case.json) |
 | End Bent 2 cap | [Report](cap_design/end_bent_2/End%20Bent%202%20Cap%20Design%2010-14.html), [saved case](cap_design/end_bent_2/selected_case.json) |
@@ -228,7 +228,7 @@ A byte-identical snapshot of the D-034 CAD model is now the native reference. It
 - The CAD EB1 backwall seat follows the MSE landing and holds 0.117 ft³ more concrete. Rebuild it from the notebook.
 
 Walls are also in the notebook's CAD export and in the interactive report. The
-[CAD tables workbook](../geometry_tables/B4_Geometry_CAD_Tables.xlsx) is rebuilt
+[CAD tables workbook](geometry/tables/B4_Geometry_CAD_Tables.xlsx) is rebuilt
 and registered as GEOMETRY-TABLES. COH-023 stays Open for loads, quantities,
 anchorage, lug steel, strap interfaces and the CAD rebuild. See the
 [disposition](coherence/evidence/2026-10-16-geometry-end-bents/disposition.json).
@@ -248,3 +248,18 @@ Two FBMP items stay open by user direction:
 No export, register row, report or case changed. See the
 [pile-head record](coherence/evidence/2026-10-16-fbmp-pile-heads/pile_heads.json)
 and the [FBMP sources](fbmp/README.md).
+
+## 16 October geometry CAD tables selected (D-041)
+
+The [geometry CAD-tables workbook](geometry/tables/README.md) is now a selected
+project source. It is registered as GEOMETRY-TABLES and kept in `geometry/tables/`,
+where the generator writes it.
+- **Standalone:** the .xlsx has no macros or external links. Its tables and 15
+  Method-tab charts are live formulas over the notebook CONFIG and saved Mathcad inputs.
+- **Rebuilt at the new path:** from notebook model 622e5ca1bf. QC is 182 pass / 0 fail,
+  and every calculation and CAD value equals the D-036 build.
+- **Still for review before issue:** the BCC-template items (Dim L + R, bar
+  constants, build-up case, beveled plates) and the Cover open items.
+
+Its pile cutoffs are the notebook pile-head elevations for the COH-028 reruns.
+See the [source receipt](coherence/evidence/2026-10-16-geometry-tables/source_receipt.json).

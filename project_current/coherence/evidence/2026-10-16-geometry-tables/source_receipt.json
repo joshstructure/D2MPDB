@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-16",
+  "decision": "D-041",
+  "authorization": "User requested adding the geometry CAD-tables workbook to the project source.",
+  "source": {
+    "source_id": "GEOMETRY-TABLES",
+    "path": "project_current/geometry/tables/B4_Geometry_CAD_Tables.xlsx",
+    "sha256": "baa7e358c3a952779151480a95b5a3016dd875fe7b4ca00aad9fb9b75b1b65b5",
+    "bytes": 1405200,
+    "hash_basis": "exact_bytes",
+    "previous_path": "geometry_tables/B4_Geometry_CAD_Tables.xlsx",
+    "previous_sha256": "2bf117fcffb20c23306ade328a8ad5722e18577e81bcc83dbfb0e731a8925159",
+    "note": "Rebuilt in place at the new path: the generator's output path is part of its fingerprinted code, so the move required a rebuild."
+  },
+  "build": {
+    "generator": "scripts/build_geometry_cad_tables.py (geometry_tables package, version 1.1.0)",
+    "fingerprint": "fbf9cbe43daa455234d6",
+    "notebook_model_id": "622e5ca1bf",
+    "inputs": {
+      "GEOMETRY": {"path": "Bridge_Geometry_2 Beam_V2.ipynb", "sha256_lf_text": "2d45fc34b606f2157e2d634beb4d9dd04319c0664d9e96e5bf53e8eca993dafd"},
+      "ROADWAY": {"path": "Geometry Report.xml", "sha256": "9880ef7adeeac4228666146f5d5bb4dd17ef93f66ffeaf465a2c813eb69489e4"},
+      "MCAD-S1": {"sha256": "a6b0f967d271c193591d477e219ac66f98b72309d19958a04c6cd08e575a8dcd"},
+      "MCAD-S2": {"sha256": "182e3471f169d3a379c437ad12f359d567813bd4631bcc0b82e78ad860fa91b8"},
+      "generator_sha256_lf": "5ec0917ed99e338c8cddfa207ed44a89a1d43780cca55e9d3ec50e520f1d5c9f"
+    }
+  },
+  "verification": {
+    "excel_recalculation": "Recalculated and saved by Microsoft Excel over COM; no formula errors.",
+    "qc": "182 pass / 0 fail / 1 check. The check is the informational clearance status: the roadway XML covers 207.232 of 212.25 ft, so clearance is reported for the covered region only.",
+    "live_notebook_comparison": "Support drop, cap tops, minimum haunch and minimum clearance equal the live notebook model within 1e-8.",
+    "value_comparison": "All 348 named values and 13,701 calculation/CAD cells equal the D-036 build (d3fb275d), except the QC count (one added input-sync check) and the Inputs-tab note.",
+    "input_sync": "Inputs_Edited = 0; every Method-tab banner reads LIVE.",
+    "standalone": "No external workbook links, macros, data connections or formula references outside the workbook. 15 live charts; 49 pictures are equations and label-only schematics.",
+    "tests": "tests/test_geometry_cad_tables.py: 12 pass (fingerprint, cached values, QC, live notebook values, FGE grid, live chart series, chart labels, banners, no frozen values in Method text)."
+  },
+  "scope": [
+    "Selection makes the workbook a current project source for geometry and CAD-table values. It is not engineering acceptance or issue approval.",
+    "BCC-template items are flagged on their Method tabs for confirmation against the current FDOT instructions before issue: Dim L = sloped length + R, bar-bending constants, the build-up case rule and the beveled-plate rule.",
+    "The Cover lists the remaining open items: blank title block, designer assignments, missing Mathcad .dat inputs, partial roadway coverage, and the barrier line not in the notebook."
+  ],
+  "downstream": [
+    "COH-023: the CAD EB1 backwall seat is still to be rebuilt from the notebook geometry tabulated here.",
+    "COH-028: the CAD Pedestal Elevs pile cutoffs (pier 41.765, EB1 41.238, EB2 41.250 ft) are the notebook pile-head elevations for the final FBMP reruns.",
+    "Any later rebuild changes this file's bytes; record a disposition and update the register hash."
+  ]
+}

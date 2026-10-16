@@ -25,7 +25,7 @@ from openpyxl.workbook.defined_name import DefinedName
 from . import figures, sources
 
 GENERATOR_VERSION = '1.1.0'
-OUTPUT = sources.ROOT / 'geometry_tables' / 'B4_Geometry_CAD_Tables.xlsx'
+OUTPUT = sources.ROOT / 'project_current' / 'geometry' / 'tables' / 'B4_Geometry_CAD_Tables.xlsx'   # selected source (D-041)
 FGE_INCREMENTS = 10
 PACKAGE = Path(__file__).resolve().parent
 

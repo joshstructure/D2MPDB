@@ -1,7 +1,7 @@
 {
-  "checked_at_utc": "2026-10-16T16:44:41.134632+00:00",
+  "checked_at_utc": "2026-10-16T17:39:49.787023+00:00",
   "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
-  "register_sha256": "d3cf7af31f36881248707755c6b86be4e3235024e6709122799a7a3d65e51a16",
+  "register_sha256": "d3b8dde2f74a154052783c786ff13ea7c445a5e226b43fac0aff67f003bca761",
   "tracker_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
   "source_count": 29,
   "item_count": 28,
@@ -335,9 +335,9 @@
       "source_ids": [
         "GEOMETRY-TABLES"
       ],
-      "path": "geometry_tables/B4_Geometry_CAD_Tables.xlsx",
-      "expected_sha256": "2bf117fcffb20c23306ade328a8ad5722e18577e81bcc83dbfb0e731a8925159",
-      "actual_sha256": "2bf117fcffb20c23306ade328a8ad5722e18577e81bcc83dbfb0e731a8925159"
+      "path": "project_current/geometry/tables/B4_Geometry_CAD_Tables.xlsx",
+      "expected_sha256": "baa7e358c3a952779151480a95b5a3016dd875fe7b4ca00aad9fb9b75b1b65b5",
+      "actual_sha256": "baa7e358c3a952779151480a95b5a3016dd875fe7b4ca00aad9fb9b75b1b65b5"
     },
     {
       "check_id": "DEP:GEOMETRY:JOURNAL",

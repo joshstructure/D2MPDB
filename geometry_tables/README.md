@@ -1,9 +1,12 @@
 # Geometry CAD-table workbook
 
-[`B4_Geometry_CAD_Tables.xlsx`](B4_Geometry_CAD_Tables.xlsx) is one workbook that
+[`B4_Geometry_CAD_Tables.xlsx`](../project_current/geometry/tables/B4_Geometry_CAD_Tables.xlsx) is one workbook that
 calculates the bridge geometry the same way as the
 [geometry notebook](../Bridge_Geometry_2%20Beam_V2.ipynb). It fills out the
-FDOT-style CAD tables from those results.
+FDOT-style CAD tables from those results. This folder holds the generator. The
+workbook itself is a selected project source (D-041): it is registered as
+GEOMETRY-TABLES and lives in `project_current/geometry/tables/`, where the
+build writes it.
 
 **Authority.** The Colab geometry notebook (`CONFIG` + `BridgeModel`) is the source
 of truth for all geometry. The CAD model and these CAD tables are built from it,
@@ -57,6 +60,9 @@ The script runs these steps in order:
 2. Reads the Mathcad results and writes all 31 tabs.
 3. Has Microsoft Excel recalculate and save, so the values are cached.
 4. Verifies there are no formula errors, QC passes, and the values reproduce the live notebook model.
+
+A rebuild changes the workbook's bytes, so the coherence check then reports
+GEOMETRY-TABLES as CHANGED. Record why it was rebuilt and update its register hash.
 
 [`tests/test_geometry_cad_tables.py`](../tests/test_geometry_cad_tables.py) fails
 if any source changes without a rebuild. The sources it watches are the notebook,

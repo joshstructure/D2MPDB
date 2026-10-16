@@ -5,6 +5,13 @@ and its input is [Geometry Report.xml](../../Geometry%20Report.xml).
 Keep their existing paths for local/Colab compatibility. Register a saved geometry
 report here when one is selected, together with the exact notebook/input revision.
 
+## Selected geometry tables
+
+The [geometry CAD-tables workbook](tables/README.md) is selected under D-041 and
+registered as GEOMETRY-TABLES. It is generated from notebook model 622e5ca1bf and
+the 12 October Mathcad runs. It holds the FGE, build-up, beam-variable, bearing-plate,
+pedestal, cap and pile-cutoff tables, with live Method-tab charts.
+
 ## Current editable model
 
 The [FreeCAD model folder](freecad/README.md) is the authoritative home of the
