@@ -24,10 +24,10 @@ live notebook model.
 | Camber & Haunch | Closed-form common support drop D, Dims B/C/D, minimum flange haunch, Mathcad deflections |
 | FGE | Finished grade elevations at every line and station |
 | Bearing Seats | Seat planes, bearing slopes, pedestal tops (A–D, pier E/F), bearing plate data |
-| Substructure | Cap tops, pedestal heights, cap corners, pile cutoffs |
+| Substructure | Cap tops, pedestal heights, cap corners, pile cutoffs, end-bent backwalls, cheek webs and lugs (D-026/D-033) |
 | Beam Data | Bars 5K zones from the Mathcad stirrup layout and FIB bar dimensions |
 | Clearance | Exact minimum vertical clearance under the beams |
-| CAD FGE / CAD Build-Up / CAD Beam Variables / CAD Bearing Plates / CAD Pedestal Elevs | The tables to place in CADD |
+| CAD FGE / CAD Build-Up / CAD Beam Variables / CAD Bearing Plates / CAD Pedestal Elevs | The tables to place in CADD; CAD Pedestal Elevs also lists cap, pile-cutoff and end-bent wall elevations |
 | QC | Every key result compared with the notebook, plus validity checks |
 
 Every calculation and CAD cell is a live Excel formula over named inputs.

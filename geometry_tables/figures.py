@@ -344,13 +344,29 @@ def cap_section(model, support) -> bytes:
         ax.add_patch(Rectangle((x - w / 2, top), w, ped_top - top, fc='#c7ccd2', ec=INK, lw=0.7))
         ax.add_patch(Rectangle((x - 16 / 12, ped_top), 32 / 12, seat['Pad (in)'] / 12, fc=STEEL, ec=INK, lw=0.6))
         ax.text(x, ped_top + 0.35, f'pad top\n{seat["Pad top (ft)"]:.3f}', ha='center', va='bottom', fontsize=7)
+    walls = support.get('solid_geometry', {}).get('walls', [])
+    upper = top + 1.6
+    for wall in walls:
+        xy = np.asarray(wall['xy'])
+        if wall['kind'] == 'Backwall':
+            ax.add_patch(Polygon(xy, closed=True, fc='#efe4cc', ec=GREY, lw=0.8, ls='--', alpha=0.7, zorder=0))
+            ax.text(c, xy[:, 1].max() - 0.35, 'backwall (behind, at FFBW)', ha='center', fontsize=7.5, color=GREY)
+        elif wall['part'] == 'web':
+            ax.add_patch(Polygon(xy, closed=True, fc='#c9d6b5', ec=INK, lw=0.8))
+            x = xy[:, 0].mean(); z = xy[:, 1].max()
+            ax.text(x, z + 0.12, f'cheek top\n{z:.3f}', ha='center', va='bottom', fontsize=7)
+        upper = max(upper, np.asarray(wall['xy'])[:, 1].max() + 1.0)
     ax.text(c, top + 0.05, f'cap top {top:.4f}', ha='center', va='bottom', fontsize=7.5, color=BLUE)
     ax.text(c, top - depth - 0.1, f'cap underside {top-depth:.4f}', ha='center', va='top', fontsize=7.5)
     x0 = float(piles.iloc[0]['Offset (ft)'])
     ax.text(x0, top - depth + support['pile_embedment_ft'] + 0.12,
             f'pile cutoff {float(piles.iloc[0]["Pile cutoff (ft)"]):.4f}', ha='center', fontsize=7, color=RED)
     _dim(ax, c - length / 2, top - depth - 2.6, c + length / 2, top - depth - 2.6, f'cap length {length*12:.1f} in')
-    ax.set_xlim(c - length / 2 - 1, c + length / 2 + 1); ax.set_ylim(top - depth - 3.0, top + 1.6)
+    if walls:
+        t_c = support['cheek_thickness_ft']
+        _dim(ax, c - length / 2 - t_c, top - depth - 3.2, c + length / 2 + t_c, top - depth - 3.2,
+             f'out-to-out {(length + 2*t_c)*12:.1f} in')
+    ax.set_xlim(c - length / 2 - 1.2, c + length / 2 + 1.2); ax.set_ylim(top - depth - 3.6, upper)
     ax.set_title(f'{support["name"]}: transverse section through the cap (looking up-station)', fontsize=9)
     return _png(fig)
 

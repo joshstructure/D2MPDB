@@ -1,13 +1,13 @@
 # Latest project coherence review
 
-Checked at 2026-10-15T17:23:58.678674+00:00. **14 outstanding items remain.**
+Checked at 2026-10-16T14:07:51.192568+00:00. **14 outstanding items remain.**
 
 The [workbook](Coherence_Tracker.xlsx) owns item status and responses. This report is a generated view.
 The initial findings were carried forward from the latest adopted pier/end-bent reviews plus source-inventory gaps.
 Previously resolved decisions were excluded. This run did not perform native calculations or a complete engineering review.
 
-Registered sources: 27. Tracker items: 27.
-Automatic results: 6 changed, 9 error, 37 match, 5 missing, 10 review.
+Registered sources: 28. Tracker items: 27.
+Automatic results: 4 changed, 9 error, 40 match, 5 missing, 10 review.
 
 ## Files and relationships needing attention
 
@@ -19,7 +19,6 @@ Automatic results: 6 changed, 9 error, 37 match, 5 missing, 10 review.
 | SOURCE:PSB-S1 | MISSING | No source file has been selected. |
 | SOURCE:MCAD-DAT2 | MISSING | Registered file is absent. |
 | SOURCE:PSB-S2 | MISSING | No source file has been selected. |
-| SOURCE:BACKWALL-TOOL | CHANGED | File differs from the registered revision; review its consumers before adoption. |
 | SOURCE:EB2-XML | MISSING | Registered file is absent. |
 | DEP:GEOMETRY:JOURNAL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S1:MCAD-DAT1 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
@@ -27,13 +26,12 @@ Automatic results: 6 changed, 9 error, 37 match, 5 missing, 10 review.
 | DEP:MCAD-S2:MCAD-DAT2 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S2:PSB-S2 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:CAD-MODEL:JOURNAL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
+| DEP:BACKWALL-TOOL:EB2-XML | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:BACKWALL-TOOL:JOURNAL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:EB2-REPORT:EB2-XML | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:EB2-CASE:EB2-XML | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
-| DEP:BACKWALL-REPORT:BACKWALL-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | PIER:analysis-identity | CHANGED | Raw XML does not match the case analysis fingerprint. |
 | EB:analysis-identity | CHANGED | Raw XML does not match the case analysis fingerprint. |
-| GEOMETRY:EB:length | CHANGED | Notebook 212 in; source audit 251 in. Comparison tolerance 0.01 in for printed coordinates. |
 | TRACKER:10 | ERROR | Closed / not-applicable item requires resolution evidence. |
 | TRACKER:11 | ERROR | Closed / not-applicable item requires resolution evidence. |
 | TRACKER:15 | ERROR | Closed / not-applicable item requires resolution evidence. |

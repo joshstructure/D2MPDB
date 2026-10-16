@@ -34,7 +34,8 @@ def native_measures(components,support):
         elif kind=='Pile':name=f"BridgePile{support}P{component['pile']}"
         elif kind=='Pedestal':name=f"BridgePedestal{support}B{component['beam']}"
         elif kind=='Bearing':name=f"BridgePad{support}S{component['span']}B{component['beam']}"
-        else:continue
+        elif kind=='Cheek':name=f"BridgeCheek{support}{1 if component['side']=='L' else 2}"
+        else:continue  # Backwalls: the CAD seat follows the MSE landing underside.
         xy=np.asarray(component['xy']);x,y=xy.T
         area=abs(np.dot(x,np.roll(y,1))-np.dot(y,np.roll(x,1)))/2
         bounds=np.array([x.min(),x.max(),y.min(),y.max()])
@@ -139,6 +140,8 @@ class PhysicalGeometryTests(unittest.TestCase):
                 stations += [a+delta for a in pad['bounds'] for delta in (-1e-6,0,1e-6)]
             radius=support['solid_geometry']['piles'][0]['diameter']/2
             stations += [support['station']+sign*radius+delta for sign in (-1,1) for delta in (-1e-6,0,1e-6)]
+            for wall in support['solid_geometry'].get('walls',[]):
+                stations += [a+delta for a in wall['bounds'] for delta in (-1e-6,0,1e-6)]
         stations=sorted(s for s in set(stations) if model.inspection_start<=s<=model.inspection_end)
         data=report_data(model,self.env['section_geometry'])
         script=(ROOT/'bridge_report/report-engine.js').read_text()+"\nconst p=JSON.parse(require('fs').readFileSync(0,'utf8'));const e=makeBridgeReportEngine(p.data);process.stdout.write(JSON.stringify(p.stations.map(s=>e.evaluate(s))));"
@@ -148,7 +151,7 @@ class PhysicalGeometryTests(unittest.TestCase):
         for station,actual in zip(stations,results):
             with self.subTest(station=station):
                 expected=self.env['section_geometry'](model,station)[0]['components']
-                for kind in ('Cap','Pile','Pedestal','Bearing','Beam','Deck','Haunch'):
+                for kind in ('Cap','Pile','Pedestal','Bearing','Beam','Deck','Haunch','Backwall','Cheek'):
                     a=[c for c in actual['components'] if c['kind']==kind]
                     b=[c for c in expected if c['kind']==kind]
                     self.assertEqual(len(a),len(b),kind)

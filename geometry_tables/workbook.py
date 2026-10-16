@@ -320,7 +320,7 @@ def build_inputs(book: Book, ctx):
             dict(label='Cap width (longitudinal)', value=e['width_ft'], unit='ft', name=f'{tag}_Width', fmt=FMT_FT, src=f'{src}.width_ft'),
             dict(label='Cap depth', value=e['depth_ft'], unit='ft', name=f'{tag}_Depth', fmt=FMT_FT, src=f'{src}.depth_ft'),
             dict(label='Fixed cap length (blank = derive from piles)', value=e['length_ft'], unit='ft', name=f'{tag}_LenFix', fmt=FMT_FT,
-                 src=f'{src}.length_ft. CAD adopted a 235-in cap body under D-026; the notebook (governing) is being updated in a separate task.'),
+                 src=f'{src}.length_ft (the 235-in D-026 cap body is derived from the pile layout)'),
             dict(label='Pile count', value=e['pile_count'], name=f'{tag}_NPile', src=f'{src}.pile_count'),
             dict(label='Square pile width', value=e['pile_width_in'], unit='in', name=f'{tag}_PileW', src=f'{src}.pile_width_in'),
             dict(label='Pile spacing', value=e['pile_spacing_in'], unit='in', name=f'{tag}_PileSp', src=f'{src}.pile_spacing_in'),
@@ -340,6 +340,15 @@ def build_inputs(book: Book, ctx):
             dict(label='Backwall rear-face inset', value=e['rear_face_inset_in'], unit='in', name=f'{tag}_Inset', src=f'{src}.rear_face_inset_in'),
             dict(label='Beam end clearance (end-bent record)', value=e['beam_end_clear_in'], unit='in', name=f'{tag}_BmClr', src=f'{src}.beam_end_clear_in (QC: equals physical value)'),
             dict(label='Beam end to CL bearing (end-bent record)', value=e['beam_end_to_bearing_in'], unit='in', name=f'{tag}_BmBrg', src=f'{src}.beam_end_to_bearing_in (QC: equals physical value)'),
+            dict(label='Backwall top below the deck-top line at FFBW', value=e['backwall_drop_in'], unit='in', name=f'{tag}_BwDrop', src=f'{src}.backwall_drop_in (D-017 landing seat)'),
+            dict(label='Cheek web thickness (outside each cap end)', value=e['cheek_thickness_in'], unit='in', name=f'{tag}_CkT', src=f'{src}.cheek_thickness_in (D-026)'),
+            dict(label='Lug projection (bottom and rear)', value=e['lug_projection_in'], unit='in', name=f'{tag}_LugP', src=f'{src}.lug_projection_in (D-026 DXF)'),
+            dict(label='Lug width on the cheek outer face', value=e['lug_width_in'], unit='in', name=f'{tag}_LugW', src=f'{src}.lug_width_in (D-026 DXF)'),
+            dict(label='MSE panel joint to cheek and lug faces', value=e['mse_joint_in'], unit='in', name=f'{tag}_Joint', src=f'{src}.mse_joint_in (D-026)'),
+            dict(label='Cheek top, left (blank = deck edge at FFBW)', value=(e['cheek_top_ft'] or [None, None])[0], unit='ft', name=f'{tag}_CkTopL', fmt=FMT_EL,
+                 src=f'{src}.cheek_top_ft[0]: D-033 barrier-return base (MSE interface input)'),
+            dict(label='Cheek top, right (blank = deck edge at FFBW)', value=(e['cheek_top_ft'] or [None, None])[1], unit='ft', name=f'{tag}_CkTopR', fmt=FMT_EL,
+                 src=f'{src}.cheek_top_ft[1]: D-033 barrier-return base (MSE interface input)'),
         ])
     rd = cfg['roadway']
     row = section(book, ws, row, "Roadway / clearance - CONFIG['roadway']", 7)
@@ -981,9 +990,8 @@ def build_substructure(book: Book, ctx):
         row += 1
     check_formatting(ws, f'L{row-3}:L{row-1}'); check_formatting(ws, f'V{row-3}:V{row-1}')
     row += 1
-    book.put(ws, f'B{row}', 'CAD note: the FreeCAD model adopted a 235-in end-cap body (251 in with two 8-in cheeks) under D-026/D-027. '
-             'The notebook still derives the end-cap length from its pile layout; a separate task is bringing the end caps and cheek walls '
-             'into the notebook. Elevations are unaffected while caps are level.', font=F_WARN)
+    book.put(ws, f'B{row}', 'End caps: 235-in body derived from the pile layout (D-026); with the two 8-in cheek webs the cage '
+             'envelope is 251 in (D-027). Backwalls, cheeks and lugs are in section F.', font=F_NOTE)
     row += 2
     row = section(book, ws, row, 'B. Pedestal heights at CL bearing', 22)
     heads = ['Support', 'Beam ID', 'Face', 'Offset (ft)', 'Ped. top @ CL brg', 'Local cap top', 'Pedestal height (in)', '>= minimum']
@@ -1059,8 +1067,76 @@ def build_substructure(book: Book, ctx):
             book.put(ws, f'K{r}', '=J{0}-Phys_TrialPile'.format(r), fmt='0.000')
             ctx['pile_rows'][(tag, j)] = r
             row += 1
+    row += 1
+    row = end_bent_walls_section(book, ws, row, ctx)
     ctx['ws_sub'] = ws
     return ws
+
+
+WALL_ROWS = [
+    # key, label, formula(tag, datum, sign, R) -> str, unit, fmt, defined-name suffix
+    ('rear', 'Cap rear face (toward the fill)', lambda t, d, s, R: f'={t}_CapSta{"-" if s < 0 else "+"}{t}_Width/2', 'ft', FMT_STA, 'RearSta'),
+    ('lug', 'Rear-lug outer face = MSE coping stop', lambda t, d, s, R: f'={R("rear")}{"-" if s < 0 else "+"}{t}_LugP/12', 'ft', FMT_STA, 'LugFace'),
+    ('bw0', 'Backwall from station', lambda t, d, s, R: f'={R("rear")}+{t}_Inset/12' if s < 0 else f'={R("rear")}-({t}_Inset+{t}_BW)/12', 'ft', FMT_STA, None),
+    ('bw1', 'Backwall to station', lambda t, d, s, R: f'={R("rear")}+({t}_Inset+{t}_BW)/12' if s < 0 else f'={R("rear")}-{t}_Inset/12', 'ft', FMT_STA, None),
+    ('ffbw', 'Backwall front face is the FFBW', lambda t, d, s, R: f'=IF(ABS({R("bw1") if s < 0 else R("bw0")}-{d})<1E-8,"PASS","FAIL")', '', None, None),
+    ('yl', 'Cap end offset, left', lambda t, d, s, R: f'={t}_Ctr-{t}_Len/2', 'ft', FMT_FT, None),
+    ('yr', 'Cap end offset, right', lambda t, d, s, R: f'={t}_Ctr+{t}_Len/2', 'ft', FMT_FT, None),
+    ('out', 'Out-to-out with cheek webs', lambda t, d, s, R: f'={t}_Len*12+2*{t}_CkT', 'in', '0.000', 'OutIn'),
+    ('pgl', 'PGL at the FFBW', lambda t, d, s, R: '=' + PGL(d), 'ft', FMT_EL, None),
+    ('btl', 'Backwall top, left cap end', lambda t, d, s, R: f'={R("pgl")}+{DELTA(R("yl"))}-{t}_BwDrop/12', 'ft', FMT_EL, 'BwTopL'),
+    ('bt0', 'Backwall top at the PGL', lambda t, d, s, R: f'={R("pgl")}+{DELTA("0")}-{t}_BwDrop/12', 'ft', FMT_EL, 'BwTop0'),
+    ('btr', 'Backwall top, right cap end', lambda t, d, s, R: f'={R("pgl")}+{DELTA(R("yr"))}-{t}_BwDrop/12', 'ft', FMT_EL, 'BwTopR'),
+    ('ctl', 'Cap top, left cap end', lambda t, d, s, R: f'={t}_Top+{t}_Slope*({R("yl")}-{t}_Ctr)', 'ft', FMT_EL, None),
+    ('ct0', 'Cap top at the PGL', lambda t, d, s, R: f'={t}_Top+{t}_Slope*(0-{t}_Ctr)', 'ft', FMT_EL, None),
+    ('ctr', 'Cap top, right cap end', lambda t, d, s, R: f'={t}_Top+{t}_Slope*({R("yr")}-{t}_Ctr)', 'ft', FMT_EL, None),
+    ('hl', 'Backwall height, left end', lambda t, d, s, R: f'={R("btl")}-{R("ctl")}', 'ft', FMT_FT, None),
+    ('h0', 'Backwall height at the PGL', lambda t, d, s, R: f'={R("bt0")}-{R("ct0")}', 'ft', FMT_FT, 'BwH0'),
+    ('hr', 'Backwall height, right end', lambda t, d, s, R: f'={R("btr")}-{R("ctr")}', 'ft', FMT_FT, None),
+    ('bwv', 'Backwall concrete', lambda t, d, s, R: (f'={t}_BW/12*IF(AND({R("yl")}<0,{R("yr")}>0),(0-{R("yl")})*({R("hl")}+{R("h0")})/2'
+                                                    f'+{R("yr")}*({R("h0")}+{R("hr")})/2,({R("yr")}-{R("yl")})*({R("hl")}+{R("hr")})/2)'), 'ft3', '0.0000', 'BwVol'),
+    ('zbl', 'Cheek bottom, left (cap underside at cap end)', lambda t, d, s, R: f'={R("ctl")}-{t}_Depth', 'ft', FMT_EL, 'CkBotL'),
+    ('zbr', 'Cheek bottom, right', lambda t, d, s, R: f'={R("ctr")}-{t}_Depth', 'ft', FMT_EL, 'CkBotR'),
+    ('lbl', 'Lug bottom, left', lambda t, d, s, R: f'={R("zbl")}-{t}_LugP/12', 'ft', FMT_EL, 'LugBotL'),
+    ('lbr', 'Lug bottom, right', lambda t, d, s, R: f'={R("zbr")}-{t}_LugP/12', 'ft', FMT_EL, 'LugBotR'),
+    ('ckl', 'Cheek top, left', lambda t, d, s, R: f'=IF(ISNUMBER({t}_CkTopL),{t}_CkTopL,{R("pgl")}+{DELTA("Deck_YL")})', 'ft', FMT_EL, 'CkTopLv'),
+    ('ckr', 'Cheek top, right', lambda t, d, s, R: f'=IF(ISNUMBER({t}_CkTopR),{t}_CkTopR,{R("pgl")}+{DELTA("Deck_YR")})', 'ft', FMT_EL, 'CkTopRv'),
+    ('cvl', 'Cheek concrete, left (web + bottom lug + rear lug)', lambda t, d, s, R: (
+        f'={t}_Width*{t}_CkT/12*({R("ckl")}-{R("zbl")})+{t}_Width*{t}_LugW/12*{t}_LugP/12+{t}_LugP/12*{t}_LugW/12*({R("ckl")}-{R("zbl")}+{t}_LugP/12)'), 'ft3', '0.0000', 'CkVolL'),
+    ('cvr', 'Cheek concrete, right', lambda t, d, s, R: (
+        f'={t}_Width*{t}_CkT/12*({R("ckr")}-{R("zbr")})+{t}_Width*{t}_LugW/12*{t}_LugP/12+{t}_LugP/12*{t}_LugW/12*({R("ckr")}-{R("zbr")}+{t}_LugP/12)'), 'ft3', '0.0000', 'CkVolR'),
+    ('chk1', 'Cheek tops above the cap', lambda t, d, s, R: f'=IF(AND({R("ckl")}>{R("ctl")},{R("ckr")}>{R("ctr")}),"PASS","FAIL")', '', None, None),
+    ('chk2', 'Cheeks enclose the backwall ends', lambda t, d, s, R: f'=IF(AND({R("ckl")}>={R("btl")}-1E-9,{R("ckr")}>={R("btr")}-1E-9),"PASS","FAIL")', '', None, None),
+    ('chk3', 'Lug width within the cheek', lambda t, d, s, R: f'=IF(AND({t}_LugW>0,{t}_LugW<={t}_CkT,{t}_LugP>=0),"PASS","FAIL")', '', None, None),
+]
+
+
+def end_bent_walls_section(book: Book, ws, row: int, ctx):
+    last = len(ctx['spans'])
+    row = section(book, ws, row, 'F. End-bent backwalls, cheek webs and lugs (D-026/D-027/D-033)', 22)
+    book.put(ws, f'B{row}', 'Quantity', font=F_HEAD, fill=FILL_HEAD, align=CENTER, border=BOX)
+    ws.merge_cells(f'B{row}:E{row}')
+    row = header_row(book, ws, row, 6, ['End Bent 1', 'End Bent 2', 'Unit'], 18)
+    rows = {key: row + k for k, (key, *_rest) in enumerate(WALL_ROWS)}
+    ctx['wall_rows'] = rows
+    for tag, c, datum, sign in (('EB1', 'F', 'Sp1_Sta0', -1), ('EB2', 'G', f'Sp{last}_Sta1', 1)):
+        R = lambda key, c=c: f'{c}{rows[key]}'
+        for key, label, formula, unit, fmt, name in WALL_ROWS:
+            r = rows[key]
+            if tag == 'EB1':
+                book.put(ws, f'B{r}', label)
+                ws.merge_cells(f'B{r}:E{r}')
+                book.put(ws, f'H{r}', unit)
+            book.put(ws, f'{c}{r}', formula(tag, datum, sign, R), fmt=fmt, border=BOX,
+                     align=CENTER if fmt is None else None)
+            if name:
+                book.define(f'{tag}_{name}', ws, f'{c}{r}')
+    first = row
+    row += len(WALL_ROWS)
+    check_formatting(ws, f'F{first}:G{row-1}')
+    book.put(ws, f'B{row}', 'Backwall top = deck-top line at the FFBW less the landing seat; cheek tops are the D-033 barrier-return '
+             'bases (MSE interface inputs). The CAD EB1 backwall seat follows the MSE landing and is to be rebuilt from this geometry.', font=F_NOTE)
+    return row + 2
 
 
 # ============================================================== Beam Data ==
@@ -1445,6 +1521,20 @@ def build_cad_pedestals(book: Book, ctx):
         for c, src, fmt in (('C', 'D', '0.000'), ('D', 'G', '0.000'), ('E', 'H', '0.000'), ('F', 'J', '0.000')):
             cad_cell(book, ws, f'{c}{row}', f"={book.xref(sub, f'{src}{r}')}", fmt)
         row += 1
+    row += 1
+    book.put(ws, f'A{row}', 'END BENT WALL ELEVATIONS (D-026/D-033)', font=F_H2); row += 1
+    heads = ['END BENT NO.', 'TOP OF BACKWALL @ LT CAP END', 'TOP OF BACKWALL @ PGL', 'TOP OF BACKWALL @ RT CAP END',
+             'TOP OF CHEEK LT', 'TOP OF CHEEK RT', 'BOTTOM OF CHEEK (CAP UNDERSIDE)', 'BOTTOM OF LUGS', 'REAR LUG FACE / COPING STOP STA.']
+    row = header_row(book, ws, row, 1, heads, 54)
+    for tag, label in (('EB1', '1'), ('EB2', '2')):
+        book.put(ws, f'A{row}', label, border=BOX, align=CENTER)
+        for c, name, fmt in (('B', 'BwTopL', '0.000'), ('C', 'BwTop0', '0.000'), ('D', 'BwTopR', '0.000'), ('E', 'CkTopLv', '0.000'),
+                             ('F', 'CkTopRv', '0.000'), ('G', 'CkBotL', '0.000'), ('H', 'LugBotL', '0.000'), ('I', 'LugFace', '0.00')):
+            cad_cell(book, ws, f'{c}{row}', f'={tag}_{name}', fmt)
+        ctx.setdefault('cad_walls', {})[tag] = row
+        row += 1
+    book.put(ws, f'A{row}', 'Cheek webs 8 in outside each cap end (251 in out-to-out); 6-in bottom and rear lugs, 5.5 in wide, on the outer face. '
+             'Cheek tops are the D-033 barrier-return bases.', font=F_NOTE)
     return ws
 
 
@@ -1499,6 +1589,24 @@ def qc_items(ctx):
                 back, front = (ped['tops'][0], ped['tops'][1]) if tag == 'EB1' else (ped['tops'][1], ped['tops'][0])
                 items.append((f'{p["name"]} pedestal {k} EL A (ft)', f"='Bearing Seats'!I{r}", float(back), 1e-9))
                 items.append((f'{p["name"]} pedestal {k} EL B (ft)', f"='Bearing Seats'!J{r}", float(front), 1e-9))
+    for eb, tag in zip(m.end_bents, ('EB1', 'EB2')):
+        w = eb.get('wall_summary')
+        if not w:
+            continue
+        name = eb['name']; prof = eb['backwall_profile'].set_index('Offset (ft)')['Backwall top (ft)']
+        lugs = eb['walls'].set_index(['Component', 'Side'])['Bottom (ft)']
+        items += [(f'{name} out-to-out with cheek webs (in)', f'={tag}_OutIn', float(w['out_to_out_in']), 1e-9),
+                  (f'{name} rear-lug face / coping stop (ft)', f'={tag}_LugFace', float(w['rear_lug_face_station']), 1e-9),
+                  (f'{name} backwall top, left cap end (ft)', f'={tag}_BwTopL', float(prof.iloc[0]), 1e-9),
+                  (f'{name} backwall top at PGL (ft)', f'={tag}_BwTop0', float(prof.loc[0.0]), 1e-9),
+                  (f'{name} backwall top, right cap end (ft)', f'={tag}_BwTopR', float(prof.iloc[-1]), 1e-9),
+                  (f'{name} backwall height at PGL (ft)', f'={tag}_BwH0', float(w['backwall_crown_height_ft']), 1e-9),
+                  (f'{name} backwall concrete (ft3)', f'={tag}_BwVol', float(w['backwall_volume_ft3']), 1e-9)]
+        for side in ('L', 'R'):
+            items += [(f'{name} cheek top {side} (ft)', f'={tag}_CkTop{side}v', float(w[f'cheek_top_{side}_ft']), 1e-12),
+                      (f'{name} cheek {side} concrete (ft3)', f'={tag}_CkVol{side}', float(w[f'cheek_{side}_volume_ft3']), 1e-9),
+                      (f'{name} cheek {side} lug bottom (ft)', f'={tag}_LugBot{side}', float(lugs.loc[('Bottom lug', side)]), 1e-9),
+                      (f'{name} cheek {side} bottom (ft)', f'={tag}_CkBot{side}', float(lugs.loc[('Cheek web', side)]), 1e-9)]
     if np.isfinite(m.clearance_min):
         items.append(('Minimum vertical clearance (ft)', '=Clr_Min', float(m.clearance_min), 1e-7))
         items.append(('Station of minimum clearance (ft)', '=Clr_Sta', float(m.clearance_station), 1e-6))
@@ -1694,7 +1802,9 @@ def build(output: Path = OUTPUT) -> dict:
         ('Mathcad Span 2', ctx['mathcad'][2]['source_file'], hashes['mathcad_span2']),
     ]
     ctx['open_items'] = [
-        'End-bent caps and cheek walls (D-026/D-027/D-033) are being added to the notebook in a separate task; rebuild this workbook afterwards.',
+        'End caps, backwalls, cheek webs and lugs (D-026/D-027/D-033) are notebook geometry (D-036). The CAD EB1 backwall seat follows the '
+        'MSE landing and holds 0.117 ft3 more concrete than the notebook rule; rebuild it from the notebook.',
+        'Cheek tops are the four D-033 MSE barrier-return base elevations, entered as notebook inputs.',
         'Deck barrier (D-031, 12 ft clear) is not in the notebook, so no barrier-face FGE line is tabulated.',
         'Job number, calculated/checked by and dates are blank on the Inputs tab.',
         'Strand pattern type, concrete class and pad type are designer assignments (Inputs tab).',

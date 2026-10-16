@@ -72,9 +72,11 @@ def load_notebook_model(notebook: Path = NOTEBOOK):
     with _working_directory(ROOT):
         for ident in MODEL_CELLS:
             exec(''.join(cells[ident]['source']), env)
-    config = copy.deepcopy(env['CONFIG'])
-    config['roadway']['xml_path'] = str(ROADWAY_XML)
-    model = env['BridgeModel'](config)
+        # Keep the notebook's relative XML path so the model ID matches the
+        # documented notebook model ID (the ID hashes the whole CONFIG).
+        config = copy.deepcopy(env['CONFIG'])
+        config['roadway']['xml_path'] = ROADWAY_XML.name
+        model = env['BridgeModel'](config)
     return config, model, env
 
 

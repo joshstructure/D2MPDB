@@ -326,11 +326,19 @@ def substructure_method(R, ctx):
     R.eq(r'z_{cap} = \min_j\left[z_{ped,j} - \sigma\,(y_j - y_c)\right] - \frac{h_{ped,min}}{12},\qquad h_j = 12\left[z_{ped,j} - \left(z_{cap} + \sigma\,(y_j-y_c)\right)\right]')
     R.h('3. Piles')
     R.eq(r'y_i = y_c + \left(i - \frac{n+1}{2}\right)p,\qquad z_{cutoff,i} = z_{cap} + \sigma\,(y_i - y_c) - d_{cap} + e_{emb}')
-    R.fig(figures.cap_section(m, m.end_bents[0]), 'Figure 1. End Bent 1 transverse section from the notebook model.')
+    R.fig(figures.cap_section(m, m.end_bents[0]), 'Figure 1. End Bent 1 transverse section from the notebook model, with cheeks and the backwall behind.')
     R.fig(figures.cap_section(m, m.pier), 'Figure 2. Pier transverse section from the notebook model.')
-    R.note('CAD adopted a 235-in end-cap body (251 in with two 8-in cheeks) under D-026/D-027. The notebook, which governs, still derives the '
-           'end-cap length from its pile layout. A separate task is bringing the end caps and cheek walls into the notebook; rebuild this '
-           'workbook afterwards. Elevations are unaffected while the caps are level.')
+    R.h('4. End-bent backwalls, cheek webs and lugs (section F)')
+    R.p('The 235-in cap body follows from the pile layout. Two 8-in cheek webs sit outside the cap ends over the full cap width, '
+        'so the cage envelope is 251 in (D-027). The backwall sits on the cap rear between the inset and the FFBW, across the full cap length:')
+    R.eq(r'L_{out} = L_{cap} + 2t_c,\qquad z_{bw}(y) = z_{PGL}(s_{FFBW}) + \delta(y) - d_{seat},\qquad h_{bw}(y) = z_{bw}(y) - z_{cap}(y)')
+    R.eq(r'V_{bw} = t_{bw}\int_{y_L}^{y_R} h_{bw}(y)\,dy\quad(\mathrm{exact\ trapezoids:\ }h_{bw}\ \mathrm{is\ linear\ between\ the\ cap\ ends\ and\ the\ crown})')
+    R.p('Each cheek runs from the local cap underside at its cap end to its entered top (the D-033 barrier-return base, an MSE interface input). '
+        'A bottom lug hangs below the cap and a rear lug stands behind it, both 6 in deep and 5.5 in wide on the outer face:')
+    R.eq(r'z_{cheek,bot} = z_{cap}(y_{end}) - d_{cap},\qquad z_{lug,bot} = z_{cheek,bot} - p,\qquad s_{lug} = s_{rear} \pm p')
+    R.eq(r'V_{cheek} = w\,t_c\,(z_{top}-z_{bot}) + w\,w_l\,p + p\,w_l\,(z_{top}-z_{bot}+p)')
+    R.note('These match the native D-034 CAD solids: all four cheeks to 1e-12 ft3 and the EB2 backwall exactly. The CAD EB1 backwall seat follows '
+           'the MSE landing and holds 0.117 ft3 more concrete; it is to be rebuilt from the notebook geometry.')
     R.vars([
         ('σ, yc', 'Cap cross slope and center offset', 'Pier_Slope, Pier_Ctr ...', 'ft/ft, ft'),
         ('hped,min', 'Minimum pedestal height at CL bearing', 'Pier_Reveal, EB1_Reveal', 'in'),
@@ -451,6 +459,10 @@ def cad_pedestals_method(R, ctx):
     R.fig(figures.pier_pedestal_profile(m), 'Figure 2. Pier pedestal top along a beam line.')
     R.p('Cap tops, undersides and pile cutoffs come from the Substructure tab (cutoff = local cap top - cap depth + embedment).')
     R.fig(figures.cap_section(m, m.pier), 'Figure 3. Pier section.')
+    R.p('The end-bent wall table lists the backwall top at both cap ends and at the PGL (deck-top line at the FFBW less the 4-in seat), '
+        'both cheek tops (D-033 return bases), the cheek bottom at the cap underside, the lug bottom and the rear-lug face station where '
+        'the MSE copings stop. All values link to Substructure section F.')
+    R.fig(figures.cap_section(m, m.end_bents[1]), 'Figure 4. End Bent 2 section with cheeks and the backwall behind the cap.')
 
 
 def qc_method(R, ctx):

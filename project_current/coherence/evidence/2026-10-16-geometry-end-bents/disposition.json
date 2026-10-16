@@ -1,0 +1,141 @@
+{
+  "decision": "D-036",
+  "date": "2026-10-16",
+  "authority": "User direction 2026-10-16: the Colab geometry notebook is the source of truth for all geometry; the CAD model is built from it.",
+  "notebook": {
+    "path": "Bridge_Geometry_2 Beam_V2.ipynb",
+    "hash_basis": "lf_text",
+    "previous_sha256": "f222fe4cd0d695786101295736928be11f07b0b70eba55493a30cfaea4644400",
+    "new_sha256": "2d45fc34b606f2157e2d634beb4d9dd04319c0664d9e96e5bf53e8eca993dafd",
+    "previous_model_id": "34ec9ea573",
+    "new_model_id": "622e5ca1bf"
+  },
+  "inputs_changed": {
+    "end_bents.*.pile_end_clear_in": [
+      16.0,
+      27.5
+    ],
+    "end_bents.* new keys": [
+      "backwall_drop_in=4",
+      "cheek_thickness_in=8",
+      "lug_projection_in=6",
+      "lug_width_in=5.5",
+      "mse_joint_in=0.5"
+    ],
+    "end_bents.start.cheek_top_ft": [
+      48.2690447560991,
+      48.26451245529145
+    ],
+    "end_bents.end.cheek_top_ft": [
+      48.277042695716595,
+      48.2598028777554
+    ]
+  },
+  "rule_sources": [
+    "runtime/freecad_tools/mse_revision.py CheekProxy/BackwallProxy (D-026)",
+    "runtime/freecad_tools/return_cheek_details.py (D-033)",
+    "geometry/freecad/evidence/2026-10-14-mse-and-cheek/adoption-summary.json",
+    "coherence/evidence/2026-10-14-end-caps/source_update.json",
+    "geometry/freecad/evidence/2026-10-15-return-cheeks/adoption-summary.json"
+  ],
+  "unchanged": [
+    "Profile, deck, beams, spans and cambers",
+    "Support drop D and every seat, pedestal-top, cap-top and pile-cutoff elevation",
+    "Pier geometry"
+  ],
+  "native_reference": {
+    "snapshot": "project_current/geometry/freecad/archive/B4-notebook-reconciliation-20261016.FCStd",
+    "sha256": "517d08ddd6c0b01c0bb279919d3648835a8a77cbc7727a42ba4312013b701a20",
+    "note": "Byte-identical copy of the D-034 main CAD model.",
+    "station_cuts": 105,
+    "compared": [
+      "caps",
+      "piles",
+      "pedestals",
+      "bearing pads",
+      "cheek webs with bottom and rear lugs"
+    ],
+    "excluded": {
+      "backwalls": "CAD EB1 backwall is stored in a different frame and its seat follows the MSE landing underside"
+    }
+  },
+  "end_bents": [
+    {
+      "support": "End Bent 1",
+      "cap_body_in": 235.0,
+      "out_to_out_in": 250.99999999999997,
+      "cap_top_ft": 43.23769223221814,
+      "pile_cutoff_ft": 41.23769223221814,
+      "cheek_top_ft": [
+        48.2690447560991,
+        48.26451245529145
+      ],
+      "cheek_volume_ft3": {
+        "notebook": [
+          21.49700750911163,
+          21.485393488292033
+        ],
+        "native": [
+          21.497007509111647,
+          21.485393488292104
+        ]
+      },
+      "backwall_volume_ft3": {
+        "notebook": 78.1777979523948,
+        "native": 78.29469258168693
+      },
+      "net_cap_volume_ft3": {
+        "notebook": 196.62499999999997,
+        "native": 196.62499999999986
+      },
+      "rear_lug_face_station": 1591.72,
+      "backwall_crown_height_ft": 4.0899744344485285
+    },
+    {
+      "support": "End Bent 2",
+      "cap_body_in": 235.0,
+      "out_to_out_in": 250.99999999999997,
+      "cap_top_ft": 43.24969214402966,
+      "pile_cutoff_ft": 41.24969214402966,
+      "cheek_top_ft": [
+        48.277042695716595,
+        48.2598028777554
+      ],
+      "cheek_volume_ft3": {
+        "notebook": [
+          21.48675245536444,
+          21.44257542183887
+        ],
+        "native": [
+          21.486752455364584,
+          21.442575421839017
+        ]
+      },
+      "backwall_volume_ft3": {
+        "notebook": 78.17779967941917,
+        "native": 78.1777996794193
+      },
+      "net_cap_volume_ft3": {
+        "notebook": 196.62499999999997,
+        "native": 196.6250000000004
+      },
+      "rear_lug_face_station": 1806.97,
+      "backwall_crown_height_ft": 4.089974522637007
+    }
+  ],
+  "findings": [
+    "CAD EB1 backwall holds 0.117 ft3 (0.15%) more concrete than the notebook rule (deck-top line at the FFBW less 4 in); rebuild it from the notebook.",
+    "MSE walls, copings, barriers and landing slabs stay CAD/DXF-owned; the four cheek-top elevations are their only notebook inputs."
+  ],
+  "verification": {
+    "notebook_code_cells": "10 of 10 execute headless",
+    "notebook_qc": "all Pass (new: cheek out-to-out, cheeks enclose backwall ends)",
+    "tests": "87 pass: test_bridge_geometry_notebook, test_bridge_physical_geometry, test_bridge_interactive_report, test_bridge_geometry_authority, test_bridge_notebook_workflow, test_geometry_cad_tables, test_project_coherence, test_end_bent_walls",
+    "coherence": "GEOMETRY:EB:length MATCH (235 in + 2 x 8 in = 251 in); previously CHANGED (212 vs 251)",
+    "workbook": "geometry_tables/B4_Geometry_CAD_Tables.xlsx rebuilt and recalculated in Excel: 181 QC pass, 0 fail"
+  },
+  "downstream": [
+    "CAD rebuild from a fresh notebook CAD export (walls are now in solid_geometry.walls)",
+    "COH-023 loads, quantities, anchorage, lug steel and strap interfaces"
+  ]
+}

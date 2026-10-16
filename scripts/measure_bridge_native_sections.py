@@ -43,8 +43,10 @@ def main():
         for sid in ('EB1','Pier','EB2'):
             shapes={}
             for name in archive.namelist():
+                # Cheeks (web, bottom and rear lugs) are notebook geometry under D-026/D-033.
+                # Backwalls stay out: the CAD seat follows the MSE landing underside.
                 if not (name.endswith('.Shape.brp') and any(name.startswith(prefix+sid) for prefix in
-                        ('BridgeCap','BridgePile','BridgePedestal','BridgePad'))):continue
+                        ('BridgeCap','BridgePile','BridgePedestal','BridgePad','BridgeCheek'))):continue
                 target=Path(directory)/name;target.write_bytes(archive.read(name))
                 shape=Part.Shape();shape.read(str(target));shape.Placement=App.Placement()
                 shapes[name.removesuffix('.Shape.brp')]=shape
@@ -52,7 +54,9 @@ def main():
             center=round(start+(cap.XMin+cap.XMax)/(2*FT),8)
             width=round(cap.XLength/FT,8);underside=cap.ZMin/FT
             offsets=sorted(set([-width/2-.00001,-width/2,-1.6,-1.3,-1.29,-1.,-.876,-.875,-.82,-.78,-.6,-.5,-.46,-.45,-.125,0,
-                               .125,.45,.46,.5,.6,.78,.82,.875,.876,1.,1.29,1.3,1.6,width/2,width/2+.00001]))
+                               .125,.45,.46,.5,.6,.78,.82,.875,.876,1.,1.29,1.3,1.6,width/2,width/2+.00001,
+                               # Rear-lug zone behind each end-bent cap (6-in projection).
+                               -width/2-.25,width/2+.25,-width/2-.5,width/2+.5]))
             for delta in offsets:
                 station=center+delta;x=(station-start)*FT
                 corners=[App.Vector(x,-5000,(underside-1.8)*FT),App.Vector(x,5000,(underside-1.8)*FT),

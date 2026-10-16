@@ -1,7 +1,7 @@
 # Current project record
 
 Start here for the D2 I-95 pedestrian bridge's current source files, adopted
-decisions and outstanding coherence items. Initial inventory: **9 October 2026**. Source update: **15 October 2026**.
+decisions and outstanding coherence items. Initial inventory: **9 October 2026**. Source update: **16 October 2026**.
 "Current" identifies the selected source. Each source retains its own review and
 design-completion status.
 
@@ -15,7 +15,8 @@ design-completion status.
 | Recorded decisions and ownership | [Decisions](decisions.md) |
 | Native project journal | [D2 I-95 Project Journal](../journal/D2_I95_Project_Journal.bpad) with [References](../journal/References/) |
 | Current editable FreeCAD model and live quantities | [Open the bridge model](geometry/freecad/README.md) — raised cheeks, deep return barriers, rear-lug coping stops, deck-edge details and reinforcement; calculation reconciliation remains open |
-| Geometry notebook | [Bridge geometry](../Bridge_Geometry_2%20Beam_V2.ipynb) and [roadway XML](../Geometry%20Report.xml) |
+| Geometry notebook | [Bridge geometry](../Bridge_Geometry_2%20Beam_V2.ipynb) and [roadway XML](../Geometry%20Report.xml) — owns the end caps, backwalls, cheek webs and lugs (D-036) |
+| Geometry CAD tables | [Workbook](../geometry_tables/B4_Geometry_CAD_Tables.xlsx) — FDOT CAD tables and method tabs recalculated from the geometry notebook ([how to rebuild](../geometry_tables/README.md)) |
 | Pier cap | [Report](cap_design/pier/Pier%20Cap%20Design%2010-12.html), [saved case](cap_design/pier/selected_case.json), [FBMP export](fbmp/pier/Pier_Fixed.XML) |
 | End Bent 1 cap | [Report](cap_design/end_bents/End%20Bent%201%20Cap%20Design%2010-14.html), [saved case](cap_design/end_bents/selected_case.json) |
 | End Bent 2 cap | [Report](cap_design/end_bent_2/End%20Bent%202%20Cap%20Design%2010-14.html), [saved case](cap_design/end_bent_2/selected_case.json) |
@@ -46,6 +47,7 @@ does not replace the dated full-project coherence review or change tracker statu
 | --- | --- | --- |
 | Project assumptions, adopted geometry, decisions, live journal quantities | Current journal's designated modules | Compare notebook and report inputs with these modules |
 | Geometry computations and elevation schedules | Current geometry notebook using identified project inputs and roadway XML | A difference from adopted journal geometry becomes an issue |
+| Bridge geometry for CAD, including end caps, backwalls, cheek webs and lugs | Current geometry notebook (D-036) | The FreeCAD model is rebuilt from notebook exports. MSE walls, copings, barriers and landings stay DXF/CAD-owned; the cheek tops are their interface inputs |
 | Current pier cage, forces and cap calculation results | Registered pier report and saved case | C005 remains unchanged; it does not verify the current cage |
 | End-bent cages and source results | Registered separate End Bent 1 and End Bent 2 report/cases | Current cages share a configuration; actions and source identities remain separate |
 | Span calculations in Mathcad | User-selected Span 1 and Span 2 sheets | Missing companion data and calculation review remain visible |
@@ -203,3 +205,27 @@ existing U-bar/hoop overlap pairs for later review without treating them as clea
 COH-024's four 12 3/8 in spacing findings and the other existing findings remain.
 The user authorized this model/source update and GitHub publication. See the
 [adoption summary](geometry/freecad/evidence/2026-10-14-lug-wwr/update-summary.json).
+
+## 16 October geometry notebook end-bent update (D-036)
+
+The geometry notebook is the source of truth for all bridge geometry, and the CAD
+model is built from it. The notebook now owns the adopted end-bent details:
+- **Cap:** a 235-in cap body from the unchanged pile layout.
+- **Cheeks:** 8-in cheek webs outside the cap ends, 251 in out-to-out, matching the D-027 cases. Each has 6 × 5.5-in bottom and rear lugs, with 0.5-in MSE joints.
+- **Backwall:** top 4 in below the deck-top line at the FFBW.
+
+The four D-033 barrier-return bases are entered as the cheek tops. They are the
+only MSE-interface inputs. Seat, pedestal, cap-top and pile-cutoff elevations are
+unchanged.
+
+A byte-identical snapshot of the D-034 CAD model is now the native reference. It is archived at
+`geometry/freecad/archive/B4-notebook-reconciliation-20261016.FCStd`. Against it:
+- All 105 station cuts match: caps, piles, pedestals, pads and cheeks.
+- Cheek volumes agree to 1e-12 ft³, and the EB2 backwall matches exactly.
+- The CAD EB1 backwall seat follows the MSE landing and holds 0.117 ft³ more concrete. Rebuild it from the notebook.
+
+Walls are also in the notebook's CAD export and in the interactive report. The
+[CAD tables workbook](../geometry_tables/B4_Geometry_CAD_Tables.xlsx) is rebuilt
+and registered as GEOMETRY-TABLES. COH-023 stays Open for loads, quantities,
+anchorage, lug steel, strap interfaces and the CAD rebuild. See the
+[disposition](coherence/evidence/2026-10-16-geometry-end-bents/disposition.json).

@@ -1,9 +1,9 @@
 {
-  "checked_at_utc": "2026-10-15T17:23:58.678674+00:00",
+  "checked_at_utc": "2026-10-16T14:07:51.192568+00:00",
   "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
-  "register_sha256": "d2a1b67e38ea88c7cf26d7b41beb0231ff85028013fae54e00ca28cbb99a1573",
-  "tracker_sha256": "cd314128fa8c1eb70708244661f1524563470c64288987454376d1a80552f1a3",
-  "source_count": 27,
+  "register_sha256": "5798f5688f31adb2260216d78b7536c73d3ca5c518b018f2ecfdb83a9d4e907a",
+  "tracker_sha256": "22f0438e620ba375d0e1d6b0b1f0c08ca0f70887b7cda0e04ab722fd4fc11fcd",
+  "source_count": 28,
   "item_count": 27,
   "outstanding_count": 14,
   "status_counts": {
@@ -13,8 +13,8 @@
     "Awaiting source": 1
   },
   "check_counts": {
-    "CHANGED": 6,
-    "MATCH": 37,
+    "CHANGED": 4,
+    "MATCH": 40,
     "MISSING": 5,
     "REVIEW": 10,
     "ERROR": 9
@@ -39,8 +39,8 @@
         "GEOMETRY"
       ],
       "path": "Bridge_Geometry_2 Beam_V2.ipynb",
-      "expected_sha256": "f222fe4cd0d695786101295736928be11f07b0b70eba55493a30cfaea4644400",
-      "actual_sha256": "f222fe4cd0d695786101295736928be11f07b0b70eba55493a30cfaea4644400"
+      "expected_sha256": "2d45fc34b606f2157e2d634beb4d9dd04319c0664d9e96e5bf53e8eca993dafd",
+      "actual_sha256": "2d45fc34b606f2157e2d634beb4d9dd04319c0664d9e96e5bf53e8eca993dafd"
     },
     {
       "check_id": "SOURCE:ROADWAY",
@@ -253,14 +253,14 @@
     },
     {
       "check_id": "SOURCE:BACKWALL-TOOL",
-      "status": "CHANGED",
-      "detail": "File differs from the registered revision; review its consumers before adoption.",
+      "status": "MATCH",
+      "detail": "Registered text content matches after CRLF/LF normalization.",
       "source_ids": [
         "BACKWALL-TOOL"
       ],
       "path": "End_Bent_Backwall_Design.ipynb",
-      "expected_sha256": "2ce2e271ae8f678b749a10bed23760d792c017e14e4dee0b8f45b0e0b8909356",
-      "actual_sha256": "f75707bf99a9bbb6b0cae2135d613c72489a2891af38489d126e5f946e6c95e9"
+      "expected_sha256": "54a13c9bcf4e749508485858a846cd54503f7df8fbf43502cadb02e87cefafcd",
+      "actual_sha256": "54a13c9bcf4e749508485858a846cd54503f7df8fbf43502cadb02e87cefafcd"
     },
     {
       "check_id": "SOURCE:EB2-REPORT",
@@ -318,6 +318,17 @@
       "actual_sha256": "dcf8bfdb441372e08a24c903f88cd3c3d772bb1f2ccce8f0eb35859fd6d8ea07"
     },
     {
+      "check_id": "SOURCE:GEOMETRY-TABLES",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "GEOMETRY-TABLES"
+      ],
+      "path": "geometry_tables/B4_Geometry_CAD_Tables.xlsx",
+      "expected_sha256": "d3fb275d4c305af3879695fdfea016a29bae435f83a46a4c330dd3874491e6db",
+      "actual_sha256": "d3fb275d4c305af3879695fdfea016a29bae435f83a46a4c330dd3874491e6db"
+    },
+    {
       "check_id": "DEP:GEOMETRY:JOURNAL",
       "status": "REVIEW",
       "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
@@ -372,6 +383,15 @@
       ]
     },
     {
+      "check_id": "DEP:BACKWALL-TOOL:EB2-XML",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "BACKWALL-TOOL",
+        "EB2-XML"
+      ]
+    },
+    {
       "check_id": "DEP:BACKWALL-TOOL:JOURNAL",
       "status": "REVIEW",
       "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
@@ -396,15 +416,6 @@
       "source_ids": [
         "EB2-CASE",
         "EB2-XML"
-      ]
-    },
-    {
-      "check_id": "DEP:BACKWALL-REPORT:BACKWALL-TOOL",
-      "status": "REVIEW",
-      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
-      "source_ids": [
-        "BACKWALL-REPORT",
-        "BACKWALL-TOOL"
       ]
     },
     {
@@ -570,8 +581,8 @@
     },
     {
       "check_id": "GEOMETRY:EB:length",
-      "status": "CHANGED",
-      "detail": "Notebook 212 in; source audit 251 in. Comparison tolerance 0.01 in for printed coordinates.",
+      "status": "MATCH",
+      "detail": "Notebook 235 in + 2 x 8 in cheek webs = 251 in; source audit 251 in. Comparison tolerance 0.01 in for printed coordinates.",
       "source_ids": [
         "GEOMETRY",
         "EB-CASE"
@@ -998,9 +1009,9 @@
       "Your response": "Incorporate all these changes into the main model and add to the project source.",
       "Owner": "",
       "Due date": "",
-      "Resolution / evidence": "CAD adoption verified; calculation reconciliation remains open. D-033 raises cheek tops to the return bases and deepens transverse return bottoms to the slab. Cheek mats total 52 bars and lug WWR totals 180 wires. Reconcile revised quantities and loads.",
-      "Source references": "D-026; CAD-MODEL; MSE-DETAIL-DXF; EB-CASE; EB2-CASE; BACKWALL-REPORT; GEOMETRY",
-      "Last reviewed": "2026-10-14T00:00:00.000Z",
+      "Resolution / evidence": "CAD adoption verified; calculation reconciliation remains open. D-033 raises cheek tops to the return bases and deepens transverse return bottoms to the slab. Cheek mats total 52 bars and lug WWR totals 180 wires. Reconcile revised quantities and loads. 16 Oct (D-036): the geometry notebook now owns the 235-in caps, backwalls, cheek webs and lugs (cheek tops = D-033 return bases). 105 native station cuts and the cheek/cap volumes match the D-034 CAD solids; the CAD EB1 backwall seat holds 0.117 ft3 more (MSE landing) and is to be rebuilt from the notebook. Cap/wall loads, quantities, anchorage, lug steel and strap interfaces remain open.",
+      "Source references": "D-026; CAD-MODEL; MSE-DETAIL-DXF; EB-CASE; EB2-CASE; BACKWALL-REPORT; GEOMETRY; D-036; GEOMETRY-TABLES",
+      "Last reviewed": "2026-10-16",
       "_row": 31
     },
     {
@@ -1045,7 +1056,7 @@
       "Due date": "",
       "Resolution / evidence": "Native positive-volume intersections confirmed against the prior model. D-033 introduces no new affected concrete or steel intersections. Existing overlaps remain unresolved.",
       "Source references": "D-033; CAD-MODEL; geometry/freecad/evidence/2026-10-15-return-cheeks/concrete-trial.json",
-      "Last reviewed": "2026-10-15T00:00:00.000Z",
+      "Last reviewed": "2026-10-15",
       "_row": 34
     },
     {
@@ -1060,7 +1071,7 @@
       "Due date": "",
       "Resolution / evidence": "D-034: A 111.481112 ft3; B 88.556269 ft3. Adaptive vertical integration passes convergence, independent mesh and added-material checks. Native rebuild/reopen passes. Geometry, steel and colors unchanged.",
       "Source references": "D-034; CAD-MODEL; geometry/freecad/evidence/2026-10-15-landing-quantities/update-summary.json",
-      "Last reviewed": "2026-10-15T00:00:00.000Z",
+      "Last reviewed": "2026-10-15",
       "_row": 35
     }
   ]

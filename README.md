@@ -37,9 +37,16 @@ of 106.975 / 104.525 ft and 9-in bearing setbacks already match those runs.
 All ten notebook code cells execute, 36 geometry tests pass, and 93 independently
 measured native support sections match. See the [saved model and verification](project_current/geometry/freecad/README.md).
 
+**16 October end-bent update (D-036):** the notebook now owns the adopted end-bent details, and the CAD model is built from them.
+- **Cap:** a 235-in body from the unchanged pile layout (27.5-in pile-face clearances).
+- **Cheeks:** 8-in webs outside each cap end, 251 in out-to-out. Each has 6-in bottom and rear lugs, 5.5 in wide, on its outer face.
+- **Backwall:** top 4 in below the deck-top line at the FFBW.
+
+The cheek tops are the four D-033 MSE barrier-return base elevations, the only MSE-interface inputs, set under `CONFIG['end_bents'][...]['cheek_top_ft']`. Sections, the interactive report and the CAD export (`solid_geometry.walls` prisms) include the walls. Seat, cap-top and pile-cutoff elevations are unchanged. All ten code cells execute, and 105 station cuts against an archived D-034 CAD snapshot match. Cheek volumes agree to 1e-12 ft³, and the EB2 backwall matches exactly. The CAD EB1 backwall seat follows the MSE landing and holds 0.117 ft³ more; rebuild it from a notebook export.
+
 **Support snapshots:** Section 4 collects all static figures, schedules and QC in one cell. Cross-sections use actual cap/pile centers: **1593.97 ft**, **1700.57 ft** and **1804.72 ft**. Pile-top labels appear on the sections and in the HTML report, including nearby cuts that intersect the piles. The pier center cuts the beam joint; bearing-station jumps show the pads on either side. Cap thicknesses and square/hollow-pipe intersections govern visibility continuously. Output scrolling is disabled near the beginning of the notebook.
 
-Pile top (cutoff) is **local cap top - cap depth + vertical embedment**. With default 12-in embedment, end-bent pile tops are **41.237692 ft** and **41.249692 ft**; pier pile tops are **41.764940 ft**. Sloped caps give an elevation at each pile centerline. Stored pile lengths remain trial values; figures show cropped heads. Provisional wall solids and final tips are outside these views.
+Pile top (cutoff) is **local cap top - cap depth + vertical embedment**. With default 12-in embedment, end-bent pile tops are **41.237692 ft** and **41.249692 ft**; pier pile tops are **41.764940 ft**. Sloped caps give an elevation at each pile centerline. Stored pile lengths remain trial values; figures show cropped heads. End-bent backwalls, cheek webs and lugs appear where a cut crosses them; final pile tips are outside these views.
 
 **Exports:** Section 5 offers **Export interactive report** (one offline HTML file with linked station plots) and **Export CAD geometry** (JSON with applied inputs, provenance, exact piecewise quadratic longitudinal coefficients, solid extents, bearing/pedestal planes and pile parameters). Both use the same applied model ID and block unapplied changes. The CAD handoff includes feet-to-mm and station-origin conventions plus a payload hash. CAD must consume a fresh export when rebuilding; exporting does not automatically modify an existing CAD file. The registered CAD snapshot now uses the updated notebook configuration, verified against its polynomial export through the existing native controllers. Future rebuilds must use a fresh notebook export; CAD controls are not upstream notebook inputs.
 

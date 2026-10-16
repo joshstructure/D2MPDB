@@ -118,10 +118,11 @@ def cad_geometry_data(model, section_geometry):
             field_units='All curve fields are feet, including camber and haunch.',
             array_axes='bottom/top: beam; deck/haunch: beam then left flange edge, center, right flange edge',
             applicability='Use beam_limits/deck_limits for solid presence. Do not bridge open joints.',
-            support_geometry='Cap plane from top/slope/center and cap_bounds; pedestals piecewise linear in station; bearing planes from top/slope/station; square/pipe piles from dimensions and cutoff.'),
+            support_geometry='Cap plane from top/slope/center and cap_bounds; pedestals piecewise linear in station; bearing planes from top/slope/station; square/pipe piles from dimensions and cutoff; '
+                'end-bent walls (backwall, cheek webs with bottom lugs, rear lugs) are prisms: extrude each solid_geometry.walls xy polygon (offset, elevation) between its station bounds; bounds covers all support concrete.'),
         support_drop_ft=model.support_drop,camber_diagnostics=model.camber_summary().to_dict('records'),
         limitations=['FIB36 outline fillets are tessellated; longitudinal curves are polynomial.',
-            'Pile bottom values use trial lengths, not final design tips. Provisional walls are omitted.',
+            'Pile bottom values use trial lengths, not final design tips. Cheek tops are the entered MSE barrier-return base elevations; MSE walls, copings and barriers are outside this export.',
             'This export does not automatically rebuild or certify an existing CAD model.'],
         geometry=geometry))
     canonical=json.dumps(payload,sort_keys=True,separators=(',',':'),allow_nan=False).encode('utf-8')

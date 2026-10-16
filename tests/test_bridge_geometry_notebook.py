@@ -110,10 +110,10 @@ class BridgeGeometryTests(unittest.TestCase):
                 [1593.97,1804.72],[43.23769223221814,43.24969214402966],[41.23769223221814,41.24969214402966]):
             with self.subTest(support=support['name']):
                 self.assertEqual(support['station'],station)
-                self.assertAlmostEqual(support['length']*12,212)
+                self.assertAlmostEqual(support['length']*12,235)  # D-026 cap body
                 self.assertAlmostEqual(support['width']*12,42)
                 self.assertAlmostEqual(support['depth']*12,36)
-                self.assertAlmostEqual(support['volume_ft3'],185.5)
+                self.assertAlmostEqual(support['volume_ft3'],205.625)
                 self.assertAlmostEqual(support['pedestal_length_ft']*12,30)
                 self.assertAlmostEqual(support['bearing_offset_ft']*12,3)
                 self.assertAlmostEqual(support['top'],top)
@@ -128,6 +128,44 @@ class BridgeGeometryTests(unittest.TestCase):
                 self.assertEqual(sum(c['kind']=='Bearing' for c in section['components']),2)
                 self.assertEqual(sum(c['kind']=='Pedestal' for c in section['components']),2)
                 self.assertEqual(sum(c['kind']=='Cap' for c in section['components']),1)
+
+    def test_end_bent_walls_match_adopted_cad(self):
+        # Native D-034 solids (archive/B4-notebook-reconciliation-20261016.FCStd), ft3 and ft.
+        native={'End Bent 1':dict(L=21.497007509111647,R=21.485393488292104,top=(48.2690447560991,48.26451245529145),lug=1591.72,backwall=None),
+                'End Bent 2':dict(L=21.486752455364584,R=21.442575421839017,top=(48.277042695716595,48.2598028777554),lug=1806.97,backwall=78.1777996794193)}
+        for support in self.model.end_bents:
+            expect=native[support['name']];w=support['wall_summary']
+            with self.subTest(support=support['name']):
+                self.assertAlmostEqual(w['out_to_out_in'],251)
+                self.assertAlmostEqual(w['cheek_L_volume_ft3'],expect['L'],places=9)
+                self.assertAlmostEqual(w['cheek_R_volume_ft3'],expect['R'],places=9)
+                self.assertEqual((w['cheek_top_L_ft'],w['cheek_top_R_ft']),expect['top'])
+                self.assertAlmostEqual(w['rear_lug_face_station'],expect['lug'])
+                self.assertAlmostEqual(w['backwall_crown_height_ft'],float(self.model.pgl(support['datum_station']))-4/12-support['top'])
+                if expect['backwall']:self.assertAlmostEqual(w['backwall_volume_ft3'],expect['backwall'],places=9)
+                self.assertTrue(w['cheek_L_encloses_backwall'] and w['cheek_R_encloses_backwall'])
+                bounds=support['solid_geometry']['bounds']
+                self.assertIn(round(expect['lug'],8),[round(b,8) for b in bounds])  # support extent includes the rear lugs
+                rear_cut=support['datum_station']+(-1.25 if support['end_key']=='start' else 1.25)
+                kinds=[c['kind'] for c in self.model.support_section(rear_cut)]
+                self.assertEqual(kinds,['Cheek','Cheek'])  # rear lugs only, behind the cap
+                kinds=[c['kind'] for c in self.model.support_section(support['datum_station']+(-.5 if support['end_key']=='start' else .5))]
+                self.assertEqual(kinds.count('Backwall'),1);self.assertEqual(kinds.count('Cheek'),2);self.assertEqual(kinds.count('Cap'),1)
+        self.assertAlmostEqual(self.model.inspection_start,1591.72)
+        self.assertAlmostEqual(self.model.inspection_end,1806.97)
+
+    def test_cheek_top_default_and_invalid_wall_inputs(self):
+        config=copy.deepcopy(self.config)
+        config['end_bents']['start']['cheek_top_ft']=None
+        w=self.env['BridgeModel'](config).end_bents[0]['wall_summary']
+        self.assertAlmostEqual(w['cheek_top_L_ft'],47.661-.02*(163/24))  # D-026 rule: deck edge at the FFBW
+        self.assertIn('default',w['cheek_top_L_basis'])
+        for edits in ({'cheek_top_ft':[40,48.3]},{'cheek_top_ft':[48.3]},{'lug_width_in':9},{'cheek_thickness_in':0},
+                      {'backwall_drop_in':-1},{'lug_projection_in':-1}):
+            config=copy.deepcopy(self.config)
+            config['end_bents']['end'].update(edits)
+            with self.subTest(edits=edits),self.assertRaises(ValueError):
+                self.env['BridgeModel'](config)
 
     def test_end_bent_inputs_are_independent_and_follow_profile(self):
         config=copy.deepcopy(self.config)

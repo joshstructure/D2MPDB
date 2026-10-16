@@ -2,11 +2,23 @@ function makeBridgeReportEngine(data) {
   if(data.version!==2||!data.physical||data.geometry_version!=='physical-station-cuts-2')
     throw new Error('This report needs physical support geometry. Reopen the updated notebook, Run all, and export a new report.');
   const within=(s,b)=>s>=b[0]-1e-9&&s<=b[1]+1e-9;
+  const supportBounds=solid=>solid.bounds||solid.cap_bounds;
   function sliceSupport(support,station){
     const solid=support.solid_geometry;
-    if(!solid||!within(station,solid.cap_bounds))return [];
-    const components=[],notches=[];
+    if(!solid||!within(station,supportBounds(solid)))return [];
+    const components=[];
     const add=(kind,id,xy,beam=null,extra={})=>components.push({kind,id,xy,beam,...extra});
+    if(within(station,solid.cap_bounds))sliceCap(support,solid,station,components,add);
+    for(const wall of solid.walls||[]){
+      if(!within(station,wall.bounds))continue;
+      // The fused cheek is reported once where its rear lug meets the cap face.
+      if(wall.part==='rear lug'&&within(station,solid.cap_bounds))continue;
+      add(wall.kind,wall.id,wall.xy,null,{side:wall.side,part:wall.part});
+    }
+    return components;
+  }
+  function sliceCap(support,solid,station,components,add){
+    const notches=[];
     const capTop=y=>support.top+support.slope*(y-support.center);
     for(const pile of solid.piles){
       const dx=station-pile.station,r=pile.diameter/2;
@@ -42,7 +54,6 @@ function makeBridgeReportEngine(data) {
       const z=pad.top+pad.slope*(station-pad.station),a=pad.offset-pad.width/2,b=pad.offset+pad.width/2;
       add('Bearing',pad.id,[[a,z-pad.thickness],[b,z-pad.thickness],[b,z],[a,z]],pad.beam,{span:pad.span,top:z});
     }
-    return components;
   }
   const polynomial = (c, t) => {
     const evalNested = (a, b, q) => Array.isArray(a)
@@ -62,7 +73,7 @@ function makeBridgeReportEngine(data) {
     const beamPresent=!data.physical||data.beam_limits.some(b=>within(station,b));
     const deckPresent=!data.physical||data.deck_limits.some(b=>within(station,b));
     value.clearance = value.bottom.map(bottom => road&&beamPresent ? bottom-value.roadway : null);
-    const support = data.supports.find(p => p.solid_geometry&&within(station,p.solid_geometry.cap_bounds)) || null;
+    const support = data.supports.find(p => p.solid_geometry&&within(station,supportBounds(p.solid_geometry))) || null;
     let components=piece.components.map((c,i) => ({kind:c.kind,id:`${c.kind}-${c.beam??i}`,beam:c.beam,
       xy:polynomial(c.y,t).map((y,j) => [c.x[j],y])}));
     if(data.physical){

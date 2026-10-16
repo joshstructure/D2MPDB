@@ -20,14 +20,33 @@ def in_interval(station, limits):
     return limits[0]-TOL <= station <= limits[1]+TOL
 
 
+def support_bounds(solid):
+    """Longitudinal extent of all support concrete, including end-bent rear lugs."""
+    return solid.get('bounds', solid['cap_bounds'])
+
+
 def section_of_support(support, station, pile_heads=True):
-    """Exact prism/loft/cylinder cut, with cap sockets and hollow pipe bores."""
+    """Exact prism/loft/cylinder cut, with cap sockets, hollow pipe bores and end-bent walls."""
     solid = support.get('solid_geometry')
-    if not solid or not in_interval(station, solid['cap_bounds']):
+    if not solid or not in_interval(station, support_bounds(solid)):
         return []
     components = []
     def add(kind, ident, xy, beam=None, **metadata):
         components.append(dict(kind=kind, id=ident, beam=beam, xy=np.asarray(xy,dtype=float), **metadata))
+    if in_interval(station, solid['cap_bounds']):
+        _cap_components(support, solid, station, pile_heads, components, add)
+    for wall in solid.get('walls', []):
+        if not in_interval(station, wall['bounds']):
+            continue
+        # A rear lug shares the cap rear-face plane with its cheek web; the
+        # fused cheek is reported once there, as the native solid is cut.
+        if wall['part'] == 'rear lug' and in_interval(station, solid['cap_bounds']):
+            continue
+        add(wall['kind'], wall['id'], wall['xy'], side=wall['side'], part=wall['part'])
+    return components
+
+
+def _cap_components(support, solid, station, pile_heads, components, add):
     def cap_top(y):
         return support['top'] + support['slope']*(y-support['center'])
     notches = []
@@ -72,7 +91,6 @@ def section_of_support(support, station, pile_heads=True):
         a=pad['offset']-pad['width']/2;b=pad['offset']+pad['width']/2
         add('Bearing',pad['id'],[[a,z-pad['thickness']],[b,z-pad['thickness']],[b,z],[a,z]],
             beam=pad['beam'],span=pad['span'],top=z)
-    return components
 
 
 class PhysicalBridgeMixin:
@@ -114,8 +132,9 @@ class PhysicalBridgeMixin:
             for support in self.supports:
                 self._build_solid_geometry(support)
                 if support.get('solid_geometry'):
-                    self.inspection_start=min(self.inspection_start,support['solid_geometry']['cap_bounds'][0])
-                    self.inspection_end=max(self.inspection_end,support['solid_geometry']['cap_bounds'][1])
+                    bounds=support_bounds(support['solid_geometry'])
+                    self.inspection_start=min(self.inspection_start,bounds[0])
+                    self.inspection_end=max(self.inspection_end,bounds[1])
 
     def span_components(self,stations,span_index=None):
         index,chord,camber=super().span_components(stations,span_index)
@@ -261,10 +280,105 @@ class PhysicalBridgeMixin:
                 cap_underside=row['Cap underside (ft)'],bottom=row['Pile cutoff (ft)']-trial))
         p['solid_geometry']=dict(cap_bounds=cap_bounds,bearings=bearings,pedestals=pedestals,piles=piles)
         p['pedestal_length_ft']=length
+        if p['kind']=='end_bent':
+            walls=self._end_bent_walls(p,cfg)
+            p['solid_geometry']['walls']=walls
+            p['solid_geometry']['bounds']=[min([cap_bounds[0]]+[w['bounds'][0] for w in walls]),
+                                           max([cap_bounds[1]]+[w['bounds'][1] for w in walls])]
+        else:
+            p['solid_geometry']['bounds']=list(cap_bounds)
+
+    def _end_bent_walls(self,p,cfg):
+        """Backwall, cheek webs and lugs adopted under D-026/D-027/D-033, as prisms along station.
+
+        Each prism is a constant transverse (offset, elevation) polygon between two
+        stations. The backwall sits on the cap rear between the backwall inset and
+        the FFBW, across the full cap length, its top following the deck-top line at
+        the FFBW less the landing-seat drop. Cheek webs sit outside both cap ends over
+        the cap width, from the local cap underside to the entered cheek top. Each
+        carries a bottom lug below the cap and a rear lug behind it on its outer face.
+        """
+        t_bw=finite(cfg['backwall_thickness_in'],'Backwall thickness',True)/12
+        inset=finite(cfg['rear_face_inset_in'],'Backwall rear-face inset')/12
+        drop=finite(cfg.get('backwall_drop_in',4.0),'Backwall drop below the deck-top line')/12
+        t_c=finite(cfg.get('cheek_thickness_in',8.0),'Cheek thickness',True)/12
+        proj=finite(cfg.get('lug_projection_in',6.0),'Lug projection')/12
+        w_l=finite(cfg.get('lug_width_in',5.5),'Lug width',True)/12
+        joint=finite(cfg.get('mse_joint_in',0.5),'MSE joint')/12
+        if drop<0 or proj<0 or joint<0 or w_l>t_c+TOL:
+            raise ValueError(f"{p['name']}: wall drop, lug projection and joint must be nonnegative; lug width cannot exceed the cheek.")
+        start=p['end_key']=='start'
+        away=-1 if start else 1          # station direction from the cap into the fill
+        rear=p['station']+away*p['width']/2
+        datum=p['datum_station']
+        center,half,slope=p['center'],p['length']/2,p['slope']
+        cap_top=lambda y:p['top']+slope*(y-center)
+        under=lambda y:cap_top(y)-p['depth']
+        backwall=sorted([rear-away*inset,rear-away*(inset+t_bw)])
+        if abs((backwall[1] if start else backwall[0])-datum)>1e-8:
+            raise ValueError(f"{p['name']}: backwall front face must coincide with the FFBW datum.")
+        ys=sorted(set([center-half,center+half]+([0.0] if center-half<0<center+half else [])))
+        bw_top=lambda y:float(self.deck_top(datum,y))-drop
+        if any(bw_top(y)<=cap_top(y)+TOL for y in ys):
+            raise ValueError(f"{p['name']}: backwall top must be above the cap top.")
+        walls=[dict(kind='Backwall',id=f"{p['name']}-backwall",side=None,part='backwall',bounds=backwall,
+                    xy=[[ys[0],cap_top(ys[0])],[ys[-1],cap_top(ys[-1])]]+[[y,bw_top(y)] for y in reversed(ys)])]
+        heights=[bw_top(y)-cap_top(y) for y in ys]
+        bw_volume=t_bw*sum((b-a)*(ha+hb)/2 for a,b,ha,hb in zip(ys,ys[1:],heights,heights[1:]))
+        rows=[dict(Component='Backwall',Side='-',**{'Station start (ft)':backwall[0],'Station end (ft)':backwall[1],
+                   'Offset from (ft)':ys[0],'Offset to (ft)':ys[-1],'Bottom (ft)':cap_top(center),'Top (ft)':max(bw_top(y) for y in ys),
+                   'Height (ft)':max(heights),'Volume (ft3)':bw_volume})]
+        profile=[{'Offset (ft)':y,'Backwall top (ft)':bw_top(y),'Cap top (ft)':cap_top(y),'Height (ft)':h} for y,h in zip(ys,heights)]
+        tops=cfg.get('cheek_top_ft')
+        if tops is not None and (not isinstance(tops,(list,tuple)) or len(tops)!=2):
+            raise ValueError(f"{p['name']}: enter cheek_top_ft as [left, right] elevations or None.")
+        cap_bounds=p['solid_geometry']['cap_bounds']
+        lug=sorted([rear,rear+away*proj])
+        summary=dict(cap_body_length_in=p['length']*12,out_to_out_in=(p['length']+2*t_c)*12,
+                     rear_lug_face_station=rear+away*proj,mse_joint_in=joint*12,
+                     backwall_crown_height_ft=max(heights),backwall_volume_ft3=bw_volume)
+        for index,(side,sign) in enumerate((('L',-1),('R',1))):
+            inner=center+sign*half;outer=center+sign*(half+t_c)
+            edge=self.deck_left if sign<0 else self.deck_right
+            default=float(self.deck_top(datum,edge))
+            top=default if tops is None else finite(tops[index],f'{side} cheek top',True)
+            z_b=under(inner)
+            if top<=cap_top(inner)+TOL:
+                raise ValueError(f"{p['name']}: {side} cheek top must be above the cap top.")
+            strip=sorted([outer,outer-sign*w_l])
+            if proj>0:
+                if sign<0:
+                    xy=[[outer,z_b-proj],[strip[1],z_b-proj],[strip[1],z_b],[inner,z_b],[inner,top],[outer,top]]
+                else:
+                    xy=[[strip[0],z_b-proj],[outer,z_b-proj],[outer,top],[inner,top],[inner,z_b],[strip[0],z_b]]
+            else:
+                xy=[[min(inner,outer),z_b],[max(inner,outer),z_b],[max(inner,outer),top],[min(inner,outer),top]]
+            name=f"{p['name']}-cheek-{side}"
+            walls.append(dict(kind='Cheek',id=name,side=side,part='web',bounds=list(cap_bounds),xy=xy))
+            if proj>0:
+                walls.append(dict(kind='Cheek',id=name+'-rear-lug',side=side,part='rear lug',bounds=lug,
+                                  xy=[[strip[0],z_b-proj],[strip[1],z_b-proj],[strip[1],top],[strip[0],top]]))
+            width=cap_bounds[1]-cap_bounds[0]
+            parts=[('Cheek web',cap_bounds,sorted([inner,outer]),z_b,top,width*t_c*(top-z_b)),
+                   ('Bottom lug',cap_bounds,strip,z_b-proj,z_b,width*w_l*proj),
+                   ('Rear lug',lug,strip,z_b-proj,top,proj*w_l*(top-z_b+proj))]
+            for component,stations,offsets,bottom,upper,volume in parts:
+                rows.append(dict(Component=component,Side=side,**{'Station start (ft)':stations[0],'Station end (ft)':stations[1],
+                    'Offset from (ft)':offsets[0],'Offset to (ft)':offsets[1],'Bottom (ft)':bottom,'Top (ft)':upper,
+                    'Height (ft)':upper-bottom,'Volume (ft3)':volume}))
+            summary[f'cheek_top_{side}_ft']=top
+            summary[f'cheek_top_{side}_basis']='entered (D-033 barrier-return base)' if tops is not None else 'deck edge at FFBW (default)'
+            summary[f'cheek_{side}_volume_ft3']=sum(r[-1] for r in parts)
+            summary[f'cheek_{side}_encloses_backwall']=top>=bw_top(inner)-TOL
+        summary['mse_envelope']=dict(offset_left=center-half-t_c-joint,offset_right=center+half+t_c+joint,
+                                     rear_station=rear+away*(proj+joint),lug_bottom=under(center)-proj-joint)
+        p['walls']=pd.DataFrame(rows);p['backwall_profile']=pd.DataFrame(profile);p['wall_summary']=summary
+        p.update(cheek_thickness_ft=t_c,lug_projection_ft=proj,lug_width_ft=w_l,backwall_drop_ft=drop)
+        return walls
 
     def support_at(self,station):
         if not self.physical:return super().support_at(station)
-        return next((p for p in self.supports if p.get('solid_geometry') and in_interval(station,p['solid_geometry']['cap_bounds'])),None)
+        return next((p for p in self.supports if p.get('solid_geometry') and in_interval(station,support_bounds(p['solid_geometry']))),None)
 
     def support_section(self,station):
         p=self.support_at(station)

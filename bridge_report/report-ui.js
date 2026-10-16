@@ -6,7 +6,8 @@ const {evaluate,parseStation,stationLabel}=engine;
 const inspectionStart=DATA.inspection_start??DATA.start,inspectionEnd=DATA.inspection_end??DATA.end;
 const format=(x,digits=3)=>x===null||!Number.isFinite(x)?'Not available':x.toFixed(digits);
 const colors={Deck:'var(--viz-series-1)',Beam:'var(--viz-series-2)',Haunch:'var(--viz-series-3)',
-  Cap:'var(--viz-series-4)',Pile:'var(--viz-series-5)',Pedestal:'var(--viz-series-4)',Bearing:'var(--foreground)'};
+  Cap:'var(--viz-series-4)',Pile:'var(--viz-series-5)',Pedestal:'var(--viz-series-4)',Bearing:'var(--foreground)',
+  Backwall:'var(--viz-series-3)',Cheek:'var(--viz-series-2)'};
 const slider=$('bridge-station-slider'),entry=$('bridge-station-entry'),jump=$('bridge-station-jump');
 const tooltip=$('bridge-hover');tooltip.classList.add('bridge-tooltip');
 let selected=DATA.initial_station??DATA.supports.find(s=>s.name==='Pier')?.station??DATA.start;

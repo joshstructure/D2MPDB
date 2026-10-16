@@ -194,10 +194,13 @@ def relationship_checks(root, sources):
             derived = (values['N_pile']-1)*spacing+values['D_pile']+2*shape['pile_end_clear_in']
             explicit = shape.get('length_ft')
             length = derived if explicit is None else explicit*12
+            # D-027: end-bent cap cases span the cap body plus both cheek webs.
+            cheeks = 2*shape.get('cheek_thickness_in', 0) if prefix == 'EB' else 0
             audit_length = cases[prefix]['analysis']['xml_audit']['cap_length_ft']*12
-            same = abs(length-audit_length) <= 0.01
+            same = abs(length+cheeks-audit_length) <= 0.01
+            basis = f'Notebook {length:g} in' + (f' + 2 x {cheeks/2:g} in cheek webs = {length+cheeks:g} in' if cheeks else '')
             add(f'GEOMETRY:{prefix}:length', 'MATCH' if same else 'CHANGED',
-                f'Notebook {length:g} in; source audit {audit_length:g} in. Comparison tolerance 0.01 in for printed coordinates.',
+                f'{basis}; source audit {audit_length:g} in. Comparison tolerance 0.01 in for printed coordinates.',
                 ['GEOMETRY', prefix+'-CASE'])
     except (OSError, KeyError, ValueError, SyntaxError, TypeError) as e:
         add('GEOMETRY:inputs', 'REVIEW', str(e), ['GEOMETRY'])
