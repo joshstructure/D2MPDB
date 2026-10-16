@@ -274,3 +274,12 @@ Landing B: 88.556269251 ft3; 3.279861824 yd3.
 Only NetVolume, VolumeMethod, VolumeStatus and VolumeCheckJSON change on A_BridgeLandingAtReturns and B_BridgeLandingAtReturns. All 2,037 other object records and every geometry/view resource are byte-exact.
 Closed valid solids; integration convergence; added-material reconciliation; three independent triangulated-volume comparisons; translated box/cylinder analytic checks; open-face rejection; two native controller rebuilds with zero bidirectional material difference and unchanged colors; saved native reopen.
 COH-027 Closed. All other dispositions preserved; 14 outstanding items remain.
+
+
+16 OCTOBER 2026 - D-039 CHEEK STEEL FROM SELECTED REPORT
+Replace all four cheek-wall mats with one centered #4 mat at 10 in maximum each way, using the selected 16 October report and case.
+Vertical centers at 5.25, 14.25, 24.25, 32.25 and 36.75 in from the native web edge. Horizontal centers at 2.25, 12.25, 22.25, 30.75, 40.75, 50.75, 60.75, 70.75, 80.75 and 90.75 in above the web bottom, plus the native top-cover row. Shorter bays coordinate cap bars and lug WWR without exceeding 10 in.
+64 bars (52 before); five vertical and eleven horizontal per cheek. All 342 cheek checks and lug WWR review PASS. Native reopen and live controls verified.
+All concrete, cap/backwall/pedestal steel, 180 lug WWR wires, source geometry, native expressions/links and prior view records. Source report, saved design cases and notebook unchanged.
+33 pre-existing backwall/cap bar intersections and existing cap detailing findings remain. COH-024 stays Open for these other findings; COH-025 remains Deferred for 14 U-bar/hoop pairs. COH-023 reconciliation, anchorage/development, cap/lug/strap interfaces and EB1 backwall seat rebuild remain open. No engineering or fabrication acceptance inferred.
+Evidence: 2026-10-16-cheek-steel/update-summary.json

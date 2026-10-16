@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "model_sha256": "8151e3e8f5f04fee15a335e3ac7c65d7e0e3b7d9f04c3698fa2788721f0dceb9",
+  "added_objects": [
+    "SteelBridgeCheekEB11MH10",
+    "SteelBridgeCheekEB11MH10Path",
+    "SteelBridgeCheekEB11MH11",
+    "SteelBridgeCheekEB11MH11Path",
+    "SteelBridgeCheekEB11MV05",
+    "SteelBridgeCheekEB11MV05Path",
+    "SteelBridgeCheekEB12MH10",
+    "SteelBridgeCheekEB12MH10Path",
+    "SteelBridgeCheekEB12MH11",
+    "SteelBridgeCheekEB12MH11Path",
+    "SteelBridgeCheekEB12MV05",
+    "SteelBridgeCheekEB12MV05Path",
+    "SteelBridgeCheekEB21MH10",
+    "SteelBridgeCheekEB21MH10Path",
+    "SteelBridgeCheekEB21MH11",
+    "SteelBridgeCheekEB21MH11Path",
+    "SteelBridgeCheekEB21MV05",
+    "SteelBridgeCheekEB21MV05Path",
+    "SteelBridgeCheekEB22MH10",
+    "SteelBridgeCheekEB22MH10Path",
+    "SteelBridgeCheekEB22MH11",
+    "SteelBridgeCheekEB22MH11Path",
+    "SteelBridgeCheekEB22MV05",
+    "SteelBridgeCheekEB22MV05Path"
+  ],
+  "new_bar_views": "Copy corresponding native cheek vertical/horizontal colors and path visibility; all original view records preserved.",
+  "official_document_label": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010"
+}

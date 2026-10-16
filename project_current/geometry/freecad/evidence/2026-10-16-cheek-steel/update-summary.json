@@ -1,0 +1,49 @@
+{
+  "decision": "D-039",
+  "date": "2026-10-16",
+  "status": "ADOPTED_IN_PROJECT_SOURCE",
+  "model_sha256": "8151e3e8f5f04fee15a335e3ac7c65d7e0e3b7d9f04c3698fa2788721f0dceb9",
+  "previous_model_sha256": "517d08ddd6c0b01c0bb279919d3648835a8a77cbc7727a42ba4312013b701a20",
+  "source_report": {
+    "path": "project_current/cap_design/backwall/Backwall Design 10-16.html",
+    "sha256": "a02563223df9e8039b8771978d755cefd038e4c0335401d37bb9244fdd28e5bb"
+  },
+  "source_case": {
+    "path": "project_current/cap_design/backwall/selected_case.json",
+    "sha256": "ac075073306e06f252404d0c26e73b975cad2ee18373e011ef0946ae1c20d0e1"
+  },
+  "scope": "Replace all four cheek-wall mats with one centered #4 mat at 10 in maximum each way, using the selected 16 October report and case.",
+  "bar_counts": {
+    "before": 52,
+    "after": 64,
+    "per_cheek": {
+      "vertical": 5,
+      "horizontal": 11
+    }
+  },
+  "positioning": "Vertical centers at 5.25, 14.25, 24.25, 32.25 and 36.75 in from the native web edge. Horizontal centers at 2.25, 12.25, 22.25, 30.75, 40.75, 50.75, 60.75, 70.75, 80.75 and 90.75 in above the web bottom, plus the native top-cover row. Shorter bays coordinate cap bars and lug WWR without exceeding 10 in.",
+  "quantities": {
+    "length_ft": 290.478170161835,
+    "weight_lb": 194.03941766810584
+  },
+  "verification": {
+    "cheek_checks": 342,
+    "cheek_failures": 0,
+    "wwr_status": "PASS",
+    "native_reopen": "PASS: FreeCAD 1.1.3 saved native solids, controllers, links, source records and live schedules verified. GUI not launched.",
+    "parametric_test": "PASS: MH05 native path and solid follow +0.125 in station edit; top closing row follows +0.125 in cover edit. Changes discarded without saving.",
+    "retained_native_records": 1908,
+    "retained_view_records": 2039,
+    "objects": 2063,
+    "physical_objects": 762,
+    "steel_objects": 634
+  },
+  "preserved": "All concrete, cap/backwall/pedestal steel, 180 lug WWR wires, source geometry, native expressions/links and prior view records. Source report, saved design cases and notebook unchanged.",
+  "resolved": "Four prior 12 3/8 in horizontal spacing failures. No revised cheek bar intersects cap, backwall, pedestal or lug WWR steel or piles under the existing physical checks.",
+  "remaining": "33 pre-existing backwall/cap bar intersections and existing cap detailing findings remain. COH-024 stays Open for these other findings; COH-025 remains Deferred for 14 U-bar/hoop pairs. COH-023 reconciliation, anchorage/development, cap/lug/strap interfaces and EB1 backwall seat rebuild remain open. No engineering or fabrication acceptance inferred.",
+  "downstream_review": "The source model hash changes because cheek reinforcement changes. Concrete geometry is preserved exactly, so the selected report geometry remains the same. Calculation inputs/confirmations are not changed or accepted by this CAD update. Revised modeled steel quantities are recorded here and in native schedules.",
+  "backups": [
+    "archive/B4-before-cheek-report-steel-20261016.FCStd",
+    "archive/B4-before-cheek-report-steel-record-20261016.zip"
+  ]
+}

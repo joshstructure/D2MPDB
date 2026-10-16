@@ -1,8 +1,15 @@
 # Current FreeCAD bridge model
 
+The cheek steel now matches the selected 16 October backwall/cheek report:
+one centered #4 mat at **10 in maximum each way**, 64 bars total. All 342 cheek
+checks pass, including cover, spacing, native geometry and cap-bar clearance.
+The 180 lug WWR wires also pass the affected review. Native saved-file reopen,
+live controls and schedules are verified. Shorter local bays clear retained steel.
+See [D-039 evidence](evidence/2026-10-16-cheek-steel/update-summary.json).
+
 All four cheek tops now meet the return barrier bases. The transverse return
 bottom bands extend to the slab, the return-to-ramp notches are removed, and
-copings stop at the outer rear lug faces. The taller cheeks have 52 mat bars
+copings stop at the outer rear lug faces. The taller cheeks now have 64 mat bars
 and 180 lug WWR wires. No new affected clashes; existing concrete overlaps are
 logged in COH-026. Both 4-inch landing slabs now continue into the four return
 voids, and the barrier lower legs meet them. All finished faces retain the viewing
@@ -35,7 +42,7 @@ See [adoption evidence](evidence/2026-10-15-deck-edges/adoption-summary.json).
 On each deck, use the **Deck edge details** properties; the four original deck
 barrier objects have **DeckEdgeSetback**. The opener loads their native controllers.
 
-**Current model: 15 October 2026, decision D-034.** This is the authoritative
+**Current model: 16 October 2026, decision D-039.** This is the authoritative
 editable bridge geometry and modeled-quantity source. The established native
 filename is retained for existing links; its date is not the current revision date.
 
@@ -53,9 +60,9 @@ source-linked elevation labels. Intentional model edits remain native and editab
 - Extended 235 in end caps, 8 in cheek webs, 6 in rear/bottom lugs, revised MSE
   offsets and landing transitions, 12 mitred wall corners and level barrier returns.
 - Raised end-bent MSE tops with 0.5 in vertical and horizontal cheek/lug joints.
-- One centered mat of #4 bars each way in all four cheeks, with a 12 in spacing limit.
-  D-029 leaves one 12 3/8 in horizontal gap per cheek flagged for review.
-  Each cheek has four vertical and nine horizontal bars. Live schedules are inside
+- One centered mat of #4 bars at 10 in maximum each way in all four cheeks.
+  D-039 resolves the four D-029 spacing findings. Each cheek has five vertical
+  and eleven horizontal bars. Live schedules are inside
   the cheek reinforcement groups. The bars are visible through translucent concrete.
 - All 12 piles and the prior notebook cambers and 72 pedestal U-bars are retained.
   Main down ramps remain at or below 5%; the short landing transition exception
@@ -71,7 +78,7 @@ Its retained geometry is tied to 621 prior geometry checks and 110 route-grade c
 Physical model checks do not constitute engineering or fabrication acceptance.
 
 The cap cages are now 62/90/62 bars under D-027. Backwalls retain 104 bars and cheeks now have
-52 bars. Cap/cheek intersections are resolved. Four horizontal spacing findings,
+64 bars. Cheek spacing and cap/cheek intersections are resolved.
 33 backwall/cap bar intersections and cap detailing findings remain open.
 Lug WWR is modeled under D-030. Anchorage, development, fabrication and strap
 details remain unresolved. COH-023 tracks reconciliation of the adopted CAD with

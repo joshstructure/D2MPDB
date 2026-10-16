@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "before_sha256": "2015ab0e4d0929e09b4b77a1eccedc49d32b92d5115a8367c8f87b009c456557",
+  "after_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
+  "changed_cells": [
+    "E31",
+    "E32",
+    "F32",
+    "J31",
+    "J32",
+    "K31",
+    "K32",
+    "L32"
+  ],
+  "row_heights": {
+    "31": 300,
+    "32": 400
+  },
+  "all_other_cells_and_styles_preserved": true,
+  "all_other_archive_parts_exact": true,
+  "human_responses_and_statuses_preserved": true,
+  "visual_review": "PASS: changed rows and evidence are readable without clipping.",
+  "formula_changes": "None; status summary unaffected. Artifact Tool recalculation and error scan completed."
+}

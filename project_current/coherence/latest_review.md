@@ -1,6 +1,6 @@
 # Latest project coherence review
 
-Checked at 2026-10-16T15:36:03.807600+00:00. **15 outstanding items remain.**
+Checked at 2026-10-16T15:47:20.523940+00:00. **15 outstanding items remain.**
 
 The [workbook](Coherence_Tracker.xlsx) owns item status and responses. This report is a generated view.
 The initial findings were carried forward from the latest adopted pier/end-bent reviews plus source-inventory gaps.
@@ -57,7 +57,7 @@ Automatic results: 4 changed, 9 error, 41 match, 5 missing, 10 review.
 | COH-021 | Open | Unregistered tool revisions | Identify the report-generating tool revision, review its changes and consumers, then record an explicit adoption. |
 | COH-022 | Open | Current cap source references | Refresh journal source references through the bounded BPAD workflow when directed; preserve C005 and distinguish selected sources from accepted calculations. |
 | COH-023 | Open | Reconcile adopted MSE and cheek revision | Reconcile cap/wall calculations, loads and quantities with adopted CAD. Review anchorage, lug steel and strap interfaces before issuing details. |
-| COH-024 | Open | Coordinate cap and cheek steel | Review the four 12 3/8 in horizontal spacings. Other cover, pile-clearance, cap and backwall steel findings remain open. |
+| COH-024 | Open | Coordinate cap and cheek steel | Review remaining cap/backwall cover, pile clearance, anchorage and fabrication findings. Cheek spacing and cap/cheek overlap findings are resolved. Keep the separate COH-025 U-bar/hoop deferral. |
 | COH-025 | Deferred | End-bent U-bar / hoop overlaps | Review the U-bar / hoop intersections later and agree revisions. Recheck affected steel, cover, spacing, piles and WWR before closing. Leave current stirrups and U-bars unchanged. |
 | COH-026 | Open | Coping and MSE wall overlaps | Agree concrete ownership and trim the coping/wall interfaces. Recheck concrete quantities and contact geometry. |
 | COH-028 | Open | Rerun final FBMP with current pile heads | Rerun the final pier, End Bent 1 and End Bent 2 FBMP analyses with pile-head nodes at the notebook cutoffs: pier 41.764940 ft (Z -501.18 in), EB1 41.237692 ft (Z -494.85 in), EB2 41.249692 ft (Z -495.00 in). Confirm pile length, tip and soil inputs, and rerun minimum-tip variants still in use. Regenerate the cap reports and cases, then submit the exports under COH-013. |

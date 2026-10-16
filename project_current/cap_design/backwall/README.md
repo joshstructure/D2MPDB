@@ -9,7 +9,10 @@ The design uses one centered mat of #4 bars at 10 in each way in the cheek walls
 Numerical checks pass; nine check entries remain pending across six unconfirmed
 prerequisites. Current FBMP analyses, settlement, strap elevation, environmental
 classification, shrinkage and cheek anchorage/load-path acceptance remain open.
-The CAD reinforcement has not been changed to the new spacing.
+The CAD cheek reinforcement now follows this spacing under D-039: five vertical
+and eleven horizontal #4 bars per cheek, with shorter local bays for cap/mesh
+clearance. Native geometry, cover, spacing and affected clash checks pass.
+See [CAD update evidence](../../geometry/freecad/evidence/2026-10-16-cheek-steel/update-summary.json).
 
 All four notebook code cells ran in a fresh local IPython session. The report and
 case use the same completed recalculation and the notebook's built-in exporters.

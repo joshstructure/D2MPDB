@@ -3,12 +3,12 @@
   "authority": "Current editable FreeCAD geometry and modeled quantities; engineering acceptance remains separate",
   "model": {
     "path": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-    "sha256": "517d08ddd6c0b01c0bb279919d3648835a8a77cbc7727a42ba4312013b701a20",
-    "bytes": 5902342,
-    "objects": 2039
+    "sha256": "8151e3e8f5f04fee15a335e3ac7c65d7e0e3b7d9f04c3698fa2788721f0dceb9",
+    "bytes": 5222747,
+    "objects": 2063
   },
   "source_revision": "01a1fcc34d6345ceacf96245bcf0c931d118a1ab",
-  "tracker_used_sha256": "cd314128fa8c1eb70708244661f1524563470c64288987454376d1a80552f1a3",
+  "tracker_used_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
   "native_file_changed_during_ingestion": false,
   "runtime_changes": [
     "cap_cages.py: resolve Reinforcement from FreeCAD user directory instead of one hard-coded Windows user path. No geometry logic change.",
@@ -160,7 +160,7 @@
     "evidence/delivery-helper-fingerprints.json": "2eda36676cc40916485c708e385818c6e99ead3be41e5754a55bc5e772e58c62",
     "evidence/final-reopen-verification.json": "fde89e9b9c8bb47433a964e3d0b3faedcb00c201b8ada10b348c086e4bfaeec9",
     "evidence/final-save.json": "7767f925bccdf426225cf1d4269ce59919cdcf71267f7c56c7484547f758e946",
-    "evidence/Model-update-report.txt": "640f251fd67b9a8a56d88fa7a0d4631f5e2b15c8533900509751fc9b3ea88a0b",
+    "evidence/Model-update-report.txt": "3b087675345930ebc30d2367162c2ac837f6f165e14f0cd6cf1e29c1fc7d0c3b",
     "evidence/opener-verification.json": "7cfd370f32a419bd160ce2f914df4e861372addcab97d9e64896fb6135d40fdf",
     "evidence/portable-verification.json": "5daa7dfc49c7f7b11c641a51d2e425ce853dc08ee134356c02746d93d028ec36",
     "evidence/session-checkpoint.json": "c22fc947838b3ed99425beeab12c10e80b62b12be04d01444f2a0677135096c5",
@@ -337,19 +337,26 @@
     "evidence/2026-10-15-landing-quantities/tracker-preservation.json": "c982c05dfd58e6d234067b92a49e6399d62359ae13243138108d8bca467cab83",
     "evidence/2026-10-15-landing-quantities/update-summary.json": "b6f15551aa2d00c856b2ddbabedcfea3464596fa6a826217ea796f50988c67d4",
     "evidence/2026-10-15-landing-quantities/verification.json": "bf4051c5dbf6bee156b6fe03c81c4c38c0aa8796166754ce3ea40b714e035106",
-    "evidence/2026-10-15-landing-quantities/vertical-fine-integration.json": "7f42a01a82303df80b4acb5f578c6957dc0316251860eea1c405d723c76fd2ac"
+    "evidence/2026-10-15-landing-quantities/vertical-fine-integration.json": "7f42a01a82303df80b4acb5f578c6957dc0316251860eea1c405d723c76fd2ac",
+    "evidence/2026-10-16-cheek-steel/Cheek bar schedule.csv": "37782eb170528b4ee1da6986fb03c0be4bb0ef5a6993b42333c3faa65caaa34b",
+    "evidence/2026-10-16-cheek-steel/cold-reopen.json": "8e2aed27e714a09dc6899df8465013f974853b1cf3db13cb1349ed2b95f94f49",
+    "evidence/2026-10-16-cheek-steel/delivery-preparation.json": "6dbefbd9323c317c7f1a65c556bb2316d185f54b0e77cd29a8c0a092eead6338",
+    "evidence/2026-10-16-cheek-steel/native-preservation.json": "aa97537410beaffcafdf1b1bcdfbdf45447acd21983e714a3d498631d657688f",
+    "evidence/2026-10-16-cheek-steel/tracker-preservation.json": "dc3d7869c3ecdecf1d801386b97de93533988b02b471eb65705b403c5343ee74",
+    "evidence/2026-10-16-cheek-steel/transaction.json": "5f938a4059f870553d726b346a2d3466c1462575246f4ea62b26bd8b0c2b3a40",
+    "evidence/2026-10-16-cheek-steel/update-summary.json": "586ae05fb99d65940c4db0e329bcce72776b8a04303c7e129aa85be84234e400"
   },
   "known_review_status": "0 new WWR overlaps; 14 existing U-bar/hoop pairs Deferred in COH-025. Four cheek spacing findings Open in COH-024; 29 cap/backwall and 4 backwall internal overlaps and other existing findings retained.",
   "portability_verification": "Cold native reopen and live dependency test PASS; 172 accepted-trial solid matches; all 1677 prior native object/view records exact. Previous standalone GUI loader limitation retained.",
   "updated_on": "2026-10-15",
   "current_update": {
-    "date": "2026-10-15",
-    "decision": "D-034",
-    "scope": "Correct the two finished curved landing NetVolume properties and their parametric quantity calculation. No geometry or viewing changes.",
-    "summary": "evidence/2026-10-15-landing-quantities/update-summary.json",
-    "previous_model_sha256": "5deb683a61b19847191ebd2d8668405688ac3c30e2c69d35ef0aed0a871f0961",
-    "follow_up": "COH-023; COH-024; COH-025; COH-026 remain; COH-027 Closed",
-    "publication": "Explicit user request and standing GitHub delivery instructions"
+    "date": "2026-10-16",
+    "decision": "D-039",
+    "scope": "Replace all four cheek-wall mats with one centered #4 mat at 10 in maximum each way, using the selected 16 October report and case.",
+    "summary": "evidence/2026-10-16-cheek-steel/update-summary.json",
+    "previous_model_sha256": "517d08ddd6c0b01c0bb279919d3648835a8a77cbc7727a42ba4312013b701a20",
+    "follow_up": "COH-023; COH-024 remaining cap/backwall findings; COH-025; COH-026",
+    "publication": "Standing project GitHub delivery instructions"
   },
   "archive_files": {
     "archive/B4-before-pedestal-ubars-20261012.FCStd": "e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118",
@@ -369,16 +376,18 @@
     "archive/B4-before-return-cheeks-20261015.FCStd": "a9d52b11504828f4fa887f4c4267d2fffd3eb91e673e951564344b06ac923045",
     "archive/B4-before-return-cheeks-record-20261015.zip": "48e2fe03fe73d6f46438c718d64d0f5371082f4994404cb4f63a2d7763d5bc08",
     "archive/B4-before-landing-quantities-20261015.FCStd": "5deb683a61b19847191ebd2d8668405688ac3c30e2c69d35ef0aed0a871f0961",
-    "archive/B4-before-landing-quantities-record-20261015.zip": "a0db234c2ea47daba00c04065428bce7d27fb6579117892c5ab68d4503dca159"
+    "archive/B4-before-landing-quantities-record-20261015.zip": "a0db234c2ea47daba00c04065428bce7d27fb6579117892c5ab68d4503dca159",
+    "archive/B4-before-cheek-report-steel-20261016.FCStd": "517d08ddd6c0b01c0bb279919d3648835a8a77cbc7727a42ba4312013b701a20",
+    "archive/B4-before-cheek-report-steel-record-20261016.zip": "6b37f34c1a963fbe684e7c6b14f4e1a7f7bd0cfebbe898494b8c24737c0e99e6"
   },
   "previous_update": {
     "date": "2026-10-15",
-    "decision": "D-033",
-    "scope": "All four cheeks raised flush to return bases. Transverse return lower bands extend to native slab surfaces. Return-to-ramp corner notches removed. Copings stop at outer rear lug faces. Both 4-inch landings continue into the four return voids, and the outer barrier lower legs meet the continued slabs. All 5,974 finished faces retain the component and reinforcement palette.",
-    "summary": "evidence/2026-10-15-return-cheeks/adoption-summary.json",
-    "previous_model_sha256": "a9d52b11504828f4fa887f4c4267d2fffd3eb91e673e951564344b06ac923045",
-    "follow_up": "COH-023; COH-024; COH-025; COH-026; COH-027",
-    "publication": "Standing project GitHub delivery instructions"
+    "decision": "D-034",
+    "scope": "Correct the two finished curved landing NetVolume properties and their parametric quantity calculation. No geometry or viewing changes.",
+    "summary": "evidence/2026-10-15-landing-quantities/update-summary.json",
+    "previous_model_sha256": "5deb683a61b19847191ebd2d8668405688ac3c30e2c69d35ef0aed0a871f0961",
+    "follow_up": "COH-023; COH-024; COH-025; COH-026 remain; COH-027 Closed",
+    "publication": "Explicit user request and standing GitHub delivery instructions"
   },
   "extra_macros": {
     "Show_Elevations.FCMacro": "f27415eb7d8fe05a5ff8d05a01a5298b36ac1d3cf987ec8738ed541d085a3fc4",

@@ -1,8 +1,8 @@
 {
-  "checked_at_utc": "2026-10-16T15:36:03.807600+00:00",
+  "checked_at_utc": "2026-10-16T15:47:20.523940+00:00",
   "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
-  "register_sha256": "f959438fbf58f492c320df89b976c250468aa58f7d3103b713c53daa7f13a7e4",
-  "tracker_sha256": "2015ab0e4d0929e09b4b77a1eccedc49d32b92d5115a8367c8f87b009c456557",
+  "register_sha256": "752cb8f6ff56017167c7a4a86f312ae96dd5922df699cee3793871187a09a0ba",
+  "tracker_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
   "source_count": 29,
   "item_count": 28,
   "outstanding_count": 15,
@@ -226,8 +226,8 @@
         "CAD-MODEL"
       ],
       "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-      "expected_sha256": "517d08ddd6c0b01c0bb279919d3648835a8a77cbc7727a42ba4312013b701a20",
-      "actual_sha256": "517d08ddd6c0b01c0bb279919d3648835a8a77cbc7727a42ba4312013b701a20"
+      "expected_sha256": "8151e3e8f5f04fee15a335e3ac7c65d7e0e3b7d9f04c3698fa2788721f0dceb9",
+      "actual_sha256": "8151e3e8f5f04fee15a335e3ac7c65d7e0e3b7d9f04c3698fa2788721f0dceb9"
     },
     {
       "check_id": "SOURCE:CAD-RUNTIME",
@@ -237,8 +237,8 @@
         "CAD-RUNTIME"
       ],
       "path": "project_current/geometry/freecad/manifest.json",
-      "expected_sha256": "c96010e9627c4d699bfbf7365c1d983b28b9bcab65d01c8de0f173b1b113f556",
-      "actual_sha256": "c96010e9627c4d699bfbf7365c1d983b28b9bcab65d01c8de0f173b1b113f556"
+      "expected_sha256": "fa9967c6e7374316d2ad35bdff022b51a024f5486f1447bb5bc4acc6e13b12cd",
+      "actual_sha256": "fa9967c6e7374316d2ad35bdff022b51a024f5486f1447bb5bc4acc6e13b12cd"
     },
     {
       "check_id": "SOURCE:CAD-REPORT",
@@ -248,8 +248,8 @@
         "CAD-REPORT"
       ],
       "path": "project_current/geometry/freecad/evidence/Model-update-report.txt",
-      "expected_sha256": "640f251fd67b9a8a56d88fa7a0d4631f5e2b15c8533900509751fc9b3ea88a0b",
-      "actual_sha256": "640f251fd67b9a8a56d88fa7a0d4631f5e2b15c8533900509751fc9b3ea88a0b"
+      "expected_sha256": "3b087675345930ebc30d2367162c2ac837f6f165e14f0cd6cf1e29c1fc7d0c3b",
+      "actual_sha256": "3b087675345930ebc30d2367162c2ac837f6f165e14f0cd6cf1e29c1fc7d0c3b"
     },
     {
       "check_id": "SOURCE:BACKWALL-TOOL",
@@ -1015,13 +1015,13 @@
       "Status": "Open",
       "Area": "CAD / calculations",
       "Item": "Reconcile adopted MSE and cheek revision",
-      "Finding": "D-026 adopts 235 in end caps, revised walls and single centered #4 cheek mats. Current notebook/report geometry and Figure B8 do not represent these details.",
+      "Finding": "D-036 geometry and D-037 backwall report now represent the adopted caps and cheeks. D-039 updates CAD cheek mats to the report. Remaining reconciliation covers loads, quantities, anchorage, lug/strap interfaces and the EB1 backwall seat rebuild.",
       "Next action": "Reconcile cap/wall calculations, loads and quantities with adopted CAD. Review anchorage, lug steel and strap interfaces before issuing details.",
       "Your response": "Incorporate all these changes into the main model and add to the project source.",
       "Owner": "",
       "Due date": "",
-      "Resolution / evidence": "CAD adoption verified; calculation reconciliation remains open. D-033 raises cheek tops to the return bases and deepens transverse return bottoms to the slab. Cheek mats total 52 bars and lug WWR totals 180 wires. Reconcile revised quantities and loads. 16 Oct (D-036): the geometry notebook now owns the 235-in caps, backwalls, cheek webs and lugs (cheek tops = D-033 return bases). 105 native station cuts and the cheek/cap volumes match the D-034 CAD solids; the CAD EB1 backwall seat holds 0.117 ft3 more (MSE landing) and is to be rebuilt from the notebook. Cap/wall loads, quantities, anchorage, lug steel and strap interfaces remain open.",
-      "Source references": "D-026; CAD-MODEL; MSE-DETAIL-DXF; EB-CASE; EB2-CASE; BACKWALL-REPORT; GEOMETRY; D-036; GEOMETRY-TABLES",
+      "Resolution / evidence": "CAD adoption verified; calculation reconciliation remains open. D-033 raises cheek tops to the return bases and deepens transverse return bottoms to the slab. Cheek mats total 52 bars and lug WWR totals 180 wires. Reconcile revised quantities and loads. 16 Oct (D-036): the geometry notebook now owns the 235-in caps, backwalls, cheek webs and lugs (cheek tops = D-033 return bases). 105 native station cuts and the cheek/cap volumes match the D-034 CAD solids; the CAD EB1 backwall seat holds 0.117 ft3 more (MSE landing) and is to be rebuilt from the notebook. Cap/wall loads, quantities, anchorage, lug steel and strap interfaces remain open.\n16 Oct (D-039): CAD now has 64 cheek bars, one centered #4 mat at 10 in maximum each way. Physical checks and native reopen pass. Lug WWR remains 180 wires. Other reconciliation remains open.",
+      "Source references": "D-026; CAD-MODEL; MSE-DETAIL-DXF; EB-CASE; EB2-CASE; BACKWALL-REPORT; GEOMETRY; D-036; GEOMETRY-TABLES; D-039; BACKWALL-CASE",
       "Last reviewed": "2026-10-16",
       "_row": 31
     },
@@ -1030,14 +1030,14 @@
       "Status": "Open",
       "Area": "CAD / reinforcement",
       "Item": "Coordinate cap and cheek steel",
-      "Finding": "D-029 resolves all eight cap/cheek overlaps by lowering MH03 3/8 in on each cheek. Four MH03-MH04 spacings are now 12 3/8 in, exceeding the existing 12 in maximum. These spacing findings remain open by user direction.",
-      "Next action": "Review the four 12 3/8 in horizontal spacings. Other cover, pile-clearance, cap and backwall steel findings remain open.",
+      "Finding": "D-039 replaces the four 12 3/8 in spacing failures with centered #4 mats at 10 in maximum each way. All cheek geometry, cover, spacing, cap-bar and lug-mesh checks pass. Other cap/backwall detailing findings remain open.",
+      "Next action": "Review remaining cap/backwall cover, pile clearance, anchorage and fabrication findings. Cheek spacing and cap/cheek overlap findings are resolved. Keep the separate COH-025 U-bar/hoop deferral.",
       "Your response": "I ran the cage designs for the out to out distance and expected the cheek wall steel to coincide with the cap steel.\nFollow-up: Remove one bar of the close left pair, pull outer verticals inside the long bars, and move the first stirrup inside the cheek mats. They can touch; they cannot clash. Bring them just inside.\nFollow-up: Keep the stirrup at its prior position. Shift only the clashing horizontal row vertically and flag the resulting 12 3/8 in spacing. Keep this revision local.",
       "Owner": "",
       "Due date": "",
-      "Resolution / evidence": "D-027: 62 cap bars per end bent modeled from supplied cases. Concrete and cheek steel unchanged. No clash repair or detailing acceptance yet.\nD-028: One vertical removed per cheek, outer verticals moved just inside cap bars, and end hoops moved inward of the mats. 48 cheek bars; 62 cap bars per end. Concrete, other bars and original case files preserved. Eight horizontal-bar intersections remain.\nD-029: Lowered only MH03 by 3/8 in at all four cheeks. All eight cap/cheek intersections resolved. Prior stirrup stations and all other bars preserved. Four spacing checks remain FAIL at 12 3/8 in; no threshold relaxed.",
-      "Source references": "D-027; CAD-MODEL; EB-CASE; EB2-CASE; geometry/freecad/evidence/2026-10-14-end-caps/; D-028; geometry/freecad/evidence/2026-10-14-cap-cheek-coordination/; D-029; geometry/freecad/evidence/2026-10-14-horizontal-cheek/",
-      "Last reviewed": "2026-10-14",
+      "Resolution / evidence": "D-027: 62 cap bars per end bent modeled from supplied cases. Concrete and cheek steel unchanged. No clash repair or detailing acceptance yet.\nD-028: One vertical removed per cheek, outer verticals moved just inside cap bars, and end hoops moved inward of the mats. 48 cheek bars; 62 cap bars per end. Concrete, other bars and original case files preserved. Eight horizontal-bar intersections remain.\nD-029: Lowered only MH03 by 3/8 in at all four cheeks. All eight cap/cheek intersections resolved. Prior stirrup stations and all other bars preserved. Four spacing checks remain FAIL at 12 3/8 in; no threshold relaxed.\nD-039 (16 Oct): selected report applied to all four cheeks. 64 bars total (5 vertical + 11 horizontal each), 10 in maximum each way. Outer vertical stations retained; inner bars and horizontal phase coordinated with cap steel and WWR. Four spacing failures resolved; no affected overlaps. Cap/backwall/pedestal steel and 180 lug wires preserved.",
+      "Source references": "D-027; CAD-MODEL; EB-CASE; EB2-CASE; geometry/freecad/evidence/2026-10-14-end-caps/; D-028; geometry/freecad/evidence/2026-10-14-cap-cheek-coordination/; D-029; geometry/freecad/evidence/2026-10-14-horizontal-cheek/; D-039; BACKWALL-REPORT; BACKWALL-CASE; geometry/freecad/evidence/2026-10-16-cheek-steel/update-summary.json",
+      "Last reviewed": "2026-10-16T00:00:00.000Z",
       "_row": 32
     },
     {
