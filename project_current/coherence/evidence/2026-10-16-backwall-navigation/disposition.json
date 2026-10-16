@@ -1,0 +1,114 @@
+{
+  "date": "2026-10-16",
+  "decision": "D-038",
+  "authorization": "User requested collapsible report section headings and a linked table of contents.",
+  "scope": "Report navigation and rebuilt portable notebook; no input, equation, confirmation or case changes.",
+  "notebook": {
+    "path": "End_Bent_Backwall_Design.ipynb",
+    "sha256_lf_text": "48bab4c3f7cc9dc445908021012083e88cb988e17af09620366e70f6a5da35d9",
+    "package_sha256": "8e681afef630fba0dbc5a21d94a7f9996d5212bee7ba4968c1caf550afb152fe",
+    "previous_sha256_lf_text": "54a13c9bcf4e749508485858a846cd54503f7df8fbf43502cadb02e87cefafcd"
+  },
+  "report": {
+    "path": "project_current/cap_design/backwall/Backwall Design 10-16.html",
+    "previous_sha256": "134dd7382ffbbda4d0b55889c18bcf5b95250a320caf104ba64e76152f49a768",
+    "sha256": "a02563223df9e8039b8771978d755cefd038e4c0335401d37bb9244fdd28e5bb",
+    "hash_basis": "exact_bytes"
+  },
+  "case": {
+    "path": "project_current/cap_design/backwall/selected_case.json",
+    "sha256": "ac075073306e06f252404d0c26e73b975cad2ee18373e011ef0946ae1c20d0e1",
+    "unchanged": true
+  },
+  "verification": {
+    "executed_utc": "2026-10-16T15:20:05.923770+00:00",
+    "notebook_code_cells": [
+      "a7b8c9d0",
+      "e3b0a7c1",
+      "f1a2b3c4",
+      "f5a6b7c8"
+    ],
+    "execution_mode": "Fresh local IPython session; selected case loaded and recalculated; built-in report export.",
+    "tests": "27 existing backwall tests pass; Mathcad expressions continue to match.",
+    "outline": {
+      "section_count": 17,
+      "links": [
+        "section-overview",
+        "section-results",
+        "section-geometry",
+        "section-earth",
+        "section-bearing",
+        "section-dead",
+        "section-strap",
+        "section-bw_load",
+        "section-materials",
+        "section-bw_FF",
+        "section-bw_SF",
+        "section-bw_joint",
+        "section-ck",
+        "section-ck_sec",
+        "section-cap",
+        "section-checks",
+        "section-sources"
+      ],
+      "all_links_match_unique_sections": true
+    },
+    "browser_review": "Not performed: browser URL policy blocks file URLs. HTML structure, links and script syntax checked locally.",
+    "numerical_failures": [],
+    "pending_check_entries": [
+      "cover_bw",
+      "cover_CK",
+      "interface_min_CK",
+      "strap_height",
+      "prereq_settlement",
+      "prereq_strap_level",
+      "prereq_shrinkage",
+      "prereq_analysis",
+      "prereq_cheek_connection"
+    ],
+    "source_registration": [
+      {
+        "check_id": "SOURCE:BACKWALL-TOOL",
+        "status": "MATCH",
+        "detail": "Registered text content matches after CRLF/LF normalization.",
+        "source_ids": [
+          "BACKWALL-TOOL"
+        ],
+        "path": "End_Bent_Backwall_Design.ipynb",
+        "expected_sha256": "48bab4c3f7cc9dc445908021012083e88cb988e17af09620366e70f6a5da35d9",
+        "actual_sha256": "48bab4c3f7cc9dc445908021012083e88cb988e17af09620366e70f6a5da35d9"
+      },
+      {
+        "check_id": "SOURCE:BACKWALL-REPORT",
+        "status": "MATCH",
+        "detail": "Exact registered bytes are present.",
+        "source_ids": [
+          "BACKWALL-REPORT"
+        ],
+        "path": "project_current/cap_design/backwall/Backwall Design 10-16.html",
+        "expected_sha256": "a02563223df9e8039b8771978d755cefd038e4c0335401d37bb9244fdd28e5bb",
+        "actual_sha256": "a02563223df9e8039b8771978d755cefd038e4c0335401d37bb9244fdd28e5bb"
+      },
+      {
+        "check_id": "SOURCE:BACKWALL-CASE",
+        "status": "MATCH",
+        "detail": "Exact registered bytes are present.",
+        "source_ids": [
+          "BACKWALL-CASE"
+        ],
+        "path": "project_current/cap_design/backwall/selected_case.json",
+        "expected_sha256": "ac075073306e06f252404d0c26e73b975cad2ee18373e011ef0946ae1c20d0e1",
+        "actual_sha256": "ac075073306e06f252404d0c26e73b975cad2ee18373e011ef0946ae1c20d0e1"
+      }
+    ],
+    "tracker_sha256": "2015ab0e4d0929e09b4b77a1eccedc49d32b92d5115a8367c8f87b009c456557",
+    "script_syntax": "Node.js --check passed for the isolated navigation script."
+  },
+  "behavior": [
+    "17 collapsible sections including overview, results and all numbered sections; initially open.",
+    "Contents links open their target, focus its heading and scroll to it; fragment links work on loading and back/forward navigation.",
+    "Expand/collapse sections controls; QC controls retain their separate scope.",
+    "Visible charts resize when sections open. Printing opens report/table/equation details and restores their prior state afterward; QC state is retained."
+  ],
+  "downstream_review": "Selected report rebuilt from the exact unchanged D-037 saved case. Existing engineering and analysis prerequisites and tracker dispositions remain open. Generated Mathcad changes only its embedded notebook revision reference."
+}

@@ -17,5 +17,9 @@ Reloading the case reproduces every check ratio and status. The Colab browser
 frontend was not exercised. See the [execution and source receipt](../../coherence/evidence/2026-10-16-backwall-export/source_receipt.json)
 for exact file identities, source limitations and downstream review.
 
+The selected report now includes collapsible headings and a linked table of
+contents under D-038. It was regenerated from the unchanged saved case; the
+calculation results and confirmations are identical. See the [navigation update](../../coherence/evidence/2026-10-16-backwall-navigation/disposition.json).
+
 The [12 October report](Backwall%20Design%2010-12.html) is preserved as history.
 Source selection does not close COH-013, COH-023, COH-024 or COH-028.

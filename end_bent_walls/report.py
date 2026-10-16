@@ -31,6 +31,15 @@ th{background:rgba(0,0,0,.05)}.num{text-align:right;font-variant-numeric:tabular
 .PENDING{color:#a06500;font-weight:bold}.INFO,.CONFIRMED{color:#245674;font-weight:bold}
 details>summary{cursor:pointer;color:#245c85}.toolbar{position:sticky;top:0;background:#fff;padding:6px 0;border-bottom:1px solid #dce5ec;z-index:5}
 .toolbar button{margin-right:6px}.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:10pt}
+.contents{margin:18px 0;padding:10px 14px;background:#f1f5fa;border:1px solid #c9d3dc;border-radius:3px}
+.contents h2{margin:0 0 8px;border:0}.contents ul{columns:2;column-gap:24px;list-style:none;margin:0;padding:0}
+.contents li{break-inside:avoid;margin:0 0 5px}.contents a{color:#245c85;text-decoration:none}.contents a:hover{text-decoration:underline}
+details.report-section{margin:24px 0;scroll-margin-top:7rem}
+details.report-section>summary{padding:6px 0;border-bottom:2px solid #7189a6;color:#1f2a36;font-weight:bold}
+details.report-section>summary h2{display:inline;margin:0;padding:0;border:0;font-size:13pt}
+details.report-section>summary:focus-visible,.contents a:focus-visible{outline:2px solid #245c85;outline-offset:4px}
+.section-body{padding-top:8px}
+@media(max-width:650px){.contents ul{columns:1}.toolbar button{margin-bottom:4px}}
 .flow span{border:1px solid #7189a6;background:#fff;border-radius:3px;padding:4px 7px}.flow b{color:#7189a6}
 .ebw-review{margin:4px 0;padding:4px 6px;background:#fff3d6;border-left:3px solid #805600;font-size:9.5pt}
 details.qc{margin:-6px 0 14px;border-left:3px solid #a4bdce;background:#f7fafc;padding:3px 8px}
@@ -40,7 +49,59 @@ details.qc>summary b{color:#245c85}details.qc[open]{background:#f1f5fa}
 .qc-body figure{margin:0;flex:0 1 760px}.qc-body figcaption{font-size:9pt;color:#485969;margin-top:2px}
 .qc-terms{flex:1 1 320px}.qc-terms table{font-size:9pt}.qc-terms td{padding:2px 5px}.qc-terms math{font-size:11pt}
 .qc-note{font-size:9pt;color:#485969;margin:4px 0}
-@media print{.toolbar{display:none}details.qc{break-inside:avoid}svg{max-width:100%}}
+@media print{.toolbar,.contents{display:none}details.report-section>summary{list-style:none}details.report-section>summary::-webkit-details-marker{display:none}details.qc{break-inside:avoid}svg{max-width:100%}}
+'''
+
+REPORT_SCRIPT = '''
+<script>
+(() => {
+  const sections = () => document.querySelectorAll('details.report-section');
+  function resizePlots(root) {
+    if (!window.Plotly) return;
+    root.querySelectorAll('.js-plotly-plot').forEach(plot => {
+      if (plot.getClientRects().length && plot._fullLayout) Plotly.Plots.resize(plot);
+    });
+  }
+  window.setReportSections = open => {
+    sections().forEach(section => { section.open = open; });
+    if (open) requestAnimationFrame(() => resizePlots(document));
+  };
+  function revealSection(hash) {
+    let id;
+    try { id = decodeURIComponent(hash.slice(1)); } catch (_) { return; }
+    const section = document.getElementById(id);
+    if (!section || !section.matches('details.report-section')) return;
+    section.open = true;
+    requestAnimationFrame(() => {
+      resizePlots(section);
+      section.querySelector('summary').focus({preventScroll: true});
+      section.scrollIntoView({block: 'start'});
+    });
+  }
+  document.querySelector('.contents').addEventListener('click', event => {
+    const link = event.target.closest('a[href^="#"]');
+    if (!link || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    revealSection(link.hash);
+  });
+  window.addEventListener('hashchange', () => revealSection(location.hash));
+  document.addEventListener('toggle', event => {
+    if (event.target.matches('details.report-section') && event.target.open)
+      requestAnimationFrame(() => resizePlots(event.target));
+  }, true);
+  let printState;
+  window.addEventListener('beforeprint', () => {
+    if (printState) return;
+    printState = Array.from(document.querySelectorAll('details:not(.qc)'), d => [d, d.open]);
+    printState.forEach(([detail]) => { detail.open = true; });
+    resizePlots(document);
+  });
+  window.addEventListener('afterprint', () => {
+    if (printState) printState.forEach(([detail, open]) => { detail.open = open; });
+    printState = null;
+  });
+  if (location.hash) revealSection(location.hash);
+})();
+</script>
 '''
 
 QC_NOTE = ('Under every equation: <b>What it represents</b> is always visible. Open it for a schematic drawn from the current case, '
@@ -68,6 +129,12 @@ FIGURE_AFTER = {'geometry': ['section', 'plan'], 'strap': ['waterfall', 'strap']
 
 def _box(kind, title, body):
     return f'<div class="box {kind}"><div class="hd">{html.escape(title)}</div><div class="bd">{body}</div></div>'
+
+
+def _report_section(key, title, body):
+    return (f'<details class="report-section" id="section-{key}" open>'
+            f'<summary><h2>{html.escape(title)}</h2></summary>'
+            f'<div class="section-body">{body}</div></details>')
 
 
 def _names(ast, out):
@@ -207,26 +274,31 @@ def build_report(e, title=None):
     qc = qc_blocks(e)
     figures = {name: fn(e) for name, fn in visuals.FIGURES}
     toggle = lambda sel, state: f"document.querySelectorAll('{sel}').forEach(d=>d.open={state})"
-    parts = [f'<div class="toolbar"><button onclick="{toggle("details", "true")}">Expand all</button>'
-             f'<button onclick="{toggle("details", "false")}">Collapse all</button>'
+    parts = ['<div class="toolbar"><button onclick="setReportSections(true)">Expand sections</button>'
+             '<button onclick="setReportSections(false)">Collapse sections</button>'
              f'<button onclick="{toggle("details.qc", "true")}">Open all QC schematics</button>'
              f'<button onclick="{toggle("details.qc", "false")}">Close all QC schematics</button>'
-             f'<button title="Opens equations and tables; QC schematics print as currently shown" '
-             f'onclick="{toggle("details:not(.qc)", "true")};window.print()">Print / save PDF</button></div>',
+             '<button title="Prints all sections, equations and tables; QC schematics print as currently shown" '
+             'onclick="window.print()">Print / save PDF</button></div>',
              f'<p><b>D2 I-95 Pedestrian Bridge · FDOT District 2</b></p><h1>{html.escape(title)}</h1>',
              f'<p>{html.escape(e.case["name"])}<br>Generated {datetime.now(timezone.utc):%Y-%m-%d %H:%M UTC} · '
              f'{html.escape(SOURCES["editions"])}</p>']
     flow = ' <b>→</b> '.join(f'<span>{s}</span>' for s in (
         'Geometry &amp; arms', 'Earth pressure &amp; surcharges', 'Bearing actions', 'Dead loads', 'Combinations',
         'Overturning about the pile top', 'Tie-back strap load', 'Backwall · slack &amp; engaged', 'Cheek walls (wind)', 'Cap supplement', 'Checks'))
-    parts.append(_box('discussion', 'Objective, method and scope',
+    contents = [('overview', 'Overview'), ('results', 'Result summary'), *SECTIONS,
+                ('checks', '14. Check register'), ('sources', '15. Sources, decisions and confirmations')]
+    parts.append('<nav class="contents" aria-label="Table of contents"><h2>Contents</h2><ul>'
+                 + ''.join(f'<li><a href="#section-{key}">{html.escape(heading)}</a></li>' for key, heading in contents)
+                 + '</ul></nav>')
+    parts.append(_report_section('overview', 'Overview', _box('discussion', 'Objective, method and scope',
         '<p>Determine the tie-back strap loads for the end bents and design the backwall and cheek walls. This replaces the template '
         'Mathcad backwall/strap calculation with project data: two FIB-36 bearings on a 17\'-8" cap, four 18 in square piles (effectively pinned), '
         'a 4 in MSE landing slab on the backwall, pedestrian loading only and FDOT January 2026 criteria.</p>'
         f'<div class="flow">{flow}</div>'
         '<p>Outside this calculation: strap/pullout design (Specialty Engineer), revised FBMP analysis, final wall geometry (D-005) and detailing.</p>'
-        f'<p>{QC_NOTE}</p>'))
-    parts.append(summary_html(e))
+        f'<p>{QC_NOTE}</p>')))
+    parts.append(_report_section('results', 'Result summary', summary_html(e)))
     by_section = {}
     for t in trace:
         by_section.setdefault(t['section'], []).append(t)
@@ -237,7 +309,7 @@ def build_report(e, title=None):
             if d['section'] == key:
                 _names(parse(d['expr']), names)
         inputs = [n for n in names if n in INPUTS]
-        section = [f'<h2>{html.escape(heading)}</h2>', _box('discussion', 'Purpose', f'<p>{html.escape(SECTION_TEXT.get(key, ""))}</p>')]
+        section = [_box('discussion', 'Purpose', f'<p>{html.escape(SECTION_TEXT.get(key, ""))}</p>')]
         if inputs:
             section.append(_box('inputs', 'Inputs', _input_rows(e, inputs)))
         def equations(subset):
@@ -260,21 +332,19 @@ def build_report(e, title=None):
             section.append(equations(items))
         for name in FIGURE_AFTER.get(key, []):
             section.append(figures[name].to_html(full_html=False, include_plotlyjs=False))
-        parts.append(''.join(section))
-    parts.append('<h2>14. Check register</h2>')
-    parts.append(figures['ratios'].to_html(full_html=False, include_plotlyjs=False))
-    parts.append(checks_html(e, qc))
+        parts.append(_report_section(key, heading, ''.join(section)))
+    parts.append(_report_section('checks', '14. Check register',
+                 figures['ratios'].to_html(full_html=False, include_plotlyjs=False) + checks_html(e, qc)))
     conf = ''.join(f'<li>{"Confirmed" if e.case["confirmations"][k] else "<b>Pending</b>"}: {html.escape(text)}<br><small>{html.escape(e.case.get("confirmation_evidence", {}).get(k, {}).get("note", "No project evidence recorded."))}</small></li>' for k, text in CONFIRMATIONS.items())
     receipts = ''.join(f'<tr><td>{html.escape(r["source_id"])}</td><td>{html.escape(r["filename"])}</td><td><code>{r["sha256"][:16]}…</code></td>'
                        f'<td>{"matches register" if r["matches_register"] else "<b>differs from register</b>"}</td><td>{html.escape("; ".join(r["notes"]))}</td></tr>'
                        for r in e.case.get('receipts', {}).values())
-    parts.append('<h2>15. Sources, decisions and confirmations</h2>')
-    parts.append(_box('inputs', 'Registered sources and decisions',
+    parts.append(_report_section('sources', '15. Sources, decisions and confirmations', _box('inputs', 'Registered sources and decisions',
         f'<p>Decisions: {", ".join(SOURCES["decisions"])} (project_current/decisions.md).</p>'
         + (f'<table><tr><th>Source</th><th>File</th><th>SHA-256</th><th>Register</th><th>Notes</th></tr>{receipts}</table>' if receipts else
            '<p>Inputs use the 16 October reviewed project snapshot embedded in the notebook. The available FBMP XML predates the selected cap cases. Current journal bytes match accepted T009 but differ from the older source-register entry. These limitations remain visible below.</p>')
-        + f'<ul>{conf}</ul>'))
-    body = ''.join(parts)
+        + f'<ul>{conf}</ul>')))
+    body = ''.join(parts) + REPORT_SCRIPT
     script = f'<script type="text/javascript">{plotly.offline.get_plotlyjs()}</script>'
     return (f'<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
             f'<title>{html.escape(title)}</title><style>{STYLE}</style>{script}</head><body>{body}</body></html>')

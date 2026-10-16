@@ -74,7 +74,9 @@ Run all cells in Colab. Cell 1 re-reads registered files and records confirmatio
 - checks CSV
 - MSE strap handoff workbook
 
-**QC dropdowns in the report.** Each equation is followed by a collapsible row. The row's summary, *What it represents*, is visible when collapsed. Opening it shows a drawing built from the current case (`end_bent_walls/schematics.py`) with the defined quantity in red. A panel beside the drawing gives the result and the substituted values. Free-body rows add a numbered table of γ, arm, γ·F and γ·M. A legend lists each term's value and source. The report toolbar opens or closes all QC rows. Printing opens the report sections and leaves the QC rows as they are.
+**Report navigation.** The linked contents list opens and jumps to any of the 17 sections. Click a section heading to collapse or expand it, or use the toolbar to expand or collapse every section. Sections initially open; charts resize when reopened. Printing opens sections, equations and tables, then restores their prior state afterward.
+
+**QC dropdowns in the report.** Each equation is followed by a collapsible row. The row's summary, *What it represents*, is visible when collapsed. Opening it shows a drawing built from the current case (`end_bent_walls/schematics.py`) with the defined quantity in red. A panel beside the drawing gives the result and the substituted values. Free-body rows add a numbered table of γ, arm, γ·F and γ·M. A legend lists each term's value and source. The report toolbar opens or closes all QC rows separately; printing retains their selected state.
 
 After changing `end_bent_walls/` or the shared `pier_cap/` modules, run `python scripts/build_backwall_notebook.py`. Then run `python -m unittest tests.test_end_bent_walls`. The tests reproduce the template's flexure, crack-control and shear values with its own inputs, pin the project statics, and verify that the embedded package matches the repository files.
 
