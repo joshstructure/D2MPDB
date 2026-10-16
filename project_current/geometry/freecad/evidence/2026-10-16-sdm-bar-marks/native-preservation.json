@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "before_sha256": "78c4404029b432b25825fa823c09e2795f9f8de96f88ed62d1c2d2ea0b7740ba",
+  "model_sha256": "2d3b6af8ff550d4bb201e41c9cf373cf4bbfe60a96390485f71822be86055bdf",
+  "native_saved_sha256": "a1ad407651a142a4365c1c805bd967ae34641935dff14d53739dcea1210f3650",
+  "objects": 2064,
+  "changed_properties": {
+    "ScheduleJSON": 3,
+    "Mark": 454,
+    "cells": 15
+  },
+  "mark_values_changed": 454,
+  "schedule_cells_changed": 454,
+  "schedule_json_marks_changed": 214,
+  "unchanged_archive_members": 8696,
+  "gui_document_unchanged": true,
+  "method": "Native FreeCAD change on a disposable copy; delivery edits only the mark values, schedule cell text and ScheduleJSON mark fields in the prior GUI-saved archive. All other object, view and resource bytes kept.",
+  "not_transplanted": "Console-save Visibility/_GroupTouched records, attribute escaping and last-digit volume recalculations in NativeSaved are presentation or numerical-noise artifacts and were not adopted."
+}

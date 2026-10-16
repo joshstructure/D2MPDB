@@ -4,7 +4,7 @@
   "PIER: 160 plan, 300 elev edges, 118 bars, 0 wwr",
   "EB2: 161 plan, 257 elev edges, 168 bars, 90 wwr"
  ],
- "model_sha256": "78c4404029b432b25825fa823c09e2795f9f8de96f88ed62d1c2d2ea0b7740ba",
+ "model_sha256": "2d3b6af8ff550d4bb201e41c9cf373cf4bbfe60a96390485f71822be86055bdf",
  "schema": 1,
  "station_direction": [
   0,
@@ -40,7 +40,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Top row 1 #6 Long01",
      "length_in": 245.0,
-     "mark_model": "EB1-Long01",
+     "mark_model": "6A1",
      "name": "CageEB1Long01"
     },
     {
@@ -69,7 +69,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Top row 1 #6 Long02",
      "length_in": 245.0,
-     "mark_model": "EB1-Long02",
+     "mark_model": "6A1",
      "name": "CageEB1Long02"
     },
     {
@@ -98,7 +98,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Top row 1 #6 Long03",
      "length_in": 245.0,
-     "mark_model": "EB1-Long03",
+     "mark_model": "6A1",
      "name": "CageEB1Long03"
     },
     {
@@ -127,7 +127,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Top row 1 #6 Long04",
      "length_in": 245.0,
-     "mark_model": "EB1-Long04",
+     "mark_model": "6A1",
      "name": "CageEB1Long04"
     },
     {
@@ -156,7 +156,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Top row 1 #6 Long05",
      "length_in": 245.0,
-     "mark_model": "EB1-Long05",
+     "mark_model": "6A1",
      "name": "CageEB1Long05"
     },
     {
@@ -185,7 +185,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Bottom row 1 #8 Long06",
      "length_in": 245.0,
-     "mark_model": "EB1-Long06",
+     "mark_model": "8A2",
      "name": "CageEB1Long06"
     },
     {
@@ -214,7 +214,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Bottom row 1 #8 Long07",
      "length_in": 245.0,
-     "mark_model": "EB1-Long07",
+     "mark_model": "8A2",
      "name": "CageEB1Long07"
     },
     {
@@ -243,7 +243,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Bottom row 1 #8 Long08",
      "length_in": 245.0,
-     "mark_model": "EB1-Long08",
+     "mark_model": "8A2",
      "name": "CageEB1Long08"
     },
     {
@@ -272,7 +272,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Bottom row 1 #8 Long09",
      "length_in": 245.0,
-     "mark_model": "EB1-Long09",
+     "mark_model": "8A2",
      "name": "CageEB1Long09"
     },
     {
@@ -301,7 +301,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Skin #6 Long10",
      "length_in": 245.0,
-     "mark_model": "EB1-Long10",
+     "mark_model": "6A3",
      "name": "CageEB1Long10"
     },
     {
@@ -330,7 +330,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Skin #6 Long11",
      "length_in": 245.0,
-     "mark_model": "EB1-Long11",
+     "mark_model": "6A3",
      "name": "CageEB1Long11"
     },
     {
@@ -359,7 +359,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Skin #6 Long12",
      "length_in": 245.0,
-     "mark_model": "EB1-Long12",
+     "mark_model": "6A3",
      "name": "CageEB1Long12"
     },
     {
@@ -388,7 +388,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Skin #6 Long13",
      "length_in": 245.0,
-     "mark_model": "EB1-Long13",
+     "mark_model": "6A3",
      "name": "CageEB1Long13"
     },
     {
@@ -417,7 +417,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Skin #6 Long14",
      "length_in": 245.0,
-     "mark_model": "EB1-Long14",
+     "mark_model": "6A3",
      "name": "CageEB1Long14"
     },
     {
@@ -446,7 +446,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Skin #6 Long15",
      "length_in": 245.0,
-     "mark_model": "EB1-Long15",
+     "mark_model": "6A3",
      "name": "CageEB1Long15"
     },
     {
@@ -475,7 +475,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Skin #6 Long16",
      "length_in": 245.0,
-     "mark_model": "EB1-Long16",
+     "mark_model": "6A3",
      "name": "CageEB1Long16"
     },
     {
@@ -504,7 +504,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Skin #6 Long17",
      "length_in": 245.0,
-     "mark_model": "EB1-Long17",
+     "mark_model": "6A3",
      "name": "CageEB1Long17"
     },
     {
@@ -625,7 +625,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Added span 1 #5 Added01",
      "length_in": 44.872234,
-     "mark_model": "EB1-Added01",
+     "mark_model": "5C",
      "name": "CageEB1Added01"
     },
     {
@@ -746,7 +746,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Added span 2 #5 Added02",
      "length_in": 44.872234,
-     "mark_model": "EB1-Added02",
+     "mark_model": "5C",
      "name": "CageEB1Added02"
     },
     {
@@ -867,7 +867,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Added span 3 #5 Added03",
      "length_in": 44.872234,
-     "mark_model": "EB1-Added03",
+     "mark_model": "5C",
      "name": "CageEB1Added03"
     },
     {
@@ -988,7 +988,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Added span 1 #5 Added04",
      "length_in": 44.872234,
-     "mark_model": "EB1-Added04",
+     "mark_model": "5C",
      "name": "CageEB1Added04"
     },
     {
@@ -1109,7 +1109,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Added span 2 #5 Added05",
      "length_in": 44.872234,
-     "mark_model": "EB1-Added05",
+     "mark_model": "5C",
      "name": "CageEB1Added05"
     },
     {
@@ -1230,7 +1230,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Added span 3 #5 Added06",
      "length_in": 44.872234,
-     "mark_model": "EB1-Added06",
+     "mark_model": "5C",
      "name": "CageEB1Added06"
     },
     {
@@ -1351,7 +1351,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Added span 1 #5 Added07",
      "length_in": 44.872234,
-     "mark_model": "EB1-Added07",
+     "mark_model": "5C",
      "name": "CageEB1Added07"
     },
     {
@@ -1472,7 +1472,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Added span 2 #5 Added08",
      "length_in": 44.872234,
-     "mark_model": "EB1-Added08",
+     "mark_model": "5C",
      "name": "CageEB1Added08"
     },
     {
@@ -1593,7 +1593,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 Added span 3 #5 Added09",
      "length_in": 44.872234,
-     "mark_model": "EB1-Added09",
+     "mark_model": "5C",
      "name": "CageEB1Added09"
     },
     {
@@ -1852,7 +1852,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R1 hoop #6 Trans_R1_1",
      "length_in": 141.757763,
-     "mark_model": "EB1-Trans_R1_1",
+     "mark_model": "6B1",
      "name": "CageEB1Trans_R1_1"
     },
     {
@@ -2111,7 +2111,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R1 hoop #6 Trans_R1_2",
      "length_in": 141.757763,
-     "mark_model": "EB1-Trans_R1_2",
+     "mark_model": "6B1",
      "name": "CageEB1Trans_R1_2"
     },
     {
@@ -2324,7 +2324,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R2 pile_u #6 Trans_R2_1",
      "length_in": 112.493361,
-     "mark_model": "EB1-Trans_R2_1",
+     "mark_model": "6B2",
      "name": "CageEB1Trans_R2_1"
     },
     {
@@ -2537,7 +2537,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R2 pile_u #6 Trans_R2_2",
      "length_in": 112.493361,
-     "mark_model": "EB1-Trans_R2_2",
+     "mark_model": "6B2",
      "name": "CageEB1Trans_R2_2"
     },
     {
@@ -2750,7 +2750,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R2 pile_u #6 Trans_R2_3",
      "length_in": 112.493361,
-     "mark_model": "EB1-Trans_R2_3",
+     "mark_model": "6B2",
      "name": "CageEB1Trans_R2_3"
     },
     {
@@ -3009,7 +3009,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R3 hoop #6 Trans_R3_1",
      "length_in": 141.757763,
-     "mark_model": "EB1-Trans_R3_1",
+     "mark_model": "6B1",
      "name": "CageEB1Trans_R3_1"
     },
     {
@@ -3268,7 +3268,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R3 hoop #6 Trans_R3_2",
      "length_in": 141.757763,
-     "mark_model": "EB1-Trans_R3_2",
+     "mark_model": "6B1",
      "name": "CageEB1Trans_R3_2"
     },
     {
@@ -3527,7 +3527,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R3 hoop #6 Trans_R3_3",
      "length_in": 141.757763,
-     "mark_model": "EB1-Trans_R3_3",
+     "mark_model": "6B1",
      "name": "CageEB1Trans_R3_3"
     },
     {
@@ -3786,7 +3786,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R3 hoop #6 Trans_R3_4",
      "length_in": 141.757763,
-     "mark_model": "EB1-Trans_R3_4",
+     "mark_model": "6B1",
      "name": "CageEB1Trans_R3_4"
     },
     {
@@ -3999,7 +3999,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R4 pile_u #6 Trans_R4_1",
      "length_in": 112.493361,
-     "mark_model": "EB1-Trans_R4_1",
+     "mark_model": "6B2",
      "name": "CageEB1Trans_R4_1"
     },
     {
@@ -4212,7 +4212,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R4 pile_u #6 Trans_R4_2",
      "length_in": 112.493361,
-     "mark_model": "EB1-Trans_R4_2",
+     "mark_model": "6B2",
      "name": "CageEB1Trans_R4_2"
     },
     {
@@ -4425,7 +4425,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R4 pile_u #6 Trans_R4_3",
      "length_in": 112.493361,
-     "mark_model": "EB1-Trans_R4_3",
+     "mark_model": "6B2",
      "name": "CageEB1Trans_R4_3"
     },
     {
@@ -4638,7 +4638,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R4 pile_u #6 Trans_R4_4",
      "length_in": 112.493361,
-     "mark_model": "EB1-Trans_R4_4",
+     "mark_model": "6B2",
      "name": "CageEB1Trans_R4_4"
     },
     {
@@ -4897,7 +4897,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R5 hoop #6 Trans_R5_1",
      "length_in": 141.757763,
-     "mark_model": "EB1-Trans_R5_1",
+     "mark_model": "6B1",
      "name": "CageEB1Trans_R5_1"
     },
     {
@@ -5156,7 +5156,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R5 hoop #6 Trans_R5_2",
      "length_in": 141.757763,
-     "mark_model": "EB1-Trans_R5_2",
+     "mark_model": "6B1",
      "name": "CageEB1Trans_R5_2"
     },
     {
@@ -5415,7 +5415,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R5 hoop #6 Trans_R5_3",
      "length_in": 141.757763,
-     "mark_model": "EB1-Trans_R5_3",
+     "mark_model": "6B1",
      "name": "CageEB1Trans_R5_3"
     },
     {
@@ -5674,7 +5674,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R5 hoop #6 Trans_R5_4",
      "length_in": 141.757763,
-     "mark_model": "EB1-Trans_R5_4",
+     "mark_model": "6B1",
      "name": "CageEB1Trans_R5_4"
     },
     {
@@ -5887,7 +5887,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R6 pile_u #6 Trans_R6_1",
      "length_in": 112.493361,
-     "mark_model": "EB1-Trans_R6_1",
+     "mark_model": "6B2",
      "name": "CageEB1Trans_R6_1"
     },
     {
@@ -6100,7 +6100,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R6 pile_u #6 Trans_R6_2",
      "length_in": 112.493361,
-     "mark_model": "EB1-Trans_R6_2",
+     "mark_model": "6B2",
      "name": "CageEB1Trans_R6_2"
     },
     {
@@ -6313,7 +6313,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R6 pile_u #6 Trans_R6_3",
      "length_in": 112.493361,
-     "mark_model": "EB1-Trans_R6_3",
+     "mark_model": "6B2",
      "name": "CageEB1Trans_R6_3"
     },
     {
@@ -6526,7 +6526,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R6 pile_u #6 Trans_R6_4",
      "length_in": 112.493361,
-     "mark_model": "EB1-Trans_R6_4",
+     "mark_model": "6B2",
      "name": "CageEB1Trans_R6_4"
     },
     {
@@ -6785,7 +6785,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R7 hoop #6 Trans_R7_1",
      "length_in": 141.757763,
-     "mark_model": "EB1-Trans_R7_1",
+     "mark_model": "6B1",
      "name": "CageEB1Trans_R7_1"
     },
     {
@@ -7044,7 +7044,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R7 hoop #6 Trans_R7_2",
      "length_in": 141.757763,
-     "mark_model": "EB1-Trans_R7_2",
+     "mark_model": "6B1",
      "name": "CageEB1Trans_R7_2"
     },
     {
@@ -7303,7 +7303,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R7 hoop #6 Trans_R7_3",
      "length_in": 141.757763,
-     "mark_model": "EB1-Trans_R7_3",
+     "mark_model": "6B1",
      "name": "CageEB1Trans_R7_3"
     },
     {
@@ -7562,7 +7562,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R7 hoop #6 Trans_R7_4",
      "length_in": 141.757763,
-     "mark_model": "EB1-Trans_R7_4",
+     "mark_model": "6B1",
      "name": "CageEB1Trans_R7_4"
     },
     {
@@ -7775,7 +7775,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R8 pile_u #6 Trans_R8_1",
      "length_in": 112.493361,
-     "mark_model": "EB1-Trans_R8_1",
+     "mark_model": "6B2",
      "name": "CageEB1Trans_R8_1"
     },
     {
@@ -7988,7 +7988,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R8 pile_u #6 Trans_R8_2",
      "length_in": 112.493361,
-     "mark_model": "EB1-Trans_R8_2",
+     "mark_model": "6B2",
      "name": "CageEB1Trans_R8_2"
     },
     {
@@ -8201,7 +8201,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R8 pile_u #6 Trans_R8_3",
      "length_in": 112.493361,
-     "mark_model": "EB1-Trans_R8_3",
+     "mark_model": "6B2",
      "name": "CageEB1Trans_R8_3"
     },
     {
@@ -8414,7 +8414,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R8 pile_u #6 Trans_R8_4",
      "length_in": 112.493361,
-     "mark_model": "EB1-Trans_R8_4",
+     "mark_model": "6B2",
      "name": "CageEB1Trans_R8_4"
     },
     {
@@ -8673,7 +8673,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R9 hoop #6 Trans_R9_1",
      "length_in": 141.757763,
-     "mark_model": "EB1-Trans_R9_1",
+     "mark_model": "6B1",
      "name": "CageEB1Trans_R9_1"
     },
     {
@@ -8932,7 +8932,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R9 hoop #6 Trans_R9_2",
      "length_in": 141.757763,
-     "mark_model": "EB1-Trans_R9_2",
+     "mark_model": "6B1",
      "name": "CageEB1Trans_R9_2"
     },
     {
@@ -9191,7 +9191,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R1 hoop #6 Trans_R1_3",
      "length_in": 141.757763,
-     "mark_model": "EB1-Trans_R1_3",
+     "mark_model": "6B1",
      "name": "CageEB1Trans_R1_3"
     },
     {
@@ -9450,7 +9450,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R1 hoop #6 Trans_R1_4",
      "length_in": 141.757763,
-     "mark_model": "EB1-Trans_R1_4",
+     "mark_model": "6B1",
      "name": "CageEB1Trans_R1_4"
     },
     {
@@ -9663,7 +9663,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R2 pile_u #6 Trans_R2_4",
      "length_in": 112.493361,
-     "mark_model": "EB1-Trans_R2_4",
+     "mark_model": "6B2",
      "name": "CageEB1Trans_R2_4"
     },
     {
@@ -9922,7 +9922,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R9 hoop #6 Trans_R9_3",
      "length_in": 141.757763,
-     "mark_model": "EB1-Trans_R9_3",
+     "mark_model": "6B1",
      "name": "CageEB1Trans_R9_3"
     },
     {
@@ -10181,7 +10181,7 @@
      "group": "CageEB1Bars",
      "label": "EB1 R9 hoop #6 Trans_R9_4",
      "length_in": 141.757763,
-     "mark_model": "EB1-Trans_R9_4",
+     "mark_model": "6B1",
      "name": "CageEB1Trans_R9_4"
     },
     {
@@ -10210,7 +10210,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 vertical; schematic dowel #5",
      "length_in": 59.482781,
-     "mark_model": "BridgeBackwallEB1-F1V01",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F1V01"
     },
     {
@@ -10239,7 +10239,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 vertical; schematic dowel #089",
      "length_in": 59.722781,
-     "mark_model": "BridgeBackwallEB1-F1V02",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F1V02"
     },
     {
@@ -10268,7 +10268,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 vertical; schematic dowel #090",
      "length_in": 59.962781,
-     "mark_model": "BridgeBackwallEB1-F1V03",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F1V03"
     },
     {
@@ -10297,7 +10297,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 vertical; schematic dowel #091",
      "length_in": 60.202781,
-     "mark_model": "BridgeBackwallEB1-F1V04",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F1V04"
     },
     {
@@ -10326,7 +10326,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 vertical; schematic dowel #092",
      "length_in": 60.442781,
-     "mark_model": "BridgeBackwallEB1-F1V05",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F1V05"
     },
     {
@@ -10355,7 +10355,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 vertical; schematic dowel #093",
      "length_in": 60.682781,
-     "mark_model": "BridgeBackwallEB1-F1V06",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F1V06"
     },
     {
@@ -10384,7 +10384,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 vertical; schematic dowel #094",
      "length_in": 60.922781,
-     "mark_model": "BridgeBackwallEB1-F1V07",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F1V07"
     },
     {
@@ -10413,7 +10413,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 vertical; schematic dowel #095",
      "length_in": 61.162781,
-     "mark_model": "BridgeBackwallEB1-F1V08",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F1V08"
     },
     {
@@ -10442,7 +10442,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 vertical; schematic dowel #096",
      "length_in": 61.402781,
-     "mark_model": "BridgeBackwallEB1-F1V09",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F1V09"
     },
     {
@@ -10471,7 +10471,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 vertical; schematic dowel #097",
      "length_in": 61.642781,
-     "mark_model": "BridgeBackwallEB1-F1V10",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F1V10"
     },
     {
@@ -10500,7 +10500,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 vertical; schematic dowel #098",
      "length_in": 61.650281,
-     "mark_model": "BridgeBackwallEB1-F1V11",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F1V11"
     },
     {
@@ -10529,7 +10529,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 vertical; schematic dowel #099",
      "length_in": 61.410281,
-     "mark_model": "BridgeBackwallEB1-F1V12",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F1V12"
     },
     {
@@ -10558,7 +10558,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 vertical; schematic dowel #100",
      "length_in": 61.170281,
-     "mark_model": "BridgeBackwallEB1-F1V13",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F1V13"
     },
     {
@@ -10587,7 +10587,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 vertical; schematic dowel #101",
      "length_in": 60.930281,
-     "mark_model": "BridgeBackwallEB1-F1V14",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F1V14"
     },
     {
@@ -10616,7 +10616,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 vertical; schematic dowel #102",
      "length_in": 60.690281,
-     "mark_model": "BridgeBackwallEB1-F1V15",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F1V15"
     },
     {
@@ -10645,7 +10645,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 vertical; schematic dowel #103",
      "length_in": 60.450281,
-     "mark_model": "BridgeBackwallEB1-F1V16",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F1V16"
     },
     {
@@ -10674,7 +10674,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 vertical; schematic dowel #104",
      "length_in": 60.210281,
-     "mark_model": "BridgeBackwallEB1-F1V17",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F1V17"
     },
     {
@@ -10703,7 +10703,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 horizontal #4",
      "length_in": 228.5,
-     "mark_model": "BridgeBackwallEB1-F1H01",
+     "mark_model": "4D2",
      "name": "SteelBridgeBackwallEB1F1H01"
     },
     {
@@ -10732,7 +10732,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 horizontal #021",
      "length_in": 228.5,
-     "mark_model": "BridgeBackwallEB1-F1H02",
+     "mark_model": "4D2",
      "name": "SteelBridgeBackwallEB1F1H02"
     },
     {
@@ -10761,7 +10761,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 horizontal #022",
      "length_in": 228.5,
-     "mark_model": "BridgeBackwallEB1-F1H03",
+     "mark_model": "4D2",
      "name": "SteelBridgeBackwallEB1F1H03"
     },
     {
@@ -10790,7 +10790,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 horizontal #023",
      "length_in": 228.5,
-     "mark_model": "BridgeBackwallEB1-F1H04",
+     "mark_model": "4D2",
      "name": "SteelBridgeBackwallEB1F1H04"
     },
     {
@@ -10819,7 +10819,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 horizontal #024",
      "length_in": 228.5,
-     "mark_model": "BridgeBackwallEB1-F1H05",
+     "mark_model": "4D2",
      "name": "SteelBridgeBackwallEB1F1H05"
     },
     {
@@ -10848,7 +10848,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 vertical; schematic dowel #5",
      "length_in": 59.482781,
-     "mark_model": "BridgeBackwallEB1-F2V01",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F2V01"
     },
     {
@@ -10877,7 +10877,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 vertical; schematic dowel #089",
      "length_in": 59.722781,
-     "mark_model": "BridgeBackwallEB1-F2V02",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F2V02"
     },
     {
@@ -10906,7 +10906,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 vertical; schematic dowel #090",
      "length_in": 59.962781,
-     "mark_model": "BridgeBackwallEB1-F2V03",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F2V03"
     },
     {
@@ -10935,7 +10935,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 vertical; schematic dowel #091",
      "length_in": 60.202781,
-     "mark_model": "BridgeBackwallEB1-F2V04",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F2V04"
     },
     {
@@ -10964,7 +10964,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 vertical; schematic dowel #092",
      "length_in": 60.442781,
-     "mark_model": "BridgeBackwallEB1-F2V05",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F2V05"
     },
     {
@@ -10993,7 +10993,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 vertical; schematic dowel #093",
      "length_in": 60.682781,
-     "mark_model": "BridgeBackwallEB1-F2V06",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F2V06"
     },
     {
@@ -11022,7 +11022,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 vertical; schematic dowel #094",
      "length_in": 60.922781,
-     "mark_model": "BridgeBackwallEB1-F2V07",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F2V07"
     },
     {
@@ -11051,7 +11051,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 vertical; schematic dowel #095",
      "length_in": 61.162781,
-     "mark_model": "BridgeBackwallEB1-F2V08",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F2V08"
     },
     {
@@ -11080,7 +11080,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 vertical; schematic dowel #096",
      "length_in": 61.402781,
-     "mark_model": "BridgeBackwallEB1-F2V09",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F2V09"
     },
     {
@@ -11109,7 +11109,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 vertical; schematic dowel #097",
      "length_in": 61.642781,
-     "mark_model": "BridgeBackwallEB1-F2V10",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F2V10"
     },
     {
@@ -11138,7 +11138,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 vertical; schematic dowel #098",
      "length_in": 61.650281,
-     "mark_model": "BridgeBackwallEB1-F2V11",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F2V11"
     },
     {
@@ -11167,7 +11167,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 vertical; schematic dowel #099",
      "length_in": 61.410281,
-     "mark_model": "BridgeBackwallEB1-F2V12",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F2V12"
     },
     {
@@ -11196,7 +11196,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 vertical; schematic dowel #100",
      "length_in": 61.170281,
-     "mark_model": "BridgeBackwallEB1-F2V13",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F2V13"
     },
     {
@@ -11225,7 +11225,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 vertical; schematic dowel #101",
      "length_in": 60.930281,
-     "mark_model": "BridgeBackwallEB1-F2V14",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F2V14"
     },
     {
@@ -11254,7 +11254,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 vertical; schematic dowel #102",
      "length_in": 60.690281,
-     "mark_model": "BridgeBackwallEB1-F2V15",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F2V15"
     },
     {
@@ -11283,7 +11283,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 vertical; schematic dowel #103",
      "length_in": 60.450281,
-     "mark_model": "BridgeBackwallEB1-F2V16",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F2V16"
     },
     {
@@ -11312,7 +11312,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 vertical; schematic dowel #104",
      "length_in": 60.210281,
-     "mark_model": "BridgeBackwallEB1-F2V17",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F2V17"
     },
     {
@@ -11341,7 +11341,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 horizontal #4",
      "length_in": 228.5,
-     "mark_model": "BridgeBackwallEB1-F2H01",
+     "mark_model": "4D2",
      "name": "SteelBridgeBackwallEB1F2H01"
     },
     {
@@ -11370,7 +11370,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 horizontal #021",
      "length_in": 228.5,
-     "mark_model": "BridgeBackwallEB1-F2H02",
+     "mark_model": "4D2",
      "name": "SteelBridgeBackwallEB1F2H02"
     },
     {
@@ -11399,7 +11399,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 horizontal #022",
      "length_in": 228.5,
-     "mark_model": "BridgeBackwallEB1-F2H03",
+     "mark_model": "4D2",
      "name": "SteelBridgeBackwallEB1F2H03"
     },
     {
@@ -11428,7 +11428,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 horizontal #023",
      "length_in": 228.5,
-     "mark_model": "BridgeBackwallEB1-F2H04",
+     "mark_model": "4D2",
      "name": "SteelBridgeBackwallEB1F2H04"
     },
     {
@@ -11457,7 +11457,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 horizontal #024",
      "length_in": 228.5,
-     "mark_model": "BridgeBackwallEB1-F2H05",
+     "mark_model": "4D2",
      "name": "SteelBridgeBackwallEB1F2H05"
     },
     {
@@ -11486,7 +11486,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 vertical; schematic dowel #105",
      "length_in": 59.970281,
-     "mark_model": "BridgeBackwallEB1-F1V18",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F1V18"
     },
     {
@@ -11515,7 +11515,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 vertical; schematic dowel #106",
      "length_in": 59.730281,
-     "mark_model": "BridgeBackwallEB1-F1V19",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F1V19"
     },
     {
@@ -11544,7 +11544,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 vertical; schematic dowel #107",
      "length_in": 59.490281,
-     "mark_model": "BridgeBackwallEB1-F1V20",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F1V20"
     },
     {
@@ -11573,7 +11573,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 1 vertical; schematic dowel #108",
      "length_in": 59.482781,
-     "mark_model": "BridgeBackwallEB1-F1V21",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F1V21"
     },
     {
@@ -11602,7 +11602,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 vertical; schematic dowel #105",
      "length_in": 59.970281,
-     "mark_model": "BridgeBackwallEB1-F2V18",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F2V18"
     },
     {
@@ -11631,7 +11631,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 vertical; schematic dowel #106",
      "length_in": 59.730281,
-     "mark_model": "BridgeBackwallEB1-F2V19",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F2V19"
     },
     {
@@ -11660,7 +11660,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 vertical; schematic dowel #107",
      "length_in": 59.490281,
-     "mark_model": "BridgeBackwallEB1-F2V20",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F2V20"
     },
     {
@@ -11689,7 +11689,7 @@
      "group": "SteelBridgeBackwallEB1Bars",
      "label": "EB1 backwall Face 2 vertical; schematic dowel #108",
      "length_in": 59.482781,
-     "mark_model": "BridgeBackwallEB1-F2V21",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB1F2V21"
     },
     {
@@ -11718,7 +11718,7 @@
      "group": "SteelBridgeCheekEB11Bars",
      "label": "EB1 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat vertical #4",
      "length_in": 91.87623,
-     "mark_model": "BridgeCheekEB11-MV01",
+     "mark_model": "4E1",
      "name": "SteelBridgeCheekEB11MV01"
     },
     {
@@ -11747,7 +11747,7 @@
      "group": "SteelBridgeCheekEB11Bars",
      "label": "EB1 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat vertical #018",
      "length_in": 91.87623,
-     "mark_model": "BridgeCheekEB11-MV02",
+     "mark_model": "4E1",
      "name": "SteelBridgeCheekEB11MV02"
     },
     {
@@ -11776,7 +11776,7 @@
      "group": "SteelBridgeCheekEB11Bars",
      "label": "EB1 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat vertical #019",
      "length_in": 91.87623,
-     "mark_model": "BridgeCheekEB11-MV03",
+     "mark_model": "4E1",
      "name": "SteelBridgeCheekEB11MV03"
     },
     {
@@ -11805,7 +11805,7 @@
      "group": "SteelBridgeCheekEB11Bars",
      "label": "EB1 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat vertical #020",
      "length_in": 91.87623,
-     "mark_model": "BridgeCheekEB11-MV04",
+     "mark_model": "4E1",
      "name": "SteelBridgeCheekEB11MV04"
     },
     {
@@ -11834,7 +11834,7 @@
      "group": "SteelBridgeCheekEB11Bars",
      "label": "EB1 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #4",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB11-MH01",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB11MH01"
     },
     {
@@ -11863,7 +11863,7 @@
      "group": "SteelBridgeCheekEB11Bars",
      "label": "EB1 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #032",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB11-MH02",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB11MH02"
     },
     {
@@ -11892,7 +11892,7 @@
      "group": "SteelBridgeCheekEB11Bars",
      "label": "EB1 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #033",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB11-MH03",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB11MH03"
     },
     {
@@ -11921,7 +11921,7 @@
      "group": "SteelBridgeCheekEB11Bars",
      "label": "EB1 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #034",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB11-MH04",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB11MH04"
     },
     {
@@ -11950,7 +11950,7 @@
      "group": "SteelBridgeCheekEB11Bars",
      "label": "EB1 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #035",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB11-MH05",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB11MH05"
     },
     {
@@ -11979,7 +11979,7 @@
      "group": "SteelBridgeCheekEB11Bars",
      "label": "EB1 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #036",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB11-MH06",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB11MH06"
     },
     {
@@ -12008,7 +12008,7 @@
      "group": "SteelBridgeCheekEB11Bars",
      "label": "EB1 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #037",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB11-MH07",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB11MH07"
     },
     {
@@ -12037,7 +12037,7 @@
      "group": "SteelBridgeCheekEB11Bars",
      "label": "EB1 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #038",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB11-MH08",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB11MH08"
     },
     {
@@ -12066,7 +12066,7 @@
      "group": "SteelBridgeCheekEB11Bars",
      "label": "EB1 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #039",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB11-MH09",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB11MH09"
     },
     {
@@ -12095,7 +12095,7 @@
      "group": "SteelBridgeCheekEB11Bars",
      "label": "EB1 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat vertical #021",
      "length_in": 91.87623,
-     "mark_model": "BridgeCheekEB11-MV05",
+     "mark_model": "4E1",
      "name": "SteelBridgeCheekEB11MV05"
     },
     {
@@ -12124,7 +12124,7 @@
      "group": "SteelBridgeCheekEB11Bars",
      "label": "EB1 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #040",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB11-MH10",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB11MH10"
     },
     {
@@ -12153,7 +12153,7 @@
      "group": "SteelBridgeCheekEB11Bars",
      "label": "EB1 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #041",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB11-MH11",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB11MH11"
     },
     {
@@ -12182,7 +12182,7 @@
      "group": "SteelBridgeCheekEB12Bars",
      "label": "EB1 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat vertical #4",
      "length_in": 91.821843,
-     "mark_model": "BridgeCheekEB12-MV01",
+     "mark_model": "4E1",
      "name": "SteelBridgeCheekEB12MV01"
     },
     {
@@ -12211,7 +12211,7 @@
      "group": "SteelBridgeCheekEB12Bars",
      "label": "EB1 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat vertical #010",
      "length_in": 91.821843,
-     "mark_model": "BridgeCheekEB12-MV02",
+     "mark_model": "4E1",
      "name": "SteelBridgeCheekEB12MV02"
     },
     {
@@ -12240,7 +12240,7 @@
      "group": "SteelBridgeCheekEB12Bars",
      "label": "EB1 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat vertical #011",
      "length_in": 91.821843,
-     "mark_model": "BridgeCheekEB12-MV03",
+     "mark_model": "4E1",
      "name": "SteelBridgeCheekEB12MV03"
     },
     {
@@ -12269,7 +12269,7 @@
      "group": "SteelBridgeCheekEB12Bars",
      "label": "EB1 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat vertical #012",
      "length_in": 91.821843,
-     "mark_model": "BridgeCheekEB12-MV04",
+     "mark_model": "4E1",
      "name": "SteelBridgeCheekEB12MV04"
     },
     {
@@ -12298,7 +12298,7 @@
      "group": "SteelBridgeCheekEB12Bars",
      "label": "EB1 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #4",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB12-MH01",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB12MH01"
     },
     {
@@ -12327,7 +12327,7 @@
      "group": "SteelBridgeCheekEB12Bars",
      "label": "EB1 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #018",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB12-MH02",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB12MH02"
     },
     {
@@ -12356,7 +12356,7 @@
      "group": "SteelBridgeCheekEB12Bars",
      "label": "EB1 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #019",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB12-MH03",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB12MH03"
     },
     {
@@ -12385,7 +12385,7 @@
      "group": "SteelBridgeCheekEB12Bars",
      "label": "EB1 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #020",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB12-MH04",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB12MH04"
     },
     {
@@ -12414,7 +12414,7 @@
      "group": "SteelBridgeCheekEB12Bars",
      "label": "EB1 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #021",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB12-MH05",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB12MH05"
     },
     {
@@ -12443,7 +12443,7 @@
      "group": "SteelBridgeCheekEB12Bars",
      "label": "EB1 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #022",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB12-MH06",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB12MH06"
     },
     {
@@ -12472,7 +12472,7 @@
      "group": "SteelBridgeCheekEB12Bars",
      "label": "EB1 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #023",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB12-MH07",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB12MH07"
     },
     {
@@ -12501,7 +12501,7 @@
      "group": "SteelBridgeCheekEB12Bars",
      "label": "EB1 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #024",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB12-MH08",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB12MH08"
     },
     {
@@ -12530,7 +12530,7 @@
      "group": "SteelBridgeCheekEB12Bars",
      "label": "EB1 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #025",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB12-MH09",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB12MH09"
     },
     {
@@ -12559,7 +12559,7 @@
      "group": "SteelBridgeCheekEB12Bars",
      "label": "EB1 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat vertical #013",
      "length_in": 91.821843,
-     "mark_model": "BridgeCheekEB12-MV05",
+     "mark_model": "4E1",
      "name": "SteelBridgeCheekEB12MV05"
     },
     {
@@ -12588,7 +12588,7 @@
      "group": "SteelBridgeCheekEB12Bars",
      "label": "EB1 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #026",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB12-MH10",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB12MH10"
     },
     {
@@ -12617,7 +12617,7 @@
      "group": "SteelBridgeCheekEB12Bars",
      "label": "EB1 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #027",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB12-MH11",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB12MH11"
     },
     {
@@ -12738,7 +12738,7 @@
      "group": "PedSteelEB1B1Bars",
      "label": "EB1 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average",
      "length_in": 51.3683,
-     "mark_model": "BridgePedestalEB1B1-X01",
+     "mark_model": "4F1",
      "name": "PedSteelEB1B1X01"
     },
     {
@@ -12859,7 +12859,7 @@
      "group": "PedSteelEB1B1Bars",
      "label": "EB1 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average013",
      "length_in": 51.3683,
-     "mark_model": "BridgePedestalEB1B1-X02",
+     "mark_model": "4F1",
      "name": "PedSteelEB1B1X02"
     },
     {
@@ -12980,7 +12980,7 @@
      "group": "PedSteelEB1B1Bars",
      "label": "EB1 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average014",
      "length_in": 51.3683,
-     "mark_model": "BridgePedestalEB1B1-X03",
+     "mark_model": "4F1",
      "name": "PedSteelEB1B1X03"
     },
     {
@@ -13101,7 +13101,7 @@
      "group": "PedSteelEB1B1Bars",
      "label": "EB1 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average015",
      "length_in": 51.3683,
-     "mark_model": "BridgePedestalEB1B1-X04",
+     "mark_model": "4F1",
      "name": "PedSteelEB1B1X04"
     },
     {
@@ -13222,7 +13222,7 @@
      "group": "PedSteelEB1B1Bars",
      "label": "EB1 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average016",
      "length_in": 51.3683,
-     "mark_model": "BridgePedestalEB1B1-X05",
+     "mark_model": "4F1",
      "name": "PedSteelEB1B1X05"
     },
     {
@@ -13343,7 +13343,7 @@
      "group": "PedSteelEB1B1Bars",
      "label": "EB1 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average017",
      "length_in": 51.3683,
-     "mark_model": "BridgePedestalEB1B1-X06",
+     "mark_model": "4F1",
      "name": "PedSteelEB1B1X06"
     },
     {
@@ -13464,7 +13464,7 @@
      "group": "PedSteelEB1B1Bars",
      "label": "EB1 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average018",
      "length_in": 51.3683,
-     "mark_model": "BridgePedestalEB1B1-X07",
+     "mark_model": "4F1",
      "name": "PedSteelEB1B1X07"
     },
     {
@@ -13585,7 +13585,7 @@
      "group": "PedSteelEB1B1Bars",
      "label": "EB1 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average",
      "length_in": 55.8683,
-     "mark_model": "BridgePedestalEB1B1-Y01",
+     "mark_model": "4F3",
      "name": "PedSteelEB1B1Y01"
     },
     {
@@ -13706,7 +13706,7 @@
      "group": "PedSteelEB1B1Bars",
      "label": "EB1 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average007",
      "length_in": 55.8683,
-     "mark_model": "BridgePedestalEB1B1-Y02",
+     "mark_model": "4F3",
      "name": "PedSteelEB1B1Y02"
     },
     {
@@ -13827,7 +13827,7 @@
      "group": "PedSteelEB1B1Bars",
      "label": "EB1 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average008",
      "length_in": 55.8683,
-     "mark_model": "BridgePedestalEB1B1-Y03",
+     "mark_model": "4F3",
      "name": "PedSteelEB1B1Y03"
     },
     {
@@ -13948,7 +13948,7 @@
      "group": "PedSteelEB1B1Bars",
      "label": "EB1 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average009",
      "length_in": 55.8683,
-     "mark_model": "BridgePedestalEB1B1-Y04",
+     "mark_model": "4F3",
      "name": "PedSteelEB1B1Y04"
     },
     {
@@ -14069,7 +14069,7 @@
      "group": "PedSteelEB1B2Bars",
      "label": "EB1 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average",
      "length_in": 51.3683,
-     "mark_model": "BridgePedestalEB1B2-X01",
+     "mark_model": "4F1",
      "name": "PedSteelEB1B2X01"
     },
     {
@@ -14190,7 +14190,7 @@
      "group": "PedSteelEB1B2Bars",
      "label": "EB1 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average013",
      "length_in": 51.3683,
-     "mark_model": "BridgePedestalEB1B2-X02",
+     "mark_model": "4F1",
      "name": "PedSteelEB1B2X02"
     },
     {
@@ -14311,7 +14311,7 @@
      "group": "PedSteelEB1B2Bars",
      "label": "EB1 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average014",
      "length_in": 51.3683,
-     "mark_model": "BridgePedestalEB1B2-X03",
+     "mark_model": "4F1",
      "name": "PedSteelEB1B2X03"
     },
     {
@@ -14432,7 +14432,7 @@
      "group": "PedSteelEB1B2Bars",
      "label": "EB1 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average015",
      "length_in": 51.3683,
-     "mark_model": "BridgePedestalEB1B2-X04",
+     "mark_model": "4F1",
      "name": "PedSteelEB1B2X04"
     },
     {
@@ -14553,7 +14553,7 @@
      "group": "PedSteelEB1B2Bars",
      "label": "EB1 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average016",
      "length_in": 51.3683,
-     "mark_model": "BridgePedestalEB1B2-X05",
+     "mark_model": "4F1",
      "name": "PedSteelEB1B2X05"
     },
     {
@@ -14674,7 +14674,7 @@
      "group": "PedSteelEB1B2Bars",
      "label": "EB1 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average017",
      "length_in": 51.3683,
-     "mark_model": "BridgePedestalEB1B2-X06",
+     "mark_model": "4F1",
      "name": "PedSteelEB1B2X06"
     },
     {
@@ -14795,7 +14795,7 @@
      "group": "PedSteelEB1B2Bars",
      "label": "EB1 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average018",
      "length_in": 51.3683,
-     "mark_model": "BridgePedestalEB1B2-X07",
+     "mark_model": "4F1",
      "name": "PedSteelEB1B2X07"
     },
     {
@@ -14916,7 +14916,7 @@
      "group": "PedSteelEB1B2Bars",
      "label": "EB1 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average",
      "length_in": 57.3683,
-     "mark_model": "BridgePedestalEB1B2-Y01",
+     "mark_model": "4F2",
      "name": "PedSteelEB1B2Y01"
     },
     {
@@ -15037,7 +15037,7 @@
      "group": "PedSteelEB1B2Bars",
      "label": "EB1 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average007",
      "length_in": 57.3683,
-     "mark_model": "BridgePedestalEB1B2-Y02",
+     "mark_model": "4F2",
      "name": "PedSteelEB1B2Y02"
     },
     {
@@ -15158,7 +15158,7 @@
      "group": "PedSteelEB1B2Bars",
      "label": "EB1 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average008",
      "length_in": 57.3683,
-     "mark_model": "BridgePedestalEB1B2-Y03",
+     "mark_model": "4F2",
      "name": "PedSteelEB1B2Y03"
     },
     {
@@ -15279,7 +15279,7 @@
      "group": "PedSteelEB1B2Bars",
      "label": "EB1 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average009",
      "length_in": 57.3683,
-     "mark_model": "BridgePedestalEB1B2-Y04",
+     "mark_model": "4F2",
      "name": "PedSteelEB1B2Y04"
     }
    ],
@@ -36412,7 +36412,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Top row 1 #6 Long01",
      "length_in": 245.0,
-     "mark_model": "EB2-Long01",
+     "mark_model": "6A1",
      "name": "CageEB2Long01"
     },
     {
@@ -36441,7 +36441,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Top row 1 #6 Long02",
      "length_in": 245.0,
-     "mark_model": "EB2-Long02",
+     "mark_model": "6A1",
      "name": "CageEB2Long02"
     },
     {
@@ -36470,7 +36470,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Top row 1 #6 Long03",
      "length_in": 245.0,
-     "mark_model": "EB2-Long03",
+     "mark_model": "6A1",
      "name": "CageEB2Long03"
     },
     {
@@ -36499,7 +36499,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Top row 1 #6 Long04",
      "length_in": 245.0,
-     "mark_model": "EB2-Long04",
+     "mark_model": "6A1",
      "name": "CageEB2Long04"
     },
     {
@@ -36528,7 +36528,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Top row 1 #6 Long05",
      "length_in": 245.0,
-     "mark_model": "EB2-Long05",
+     "mark_model": "6A1",
      "name": "CageEB2Long05"
     },
     {
@@ -36557,7 +36557,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Bottom row 1 #8 Long06",
      "length_in": 245.0,
-     "mark_model": "EB2-Long06",
+     "mark_model": "8A2",
      "name": "CageEB2Long06"
     },
     {
@@ -36586,7 +36586,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Bottom row 1 #8 Long07",
      "length_in": 245.0,
-     "mark_model": "EB2-Long07",
+     "mark_model": "8A2",
      "name": "CageEB2Long07"
     },
     {
@@ -36615,7 +36615,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Bottom row 1 #8 Long08",
      "length_in": 245.0,
-     "mark_model": "EB2-Long08",
+     "mark_model": "8A2",
      "name": "CageEB2Long08"
     },
     {
@@ -36644,7 +36644,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Bottom row 1 #8 Long09",
      "length_in": 245.0,
-     "mark_model": "EB2-Long09",
+     "mark_model": "8A2",
      "name": "CageEB2Long09"
     },
     {
@@ -36673,7 +36673,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Skin #6 Long10",
      "length_in": 245.0,
-     "mark_model": "EB2-Long10",
+     "mark_model": "6A3",
      "name": "CageEB2Long10"
     },
     {
@@ -36702,7 +36702,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Skin #6 Long11",
      "length_in": 245.0,
-     "mark_model": "EB2-Long11",
+     "mark_model": "6A3",
      "name": "CageEB2Long11"
     },
     {
@@ -36731,7 +36731,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Skin #6 Long12",
      "length_in": 245.0,
-     "mark_model": "EB2-Long12",
+     "mark_model": "6A3",
      "name": "CageEB2Long12"
     },
     {
@@ -36760,7 +36760,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Skin #6 Long13",
      "length_in": 245.0,
-     "mark_model": "EB2-Long13",
+     "mark_model": "6A3",
      "name": "CageEB2Long13"
     },
     {
@@ -36789,7 +36789,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Skin #6 Long14",
      "length_in": 245.0,
-     "mark_model": "EB2-Long14",
+     "mark_model": "6A3",
      "name": "CageEB2Long14"
     },
     {
@@ -36818,7 +36818,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Skin #6 Long15",
      "length_in": 245.0,
-     "mark_model": "EB2-Long15",
+     "mark_model": "6A3",
      "name": "CageEB2Long15"
     },
     {
@@ -36847,7 +36847,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Skin #6 Long16",
      "length_in": 245.0,
-     "mark_model": "EB2-Long16",
+     "mark_model": "6A3",
      "name": "CageEB2Long16"
     },
     {
@@ -36876,7 +36876,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Skin #6 Long17",
      "length_in": 245.0,
-     "mark_model": "EB2-Long17",
+     "mark_model": "6A3",
      "name": "CageEB2Long17"
     },
     {
@@ -36997,7 +36997,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Added span 1 #5 Added01",
      "length_in": 44.872234,
-     "mark_model": "EB2-Added01",
+     "mark_model": "5C",
      "name": "CageEB2Added01"
     },
     {
@@ -37118,7 +37118,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Added span 2 #5 Added02",
      "length_in": 44.872234,
-     "mark_model": "EB2-Added02",
+     "mark_model": "5C",
      "name": "CageEB2Added02"
     },
     {
@@ -37239,7 +37239,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Added span 3 #5 Added03",
      "length_in": 44.872234,
-     "mark_model": "EB2-Added03",
+     "mark_model": "5C",
      "name": "CageEB2Added03"
     },
     {
@@ -37360,7 +37360,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Added span 1 #5 Added04",
      "length_in": 44.872234,
-     "mark_model": "EB2-Added04",
+     "mark_model": "5C",
      "name": "CageEB2Added04"
     },
     {
@@ -37481,7 +37481,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Added span 2 #5 Added05",
      "length_in": 44.872234,
-     "mark_model": "EB2-Added05",
+     "mark_model": "5C",
      "name": "CageEB2Added05"
     },
     {
@@ -37602,7 +37602,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Added span 3 #5 Added06",
      "length_in": 44.872234,
-     "mark_model": "EB2-Added06",
+     "mark_model": "5C",
      "name": "CageEB2Added06"
     },
     {
@@ -37723,7 +37723,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Added span 1 #5 Added07",
      "length_in": 44.872234,
-     "mark_model": "EB2-Added07",
+     "mark_model": "5C",
      "name": "CageEB2Added07"
     },
     {
@@ -37844,7 +37844,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Added span 2 #5 Added08",
      "length_in": 44.872234,
-     "mark_model": "EB2-Added08",
+     "mark_model": "5C",
      "name": "CageEB2Added08"
     },
     {
@@ -37965,7 +37965,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 Added span 3 #5 Added09",
      "length_in": 44.872234,
-     "mark_model": "EB2-Added09",
+     "mark_model": "5C",
      "name": "CageEB2Added09"
     },
     {
@@ -38224,7 +38224,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R1 hoop #6 Trans_R1_1",
      "length_in": 141.757763,
-     "mark_model": "EB2-Trans_R1_1",
+     "mark_model": "6B1",
      "name": "CageEB2Trans_R1_1"
     },
     {
@@ -38483,7 +38483,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R1 hoop #6 Trans_R1_2",
      "length_in": 141.757763,
-     "mark_model": "EB2-Trans_R1_2",
+     "mark_model": "6B1",
      "name": "CageEB2Trans_R1_2"
     },
     {
@@ -38696,7 +38696,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R2 pile_u #6 Trans_R2_1",
      "length_in": 112.493361,
-     "mark_model": "EB2-Trans_R2_1",
+     "mark_model": "6B2",
      "name": "CageEB2Trans_R2_1"
     },
     {
@@ -38909,7 +38909,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R2 pile_u #6 Trans_R2_2",
      "length_in": 112.493361,
-     "mark_model": "EB2-Trans_R2_2",
+     "mark_model": "6B2",
      "name": "CageEB2Trans_R2_2"
     },
     {
@@ -39122,7 +39122,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R2 pile_u #6 Trans_R2_3",
      "length_in": 112.493361,
-     "mark_model": "EB2-Trans_R2_3",
+     "mark_model": "6B2",
      "name": "CageEB2Trans_R2_3"
     },
     {
@@ -39381,7 +39381,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R3 hoop #6 Trans_R3_1",
      "length_in": 141.757763,
-     "mark_model": "EB2-Trans_R3_1",
+     "mark_model": "6B1",
      "name": "CageEB2Trans_R3_1"
     },
     {
@@ -39640,7 +39640,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R3 hoop #6 Trans_R3_2",
      "length_in": 141.757763,
-     "mark_model": "EB2-Trans_R3_2",
+     "mark_model": "6B1",
      "name": "CageEB2Trans_R3_2"
     },
     {
@@ -39899,7 +39899,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R3 hoop #6 Trans_R3_3",
      "length_in": 141.757763,
-     "mark_model": "EB2-Trans_R3_3",
+     "mark_model": "6B1",
      "name": "CageEB2Trans_R3_3"
     },
     {
@@ -40158,7 +40158,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R3 hoop #6 Trans_R3_4",
      "length_in": 141.757763,
-     "mark_model": "EB2-Trans_R3_4",
+     "mark_model": "6B1",
      "name": "CageEB2Trans_R3_4"
     },
     {
@@ -40371,7 +40371,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R4 pile_u #6 Trans_R4_1",
      "length_in": 112.493361,
-     "mark_model": "EB2-Trans_R4_1",
+     "mark_model": "6B2",
      "name": "CageEB2Trans_R4_1"
     },
     {
@@ -40584,7 +40584,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R4 pile_u #6 Trans_R4_2",
      "length_in": 112.493361,
-     "mark_model": "EB2-Trans_R4_2",
+     "mark_model": "6B2",
      "name": "CageEB2Trans_R4_2"
     },
     {
@@ -40797,7 +40797,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R4 pile_u #6 Trans_R4_3",
      "length_in": 112.493361,
-     "mark_model": "EB2-Trans_R4_3",
+     "mark_model": "6B2",
      "name": "CageEB2Trans_R4_3"
     },
     {
@@ -41010,7 +41010,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R4 pile_u #6 Trans_R4_4",
      "length_in": 112.493361,
-     "mark_model": "EB2-Trans_R4_4",
+     "mark_model": "6B2",
      "name": "CageEB2Trans_R4_4"
     },
     {
@@ -41269,7 +41269,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R5 hoop #6 Trans_R5_1",
      "length_in": 141.757763,
-     "mark_model": "EB2-Trans_R5_1",
+     "mark_model": "6B1",
      "name": "CageEB2Trans_R5_1"
     },
     {
@@ -41528,7 +41528,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R5 hoop #6 Trans_R5_2",
      "length_in": 141.757763,
-     "mark_model": "EB2-Trans_R5_2",
+     "mark_model": "6B1",
      "name": "CageEB2Trans_R5_2"
     },
     {
@@ -41787,7 +41787,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R5 hoop #6 Trans_R5_3",
      "length_in": 141.757763,
-     "mark_model": "EB2-Trans_R5_3",
+     "mark_model": "6B1",
      "name": "CageEB2Trans_R5_3"
     },
     {
@@ -42046,7 +42046,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R5 hoop #6 Trans_R5_4",
      "length_in": 141.757763,
-     "mark_model": "EB2-Trans_R5_4",
+     "mark_model": "6B1",
      "name": "CageEB2Trans_R5_4"
     },
     {
@@ -42259,7 +42259,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R6 pile_u #6 Trans_R6_1",
      "length_in": 112.493361,
-     "mark_model": "EB2-Trans_R6_1",
+     "mark_model": "6B2",
      "name": "CageEB2Trans_R6_1"
     },
     {
@@ -42472,7 +42472,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R6 pile_u #6 Trans_R6_2",
      "length_in": 112.493361,
-     "mark_model": "EB2-Trans_R6_2",
+     "mark_model": "6B2",
      "name": "CageEB2Trans_R6_2"
     },
     {
@@ -42685,7 +42685,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R6 pile_u #6 Trans_R6_3",
      "length_in": 112.493361,
-     "mark_model": "EB2-Trans_R6_3",
+     "mark_model": "6B2",
      "name": "CageEB2Trans_R6_3"
     },
     {
@@ -42898,7 +42898,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R6 pile_u #6 Trans_R6_4",
      "length_in": 112.493361,
-     "mark_model": "EB2-Trans_R6_4",
+     "mark_model": "6B2",
      "name": "CageEB2Trans_R6_4"
     },
     {
@@ -43157,7 +43157,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R7 hoop #6 Trans_R7_1",
      "length_in": 141.757763,
-     "mark_model": "EB2-Trans_R7_1",
+     "mark_model": "6B1",
      "name": "CageEB2Trans_R7_1"
     },
     {
@@ -43416,7 +43416,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R7 hoop #6 Trans_R7_2",
      "length_in": 141.757763,
-     "mark_model": "EB2-Trans_R7_2",
+     "mark_model": "6B1",
      "name": "CageEB2Trans_R7_2"
     },
     {
@@ -43675,7 +43675,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R7 hoop #6 Trans_R7_3",
      "length_in": 141.757763,
-     "mark_model": "EB2-Trans_R7_3",
+     "mark_model": "6B1",
      "name": "CageEB2Trans_R7_3"
     },
     {
@@ -43934,7 +43934,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R7 hoop #6 Trans_R7_4",
      "length_in": 141.757763,
-     "mark_model": "EB2-Trans_R7_4",
+     "mark_model": "6B1",
      "name": "CageEB2Trans_R7_4"
     },
     {
@@ -44147,7 +44147,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R8 pile_u #6 Trans_R8_1",
      "length_in": 112.493361,
-     "mark_model": "EB2-Trans_R8_1",
+     "mark_model": "6B2",
      "name": "CageEB2Trans_R8_1"
     },
     {
@@ -44360,7 +44360,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R8 pile_u #6 Trans_R8_2",
      "length_in": 112.493361,
-     "mark_model": "EB2-Trans_R8_2",
+     "mark_model": "6B2",
      "name": "CageEB2Trans_R8_2"
     },
     {
@@ -44573,7 +44573,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R8 pile_u #6 Trans_R8_3",
      "length_in": 112.493361,
-     "mark_model": "EB2-Trans_R8_3",
+     "mark_model": "6B2",
      "name": "CageEB2Trans_R8_3"
     },
     {
@@ -44786,7 +44786,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R8 pile_u #6 Trans_R8_4",
      "length_in": 112.493361,
-     "mark_model": "EB2-Trans_R8_4",
+     "mark_model": "6B2",
      "name": "CageEB2Trans_R8_4"
     },
     {
@@ -45045,7 +45045,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R9 hoop #6 Trans_R9_1",
      "length_in": 141.757763,
-     "mark_model": "EB2-Trans_R9_1",
+     "mark_model": "6B1",
      "name": "CageEB2Trans_R9_1"
     },
     {
@@ -45304,7 +45304,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R9 hoop #6 Trans_R9_2",
      "length_in": 141.757763,
-     "mark_model": "EB2-Trans_R9_2",
+     "mark_model": "6B1",
      "name": "CageEB2Trans_R9_2"
     },
     {
@@ -45563,7 +45563,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R1 hoop #6 Trans_R1_3",
      "length_in": 141.757763,
-     "mark_model": "EB2-Trans_R1_3",
+     "mark_model": "6B1",
      "name": "CageEB2Trans_R1_3"
     },
     {
@@ -45822,7 +45822,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R1 hoop #6 Trans_R1_4",
      "length_in": 141.757763,
-     "mark_model": "EB2-Trans_R1_4",
+     "mark_model": "6B1",
      "name": "CageEB2Trans_R1_4"
     },
     {
@@ -46035,7 +46035,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R2 pile_u #6 Trans_R2_4",
      "length_in": 112.493361,
-     "mark_model": "EB2-Trans_R2_4",
+     "mark_model": "6B2",
      "name": "CageEB2Trans_R2_4"
     },
     {
@@ -46294,7 +46294,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R9 hoop #6 Trans_R9_3",
      "length_in": 141.757763,
-     "mark_model": "EB2-Trans_R9_3",
+     "mark_model": "6B1",
      "name": "CageEB2Trans_R9_3"
     },
     {
@@ -46553,7 +46553,7 @@
      "group": "CageEB2Bars",
      "label": "EB2 R9 hoop #6 Trans_R9_4",
      "length_in": 141.757763,
-     "mark_model": "EB2-Trans_R9_4",
+     "mark_model": "6B1",
      "name": "CageEB2Trans_R9_4"
     },
     {
@@ -46582,7 +46582,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 vertical; schematic dowel #5",
      "length_in": 59.482782,
-     "mark_model": "BridgeBackwallEB2-F1V01",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F1V01"
     },
     {
@@ -46611,7 +46611,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 vertical; schematic dowel #089",
      "length_in": 59.722782,
-     "mark_model": "BridgeBackwallEB2-F1V02",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F1V02"
     },
     {
@@ -46640,7 +46640,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 vertical; schematic dowel #090",
      "length_in": 59.962782,
-     "mark_model": "BridgeBackwallEB2-F1V03",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F1V03"
     },
     {
@@ -46669,7 +46669,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 vertical; schematic dowel #091",
      "length_in": 60.202782,
-     "mark_model": "BridgeBackwallEB2-F1V04",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F1V04"
     },
     {
@@ -46698,7 +46698,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 vertical; schematic dowel #092",
      "length_in": 60.442782,
-     "mark_model": "BridgeBackwallEB2-F1V05",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F1V05"
     },
     {
@@ -46727,7 +46727,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 vertical; schematic dowel #093",
      "length_in": 60.682782,
-     "mark_model": "BridgeBackwallEB2-F1V06",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F1V06"
     },
     {
@@ -46756,7 +46756,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 vertical; schematic dowel #094",
      "length_in": 60.922782,
-     "mark_model": "BridgeBackwallEB2-F1V07",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F1V07"
     },
     {
@@ -46785,7 +46785,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 vertical; schematic dowel #095",
      "length_in": 61.162782,
-     "mark_model": "BridgeBackwallEB2-F1V08",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F1V08"
     },
     {
@@ -46814,7 +46814,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 vertical; schematic dowel #096",
      "length_in": 61.402782,
-     "mark_model": "BridgeBackwallEB2-F1V09",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F1V09"
     },
     {
@@ -46843,7 +46843,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 vertical; schematic dowel #097",
      "length_in": 61.642782,
-     "mark_model": "BridgeBackwallEB2-F1V10",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F1V10"
     },
     {
@@ -46872,7 +46872,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 vertical; schematic dowel #098",
      "length_in": 61.650282,
-     "mark_model": "BridgeBackwallEB2-F1V11",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F1V11"
     },
     {
@@ -46901,7 +46901,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 vertical; schematic dowel #099",
      "length_in": 61.410282,
-     "mark_model": "BridgeBackwallEB2-F1V12",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F1V12"
     },
     {
@@ -46930,7 +46930,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 vertical; schematic dowel #100",
      "length_in": 61.170282,
-     "mark_model": "BridgeBackwallEB2-F1V13",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F1V13"
     },
     {
@@ -46959,7 +46959,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 vertical; schematic dowel #101",
      "length_in": 60.930282,
-     "mark_model": "BridgeBackwallEB2-F1V14",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F1V14"
     },
     {
@@ -46988,7 +46988,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 vertical; schematic dowel #102",
      "length_in": 60.690282,
-     "mark_model": "BridgeBackwallEB2-F1V15",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F1V15"
     },
     {
@@ -47017,7 +47017,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 vertical; schematic dowel #103",
      "length_in": 60.450282,
-     "mark_model": "BridgeBackwallEB2-F1V16",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F1V16"
     },
     {
@@ -47046,7 +47046,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 vertical; schematic dowel #104",
      "length_in": 60.210282,
-     "mark_model": "BridgeBackwallEB2-F1V17",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F1V17"
     },
     {
@@ -47075,7 +47075,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 horizontal #4",
      "length_in": 228.5,
-     "mark_model": "BridgeBackwallEB2-F1H01",
+     "mark_model": "4D2",
      "name": "SteelBridgeBackwallEB2F1H01"
     },
     {
@@ -47104,7 +47104,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 horizontal #021",
      "length_in": 228.5,
-     "mark_model": "BridgeBackwallEB2-F1H02",
+     "mark_model": "4D2",
      "name": "SteelBridgeBackwallEB2F1H02"
     },
     {
@@ -47133,7 +47133,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 horizontal #022",
      "length_in": 228.5,
-     "mark_model": "BridgeBackwallEB2-F1H03",
+     "mark_model": "4D2",
      "name": "SteelBridgeBackwallEB2F1H03"
     },
     {
@@ -47162,7 +47162,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 horizontal #023",
      "length_in": 228.5,
-     "mark_model": "BridgeBackwallEB2-F1H04",
+     "mark_model": "4D2",
      "name": "SteelBridgeBackwallEB2F1H04"
     },
     {
@@ -47191,7 +47191,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 horizontal #024",
      "length_in": 228.5,
-     "mark_model": "BridgeBackwallEB2-F1H05",
+     "mark_model": "4D2",
      "name": "SteelBridgeBackwallEB2F1H05"
     },
     {
@@ -47220,7 +47220,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 vertical; schematic dowel #5",
      "length_in": 59.482782,
-     "mark_model": "BridgeBackwallEB2-F2V01",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F2V01"
     },
     {
@@ -47249,7 +47249,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 vertical; schematic dowel #089",
      "length_in": 59.722782,
-     "mark_model": "BridgeBackwallEB2-F2V02",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F2V02"
     },
     {
@@ -47278,7 +47278,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 vertical; schematic dowel #090",
      "length_in": 59.962782,
-     "mark_model": "BridgeBackwallEB2-F2V03",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F2V03"
     },
     {
@@ -47307,7 +47307,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 vertical; schematic dowel #091",
      "length_in": 60.202782,
-     "mark_model": "BridgeBackwallEB2-F2V04",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F2V04"
     },
     {
@@ -47336,7 +47336,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 vertical; schematic dowel #092",
      "length_in": 60.442782,
-     "mark_model": "BridgeBackwallEB2-F2V05",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F2V05"
     },
     {
@@ -47365,7 +47365,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 vertical; schematic dowel #093",
      "length_in": 60.682782,
-     "mark_model": "BridgeBackwallEB2-F2V06",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F2V06"
     },
     {
@@ -47394,7 +47394,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 vertical; schematic dowel #094",
      "length_in": 60.922782,
-     "mark_model": "BridgeBackwallEB2-F2V07",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F2V07"
     },
     {
@@ -47423,7 +47423,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 vertical; schematic dowel #095",
      "length_in": 61.162782,
-     "mark_model": "BridgeBackwallEB2-F2V08",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F2V08"
     },
     {
@@ -47452,7 +47452,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 vertical; schematic dowel #096",
      "length_in": 61.402782,
-     "mark_model": "BridgeBackwallEB2-F2V09",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F2V09"
     },
     {
@@ -47481,7 +47481,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 vertical; schematic dowel #097",
      "length_in": 61.642782,
-     "mark_model": "BridgeBackwallEB2-F2V10",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F2V10"
     },
     {
@@ -47510,7 +47510,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 vertical; schematic dowel #098",
      "length_in": 61.650282,
-     "mark_model": "BridgeBackwallEB2-F2V11",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F2V11"
     },
     {
@@ -47539,7 +47539,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 vertical; schematic dowel #099",
      "length_in": 61.410282,
-     "mark_model": "BridgeBackwallEB2-F2V12",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F2V12"
     },
     {
@@ -47568,7 +47568,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 vertical; schematic dowel #100",
      "length_in": 61.170282,
-     "mark_model": "BridgeBackwallEB2-F2V13",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F2V13"
     },
     {
@@ -47597,7 +47597,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 vertical; schematic dowel #101",
      "length_in": 60.930282,
-     "mark_model": "BridgeBackwallEB2-F2V14",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F2V14"
     },
     {
@@ -47626,7 +47626,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 vertical; schematic dowel #102",
      "length_in": 60.690282,
-     "mark_model": "BridgeBackwallEB2-F2V15",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F2V15"
     },
     {
@@ -47655,7 +47655,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 vertical; schematic dowel #103",
      "length_in": 60.450282,
-     "mark_model": "BridgeBackwallEB2-F2V16",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F2V16"
     },
     {
@@ -47684,7 +47684,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 vertical; schematic dowel #104",
      "length_in": 60.210282,
-     "mark_model": "BridgeBackwallEB2-F2V17",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F2V17"
     },
     {
@@ -47713,7 +47713,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 horizontal #4",
      "length_in": 228.5,
-     "mark_model": "BridgeBackwallEB2-F2H01",
+     "mark_model": "4D2",
      "name": "SteelBridgeBackwallEB2F2H01"
     },
     {
@@ -47742,7 +47742,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 horizontal #021",
      "length_in": 228.5,
-     "mark_model": "BridgeBackwallEB2-F2H02",
+     "mark_model": "4D2",
      "name": "SteelBridgeBackwallEB2F2H02"
     },
     {
@@ -47771,7 +47771,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 horizontal #022",
      "length_in": 228.5,
-     "mark_model": "BridgeBackwallEB2-F2H03",
+     "mark_model": "4D2",
      "name": "SteelBridgeBackwallEB2F2H03"
     },
     {
@@ -47800,7 +47800,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 horizontal #023",
      "length_in": 228.5,
-     "mark_model": "BridgeBackwallEB2-F2H04",
+     "mark_model": "4D2",
      "name": "SteelBridgeBackwallEB2F2H04"
     },
     {
@@ -47829,7 +47829,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 horizontal #024",
      "length_in": 228.5,
-     "mark_model": "BridgeBackwallEB2-F2H05",
+     "mark_model": "4D2",
      "name": "SteelBridgeBackwallEB2F2H05"
     },
     {
@@ -47858,7 +47858,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 vertical; schematic dowel #105",
      "length_in": 59.970282,
-     "mark_model": "BridgeBackwallEB2-F1V18",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F1V18"
     },
     {
@@ -47887,7 +47887,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 vertical; schematic dowel #106",
      "length_in": 59.730282,
-     "mark_model": "BridgeBackwallEB2-F1V19",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F1V19"
     },
     {
@@ -47916,7 +47916,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 vertical; schematic dowel #107",
      "length_in": 59.490282,
-     "mark_model": "BridgeBackwallEB2-F1V20",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F1V20"
     },
     {
@@ -47945,7 +47945,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 1 vertical; schematic dowel #108",
      "length_in": 59.482782,
-     "mark_model": "BridgeBackwallEB2-F1V21",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F1V21"
     },
     {
@@ -47974,7 +47974,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 vertical; schematic dowel #105",
      "length_in": 59.970282,
-     "mark_model": "BridgeBackwallEB2-F2V18",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F2V18"
     },
     {
@@ -48003,7 +48003,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 vertical; schematic dowel #106",
      "length_in": 59.730282,
-     "mark_model": "BridgeBackwallEB2-F2V19",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F2V19"
     },
     {
@@ -48032,7 +48032,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 vertical; schematic dowel #107",
      "length_in": 59.490282,
-     "mark_model": "BridgeBackwallEB2-F2V20",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F2V20"
     },
     {
@@ -48061,7 +48061,7 @@
      "group": "SteelBridgeBackwallEB2Bars",
      "label": "EB2 backwall Face 2 vertical; schematic dowel #108",
      "length_in": 59.482782,
-     "mark_model": "BridgeBackwallEB2-F2V21",
+     "mark_model": "5D1",
      "name": "SteelBridgeBackwallEB2F2V21"
     },
     {
@@ -48090,7 +48090,7 @@
      "group": "SteelBridgeCheekEB21Bars",
      "label": "EB2 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat vertical #4",
      "length_in": 91.828207,
-     "mark_model": "BridgeCheekEB21-MV01",
+     "mark_model": "4E1",
      "name": "SteelBridgeCheekEB21MV01"
     },
     {
@@ -48119,7 +48119,7 @@
      "group": "SteelBridgeCheekEB21Bars",
      "label": "EB2 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat vertical #010",
      "length_in": 91.828207,
-     "mark_model": "BridgeCheekEB21-MV02",
+     "mark_model": "4E1",
      "name": "SteelBridgeCheekEB21MV02"
     },
     {
@@ -48148,7 +48148,7 @@
      "group": "SteelBridgeCheekEB21Bars",
      "label": "EB2 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat vertical #011",
      "length_in": 91.828207,
-     "mark_model": "BridgeCheekEB21-MV03",
+     "mark_model": "4E1",
      "name": "SteelBridgeCheekEB21MV03"
     },
     {
@@ -48177,7 +48177,7 @@
      "group": "SteelBridgeCheekEB21Bars",
      "label": "EB2 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat vertical #012",
      "length_in": 91.828207,
-     "mark_model": "BridgeCheekEB21-MV04",
+     "mark_model": "4E1",
      "name": "SteelBridgeCheekEB21MV04"
     },
     {
@@ -48206,7 +48206,7 @@
      "group": "SteelBridgeCheekEB21Bars",
      "label": "EB2 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #4",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB21-MH01",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB21MH01"
     },
     {
@@ -48235,7 +48235,7 @@
      "group": "SteelBridgeCheekEB21Bars",
      "label": "EB2 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #018",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB21-MH02",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB21MH02"
     },
     {
@@ -48264,7 +48264,7 @@
      "group": "SteelBridgeCheekEB21Bars",
      "label": "EB2 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #019",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB21-MH03",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB21MH03"
     },
     {
@@ -48293,7 +48293,7 @@
      "group": "SteelBridgeCheekEB21Bars",
      "label": "EB2 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #020",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB21-MH04",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB21MH04"
     },
     {
@@ -48322,7 +48322,7 @@
      "group": "SteelBridgeCheekEB21Bars",
      "label": "EB2 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #021",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB21-MH05",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB21MH05"
     },
     {
@@ -48351,7 +48351,7 @@
      "group": "SteelBridgeCheekEB21Bars",
      "label": "EB2 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #022",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB21-MH06",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB21MH06"
     },
     {
@@ -48380,7 +48380,7 @@
      "group": "SteelBridgeCheekEB21Bars",
      "label": "EB2 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #023",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB21-MH07",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB21MH07"
     },
     {
@@ -48409,7 +48409,7 @@
      "group": "SteelBridgeCheekEB21Bars",
      "label": "EB2 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #024",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB21-MH08",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB21MH08"
     },
     {
@@ -48438,7 +48438,7 @@
      "group": "SteelBridgeCheekEB21Bars",
      "label": "EB2 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #025",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB21-MH09",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB21MH09"
     },
     {
@@ -48467,7 +48467,7 @@
      "group": "SteelBridgeCheekEB21Bars",
      "label": "EB2 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat vertical #013",
      "length_in": 91.828207,
-     "mark_model": "BridgeCheekEB21-MV05",
+     "mark_model": "4E1",
      "name": "SteelBridgeCheekEB21MV05"
     },
     {
@@ -48496,7 +48496,7 @@
      "group": "SteelBridgeCheekEB21Bars",
      "label": "EB2 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #026",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB21-MH10",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB21MH10"
     },
     {
@@ -48525,7 +48525,7 @@
      "group": "SteelBridgeCheekEB21Bars",
      "label": "EB2 cheek 1 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #027",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB21-MH11",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB21MH11"
     },
     {
@@ -48554,7 +48554,7 @@
      "group": "SteelBridgeCheekEB22Bars",
      "label": "EB2 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat vertical #4",
      "length_in": 91.621329,
-     "mark_model": "BridgeCheekEB22-MV01",
+     "mark_model": "4E1",
      "name": "SteelBridgeCheekEB22MV01"
     },
     {
@@ -48583,7 +48583,7 @@
      "group": "SteelBridgeCheekEB22Bars",
      "label": "EB2 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat vertical #010",
      "length_in": 91.621329,
-     "mark_model": "BridgeCheekEB22-MV02",
+     "mark_model": "4E1",
      "name": "SteelBridgeCheekEB22MV02"
     },
     {
@@ -48612,7 +48612,7 @@
      "group": "SteelBridgeCheekEB22Bars",
      "label": "EB2 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat vertical #011",
      "length_in": 91.621329,
-     "mark_model": "BridgeCheekEB22-MV03",
+     "mark_model": "4E1",
      "name": "SteelBridgeCheekEB22MV03"
     },
     {
@@ -48641,7 +48641,7 @@
      "group": "SteelBridgeCheekEB22Bars",
      "label": "EB2 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat vertical #012",
      "length_in": 91.621329,
-     "mark_model": "BridgeCheekEB22-MV04",
+     "mark_model": "4E1",
      "name": "SteelBridgeCheekEB22MV04"
     },
     {
@@ -48670,7 +48670,7 @@
      "group": "SteelBridgeCheekEB22Bars",
      "label": "EB2 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #4",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB22-MH01",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB22MH01"
     },
     {
@@ -48699,7 +48699,7 @@
      "group": "SteelBridgeCheekEB22Bars",
      "label": "EB2 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #018",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB22-MH02",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB22MH02"
     },
     {
@@ -48728,7 +48728,7 @@
      "group": "SteelBridgeCheekEB22Bars",
      "label": "EB2 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #019",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB22-MH03",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB22MH03"
     },
     {
@@ -48757,7 +48757,7 @@
      "group": "SteelBridgeCheekEB22Bars",
      "label": "EB2 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #020",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB22-MH04",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB22MH04"
     },
     {
@@ -48786,7 +48786,7 @@
      "group": "SteelBridgeCheekEB22Bars",
      "label": "EB2 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #021",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB22-MH05",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB22MH05"
     },
     {
@@ -48815,7 +48815,7 @@
      "group": "SteelBridgeCheekEB22Bars",
      "label": "EB2 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #022",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB22-MH06",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB22MH06"
     },
     {
@@ -48844,7 +48844,7 @@
      "group": "SteelBridgeCheekEB22Bars",
      "label": "EB2 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #023",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB22-MH07",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB22MH07"
     },
     {
@@ -48873,7 +48873,7 @@
      "group": "SteelBridgeCheekEB22Bars",
      "label": "EB2 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #024",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB22-MH08",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB22MH08"
     },
     {
@@ -48902,7 +48902,7 @@
      "group": "SteelBridgeCheekEB22Bars",
      "label": "EB2 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #025",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB22-MH09",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB22MH09"
     },
     {
@@ -48931,7 +48931,7 @@
      "group": "SteelBridgeCheekEB22Bars",
      "label": "EB2 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat vertical #013",
      "length_in": 91.621329,
-     "mark_model": "BridgeCheekEB22-MV05",
+     "mark_model": "4E1",
      "name": "SteelBridgeCheekEB22MV05"
     },
     {
@@ -48960,7 +48960,7 @@
      "group": "SteelBridgeCheekEB22Bars",
      "label": "EB2 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #026",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB22-MH10",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB22MH10"
     },
     {
@@ -48989,7 +48989,7 @@
      "group": "SteelBridgeCheekEB22Bars",
      "label": "EB2 cheek 2 \u2014 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #027",
      "length_in": 37.5,
-     "mark_model": "BridgeCheekEB22-MH11",
+     "mark_model": "4E2",
      "name": "SteelBridgeCheekEB22MH11"
     },
     {
@@ -49110,7 +49110,7 @@
      "group": "PedSteelEB2B1Bars",
      "label": "EB2 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average",
      "length_in": 51.333612,
-     "mark_model": "BridgePedestalEB2B1-X01",
+     "mark_model": "4F1",
      "name": "PedSteelEB2B1X01"
     },
     {
@@ -49231,7 +49231,7 @@
      "group": "PedSteelEB2B1Bars",
      "label": "EB2 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average013",
      "length_in": 51.333612,
-     "mark_model": "BridgePedestalEB2B1-X02",
+     "mark_model": "4F1",
      "name": "PedSteelEB2B1X02"
     },
     {
@@ -49352,7 +49352,7 @@
      "group": "PedSteelEB2B1Bars",
      "label": "EB2 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average014",
      "length_in": 51.333612,
-     "mark_model": "BridgePedestalEB2B1-X03",
+     "mark_model": "4F1",
      "name": "PedSteelEB2B1X03"
     },
     {
@@ -49473,7 +49473,7 @@
      "group": "PedSteelEB2B1Bars",
      "label": "EB2 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average015",
      "length_in": 51.333612,
-     "mark_model": "BridgePedestalEB2B1-X04",
+     "mark_model": "4F1",
      "name": "PedSteelEB2B1X04"
     },
     {
@@ -49594,7 +49594,7 @@
      "group": "PedSteelEB2B1Bars",
      "label": "EB2 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average016",
      "length_in": 51.333612,
-     "mark_model": "BridgePedestalEB2B1-X05",
+     "mark_model": "4F1",
      "name": "PedSteelEB2B1X05"
     },
     {
@@ -49715,7 +49715,7 @@
      "group": "PedSteelEB2B1Bars",
      "label": "EB2 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average017",
      "length_in": 51.333612,
-     "mark_model": "BridgePedestalEB2B1-X06",
+     "mark_model": "4F1",
      "name": "PedSteelEB2B1X06"
     },
     {
@@ -49836,7 +49836,7 @@
      "group": "PedSteelEB2B1Bars",
      "label": "EB2 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average018",
      "length_in": 51.333612,
-     "mark_model": "BridgePedestalEB2B1-X07",
+     "mark_model": "4F1",
      "name": "PedSteelEB2B1X07"
     },
     {
@@ -49957,7 +49957,7 @@
      "group": "PedSteelEB2B1Bars",
      "label": "EB2 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average",
      "length_in": 56.833612,
-     "mark_model": "BridgePedestalEB2B1-Y01",
+     "mark_model": "4F3",
      "name": "PedSteelEB2B1Y01"
     },
     {
@@ -50078,7 +50078,7 @@
      "group": "PedSteelEB2B1Bars",
      "label": "EB2 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average007",
      "length_in": 56.833612,
-     "mark_model": "BridgePedestalEB2B1-Y02",
+     "mark_model": "4F3",
      "name": "PedSteelEB2B1Y02"
     },
     {
@@ -50199,7 +50199,7 @@
      "group": "PedSteelEB2B1Bars",
      "label": "EB2 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average008",
      "length_in": 56.833612,
-     "mark_model": "BridgePedestalEB2B1-Y03",
+     "mark_model": "4F3",
      "name": "PedSteelEB2B1Y03"
     },
     {
@@ -50320,7 +50320,7 @@
      "group": "PedSteelEB2B1Bars",
      "label": "EB2 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average009",
      "length_in": 56.833612,
-     "mark_model": "BridgePedestalEB2B1-Y04",
+     "mark_model": "4F3",
      "name": "PedSteelEB2B1Y04"
     },
     {
@@ -50441,7 +50441,7 @@
      "group": "PedSteelEB2B2Bars",
      "label": "EB2 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average",
      "length_in": 51.333612,
-     "mark_model": "BridgePedestalEB2B2-X01",
+     "mark_model": "4F1",
      "name": "PedSteelEB2B2X01"
     },
     {
@@ -50562,7 +50562,7 @@
      "group": "PedSteelEB2B2Bars",
      "label": "EB2 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average013",
      "length_in": 51.333612,
-     "mark_model": "BridgePedestalEB2B2-X02",
+     "mark_model": "4F1",
      "name": "PedSteelEB2B2X02"
     },
     {
@@ -50683,7 +50683,7 @@
      "group": "PedSteelEB2B2Bars",
      "label": "EB2 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average014",
      "length_in": 51.333612,
-     "mark_model": "BridgePedestalEB2B2-X03",
+     "mark_model": "4F1",
      "name": "PedSteelEB2B2X03"
     },
     {
@@ -50804,7 +50804,7 @@
      "group": "PedSteelEB2B2Bars",
      "label": "EB2 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average015",
      "length_in": 51.333612,
-     "mark_model": "BridgePedestalEB2B2-X04",
+     "mark_model": "4F1",
      "name": "PedSteelEB2B2X04"
     },
     {
@@ -50925,7 +50925,7 @@
      "group": "PedSteelEB2B2Bars",
      "label": "EB2 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average016",
      "length_in": 51.333612,
-     "mark_model": "BridgePedestalEB2B2-X05",
+     "mark_model": "4F1",
      "name": "PedSteelEB2B2X05"
     },
     {
@@ -51046,7 +51046,7 @@
      "group": "PedSteelEB2B2Bars",
      "label": "EB2 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average017",
      "length_in": 51.333612,
-     "mark_model": "BridgePedestalEB2B2-X06",
+     "mark_model": "4F1",
      "name": "PedSteelEB2B2X06"
     },
     {
@@ -51167,7 +51167,7 @@
      "group": "PedSteelEB2B2Bars",
      "label": "EB2 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average018",
      "length_in": 51.333612,
-     "mark_model": "BridgePedestalEB2B2-X07",
+     "mark_model": "4F1",
      "name": "PedSteelEB2B2X07"
     },
     {
@@ -51288,7 +51288,7 @@
      "group": "PedSteelEB2B2Bars",
      "label": "EB2 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average",
      "length_in": 57.333612,
-     "mark_model": "BridgePedestalEB2B2-Y01",
+     "mark_model": "4F2",
      "name": "PedSteelEB2B2Y01"
     },
     {
@@ -51409,7 +51409,7 @@
      "group": "PedSteelEB2B2Bars",
      "label": "EB2 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average007",
      "length_in": 57.333612,
-     "mark_model": "BridgePedestalEB2B2-Y02",
+     "mark_model": "4F2",
      "name": "PedSteelEB2B2Y02"
     },
     {
@@ -51530,7 +51530,7 @@
      "group": "PedSteelEB2B2Bars",
      "label": "EB2 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average008",
      "length_in": 57.333612,
-     "mark_model": "BridgePedestalEB2B2-Y03",
+     "mark_model": "4F2",
      "name": "PedSteelEB2B2Y03"
     },
     {
@@ -51651,7 +51651,7 @@
      "group": "PedSteelEB2B2Bars",
      "label": "EB2 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average009",
      "length_in": 57.333612,
-     "mark_model": "BridgePedestalEB2B2-Y04",
+     "mark_model": "4F2",
      "name": "PedSteelEB2B2Y04"
     }
    ],
@@ -73314,7 +73314,7 @@
      "group": "CagePierBars",
      "label": "Pier Top row 1 #6 Long01",
      "length_in": 224.0,
-     "mark_model": "Pier-Long01",
+     "mark_model": "6A1",
      "name": "CagePierLong01"
     },
     {
@@ -73343,7 +73343,7 @@
      "group": "CagePierBars",
      "label": "Pier Top row 1 #6 Long02",
      "length_in": 224.0,
-     "mark_model": "Pier-Long02",
+     "mark_model": "6A1",
      "name": "CagePierLong02"
     },
     {
@@ -73372,7 +73372,7 @@
      "group": "CagePierBars",
      "label": "Pier Top row 1 #6 Long03",
      "length_in": 224.0,
-     "mark_model": "Pier-Long03",
+     "mark_model": "6A1",
      "name": "CagePierLong03"
     },
     {
@@ -73401,7 +73401,7 @@
      "group": "CagePierBars",
      "label": "Pier Top row 1 #6 Long04",
      "length_in": 224.0,
-     "mark_model": "Pier-Long04",
+     "mark_model": "6A1",
      "name": "CagePierLong04"
     },
     {
@@ -73430,7 +73430,7 @@
      "group": "CagePierBars",
      "label": "Pier Top row 1 #6 Long05",
      "length_in": 224.0,
-     "mark_model": "Pier-Long05",
+     "mark_model": "6A1",
      "name": "CagePierLong05"
     },
     {
@@ -73459,7 +73459,7 @@
      "group": "CagePierBars",
      "label": "Pier Bottom row 1 #9 Long06",
      "length_in": 224.0,
-     "mark_model": "Pier-Long06",
+     "mark_model": "9A2",
      "name": "CagePierLong06"
     },
     {
@@ -73488,7 +73488,7 @@
      "group": "CagePierBars",
      "label": "Pier Bottom row 1 #9 Long07",
      "length_in": 224.0,
-     "mark_model": "Pier-Long07",
+     "mark_model": "9A2",
      "name": "CagePierLong07"
     },
     {
@@ -73517,7 +73517,7 @@
      "group": "CagePierBars",
      "label": "Pier Bottom row 1 #9 Long08",
      "length_in": 224.0,
-     "mark_model": "Pier-Long08",
+     "mark_model": "9A2",
      "name": "CagePierLong08"
     },
     {
@@ -73546,7 +73546,7 @@
      "group": "CagePierBars",
      "label": "Pier Bottom row 1 #9 Long09",
      "length_in": 224.0,
-     "mark_model": "Pier-Long09",
+     "mark_model": "9A2",
      "name": "CagePierLong09"
     },
     {
@@ -73575,7 +73575,7 @@
      "group": "CagePierBars",
      "label": "Pier Skin #6 Long10",
      "length_in": 224.0,
-     "mark_model": "Pier-Long10",
+     "mark_model": "6A3",
      "name": "CagePierLong10"
     },
     {
@@ -73604,7 +73604,7 @@
      "group": "CagePierBars",
      "label": "Pier Skin #6 Long11",
      "length_in": 224.0,
-     "mark_model": "Pier-Long11",
+     "mark_model": "6A3",
      "name": "CagePierLong11"
     },
     {
@@ -73633,7 +73633,7 @@
      "group": "CagePierBars",
      "label": "Pier Skin #6 Long12",
      "length_in": 224.0,
-     "mark_model": "Pier-Long12",
+     "mark_model": "6A3",
      "name": "CagePierLong12"
     },
     {
@@ -73662,7 +73662,7 @@
      "group": "CagePierBars",
      "label": "Pier Skin #6 Long13",
      "length_in": 224.0,
-     "mark_model": "Pier-Long13",
+     "mark_model": "6A3",
      "name": "CagePierLong13"
     },
     {
@@ -73691,7 +73691,7 @@
      "group": "CagePierBars",
      "label": "Pier Skin #6 Long14",
      "length_in": 224.0,
-     "mark_model": "Pier-Long14",
+     "mark_model": "6A3",
      "name": "CagePierLong14"
     },
     {
@@ -73720,7 +73720,7 @@
      "group": "CagePierBars",
      "label": "Pier Skin #6 Long15",
      "length_in": 224.0,
-     "mark_model": "Pier-Long15",
+     "mark_model": "6A3",
      "name": "CagePierLong15"
     },
     {
@@ -73749,7 +73749,7 @@
      "group": "CagePierBars",
      "label": "Pier Skin #6 Long16",
      "length_in": 224.0,
-     "mark_model": "Pier-Long16",
+     "mark_model": "6A3",
      "name": "CagePierLong16"
     },
     {
@@ -73778,7 +73778,7 @@
      "group": "CagePierBars",
      "label": "Pier Skin #6 Long17",
      "length_in": 224.0,
-     "mark_model": "Pier-Long17",
+     "mark_model": "6A3",
      "name": "CagePierLong17"
     },
     {
@@ -73899,7 +73899,7 @@
      "group": "CagePierBars",
      "label": "Pier Added span 1 #5 Added01",
      "length_in": 48.872234,
-     "mark_model": "Pier-Added01",
+     "mark_model": "5C",
      "name": "CagePierAdded01"
     },
     {
@@ -74020,7 +74020,7 @@
      "group": "CagePierBars",
      "label": "Pier Added span 2 #5 Added02",
      "length_in": 48.872234,
-     "mark_model": "Pier-Added02",
+     "mark_model": "5C",
      "name": "CagePierAdded02"
     },
     {
@@ -74141,7 +74141,7 @@
      "group": "CagePierBars",
      "label": "Pier Added span 3 #5 Added03",
      "length_in": 48.872234,
-     "mark_model": "Pier-Added03",
+     "mark_model": "5C",
      "name": "CagePierAdded03"
     },
     {
@@ -74262,7 +74262,7 @@
      "group": "CagePierBars",
      "label": "Pier Added span 1 #5 Added04",
      "length_in": 48.872234,
-     "mark_model": "Pier-Added04",
+     "mark_model": "5C",
      "name": "CagePierAdded04"
     },
     {
@@ -74383,7 +74383,7 @@
      "group": "CagePierBars",
      "label": "Pier Added span 2 #5 Added05",
      "length_in": 48.872234,
-     "mark_model": "Pier-Added05",
+     "mark_model": "5C",
      "name": "CagePierAdded05"
     },
     {
@@ -74504,7 +74504,7 @@
      "group": "CagePierBars",
      "label": "Pier Added span 3 #5 Added06",
      "length_in": 48.872234,
-     "mark_model": "Pier-Added06",
+     "mark_model": "5C",
      "name": "CagePierAdded06"
     },
     {
@@ -74625,7 +74625,7 @@
      "group": "CagePierBars",
      "label": "Pier Added span 1 #5 Added07",
      "length_in": 48.872234,
-     "mark_model": "Pier-Added07",
+     "mark_model": "5C",
      "name": "CagePierAdded07"
     },
     {
@@ -74746,7 +74746,7 @@
      "group": "CagePierBars",
      "label": "Pier Added span 2 #5 Added08",
      "length_in": 48.872234,
-     "mark_model": "Pier-Added08",
+     "mark_model": "5C",
      "name": "CagePierAdded08"
     },
     {
@@ -74867,7 +74867,7 @@
      "group": "CagePierBars",
      "label": "Pier Added span 3 #5 Added09",
      "length_in": 48.872234,
-     "mark_model": "Pier-Added09",
+     "mark_model": "5C",
      "name": "CagePierAdded09"
     },
     {
@@ -74988,7 +74988,7 @@
      "group": "CagePierBars",
      "label": "Pier Added span 1 #5 Added10",
      "length_in": 48.872234,
-     "mark_model": "Pier-Added10",
+     "mark_model": "5C",
      "name": "CagePierAdded10"
     },
     {
@@ -75109,7 +75109,7 @@
      "group": "CagePierBars",
      "label": "Pier Added span 2 #5 Added11",
      "length_in": 48.872234,
-     "mark_model": "Pier-Added11",
+     "mark_model": "5C",
      "name": "CagePierAdded11"
     },
     {
@@ -75230,7 +75230,7 @@
      "group": "CagePierBars",
      "label": "Pier Added span 3 #5 Added12",
      "length_in": 48.872234,
-     "mark_model": "Pier-Added12",
+     "mark_model": "5C",
      "name": "CagePierAdded12"
     },
     {
@@ -75351,7 +75351,7 @@
      "group": "CagePierBars",
      "label": "Pier Added span 1 #5 Added13",
      "length_in": 48.872234,
-     "mark_model": "Pier-Added13",
+     "mark_model": "5C",
      "name": "CagePierAdded13"
     },
     {
@@ -75472,7 +75472,7 @@
      "group": "CagePierBars",
      "label": "Pier Added span 2 #5 Added14",
      "length_in": 48.872234,
-     "mark_model": "Pier-Added14",
+     "mark_model": "5C",
      "name": "CagePierAdded14"
     },
     {
@@ -75593,7 +75593,7 @@
      "group": "CagePierBars",
      "label": "Pier Added span 3 #5 Added15",
      "length_in": 48.872234,
-     "mark_model": "Pier-Added15",
+     "mark_model": "5C",
      "name": "CagePierAdded15"
     },
     {
@@ -75852,7 +75852,7 @@
      "group": "CagePierBars",
      "label": "Pier R1 hoop #5 Trans_R1_1",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R1_1",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R1_1"
     },
     {
@@ -76111,7 +76111,7 @@
      "group": "CagePierBars",
      "label": "Pier R1 hoop #5 Trans_R1_2",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R1_2",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R1_2"
     },
     {
@@ -76370,7 +76370,7 @@
      "group": "CagePierBars",
      "label": "Pier R1 hoop #5 Trans_R1_3",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R1_3",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R1_3"
     },
     {
@@ -76583,7 +76583,7 @@
      "group": "CagePierBars",
      "label": "Pier R2 pile_u #5 Trans_R2_1",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R2_1",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R2_1"
     },
     {
@@ -76796,7 +76796,7 @@
      "group": "CagePierBars",
      "label": "Pier R2 pile_u #5 Trans_R2_2",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R2_2",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R2_2"
     },
     {
@@ -77009,7 +77009,7 @@
      "group": "CagePierBars",
      "label": "Pier R2 pile_u #5 Trans_R2_3",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R2_3",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R2_3"
     },
     {
@@ -77222,7 +77222,7 @@
      "group": "CagePierBars",
      "label": "Pier R2 pile_u #5 Trans_R2_4",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R2_4",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R2_4"
     },
     {
@@ -77435,7 +77435,7 @@
      "group": "CagePierBars",
      "label": "Pier R2 pile_u #5 Trans_R2_5",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R2_5",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R2_5"
     },
     {
@@ -77648,7 +77648,7 @@
      "group": "CagePierBars",
      "label": "Pier R2 pile_u #5 Trans_R2_6",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R2_6",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R2_6"
     },
     {
@@ -77907,7 +77907,7 @@
      "group": "CagePierBars",
      "label": "Pier R3 hoop #5 Trans_R3_1",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R3_1",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R3_1"
     },
     {
@@ -78166,7 +78166,7 @@
      "group": "CagePierBars",
      "label": "Pier R3 hoop #5 Trans_R3_2",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R3_2",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R3_2"
     },
     {
@@ -78425,7 +78425,7 @@
      "group": "CagePierBars",
      "label": "Pier R3 hoop #5 Trans_R3_3",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R3_3",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R3_3"
     },
     {
@@ -78684,7 +78684,7 @@
      "group": "CagePierBars",
      "label": "Pier R3 hoop #5 Trans_R3_4",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R3_4",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R3_4"
     },
     {
@@ -78943,7 +78943,7 @@
      "group": "CagePierBars",
      "label": "Pier R3 hoop #5 Trans_R3_5",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R3_5",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R3_5"
     },
     {
@@ -79202,7 +79202,7 @@
      "group": "CagePierBars",
      "label": "Pier R3 hoop #5 Trans_R3_6",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R3_6",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R3_6"
     },
     {
@@ -79415,7 +79415,7 @@
      "group": "CagePierBars",
      "label": "Pier R4 pile_u #5 Trans_R4_1",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R4_1",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R4_1"
     },
     {
@@ -79628,7 +79628,7 @@
      "group": "CagePierBars",
      "label": "Pier R4 pile_u #5 Trans_R4_2",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R4_2",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R4_2"
     },
     {
@@ -79841,7 +79841,7 @@
      "group": "CagePierBars",
      "label": "Pier R4 pile_u #5 Trans_R4_3",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R4_3",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R4_3"
     },
     {
@@ -80054,7 +80054,7 @@
      "group": "CagePierBars",
      "label": "Pier R4 pile_u #5 Trans_R4_4",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R4_4",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R4_4"
     },
     {
@@ -80267,7 +80267,7 @@
      "group": "CagePierBars",
      "label": "Pier R4 pile_u #5 Trans_R4_5",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R4_5",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R4_5"
     },
     {
@@ -80480,7 +80480,7 @@
      "group": "CagePierBars",
      "label": "Pier R4 pile_u #5 Trans_R4_6",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R4_6",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R4_6"
     },
     {
@@ -80739,7 +80739,7 @@
      "group": "CagePierBars",
      "label": "Pier R5 hoop #5 Trans_R5_1",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R5_1",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R5_1"
     },
     {
@@ -80998,7 +80998,7 @@
      "group": "CagePierBars",
      "label": "Pier R5 hoop #5 Trans_R5_2",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R5_2",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R5_2"
     },
     {
@@ -81257,7 +81257,7 @@
      "group": "CagePierBars",
      "label": "Pier R5 hoop #5 Trans_R5_3",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R5_3",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R5_3"
     },
     {
@@ -81516,7 +81516,7 @@
      "group": "CagePierBars",
      "label": "Pier R5 hoop #5 Trans_R5_4",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R5_4",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R5_4"
     },
     {
@@ -81775,7 +81775,7 @@
      "group": "CagePierBars",
      "label": "Pier R5 hoop #5 Trans_R5_5",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R5_5",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R5_5"
     },
     {
@@ -82034,7 +82034,7 @@
      "group": "CagePierBars",
      "label": "Pier R5 hoop #5 Trans_R5_6",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R5_6",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R5_6"
     },
     {
@@ -82247,7 +82247,7 @@
      "group": "CagePierBars",
      "label": "Pier R6 pile_u #5 Trans_R6_1",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R6_1",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R6_1"
     },
     {
@@ -82460,7 +82460,7 @@
      "group": "CagePierBars",
      "label": "Pier R6 pile_u #5 Trans_R6_2",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R6_2",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R6_2"
     },
     {
@@ -82673,7 +82673,7 @@
      "group": "CagePierBars",
      "label": "Pier R6 pile_u #5 Trans_R6_3",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R6_3",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R6_3"
     },
     {
@@ -82886,7 +82886,7 @@
      "group": "CagePierBars",
      "label": "Pier R6 pile_u #5 Trans_R6_4",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R6_4",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R6_4"
     },
     {
@@ -83099,7 +83099,7 @@
      "group": "CagePierBars",
      "label": "Pier R6 pile_u #5 Trans_R6_5",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R6_5",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R6_5"
     },
     {
@@ -83312,7 +83312,7 @@
      "group": "CagePierBars",
      "label": "Pier R6 pile_u #5 Trans_R6_6",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R6_6",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R6_6"
     },
     {
@@ -83571,7 +83571,7 @@
      "group": "CagePierBars",
      "label": "Pier R7 hoop #5 Trans_R7_1",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R7_1",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R7_1"
     },
     {
@@ -83830,7 +83830,7 @@
      "group": "CagePierBars",
      "label": "Pier R7 hoop #5 Trans_R7_2",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R7_2",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R7_2"
     },
     {
@@ -84089,7 +84089,7 @@
      "group": "CagePierBars",
      "label": "Pier R7 hoop #5 Trans_R7_3",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R7_3",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R7_3"
     },
     {
@@ -84348,7 +84348,7 @@
      "group": "CagePierBars",
      "label": "Pier R7 hoop #5 Trans_R7_4",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R7_4",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R7_4"
     },
     {
@@ -84607,7 +84607,7 @@
      "group": "CagePierBars",
      "label": "Pier R7 hoop #5 Trans_R7_5",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R7_5",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R7_5"
     },
     {
@@ -84866,7 +84866,7 @@
      "group": "CagePierBars",
      "label": "Pier R7 hoop #5 Trans_R7_6",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R7_6",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R7_6"
     },
     {
@@ -85079,7 +85079,7 @@
      "group": "CagePierBars",
      "label": "Pier R8 pile_u #5 Trans_R8_1",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R8_1",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R8_1"
     },
     {
@@ -85292,7 +85292,7 @@
      "group": "CagePierBars",
      "label": "Pier R8 pile_u #5 Trans_R8_2",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R8_2",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R8_2"
     },
     {
@@ -85505,7 +85505,7 @@
      "group": "CagePierBars",
      "label": "Pier R8 pile_u #5 Trans_R8_3",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R8_3",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R8_3"
     },
     {
@@ -85718,7 +85718,7 @@
      "group": "CagePierBars",
      "label": "Pier R8 pile_u #5 Trans_R8_4",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R8_4",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R8_4"
     },
     {
@@ -85931,7 +85931,7 @@
      "group": "CagePierBars",
      "label": "Pier R8 pile_u #5 Trans_R8_5",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R8_5",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R8_5"
     },
     {
@@ -86144,7 +86144,7 @@
      "group": "CagePierBars",
      "label": "Pier R8 pile_u #5 Trans_R8_6",
      "length_in": 115.744468,
-     "mark_model": "Pier-Trans_R8_6",
+     "mark_model": "5B2",
      "name": "CagePierTrans_R8_6"
     },
     {
@@ -86403,7 +86403,7 @@
      "group": "CagePierBars",
      "label": "Pier R9 hoop #5 Trans_R9_1",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R9_1",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R9_1"
     },
     {
@@ -86662,7 +86662,7 @@
      "group": "CagePierBars",
      "label": "Pier R9 hoop #5 Trans_R9_2",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R9_2",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R9_2"
     },
     {
@@ -86921,7 +86921,7 @@
      "group": "CagePierBars",
      "label": "Pier R9 hoop #5 Trans_R9_3",
      "length_in": 152.129204,
-     "mark_model": "Pier-Trans_R9_3",
+     "mark_model": "5B1",
      "name": "CagePierTrans_R9_3"
     },
     {
@@ -87042,7 +87042,7 @@
      "group": "CagePierBars",
      "label": "Pier End left horizontal #5 End_left_H1",
      "length_in": 57.612865,
-     "mark_model": "Pier-End_left_H1",
+     "mark_model": "5D1",
      "name": "CagePierEnd_left_H1"
     },
     {
@@ -87163,7 +87163,7 @@
      "group": "CagePierBars",
      "label": "Pier End left horizontal #5 End_left_H2",
      "length_in": 57.612865,
-     "mark_model": "Pier-End_left_H2",
+     "mark_model": "5D1",
      "name": "CagePierEnd_left_H2"
     },
     {
@@ -87284,7 +87284,7 @@
      "group": "CagePierBars",
      "label": "Pier End left vertical #5 End_left_V1",
      "length_in": 45.612861,
-     "mark_model": "Pier-End_left_V1",
+     "mark_model": "5D2",
      "name": "CagePierEnd_left_V1"
     },
     {
@@ -87405,7 +87405,7 @@
      "group": "CagePierBars",
      "label": "Pier End left vertical #5 End_left_V2",
      "length_in": 45.612861,
-     "mark_model": "Pier-End_left_V2",
+     "mark_model": "5D2",
      "name": "CagePierEnd_left_V2"
     },
     {
@@ -87526,7 +87526,7 @@
      "group": "CagePierBars",
      "label": "Pier End left vertical #5 End_left_V3",
      "length_in": 45.612861,
-     "mark_model": "Pier-End_left_V3",
+     "mark_model": "5D2",
      "name": "CagePierEnd_left_V3"
     },
     {
@@ -87647,7 +87647,7 @@
      "group": "CagePierBars",
      "label": "Pier End right horizontal #5 End_right_H1",
      "length_in": 57.612865,
-     "mark_model": "Pier-End_right_H1",
+     "mark_model": "5D1",
      "name": "CagePierEnd_right_H1"
     },
     {
@@ -87768,7 +87768,7 @@
      "group": "CagePierBars",
      "label": "Pier End right horizontal #5 End_right_H2",
      "length_in": 57.612865,
-     "mark_model": "Pier-End_right_H2",
+     "mark_model": "5D1",
      "name": "CagePierEnd_right_H2"
     },
     {
@@ -87889,7 +87889,7 @@
      "group": "CagePierBars",
      "label": "Pier End right vertical #5 End_right_V1",
      "length_in": 45.612861,
-     "mark_model": "Pier-End_right_V1",
+     "mark_model": "5D2",
      "name": "CagePierEnd_right_V1"
     },
     {
@@ -88010,7 +88010,7 @@
      "group": "CagePierBars",
      "label": "Pier End right vertical #5 End_right_V2",
      "length_in": 45.612861,
-     "mark_model": "Pier-End_right_V2",
+     "mark_model": "5D2",
      "name": "CagePierEnd_right_V2"
     },
     {
@@ -88131,7 +88131,7 @@
      "group": "CagePierBars",
      "label": "Pier End right vertical #5 End_right_V3",
      "length_in": 45.612861,
-     "mark_model": "Pier-End_right_V3",
+     "mark_model": "5D2",
      "name": "CagePierEnd_right_V3"
     },
     {
@@ -88252,7 +88252,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 X U-bars @ 6.0 in average",
      "length_in": 75.37351,
-     "mark_model": "BridgePedestalPierB1-X01",
+     "mark_model": "4E2",
      "name": "PedSteelPierB1X01"
     },
     {
@@ -88373,7 +88373,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 X U-bars @ 6.0 in average013",
      "length_in": 75.37351,
-     "mark_model": "BridgePedestalPierB1-X02",
+     "mark_model": "4E2",
      "name": "PedSteelPierB1X02"
     },
     {
@@ -88494,7 +88494,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 X U-bars @ 6.0 in average014",
      "length_in": 75.37351,
-     "mark_model": "BridgePedestalPierB1-X03",
+     "mark_model": "4E2",
      "name": "PedSteelPierB1X03"
     },
     {
@@ -88615,7 +88615,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 X U-bars @ 6.0 in average015",
      "length_in": 75.37351,
-     "mark_model": "BridgePedestalPierB1-X04",
+     "mark_model": "4E2",
      "name": "PedSteelPierB1X04"
     },
     {
@@ -88736,7 +88736,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 X U-bars @ 6.0 in average016",
      "length_in": 75.37351,
-     "mark_model": "BridgePedestalPierB1-X05",
+     "mark_model": "4E2",
      "name": "PedSteelPierB1X05"
     },
     {
@@ -88857,7 +88857,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 X U-bars @ 6.0 in average017",
      "length_in": 75.37351,
-     "mark_model": "BridgePedestalPierB1-X06",
+     "mark_model": "4E2",
      "name": "PedSteelPierB1X06"
     },
     {
@@ -88978,7 +88978,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 X U-bars @ 6.0 in average018",
      "length_in": 75.37351,
-     "mark_model": "BridgePedestalPierB1-X07",
+     "mark_model": "4E2",
      "name": "PedSteelPierB1X07"
     },
     {
@@ -89099,7 +89099,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 Y U-bars @ 6.0 in average",
      "length_in": 67.87351,
-     "mark_model": "BridgePedestalPierB1-Y01",
+     "mark_model": "4E4",
      "name": "PedSteelPierB1Y01"
     },
     {
@@ -89220,7 +89220,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 Y U-bars @ 6.0 in average013",
      "length_in": 67.87351,
-     "mark_model": "BridgePedestalPierB1-Y02",
+     "mark_model": "4E4",
      "name": "PedSteelPierB1Y02"
     },
     {
@@ -89341,7 +89341,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 Y U-bars @ 6.0 in average014",
      "length_in": 67.87351,
-     "mark_model": "BridgePedestalPierB1-Y03",
+     "mark_model": "4E4",
      "name": "PedSteelPierB1Y03"
     },
     {
@@ -89462,7 +89462,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 Y U-bars @ 6.0 in average015",
      "length_in": 67.87351,
-     "mark_model": "BridgePedestalPierB1-Y04",
+     "mark_model": "4E4",
      "name": "PedSteelPierB1Y04"
     },
     {
@@ -89583,7 +89583,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 Y U-bars @ 6.0 in average016",
      "length_in": 67.87351,
-     "mark_model": "BridgePedestalPierB1-Y05",
+     "mark_model": "4E4",
      "name": "PedSteelPierB1Y05"
     },
     {
@@ -89704,7 +89704,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 Y U-bars @ 6.0 in average017",
      "length_in": 67.87351,
-     "mark_model": "BridgePedestalPierB1-Y06",
+     "mark_model": "4E4",
      "name": "PedSteelPierB1Y06"
     },
     {
@@ -89825,7 +89825,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 Y U-bars @ 6.0 in average018",
      "length_in": 67.87351,
-     "mark_model": "BridgePedestalPierB1-Y07",
+     "mark_model": "4E4",
      "name": "PedSteelPierB1Y07"
     },
     {
@@ -89946,7 +89946,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 X U-bars @ 6.0 in average",
      "length_in": 67.37351,
-     "mark_model": "BridgePedestalPierB2-X01",
+     "mark_model": "4E1",
      "name": "PedSteelPierB2X01"
     },
     {
@@ -90067,7 +90067,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 X U-bars @ 6.0 in average013",
      "length_in": 67.37351,
-     "mark_model": "BridgePedestalPierB2-X02",
+     "mark_model": "4E1",
      "name": "PedSteelPierB2X02"
     },
     {
@@ -90188,7 +90188,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 X U-bars @ 6.0 in average014",
      "length_in": 67.37351,
-     "mark_model": "BridgePedestalPierB2-X03",
+     "mark_model": "4E1",
      "name": "PedSteelPierB2X03"
     },
     {
@@ -90309,7 +90309,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 X U-bars @ 6.0 in average015",
      "length_in": 67.37351,
-     "mark_model": "BridgePedestalPierB2-X04",
+     "mark_model": "4E1",
      "name": "PedSteelPierB2X04"
     },
     {
@@ -90430,7 +90430,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 X U-bars @ 6.0 in average016",
      "length_in": 67.37351,
-     "mark_model": "BridgePedestalPierB2-X05",
+     "mark_model": "4E1",
      "name": "PedSteelPierB2X05"
     },
     {
@@ -90551,7 +90551,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 X U-bars @ 6.0 in average017",
      "length_in": 67.37351,
-     "mark_model": "BridgePedestalPierB2-X06",
+     "mark_model": "4E1",
      "name": "PedSteelPierB2X06"
     },
     {
@@ -90672,7 +90672,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 X U-bars @ 6.0 in average018",
      "length_in": 67.37351,
-     "mark_model": "BridgePedestalPierB2-X07",
+     "mark_model": "4E1",
      "name": "PedSteelPierB2X07"
     },
     {
@@ -90793,7 +90793,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 Y U-bars @ 6.0 in average",
      "length_in": 58.87351,
-     "mark_model": "BridgePedestalPierB2-Y01",
+     "mark_model": "4E3",
      "name": "PedSteelPierB2Y01"
     },
     {
@@ -90914,7 +90914,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 Y U-bars @ 6.0 in average013",
      "length_in": 58.87351,
-     "mark_model": "BridgePedestalPierB2-Y02",
+     "mark_model": "4E3",
      "name": "PedSteelPierB2Y02"
     },
     {
@@ -91035,7 +91035,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 Y U-bars @ 6.0 in average014",
      "length_in": 58.87351,
-     "mark_model": "BridgePedestalPierB2-Y03",
+     "mark_model": "4E3",
      "name": "PedSteelPierB2Y03"
     },
     {
@@ -91156,7 +91156,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 Y U-bars @ 6.0 in average015",
      "length_in": 58.87351,
-     "mark_model": "BridgePedestalPierB2-Y04",
+     "mark_model": "4E3",
      "name": "PedSteelPierB2Y04"
     },
     {
@@ -91277,7 +91277,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 Y U-bars @ 6.0 in average016",
      "length_in": 58.87351,
-     "mark_model": "BridgePedestalPierB2-Y05",
+     "mark_model": "4E3",
      "name": "PedSteelPierB2Y05"
     },
     {
@@ -91398,7 +91398,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 Y U-bars @ 6.0 in average017",
      "length_in": 58.87351,
-     "mark_model": "BridgePedestalPierB2-Y06",
+     "mark_model": "4E3",
      "name": "PedSteelPierB2Y06"
     },
     {
@@ -91519,7 +91519,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 Y U-bars @ 6.0 in average018",
      "length_in": 58.87351,
-     "mark_model": "BridgePedestalPierB2-Y07",
+     "mark_model": "4E3",
      "name": "PedSteelPierB2Y07"
     }
    ],

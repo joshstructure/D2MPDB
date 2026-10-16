@@ -1,455 +1,455 @@
 support,mark,size,designation,description,native_object,native_label,model_mark,centerline_length_in,list_length_in
-END BENT 1,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB1F1H01,EB1 backwall Face 1 horizontal #4,BridgeBackwallEB1-F1H01,228.500,229
-END BENT 1,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB1F1H02,EB1 backwall Face 1 horizontal #021,BridgeBackwallEB1-F1H02,228.500,229
-END BENT 1,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB1F1H03,EB1 backwall Face 1 horizontal #022,BridgeBackwallEB1-F1H03,228.500,229
-END BENT 1,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB1F1H04,EB1 backwall Face 1 horizontal #023,BridgeBackwallEB1-F1H04,228.500,229
-END BENT 1,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB1F1H05,EB1 backwall Face 1 horizontal #024,BridgeBackwallEB1-F1H05,228.500,229
-END BENT 1,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB1F2H01,EB1 backwall Face 2 horizontal #4,BridgeBackwallEB1-F2H01,228.500,229
-END BENT 1,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB1F2H02,EB1 backwall Face 2 horizontal #021,BridgeBackwallEB1-F2H02,228.500,229
-END BENT 1,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB1F2H03,EB1 backwall Face 2 horizontal #022,BridgeBackwallEB1-F2H03,228.500,229
-END BENT 1,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB1F2H04,EB1 backwall Face 2 horizontal #023,BridgeBackwallEB1-F2H04,228.500,229
-END BENT 1,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB1F2H05,EB1 backwall Face 2 horizontal #024,BridgeBackwallEB1-F2H05,228.500,229
-END BENT 1,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB11MV01,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #4",BridgeCheekEB11-MV01,91.876,92
-END BENT 1,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB11MV02,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #018",BridgeCheekEB11-MV02,91.876,92
-END BENT 1,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB11MV03,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #019",BridgeCheekEB11-MV03,91.876,92
-END BENT 1,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB11MV04,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #020",BridgeCheekEB11-MV04,91.876,92
-END BENT 1,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB11MV05,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #021",BridgeCheekEB11-MV05,91.876,92
-END BENT 1,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB12MV01,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #4",BridgeCheekEB12-MV01,91.822,92
-END BENT 1,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB12MV02,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #010",BridgeCheekEB12-MV02,91.822,92
-END BENT 1,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB12MV03,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #011",BridgeCheekEB12-MV03,91.822,92
-END BENT 1,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB12MV04,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #012",BridgeCheekEB12-MV04,91.822,92
-END BENT 1,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB12MV05,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #013",BridgeCheekEB12-MV05,91.822,92
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH01,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #4",BridgeCheekEB11-MH01,37.500,38
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH02,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #032",BridgeCheekEB11-MH02,37.500,38
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH03,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #033",BridgeCheekEB11-MH03,37.500,38
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH04,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #034",BridgeCheekEB11-MH04,37.500,38
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH05,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #035",BridgeCheekEB11-MH05,37.500,38
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH06,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #036",BridgeCheekEB11-MH06,37.500,38
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH07,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #037",BridgeCheekEB11-MH07,37.500,38
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH08,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #038",BridgeCheekEB11-MH08,37.500,38
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH09,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #039",BridgeCheekEB11-MH09,37.500,38
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH10,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #040",BridgeCheekEB11-MH10,37.500,38
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH11,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #041",BridgeCheekEB11-MH11,37.500,38
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH01,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #4",BridgeCheekEB12-MH01,37.500,38
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH02,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #018",BridgeCheekEB12-MH02,37.500,38
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH03,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #019",BridgeCheekEB12-MH03,37.500,38
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH04,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #020",BridgeCheekEB12-MH04,37.500,38
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH05,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #021",BridgeCheekEB12-MH05,37.500,38
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH06,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #022",BridgeCheekEB12-MH06,37.500,38
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH07,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #023",BridgeCheekEB12-MH07,37.500,38
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH08,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #024",BridgeCheekEB12-MH08,37.500,38
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH09,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #025",BridgeCheekEB12-MH09,37.500,38
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH10,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #026",BridgeCheekEB12-MH10,37.500,38
-END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH11,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #027",BridgeCheekEB12-MH11,37.500,38
-END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B1X01,EB1 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average,BridgePedestalEB1B1-X01,51.368,51
-END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B1X02,EB1 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average013,BridgePedestalEB1B1-X02,51.368,51
-END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B1X03,EB1 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average014,BridgePedestalEB1B1-X03,51.368,51
-END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B1X04,EB1 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average015,BridgePedestalEB1B1-X04,51.368,51
-END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B1X05,EB1 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average016,BridgePedestalEB1B1-X05,51.368,51
-END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B1X06,EB1 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average017,BridgePedestalEB1B1-X06,51.368,51
-END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B1X07,EB1 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average018,BridgePedestalEB1B1-X07,51.368,51
-END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B2X01,EB1 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average,BridgePedestalEB1B2-X01,51.368,51
-END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B2X02,EB1 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average013,BridgePedestalEB1B2-X02,51.368,51
-END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B2X03,EB1 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average014,BridgePedestalEB1B2-X03,51.368,51
-END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B2X04,EB1 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average015,BridgePedestalEB1B2-X04,51.368,51
-END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B2X05,EB1 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average016,BridgePedestalEB1B2-X05,51.368,51
-END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B2X06,EB1 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average017,BridgePedestalEB1B2-X06,51.368,51
-END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B2X07,EB1 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average018,BridgePedestalEB1B2-X07,51.368,51
-END BENT 1,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelEB1B2Y01,EB1 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average,BridgePedestalEB1B2-Y01,57.368,57
-END BENT 1,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelEB1B2Y02,EB1 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average007,BridgePedestalEB1B2-Y02,57.368,57
-END BENT 1,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelEB1B2Y03,EB1 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average008,BridgePedestalEB1B2-Y03,57.368,57
-END BENT 1,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelEB1B2Y04,EB1 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average009,BridgePedestalEB1B2-Y04,57.368,57
-END BENT 1,4F3,4,F3,"PEDESTAL, LONGITUDINAL",PedSteelEB1B1Y01,EB1 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average,BridgePedestalEB1B1-Y01,55.868,56
-END BENT 1,4F3,4,F3,"PEDESTAL, LONGITUDINAL",PedSteelEB1B1Y02,EB1 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average007,BridgePedestalEB1B1-Y02,55.868,56
-END BENT 1,4F3,4,F3,"PEDESTAL, LONGITUDINAL",PedSteelEB1B1Y03,EB1 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average008,BridgePedestalEB1B1-Y03,55.868,56
-END BENT 1,4F3,4,F3,"PEDESTAL, LONGITUDINAL",PedSteelEB1B1Y04,EB1 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average009,BridgePedestalEB1B1-Y04,55.868,56
-END BENT 1,5C,5,C,CAP BETWEEN PILES,CageEB1Added01,EB1 Added span 1 #5 Added01,EB1-Added01,44.872,45
-END BENT 1,5C,5,C,CAP BETWEEN PILES,CageEB1Added02,EB1 Added span 2 #5 Added02,EB1-Added02,44.872,45
-END BENT 1,5C,5,C,CAP BETWEEN PILES,CageEB1Added03,EB1 Added span 3 #5 Added03,EB1-Added03,44.872,45
-END BENT 1,5C,5,C,CAP BETWEEN PILES,CageEB1Added04,EB1 Added span 1 #5 Added04,EB1-Added04,44.872,45
-END BENT 1,5C,5,C,CAP BETWEEN PILES,CageEB1Added05,EB1 Added span 2 #5 Added05,EB1-Added05,44.872,45
-END BENT 1,5C,5,C,CAP BETWEEN PILES,CageEB1Added06,EB1 Added span 3 #5 Added06,EB1-Added06,44.872,45
-END BENT 1,5C,5,C,CAP BETWEEN PILES,CageEB1Added07,EB1 Added span 1 #5 Added07,EB1-Added07,44.872,45
-END BENT 1,5C,5,C,CAP BETWEEN PILES,CageEB1Added08,EB1 Added span 2 #5 Added08,EB1-Added08,44.872,45
-END BENT 1,5C,5,C,CAP BETWEEN PILES,CageEB1Added09,EB1 Added span 3 #5 Added09,EB1-Added09,44.872,45
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V01,EB1 backwall Face 1 vertical; schematic dowel #5,BridgeBackwallEB1-F1V01,59.483,59
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V02,EB1 backwall Face 1 vertical; schematic dowel #089,BridgeBackwallEB1-F1V02,59.723,60
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V03,EB1 backwall Face 1 vertical; schematic dowel #090,BridgeBackwallEB1-F1V03,59.963,60
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V04,EB1 backwall Face 1 vertical; schematic dowel #091,BridgeBackwallEB1-F1V04,60.203,60
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V05,EB1 backwall Face 1 vertical; schematic dowel #092,BridgeBackwallEB1-F1V05,60.443,60
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V06,EB1 backwall Face 1 vertical; schematic dowel #093,BridgeBackwallEB1-F1V06,60.683,61
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V07,EB1 backwall Face 1 vertical; schematic dowel #094,BridgeBackwallEB1-F1V07,60.923,61
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V08,EB1 backwall Face 1 vertical; schematic dowel #095,BridgeBackwallEB1-F1V08,61.163,61
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V09,EB1 backwall Face 1 vertical; schematic dowel #096,BridgeBackwallEB1-F1V09,61.403,61
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V10,EB1 backwall Face 1 vertical; schematic dowel #097,BridgeBackwallEB1-F1V10,61.643,62
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V11,EB1 backwall Face 1 vertical; schematic dowel #098,BridgeBackwallEB1-F1V11,61.650,62
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V12,EB1 backwall Face 1 vertical; schematic dowel #099,BridgeBackwallEB1-F1V12,61.410,61
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V13,EB1 backwall Face 1 vertical; schematic dowel #100,BridgeBackwallEB1-F1V13,61.170,61
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V14,EB1 backwall Face 1 vertical; schematic dowel #101,BridgeBackwallEB1-F1V14,60.930,61
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V15,EB1 backwall Face 1 vertical; schematic dowel #102,BridgeBackwallEB1-F1V15,60.690,61
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V16,EB1 backwall Face 1 vertical; schematic dowel #103,BridgeBackwallEB1-F1V16,60.450,60
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V17,EB1 backwall Face 1 vertical; schematic dowel #104,BridgeBackwallEB1-F1V17,60.210,60
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V18,EB1 backwall Face 1 vertical; schematic dowel #105,BridgeBackwallEB1-F1V18,59.970,60
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V19,EB1 backwall Face 1 vertical; schematic dowel #106,BridgeBackwallEB1-F1V19,59.730,60
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V20,EB1 backwall Face 1 vertical; schematic dowel #107,BridgeBackwallEB1-F1V20,59.490,59
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V21,EB1 backwall Face 1 vertical; schematic dowel #108,BridgeBackwallEB1-F1V21,59.483,59
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V01,EB1 backwall Face 2 vertical; schematic dowel #5,BridgeBackwallEB1-F2V01,59.483,59
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V02,EB1 backwall Face 2 vertical; schematic dowel #089,BridgeBackwallEB1-F2V02,59.723,60
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V03,EB1 backwall Face 2 vertical; schematic dowel #090,BridgeBackwallEB1-F2V03,59.963,60
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V04,EB1 backwall Face 2 vertical; schematic dowel #091,BridgeBackwallEB1-F2V04,60.203,60
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V05,EB1 backwall Face 2 vertical; schematic dowel #092,BridgeBackwallEB1-F2V05,60.443,60
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V06,EB1 backwall Face 2 vertical; schematic dowel #093,BridgeBackwallEB1-F2V06,60.683,61
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V07,EB1 backwall Face 2 vertical; schematic dowel #094,BridgeBackwallEB1-F2V07,60.923,61
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V08,EB1 backwall Face 2 vertical; schematic dowel #095,BridgeBackwallEB1-F2V08,61.163,61
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V09,EB1 backwall Face 2 vertical; schematic dowel #096,BridgeBackwallEB1-F2V09,61.403,61
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V10,EB1 backwall Face 2 vertical; schematic dowel #097,BridgeBackwallEB1-F2V10,61.643,62
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V11,EB1 backwall Face 2 vertical; schematic dowel #098,BridgeBackwallEB1-F2V11,61.650,62
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V12,EB1 backwall Face 2 vertical; schematic dowel #099,BridgeBackwallEB1-F2V12,61.410,61
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V13,EB1 backwall Face 2 vertical; schematic dowel #100,BridgeBackwallEB1-F2V13,61.170,61
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V14,EB1 backwall Face 2 vertical; schematic dowel #101,BridgeBackwallEB1-F2V14,60.930,61
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V15,EB1 backwall Face 2 vertical; schematic dowel #102,BridgeBackwallEB1-F2V15,60.690,61
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V16,EB1 backwall Face 2 vertical; schematic dowel #103,BridgeBackwallEB1-F2V16,60.450,60
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V17,EB1 backwall Face 2 vertical; schematic dowel #104,BridgeBackwallEB1-F2V17,60.210,60
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V18,EB1 backwall Face 2 vertical; schematic dowel #105,BridgeBackwallEB1-F2V18,59.970,60
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V19,EB1 backwall Face 2 vertical; schematic dowel #106,BridgeBackwallEB1-F2V19,59.730,60
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V20,EB1 backwall Face 2 vertical; schematic dowel #107,BridgeBackwallEB1-F2V20,59.490,59
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V21,EB1 backwall Face 2 vertical; schematic dowel #108,BridgeBackwallEB1-F2V21,59.483,59
-END BENT 1,6A1,6,A1,CAP TOP,CageEB1Long01,EB1 Top row 1 #6 Long01,EB1-Long01,245.000,245
-END BENT 1,6A1,6,A1,CAP TOP,CageEB1Long02,EB1 Top row 1 #6 Long02,EB1-Long02,245.000,245
-END BENT 1,6A1,6,A1,CAP TOP,CageEB1Long03,EB1 Top row 1 #6 Long03,EB1-Long03,245.000,245
-END BENT 1,6A1,6,A1,CAP TOP,CageEB1Long04,EB1 Top row 1 #6 Long04,EB1-Long04,245.000,245
-END BENT 1,6A1,6,A1,CAP TOP,CageEB1Long05,EB1 Top row 1 #6 Long05,EB1-Long05,245.000,245
-END BENT 1,6A3,6,A3,CAP SIDE FACES,CageEB1Long10,EB1 Skin #6 Long10,EB1-Long10,245.000,245
-END BENT 1,6A3,6,A3,CAP SIDE FACES,CageEB1Long11,EB1 Skin #6 Long11,EB1-Long11,245.000,245
-END BENT 1,6A3,6,A3,CAP SIDE FACES,CageEB1Long12,EB1 Skin #6 Long12,EB1-Long12,245.000,245
-END BENT 1,6A3,6,A3,CAP SIDE FACES,CageEB1Long13,EB1 Skin #6 Long13,EB1-Long13,245.000,245
-END BENT 1,6A3,6,A3,CAP SIDE FACES,CageEB1Long14,EB1 Skin #6 Long14,EB1-Long14,245.000,245
-END BENT 1,6A3,6,A3,CAP SIDE FACES,CageEB1Long15,EB1 Skin #6 Long15,EB1-Long15,245.000,245
-END BENT 1,6A3,6,A3,CAP SIDE FACES,CageEB1Long16,EB1 Skin #6 Long16,EB1-Long16,245.000,245
-END BENT 1,6A3,6,A3,CAP SIDE FACES,CageEB1Long17,EB1 Skin #6 Long17,EB1-Long17,245.000,245
-END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R1_1,EB1 R1 hoop #6 Trans_R1_1,EB1-Trans_R1_1,141.758,142
-END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R1_2,EB1 R1 hoop #6 Trans_R1_2,EB1-Trans_R1_2,141.758,142
-END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R1_3,EB1 R1 hoop #6 Trans_R1_3,EB1-Trans_R1_3,141.758,142
-END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R1_4,EB1 R1 hoop #6 Trans_R1_4,EB1-Trans_R1_4,141.758,142
-END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R3_1,EB1 R3 hoop #6 Trans_R3_1,EB1-Trans_R3_1,141.758,142
-END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R3_2,EB1 R3 hoop #6 Trans_R3_2,EB1-Trans_R3_2,141.758,142
-END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R3_3,EB1 R3 hoop #6 Trans_R3_3,EB1-Trans_R3_3,141.758,142
-END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R3_4,EB1 R3 hoop #6 Trans_R3_4,EB1-Trans_R3_4,141.758,142
-END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R5_1,EB1 R5 hoop #6 Trans_R5_1,EB1-Trans_R5_1,141.758,142
-END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R5_2,EB1 R5 hoop #6 Trans_R5_2,EB1-Trans_R5_2,141.758,142
-END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R5_3,EB1 R5 hoop #6 Trans_R5_3,EB1-Trans_R5_3,141.758,142
-END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R5_4,EB1 R5 hoop #6 Trans_R5_4,EB1-Trans_R5_4,141.758,142
-END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R7_1,EB1 R7 hoop #6 Trans_R7_1,EB1-Trans_R7_1,141.758,142
-END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R7_2,EB1 R7 hoop #6 Trans_R7_2,EB1-Trans_R7_2,141.758,142
-END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R7_3,EB1 R7 hoop #6 Trans_R7_3,EB1-Trans_R7_3,141.758,142
-END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R7_4,EB1 R7 hoop #6 Trans_R7_4,EB1-Trans_R7_4,141.758,142
-END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R9_1,EB1 R9 hoop #6 Trans_R9_1,EB1-Trans_R9_1,141.758,142
-END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R9_2,EB1 R9 hoop #6 Trans_R9_2,EB1-Trans_R9_2,141.758,142
-END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R9_3,EB1 R9 hoop #6 Trans_R9_3,EB1-Trans_R9_3,141.758,142
-END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R9_4,EB1 R9 hoop #6 Trans_R9_4,EB1-Trans_R9_4,141.758,142
-END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R2_1,EB1 R2 pile_u #6 Trans_R2_1,EB1-Trans_R2_1,112.493,112
-END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R2_2,EB1 R2 pile_u #6 Trans_R2_2,EB1-Trans_R2_2,112.493,112
-END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R2_3,EB1 R2 pile_u #6 Trans_R2_3,EB1-Trans_R2_3,112.493,112
-END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R2_4,EB1 R2 pile_u #6 Trans_R2_4,EB1-Trans_R2_4,112.493,112
-END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R4_1,EB1 R4 pile_u #6 Trans_R4_1,EB1-Trans_R4_1,112.493,112
-END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R4_2,EB1 R4 pile_u #6 Trans_R4_2,EB1-Trans_R4_2,112.493,112
-END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R4_3,EB1 R4 pile_u #6 Trans_R4_3,EB1-Trans_R4_3,112.493,112
-END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R4_4,EB1 R4 pile_u #6 Trans_R4_4,EB1-Trans_R4_4,112.493,112
-END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R6_1,EB1 R6 pile_u #6 Trans_R6_1,EB1-Trans_R6_1,112.493,112
-END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R6_2,EB1 R6 pile_u #6 Trans_R6_2,EB1-Trans_R6_2,112.493,112
-END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R6_3,EB1 R6 pile_u #6 Trans_R6_3,EB1-Trans_R6_3,112.493,112
-END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R6_4,EB1 R6 pile_u #6 Trans_R6_4,EB1-Trans_R6_4,112.493,112
-END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R8_1,EB1 R8 pile_u #6 Trans_R8_1,EB1-Trans_R8_1,112.493,112
-END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R8_2,EB1 R8 pile_u #6 Trans_R8_2,EB1-Trans_R8_2,112.493,112
-END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R8_3,EB1 R8 pile_u #6 Trans_R8_3,EB1-Trans_R8_3,112.493,112
-END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R8_4,EB1 R8 pile_u #6 Trans_R8_4,EB1-Trans_R8_4,112.493,112
-END BENT 1,8A2,8,A2,CAP BOTTOM,CageEB1Long06,EB1 Bottom row 1 #8 Long06,EB1-Long06,245.000,245
-END BENT 1,8A2,8,A2,CAP BOTTOM,CageEB1Long07,EB1 Bottom row 1 #8 Long07,EB1-Long07,245.000,245
-END BENT 1,8A2,8,A2,CAP BOTTOM,CageEB1Long08,EB1 Bottom row 1 #8 Long08,EB1-Long08,245.000,245
-END BENT 1,8A2,8,A2,CAP BOTTOM,CageEB1Long09,EB1 Bottom row 1 #8 Long09,EB1-Long09,245.000,245
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X01,Pier pedestal 2 X U-bars @ 6.0 in average,BridgePedestalPierB2-X01,67.374,67
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X02,Pier pedestal 2 X U-bars @ 6.0 in average013,BridgePedestalPierB2-X02,67.374,67
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X03,Pier pedestal 2 X U-bars @ 6.0 in average014,BridgePedestalPierB2-X03,67.374,67
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X04,Pier pedestal 2 X U-bars @ 6.0 in average015,BridgePedestalPierB2-X04,67.374,67
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X05,Pier pedestal 2 X U-bars @ 6.0 in average016,BridgePedestalPierB2-X05,67.374,67
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X06,Pier pedestal 2 X U-bars @ 6.0 in average017,BridgePedestalPierB2-X06,67.374,67
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X07,Pier pedestal 2 X U-bars @ 6.0 in average018,BridgePedestalPierB2-X07,67.374,67
-PIER,4E2,4,E2,"PEDESTAL, TRANSVERSE",PedSteelPierB1X01,Pier pedestal 1 X U-bars @ 6.0 in average,BridgePedestalPierB1-X01,75.374,75
-PIER,4E2,4,E2,"PEDESTAL, TRANSVERSE",PedSteelPierB1X02,Pier pedestal 1 X U-bars @ 6.0 in average013,BridgePedestalPierB1-X02,75.374,75
-PIER,4E2,4,E2,"PEDESTAL, TRANSVERSE",PedSteelPierB1X03,Pier pedestal 1 X U-bars @ 6.0 in average014,BridgePedestalPierB1-X03,75.374,75
-PIER,4E2,4,E2,"PEDESTAL, TRANSVERSE",PedSteelPierB1X04,Pier pedestal 1 X U-bars @ 6.0 in average015,BridgePedestalPierB1-X04,75.374,75
-PIER,4E2,4,E2,"PEDESTAL, TRANSVERSE",PedSteelPierB1X05,Pier pedestal 1 X U-bars @ 6.0 in average016,BridgePedestalPierB1-X05,75.374,75
-PIER,4E2,4,E2,"PEDESTAL, TRANSVERSE",PedSteelPierB1X06,Pier pedestal 1 X U-bars @ 6.0 in average017,BridgePedestalPierB1-X06,75.374,75
-PIER,4E2,4,E2,"PEDESTAL, TRANSVERSE",PedSteelPierB1X07,Pier pedestal 1 X U-bars @ 6.0 in average018,BridgePedestalPierB1-X07,75.374,75
-PIER,4E3,4,E3,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y01,Pier pedestal 2 Y U-bars @ 6.0 in average,BridgePedestalPierB2-Y01,58.874,59
-PIER,4E3,4,E3,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y02,Pier pedestal 2 Y U-bars @ 6.0 in average013,BridgePedestalPierB2-Y02,58.874,59
-PIER,4E3,4,E3,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y03,Pier pedestal 2 Y U-bars @ 6.0 in average014,BridgePedestalPierB2-Y03,58.874,59
-PIER,4E3,4,E3,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y04,Pier pedestal 2 Y U-bars @ 6.0 in average015,BridgePedestalPierB2-Y04,58.874,59
-PIER,4E3,4,E3,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y05,Pier pedestal 2 Y U-bars @ 6.0 in average016,BridgePedestalPierB2-Y05,58.874,59
-PIER,4E3,4,E3,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y06,Pier pedestal 2 Y U-bars @ 6.0 in average017,BridgePedestalPierB2-Y06,58.874,59
-PIER,4E3,4,E3,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y07,Pier pedestal 2 Y U-bars @ 6.0 in average018,BridgePedestalPierB2-Y07,58.874,59
-PIER,4E4,4,E4,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y01,Pier pedestal 1 Y U-bars @ 6.0 in average,BridgePedestalPierB1-Y01,67.874,68
-PIER,4E4,4,E4,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y02,Pier pedestal 1 Y U-bars @ 6.0 in average013,BridgePedestalPierB1-Y02,67.874,68
-PIER,4E4,4,E4,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y03,Pier pedestal 1 Y U-bars @ 6.0 in average014,BridgePedestalPierB1-Y03,67.874,68
-PIER,4E4,4,E4,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y04,Pier pedestal 1 Y U-bars @ 6.0 in average015,BridgePedestalPierB1-Y04,67.874,68
-PIER,4E4,4,E4,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y05,Pier pedestal 1 Y U-bars @ 6.0 in average016,BridgePedestalPierB1-Y05,67.874,68
-PIER,4E4,4,E4,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y06,Pier pedestal 1 Y U-bars @ 6.0 in average017,BridgePedestalPierB1-Y06,67.874,68
-PIER,4E4,4,E4,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y07,Pier pedestal 1 Y U-bars @ 6.0 in average018,BridgePedestalPierB1-Y07,67.874,68
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R1_1,Pier R1 hoop #5 Trans_R1_1,Pier-Trans_R1_1,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R1_2,Pier R1 hoop #5 Trans_R1_2,Pier-Trans_R1_2,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R1_3,Pier R1 hoop #5 Trans_R1_3,Pier-Trans_R1_3,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R3_1,Pier R3 hoop #5 Trans_R3_1,Pier-Trans_R3_1,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R3_2,Pier R3 hoop #5 Trans_R3_2,Pier-Trans_R3_2,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R3_3,Pier R3 hoop #5 Trans_R3_3,Pier-Trans_R3_3,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R3_4,Pier R3 hoop #5 Trans_R3_4,Pier-Trans_R3_4,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R3_5,Pier R3 hoop #5 Trans_R3_5,Pier-Trans_R3_5,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R3_6,Pier R3 hoop #5 Trans_R3_6,Pier-Trans_R3_6,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R5_1,Pier R5 hoop #5 Trans_R5_1,Pier-Trans_R5_1,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R5_2,Pier R5 hoop #5 Trans_R5_2,Pier-Trans_R5_2,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R5_3,Pier R5 hoop #5 Trans_R5_3,Pier-Trans_R5_3,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R5_4,Pier R5 hoop #5 Trans_R5_4,Pier-Trans_R5_4,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R5_5,Pier R5 hoop #5 Trans_R5_5,Pier-Trans_R5_5,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R5_6,Pier R5 hoop #5 Trans_R5_6,Pier-Trans_R5_6,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R7_1,Pier R7 hoop #5 Trans_R7_1,Pier-Trans_R7_1,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R7_2,Pier R7 hoop #5 Trans_R7_2,Pier-Trans_R7_2,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R7_3,Pier R7 hoop #5 Trans_R7_3,Pier-Trans_R7_3,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R7_4,Pier R7 hoop #5 Trans_R7_4,Pier-Trans_R7_4,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R7_5,Pier R7 hoop #5 Trans_R7_5,Pier-Trans_R7_5,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R7_6,Pier R7 hoop #5 Trans_R7_6,Pier-Trans_R7_6,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R9_1,Pier R9 hoop #5 Trans_R9_1,Pier-Trans_R9_1,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R9_2,Pier R9 hoop #5 Trans_R9_2,Pier-Trans_R9_2,152.129,152
-PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R9_3,Pier R9 hoop #5 Trans_R9_3,Pier-Trans_R9_3,152.129,152
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R2_1,Pier R2 pile_u #5 Trans_R2_1,Pier-Trans_R2_1,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R2_2,Pier R2 pile_u #5 Trans_R2_2,Pier-Trans_R2_2,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R2_3,Pier R2 pile_u #5 Trans_R2_3,Pier-Trans_R2_3,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R2_4,Pier R2 pile_u #5 Trans_R2_4,Pier-Trans_R2_4,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R2_5,Pier R2 pile_u #5 Trans_R2_5,Pier-Trans_R2_5,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R2_6,Pier R2 pile_u #5 Trans_R2_6,Pier-Trans_R2_6,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R4_1,Pier R4 pile_u #5 Trans_R4_1,Pier-Trans_R4_1,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R4_2,Pier R4 pile_u #5 Trans_R4_2,Pier-Trans_R4_2,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R4_3,Pier R4 pile_u #5 Trans_R4_3,Pier-Trans_R4_3,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R4_4,Pier R4 pile_u #5 Trans_R4_4,Pier-Trans_R4_4,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R4_5,Pier R4 pile_u #5 Trans_R4_5,Pier-Trans_R4_5,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R4_6,Pier R4 pile_u #5 Trans_R4_6,Pier-Trans_R4_6,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R6_1,Pier R6 pile_u #5 Trans_R6_1,Pier-Trans_R6_1,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R6_2,Pier R6 pile_u #5 Trans_R6_2,Pier-Trans_R6_2,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R6_3,Pier R6 pile_u #5 Trans_R6_3,Pier-Trans_R6_3,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R6_4,Pier R6 pile_u #5 Trans_R6_4,Pier-Trans_R6_4,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R6_5,Pier R6 pile_u #5 Trans_R6_5,Pier-Trans_R6_5,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R6_6,Pier R6 pile_u #5 Trans_R6_6,Pier-Trans_R6_6,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R8_1,Pier R8 pile_u #5 Trans_R8_1,Pier-Trans_R8_1,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R8_2,Pier R8 pile_u #5 Trans_R8_2,Pier-Trans_R8_2,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R8_3,Pier R8 pile_u #5 Trans_R8_3,Pier-Trans_R8_3,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R8_4,Pier R8 pile_u #5 Trans_R8_4,Pier-Trans_R8_4,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R8_5,Pier R8 pile_u #5 Trans_R8_5,Pier-Trans_R8_5,115.744,116
-PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R8_6,Pier R8 pile_u #5 Trans_R8_6,Pier-Trans_R8_6,115.744,116
-PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded01,Pier Added span 1 #5 Added01,Pier-Added01,48.872,49
-PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded02,Pier Added span 2 #5 Added02,Pier-Added02,48.872,49
-PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded03,Pier Added span 3 #5 Added03,Pier-Added03,48.872,49
-PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded04,Pier Added span 1 #5 Added04,Pier-Added04,48.872,49
-PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded05,Pier Added span 2 #5 Added05,Pier-Added05,48.872,49
-PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded06,Pier Added span 3 #5 Added06,Pier-Added06,48.872,49
-PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded07,Pier Added span 1 #5 Added07,Pier-Added07,48.872,49
-PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded08,Pier Added span 2 #5 Added08,Pier-Added08,48.872,49
-PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded09,Pier Added span 3 #5 Added09,Pier-Added09,48.872,49
-PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded10,Pier Added span 1 #5 Added10,Pier-Added10,48.872,49
-PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded11,Pier Added span 2 #5 Added11,Pier-Added11,48.872,49
-PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded12,Pier Added span 3 #5 Added12,Pier-Added12,48.872,49
-PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded13,Pier Added span 1 #5 Added13,Pier-Added13,48.872,49
-PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded14,Pier Added span 2 #5 Added14,Pier-Added14,48.872,49
-PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded15,Pier Added span 3 #5 Added15,Pier-Added15,48.872,49
-PIER,5D1,5,D1,"CAP END, HORIZONTAL",CagePierEnd_left_H1,Pier End left horizontal #5 End_left_H1,Pier-End_left_H1,57.613,58
-PIER,5D1,5,D1,"CAP END, HORIZONTAL",CagePierEnd_left_H2,Pier End left horizontal #5 End_left_H2,Pier-End_left_H2,57.613,58
-PIER,5D1,5,D1,"CAP END, HORIZONTAL",CagePierEnd_right_H1,Pier End right horizontal #5 End_right_H1,Pier-End_right_H1,57.613,58
-PIER,5D1,5,D1,"CAP END, HORIZONTAL",CagePierEnd_right_H2,Pier End right horizontal #5 End_right_H2,Pier-End_right_H2,57.613,58
-PIER,5D2,5,D2,"CAP END, VERTICAL",CagePierEnd_left_V1,Pier End left vertical #5 End_left_V1,Pier-End_left_V1,45.613,46
-PIER,5D2,5,D2,"CAP END, VERTICAL",CagePierEnd_left_V2,Pier End left vertical #5 End_left_V2,Pier-End_left_V2,45.613,46
-PIER,5D2,5,D2,"CAP END, VERTICAL",CagePierEnd_left_V3,Pier End left vertical #5 End_left_V3,Pier-End_left_V3,45.613,46
-PIER,5D2,5,D2,"CAP END, VERTICAL",CagePierEnd_right_V1,Pier End right vertical #5 End_right_V1,Pier-End_right_V1,45.613,46
-PIER,5D2,5,D2,"CAP END, VERTICAL",CagePierEnd_right_V2,Pier End right vertical #5 End_right_V2,Pier-End_right_V2,45.613,46
-PIER,5D2,5,D2,"CAP END, VERTICAL",CagePierEnd_right_V3,Pier End right vertical #5 End_right_V3,Pier-End_right_V3,45.613,46
-PIER,6A1,6,A1,CAP TOP,CagePierLong01,Pier Top row 1 #6 Long01,Pier-Long01,224.000,224
-PIER,6A1,6,A1,CAP TOP,CagePierLong02,Pier Top row 1 #6 Long02,Pier-Long02,224.000,224
-PIER,6A1,6,A1,CAP TOP,CagePierLong03,Pier Top row 1 #6 Long03,Pier-Long03,224.000,224
-PIER,6A1,6,A1,CAP TOP,CagePierLong04,Pier Top row 1 #6 Long04,Pier-Long04,224.000,224
-PIER,6A1,6,A1,CAP TOP,CagePierLong05,Pier Top row 1 #6 Long05,Pier-Long05,224.000,224
-PIER,6A3,6,A3,CAP SIDE FACES,CagePierLong10,Pier Skin #6 Long10,Pier-Long10,224.000,224
-PIER,6A3,6,A3,CAP SIDE FACES,CagePierLong11,Pier Skin #6 Long11,Pier-Long11,224.000,224
-PIER,6A3,6,A3,CAP SIDE FACES,CagePierLong12,Pier Skin #6 Long12,Pier-Long12,224.000,224
-PIER,6A3,6,A3,CAP SIDE FACES,CagePierLong13,Pier Skin #6 Long13,Pier-Long13,224.000,224
-PIER,6A3,6,A3,CAP SIDE FACES,CagePierLong14,Pier Skin #6 Long14,Pier-Long14,224.000,224
-PIER,6A3,6,A3,CAP SIDE FACES,CagePierLong15,Pier Skin #6 Long15,Pier-Long15,224.000,224
-PIER,6A3,6,A3,CAP SIDE FACES,CagePierLong16,Pier Skin #6 Long16,Pier-Long16,224.000,224
-PIER,6A3,6,A3,CAP SIDE FACES,CagePierLong17,Pier Skin #6 Long17,Pier-Long17,224.000,224
-PIER,9A2,9,A2,CAP BOTTOM,CagePierLong06,Pier Bottom row 1 #9 Long06,Pier-Long06,224.000,224
-PIER,9A2,9,A2,CAP BOTTOM,CagePierLong07,Pier Bottom row 1 #9 Long07,Pier-Long07,224.000,224
-PIER,9A2,9,A2,CAP BOTTOM,CagePierLong08,Pier Bottom row 1 #9 Long08,Pier-Long08,224.000,224
-PIER,9A2,9,A2,CAP BOTTOM,CagePierLong09,Pier Bottom row 1 #9 Long09,Pier-Long09,224.000,224
-END BENT 2,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB2F1H01,EB2 backwall Face 1 horizontal #4,BridgeBackwallEB2-F1H01,228.500,229
-END BENT 2,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB2F1H02,EB2 backwall Face 1 horizontal #021,BridgeBackwallEB2-F1H02,228.500,229
-END BENT 2,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB2F1H03,EB2 backwall Face 1 horizontal #022,BridgeBackwallEB2-F1H03,228.500,229
-END BENT 2,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB2F1H04,EB2 backwall Face 1 horizontal #023,BridgeBackwallEB2-F1H04,228.500,229
-END BENT 2,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB2F1H05,EB2 backwall Face 1 horizontal #024,BridgeBackwallEB2-F1H05,228.500,229
-END BENT 2,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB2F2H01,EB2 backwall Face 2 horizontal #4,BridgeBackwallEB2-F2H01,228.500,229
-END BENT 2,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB2F2H02,EB2 backwall Face 2 horizontal #021,BridgeBackwallEB2-F2H02,228.500,229
-END BENT 2,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB2F2H03,EB2 backwall Face 2 horizontal #022,BridgeBackwallEB2-F2H03,228.500,229
-END BENT 2,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB2F2H04,EB2 backwall Face 2 horizontal #023,BridgeBackwallEB2-F2H04,228.500,229
-END BENT 2,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB2F2H05,EB2 backwall Face 2 horizontal #024,BridgeBackwallEB2-F2H05,228.500,229
-END BENT 2,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB21MV01,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #4",BridgeCheekEB21-MV01,91.828,92
-END BENT 2,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB21MV02,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #010",BridgeCheekEB21-MV02,91.828,92
-END BENT 2,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB21MV03,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #011",BridgeCheekEB21-MV03,91.828,92
-END BENT 2,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB21MV04,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #012",BridgeCheekEB21-MV04,91.828,92
-END BENT 2,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB21MV05,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #013",BridgeCheekEB21-MV05,91.828,92
-END BENT 2,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB22MV01,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #4",BridgeCheekEB22-MV01,91.621,92
-END BENT 2,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB22MV02,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #010",BridgeCheekEB22-MV02,91.621,92
-END BENT 2,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB22MV03,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #011",BridgeCheekEB22-MV03,91.621,92
-END BENT 2,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB22MV04,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #012",BridgeCheekEB22-MV04,91.621,92
-END BENT 2,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB22MV05,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #013",BridgeCheekEB22-MV05,91.621,92
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH01,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #4",BridgeCheekEB21-MH01,37.500,38
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH02,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #018",BridgeCheekEB21-MH02,37.500,38
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH03,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #019",BridgeCheekEB21-MH03,37.500,38
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH04,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #020",BridgeCheekEB21-MH04,37.500,38
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH05,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #021",BridgeCheekEB21-MH05,37.500,38
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH06,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #022",BridgeCheekEB21-MH06,37.500,38
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH07,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #023",BridgeCheekEB21-MH07,37.500,38
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH08,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #024",BridgeCheekEB21-MH08,37.500,38
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH09,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #025",BridgeCheekEB21-MH09,37.500,38
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH10,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #026",BridgeCheekEB21-MH10,37.500,38
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH11,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #027",BridgeCheekEB21-MH11,37.500,38
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH01,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #4",BridgeCheekEB22-MH01,37.500,38
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH02,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #018",BridgeCheekEB22-MH02,37.500,38
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH03,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #019",BridgeCheekEB22-MH03,37.500,38
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH04,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #020",BridgeCheekEB22-MH04,37.500,38
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH05,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #021",BridgeCheekEB22-MH05,37.500,38
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH06,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #022",BridgeCheekEB22-MH06,37.500,38
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH07,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #023",BridgeCheekEB22-MH07,37.500,38
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH08,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #024",BridgeCheekEB22-MH08,37.500,38
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH09,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #025",BridgeCheekEB22-MH09,37.500,38
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH10,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #026",BridgeCheekEB22-MH10,37.500,38
-END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH11,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #027",BridgeCheekEB22-MH11,37.500,38
-END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B1X01,EB2 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average,BridgePedestalEB2B1-X01,51.334,51
-END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B1X02,EB2 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average013,BridgePedestalEB2B1-X02,51.334,51
-END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B1X03,EB2 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average014,BridgePedestalEB2B1-X03,51.334,51
-END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B1X04,EB2 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average015,BridgePedestalEB2B1-X04,51.334,51
-END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B1X05,EB2 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average016,BridgePedestalEB2B1-X05,51.334,51
-END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B1X06,EB2 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average017,BridgePedestalEB2B1-X06,51.334,51
-END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B1X07,EB2 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average018,BridgePedestalEB2B1-X07,51.334,51
-END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B2X01,EB2 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average,BridgePedestalEB2B2-X01,51.334,51
-END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B2X02,EB2 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average013,BridgePedestalEB2B2-X02,51.334,51
-END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B2X03,EB2 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average014,BridgePedestalEB2B2-X03,51.334,51
-END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B2X04,EB2 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average015,BridgePedestalEB2B2-X04,51.334,51
-END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B2X05,EB2 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average016,BridgePedestalEB2B2-X05,51.334,51
-END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B2X06,EB2 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average017,BridgePedestalEB2B2-X06,51.334,51
-END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B2X07,EB2 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average018,BridgePedestalEB2B2-X07,51.334,51
-END BENT 2,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelEB2B2Y01,EB2 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average,BridgePedestalEB2B2-Y01,57.334,57
-END BENT 2,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelEB2B2Y02,EB2 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average007,BridgePedestalEB2B2-Y02,57.334,57
-END BENT 2,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelEB2B2Y03,EB2 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average008,BridgePedestalEB2B2-Y03,57.334,57
-END BENT 2,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelEB2B2Y04,EB2 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average009,BridgePedestalEB2B2-Y04,57.334,57
-END BENT 2,4F3,4,F3,"PEDESTAL, LONGITUDINAL",PedSteelEB2B1Y01,EB2 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average,BridgePedestalEB2B1-Y01,56.834,57
-END BENT 2,4F3,4,F3,"PEDESTAL, LONGITUDINAL",PedSteelEB2B1Y02,EB2 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average007,BridgePedestalEB2B1-Y02,56.834,57
-END BENT 2,4F3,4,F3,"PEDESTAL, LONGITUDINAL",PedSteelEB2B1Y03,EB2 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average008,BridgePedestalEB2B1-Y03,56.834,57
-END BENT 2,4F3,4,F3,"PEDESTAL, LONGITUDINAL",PedSteelEB2B1Y04,EB2 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average009,BridgePedestalEB2B1-Y04,56.834,57
-END BENT 2,5C,5,C,CAP BETWEEN PILES,CageEB2Added01,EB2 Added span 1 #5 Added01,EB2-Added01,44.872,45
-END BENT 2,5C,5,C,CAP BETWEEN PILES,CageEB2Added02,EB2 Added span 2 #5 Added02,EB2-Added02,44.872,45
-END BENT 2,5C,5,C,CAP BETWEEN PILES,CageEB2Added03,EB2 Added span 3 #5 Added03,EB2-Added03,44.872,45
-END BENT 2,5C,5,C,CAP BETWEEN PILES,CageEB2Added04,EB2 Added span 1 #5 Added04,EB2-Added04,44.872,45
-END BENT 2,5C,5,C,CAP BETWEEN PILES,CageEB2Added05,EB2 Added span 2 #5 Added05,EB2-Added05,44.872,45
-END BENT 2,5C,5,C,CAP BETWEEN PILES,CageEB2Added06,EB2 Added span 3 #5 Added06,EB2-Added06,44.872,45
-END BENT 2,5C,5,C,CAP BETWEEN PILES,CageEB2Added07,EB2 Added span 1 #5 Added07,EB2-Added07,44.872,45
-END BENT 2,5C,5,C,CAP BETWEEN PILES,CageEB2Added08,EB2 Added span 2 #5 Added08,EB2-Added08,44.872,45
-END BENT 2,5C,5,C,CAP BETWEEN PILES,CageEB2Added09,EB2 Added span 3 #5 Added09,EB2-Added09,44.872,45
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V01,EB2 backwall Face 1 vertical; schematic dowel #5,BridgeBackwallEB2-F1V01,59.483,59
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V02,EB2 backwall Face 1 vertical; schematic dowel #089,BridgeBackwallEB2-F1V02,59.723,60
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V03,EB2 backwall Face 1 vertical; schematic dowel #090,BridgeBackwallEB2-F1V03,59.963,60
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V04,EB2 backwall Face 1 vertical; schematic dowel #091,BridgeBackwallEB2-F1V04,60.203,60
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V05,EB2 backwall Face 1 vertical; schematic dowel #092,BridgeBackwallEB2-F1V05,60.443,60
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V06,EB2 backwall Face 1 vertical; schematic dowel #093,BridgeBackwallEB2-F1V06,60.683,61
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V07,EB2 backwall Face 1 vertical; schematic dowel #094,BridgeBackwallEB2-F1V07,60.923,61
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V08,EB2 backwall Face 1 vertical; schematic dowel #095,BridgeBackwallEB2-F1V08,61.163,61
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V09,EB2 backwall Face 1 vertical; schematic dowel #096,BridgeBackwallEB2-F1V09,61.403,61
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V10,EB2 backwall Face 1 vertical; schematic dowel #097,BridgeBackwallEB2-F1V10,61.643,62
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V11,EB2 backwall Face 1 vertical; schematic dowel #098,BridgeBackwallEB2-F1V11,61.650,62
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V12,EB2 backwall Face 1 vertical; schematic dowel #099,BridgeBackwallEB2-F1V12,61.410,61
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V13,EB2 backwall Face 1 vertical; schematic dowel #100,BridgeBackwallEB2-F1V13,61.170,61
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V14,EB2 backwall Face 1 vertical; schematic dowel #101,BridgeBackwallEB2-F1V14,60.930,61
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V15,EB2 backwall Face 1 vertical; schematic dowel #102,BridgeBackwallEB2-F1V15,60.690,61
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V16,EB2 backwall Face 1 vertical; schematic dowel #103,BridgeBackwallEB2-F1V16,60.450,60
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V17,EB2 backwall Face 1 vertical; schematic dowel #104,BridgeBackwallEB2-F1V17,60.210,60
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V18,EB2 backwall Face 1 vertical; schematic dowel #105,BridgeBackwallEB2-F1V18,59.970,60
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V19,EB2 backwall Face 1 vertical; schematic dowel #106,BridgeBackwallEB2-F1V19,59.730,60
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V20,EB2 backwall Face 1 vertical; schematic dowel #107,BridgeBackwallEB2-F1V20,59.490,59
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V21,EB2 backwall Face 1 vertical; schematic dowel #108,BridgeBackwallEB2-F1V21,59.483,59
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V01,EB2 backwall Face 2 vertical; schematic dowel #5,BridgeBackwallEB2-F2V01,59.483,59
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V02,EB2 backwall Face 2 vertical; schematic dowel #089,BridgeBackwallEB2-F2V02,59.723,60
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V03,EB2 backwall Face 2 vertical; schematic dowel #090,BridgeBackwallEB2-F2V03,59.963,60
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V04,EB2 backwall Face 2 vertical; schematic dowel #091,BridgeBackwallEB2-F2V04,60.203,60
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V05,EB2 backwall Face 2 vertical; schematic dowel #092,BridgeBackwallEB2-F2V05,60.443,60
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V06,EB2 backwall Face 2 vertical; schematic dowel #093,BridgeBackwallEB2-F2V06,60.683,61
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V07,EB2 backwall Face 2 vertical; schematic dowel #094,BridgeBackwallEB2-F2V07,60.923,61
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V08,EB2 backwall Face 2 vertical; schematic dowel #095,BridgeBackwallEB2-F2V08,61.163,61
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V09,EB2 backwall Face 2 vertical; schematic dowel #096,BridgeBackwallEB2-F2V09,61.403,61
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V10,EB2 backwall Face 2 vertical; schematic dowel #097,BridgeBackwallEB2-F2V10,61.643,62
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V11,EB2 backwall Face 2 vertical; schematic dowel #098,BridgeBackwallEB2-F2V11,61.650,62
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V12,EB2 backwall Face 2 vertical; schematic dowel #099,BridgeBackwallEB2-F2V12,61.410,61
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V13,EB2 backwall Face 2 vertical; schematic dowel #100,BridgeBackwallEB2-F2V13,61.170,61
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V14,EB2 backwall Face 2 vertical; schematic dowel #101,BridgeBackwallEB2-F2V14,60.930,61
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V15,EB2 backwall Face 2 vertical; schematic dowel #102,BridgeBackwallEB2-F2V15,60.690,61
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V16,EB2 backwall Face 2 vertical; schematic dowel #103,BridgeBackwallEB2-F2V16,60.450,60
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V17,EB2 backwall Face 2 vertical; schematic dowel #104,BridgeBackwallEB2-F2V17,60.210,60
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V18,EB2 backwall Face 2 vertical; schematic dowel #105,BridgeBackwallEB2-F2V18,59.970,60
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V19,EB2 backwall Face 2 vertical; schematic dowel #106,BridgeBackwallEB2-F2V19,59.730,60
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V20,EB2 backwall Face 2 vertical; schematic dowel #107,BridgeBackwallEB2-F2V20,59.490,59
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V21,EB2 backwall Face 2 vertical; schematic dowel #108,BridgeBackwallEB2-F2V21,59.483,59
-END BENT 2,6A1,6,A1,CAP TOP,CageEB2Long01,EB2 Top row 1 #6 Long01,EB2-Long01,245.000,245
-END BENT 2,6A1,6,A1,CAP TOP,CageEB2Long02,EB2 Top row 1 #6 Long02,EB2-Long02,245.000,245
-END BENT 2,6A1,6,A1,CAP TOP,CageEB2Long03,EB2 Top row 1 #6 Long03,EB2-Long03,245.000,245
-END BENT 2,6A1,6,A1,CAP TOP,CageEB2Long04,EB2 Top row 1 #6 Long04,EB2-Long04,245.000,245
-END BENT 2,6A1,6,A1,CAP TOP,CageEB2Long05,EB2 Top row 1 #6 Long05,EB2-Long05,245.000,245
-END BENT 2,6A3,6,A3,CAP SIDE FACES,CageEB2Long10,EB2 Skin #6 Long10,EB2-Long10,245.000,245
-END BENT 2,6A3,6,A3,CAP SIDE FACES,CageEB2Long11,EB2 Skin #6 Long11,EB2-Long11,245.000,245
-END BENT 2,6A3,6,A3,CAP SIDE FACES,CageEB2Long12,EB2 Skin #6 Long12,EB2-Long12,245.000,245
-END BENT 2,6A3,6,A3,CAP SIDE FACES,CageEB2Long13,EB2 Skin #6 Long13,EB2-Long13,245.000,245
-END BENT 2,6A3,6,A3,CAP SIDE FACES,CageEB2Long14,EB2 Skin #6 Long14,EB2-Long14,245.000,245
-END BENT 2,6A3,6,A3,CAP SIDE FACES,CageEB2Long15,EB2 Skin #6 Long15,EB2-Long15,245.000,245
-END BENT 2,6A3,6,A3,CAP SIDE FACES,CageEB2Long16,EB2 Skin #6 Long16,EB2-Long16,245.000,245
-END BENT 2,6A3,6,A3,CAP SIDE FACES,CageEB2Long17,EB2 Skin #6 Long17,EB2-Long17,245.000,245
-END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R1_1,EB2 R1 hoop #6 Trans_R1_1,EB2-Trans_R1_1,141.758,142
-END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R1_2,EB2 R1 hoop #6 Trans_R1_2,EB2-Trans_R1_2,141.758,142
-END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R1_3,EB2 R1 hoop #6 Trans_R1_3,EB2-Trans_R1_3,141.758,142
-END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R1_4,EB2 R1 hoop #6 Trans_R1_4,EB2-Trans_R1_4,141.758,142
-END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R3_1,EB2 R3 hoop #6 Trans_R3_1,EB2-Trans_R3_1,141.758,142
-END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R3_2,EB2 R3 hoop #6 Trans_R3_2,EB2-Trans_R3_2,141.758,142
-END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R3_3,EB2 R3 hoop #6 Trans_R3_3,EB2-Trans_R3_3,141.758,142
-END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R3_4,EB2 R3 hoop #6 Trans_R3_4,EB2-Trans_R3_4,141.758,142
-END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R5_1,EB2 R5 hoop #6 Trans_R5_1,EB2-Trans_R5_1,141.758,142
-END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R5_2,EB2 R5 hoop #6 Trans_R5_2,EB2-Trans_R5_2,141.758,142
-END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R5_3,EB2 R5 hoop #6 Trans_R5_3,EB2-Trans_R5_3,141.758,142
-END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R5_4,EB2 R5 hoop #6 Trans_R5_4,EB2-Trans_R5_4,141.758,142
-END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R7_1,EB2 R7 hoop #6 Trans_R7_1,EB2-Trans_R7_1,141.758,142
-END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R7_2,EB2 R7 hoop #6 Trans_R7_2,EB2-Trans_R7_2,141.758,142
-END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R7_3,EB2 R7 hoop #6 Trans_R7_3,EB2-Trans_R7_3,141.758,142
-END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R7_4,EB2 R7 hoop #6 Trans_R7_4,EB2-Trans_R7_4,141.758,142
-END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R9_1,EB2 R9 hoop #6 Trans_R9_1,EB2-Trans_R9_1,141.758,142
-END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R9_2,EB2 R9 hoop #6 Trans_R9_2,EB2-Trans_R9_2,141.758,142
-END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R9_3,EB2 R9 hoop #6 Trans_R9_3,EB2-Trans_R9_3,141.758,142
-END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R9_4,EB2 R9 hoop #6 Trans_R9_4,EB2-Trans_R9_4,141.758,142
-END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R2_1,EB2 R2 pile_u #6 Trans_R2_1,EB2-Trans_R2_1,112.493,112
-END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R2_2,EB2 R2 pile_u #6 Trans_R2_2,EB2-Trans_R2_2,112.493,112
-END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R2_3,EB2 R2 pile_u #6 Trans_R2_3,EB2-Trans_R2_3,112.493,112
-END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R2_4,EB2 R2 pile_u #6 Trans_R2_4,EB2-Trans_R2_4,112.493,112
-END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R4_1,EB2 R4 pile_u #6 Trans_R4_1,EB2-Trans_R4_1,112.493,112
-END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R4_2,EB2 R4 pile_u #6 Trans_R4_2,EB2-Trans_R4_2,112.493,112
-END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R4_3,EB2 R4 pile_u #6 Trans_R4_3,EB2-Trans_R4_3,112.493,112
-END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R4_4,EB2 R4 pile_u #6 Trans_R4_4,EB2-Trans_R4_4,112.493,112
-END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R6_1,EB2 R6 pile_u #6 Trans_R6_1,EB2-Trans_R6_1,112.493,112
-END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R6_2,EB2 R6 pile_u #6 Trans_R6_2,EB2-Trans_R6_2,112.493,112
-END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R6_3,EB2 R6 pile_u #6 Trans_R6_3,EB2-Trans_R6_3,112.493,112
-END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R6_4,EB2 R6 pile_u #6 Trans_R6_4,EB2-Trans_R6_4,112.493,112
-END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R8_1,EB2 R8 pile_u #6 Trans_R8_1,EB2-Trans_R8_1,112.493,112
-END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R8_2,EB2 R8 pile_u #6 Trans_R8_2,EB2-Trans_R8_2,112.493,112
-END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R8_3,EB2 R8 pile_u #6 Trans_R8_3,EB2-Trans_R8_3,112.493,112
-END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R8_4,EB2 R8 pile_u #6 Trans_R8_4,EB2-Trans_R8_4,112.493,112
-END BENT 2,8A2,8,A2,CAP BOTTOM,CageEB2Long06,EB2 Bottom row 1 #8 Long06,EB2-Long06,245.000,245
-END BENT 2,8A2,8,A2,CAP BOTTOM,CageEB2Long07,EB2 Bottom row 1 #8 Long07,EB2-Long07,245.000,245
-END BENT 2,8A2,8,A2,CAP BOTTOM,CageEB2Long08,EB2 Bottom row 1 #8 Long08,EB2-Long08,245.000,245
-END BENT 2,8A2,8,A2,CAP BOTTOM,CageEB2Long09,EB2 Bottom row 1 #8 Long09,EB2-Long09,245.000,245
+END BENT 1,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB1F1H01,EB1 backwall Face 1 horizontal #4,4D2,228.500,229
+END BENT 1,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB1F1H02,EB1 backwall Face 1 horizontal #021,4D2,228.500,229
+END BENT 1,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB1F1H03,EB1 backwall Face 1 horizontal #022,4D2,228.500,229
+END BENT 1,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB1F1H04,EB1 backwall Face 1 horizontal #023,4D2,228.500,229
+END BENT 1,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB1F1H05,EB1 backwall Face 1 horizontal #024,4D2,228.500,229
+END BENT 1,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB1F2H01,EB1 backwall Face 2 horizontal #4,4D2,228.500,229
+END BENT 1,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB1F2H02,EB1 backwall Face 2 horizontal #021,4D2,228.500,229
+END BENT 1,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB1F2H03,EB1 backwall Face 2 horizontal #022,4D2,228.500,229
+END BENT 1,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB1F2H04,EB1 backwall Face 2 horizontal #023,4D2,228.500,229
+END BENT 1,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB1F2H05,EB1 backwall Face 2 horizontal #024,4D2,228.500,229
+END BENT 1,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB11MV01,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #4",4E1,91.876,92
+END BENT 1,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB11MV02,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #018",4E1,91.876,92
+END BENT 1,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB11MV03,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #019",4E1,91.876,92
+END BENT 1,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB11MV04,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #020",4E1,91.876,92
+END BENT 1,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB11MV05,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #021",4E1,91.876,92
+END BENT 1,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB12MV01,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #4",4E1,91.822,92
+END BENT 1,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB12MV02,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #010",4E1,91.822,92
+END BENT 1,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB12MV03,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #011",4E1,91.822,92
+END BENT 1,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB12MV04,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #012",4E1,91.822,92
+END BENT 1,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB12MV05,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #013",4E1,91.822,92
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH01,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #4",4E2,37.500,38
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH02,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #032",4E2,37.500,38
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH03,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #033",4E2,37.500,38
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH04,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #034",4E2,37.500,38
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH05,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #035",4E2,37.500,38
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH06,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #036",4E2,37.500,38
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH07,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #037",4E2,37.500,38
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH08,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #038",4E2,37.500,38
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH09,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #039",4E2,37.500,38
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH10,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #040",4E2,37.500,38
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB11MH11,"EB1 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #041",4E2,37.500,38
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH01,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #4",4E2,37.500,38
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH02,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #018",4E2,37.500,38
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH03,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #019",4E2,37.500,38
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH04,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #020",4E2,37.500,38
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH05,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #021",4E2,37.500,38
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH06,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #022",4E2,37.500,38
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH07,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #023",4E2,37.500,38
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH08,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #024",4E2,37.500,38
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH09,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #025",4E2,37.500,38
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH10,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #026",4E2,37.500,38
+END BENT 1,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB12MH11,"EB1 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #027",4E2,37.500,38
+END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B1X01,EB1 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average,4F1,51.368,51
+END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B1X02,EB1 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average013,4F1,51.368,51
+END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B1X03,EB1 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average014,4F1,51.368,51
+END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B1X04,EB1 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average015,4F1,51.368,51
+END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B1X05,EB1 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average016,4F1,51.368,51
+END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B1X06,EB1 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average017,4F1,51.368,51
+END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B1X07,EB1 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average018,4F1,51.368,51
+END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B2X01,EB1 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average,4F1,51.368,51
+END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B2X02,EB1 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average013,4F1,51.368,51
+END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B2X03,EB1 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average014,4F1,51.368,51
+END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B2X04,EB1 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average015,4F1,51.368,51
+END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B2X05,EB1 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average016,4F1,51.368,51
+END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B2X06,EB1 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average017,4F1,51.368,51
+END BENT 1,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB1B2X07,EB1 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average018,4F1,51.368,51
+END BENT 1,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelEB1B2Y01,EB1 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average,4F2,57.368,57
+END BENT 1,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelEB1B2Y02,EB1 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average007,4F2,57.368,57
+END BENT 1,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelEB1B2Y03,EB1 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average008,4F2,57.368,57
+END BENT 1,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelEB1B2Y04,EB1 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average009,4F2,57.368,57
+END BENT 1,4F3,4,F3,"PEDESTAL, LONGITUDINAL",PedSteelEB1B1Y01,EB1 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average,4F3,55.868,56
+END BENT 1,4F3,4,F3,"PEDESTAL, LONGITUDINAL",PedSteelEB1B1Y02,EB1 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average007,4F3,55.868,56
+END BENT 1,4F3,4,F3,"PEDESTAL, LONGITUDINAL",PedSteelEB1B1Y03,EB1 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average008,4F3,55.868,56
+END BENT 1,4F3,4,F3,"PEDESTAL, LONGITUDINAL",PedSteelEB1B1Y04,EB1 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average009,4F3,55.868,56
+END BENT 1,5C,5,C,CAP BETWEEN PILES,CageEB1Added01,EB1 Added span 1 #5 Added01,5C,44.872,45
+END BENT 1,5C,5,C,CAP BETWEEN PILES,CageEB1Added02,EB1 Added span 2 #5 Added02,5C,44.872,45
+END BENT 1,5C,5,C,CAP BETWEEN PILES,CageEB1Added03,EB1 Added span 3 #5 Added03,5C,44.872,45
+END BENT 1,5C,5,C,CAP BETWEEN PILES,CageEB1Added04,EB1 Added span 1 #5 Added04,5C,44.872,45
+END BENT 1,5C,5,C,CAP BETWEEN PILES,CageEB1Added05,EB1 Added span 2 #5 Added05,5C,44.872,45
+END BENT 1,5C,5,C,CAP BETWEEN PILES,CageEB1Added06,EB1 Added span 3 #5 Added06,5C,44.872,45
+END BENT 1,5C,5,C,CAP BETWEEN PILES,CageEB1Added07,EB1 Added span 1 #5 Added07,5C,44.872,45
+END BENT 1,5C,5,C,CAP BETWEEN PILES,CageEB1Added08,EB1 Added span 2 #5 Added08,5C,44.872,45
+END BENT 1,5C,5,C,CAP BETWEEN PILES,CageEB1Added09,EB1 Added span 3 #5 Added09,5C,44.872,45
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V01,EB1 backwall Face 1 vertical; schematic dowel #5,5D1,59.483,59
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V02,EB1 backwall Face 1 vertical; schematic dowel #089,5D1,59.723,60
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V03,EB1 backwall Face 1 vertical; schematic dowel #090,5D1,59.963,60
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V04,EB1 backwall Face 1 vertical; schematic dowel #091,5D1,60.203,60
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V05,EB1 backwall Face 1 vertical; schematic dowel #092,5D1,60.443,60
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V06,EB1 backwall Face 1 vertical; schematic dowel #093,5D1,60.683,61
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V07,EB1 backwall Face 1 vertical; schematic dowel #094,5D1,60.923,61
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V08,EB1 backwall Face 1 vertical; schematic dowel #095,5D1,61.163,61
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V09,EB1 backwall Face 1 vertical; schematic dowel #096,5D1,61.403,61
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V10,EB1 backwall Face 1 vertical; schematic dowel #097,5D1,61.643,62
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V11,EB1 backwall Face 1 vertical; schematic dowel #098,5D1,61.650,62
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V12,EB1 backwall Face 1 vertical; schematic dowel #099,5D1,61.410,61
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V13,EB1 backwall Face 1 vertical; schematic dowel #100,5D1,61.170,61
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V14,EB1 backwall Face 1 vertical; schematic dowel #101,5D1,60.930,61
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V15,EB1 backwall Face 1 vertical; schematic dowel #102,5D1,60.690,61
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V16,EB1 backwall Face 1 vertical; schematic dowel #103,5D1,60.450,60
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V17,EB1 backwall Face 1 vertical; schematic dowel #104,5D1,60.210,60
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V18,EB1 backwall Face 1 vertical; schematic dowel #105,5D1,59.970,60
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V19,EB1 backwall Face 1 vertical; schematic dowel #106,5D1,59.730,60
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V20,EB1 backwall Face 1 vertical; schematic dowel #107,5D1,59.490,59
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V21,EB1 backwall Face 1 vertical; schematic dowel #108,5D1,59.483,59
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V01,EB1 backwall Face 2 vertical; schematic dowel #5,5D1,59.483,59
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V02,EB1 backwall Face 2 vertical; schematic dowel #089,5D1,59.723,60
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V03,EB1 backwall Face 2 vertical; schematic dowel #090,5D1,59.963,60
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V04,EB1 backwall Face 2 vertical; schematic dowel #091,5D1,60.203,60
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V05,EB1 backwall Face 2 vertical; schematic dowel #092,5D1,60.443,60
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V06,EB1 backwall Face 2 vertical; schematic dowel #093,5D1,60.683,61
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V07,EB1 backwall Face 2 vertical; schematic dowel #094,5D1,60.923,61
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V08,EB1 backwall Face 2 vertical; schematic dowel #095,5D1,61.163,61
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V09,EB1 backwall Face 2 vertical; schematic dowel #096,5D1,61.403,61
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V10,EB1 backwall Face 2 vertical; schematic dowel #097,5D1,61.643,62
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V11,EB1 backwall Face 2 vertical; schematic dowel #098,5D1,61.650,62
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V12,EB1 backwall Face 2 vertical; schematic dowel #099,5D1,61.410,61
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V13,EB1 backwall Face 2 vertical; schematic dowel #100,5D1,61.170,61
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V14,EB1 backwall Face 2 vertical; schematic dowel #101,5D1,60.930,61
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V15,EB1 backwall Face 2 vertical; schematic dowel #102,5D1,60.690,61
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V16,EB1 backwall Face 2 vertical; schematic dowel #103,5D1,60.450,60
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V17,EB1 backwall Face 2 vertical; schematic dowel #104,5D1,60.210,60
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V18,EB1 backwall Face 2 vertical; schematic dowel #105,5D1,59.970,60
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V19,EB1 backwall Face 2 vertical; schematic dowel #106,5D1,59.730,60
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V20,EB1 backwall Face 2 vertical; schematic dowel #107,5D1,59.490,59
+END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V21,EB1 backwall Face 2 vertical; schematic dowel #108,5D1,59.483,59
+END BENT 1,6A1,6,A1,CAP TOP,CageEB1Long01,EB1 Top row 1 #6 Long01,6A1,245.000,245
+END BENT 1,6A1,6,A1,CAP TOP,CageEB1Long02,EB1 Top row 1 #6 Long02,6A1,245.000,245
+END BENT 1,6A1,6,A1,CAP TOP,CageEB1Long03,EB1 Top row 1 #6 Long03,6A1,245.000,245
+END BENT 1,6A1,6,A1,CAP TOP,CageEB1Long04,EB1 Top row 1 #6 Long04,6A1,245.000,245
+END BENT 1,6A1,6,A1,CAP TOP,CageEB1Long05,EB1 Top row 1 #6 Long05,6A1,245.000,245
+END BENT 1,6A3,6,A3,CAP SIDE FACES,CageEB1Long10,EB1 Skin #6 Long10,6A3,245.000,245
+END BENT 1,6A3,6,A3,CAP SIDE FACES,CageEB1Long11,EB1 Skin #6 Long11,6A3,245.000,245
+END BENT 1,6A3,6,A3,CAP SIDE FACES,CageEB1Long12,EB1 Skin #6 Long12,6A3,245.000,245
+END BENT 1,6A3,6,A3,CAP SIDE FACES,CageEB1Long13,EB1 Skin #6 Long13,6A3,245.000,245
+END BENT 1,6A3,6,A3,CAP SIDE FACES,CageEB1Long14,EB1 Skin #6 Long14,6A3,245.000,245
+END BENT 1,6A3,6,A3,CAP SIDE FACES,CageEB1Long15,EB1 Skin #6 Long15,6A3,245.000,245
+END BENT 1,6A3,6,A3,CAP SIDE FACES,CageEB1Long16,EB1 Skin #6 Long16,6A3,245.000,245
+END BENT 1,6A3,6,A3,CAP SIDE FACES,CageEB1Long17,EB1 Skin #6 Long17,6A3,245.000,245
+END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R1_1,EB1 R1 hoop #6 Trans_R1_1,6B1,141.758,142
+END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R1_2,EB1 R1 hoop #6 Trans_R1_2,6B1,141.758,142
+END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R1_3,EB1 R1 hoop #6 Trans_R1_3,6B1,141.758,142
+END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R1_4,EB1 R1 hoop #6 Trans_R1_4,6B1,141.758,142
+END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R3_1,EB1 R3 hoop #6 Trans_R3_1,6B1,141.758,142
+END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R3_2,EB1 R3 hoop #6 Trans_R3_2,6B1,141.758,142
+END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R3_3,EB1 R3 hoop #6 Trans_R3_3,6B1,141.758,142
+END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R3_4,EB1 R3 hoop #6 Trans_R3_4,6B1,141.758,142
+END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R5_1,EB1 R5 hoop #6 Trans_R5_1,6B1,141.758,142
+END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R5_2,EB1 R5 hoop #6 Trans_R5_2,6B1,141.758,142
+END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R5_3,EB1 R5 hoop #6 Trans_R5_3,6B1,141.758,142
+END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R5_4,EB1 R5 hoop #6 Trans_R5_4,6B1,141.758,142
+END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R7_1,EB1 R7 hoop #6 Trans_R7_1,6B1,141.758,142
+END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R7_2,EB1 R7 hoop #6 Trans_R7_2,6B1,141.758,142
+END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R7_3,EB1 R7 hoop #6 Trans_R7_3,6B1,141.758,142
+END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R7_4,EB1 R7 hoop #6 Trans_R7_4,6B1,141.758,142
+END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R9_1,EB1 R9 hoop #6 Trans_R9_1,6B1,141.758,142
+END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R9_2,EB1 R9 hoop #6 Trans_R9_2,6B1,141.758,142
+END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R9_3,EB1 R9 hoop #6 Trans_R9_3,6B1,141.758,142
+END BENT 1,6B1,6,B1,CAP HOOP,CageEB1Trans_R9_4,EB1 R9 hoop #6 Trans_R9_4,6B1,141.758,142
+END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R2_1,EB1 R2 pile_u #6 Trans_R2_1,6B2,112.493,112
+END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R2_2,EB1 R2 pile_u #6 Trans_R2_2,6B2,112.493,112
+END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R2_3,EB1 R2 pile_u #6 Trans_R2_3,6B2,112.493,112
+END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R2_4,EB1 R2 pile_u #6 Trans_R2_4,6B2,112.493,112
+END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R4_1,EB1 R4 pile_u #6 Trans_R4_1,6B2,112.493,112
+END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R4_2,EB1 R4 pile_u #6 Trans_R4_2,6B2,112.493,112
+END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R4_3,EB1 R4 pile_u #6 Trans_R4_3,6B2,112.493,112
+END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R4_4,EB1 R4 pile_u #6 Trans_R4_4,6B2,112.493,112
+END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R6_1,EB1 R6 pile_u #6 Trans_R6_1,6B2,112.493,112
+END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R6_2,EB1 R6 pile_u #6 Trans_R6_2,6B2,112.493,112
+END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R6_3,EB1 R6 pile_u #6 Trans_R6_3,6B2,112.493,112
+END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R6_4,EB1 R6 pile_u #6 Trans_R6_4,6B2,112.493,112
+END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R8_1,EB1 R8 pile_u #6 Trans_R8_1,6B2,112.493,112
+END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R8_2,EB1 R8 pile_u #6 Trans_R8_2,6B2,112.493,112
+END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R8_3,EB1 R8 pile_u #6 Trans_R8_3,6B2,112.493,112
+END BENT 1,6B2,6,B2,CAP STIRRUP AT PILES,CageEB1Trans_R8_4,EB1 R8 pile_u #6 Trans_R8_4,6B2,112.493,112
+END BENT 1,8A2,8,A2,CAP BOTTOM,CageEB1Long06,EB1 Bottom row 1 #8 Long06,8A2,245.000,245
+END BENT 1,8A2,8,A2,CAP BOTTOM,CageEB1Long07,EB1 Bottom row 1 #8 Long07,8A2,245.000,245
+END BENT 1,8A2,8,A2,CAP BOTTOM,CageEB1Long08,EB1 Bottom row 1 #8 Long08,8A2,245.000,245
+END BENT 1,8A2,8,A2,CAP BOTTOM,CageEB1Long09,EB1 Bottom row 1 #8 Long09,8A2,245.000,245
+PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X01,Pier pedestal 2 X U-bars @ 6.0 in average,4E1,67.374,67
+PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X02,Pier pedestal 2 X U-bars @ 6.0 in average013,4E1,67.374,67
+PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X03,Pier pedestal 2 X U-bars @ 6.0 in average014,4E1,67.374,67
+PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X04,Pier pedestal 2 X U-bars @ 6.0 in average015,4E1,67.374,67
+PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X05,Pier pedestal 2 X U-bars @ 6.0 in average016,4E1,67.374,67
+PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X06,Pier pedestal 2 X U-bars @ 6.0 in average017,4E1,67.374,67
+PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X07,Pier pedestal 2 X U-bars @ 6.0 in average018,4E1,67.374,67
+PIER,4E2,4,E2,"PEDESTAL, TRANSVERSE",PedSteelPierB1X01,Pier pedestal 1 X U-bars @ 6.0 in average,4E2,75.374,75
+PIER,4E2,4,E2,"PEDESTAL, TRANSVERSE",PedSteelPierB1X02,Pier pedestal 1 X U-bars @ 6.0 in average013,4E2,75.374,75
+PIER,4E2,4,E2,"PEDESTAL, TRANSVERSE",PedSteelPierB1X03,Pier pedestal 1 X U-bars @ 6.0 in average014,4E2,75.374,75
+PIER,4E2,4,E2,"PEDESTAL, TRANSVERSE",PedSteelPierB1X04,Pier pedestal 1 X U-bars @ 6.0 in average015,4E2,75.374,75
+PIER,4E2,4,E2,"PEDESTAL, TRANSVERSE",PedSteelPierB1X05,Pier pedestal 1 X U-bars @ 6.0 in average016,4E2,75.374,75
+PIER,4E2,4,E2,"PEDESTAL, TRANSVERSE",PedSteelPierB1X06,Pier pedestal 1 X U-bars @ 6.0 in average017,4E2,75.374,75
+PIER,4E2,4,E2,"PEDESTAL, TRANSVERSE",PedSteelPierB1X07,Pier pedestal 1 X U-bars @ 6.0 in average018,4E2,75.374,75
+PIER,4E3,4,E3,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y01,Pier pedestal 2 Y U-bars @ 6.0 in average,4E3,58.874,59
+PIER,4E3,4,E3,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y02,Pier pedestal 2 Y U-bars @ 6.0 in average013,4E3,58.874,59
+PIER,4E3,4,E3,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y03,Pier pedestal 2 Y U-bars @ 6.0 in average014,4E3,58.874,59
+PIER,4E3,4,E3,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y04,Pier pedestal 2 Y U-bars @ 6.0 in average015,4E3,58.874,59
+PIER,4E3,4,E3,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y05,Pier pedestal 2 Y U-bars @ 6.0 in average016,4E3,58.874,59
+PIER,4E3,4,E3,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y06,Pier pedestal 2 Y U-bars @ 6.0 in average017,4E3,58.874,59
+PIER,4E3,4,E3,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y07,Pier pedestal 2 Y U-bars @ 6.0 in average018,4E3,58.874,59
+PIER,4E4,4,E4,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y01,Pier pedestal 1 Y U-bars @ 6.0 in average,4E4,67.874,68
+PIER,4E4,4,E4,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y02,Pier pedestal 1 Y U-bars @ 6.0 in average013,4E4,67.874,68
+PIER,4E4,4,E4,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y03,Pier pedestal 1 Y U-bars @ 6.0 in average014,4E4,67.874,68
+PIER,4E4,4,E4,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y04,Pier pedestal 1 Y U-bars @ 6.0 in average015,4E4,67.874,68
+PIER,4E4,4,E4,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y05,Pier pedestal 1 Y U-bars @ 6.0 in average016,4E4,67.874,68
+PIER,4E4,4,E4,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y06,Pier pedestal 1 Y U-bars @ 6.0 in average017,4E4,67.874,68
+PIER,4E4,4,E4,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y07,Pier pedestal 1 Y U-bars @ 6.0 in average018,4E4,67.874,68
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R1_1,Pier R1 hoop #5 Trans_R1_1,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R1_2,Pier R1 hoop #5 Trans_R1_2,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R1_3,Pier R1 hoop #5 Trans_R1_3,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R3_1,Pier R3 hoop #5 Trans_R3_1,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R3_2,Pier R3 hoop #5 Trans_R3_2,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R3_3,Pier R3 hoop #5 Trans_R3_3,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R3_4,Pier R3 hoop #5 Trans_R3_4,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R3_5,Pier R3 hoop #5 Trans_R3_5,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R3_6,Pier R3 hoop #5 Trans_R3_6,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R5_1,Pier R5 hoop #5 Trans_R5_1,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R5_2,Pier R5 hoop #5 Trans_R5_2,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R5_3,Pier R5 hoop #5 Trans_R5_3,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R5_4,Pier R5 hoop #5 Trans_R5_4,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R5_5,Pier R5 hoop #5 Trans_R5_5,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R5_6,Pier R5 hoop #5 Trans_R5_6,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R7_1,Pier R7 hoop #5 Trans_R7_1,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R7_2,Pier R7 hoop #5 Trans_R7_2,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R7_3,Pier R7 hoop #5 Trans_R7_3,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R7_4,Pier R7 hoop #5 Trans_R7_4,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R7_5,Pier R7 hoop #5 Trans_R7_5,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R7_6,Pier R7 hoop #5 Trans_R7_6,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R9_1,Pier R9 hoop #5 Trans_R9_1,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R9_2,Pier R9 hoop #5 Trans_R9_2,5B1,152.129,152
+PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R9_3,Pier R9 hoop #5 Trans_R9_3,5B1,152.129,152
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R2_1,Pier R2 pile_u #5 Trans_R2_1,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R2_2,Pier R2 pile_u #5 Trans_R2_2,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R2_3,Pier R2 pile_u #5 Trans_R2_3,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R2_4,Pier R2 pile_u #5 Trans_R2_4,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R2_5,Pier R2 pile_u #5 Trans_R2_5,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R2_6,Pier R2 pile_u #5 Trans_R2_6,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R4_1,Pier R4 pile_u #5 Trans_R4_1,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R4_2,Pier R4 pile_u #5 Trans_R4_2,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R4_3,Pier R4 pile_u #5 Trans_R4_3,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R4_4,Pier R4 pile_u #5 Trans_R4_4,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R4_5,Pier R4 pile_u #5 Trans_R4_5,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R4_6,Pier R4 pile_u #5 Trans_R4_6,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R6_1,Pier R6 pile_u #5 Trans_R6_1,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R6_2,Pier R6 pile_u #5 Trans_R6_2,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R6_3,Pier R6 pile_u #5 Trans_R6_3,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R6_4,Pier R6 pile_u #5 Trans_R6_4,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R6_5,Pier R6 pile_u #5 Trans_R6_5,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R6_6,Pier R6 pile_u #5 Trans_R6_6,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R8_1,Pier R8 pile_u #5 Trans_R8_1,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R8_2,Pier R8 pile_u #5 Trans_R8_2,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R8_3,Pier R8 pile_u #5 Trans_R8_3,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R8_4,Pier R8 pile_u #5 Trans_R8_4,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R8_5,Pier R8 pile_u #5 Trans_R8_5,5B2,115.744,116
+PIER,5B2,5,B2,CAP STIRRUP AT PILES,CagePierTrans_R8_6,Pier R8 pile_u #5 Trans_R8_6,5B2,115.744,116
+PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded01,Pier Added span 1 #5 Added01,5C,48.872,49
+PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded02,Pier Added span 2 #5 Added02,5C,48.872,49
+PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded03,Pier Added span 3 #5 Added03,5C,48.872,49
+PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded04,Pier Added span 1 #5 Added04,5C,48.872,49
+PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded05,Pier Added span 2 #5 Added05,5C,48.872,49
+PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded06,Pier Added span 3 #5 Added06,5C,48.872,49
+PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded07,Pier Added span 1 #5 Added07,5C,48.872,49
+PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded08,Pier Added span 2 #5 Added08,5C,48.872,49
+PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded09,Pier Added span 3 #5 Added09,5C,48.872,49
+PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded10,Pier Added span 1 #5 Added10,5C,48.872,49
+PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded11,Pier Added span 2 #5 Added11,5C,48.872,49
+PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded12,Pier Added span 3 #5 Added12,5C,48.872,49
+PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded13,Pier Added span 1 #5 Added13,5C,48.872,49
+PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded14,Pier Added span 2 #5 Added14,5C,48.872,49
+PIER,5C,5,C,CAP BETWEEN PILES,CagePierAdded15,Pier Added span 3 #5 Added15,5C,48.872,49
+PIER,5D1,5,D1,"CAP END, HORIZONTAL",CagePierEnd_left_H1,Pier End left horizontal #5 End_left_H1,5D1,57.613,58
+PIER,5D1,5,D1,"CAP END, HORIZONTAL",CagePierEnd_left_H2,Pier End left horizontal #5 End_left_H2,5D1,57.613,58
+PIER,5D1,5,D1,"CAP END, HORIZONTAL",CagePierEnd_right_H1,Pier End right horizontal #5 End_right_H1,5D1,57.613,58
+PIER,5D1,5,D1,"CAP END, HORIZONTAL",CagePierEnd_right_H2,Pier End right horizontal #5 End_right_H2,5D1,57.613,58
+PIER,5D2,5,D2,"CAP END, VERTICAL",CagePierEnd_left_V1,Pier End left vertical #5 End_left_V1,5D2,45.613,46
+PIER,5D2,5,D2,"CAP END, VERTICAL",CagePierEnd_left_V2,Pier End left vertical #5 End_left_V2,5D2,45.613,46
+PIER,5D2,5,D2,"CAP END, VERTICAL",CagePierEnd_left_V3,Pier End left vertical #5 End_left_V3,5D2,45.613,46
+PIER,5D2,5,D2,"CAP END, VERTICAL",CagePierEnd_right_V1,Pier End right vertical #5 End_right_V1,5D2,45.613,46
+PIER,5D2,5,D2,"CAP END, VERTICAL",CagePierEnd_right_V2,Pier End right vertical #5 End_right_V2,5D2,45.613,46
+PIER,5D2,5,D2,"CAP END, VERTICAL",CagePierEnd_right_V3,Pier End right vertical #5 End_right_V3,5D2,45.613,46
+PIER,6A1,6,A1,CAP TOP,CagePierLong01,Pier Top row 1 #6 Long01,6A1,224.000,224
+PIER,6A1,6,A1,CAP TOP,CagePierLong02,Pier Top row 1 #6 Long02,6A1,224.000,224
+PIER,6A1,6,A1,CAP TOP,CagePierLong03,Pier Top row 1 #6 Long03,6A1,224.000,224
+PIER,6A1,6,A1,CAP TOP,CagePierLong04,Pier Top row 1 #6 Long04,6A1,224.000,224
+PIER,6A1,6,A1,CAP TOP,CagePierLong05,Pier Top row 1 #6 Long05,6A1,224.000,224
+PIER,6A3,6,A3,CAP SIDE FACES,CagePierLong10,Pier Skin #6 Long10,6A3,224.000,224
+PIER,6A3,6,A3,CAP SIDE FACES,CagePierLong11,Pier Skin #6 Long11,6A3,224.000,224
+PIER,6A3,6,A3,CAP SIDE FACES,CagePierLong12,Pier Skin #6 Long12,6A3,224.000,224
+PIER,6A3,6,A3,CAP SIDE FACES,CagePierLong13,Pier Skin #6 Long13,6A3,224.000,224
+PIER,6A3,6,A3,CAP SIDE FACES,CagePierLong14,Pier Skin #6 Long14,6A3,224.000,224
+PIER,6A3,6,A3,CAP SIDE FACES,CagePierLong15,Pier Skin #6 Long15,6A3,224.000,224
+PIER,6A3,6,A3,CAP SIDE FACES,CagePierLong16,Pier Skin #6 Long16,6A3,224.000,224
+PIER,6A3,6,A3,CAP SIDE FACES,CagePierLong17,Pier Skin #6 Long17,6A3,224.000,224
+PIER,9A2,9,A2,CAP BOTTOM,CagePierLong06,Pier Bottom row 1 #9 Long06,9A2,224.000,224
+PIER,9A2,9,A2,CAP BOTTOM,CagePierLong07,Pier Bottom row 1 #9 Long07,9A2,224.000,224
+PIER,9A2,9,A2,CAP BOTTOM,CagePierLong08,Pier Bottom row 1 #9 Long08,9A2,224.000,224
+PIER,9A2,9,A2,CAP BOTTOM,CagePierLong09,Pier Bottom row 1 #9 Long09,9A2,224.000,224
+END BENT 2,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB2F1H01,EB2 backwall Face 1 horizontal #4,4D2,228.500,229
+END BENT 2,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB2F1H02,EB2 backwall Face 1 horizontal #021,4D2,228.500,229
+END BENT 2,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB2F1H03,EB2 backwall Face 1 horizontal #022,4D2,228.500,229
+END BENT 2,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB2F1H04,EB2 backwall Face 1 horizontal #023,4D2,228.500,229
+END BENT 2,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB2F1H05,EB2 backwall Face 1 horizontal #024,4D2,228.500,229
+END BENT 2,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB2F2H01,EB2 backwall Face 2 horizontal #4,4D2,228.500,229
+END BENT 2,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB2F2H02,EB2 backwall Face 2 horizontal #021,4D2,228.500,229
+END BENT 2,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB2F2H03,EB2 backwall Face 2 horizontal #022,4D2,228.500,229
+END BENT 2,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB2F2H04,EB2 backwall Face 2 horizontal #023,4D2,228.500,229
+END BENT 2,4D2,4,D2,BACKWALL HORIZONTAL,SteelBridgeBackwallEB2F2H05,EB2 backwall Face 2 horizontal #024,4D2,228.500,229
+END BENT 2,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB21MV01,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #4",4E1,91.828,92
+END BENT 2,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB21MV02,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #010",4E1,91.828,92
+END BENT 2,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB21MV03,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #011",4E1,91.828,92
+END BENT 2,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB21MV04,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #012",4E1,91.828,92
+END BENT 2,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB21MV05,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #013",4E1,91.828,92
+END BENT 2,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB22MV01,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #4",4E1,91.621,92
+END BENT 2,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB22MV02,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #010",4E1,91.621,92
+END BENT 2,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB22MV03,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #011",4E1,91.621,92
+END BENT 2,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB22MV04,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #012",4E1,91.621,92
+END BENT 2,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekEB22MV05,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat vertical #013",4E1,91.621,92
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH01,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #4",4E2,37.500,38
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH02,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #018",4E2,37.500,38
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH03,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #019",4E2,37.500,38
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH04,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #020",4E2,37.500,38
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH05,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #021",4E2,37.500,38
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH06,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #022",4E2,37.500,38
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH07,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #023",4E2,37.500,38
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH08,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #024",4E2,37.500,38
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH09,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #025",4E2,37.500,38
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH10,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #026",4E2,37.500,38
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB21MH11,"EB2 cheek 1 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #027",4E2,37.500,38
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH01,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #4",4E2,37.500,38
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH02,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #018",4E2,37.500,38
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH03,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #019",4E2,37.500,38
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH04,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #020",4E2,37.500,38
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH05,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #021",4E2,37.500,38
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH06,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #022",4E2,37.500,38
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH07,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #023",4E2,37.500,38
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH08,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #024",4E2,37.500,38
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH09,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #025",4E2,37.500,38
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH10,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #026",4E2,37.500,38
+END BENT 2,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekEB22MH11,"EB2 cheek 2 — 8 in wall, 6 in bottom/back lugs Single centered mat horizontal #027",4E2,37.500,38
+END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B1X01,EB2 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average,4F1,51.334,51
+END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B1X02,EB2 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average013,4F1,51.334,51
+END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B1X03,EB2 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average014,4F1,51.334,51
+END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B1X04,EB2 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average015,4F1,51.334,51
+END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B1X05,EB2 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average016,4F1,51.334,51
+END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B1X06,EB2 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average017,4F1,51.334,51
+END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B1X07,EB2 pedestal 1 - 30 x 42 in X U-bars @ 6.0 in average018,4F1,51.334,51
+END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B2X01,EB2 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average,4F1,51.334,51
+END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B2X02,EB2 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average013,4F1,51.334,51
+END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B2X03,EB2 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average014,4F1,51.334,51
+END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B2X04,EB2 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average015,4F1,51.334,51
+END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B2X05,EB2 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average016,4F1,51.334,51
+END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B2X06,EB2 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average017,4F1,51.334,51
+END BENT 2,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelEB2B2X07,EB2 pedestal 2 - 30 x 42 in X U-bars @ 6.0 in average018,4F1,51.334,51
+END BENT 2,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelEB2B2Y01,EB2 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average,4F2,57.334,57
+END BENT 2,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelEB2B2Y02,EB2 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average007,4F2,57.334,57
+END BENT 2,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelEB2B2Y03,EB2 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average008,4F2,57.334,57
+END BENT 2,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelEB2B2Y04,EB2 pedestal 2 - 30 x 42 in Y U-bars @ 6.0 in average009,4F2,57.334,57
+END BENT 2,4F3,4,F3,"PEDESTAL, LONGITUDINAL",PedSteelEB2B1Y01,EB2 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average,4F3,56.834,57
+END BENT 2,4F3,4,F3,"PEDESTAL, LONGITUDINAL",PedSteelEB2B1Y02,EB2 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average007,4F3,56.834,57
+END BENT 2,4F3,4,F3,"PEDESTAL, LONGITUDINAL",PedSteelEB2B1Y03,EB2 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average008,4F3,56.834,57
+END BENT 2,4F3,4,F3,"PEDESTAL, LONGITUDINAL",PedSteelEB2B1Y04,EB2 pedestal 1 - 30 x 42 in Y U-bars @ 6.0 in average009,4F3,56.834,57
+END BENT 2,5C,5,C,CAP BETWEEN PILES,CageEB2Added01,EB2 Added span 1 #5 Added01,5C,44.872,45
+END BENT 2,5C,5,C,CAP BETWEEN PILES,CageEB2Added02,EB2 Added span 2 #5 Added02,5C,44.872,45
+END BENT 2,5C,5,C,CAP BETWEEN PILES,CageEB2Added03,EB2 Added span 3 #5 Added03,5C,44.872,45
+END BENT 2,5C,5,C,CAP BETWEEN PILES,CageEB2Added04,EB2 Added span 1 #5 Added04,5C,44.872,45
+END BENT 2,5C,5,C,CAP BETWEEN PILES,CageEB2Added05,EB2 Added span 2 #5 Added05,5C,44.872,45
+END BENT 2,5C,5,C,CAP BETWEEN PILES,CageEB2Added06,EB2 Added span 3 #5 Added06,5C,44.872,45
+END BENT 2,5C,5,C,CAP BETWEEN PILES,CageEB2Added07,EB2 Added span 1 #5 Added07,5C,44.872,45
+END BENT 2,5C,5,C,CAP BETWEEN PILES,CageEB2Added08,EB2 Added span 2 #5 Added08,5C,44.872,45
+END BENT 2,5C,5,C,CAP BETWEEN PILES,CageEB2Added09,EB2 Added span 3 #5 Added09,5C,44.872,45
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V01,EB2 backwall Face 1 vertical; schematic dowel #5,5D1,59.483,59
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V02,EB2 backwall Face 1 vertical; schematic dowel #089,5D1,59.723,60
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V03,EB2 backwall Face 1 vertical; schematic dowel #090,5D1,59.963,60
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V04,EB2 backwall Face 1 vertical; schematic dowel #091,5D1,60.203,60
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V05,EB2 backwall Face 1 vertical; schematic dowel #092,5D1,60.443,60
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V06,EB2 backwall Face 1 vertical; schematic dowel #093,5D1,60.683,61
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V07,EB2 backwall Face 1 vertical; schematic dowel #094,5D1,60.923,61
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V08,EB2 backwall Face 1 vertical; schematic dowel #095,5D1,61.163,61
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V09,EB2 backwall Face 1 vertical; schematic dowel #096,5D1,61.403,61
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V10,EB2 backwall Face 1 vertical; schematic dowel #097,5D1,61.643,62
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V11,EB2 backwall Face 1 vertical; schematic dowel #098,5D1,61.650,62
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V12,EB2 backwall Face 1 vertical; schematic dowel #099,5D1,61.410,61
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V13,EB2 backwall Face 1 vertical; schematic dowel #100,5D1,61.170,61
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V14,EB2 backwall Face 1 vertical; schematic dowel #101,5D1,60.930,61
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V15,EB2 backwall Face 1 vertical; schematic dowel #102,5D1,60.690,61
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V16,EB2 backwall Face 1 vertical; schematic dowel #103,5D1,60.450,60
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V17,EB2 backwall Face 1 vertical; schematic dowel #104,5D1,60.210,60
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V18,EB2 backwall Face 1 vertical; schematic dowel #105,5D1,59.970,60
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V19,EB2 backwall Face 1 vertical; schematic dowel #106,5D1,59.730,60
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V20,EB2 backwall Face 1 vertical; schematic dowel #107,5D1,59.490,59
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V21,EB2 backwall Face 1 vertical; schematic dowel #108,5D1,59.483,59
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V01,EB2 backwall Face 2 vertical; schematic dowel #5,5D1,59.483,59
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V02,EB2 backwall Face 2 vertical; schematic dowel #089,5D1,59.723,60
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V03,EB2 backwall Face 2 vertical; schematic dowel #090,5D1,59.963,60
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V04,EB2 backwall Face 2 vertical; schematic dowel #091,5D1,60.203,60
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V05,EB2 backwall Face 2 vertical; schematic dowel #092,5D1,60.443,60
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V06,EB2 backwall Face 2 vertical; schematic dowel #093,5D1,60.683,61
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V07,EB2 backwall Face 2 vertical; schematic dowel #094,5D1,60.923,61
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V08,EB2 backwall Face 2 vertical; schematic dowel #095,5D1,61.163,61
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V09,EB2 backwall Face 2 vertical; schematic dowel #096,5D1,61.403,61
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V10,EB2 backwall Face 2 vertical; schematic dowel #097,5D1,61.643,62
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V11,EB2 backwall Face 2 vertical; schematic dowel #098,5D1,61.650,62
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V12,EB2 backwall Face 2 vertical; schematic dowel #099,5D1,61.410,61
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V13,EB2 backwall Face 2 vertical; schematic dowel #100,5D1,61.170,61
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V14,EB2 backwall Face 2 vertical; schematic dowel #101,5D1,60.930,61
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V15,EB2 backwall Face 2 vertical; schematic dowel #102,5D1,60.690,61
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V16,EB2 backwall Face 2 vertical; schematic dowel #103,5D1,60.450,60
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V17,EB2 backwall Face 2 vertical; schematic dowel #104,5D1,60.210,60
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V18,EB2 backwall Face 2 vertical; schematic dowel #105,5D1,59.970,60
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V19,EB2 backwall Face 2 vertical; schematic dowel #106,5D1,59.730,60
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V20,EB2 backwall Face 2 vertical; schematic dowel #107,5D1,59.490,59
+END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V21,EB2 backwall Face 2 vertical; schematic dowel #108,5D1,59.483,59
+END BENT 2,6A1,6,A1,CAP TOP,CageEB2Long01,EB2 Top row 1 #6 Long01,6A1,245.000,245
+END BENT 2,6A1,6,A1,CAP TOP,CageEB2Long02,EB2 Top row 1 #6 Long02,6A1,245.000,245
+END BENT 2,6A1,6,A1,CAP TOP,CageEB2Long03,EB2 Top row 1 #6 Long03,6A1,245.000,245
+END BENT 2,6A1,6,A1,CAP TOP,CageEB2Long04,EB2 Top row 1 #6 Long04,6A1,245.000,245
+END BENT 2,6A1,6,A1,CAP TOP,CageEB2Long05,EB2 Top row 1 #6 Long05,6A1,245.000,245
+END BENT 2,6A3,6,A3,CAP SIDE FACES,CageEB2Long10,EB2 Skin #6 Long10,6A3,245.000,245
+END BENT 2,6A3,6,A3,CAP SIDE FACES,CageEB2Long11,EB2 Skin #6 Long11,6A3,245.000,245
+END BENT 2,6A3,6,A3,CAP SIDE FACES,CageEB2Long12,EB2 Skin #6 Long12,6A3,245.000,245
+END BENT 2,6A3,6,A3,CAP SIDE FACES,CageEB2Long13,EB2 Skin #6 Long13,6A3,245.000,245
+END BENT 2,6A3,6,A3,CAP SIDE FACES,CageEB2Long14,EB2 Skin #6 Long14,6A3,245.000,245
+END BENT 2,6A3,6,A3,CAP SIDE FACES,CageEB2Long15,EB2 Skin #6 Long15,6A3,245.000,245
+END BENT 2,6A3,6,A3,CAP SIDE FACES,CageEB2Long16,EB2 Skin #6 Long16,6A3,245.000,245
+END BENT 2,6A3,6,A3,CAP SIDE FACES,CageEB2Long17,EB2 Skin #6 Long17,6A3,245.000,245
+END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R1_1,EB2 R1 hoop #6 Trans_R1_1,6B1,141.758,142
+END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R1_2,EB2 R1 hoop #6 Trans_R1_2,6B1,141.758,142
+END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R1_3,EB2 R1 hoop #6 Trans_R1_3,6B1,141.758,142
+END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R1_4,EB2 R1 hoop #6 Trans_R1_4,6B1,141.758,142
+END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R3_1,EB2 R3 hoop #6 Trans_R3_1,6B1,141.758,142
+END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R3_2,EB2 R3 hoop #6 Trans_R3_2,6B1,141.758,142
+END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R3_3,EB2 R3 hoop #6 Trans_R3_3,6B1,141.758,142
+END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R3_4,EB2 R3 hoop #6 Trans_R3_4,6B1,141.758,142
+END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R5_1,EB2 R5 hoop #6 Trans_R5_1,6B1,141.758,142
+END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R5_2,EB2 R5 hoop #6 Trans_R5_2,6B1,141.758,142
+END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R5_3,EB2 R5 hoop #6 Trans_R5_3,6B1,141.758,142
+END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R5_4,EB2 R5 hoop #6 Trans_R5_4,6B1,141.758,142
+END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R7_1,EB2 R7 hoop #6 Trans_R7_1,6B1,141.758,142
+END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R7_2,EB2 R7 hoop #6 Trans_R7_2,6B1,141.758,142
+END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R7_3,EB2 R7 hoop #6 Trans_R7_3,6B1,141.758,142
+END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R7_4,EB2 R7 hoop #6 Trans_R7_4,6B1,141.758,142
+END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R9_1,EB2 R9 hoop #6 Trans_R9_1,6B1,141.758,142
+END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R9_2,EB2 R9 hoop #6 Trans_R9_2,6B1,141.758,142
+END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R9_3,EB2 R9 hoop #6 Trans_R9_3,6B1,141.758,142
+END BENT 2,6B1,6,B1,CAP HOOP,CageEB2Trans_R9_4,EB2 R9 hoop #6 Trans_R9_4,6B1,141.758,142
+END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R2_1,EB2 R2 pile_u #6 Trans_R2_1,6B2,112.493,112
+END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R2_2,EB2 R2 pile_u #6 Trans_R2_2,6B2,112.493,112
+END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R2_3,EB2 R2 pile_u #6 Trans_R2_3,6B2,112.493,112
+END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R2_4,EB2 R2 pile_u #6 Trans_R2_4,6B2,112.493,112
+END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R4_1,EB2 R4 pile_u #6 Trans_R4_1,6B2,112.493,112
+END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R4_2,EB2 R4 pile_u #6 Trans_R4_2,6B2,112.493,112
+END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R4_3,EB2 R4 pile_u #6 Trans_R4_3,6B2,112.493,112
+END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R4_4,EB2 R4 pile_u #6 Trans_R4_4,6B2,112.493,112
+END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R6_1,EB2 R6 pile_u #6 Trans_R6_1,6B2,112.493,112
+END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R6_2,EB2 R6 pile_u #6 Trans_R6_2,6B2,112.493,112
+END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R6_3,EB2 R6 pile_u #6 Trans_R6_3,6B2,112.493,112
+END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R6_4,EB2 R6 pile_u #6 Trans_R6_4,6B2,112.493,112
+END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R8_1,EB2 R8 pile_u #6 Trans_R8_1,6B2,112.493,112
+END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R8_2,EB2 R8 pile_u #6 Trans_R8_2,6B2,112.493,112
+END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R8_3,EB2 R8 pile_u #6 Trans_R8_3,6B2,112.493,112
+END BENT 2,6B2,6,B2,CAP STIRRUP AT PILES,CageEB2Trans_R8_4,EB2 R8 pile_u #6 Trans_R8_4,6B2,112.493,112
+END BENT 2,8A2,8,A2,CAP BOTTOM,CageEB2Long06,EB2 Bottom row 1 #8 Long06,8A2,245.000,245
+END BENT 2,8A2,8,A2,CAP BOTTOM,CageEB2Long07,EB2 Bottom row 1 #8 Long07,8A2,245.000,245
+END BENT 2,8A2,8,A2,CAP BOTTOM,CageEB2Long08,EB2 Bottom row 1 #8 Long08,8A2,245.000,245
+END BENT 2,8A2,8,A2,CAP BOTTOM,CageEB2Long09,EB2 Bottom row 1 #8 Long09,8A2,245.000,245

@@ -3,8 +3,8 @@
  "version": "1.0.0",
  "dxf": "B4_Substructure_EndBents_Pier.dxf",
  "dxf_sha256": "97322bf03606b07932d2f4fad54f67316980d819f80a4956f50c3b057efc6ac5",
- "snapshot_sha256": "fb28fbce9e54895731f52916c2dcb1c5e42e435a39b1112a5baba0baf95620a3",
- "model_sha256": "78c4404029b432b25825fa823c09e2795f9f8de96f88ed62d1c2d2ea0b7740ba",
+ "snapshot_sha256": "55a83f5905ad2742d51a79aba4757349303b241a8161b217e9cb4e3e5613ee55",
+ "model_sha256": "2d3b6af8ff550d4bb201e41c9cf373cf4bbfe60a96390485f71822be86055bdf",
  "units": "international feet ($INSUNITS=2); model space 1:1",
  "station_reference": {
   "FFBW End Bent 1": 1593.22

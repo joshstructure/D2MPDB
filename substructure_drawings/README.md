@@ -45,7 +45,13 @@ county, road and EOR fields are blank because no project source gives them.
   the crowned top share one mark (5D1, VARIES). Each length and its count are listed in the bar
   list notes. [`output/bar_mark_register.csv`](output/bar_mark_register.csv)
   maps every native FreeCAD bar (object name, label, current model `Mark`) to
-  its SDM mark. The marks are not written into the FCStd.
+  its SDM mark. Decision D-042 wrote these marks into the model's `Mark`
+  properties, and the schedules follow them. Controllers give any bar they
+  regenerate their default mark. After a regeneration, rebuild with
+  `--extract`, then apply [`freecad_marks.py`](freecad_marks.py) through
+  the CAD_AI update workflow (job example:
+  `CAD_AI/reports/sdm-bar-marks-20261016`). The test fails until the model
+  and the drawings agree again.
 - **Representation (SDM 4.3.B, 4.3.7).** Plan and elevation views draw the
   first and last bar of each uniform series. Each series is called out
   `count~mark` with its spacing dimensioned (SDM 4.3.1.C). Stirrups use the

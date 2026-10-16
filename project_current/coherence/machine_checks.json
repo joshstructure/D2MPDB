@@ -1,7 +1,7 @@
 {
-  "checked_at_utc": "2026-10-16T17:39:49.787023+00:00",
+  "checked_at_utc": "2026-10-16T21:26:25.940005+00:00",
   "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
-  "register_sha256": "d3b8dde2f74a154052783c786ff13ea7c445a5e226b43fac0aff67f003bca761",
+  "register_sha256": "24bf04122fc9469ccb64e426cb2d3a78d0ed01f22d83d07ea4588aaf167b172e",
   "tracker_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
   "source_count": 29,
   "item_count": 28,
@@ -226,8 +226,8 @@
         "CAD-MODEL"
       ],
       "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-      "expected_sha256": "78c4404029b432b25825fa823c09e2795f9f8de96f88ed62d1c2d2ea0b7740ba",
-      "actual_sha256": "78c4404029b432b25825fa823c09e2795f9f8de96f88ed62d1c2d2ea0b7740ba"
+      "expected_sha256": "2d3b6af8ff550d4bb201e41c9cf373cf4bbfe60a96390485f71822be86055bdf",
+      "actual_sha256": "2d3b6af8ff550d4bb201e41c9cf373cf4bbfe60a96390485f71822be86055bdf"
     },
     {
       "check_id": "SOURCE:CAD-RUNTIME",
@@ -237,8 +237,8 @@
         "CAD-RUNTIME"
       ],
       "path": "project_current/geometry/freecad/manifest.json",
-      "expected_sha256": "9ee0f2eab5fd61f2e8a5b33fdf6ef78aab4612ae46e90e472efa41074e68ca97",
-      "actual_sha256": "9ee0f2eab5fd61f2e8a5b33fdf6ef78aab4612ae46e90e472efa41074e68ca97"
+      "expected_sha256": "81f49ba3f589ec4a3f0544634a037befd24633a79539f476b1378833e48386b2",
+      "actual_sha256": "81f49ba3f589ec4a3f0544634a037befd24633a79539f476b1378833e48386b2"
     },
     {
       "check_id": "SOURCE:CAD-REPORT",
@@ -248,8 +248,8 @@
         "CAD-REPORT"
       ],
       "path": "project_current/geometry/freecad/evidence/Model-update-report.txt",
-      "expected_sha256": "5ff67a38a5c1f7d69eb05caec292582d49146e9e2cb0d7a93c7210cba5a4e436",
-      "actual_sha256": "5ff67a38a5c1f7d69eb05caec292582d49146e9e2cb0d7a93c7210cba5a4e436"
+      "expected_sha256": "9dd9cc9e7e0569118b5ac413431cd1f5c880b30539a70c14f36ea4c02dfc4465",
+      "actual_sha256": "9dd9cc9e7e0569118b5ac413431cd1f5c880b30539a70c14f36ea4c02dfc4465"
     },
     {
       "check_id": "SOURCE:BACKWALL-TOOL",

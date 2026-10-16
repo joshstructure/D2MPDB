@@ -75,6 +75,16 @@ class SubstructureDxfTests(unittest.TestCase):
                 self.assertEqual(sorted(int(n) for n in nums), list(range(1, len(nums) + 1)),
                                  "%s %s numbers must start at 1 without gaps" % (key, letter))
 
+    def test_model_marks_are_the_sdm_marks(self):
+        """D-042: the FreeCAD Mark of every bar equals its SDM mark (rerun
+        substructure_drawings/freecad_marks.py after a cage regeneration)."""
+        for key, S in self.snap["structures"].items():
+            kind = "PIER" if key == "PIER" else "EB"
+            sbars = [dict(b) for b in S["bars"]]
+            bars.assign_marks(kind, sbars)
+            stale = [(b["name"], b["mark_model"], b["mark"]) for b in sbars if b["mark_model"] != b["mark"]]
+            self.assertEqual(stale, [], "%s model marks differ from SDM marks" % key)
+
     def test_register_covers_every_bar_once(self):
         with (OUT / "bar_mark_register.csv").open(encoding="utf-8") as f:
             rows = list(csv.DictReader(f))

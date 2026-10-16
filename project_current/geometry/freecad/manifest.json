@@ -3,8 +3,8 @@
   "authority": "Current editable FreeCAD geometry and modeled quantities; engineering acceptance remains separate",
   "model": {
     "path": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-    "sha256": "78c4404029b432b25825fa823c09e2795f9f8de96f88ed62d1c2d2ea0b7740ba",
-    "bytes": 5223131,
+    "sha256": "2d3b6af8ff550d4bb201e41c9cf373cf4bbfe60a96390485f71822be86055bdf",
+    "bytes": 5219544,
     "objects": 2064
   },
   "source_revision": "01a1fcc34d6345ceacf96245bcf0c931d118a1ab",
@@ -160,7 +160,7 @@
     "evidence/delivery-helper-fingerprints.json": "2eda36676cc40916485c708e385818c6e99ead3be41e5754a55bc5e772e58c62",
     "evidence/final-reopen-verification.json": "fde89e9b9c8bb47433a964e3d0b3faedcb00c201b8ada10b348c086e4bfaeec9",
     "evidence/final-save.json": "7767f925bccdf426225cf1d4269ce59919cdcf71267f7c56c7484547f758e946",
-    "evidence/Model-update-report.txt": "5ff67a38a5c1f7d69eb05caec292582d49146e9e2cb0d7a93c7210cba5a4e436",
+    "evidence/Model-update-report.txt": "9dd9cc9e7e0569118b5ac413431cd1f5c880b30539a70c14f36ea4c02dfc4465",
     "evidence/opener-verification.json": "7cfd370f32a419bd160ce2f914df4e861372addcab97d9e64896fb6135d40fdf",
     "evidence/portable-verification.json": "5daa7dfc49c7f7b11c641a51d2e425ce853dc08ee134356c02746d93d028ec36",
     "evidence/session-checkpoint.json": "c22fc947838b3ed99425beeab12c10e80b62b12be04d01444f2a0677135096c5",
@@ -348,19 +348,24 @@
     "evidence/2026-10-16-railing-group/cold-reopen.json": "a05db5b99013efa40b40eaf3656ac7b48fc58810e20543083d92242ca237a640",
     "evidence/2026-10-16-railing-group/live-grouping.json": "bb748bd187f2456ad60bc3af639bf3621f6386ac8a9cc5880616410d4795afe0",
     "evidence/2026-10-16-railing-group/native-preservation.json": "66ae698f062193c661a2d890e70bc1beb52b39355f079f149376804dba48da63",
-    "evidence/2026-10-16-railing-group/update-summary.json": "df53aa3110c3c1293a1881b4e21eaba7ed11b3870f8d5f04de112920fd6cce3e"
+    "evidence/2026-10-16-railing-group/update-summary.json": "df53aa3110c3c1293a1881b4e21eaba7ed11b3870f8d5f04de112920fd6cce3e",
+    "evidence/2026-10-16-sdm-bar-marks/cold-reopen.json": "62df62fb644a698e2c88a148aa5915c88d52e2088aa2ad35f25d771929fd9ba1",
+    "evidence/2026-10-16-sdm-bar-marks/native-preservation.json": "3ba04d519747a762aeb62930fc6b84187f2f355072988b0f1b20cc494a8c524f",
+    "evidence/2026-10-16-sdm-bar-marks/native-update.json": "8c9f270c8fee118b0371a27c2729d8c2952666c7cee86435c7bca755c7d7a4d8",
+    "evidence/2026-10-16-sdm-bar-marks/sdm-bar-marks.csv": "e148b4992abbf1f27e0a0049a9377fe14650039924bf66c3dc810290e40398c8",
+    "evidence/2026-10-16-sdm-bar-marks/update-summary.json": "26069235c5b513755aea31ec7e3938360efa29f6c576d40b0524e91a4ffea4be"
   },
   "known_review_status": "0 new WWR overlaps; 14 existing U-bar/hoop pairs Deferred in COH-025. Four cheek spacing findings Open in COH-024; 29 cap/backwall and 4 backwall internal overlaps and other existing findings retained.",
   "portability_verification": "Cold native reopen and live dependency test PASS; 172 accepted-trial solid matches; all 1677 prior native object/view records exact. Previous standalone GUI loader limitation retained.",
   "updated_on": "2026-10-15",
   "current_update": {
     "date": "2026-10-16",
-    "decision": "D-040",
-    "scope": "Group only the four bridge-deck railings under PGL-controlled bridge components > Bridge railing.",
-    "summary": "evidence/2026-10-16-railing-group/update-summary.json",
-    "previous_model_sha256": "8151e3e8f5f04fee15a335e3ac7c65d7e0e3b7d9f04c3698fa2788721f0dceb9",
-    "follow_up": "Existing coherence findings and engineering dispositions unchanged.",
-    "publication": "Explicit save/source request and standing GitHub delivery instructions"
+    "decision": "D-042",
+    "scope": "Write FDOT SDM 4.3 bar marks (size + designation) into the Mark property of the 454 native end-bent and pier rebars.",
+    "summary": "evidence/2026-10-16-sdm-bar-marks/update-summary.json",
+    "previous_model_sha256": "78c4404029b432b25825fa823c09e2795f9f8de96f88ed62d1c2d2ea0b7740ba",
+    "follow_up": "Existing coherence findings and engineering dispositions unchanged. Rerun freecad_marks after bar regeneration.",
+    "publication": "Explicit user request and standing GitHub delivery instructions"
   },
   "archive_files": {
     "archive/B4-before-pedestal-ubars-20261012.FCStd": "e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118",
@@ -384,16 +389,18 @@
     "archive/B4-before-cheek-report-steel-20261016.FCStd": "517d08ddd6c0b01c0bb279919d3648835a8a77cbc7727a42ba4312013b701a20",
     "archive/B4-before-cheek-report-steel-record-20261016.zip": "6b37f34c1a963fbe684e7c6b14f4e1a7f7bd0cfebbe898494b8c24737c0e99e6",
     "archive/B4-before-railing-group-20261016.FCStd": "8151e3e8f5f04fee15a335e3ac7c65d7e0e3b7d9f04c3698fa2788721f0dceb9",
-    "archive/B4-before-railing-group-record-20261016.zip": "5ddc751d3bf09c665fd48051be308be133cc6a50c21ac94c7e0354944c867c76"
+    "archive/B4-before-railing-group-record-20261016.zip": "5ddc751d3bf09c665fd48051be308be133cc6a50c21ac94c7e0354944c867c76",
+    "archive/B4-before-sdm-bar-marks-20261016.FCStd": "78c4404029b432b25825fa823c09e2795f9f8de96f88ed62d1c2d2ea0b7740ba",
+    "archive/B4-before-sdm-bar-marks-record-20261016.zip": "7b64452b983740ca54c2846ddc7b2c8b29fbfd015c5abbb8a4714ef2b44af9fb"
   },
   "previous_update": {
     "date": "2026-10-16",
-    "decision": "D-039",
-    "scope": "Replace all four cheek-wall mats with one centered #4 mat at 10 in maximum each way, using the selected 16 October report and case.",
-    "summary": "evidence/2026-10-16-cheek-steel/update-summary.json",
-    "previous_model_sha256": "517d08ddd6c0b01c0bb279919d3648835a8a77cbc7727a42ba4312013b701a20",
-    "follow_up": "COH-023; COH-024 remaining cap/backwall findings; COH-025; COH-026",
-    "publication": "Standing project GitHub delivery instructions"
+    "decision": "D-040",
+    "scope": "Group only the four bridge-deck railings under PGL-controlled bridge components > Bridge railing.",
+    "summary": "evidence/2026-10-16-railing-group/update-summary.json",
+    "previous_model_sha256": "8151e3e8f5f04fee15a335e3ac7c65d7e0e3b7d9f04c3698fa2788721f0dceb9",
+    "follow_up": "Existing coherence findings and engineering dispositions unchanged.",
+    "publication": "Explicit save/source request and standing GitHub delivery instructions"
   },
   "extra_macros": {
     "Show_Elevations.FCMacro": "f27415eb7d8fe05a5ff8d05a01a5298b36ac1d3cf987ec8738ed541d085a3fc4",

@@ -1,0 +1,80 @@
+{
+  "status": "PASS",
+  "model_sha256": "2d3b6af8ff550d4bb201e41c9cf373cf4bbfe60a96390485f71822be86055bdf",
+  "previous_model_sha256": "78c4404029b432b25825fa823c09e2795f9f8de96f88ed62d1c2d2ea0b7740ba",
+  "objects": 2064,
+  "bars_marked": 454,
+  "distinct_marks": [
+    "4D2",
+    "4E1",
+    "4E2",
+    "4E3",
+    "4E4",
+    "4F1",
+    "4F2",
+    "4F3",
+    "5B1",
+    "5B2",
+    "5C",
+    "5D1",
+    "5D2",
+    "6A1",
+    "6A3",
+    "6B1",
+    "6B2",
+    "8A2",
+    "9A2"
+  ],
+  "register_failures_before": 1122,
+  "register_failures_after": 0,
+  "changed_properties": {
+    "ScheduleJSON": 3,
+    "Mark": 454,
+    "schedule cell A": 454,
+    "cells": 15
+  },
+  "geometry_placements_expressions_dependencies_labels_preserved": true,
+  "all_other_property_values_preserved": true,
+  "controller_types_preserved": true,
+  "check_statuses": {
+    "CheekSteelChecks": [
+      "PASS",
+      null,
+      "Anchorage / development / laps / lug reinforcement: NOT CONFIGURED"
+    ],
+    "CheekLugWWRChecks": [
+      "PASS",
+      null,
+      null
+    ],
+    "WallSteelChecks": [
+      "FAIL",
+      null,
+      null
+    ],
+    "PedestalSteelChecks": [
+      "PASS",
+      null,
+      null
+    ],
+    "CageEB1Checks": [
+      null,
+      "PASS",
+      "FAIL"
+    ],
+    "CagePierChecks": [
+      null,
+      "PASS",
+      "FAIL"
+    ],
+    "CageEB2Checks": [
+      null,
+      "PASS",
+      "FAIL"
+    ]
+  },
+  "invalid_objects": [],
+  "touched_objects": [],
+  "wwr_wire_marks_unchanged": 180,
+  "validation": "Cold-opened the prior archive and the delivery in FreeCAD 1.1.3 with the pinned controllers. Compared native shape hashes, placements, expressions, dependencies, labels, controller types, check statuses and every other readable property value of all 2,064 objects. No recompute or save."
+}

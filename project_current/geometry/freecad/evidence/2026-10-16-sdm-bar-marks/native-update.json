@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "before_sha256": "78c4404029b432b25825fa823c09e2795f9f8de96f88ed62d1c2d2ea0b7740ba",
+  "objects": 2064,
+  "invalid_before": [],
+  "touched_before": [],
+  "invalid_after": [],
+  "source_state_unchanged": true,
+  "verify_failures": [],
+  "probe_cell": {
+    "sheet": "CageEB1Schedule",
+    "content": "'6A1",
+    "value": "6A1"
+  },
+  "bars_changed": 454,
+  "bars_already_marked": 0,
+  "schedule_cells_changed": 454,
+  "schedules": [
+    "CageEB1Schedule",
+    "CageEB2Schedule",
+    "CagePierSchedule",
+    "PedSteelEB1B1Schedule",
+    "PedSteelEB1B2Schedule",
+    "PedSteelEB2B1Schedule",
+    "PedSteelEB2B2Schedule",
+    "PedSteelPierB1Schedule",
+    "PedSteelPierB2Schedule",
+    "SteelBridgeBackwallEB1Schedule",
+    "SteelBridgeBackwallEB2Schedule",
+    "SteelBridgeCheekEB11Schedule",
+    "SteelBridgeCheekEB12Schedule",
+    "SteelBridgeCheekEB21Schedule",
+    "SteelBridgeCheekEB22Schedule"
+  ],
+  "quantities_refreshed": [
+    "CageEB1Quantities",
+    "CageEB2Quantities",
+    "CagePierQuantities"
+  ],
+  "groups_untouched": [
+    "CageEB1",
+    "CageEB2",
+    "CagePier",
+    "PedSteelEB1B1",
+    "PedSteelEB1B2",
+    "PedSteelEB2B1",
+    "PedSteelEB2B2",
+    "PedSteelPierB1",
+    "PedSteelPierB2",
+    "SteelBridgeBackwallEB1",
+    "SteelBridgeBackwallEB2",
+    "SteelBridgeCheekEB11",
+    "SteelBridgeCheekEB12",
+    "SteelBridgeCheekEB21",
+    "SteelBridgeCheekEB22"
+  ],
+  "pending_objects_after": [],
+  "native_saved_sha256": "a1ad407651a142a4365c1c805bd967ae34641935dff14d53739dcea1210f3650"
+}

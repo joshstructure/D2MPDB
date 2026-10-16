@@ -1,0 +1,76 @@
+{
+  "decision": "D-042",
+  "date": "2026-10-16",
+  "status": "ADOPTED_IN_PROJECT_SOURCE",
+  "model_sha256": "2d3b6af8ff550d4bb201e41c9cf373cf4bbfe60a96390485f71822be86055bdf",
+  "previous_model_sha256": "78c4404029b432b25825fa823c09e2795f9f8de96f88ed62d1c2d2ea0b7740ba",
+  "scope": "Write FDOT SDM 4.3 bar marks (size + designation) into the Mark property of the 454 native end-bent and pier rebars.",
+  "convention": "SDM January 2026 4.3.C-E and 4.3.10.B: mark = bar size + designation; designation unique within a support (may repeat between supports); letter alone for a single bar type, otherwise letter + number from 1 without gaps; no I, O or Q. End bents: A cap longitudinal, B cap stirrups/hoops, C cap U-bars between piles, D backwall, E cheek walls, F pedestals. Pier: A, B, C as above, D cap end U-bars, E pedestals.",
+  "mark_source": "substructure_drawings/output/bar_mark_register.csv (copied here as sdm-bar-marks.csv), generated from model 78c44040 with the FDOT end bent and pier DXF; drawings and model share one mapping.",
+  "marks_by_support": {
+    "END BENT 1": {
+      "4D2": 10,
+      "4E1": 10,
+      "4E2": 22,
+      "4F1": 14,
+      "4F2": 4,
+      "4F3": 4,
+      "5C": 9,
+      "5D1": 42,
+      "6A1": 5,
+      "6A3": 8,
+      "6B1": 20,
+      "6B2": 16,
+      "8A2": 4
+    },
+    "PIER": {
+      "4E1": 7,
+      "4E2": 7,
+      "4E3": 7,
+      "4E4": 7,
+      "5B1": 24,
+      "5B2": 24,
+      "5C": 15,
+      "5D1": 4,
+      "5D2": 6,
+      "6A1": 5,
+      "6A3": 8,
+      "9A2": 4
+    },
+    "END BENT 2": {
+      "4D2": 10,
+      "4E1": 10,
+      "4E2": 22,
+      "4F1": 14,
+      "4F2": 4,
+      "4F3": 4,
+      "5C": 9,
+      "5D1": 42,
+      "6A1": 5,
+      "6A3": 8,
+      "6B1": 20,
+      "6B2": 16,
+      "8A2": 4
+    }
+  },
+  "changed": {
+    "mark_properties": 454,
+    "schedule_cells": 454,
+    "schedule_sheets": 15,
+    "cap_cage_schedule_json": 3,
+    "schedule_json_mark_fields": 214
+  },
+  "unchanged": "Lug WWR wire designations (180). Labels, geometry, placements, expressions, dependencies, controllers, quantities, check statuses and all other property values; all view records and 8,696 archive members.",
+  "verification": "Cold-opened the prior archive and the delivery in FreeCAD 1.1.3 with the pinned controllers. Compared native shape hashes, placements, expressions, dependencies, labels, controller types, check statuses and every other readable property value of all 2,064 objects. No recompute or save.",
+  "source_preservation": "Native FreeCAD change on a disposable copy; delivery edits only the mark values, schedule cell text and ScheduleJSON mark fields in the prior GUI-saved archive. All other object, view and resource bytes kept.",
+  "regeneration_note": "The controllers assign their default <support>-<id> marks to any bar they newly create. After a regeneration, rebuild the DXF snapshot and rerun substructure_drawings/freecad_marks.py.",
+  "dated_snapshots": "Existing check snapshots (for example CheekSteelChecks ReportJSON) keep the marks recorded when they ran.",
+  "downstream_review": "Naming only. No physical geometry, reinforcement, quantities or calculation inputs change. The substructure DXF snapshot is re-extracted from this model so its register records the model marks.",
+  "tracker_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
+  "tracker_disposition": "Byte-identical; existing statuses, responses and outstanding findings retained.",
+  "backups": [
+    "archive/B4-before-sdm-bar-marks-20261016.FCStd",
+    "archive/B4-before-sdm-bar-marks-record-20261016.zip"
+  ],
+  "job": "CAD_AI/reports/sdm-bar-marks-20261016 (native_update.py, prepare_delivery.py, verify_native.py, finalize_delivery.py)"
+}

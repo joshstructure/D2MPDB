@@ -1,5 +1,13 @@
 # Current FreeCAD bridge model
 
+All 454 end-bent and pier rebars now carry FDOT SDM 4.3 bar marks in their
+**Mark** property (for example 6A1, 5B2, 4F3), matching the generated FDOT
+[end bent and pier DXF](../../../substructure_drawings/README.md) and its bar-mark
+register. The cage, wall and pedestal schedules show the same marks. Controllers
+still give newly regenerated bars their default marks; rerun
+`substructure_drawings/freecad_marks.py` after a regeneration.
+See [D-042 evidence](evidence/2026-10-16-sdm-bar-marks/update-summary.json).
+
 The four bridge-deck railings are grouped under **PGL-controlled bridge
 components → Bridge railing**. Their existing PGL links and geometry are
 preserved. Ramp and end-return barriers keep their prior groups.
@@ -47,7 +55,7 @@ See [adoption evidence](evidence/2026-10-15-deck-edges/adoption-summary.json).
 On each deck, use the **Deck edge details** properties; the four original deck
 barrier objects have **DeckEdgeSetback**. The opener loads their native controllers.
 
-**Current model: 16 October 2026, decision D-040.** This is the authoritative
+**Current model: 16 October 2026, decision D-042.** This is the authoritative
 editable bridge geometry and modeled-quantity source. The established native
 filename is retained for existing links; its date is not the current revision date.
 

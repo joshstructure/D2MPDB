@@ -291,3 +291,12 @@ Native live grouping passed; source delivery cold-opened in FreeCAD 1.1.3. Exist
 All 2,063 prior view records and 8,695 binary resources retained exactly. Display-color troubleshooting is not resolved by this grouping change.
 Tree organization only. No physical geometry, dimensions, reinforcement, quantities or calculation inputs change; no drawing regeneration or engineering-status change required for this grouping.
 Evidence: 2026-10-16-railing-group/update-summary.json
+
+
+16 OCTOBER 2026 - D-042 SDM BAR MARKS
+Write FDOT SDM 4.3 bar marks (size + designation) into the Mark property of the 454 native end-bent and pier rebars.
+SDM January 2026 4.3.C-E and 4.3.10.B: mark = bar size + designation; designation unique within a support (may repeat between supports); letter alone for a single bar type, otherwise letter + number from 1 without gaps; no I, O or Q. End bents: A cap longitudinal, B cap stirrups/hoops, C cap U-bars between piles, D backwall, E cheek walls, F pedestals. Pier: A, B, C as above, D cap end U-bars, E pedestals.
+Cold-opened the prior archive and the delivery in FreeCAD 1.1.3 with the pinned controllers. Compared native shape hashes, placements, expressions, dependencies, labels, controller types, check statuses and every other readable property value of all 2,064 objects. No recompute or save.
+The controllers assign their default <support>-<id> marks to any bar they newly create. After a regeneration, rebuild the DXF snapshot and rerun substructure_drawings/freecad_marks.py.
+Naming only. No physical geometry, reinforcement, quantities or calculation inputs change. The substructure DXF snapshot is re-extracted from this model so its register records the model marks.
+Evidence: 2026-10-16-sdm-bar-marks/update-summary.json
