@@ -19,3 +19,9 @@ not a replacement analysis basis for the 10 October report.
 This source import leaves the workbook's COH-013 disposition unchanged. Its
 raw-export gap is resolved; separately requested native-run documentation and
 engineering verification have not been completed by this receipt.
+
+**Update (16 October 2026).** The selected 14 October reports name exports that
+are not here: End Bent 1 needs `23bb3afc…` and End Bent 2 needs `56f78267…`.
+Both files above are now prior exports. COH-013 tracks the submittal. COH-028
+tracks the final rerun with pile heads at the current notebook cutoffs: EB1
+41.237692 ft and EB2 41.249692 ft. The prior export above has them at 40.3608 ft.

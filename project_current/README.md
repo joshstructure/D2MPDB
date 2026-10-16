@@ -229,3 +229,19 @@ Walls are also in the notebook's CAD export and in the interactive report. The
 and registered as GEOMETRY-TABLES. COH-023 stays Open for loads, quantities,
 anchorage, lug steel, strap interfaces and the CAD rebuild. See the
 [disposition](coherence/evidence/2026-10-16-geometry-end-bents/disposition.json).
+
+## 16 October FBMP pile-head follow-up
+
+Two FBMP items stay open by user direction:
+- **COH-013 (awaiting source):** the exact exports behind the selected cap reports
+  are not in the project source. The report-matching pier export was supplied for
+  comparison only. The 14 October End Bent 1 and End Bent 2 exports are missing.
+- **COH-028 (open):** the final FBMP runs must be repeated with pile heads at the
+  current notebook cutoffs: pier 41.764940 ft, EB1 41.237692 ft, EB2 41.249692 ft.
+  The report-matching pier model has them at 41.7717 ft. That is the cutoff from
+  before the 12 October camber update (D-022/D-023), which lowered every cutoff
+  by 0.084 in. D-036 changed no elevations.
+
+No export, register row, report or case changed. See the
+[pile-head record](coherence/evidence/2026-10-16-fbmp-pile-heads/pile_heads.json)
+and the [FBMP sources](fbmp/README.md).

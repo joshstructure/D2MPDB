@@ -1,0 +1,131 @@
+{
+  "date": "2026-10-16",
+  "tracker_items": [
+    "COH-013",
+    "COH-028"
+  ],
+  "authority": "User direction 2026-10-16: \"Lets leave the FBMP xml files submittal to the source as an open item and flag the need to rerun the final FBMP runs with updated pile head elevations.\"",
+  "method": "FBMP export NODE elements with location=\"Pier\" give the cap/pile-head connection at COORDINATES/Z (in, positive downward): pile-head EL (ft) = -Z / 12. Notebook pile cutoff = 'Pile cutoff (ft)' from BridgeModel.supports, cells bridge-02/03/05.",
+  "notebook": {
+    "path": "Bridge_Geometry_2 Beam_V2.ipynb",
+    "pre_d023_revision": "fcd34b8 (cambers 0.030455439 / 0.483095417 in)",
+    "current_revision": "e7076ef (D-022/D-023 cambers 0.124592744 / 0.567171463 in; D-036 leaves elevations unchanged)",
+    "pre_d023_pile_cutoff_ft": {
+      "Pier": 41.771947,
+      "End Bent 1": 41.244699,
+      "End Bent 2": 41.256699
+    }
+  },
+  "rerun_targets": {
+    "Pier": {
+      "pile_cutoff_ft": 41.76494,
+      "fbmp_node_z_in": -501.18,
+      "change_from_pre_d023_in": -0.0841
+    },
+    "End Bent 1": {
+      "pile_cutoff_ft": 41.237692,
+      "fbmp_node_z_in": -494.85,
+      "change_from_pre_d023_in": -0.0841
+    },
+    "End Bent 2": {
+      "pile_cutoff_ft": 41.249692,
+      "fbmp_node_z_in": -495.0,
+      "change_from_pre_d023_in": -0.0841
+    }
+  },
+  "exports_measured": [
+    {
+      "source_id": "PIER-XML",
+      "path": "project_current/fbmp/pier/Pier_Fixed.XML",
+      "support": "Pier",
+      "sha256": "a992aa331e11b4eb9bc426a3f811938a8f71b22b3300bae3431eb2931eaff9d8",
+      "pier_node_z_in": -497.01,
+      "pier_nodes": 40,
+      "pile_head_el_ft": 41.4175,
+      "pile_length_in": 732.0,
+      "soil_top_el_ft": 21.5,
+      "offset_from_current_cutoff_in": -4.1693
+    },
+    {
+      "source_id": "PIER-MINTIP-XML",
+      "path": "project_current/fbmp/pier/Pier_MinTip.XML",
+      "support": "Pier",
+      "sha256": "a3210e99418f8b56d7b6a475a9db6edab152cceb77f0300f6f7245d27dee93cb",
+      "pier_node_z_in": -497.01,
+      "pier_nodes": 40,
+      "pile_head_el_ft": 41.4175,
+      "pile_length_in": 900.0,
+      "soil_top_el_ft": 21.5,
+      "offset_from_current_cutoff_in": -4.1693
+    },
+    {
+      "source_id": "EB-XML",
+      "path": "project_current/fbmp/end_bents/End Bent 1_Fixed.XML",
+      "support": "End Bent 1",
+      "sha256": "8414fbedfbf1270fbd65b2cf940f2dc2050818c282cc6f66db2d20b2f3ff17ee",
+      "pier_node_z_in": -484.33,
+      "pier_nodes": 40,
+      "pile_head_el_ft": 40.360833,
+      "pile_length_in": 790.22,
+      "soil_top_el_ft": 24.5,
+      "offset_from_current_cutoff_in": -10.5223
+    },
+    {
+      "source_id": "EB-MINTIP-XML",
+      "path": "project_current/fbmp/end_bents/End Bent 1_Min_tip.XML",
+      "support": "End Bent 1",
+      "sha256": "739f44c1d542464cfd536493ce1ed6cb240f98a75ed3e1188c6f6812742d6fe2",
+      "pier_node_z_in": -484.33,
+      "pier_nodes": 40,
+      "pile_head_el_ft": 40.360833,
+      "pile_length_in": 1080.0,
+      "soil_top_el_ft": 24.5,
+      "offset_from_current_cutoff_in": -10.5223
+    },
+    {
+      "source_id": null,
+      "path": null,
+      "support": "Pier",
+      "origin": "User-supplied Pier_Fixed.XML, 16 October 2026, for comparison only; not submitted to project_current",
+      "sha256": "c8420fadbebaa35dee7c675bc36039be6149c188dca2089c95d13da6220e362f",
+      "pier_node_z_in": -501.26,
+      "pier_nodes": 40,
+      "pile_head_el_ft": 41.771667,
+      "pile_length_in": 737.15,
+      "soil_top_el_ft": 26.05,
+      "matches_report": "PIER-REPORT (Pier Cap Design 10-12.html, xml_audit.sha256)",
+      "offset_from_current_cutoff_in": 0.0807,
+      "offset_from_pre_d023_cutoff_in": -0.0034
+    }
+  ],
+  "report_required_exports": [
+    {
+      "report": "PIER-REPORT",
+      "xml_source_id": "PIER-XML",
+      "required_sha256": "c8420fadbebaa35dee7c675bc36039be6149c188dca2089c95d13da6220e362f",
+      "state": "User-supplied for comparison on 16 October; not submitted"
+    },
+    {
+      "report": "EB-REPORT",
+      "xml_source_id": "EB-XML",
+      "required_sha256": "23bb3afcb3627ba19c1e8660c05ceddfdc68e6815f23582cb84e2a5de0f16b04",
+      "state": "Not supplied; pile-head elevation unverified"
+    },
+    {
+      "report": "EB2-REPORT",
+      "xml_source_id": "EB2-XML",
+      "required_sha256": "56f78267b769a237ca0d0abfdb78464f6839c3a09033d27230c06c0a384b6a47",
+      "state": "Not supplied; pile-head elevation unverified"
+    }
+  ],
+  "findings": [
+    "The report-matching pier export places the pile heads at the pre-D-023 cutoff, 0.0807 in above the current notebook cutoff.",
+    "The 12 October D-022/D-023 camber update lowered every pile cutoff by 0.0841 in; D-036 did not change any elevation.",
+    "The registered prior exports are older models: pier pile heads at 41.4175 ft, End Bent 1 at 40.3608 ft.",
+    "The saved cap cases record only the XML hash, not node elevations, so the 14 October end-bent runs cannot be checked until their exports are submitted."
+  ],
+  "not_done": [
+    "No FBMP export was added to project_current, and no source-register row changed.",
+    "No native FBMP analysis was rerun, and no cap report or case was regenerated."
+  ]
+}

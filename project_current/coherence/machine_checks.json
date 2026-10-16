@@ -1,14 +1,14 @@
 {
-  "checked_at_utc": "2026-10-16T14:07:51.192568+00:00",
+  "checked_at_utc": "2026-10-16T14:56:16.879905+00:00",
   "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
   "register_sha256": "5798f5688f31adb2260216d78b7536c73d3ca5c518b018f2ecfdb83a9d4e907a",
-  "tracker_sha256": "22f0438e620ba375d0e1d6b0b1f0c08ca0f70887b7cda0e04ab722fd4fc11fcd",
+  "tracker_sha256": "2015ab0e4d0929e09b4b77a1eccedc49d32b92d5115a8367c8f87b009c456557",
   "source_count": 28,
-  "item_count": 27,
-  "outstanding_count": 14,
+  "item_count": 28,
+  "outstanding_count": 15,
   "status_counts": {
     "Closed": 13,
-    "Open": 11,
+    "Open": 12,
     "Deferred": 2,
     "Awaiting source": 1
   },
@@ -724,9 +724,9 @@
       "Your response": "",
       "Owner": "",
       "Due date": "",
-      "Resolution / evidence": "",
-      "Source references": "PIER-XML; JOURNAL; coherence/evidence/pier_review_2026-10-09.xlsx, item 05; tasks/T006/response-disposition.json, item 05; coherence/evidence/2026-10-10/source_update.json",
-      "Last reviewed": "2026-10-10",
+      "Resolution / evidence": "16 Oct: the 12 Oct pier report names export c8420fad..., not the registered PIER-XML (COH-013), and the final runs need the current pile heads (COH-028).",
+      "Source references": "PIER-XML; JOURNAL; coherence/evidence/pier_review_2026-10-09.xlsx, item 05; tasks/T006/response-disposition.json, item 05; coherence/evidence/2026-10-10/source_update.json; COH-013; COH-028; coherence/evidence/2026-10-16-fbmp-pile-heads/pile_heads.json",
+      "Last reviewed": "2026-10-16",
       "_row": 12
     },
     {
@@ -852,16 +852,16 @@
     {
       "Item ID": "COH-013",
       "Status": "Awaiting source",
-      "Area": "End bents",
-      "Item": "Matching raw analysis export",
-      "Finding": "New end-bent report requires XML SHA256 8414fbedfbf1270fbd65b2cf940f2dc2050818c282cc6f66db2d20b2f3ff17ee. Available same-named XML matches only the superseded report.",
-      "Next action": "Supply the matching new End Bent 1 XML and native run record; do not substitute the older export.",
-      "Your response": "",
+      "Area": "FBMP",
+      "Item": "Report-matching FBMP exports",
+      "Finding": "The selected cap reports name exact raw FBMP exports that are not in project_current. Pier (PIER-REPORT, 12 Oct) requires SHA-256 c8420fad...; the user supplied this file on 16 Oct for comparison only. End Bent 1 (EB-REPORT, 14 Oct) requires 23bb3afc... and End Bent 2 (EB2-REPORT, 14 Oct) requires 56f78267...; neither was supplied. Registered PIER-XML and EB-XML are prior exports matching superseded reports only.",
+      "Next action": "Submit the exact XML exports behind the final selected cap reports, with their native run records. After the COH-028 pile-head reruns these are the rerun exports and regenerated reports. Do not substitute older exports.",
+      "Your response": "16 Oct: Lets leave the FBMP xml files submittal to the source as an open item.",
       "Owner": "",
       "Due date": "",
-      "Resolution / evidence": "",
-      "Source references": "EB-REPORT; EB-XML; coherence/evidence/end_bent_provenance.json; coherence/evidence/2026-10-10/source_update.json",
-      "Last reviewed": "2026-10-10",
+      "Resolution / evidence": "10 Oct: the supplied EB1 export 8414fb... matched the 10 October report. The 12 and 14 October reports then named new exports. 16 Oct: the supplied pier export c8420fad... was compared (pile heads at EL 41.7717 ft, COH-028) and left unsubmitted by user direction. See coherence/evidence/2026-10-16-fbmp-pile-heads/pile_heads.json.",
+      "Source references": "EB-REPORT; EB-XML; coherence/evidence/end_bent_provenance.json; coherence/evidence/2026-10-10/source_update.json; PIER-REPORT; PIER-XML; EB2-REPORT; EB2-XML; coherence/evidence/2026-10-12/source_update.json; coherence/evidence/2026-10-16-fbmp-pile-heads/pile_heads.json",
+      "Last reviewed": "2026-10-16",
       "_row": 21
     },
     {
@@ -1073,6 +1073,21 @@
       "Source references": "D-034; CAD-MODEL; geometry/freecad/evidence/2026-10-15-landing-quantities/update-summary.json",
       "Last reviewed": "2026-10-15",
       "_row": 35
+    },
+    {
+      "Item ID": "COH-028",
+      "Status": "Open",
+      "Area": "FBMP",
+      "Item": "Rerun final FBMP with current pile heads",
+      "Finding": "The 12 Oct D-022/D-023 camber update lowered every notebook pile cutoff by 0.084 in; D-036 changed no elevations. The report-matching pier export (c8420fad..., not submitted) has its pile heads at Z -501.26 in = EL 41.7717 ft, the pre-update cutoff, 0.081 in above the current 41.764940 ft. The 14 Oct end-bent exports cannot be checked (COH-013). Registered prior exports are older models at 41.4175 ft (pier) and 40.3608 ft (EB1).",
+      "Next action": "Rerun the final pier, End Bent 1 and End Bent 2 FBMP analyses with pile-head nodes at the notebook cutoffs: pier 41.764940 ft (Z -501.18 in), EB1 41.237692 ft (Z -494.85 in), EB2 41.249692 ft (Z -495.00 in). Confirm pile length, tip and soil inputs, and rerun minimum-tip variants still in use. Regenerate the cap reports and cases, then submit the exports under COH-013.",
+      "Your response": "16 Oct: flag the need to rerun the final FBMP runs with updated pile head elevations.",
+      "Owner": "",
+      "Due date": "",
+      "Resolution / evidence": "Open. Pile heads measured from the export node coordinates and compared with notebook revisions before and after D-023; see coherence/evidence/2026-10-16-fbmp-pile-heads/pile_heads.json.",
+      "Source references": "GEOMETRY; D-022; D-023; D-036; PIER-REPORT; PIER-XML; PIER-MINTIP-XML; EB-REPORT; EB-XML; EB-MINTIP-XML; EB2-REPORT; EB2-XML; COH-013; coherence/evidence/2026-10-16-fbmp-pile-heads/pile_heads.json",
+      "Last reviewed": "2026-10-16",
+      "_row": 36
     }
   ]
 }

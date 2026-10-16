@@ -1,12 +1,12 @@
 # Latest project coherence review
 
-Checked at 2026-10-16T14:07:51.192568+00:00. **14 outstanding items remain.**
+Checked at 2026-10-16T14:56:16.879905+00:00. **15 outstanding items remain.**
 
 The [workbook](Coherence_Tracker.xlsx) owns item status and responses. This report is a generated view.
 The initial findings were carried forward from the latest adopted pier/end-bent reviews plus source-inventory gaps.
 Previously resolved decisions were excluded. This run did not perform native calculations or a complete engineering review.
 
-Registered sources: 28. Tracker items: 27.
+Registered sources: 28. Tracker items: 28.
 Automatic results: 4 changed, 9 error, 40 match, 5 missing, 10 review.
 
 ## Files and relationships needing attention
@@ -49,7 +49,7 @@ Automatic results: 4 changed, 9 error, 40 match, 5 missing, 10 review.
 | COH-004 | Open | Complete model load comparison | Compare the exact current model loading with T006 and document needed reruns and convergence evidence. |
 | COH-005 | Open | Wind and wall geometry | Establish remaining wall/fin geometry and compare current model wind loads with the T006 basis. |
 | COH-010 | Deferred | Backwall and cheek-wall quantities | Supply final wall details, then reconcile quantities and dead loads. |
-| COH-013 | Awaiting source | Matching raw analysis export | Supply the matching new End Bent 1 XML and native run record; do not substitute the older export. |
+| COH-013 | Awaiting source | Report-matching FBMP exports | Submit the exact XML exports behind the final selected cap reports, with their native run records. After the COH-028 pile-head reruns these are the rerun exports and regenerated reports. Do not substitute older exports. |
 | COH-014 | Open | Common controlling design basis | Document how the revised End Bent 1 actions bound both end bents. |
 | COH-017 | Open | Mathcad / project comparison | Recalculate with the companion data and compare inputs/outputs. Review the repeated 107.35-ft PSBeam narrative in the Span 2 sheet. |
 | COH-018 | Open | Complete notebook comparison | Reconcile complete saved geometry and derived schedules with accepted T006, documenting conventions. |
@@ -60,6 +60,7 @@ Automatic results: 4 changed, 9 error, 40 match, 5 missing, 10 review.
 | COH-024 | Open | Coordinate cap and cheek steel | Review the four 12 3/8 in horizontal spacings. Other cover, pile-clearance, cap and backwall steel findings remain open. |
 | COH-025 | Deferred | End-bent U-bar / hoop overlaps | Review the U-bar / hoop intersections later and agree revisions. Recheck affected steel, cover, spacing, piles and WWR before closing. Leave current stirrups and U-bars unchanged. |
 | COH-026 | Open | Coping and MSE wall overlaps | Agree concrete ownership and trim the coping/wall interfaces. Recheck concrete quantities and contact geometry. |
+| COH-028 | Open | Rerun final FBMP with current pile heads | Rerun the final pier, End Bent 1 and End Bent 2 FBMP analyses with pile-head nodes at the notebook cutoffs: pier 41.764940 ft (Z -501.18 in), EB1 41.237692 ft (Z -494.85 in), EB2 41.249692 ft (Z -495.00 in). Confirm pile length, tip and soil inputs, and rerun minimum-tip variants still in use. Regenerate the cap reports and cases, then submit the exports under COH-013. |
 
 ## Verified scope
 
