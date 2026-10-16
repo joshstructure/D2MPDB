@@ -9,6 +9,14 @@
 - [Cap and pile design](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Cap_and_Pile_Design.ipynb)
 - [Pier cap design optimizer](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Pier_Cap_Design_Optimizer.ipynb)
 
+## End bent and pier DXF (FDOT sheets)
+
+[`substructure_drawings/`](substructure_drawings/README.md) generates one DXF with
+plans, elevations, reinforcement elevations, sections, details and a bar list for
+both end bents and the pier. It is drawn from the current FreeCAD model, uses FDOT
+CADD levels, and assigns SDM 4.3 bar marks. A review PDF is included. Rebuild
+with `.venv\Scripts\python.exe scripts\build_substructure_dxf.py --extract --previews`.
+
 ## Ring-supported pier wall — new STM study
 
 [Open Ring_Supported_Wall_STM in Colab](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Ring_Supported_Wall_STM.ipynb) and choose **Runtime → Run all**. The cap-style workbench opens with live plots and output tables: edit the amber input cards, inspect **Live layout**, and click **Recalc** to refresh **Ring forces**, **Struts & ties**, **Reinforcement**, **D/C checks**, and **Ring spacing**. Edits clear stale calculated outputs and block new exports until Recalc. Green **Calc done** means the results match the inputs, not that the design passes.

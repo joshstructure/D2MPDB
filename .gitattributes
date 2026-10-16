@@ -17,3 +17,7 @@ Ring_Supported_Wall_STM.ipynb -text
 ring_wall/** -text
 # Preserve CAD exports and the exact byte hashes in their verification record.
 mse_strap_check/dxf/** -text
+# Substructure DXF: snapshot and outputs are hashed by the staleness test.
+substructure_drawings/data/** -text
+substructure_drawings/output/** -text
+substructure_drawings/output/*.dxf binary

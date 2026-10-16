@@ -1,0 +1,630 @@
+{
+ "generator": "substructure_drawings.build",
+ "version": "1.0.0",
+ "dxf": "B4_Substructure_EndBents_Pier.dxf",
+ "dxf_sha256": "97322bf03606b07932d2f4fad54f67316980d819f80a4956f50c3b057efc6ac5",
+ "snapshot_sha256": "fb28fbce9e54895731f52916c2dcb1c5e42e435a39b1112a5baba0baf95620a3",
+ "model_sha256": "78c4404029b432b25825fa823c09e2795f9f8de96f88ed62d1c2d2ea0b7740ba",
+ "units": "international feet ($INSUNITS=2); model space 1:1",
+ "station_reference": {
+  "FFBW End Bent 1": 1593.22
+ },
+ "sheets": [
+  {
+   "number": "B4-1",
+   "title": "END BENT 1",
+   "layout": "B4-1 END BENT 1",
+   "scales": [
+    "3/8\" = 1'-0\""
+   ]
+  },
+  {
+   "number": "B4-2",
+   "title": "END BENT 1 REINFORCEMENT",
+   "layout": "B4-2 END BENT 1 REINFORCEMENT",
+   "scales": [
+    "1/2\" = 1'-0\""
+   ]
+  },
+  {
+   "number": "B4-3",
+   "title": "END BENT 1 DETAILS (1 OF 3)",
+   "layout": "B4-3 END BENT 1 DETAILS (1 OF 3)",
+   "scales": [
+    "3/4\" = 1'-0\""
+   ]
+  },
+  {
+   "number": "B4-4",
+   "title": "END BENT 1 DETAILS (2 OF 3)",
+   "layout": "B4-4 END BENT 1 DETAILS (2 OF 3)",
+   "scales": [
+    "3/4\" = 1'-0\""
+   ]
+  },
+  {
+   "number": "B4-5",
+   "title": "END BENT 1 DETAILS (3 OF 3)",
+   "layout": "B4-5 END BENT 1 DETAILS (3 OF 3)",
+   "scales": [
+    "3/4\" = 1'-0\""
+   ]
+  },
+  {
+   "number": "B4-6",
+   "title": "PIER",
+   "layout": "B4-6 PIER",
+   "scales": [
+    "3/8\" = 1'-0\""
+   ]
+  },
+  {
+   "number": "B4-7",
+   "title": "PIER REINFORCEMENT",
+   "layout": "B4-7 PIER REINFORCEMENT",
+   "scales": [
+    "1/2\" = 1'-0\""
+   ]
+  },
+  {
+   "number": "B4-8",
+   "title": "PIER DETAILS (1 OF 2)",
+   "layout": "B4-8 PIER DETAILS (1 OF 2)",
+   "scales": [
+    "3/4\" = 1'-0\""
+   ]
+  },
+  {
+   "number": "B4-9",
+   "title": "PIER DETAILS (2 OF 2)",
+   "layout": "B4-9 PIER DETAILS (2 OF 2)",
+   "scales": [
+    "3/4\" = 1'-0\""
+   ]
+  },
+  {
+   "number": "B4-10",
+   "title": "END BENT 2",
+   "layout": "B4-10 END BENT 2",
+   "scales": [
+    "3/8\" = 1'-0\""
+   ]
+  },
+  {
+   "number": "B4-11",
+   "title": "END BENT 2 REINFORCEMENT",
+   "layout": "B4-11 END BENT 2 REINFORCEMENT",
+   "scales": [
+    "1/2\" = 1'-0\""
+   ]
+  },
+  {
+   "number": "B4-12",
+   "title": "END BENT 2 DETAILS (1 OF 3)",
+   "layout": "B4-12 END BENT 2 DETAILS (1 OF 3)",
+   "scales": [
+    "3/4\" = 1'-0\""
+   ]
+  },
+  {
+   "number": "B4-13",
+   "title": "END BENT 2 DETAILS (2 OF 3)",
+   "layout": "B4-13 END BENT 2 DETAILS (2 OF 3)",
+   "scales": [
+    "3/4\" = 1'-0\""
+   ]
+  },
+  {
+   "number": "B4-14",
+   "title": "END BENT 2 DETAILS (3 OF 3)",
+   "layout": "B4-14 END BENT 2 DETAILS (3 OF 3)",
+   "scales": [
+    "3/4\" = 1'-0\""
+   ]
+  },
+  {
+   "number": "B4-15",
+   "title": "REINFORCING BAR LIST",
+   "layout": "B4-15 REINFORCING BAR LIST",
+   "scales": [
+    "3/4\" = 1'-0\""
+   ]
+  }
+ ],
+ "levels_used": {
+  "AppSlabConc": 37,
+  "BaseLineSurveyPGL": 9,
+  "BearingPadMisc": 412,
+  "CL_Major": 13,
+  "CL_Minor": 66,
+  "Dimension": 330,
+  "Leader": 326,
+  "Patterning": 8,
+  "PileConc": 54,
+  "PileConc_h": 67,
+  "PileSteel": 22,
+  "PileSteel_h": 102,
+  "Rebar": 1259,
+  "Rebar2": 8,
+  "SubStrConc": 351,
+  "SubStrConc2": 512,
+  "SubStrConc2_h": 426,
+  "SubStrConc_h": 942,
+  "Symbols": 209,
+  "TextStructures": 455,
+  "WallMSEPanel": 18
+ },
+ "level_source": {
+  "source": "FDOT CADD Standard Level Table, 10-25-2023, worksheet 'Level Definition Details'",
+  "url": "https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/cadd/downloads/publications/caddmanualfdm/levels/fdotcaddstandardleveltable-10-25-2023.xlsx?sfvrsn=5c1b90b4_2"
+ },
+ "marks": {
+  "END BENT 1": {
+   "6A1": {
+    "size": 6,
+    "des": "A1",
+    "description": "CAP TOP",
+    "count": 5,
+    "lengths_in": {
+     "245": 5
+    },
+    "varies": false
+   },
+   "8A2": {
+    "size": 8,
+    "des": "A2",
+    "description": "CAP BOTTOM",
+    "count": 4,
+    "lengths_in": {
+     "245": 4
+    },
+    "varies": false
+   },
+   "6A3": {
+    "size": 6,
+    "des": "A3",
+    "description": "CAP SIDE FACES",
+    "count": 8,
+    "lengths_in": {
+     "245": 8
+    },
+    "varies": false
+   },
+   "6B1": {
+    "size": 6,
+    "des": "B1",
+    "description": "CAP HOOP",
+    "count": 20,
+    "lengths_in": {
+     "142": 20
+    },
+    "varies": false
+   },
+   "6B2": {
+    "size": 6,
+    "des": "B2",
+    "description": "CAP STIRRUP AT PILES",
+    "count": 16,
+    "lengths_in": {
+     "112": 16
+    },
+    "varies": false
+   },
+   "5C": {
+    "size": 5,
+    "des": "C",
+    "description": "CAP BETWEEN PILES",
+    "count": 9,
+    "lengths_in": {
+     "45": 9
+    },
+    "varies": false
+   },
+   "5D1": {
+    "size": 5,
+    "des": "D1",
+    "description": "BACKWALL VERTICAL",
+    "count": 42,
+    "lengths_in": {
+     "59": 6,
+     "60": 16,
+     "61": 16,
+     "62": 4
+    },
+    "varies": true
+   },
+   "4D2": {
+    "size": 4,
+    "des": "D2",
+    "description": "BACKWALL HORIZONTAL",
+    "count": 10,
+    "lengths_in": {
+     "229": 10
+    },
+    "varies": false
+   },
+   "4E1": {
+    "size": 4,
+    "des": "E1",
+    "description": "CHEEK WALL VERTICAL",
+    "count": 10,
+    "lengths_in": {
+     "92": 10
+    },
+    "varies": false
+   },
+   "4E2": {
+    "size": 4,
+    "des": "E2",
+    "description": "CHEEK WALL HORIZONTAL",
+    "count": 22,
+    "lengths_in": {
+     "38": 22
+    },
+    "varies": false
+   },
+   "4F1": {
+    "size": 4,
+    "des": "F1",
+    "description": "PEDESTAL, TRANSVERSE",
+    "count": 14,
+    "lengths_in": {
+     "51": 14
+    },
+    "varies": false
+   },
+   "4F2": {
+    "size": 4,
+    "des": "F2",
+    "description": "PEDESTAL, LONGITUDINAL",
+    "count": 4,
+    "lengths_in": {
+     "57": 4
+    },
+    "varies": false
+   },
+   "4F3": {
+    "size": 4,
+    "des": "F3",
+    "description": "PEDESTAL, LONGITUDINAL",
+    "count": 4,
+    "lengths_in": {
+     "56": 4
+    },
+    "varies": false
+   }
+  },
+  "PIER": {
+   "6A1": {
+    "size": 6,
+    "des": "A1",
+    "description": "CAP TOP",
+    "count": 5,
+    "lengths_in": {
+     "224": 5
+    },
+    "varies": false
+   },
+   "9A2": {
+    "size": 9,
+    "des": "A2",
+    "description": "CAP BOTTOM",
+    "count": 4,
+    "lengths_in": {
+     "224": 4
+    },
+    "varies": false
+   },
+   "6A3": {
+    "size": 6,
+    "des": "A3",
+    "description": "CAP SIDE FACES",
+    "count": 8,
+    "lengths_in": {
+     "224": 8
+    },
+    "varies": false
+   },
+   "5B1": {
+    "size": 5,
+    "des": "B1",
+    "description": "CAP HOOP",
+    "count": 24,
+    "lengths_in": {
+     "152": 24
+    },
+    "varies": false
+   },
+   "5B2": {
+    "size": 5,
+    "des": "B2",
+    "description": "CAP STIRRUP AT PILES",
+    "count": 24,
+    "lengths_in": {
+     "116": 24
+    },
+    "varies": false
+   },
+   "5C": {
+    "size": 5,
+    "des": "C",
+    "description": "CAP BETWEEN PILES",
+    "count": 15,
+    "lengths_in": {
+     "49": 15
+    },
+    "varies": false
+   },
+   "5D1": {
+    "size": 5,
+    "des": "D1",
+    "description": "CAP END, HORIZONTAL",
+    "count": 4,
+    "lengths_in": {
+     "58": 4
+    },
+    "varies": false
+   },
+   "5D2": {
+    "size": 5,
+    "des": "D2",
+    "description": "CAP END, VERTICAL",
+    "count": 6,
+    "lengths_in": {
+     "46": 6
+    },
+    "varies": false
+   },
+   "4E1": {
+    "size": 4,
+    "des": "E1",
+    "description": "PEDESTAL, TRANSVERSE",
+    "count": 7,
+    "lengths_in": {
+     "67": 7
+    },
+    "varies": false
+   },
+   "4E2": {
+    "size": 4,
+    "des": "E2",
+    "description": "PEDESTAL, TRANSVERSE",
+    "count": 7,
+    "lengths_in": {
+     "75": 7
+    },
+    "varies": false
+   },
+   "4E3": {
+    "size": 4,
+    "des": "E3",
+    "description": "PEDESTAL, LONGITUDINAL",
+    "count": 7,
+    "lengths_in": {
+     "59": 7
+    },
+    "varies": false
+   },
+   "4E4": {
+    "size": 4,
+    "des": "E4",
+    "description": "PEDESTAL, LONGITUDINAL",
+    "count": 7,
+    "lengths_in": {
+     "68": 7
+    },
+    "varies": false
+   }
+  },
+  "END BENT 2": {
+   "6A1": {
+    "size": 6,
+    "des": "A1",
+    "description": "CAP TOP",
+    "count": 5,
+    "lengths_in": {
+     "245": 5
+    },
+    "varies": false
+   },
+   "8A2": {
+    "size": 8,
+    "des": "A2",
+    "description": "CAP BOTTOM",
+    "count": 4,
+    "lengths_in": {
+     "245": 4
+    },
+    "varies": false
+   },
+   "6A3": {
+    "size": 6,
+    "des": "A3",
+    "description": "CAP SIDE FACES",
+    "count": 8,
+    "lengths_in": {
+     "245": 8
+    },
+    "varies": false
+   },
+   "6B1": {
+    "size": 6,
+    "des": "B1",
+    "description": "CAP HOOP",
+    "count": 20,
+    "lengths_in": {
+     "142": 20
+    },
+    "varies": false
+   },
+   "6B2": {
+    "size": 6,
+    "des": "B2",
+    "description": "CAP STIRRUP AT PILES",
+    "count": 16,
+    "lengths_in": {
+     "112": 16
+    },
+    "varies": false
+   },
+   "5C": {
+    "size": 5,
+    "des": "C",
+    "description": "CAP BETWEEN PILES",
+    "count": 9,
+    "lengths_in": {
+     "45": 9
+    },
+    "varies": false
+   },
+   "5D1": {
+    "size": 5,
+    "des": "D1",
+    "description": "BACKWALL VERTICAL",
+    "count": 42,
+    "lengths_in": {
+     "59": 6,
+     "60": 16,
+     "61": 16,
+     "62": 4
+    },
+    "varies": true
+   },
+   "4D2": {
+    "size": 4,
+    "des": "D2",
+    "description": "BACKWALL HORIZONTAL",
+    "count": 10,
+    "lengths_in": {
+     "229": 10
+    },
+    "varies": false
+   },
+   "4E1": {
+    "size": 4,
+    "des": "E1",
+    "description": "CHEEK WALL VERTICAL",
+    "count": 10,
+    "lengths_in": {
+     "92": 10
+    },
+    "varies": false
+   },
+   "4E2": {
+    "size": 4,
+    "des": "E2",
+    "description": "CHEEK WALL HORIZONTAL",
+    "count": 22,
+    "lengths_in": {
+     "38": 22
+    },
+    "varies": false
+   },
+   "4F1": {
+    "size": 4,
+    "des": "F1",
+    "description": "PEDESTAL, TRANSVERSE",
+    "count": 14,
+    "lengths_in": {
+     "51": 14
+    },
+    "varies": false
+   },
+   "4F2": {
+    "size": 4,
+    "des": "F2",
+    "description": "PEDESTAL, LONGITUDINAL",
+    "count": 4,
+    "lengths_in": {
+     "57": 4
+    },
+    "varies": false
+   },
+   "4F3": {
+    "size": 4,
+    "des": "F3",
+    "description": "PEDESTAL, LONGITUDINAL",
+    "count": 4,
+    "lengths_in": {
+     "57": 4
+    },
+    "varies": false
+   }
+  }
+ },
+ "qc": [
+  {
+   "check": "Station CL pier",
+   "model": 1700.5698,
+   "reference": 1700.57,
+   "difference": -0.0002,
+   "tolerance": 0.005,
+   "status": "PASS"
+  },
+  {
+   "check": "Station FFBW End Bent 2",
+   "model": 1805.4696,
+   "reference": 1805.47,
+   "difference": -0.0004,
+   "tolerance": 0.005,
+   "status": "PASS"
+  },
+  {
+   "check": "Cap top End Bent 1",
+   "model": 43.2377,
+   "reference": 43.23769223221814,
+   "difference": -0.0,
+   "tolerance": 0.001,
+   "status": "PASS"
+  },
+  {
+   "check": "Cap top Pier",
+   "model": 43.7649,
+   "reference": 43.76493990975892,
+   "difference": 0.0,
+   "tolerance": 0.001,
+   "status": "PASS"
+  },
+  {
+   "check": "Cap top End Bent 2",
+   "model": 43.2497,
+   "reference": 43.24969214402966,
+   "difference": -0.0,
+   "tolerance": 0.001,
+   "status": "PASS"
+  },
+  {
+   "check": "Backwall top at cap end END BENT 1",
+   "model": 47.1918,
+   "reference": 47.13183333333333,
+   "difference": 0.06,
+   "tolerance": 0.001,
+   "status": "DIFFERS"
+  },
+  {
+   "check": "Backwall top at PGL END BENT 1",
+   "model": 47.3277,
+   "reference": 47.327666666666666,
+   "difference": 0.0,
+   "tolerance": 0.001,
+   "status": "PASS"
+  },
+  {
+   "check": "Backwall top at cap end END BENT 2",
+   "model": 47.1438,
+   "reference": 47.14383333333333,
+   "difference": -0.0,
+   "tolerance": 0.001,
+   "status": "PASS"
+  },
+  {
+   "check": "Backwall top at PGL END BENT 2",
+   "model": 47.3397,
+   "reference": 47.339666666666666,
+   "difference": 0.0,
+   "tolerance": 0.001,
+   "status": "PASS"
+  }
+ ],
+ "layout_warnings": []
+}
