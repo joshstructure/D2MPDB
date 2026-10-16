@@ -1,0 +1,23 @@
+{
+  "summary": "Record the 16 October 2026 ramp slab/backwall dowel decision, per Matt.",
+  "published_outputs": [
+    "One dated narrative entry in Decision Log."
+  ],
+  "assumptions_and_conventions": [
+    "2026-10-16, America/New_York; attribution and rationale supplied by the user."
+  ],
+  "downstream_impact": [
+    "Decision informs future ramp/backwall detailing; no calculation or geometry changes in this task."
+  ],
+  "external_analysis": "Not applicable to this narrative record; all analyses and numerical assumptions remain unchanged.",
+  "checks_performed": [
+    "Date, decision, rationale and attribution checked against the user request.",
+    "All original Decision Log bytes preserved; one section appended.",
+    "270 other components and document shell are byte-identical.",
+    "No formulas, resources, caches or links added or changed."
+  ],
+  "open_items": [],
+  "reviews_not_performed": [
+    "Native recalculation, appearance review and engineering review were not performed; the user made these optional on 16 October 2026."
+  ]
+}

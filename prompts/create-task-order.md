@@ -17,8 +17,10 @@ do not choose a source by modification date or parenthetical filename numbering.
 2. Write `tasks/<ID>/plan.md` with: objective; exclusions; read dependencies;
    permitted component keys; assumptions and conventions; source documents;
    output contract (meaning, units, signs, reference point, factoring and case);
-   downstream calculations and external analyses; prerequisite task IDs; structural,
-   numerical, native appearance and engineering acceptance criteria; stop conditions.
+   downstream calculations and external analyses; prerequisite task IDs;
+   numerical and structural acceptance criteria; optional native appearance and
+   engineering review plans; stop conditions. Follow the current promotion policy:
+   unperformed optional reviews do not block an authorized BPAD update.
    A plan-only request stops here. Do not register or execute it yet.
 3. When execution is authorized, create a registered task with `prepare`. The
    command creates the task folder or retains its existing plan.md. Pick an unused
@@ -37,7 +39,9 @@ do not choose a source by modification date or parenthetical filename numbering.
    separate planned topology change; the pilot rejects their silent insertion.
 6. Complete `submission.json` with actual outputs, checks, review items and
    external-analysis impacts. Run `check`; use `assemble` for a fresh candidate.
-   Report changed components, identified dependencies and remaining review gates.
+   Report changed components, identified dependencies and reviews actually
+   performed. Follow `workflow/promotion_policy.json` for promotion requirements;
+   do not treat optional reviews as unfinished work or request another approval.
 
 Large objectives may need several linked task orders. Separate task folders permit
 parallel work. Coordinate in this chat unless the user asks for new chats or agents.

@@ -1,0 +1,26 @@
+{
+  "candidate_sha256": "7a0d47ab899b9eb91f9ead3b31a3c55c8bedfe5f5d05f4f26df093d79f4bd0f0",
+  "base_sha256": "4b1770533d7b91cfb1efbcd96b0eb2c3a73328b90f88b2b50bca15388f07cd82",
+  "changed_components": [
+    "report:DecisionLog"
+  ],
+  "preserved_components": 270,
+  "document_shell_preserved": true,
+  "all_existing_decision_log_bytes_preserved": true,
+  "new_entries": 1,
+  "decision_date": "2026-10-16",
+  "decision_text": "Per Matt, the ramp slab will not be tied to the backwall with dowels, due to concern about transferring bridge deflections to the MSE wall ramps.",
+  "structural_delta": "passed",
+  "candidate_cached_errors": 0,
+  "new_formulas": 0,
+  "native_recalculation": false,
+  "native_visual_review": false,
+  "engineering_review": false,
+  "policy": {
+    "reviews_required": false,
+    "effective_date": "2026-10-16",
+    "basis": "User instructed that BPAD changes may proceed without mandatory native recalculation, appearance review or engineering review, until the user reinstates those requirements. Scope, dependency, exact-byte, reference-integrity and evidence checks remain mandatory."
+  },
+  "review_disposition": "User made native and engineering reviews optional on 16 October 2026. Only the requested narrative decision is added; all numerical content is preserved.",
+  "workflow_tests": "52 tests passed, including optional review promotion, reinstatement of required reviews, and preservation of integrity checks. Tests used a writable workspace temporary directory because the sandbox default temporary directory was inaccessible."
+}

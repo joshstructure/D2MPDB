@@ -32,9 +32,14 @@ apply to BPAD work; do not broaden a journal task into unrelated notebook change
   provenance. Graph hints alone do not demonstrate independence.
 - Keep the BPAD and its References folder together. Use the formatting standard
   for new content; GetRefs is a separate workflow only when actually requested.
-- `promote` requires evidence tied to exact candidate bytes, native recalculation,
-  appearance review and engineering review. Never fabricate those checks or infer
-  them from parsing, cached outputs, tests, or a Python calculation.
+- Per user direction on 16 October 2026, native recalculation, appearance review
+  and engineering review are optional for BPAD changes and promotion. Do not stop
+  an authorized update solely because those reviews have not been performed.
+  `workflow/promotion_policy.json` controls this requirement; set
+  `reviews_required` to `true` if the user reinstates it. Scope, dependency,
+  exact-byte, reference-integrity and evidence checks remain mandatory.
+  Record unperformed reviews honestly; promotion does not imply design approval.
+  Never infer native review from parsing, cached outputs, tests or Python results.
 - Run `python -m unittest discover -s tests -p test_bpad_workflow.py -v` when
   changing the workflow helpers. Existing design tests are separate.
 - Do not create chats, launch agents, commit, push, or publish merely because an

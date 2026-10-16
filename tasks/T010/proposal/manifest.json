@@ -1,0 +1,10 @@
+{
+  "task": "T010",
+  "base_sha256": "4b1770533d7b91cfb1efbcd96b0eb2c3a73328b90f88b2b50bca15388f07cd82",
+  "components": {
+    "report:DecisionLog": {
+      "file": "000.xml",
+      "sha256": "fb2cfdb660d748096376177eb4a8e0c8ee9185c370d53b5aa928710398f7765a"
+    }
+  }
+}

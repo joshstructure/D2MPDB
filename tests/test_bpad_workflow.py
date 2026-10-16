@@ -261,6 +261,68 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual((self.root / receipt["history"] / "previous.bpad").read_bytes(), SAMPLE)
         self.assertTrue((self.root / "workflow/completed/T001.json").is_file())
 
+    def optional_review_candidate(self):
+        folder = self.reviewed_candidate()
+        w.write_json(self.root / "workflow/promotion_policy.json", {"reviews_required": False})
+        review = w.read_json(folder / "review.json")
+        review.update(native_recalculation=False, native_visual_review=False,
+                      engineering_review=False, design_outcome="unreviewed",
+                      external_analysis_status="unreviewed",
+                      external_analysis_disposition="Not reviewed in this synthetic fixture.")
+        w.write_json(folder / "review.json", review)
+        return folder
+
+    def test_optional_reviews_promote_with_honest_status_and_policy_history(self):
+        folder = self.optional_review_candidate()
+        receipt = w.promote(self.root, folder)
+        self.assertIn(b"Revised notes", (self.root / w.JOURNAL).read_bytes())
+        self.assertEqual((self.root / receipt["history"] / "previous.bpad").read_bytes(), SAMPLE)
+        for field in ("native_recalculation", "native_visual_review", "engineering_review"):
+            self.assertIs(receipt["review"][field], False)
+        self.assertEqual(receipt["review"]["design_outcome"], "unreviewed")
+        self.assertEqual(receipt["review"]["external_analysis_status"], "unreviewed")
+        self.assertEqual(receipt["promotion_policy"], {"reviews_required": False})
+        self.assertEqual(w.read_json(self.root / receipt["history"] / "promotion_policy.json"),
+                         receipt["promotion_policy"])
+
+    def test_reinstated_policy_requires_reviews_for_existing_candidate(self):
+        folder = self.optional_review_candidate()
+        w.write_json(self.root / "workflow/promotion_policy.json", {"reviews_required": True})
+        with self.assertRaisesRegex(w.WorkflowError, "explicitly completed"):
+            w.promote(self.root, folder)
+        self.assertEqual((self.root / w.JOURNAL).read_bytes(), SAMPLE)
+
+    def test_invalid_policy_cannot_disable_reviews(self):
+        folder = self.optional_review_candidate()
+        for policy in ({}, {"reviews_required": "false"}, {"reviews_required": 0}, []):
+            with self.subTest(policy=policy):
+                w.write_json(self.root / "workflow/promotion_policy.json", policy)
+                with self.assertRaisesRegex(w.WorkflowError, "boolean reviews_required"):
+                    w.promote(self.root, folder)
+        self.assertEqual((self.root / w.JOURNAL).read_bytes(), SAMPLE)
+
+    def test_optional_reviews_still_reject_modified_candidate(self):
+        folder = self.optional_review_candidate()
+        path = folder / "candidate.bpad"
+        path.write_bytes(path.read_bytes().replace(b"Revised notes", b"Unexpected change"))
+        with self.assertRaisesRegex(w.WorkflowError, "Candidate changed"):
+            w.promote(self.root, folder)
+        self.assertEqual((self.root / w.JOURNAL).read_bytes(), SAMPLE)
+
+    def test_optional_reviews_still_reject_changed_current_journal(self):
+        folder = self.optional_review_candidate()
+        self.edit_current(b"h = 4 ft", b"h = 5 ft")
+        with self.assertRaisesRegex(w.WorkflowError, "changed after assembly"):
+            w.promote(self.root, folder)
+        self.assertIn(b"Original notes", (self.root / w.JOURNAL).read_bytes())
+
+    def test_optional_reviews_still_require_intact_evidence(self):
+        folder = self.optional_review_candidate()
+        (folder / "evidence.txt").write_text("Changed evidence")
+        with self.assertRaisesRegex(w.WorkflowError, "changed review evidence"):
+            w.promote(self.root, folder)
+        self.assertEqual((self.root / w.JOURNAL).read_bytes(), SAMPLE)
+
     def test_modified_candidate_cannot_reuse_review(self):
         folder = self.reviewed_candidate()
         p = folder / "candidate.bpad"

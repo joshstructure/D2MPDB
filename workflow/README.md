@@ -30,11 +30,12 @@ native review. It makes no engineering changes.
 
 | Location | Role |
 | --- | --- |
-| `journal/D2_I95_Project_Journal.bpad` | Current project baseline; replaced only through reviewed promotion |
+| `journal/D2_I95_Project_Journal.bpad` | Current project baseline; replaced through checked promotion |
 | `journal/References/` | 31 source PDFs; move with the journal |
 | `standards/` | Exact local copies of the existing formatting and GetRefs guides |
 | `workflow/baseline.json` | Source identity, hashes and import status |
 | `workflow/dependencies.json` | Reviewed module dependency declarations; empty initially |
+| `workflow/promotion_policy.json` | Whether native and engineering reviews are required for promotion |
 | `workflow/assumptions/`, `workflow/external/` | Non-numerical dependency and analysis-provenance records |
 | `workflow/registry/` | Frozen task scopes and input fingerprints |
 | `tasks/<ID>/` | Isolated native working copy, task contract, assigned fragments and submission |
@@ -74,7 +75,7 @@ report:NewCalc` (or spreadsheet/drawing). Register affected index modules with
 `--write`. Added modules are appended in registered key order. Existing component
 bytes and the document shell remain protected; all existing components are
 watched as dependencies. Resources, global styles and reordering remain outside
-this addition path. The same check, assembly, restore and review gates apply.
+this addition path. The same check, assembly, restore and promotion policy apply.
 
 For an explicitly requested module removal, register each existing module with
 `--delete`, and include affected index/link/consumer modules with `--write`.
@@ -82,7 +83,7 @@ Only report, spreadsheet and drawing modules may be deleted. The check rejects
 remaining native links or detected qualified formula consumers. Resources and
 styles are retained. Assemblies record deletions in the proposal manifest with
 the original component hash so restoration remains byte exact. Deletions require
-the same native and engineering review gates as other changes.
+the same promotion policy as other changes.
 
 Two authoring paths are available:
 
@@ -131,8 +132,9 @@ component reordering and wrapper changes remain unsupported.
 
 The expression index is a partial reference inventory, not a complete Blockpad
 language interpreter. Arbitrary symbol/scope resolution, complex function exports,
-external library internals and physical engineering assumptions still require
-native and engineering review. No-dependency declarations must never be inferred
+external library internals and physical engineering assumptions are not validated
+by these checks. Native and engineering reviews remain optional under the current
+promotion policy. No-dependency declarations must never be inferred
 solely from an empty regex result. Until a complete declaration is reviewed, a
 task watches **all other components**. This permits concurrent authoring but may
 require refreshing a task after another change is accepted.
@@ -144,30 +146,44 @@ cover assumptions, conventions and external analysis. The initial analysis
 register has no verified input/output pairs; every change requires a currency
 disposition. Detected downstream impacts are hints, not proof of complete coverage.
 
-## Native review and promotion
+## Review policy and promotion
 
-Open `generated/<build>/candidate.bpad` in Blockpad with its References folder.
-Recalculate and inspect the affected calculations, schematics, links and print
-layout. Review inherited errors and analysis provenance. If Blockpad must save
-changed content/caches, import that saved copy through the task, rebuild, and
-review the resulting exact bytes. Do not edit the candidate behind its report.
+Per user direction on 16 October 2026, native recalculation, appearance review and
+engineering review are optional. `workflow/promotion_policy.json` currently sets
+`reviews_required` to `false`. Do not block an authorized BPAD change or request
+another approval solely because these reviews were not performed. To reinstate
+the requirements later, set that value to `true` at the user's request. An absent
+policy file defaults to required reviews; a malformed policy is rejected. The
+policy is read at promotion time and copied into the receipt and history.
+
+When performing a native review, open `generated/<build>/candidate.bpad` in
+Blockpad with its References folder. Recalculate and inspect the affected
+calculations, schematics, links and print layout. If Blockpad must save changed
+content/caches, import that saved copy through the task, rebuild, and review the
+resulting exact bytes. Do not edit the candidate behind its report.
 
 The candidate folder has `report.json`, `submission.json` and `review.json`.
-Complete review fields only for checks actually performed. Set a separate design
-outcome (`passes`, `fails`, or `not_applicable`): coherent calculations can show a
-failed design. For external analysis, use `verified_current`,
-`excluded_from_accepted_scope` or `not_applicable`, with a substantive disposition.
+Record the responsible author in `reviewer` and leave review flags `false` for
+checks not performed. Set a separate design outcome (`passes`, `fails`,
+`not_applicable`, or `unreviewed` when reviews are optional): coherent calculations
+can show a failed design. For external analysis, use `verified_current`,
+`excluded_from_accepted_scope`, `not_applicable`, or `unreviewed` when reviews are
+optional, with a substantive disposition. Never label an unverified result current.
 Record how inherited issues were resolved or excluded; a sentence cannot turn an
-unreviewed result into a valid one. Add evidence files inside the candidate folder
-and record their relative paths and SHA-256 hashes in `evidence_files`.
+unreviewed result into a valid one. Add evidence of checks actually performed
+inside the candidate folder and record relative paths and SHA-256 hashes in
+`evidence_files`. File-integrity evidence is sufficient when reviews are optional;
+it is not a native or engineering review attestation.
 
 ```powershell
 .\.venv\Scripts\python.exe tools/bpad_workflow.py promote generated/T002-review-01
 ```
 
 Promotion rechecks the exact candidate, current journal, task inputs, portable
-reference files and evidence. It archives the previous journal and review record,
-then atomically replaces the canonical BPAD under a single-writer lock. Review
+reference files and evidence regardless of the review policy. It archives the
+previous journal, review record and applied policy, then atomically replaces the
+canonical BPAD under a single-writer lock. Promotion records a project revision;
+it does not imply native validation or engineering approval. Review
 evidence is a recorded human/native attestation, not something the helper can
 independently certify. The JSON files protect against workflow mistakes; they are
 not tamper-proof signatures against someone editing the registry itself.
@@ -182,8 +198,9 @@ Do not remove an integration lock until its recorded process has stopped.
 No engineering inputs or formulas were changed. The 110 stored error entries in
 the supplied file remain visible in the index and bootstrap report. The tool does
 not evaluate BPAD formulas, run FB-MultiPier, or establish native pagination.
-Those gates remain pending. A no-change byte match proves preservation, not that
-the source journal was correct. Read `workflow/T000-report.md` for actual checks.
+Those checks were not performed on the bootstrap. A no-change byte match proves
+preservation, not that the source journal was correct. Read
+`workflow/T000-report.md` for actual checks.
 
 Formatting for new calculations comes from the existing guide, especially
 sections 16.5 and 16.9. Reuse small native presentation blocks with fresh names;

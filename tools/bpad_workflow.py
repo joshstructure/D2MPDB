@@ -47,6 +47,14 @@ def read_json(path):
     return json.loads(Path(path).read_text(encoding="utf-8-sig"))
 
 
+def promotion_policy(root):
+    path = root / "workflow/promotion_policy.json"
+    policy = read_json(path) if path.exists() else {"reviews_required": True}
+    require(isinstance(policy, dict) and type(policy.get("reviews_required")) is bool,
+            "Promotion policy must specify a boolean reviews_required.")
+    return policy
+
+
 def write_json(path, value):
     atomic_write(Path(path), (json.dumps(value, indent=2, ensure_ascii=False) + "\n").encode())
 
@@ -586,7 +594,8 @@ def assemble(root, task_id, output):
                     "external_analysis_status": "unreviewed", "inherited_issues_disposition": "", "evidence_files": []}
         write_json(output / "review.json", template)
         shutil.copy2(root / "tasks" / task_id / "submission.json", output / "submission.json")
-        return {"candidate": str(output / "candidate.bpad"), "changed": report["changed_components"], "native_review": "pending"}
+        return {"candidate": str(output / "candidate.bpad"), "changed": report["changed_components"],
+                "native_review": "pending" if promotion_policy(root)["reviews_required"] else "optional; not performed"}
 
 
 def restore_task(root, task_id, base_path=None):
@@ -627,6 +636,7 @@ def promote(root, folder):
     folder = Path(folder).resolve()
     require(folder.is_relative_to((root / "generated").resolve()), "Use a generated candidate folder.")
     with writer_lock(root):
+        policy = promotion_policy(root)
         report = read_json(folder / "report.json")
         review = read_json(folder / "review.json")
         candidate = Journal.load(folder / "candidate.bpad")
@@ -636,10 +646,17 @@ def promote(root, folder):
         require(rebuilt.data == candidate.data, "Candidate changed after assembly. Import edits through the task working copy and reassemble.")
         require(candidate.sha256 == report["candidate_sha256"] == review["candidate_sha256"], "Review does not match these exact candidate bytes.")
         require(fresh["submission_sha256"] == report["submission_sha256"], "Submission changed after assembly.")
-        require(review.get("reviewer") and all(review.get(k) is True for k in ("native_recalculation", "native_visual_review", "engineering_review")), "Native evaluation, appearance and engineering reviews must be explicitly completed.")
-        require(review.get("design_outcome") in ("passes", "fails", "not_applicable"), "Record design outcome separately from coherence.")
+        review_fields = ("native_recalculation", "native_visual_review", "engineering_review")
+        if policy["reviews_required"]:
+            require(review.get("reviewer") and all(review.get(k) is True for k in review_fields), "Native evaluation, appearance and engineering reviews must be explicitly completed.")
+        else:
+            require(review.get("reviewer") and all(type(review.get(k)) is bool for k in review_fields),
+                    "Record the responsible author and each review's actual completion status.")
+        design_outcomes = ("passes", "fails", "not_applicable") + (() if policy["reviews_required"] else ("unreviewed",))
+        require(review.get("design_outcome") in design_outcomes, "Record design outcome separately from coherence.")
         require(review.get("external_analysis_disposition"), "Review external-analysis currency; stale results cannot be called current.")
-        require(review.get("external_analysis_status") in ("verified_current", "excluded_from_accepted_scope", "not_applicable"), "Resolve or explicitly exclude stale external results before promotion.")
+        analysis_statuses = ("verified_current", "excluded_from_accepted_scope", "not_applicable") + (() if policy["reviews_required"] else ("unreviewed",))
+        require(review.get("external_analysis_status") in analysis_statuses, "Resolve or explicitly exclude stale external results before promotion.")
         require(review.get("inherited_issues_disposition"), "Record how inherited errors and broken links were addressed or excluded.")
         evidence = review.get("evidence_files", [])
         require(evidence, "Attach review evidence files and their SHA-256 hashes.")
@@ -658,14 +675,16 @@ def promote(root, folder):
         atomic_write(history / "previous.bpad", current.data)
         write_json(history / "report.json", report)
         write_json(history / "review.json", review)
+        write_json(history / "promotion_policy.json", policy)
         for item in evidence:
             target = within(history, "evidence/" + item["path"])
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(within(folder, item["path"]), target)
-        # All prerequisites, files, and review checks have passed before replacing the journal.
+        # All integrity checks and the current review policy pass before replacement.
         atomic_write(root / JOURNAL, candidate.data)
         receipt = {"task": report["task"], "journal_sha256": candidate.sha256, "previous_sha256": current.sha256,
-                   "promoted": stamp(), "review": review, "history": history.relative_to(root).as_posix()}
+                   "promoted": stamp(), "review": review, "promotion_policy": policy,
+                   "history": history.relative_to(root).as_posix()}
         write_json(root / "workflow/accepted.json", receipt)
         write_json(root / "workflow/completed" / f"{report['task']}.json", receipt)
         return receipt
@@ -705,7 +724,7 @@ def main(argv=None):
     p = commands.add_parser("assemble", help="Build a review candidate using the CURRENT journal")
     p.add_argument("id")
     p.add_argument("--output", type=Path, required=True)
-    p = commands.add_parser("promote", help="Promote only a reviewed exact candidate; archives prior journal")
+    p = commands.add_parser("promote", help="Promote an exact candidate under the current review policy; archives prior journal")
     p.add_argument("folder", type=Path)
     args = parser.parse_args(argv)
     root = args.root.resolve()

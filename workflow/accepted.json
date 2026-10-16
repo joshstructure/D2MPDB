@@ -1,32 +1,33 @@
 {
-  "task": "T009",
-  "journal_sha256": "4b1770533d7b91cfb1efbcd96b0eb2c3a73328b90f88b2b50bca15388f07cd82",
-  "previous_sha256": "01e52e58171e3b92c7a00eb23090a1cc1679f3159ff0ad204be6f8874d6d98c5",
-  "promoted": "2026-10-13T17:32:59.275888+00:00",
+  "task": "T010",
+  "journal_sha256": "7a0d47ab899b9eb91f9ead3b31a3c55c8bedfe5f5d05f4f26df093d79f4bd0f0",
+  "previous_sha256": "4b1770533d7b91cfb1efbcd96b0eb2c3a73328b90f88b2b50bca15388f07cd82",
+  "promoted": "2026-10-16T15:16:07.353153+00:00",
   "review": {
-    "candidate_sha256": "4b1770533d7b91cfb1efbcd96b0eb2c3a73328b90f88b2b50bca15388f07cd82",
-    "reviewer": "Codex - bounded nominal geometry, formula and native appearance review",
-    "native_recalculation": true,
-    "native_visual_review": true,
-    "engineering_review": true,
-    "design_outcome": "fails",
-    "external_analysis_disposition": "Saved CAD model fingerprint and all eight pile centers checked. Source geometry and structural analysis unchanged. Full reinforcement routing, vendor details, elevation, foundation loads and wall stability are outside this nominal clearance review.",
-    "external_analysis_status": "excluded_from_accepted_scope",
-    "inherited_issues_disposition": "The current user-saved base, 270 unassigned components, existing index link and document shell are preserved exactly. Revised MSE module has zero native errors; 74 table/dimension outputs agree with independent equations. No acceptance of unrelated calculations or overall project design is implied.",
+    "candidate_sha256": "7a0d47ab899b9eb91f9ead3b31a3c55c8bedfe5f5d05f4f26df093d79f4bd0f0",
+    "reviewer": "Codex - narrative and file-integrity checks only",
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false,
+    "design_outcome": "not_applicable",
+    "external_analysis_disposition": "Narrative record of the user-supplied decision only; no analysis inputs, outputs, formulas or geometry are changed or validated.",
+    "external_analysis_status": "not_applicable",
+    "inherited_issues_disposition": "All 270 other components, all existing Decision Log bytes and the document shell are preserved. Structural check passed with zero stored errors; no new claim of engineering adequacy or native validation.",
     "evidence_files": [
       {
-        "path": "native-review-evidence.json",
-        "sha256": "b52642ec40d6c1274ff68265f6d9fab3584a19b52ce3ab36dd758b46c3eca3cf"
+        "path": "integrity-evidence.json",
+        "sha256": "ee4d916b8e2741da1f175cbfd3fc8096652a56940f2d60444328c458c078a8ef"
       },
       {
-        "path": "independent-checks.json",
-        "sha256": "b459ef0103536bfa3905ab9c5f8083d49153e62421434fc9d31d0d837be1c999"
-      },
-      {
-        "path": "native-reviewed-module.xml",
-        "sha256": "faa511ff0152eb42c71de0e895480d03857addb6a8f385b397efa3be0260b625"
+        "path": "workflow-tests.txt",
+        "sha256": "2184b927f7899e773a98fbfeea4ab3ccbbd2e89fccb9c4ce3346bf6ec2055a20"
       }
     ]
   },
-  "history": "workflow/history/4b1770533d7b91cfb1efbcd96b0eb2c3a73328b90f88b2b50bca15388f07cd82"
+  "promotion_policy": {
+    "reviews_required": false,
+    "effective_date": "2026-10-16",
+    "basis": "User instructed that BPAD changes may proceed without mandatory native recalculation, appearance review or engineering review, until the user reinstates those requirements. Scope, dependency, exact-byte, reference-integrity and evidence checks remain mandatory."
+  },
+  "history": "workflow/history/7a0d47ab899b9eb91f9ead3b31a3c55c8bedfe5f5d05f4f26df093d79f4bd0f0"
 }

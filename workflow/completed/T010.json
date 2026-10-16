@@ -1,0 +1,33 @@
+{
+  "task": "T010",
+  "journal_sha256": "7a0d47ab899b9eb91f9ead3b31a3c55c8bedfe5f5d05f4f26df093d79f4bd0f0",
+  "previous_sha256": "4b1770533d7b91cfb1efbcd96b0eb2c3a73328b90f88b2b50bca15388f07cd82",
+  "promoted": "2026-10-16T15:16:07.353153+00:00",
+  "review": {
+    "candidate_sha256": "7a0d47ab899b9eb91f9ead3b31a3c55c8bedfe5f5d05f4f26df093d79f4bd0f0",
+    "reviewer": "Codex - narrative and file-integrity checks only",
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false,
+    "design_outcome": "not_applicable",
+    "external_analysis_disposition": "Narrative record of the user-supplied decision only; no analysis inputs, outputs, formulas or geometry are changed or validated.",
+    "external_analysis_status": "not_applicable",
+    "inherited_issues_disposition": "All 270 other components, all existing Decision Log bytes and the document shell are preserved. Structural check passed with zero stored errors; no new claim of engineering adequacy or native validation.",
+    "evidence_files": [
+      {
+        "path": "integrity-evidence.json",
+        "sha256": "ee4d916b8e2741da1f175cbfd3fc8096652a56940f2d60444328c458c078a8ef"
+      },
+      {
+        "path": "workflow-tests.txt",
+        "sha256": "2184b927f7899e773a98fbfeea4ab3ccbbd2e89fccb9c4ce3346bf6ec2055a20"
+      }
+    ]
+  },
+  "promotion_policy": {
+    "reviews_required": false,
+    "effective_date": "2026-10-16",
+    "basis": "User instructed that BPAD changes may proceed without mandatory native recalculation, appearance review or engineering review, until the user reinstates those requirements. Scope, dependency, exact-byte, reference-integrity and evidence checks remain mandatory."
+  },
+  "history": "workflow/history/7a0d47ab899b9eb91f9ead3b31a3c55c8bedfe5f5d05f4f26df093d79f4bd0f0"
+}

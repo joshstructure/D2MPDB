@@ -29612,6 +29612,10 @@
                 <link address="#FBMPPier.PierSourceModelRecord">Current pier report and model identity</link>
             </paragraph>
         </section>
+        <section name="RampSlabBackwallDecision20261016" capture="False" hide="false">
+            <heading level="1" keepwithnext="True">2026-10-16 - Ramp slab-to-backwall connection</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Per Matt, the ramp slab will not be tied to the backwall with dowels, due to concern about transferring bridge deflections to the MSE wall ramps.</paragraph>
+        </section>
     </report>
     <report name="Notes" title="Notes" unit="in" pagesize="816, 1056">
         <paragraph>
