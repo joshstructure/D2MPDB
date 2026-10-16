@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "before_sha256": "8151e3e8f5f04fee15a335e3ac7c65d7e0e3b7d9f04c3698fa2788721f0dceb9",
+  "model_sha256": "78c4404029b432b25825fa823c09e2795f9f8de96f88ed62d1c2d2ea0b7740ba",
+  "objects_before": 2063,
+  "objects_after": 2064,
+  "existing_object_records_preserved_except_two_Group_properties": 2063,
+  "existing_view_records_preserved": 2063,
+  "unchanged_binary_resources": 8695,
+  "method": "Copy the native-saved group, two membership lists and their dependency lists into the prior archive. Preserve every other model/view record and resource byte.",
+  "changed_existing_properties": {
+    "BridgeAssembly": [
+      "Group"
+    ],
+    "MSECopingsAndBarriers": [
+      "Group"
+    ]
+  },
+  "added_object": "BridgeRailings",
+  "gui_saved_copy_sha256": "f33ee69801f7598c3c4cb1dc6c085b6f5b74bb4d3a0b184cb7f92ad8f866d333"
+}

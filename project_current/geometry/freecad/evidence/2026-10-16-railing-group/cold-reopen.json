@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "model_sha256": "78c4404029b432b25825fa823c09e2795f9f8de96f88ed62d1c2d2ea0b7740ba",
+  "objects": 2064,
+  "existing_objects_verified": 2063,
+  "native_geometry_expressions_placements_labels_preserved": true,
+  "all_existing_controller_types_preserved": true,
+  "other_groups_preserved": true,
+  "deck_railing_members": [
+    "BarrierDeckS1LCorrected",
+    "BarrierDeckS1RCorrected",
+    "BarrierDeckS2LCorrected",
+    "BarrierDeckS2RCorrected"
+  ],
+  "new_parent": "BridgeAssembly",
+  "new_group": "BridgeRailings",
+  "all_four_existing_PGL_dependencies_preserved": true,
+  "cheek_bars": 64,
+  "lug_WWR_wires": 180,
+  "invalid_objects_before": [],
+  "invalid_objects_after": [],
+  "validation": "Cold-opened prior and delivery archives in FreeCAD 1.1.3 with the pinned controllers. Compared all existing native shape hashes, placements, expressions, dependency links and groups. No global recompute or save.",
+  "appearance": "Saved view records and resources preserved exactly; this check does not establish that the prior all-gray display issue is resolved."
+}

@@ -1,0 +1,28 @@
+{
+  "decision": "D-040",
+  "date": "2026-10-16",
+  "status": "ADOPTED_IN_PROJECT_SOURCE",
+  "model_sha256": "78c4404029b432b25825fa823c09e2795f9f8de96f88ed62d1c2d2ea0b7740ba",
+  "previous_model_sha256": "8151e3e8f5f04fee15a335e3ac7c65d7e0e3b7d9f04c3698fa2788721f0dceb9",
+  "scope": "Group only the four bridge-deck railings under PGL-controlled bridge components > Bridge railing.",
+  "parent": "BridgeAssembly",
+  "group": "BridgeRailings",
+  "members": [
+    "BarrierDeckS1LCorrected",
+    "BarrierDeckS1RCorrected",
+    "BarrierDeckS2LCorrected",
+    "BarrierDeckS2RCorrected"
+  ],
+  "prior_group": "MSECopingsAndBarriers",
+  "objects": 2064,
+  "verification": "Native live grouping passed; source delivery cold-opened in FreeCAD 1.1.3. Existing geometry, placements, expressions, controllers and PGL dependencies preserved. All other group memberships unchanged.",
+  "saved_appearance": "All 2,063 prior view records and 8,695 binary resources retained exactly. Display-color troubleshooting is not resolved by this grouping change.",
+  "source_preservation": "Copy the native-saved group, two membership lists and their dependency lists into the prior archive. Preserve every other model/view record and resource byte.",
+  "downstream_review": "Tree organization only. No physical geometry, dimensions, reinforcement, quantities or calculation inputs change; no drawing regeneration or engineering-status change required for this grouping.",
+  "tracker_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
+  "tracker_disposition": "Byte-identical; existing statuses, responses and outstanding findings retained.",
+  "backups": [
+    "archive/B4-before-railing-group-20261016.FCStd",
+    "archive/B4-before-railing-group-record-20261016.zip"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "operation": "group_bridge_deck_railing",
+  "document": "B4_Pedestrian_Bridge_and_Ramps___Pond14D___Source_Update_20261010",
+  "status": "PASS",
+  "members": [
+    "BarrierDeckS1LCorrected",
+    "BarrierDeckS1RCorrected",
+    "BarrierDeckS2LCorrected",
+    "BarrierDeckS2RCorrected"
+  ],
+  "old_group": "MSECopingsAndBarriers",
+  "new_group": "BridgeRailings",
+  "new_parent": "BridgeAssembly",
+  "model_saved": false,
+  "file_sha256": "8151e3e8f5f04fee15a335e3ac7c65d7e0e3b7d9f04c3698fa2788721f0dceb9",
+  "checks": {
+    "existing_geometry_links_placements_exact": true,
+    "existing_appearance_and_visibility_exact": true,
+    "other_group_memberships_exact": true,
+    "four_deck_rails_under_pgl": true,
+    "end_returns_unchanged": true,
+    "saved_file_unchanged": true
+  },
+  "object_count": 2064
+}

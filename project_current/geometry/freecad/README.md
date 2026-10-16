@@ -1,5 +1,10 @@
 # Current FreeCAD bridge model
 
+The four bridge-deck railings are grouped under **PGL-controlled bridge
+components → Bridge railing**. Their existing PGL links and geometry are
+preserved. Ramp and end-return barriers keep their prior groups.
+See [D-040 evidence](evidence/2026-10-16-railing-group/update-summary.json).
+
 The cheek steel now matches the selected 16 October backwall/cheek report:
 one centered #4 mat at **10 in maximum each way**, 64 bars total. All 342 cheek
 checks pass, including cover, spacing, native geometry and cap-bar clearance.
@@ -42,7 +47,7 @@ See [adoption evidence](evidence/2026-10-15-deck-edges/adoption-summary.json).
 On each deck, use the **Deck edge details** properties; the four original deck
 barrier objects have **DeckEdgeSetback**. The opener loads their native controllers.
 
-**Current model: 16 October 2026, decision D-039.** This is the authoritative
+**Current model: 16 October 2026, decision D-040.** This is the authoritative
 editable bridge geometry and modeled-quantity source. The established native
 filename is retained for existing links; its date is not the current revision date.
 
