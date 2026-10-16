@@ -20,7 +20,7 @@ design-completion status.
 | Pier cap | [Report](cap_design/pier/Pier%20Cap%20Design%2010-12.html), [saved case](cap_design/pier/selected_case.json), [FBMP export](fbmp/pier/Pier_Fixed.XML) |
 | End Bent 1 cap | [Report](cap_design/end_bents/End%20Bent%201%20Cap%20Design%2010-14.html), [saved case](cap_design/end_bents/selected_case.json) |
 | End Bent 2 cap | [Report](cap_design/end_bent_2/End%20Bent%202%20Cap%20Design%2010-14.html), [saved case](cap_design/end_bent_2/selected_case.json) |
-| Selected backwall and cheekwall design | [12 October report](cap_design/backwall/Backwall%20Design%2010-12.html) — provisional dimensions; trial reinforcement; pending detailing |
+| Selected backwall and cheekwall design | [16 October report](cap_design/backwall/Backwall%20Design%2010-16.html) and [saved case](cap_design/backwall/selected_case.json) — one centered #4 mat at 10 in each way; analysis and detailing prerequisites remain pending |
 | FBMP source variants | [All four fixed/minimum-tip exports](fbmp/README.md) |
 | Mathcad | [Span 1](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd), [Span 2](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd) — 12 October beam runs; [changes and downstream review](mathcad/README.md) |
 | Calculation tool | [Cap and pile notebook](../Cap_and_Pile_Design.ipynb) |
@@ -39,9 +39,12 @@ The [16 October backwall notebook update](../BACKWALL_DESIGN.md) incorporates th
 adopted cap/cheek geometry and verified landing quantities. Its proposed cheek
 reinforcement is one centered mat of #4 bars at 10 in each way. Three source-backed
 confirmations are checked; six remain pending. See [D-035 verification](coherence/evidence/2026-10-16-backwall/disposition.json).
-The 12 October selected report and the CAD bar layout retain their earlier state;
-current analysis, anchorage and MSE coordination remain open. This bounded update
-does not replace the dated full-project coherence review or change tracker status.
+The report and paired saved case from a fresh notebook run are selected under
+[D-037](coherence/evidence/2026-10-16-backwall-export/source_receipt.json).
+The 12 October report remains historical. Current analysis, anchorage and MSE
+coordination remain open, and the CAD bar layout retains its earlier state.
+This bounded update does not replace the dated full-project coherence review or
+change tracker status.
 
 | Subject | Controlling record | Treatment elsewhere |
 | --- | --- | --- |

@@ -1,0 +1,666 @@
+{
+ "format": "d2mpdb-end-bent-walls",
+ "schema_version": 2,
+ "name": "End Bent 1 backwall, cheek walls and tie-back straps (common end-bent design, D-004)",
+ "inputs": {
+  "b_cap": 42.0,
+  "h_cap": 36.0,
+  "L_cap": 235.0,
+  "embed_pile": 12.0,
+  "tol_pile": 3.0,
+  "t_bw": 12.0,
+  "L_bw": 235.0,
+  "H_bw": 4.089974522637,
+  "H_bw_edge": 3.8941411893036744,
+  "e_brg": 3.0,
+  "s_brg": 102.99,
+  "N_pile": 4,
+  "S_pile": 4.5,
+  "D_pile": 18.0,
+  "h_ped": 6.0,
+  "L_ped": 30.0,
+  "B_ped": 42.0,
+  "t_pad": 2.5625,
+  "t_ck": 8.0,
+  "w_ck": 42.0,
+  "H_ck": 5.031352523880976,
+  "phi_soil": 30.0,
+  "delta_w": 0.0,
+  "theta_w": 90.0,
+  "beta_f": 0.0,
+  "gamma_s": 0.115,
+  "q_PL": 0.09,
+  "t_slab": 4.0,
+  "L_slab": 17.07795753331303,
+  "share_slab": 0.5,
+  "N_brg": 2,
+  "P_DC": 92.07,
+  "P_PL": 28.98,
+  "FY_WS1": 3.29,
+  "FZ_WS1": -36.98,
+  "FY_WS2": 0.0,
+  "FZ_WS2": -14.58,
+  "FY_WS3": 1.63,
+  "FZ_WS3": 0.0,
+  "G_pad": 0.11,
+  "G_fac": 1.15,
+  "L_pad": 10.0,
+  "W_pad": 32.0,
+  "n_int": 3,
+  "t_int": 0.5,
+  "t_cov": 0.25,
+  "alpha_t": 6e-06,
+  "dT": 35.0,
+  "L_exp": 107.35,
+  "eps_sh": 7.3e-05,
+  "z_strap": 1.5,
+  "V_III": 130.0,
+  "V_SER": 70.0,
+  "K_Z_III": 1.02,
+  "K_Z_SER": 1.0,
+  "G_w": 0.85,
+  "C_D": 1.6,
+  "cv_bw": 3.0,
+  "bar_FF": 5,
+  "s_FF": 12.0,
+  "bar_SF": 5,
+  "s_SF": 12.0,
+  "bar_HZ": 4,
+  "s_HZ": 12.0,
+  "cv_ck": 2.0,
+  "bar_CK": 4,
+  "s_CK": 10.0,
+  "bar_CKH": 4,
+  "s_CKH": 10.0,
+  "fc": 5.5,
+  "fy": 60.0,
+  "Es": 29000.0,
+  "w_c": 0.15,
+  "w_cE": 0.1455,
+  "K_1": 1.0,
+  "lambda_c": 1.0,
+  "phi_f": 0.9,
+  "phi_v": 0.9,
+  "gamma_e": 1.0,
+  "fss_ratio": 0.8,
+  "gamma_1": 1.6,
+  "gamma_3": 0.67,
+  "beta_v": 2.0,
+  "c_if": 0.075,
+  "mu_if": 0.6,
+  "K1_if": 0.2,
+  "K2_if": 0.8,
+  "single_ck": 1,
+  "L_load": 251.0,
+  "V_cap": 196.6250000000004,
+  "V_bw": 78.17779967941874,
+  "V_ck": 42.982400997403786,
+  "dx_ck": -2.182752659952977
+ },
+ "units": {
+  "b_cap": "in",
+  "h_cap": "in",
+  "L_cap": "in",
+  "embed_pile": "in",
+  "tol_pile": "in",
+  "t_bw": "in",
+  "L_bw": "in",
+  "H_bw": "ft",
+  "H_bw_edge": "ft",
+  "e_brg": "in",
+  "s_brg": "in",
+  "N_pile": null,
+  "S_pile": "ft",
+  "D_pile": "in",
+  "h_ped": "in",
+  "L_ped": "in",
+  "B_ped": "in",
+  "t_pad": "in",
+  "t_ck": "in",
+  "w_ck": "in",
+  "H_ck": "ft",
+  "phi_soil": "deg",
+  "delta_w": "deg",
+  "theta_w": "deg",
+  "beta_f": "deg",
+  "gamma_s": "kip/ft^3",
+  "q_PL": "kip/ft^2",
+  "t_slab": "in",
+  "L_slab": "ft",
+  "share_slab": null,
+  "N_brg": null,
+  "P_DC": "kip",
+  "P_PL": "kip",
+  "FY_WS1": "kip",
+  "FZ_WS1": "kip",
+  "FY_WS2": "kip",
+  "FZ_WS2": "kip",
+  "FY_WS3": "kip",
+  "FZ_WS3": "kip",
+  "G_pad": "ksi",
+  "G_fac": null,
+  "L_pad": "in",
+  "W_pad": "in",
+  "n_int": null,
+  "t_int": "in",
+  "t_cov": "in",
+  "alpha_t": null,
+  "dT": null,
+  "L_exp": "ft",
+  "eps_sh": null,
+  "z_strap": "ft",
+  "V_III": null,
+  "V_SER": null,
+  "K_Z_III": null,
+  "K_Z_SER": null,
+  "G_w": null,
+  "C_D": null,
+  "cv_bw": "in",
+  "bar_FF": "bar",
+  "s_FF": "in",
+  "bar_SF": "bar",
+  "s_SF": "in",
+  "bar_HZ": "bar",
+  "s_HZ": "in",
+  "cv_ck": "in",
+  "bar_CK": "bar",
+  "s_CK": "in",
+  "bar_CKH": "bar",
+  "s_CKH": "in",
+  "fc": "ksi",
+  "fy": "ksi",
+  "Es": "ksi",
+  "w_c": "kip/ft^3",
+  "w_cE": "kip/ft^3",
+  "K_1": null,
+  "lambda_c": null,
+  "phi_f": null,
+  "phi_v": null,
+  "gamma_e": null,
+  "fss_ratio": null,
+  "gamma_1": null,
+  "gamma_3": null,
+  "beta_v": null,
+  "c_if": "ksi",
+  "mu_if": null,
+  "K1_if": null,
+  "K2_if": "ksi",
+  "single_ck": null,
+  "L_load": "in",
+  "V_cap": "ft^3",
+  "V_bw": "ft^3",
+  "V_ck": "ft^3",
+  "dx_ck": "in"
+ },
+ "sources": {
+  "b_cap": {
+   "source": "EB-CASE selected_case.json inputs.b",
+   "status": "project source"
+  },
+  "h_cap": {
+   "source": "EB-CASE selected_case.json inputs.h",
+   "status": "project source"
+  },
+  "L_cap": {
+   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "status": "project source"
+  },
+  "embed_pile": {
+   "source": "EB-CASE selected_case.json inputs.Pile_embed",
+   "status": "project source"
+  },
+  "tol_pile": {
+   "source": "SDG 3.13.2.N.3; Specifications 455; 3 in adopted in the cap basis",
+   "status": "project source"
+  },
+  "t_bw": {
+   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "status": "project source"
+  },
+  "L_bw": {
+   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "status": "project source"
+  },
+  "H_bw": {
+   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "status": "project source"
+  },
+  "H_bw_edge": {
+   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "status": "project source"
+  },
+  "e_brg": {
+   "source": "Journal/CAD: 24 in bearing line from rear face of 42 in cap",
+   "status": "project source"
+  },
+  "s_brg": {
+   "source": "EB-XML bearing stations 29.50 / 132.49 in",
+   "status": "project source"
+  },
+  "N_pile": {
+   "source": "EB-CASE selected_case.json inputs.N_pile",
+   "status": "project source"
+  },
+  "S_pile": {
+   "source": "EB-CASE selected_case.json inputs.S_pile",
+   "status": "project source"
+  },
+  "D_pile": {
+   "source": "EB-CASE selected_case.json inputs.D_pile",
+   "status": "project source"
+  },
+  "h_ped": {
+   "source": "CAD-MODEL minimum 6 in seat-center height",
+   "status": "project source"
+  },
+  "L_ped": {
+   "source": "Journal T004: 42 in cap less 12 in backwall",
+   "status": "project source"
+  },
+  "B_ped": {
+   "source": "Journal T004",
+   "status": "project source"
+  },
+  "t_pad": {
+   "source": "Journal Bearing_pad_thickness",
+   "status": "project source"
+  },
+  "t_ck": {
+   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "status": "project source"
+  },
+  "w_ck": {
+   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "status": "project source"
+  },
+  "H_ck": {
+   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "status": "project source"
+  },
+  "phi_soil": {
+   "source": "D-016; SDG 3.13.2.I.1 sand backfill",
+   "status": "decision"
+  },
+  "delta_w": {
+   "source": "D-016",
+   "status": "decision"
+  },
+  "theta_w": {
+   "source": "Vertical rear face",
+   "status": "project source"
+  },
+  "beta_f": {
+   "source": "Level landing",
+   "status": "project source"
+  },
+  "gamma_s": {
+   "source": "D-016; SDG Table 2.2-1 compacted soil (conservative vs 105 pcf)",
+   "status": "decision"
+  },
+  "q_PL": {
+   "source": "D-015; MCAD-S1 q_PL; LRFD 3.11.6.1",
+   "status": "decision"
+  },
+  "t_slab": {
+   "source": "CAD-MODEL MSEInputs.SlabThickness (D-017)",
+   "status": "project source"
+  },
+  "L_slab": {
+   "source": "D-017 bearing + D-034 verified maximum landing volume / thickness / backwall length",
+   "status": "project source"
+  },
+  "share_slab": {
+   "source": "D-017; SDG 3.1.J approach-slab analogy",
+   "status": "decision"
+  },
+  "N_brg": {
+   "source": "EB-XML two bearing nodes; two FIB-36 beams",
+   "status": "project source"
+  },
+  "P_DC": {
+   "source": "EB-XML load case 1 (DC) at bearing nodes 15/34",
+   "status": "project source"
+  },
+  "P_PL": {
+   "source": "EB-XML load case 5 (PL)",
+   "status": "project source"
+  },
+  "FY_WS1": {
+   "source": "EB-XML load case 6 (WS1) |FY|",
+   "status": "project source"
+  },
+  "FZ_WS1": {
+   "source": "EB-XML load case 6 (WS1) sum FZ",
+   "status": "project source"
+  },
+  "FY_WS2": {
+   "source": "EB-XML load case 7 (WS2) |FY|",
+   "status": "project source"
+  },
+  "FZ_WS2": {
+   "source": "EB-XML load case 7 (WS2) sum FZ",
+   "status": "project source"
+  },
+  "FY_WS3": {
+   "source": "EB-XML load case 8 (WS3) |FY|",
+   "status": "project source"
+  },
+  "FZ_WS3": {
+   "source": "EB-XML load case 8 (WS3) sum FZ",
+   "status": "project source"
+  },
+  "G_pad": {
+   "source": "Journal Bearing_pad_G",
+   "status": "project source"
+  },
+  "G_fac": {
+   "source": "LRFD 14.7.5.2 (+15% tolerance); template",
+   "status": "code"
+  },
+  "L_pad": {
+   "source": "Journal Bearing_pad_length",
+   "status": "project source"
+  },
+  "W_pad": {
+   "source": "Journal Bearing_pad_width",
+   "status": "project source"
+  },
+  "n_int": {
+   "source": "Journal Bearing_pad_internalLayers",
+   "status": "project source"
+  },
+  "t_int": {
+   "source": "Journal Bearing_pad_internalThickness",
+   "status": "project source"
+  },
+  "t_cov": {
+   "source": "Journal Bearing_pad_cover",
+   "status": "project source"
+  },
+  "alpha_t": {
+   "source": "LRFD 5.4.2.2",
+   "status": "code"
+  },
+  "dT": {
+   "source": "SDG Table 2.7.1-1 concrete only (journal)",
+   "status": "code"
+  },
+  "L_exp": {
+   "source": "Journal Span_1 (movement center at intermediate pier)",
+   "status": "project source"
+  },
+  "eps_sh": {
+   "source": "Template value; replace with LRFD 5.4.2.3.3 for FIB-36 (Span 1 .dat missing)",
+   "status": "pending confirmation"
+  },
+  "z_strap": {
+   "source": "D-019; align with an MSE reinforcement level",
+   "status": "pending confirmation"
+  },
+  "V_III": {
+   "source": "Journal; SDG Table 2.4.1-1 Duval County",
+   "status": "project source"
+  },
+  "V_SER": {
+   "source": "Journal; LRFD Table 3.8.1.1.2-1",
+   "status": "project source"
+  },
+  "K_Z_III": {
+   "source": "JOURNAL C001 K_Z_gov = 1.019 (Category C, common crown height); rounded upward to 1.020",
+   "status": "project source"
+  },
+  "K_Z_SER": {
+   "source": "LRFD 3.8.1.2.1 (1.0 for Service I)",
+   "status": "code"
+  },
+  "G_w": {
+   "source": "SDG 2.4.1.C (journal)",
+   "status": "code"
+  },
+  "C_D": {
+   "source": "LRFD Table 3.8.1.2.1-2 (journal)",
+   "status": "code"
+  },
+  "cv_bw": {
+   "source": "SDG Table 1.4.2-1 exterior formed substructure (S/M)",
+   "status": "code"
+  },
+  "bar_FF": {
+   "source": "Trial",
+   "status": "trial"
+  },
+  "s_FF": {
+   "source": "Trial",
+   "status": "trial"
+  },
+  "bar_SF": {
+   "source": "Trial",
+   "status": "trial"
+  },
+  "s_SF": {
+   "source": "Trial",
+   "status": "trial"
+  },
+  "bar_HZ": {
+   "source": "Trial",
+   "status": "trial"
+  },
+  "s_HZ": {
+   "source": "Trial",
+   "status": "trial"
+  },
+  "cv_ck": {
+   "source": "SDG Table 1.4.2-1 cheekwalls",
+   "status": "code"
+  },
+  "bar_CK": {
+   "source": "User instruction 16 October: one centered mat of #4 each way",
+   "status": "design selection"
+  },
+  "s_CK": {
+   "source": "Widest whole-inch common #4 spacing passing all numerical cheek checks: 10 in; see spacing study",
+   "status": "design selection"
+  },
+  "bar_CKH": {
+   "source": "User instruction 16 October: one centered mat of #4 each way",
+   "status": "design selection"
+  },
+  "s_CKH": {
+   "source": "Widest whole-inch common #4 spacing passing all numerical cheek checks: 10 in; see spacing study",
+   "status": "design selection"
+  },
+  "fc": {
+   "source": "EB-CASE selected_case.json inputs.fc",
+   "status": "project source"
+  },
+  "fy": {
+   "source": "EB-CASE selected_case.json inputs.fy",
+   "status": "project source"
+  },
+  "Es": {
+   "source": "LRFD 5.4.3.2",
+   "status": "code"
+  },
+  "w_c": {
+   "source": "SDG Table 2.2-1",
+   "status": "code"
+  },
+  "w_cE": {
+   "source": "LRFD Table 3.5.1-1: 0.140 + 0.001 f\u2032c",
+   "status": "code"
+  },
+  "K_1": {
+   "source": "LRFD 5.4.2.4",
+   "status": "code"
+  },
+  "lambda_c": {
+   "source": "LRFD 5.4.2.8 normal weight",
+   "status": "code"
+  },
+  "phi_f": {
+   "source": "LRFD 5.5.4.2",
+   "status": "code"
+  },
+  "phi_v": {
+   "source": "LRFD 5.5.4.2",
+   "status": "code"
+  },
+  "gamma_e": {
+   "source": "SDG 3.10.F",
+   "status": "code"
+  },
+  "fss_ratio": {
+   "source": "SDG 3.10.F",
+   "status": "code"
+  },
+  "gamma_1": {
+   "source": "LRFD 5.6.3.3",
+   "status": "code"
+  },
+  "gamma_3": {
+   "source": "LRFD 5.6.3.3",
+   "status": "code"
+  },
+  "beta_v": {
+   "source": "LRFD 5.7.3.4.1",
+   "status": "code"
+  },
+  "c_if": {
+   "source": "LRFD 5.7.4.4; SDG 1.15",
+   "status": "code"
+  },
+  "mu_if": {
+   "source": "LRFD 5.7.4.4; SDG 1.15",
+   "status": "code"
+  },
+  "K1_if": {
+   "source": "LRFD 5.7.4.4",
+   "status": "code"
+  },
+  "K2_if": {
+   "source": "LRFD 5.7.4.4",
+   "status": "code"
+  },
+  "single_ck": {
+   "source": "User instruction 16 October; tangent bars with combined envelope centered",
+   "status": "design selection"
+  },
+  "L_load": {
+   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "status": "project source"
+  },
+  "V_cap": {
+   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "status": "project source"
+  },
+  "V_bw": {
+   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "status": "project source"
+  },
+  "V_ck": {
+   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "status": "project source"
+  },
+  "dx_ck": {
+   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "status": "project source"
+  }
+ },
+ "confirmations": {
+  "settlement": false,
+  "strap_level": false,
+  "exposure": false,
+  "geometry": true,
+  "shrinkage": false,
+  "wind_kz": true,
+  "landing": true,
+  "analysis": false,
+  "cheek_connection": false
+ },
+ "confirmation_evidence": {
+  "geometry": {
+   "confirmed": true,
+   "note": "D-026/D-033 adopt the modeled wall geometry. Native saved-solid measurements verify 235 in cap/backwall, 251 in overall width, revised crowns, edges and lugged cheek volumes. This confirms calculation geometry only; COH-023 connection/detail review remains open.",
+   "date": "2026-10-16",
+   "inputs": {
+    "L_cap": 235.0,
+    "L_bw": 235.0,
+    "L_load": 251.0,
+    "b_cap": 42.0,
+    "h_cap": 36.0,
+    "t_bw": 12.0,
+    "H_bw": 4.089974522637,
+    "H_bw_edge": 3.8941411893036744,
+    "t_ck": 8.0,
+    "w_ck": 42.0,
+    "H_ck": 5.031352523880976,
+    "V_cap": 196.6250000000004,
+    "V_bw": 78.17779967941874,
+    "V_ck": 42.982400997403786,
+    "dx_ck": -2.182752659952977
+   }
+  },
+  "wind_kz": {
+   "confirmed": true,
+   "note": "Current JOURNAL C001WindLoadOnPedBridgeSuperstructure uses Category C and a common crown exposure height of 35 ft 8 23/64 in. K_Z_gov displays 1.019; 1.020 is a conservative upward rounding. Ground clearance remains a journal assumption; this confirms consistency with that basis.",
+   "date": "2026-10-16",
+   "inputs": {
+    "K_Z_III": 1.02,
+    "K_Z_SER": 1.0,
+    "V_III": 130.0,
+    "V_SER": 70.0,
+    "G_w": 0.85,
+    "C_D": 1.6
+   }
+  },
+  "landing": {
+   "confirmed": true,
+   "note": "D-017 confirms 4 in slab bearing and 50% gravity share. D-034 verifies slab volumes A 111.481111676 and B 88.556269251 ft3. Use maximum volume / (4/12 ft) / (235/12 ft) as equivalent tributary length. Irregular plan extent is not a rectangular span; no stabilizing slab credit.",
+   "date": "2026-10-16",
+   "inputs": {
+    "L_slab": 17.07795753331303,
+    "t_slab": 4.0,
+    "L_bw": 235.0,
+    "share_slab": 0.5
+   }
+  },
+  "settlement": {
+   "confirmed": false,
+   "note": "D-014 retains the required geotechnical confirmation of no more than 2 in settlement above cap bottom; no confirming report was found.",
+   "date": "2026-10-16",
+   "inputs": {}
+  },
+  "strap_level": {
+   "confirmed": false,
+   "note": "D-019 sets a trial elevation of 1.5 ft above cap; no vendor reinforcement-level acceptance was found. Current journal MSEWallExclusion explicitly excludes elevation routing, side reinforcement and connection/development.",
+   "date": "2026-10-16",
+   "inputs": {}
+  },
+  "exposure": {
+   "confirmed": false,
+   "note": "Materials module confirms concrete classes, but does not establish the environmental aggressivity classification for these covers. Existing code/exposure review remains open.",
+   "date": "2026-10-16",
+   "inputs": {}
+  },
+  "shrinkage": {
+   "confirmed": false,
+   "note": "BridgeMovement explicitly covers thermal movement only. MCAD-S1/2 companion data are missing; no verified post-seating shrinkage strain was found. The 7.3e-5 template input remains provisional.",
+   "date": "2026-10-16",
+   "inputs": {}
+  },
+  "analysis": {
+   "confirmed": false,
+   "note": "Current EB-CASE requires raw XML 23bb3afc..., while available EB-XML is 8414fbed... and contains a 3 kip DC load at pile-head node 4. EB2 matching XML is missing. Retained bearing actions are provisional; common EB1 design is not proven to bound EB2.",
+   "date": "2026-10-16",
+   "inputs": {}
+  },
+  "cheek_connection": {
+   "confirmed": false,
+   "note": "D-026/D-033 adopt geometry, not anchorage/load-path acceptance. Centered bars in CAD have no designed dowel embedment. Lug WWR, bar development, cap interaction and strap interfaces remain COH-023; numerical interface capacity assumes developed bars.",
+   "date": "2026-10-16",
+   "inputs": {}
+  }
+ },
+ "receipts": {},
+ "reviews": {}
+}
