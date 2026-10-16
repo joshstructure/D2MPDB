@@ -1,13 +1,13 @@
 # Latest project coherence review
 
-Checked at 2026-10-16T14:56:16.879905+00:00. **15 outstanding items remain.**
+Checked at 2026-10-16T15:36:03.807600+00:00. **15 outstanding items remain.**
 
 The [workbook](Coherence_Tracker.xlsx) owns item status and responses. This report is a generated view.
 The initial findings were carried forward from the latest adopted pier/end-bent reviews plus source-inventory gaps.
 Previously resolved decisions were excluded. This run did not perform native calculations or a complete engineering review.
 
-Registered sources: 28. Tracker items: 28.
-Automatic results: 4 changed, 9 error, 40 match, 5 missing, 10 review.
+Registered sources: 29. Tracker items: 28.
+Automatic results: 4 changed, 9 error, 41 match, 5 missing, 10 review.
 
 ## Files and relationships needing attention
 

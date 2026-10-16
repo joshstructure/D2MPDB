@@ -24,7 +24,7 @@ from openpyxl.workbook.defined_name import DefinedName
 
 from . import figures, sources
 
-GENERATOR_VERSION = '1.0.0'
+GENERATOR_VERSION = '1.1.0'
 OUTPUT = sources.ROOT / 'geometry_tables' / 'B4_Geometry_CAD_Tables.xlsx'
 FGE_INCREMENTS = 10
 PACKAGE = Path(__file__).resolve().parent
@@ -46,6 +46,14 @@ FILL_CAD = PatternFill('solid', fgColor='F2F2F2')
 FILL_PASS = PatternFill('solid', fgColor='C6EFCE')
 FILL_FAIL = PatternFill('solid', fgColor='FFC7CE')
 FILL_WARN = PatternFill('solid', fgColor='FFEB9C')
+
+
+def cf_fill(rgb: str) -> PatternFill:
+    """Conditional-format fill: Excel paints a differential solid fill from bgColor, so set both colors."""
+    return PatternFill(fill_type='solid', start_color=rgb, end_color=rgb)
+
+
+CF_PASS, CF_FAIL, CF_WARN = cf_fill('C6EFCE'), cf_fill('FFC7CE'), cf_fill('FFEB9C')
 THIN = Side(style='thin', color='9AA5B1')
 BOX = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 CENTER = Alignment(horizontal='center', vertical='center', wrap_text=True)
@@ -94,6 +102,7 @@ class Book:
         self.names: dict[str, str] = {}
         self.refs: dict = {}
         self.images: list = []
+        self.inputs: list = []      # (sheet, ref, value written at build) for the QC input snapshot
 
     def sheet(self, title: str, tab_color: str | None = None):
         ws = self.wb.create_sheet(title)
@@ -111,10 +120,11 @@ class Book:
         self.names[name] = target
         self.wb.defined_names[name] = DefinedName(name, attr_text=target)
 
-    @staticmethod
-    def put(ws, ref, value, font=F_BASE, fill=None, fmt=None, align=None, border=None, bold=False):
+    def put(self, ws, ref, value, font=F_BASE, fill=None, fmt=None, align=None, border=None, bold=False, track=True):
         cell = ws[ref]
         cell.value = value
+        if fill is FILL_INPUT and track and not (isinstance(value, str) and value.startswith('=')):
+            self.inputs.append((ws.title, ref, value))
         cell.font = F_BOLD if bold else font
         if fill:
             cell.fill = fill
@@ -162,9 +172,9 @@ def header_row(book: Book, ws, row: int, start_col: int, headers, height=30):
 
 
 def check_formatting(ws, rng: str):
-    ws.conditional_formatting.add(rng, CellIsRule(operator='equal', formula=['"PASS"'], fill=FILL_PASS))
-    ws.conditional_formatting.add(rng, CellIsRule(operator='equal', formula=['"FAIL"'], fill=FILL_FAIL))
-    ws.conditional_formatting.add(rng, CellIsRule(operator='equal', formula=['"CHECK"'], fill=FILL_WARN))
+    ws.conditional_formatting.add(rng, CellIsRule(operator='equal', formula=['"PASS"'], fill=CF_PASS))
+    ws.conditional_formatting.add(rng, CellIsRule(operator='equal', formula=['"FAIL"'], fill=CF_FAIL))
+    ws.conditional_formatting.add(rng, CellIsRule(operator='equal', formula=['"CHECK"'], fill=CF_WARN))
 
 
 # =============================================================== Inputs ==
@@ -191,7 +201,8 @@ def param_table(book: Book, ws, row: int, items, name_col=True):
         book.put(ws, f'C{row}', it.get('sym', ''))
         v = _value(it.get('value'))
         cell = book.put(ws, f'D{row}', v, font=_kind_font(kind), fmt=it.get('fmt'),
-                        fill=FILL_INPUT if kind == 'input' else None, border=BOX)
+                        fill=FILL_INPUT if kind == 'input' else None, border=BOX,
+                        track=not str(it.get('name') or '').startswith('TB_'))   # title block is filled in by hand
         is_text = isinstance(v, str) and not v.startswith('=')
         cell.alignment = Alignment(horizontal='left' if is_text else 'right', wrap_text=is_text)
         if is_text and len(v) > 18:
@@ -213,7 +224,8 @@ def build_inputs(book: Book, ctx):
     book.put(ws, 'A1', 'Inputs', font=F_TITLE)
     book.put(ws, 'A2', 'Blue values on yellow are inputs. Every geometry input is generated from the Colab geometry '
              'notebook CONFIG (the geometry authority); beam-design inputs come from the saved Mathcad runs. '
-             'Edit the notebook and rebuild rather than editing these cells; QC flags any drift.', font=F_NOTE)
+             'Edit the notebook and rebuild rather than editing these cells: the tables and Method-tab charts follow any '
+             'edit, and the banner on every Method tab and QC report that inputs no longer match the notebook build.', font=F_NOTE)
     ws.merge_cells('A2:G2'); ws['A2'].alignment = WRAP; ws.row_dimensions[2].height = 28
     row = 4
     nb = 'Notebook CONFIG'
@@ -666,6 +678,7 @@ def build_camber(book: Book, ctx):
     book.define('Sup_Drop', ws, f'E{row}')
     book.put(ws, f'G{row}', 'D = h_min,req - min over every beam and flange point of the haunch with D = 0', font=F_NOTE)
     row += 1
+    ctx['haunch_min_range'] = (first, last_r)
     book.put(ws, f'B{row}', 'Minimum flange haunch, whole bridge (in)', bold=True)
     book.put(ws, f'E{row}', f'=MIN(F{first}:F{last_r})', fmt=FMT_IN, border=BOX, bold=True)
     book.define('Haunch_Min', ws, f'E{row}')
@@ -1231,6 +1244,7 @@ def build_clearance(book: Book, ctx):
         book.put(ws, f'J{r}', f'=MAX(0,MIN(F{r},Prof_Sta1)-MAX(E{r},Prof_Sta0))', fmt='0.000000')
         row += 1
     seg_last = row - 1
+    ctx['clear_segs'] = (seg_first, seg_last)
     row += 1
     row = section(book, ws, row, 'C. Clearance on each roadway segment piece under a beam (exact minimum of a quadratic)', 20)
     heads = ['Piece', 'Span', 'Seg', 's a', 's b', 's mid', 'road a', 'road mid', 'road b', 'bottom a', 'bottom mid', 'bottom b',
@@ -1620,6 +1634,36 @@ def qc_items(ctx):
     return items
 
 
+def input_snapshot(book: Book, ws, top=8):
+    """Hidden QC columns O:R: every generated input, the value written at build, and a changed flag.
+
+    The Method-tab banners and the QC validity row read the count (Inputs_Edited), so an edit
+    made in Excel is reported everywhere even though the tables and charts follow it.
+    """
+    for k, head in enumerate(('Input cell', 'Value at build', 'Current value', 'Changed')):
+        book.put(ws, f'{col(15 + k)}{top}', head, font=F_HEAD)
+    r = top + 1
+    for sheet, ref, value in book.inputs:
+        cell = f"'{sheet}'!{ref}"
+        book.put(ws, f'O{r}', f'{sheet}!{ref}', font=F_NOTE)
+        if value is not None:
+            ws[f'P{r}'] = value
+        ws[f'Q{r}'] = f'=IF(ISBLANK({cell}),"",{cell})'
+        if value is None:
+            flag = f'=IF(ISBLANK({cell}),0,1)'
+        elif isinstance(value, (int, float)) and not isinstance(value, bool):
+            flag = f'=IF(ISNUMBER({cell}),IF(ABS({cell}-P{r})<=1E-12*MAX(1,ABS(P{r})),0,1),1)'
+        else:
+            flag = f'=IF(ISBLANK({cell}),1,IF(EXACT({cell}&"",P{r}&""),0,1))'
+        ws[f'R{r}'] = flag
+        r += 1
+    book.put(ws, f'O{r}', 'Inputs edited since the build', font=F_BOLD)
+    book.put(ws, f'R{r}', f'=SUM(R{top + 1}:R{r - 1})', font=F_BOLD)
+    book.define('Inputs_Edited', ws, f'R{r}')
+    for c in 'OPQR':
+        ws.column_dimensions[c].hidden = True
+
+
 def build_qc(book: Book, ctx):
     m = ctx['model']
     ws = book.sheet('QC', '2F855A')
@@ -1681,6 +1725,9 @@ def build_qc(book: Book, ctx):
                      "=IF(COUNTIF('Bearing Seats'!B1:Z400,\"FAIL\")+COUNTIF('Substructure'!B1:Z400,\"FAIL\")+COUNTIF('Beam Geometry'!B1:Z400,\"FAIL\")"
                      "+COUNTIF('Beam Data'!B1:Z400,\"FAIL\")+COUNTIF('Camber & Haunch'!B1:Z400,\"FAIL\")+COUNTIF('Profile & Deck'!B1:Z400,\"FAIL\")=0,\"PASS\",\"FAIL\")"))
     validity.append(('Clearance status (informational)', '=IF(Clr_Status="Below requirement","FAIL",IF(Clr_Status="Meets requirement","PASS","CHECK"))'))
+    input_snapshot(book, ws)
+    validity.append(('Inputs unchanged since the notebook build (every generated input vs. its build value, hidden columns O:R)',
+                     '=IF(Inputs_Edited=0,"PASS","CHECK")'))
     vfirst = row
     for label, formula in validity:
         book.put(ws, f'B{row}', label, align=WRAP)
@@ -1716,6 +1763,9 @@ def build_cover(book: Book, ctx, sheet_index):
         ('Template methods', 'Where the notebook is silent (Table of Beam Variables bar dimensions, Dim L/R, build-up case, beveled plates) '
                              "the BCC example workbook's formulas are used and flagged on the Method tabs."),
         ('QC status', '=QC_Overall&"  ("&QC_Counts&")"'),
+        ('Input sync', '=IF(Inputs_Edited=0,"Inputs match the notebook build: tables and Method-tab charts show the notebook geometry.",'
+                       'Inputs_Edited&" input(s) edited since the build. Tables and charts follow the edits, which no longer match the '
+                       'notebook. Update the notebook CONFIG and rebuild.")'),
         ('Rebuild', r'C:\github\D2MPDB\.venv\Scripts\python.exe scripts\build_geometry_cad_tables.py   (rebuilds, recalculates in Excel, verifies)'),
         ('Build fingerprint', ctx['fingerprint']),
         ('Generator version', GENERATOR_VERSION),
@@ -1727,10 +1777,14 @@ def build_cover(book: Book, ctx, sheet_index):
         book.put(ws, f'B{r}', label, font=F_BOLD, align=WRAP)
         c = book.put(ws, f'C{r}', value, font=F_LINK if str(value).startswith('=') else F_BASE, align=WRAP)
         if label == 'QC status':
-            ws.conditional_formatting.add(f'C{r}', FormulaRule(formula=[f'LEFT(C{r},4)="PASS"'], fill=FILL_PASS))
-            ws.conditional_formatting.add(f'C{r}', FormulaRule(formula=[f'LEFT(C{r},4)="FAIL"'], fill=FILL_FAIL))
-        if label == 'Build fingerprint':
-            book.define('Build_Fingerprint', ws, f'C{r}')
+            ws.conditional_formatting.add(f'C{r}', FormulaRule(formula=[f'LEFT(C{r},4)="PASS"'], fill=CF_PASS))
+            ws.conditional_formatting.add(f'C{r}', FormulaRule(formula=[f'LEFT(C{r},4)="FAIL"'], fill=CF_FAIL))
+        if label == 'Input sync':
+            ws.conditional_formatting.add(f'C{r}', FormulaRule(formula=['Inputs_Edited=0'], fill=CF_PASS))
+            ws.conditional_formatting.add(f'C{r}', FormulaRule(formula=['Inputs_Edited>0'], fill=CF_WARN))
+        for name, key in (('Build_Fingerprint', 'Build fingerprint'), ('Build_Model', 'Notebook model ID'), ('Build_Time', 'Built')):
+            if label == key:
+                book.define(name, ws, f'C{r}')
         ws.row_dimensions[r].height = 30 if len(str(value)) > 90 else 16
         r += 1
     r += 1
@@ -1768,7 +1822,7 @@ def source_hashes():
         'mathcad_span1': sources.sha256(sources.MATHCAD[1]),
         'mathcad_span2': sources.sha256(sources.MATHCAD[2]),
         'generator': hashlib.sha256(b''.join((PACKAGE / f).read_bytes().replace(b'\r\n', b'\n')
-                                             for f in ('sources.py', 'figures.py', 'workbook.py', 'methods.py'))).hexdigest(),
+                                             for f in ('sources.py', 'figures.py', 'charts.py', 'workbook.py', 'methods.py'))).hexdigest(),
     }
     return hashes
 
@@ -1833,9 +1887,11 @@ def build(output: Path = OUTPUT) -> dict:
     index = []
     for name, builder, desc in tabs:
         builder(book, ctx)
+    # Method tabs after every calculation tab, so their live charts can reference any table row.
+    for name, builder, desc in tabs:
         method = methods.build_method(book, ctx, name)
         index.append((name, desc))
-        index.append((method.title, f'Method for {name}: equations, explanation and schematics.'))
+        index.append((method.title, f'Method for {name}: equations, explanation, schematics and live charts.'))
     build_cover(book, ctx, index)
     # Interleave each Method tab immediately after its calculation tab.
     order = ['Cover']

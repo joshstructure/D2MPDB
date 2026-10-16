@@ -1,9 +1,9 @@
 {
-  "checked_at_utc": "2026-10-16T14:56:16.879905+00:00",
+  "checked_at_utc": "2026-10-16T15:36:03.807600+00:00",
   "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
-  "register_sha256": "5798f5688f31adb2260216d78b7536c73d3ca5c518b018f2ecfdb83a9d4e907a",
+  "register_sha256": "f959438fbf58f492c320df89b976c250468aa58f7d3103b713c53daa7f13a7e4",
   "tracker_sha256": "2015ab0e4d0929e09b4b77a1eccedc49d32b92d5115a8367c8f87b009c456557",
-  "source_count": 28,
+  "source_count": 29,
   "item_count": 28,
   "outstanding_count": 15,
   "status_counts": {
@@ -14,7 +14,7 @@
   },
   "check_counts": {
     "CHANGED": 4,
-    "MATCH": 40,
+    "MATCH": 41,
     "MISSING": 5,
     "REVIEW": 10,
     "ERROR": 9
@@ -29,7 +29,7 @@
       ],
       "path": "journal/D2_I95_Project_Journal.bpad",
       "expected_sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351",
-      "actual_sha256": "4b1770533d7b91cfb1efbcd96b0eb2c3a73328b90f88b2b50bca15388f07cd82"
+      "actual_sha256": "7a0d47ab899b9eb91f9ead3b31a3c55c8bedfe5f5d05f4f26df093d79f4bd0f0"
     },
     {
       "check_id": "SOURCE:GEOMETRY",
@@ -259,8 +259,8 @@
         "BACKWALL-TOOL"
       ],
       "path": "End_Bent_Backwall_Design.ipynb",
-      "expected_sha256": "54a13c9bcf4e749508485858a846cd54503f7df8fbf43502cadb02e87cefafcd",
-      "actual_sha256": "54a13c9bcf4e749508485858a846cd54503f7df8fbf43502cadb02e87cefafcd"
+      "expected_sha256": "48bab4c3f7cc9dc445908021012083e88cb988e17af09620366e70f6a5da35d9",
+      "actual_sha256": "48bab4c3f7cc9dc445908021012083e88cb988e17af09620366e70f6a5da35d9"
     },
     {
       "check_id": "SOURCE:EB2-REPORT",
@@ -302,9 +302,20 @@
       "source_ids": [
         "BACKWALL-REPORT"
       ],
-      "path": "project_current/cap_design/backwall/Backwall Design 10-12.html",
-      "expected_sha256": "a92c2540cc54515019ecf65bedf1c0ad0ea84a4df60eec927e0c8045de026fc9",
-      "actual_sha256": "a92c2540cc54515019ecf65bedf1c0ad0ea84a4df60eec927e0c8045de026fc9"
+      "path": "project_current/cap_design/backwall/Backwall Design 10-16.html",
+      "expected_sha256": "a02563223df9e8039b8771978d755cefd038e4c0335401d37bb9244fdd28e5bb",
+      "actual_sha256": "a02563223df9e8039b8771978d755cefd038e4c0335401d37bb9244fdd28e5bb"
+    },
+    {
+      "check_id": "SOURCE:BACKWALL-CASE",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "BACKWALL-CASE"
+      ],
+      "path": "project_current/cap_design/backwall/selected_case.json",
+      "expected_sha256": "ac075073306e06f252404d0c26e73b975cad2ee18373e011ef0946ae1c20d0e1",
+      "actual_sha256": "ac075073306e06f252404d0c26e73b975cad2ee18373e011ef0946ae1c20d0e1"
     },
     {
       "check_id": "SOURCE:MSE-DETAIL-DXF",
@@ -325,8 +336,8 @@
         "GEOMETRY-TABLES"
       ],
       "path": "geometry_tables/B4_Geometry_CAD_Tables.xlsx",
-      "expected_sha256": "d3fb275d4c305af3879695fdfea016a29bae435f83a46a4c330dd3874491e6db",
-      "actual_sha256": "d3fb275d4c305af3879695fdfea016a29bae435f83a46a4c330dd3874491e6db"
+      "expected_sha256": "2bf117fcffb20c23306ade328a8ad5722e18577e81bcc83dbfb0e731a8925159",
+      "actual_sha256": "2bf117fcffb20c23306ade328a8ad5722e18577e81bcc83dbfb0e731a8925159"
     },
     {
       "check_id": "DEP:GEOMETRY:JOURNAL",
@@ -421,7 +432,7 @@
     {
       "check_id": "JOURNAL:acceptance",
       "status": "MATCH",
-      "detail": "Journal matches acceptance receipt T009. Review scope remains as recorded.",
+      "detail": "Journal matches acceptance receipt T010. Review scope remains as recorded.",
       "source_ids": [
         "JOURNAL"
       ]

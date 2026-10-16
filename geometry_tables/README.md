@@ -13,8 +13,20 @@ registered Mathcad runs. Mathcad is not recalculated.
 ## Tabs
 
 Each tab is followed by a **Method** tab that gives the math notation, a
-plain-language explanation and schematics. The schematics are drawn from the
-live notebook model.
+plain-language explanation and schematics.
+
+**Live figures.** Every Method-tab figure that shows project geometry or numbers
+is a native Excel chart, not a picture. Its points and labels are formulas in the
+figure-data block to the right of the text (column P onward). They use the same
+named cells as the calculation tabs, so an edited input redraws the charts with
+the tables. Sentences that quote current values are formulas too. The only
+pictures are equations and label-only schematics (letters and symbols).
+
+**Input sync.** QC keeps a hidden snapshot (columns O:R) of every generated input
+as written at build. The banner at the top of each Method tab is green while
+inputs match the notebook build. It turns amber with a count once any input is
+edited, and the Cover and QC report the same count. Change the notebook and
+rebuild rather than editing inputs in Excel.
 
 | Tab | Contents |
 | --- | --- |
@@ -48,7 +60,8 @@ The script runs these steps in order:
 
 [`tests/test_geometry_cad_tables.py`](../tests/test_geometry_cad_tables.py) fails
 if any source changes without a rebuild. The sources it watches are the notebook,
-the roadway XML, both Mathcad runs and this generator.
+the roadway XML, both Mathcad runs and this generator. It also checks that every
+chart series reads formula cells, and that the banners show inputs in sync.
 
 ## Method notes
 
