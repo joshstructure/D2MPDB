@@ -6,6 +6,7 @@ sheet's drawing scale, so one paper-space viewport per sheet shows it.
 Annotation (text, arrows, dots, linetype scale) is sized for that scale.
 """
 import math
+import re
 
 import ezdxf
 from ezdxf.enums import TextEntityAlignment
@@ -36,13 +37,20 @@ def new_document():
         layer.description = a["description"]
         if name == "ClipBorder_dp":
             layer.dxf.plot = 0
-    style = doc.styles.add(fdot.TEXT_STYLE, font="romans.shx")
-    style.dxf.oblique = fdot.OBLIQUE
-    style.dxf.width = 1.0
+    # FDOT structures lettering: single-stroke engineering font slanted 15
+    # degrees; titles use the same font plotted with a heavier stroke.
+    for name, oblique in ((fdot.TEXT_STYLE, fdot.OBLIQUE), (fdot.TITLE_STYLE, fdot.OBLIQUE)):
+        style = doc.styles.add(name, font=fdot.FONT_FILE)
+        style.set_extended_font_data(fdot.FONT_FAMILY)
+        style.dxf.oblique = oblique
+        style.dxf.width = 1.0
+    style = doc.styles.add(fdot.SERIF_STYLE, font="times.ttf")
+    style.set_extended_font_data("Times New Roman")
     ds = doc.dimstyles.add(fdot.DIM_STYLE)
     paper = 1.0 / 12.0
     ds.dxf.dimtxsty = fdot.TEXT_STYLE
     ds.dxf.dimtxt = fdot.TEXT_IN * paper
+    ds.dxf.dimtfac = fdot.FRACTION
     ds.dxf.dimasz = fdot.ARROW_IN * paper
     ds.dxf.dimexo = 0.04 * paper
     ds.dxf.dimexe = 0.06 * paper
@@ -69,14 +77,48 @@ def new_document():
 
 
 CL_BLOCK = "FDOT_CL_SYMBOL"
+CL_CHAR = "℄"   # marks a centerline symbol inside a cltext() label
+
+
+def cl_width(s, h):
+    """Width of a cltext() label."""
+    return sum(1.25 * h + 0.85 * text_extent(p.strip(), h) + 0.35 * h for p in s.split(CL_CHAR))
+
+
+ATTACH = {"TOP_LEFT": 1, "TOP_CENTER": 2, "TOP_RIGHT": 3, "MIDDLE_LEFT": 4, "MIDDLE_CENTER": 5,
+          "MIDDLE_RIGHT": 6, "BOTTOM_LEFT": 7, "BOTTOM_CENTER": 8, "BOTTOM_RIGHT": 9}
+
+
+_FRAC = re.compile(r"\{\\H[0-9.]+x;\\S([^;#^/]*)[#^/]([^;]*);\}")
 
 
 def text_extent(s, h):
-    """Approximate width of single-line text (romans, capitals)."""
-    plain = s
-    for code in ("\\S", ";", "#"):
+    """Approximate width of single-line text (engineering capitals, wide
+    spacing); a stacked fraction counts as about one character."""
+    plain = _FRAC.sub("@", s)
+    for code in ("\\S", ";", "#", "{", "}"):
         plain = plain.replace(code, "")
     return 0.86 * h * len(plain)
+
+
+def boxes_cross(mine, theirs):
+    """Number of crossing or overlapping pairs between two box lists (paper
+    inches); boxes that only touch do not count."""
+    if not mine or not theirs:
+        return 0
+    bb = lambda bs: (min(b[0] for b in bs), min(b[1] for b in bs), max(b[2] for b in bs), max(b[3] for b in bs))  # noqa: E731
+    A, B = bb(mine), bb(theirs)
+    near = lambda b, o: b[0] <= o[2] and o[0] <= b[2] and b[1] <= o[3] and o[1] <= b[3]  # noqa: E731
+    mine = [b for b in mine if near(b, B)]
+    theirs = [b for b in theirs if near(b, A)]
+    n = 0
+    for p in mine:
+        for q in theirs:
+            ox = min(p[2], q[2]) - max(p[0], q[0])
+            oy = min(p[3], q[3]) - max(p[1], q[1])
+            if ox >= 0 and oy >= 0 and (ox > 0.01 or oy > 0.01):
+                n += 1
+    return n
 
 
 # -------------------------------------------------------------- 2D geometry
@@ -183,6 +225,7 @@ class View:
         self.ents = []
         self.th = fdot.TEXT_IN / 12.0 * self.sf
         self.local_bbox = [math.inf, math.inf, -math.inf, -math.inf]
+        self.boxes = []   # local boxes of every primitive and text, for overlap checks
 
     # placement --------------------------------------------------------
     def place(self, lx, ly, px, py):
@@ -199,11 +242,27 @@ class View:
         return (p[0] + self.ox, p[1] + self.oy)
 
     def _track(self, pts):
-        for p in pts:
-            q = self.xform(p) if self.xform is not None else p
-            b = self.local_bbox
+        qs = [self.xform(p) if self.xform is not None else p for p in pts]
+        b = self.local_bbox
+        for q in qs:
             b[0], b[1] = min(b[0], q[0]), min(b[1], q[1])
             b[2], b[3] = max(b[2], q[0]), max(b[3], q[1])
+        if qs:
+            self.boxes.append((min(q[0] for q in qs), min(q[1] for q in qs),
+                               max(q[0] for q in qs), max(q[1] for q in qs)))
+
+    def paper_boxes(self):
+        """Paper-inch boxes of the view's primitives and texts (large area
+        boxes, i.e. closed outlines and hatches, are left out)."""
+        k = 12.0 / self.sf
+        mo = self.sheet.model_origin
+        out = []
+        for x0, y0, x1, y1 in self.boxes:
+            a = ((x0 + self.ox - mo[0]) * k, (y0 + self.oy - mo[1]) * k)
+            c = ((x1 + self.ox - mo[0]) * k, (y1 + self.oy - mo[1]) * k)
+            if (c[0] - a[0]) * (c[1] - a[1]) <= 1.0:
+                out.append((a[0], a[1], c[0], c[1]))
+        return out
 
     def _add(self, e, layer, ltype=None):
         e.dxf.layer = layer
@@ -309,27 +368,41 @@ class View:
             pts.append((p[0] + dx * c - dy * s_, p[1] + dx * s_ + dy * c))
         self._track(pts)
 
-    def text(self, p, s, h=None, align="BOTTOM_LEFT", rot=0.0, layer="TextStructures"):
+    def text(self, p, s, h=None, align="BOTTOM_LEFT", rot=0.0, layer="TextStructures", style=None, lw=None):
+        """Single-line text; text with a stacked fraction goes to MTEXT."""
         h = h or self.th
+        if "\\S" in s:
+            return self.mtext(p, s, h, ATTACH[align], rot, layer)
         vert, horiz = align.split("_")
         ax = {"LEFT": 0.0, "CENTER": 0.5, "RIGHT": 1.0}[horiz]
         ay = {"BOTTOM": 0.0, "MIDDLE": 0.5, "TOP": 1.0}[vert]
         self._track_box(p, text_extent(s, h), h, ax, ay, rot)
-        e = self.msp.add_text(s, height=h, rotation=rot, dxfattribs={"style": fdot.TEXT_STYLE, "oblique": fdot.OBLIQUE})
+        e = self.msp.add_text(s, height=h, rotation=rot,
+                              dxfattribs={"style": style or fdot.TEXT_STYLE, "oblique": fdot.OBLIQUE})
         e.set_placement(self.T(p), align=TextEntityAlignment[align])
+        if lw:
+            e.dxf.lineweight = lw
         return self._add(e, layer)
 
     def cltext(self, p, s, h=None, rot=0.0, valign="MIDDLE"):
-        """Centerline label: drawn CL symbol then text, left aligned at p."""
+        """Centerline label, left aligned at p: drawn CL symbol then text.
+        Further CL symbols inside the text are written as CL_CHAR
+        (e.g. 'CAP & ℄ PILES')."""
         h = h or self.th
         c, s_ = math.cos(math.radians(rot)), math.sin(math.radians(rot))
         oy = {"BOTTOM": 0.0, "MIDDLE": -0.5, "TOP": -1.0}[valign] * h
-        ins = (p[0] - oy * s_, p[1] + oy * c)
-        self._track([ins])
-        e = self.msp.add_blockref(CL_BLOCK, self.T(ins), dxfattribs={"xscale": h, "yscale": h, "rotation": rot})
-        self._add(e, "TextStructures")
-        q = (p[0] + 1.25 * h * c, p[1] + 1.25 * h * s_)
-        return self.text(q, s, h, valign + "_LEFT", rot)
+        x, e = 0.0, None
+        for part in s.split(CL_CHAR):
+            ins = (p[0] + x * c - oy * s_, p[1] + x * s_ + oy * c)
+            self._track([ins])
+            blk = self.msp.add_blockref(CL_BLOCK, self.T(ins), dxfattribs={"xscale": h, "yscale": h, "rotation": rot})
+            self._add(blk, "TextStructures")
+            x += 1.25 * h
+            part = part.strip()
+            if part:
+                e = self.text((p[0] + x * c, p[1] + x * s_), part, h, valign + "_LEFT", rot)
+                x += 0.85 * text_extent(part, h) + 0.35 * h   # text_extent errs wide for safety
+        return e
 
     def mtext(self, p, s, h=None, attach=7, rot=0.0, layer="TextStructures", width=None):
         h = h or self.th
@@ -346,11 +419,18 @@ class View:
         e.dxf.insert = self.T(p)
         return self._add(e, layer)
 
-    def dim(self, p1, p2, offset, angle=0.0, text=None, step=0.125, layer="Dimension", outside=None):
+    def dim(self, p1, p2, offset, angle=0.0, text=None, step=0.125, layer="Dimension", outside=None, level=0,
+            horizontal=False, loc=None):
         """Linear dimension between local points; ``offset`` is the signed distance
         of the dimension line from p1 measured perpendicular to the dimension
-        direction (angle 0 = horizontal, 90 = vertical).  ``outside`` (1, 2, 3)
-        lifts the text clear of a tight space at that level, with a leader."""
+        direction (angle 0 = horizontal, 90 = vertical).
+
+        ``outside`` places text that does not fit its space beside it with a
+        short leader (FDOT practice, never a second row): -1 beyond the low
+        end, +1 beyond the high end (along the dimension direction), 0 just
+        below the line under the middle (``level`` staggers several such
+        values).  ``horizontal`` keeps the text horizontal; ``loc`` gives
+        the text position (local) explicitly."""
         a = math.radians(angle)
         ux, uy = math.cos(a), math.sin(a)
         nx, ny = -uy, ux
@@ -363,17 +443,35 @@ class View:
         t2 = (p2[0] - base[0]) * ux + (p2[1] - base[1]) * uy
         mid = (base[0] + ux * (t1 + t2) / 2, base[1] + uy * (t1 + t2) / 2)
         sgn = 1.0 if offset >= 0 else -1.0
-        tw = text_extent(text, self.th)
+        lines = text.split("\\P")
+        tw = max(text_extent(x, self.th) for x in lines)
+        th_box = self.th * (1.4 + 1.67 * (len(lines) - 1))
         override = {"dimscale": self.sf}
+        if horizontal:
+            override["dimtih"] = 1
+            override["dimtoh"] = 1
         kw = {}
-        if outside:
-            lift = (0.9 + 1.4 * (outside - 1)) * self.th
-            loc = (mid[0] + nx * sgn * lift, mid[1] + ny * sgn * lift)
+        if loc is not None:
             kw["location"] = self.T(loc)
             override["dimtmove"] = 1
-            self._track_box(loc, tw, self.th, 0.5, 0.0, angle)
+            self._track_box(loc, tw, th_box, 0.5, 0.5, 0.0 if horizontal else angle)
+        elif outside is not None:
+            arrow = (fdot.ARROW_IN + 0.06) / 12 * self.sf
+            along = 0.0
+            if outside:
+                lo, hi = sorted((t1, t2))
+                end = hi if outside > 0 else lo
+                along = end - (t1 + t2) / 2 + outside * (arrow + tw / 2)
+                lift = 0.9 * self.th
+            else:
+                # below the line, opposite the side where the text sits (+n)
+                lift = -(1.5 + 1.6 * level) * self.th * sgn
+            loc = (mid[0] + ux * along + nx * sgn * lift, mid[1] + uy * along + ny * sgn * lift)
+            kw["location"] = self.T(loc)
+            override["dimtmove"] = 1
+            self._track_box(loc, tw, th_box, 0.5, 0.5, angle)
         else:
-            self._track_box(mid, tw, self.th * 1.4, 0.5, 0.0 if sgn > 0 else 1.0, angle)
+            self._track_box(mid, tw, th_box, 0.5, 0.0 if sgn > 0 else 1.0, angle)
         self._track([p1, p2, base])
         d = self.msp.add_linear_dim(base=self.T(base), p1=self.T(p1), p2=self.T(p2), angle=angle,
                                     dimstyle=fdot.DIM_STYLE, text=text, override=override,
@@ -382,36 +480,53 @@ class View:
         self.ents.append(d.dimension)
         return meas
 
-    def leader(self, pts, text, align="left", h=None, circle_tip=None, mtext=True, layer="Leader", cl=False):
-        """Leader with arrowhead at pts[0]; text at the last point (SDM 2.16.E).
+    def _landing(self, pts, align):
+        """Leader points ending in a short horizontal landing (FDOT leaders);
+        ``align`` 'left' puts the text right of the landing."""
+        pts = list(pts)
+        if align is None:
+            align = "left" if pts[-1][0] >= pts[-2][0] else "right"
+        if abs(pts[-1][1] - pts[-2][1]) > 1e-6:
+            land = 0.12 / 12 * self.sf
+            pts.append((pts[-1][0] + (land if align == "left" else -land), pts[-1][1]))
+        return pts, align
 
-        ``circle_tip`` (radius, local ft) draws a small circle at the tip instead
-        of an arrow, used for bars shown end-on.
-        """
-        h = h or self.th
-        self._track(pts)
-        tip, nxt = pts[0], pts[1]
-        if circle_tip:
-            self.circle(tip, circle_tip, layer)
-            dx, dy = nxt[0] - tip[0], nxt[1] - tip[1]
-            L = math.hypot(dx, dy) or 1.0
-            pts = [(tip[0] + dx / L * circle_tip, tip[1] + dy / L * circle_tip)] + list(pts[1:])
-        else:
-            self.arrowhead(tip, nxt, layer)
-        self.pl(pts, layer)
-        end = pts[-1]
+    def _leader_text(self, end, text, align, h, cl=False):
+        """Text after a landing; the landing lines up with the first text line."""
         gap = 0.4 * h
-        if align == "left":
-            p, att = (end[0] + gap, end[1]), 4
-        else:
-            p, att = (end[0] - gap, end[1]), 6
+        x = end[0] + gap if align == "left" else end[0] - gap
         if cl:
             if align != "left":
-                p = (p[0] - text_extent(text, h) - 1.25 * h, p[1])
-            return self.cltext(p, text, h)
-        if mtext:
-            return self.mtext(p, text, h, attach=att)
-        return self.text(p, text, h, "MIDDLE_LEFT" if align == "left" else "MIDDLE_RIGHT")
+                x -= cl_width(text, h)
+            return self.cltext((x, end[1]), text, h)
+        if "\\P" in text:
+            return self.mtext((x, end[1] + 0.5 * h), text, h, attach=1 if align == "left" else 3)
+        return self.text((x, end[1]), text, h, "MIDDLE_LEFT" if align == "left" else "MIDDLE_RIGHT")
+
+    def leader(self, pts, text, align=None, h=None, layer="Leader", cl=False):
+        """Leader (SDM 2.16.E, FDOT sheets): filled arrowhead at pts[0], thin
+        line through pts, a short horizontal landing, then the text."""
+        h = h or self.th
+        pts, align = self._landing(pts, align)
+        self._track(pts)
+        self.arrowhead(pts[0], pts[1], layer)
+        self.pl(pts, layer)
+        return self._leader_text(pts[-1], text, align, h, cl)
+
+    def leader_fan(self, tips, knee, text, align=None, h=None, layer="Leader"):
+        """One callout for several bars: an arrow from each tip to a common
+        knee, then the landing and the text (FDOT sheets, e.g. 6E15 (EF))."""
+        h = h or self.th
+        if align is None:
+            align = "left" if knee[0] >= sum(t[0] for t in tips) / len(tips) else "right"
+        land = 0.16 / 12 * self.sf
+        end = (knee[0] + (land if align == "left" else -land), knee[1])
+        for t in tips:
+            self.arrowhead(t, knee, layer)
+            self.line(t, knee, layer)
+        self.line(knee, end, layer)
+        self._track(list(tips) + [knee, end])
+        return self._leader_text(end, text, align, h)
 
     def arrowhead(self, tip, toward, layer="Leader", size_in=None):
         size = (size_in or fdot.ARROW_IN) / 12.0 * self.sf
@@ -426,29 +541,80 @@ class View:
         return self._add(s, layer)
 
     def title(self, p, title, sub=None):
-        """Underlined view title centered at p (SDM view title convention)."""
+        """View title centered at p: heavier, underlined, with the subtitle in
+        parentheses below at the normal text size (FDOT sheets)."""
         h = fdot.TITLE_IN / 12.0 * self.sf
-        self.text(p, title, h, "BOTTOM_CENTER")
+        self.text(p, title, h, "BOTTOM_CENTER", style=fdot.TITLE_STYLE, lw=fdot.TITLE_LW)
         w = text_extent(title, h)
-        self.line((p[0] - w / 2, p[1] - 0.25 * h), (p[0] + w / 2, p[1] - 0.25 * h), "TextStructures")
+        ln = self.line((p[0] - w / 2, p[1] - 0.22 * h), (p[0] + w / 2, p[1] - 0.22 * h), "TextStructures")
+        ln.dxf.lineweight = fdot.TITLE_LW
         if sub:
-            self.text((p[0], p[1] - 1.9 * h), sub, self.th, "BOTTOM_CENTER")
+            self.text((p[0], p[1] - 0.4 * h - 1.45 * self.th), sub, self.th, "BOTTOM_CENTER")
 
     def section_cut(self, p_from, p_to, label, look):
-        """Section cut line with arrows; ``look`` is the unit viewing direction (local)."""
-        L = 0.45 / 12 * self.sf
-        for p in (p_from, p_to):
-            self.pl([p, (p[0] + look[0] * L, p[1] + look[1] * L)], "Symbols")
-            self.arrowhead((p[0] + look[0] * L, p[1] + look[1] * L), p, "Symbols", 0.12)
+        """FDOT section cut symbol at both ends of the cut: a short heavy line
+        along the cut, a solid triangular flag at its outer end pointing in
+        the viewing direction ``look`` (local unit vector), and the letter
+        beside the line under the flag.  The cut line itself is not drawn."""
         dx, dy = p_to[0] - p_from[0], p_to[1] - p_from[1]
         D = math.hypot(dx, dy) or 1.0
-        ext = 0.18 / 12 * self.sf
-        self.line(p_from, (p_from[0] - dx / D * ext, p_from[1] - dy / D * ext), "Symbols")
-        self.line(p_to, (p_to[0] + dx / D * ext, p_to[1] + dy / D * ext), "Symbols")
-        h = 0.11 / 12 * self.sf
-        for p in (p_from, p_to):
-            q = (p[0] + look[0] * L * 1.6, p[1] + look[1] * L * 1.6)
-            self.text(q, label, h, "MIDDLE_CENTER")
+        u = (dx / D, dy / D)
+        k = self.sf / 12.0
+        tick, flag, thick = 0.25 * k, 0.27 * k, 0.05 * k
+        h = 0.12 * k
+        for p, inward in ((p_from, u), (p_to, (-u[0], -u[1]))):
+            q = (p[0] + inward[0] * tick, p[1] + inward[1] * tick)
+            self.line(p, q, "Symbols").dxf.lineweight = fdot.TITLE_LW
+            tri = [p, (p[0] + look[0] * flag, p[1] + look[1] * flag),
+                   (p[0] + inward[0] * thick, p[1] + inward[1] * thick)]
+            self._track(tri)
+            s = self.msp.add_solid([self.T(tri[0]), self.T(tri[1]), self.T(tri[2]), self.T(tri[2])])
+            self._add(s, "Symbols")
+            c = (p[0] + inward[0] * (thick + 0.55 * h) + look[0] * 0.55 * flag,
+                 p[1] + inward[1] * (thick + 0.55 * h) + look[1] * 0.55 * flag)
+            self.text(c, label, h, "MIDDLE_CENTER")
+
+    def pile_break(self, u, z, width, kind, layer):
+        """Curved break at the cut bottom of a pile in elevation: the round
+        member break (one full lobe, one lower half lobe) for pipe piles and
+        an S-curve for square piles."""
+        r = width / 4.0
+        e = min(0.3 * r, 0.06 / 12 * self.sf)
+        lobe = lambda c, a0, a1: [(c + r * math.cos(math.radians(a)), z + e * math.sin(math.radians(a)))  # noqa: E731
+                                  for a in range(a0, a1 + 1, 10)]
+        if kind == "pipe":
+            self.pl(lobe(u - r, 0, 360), layer)
+            self.pl(lobe(u + r, 180, 360), layer)
+        else:
+            self.pl(lobe(u - r, 180, 360)[::-1] + lobe(u + r, 0, 180)[::-1], layer)
+
+    def circled_number(self, c, n):
+        """Circled pile/column number (FDOT sheets)."""
+        self.circle(c, 0.085 / 12 * self.sf, "Symbols")
+        self.text(c, str(n), None, "MIDDLE_CENTER")
+
+    def row_label(self, x_end, y, label):
+        """Label at the left end of a dimension row, underlined at the
+        dimension line level (e.g. BEAM SPACING *)."""
+        gap = 0.08 / 12 * self.sf
+        w = text_extent(label, self.th)
+        self.text((x_end - gap, y + 0.35 * self.th), label, None, "BOTTOM_RIGHT")
+        self.line((x_end - gap - w - 0.6 * self.th, y), (x_end - 0.3 * gap, y), "Dimension")
+
+    def legend(self, p, items, h=None):
+        """Footnote symbol legend, symbol column then text (FDOT sheets);
+        a CL_CHAR in the text is drawn as the centerline symbol."""
+        h = h or self.th
+        for i, (sym, txt) in enumerate(items):
+            y = p[1] - i * 2.0 * h
+            self.text((p[0], y), sym, h, "BOTTOM_LEFT")
+            x = p[0] + 0.32 / 12 * self.sf
+            if CL_CHAR in txt:
+                head, tail = txt.split(CL_CHAR, 1)
+                self.text((x, y), head, h, "BOTTOM_LEFT")
+                self.cltext((x + text_extent(head, h), y), tail, h, valign="BOTTOM")
+            else:
+                self.text((x, y), txt, h, "BOTTOM_LEFT")
 
     def break_line(self, p, q, layer="Symbols"):
         """Straight break line with a zig-zag at mid length."""
@@ -473,14 +639,24 @@ class View:
         self.pl([tip, knee, end], "Leader")
         return self.text((end[0] + side * 0.4 * h, end[1]), text, h, "MIDDLE_LEFT" if side > 0 else "MIDDLE_RIGHT")
 
-    def stationing_arrow(self, p, direction, length_in=1.1):
+    def stationing_arrow(self, p, direction, length_in=1.7):
+        """DIRECTION OF STATIONING: a long thin line ending in a slender solid
+        half arrowhead, the text written along the line (FDOT sheets)."""
         L = length_in / 12 * self.sf
         q = (p[0] + direction[0] * L, p[1] + direction[1] * L)
         self.line(p, q, "Symbols")
-        self.arrowhead(q, p, "Symbols", 0.16)
         ang = math.degrees(math.atan2(direction[1], direction[0]))
         rot = ang if -90 < ang <= 90 else ang + 180
-        mid = ((p[0] + q[0]) / 2, (p[1] + q[1]) / 2)
-        off = 0.6 * self.th
-        self.text((mid[0] - direction[1] * off, mid[1] + direction[0] * off), "DIRECTION OF STATIONING", None,
-                  "BOTTOM_CENTER", rot)
+        # text side: the normal that is "up" for the reading direction
+        r = math.radians(rot)
+        nx, ny = -math.sin(r), math.cos(r)
+        k = self.sf / 12.0
+        la, wa = 0.3 * k, 0.07 * k
+        b = (q[0] - direction[0] * la, q[1] - direction[1] * la)
+        tri = [q, b, (b[0] + nx * wa, b[1] + ny * wa)]
+        self._track(tri)
+        s = self.msp.add_solid([self.T(tri[0]), self.T(tri[1]), self.T(tri[2]), self.T(tri[2])])
+        self._add(s, "Symbols")
+        mid = ((p[0] + b[0]) / 2, (p[1] + b[1]) / 2)
+        off = 0.45 * self.th
+        self.text((mid[0] + nx * off, mid[1] + ny * off), "DIRECTION OF STATIONING", None, "BOTTOM_CENTER", rot)

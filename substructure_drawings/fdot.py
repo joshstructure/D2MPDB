@@ -71,14 +71,25 @@ LINETYPES = {
 # at a consistent size in every view): dash ~0.12 in, centerline ~0.5 in.
 LTSCALE_PER_SF = {"DGN Style 2": 0.0186, "DGN Style 4": 0.32, "DGN Style 6": 0.25, "DGN Style 7": 0.26}
 
-# Plotted sizes, inches (FDOT-seeded working DXF styles: 0.0063 ft text).
+# Plotted sizes, inches (FDOT-seeded working DXF styles: 0.0063 ft text; view
+# and table titles as measured on the sample plan set PA-PS-0037.1).
 TEXT_IN = 0.0756
-TITLE_IN = 0.125
+NOTE_IN = 0.08
+TITLE_IN = 0.14
+TABLE_TITLE_IN = 0.13
+BRIDGE_NO_IN = 0.16
 ARROW_IN = 0.0781
-DOT_IN = 0.06          # filled dot at a symbolic stirrup end (CAD_AI convention)
+DOT_IN = 0.05          # filled dot: bar end-on in a section / stirrup end in elevation
+FRACTION = 0.6         # stacked fraction height relative to the text (DIMTFAC)
 
 TEXT_STYLE = "FDOT Structures"
+TITLE_STYLE = "FDOT Structures Title"
+SERIF_STYLE = "FDOT Serif"   # STATE OF FLORIDA / DEPARTMENT OF TRANSPORTATION block
 OBLIQUE = 15.0         # slant of the FDOT structures lettering
+# Italic single-stroke engineering lettering (ISO 3098); the receiving
+# workspace maps it to the FDOT structures font.
+FONT_FILE, FONT_FAMILY = "isocpeur.ttf", "ISOCPEUR"
+TITLE_LW = 35          # heavier stroke of view titles, 1/100 mm
 DIM_STYLE = "FDOT Structures"
 
 SCALES = {"3/8": 32.0, "3/4": 16.0, "1": 12.0, "1/2": 24.0}
@@ -114,7 +125,8 @@ def ft_in(length_ft, step=0.125, mtext=True, sign=False):
 
     ``step`` is the precision in inches (SDM 2.11.3: concrete 1/8", rebar
     spacing and partial lengths 1/4", overall bar lengths 1").
-    MTEXT output stacks the fraction (\\S1/2;).
+    MTEXT output stacks the fraction diagonally at 60 % of the text height,
+    tight against the whole number ({\\H0.6x;\\S1#2;}), as on FDOT sheets.
     """
     total = round_in(abs(length_ft) * 12.0, step)
     neg = length_ft < 0 and total != 0
@@ -122,7 +134,7 @@ def ft_in(length_ft, step=0.125, mtext=True, sign=False):
     fr = total - whole_in
     feet, inch = divmod(int(whole_in), 12)
     if mtext:
-        fs = ("\\S%s;" % _UNICODE[fr].replace("/", "#")) if fr else ""
+        fs = frac(_UNICODE[fr]) if fr else ""
     else:
         fs = (" " + _UNICODE[fr]) if fr else ""
     if total >= 12:
@@ -132,6 +144,20 @@ def ft_in(length_ft, step=0.125, mtext=True, sign=False):
     else:
         txt = "%s\"" % (fs.strip() if fs else "0")
     return ("-" if neg else "") + txt
+
+
+def frac(s):
+    """MTEXT diagonal stacked fraction, e.g. frac("1/2") -> {\\H0.6x;\\S1#2;}."""
+    return "{\\H%gx;\\S%s;}" % (FRACTION, s.replace("/", "#"))
+
+
+def ft_in_list(length_in, step=0.25):
+    """Bar-list FT-IN without unit marks (FDOT bar list form): 20-4, 18-8 3/4."""
+    total = round_in(length_in, step)
+    whole = math.floor(total)
+    fr = total - whole
+    feet, inch = divmod(int(whole), 12)
+    return "%d-%d%s" % (feet, inch, frac(_UNICODE[fr]) if fr else "")
 
 
 def bar_len(length_in):
@@ -162,4 +188,4 @@ def dms(angle_deg):
     total = int(math.floor(abs(angle_deg) * 3600 + 0.5))
     d, rem = divmod(total, 3600)
     m, s = divmod(rem, 60)
-    return "%dÂ°%02d'%02d\"" % (d, m, s)
+    return "%d°%02d'%02d\"" % (d, m, s)

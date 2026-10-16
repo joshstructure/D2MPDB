@@ -53,34 +53,77 @@ def extract():
     print("snapshot:", SNAPSHOT)
 
 
-def previews(dxf_path, folder):
-    """PNG per sheet plus one review PDF.  The ezdxf renderer does not draw
-    linetypes, so hidden levels (*_h) are shown in grey instead of dashed."""
+PREVIEW_FONTS = {"FDOT Structures": "GOTHICI.TTF", "FDOT Structures Title": "GOTHICBI.TTF",
+                 "FDOT Serif": "times.ttf"}
+
+
+def preview_doc(dxf_path):
+    """Read the DXF for review rendering, adjusted so the ezdxf renderer shows
+    it as a plotted sheet would look.
+
+    - Lettering: the renderer ignores the oblique angle of TEXT entities and
+      has no engineering font, so the styles are mapped to an italic sans
+      (Century Gothic Italic; bold italic for view titles).
+    - Linetypes: inside a viewport ezdxf applies the pattern after the
+      transformation to paper space and multiplies it by the inverse viewport
+      scale, while the DXF carries per-entity model-space scales for
+      PSLTSCALE = 0 (``fdot.LTSCALE_PER_SF`` x drawing scale factor).  Each
+      entity scale is divided by the square of its scale factor so the
+      dashes plot at the intended paper size.
+    - Everything plots black; lineweights keep their level values.
+    """
     import ezdxf
+    from ezdxf.addons.drawing.config import BackgroundPolicy, ColorPolicy, Configuration
+    from substructure_drawings import fdot
+    doc = ezdxf.readfile(dxf_path)
+    for name, font in PREVIEW_FONTS.items():
+        if name in doc.styles:
+            st = doc.styles.get(name)
+            st.dxf.font = font
+            st.dxf.oblique = 0.0
+            st.discard_extended_font_data()
+    layer_lt = {layer.dxf.name: layer.dxf.linetype for layer in doc.layers}
+
+    def fix(entities):
+        for e in entities:
+            if not e.dxf.hasattr("ltscale"):
+                continue
+            lt = e.dxf.get("linetype", "BYLAYER")
+            if lt.upper() == "BYLAYER":
+                lt = layer_lt.get(e.dxf.layer, "Continuous")
+            if lt in fdot.LTSCALE_PER_SF and e.dxf.ltscale > 0:
+                e.dxf.ltscale = fdot.LTSCALE_PER_SF[lt] ** 2 / e.dxf.ltscale
+    fix(doc.modelspace())
+    cfg = Configuration(background_policy=BackgroundPolicy.WHITE, color_policy=ColorPolicy.BLACK,
+                        lineweight_scaling=1.0, min_lineweight=0.6, min_dash_length=2.5e-5)
+    return doc, cfg
+
+
+def render_layout(doc, cfg, name, ax):
+    from ezdxf.addons.drawing import Frontend, RenderContext
+    from ezdxf.addons.drawing.matplotlib import MatplotlibBackend
+    Frontend(RenderContext(doc), MatplotlibBackend(ax), config=cfg).draw_layout(doc.layouts.get(name), finalize=True)
+
+
+def previews(dxf_path, folder):
+    """PNG per sheet plus one review PDF (see ``preview_doc``)."""
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     from matplotlib.backends.backend_pdf import PdfPages
-    from ezdxf.addons.drawing import Frontend, RenderContext
-    from ezdxf.addons.drawing.config import BackgroundPolicy, Configuration, ColorPolicy
-    from ezdxf.addons.drawing.matplotlib import MatplotlibBackend
     folder.mkdir(parents=True, exist_ok=True)
     for old in folder.glob("*.png"):
         old.unlink()
-    doc = ezdxf.readfile(dxf_path)
-    for layer in doc.layers:
-        layer.color = 8 if layer.dxf.name.endswith("_h") else 7
-    cfg = Configuration(background_policy=BackgroundPolicy.WHITE, color_policy=ColorPolicy.COLOR,
-                        lineweight_scaling=0.6)
+    doc, cfg = preview_doc(dxf_path)
     paths = []
-    with PdfPages(folder / "review_sheets.pdf") as pdf:
+    tmp = folder / "review_sheets.tmp.pdf"
+    with PdfPages(tmp, metadata={"CreationDate": None, "ModDate": None}) as pdf:
         for i, name in enumerate(doc.layout_names_in_taborder()):
             if name == "Model":
                 continue
-            layout = doc.layouts.get(name)
             fig = plt.figure(figsize=(17, 11))
             ax = fig.add_axes([0, 0, 1, 1])
-            Frontend(RenderContext(doc), MatplotlibBackend(ax), config=cfg).draw_layout(layout, finalize=True)
+            render_layout(doc, cfg, name, ax)
             ax.set_xlim(0, 17 / 12)
             ax.set_ylim(0, 11 / 12)
             p = folder / ("%02d_%s.png" % (i, name.split(" ")[0]))
@@ -88,6 +131,11 @@ def previews(dxf_path, folder):
             pdf.savefig(fig, facecolor="white")
             plt.close(fig)
             paths.append(p)
+    try:
+        os.replace(tmp, folder / "review_sheets.pdf")
+    except PermissionError:  # open in a viewer: keep the new copy beside it
+        os.replace(tmp, folder / "review_sheets_new.pdf")
+        print("WARNING: review_sheets.pdf is open elsewhere; wrote review_sheets_new.pdf")
     return paths
 
 

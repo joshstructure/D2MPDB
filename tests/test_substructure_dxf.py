@@ -19,7 +19,7 @@ sys.path.insert(0, str(ROOT))
 
 import ezdxf  # noqa: E402
 
-from substructure_drawings import bars, build, fdot  # noqa: E402
+from substructure_drawings import bars, build, fdot, views  # noqa: E402
 
 PKG = ROOT / "substructure_drawings"
 SNAPSHOT = PKG / "data" / "model_snapshot.json"
@@ -125,6 +125,59 @@ class SubstructureDxfTests(unittest.TestCase):
         self.assertEqual(fdot.ft_in(19 + 7 / 12), "19'-7\"")
         self.assertEqual(fdot.elev(43.23769), "43.238")
         self.assertEqual(fdot.station(1593.22), "15+93.22")
+        # small diagonal fractions tight against the whole number (STYLE_PLAN item 3)
+        self.assertEqual(fdot.ft_in(4 + 0.5 / 12), "4'-0{\\H0.6x;\\S1#2;}\"")
+        self.assertEqual(fdot.ft_in(0.75 / 12), "{\\H0.6x;\\S3#4;}\"")
+        # bar list FT-IN without unit marks (item 18)
+        self.assertEqual(fdot.ft_in_list(244, 1), "20-4")
+        self.assertEqual(fdot.ft_in_list(224.75), "18-8{\\H0.6x;\\S3#4;}")
+
+    def test_sheet_set_follows_the_fdot_sample(self):
+        """Plan and elevation with the reinforcement for each support (no
+        separate reinforcement sheets), its details, then the bar list."""
+        sheets = self.manifest["sheets"]
+        self.assertEqual([s["number"] for s in sheets], ["B4-%d" % i for i in range(1, 10)])
+        self.assertEqual([s["title"] for s in sheets], [
+            "END BENT 1", "END BENT 1 DETAILS (1 OF 2)", "END BENT 1 DETAILS (2 OF 2)",
+            "PIER", "PIER DETAILS",
+            "END BENT 2", "END BENT 2 DETAILS (1 OF 2)", "END BENT 2 DETAILS (2 OF 2)",
+            "REINFORCING BAR LIST"])
+        self.assertEqual(sheets[0]["scales"], ["3/8\" = 1'-0\""])
+        self.assertEqual(sheets[2]["scales"], ["1/2\" = 1'-0\"", "3/4\" = 1'-0\""])
+
+    def test_lettering_and_dimension_style(self):
+        for name in (fdot.TEXT_STYLE, fdot.TITLE_STYLE):
+            st = self.doc.styles.get(name)
+            self.assertEqual(st.dxf.font, fdot.FONT_FILE)
+            self.assertAlmostEqual(st.dxf.oblique, fdot.OBLIQUE)
+        ds = self.doc.dimstyles.get(fdot.DIM_STYLE)
+        self.assertAlmostEqual(ds.dxf.dimtfac, fdot.FRACTION)
+        self.assertAlmostEqual(ds.dxf.dimtxt * 12, fdot.TEXT_IN)
+
+    def test_series_and_callout_text(self):
+        """One dimension per bar series with count, mark and spacing; equal
+        spaces as 'n EQUAL SPA'; THRU for consecutive marks (items 4-6)."""
+        self.assertEqual(views.series_text([0, 0.75, 1.5, 2.25], "6B1"), "4~6B1 @ 9\" = 2'-3\"")
+        self.assertEqual(views.series_text([0, 0.75, 1.3], "6B1"), "3~6B1 @ 9\" MAX.")
+        xs, texts = views.equal_chain([-6.75, -2.25, 2.25, 6.75], (-9.75, 9.75))
+        self.assertEqual(xs, [-9.75, -6.75, 6.75, 9.75])
+        self.assertEqual(texts, [None, "3 EQUAL SPA @ 4'-6\" = 13'-6\"", None])
+        self.assertEqual(views.mark_list(["10E04", "10E05", "10E06", "10E07"]), "10E04 THRU 10E07")
+        self.assertEqual(views.mark_list(["5E26", "5E27"]), "5E26/5E27")
+
+    def test_bar_list_types_follow_index_415_001(self):
+        """Straight bars are Type 1, U-bars Type 11, closed stirrups Type 4 with
+        style 5 (135 degree) hooks; open stirrups with legs turned in plan
+        have no standard type."""
+        comp = build.Composer(self.snap)
+        expected = {"STRAIGHT": ("1", "", ""), "U-BAR": ("11", "", ""), "CLOSED HOOP": ("4", "5", "5"),
+                    "OPEN STIRRUP": ("", "", "")}
+        for s in comp.sup.values():
+            for mark, e in s.table.items():
+                bar = next(b for b in s.bars if b["name"] == e["members"][0])
+                typ, a, g, dims = build.Composer.bar_fields(e, bar)
+                self.assertEqual((typ, a, g), expected[bars.shape_name(e)], "%s %s" % (s.title, mark))
+                self.assertIn("B", dims)
 
 
 if __name__ == "__main__":
