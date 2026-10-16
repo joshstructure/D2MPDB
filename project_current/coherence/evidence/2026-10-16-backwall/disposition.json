@@ -1,0 +1,304 @@
+{
+  "date": "2026-10-16",
+  "decision": "D-035",
+  "source_id": "BACKWALL-TOOL",
+  "path": "End_Bent_Backwall_Design.ipynb",
+  "hash_basis": "lf_text",
+  "previous_sha256": "2ce2e271ae8f678b749a10bed23760d792c017e14e4dee0b8f45b0e0b8909356",
+  "sha256": "54a13c9bcf4e749508485858a846cd54503f7df8fbf43502cadb02e87cefafcd",
+  "embedded_package_sha256": "883c9aa21a3380363eed6a0dcaded3872bc9c47e0cdcc7737a0d5d1dec1858cd",
+  "authorization": "User requested updating the backwall Colab notebook to current project data including the journal, confirming supported checkboxes, and using one mat of #4 bars each way at a spacing that passes checks.",
+  "change": {
+    "geometry": "235 in physical cap/backwall, 251 in overall load envelope, raised cheek tops, net concrete/lug weights and measured cheek centroid; exact-hash CAD snapshot.",
+    "reinforcement": "One centered tangent mat of #4 at 10 in each way; 3.75 in weaker-direction effective depth, 3.5 in actual minimum face cover. 10 in is the widest passing whole-inch spacing.",
+    "confirmation_evidence": "../../../../end_bent_walls/data/project_evidence.json",
+    "confirmed": [
+      "geometry",
+      "wind_kz",
+      "landing"
+    ],
+    "pending": [
+      "settlement",
+      "strap_level",
+      "exposure",
+      "shrinkage",
+      "analysis",
+      "cheek_connection"
+    ],
+    "imports": "Physical cap length stays separate from analysis envelope. Geometry edits clear affected measured volumes; confirmed inputs reopen on change. Legacy cases retain two-face reinforcement and original loads."
+  },
+  "verification": {
+    "recorded_utc": "2026-10-16T13:32:32.168125+00:00",
+    "command": "python -X utf8 -m unittest tests.test_end_bent_walls -q",
+    "tests_run": 27,
+    "test_failures": 0,
+    "test_errors": 0,
+    "mathcad": "Generated expressions independently unit-checked and numerically matched against notebook; native Mathcad application not exercised.",
+    "notebook_execution": {
+      "execution_mode": "In-process IPython execution of actual notebook cells and widget callbacks; browser/Colab frontend not exercised. Separate Jupyter kernel startup did not complete in the sandbox.",
+      "code_cells": 5,
+      "errors": [],
+      "verified_controls": [
+        "single centered mat",
+        "#4 at 10 inches",
+        "11 inch spacing fails",
+        "three evidence confirmations",
+        "wind confirmation invalidates on edit",
+        "reset restores defaults"
+      ]
+    },
+    "visual_review": "Static SVG figures rendered directly to PNG: centered mat, distribution steel, free body and backwall strip. Browser/Colab frontend not exercised.",
+    "numerical_failures": [],
+    "pending_check_entries": [
+      "cover_bw",
+      "cover_CK",
+      "interface_min_CK",
+      "strap_height",
+      "prereq_settlement",
+      "prereq_strap_level",
+      "prereq_shrinkage",
+      "prereq_analysis",
+      "prereq_cheek_connection"
+    ]
+  },
+  "spacing_study": [
+    {
+      "spacing_in": 12,
+      "checks": [
+        {
+          "key": "flex_CK",
+          "label": "Flexure \u00b7 wind (either face)",
+          "ratio": 0.23168495407363812,
+          "status": "PASS"
+        },
+        {
+          "key": "min_CK",
+          "label": "Minimum flexural steel",
+          "ratio": 0.3081409889179388,
+          "status": "PASS"
+        },
+        {
+          "key": "strain_CK",
+          "label": "Tension-controlled section",
+          "ratio": 0.13241470630831945,
+          "status": "PASS"
+        },
+        {
+          "key": "crack_CK",
+          "label": "Crack control",
+          "ratio": 0.18939040320829242,
+          "status": "PASS"
+        },
+        {
+          "key": "spacing_CK",
+          "label": "Maximum bar spacing",
+          "ratio": 1.0,
+          "status": "PASS"
+        },
+        {
+          "key": "ts_CK",
+          "label": "Shrinkage & temperature \u00b7 both directions",
+          "ratio": 1.0999999999999999,
+          "status": "FAIL"
+        },
+        {
+          "key": "shear_CK",
+          "label": "Shear at the base",
+          "ratio": 0.03274958760313316,
+          "status": "PASS"
+        },
+        {
+          "key": "interface_CK",
+          "label": "Interface shear at the cheek-wall joint",
+          "ratio": 0.02709237290543967,
+          "status": "PASS"
+        },
+        {
+          "key": "cover_CK",
+          "label": "Concrete cover \u00b7 cheek walls",
+          "ratio": 0.5714285714285714,
+          "status": "PASS \u00b7 PENDING INPUT"
+        },
+        {
+          "key": "interface_min_CK",
+          "label": "Minimum interface reinforcement",
+          "ratio": 0.288,
+          "status": "PASS \u00b7 PENDING INPUT"
+        },
+        {
+          "key": "thickness_CK",
+          "label": "Cheek wall thickness (SDM 12.6.B)",
+          "ratio": 1.0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "spacing_in": 11,
+      "checks": [
+        {
+          "key": "flex_CK",
+          "label": "Flexure \u00b7 wind (either face)",
+          "ratio": 0.2129462047218886,
+          "status": "PASS"
+        },
+        {
+          "key": "min_CK",
+          "label": "Minimum flexural steel",
+          "ratio": 0.28321845228011194,
+          "status": "PASS"
+        },
+        {
+          "key": "strain_CK",
+          "label": "Tension-controlled section",
+          "ratio": 0.14550332213639805,
+          "status": "PASS"
+        },
+        {
+          "key": "crack_CK",
+          "label": "Crack control",
+          "ratio": 0.15790892646949448,
+          "status": "PASS"
+        },
+        {
+          "key": "spacing_CK",
+          "label": "Maximum bar spacing",
+          "ratio": 0.9166666666666666,
+          "status": "PASS"
+        },
+        {
+          "key": "ts_CK",
+          "label": "Shrinkage & temperature \u00b7 both directions",
+          "ratio": 1.008333333333333,
+          "status": "FAIL"
+        },
+        {
+          "key": "shear_CK",
+          "label": "Shear at the base",
+          "ratio": 0.03274958760313316,
+          "status": "PASS"
+        },
+        {
+          "key": "interface_CK",
+          "label": "Interface shear at the cheek-wall joint",
+          "ratio": 0.0257323140246445,
+          "status": "PASS"
+        },
+        {
+          "key": "cover_CK",
+          "label": "Concrete cover \u00b7 cheek walls",
+          "ratio": 0.5714285714285714,
+          "status": "PASS \u00b7 PENDING INPUT"
+        },
+        {
+          "key": "interface_min_CK",
+          "label": "Minimum interface reinforcement",
+          "ratio": 0.26399999999999996,
+          "status": "PASS \u00b7 PENDING INPUT"
+        },
+        {
+          "key": "thickness_CK",
+          "label": "Cheek wall thickness (SDM 12.6.B)",
+          "ratio": 1.0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "spacing_in": 10,
+      "checks": [
+        {
+          "key": "flex_CK",
+          "label": "Flexure \u00b7 wind (either face)",
+          "ratio": 0.1942111172175046,
+          "status": "PASS"
+        },
+        {
+          "key": "min_CK",
+          "label": "Minimum flexural steel",
+          "ratio": 0.2583007858992811,
+          "status": "PASS"
+        },
+        {
+          "key": "strain_CK",
+          "label": "Tension-controlled section",
+          "ratio": 0.16146326080100923,
+          "status": "PASS"
+        },
+        {
+          "key": "crack_CK",
+          "label": "Crack control",
+          "ratio": 0.12955822190481114,
+          "status": "PASS"
+        },
+        {
+          "key": "spacing_CK",
+          "label": "Maximum bar spacing",
+          "ratio": 0.8333333333333334,
+          "status": "PASS"
+        },
+        {
+          "key": "ts_CK",
+          "label": "Shrinkage & temperature \u00b7 both directions",
+          "ratio": 0.9166666666666666,
+          "status": "PASS"
+        },
+        {
+          "key": "shear_CK",
+          "label": "Shear at the base",
+          "ratio": 0.03274958760313316,
+          "status": "PASS"
+        },
+        {
+          "key": "interface_CK",
+          "label": "Interface shear at the cheek-wall joint",
+          "ratio": 0.024270250727789704,
+          "status": "PASS"
+        },
+        {
+          "key": "cover_CK",
+          "label": "Concrete cover \u00b7 cheek walls",
+          "ratio": 0.5714285714285714,
+          "status": "PASS \u00b7 PENDING INPUT"
+        },
+        {
+          "key": "interface_min_CK",
+          "label": "Minimum interface reinforcement",
+          "ratio": 0.23999999999999996,
+          "status": "PASS \u00b7 PENDING INPUT"
+        },
+        {
+          "key": "thickness_CK",
+          "label": "Cheek wall thickness (SDM 12.6.B)",
+          "ratio": 1.0,
+          "status": "PASS"
+        }
+      ]
+    }
+  ],
+  "source_identity": {
+    "CAD-MODEL": "517d08ddd6c0b01c0bb279919d3648835a8a77cbc7727a42ba4312013b701a20",
+    "JOURNAL": {
+      "path": "journal/D2_I95_Project_Journal.bpad",
+      "sha256": "4b1770533d7b91cfb1efbcd96b0eb2c3a73328b90f88b2b50bca15388f07cd82",
+      "registered_sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351",
+      "status": "Current journal matches accepted T009. The source register still carries T006; preserved rather than silently refreshing its acceptance record.",
+      "accepted_receipt": "workflow/accepted.json (T009), exact SHA-256 match"
+    }
+  },
+  "downstream_review": [
+    {
+      "consumer": "BACKWALL-REPORT",
+      "result": "12 October report remains unchanged; current tool defaults now use the revised geometry/reinforcement. No report selection or final engineering acceptance."
+    },
+    {
+      "consumer": "CAD-MODEL",
+      "result": "Unchanged; its 12 in / 12.375 in cheek layout does not yet match the proposed 10 in calculation spacing. COH-024 and connection review COH-023 remain open."
+    },
+    {
+      "consumer": "End bent analysis and MSE strap design",
+      "result": "Matching current raw EB1/EB2 analyses remain unavailable; bearing actions and derived strap demands remain provisional. No vendor or geotechnical confirmation is inferred."
+    }
+  ],
+  "preserved": "Journal bytes/acceptance, CAD bytes, cap cases, selected reports, tracker workbook/status/responses and unrelated work unchanged. Existing source-register journal discrepancy is recorded, not silently adopted."
+}

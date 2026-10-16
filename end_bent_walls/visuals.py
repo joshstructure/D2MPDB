@@ -117,12 +117,13 @@ def section_figure(e):
 
 def plan_figure(e):
     v = e.value
-    L, b = v('L_cap', 'ft'), v('b_cap', 'ft'); tb, Lb = v('t_bw', 'ft'), v('L_bw', 'ft'); tck = v('t_ck', 'ft')
+    L, b = v('L_load', 'ft'), v('b_cap', 'ft'); tb, Lb = v('t_bw', 'ft'), v('L_bw', 'ft'); tck = v('t_ck', 'ft')
     n, S, dp = int(v('N_pile')), v('S_pile', 'ft'), v('D_pile', 'ft')
     rear, front = -b / 2, b / 2
     fig = go.Figure()
     _rect(fig, 0, rear - 4.0, L, rear, FILL, FILL, 'Landing slab on MSE fill (shown 4 ft)')
-    _rect(fig, 0, rear, L, front, CONCRETE, CONCRETE_LINE, f'Cap {L:.3f} ft long')
+    cap0 = (L - v('L_cap', 'ft'))/2
+    _rect(fig, cap0, rear, L-cap0, front, CONCRETE, CONCRETE_LINE, f'Core cap {v("L_cap", "in"):g} in; overall {v("L_load", "in"):g} in')
     _rect(fig, (L - Lb) / 2, rear, (L + Lb) / 2, rear + tb, '#cfd9e2', CONCRETE_LINE, f'Backwall {Lb:.3f} ft between cheek walls')
     for x0 in (0, L - tck):
         _rect(fig, x0, rear, x0 + tck, front, '#cfd9e2', CONCRETE_LINE, f'Cheek wall {v("t_ck", "in"):g} in × {v("w_ck", "in"):g} in (wind only)')
@@ -264,23 +265,30 @@ def reinforcement_figure(e):
                                  text=f'{label} {t:g} in thick', showlegend=False), row=1, col=col)
         fig.add_trace(go.Scatter(x=[-6, t + 6, t + 6, -6, -6], y=[-18, -18, 0, 0, -18], fill='toself', fillcolor='#f2f5f7',
                                  line=dict(color=CONCRETE_LINE, dash='dot'), hoverinfo='text', text='Cap (top)', showlegend=False), row=1, col=col)
-        for side, tag in zip((0, 1), vert):
+        single = label == 'Cheek wall' and bool(v('single_ck'))
+        layers = [(0, 'CK')] if single else list(zip((0, 1), vert))
+        for side, tag in layers:
             db = v('d_b_' + tag, 'in')
             x = cv + db / 2 if side == 0 else t - cv - db / 2
             bar = int(e.case['inputs']['bar_' + tag])
             spacing = e.case['inputs']['s_' + tag]
-            face = ('fill face' if side == 0 else 'span face') if label == 'Backwall' else 'each face'
-            fig.add_trace(go.Scatter(x=[x, x], y=[-16, H - cv], mode='lines', line=dict(color=BLUE, width=3), hoverinfo='text',
+            if single:
+                x = t/2 - v('d_b_CKH', 'in')/2
+            face = ('fill face' if side == 0 else 'span face') if label == 'Backwall' else 'single centered mat' if single else 'each face'
+            fig.add_trace(go.Scatter(x=[x, x], y=[cv if single else -16, H - cv], mode='lines', line=dict(color=BLUE, width=3), hoverinfo='text',
                                      text=f'#{bar} @ {spacing:g} in vertical, {face}', showlegend=False), row=1, col=col)
         dh = v('d_b_' + horiz, 'in')
         count = int((H - 2 * cv) // s_h) + 1
-        for side, tag in zip((0, 1), vert):
+        for side, tag in layers:
             db = v('d_b_' + tag, 'in')
             x = cv + db + dh / 2 if side == 0 else t - cv - db - dh / 2
+            if single:
+                x = t/2 + db/2
             ys = [cv + 2 + i * s_h for i in range(count) if cv + 2 + i * s_h < H - cv]
             fig.add_trace(go.Scatter(x=[x] * len(ys), y=ys, mode='markers', marker=dict(size=7, color=TEAL), hoverinfo='text',
                                      text=f'#{int(e.case["inputs"]["bar_" + horiz])} @ {s_h:g} in horizontal', showlegend=False), row=1, col=col)
-        fig.add_annotation(x=t / 2, y=H + 3, text=f'{t:g} in · cover {cv:g} in', showarrow=False, row=1, col=col)
+        shown_cover = v('cover_ck_actual', 'in') if single else cv
+        fig.add_annotation(x=t / 2, y=H + 3, text=f'{t:g} in · physical cover {shown_cover:g} in', showarrow=False, row=1, col=col)
         left, right = ('FILL FACE', 'SPAN FACE') if label == 'Backwall' else ('WIND EITHER FACE', '')
         fig.add_annotation(x=0, y=H / 2, text=left, textangle=-90, showarrow=False, xshift=-16, font=dict(size=10, color=SOIL_LINE), row=1, col=col)
         if right:
@@ -289,7 +297,8 @@ def reinforcement_figure(e):
         fig.update_yaxes(range=[-20, max(v('H_bw', 'in'), v('H_ck', 'in')) + 8], row=1, col=col)
     fig.update_yaxes(title='Height above the cap top (in)', scaleanchor='x', row=1, col=1)
     fig.update_yaxes(scaleanchor='x2', row=1, col=2)
-    theme(fig, 'Figure B8 · Trial reinforcement (vertical bars blue, horizontal bars teal; dowel embedment schematic)', 560)
+    layout_label = 'single centered mat' if v('single_ck') == 1 else 'legacy two faces'
+    theme(fig, f'Figure B8 · Backwall two faces; cheek {layout_label} (anchorage pending)', 560)
     return fig
 
 

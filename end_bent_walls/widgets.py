@@ -10,7 +10,7 @@ from pier_cap.plotly_compat import FigureWidget
 from pier_cap.recalc_control import RecalcControl
 from pier_cap.source_status import notice_html, upload_entries
 from pier_cap.widget_compat import Tab, Accordion
-from .model import (default_case, upgrade_case, validate_case, evaluate, INPUTS, INPUT_SPEC, CONFIRMATIONS, SECTIONS,
+from .model import (default_case, upgrade_case, validate_case, evaluate, edit_input, INPUTS, INPUT_SPEC, CONFIRMATIONS, SECTIONS,
                     COMBINATIONS, BAR_SIZES, formula_trace, strap_table, REFERENCES, SOURCES)
 from .reviews import record_review, reopen, review_html
 from .sources import READERS, apply_source
@@ -104,10 +104,12 @@ class BackwallNotebook:
         reset = W.Button(description='Reset to registered defaults', icon='undo', layout=W.Layout(width='240px'))
         reset.on_click(lambda _: self.load(default_case(), 'registered defaults'))
         self.confirm = {}
+        self.confirm_notes = {}
         for key, text in CONFIRMATIONS.items():
             box = W.Checkbox(value=bool(self.case['confirmations'][key]), description=text, indent=False, layout=W.Layout(width='100%'))
             box.observe(partial(self._confirmed, key), names='value')
             self.confirm[key] = box
+            self.confirm_notes[key] = W.HTML()
         self.sources_table = W.HTML(layout=W.Layout(max_height='520px', overflow='auto'))
         cards = []
         for sid, upload in self.uploads.items():
@@ -123,8 +125,9 @@ class BackwallNotebook:
                    'Decisions D-014 to D-019 record the tie-back, loading, soil, landing-slab, cheek-wall and height choices.</p>'),
             W.HBox(cards, layout=W.Layout(width='100%', flex_flow='row wrap', grid_gap='8px')),
             W.HBox([self.case_upload.button, reset], layout=W.Layout(flex_flow='row wrap', grid_gap='8px')), self.case_upload.output, self.case_status,
-            W.HTML('<h3>Confirmations</h3><p>Unconfirmed items remain <b>PENDING</b> in the check register and report.</p>'),
-            W.VBox(list(self.confirm.values())), details])
+            W.HTML('<h3>Confirmations</h3><p>Checked items carry dated project evidence below. Unconfirmed items remain <b>PENDING</b>. '
+                   'Editing a reviewed value reopens its confirmation. Source consistency does not close connection or fabrication review.</p>'),
+            W.VBox([W.VBox([box, self.confirm_notes[key]]) for key, box in self.confirm.items()]), details])
 
     def _load_source(self, sid, content, filename):
         try:
@@ -155,10 +158,24 @@ class BackwallNotebook:
         if self.busy:
             return
         self.case['confirmations'][key] = bool(change['new'])
+        record = self.case.setdefault('confirmation_evidence', {}).setdefault(key, {})
+        if change['new']:
+            record['note'] = 'Manually confirmed in this notebook. Previous evidence: ' + record.get('note', '')
+            record['inputs'] = {n: self.case['inputs'][n] for n in record.get('inputs', {})}
+            record['stale'] = False
         self.refresh_sources()
         self._mark_dirty()
 
     def refresh_sources(self):
+        self.busy = True
+        try:
+            for key, box in self.confirm.items():
+                box.value = bool(self.case['confirmations'][key])
+                evidence = self.case.get('confirmation_evidence', {}).get(key, {})
+                self.confirm_notes[key].value = '<div style="margin:0 12px 10px;color:#485969;font-size:12px">' + (
+                    '<b>Needs review after input changes. </b>' if evidence.get('stale') else '') + html.escape(evidence.get('note', 'No project evidence recorded in this saved case.')) + '</div>'
+        finally:
+            self.busy = False
         receipts = self.case.get('receipts', {})
         for sid, widget in self.source_status.items():
             r = receipts.get(sid)
@@ -216,7 +233,9 @@ class BackwallNotebook:
             for spec in (s for s in INPUT_SPEC if s['group'] == group):
                 name, unit = spec['name'], spec['unit']
                 value = self.case['inputs'][name]
-                if unit == 'bar':
+                if name == 'single_ck':
+                    control = W.Dropdown(options=[('Single centered mat', 1), ('Legacy steel at both faces', 0)], value=int(value))
+                elif unit == 'bar':
                     control = W.Dropdown(options=[(f'#{b}', b) for b in BAR_SIZES], value=int(value))
                 elif isinstance(value, int) and unit is None and name in ('n_int', 'N_brg', 'N_pile'):
                     control = W.BoundedIntText(value=int(value), min=1, max=50)
@@ -251,7 +270,8 @@ class BackwallNotebook:
         if self.busy:
             return
         old = self.case['inputs'][name]
-        self.case['inputs'][name] = change['new']
+        edit_input(self.case, name, change['new'])
+        self._sync_controls()
         src = self.case['sources'][name]
         if src['status'] != 'edited in notebook':
             src['source'] = f'Edited in notebook (was {old:g}: {src["source"]})'
@@ -276,6 +296,8 @@ class BackwallNotebook:
         self.recalc.set_state('running')
         try:
             self.e = evaluate(self.case)
+            self.case = deepcopy(self.e.case)
+            self.refresh_sources()
         except Exception as exc:
             self.recalc.set_state('error')
             self.banner.value = notice_html('CALCULATION STOPPED', html.escape(str(exc)), 'error')

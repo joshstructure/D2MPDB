@@ -72,10 +72,10 @@ class ProjectCalculation(unittest.TestCase):
     def test_service_overturning_hand_sum(self):
         e = self.e
         self.assertAlmostEqual(e.value('k_a'), 1 / 3, places=12)
-        self.assertAlmostEqual(e.value('F_EH'), 0.5 / 3 * 0.115 * 7.083 ** 2 * 212 / 12, places=6)
+        self.assertAlmostEqual(e.value('F_EH'), 0.5 / 3 * 0.115 * 7.089974522637 ** 2 * 251 / 12, places=6)
         hand = (e.value('F_EH') * e.value('y_EH', 'ft') + (e.value('F_ES') + e.value('F_LS')) * e.value('y_LS', 'ft')
                 + (e.value('F_TU') + e.value('F_SH') + 2 * 1.63) * e.value('y_brg', 'ft')
-                + 2 * (92.07 + 28.98) * 0.5 + e.value('W_cap') * 0.25 + e.value('W_ped') * 0.75 + e.value('W_ck') * 0.25 - e.value('W_bw') * 1.0)
+                + 2 * (92.07 + 28.98) * 0.5 + e.value('W_cap') * 0.25 + e.value('W_ped') * 0.75 + e.value('W_ck') * (3 - 2.182752659952977)/12 - e.value('W_bw') * 1.0)
         self.assertAlmostEqual(e.value('M_SERI'), hand, places=6)
 
     def test_combination_totals_equal_their_tables(self):
@@ -89,7 +89,7 @@ class ProjectCalculation(unittest.TestCase):
             k = c['key']
             expected = max(self.e.value('H_' + k), self.e.value('M_' + k) / self.e.value('y_strap', 'ft'))
             self.assertAlmostEqual(self.e.value('F_str_' + k), expected, places=6)
-            self.assertAlmostEqual(self.e.value('f_str_' + k, 'kip/ft'), expected / (196 / 12), places=6)
+            self.assertAlmostEqual(self.e.value('f_str_' + k, 'kip/ft'), expected / (235 / 12), places=6)
         self.assertAlmostEqual(self.e.value('f_str_u'), max(self.e.value('f_str_' + c['key']) for c in STRENGTH), places=9)
 
     def test_vertical_live_and_uplift_take_no_stabilizing_credit(self):
@@ -147,8 +147,58 @@ class SourcesAndExports(unittest.TestCase):
         path = next((CURRENT / 'geometry/freecad').glob('*.FCStd'))
         updates, _, receipt = read_freecad(path.read_bytes(), path.name)
         self.assertTrue(receipt['matches_register'])
-        self.assertAlmostEqual(updates['H_bw'], 4.083, places=3)
-        self.assertEqual((updates['L_bw'], updates['t_slab']), (196.0, 4.0))
+        self.assertAlmostEqual(updates['H_bw'], 4.089974522637, places=6)
+        self.assertEqual((updates['L_bw'], updates['t_slab']), (235.0, 4.0))
+        self.assertEqual((updates['t_ck'], updates['w_ck'], updates['L_load']), (8.0, 42.0, 251.0))
+        with self.assertRaisesRegex(ValueError, 'no reviewed native measurement'):
+            read_freecad(path.read_bytes() + b'changed', path.name)
+
+    def test_analysis_upload_does_not_overwrite_physical_cap_geometry(self):
+        from end_bent_walls.sources import apply_source
+        case = default_case()
+        for sid, path in [('EB-CASE', CURRENT/'cap_design/end_bents/selected_case.json'),
+                          ('EB-XML', CURRENT/'fbmp/end_bents/End Bent 1_Fixed.XML')]:
+            apply_source(case, sid, path.read_bytes(), path.name)
+            self.assertEqual(case['inputs']['L_cap'], 235)
+            self.assertEqual(case['inputs']['L_load'], 251)
+            self.assertFalse(case['confirmations']['analysis'])
+
+    def test_centered_cheek_mat_spacing_and_depth(self):
+        e = evaluate()
+        self.assertEqual(e.value('d_CK', 'in'), 3.75)
+        self.assertEqual(e.value('cover_ck_actual', 'in'), 3.5)
+        self.assertAlmostEqual(e.value('A_ts_ck', 'in^2/ft'), .22)
+        self.assertAlmostEqual(e.value('A_s_CK', 'in^2'), .24)
+        for spacing in range(12, 2, -1):
+            case = default_case()
+            case['inputs'].update(s_CK=spacing, s_CKH=spacing)
+            failed = [c.key for c in evaluate(case).checks if c.group == 'Cheek walls' and c.ratio is not None and c.ratio > 1]
+            if spacing > 10:
+                self.assertIn('ts_CK', failed)
+            else:
+                self.assertFalse(failed)
+        self.assertFalse(e.case['confirmations']['cheek_connection'])
+
+    def test_evidence_bound_confirmations_and_legacy_case(self):
+        from end_bent_walls.model import edit_input
+        case = default_case()
+        self.assertEqual({k for k, v in case['confirmations'].items() if v}, {'geometry', 'wind_kz', 'landing'})
+        edit_input(case, 'H_ck', 6)
+        self.assertEqual(case['inputs']['V_ck'], 0)
+        self.assertFalse(case['confirmations']['geometry'])
+        case = default_case()
+        case['inputs']['K_Z_III'] = 1
+        self.assertFalse(evaluate(case).case['confirmations']['wind_kz'])
+        old = {'format': case['format'], 'schema_version': 1,
+               'inputs': {'L_cap': 212, 'L_bw': 196, 'bar_CK': 5, 's_CK': 12}, 'confirmations': {}}
+        converted = upgrade_case(old)
+        self.assertEqual(converted['inputs']['single_ck'], 0)
+        self.assertEqual(converted['inputs']['V_ck'], 0)
+        self.assertEqual(converted['inputs']['L_load'], 212)
+        self.assertFalse(any(converted['confirmations'].values()))
+        converted['inputs']['cv_ck'] = 1.5
+        cover = next(c for c in evaluate(converted).checks if c.key == 'cover_CK')
+        self.assertAlmostEqual(cover.ratio, 2 / 1.5)
 
     def test_case_json_round_trip_and_stale_review(self):
         e = evaluate()

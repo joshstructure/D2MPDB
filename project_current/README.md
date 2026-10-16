@@ -34,6 +34,14 @@ Use the paths in the register for current work.
 
 ## What controls each subject
 
+The [16 October backwall notebook update](../BACKWALL_DESIGN.md) incorporates the
+adopted cap/cheek geometry and verified landing quantities. Its proposed cheek
+reinforcement is one centered mat of #4 bars at 10 in each way. Three source-backed
+confirmations are checked; six remain pending. See [D-035 verification](coherence/evidence/2026-10-16-backwall/disposition.json).
+The 12 October selected report and the CAD bar layout retain their earlier state;
+current analysis, anchorage and MSE coordination remain open. This bounded update
+does not replace the dated full-project coherence review or change tracker status.
+
 | Subject | Controlling record | Treatment elsewhere |
 | --- | --- | --- |
 | Project assumptions, adopted geometry, decisions, live journal quantities | Current journal's designated modules | Compare notebook and report inputs with these modules |

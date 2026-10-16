@@ -358,7 +358,10 @@ class Item:
 
 
 def I(name, expr, caption):                      # input (highlighted)
-    return Item('input', name, expr, caption=caption)
+    spec = INPUT_SPEC[name]
+    unit = spec['unit']
+    expr = repr(spec['value']) + (('*(' + unit.replace('^', '**') + ')') if unit not in (None, 'bar') else '')
+    return Item('input', name, expr, caption=spec['caption'])
 
 
 def E(name, expr, unit=None, caption='', key=False):   # define and show the result
@@ -411,7 +414,7 @@ def sheet(rev):
           'load combinations as the notebook; results should match its exported report (Section 12 lists the notebook values).'),
         P('Codes: AASHTO LRFD Bridge Design Specifications, 10th edition (2024); FDOT Structures Design Guidelines (SDG) and '
           'Structures Detailing Manual (SDM), January 2026.'),
-        P('Status: provisional wall geometry (D-005), trial reinforcement, prerequisites pending (Section 12). Inputs are '
+        P('Status: adopted CAD geometry reconciled 16 October; single centered #4 cheek mat at 10 in each way. Prerequisites remain pending (Section 12). Inputs are '
           'highlighted yellow; values for the plans are boxed.'),
 
         H1('1. Design basis'),
@@ -430,7 +433,9 @@ def sheet(rev):
              'Backwall states: strap slack, soil causes fill-face tension; strap engaged, the strap pull causes span-face tension. Both are designed.']),
 
         H1('2. Inputs'),
-        INPUTS('Geometry (EB-CASE cap case; CAD-MODEL provisional walls)', [
+        INPUTS('Adopted CAD geometry and centered cheek mat', [
+            *[I(n, '', '') for n in ('single_ck', 'L_load', 'V_cap', 'V_bw', 'V_ck', 'dx_ck')]]),
+        INPUTS('Geometry (D-026/D-033 native CAD snapshot)', [
             I('b_cap', '42*in', 'cap width, along the bridge'), I('h_cap', '36*in', 'cap depth'),
             I('L_cap', '212*in', 'cap length'), I('embed_pile', '12*in', 'pile embedment (pile top above soffit)'),
             I('tol_pile', '3*in', 'pile placement tolerance, toward fill'), I('t_bw', '12*in', 'backwall thickness'),
@@ -486,13 +491,13 @@ def sheet(rev):
         EQ(E('b_s', '12*in', 'in', 'design strip width'),
            E('y_top', 'h_cap - embed_pile', 'ft', 'cap top above O'),
            E('H_ret', 'H_bw + h_cap', 'ft', 'retained height, soffit to crown'),
-           E('H_bw_avg', '(H_bw + H_bw_edge)/2', 'ft', 'average backwall height'),
+           E('H_bw_avg', 'IF(V_bw > 0*ft**3, V_bw/(t_bw*L_bw), (H_bw + H_bw_edge)/2)', 'ft', 'average backwall height'),
            E('y_brg', 'y_top + h_ped + t_pad', 'ft', 'top of pad above O'),
            E('y_strap', 'y_top + z_strap', 'ft', 'strap above O'),
            E('x_brg', 'e_brg + tol_pile', 'in', 'bearing arm'),
            E('x_cap', 'tol_pile', 'in', 'cap arm (cap centered on nominal pile)'),
            E('x_ped', 't_bw + L_ped/2 - b_cap/2 + tol_pile', 'in', 'pedestal arm'),
-           E('x_ck', 'w_ck/2 - b_cap/2 + tol_pile', 'in', 'cheek wall arm'),
+           E('x_ck', 'dx_ck + tol_pile', 'in', 'cheek wall arm'),
            E('x_bw', 't_bw/2 - b_cap/2 + tol_pile', 'in', 'backwall arm (negative = stabilizing)')),
 
         H1('4. Loads'),
@@ -500,14 +505,14 @@ def sheet(rev):
         EQ(E('Gamma_c', '(1 + sqrt(sin(phi_soil + delta_w)*sin(phi_soil - beta_f)/(sin(theta_w - delta_w)*sin(theta_w + beta_f))))**2', None, 'Coulomb Γ'),
            E('k_a', 'sin(theta_w + phi_soil)**2/(Gamma_c*sin(theta_w)**2*sin(theta_w - delta_w))', None, 'active pressure coefficient'),
            E('p_EH', 'k_a*gamma_s*H_ret', 'psf', 'EH pressure at the cap soffit'),
-           E('F_EH', '0.5*k_a*gamma_s*H_ret**2*L_cap', 'kip', 'EH resultant'),
+           E('F_EH', '0.5*k_a*gamma_s*H_ret**2*L_load', 'kip', 'EH resultant'),
            E('y_EH', 'H_ret/3 - embed_pile', 'ft', 'EH height above O'),
            E('p_LS', 'k_a*q_PL', 'psf', 'pedestrian surcharge pressure'),
-           E('F_LS', 'p_LS*H_ret*L_cap', 'kip', 'LS resultant'),
+           E('F_LS', 'p_LS*H_ret*L_load', 'kip', 'LS resultant'),
            E('y_LS', 'H_ret/2 - embed_pile', 'ft', 'LS height above O'),
            E('q_ES', 't_slab*w_c', 'psf', 'landing slab weight on the fill'),
            E('p_ES', 'k_a*q_ES', 'psf', 'slab surcharge pressure'),
-           E('F_ES', 'p_ES*H_ret*L_cap', 'kip', 'ES resultant'),
+           E('F_ES', 'p_ES*H_ret*L_load', 'kip', 'ES resultant'),
            E('y_ES', 'H_ret/2 - embed_pile', 'ft', 'ES height above O')),
         H2('4.2 Bearing and superstructure actions (FBMP reactions; LRFD 14.6.3.1 pad shear with upper-bound G)'),
         EQ(E('A_pad', 'L_pad*W_pad', 'in**2', 'pad plan area'),
@@ -523,10 +528,10 @@ def sheet(rev):
            E('H_WS2', 'N_brg*FY_WS2', 'kip', 'longitudinal wind, Strength III dir. 2'),
            E('H_WS3', 'N_brg*FY_WS3', 'kip', 'longitudinal wind, Service I')),
         H2('4.3 Dead loads'),
-        EQ(E('W_cap', 'b_cap*h_cap*L_cap*w_c', 'kip', 'cap'),
+        EQ(E('W_cap', 'IF(V_cap > 0*ft**3, V_cap, b_cap*h_cap*L_cap)*w_c', 'kip', 'cap'),
            E('W_ped', 'N_brg*L_ped*B_ped*h_ped*w_c', 'kip', 'pedestals'),
            E('W_bw', 't_bw*H_bw_avg*L_bw*w_c', 'kip', 'backwall'),
-           E('W_ck', '2*t_ck*w_ck*H_ck*w_c', 'kip', 'cheek walls, both'),
+           E('W_ck', 'IF(V_ck > 0*ft**3, V_ck, 2*t_ck*w_ck*H_ck)*w_c', 'kip', 'cheek walls, both'),
            E('w_sl_DC', 'share_slab*L_slab*t_slab*w_c', 'klf', 'slab DC on the backwall (gravity only)'),
            E('w_sl_PL', 'share_slab*L_slab*q_PL', 'klf', 'slab PL on the backwall (gravity only)')),
 
@@ -607,7 +612,7 @@ def sheet(rev):
         ROW(D('M_u', 'tr(row(M_u_FF, M_u_SF, M_u_CK))'), D('M_s', 'tr(row(M_s_FF, M_s_SF, M_s_CK))')),
         EQ(V('A_b', 'j', 'A_bar[n_b[j]]', 'in**2', 'bar area'),
            V('d_b', 'j', 'd_bar[n_b[j]]', 'in', 'bar diameter'),
-           V('d', 'j', 'h_w[j] - c_v[j] - d_b[j]/2', 'in', 'effective depth'),
+           V('d', 'j', 'IF(j == 2, IF(single_ck == 1, t_ck/2 - d_bar[bar_CKH]/2, h_w[j] - c_v[j] - d_b[j]/2), h_w[j] - c_v[j] - d_b[j]/2)', 'in', 'effective depth'),
            V('A_s', 'j', 'A_b[j]*b_s/s_w[j]', 'in**2', 'steel in the strip'),
            V('a', 'j', 'A_s[j]*fy/(0.85*fc*b_s)', 'in', 'stress block depth'),
            V('c', 'j', 'a[j]/beta_1', 'in', 'neutral axis depth'),
@@ -645,11 +650,11 @@ def sheet(rev):
            E('s_max_ck', 'min(1.5*t_ck, 18*in)', 'in', 'max primary spacing, cheek wall'),
            E('b_ts_bw', 'min(H_bw, L_bw)', 'in', 'least backwall width'),
            E('A_ts0_bw', '1.30*b_ts_bw*t_bw/(2*(b_ts_bw + t_bw)*fy)*ksi*in/ft', 'in**2/ft', 'LRFD 5.10.6-1 (b, h in in, fy in ksi)'),
-           E('A_ts_bw', 'min(max(A_ts0_bw, 0.11*in**2/ft), 0.60*in**2/ft)', 'in**2/ft', 'S&T steel each face, 0.11 to 0.60'),
+           E('A_ts_bw', 'min(max(A_ts0_bw, 0.11*in**2/ft), 0.60*in**2/ft)', 'in**2/ft', 'S&T steel each backwall face, 0.11 to 0.60'),
            E('s_ts_bw', 'min(3*t_bw, 18*in)', 'in', 'max S&T spacing'),
            E('b_ts_ck', 'min(H_ck, w_ck)', 'in', 'least cheek wall width'),
            E('A_ts0_ck', '1.30*b_ts_ck*t_ck/(2*(b_ts_ck + t_ck)*fy)*ksi*in/ft', 'in**2/ft', 'LRFD 5.10.6-1'),
-           E('A_ts_ck', 'min(max(A_ts0_ck, 0.11*in**2/ft), 0.60*in**2/ft)', 'in**2/ft', 'S&T steel each face, 0.11 to 0.60'),
+           E('A_ts_ck', 'IF(single_ck == 1, 2, 1)*min(max(A_ts0_ck, 0.11*in**2/ft), 0.60*in**2/ft)', 'in**2/ft', 'S&T steel, both face requirements combined for the single cheek mat'),
            E('s_ts_ck', 'min(3*t_ck, 18*in)', 'in', 'max S&T spacing'),
            E('A_pr_FF', 'A_b[0]/s_FF', 'in**2/ft', 'provided, fill face'),
            E('A_pr_SF', 'A_b[1]/s_SF', 'in**2/ft', 'provided, span face'),
@@ -665,18 +670,20 @@ def sheet(rev):
            E('p_cp', '2*(b_cap + h_cap)', 'in', 'cap perimeter'),
            E('T_cr', '0.126*sqrt(fc/ksi)*ksi*A_cp**2/p_cp', 'kip*ft', 'cracking torque'),
            E('T_lim', '0.25*phi_v*T_cr', 'kip*ft', 'torsion may be neglected below this'),
-           D('t_u', '(gamma_EH*F_EH*y_EH + gamma_ES*F_ES*y_ES + gamma_LS*F_LS*y_LS + gamma_cap*W_cap*x_cap)/L_cap', 'uniform torque, whole cap'),
+           D('t_u', '(gamma_EH*F_EH*y_EH + gamma_ES*F_ES*y_ES + gamma_LS*F_LS*y_LS)/L_load', 'uniform torque, whole cap'),
+           D('t_cap', 'gamma_cap*W_cap*x_cap/L_cap', 'uniform torque over the core cap only'),
            D('t_b', '(gamma_bw*W_bw*x_bw - M_OT)/L_bw', 'uniform torque over the backwall, with the strap'),
            D('P_b', '((gamma_TU*(F_TU + F_SH) + H_W)*y_brg + M_Vb + M_WV)/N_brg', 'torque at each bearing'),
            D('P_c', 'gamma_ck*W_ck*x_ck/2', 'torque at each cheek wall'),
-           E('x_w0', '(L_cap - L_bw)/2', 'in', 'backwall start'),
-           E('x_b1', '(L_cap - s_brg)/2', 'in', 'bearing 1'),
-           E('x_b2', '(L_cap + s_brg)/2', 'in', 'bearing 2'),
+           E('x_w0', '(L_load - L_bw)/2', 'in', 'backwall start'),
+           E('x_b1', '(L_load - s_brg)/2', 'in', 'bearing 1'),
+           E('x_b2', '(L_load + s_brg)/2', 'in', 'bearing 2'),
+           F('L_core', ['x'], 'min(max(x - (L_load - L_cap)/2, 0*in), L_cap)', 'core cap length left of x'),
            F('L_w', ['x'], 'min(max(x - x_w0, 0*in), L_bw)', 'backwall length left of x'),
            F('N_b', ['x'], 'IF(x >= x_b1, 1, 0) + IF(x >= x_b2, 1, 0)', 'bearings at or left of x'),
-           F('N_c', ['x'], 'IF(x >= t_ck/2, 1, 0) + IF(x >= L_cap - t_ck/2, 1, 0)', 'cheek walls at or left of x'),
-           F('T_c', ['x', 'r'], 't_u[r]*x + t_b[r]*L_w(x) + P_b[r]*N_b(x) + P_c[r]*N_c(x)', 'torque at x, combination r'),
-           D('X_T', 'tr(row(0*in, t_ck/2, x_w0, x_b1, x_b2, L_cap - x_w0, L_cap - t_ck/2, L_cap))', 'stations where the torque changes slope or jumps'),
+           F('N_c', ['x'], 'IF(x >= t_ck/2, 1, 0) + IF(x >= L_load - t_ck/2, 1, 0)', 'cheek walls at or left of x'),
+           F('T_c', ['x', 'r'], 't_u[r]*x + t_cap[r]*L_core(x) + t_b[r]*L_w(x) + P_b[r]*N_b(x) + P_c[r]*N_c(x)', 'torque at x, combination r'),
+           D('X_T', 'tr(row(0*in, t_ck/2, x_w0, x_b1, x_b2, L_load - x_w0, L_load - t_ck/2, L_load))', 'stations where the torque changes slope or jumps'),
            ),
         ROW(R('k', 0, 7), R('r', 1, 4, 'strength combinations')),
         EQ(V('T_A', ('k', 'r'), 'abs(T_c(X_T[k], r))', None, 'torque at each station'),
@@ -700,7 +707,7 @@ def sheet(rev):
            E('DC_V_ck', 'V_u_CK/V_r[2]', None, 'cheek wall shear'),
            E('DC_Vi_ck', 'V_u_CK/V_ri_ck', None, 'cheek wall interface shear'),
            E('DC_ts_ck', 'max(A_ts_ck/min(A_pr_CK, A_pr_CKH), max(s_CK, s_CKH)/s_ts_ck)', None, 'cheek wall S&T'),
-           E('DC_cov', 'max(3*in/cv_bw, 2*in/cv_ck)', None, 'cover, 3 in backwall and 2 in cheek walls'),
+           E('DC_cov', 'max(3*in/cv_bw, IF(single_ck == 1, cv_ck, 2*in)/IF(single_ck == 1, (t_ck - d_bar[bar_CK] - d_bar[bar_CKH])/2, cv_ck))', None, 'cover, 3 in backwall and specified cheek requirement (legacy minimum 2 in)'),
            E('DC_thk', 'max(12*in/t_bw, 8*in/t_ck)', None, 'thickness, SDM 12.6.B'),
            E('DC_strap', 'z_strap/H_bw_edge', None, 'strap within the backwall height'),
            E('DC_T', 'T_u/T_lim', None, 'cap torsion screen'),
@@ -716,8 +723,8 @@ def sheet(rev):
           'installing the soil reinforcement is considered incidental to the cost of the end bent." Also add the SDG 1.15 note '
           'requiring the construction joints to be intentionally roughened to a 1/4 in amplitude.'),
         N('Pending before final design: geotechnical confirmation of 2 in maximum settlement above the cap bottom (SDG 3.13.2.N.3); '
-          'strap elevation at an MSE reinforcement level; final wall geometry (D-005); beam shrinkage strain; landing slab bearing '
-          'and length; Strength III Kz for the cheek walls; environment for the covers. The pile-head force V_pile is not in the '
+          'strap elevation at an MSE reinforcement level; beam shrinkage strain; environment for the covers; matching current '
+          'bearing-load analyses; cheek mat development and cap/lug load path. Geometry, journal Kz and landing basis are reconciled. The pile-head force V_pile is not in the '
           'FBMP model; raise the strap toward e_res or confirm the piles carry it.'),
     ]
 
@@ -1253,13 +1260,14 @@ def figures(e):
     for x, y, label, dx, dy, anchor in ((0.0, h / 2, 'W_cap', 6, -16, 'start'),
                                         (rear + tb + (b - tb) / 2, h + g['hped'] / 2, 'W_ped', 8, 16, 'start'),
                                         (rear + tb / 2, h + H / 2, 'W_bw', 6, -16, 'start'),
-                                        (0.0, h + g['Hck'] * 0.62, 'W_ck', -6, -16, 'end')):
+                                        (e.value('dx_ck', 'ft'), h + g['Hck'] * 0.62, 'W_ck', -6, -16, 'end')):
         s1.circle(f.X(x), f.Y(y), 2.6, fill=HL)
         s1.arrow(f.X(x), f.Y(y) - 30, f.X(x), f.Y(y), HL, 2.2)
         s1.tag(f.X(x) + dx, f.Y(y) + dy, sym(label), HL, anchor)
     # arms from the shifted pile line (labels to the right of each short dimension)
-    for level, x, name, label in ((-0.55, rear + tb / 2, 'x_bw', sym('x_bw')), (-0.9, 0.0, 'x_cap', sym('x_cap') + ' = ' + sym('x_ck')),
-                                  (-1.25, g['ebrg'], 'x_brg', sym('x_brg')), (-1.6, rear + tb + (b - tb) / 2, 'x_ped', sym('x_ped'))):
+    for level, x, name, label in ((-0.4, rear + tb / 2, 'x_bw', sym('x_bw')),
+                                  (-0.7, e.value('dx_ck', 'ft'), 'x_ck', sym('x_ck')), (-1.0, 0.0, 'x_cap', sym('x_cap')),
+                                  (-1.3, g['ebrg'], 'x_brg', sym('x_brg')), (-1.6, rear + tb + (b - tb) / 2, 'x_ped', sym('x_ped'))):
         s1.line(f.X(x), f.Y(level - 0.12), f.X(x), f.Y(-0.02), BLUE, 0.7, '3 2')
         s1.dim(f.X(-tol), f.Y(level), f.X(x), f.Y(level), '', BLUE)
         if x < -tol:

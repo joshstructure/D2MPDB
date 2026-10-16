@@ -57,8 +57,8 @@ SECTION_TEXT = {
     'bw_FF': 'Fill-face vertical steel resists the cantilever soil moment (strap slack).',
     'bw_SF': 'Span-face vertical steel resists the reversed moment when the strap carries the end-bent horizontal load.',
     'bw_joint': 'Shear, interface shear across the cap/backwall construction joint (SDG 1.15 factors), and distribution steel.',
-    'ck': 'The cheek walls retain no fill (D-018). They are designed for transverse wind as 1-ft vertical cantilever strips.',
-    'ck_sec': 'Cheek wall strip design; wind reverses, so both faces carry the same steel.',
+    'ck': 'The cheek walls retain no fill (D-018). They are designed for transverse wind as 1-ft vertical cantilever strips. With the single-mat option, tangent vertical/horizontal bars have their combined envelope centered; the weaker wind direction controls effective depth and shrinkage steel includes both face requirements. Anchorage and lug load-path checks remain pending.',
+    'ck_sec': 'Cheek wall strip design for wind acting in either direction. The selected reinforcement layout is shown in Figure B8.',
     'cap': 'Actions created by the walls, eccentric bearings and straps are not in the FBMP cap model. Torsion is screened against the LRFD threshold below which it may be neglected.',
 }
 
@@ -264,7 +264,7 @@ def build_report(e, title=None):
     parts.append('<h2>14. Check register</h2>')
     parts.append(figures['ratios'].to_html(full_html=False, include_plotlyjs=False))
     parts.append(checks_html(e, qc))
-    conf = ''.join(f'<li>{"Confirmed" if e.case["confirmations"][k] else "<b>Pending</b>"}: {html.escape(text)}</li>' for k, text in CONFIRMATIONS.items())
+    conf = ''.join(f'<li>{"Confirmed" if e.case["confirmations"][k] else "<b>Pending</b>"}: {html.escape(text)}<br><small>{html.escape(e.case.get("confirmation_evidence", {}).get(k, {}).get("note", "No project evidence recorded."))}</small></li>' for k, text in CONFIRMATIONS.items())
     receipts = ''.join(f'<tr><td>{html.escape(r["source_id"])}</td><td>{html.escape(r["filename"])}</td><td><code>{r["sha256"][:16]}…</code></td>'
                        f'<td>{"matches register" if r["matches_register"] else "<b>differs from register</b>"}</td><td>{html.escape("; ".join(r["notes"]))}</td></tr>'
                        for r in e.case.get('receipts', {}).values())
@@ -272,7 +272,7 @@ def build_report(e, title=None):
     parts.append(_box('inputs', 'Registered sources and decisions',
         f'<p>Decisions: {", ".join(SOURCES["decisions"])} (project_current/decisions.md).</p>'
         + (f'<table><tr><th>Source</th><th>File</th><th>SHA-256</th><th>Register</th><th>Notes</th></tr>{receipts}</table>' if receipts else
-           '<p>Inputs use the registered defaults embedded in the notebook; no source file was uploaded in this session.</p>')
+           '<p>Inputs use the 16 October reviewed project snapshot embedded in the notebook. The available FBMP XML predates the selected cap cases. Current journal bytes match accepted T009 but differ from the older source-register entry. These limitations remain visible below.</p>')
         + f'<ul>{conf}</ul>'))
     body = ''.join(parts)
     script = f'<script type="text/javascript">{plotly.offline.get_plotlyjs()}</script>'

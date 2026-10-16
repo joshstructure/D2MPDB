@@ -22,7 +22,8 @@ COMBINATIONS = COMBINATION_DATA['combinations']
 REFERENCES = json.loads((DATA / 'references.json').read_text(encoding='utf-8'))
 SOURCES = json.loads((DATA / 'sources.json').read_text(encoding='utf-8'))
 FORMAT = 'd2mpdb-end-bent-walls'
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
+PROJECT_EVIDENCE = json.loads((DATA / 'project_evidence.json').read_text(encoding='utf-8'))
 BAR_SIZES = tuple(range(3, 12))
 STRENGTH = [c for c in COMBINATIONS if c['limit'] == 'strength']
 SERVICE = next(c for c in COMBINATIONS if c['limit'] == 'service')
@@ -31,10 +32,12 @@ CONFIRMATIONS = {
     'settlement': 'Geotechnical engineer confirms total settlement of the soil above the cap bottom will not exceed 2 in, so soil reinforcement may be attached to the end bent (SDG 3.13.2.N.3).',
     'strap_level': 'Strap elevation is coordinated with an MSE soil-reinforcement level (wall vendor / Specialty Engineer).',
     'exposure': 'Environment confirmed slightly or moderately aggressive for the SDG Table 1.4.2-1 covers used.',
-    'geometry': 'Final backwall and cheek-wall geometry adopted (D-005 deferral closed).',
+    'geometry': 'Calculation geometry reconciled to the adopted CAD revision (D-026/D-033). Connection and fabrication acceptance remain separate.',
     'shrinkage': 'Beam shrinkage strain after bearing seating confirmed for the FIB-36 beams (LRFD 5.4.2.3.3).',
-    'wind_kz': 'Strength III K_Z for the cheek walls confirmed against the journal wind module.',
-    'landing': 'Landing slab length and its bearing on the backwall confirmed against the MSE wall plans.',
+    'wind_kz': 'Strength III K_Z matches or conservatively bounds the journal wind module; its common exposure-height assumption is retained.',
+    'landing': 'Landing bearing follows D-017; equivalent tributary length follows the verified D-034 slab quantities.',
+    'analysis': 'Current bearing actions and common-end-bent envelope verified against both selected cap cases and matching raw analyses.',
+    'cheek_connection': 'Cheek mat development, cap/lug load path and strap interfaces verified in the coordinated detail.',
 }
 
 _UNIT_ENGINE = Engine([])
@@ -51,7 +54,8 @@ def default_case():
         'inputs': {d['name']: d['value'] for d in INPUT_SPEC},
         'units': {d['name']: d['unit'] for d in INPUT_SPEC},
         'sources': {d['name']: {'source': d['source'], 'status': d['status']} for d in INPUT_SPEC},
-        'confirmations': {key: False for key in CONFIRMATIONS},
+        'confirmations': {key: PROJECT_EVIDENCE['confirmations'].get(key, {}).get('confirmed', False) for key in CONFIRMATIONS},
+        'confirmation_evidence': deepcopy(PROJECT_EVIDENCE['confirmations']),
         'receipts': {},
         'reviews': {},
     }
@@ -65,15 +69,50 @@ def upgrade_case(case):
     if int(case.get('schema_version', 0)) > SCHEMA_VERSION:
         raise ValueError(f'This case uses schema {case["schema_version"]}; this notebook supports {SCHEMA_VERSION}. Use the newer notebook.')
     base = default_case()
+    old_schema = int(case.get('schema_version', 1)) < 2
+    if old_schema:
+        # Existing saved designs retain their two-face steel and original loads.
+        p = case.setdefault('inputs', {})
+        p.setdefault('single_ck', 0)
+        p.setdefault('L_load', p.get('L_cap', 212.0))
+        for name in ('V_cap', 'V_bw', 'V_ck'):
+            p.setdefault(name, 0.0)
+        p.setdefault('dx_ck', (p.get('w_ck', 42.0) - p.get('b_cap', 42.0))/2)
+        case.setdefault('confirmation_evidence', {})
+        case['confirmations'] = {k: bool(case.get('confirmations', {}).get(k, False)) for k in CONFIRMATIONS}
     for key in ('inputs', 'units', 'sources', 'confirmations'):
-        merged = deepcopy(base[key])
+        merged = {k: False for k in CONFIRMATIONS} if key == 'confirmations' else deepcopy(base[key])
         merged.update(case.get(key, {}))
         case[key] = merged
     case['units'] = base['units']
     case.setdefault('receipts', {})
     case.setdefault('reviews', {})
     case['schema_version'] = SCHEMA_VERSION
+    reconcile_confirmations(case)
     return case
+
+
+def reconcile_confirmations(case):
+    """Project evidence confirms only the values actually reviewed."""
+    for key, record in case.get('confirmation_evidence', {}).items():
+        expected = record.get('inputs', {})
+        if expected and any(case['inputs'].get(n) != value for n, value in expected.items()):
+            record['stale'] = True
+            case['confirmations'][key] = False
+
+
+def edit_input(case, name, value):
+    """Drop measured-volume overrides when a dependent dimension is edited."""
+    if case['inputs'].get(name) == value:
+        return
+    case['inputs'][name] = value
+    for volume, dimensions in {'V_cap': ('b_cap', 'h_cap', 'L_cap'),
+                               'V_bw': ('t_bw', 'H_bw', 'H_bw_edge', 'L_bw'),
+                               'V_ck': ('t_ck', 'w_ck', 'H_ck')}.items():
+        if name in dimensions:
+            case['inputs'][volume] = 0.0
+            case['sources'][volume] = {'source': 'Dimension edited: measured volume cleared; geometric estimate used', 'status': 'pending confirmation'}
+    reconcile_confirmations(case)
 
 
 def validate_case(case):
@@ -91,6 +130,12 @@ def validate_case(case):
                 's_FF', 's_SF', 's_HZ', 's_CK', 's_CKH', 'N_brg', 'N_pile', 'S_pile', 'D_pile']
     problems += [f'{n}: must be greater than zero' for n in positive if isinstance(p.get(n), (int, float)) and p[n] <= 0]
     if not problems:
+        if p['single_ck'] not in (0, 1):
+            problems.append('single_ck: use 1 for a centered mat or 0 for legacy two-face steel')
+        if any(p[n] < 0 for n in ('V_cap', 'V_bw', 'V_ck')):
+            problems.append('Measured concrete volumes cannot be negative')
+        if p['L_load'] <= 0:
+            problems.append('L_load: must be greater than zero')
         if p['L_bw'] > p['L_cap']:
             problems.append('L_bw: the backwall cannot be longer than the cap')
         if p['t_bw'] >= p['b_cap']:
@@ -157,25 +202,25 @@ def base_definitions():
         _d(g, 'b_s', '12 in', 'in', 'Design strip width'),
         _d(g, 'y_top', 'h_cap - embed_pile', 'ft', 'Cap top above the pile top'),
         _d(g, 'H_ret', 'H_bw + h_cap', 'ft', 'Retained height, cap soffit to backwall crown', ['earth_pressure']),
-        _d(g, 'H_bw_avg', '(H_bw + H_bw_edge)/2', 'ft', 'Average backwall height (self-weight)'),
+        _d(g, 'H_bw_avg', 'If(V_bw > 0 ft^3, V_bw/(t_bw*L_bw), (H_bw + H_bw_edge)/2)', 'ft', 'Equivalent average backwall height for self-weight (native volume when supplied)'),
         _d(g, 'y_brg', 'y_top + h_ped + t_pad', 'ft', 'Top of bearing pad above the pile top (bearing-level forces)'),
         _d(g, 'y_strap', 'y_top + z_strap', 'ft', 'Tie-back strap above the pile top'),
         _d(g, 'x_brg', 'e_brg + tol_pile', 'in', 'Bearing arm toward the span about the pile line shifted by the placement tolerance', ['soil_reinforcement']),
         _d(g, 'x_cap', 'tol_pile', 'in', 'Cap self-weight arm (cap centered on the nominal pile line)', ['soil_reinforcement']),
         _d(g, 'x_ped', 't_bw + L_ped/2 - b_cap/2 + tol_pile', 'in', 'Pedestal arm'),
-        _d(g, 'x_ck', 'w_ck/2 - b_cap/2 + tol_pile', 'in', 'Cheek wall arm'),
+        _d(g, 'x_ck', 'dx_ck + tol_pile', 'in', 'Cheek wall centroid arm, including rear and bottom lugs'),
         _d(g, 'x_bw', 't_bw/2 - b_cap/2 + tol_pile', 'in', 'Backwall and landing-slab arm (negative = behind the pile line)'),
         _d(e, 'Gamma_c', '(1 + Sqrt(Sin(phi_soil + delta_w)*Sin(phi_soil - beta_f)/(Sin(theta_w - delta_w)*Sin(theta_w + beta_f))))^2', None, 'Coulomb Γ', ['coulomb', 'fill_params']),
         _d(e, 'k_a', 'Sin(theta_w + phi_soil)^2/(Gamma_c*Sin(theta_w)^2*Sin(theta_w - delta_w))', None, 'Active earth pressure coefficient', ['coulomb']),
         _d(e, 'p_EH', 'k_a*gamma_s*H_ret', 'kip/ft^2', 'Active earth pressure at the cap soffit', ['earth_pressure']),
-        _d(e, 'F_EH', '0.5*k_a*gamma_s*H_ret^2*L_cap', 'kip', 'Earth pressure resultant on the end bent', ['earth_pressure']),
+        _d(e, 'F_EH', '0.5*k_a*gamma_s*H_ret^2*L_load', 'kip', 'Earth pressure resultant over the full end-bent envelope', ['earth_pressure']),
         _d(e, 'y_EH', 'H_ret/3 - embed_pile', 'ft', 'EH resultant above the pile top'),
         _d(e, 'p_LS', 'k_a*q_PL', 'kip/ft^2', 'Pedestrian live-load surcharge pressure', ['surcharge', 'ped_load']),
-        _d(e, 'F_LS', 'p_LS*H_ret*L_cap', 'kip', 'Live-load surcharge resultant'),
+        _d(e, 'F_LS', 'p_LS*H_ret*L_load', 'kip', 'Live-load surcharge resultant'),
         _d(e, 'y_LS', 'H_ret/2 - embed_pile', 'ft', 'LS resultant above the pile top'),
         _d(e, 'q_ES', 't_slab*w_c', 'kip/ft^2', 'Landing slab weight on the fill (earth surcharge)'),
         _d(e, 'p_ES', 'k_a*q_ES', 'kip/ft^2', 'Earth surcharge pressure', ['surcharge']),
-        _d(e, 'F_ES', 'p_ES*H_ret*L_cap', 'kip', 'Earth surcharge resultant'),
+        _d(e, 'F_ES', 'p_ES*H_ret*L_load', 'kip', 'Earth surcharge resultant'),
         _d(e, 'y_ES', 'H_ret/2 - embed_pile', 'ft', 'ES resultant above the pile top'),
         _d(b, 'A_pad', 'L_pad*W_pad', 'in^2', 'Bearing pad plan area'),
         _d(b, 'h_rt', 'n_int*t_int + 2*t_cov', 'in', 'Total elastomer thickness'),
@@ -189,10 +234,10 @@ def base_definitions():
         _d(b, 'H_WS1', 'N_brg*FY_WS1', 'kip', 'Longitudinal wind, Strength III direction 1'),
         _d(b, 'H_WS2', 'N_brg*FY_WS2', 'kip', 'Longitudinal wind, Strength III direction 2'),
         _d(b, 'H_WS3', 'N_brg*FY_WS3', 'kip', 'Longitudinal wind, Service I'),
-        _d(d, 'W_cap', 'b_cap*h_cap*L_cap*w_c', 'kip', 'Cap self-weight (gross)'),
+        _d(d, 'W_cap', 'If(V_cap > 0 ft^3, V_cap, b_cap*h_cap*L_cap)*w_c', 'kip', 'Cap self-weight (native net concrete when supplied)'),
         _d(d, 'W_ped', 'N_brg*L_ped*B_ped*h_ped*w_c', 'kip', 'Pedestal weight'),
         _d(d, 'W_bw', 't_bw*H_bw_avg*L_bw*w_c', 'kip', 'Backwall weight'),
-        _d(d, 'W_ck', '2*t_ck*w_ck*H_ck*w_c', 'kip', 'Cheek wall weight, both walls'),
+        _d(d, 'W_ck', 'If(V_ck > 0 ft^3, V_ck, 2*t_ck*w_ck*H_ck)*w_c', 'kip', 'Both cheek walls, including rear and bottom lugs'),
         _d(d, 'w_sl_DC', 'share_slab*L_slab*t_slab*w_c', 'kip/ft', 'Landing slab dead load on the backwall (gravity design only)', ['end_bent_overturning']),
         _d(d, 'w_sl_PL', 'share_slab*L_slab*q_PL', 'kip/ft', 'Landing slab pedestrian load on the backwall (gravity design only)', ['end_bent_overturning']),
     ]
@@ -328,8 +373,11 @@ def material_definitions():
 def section_definitions(section, x, thickness, cover, moment_u, moment_s):
     """Rectangular 1-ft strip with one layer of tension steel (LRFD 5.6 / 5.7)."""
     t, cv = thickness, cover
+    depth = f'{t} - {cv} - d_b_{x}/2'
+    if x == 'CK':
+        depth = f'If(single_ck == 1, t_ck/2 - d_b_CKH/2, {depth})'
     return [
-        _d(section, f'd_{x}', f'{t} - {cv} - d_b_{x}/2', 'in', 'Effective depth'),
+        _d(section, f'd_{x}', depth, 'in', 'Effective depth (weaker wind direction for the centered tangent mat)' if x == 'CK' else 'Effective depth'),
         _d(section, f'A_s_{x}', f'A_b_{x}*b_s/s_{x}', 'in^2', 'Tension steel in a 1-ft strip'),
         _d(section, f'a_{x}', f'A_s_{x}*fy/(0.85*fc*b_s)', 'in', 'Stress block depth', ['flexure']),
         _d(section, f'c_{x}', f'a_{x}/beta_1', 'in', 'Neutral axis depth', ['flexure']),
@@ -378,10 +426,11 @@ def joint_definitions():
         _d(c, 'M_s_CK', 'P_Z_SER*H_ck^2/2*b_s', 'kip*ft', 'Service I base moment, 1-ft strip'),
         _d(cs, 's_max_ck', 'Min(1.5*t_ck, 18 in)', 'in', 'Maximum primary bar spacing', ['max_spacing']),
         _d(cs, 'b_ts_ck', 'Min(H_ck, w_ck)', 'in', 'Least cheek-wall width for distribution steel', ['temp_shrink']),
-        _d(cs, 'A_ts_ck', 'Min(Max(1.30*(b_ts_ck/(1 in))*(t_ck/(1 in))/(2*((b_ts_ck + t_ck)/(1 in))*(fy/(1 ksi)))*(1 in^2/ft), 0.11 in^2/ft), 0.60 in^2/ft)', 'in^2/ft', 'Shrinkage and temperature steel, each face', ['temp_shrink']),
+        _d(cs, 'A_ts_ck', 'If(single_ck == 1, 2, 1)*Min(Max(1.30*(b_ts_ck/(1 in))*(t_ck/(1 in))/(2*((b_ts_ck + t_ck)/(1 in))*(fy/(1 ksi)))*(1 in^2/ft), 0.11 in^2/ft), 0.60 in^2/ft)', 'in^2/ft', 'Shrinkage and temperature steel (sum of both face requirements in one mat)', ['temp_shrink']),
         _d(cs, 's_ts_ck', 'Min(3*t_ck, 18 in)', 'in', 'Maximum shrinkage and temperature spacing', ['temp_shrink']),
-        _d(cs, 'A_pr_CK', 'A_b_CK/s_CK', 'in^2/ft', 'Vertical steel provided, each face'),
-        _d(cs, 'A_pr_CKH', 'A_b_CKH/s_CKH', 'in^2/ft', 'Horizontal steel provided, each face'),
+        _d(cs, 'A_pr_CK', 'A_b_CK/s_CK', 'in^2/ft', 'Vertical steel provided in the mat'),
+        _d(cs, 'A_pr_CKH', 'A_b_CKH/s_CKH', 'in^2/ft', 'Horizontal steel provided in the mat'),
+        _d(cs, 'cover_ck_actual', 'If(single_ck == 1, (t_ck - d_b_CK - d_b_CKH)/2, cv_ck)', 'in', 'Minimum physical cover to the tangent centered mat'),
         _d(cs, 'A_cv_ck', 'd_v_CK*b_s', 'in^2', 'Interface area engaged at the cheek-wall joint', ['interface']),
         _d(cs, 'V_ni_ck', 'Min(c_if*A_cv_ck + mu_if*A_s_CK*fy, K1_if*fc*A_cv_ck, K2_if*A_cv_ck)', 'kip', 'Nominal interface shear resistance', ['interface']),
         _d(cs, 'V_ri_ck', 'phi_v*V_ni_ck', 'kip', 'Factored interface shear resistance', ['interface']),
@@ -534,8 +583,11 @@ def build_checks(e):
         'Vu / φVn', ['shear'], ['V_u_CK', 'V_r_CK'])
     add('interface_CK', 'Cheek walls', 'Interface shear at the cheek-wall joint', _ratio(v('V_u_CK'), v('V_ri_ck')),
         t('V_u_CK'), t('V_ri_ck'), 'Vu / φVni', ['interface', 'interface_fdot'], ['A_cv_ck', 'V_ni_ck', 'V_ri_ck'])
-    add('cover_CK', 'Cheek walls', 'Concrete cover · cheek walls', _ratio(2.0, v('cv_ck')), '2 in', t('cv_ck'),
-        'required / provided (cheekwalls)', ['cover'], ['cv_ck'], not conf['exposure'])
+    required_ck_cover = v('cv_ck') if v('single_ck') == 1 else 2.0
+    add('cover_CK', 'Cheek walls', 'Concrete cover · cheek walls', _ratio(required_ck_cover, v('cover_ck_actual')), f'{required_ck_cover:g} in', t('cover_ck_actual'),
+        'required / actual cover (centered mat includes both tangent directions)', ['cover'], ['cv_ck', 'cover_ck_actual'], not conf['exposure'])
+    add('interface_min_CK', 'Cheek walls', 'Minimum interface reinforcement', _ratio(v('A_vfmin_ck'), v('A_s_CK')),
+        t('A_vfmin_ck'), t('A_s_CK'), 'Avf,min / As crossing the joint', ['interface_min'], ['A_vfmin_ck', 'A_s_CK'], not conf['cheek_connection'])
     add('thickness_CK', 'Cheek walls', 'Cheek wall thickness (SDM 12.6.B)', _ratio(8.0, v('t_ck')), '8 in', t('t_ck'),
         'guideline / provided', ['wall_dims'], ['t_ck'])
 
@@ -556,9 +608,11 @@ def build_checks(e):
     add('prereq_settlement', 'Prerequisites', 'Soil reinforcement may be attached (≤ 2 in settlement above the cap bottom)', None,
         'Geotechnical confirmation', 'SDG 3.13.2.N.3', CONFIRMATIONS['settlement'], ['soil_reinforcement'], [], not conf['settlement'])
     for key, label in (('strap_level', 'Strap elevation coordinated with an MSE reinforcement level'),
-                       ('geometry', 'Final wall geometry adopted (D-005)'),
+                       ('geometry', 'Adopted CAD geometry incorporated'),
                        ('shrinkage', 'Shrinkage strain confirmed'),
-                       ('landing', 'Landing slab bearing and length confirmed')):
+                       ('landing', 'Landing slab bearing and tributary length confirmed'),
+                       ('analysis', 'Current bearing actions and common-end-bent envelope'),
+                       ('cheek_connection', 'Cheek mat anchorage and cap/lug load path')):
         add('prereq_' + key, 'Prerequisites', label, None, 'Confirmation', 'Recorded in Sources & assumptions',
             CONFIRMATIONS[key], [], [], not conf[key])
     for check in checks:
@@ -580,7 +634,7 @@ def cap_supplement(e):
     distributed along the backwall balances the overturning moment.
     """
     v = e.value
-    L = v('L_cap', 'in'); Lb = v('L_bw', 'in'); s = v('s_brg', 'in'); n = int(round(v('N_brg')))
+    L = v('L_load', 'in'); Lb = v('L_bw', 'in'); s = v('s_brg', 'in'); n = int(round(v('N_brg')))
     stations = [L / 2 + (i - (n - 1) / 2) * s for i in range(n)] if n > 1 else [L / 2]
     bw0, bw1 = (L - Lb) / 2, (L + Lb) / 2
     tck = v('t_ck', 'in')
@@ -607,7 +661,8 @@ def cap_supplement(e):
                 for x in stations:
                     point_t.append((x, force * arm / n))
             elif term['item'] == 'cap':
-                dist_t.append((0, L, force * arm / L))
+                core = v('L_cap', 'in'); start = (L-core)/2
+                dist_t.append((start, start+core, force * arm / core))
             elif term['item'] == 'bw':
                 dist_t.append((bw0, bw1, force * arm / Lb))
             elif term['item'] == 'ck':

@@ -241,7 +241,7 @@ SECTION_TEXT = {
     'x_brg': 'Arm of the bearing reactions toward the span, measured from the pile line shifted toward the fill by the placement tolerance.',
     'x_cap': 'Arm of the cap self-weight: the cap is centered on the nominal pile line, so the arm equals the tolerance shift.',
     'x_ped': 'Arm of the pedestal weight from the shifted pile line.',
-    'x_ck': 'Arm of the cheek-wall weight (cheek walls span the full cap width).',
+    'x_ck': 'Arm of the total cheek-wall weight, including its rear and bottom lugs.',
     'x_bw': 'Arm of the backwall weight; negative values lie behind the pile line and stabilize the end bent.',
     'W_cap': 'Cap self-weight acting at the cap centerline.',
     'W_ped': 'Pedestal weight acting at the pedestal centroid.',
@@ -293,6 +293,10 @@ def _section_rows(e, name):
     for k, case in (('H_WS1', 'WS1'), ('H_WS2', 'WS2'), ('H_WS3', 'WS3')):
         rows[k] = [f'= {sym("N_brg")} × |F<tspan baseline-shift="sub" font-size="75%">Y</tspan>| = {v("N_brg"):g} × {v("FY_" + case, "kip"):g} kip',
                    f'FBMP {case}, either direction, at the top of the pads']
+    rows['x_ck'] = ['= native centroid offset + pile tolerance', f'= {v("dx_ck", "in"):.4f} + {v("tol_pile", "in"):g} in']
+    for force, volume in (('W_cap', 'V_cap'), ('W_ck', 'V_ck')):
+        if v(volume, 'ft^3') > 0:
+            rows[force] = ['= native net concrete volume × unit weight', f'= {v(volume, "ft^3"):.4f} ft³ × {v("w_c", "kip/ft^3"):g} kcf']
     return rows[name]
 
 
@@ -316,7 +320,7 @@ def section(e, name):
         s.dim(f.X(rear - 0.3), f.Y(g['emb']), f.X(rear - 0.3), f.Y(ys), sym(name), side=-1)
     elif name in ('x_brg', 'x_cap', 'x_ped', 'x_ck', 'x_bw'):
         target = {'x_brg': g['ebrg'], 'x_cap': 0.0, 'x_ped': rear + g['tb'] + (g['b'] - g['tb']) / 2,
-                  'x_ck': rear + g['wck'] / 2, 'x_bw': rear + g['tb'] / 2}[name]
+                  'x_ck': e.value('dx_ck', 'ft'), 'x_bw': rear + g['tb'] / 2}[name]
         level = DIM_LEVEL
         if name == 'x_ck':
             s.rect(f.X(rear), f.Y(g['h'] + g['Hck']), f.L(g['wck']), f.L(g['Hck']), stroke=HL, dash='4 3')
@@ -417,14 +421,14 @@ def pressure(e, name):
     load = {'EH': f'γ = {v("gamma_s", "kip/ft^3") * 1000:g} pcf', 'LS': f'q = {v("q_PL", "kip/ft^2") * 1000:g} psf (pedestrian)',
             'ES': f'q = t·w<tspan baseline-shift="sub" font-size="75%">c</tspan> = {v("q_ES", "kip/ft^2") * 1000:.0f} psf (slab)'}[kind]
     formula = {'p_EH': 'p = k<tspan baseline-shift="sub" font-size="75%">a</tspan>·γ·H<tspan baseline-shift="sub" font-size="75%">ret</tspan>',
-               'F_EH': 'F = ½·k<tspan baseline-shift="sub" font-size="75%">a</tspan>·γ·H²·L<tspan baseline-shift="sub" font-size="75%">cap</tspan>',
+               'F_EH': 'F = ½·k<tspan baseline-shift="sub" font-size="75%">a</tspan>·γ·H²·L<tspan baseline-shift="sub" font-size="75%">load</tspan>',
                'y_EH': 'y = H<tspan baseline-shift="sub" font-size="75%">ret</tspan>/3 − embedment',
-               'p_LS': 'p = k<tspan baseline-shift="sub" font-size="75%">a</tspan>·q', 'F_LS': 'F = p·H<tspan baseline-shift="sub" font-size="75%">ret</tspan>·L<tspan baseline-shift="sub" font-size="75%">cap</tspan>',
+               'p_LS': 'p = k<tspan baseline-shift="sub" font-size="75%">a</tspan>·q', 'F_LS': 'F = p·H<tspan baseline-shift="sub" font-size="75%">ret</tspan>·L<tspan baseline-shift="sub" font-size="75%">load</tspan>',
                'y_LS': 'y = H<tspan baseline-shift="sub" font-size="75%">ret</tspan>/2 − embedment', 'q_ES': 'q = t<tspan baseline-shift="sub" font-size="75%">slab</tspan>·w<tspan baseline-shift="sub" font-size="75%">c</tspan>',
-               'p_ES': 'p = k<tspan baseline-shift="sub" font-size="75%">a</tspan>·q', 'F_ES': 'F = p·H<tspan baseline-shift="sub" font-size="75%">ret</tspan>·L<tspan baseline-shift="sub" font-size="75%">cap</tspan>',
+               'p_ES': 'p = k<tspan baseline-shift="sub" font-size="75%">a</tspan>·q', 'F_ES': 'F = p·H<tspan baseline-shift="sub" font-size="75%">ret</tspan>·L<tspan baseline-shift="sub" font-size="75%">load</tspan>',
                'y_ES': 'y = H<tspan baseline-shift="sub" font-size="75%">ret</tspan>/2 − embedment'}[name]
     rows = [formula, f'k<tspan baseline-shift="sub" font-size="75%">a</tspan> = {ka:.4f}', load,
-            f'H<tspan baseline-shift="sub" font-size="75%">ret</tspan> = {Hr:.3f} ft · L<tspan baseline-shift="sub" font-size="75%">cap</tspan> = {v("L_cap", "ft"):.3f} ft',
+            f'H<tspan baseline-shift="sub" font-size="75%">ret</tspan> = {Hr:.3f} ft · L<tspan baseline-shift="sub" font-size="75%">load</tspan> = {v("L_load", "ft"):.3f} ft',
             f'embedment = {v("embed_pile", "in"):g} in (pile top)']
     s.panel(_eq(e, name, 3 if not name.startswith('p_') else 4), rows)
     return s
@@ -852,7 +856,10 @@ def strip_section(e, name):
         s.tag(fx + 26, oy + d * k + 4, 'T', force_color, 'start')
         s.dim(fx - 46, oy + a * k / 2, fx - 46, oy + d * k, 'd − a/2', force_color if part in ('M_n', 'M_r') else GREY, side=-1)
         s.tag(fx + 20, oy + th + 14, 'stress block', GREY)
-    s.panel(_eq(e, name, 4 if part in ('eps_t', 'rho', 'k', 'j', 'beta_s', 'c', 'a', 'd') else 3), PART_ROWS[part](v, X, t),
+    detail_rows = PART_ROWS[part](v, X, t)
+    if X == 'CK' and part == 'd' and v('single_ck') == 1:
+        detail_rows = ['= half web thickness − half horizontal bar diameter', f'= {t:g}/2 − {v("d_b_CKH", "in"):g}/2 in', 'Weaker direction for tangent bars in one centered mat']
+    s.panel(_eq(e, name, 4 if part in ('eps_t', 'rho', 'k', 'j', 'beta_s', 'c', 'a', 'd') else 3), detail_rows,
             heading=label)
     return s
 
@@ -992,7 +999,7 @@ def distribution(e, name):
     Lw = v('w_ck' if cheek else 'L_bw', 'ft')
     t = v('t_ck' if cheek else 't_bw', 'in')
     s = Svg('Shrinkage and temperature steel on the wall elevation (LRFD 5.10.6).', title=('Cheek wall' if cheek else 'Backwall') + ' elevation · distribution steel')
-    f = Frame(-0.6, Lw + 0.6, -0.5, Hh + 0.4, 12, 34, PX - 40, H - 50)
+    f = Frame(-0.6, Lw + 0.6, -0.5, Hh + 0.4, 12, 34, PX - 40, H - 80)
     s.rect(f.X(0), f.Y(Hh), f.L(Lw), f.L(Hh), fill=CONC, stroke=INK)
     sv, sh = v('s_CK' if cheek else 's_FF', 'ft'), v('s_CKH' if cheek else 's_HZ', 'ft')
     x = sv / 2
@@ -1011,6 +1018,9 @@ def distribution(e, name):
     rows = ([f'b = least width = {least} = {b_in:.1f} in'] if name.startswith('b_ts') else
             ['= 1.30·b·h / (2·(b + h)·f<tspan baseline-shift="sub" font-size="75%">y</tspan>)', f'= 1.30 × {b_in:.1f} × {t:g} / (2 × ({b_in:.1f} + {t:g}) × {v("fy", "ksi"):g})',
              f'= {raw:.4f} in²/ft → limited to 0.11–0.60'])
+    if cheek and name == 'A_ts_ck' and v('single_ck') == 1:
+        rows += ['Single mat: combine both face requirements.',
+                 f'= 2 × {min(max(raw, .11), .60):.3f} = {v(name, "in^2/ft"):.3f} in²/ft']
     s.panel(_eq(e, name, 3), rows)
     return s
 
@@ -1140,7 +1150,7 @@ def strip_plan(e, name):
 def wall_elevation(e, name):
     v = e.value
     Hc, He, L = v('H_bw', 'ft'), v('H_bw_edge', 'ft'), v('L_bw', 'ft')
-    s = Svg('Backwall front elevation between the cheek walls (2% cross slope).', height=300, title='Backwall front elevation between the cheek walls')
+    s = Svg('Backwall conservative crown/edge envelope; local landing underside governs the actual surface.', height=300, title='Backwall front elevation between the cheek walls')
     f = Frame(-1.0, L + 1.0, -0.6, max(Hc, v('H_ck', 'ft')) + 0.4, 12, 34, PX - 40, 250)
     s.poly([(f.X(0), f.Y(0)), (f.X(L), f.Y(0)), (f.X(L), f.Y(He)), (f.X(L / 2), f.Y(Hc)), (f.X(0), f.Y(He))], fill=CONC, stroke=INK)
     for x in (-0.67, L):
@@ -1150,7 +1160,7 @@ def wall_elevation(e, name):
     s.tag(f.X(L * 0.25), f.Y(avg) - 6, sym('H_bw_avg'), HL)
     s.dim(f.X(L / 2) + 8, f.Y(0), f.X(L / 2) + 8, f.Y(Hc), 'crown', GREY)
     s.dim(f.X(L) - 8, f.Y(0), f.X(L) - 8, f.Y(He), 'edge', GREY, side=-1)
-    s.panel(_eq(e, name, 4), [f'= (crown + edge)/2 = ({Hc:.4f} + {He:.4f})/2 ft', f'L<tspan baseline-shift="sub" font-size="75%">bw</tspan> = {L:.3f} ft between cheek walls'])
+    s.panel(_eq(e, name, 4), [f'= native volume / (thickness × length) = {v("V_bw", "ft^3"):.4f} / ({v("t_bw", "ft"):g} × {L:.3f}) ft' if v('V_bw', 'ft^3') > 0 else f'= (crown + edge)/2 = ({Hc:.4f} + {He:.4f})/2 ft', f'L<tspan baseline-shift="sub" font-size="75%">bw</tspan> = {L:.3f} ft between cheek walls'])
     return s
 
 
@@ -1253,10 +1263,10 @@ NAME_MEANING = {
     'M_s_CK': 'Service I wind moment at the base of a 1-ft cheek-wall strip.',
     's_max_ck': 'Largest spacing allowed for the cheek-wall primary bars.',
     'b_ts_ck': 'Least width of the cheek wall used in the shrinkage and temperature formula.',
-    'A_ts_ck': 'Shrinkage and temperature steel required on each cheek-wall face.',
+    'A_ts_ck': 'Shrinkage and temperature steel required in each direction; both face requirements are combined for the single mat.',
     's_ts_ck': 'Largest spacing allowed for cheek-wall shrinkage and temperature bars.',
-    'A_pr_CK': 'Vertical steel provided per foot on each cheek-wall face.',
-    'A_pr_CKH': 'Horizontal steel provided per foot on each cheek-wall face.',
+    'A_pr_CK': 'Vertical steel provided per foot in the cheek mat.',
+    'A_pr_CKH': 'Horizontal steel provided per foot in the cheek mat.',
     'A_cv_ck': 'Concrete area engaged in shear transfer across the cheek-wall joint (1-ft strip).',
     'V_ni_ck': 'Nominal shear-friction resistance of the cheek-wall joint.',
     'V_ri_ck': 'Factored shear-friction resistance of the cheek-wall joint.',
@@ -1270,6 +1280,7 @@ NAME_MEANING = {
     't_bw_PL': 'Pedestrian-load torque per foot on the cap from the landing slab reaction on the backwall.',
 }
 NAME_MEANING.update(SECTION_TEXT)
+NAME_MEANING['cover_ck_actual'] = 'Minimum physical cover to the combined envelope of tangent vertical and horizontal bars in the centered cheek mat.'
 
 
 def meaning(name):
@@ -1322,6 +1333,10 @@ def drawer(name):
 
 def schematic(e, name):
     """(svg markup, one-line description) for a formula definition, or (None, None)."""
+    if name == 'cover_ck_actual':
+        svg = _bars(e, name, [('required cover', e.value('cv_ck', 'in')), ('physical cover', e.value(name, 'in'))],
+                    'in', 'Centered mat concrete cover', extra=['Combined vertical/horizontal bar envelope is centered in the web.'])
+        return svg.render(), svg.label
     fn = drawer(name)
     if fn is None:
         return None, None

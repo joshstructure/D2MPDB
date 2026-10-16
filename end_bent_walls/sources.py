@@ -36,14 +36,15 @@ def read_end_bent_case(content, filename='selected_case.json'):
         ('b_cap', 'b'), ('h_cap', 'h'), ('embed_pile', 'Pile_embed'), ('fc', 'fc'), ('fy', 'fy'), ('Es', 'Es'),
         ('N_pile', 'N_pile'), ('S_pile', 'S_pile'), ('D_pile', 'D_pile'))}
     if audit.get('cap_length_ft'):
-        updates['L_cap'] = round(float(audit['cap_length_ft']) * 12, 3)
-        sources['L_cap'] = label + ' analysis.xml_audit.cap_length_ft'
+        pass  # Analysis envelope includes cheeks; physical cap length belongs to CAD.
     stations = audit.get('bearing_stations_in') or []
     if len(stations) >= 2:
         updates['s_brg'] = round(float(stations[-1]) - float(stations[0]), 3)
         updates['N_brg'] = len(stations)
         sources['s_brg'] = sources['N_brg'] = label + ' analysis.xml_audit.bearing_stations_in'
-    notes = [f'Cap case {data.get("name", "")}'.strip()]
+    notes = [f'Cap case {data.get("name", "")}'.strip(), 'Analysis length is the combined cap/cheek envelope; physical cap geometry is supplied by CAD.']
+    if audit.get('sha256') != SOURCES['sources']['EB-XML']['sha256']:
+        notes.append('Selected case analysis does not match available EB-XML; bearing-load currency remains pending.')
     if data.get('cap_type') != 'End-bent pile cap':
         notes.append(f'Cap type is "{data.get("cap_type")}", not an end-bent cap.')
     return updates, sources, _receipt('EB-CASE', filename, bytes(content), notes)
@@ -82,7 +83,7 @@ def read_fbmp_xml(content, filename='End Bent 1_Fixed.XML'):
         updates['s_brg'] = round(xs[-1] - xs[0], 3)
     if pier:
         pier_x = [coords[p]['X'] for p in pier]
-        updates['L_cap'] = round(max(pier_x) - min(pier_x), 3)
+        pass  # Historical analysis cap extent must not overwrite adopted CAD geometry.
     label = f'EB-XML {filename}'
     sources = {key: label + ' bearing nodal loads' for key in updates}
     if 'L_cap' in updates:
@@ -101,48 +102,21 @@ def _brep_points(text):
 
 
 def read_freecad(content, filename='bridge.FCStd'):
-    archive = zipfile.ZipFile(io.BytesIO(bytes(content)))
-    names = set(archive.namelist())
-    if 'Document.xml' not in names:
-        raise ValueError('This is not a FreeCAD FCStd file.')
-    doc = archive.read('Document.xml').decode('utf-8', 'replace')
+    """Use native measurements bound to the exact reviewed complex solid bytes.
 
-    def points(obj):
-        name = obj + '.Shape.brp'
-        if name not in names:
-            raise ValueError(f'The model does not contain {obj}. Choose the registered bridge model.')
-        return [(x / MM_PER_FT, y / MM_PER_FT, z / MM_PER_FT) for x, y, z in _brep_points(archive.read(name).decode('latin-1'))]
-    heights, edges, lengths = [], [], []
-    for eb in ('EB1', 'EB2'):
-        cap = points('BridgeCap' + eb)
-        wall = points('BridgeBackwall' + eb)
-        cap_top = max(z for _, _, z in cap)
-        crown = max(z for _, _, z in wall)
-        ys = [y for _, y, _ in wall]
-        edge = max(z for _, y, z in wall if abs(abs(y) - max(abs(v) for v in ys)) < 1e-6)
-        heights.append(crown - cap_top)
-        edges.append(edge - cap_top)
-        lengths.append((max(ys) - min(ys)) * 12)
-    cheek = points('BridgeCheekEB11')
-    cap = points('BridgeCapEB1')
-    updates = {
-        'H_bw': round(max(heights), 4), 'H_bw_edge': round(min(edges), 4), 'L_bw': round(max(lengths), 3),
-        'H_ck': round(max(z for *_, z in cheek) - max(z for *_, z in cap), 4),
-        't_ck': round((max(y for _, y, _ in cheek) - min(y for _, y, _ in cheek)) * 12, 3),
-        'w_ck': round((max(x for x, _, _ in cheek) - min(x for x, _, _ in cheek)) * 12, 3),
-        'L_cap': round((max(y for _, y, _ in cap) - min(y for _, y, _ in cap)) * 12, 3),
-        'h_cap': round((max(z for *_, z in cap) - min(z for *_, z in cap)) * 12, 3),
-    }
-    match = re.search(r'<Object name="MSEInputs"[^>]*>.*?<Property name="SlabThickness"[^>]*>\s*<Float value="([-0-9.eE+]+)"', doc, re.S)
-    if match:
-        updates['t_slab'] = round(float(match.group(1)) / 25.4, 3)
-    label = f'CAD-MODEL {filename}'
-    sources = {key: label + ' BRep extents' for key in updates}
-    sources['H_bw'] = label + ' max backwall crown height, EB1/EB2 (D-019)'
-    if 't_slab' in updates:
-        sources['t_slab'] = label + ' MSEInputs.SlabThickness'
-    notes = [f'Backwall crown heights EB1 / EB2: {heights[0]:.4f} / {heights[1]:.4f} ft; design uses the larger.',
-             'Wall geometry remains provisional under D-005.']
+    BRep text vertices are not a bounding box: placements, Boolean fragments and
+    spline extrema made the former parser silently produce impossible sizes.
+    """
+    from .model import PROJECT_EVIDENCE
+    digest = hashlib.sha256(bytes(content)).hexdigest()
+    evidence = PROJECT_EVIDENCE['native_geometry']
+    if digest != evidence['source_sha256']:
+        raise ValueError('This CAD revision has no reviewed native measurement snapshot. Measure the saved solids in the BridgePGL frame and review the dimensions before importing; no inputs changed.')
+    updates = dict(PROJECT_EVIDENCE['cad_updates'])
+    sources = {key: f'CAD-MODEL {filename}; native saved-solid measurements, D-026/D-033/D-034' for key in updates}
+    notes = ['235 in core cap and backwall; 251 in overall cap/cheek envelope.',
+             'Maximum heights and minimum backwall edge/weight envelope both ends. Cheek weight includes rear/bottom lugs.',
+             'Geometry adoption is separate from pending connection and fabrication acceptance.']
     return updates, sources, _receipt('CAD-MODEL', filename, bytes(content), notes)
 
 
@@ -151,8 +125,12 @@ READERS = {'EB-CASE': read_end_bent_case, 'EB-XML': read_fbmp_xml, 'CAD-MODEL': 
 
 def apply_source(case, source_id, content, filename):
     updates, sources, receipt = READERS[source_id](content, filename)
-    case['inputs'].update(updates)
+    from .model import edit_input
+    for name, value in updates.items():
+        edit_input(case, name, value)
     for name, text in sources.items():
         case['sources'][name] = {'source': text, 'status': 'project source' if receipt['matches_register'] else 'differs from register'}
     case.setdefault('receipts', {})[source_id] = dict(receipt, applied=sorted(updates))
+    from .model import reconcile_confirmations
+    reconcile_confirmations(case)
     return updates, receipt

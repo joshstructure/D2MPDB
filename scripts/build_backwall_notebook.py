@@ -121,6 +121,8 @@ Portable Colab edition for the **D2 I-95 pedestrian bridge** end bents (common E
 **Workflow.** Cell 1 shows sources, receipts and confirmations. Cell 2 holds the inputs, drawings, overturning tables, D/C register with *Equation & values* disclosures, and exports (case JSON, Mathcad-style HTML report, checks CSV, MSE strap handoff workbook).
 
 Decisions D-014 to D-019 (tie-back straps, pedestrian-only loading, MSE fill parameters, landing slab on the backwall, cheek walls for wind only, maximum backwall height) are recorded in `project_current/decisions.md`. See `BACKWALL_DESIGN.md` for the calculation basis and limits.
+
+**16 October 2026 update.** Geometry follows D-026/D-033/D-034. Cheeks use one centered #4 mat at 10 in each way. Dated evidence supports the three checked confirmations; six prerequisites remain pending.
 '''
 
 
