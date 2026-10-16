@@ -46,7 +46,14 @@ barrier objects have **DeckEdgeSetback**. The opener loads their native controll
 editable bridge geometry and modeled-quantity source. The established native
 filename is retained for existing links; its date is not the current revision date.
 
-Open `Open_Current_Bridge.FCMacro` in a fresh FreeCAD 1.1.3 session with the
+On Windows, double-click **Open Current Bridge.cmd** in this folder to start
+FreeCAD 1.1 and execute the opening macro automatically. A local **Open Current
+Bridge** shortcut is also available in `C:\Users\joshs\Desktop\CAD_AI`; it opens
+the same macro directly, without a command window. The launcher does not save
+the model. Close a copy opened without its controllers before using the launcher;
+do not save that failed-load copy over the current model.
+
+Alternatively, open `Open_Current_Bridge.FCMacro` in a fresh FreeCAD 1.1.3 session with the
 existing Reinforcement v0.6 workbench, then execute the macro. Keep the entire
 folder and `runtime` together. The opener loads the matching controllers and
 the adjacent [main model](B4%20Pedestrian%20Bridge%20and%20Ramps%20-%20Pond14D%20-%20Source%20Update%2020261010.FCStd).
