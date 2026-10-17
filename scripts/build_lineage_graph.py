@@ -63,7 +63,7 @@ import re
 import sys
 from pathlib import Path
 
-GENERATOR_VERSION = "1.1.0"
+GENERATOR_VERSION = "1.2.0"
 
 ROOT = Path(__file__).resolve().parents[1]
 PC = ROOT / "project_current"
@@ -368,6 +368,143 @@ class Graph:
 
     def edge(self, src: str, dst: str) -> dict | None:
         return self.edges.get((src, dst))
+
+
+# ------------------------------------------------------------ parameter links
+# A saved-case force input and the FBMP envelope component it is taken from:
+# (component, extremum of that component's envelope row, or None when the input
+# is an interior extremum the envelope row does not list).
+FORCE_COMPONENT = {
+    "Mu_N": ("M3", "min"), "Mu_P": ("M3", None), "Mu_B": ("M3", "max"),
+    "Vu_G": ("V2", "abs_max"), "Vu_L": ("V2", "abs_max"), "Tu": ("T", "abs_max"),
+    "MI_N": ("M3", "min"), "MI_P": ("M3", None), "MI_B": ("M3", "max"),
+}
+CHECK_VALUES = re.compile(r"^Notebook (.+?); (?:saved case|source audit) (.+?)\.(?: |$)")
+# The case audit's own OUTPUT_SUMMARY line for a force input, when it has one.
+CASE_SUMMARY_KEY = {
+    "Mu_N": "min moment about 3 axis", "Mu_B": "max moment about 3 axis", "Tu": "absolute torque",
+    "Vu_G": ("max shear in 2 direction", "min shear in 2 direction"),
+    "Vu_L": ("max shear in 2 direction", "min shear in 2 direction"),
+}
+INPUT_REF = re.compile(r"\binputs\.([A-Za-z_]\w*)")
+VALUE_TOLERANCE = 0.011  # printed values are rounded to 0.01
+
+
+def _number(text: str):
+    m = re.match(r"^\s*(-?\d+(?:\.\d+)?)", str(text or ""))
+    return float(m.group(1)) if m else None
+
+
+def _cap_member(node: dict) -> str:
+    members = (node.get("envelope_source") or {}).get("members") or []
+    caps = [m for m in members if not m.upper().startswith("PILE")]
+    caps.sort(key=lambda m: (0 if "CAP" in m.upper() else 1, m))
+    return caps[0] if caps else ""
+
+
+def derive_links(g: Graph) -> list[dict]:
+    """One record per parameter crossing an edge, named on both sides.
+
+    Edge parameters come in five shapes (governing FBMP case, Mathcad input
+    mapping, cap formula naming a journal variable, geometry consistency check,
+    backwall input naming its source). Each becomes a link
+    {edge, source, target, kind, source_name, source_value, target_name,
+    target_value, unit, detail, status, index} so a viewer can follow one
+    quantity from node to node by matching (node, name). The same four name and
+    value keys are also written back onto the edge parameter. A link whose
+    source side cannot be named (a derived Mathcad region, a backwall input
+    described in prose) keeps source_name empty and says why in detail.
+    """
+    links = []
+    for e in g.edges.values():
+        src, dst = g.node(e["source"]), g.node(e["target"])
+        src_inputs = {p["name"]: p for p in src["parameters"] if p.get("role") == "input"}
+        envelope = {(p.get("component"), p.get("limit_state")): p
+                    for p in src["parameters"] if p.get("role") == "envelope" and p.get("member") == _cap_member(src)}
+        for i, p in enumerate(e["parameters"]):
+            link = {"edge": e["id"], "source": e["source"], "target": e["target"], "index": i,
+                    "source_name": "", "source_value": "", "target_name": p.get("name", ""),
+                    "target_value": "", "unit": p.get("unit", ""), "detail": "", "status": ""}
+            if "load_case" in p and "state" in p:
+                link["kind"] = "governing"
+                link["target_value"] = p.get("value", "")
+                comp, extremum = FORCE_COMPONENT.get(p["name"], (None, None))
+                row = envelope.get((comp, p.get("state"))) if comp else None
+                where = (f"{p.get('state', '')} load case {p.get('load_case', '')}, combination "
+                         f"{p.get('combination', '')}, element {p.get('element', '')}, x = {p.get('x_in', '')} in")
+                if row is None:
+                    link["detail"] = where + ("; no envelope row for this component in the registered XML"
+                                              if comp else "; component not mapped")
+                    if not src["parameters"]:
+                        link["detail"] = where + "; registered XML not present, no envelope to compare"
+                elif extremum is None:
+                    link["source_name"] = row["name"]
+                    link["detail"] = where + "; interior extremum inside the pile region, not the envelope row's min/max"
+                else:
+                    link["source_name"] = row["name"]
+                    link["source_value"] = fmt_value(row.get(extremum))
+                    a, b = _number(link["source_value"]), _number(link["target_value"])
+                    same = a is not None and b is not None and abs(abs(a) - abs(b)) <= VALUE_TOLERANCE
+                    link["status"] = "MATCH" if same else "DIFFERS"
+                    link["detail"] = f"{extremum} of that envelope row ({row.get('unit', '')}) vs the case input; " + where
+                    # What the case's own export summary said for this quantity, so a
+                    # DIFFERS verdict can be read as "different file", not "wrong row".
+                    summary = e.get("fbmp_summary") or {}
+                    keys = CASE_SUMMARY_KEY.get(p["name"])
+                    keys = keys if isinstance(keys, tuple) else ((keys,) if keys else ())
+                    own = [abs(float(summary[k]["summary"])) for k in keys
+                           if k in summary and isinstance(summary[k].get("summary"), (int, float))]
+                    if own:
+                        link["case_export_value"] = fmt_value(max(own))
+                        own_same = b is not None and abs(max(own) - abs(b)) <= VALUE_TOLERANCE
+                        link["detail"] += (f"; the case's own export summary gives {link['case_export_value']}"
+                                           + (" = this input" if own_same else ""))
+                    if not same:
+                        link["detail"] += "; the registered XML is a different export than the one the case was built from"
+            elif "region" in p and "after" in p:
+                link["kind"] = "mapping"
+                lhs, _, rhs = p["after"].partition(":=")
+                link["target_name"], link["target_value"] = lhs.strip(), rhs.strip()
+                if p.get("basis", "").startswith("Selected case inputs."):
+                    link["source_name"] = p["name"]
+                    link["source_value"] = src_inputs.get(p["name"], {}).get("value", "")
+                    link["unit"] = src_inputs.get(p["name"], {}).get("unit", "")
+                    link["detail"] = f"Mathcad region {p['region']}"
+                else:
+                    link["detail"] = f"Mathcad region {p['region']}; derived from the case: {p.get('basis', '')}"
+                link["status"] = "CHANGED" if p.get("changed") else "UNCHANGED"
+            elif "module" in p and "variable" in p:
+                link["kind"] = "formula"
+                link["source_name"] = f"{p['module']}.{p['variable']}"
+                link["target_value"] = p.get("value", "")
+                link["detail"] = p.get("formula", "")
+                if p.get("module_in_journal") is False or p.get("variable_in_journal") is False:
+                    link["status"] = "NAME NOT IN JOURNAL"
+                if p.get("analysis_geometry"):
+                    link["detail"] += f"; FBMP import set this input to {p['analysis_geometry']} from the XML cap section"
+            elif "source_text" in p:
+                link["kind"] = "source"
+                link["target_value"] = p.get("value", "")
+                m = INPUT_REF.search(p.get("source_text", ""))
+                if m:
+                    link["source_name"] = m.group(1)
+                    link["source_value"] = src_inputs.get(m.group(1), {}).get("value", "")
+                link["detail"] = p.get("source_text", "")
+                link["status"] = p.get("status", "")
+            elif "status" in p and "detail" in p and "value" not in p:
+                link["kind"] = "check"
+                link["source_name"] = p["name"]
+                m = CHECK_VALUES.match(p.get("detail", ""))
+                if m:
+                    link["source_value"], link["target_value"] = m.group(1), m.group(2)
+                link["detail"] = p.get("detail", "")
+                link["status"] = p.get("status", "")
+            else:
+                continue
+            for key in ("source_name", "source_value", "target_name", "target_value"):
+                p[key] = link[key]
+            links.append(link)
+    return links
 
 
 # ------------------------------------------------------ verification sign-offs
@@ -790,6 +927,9 @@ def build(signoff_path: Path | None = None) -> dict:
                                                 "after": row["after"], "basis": basis,
                                                 "changed": row["before"] != row["after"]})
 
+    # -- parameter links: every edge parameter named on both sides ------------
+    links = derive_links(g)
+
     # -- decisions and issues ------------------------------------------------
     all_ids = list(g.nodes)
     decisions = parse_decisions(DECISIONS)
@@ -864,6 +1004,7 @@ def build(signoff_path: Path | None = None) -> dict:
         "stages": [{"id": sid, "label": label} for sid, label in STAGES],
         "nodes": sorted(g.nodes.values(), key=lambda n: n["id"]),
         "edges": sorted(g.edges.values(), key=lambda e: e["id"]),
+        "links": sorted(links, key=lambda l: (l["edge"], l["index"])),
         "decisions": decisions, "issues": issues, "signoff": signoff,
         "health_legend": {
             "MATCH": "Registered bytes or text match", "CHANGED": "File differs from the registered revision",
@@ -909,9 +1050,12 @@ def main(argv=None) -> int:
     OUT_JSON.write_text(json.dumps(graph, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     OUT_HTML.write_text(render_html(graph), encoding="utf-8")
     n_params = sum(len(n["parameters"]) for n in graph["nodes"]) + sum(len(e["parameters"]) for e in graph["edges"])
+    kinds = {}
+    for link in graph["links"]:
+        kinds[link["kind"]] = kinds.get(link["kind"], 0) + 1
     print(f"wrote {rel(OUT_JSON)} and {rel(OUT_HTML)}: {len(graph['nodes'])} nodes, {len(graph['edges'])} edges, "
-          f"{n_params} parameters, {len(graph['decisions'])} decisions, {len(graph['issues'])} issues; "
-          f"fingerprint {graph['fingerprint'][:12]}")
+          f"{n_params} parameters, {len(graph['links'])} links ({', '.join(f'{k} {v}' for k, v in sorted(kinds.items()))}), "
+          f"{len(graph['decisions'])} decisions, {len(graph['issues'])} issues; fingerprint {graph['fingerprint'][:12]}")
     envelopes = [n["id"] for n in graph["nodes"] if (n.get("envelope_source") or {}).get("available")]
     traced = [n["id"] for n in graph["nodes"] if (n.get("formula_trace") or {}).get("available")]
     untraced = [f"{n['id']} ({n['formula_trace']['reason']})" for n in graph["nodes"]

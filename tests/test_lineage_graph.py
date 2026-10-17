@@ -17,6 +17,10 @@ REBUILD = r'Rebuild with: .venv\Scripts\python.exe scripts\build_lineage_graph.p
 MARKER = '/*__LINEAGE_DATA__*/'
 ISSUE_STATUSES = {'Open', 'Closed', 'Deferred', 'Awaiting source'}
 GEOMETRY_CHECK_NAMES = ['b', 'h', 'N_pile', 'D_pile', 'S_pile', 'Pile_embed', 'length']
+LINK_KINDS = {'governing', 'mapping', 'formula', 'check', 'source'}
+LINK_VALUE_KEYS = ('source_name', 'source_value', 'target_name', 'target_value')
+# Printed check text, e.g. "Notebook 48; saved case 48.0. Units: in." or "...; source audit 230 in. Comparison ..."
+CHECK_TEXT = re.compile(r'^Notebook (.+?); (?:saved case|source audit) (.+?)\.(?: |$)')
 
 
 def load_generator():
@@ -30,6 +34,12 @@ def load_generator():
 
 def rel(path):
     return Path(path).relative_to(ROOT).as_posix()
+
+
+def leading_number(text):
+    """The number a printed value starts with, or None ("369.55" -> 369.55, "235 in + ..." -> 235.0)."""
+    m = re.match(r'^\s*(-?\d+(?:\.\d+)?)', str(text or ''))
+    return float(m.group(1)) if m else None
 
 
 class LineageGraphTests(unittest.TestCase):
@@ -262,6 +272,271 @@ class LineageGraphTests(unittest.TestCase):
                 self.assertEqual(ft['package_sha256'], self.graph['cap_package']['sha256'])
         self.assertIn('derived:', '\n'.join(['derived:'] if self.graph['derived'] else []),
                       'traces are part of the fingerprint')
+
+    # ------------------------------------------------------- parameter links
+    def links_on(self, edge_id):
+        self.edge(edge_id)
+        return [l for l in self.graph['links'] if l['edge'] == edge_id]
+
+    def links_into(self, node_id, name):
+        return [l for l in self.graph['links'] if l['target'] == node_id and l['target_name'] == name]
+
+    def links_out_of(self, node_id, name):
+        return [l for l in self.graph['links'] if l['source'] == node_id and l['source_name'] == name]
+
+    def upstream(self, node_id, name):
+        """Every (node, name) a quantity comes from, found only by matching (node, name) through links."""
+        seen, todo = set(), [(node_id, name)]
+        while todo:
+            for l in self.links_into(*todo.pop()):
+                here = (l['source'], l['source_name'])
+                if l['source_name'] and here not in seen:
+                    seen.add(here)
+                    todo.append(here)
+        return seen
+
+    def downstream(self, node_id, name):
+        """Every (node, name) a quantity is carried into, found only by matching (node, name) through links."""
+        seen, todo = set(), [(node_id, name)]
+        while todo:
+            for l in self.links_out_of(*todo.pop()):
+                here = (l['target'], l['target_name'])
+                if here not in seen:
+                    seen.add(here)
+                    todo.append(here)
+        return seen
+
+    def case_inputs(self, node_id):
+        return {p['name']: p for p in self.node(node_id)['parameters'] if p.get('role') == 'input'}
+
+    def xml_has_envelope(self, node_id):
+        return any(p.get('role') == 'envelope' for p in self.node(node_id)['parameters'])
+
+    def test_links_reference_edge_parameters(self):
+        links = self.graph['links']
+        self.assertTrue(links, 'the graph has no parameter links. ' + REBUILD)
+        for l in links:
+            with self.subTest(edge=l['edge'], index=l['index']):
+                e = self.edge(l['edge'])
+                self.assertEqual((l['source'], l['target']), (e['source'], e['target']), REBUILD)
+                self.assertIn(l['kind'], LINK_KINDS)
+                self.assertIsInstance(l['index'], int)
+                self.assertTrue(0 <= l['index'] < len(e['parameters']),
+                                f"index {l['index']} is outside the {len(e['parameters'])} parameters of {l['edge']}")
+                self.assertTrue(l['target_name'], 'a link is always named on its target side')
+                p = e['parameters'][l['index']]
+                for key in LINK_VALUE_KEYS:
+                    self.assertIn(key, p, f"{l['edge']}[{l['index']}] does not carry {key}. {REBUILD}")
+                    self.assertEqual(p[key], l[key], f"{key} differs between link and edge parameter. {REBUILD}")
+
+    def test_governing_links(self):
+        if not self.xml_has_envelope('PIER-XML'):
+            self.skipTest('PIER-XML has no envelope rows here (XML or envelope notebook not present)')
+        for edge_id in ('PIER-XML->PIER-CASE', 'EB-XML->EB-CASE', 'EB2-XML->EB2-CASE'):
+            with self.subTest(edge=edge_id):
+                e = self.edge(edge_id)
+                links = self.links_on(edge_id)
+                self.assertEqual(len(links), len(e['parameters']), REBUILD)
+                for l in links:
+                    with self.subTest(edge=edge_id, name=l['target_name']):
+                        p = e['parameters'][l['index']]
+                        self.assertEqual(l['kind'], 'governing')
+                        self.assertEqual(l['target_name'], p['name'])
+                        self.assertEqual(l['target_value'], p['value'])
+                        if l['source_value']:
+                            a, b = leading_number(l['source_value']), leading_number(l['target_value'])
+                            self.assertIsNotNone(a, f"source value {l['source_value']!r} is not a number")
+                            self.assertIsNotNone(b, f"target value {l['target_value']!r} is not a number")
+                            same = abs(abs(a) - abs(b)) <= 0.011
+                            self.assertEqual(l['status'], 'MATCH' if same else 'DIFFERS', REBUILD)
+                        else:
+                            self.assertEqual(l['status'], '', 'a link with nothing to compare has no status')
+        with self.subTest(edge='PIER-XML->PIER-CASE', check='registered XML is a prior export'):
+            links = {l['target_name']: l for l in self.links_on('PIER-XML->PIER-CASE')}
+            self.assertEqual(len(links), 9, REBUILD)
+            mu_b = links['Mu_B']
+            self.assertEqual((mu_b['source_name'], mu_b['source_value'], mu_b['target_value'], mu_b['status']),
+                             ('PIER_CAP: M3 STRENGTH-I', '369.55', '366.16', 'DIFFERS'), REBUILD)
+            self.assertEqual(mu_b['target_value'], self.case_inputs('PIER-CASE')['Mu_B']['value'])
+            for name in ('Mu_P', 'MI_P'):
+                with self.subTest(name=name):
+                    l = links[name]
+                    self.assertTrue(l['source_name'], 'the envelope row is still named')
+                    self.assertEqual((l['source_value'], l['status']), ('', ''), REBUILD)
+                    self.assertIn('interior extremum', l['detail'])
+        with self.subTest(edge='EB2-XML->EB2-CASE', check='XML missing'):
+            if (ROOT / self.node('EB2-XML')['path']).exists():
+                self.skipTest('EB2-XML is present here')
+            for l in self.links_on('EB2-XML->EB2-CASE'):
+                self.assertEqual((l['source_name'], l['source_value'], l['status']), ('', '', ''), REBUILD)
+                self.assertIn('not present', l['detail'])
+
+    def test_mapping_links(self):
+        if not self.gen.MATHCAD_EXPORT.exists():
+            self.skipTest(f'{rel(self.gen.MATHCAD_EXPORT)} is not present')
+        for case_id, nid in (('EB-CASE', 'MCAD-CAP-EB1'), ('EB2-CASE', 'MCAD-CAP-EB2'), ('PIER-CASE', 'MCAD-CAP-PIER')):
+            edge_id = f'{case_id}->{nid}'
+            with self.subTest(edge=edge_id):
+                e = self.edge(edge_id)
+                links = self.links_on(edge_id)
+                self.assertEqual(len(links), 58, REBUILD)
+                self.assertEqual(len(links), len(e['parameters']))
+                inputs = self.case_inputs(case_id)
+                from_case = 0
+                for l in links:
+                    p = e['parameters'][l['index']]
+                    with self.subTest(edge=edge_id, parameter=p['name'], region=p['region']):
+                        self.assertEqual(l['kind'], 'mapping')
+                        lhs, sep, rhs = p['after'].partition(':=')
+                        self.assertEqual(sep, ':=', 'a Mathcad mapping row is a definition')
+                        self.assertEqual(l['target_name'], lhs.strip())
+                        self.assertEqual(l['target_value'], rhs.strip())
+                        self.assertEqual(l['status'], 'CHANGED' if p['changed'] else 'UNCHANGED')
+                        if p['basis'].startswith('Selected case inputs.'):
+                            from_case += 1
+                            self.assertEqual(l['source_name'], p['name'])
+                            self.assertIn(p['name'], inputs, f"mapping parameter {p['name']} is not a case input")
+                            self.assertEqual(l['source_value'], inputs[p['name']]['value'], REBUILD)
+                        else:
+                            self.assertEqual(l['source_name'], '', 'a derived region cannot name its source')
+                            self.assertEqual(l['source_value'], '')
+                            self.assertIn(p['basis'], l['detail'])
+                self.assertGreater(from_case, 0, 'no mapping link is taken from the selected case')
+
+    def test_formula_links(self):
+        if not self.graph['cap_trace']['available']:
+            self.skipTest('pier_cap is not importable here: ' + self.graph['cap_trace']['reason'])
+        checked = 0
+        for case_id in ('PIER-CASE', 'EB-CASE', 'EB2-CASE'):
+            edge_id = f'JOURNAL->{case_id}'
+            if edge_id not in self.edges:
+                continue  # the generator records why on the case's formula_trace
+            checked += 1
+            with self.subTest(edge=edge_id):
+                e = self.edge(edge_id)
+                links = self.links_on(edge_id)
+                self.assertEqual(len(links), 5, REBUILD)
+                self.assertEqual(len(links), len(e['parameters']))
+                for l in links:
+                    p = e['parameters'][l['index']]
+                    with self.subTest(edge=edge_id, parameter=p['name']):
+                        self.assertEqual(l['kind'], 'formula')
+                        self.assertEqual(l['source_name'], f"{p['module']}.{p['variable']}")
+                        self.assertEqual(l['target_name'], p['name'])
+                        self.assertEqual(l['target_value'], p['value'])
+                        self.assertEqual(l['source_value'], '', 'the graph does not read the journal value')
+                        self.assertIn(l['source_name'], l['detail'])
+        self.assertGreater(checked, 0, 'no journal-to-case edge exists although the cap trace is available')
+
+    def test_check_links(self):
+        expected_b = {'GEOMETRY->PIER-CASE': ('48', '48.0'), 'GEOMETRY->EB-CASE': ('42', '42.0')}
+        for edge_id, (notebook_b, case_b) in expected_b.items():
+            with self.subTest(edge=edge_id):
+                e = self.edge(edge_id)
+                links = self.links_on(edge_id)
+                self.assertEqual(len(links), 7, REBUILD)
+                self.assertEqual(len(links), len(e['parameters']))
+                self.assertEqual({l['kind'] for l in links}, {'check'})
+                self.assertEqual([l['source_name'] for l in links], [p['name'] for p in e['parameters']])
+                self.assertEqual({l['source_name'] for l in links}, set(GEOMETRY_CHECK_NAMES))
+                for l in links:
+                    self.assertEqual(l['target_name'], l['source_name'], 'the notebook and the case use one name')
+                with self.subTest(edge=edge_id, name='b'):
+                    b = next(l for l in links if l['source_name'] == 'b')
+                    self.assertEqual((b['source_value'], b['target_value'], b['status']), (notebook_b, case_b, 'MATCH'), REBUILD)
+                for l in links:
+                    with self.subTest(edge=edge_id, printed_values=l['source_name']):
+                        p = e['parameters'][l['index']]
+                        self.assertEqual(l['status'], p['status'])
+                        m = CHECK_TEXT.match(p['detail'])
+                        self.assertIsNotNone(m, f"cannot read the printed values from {p['detail']!r}")
+                        # The whole printed value, not a prefix of it: "4.5" must not become "4".
+                        self.assertEqual((l['source_value'], l['target_value']), m.groups(), REBUILD)
+
+    def test_source_links(self):
+        edge_id = 'EB-CASE->BACKWALL-CASE'
+        e = self.edge(edge_id)
+        links = self.links_on(edge_id)
+        inputs = self.case_inputs('EB-CASE')
+        self.assertEqual(len(links), len(e['parameters']))
+        by_target = {l['target_name']: l for l in links}
+        b_cap = by_target['b_cap']
+        self.assertEqual((b_cap['kind'], b_cap['source_name'], b_cap['source_value']), ('source', 'b', '42'), REBUILD)
+        self.assertEqual(b_cap['source_value'], inputs['b']['value'])
+        for l in links:
+            with self.subTest(edge=edge_id, name=l['target_name']):
+                self.assertEqual(l['kind'], 'source')
+                if l['source_name']:
+                    self.assertIn(l['source_name'], inputs, 'a named source is an input of the saved case')
+                    self.assertEqual(l['source_value'], inputs[l['source_name']]['value'], REBUILD)
+        cad_id = 'CAD-MODEL->BACKWALL-CASE'
+        cad = self.edge(cad_id)
+        cad_links = self.links_on(cad_id)
+        self.assertEqual(len(cad_links), len(cad['parameters']))
+        self.assertGreaterEqual(len(cad_links), 1)
+        for l in cad_links:
+            with self.subTest(edge=cad_id, name=l['target_name']):
+                self.assertEqual(l['kind'], 'source')
+                self.assertEqual((l['source_name'], l['source_value']), ('', ''), 'the CAD model is described in prose')
+                self.assertTrue(l['detail'], 'a link that cannot name its source says why')
+        for l in self.graph['links']:
+            if l['kind'] == 'source':
+                with self.subTest(edge=l['edge'], name=l['target_name']):
+                    p = self.edge(l['edge'])['parameters'][l['index']]
+                    self.assertEqual(l['target_value'], p.get('value', ''))
+                    self.assertEqual(l['status'], p.get('status', ''))
+                    if not l['source_name']:
+                        self.assertEqual(l['source_value'], '')
+
+    def test_trail_continuity(self):
+        # Each hop is found by matching (node, name) alone: the name a link writes on its target side
+        # is the name the next link reads on its source side.
+        with self.subTest(chain='BACKWALL-CASE b_cap <- EB-CASE b'):
+            into_cap = self.links_into('BACKWALL-CASE', 'b_cap')
+            self.assertIn(('EB-CASE', 'b'), [(l['source'], l['source_name']) for l in into_cap], REBUILD)
+            feeds_b = {(l['source'], l['kind'], l['source_name']) for l in self.links_into('EB-CASE', 'b')}
+            want = {('GEOMETRY', 'check', 'b')}
+            if 'JOURNAL->EB-CASE' in self.edges:
+                want.add(('JOURNAL', 'formula', 'BridgeGeometry_2Beam.PierCap_width'))
+            self.assertLessEqual(want, feeds_b, REBUILD)
+            reached = self.upstream('BACKWALL-CASE', 'b_cap')
+            self.assertLessEqual({('EB-CASE', 'b'), ('GEOMETRY', 'b')}, reached, REBUILD)
+        with self.subTest(chain='PIER-CASE Mu_B <- PIER-XML envelope row'):
+            into = self.links_into('PIER-CASE', 'Mu_B')
+            self.assertEqual({(l['source'], l['kind']) for l in into}, {('PIER-XML', 'governing')}, REBUILD)
+            if self.xml_has_envelope('PIER-XML'):
+                self.assertEqual({l['source_name'] for l in into}, {'PIER_CAP: M3 STRENGTH-I'}, REBUILD)
+        if not self.gen.MATHCAD_EXPORT.exists():
+            self.skipTest(f'{rel(self.gen.MATHCAD_EXPORT)} is not present')
+        with self.subTest(chain='PIER-XML -> PIER-CASE Mu_B -> MCAD-CAP-PIER'):
+            out = self.links_out_of('PIER-CASE', 'Mu_B')
+            self.assertEqual({(l['target'], l['target_name'], l['kind']) for l in out},
+                             {('MCAD-CAP-PIER', 'indexer(Mu, 2)', 'mapping')}, REBUILD)
+            self.assertIn(('MCAD-CAP-PIER', 'indexer(Mu, 2)'), self.downstream('PIER-CASE', 'Mu_B'))
+            reached = self.upstream('MCAD-CAP-PIER', 'indexer(Mu, 2)')
+            self.assertIn(('PIER-CASE', 'Mu_B'), reached, REBUILD)
+            if self.xml_has_envelope('PIER-XML'):
+                self.assertIn(('PIER-XML', 'PIER_CAP: M3 STRENGTH-I'), reached, REBUILD)
+
+    def test_links_sorted_and_counted(self):
+        links = self.graph['links']
+        keys = [(l['edge'], l['index']) for l in links]
+        self.assertEqual(keys, sorted(keys), 'links are not sorted by (edge, index). ' + REBUILD)
+        self.assertEqual(len(keys), len(set(keys)), 'an edge parameter has more than one link')
+        expected_kinds = set(LINK_KINDS)
+        if not self.gen.MATHCAD_EXPORT.exists():
+            expected_kinds.discard('mapping')
+        if not self.graph['cap_trace']['available']:
+            expected_kinds.discard('formula')
+        self.assertEqual({l['kind'] for l in links}, expected_kinds, REBUILD)
+        keyed = 0
+        for e in self.graph['edges']:
+            for i, p in enumerate(e['parameters']):
+                present = [key in p for key in LINK_VALUE_KEYS]
+                with self.subTest(edge=e['id'], index=i):
+                    self.assertIn(sum(present), (0, len(LINK_VALUE_KEYS)), 'an edge parameter carries only some link keys')
+                keyed += any(present)
+        self.assertEqual(len(links), keyed, 'links and name-carrying edge parameters differ. ' + REBUILD)
 
     # ------------------------------------------------- decisions and issues
     def test_decisions_parsed(self):

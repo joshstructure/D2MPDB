@@ -8,9 +8,13 @@ The graph shows how the project's registered sources, saved cases, generated Mat
 
 Double-click [`index.html`](index.html) to open it in a browser. The viewer loads Cytoscape 3.30.4 from cdnjs, so it needs an internet connection the first time it is opened. Everything else is embedded.
 
-- Click a node to isolate its upstream and downstream stream. The other nodes fade. The **Isolate** checkbox removes them instead.
+- Click a node to isolate its upstream and downstream stream. The other nodes fade. The **Isolate** checkbox removes them instead. The node's pane lists:
+  - **Inputs**, grouped by the upstream node that supplies them, with the name on each side, both values and a status chip.
+  - **Outputs**: what the node feeds, and under what name there.
+  - **Other parameters**, grouped by role.
+- Press **Trace** beside any parameter to see its trail across the graph. The canvas shows only the nodes and relations that quantity passes through, and the pane lists every hop with both values.
+- Search matches names, paths, parameter names, decisions and issues. Searching for a parameter name gives a **Parameter matches** list with a **Trace** button on each match.
 - Click an edge to see the parameters that cross it.
-- Search matches names, paths, parameter names, decisions and issues.
 - The health chips filter the graph by health status.
 - The decision and coherence tabs list the D-### decisions and COH-### items and highlight the nodes they reference.
 - A check mark in a node label and a double border mean the node has a recorded sign-off (amber border when it is stale). Signed edges carry the check mark in their label. See [Verification sign-offs](#verification-sign-offs).
@@ -19,7 +23,7 @@ Double-click [`index.html`](index.html) to open it in a browser. The viewer load
 
 ## What is in the graph
 
-The graph has three levels.
+The graph has four levels.
 
 1. **Nodes.** Every registered source, placed in a stage column. The stage columns are Project inputs, Superstructure, Geometry, Analysis (FBMP), Cap and wall design, Reports, CAD model and Deliverables.
 2. **Edges.** The `depends_on` relations in the source register, drawn in the direction of information flow. The generator also derives these edges:
@@ -39,6 +43,18 @@ The graph has three levels.
 | `formula` | Case nodes, journal edges | One row per cap formula definition: name, formula, evaluated value, note |
 | `output` | Mathcad sheet nodes | Verification snapshot values |
 
+4. **Links.** One record per parameter crossing an edge, named on both sides, so a quantity can be followed across nodes by matching a node and a name. `lineage.json` lists them under `links`, sorted by edge and parameter index. Each link carries `edge`, `source`, `target`, `index` (the parameter's position on the edge), `kind`, `source_name`, `source_value`, `target_name`, `target_value`, `unit`, `detail` and `status`. The same four name and value keys are also written onto the edge parameter at that index, so an edge pane and a link always agree. The target name is always set. The source name is empty where the source file does not give the quantity a name, and `detail` says why.
+
+| Kind | From -> to | What the two names are |
+| --- | --- | --- |
+| `governing` | FBMP XML -> saved case | The XML's envelope row (member, force component and limit state, for example `PIER_CAP: M3 STRENGTH-I`) -> the case's force input (`Mu_B`) |
+| `mapping` | Saved case -> generated Mathcad sheet | The case input (`Mu_B`) -> the Mathcad definition it fills (`indexer(Mu, 2)`). Regions derived from the case rather than copied from an input have no source name |
+| `formula` | Journal -> cap case | The journal's `module.variable` (`BridgeGeometry_2Beam.PierCap_width`) -> the cap formula it feeds (`b`) |
+| `check` | Geometry notebook -> cap case | The notebook's quantity (`b`) -> the same quantity in the saved case (`b`), with both printed values |
+| `source` | Saved case, FBMP XML, CAD model, journal or Mathcad source -> backwall case | The saved-case input (`b`) -> the backwall input (`b_cap`). Where the backwall input only describes its source in prose, the source name is empty |
+
+A governing link compares the registered XML's envelope value with the case value and says `DIFFERS` when they are not the same file's numbers. The registered pier and End Bent 1 exports are earlier analyses than the ones the cases were built from (see [FBMP envelopes](#fbmp-envelopes)), so at the time of writing every force input that is compared reads `DIFFERS`. Two inputs per case (`Mu_P` and `MI_P`) are interior extremums inside the pile region: the link names the envelope row but compares nothing and has no status. Where the XML is missing (EB2-XML) the link has no source name and says the file is not present.
+
 The generator reads these files:
 
 | Input | Contributes |
@@ -55,7 +71,7 @@ The generator reads these files:
 | `exports/cap-mathcad-20261017/` (when present) | Source and verification record, `Verification.json`, the three Input Mapping CSVs |
 | `lineage/signoff.json` | Verification sign-offs, merged as `node.signoff` and `edge.signoff` |
 
-At the time of writing the build has 35 nodes, 67 edges, 1989 parameters, 42 decisions and 28 coherence items.
+At the time of writing the build has 35 nodes, 67 edges, 1989 parameters, 265 links, 43 decisions and 28 coherence items. The links are 174 mapping, 35 source, 27 governing, 15 formula and 14 check.
 
 ### FBMP envelopes
 
@@ -156,3 +172,5 @@ Rebuild after any change to the source register, decisions, the coherence tracke
 ## Limits
 
 The graph records what the project files say about each other. It is not engineering acceptance. The only calculations it runs are the two reused project extractors described above, on the saved cases and XML exports as they are; it changes no source. The EMULATED Mathcad sheets have not been recalculated natively, and the formula traces are the current package's evaluation, not the registered reports'. A sign-off in `signoff.json` is the signer's statement, not the graph's; the graph only reports whether the hashes it was pinned to still hold.
+
+A link follows the names the files declare. Where a file only describes an input in prose (some backwall inputs) or where a Mathcad region is derived from the case rather than copied from an input, the trail stops there and shows the description. A link between two names says they were declared as the same quantity, not that the values agree; the status chip and the two values show that.

@@ -13,7 +13,7 @@
   --edge: #7a828c; --edge-label-bg: #ffffff; --edge-label-text: #3b4048;
   --fade: 0.14; --hit: #ffb300; --sel: #1f6fd0;
   --amber: #ef9f27; --amber-bg: #fdf0d8; --red: #d84a3a; --red-bg: #fbe3df;
-  --green: #2e7d32; --green-bg: #e1f0e2; --grey: #9aa0a6; --grey-bg: #e8eaed; --purple: #7f77dd; --purple-bg: #ebe9fa;
+  --green: #2e7d32; --green-bg: #e1f0e2; --grey: #9aa0a6; --grey-bg: #e8eaed; --purple: #7f77dd; --purple-bg: #ebe9fa; --trail: #1d9e75;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -53,11 +53,11 @@ button[aria-pressed=true] { background: var(--accent-bg); border-color: var(--ac
 #stage { flex: 1; position: relative; min-width: 0; background: var(--bg); }
 #cy { position: absolute; inset: 0; }
 #cy-msg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 24px; text-align: center; color: var(--muted); font-size: 14px; }
-#pane { width: 380px; flex: none; overflow: auto; padding: 12px 14px 24px; background: var(--panel); border-left: 1px solid var(--border); }
+#pane { width: 34vw; min-width: 380px; max-width: 560px; flex: none; overflow: auto; padding: 12px 14px 24px; background: var(--panel); border-left: 1px solid var(--border); }
 @media (max-width: 900px) {
   #main { flex-direction: column; }
   #stage { flex: 1 1 55%; min-height: 280px; }
-  #pane { width: auto; flex: 1 1 45%; border-left: 0; border-top: 1px solid var(--border); }
+  #pane { width: auto; min-width: 0; max-width: none; flex: 1 1 45%; border-left: 0; border-top: 1px solid var(--border); }
   #q { width: 160px; }
 }
 .h-MATCH { --hc: #2e7d32; } .h-CHANGED { --hc: #ef9f27; } .h-MISSING { --hc: #d84a3a; } .h-EMULATED { --hc: #7f77dd; } .h-NONE { --hc: #9aa0a6; }
@@ -103,6 +103,18 @@ table.pt th { color: var(--muted); font-weight: 600; white-space: nowrap; }
 table.pt tr.chg td { background: var(--amber-bg); }
 table.pt tr.chg td:first-child { border-left: 3px solid var(--amber); }
 .ptwrap input { width: 100%; margin: 2px 0; }
+#pane h4 { margin: 14px 0 4px; font-size: 13px; line-height: 1.35; }
+.lkhead .chips { display: inline-flex; margin: 0 0 0 4px; vertical-align: middle; }
+.lkhead button.small { margin-left: 6px; font-weight: 400; }
+details.grp, details.rec { margin: 8px 0; border: 1px solid var(--border); border-radius: 6px; padding: 0 9px; }
+details.grp > summary, details.rec > summary { cursor: pointer; padding: 5px 0; font-weight: 600; }
+details.grp[open] > summary, details.rec[open] > summary { border-bottom: 1px solid var(--border); margin-bottom: 4px; }
+details.rec { margin: 4px 0 8px; } details.rec > summary { font-weight: 400; color: var(--muted); }
+.pmatch li { overflow-wrap: anywhere; }
+.tcard { border: 1px solid var(--border); border-radius: 6px; padding: 6px 9px; margin: 6px 0; overflow-wrap: anywhere; }
+.tcard.origin { border: 2px solid var(--trail); padding: 5px 8px; }
+.tcard .arrow { color: var(--muted); padding-left: 10px; line-height: 1.2; }
+.tcard .chips { align-items: center; }
 .key { display: flex; align-items: center; gap: 8px; margin: 3px 0; }
 .sw { display: inline-block; width: 34px; flex: none; border-top: 3px solid var(--edge); }
 .stat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 8px 0; }
@@ -191,18 +203,33 @@ const EDGE_KEY = [
   ['parameter', 'Parameter supply', 'dashed', '#1d9e75'],
   ['mapping', 'Input mapping', 'solid', '#7f77dd'],
   ['', 'Flag: analysis identity mismatch', 'dashed', '#d84a3a'],
-  ['', 'Flag: dependency under review', 'solid', '#ef9f27']
+  ['', 'Flag: dependency under review', 'solid', '#ef9f27'],
+  ['', 'Parameter trail (labelled with the names crossing it)', 'solid', '#1d9e75']
 ];
 const FLAGS = {
   'identity-mismatch': ['Analysis identity mismatch', 'red'],
   review: ['Dependency under review', 'amber'],
   unregistered: ['Unregistered relation', 'grey']
 };
-const PCOLS = [['name', 'Name'], ['value', 'Value'], ['unit', 'Unit'], ['state', 'State'], ['load_case', 'Load case'],
+const PCOLS = [['name', 'Name'], ['value', 'Value'], ['unit', 'Unit'], ['source_name', 'Source name'], ['source_value', 'Source value'],
+  ['target_name', 'Target name'], ['target_value', 'Target value'], ['state', 'State'], ['load_case', 'Load case'],
   ['combination', 'Comb.'], ['element', 'Element'], ['x_in', 'x (in)'], ['region', 'Region'], ['before', 'Before'],
   ['after', 'After'], ['basis', 'Basis'], ['governing', 'Governing'], ['role', 'Role'], ['source', 'Source'],
   ['source_text', 'Source text'], ['source_status', 'Source status'], ['status', 'Status'], ['detail', 'Detail']];
-const COL_W = 230, PITCH = 72, GAP = 12, LIMIT = 20;
+const COL_W = 230, PITCH = 72, GAP = 12, LIMIT = 20, PMAX = 40;
+const TRAIL = '#1d9e75';
+// Statuses that mean the two sides of a hop do not agree. CHANGED is not one: it marks a Mathcad
+// region whose template value was replaced by the case input, which is the mapping doing its job.
+const DIFFER = /^(DIFFERS|NAME NOT IN JOURNAL)$/;
+const LINK_STATUS_TITLE = {
+  MATCH: 'The value on each side of this hop is the same',
+  DIFFERS: 'The two sides carry different numbers: the registered file is not the export the case was built from',
+  CHANGED: 'The template value in this Mathcad region was replaced by the case input (expected)',
+  UNCHANGED: 'The case input equals the template value, so the Mathcad region did not change',
+  'NAME NOT IN JOURNAL': 'The formula names a journal module or variable that the registered journal file does not contain'
+};
+// Node parameter groups shown under "Other parameters", by role (role "input" is covered by the Inputs section).
+const ROLE_GROUPS = [['envelope', 'Envelope rows'], ['summary', 'FBMP summary rows'], ['identity', 'XML identity'], ['formula', 'Formula trace'], ['output', 'Results']];
 const ISSUE_ORDER = ['Open', 'Awaiting source', 'Deferred', 'Closed'];
 const CHECK = '✓', RING = '○';
 const SIGNOFF_SCHEMA = 'd2mpdb.lineage-signoff';
@@ -229,11 +256,15 @@ const soChip = so => { const s = soState(so); return chip(s === 'ok' ? 'Signed' 
 let D = null, cy = null, idx = null;
 const by = { nodes: {}, edges: {}, dec: {}, iss: {} };
 const adj = { in: {}, out: {} };
+// Parameter links (one per parameter crossing an edge): by target node, by source node, by "node|name" on either side, and by edge then index.
+const lk = { in: {}, out: {}, tin: {}, sout: {}, byEdge: {} };
 const stageIdx = {};
 const state = {
   dir: 'both', isolate: false, selId: null, selEdge: null, cone: null, health: {}, search: null,
   open: { dec: null, iss: null }, refHits: new Set(), tab: 'overview',
   walk: null,            // { target, hops: [edge ids in information-flow order], i }
+  trail: null,           // { node, name, hops: [links], up, down, nodes: Set, edges: Set, labels } -- one parameter followed through the network
+  detOpen: {},           // open/closed state of the <details> groups the reader toggled, by key
   dates: [], asOfIdx: 0, asOf: '',  // time scrubber: sorted unique dates; current index and date
   draft: null, drafts: {}  // open draft form { id, by, on, basis, json }; drafts kept this session, by id
 };
@@ -256,9 +287,18 @@ function loadData() {
     by.edges[e.id] = e;
     if (adj.out[e.source] && adj.in[e.target]) { adj.out[e.source].push(e); adj.in[e.target].push(e); }
   });
+  D.links = (D.links || []).filter(l => by.nodes[l.source] && by.nodes[l.target]);
+  D.links.forEach((l, i) => {
+    ['source_name', 'source_value', 'target_name', 'target_value', 'unit', 'detail', 'status'].forEach(k => { l[k] = l[k] == null ? '' : String(l[k]); });
+    l.i = i;
+    (lk.in[l.target] = lk.in[l.target] || []).push(l); (lk.out[l.source] = lk.out[l.source] || []).push(l);
+    if (l.target_name) (lk.tin[l.target + '|' + l.target_name] = lk.tin[l.target + '|' + l.target_name] || []).push(l);
+    if (l.source_name) (lk.sout[l.source + '|' + l.source_name] = lk.sout[l.source + '|' + l.source_name] || []).push(l);
+    (lk.byEdge[l.edge] = lk.byEdge[l.edge] || {})[l.index] = l;
+  });
   D.decisions.forEach(d => { by.dec[d.id] = d; d.refs = d.refs || {}; });
   D.issues.forEach(i => { by.iss[i.id] = i; i.refs = i.refs || {}; i.checks = i.checks || []; });
-  D.signoff = Object.assign({ schema: SIGNOFF_SCHEMA, schema_version: 1, path: 'lineage/signoff.json', present: false, note: '',
+  D.signoff =Object.assign({ schema: SIGNOFF_SCHEMA, schema_version: 1, path: 'lineage/signoff.json', present: false, note: '',
     entries: [], signed_nodes: 0, signed_edges: 0, stale: 0, orphans: [] }, D.signoff || {});
   const dates = new Set();
   D.nodes.forEach(n => { const d = isoDay(n.registered_on); if (d) dates.add(d); });
@@ -307,8 +347,18 @@ function buildIndex() {
       [...decs].map(x => dT[x] || x), [...iss].map(x => iT[x] || x), soText(n.signoff)).join('\n').toLowerCase();
   });
   D.edges.forEach(e => { ed[e.id] = [e.id, e.label, e.kind].concat(e.parameters.map(p => p.name), soText(e.signoff)).join('\n').toLowerCase(); });
-  idx = { nd, ed };
+  // Every named parameter, once per (node, name): node parameters (formula rows last) then the names links carry on either side.
+  const pm = [], seen = new Set();
+  const add = (node, name, value, unit, role) => {
+    const k = node + '|' + name;
+    if (!name || seen.has(k)) return;
+    seen.add(k); pm.push({ node, name: String(name), value: fmt(value), unit: unit || '', role: role || '', low: String(name).toLowerCase() });
+  };
+  [false, true].forEach(f => D.nodes.forEach(n => n.parameters.forEach(p => { if ((p.role === 'formula') === f) add(n.id, p.name, p.value, p.unit, p.role); })));
+  D.links.forEach(l => { add(l.target, l.target_name, l.target_value, l.unit); add(l.source, l.source_name, l.source_value, l.unit); });
+  idx = { nd, ed, pm };
 }
+const traceable = (node, name) => !!(lk.tin[node + '|' + name] || lk.sout[node + '|' + name]);
 const soText = so => so ? ['signed', so.by, so.on, so.basis, so.stale ? 'stale' : ''] : [];
 
 // ---------- layout and graph elements ----------
@@ -435,6 +485,11 @@ function buildStyle() {
   S.push({ selector: 'edge.signed', style: { 'width': 2.4, 'line-cap': 'round' } });
   S.push({ selector: 'edge.path', style: { 'width': 2.8 } });
   S.push({ selector: 'edge.nolabel', style: { 'text-opacity': 0, 'text-background-opacity': 0 } });
+  // Parameter trail: must follow the base node and edge rules (and edge.nolabel) because Cytoscape applies rules in list order.
+  S.push({ selector: 'node.trail', style: { 'outline-width': 4, 'outline-color': TRAIL, 'outline-offset': 2, 'outline-opacity': 1 } });
+  S.push({ selector: 'node.torigin', style: { 'outline-width': 7 } });
+  S.push({ selector: 'edge.trail', style: { 'width': 3.5, 'line-color': TRAIL, 'target-arrow-color': TRAIL, 'line-style': 'solid', 'z-index': 20,
+    'label': 'data(tlabel)', 'font-size': 11, 'font-weight': 'bold', 'text-wrap': 'wrap', 'text-max-width': 190, 'text-opacity': 1, 'text-background-opacity': 0.95 } });
   S.push({ selector: 'edge.hit', style: { 'width': 3.2, 'underlay-color': t.hit, 'underlay-opacity': 0.55, 'underlay-padding': 3 } });
   S.push({ selector: 'edge.esel', style: { 'width': 3.6, 'underlay-color': t.sel, 'underlay-opacity': 0.4, 'underlay-padding': 3 } });
   S.push({ selector: 'node.hit', style: { 'outline-width': 4, 'outline-color': t.hit, 'outline-offset': 2, 'outline-opacity': 1 } });
@@ -455,8 +510,9 @@ function rebuild(cn) {
 
 function syncGraph() {
   if (!cy) return;
-  const cn = state.isolate && state.selId && state.cone ? state.cone : null;
-  const key = cn ? [...cn.nodes].sort().join('|') + '#' + cn.edges.size : '*';
+  // Isolate shows the parameter trail when one is open, otherwise the selected node's cone.
+  const tr = state.trail, cn = !state.isolate ? null : tr ? { nodes: tr.nodes, edges: tr.edges } : state.selId && state.cone ? state.cone : null;
+  const key = cn ? [...cn.nodes].sort().join('|') + '#' + [...cn.edges].sort().join('|') : '*';
   if (key === graphKey) return;
   graphKey = key;
   rebuild(cn);
@@ -464,22 +520,25 @@ function syncGraph() {
 
 function applyView() {
   if (!cy) return;
-  const cn = state.selId ? state.cone : null, se = state.search, hf = Object.keys(state.health).some(k => state.health[k]);
+  // An open parameter trail takes precedence over the cone and the search fade: everything off the trail fades, the trail is drawn on top.
+  const tr = state.trail, cn = state.selId && !tr ? state.cone : null, se = tr ? null : state.search, hf = Object.keys(state.health).some(k => state.health[k]);
   const cut = asOfCut(), w = state.walk, hopId = w && w.hops.length ? w.hops[w.i] : null, hop = hopId ? by.edges[hopId] : null;
   cy.batch(() => {
     cy.nodes(':childless').forEach(n => {
-      const id = n.id(), nd = by.nodes[id];
+      const id = n.id(), nd = by.nodes[id], onTrail = !!tr && tr.nodes.has(id);
       const hit = (se && se.nodes.has(id)) || state.refHits.has(id);
-      const fade = (cn && !cn.nodes.has(id)) || (se && !se.nodes.has(id) && !se.ctx.has(id)) || (hf && !state.health[nd.health]) || afterCut(cut, nd.registered_on);
+      const fade = (tr && !onTrail) || (cn && !cn.nodes.has(id)) || (se && !se.nodes.has(id) && !se.ctx.has(id)) || (hf && !state.health[nd.health]) || afterCut(cut, nd.registered_on);
       n.toggleClass('faded', !!fade).toggleClass('hit', !!hit).toggleClass('sel', id === state.selId)
-        .toggleClass('path', !!cn && cn.nodes.has(id) && id !== state.selId).toggleClass('hop', !!hop && (id === hop.source || id === hop.target));
+        .toggleClass('path', !!cn && cn.nodes.has(id) && id !== state.selId).toggleClass('hop', !!hop && (id === hop.source || id === hop.target))
+        .toggleClass('trail', onTrail).toggleClass('torigin', !!tr && id === tr.node);
     });
     cy.edges().forEach(e => {
-      const id = e.id(), ed = by.edges[id], hit = !!se && se.edges.has(id), s = by.nodes[ed.source], t = by.nodes[ed.target];
+      const id = e.id(), ed = by.edges[id], hit = !!se && se.edges.has(id), s = by.nodes[ed.source], t = by.nodes[ed.target], onTrail = !!tr && tr.edges.has(id);
       const hFade = hf && (!state.health[s.health] || !state.health[t.health]);
-      const fade = (cn && !cn.edges.has(id)) || (se && !hit) || hFade || afterCut(cut, s.registered_on) || afterCut(cut, t.registered_on);
+      const fade = (tr && !onTrail) || (cn && !cn.edges.has(id)) || (se && !hit) || hFade || afterCut(cut, s.registered_on) || afterCut(cut, t.registered_on);
+      if (onTrail) e.data('tlabel', tr.labels[id] || '');
       e.toggleClass('faded', !!fade).toggleClass('hit', hit).toggleClass('esel', id === state.selEdge || id === hopId)
-        .toggleClass('path', !!cn && cn.edges.has(id));
+        .toggleClass('path', !!cn && cn.edges.has(id)).toggleClass('trail', onTrail);
     });
   });
 }
@@ -522,9 +581,70 @@ function selectEdge(id) {
 }
 
 function clearSelection() {
-  state.selId = null; state.selEdge = null; state.cone = null; state.walk = null; state.draft = null;
+  state.selId = null; state.selEdge = null; state.cone = null; state.walk = null; state.trail = null; state.draft = null;
   state.open = { dec: null, iss: null }; state.refHits = new Set();
   syncGraph(); applyView(); renderPane();
+}
+
+// ---------- parameter trail ----------
+// Follow one named quantity through the recorded links: upstream to where it comes from, downstream to where it is used.
+function buildTrail(node, name) {
+  const up = [], down = [], used = new Set(), nodes = new Set([node]), edges = new Set(), labels = {};
+  const take = (l, list) => {
+    if (used.has(l.i)) return false;
+    used.add(l.i); list.push(l); nodes.add(l.source); nodes.add(l.target);
+    if (by.edges[l.edge]) edges.add(l.edge);
+    return true;
+  };
+  const climb = (n, nm, seen) => {
+    const k = n + '|' + nm;
+    if (seen.has(k)) return;
+    seen.add(k);
+    (lk.tin[k] || []).forEach(l => { if (take(l, up) && l.source_name) climb(l.source, l.source_name, seen); });
+  };
+  const fall = (n, nm, seen) => {
+    const k = n + '|' + nm;
+    if (seen.has(k)) return;
+    seen.add(k);
+    (lk.sout[k] || []).forEach(l => { if (take(l, down) && l.target_name) fall(l.target, l.target_name, seen); });
+  };
+  climb(node, name, new Set()); fall(node, name, new Set());
+  const hops = up.concat(down);
+  hops.forEach(l => {
+    const s = (l.source_name || '(not named)') + ' → ' + l.target_name, a = labels[l.edge] = labels[l.edge] || [];
+    if (!a.includes(s)) a.push(s);
+  });
+  Object.keys(labels).forEach(k => { const a = labels[k]; labels[k] = a.slice(0, 3).join(', ') + (a.length > 3 ? ' +' + (a.length - 3) + ' more' : ''); });
+  return { node, name, hops, up, down, nodes, edges, labels };
+}
+
+function traceParam(nodeId, name) {
+  if (!by.nodes[nodeId] || name == null || name === '') return;
+  state.trail = buildTrail(nodeId, String(name));
+  state.walk = null; state.selId = null; state.selEdge = null; state.draft = null;
+  refreshSelection(); fitTrail();
+}
+
+function exitTrail() {
+  if (!state.trail) return;
+  state.trail = null; state.draft = null;
+  refreshSelection();
+}
+
+function backToTrail() {
+  if (!state.trail) return;
+  state.selId = null; state.selEdge = null; state.draft = null;
+  refreshSelection();
+}
+
+function fitTrail() {
+  const tr = state.trail;
+  if (!cy || !tr) return;
+  const eles = cy.nodes(':childless').filter(n => tr.nodes.has(n.id()));
+  if (eles.empty()) return;
+  const bb = eles.boundingBox({ includeLabels: false, includeOverlays: false }), w = cy.width(), h = cy.height(), pad = 60;
+  const z = Math.max(cy.minZoom(), Math.min(1.2, (w - 2 * pad) / Math.max(bb.w, 1), (h - 2 * pad) / Math.max(bb.h, 1)));
+  cy.animate({ zoom: z, pan: { x: w / 2 - z * (bb.x1 + bb.x2) / 2, y: h / 2 - z * (bb.y1 + bb.y2) / 2 } }, { duration: 250 });
 }
 
 // ---------- verification walk ----------
@@ -556,7 +676,7 @@ function startWalk(id, hop) {
   if (!by.nodes[id]) return;
   const hops = walkHops(id);
   state.walk = { target: id, hops, i: Math.max(0, Math.min(hops.length - 1, hop || 0)) };
-  state.selId = id; state.selEdge = null; state.draft = null;
+  state.trail = null; state.selId = id; state.selEdge = null; state.draft = null;
   refreshSelection(); centerHop();
 }
 
@@ -638,6 +758,7 @@ function setAsOf(i) {
 }
 
 function fitCone() {
+  if (state.trail) { fitTrail(); return; }
   if (!cy || !state.cone) return;
   const eles = cy.nodes(':childless').filter(n => state.cone.nodes.has(n.id()));
   if (eles.nonempty()) cy.animate({ fit: { eles, padding: 40 } }, { duration: 250 });
@@ -654,14 +775,17 @@ function toggleRef(kind, id) {
 
 function doSearch() {
   const toks = $('#q').value.toLowerCase().split(/\s+/).filter(Boolean), out = $('#qcount');
-  if (!toks.length) { state.search = null; out.textContent = ''; applyView(); return; }
+  if (!toks.length) { state.search = null; out.textContent = ''; applyView(); renderIdlePane(); return; }
   const nodes = new Set(), edges = new Set(), ctx = new Set();
   D.nodes.forEach(n => { if (toks.every(t => idx.nd[n.id].includes(t))) nodes.add(n.id); });
   D.edges.forEach(e => { if (toks.every(t => idx.ed[e.id].includes(t))) { edges.add(e.id); ctx.add(e.source); ctx.add(e.target); } });
-  state.search = { nodes, edges, ctx };
-  out.textContent = nodes.size + ' nodes · ' + edges.size + ' edges match';
-  applyView();
+  const params = idx.pm.filter(p => toks.every(t => p.low.includes(t)));
+  state.search = { nodes, edges, ctx, params };
+  out.textContent = nodes.size + ' nodes · ' + edges.size + ' edges · ' + params.length + ' parameters match';
+  applyView(); renderIdlePane();
 }
+// The overview tabs carry the parameter matches, so redraw them when nothing is selected.
+function renderIdlePane() { if (!state.selId && !state.selEdge && !state.walk && !state.trail) renderPane(); }
 
 // ---------- detail pane ----------
 const ptKeyCols = rows => {
@@ -672,24 +796,33 @@ const ptKeyCols = rows => {
   return known.concat(extra.map(k => [k, k]));
 };
 
-function ptHtml(rows) {
+// A filterable table that collapses to LIMIT rows. opt: cols (explicit [key, label] columns), skip (column keys to drop), label (filter's aria-label),
+// cell(row, key, i) (HTML for a cell, or null for the default text), act(row, i) (HTML for an extra action column, e.g. a Trace button) and actFirst.
+function ptHtml(rows, opt) {
+  opt = opt || {};
   if (!rows.length) return '<p class="muted">None.</p>';
-  const key = 'pt' + (++ptSeq), cols = ptKeyCols(rows), chg = rows.filter(r => r.changed === true).length;
-  pts[key] = { rows, cols, all: false, filter: '', hay: rows.map(r => cols.map(c => fmt(r[c[0]])).join(' ').toLowerCase()) };
+  const key = 'pt' + (++ptSeq), cols = (opt.cols || ptKeyCols(rows)).filter(c => !(opt.skip || []).includes(c[0])), chg = rows.filter(r => r.changed === true).length;
+  pts[key] = { rows, cols, opt, all: false, filter: '', hay: rows.map(r => cols.map(c => fmt(r[c[0]])).join(' ').toLowerCase()) };
   return '<div class="ptwrap" data-key="' + key + '">' +
     (rows.some(r => 'changed' in r) ? '<p class="muted">' + chg + ' of ' + rows.length + ' rows changed (highlighted).</p>' : '') +
-    '<input type="search" class="pt-filter" data-key="' + key + '" placeholder="Filter ' + rows.length + ' rows" aria-label="Filter parameters">' +
+    '<input type="search" class="pt-filter" data-key="' + key + '" placeholder="Filter ' + rows.length + ' rows" aria-label="Filter ' + esc(opt.label || 'parameters') + '">' +
     '<div class="pt-body">' + ptBody(key) + '</div></div>';
 }
 
 function ptBody(key) {
-  const t = pts[key], toks = t.filter.toLowerCase().split(/\s+/).filter(Boolean), hit = [];
+  const t = pts[key], toks = t.filter.toLowerCase().split(/\s+/).filter(Boolean), hit = [], o = t.opt;
   t.rows.forEach((r, i) => { if (toks.every(k => t.hay[i].includes(k))) hit.push(i); });
   if (!hit.length) return '<p class="muted">No rows match.</p>';
   const shown = t.all ? hit : hit.slice(0, LIMIT);
-  let h = '<div class="tscroll"><table class="pt"><thead><tr>' + t.cols.map(c => '<th>' + esc(c[1]) + '</th>').join('') + '</tr></thead><tbody>' +
-    shown.map(i => '<tr' + (t.rows[i].changed === true ? ' class="chg"' : '') + '>' +
-      t.cols.map(c => '<td>' + esc(fmt(t.rows[i][c[0]])) + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
+  const ths = t.cols.map(c => '<th>' + esc(c[1]) + '</th>'), acth = o.act ? '<th>Trace</th>' : '';
+  let h = '<div class="tscroll"><table class="pt"><thead><tr>' + (o.actFirst ? acth : '') + ths.join('') + (o.actFirst ? '' : acth) + '</tr></thead><tbody>' +
+    shown.map(i => {
+      const r = t.rows[i], act = o.act ? '<td>' + o.act(r, i) + '</td>' : '';
+      return '<tr' + (r.changed === true ? ' class="chg"' : '') + '>' + (o.actFirst ? act : '') + t.cols.map(c => {
+        const x = o.cell ? o.cell(r, c[0], i) : null;
+        return '<td>' + (x == null ? esc(fmt(r[c[0]])) : x) + '</td>';
+      }).join('') + (o.actFirst ? '' : act) + '</tr>';
+    }).join('') + '</tbody></table></div>';
   h += '<div class="muted">Showing ' + shown.length + ' of ' + hit.length + (hit.length < t.rows.length ? ' (filtered from ' + t.rows.length + ')' : '');
   if (hit.length > LIMIT) h += ' <button type="button" class="small" data-act="more" data-key="' + key + '">' + (t.all ? 'Show first ' + LIMIT : 'Show all ' + hit.length) + '</button>';
   return h + '</div>';
@@ -754,21 +887,97 @@ function draftHtml(id) {
 const nodeLink = n => '<button type="button" class="link" data-act="node" data-id="' + esc(n.id) + '">' + esc(n.label) + '</button>';
 const healthChip = n => '<span class="chip hc h-' + (HEALTH[n.health] ? n.health : 'NONE') + '" title="' + esc(D.health_legend[n.health] || '') + '"><i class="dot"></i>' + esc(n.health) + '</span>';
 
+const traceBtn = (node, name) => '<button type="button" class="small" data-act="trace" data-node="' + esc(node) + '" data-name="' + esc(name) + '" aria-label="Trace ' + esc(name) +
+  ' from ' + esc((by.nodes[node] || {}).label || node) + '" title="Follow this parameter upstream and downstream">Trace</button>';
+const lkCls = s => { s = String(s || '').toUpperCase(); return s === 'MATCH' ? 'green' : s === 'DIFFERS' || s === 'NAME NOT IN JOURNAL' ? 'red' : s === 'CHANGED' ? 'amber' : 'grey'; };
+const lkChip = s => s ? chip(s, lkCls(s), LINK_STATUS_TITLE[String(s).toUpperCase()] || s) : '';
+const edgeFlagChips = e => e.flags.map(f => FLAGS[f] ? chip(FLAGS[f][0], FLAGS[f][1]) : chip(f, 'grey')).join('');
+const backTrail = () => state.trail ? '<p class="row"><button type="button" class="small" data-act="tback">Back to trail: ' + esc(state.trail.name) + '</button></p>' : '';
+
+// Links grouped by the edge they cross, in information-flow order of the node at the far end (end = 'source' or 'target').
+function linkGroups(list, end) {
+  const g = {}, order = [];
+  list.forEach(l => {
+    if (!g[l.edge]) { g[l.edge] = { e: by.edges[l.edge], other: by.nodes[l[end]], list: [] }; order.push(g[l.edge]); }
+    g[l.edge].list.push(l);
+  });
+  return order.sort((a, b) => colOf(a.other) - colOf(b.other) || String(a.other.label).localeCompare(b.other.label));
+}
+
+function groupHead(dir, g) {
+  const lab = g.e ? g.e.label || g.e.kind : '';
+  return '<h4 class="lkhead">' + dir + ' ' + nodeLink(g.other) + (lab ? ' &middot; ' + esc(lab) : '') + ' (' + g.list.length + ')' +
+    (g.e ? '<span class="chips">' + edgeFlagChips(g.e) + soGlyph(g.e.signoff) + '</span> <button type="button" class="small" data-act="edge" data-id="' + esc(g.e.id) + '">Open relation</button>' : '') + '</h4>';
+}
+
+// Inputs: every link that ends at this node, grouped by the node it comes from, then the inputs entered here with nothing recorded upstream.
+function inputsHtml(n) {
+  const ins = lk.in[n.id] || [], named = new Set(ins.map(l => l.target_name)), entered = n.parameters.filter(p => p.role === 'input' && !named.has(p.name));
+  if (!ins.length && !entered.length) return '<h3>Inputs</h3><p class="muted">No recorded inputs.</p>';
+  let h = '<h3>Inputs</h3>';
+  linkGroups(ins, 'source').forEach(g => {
+    const rows = g.list.map(l => ({ name: l.target_name, value: l.target_value, unit: l.unit, status: l.status, _l: l,
+      from: l.source_name ? l.source_name + (l.source_value !== '' ? ' (' + l.source_value + ')' : '') : l.detail }));
+    h += groupHead('From', g) + ptHtml(rows, { label: 'inputs from ' + g.other.label, cols: [['name', 'Name here'], ['value', 'Value'], ['unit', 'Unit'], ['from', 'From'], ['status', 'Status']],
+      cell: (r, k) => k === 'status' ? lkChip(r.status) : k !== 'from' ? null : r._l.source_name ?
+        '<span title="' + esc(r._l.detail) + '">' + esc(r._l.source_name) + '</span>' + (r._l.source_value !== '' ? ' <span class="muted">(' + esc(r._l.source_value) + ')</span>' : '') :
+        '<span class="muted">' + esc(r._l.detail) + '</span>',
+      act: r => traceBtn(n.id, r.name) });
+  });
+  if (entered.length) {
+    const src = entered.some(p => p.source_text);
+    h += '<h4 class="lkhead">Entered in this case (no recorded upstream) &middot; ' + entered.length + '</h4>' +
+      ptHtml(entered, { label: 'entered inputs', cols: [['name', 'Name'], ['value', 'Value'], ['unit', 'Unit']].concat(src ? [['source_text', 'Source text']] : []), act: p => traceBtn(n.id, p.name) });
+  }
+  return h;
+}
+
+// Outputs: every link that starts at this node, grouped by the node it feeds.
+function outputsHtml(n) {
+  const outs = lk.out[n.id] || [];
+  let h = '<h3>Outputs</h3>';
+  if (!outs.length) return h + '<p class="muted">No recorded outputs.</p>';
+  linkGroups(outs, 'target').forEach(g => {
+    const rows = g.list.map(l => ({ name: l.source_name || '(derived)', value: l.source_value + (l.source_value !== '' && l.unit ? ' ' + l.unit : ''), there: l.target_name, vthere: l.target_value, status: l.status, _l: l }));
+    h += groupHead('To', g) + ptHtml(rows, { label: 'outputs to ' + g.other.label, cols: [['name', 'Name here'], ['value', 'Value'], ['there', '→ Name there'], ['vthere', 'Value there'], ['status', 'Status']],
+      cell: (r, k) => k === 'status' ? lkChip(r.status) : k === 'name' && !r._l.source_name ? '<span class="muted">(derived)</span><div class="muted">' + esc(r._l.detail) + '</div>' : null,
+      act: r => r._l.source_name ? traceBtn(n.id, r._l.source_name) : traceBtn(r._l.target, r._l.target_name) });
+  });
+  return h;
+}
+
+// Every parameter that is not a case input, one collapsible group per role; names that a link carries get a Trace button.
+function otherParamsHtml(n) {
+  const rest = n.parameters.filter(p => p.role !== 'input'), g = {}, order = [];
+  if (!rest.length) return '';
+  rest.forEach(p => { const r = p.role || ''; if (!g[r]) { g[r] = []; order.push(r); } g[r].push(p); });
+  const rank = r => { const i = ROLE_GROUPS.findIndex(x => x[0] === r); return i < 0 ? ROLE_GROUPS.length : i; };
+  let h = '<h3>Other parameters</h3>';
+  order.sort((a, b) => rank(a) - rank(b)).forEach(r => {
+    const rows = g[r], def = ROLE_GROUPS.find(x => x[0] === r), key = n.id + '|' + r, open = key in state.detOpen ? state.detOpen[key] : rows.length <= LIMIT;
+    h += '<details class="grp" data-key="' + esc(key) + '"' + (open ? ' open' : '') + '><summary>' + esc(def ? def[1] : r || 'Parameters') + ' (' + rows.length + ')</summary>' +
+      ptHtml(rows, { skip: ['role'], label: (def ? def[1] : r || 'parameters').toLowerCase(),
+        cell: (p, k) => k === 'name' && traceable(n.id, p.name) ? esc(p.name) + ' ' + traceBtn(n.id, p.name) : null }) + '</details>';
+  });
+  return h;
+}
+
 function nodeHtml(n) {
   const up = adj.in[n.id], down = adj.out[n.id];
   const nb = (list, end) => list.length ? '<ul class="plain">' + list.slice().sort((a, b) => String((by.nodes[a[end]] || {}).label).localeCompare(String((by.nodes[b[end]] || {}).label))).map(e =>
     '<li>' + soGlyph(e.signoff) + ' <button type="button" class="link" data-act="node" data-id="' + esc(e[end]) + '">' + esc((by.nodes[e[end]] || {}).label || e[end]) + '</button> ' +
     '<button type="button" class="link small" data-act="edge" data-id="' + esc(e.id) + '" title="Show this relation">(' + esc(e.label || e.kind) + ')</button></li>').join('') + '</ul>' : '<p class="muted">None.</p>';
-  let h = '<div class="hdr"><span class="muted">Node</span><span class="row"><button type="button" class="small" data-act="walk" data-id="' + esc(n.id) + '" title="Step through everything that feeds this node, hop by hop">Verification walk</button>' +
+  let h = backTrail() + '<div class="hdr"><span class="muted">Node</span><span class="row"><button type="button" class="small" data-act="walk" data-id="' + esc(n.id) + '" title="Step through everything that feeds this node, hop by hop">Verification walk</button>' +
     '<button type="button" class="small" data-act="clear">Clear selection</button></span></div><h2>' + esc(n.label) + '</h2><div class="chips">' +
     chip(n.id, 'mono') + chip(n.kind) + chip(stageLabel(n)) + healthChip(n) + soChip(n.signoff) +
     (n.registered === false ? chip('unregistered', 'grey') : '') +
     (n.open_issues.length ? chip(n.open_issues.length + ' open coherence item' + (n.open_issues.length === 1 ? '' : 's'), 'amber') : '') + '</div>';
-  h += '<dl class="kvs">' + kv('Status', esc(n.status)) +
-    kv('Path', n.path ? '<span class="mono">' + esc(n.path) + '</span> ' + copyBtn(n.path, 'path') : '') +
-    kv('Registered', esc(n.registered_on)) + kv('SHA-256', n.sha256 ? shaHtml(n.sha256) + ' ' + copyBtn(n.sha256, 'SHA-256') : '') +
+  h += '<dl class="kvs">' + kv('Status', esc(n.status)) + kv('Path', n.path ? '<span class="mono">' + esc(n.path) + '</span> ' + copyBtn(n.path, 'path') : '') + '</dl>';
+  const rec = kv('Registered', esc(n.registered_on)) + kv('SHA-256', n.sha256 ? shaHtml(n.sha256) + ' ' + copyBtn(n.sha256, 'SHA-256') : '') +
     kv('Scope', esc(n.scope)) + kv('Origin', esc(n.origin)) + kv('Notes', esc(n.notes)) + kv('Case', esc(n.case_name)) + kv('Analysis', esc(n.analysis_id)) +
-    kv('Confirmations', n.confirmations ? Object.keys(n.confirmations).map(k => esc(k) + ': ' + (n.confirmations[k] ? 'yes' : 'no')).join('<br>') : '') + '</dl>';
+    kv('Confirmations', n.confirmations ? Object.keys(n.confirmations).map(k => esc(k) + ': ' + (n.confirmations[k] ? 'yes' : 'no')).join('<br>') : '');
+  if (rec) h += '<details class="rec" data-key="rec"' + (state.detOpen.rec ? ' open' : '') + '><summary>Record details</summary><dl class="kvs">' + rec + '</dl></details>';
+  h += inputsHtml(n) + outputsHtml(n) + otherParamsHtml(n);
   if (n.checks.length) h += '<h3>Checks</h3>' + checksHtml(n.checks);
   h += signoffHtml(n.signoff, n.id);
   if (n.decisions.length) {
@@ -785,11 +994,10 @@ function nodeHtml(n) {
   const cu = cone(n.id, 'up').nodes.size - 1, cd = cone(n.id, 'down').nodes.size - 1;
   h += '<h3>Upstream (' + up.length + ' direct, ' + cu + ' in cone)</h3>' + nb(up, 'source') +
     '<h3>Downstream (' + down.length + ' direct, ' + cd + ' in cone)</h3>' + nb(down, 'target');
-  return h + '<h3>Parameters (' + n.parameters.length + ')</h3>' + ptHtml(n.parameters);
+  return h;
 }
 
-const edgeChips = e => '<div class="chips">' + chip(e.kind) + (e.label ? chip(e.label) : '') +
-  e.flags.map(f => FLAGS[f] ? chip(FLAGS[f][0], FLAGS[f][1]) : chip(f, 'grey')).join('') + soChip(e.signoff) + '</div>';
+const edgeChips = e => '<div class="chips">' + chip(e.kind) + (e.label ? chip(e.label) : '') + edgeFlagChips(e) + soChip(e.signoff) + '</div>';
 
 // The evidence carried by a relation: identity comparisons, FB-MultiPier export facts, checks, sign-off and parameters.
 function edgeFacts(e) {
@@ -811,12 +1019,16 @@ function edgeFacts(e) {
     Object.keys(fs).map(k => '<tr' + (fs[k].extracted !== fs[k].summary ? ' class="chg"' : '') + '><td>' + esc(k) + '</td><td>' + esc(fmt(fs[k].extracted)) + '</td><td>' + esc(fmt(fs[k].summary)) + '</td></tr>').join('') + '</tbody></table></div>';
   if (e.checks.length) h += '<h3>Checks</h3>' + checksHtml(e.checks);
   h += signoffHtml(e.signoff, e.id);
-  return h + '<h3>Parameters (' + e.parameters.length + ')</h3>' + ptHtml(e.parameters);
+  // Trace: from the target name of each row; mapping rows start at the case input they read instead (it is the name with a history).
+  return h + '<h3>Parameters (' + e.parameters.length + ')</h3>' + ptHtml(e.parameters, { label: 'relation parameters', actFirst: true, act: (r, i) => {
+    const l = (lk.byEdge[e.id] || {})[i], mapping = (l ? l.kind : e.kind) === 'mapping';
+    return mapping && r.source_name ? traceBtn(e.source, r.source_name) : r.target_name ? traceBtn(e.target, r.target_name) : '';
+  } });
 }
 
 function edgeHtml(e) {
   const s = by.nodes[e.source], t = by.nodes[e.target];
-  return '<div class="hdr"><span class="muted">Relation</span><button type="button" class="small" data-act="back">&larr; ' + (state.selId ? 'Back to node' : 'Overview') + '</button></div>' +
+  return '<div class="hdr"><span class="muted">Relation</span><button type="button" class="small" data-act="back">&larr; ' + (state.selId ? 'Back to node' : state.trail ? 'Back to trail' : 'Overview') + '</button></div>' +
     '<h2>' + nodeLink(s) + ' &rarr; ' + nodeLink(t) + '</h2>' + edgeChips(e) + edgeFacts(e);
 }
 
@@ -843,6 +1055,40 @@ function walkHtml(w) {
 }
 
 const signoffCountText = () => { const k = Object.keys(state.drafts).length; return (D.signoff.entries || []).length + ' recorded' + (k ? ' + ' + k + ' drafted this session' : ''); };
+
+// The trail pane: every hop that carries the traced parameter, upstream then downstream, each hop one card.
+function trailHtml(tr) {
+  const n = by.nodes[tr.node], differ = tr.hops.filter(l => DIFFER.test(l.status.toUpperCase())).length;
+  const val = (v, u) => v !== '' ? ' = ' + esc(v) + (u ? ' ' + esc(u) : '') : '';
+  const flow = (a, b) => colOf(by.nodes[a.source]) - colOf(by.nodes[b.source]) || String(by.nodes[a.target].label).localeCompare(by.nodes[b.target].label) || a.index - b.index;
+  const card = (l, up) => {
+    const s = by.nodes[l.source], t = by.nodes[l.target], e = by.edges[l.edge], origin = up ? l.target === tr.node && l.target_name === tr.name : l.source === tr.node && l.source_name === tr.name;
+    return '<div class="tcard' + (origin ? ' origin' : '') + '">' +
+      '<div>' + nodeLink(s) + ' ' + (l.source_name ? '<b class="mono">' + esc(l.source_name) + '</b>' : '<span class="muted">(not named)</span>') + val(l.source_value, l.unit) + '</div>' +
+      '<div class="arrow" aria-hidden="true">&darr;</div>' +
+      '<div>' + nodeLink(t) + ' <b class="mono">' + esc(l.target_name) + '</b>' + val(l.target_value, '') + '</div>' +
+      '<div class="chips">' + lkChip(l.status) + (e ? edgeFlagChips(e) + soGlyph(e.signoff) : '') + '</div>' +
+      (l.detail ? '<div class="muted">' + esc(l.detail) + '</div>' : '') +
+      (e ? '<div class="row"><button type="button" class="small" data-act="edge" data-id="' + esc(e.id) + '">Open relation</button></div>' : '') + '</div>';
+  };
+  const list = (title, hops, up) => '<h3>' + title + ' (' + hops.length + ')</h3>' +
+    (hops.length ? hops.slice().sort(flow).map(l => card(l, up)).join('') : '<p class="muted">Nothing recorded ' + (up ? 'upstream: this is where the quantity is entered.' : 'downstream: nothing reads it.') + '</p>');
+  return '<div class="hdr"><span class="muted">Parameter trail</span><span class="row"><button type="button" class="small" data-act="tfit">Fit trail</button>' +
+    '<button type="button" class="small" data-act="texit">Exit trail</button></span></div>' +
+    '<h2>Parameter trail &middot; <span class="mono">' + esc(tr.name) + '</span></h2><p>Traced from ' + nodeLink(n) + '</p>' +
+    '<p><b>' + tr.nodes.size + ' nodes &middot; ' + tr.hops.length + ' hops &middot; ' + differ + ' differ</b></p>' +
+    '<p class="muted">Each hop is one parameter crossing one relation. The graph shows only the trail; click a node to inspect it and come back with Back to trail. Differ counts hops whose two sides disagree (DIFFERS or NAME NOT IN JOURNAL); CHANGED only means a Mathcad template value was replaced by the case input.</p>' +
+    list('Upstream', tr.up, true) + list('Downstream', tr.down, false);
+}
+
+// Parameters whose name contains every search token, above the tabs while nothing is selected.
+function paramMatchesHtml() {
+  const ps = state.search ? state.search.params : [];
+  if (!ps.length) return '';
+  return '<h3>Parameter matches (' + ps.length + ')</h3><ul class="plain pmatch">' + ps.slice(0, PMAX).map(p => '<li>' + nodeLink(by.nodes[p.node]) + ' &middot; <span class="mono">' + esc(p.name) + '</span>' +
+    (p.value !== '' ? ' = ' + esc(p.value) + (p.unit ? ' ' + esc(p.unit) : '') : '') + ' ' + traceBtn(p.node, p.name) + '</li>').join('') + '</ul>' +
+    (ps.length > PMAX ? '<p class="muted">and ' + (ps.length - PMAX) + ' more; add words to the search to narrow them.</p>' : '');
+}
 
 // What the record gained between the scrubber's previous date and the chosen one.
 function asOfHtml() {
@@ -916,13 +1162,13 @@ function tabsHtml() {
 
 function renderPane() {
   const pane = $('#pane'), ae = document.activeElement;
-  const fkey = el => el.dataset.id || el.dataset.tab || el.dataset.d || el.dataset.i || '';
+  const fkey = el => el.dataset.id || el.dataset.tab || el.dataset.d || el.dataset.i || (el.dataset.node ? el.dataset.node + '|' + el.dataset.name : '');
   const fk = ae && pane.contains(ae) && ae.dataset && ae.dataset.act ? [ae.dataset.act, fkey(ae)] : null;
-  const w = state.walk && by.nodes[state.walk.target] ? state.walk : null;
-  const key = w ? 'w:' + w.target + ':' + w.i : state.selEdge ? 'e:' + state.selEdge : state.selId ? 'n:' + state.selId : 't:' + state.tab, top = pane.scrollTop;
+  const w = state.walk && by.nodes[state.walk.target] ? state.walk : null, tr = state.trail && by.nodes[state.trail.node] ? state.trail : null;
+  const key = w ? 'w:' + w.target + ':' + w.i : state.selEdge ? 'e:' + state.selEdge : state.selId ? 'n:' + state.selId : tr ? 'p:' + tr.node + '|' + tr.name : 't:' + state.tab, top = pane.scrollTop;
   pts = {}; ptSeq = 0;
   pane.innerHTML = w ? walkHtml(w) : state.selEdge && by.edges[state.selEdge] ? edgeHtml(by.edges[state.selEdge]) :
-    state.selId && by.nodes[state.selId] ? nodeHtml(by.nodes[state.selId]) : tabsHtml();
+    state.selId && by.nodes[state.selId] ? nodeHtml(by.nodes[state.selId]) : tr ? trailHtml(tr) : paramMatchesHtml() + tabsHtml();
   pane.scrollTop = key === paneKey ? top : 0;
   paneKey = key;
   if (fk) {
@@ -982,6 +1228,10 @@ function wire() {
       case 'edge': selectEdge(id); break;
       case 'back': state.selEdge = null; state.draft = null; applyView(); renderPane(); break;
       case 'clear': clearSelection(); break;
+      case 'trace': traceParam(b.dataset.node, b.dataset.name); break;
+      case 'tback': backToTrail(); break;
+      case 'texit': exitTrail(); break;
+      case 'tfit': fitTrail(); break;
       case 'walk': startWalk(id || state.selId); break;
       case 'wstep': if (state.walk) walkTo(state.walk.i + Number(b.dataset.d)); break;
       case 'wgo': walkTo(Number(b.dataset.i)); break;
@@ -996,6 +1246,8 @@ function wire() {
       }
     }
   });
+  // <details> toggle events do not bubble: remember what the reader opened or closed across redraws.
+  pane.addEventListener('toggle', ev => { const d = ev.target; if (d && d.tagName === 'DETAILS' && d.dataset.key) state.detOpen[d.dataset.key] = d.open; }, true);
   pane.addEventListener('input', ev => {
     const el = ev.target;
     if (!el.classList) return;
@@ -1026,7 +1278,9 @@ function wire() {
   q.addEventListener('keydown', ev => {
     if (ev.key === 'Enter') {
       clearTimeout(qt); doSearch();
-      if (state.search && state.search.nodes.size === 1) selectNode([...state.search.nodes][0], true);
+      const s = state.search;
+      if (s && s.nodes.size === 1) selectNode([...s.nodes][0], true);
+      else if (s && s.params.length === 1) traceParam(s.params[0].node, s.params[0].name);
     }
   });
   $('#dirs').addEventListener('click', ev => {
@@ -1102,7 +1356,7 @@ function init() {
 
 try { init(); } catch (err) { const m = $('#cy-msg'); m.textContent = 'Viewer error: ' + err.message; m.hidden = false; }
 window.__lineage = { state, restyle, selectNode, selectEdge, clearSelection, startWalk, walkTo, endWalk, walkHops, setAsOf, toggleDraft, makeDraft, keepDraft,
-  signoffDocument, downloadSignoffs, get cy() { return cy; }, get data() { return D; } };
+  signoffDocument, downloadSignoffs, trace: traceParam, exitTrail, fitTrail, get trail() { return state.trail; }, get cy() { return cy; }, get data() { return D; } };
 })();
 </script>
 </body>
