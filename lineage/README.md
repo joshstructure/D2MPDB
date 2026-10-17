@@ -24,7 +24,17 @@ The graph has three levels.
    - Saved case to generated Mathcad cap sheet: 58 input-mapping rows, each with before and after values.
    - Sources to backwall case: each backwall input names its source.
    - Geometry notebook to cap cases: machine geometry consistency checks.
-3. **Parameters.** Values carried on nodes and edges.
+   - Journal to cap cases: the cap formulas that name a journal module (`BridgeGeometry_2Beam`, `PedBridge`), with the saved case value. See [Cap formula traces](#cap-formula-traces).
+3. **Parameters.** Values carried on nodes and edges. Each parameter has a `role`:
+
+| Role | Where | What it is |
+| --- | --- | --- |
+| `input` | Case nodes | A saved-case input with its unit, and the governing FBMP load case where the case records one |
+| `identity` | FBMP XML nodes | The file's SHA-256 against the register and against the hash the saved case requires |
+| `envelope` | FBMP XML nodes | One row per member, exact limit state and force component (M2, M3, V2, V3, T): signed minimum and maximum, absolute maximum, governing load case, combination, element and end |
+| `summary` | FBMP XML nodes | The XML's own `OUTPUT_SUMMARY` extremes, with a magnitude comparison against the element-end rows |
+| `formula` | Case nodes, journal edges | One row per cap formula definition: name, formula, evaluated value, note |
+| `output` | Mathcad sheet nodes | Verification snapshot values |
 
 The generator reads these files:
 
@@ -34,10 +44,30 @@ The generator reads these files:
 | `project_current/decisions.md` | D-### decisions |
 | `project_current/coherence/items_snapshot.csv` | COH-### items |
 | `project_current/coherence/machine_checks.json` | Health statuses |
-| `project_current/cap_design/{pier,end_bents,end_bent_2,backwall}/selected_case.json` | Inputs with units, governing FBMP load cases, backwall input sources |
+| `project_current/cap_design/{pier,end_bents,end_bent_2,backwall}/selected_case.json` | Inputs with units, governing FBMP load cases, backwall input sources; the cap cases are also evaluated for the formula trace |
+| `project_current/fbmp/**/*.XML` (every registered export that is present) | Envelope and summary rows on the XML node |
+| `FBMP_Envelope_Extractor.ipynb` | The embedded, stdlib-only extractor that computes the envelopes |
+| `pier_cap/` (the cap notebook's package, via the project `.venv`) | The formula trace; the package content hash is recorded as `cap_package` |
+| `journal/D2_I95_Project_Journal.bpad` | Whether each journal module and variable named by a cap formula occurs in the journal |
 | `exports/cap-mathcad-20261017/` (when present) | Source and verification record, `Verification.json`, the three Input Mapping CSVs |
 
-At the time of writing the build has 35 nodes, 64 edges, 619 parameters, 42 decisions and 28 coherence items.
+At the time of writing the build has 35 nodes, 67 edges, 1989 parameters, 42 decisions and 28 coherence items.
+
+### FBMP envelopes
+
+Each registered FB-MultiPier XML that is present (PIER-XML, PIER-MINTIP-XML, EB-XML, EB-MINTIP-XML; EB2-XML is missing) carries the full strength and service envelope tables as parameters. They are computed by the same code as the standalone [FBMP_Envelope_Extractor.ipynb](../FBMP_Envelope_Extractor.ipynb): the generator executes the notebook's first code cell up to its Colab interface and calls `read_fbmp`, `limit_state_table`, `native_envelopes` and `comparison`. The rows use the XML's original element-local I/J end-force signs for each exact limit state and member (the cap and each pile); no signs are changed, no load factors or unit conversions are applied, and no interior peaks are inferred.
+
+The first parameter on each XML node is its identity row, and every envelope row repeats the file's SHA-256 in `xml_sha256`. The registered pier and End Bent 1 exports are not the exports the selected reports name, so their identity rows read `MISMATCH: PIER-CASE requires c8420fad…` and `MISMATCH: EB-CASE requires 23bb3afc…`. Those envelopes therefore describe the preserved earlier analyses, not the analyses behind the current cap cases, and the FBMP-export-to-case edge keeps its governing rows and `identity-mismatch` flag. The minimum-tip variants have no saved case and read `VARIANT`. The node's `envelope_source` records the extractor version, FBMP version, load cases, members and the extractor's diagnostics: for both pier exports the `OUTPUT_SUMMARY` M2 and V3 magnitudes differ from the exported element ends, which the `summary` rows show as `DIFFERENT MAGNITUDE`.
+
+### Cap formula traces
+
+Each registered cap case (PIER-CASE, EB-CASE, EB2-CASE) carries the cap notebook's formula trace as `formula` parameters: one row per definition in `pier_cap/data/c005_formulas.json`, with the formula, the value the package evaluates from the saved case, and the definition's note. The generator imports `pier_cap.model` from the working tree, runs `evaluate` on `selected_case.json` and calls `formula_trace`, exactly as the notebook's own export does. The 1 October case export under `exports/` is not used; it belongs to an older case.
+
+Read the trace for what it is: the working-tree package's evaluation of the saved case at build time. It is not the registered report's own calculation (the register notes that existing reports were not regenerated with the current tool), and the package status it records (`formula_trace.package_status`) is not engineering acceptance. Where the package replaces a sectional row with an actual-cage LRFD check, the row's formula is that check's basis text and its value the check status and D/C ratio.
+
+The five formulas that name a journal module (`b`, `h` from `BridgeGeometry_2Beam`; `C_t`, `C_b`, `C_s` from `PedBridge`) also appear on a journal-to-case edge, with `module_in_journal` and `variable_in_journal` recording whether those names occur in the registered journal file, and `analysis_geometry` showing the value FBMP import wrote from the XML cap section where the case records one. The formula is the tool's definition; the value is the saved input. The graph does not compare it with the journal's live value.
+
+If the package cannot evaluate a case (missing dependencies, a case that fails validation), the case node records `formula_trace.available = false` with the reason, the journal edge is omitted, and nothing is guessed. At the time of writing all three cases trace without user input.
 
 ### Unregistered nodes
 
@@ -78,18 +108,19 @@ Node colors come from `machine_checks.json`.
 .venv\Scripts\python.exe -m unittest tests.test_lineage_graph -v
 ```
 
-The first command rewrites `lineage.json` and `index.html`. `--check` reports whether they are stale without writing anything. [`scripts/build_lineage_graph.py`](../scripts/build_lineage_graph.py) is the generator.
+The first command rewrites `lineage.json` and `index.html`. `--check` reports whether they are stale without writing anything. [`scripts/build_lineage_graph.py`](../scripts/build_lineage_graph.py) is the generator. A build takes about half a minute, most of it evaluating the three cap cases, and needs the project `.venv` because the formula trace imports `pier_cap`.
 
 [`tests/test_lineage_graph.py`](../tests/test_lineage_graph.py) fails until the outputs are rebuilt after a source change.
 
-Rebuild after any change to the source register, decisions, the coherence tracker, saved cases or Mathcad exports. Rebuild after editing `viewer.html` too, because `index.html` is generated from it.
+The fingerprint covers every file the generator reads plus the content of the three formula traces (`derived` in `lineage.json`), so the graph is stale whenever the cap package's answer for a saved case changes, not whenever any package file is edited. `cap_package.sha256` records the package content at the last build.
+
+Rebuild after any change to the source register, decisions, the coherence tracker, saved cases, FBMP XML exports, the envelope notebook, the cap package or Mathcad exports. Rebuild after editing `viewer.html` too, because `index.html` is generated from it.
 
 ## Limits
 
-The graph records what the project files say about each other. It is not engineering acceptance, and it does not rerun any calculation. The EMULATED Mathcad sheets have not been recalculated natively.
+The graph records what the project files say about each other. It is not engineering acceptance. The only calculations it runs are the two reused project extractors described above, on the saved cases and XML exports as they are; it changes no source. The EMULATED Mathcad sheets have not been recalculated natively, and the formula traces are the current package's evaluation, not the registered reports'.
 
 ## Not yet built
 
 - A time scrubber over `registered_on` and decision dates.
 - A verification sign-off sidecar, so the graph doubles as the QC record.
-- FBMP envelope extraction and a cap notebook formula trace as further parameter sources.

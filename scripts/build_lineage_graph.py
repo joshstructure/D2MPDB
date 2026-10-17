@@ -11,22 +11,40 @@ information flows from the project inputs to the deliverables, at three levels:
             saved-case provenance and the coherence machine checks
 * leaves  - parameters on nodes and edges: saved-case inputs with units and
             governing FBMP cases, backwall-case input sources, Mathcad input
-            mappings (before/after values) and geometry consistency checks
+            mappings (before/after values), geometry consistency checks,
+            FBMP envelope tables on the XML nodes (role 'envelope' and
+            'summary', with the XML's SHA-256 beside every row) and the cap
+            notebook formula trace on the case nodes (role 'formula'), whose
+            journal-module references become JOURNAL -> case edges
 
 Decisions (D-###) and coherence items (COH-###) are attached to the nodes and
 edges they reference. Machine-check statuses colour the nodes.
+
+Two parameter sources reuse project code instead of parsing anew:
+
+* FBMP envelopes come from the stdlib extractor embedded in
+  FBMP_Envelope_Extractor.ipynb (its first code cell, up to the Colab
+  interface), executed here and applied to every registered XML that is present.
+* The formula trace comes from the pier_cap package (the cap notebook's engine):
+  pier_cap.model.evaluate on each registered selected_case.json, then
+  pier_cap.model.formula_trace. That needs the project .venv. The trace is what
+  the working-tree package computes from the saved case today; it is not the
+  registered report's own calculation. The trace content is part of the
+  fingerprint, so the graph is stale whenever the package's answer changes.
 
 Outputs:
     lineage/lineage.json   the graph
     lineage/index.html     lineage/viewer.html with the graph embedded
 
-Rebuild after any register, decision, tracker, case or Mathcad-export change:
+Rebuild after any register, decision, tracker, case, FBMP XML, Mathcad-export,
+envelope-notebook or pier_cap change:
     .venv\\Scripts\\python.exe scripts\\build_lineage_graph.py
 Check without writing:
     .venv\\Scripts\\python.exe scripts\\build_lineage_graph.py --check
 
-Nothing here reruns a calculation or changes a source. The graph records what the
-project files say about each other; it is not engineering acceptance.
+Nothing here changes a source. Evaluating the cap package and the envelope
+extractor only reads the saved cases and XML exports. The graph records what
+the project files say about each other; it is not engineering acceptance.
 """
 from __future__ import annotations
 
@@ -38,7 +56,7 @@ import re
 import sys
 from pathlib import Path
 
-GENERATOR_VERSION = "1.0.0"
+GENERATOR_VERSION = "1.1.0"
 
 ROOT = Path(__file__).resolve().parents[1]
 PC = ROOT / "project_current"
@@ -52,6 +70,8 @@ DECISIONS = PC / "decisions.md"
 ITEMS = PC / "coherence" / "items_snapshot.csv"
 CHECKS = PC / "coherence" / "machine_checks.json"
 MATHCAD_EXPORT = ROOT / "exports" / "cap-mathcad-20261017"
+ENVELOPE_NOTEBOOK = ROOT / "FBMP_Envelope_Extractor.ipynb"
+CAP_PACKAGE = ROOT / "pier_cap"
 
 # Stage columns, left to right. Each register source is placed by STAGE_OF.
 STAGES = [
@@ -95,6 +115,7 @@ CASE_FILES = {
 }
 BACKWALL_CASE = PC / "cap_design" / "backwall" / "selected_case.json"
 XML_OF_CASE = {"PIER-CASE": "PIER-XML", "EB-CASE": "EB-XML", "EB2-CASE": "EB2-XML"}
+CASE_OF_XML = {xml: case for case, xml in XML_OF_CASE.items()}
 GEOMETRY_CHECK_CASE = {"PIER": "PIER-CASE", "EB": "EB-CASE"}
 MATHCAD_LABEL_CASE = {"End Bent 1": "EB-CASE", "End Bent 2": "EB2-CASE", "Pier Cap": "PIER-CASE"}
 
@@ -120,6 +141,18 @@ SUPPLEMENT_NODES = [
 ]
 
 ISSUE_ROW_OFFSET = 8  # tracker row 9 holds COH-001
+
+# A cap formula such as "b = BridgeGeometry_2Beam.PierCap_width to in" names a
+# journal module and one of its variables.
+JOURNAL_REF = re.compile(r"\b([A-Za-z_]\w*)\.([A-Za-z_]\w*)\b")
+ENVELOPE_BASIS = ("Original XML element-local I/J end forces, enveloped per exact limit state and member by the "
+                  "extractor embedded in FBMP_Envelope_Extractor.ipynb. FBMP OUTPUT_SUMMARY rows are copied "
+                  "separately (role 'summary'). No signs are changed, no load factors or unit conversions applied, "
+                  "no interior peaks inferred.")
+TRACE_BASIS = ("pier_cap.model.formula_trace(evaluate(selected_case.json)) with the pier_cap package in the working "
+               "tree at build time. Formulas are the cap tool's definitions (pier_cap/data/c005_formulas.json); "
+               "values are the saved case evaluated by that package. This is not the registered report's own "
+               "calculation and not engineering acceptance.")
 
 # Decisions whose text names no register ID. Hand-mapped from their subject so
 # they attach to the nodes they govern; recorded as refs.inferred in the graph.
@@ -206,6 +239,100 @@ def find_refs(text: str, source_ids: list[str]) -> dict:
     decisions = sorted(set(re.findall(r"\bD-\d{3}\b", text)))
     issues = sorted(set(re.findall(r"\bCOH-\d{3}\b", text)))
     return {"sources": sorted(found_sources), "decisions": decisions, "issues": issues}
+
+
+# ------------------------------------------------------- reused project code
+def load_envelope_extractor(path: Path) -> dict:
+    """Execute the stdlib extractor embedded in FBMP_Envelope_Extractor.ipynb.
+
+    The notebook's first code cell defines read_fbmp, limit_state_table,
+    native_envelopes, comparison and diagnostics before a Colab-only interface
+    that needs pandas and ipywidgets. Only the part before that interface runs.
+    """
+    notebook = read_json(path)
+    cell = next((c for c in notebook["cells"] if c.get("cell_type") == "code"
+                 and "def read_fbmp" in "".join(c["source"])), None)
+    if cell is None:
+        raise ValueError(f"{path.name} has no code cell defining read_fbmp")
+    core = "".join(cell["source"]).split('"""Colab notebook interface.', 1)[0]
+    api = {"__name__": "fbmp_envelope_extractor"}
+    exec(compile(core, str(path), "exec"), api)
+    for name in ("read_fbmp", "limit_state_table", "native_envelopes", "comparison", "diagnostics"):
+        if name not in api:
+            raise ValueError(f"{path.name} extractor lacks {name}")
+    return api
+
+
+def load_cap_package() -> tuple[dict | None, str]:
+    """Import the cap notebook's engine from pier_cap/. Returns (api, reason-if-missing)."""
+    if str(ROOT) not in sys.path:
+        sys.path.insert(0, str(ROOT))
+    try:
+        from pier_cap.model import evaluate, formula_trace, upgrade_case, validate_case
+    except Exception as exc:  # noqa: BLE001 - any import failure means "not available here"
+        return None, f"pier_cap could not be imported: {type(exc).__name__}: {exc}"
+    return {"evaluate": evaluate, "formula_trace": formula_trace, "upgrade_case": upgrade_case,
+            "validate_case": validate_case}, ""
+
+
+def package_fingerprint(package: Path) -> dict:
+    """Content hash of every file in the package, so the graph records which code produced a trace."""
+    files = sorted(p for p in package.rglob("*") if p.is_file() and "__pycache__" not in p.parts)
+    h = hashlib.sha256()
+    for p in files:
+        h.update(p.relative_to(package).as_posix().encode("utf-8") + b"\0" + sha256_file(p).encode("ascii") + b"\n")
+    return {"path": rel(package), "files": len(files), "sha256": h.hexdigest()}
+
+
+def envelope_rows(api: dict, xml_path: Path, digest: str) -> tuple[list[dict], dict]:
+    """Strength/service envelope rows and FBMP summary rows for one XML, plus a source summary."""
+    result = api["read_fbmp"](xml_path.read_bytes(), xml_path.name)
+    table = api["limit_state_table"](result)
+    native = api["native_envelopes"](result)
+    compare = {(c["Member_type"], c["Component"], c["Unit"]): c for c in api["comparison"](result)}
+    rows = []
+    for r in table:
+        member = r["Member"] if r["Member"] != "all" else r["Member_type"]
+        row = {"name": f"{member}: {r['Component']} {r['Limit_state']}", "role": "envelope", "member": member,
+               "limit_state": r["Limit_state"], "family": r["Limit_state_family"], "component": r["Component"],
+               "unit": r["Unit"]}
+        for prefix, key in (("min", "Min"), ("max", "Max"), ("abs_max", "Abs_max")):
+            row[prefix] = r[key]
+            if key == "Abs_max":
+                row["abs_max_signed"] = r["Abs_max_signed"]
+            row[prefix + "_load_case"] = r[key + "_Load_case"]
+            row[prefix + "_combination"] = r[key + "_Combination"]
+            row[prefix + "_element"] = r[key + "_Element"]
+            row[prefix + "_end"] = r[key + "_End"]
+        row["records"] = r["Available_records"]
+        row["xml_sha256"] = digest
+        rows.append(row)
+    for r in native:
+        c = compare.get((r["Member_type"], r["Component"], r["Unit"]), {})
+        rows.append({
+            "name": f"{r['Member_type']}: {r['Component']} FBMP summary", "role": "summary",
+            "member": r["Member_type"], "component": r["Component"], "unit": r["Unit"],
+            "min": r["Min"], "min_load_case": r["min_Load_case"], "min_combination": r["min_Combination"],
+            "min_limit_state": r["min_Limit_state"],
+            "max": r["Max"], "max_load_case": r["max_Load_case"], "max_combination": r["max_Combination"],
+            "max_limit_state": r["max_Limit_state"], "abs_max": r["Abs_max"],
+            "status": c.get("Comparison", r["Status"]),
+            "detail": (f"OUTPUT_SUMMARY |max| {fmt_value(c.get('Reported_abs_max'))} vs all exported element ends "
+                       f"|max| {fmt_value(c.get('All_exported_ends_abs_max'))}" if c else r["Status"]),
+            "xml_sha256": digest,
+        })
+    meta = result["metadata"]
+    load_cases = sorted({(c["Limit_state"], c["Load_case"], c["Combination"]) for c in result["cases"]})
+    summary = {
+        "extractor": f"{ENVELOPE_NOTEBOOK.name} embedded extractor {api.get('VERSION', '')}",
+        "basis": ENVELOPE_BASIS, "fbmp_version": meta["fbmp_version"], "project": meta["project"],
+        "analysis": meta["analysis"], "unit_system": meta["unit_system"],
+        "load_cases": [{"limit_state": s, "load_case": lc, "combination": cb} for s, lc, cb in load_cases],
+        "members": sorted({r["member"] for r in rows if r["role"] == "envelope"}),
+        "envelope_rows": len(table), "summary_rows": len(native), "end_force_records": meta["raw_end_rows"],
+        "diagnostics": api["diagnostics"](result),
+    }
+    return rows, summary
 
 
 # ------------------------------------------------------------------- building
@@ -319,7 +446,7 @@ def build() -> dict:
         audit = (case.get("analysis") or {}).get("xml_audit") or {}
         governing = audit.get("governing") or {}
         for name, value in inputs.items():
-            param = {"name": name, "value": fmt_value(value), "unit": units.get(name) or ""}
+            param = {"name": name, "value": fmt_value(value), "unit": units.get(name) or "", "role": "input"}
             gov = governing.get(name)
             if isinstance(gov, dict):
                 param["governing"] = (f"{gov.get('state', '')} load case {gov.get('load_case', '')}, "
@@ -366,7 +493,7 @@ def build() -> dict:
         sources = case.get("sources", {})
         for name, value in inputs.items():
             src = sources.get(name) or {}
-            param = {"name": name, "value": fmt_value(value), "unit": units.get(name) or "",
+            param = {"name": name, "value": fmt_value(value), "unit": units.get(name) or "", "role": "input",
                      "source_text": src.get("source", ""), "source_status": src.get("status", "")}
             refs = find_refs(src.get("source", ""), source_ids)
             if refs["sources"]:
@@ -377,6 +504,99 @@ def build() -> dict:
                                             "source_text": src.get("source", ""), "status": src.get("status", "")})
             node["parameters"].append(param)
         node["confirmations"] = case.get("confirmations", {})
+
+    # -- FBMP XML envelopes: the notebook extractor on every registered XML present
+    envelope_api = None
+    if ENVELOPE_NOTEBOOK.exists():
+        g.use(ENVELOPE_NOTEBOOK)
+        envelope_api = load_envelope_extractor(ENVELOPE_NOTEBOOK)
+    for node in g.nodes.values():
+        if node["kind"] != "analysis" or not node["path"] or not (ROOT / node["path"]).exists():
+            continue
+        if envelope_api is None:
+            node["envelope_source"] = {"available": False, "reason": f"{rel(ENVELOPE_NOTEBOOK)} is not present"}
+            continue
+        xml_path = ROOT / node["path"]
+        g.use(xml_path)
+        digest = sha256_file(xml_path)
+        rows, summary = envelope_rows(envelope_api, xml_path, digest)
+        case_id = CASE_OF_XML.get(node["id"], "")
+        e = g.edge(node["id"], case_id) if case_id else None
+        required = ((e or {}).get("analysis_identity") or {}).get("case_requires_sha256", "")
+        register_match = digest == node["sha256"]
+        case_match = (digest == required) if required else None
+        if required:
+            verdict = (f"{'MATCH' if case_match else 'MISMATCH'}: {case_id} requires {required[:12]}…, "
+                       f"this file is {digest[:12]}…")
+        else:
+            verdict = "VARIANT: no saved case names this export"
+        if not register_match:
+            verdict += "; file differs from the registered hash"
+        identity = {"name": "XML identity (SHA-256)", "role": "identity", "value": digest, "status": verdict,
+                    "detail": f"registered {node['sha256']}" + (f"; {case_id} requires {required}" if required else ""),
+                    "xml_sha256": digest}
+        node["parameters"] = [identity] + rows + node["parameters"]
+        node["envelope_source"] = {
+            "available": True, "filename": xml_path.name, "sha256": digest, "registered_sha256": node["sha256"],
+            "register_match": register_match, "case_id": case_id, "case_requires_sha256": required,
+            "case_match": case_match, **summary,
+        }
+
+    # -- cap formula trace: the pier_cap engine on each registered saved case
+    cap_api, cap_reason = load_cap_package()
+    cap_package = (package_fingerprint(CAP_PACKAGE) if CAP_PACKAGE.exists()
+                   else {"path": rel(CAP_PACKAGE), "files": 0, "sha256": ""})
+    journal_bytes = b""
+    journal_path = ROOT / g.node("JOURNAL")["path"] if g.nodes.get("JOURNAL", {}).get("path") else None
+    if journal_path is not None and journal_path.exists():
+        g.use(journal_path)
+        journal_bytes = journal_path.read_bytes()
+    derived = []
+    for case_id, path in CASE_FILES.items():
+        if not path.exists():
+            continue
+        node = g.node(case_id)
+        if cap_api is None:
+            node["formula_trace"] = {"available": False, "reason": cap_reason, "basis": TRACE_BASIS}
+            continue
+        try:
+            case = cap_api["upgrade_case"](read_json(path))
+            cap_api["validate_case"](case)
+            evaluation = cap_api["evaluate"](case)
+            trace = cap_api["formula_trace"](evaluation)
+        except Exception as exc:  # noqa: BLE001 - record the failure; never guess a trace
+            node["formula_trace"] = {"available": False, "reason": f"{type(exc).__name__}: {exc}", "basis": TRACE_BASIS}
+            continue
+        digest = hashlib.sha256(json.dumps(trace, sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest()
+        derived.append({"id": f"formula-trace:{case_id}", "sha256": digest, "package_sha256": cap_package["sha256"]})
+        analysis_geometry = (case.get("analysis") or {}).get("geometry") or {}
+        journal_rows = []
+        for entry in trace:
+            node["parameters"].append({"name": entry["name"], "role": "formula", "value": entry["value"],
+                                       "formula": entry["formula"], "note": entry["note"]})
+            m = JOURNAL_REF.search(entry["formula"])
+            if not m:
+                continue
+            module, variable = m.group(1), m.group(2)
+            row = {"name": entry["name"], "role": "formula", "value": entry["value"], "formula": entry["formula"],
+                   "note": entry["note"], "module": module, "variable": variable}
+            if journal_bytes:
+                row["module_in_journal"] = module.encode("utf-8") in journal_bytes
+                row["variable_in_journal"] = variable.encode("utf-8") in journal_bytes
+            if entry["name"] in analysis_geometry:
+                row["analysis_geometry"] = fmt_value(analysis_geometry[entry["name"]])
+            journal_rows.append(row)
+        if journal_rows and "JOURNAL" in g.nodes:
+            e = g.add_edge("JOURNAL", case_id, "parameter", "journal variables named by cap formulas")
+            e["parameters"].extend(journal_rows)
+            e["basis"] = (TRACE_BASIS + " Each row's formula is the tool definition that names a journal module and "
+                          "variable; its value is the saved case input. module_in_journal and variable_in_journal "
+                          "record whether those names occur in the registered journal file. Where analysis_geometry "
+                          "is shown, FBMP import set that input from the XML cap section.")
+        node["formula_trace"] = {
+            "available": True, "basis": TRACE_BASIS, "entries": len(trace), "journal_references": len(journal_rows),
+            "package_status": getattr(evaluation, "status", ""), "sha256": digest, "package_sha256": cap_package["sha256"],
+        }
 
     # -- Mathcad cap sheets (generated deliverables) ------------------------
     record_path = MATHCAD_EXPORT / "Source and verification record.json"
@@ -495,13 +715,18 @@ def build() -> dict:
 
     inputs = sorted(g.inputs, key=rel)
     input_records = [{"path": rel(p), "sha256": sha256_file(p)} for p in inputs]
+    derived.sort(key=lambda d: d["id"])
+    # The formula traces are computed, not read, so their content joins the
+    # fingerprint: the graph is stale whenever the cap package's answer changes.
     fingerprint = hashlib.sha256(
-        (GENERATOR_VERSION + "\n" + "\n".join(f"{r['path']} {r['sha256']}" for r in input_records)).encode("utf-8")
+        (GENERATOR_VERSION + "\n" + "\n".join(f"{r['path']} {r['sha256']}" for r in input_records)
+         + "".join(f"\nderived:{d['id']} {d['sha256']}" for d in derived)).encode("utf-8")
     ).hexdigest()
 
     return {
         "schema": "d2mpdb.lineage-graph", "schema_version": 1, "generator_version": GENERATOR_VERSION,
-        "fingerprint": fingerprint, "inputs": input_records,
+        "fingerprint": fingerprint, "inputs": input_records, "derived": derived,
+        "cap_package": cap_package, "cap_trace": {"available": cap_api is not None, "reason": cap_reason},
         "checked_at_utc": checks.get("checked_at_utc", ""),
         "stages": [{"id": sid, "label": label} for sid, label in STAGES],
         "nodes": sorted(g.nodes.values(), key=lambda n: n["id"]),
@@ -554,6 +779,12 @@ def main(argv=None) -> int:
     print(f"wrote {rel(OUT_JSON)} and {rel(OUT_HTML)}: {len(graph['nodes'])} nodes, {len(graph['edges'])} edges, "
           f"{n_params} parameters, {len(graph['decisions'])} decisions, {len(graph['issues'])} issues; "
           f"fingerprint {graph['fingerprint'][:12]}")
+    envelopes = [n["id"] for n in graph["nodes"] if (n.get("envelope_source") or {}).get("available")]
+    traced = [n["id"] for n in graph["nodes"] if (n.get("formula_trace") or {}).get("available")]
+    untraced = [f"{n['id']} ({n['formula_trace']['reason']})" for n in graph["nodes"]
+                if n.get("formula_trace") and not n["formula_trace"]["available"]]
+    print(f"FBMP envelopes: {', '.join(envelopes) or 'none'}; formula traces: {', '.join(traced) or 'none'}"
+          + (f"; no trace for {', '.join(untraced)}" if untraced else ""))
     return 0
 
 

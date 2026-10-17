@@ -160,6 +160,107 @@ class LineageGraphTests(unittest.TestCase):
                 for name in GEOMETRY_CHECK_NAMES:
                     self.assertIn(name, names)
 
+    # ------------------------------------------------------- FBMP envelopes
+    def present_xml_nodes(self):
+        return [n for n in self.graph['nodes'] if n['kind'] == 'analysis' and n['path'] and (ROOT / n['path']).exists()]
+
+    def test_fbmp_envelope_parameters(self):
+        if not self.gen.ENVELOPE_NOTEBOOK.exists():
+            self.skipTest(f'{rel(self.gen.ENVELOPE_NOTEBOOK)} is not present')
+        present = self.present_xml_nodes()
+        if not present:
+            self.skipTest('no registered FBMP XML is present')
+        self.assertIn(rel(self.gen.ENVELOPE_NOTEBOOK), {i['path'] for i in self.graph['inputs']},
+                      'the envelope notebook is an input of the graph')
+        for node in present:
+            with self.subTest(node=node['id']):
+                src = node['envelope_source']
+                self.assertIs(src['available'], True, src.get('reason', ''))
+                digest = self.gen.sha256_file(ROOT / node['path'])
+                self.assertEqual(src['sha256'], digest, REBUILD)
+                self.assertEqual(src['register_match'], digest == node['sha256'])
+                identity = node['parameters'][0]
+                self.assertEqual(identity['role'], 'identity')
+                self.assertEqual(identity['value'], digest)
+                for p in node['parameters']:
+                    self.assertEqual(p['xml_sha256'], digest, f"{p['name']} does not carry the XML hash")
+                rows = [p for p in node['parameters'] if p['role'] == 'envelope']
+                self.assertGreater(len(rows), 0)
+                self.assertEqual(len(rows), src['envelope_rows'])
+                self.assertEqual({r['component'] for r in rows}, {'M2', 'M3', 'V2', 'V3', 'T'})
+                self.assertLessEqual({'Strength', 'Service'}, {r['family'] for r in rows})
+                self.assertIn('PIER_CAP', {r['member'] for r in rows})
+                for r in rows:
+                    self.assertLessEqual(r['min'], r['max'])
+                    self.assertEqual(r['abs_max'], max(abs(r['min']), abs(r['max'])))
+                    for key in ('min_load_case', 'min_combination', 'max_load_case', 'max_combination',
+                                'abs_max_load_case', 'abs_max_combination', 'limit_state', 'unit'):
+                        self.assertTrue(r[key], f"{r['name']} lacks {key}")
+                self.assertGreater(len([p for p in node['parameters'] if p['role'] == 'summary']), 0)
+
+    def test_xml_identity_row_agrees_with_case_edge(self):
+        present = self.present_xml_nodes()
+        if not present:
+            self.skipTest('no registered FBMP XML is present')
+        for node in present:
+            case_id = self.gen.CASE_OF_XML.get(node['id'])
+            src = node['envelope_source']
+            status = node['parameters'][0]['status']
+            with self.subTest(node=node['id'], case=case_id):
+                if not case_id or f"{node['id']}->{case_id}" not in self.edges:
+                    self.assertIsNone(src['case_match'])
+                    self.assertTrue(status.startswith('VARIANT'))
+                    continue
+                e = self.edge(f"{node['id']}->{case_id}")
+                required = e['analysis_identity']['case_requires_sha256']
+                self.assertEqual(src['case_requires_sha256'], required)
+                self.assertEqual(src['case_match'], src['sha256'] == required)
+                # The node-level row must say what the edge flag says: a mismatch stays visible.
+                self.assertEqual(status.startswith('MISMATCH'), 'identity-mismatch' in e['flags'])
+                self.assertEqual(status.startswith('MATCH'), e['analysis_identity']['match'])
+                self.assertIn(required, node['parameters'][0]['detail'])
+
+    # ---------------------------------------------------- cap formula trace
+    def test_cap_formula_trace_parameters(self):
+        if not self.graph['cap_trace']['available']:
+            self.skipTest('pier_cap is not importable here: ' + self.graph['cap_trace']['reason'])
+        cases = [(cid, p) for cid, p in self.gen.CASE_FILES.items() if p.exists()]
+        if not cases:
+            self.skipTest('no registered saved cap case is present')
+        derived = {d['id']: d for d in self.graph['derived']}
+        for case_id, _ in cases:
+            with self.subTest(case=case_id):
+                node = self.node(case_id)
+                ft = node['formula_trace']
+                if not ft['available']:
+                    # The generator records why rather than guessing; the README must list it.
+                    self.assertTrue(ft['reason'])
+                    self.assertNotIn(f'JOURNAL->{case_id}', self.edges)
+                    continue
+                rows = [p for p in node['parameters'] if p.get('role') == 'formula']
+                self.assertGreater(len(rows), 0)
+                self.assertEqual(len(rows), ft['entries'])
+                names = [r['name'] for r in rows]
+                self.assertEqual(len(names), len(set(names)), 'trace names are not unique')
+                for r in rows:
+                    self.assertIn('formula', r)
+                    self.assertIn('note', r)
+                inputs = {p['name'] for p in node['parameters'] if p.get('role') == 'input'}
+                self.assertLessEqual({'b', 'h'}, set(names) & inputs, 'cap width and depth are traced inputs')
+                journal = [r for r in rows if self.gen.JOURNAL_REF.search(r['formula'])]
+                self.assertEqual(len(journal), ft['journal_references'])
+                self.assertGreater(len(journal), 0, 'no cap formula names a journal module')
+                e = self.edge(f'JOURNAL->{case_id}')
+                self.assertEqual(e['kind'], 'parameter')
+                self.assertEqual([p['name'] for p in e['parameters']], [r['name'] for r in journal])
+                for p in e['parameters']:
+                    self.assertIn(f"{p['module']}.{p['variable']}", p['formula'])
+                    self.assertEqual(p['value'], next(r['value'] for r in rows if r['name'] == p['name']))
+                self.assertEqual(derived[f'formula-trace:{case_id}']['sha256'], ft['sha256'])
+                self.assertEqual(ft['package_sha256'], self.graph['cap_package']['sha256'])
+        self.assertIn('derived:', '\n'.join(['derived:'] if self.graph['derived'] else []),
+                      'traces are part of the fingerprint')
+
     # ------------------------------------------------- decisions and issues
     def test_decisions_parsed(self):
         decisions = self.graph['decisions']
