@@ -36,6 +36,10 @@ through the same Sites project to refresh it. The initial site is
   an identical moment value.
 - Select a component to isolate upstream sources, downstream uses or both. Wider registered
   dependencies are optional; recorded cycles are handled without recursion.
+  The trace starts collapsed as a narrow sidebar. Select any source to reopen it,
+  or use the sidebar chevron to expand or collapse it manually. Collapsing keeps
+  the selected node and map zoom; **Clear selection** collapses it again. On
+  small screens the collapsed trace becomes a compact bar below the map.
   The isolated trace orders sources by their connections and draws directional
   arrows for actual relationships. Separate branches keep their own lines;
   dashed lines are registered dependencies. The selected component is marked

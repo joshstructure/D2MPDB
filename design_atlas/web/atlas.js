@@ -7,11 +7,12 @@
   const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const byId = new Map(data.nodes.map(n => [n.id,n]));
   const valueById = new Map(data.values.map(v => [v.id,v]));
-  const state = { selected:null, value:'inputs.Vu_G', direction:'both', dependencies:false, allValues:false, parameterFocus:false, overview:true, origin:'all', scale:.7,x:0,y:0, edge:null, depth:0 };
+  const state = { selected:null, value:'inputs.Vu_G', direction:'both', dependencies:false, allValues:false, parameterFocus:false, overview:true, traceCollapsed:true, origin:'all', scale:.7,x:0,y:0, edge:null, depth:0 };
   const params = new URLSearchParams(location.hash.slice(1));
-  if (byId.has(params.get('source'))) {state.selected=params.get('source');state.overview=false;}
+  if (byId.has(params.get('source'))) {state.selected=params.get('source');state.overview=false;state.traceCollapsed=false;}
   if (valueById.has(params.get('value'))) {state.value=params.get('value');state.parameterFocus=params.get('trace')==='value';}
   let directoryOpen = false;
+  let oldWidth=0;
   const prettyStatus = {match:'Fingerprint match',changed:'Revision changed',missing:'Source missing',unmapped:'Unmapped',recorded:'Recorded',mismatch:'Conflict',declared:'Registered',context:'Context only',error:'Read error',review:'Review'};
   const badge = (status,label) => `<span class="status ${escape(status)}">${escape(label || prettyStatus[status] || status)}</span>`;
   function format(value) {
@@ -35,7 +36,31 @@
   }
   function navigate(change) {saveSelection();state.depth++;change();saveSelection(true);}
   function resetFilters() {state.origin='all';state.allValues=false;$('value-search').value='';$('value-category').value='';}
-  function renderSelection() {paintGraph();renderTrace();renderValues();}
+  function renderTraceSidebar() {
+    document.querySelector('.workspace').classList.toggle('trace-collapsed',state.traceCollapsed);
+    $('trace-content').hidden=state.traceCollapsed;$('trace-expand').hidden=!state.traceCollapsed;
+    $('trace-collapse').setAttribute('aria-expanded',String(!state.traceCollapsed));
+    $('trace-expand').setAttribute('aria-expanded',String(!state.traceCollapsed));
+    // A sidebar toggle reveals more canvas without resetting its zoom or pan.
+    oldWidth=$('map-canvas').clientWidth;
+    if(!state.traceCollapsed)drawTraceFlow();
+  }
+  function keepSelectedVisible() {
+    if(!state.selected)return;
+    const box=$('map-canvas').getBoundingClientRect(),p=positions[state.selected],margin=16;
+    const left=p[0]*state.scale+state.x,top=p[1]*state.scale+state.y;
+    state.x+=Math.max(margin-left,Math.min(0,box.width-margin-left-210*state.scale));
+    state.y+=Math.max(margin-top,Math.min(0,box.height-margin-top-86*state.scale));
+    applyTransform();
+  }
+  function toggleTrace(collapsed) {
+    state.traceCollapsed=collapsed;renderTraceSidebar();
+    if(!collapsed)keepSelectedVisible();
+    $(collapsed?'trace-expand':'trace-collapse').focus({preventScroll:true});
+    saveSelection();announce(collapsed?'Trace collapsed. More space for the map.':'Trace expanded.');
+  }
+  $('trace-collapse').onclick=()=>toggleTrace(true);$('trace-expand').onclick=()=>toggleTrace(false);
+  function renderSelection() {renderTraceSidebar();paintGraph();renderTrace();renderValues();}
   function scrollToValues() {$('values-panel').scrollIntoView({block:'start'});$('values-title').focus({preventScroll:true});}
   window.addEventListener('popstate',event=>{
     if(!event.state?.atlas)return;
@@ -49,7 +74,7 @@
     window.scrollTo(0,saved.scroll||0);
   });
   $('nav-back').onclick=()=>history.back();
-  function clearSelection(fitMap=false) {navigate(()=>{resetFilters();state.selected=null;state.parameterFocus=false;state.overview=true;state.direction='both';state.dependencies=false;state.edge=null;$('include-dependencies').checked=false;directoryOpen=false;$('source-search').value='';renderDirectory();renderSelection();if(fitMap)fit(data.nodes.map(n=>n.id));announce('Selection cleared. All sources are visible.');});}
+  function clearSelection(fitMap=false) {navigate(()=>{resetFilters();state.selected=null;state.parameterFocus=false;state.overview=true;state.traceCollapsed=true;state.direction='both';state.dependencies=false;state.edge=null;$('include-dependencies').checked=false;directoryOpen=false;$('source-search').value='';renderDirectory();renderSelection();if(fitMap)fit(data.nodes.map(n=>n.id));announce('Selection cleared. All sources are visible.');});}
   function overview() {clearSelection(true);window.scrollTo(0,0);}
   $('nav-overview').onclick=overview;
   $('help-button').onclick=()=>{$('quick-help').open=!$('quick-help').open;if($('quick-help').open)$('quick-help').scrollIntoView({block:'start'});};
@@ -203,6 +228,7 @@
     }).join('');
   }
   function drawTraceFlow() {
+    if(state.traceCollapsed)return;
     const flow=$('trace-flow');if(!flow)return;
     const cards=[...flow.querySelectorAll('[data-source]')],index=new Map(cards.map((el,i)=>[el.dataset.source,i]));
     const links=data.edges.filter(e=>traversable(e)&&index.has(e.source)&&index.has(e.target));
@@ -276,8 +302,8 @@
     $('source-detail').querySelectorAll('[data-inspect-edge]').forEach(b=>b.onclick=()=>selectEdge(data.edges.find(e=>e.id===b.dataset.inspectEdge)));
   }
   function selectNode(id,openValues=false,valueId=null) {
-    navigate(()=>{state.selected=id;if(valueId)state.value=valueId;state.edge=null;resetFilters();state.parameterFocus=false;state.overview=false;
-      renderSelection();if(openValues)scrollToValues();announce('Selected '+byId.get(id).title);});
+    navigate(()=>{state.selected=id;if(valueId)state.value=valueId;state.edge=null;resetFilters();state.parameterFocus=false;state.overview=false;state.traceCollapsed=false;
+      renderSelection();keepSelectedVisible();if(openValues)scrollToValues();announce('Selected '+byId.get(id).title);});
   }
   function selectEdge(edge) {
     selectNode(edge.target);
@@ -324,7 +350,7 @@
       const role=originOf(v);
       return `<tr class="${v.id===state.value?'selected':''}" data-value="${escape(v.id)}"><td><button data-value-button="${escape(v.id)}">${escape(v.label)}</button><small>${escape(v.key)} · ${escape(v.category)}</small></td><td>${v.value_kind==='expression'?'Formula':escape(format(v.value))} <small>${v.value_kind==='expression'?'Result not evaluated':escape(unitText(v.unit))}</small></td><td><span class="origin-badge ${role.kind}">${roleNames[role.kind]}</span>${role.from_node?`<button class="origin-link" data-origin-node="${escape(role.from_node)}">From ${escape(byId.get(role.from_node).title)} ↗</button>`:''}${state.allValues?`<small>At ${escape(byId.get(originNode(v)).title)}</small>`:''}</td></tr>`;
     }).join('');
-    $('value-rows').querySelectorAll('tr').forEach(row=>row.onclick=()=>navigate(()=>{state.value=row.dataset.value;if(!state.selected)state.selected=originNode(valueById.get(state.value));state.parameterFocus=true;state.overview=false;renderValues();paintGraph();renderTrace();$('value-detail').scrollTop=0;if(matchMedia('(max-width:760px)').matches)$('value-detail').scrollIntoView({block:'start'});announce('Tracing '+valueById.get(state.value).label);}));
+    $('value-rows').querySelectorAll('tr').forEach(row=>row.onclick=()=>navigate(()=>{state.value=row.dataset.value;if(!state.selected)state.selected=originNode(valueById.get(state.value));state.parameterFocus=true;state.overview=false;state.traceCollapsed=false;renderTraceSidebar();renderValues();paintGraph();renderTrace();keepSelectedVisible();$('value-detail').scrollTop=0;if(matchMedia('(max-width:760px)').matches)$('value-detail').scrollIntoView({block:'start'});announce('Tracing '+valueById.get(state.value).label);}));
     $('value-rows').querySelectorAll('[data-origin-node]').forEach(b=>b.onclick=e=>{e.stopPropagation();selectNode(b.dataset.originNode,true,b.closest('tr').dataset.value);});
     if(shown.length)renderValue(valueById.get(state.value));
     else $('value-detail').innerHTML=available.length?'<h3>No parameters match these filters</h3><p class="value-note">Clear the filters to see all extracted parameters at this node.</p><button id="clear-value-filters">Clear parameter filters</button>':'<h3>Parameters not yet extracted</h3><p class="value-note">The project map includes every registered source. Detailed extraction covers the pier-cap trail and the journal’s pier/end-bent node-entry tables.</p><button id="open-all-values">Browse all extracted values</button>';
@@ -399,7 +425,6 @@
   document.querySelector('.brand').onclick=e=>{e.preventDefault();overview();};
   history.scrollRestoration='manual';
   renderSelection();requestAnimationFrame(()=>{fit(data.nodes.map(n=>n.id));saveSelection();});
-  let oldWidth=$('map-canvas').clientWidth;
   new ResizeObserver(()=>{const width=$('map-canvas').clientWidth;if(Math.abs(width-oldWidth)>60){oldWidth=width;if(state.overview)fit(data.nodes.map(n=>n.id));}}).observe($('map-canvas'));
   new ResizeObserver(drawTraceFlow).observe($('trace-body'));
 })();
