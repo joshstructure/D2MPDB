@@ -443,7 +443,7 @@ def validate(data):
 
 def write_atlas(data,output):
     output=Path(output);output.mkdir(parents=True,exist_ok=True)
-    for name in ['index.html','atlas.css','atlas.js']:
+    for name in ['index.html','atlas.css','layouts.js','atlas.js']:
         shutil.copyfile(ASSETS/name,output/name)
     encoded=json.dumps(data,ensure_ascii=False,separators=(',',':'),allow_nan=False).replace('<','\\u003c')
     (output/'dataset.js').write_text('window.ATLAS_DATA = '+encoded+';\n',encoding='utf-8')

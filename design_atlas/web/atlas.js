@@ -7,8 +7,9 @@
   const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const byId = new Map(data.nodes.map(n => [n.id,n]));
   const valueById = new Map(data.values.map(v => [v.id,v]));
-  const state = { selected:null, value:'inputs.Vu_G', direction:'both', dependencies:false, allValues:false, parameterFocus:false, overview:true, traceCollapsed:true, origin:'all', scale:.7,x:0,y:0, edge:null, depth:0 };
+  const state = { layout:'default', selected:null, value:'inputs.Vu_G', direction:'both', dependencies:false, allValues:false, parameterFocus:false, overview:true, traceCollapsed:true, origin:'all', scale:.7,x:0,y:0, edge:null, depth:0 };
   const params = new URLSearchParams(location.hash.slice(1));
+  if(AtlasLayouts.modes.some(m=>m.id===params.get('layout')))state.layout=params.get('layout');
   if (byId.has(params.get('source'))) {state.selected=params.get('source');state.overview=false;state.traceCollapsed=false;}
   if (valueById.has(params.get('value'))) {state.value=params.get('value');state.parameterFocus=params.get('trace')==='value';}
   let directoryOpen = false;
@@ -30,6 +31,7 @@
   function snapshot() {return {...state, query:$('value-search').value,category:$('value-category').value,scroll:window.scrollY,tableScroll:document.querySelector('.value-table-wrap').scrollTop,detailScroll:$('value-detail').scrollTop};}
   function saveSelection(push=false) {
     const hash=new URLSearchParams(state.selected?{source:state.selected,value:state.value,trace:state.parameterFocus?'value':'node'}:{view:'all'});
+    if(state.layout!=='default')hash.set('layout',state.layout);
     history[push?'pushState':'replaceState']({atlas:snapshot()},'','#'+hash.toString());
     $('nav-back').disabled=state.depth===0;
     $('breadcrumbs').textContent=(byId.get(state.selected)?.title||'All sources')+(state.parameterFocus?' › '+valueById.get(state.value).label:'');
@@ -60,7 +62,10 @@
     saveSelection();announce(collapsed?'Trace collapsed. More space for the map.':'Trace expanded.');
   }
   $('trace-collapse').onclick=()=>toggleTrace(true);$('trace-expand').onclick=()=>toggleTrace(false);
-  function renderSelection() {renderTraceSidebar();paintGraph();renderTrace();renderValues();}
+  function renderSelection(preserveCamera=false) {
+    renderTraceSidebar();const changed=updateLayout();paintGraph();renderTrace();renderValues();
+    if(changed&&!preserveCamera&&state.layout==='neighborhood')fit(data.nodes.map(n=>n.id));
+  }
   function scrollToValues() {$('values-panel').scrollIntoView({block:'start'});$('values-title').focus({preventScroll:true});}
   window.addEventListener('popstate',event=>{
     if(!event.state?.atlas)return;
@@ -69,7 +74,7 @@
     $('value-search').value=saved.query||'';$('value-category').value=saved.category||'';
     $('include-dependencies').checked=state.dependencies;
     document.querySelectorAll('[data-direction]').forEach(b=>{b.classList.toggle('active',b.dataset.direction===state.direction);b.setAttribute('aria-pressed',String(b.dataset.direction===state.direction));});
-    renderSelection();applyTransform();saveSelection();
+    renderSelection(true);applyTransform();saveSelection();
     document.querySelector('.value-table-wrap').scrollTop=saved.tableScroll||0;$('value-detail').scrollTop=saved.detailScroll||0;
     window.scrollTo(0,saved.scroll||0);
   });
@@ -80,47 +85,19 @@
   $('help-button').onclick=()=>{$('quick-help').open=!$('quick-help').open;if($('quick-help').open)$('quick-help').scrollIntoView({block:'start'});};
   function announce(text) { $('announcement').textContent=text; }
 
-  // Every source uses the same stage columns and alphabetical row order.
-  // Selecting a trail changes emphasis, never the node positions.
-  const positions={};
-  const stages=['Basis','Analysis','Design','Detailing','Deliverables'];
-  stages.forEach((stage,col)=>data.nodes.filter(n=>n.stage===stage)
-    .sort((a,b)=>a.title.localeCompare(b.title,undefined,{numeric:true})||a.id.localeCompare(b.id))
-    .forEach((n,row)=>{positions[n.id]=[35+col*270,75+row*135];}));
-  const width=35+(stages.length-1)*270+245;
-  const bottom=Math.max(...Object.values(positions).map(p=>p[1]))+130;
-  $('map-world').style.width=width+'px';
-  $('map-world').style.height=bottom+'px';
-  $('map-links').setAttribute('width',width);
-  $('map-links').style.width=width+'px';
-  $('map-links').setAttribute('height',bottom);
-  $('map-links').style.height=bottom+'px';
-  $('map-labels').innerHTML=stages.map((s,i)=>`<span class="map-group-label" style="left:${35+i*270}px;top:30px">${escape(s.toUpperCase())} · ${data.nodes.filter(n=>n.stage===s).length}</span>`).join('');
+  let layout=AtlasLayouts.create(data,state.layout,state.selected),positions=layout.positions,layoutKey='';
   const ns='http://www.w3.org/2000/svg';
   const svg=$('map-links');
   svg.innerHTML='<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/></marker></defs>';
-  function edgePath(e,index) {
-    const a=positions[e.source],b=positions[e.target];
-    const ay=a[1]+43,by=b[1]+43,offset=14+(index%4)*6;
-    // Route in the column gutters and row gaps so long edges do not cross cards.
-    if (a[0]===b[0]) {
-      const x=a[0]+210,rail=x+offset;
-      return `M${x},${ay} H${rail} V${by} H${x}`;
-    }
-    const forward=b[0]>a[0],sign=forward?1:-1;
-    const ax=a[0]+(forward?210:0),bx=b[0]+(forward?0:210),exit=ax+sign*offset,entry=bx-sign*offset;
-    if(Math.abs(a[0]-b[0])===270){const rail=(exit+entry)/2;return `M${ax},${ay} H${rail} V${by} H${bx}`;}
-    const corridor=a[1]+100+(index%3)*8;
-    return `M${ax},${ay} H${exit} V${corridor} H${entry} V${by} H${bx}`;
-  }
-  const edgeElements=new Map();
+  const edgePath=(e,index)=>AtlasLayouts.edgePath(positions,e,index);
+  const edgeElements=new Map(),hitElements=new Map();
   data.edges.forEach((e,i)=>{
     const path=document.createElementNS(ns,'path');
     path.setAttribute('d',edgePath(e,i));path.setAttribute('marker-end','url(#arrow)');path.dataset.edge=e.id;
     const hit=document.createElementNS(ns,'path');hit.setAttribute('d',edgePath(e,i));hit.setAttribute('class','edge-hit');
     hit.addEventListener('click',()=>selectEdge(e));
     const title=document.createElementNS(ns,'title');title.textContent=e.label+' · '+e.basis;hit.appendChild(title);
-    svg.append(path,hit);edgeElements.set(e.id,path);
+    svg.append(path,hit);edgeElements.set(e.id,path);hitElements.set(e.id,hit);
   });
   const nodeElements=new Map();
   data.nodes.forEach(n=>{
@@ -131,6 +108,32 @@
     el.title=n.title+'\n'+(prettyStatus[n.status]||n.status)+(n.value_count?' · '+n.value_count+' values':'');
     el.addEventListener('click',()=>selectNode(n.id));
     $('map-nodes').appendChild(el);nodeElements.set(n.id,el);
+  });
+  $('layout-switcher').innerHTML=AtlasLayouts.modes.map(m=>`<button type="button" data-layout="${m.id}" aria-pressed="false" title="${escape(m.description)}">${escape(m.label)}</button>`).join('');
+  function updateLayout() {
+    const key=state.layout+'|'+(state.layout==='neighborhood'?state.selected:'');
+    if(layoutKey===key)return false;
+    layout=AtlasLayouts.create(data,state.layout,state.selected);positions=layout.positions;layoutKey=key;
+    $('map-world').style.width=layout.width+'px';$('map-world').style.height=layout.height+'px';
+    svg.setAttribute('width',layout.width);svg.style.width=layout.width+'px';
+    svg.setAttribute('height',layout.height);svg.style.height=layout.height+'px';
+    $('map-labels').innerHTML=layout.labels.map(l=>`<span class="map-group-label ${l.kind}" style="left:${l.x}px;top:${l.y}px;width:${l.width}px">${escape(l.text)}</span>`).join('');
+    nodeElements.forEach((el,id)=>{
+      el.style.left=positions[id][0]+'px';el.style.top=positions[id][1]+'px';
+      const n=byId.get(id);
+      el.title=n.title+'\n'+(prettyStatus[n.status]||n.status)+(n.value_count?' · '+n.value_count+' values':'')+(state.layout==='impact'?'\n'+layout.metrics[id]+' distinct downstream sources':'');
+    });
+    data.edges.forEach((e,i)=>{const path=edgePath(e,i);edgeElements.get(e.id).setAttribute('d',path);hitElements.get(e.id).setAttribute('d',path);});
+    $('layout-description').textContent=layout.description;
+    document.querySelectorAll('[data-layout]').forEach(b=>{const active=b.dataset.layout===state.layout;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
+    return true;
+  }
+  document.querySelectorAll('[data-layout]').forEach(button=>button.onclick=()=>{
+    if(state.layout===button.dataset.layout){fit(data.nodes.map(n=>n.id));saveSelection();return;}
+    navigate(()=>{
+      state.layout=button.dataset.layout;updateLayout();paintGraph();renderTrace();fit(data.nodes.map(n=>n.id));
+      announce(button.textContent+' layout. '+layout.description);
+    });
   });
   function traversable(e) {
     if (e.kind==='context') return false;
@@ -173,10 +176,11 @@
   }
   function fit(ids) {
     const pts=ids.map(id=>positions[id]); if(!pts.length)return;
-    const left=Math.min(...pts.map(p=>p[0]))-35,top=Math.min(...pts.map(p=>p[1]))-50;
-    const right=Math.max(...pts.map(p=>p[0]))+245,bottom=Math.max(...pts.map(p=>p[1]))+135;
+    const all=ids.length===data.nodes.length;
+    const left=all?0:Math.min(...pts.map(p=>p[0]))-35,top=all?0:Math.min(...pts.map(p=>p[1]))-50;
+    const right=all?layout.width:Math.max(...pts.map(p=>p[0]))+245,bottom=all?layout.height:Math.max(...pts.map(p=>p[1]))+135;
     const box=$('map-canvas').getBoundingClientRect();
-    state.scale=Math.max(.2,Math.min(1.1,box.width/(right-left),box.height/(bottom-top)));
+    state.scale=Math.min(1.1,(box.width-24)/(right-left),(box.height-42)/(bottom-top));
     state.x=(box.width-(right-left)*state.scale)/2-left*state.scale;
     state.y=(box.height-(bottom-top)*state.scale)/2-top*state.scale;
     applyTransform();
@@ -187,7 +191,7 @@
   }
   function zoom(factor,x,y) {
     const box=$('map-canvas').getBoundingClientRect();x=x??box.width/2;y=y??box.height/2;
-    const next=Math.min(1.9,Math.max(.2,state.scale*factor));
+    const next=Math.min(1.9,Math.max(.05,state.scale*factor));
     state.x=x-(x-state.x)*next/state.scale;state.y=y-(y-state.y)*next/state.scale;
     state.scale=next;applyTransform();
   }
@@ -349,7 +353,7 @@
       const role=originOf(v);
       return `<tr class="${v.id===state.value?'selected':''}" data-value="${escape(v.id)}"><td><button data-value-button="${escape(v.id)}">${escape(v.label)}</button><small>${escape(v.key)} · ${escape(v.category)}</small></td><td>${v.value_kind==='expression'?'Formula':escape(format(v.value))} <small>${v.value_kind==='expression'?'Result not evaluated':escape(unitText(v.unit))}</small></td><td><span class="origin-badge ${role.kind}">${roleNames[role.kind]}</span>${role.from_node?`<button class="origin-link" data-origin-node="${escape(role.from_node)}">From ${escape(byId.get(role.from_node).title)} ↗</button>`:''}${state.allValues?`<small>At ${escape(byId.get(originNode(v)).title)}</small>`:''}</td></tr>`;
     }).join('');
-    $('value-rows').querySelectorAll('tr').forEach(row=>row.onclick=()=>navigate(()=>{state.value=row.dataset.value;if(!state.selected)state.selected=originNode(valueById.get(state.value));state.parameterFocus=true;state.overview=false;state.traceCollapsed=false;renderTraceSidebar();renderValues();paintGraph();renderTrace();keepSelectedVisible();$('value-detail').scrollTop=0;if(matchMedia('(max-width:760px)').matches)$('value-detail').scrollIntoView({block:'start'});announce('Tracing '+valueById.get(state.value).label);}));
+    $('value-rows').querySelectorAll('tr').forEach(row=>row.onclick=()=>navigate(()=>{state.value=row.dataset.value;if(!state.selected)state.selected=originNode(valueById.get(state.value));state.parameterFocus=true;state.overview=false;state.traceCollapsed=false;renderSelection();keepSelectedVisible();$('value-detail').scrollTop=0;if(matchMedia('(max-width:760px)').matches)$('value-detail').scrollIntoView({block:'start'});announce('Tracing '+valueById.get(state.value).label);}));
     $('value-rows').querySelectorAll('[data-origin-node]').forEach(b=>b.onclick=e=>{e.stopPropagation();selectNode(b.dataset.originNode,true,b.closest('tr').dataset.value);});
     if(shown.length)renderValue(valueById.get(state.value));
     else $('value-detail').innerHTML=available.length?'<h3>No parameters match these filters</h3><p class="value-note">Clear the filters to see all extracted parameters at this node.</p><button id="clear-value-filters">Clear parameter filters</button>':'<h3>Parameters not yet extracted</h3><p class="value-note">The project map includes every registered source. Detailed extraction covers the pier-cap trail and the journal’s pier/end-bent node-entry tables.</p><button id="open-all-values">Browse all extracted values</button>';

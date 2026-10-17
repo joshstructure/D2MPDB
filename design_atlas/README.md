@@ -27,10 +27,23 @@ through the same Sites project to refresh it. The initial site is
   selection** undims every node without moving the map. The **dashed-square
   Fit map** button fits every source without changing the selection. The atlas
   opens with no assumed topic. The source directory is also keyboard accessible.
-- Every source shares one map, placed in its registered **Basis**, **Analysis**,
-  **Design**, **Detailing**, or **Deliverables** column. Rows are alphabetical
-  within each stage. Selecting a trail highlights existing nodes in place;
-  there is no separate pier-cap group. Lines route through the gaps between cards.
+- The **Arrange map** buttons reposition the same complete map and fit it to
+  the canvas. **Default**, leftmost, restores alphabetical stage columns:
+  **Basis**, **Analysis**, **Design**, **Detailing**, **Deliverables**.
+  **Component × stage** uses component rows and stage columns; **File role**
+  groups journals, inputs, tools, models, cases and reports; **Evidence gaps**
+  groups the recorded source statuses, with gaps first.
+- **Flow** orders all non-context relationships from source to use, keeping
+  feedback cycles in the same column. **Impact** groups the number of distinct
+  downstream sources reachable through those relationships; this is connectivity,
+  not engineering risk. **Neighborhood** arranges upstream, selected, downstream,
+  feedback and other sources around the selected node. With no node selected it
+  keeps the default arrangement and prompts for a selection. Shared sources
+  appear only once in every view; no separate pier-cap group is restored.
+- Layout changes preserve the selected node, parameter, filters and trace state.
+  The layout is included in shareable links and restored by **Back**. Selecting
+  a trail highlights nodes in place, except in **Neighborhood**, which rearranges
+  around each new selection. Lines route through the gaps between cards.
 - Find **Project journal** in the search or source directory. It connects to
   its **FBMP Entry — Pier** module in the same map.
   **FBMP Entry — End Bent** also connects to the registered end-bent runs.
@@ -125,6 +138,8 @@ establish design approval or validate unlinked source history.
 ```powershell
 .venv\Scripts\python.exe -m unittest tests.test_design_atlas -v
 node --check design_atlas/web/atlas.js
+node --check design_atlas/web/layouts.js
+node tests/test_atlas_layouts.js
 ```
 
 The browser app is buildless and uses no external network requests. Generated

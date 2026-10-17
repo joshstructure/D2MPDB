@@ -18,6 +18,7 @@
     <div class="workspace trace-collapsed">
       <section class="map-panel" aria-label="Full project map">
         <div class="panel-heading"><div><span class="eyebrow">01 / PROJECT MAP</span><h2 id="map-title">The full picture</h2></div><button id="sources-button" class="quiet">Source directory <span id="source-count"></span></button></div>
+        <div class="layout-controls"><span class="layout-label">Arrange map</span><div id="layout-switcher" role="group" aria-label="Map layout"></div><p id="layout-description" aria-live="polite"></p></div>
         <div class="map-toolbar"><label class="search-field"><span aria-hidden="true">⌕</span><input id="source-search" placeholder="Find a source or component…" aria-label="Find a source or component" autocomplete="off"></label><button id="clear-selection" title="Unselect and undim all nodes">Clear selection</button><button id="fit-all" class="fit-map-button" aria-label="Fit map" title="Fit all nodes in the map"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-dasharray="3 3"/></svg></button></div>
         <div id="source-results" class="source-results" hidden></div>
         <div class="canvas" id="map-canvas" aria-label="Pan and zoom project dependency map">
@@ -51,5 +52,5 @@
   <dialog id="evidence-dialog"><div class="dialog-head"><div><span class="eyebrow">SOURCE EVIDENCE</span><h2 id="evidence-title">Source record</h2></div><button id="close-evidence" aria-label="Close evidence">×</button></div><div id="evidence-content"></div></dialog>
   <dialog id="about-dialog"><div class="dialog-head"><h2>Coverage & source snapshot</h2><button id="close-about" aria-label="Close coverage">×</button></div><div id="about-content"></div></dialog>
   <div id="announcement" class="sr-only" aria-live="polite"></div>
-  <script src="dataset.js"></script><script src="atlas.js"></script>
+  <script src="dataset.js"></script><script src="layouts.js"></script><script src="atlas.js"></script>
 </body></html>
