@@ -68,6 +68,16 @@ DIMENSIONS={
 
 def ft(o,name): return getattr(o,name).Value/FT
 
+def modeled_chamfer(c, nominal_mm):
+    """Omit only nominal 3/4-in bridge chamfers under the drawing convention.
+
+    Barriers and ramps do not call this helper. Larger geometric breaks and
+    fillets stay modeled; legacy documents retain their original geometry.
+    """
+    if getattr(c,'OmitStandardChamfers',False) and abs(nominal_mm-.75*IN) < 1e-9:
+        return 0.
+    return nominal_mm
+
 def model(o):
     cfg=json.loads(o.NotebookConfiguration)
     for k,n in [('start_sta_ft','StartStation'),('intersection_sta_ft','PierStation'),('end_sta_ft','EndStation'),
@@ -134,7 +144,8 @@ class ComponentProxy(Serializable):
             a,e=deck_limits(c,i);shape=shapes.deck_solid(m,a,e)
             o.Label=f'Deck span {i+1} — {(m.g1 if i==0 else m.g2)*100:+.9f}%; crown 2%'
         elif k=='Beam':
-            a,e=m.beam_limits[i];shape=shapes.beam_solid(m,i,b,a,e)
+            a,e=m.beam_limits[i]
+            shape=shapes.beam_solid(m,i,b,a,e,bottom_chamfer_in=modeled_chamfer(c,.75*IN)/IN)
             o.Label=f'FIB36 span {i+1}, beam {b+1} — net camber {float(m.spans.iloc[i].camber_in):.9f} in'
         elif k=='Haunch':
             a,e=m.beam_limits[i];shape=shapes.haunch_solid(m,i,b,a,e)
@@ -144,7 +155,7 @@ class ComponentProxy(Serializable):
         elif k=='Pedestal':
             row=data[o.SupportID];a=row['pedstart'];e=row['pedend']
             shape=supports.pedestal_solid(m,b,a,e,row['top'],row['seats'],ft(c,'PadLength'),
-                row['padthickness'],ft(c,'PedestalWidth'),ft(c,'PedestalChamfer'))
+                row['padthickness'],ft(c,'PedestalWidth'),modeled_chamfer(c,c.PedestalChamfer.Value)/FT)
         elif k=='Cap':
             row=data[o.SupportID]
             shape=supports.cap_solid(m,row['station'],row['width'],row['length'],row['top'],row['depth'])
@@ -341,7 +352,7 @@ def validate(c,objects,check_pairs=True):
         if 'EdgeChamfer' in deck_object.PropertiesList:
             # Independent section-area deduction: four chamfer triangles and
             # two V grooves. Groove width/depth follow the sloping soffit.
-            removed_area=2*deck_object.EdgeChamfer.Value**2/math.sqrt(1+.02**2)
+            removed_area=2*modeled_chamfer(c,deck_object.EdgeChamfer.Value)**2/math.sqrt(1+.02**2)
             removed_area+=deck_object.DripGrooveWidth.Value*deck_object.DripGrooveDepth.Value
             expected_deck_volume-=removed_area*(e-a)*FT
         checks.append(result(f'deck{i+1}_volume',abs(deck.Volume-expected_deck_volume)<deck.Volume*1e-8))
@@ -370,6 +381,9 @@ def validate(c,objects,check_pairs=True):
             checks.append(result(f'beam{i+1}_{b+1}_physical_camber',abs(actual_camber-row.camber_in*IN)<=tol,actual_in=actual_camber/IN,expected_in=float(row.camber_in)))
             checks.append(result(f'beam{i+1}_{b+1}_depth',all(abs(s.BoundBox.ZLength-36*IN)<=tol for s in cuts)))
             area=Part.Face(shapes.fib36_wire()).Area
+            # Restore the two omitted right triangles independently of the
+            # square-profile builder; nominal section dimensions stay fixed.
+            if modeled_chamfer(c,.75*IN)==0:area+=(.75*IN)**2
             checks.append(result(f'beam{i+1}_{b+1}_physical_volume',abs(beam.Volume-area*(end-start)*FT)<=beam.Volume*1e-8))
             expected=(end-start)/6*(m.flange_area(start,b,i)+4*m.flange_area((start+end)/2,b,i)+m.flange_area(end,b,i))*FT**3
             checks.append(result(f'haunch{i+1}_{b+1}_physical_volume',abs(haunch.Volume-expected)<=haunch.Volume*1e-8))

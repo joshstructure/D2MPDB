@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "model": "C:\\github\\D2MPDB\\project_current\\geometry\\freecad\\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "sha256": "23f67653096125870770f6f4fd43aaf478e8afa319a7437d9db68488af895288",
+  "objects": 2081,
+  "retained_native_records": 2077,
+  "retained_view_records": 2078,
+  "measurements": [
+    {
+      "name": "GeotechnicalStrapEB1",
+      "connection_elevation_ft": 44.73769223221813,
+      "above_cap_in": 18.00000000000003,
+      "width_in": 2.0000000000000338,
+      "projection_ft": 5.999999999999999
+    },
+    {
+      "name": "GeotechnicalStrapEB2",
+      "connection_elevation_ft": 44.749692144029666,
+      "above_cap_in": 18.00000000000003,
+      "width_in": 2.0000000000000404,
+      "projection_ft": 5.999999999999986
+    }
+  ],
+  "source_case_sha256": "ac075073306e06f252404d0c26e73b975cad2ee18373e011ef0946ae1c20d0e1",
+  "concrete_and_reinforcement_quantities": "UNCHANGED",
+  "native_reopen": "PASS"
+}

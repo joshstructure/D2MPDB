@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "request_id": "geotechnical-straps-20261017-v3",
+  "source_sha256": "bd849f84699d984153542b28acb751b89b024030a586652b9747e4fa85ffc806",
+  "phase": "Complete",
+  "added": [
+    "BackwallGeotechnicalStraps",
+    "GeotechnicalStrapEB1",
+    "GeotechnicalStrapEB2"
+  ],
+  "straps": [
+    "GeotechnicalStrapEB1",
+    "GeotechnicalStrapEB2"
+  ],
+  "measurements": [
+    {
+      "name": "GeotechnicalStrapEB1",
+      "width_in": 2.0000000000000093,
+      "illustrative_projection_ft": 5.999999999999999,
+      "above_cap_in": 18.00000000000003,
+      "elevation_ft": 44.73769223221813,
+      "backwall_gap_in": 4.475859752819529e-14,
+      "attachment_edge_length_in": 2.0,
+      "valid_reference_face": true
+    },
+    {
+      "name": "GeotechnicalStrapEB2",
+      "width_in": 2.0000000000000164,
+      "illustrative_projection_ft": 5.999999999999986,
+      "above_cap_in": 18.00000000000003,
+      "elevation_ft": 44.749692144029666,
+      "backwall_gap_in": 0.0,
+      "attachment_edge_length_in": 2.0,
+      "valid_reference_face": true
+    }
+  ],
+  "interference_pairs": 2,
+  "positive_area_intersections": [],
+  "preserved_original_objects": 2077,
+  "native_edit_and_restore": "PASS",
+  "package": {
+    "status": "STAGED",
+    "source_sha256": "bd849f84699d984153542b28acb751b89b024030a586652b9747e4fa85ffc806",
+    "output_sha256": "d663f396634b2338648e6dde6d874a23b8712a50f8f3ac54b00d9e08285a59d1",
+    "retained_objects": 2077,
+    "native_resources_copied": 3591,
+    "view_count": 2081,
+    "source_unchanged": true
+  },
+  "model": "C:\\Users\\joshs\\Desktop\\CAD_AI\\reports\\geotechnical-straps-20261017\\B4 - Square edges closure and strap references.FCStd",
+  "sha256": "23f67653096125870770f6f4fd43aaf478e8afa319a7437d9db68488af895288",
+  "objects": 2081
+}

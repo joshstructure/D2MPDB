@@ -1,5 +1,27 @@
 # Current FreeCAD bridge model
 
+The bridge now omits modeled **3/4-in standard chamfers** on its decks, FIB
+beam bottom corners and pedestals for square 2D drawing edges. Nominal chamfer
+inputs remain recorded; `BridgePGL.OmitStandardChamfers` controls the convention.
+Ramp and barrier geometry, V grooves, larger section breaks and fillets are retained.
+
+Both end bents now have low MSE-wall copings and **4-in closure slabs rising
+at 2% toward the cap face**. Front coping and slab tops coincide; side coping tops
+follow the same sloping plane. Expand **End-bent MSE copings and rain closure
+slabs** for the editable dimensions, links and live quantity schedule.
+The eight new solids total 123.684362 ft3. Native slope/thickness/contact checks
+pass, with no positive overlaps in 197 affected pairs. See
+[D-044 evidence](evidence/2026-10-17-square-edges-and-closure/update-summary.json).
+
+Each backwall now has one editable **2-in-wide geotechnical strap reference**
+connected to its fill-side face **18 in above the cap top**, following the
+selected backwall calculation's trial level. The 6-ft projection is illustrative.
+These zero-thickness reference faces show no design spacing or connection hardware
+and add no steel quantity. Expand **Geotechnical backwall straps - schematic**
+to edit width, projection, offset or elevation. Final strap and connection design
+remain with the MSE supplier. Closure reinforcement and weather-seal/joint details
+remain unspecified; calculation reconciliation stays under COH-023.
+
 All 454 end-bent and pier rebars now carry FDOT SDM 4.3 bar marks in their
 **Mark** property (for example 6A1, 5B2, 4F3), matching the generated FDOT
 [end bent and pier DXF](../../../substructure_drawings/README.md) and its bar-mark
@@ -46,8 +68,8 @@ geometry and reinforcement remain unchanged. Keep each reinforcement **Paths**
 group hidden; **Bars**, **Bottom** and **Side** contain the physical steel.
 See [cleanup evidence](evidence/2026-10-15-model-cleanup/adoption-summary.json).
 
-The DXF deck-edge correction is saved in the main model: 1.5 in barrier
-setback, 0.75 in top/bottom edge chamfers, and 1 x 0.5 in V grooves centered
+The DXF deck-edge correction retains its 1.5 in barrier setback and nominal
+0.75 in chamfer inputs (solid cuts omitted under D-044), with 1 x 0.5 in V grooves centered
 3 in along the soffit from the virtual outside corner. Both spans retain their
 PGL, crown, six-inch vertical thickness, end gaps and cambers. Clear width between
 barrier faces is 12 ft. The component/reinforcement viewing palette is also saved.
@@ -55,7 +77,7 @@ See [adoption evidence](evidence/2026-10-15-deck-edges/adoption-summary.json).
 On each deck, use the **Deck edge details** properties; the four original deck
 barrier objects have **DeckEdgeSetback**. The opener loads their native controllers.
 
-**Current model: 16 October 2026, decision D-042.** This is the authoritative
+**Current model: 17 October 2026, decision D-044.** This is the authoritative
 editable bridge geometry and modeled-quantity source. The established native
 filename is retained for existing links; its date is not the current revision date.
 

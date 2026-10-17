@@ -300,3 +300,14 @@ Cold-opened the prior archive and the delivery in FreeCAD 1.1.3 with the pinned 
 The controllers assign their default <support>-<id> marks to any bar they newly create. After a regeneration, rebuild the DXF snapshot and rerun substructure_drawings/freecad_marks.py.
 Naming only. No physical geometry, reinforcement, quantities or calculation inputs change. The substructure DXF snapshot is re-extracted from this model so its register records the model marks.
 Evidence: 2026-10-16-sdm-bar-marks/update-summary.json
+
+
+17 OCTOBER 2026 - D-044 SQUARE BRIDGE EDGES AND END-BENT RAIN CLOSURE
+Omit only nominal 3/4-in chamfers from the bridge decks, FIB beam bottom corners and pedestals; add six end-bent MSE copings and two native 4-in closure slabs.
+Existing project coping section on the six low MSE walls: A5/A6/A7 and B1/B6/B7. Front coping top equals slab low top. Slab is 4 in vertically thick and rises at 2% toward the vertical cap face. Side coping tops follow the same slab plane; coping seats stay on the existing panel tops.
+249 bridge geometry checks; 318 pedestal-steel checks; 197 new-component pair checks with no positive overlaps. 12 intended joints contact. New concrete: 123.684362496 ft3. Native editable slope response and retained records/views verified.
+Existing COH-023/024/025/026 dispositions remain unchanged. Reconcile new concrete quantities and loads; closure reinforcement, cap/slab weather seal and movement-joint detailing remain unspecified. Geotechnical backwall tie-back straps await physical dimensions and connection detail; selected backwall design provides loads and a trial level only. Prior bar intersections and concrete ownership overlaps remain recorded.
+Evidence: 2026-10-17-square-edges-and-closure/update-summary.json
+
+D-044 COMPLETION - GEOTECHNICAL STRAP REPRESENTATION
+Per user clarification, two editable 2-in-wide reference ribbons now meet the fill-side backwall faces 18 in above cap: EB1 EL 44.737692232 ft, EB2 EL 44.749692144 ft. One centered ribbon per wall, illustrative 6-ft projection, zero thickness and no physical steel quantity. Actual full-width attachment edges, native edits and saved/current-model reopen pass. Existing 2,077 non-assembly records and all 2,078 previous view records preserved. Final strap design and connections remain with the MSE supplier.

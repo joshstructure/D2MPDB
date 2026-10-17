@@ -18,15 +18,15 @@ BARRIERS = [f'BarrierDeckS{i}{side}' for i in (1, 2) for side in ('L', 'R')]
 
 
 def edge_tools(o, model, start, end):
-    """Six analytic triangular prisms: four chamfers and two soffit V grooves."""
+    """Analytic cutters for modeled chamfers and the retained soffit V grooves."""
     c = o.PGL
     half = c.DeckWidth.Value / 2
-    ch = o.EdgeChamfer.Value
+    ch = bridge.modeled_chamfer(c,o.EdgeChamfer.Value)
     offset = o.DripGrooveOffset.Value
     width = o.DripGrooveWidth.Value
     depth = o.DripGrooveDepth.Value
     thick = c.DeckThickness.Value
-    if min(ch, offset, width, depth) <= 0 or 2*ch >= thick or depth >= thick:
+    if ch < 0 or min(offset, width, depth) <= 0 or 2*ch >= thick or depth >= thick:
         raise ValueError('Invalid positive deck edge detail dimensions')
     if offset-width/2 <= ch or offset+width/2 >= half:
         raise ValueError('Drip groove conflicts with the chamfer or crown')
@@ -45,8 +45,9 @@ def edge_tools(o, model, start, end):
         def prism(coords):
             points = [point(u,z) for u,z in coords]
             return rev.closed_face(points).extrude(direction)
-        tools.append(prism([(0,ztop), (0,ztop-ch), (ch*cosine,ztop+slope*ch*cosine)]))
-        tools.append(prism([(0,zbottom), (ch*cosine,zbottom+slope*ch*cosine), (0,zbottom+ch)]))
+        if ch:
+            tools.append(prism([(0,ztop), (0,ztop-ch), (ch*cosine,ztop+slope*ch*cosine)]))
+            tools.append(prism([(0,zbottom), (ch*cosine,zbottom+slope*ch*cosine), (0,zbottom+ch)]))
         u1, u2 = (offset-width/2)*cosine, (offset+width/2)*cosine
         ua = offset*cosine-depth*sine
         za = zbottom+offset*sine+depth*cosine
@@ -206,16 +207,22 @@ def measure(doc):
         # Every corner of the analytic cutters must appear in the final physical
         # section except the removed virtual square deck-edge corners.
         tools = edge_tools(obj,model,mid,end)
+        ch = bridge.modeled_chamfer(c,obj.EdgeChamfer.Value)
         expected = []
         for i,tool in enumerate(tools):
             vertices = [v.Point for v in tool.Vertexes if abs(v.Point.x-x)<1e-6]
-            if i % 3 != 2:
+            if ch and i % 3 != 2:
                 vertices = [p for p in vertices if not (abs(abs(p.y)-half)<1e-6 and
                             min(abs(p.z-(z-.02*half)),abs(p.z-(z-.02*half-c.DeckThickness.Value)))<1e-6)]
             expected.extend(vertices)
+        if not ch:
+            for side in (-1,1):
+                top=float(model.deck_top(mid,side*half/FT))*FT
+                expected.extend([App.Vector(x,side*half,top),
+                                 App.Vector(x,side*half,top-c.DeckThickness.Value)])
         error = max(min(p.distanceToPoint(q) for q in points) for p in expected)
         cosine = 1/math.sqrt(1+.02**2)
-        removed = (2*obj.EdgeChamfer.Value**2*cosine+
+        removed = (2*ch**2*cosine+
                    obj.DripGrooveWidth.Value*obj.DripGrooveDepth.Value)*(end-start)*FT
         gross = (end-start)*FT*c.DeckWidth.Value*c.DeckThickness.Value
         row = {'name':name,'valid':shape.isValid(),'solids':len(shape.Solids),

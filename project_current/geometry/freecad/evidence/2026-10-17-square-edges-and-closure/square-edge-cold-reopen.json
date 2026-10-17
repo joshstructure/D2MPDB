@@ -1,0 +1,165 @@
+{
+  "status": "PASS",
+  "review": "C:\\Users\\joshs\\Desktop\\CAD_AI\\reports\\square-bridge-20261017\\B4 - Square bridge edges - Review.FCStd",
+  "sha256": "f28eb1c867ea9d95531117c0dcce07bab6a7d036de76903ad0f0d66f21bd43f7",
+  "objects": 2064,
+  "retained_native_records": 2050,
+  "all_view_records_preserved": true,
+  "cold_reopen_and_editable_regeneration": true,
+  "bridge_geometry_passes": 249,
+  "source_file_unchanged": true,
+  "deck_measurements": {
+    "decks": [
+      {
+        "name": "BridgeDeckS1",
+        "valid": true,
+        "solids": 1,
+        "section_vertex_error_in": 2.148412681353374e-13,
+        "removed_volume_in3": 642.6000000007446,
+        "expected_removed_volume_in3": 642.5999999999996,
+        "section_points_in": [
+          [
+            1.4335199693960007e-13,
+            0.0
+          ],
+          [
+            -81.49999999999986,
+            -1.630000000000002
+          ],
+          [
+            81.50000000000014,
+            -1.630000000000002
+          ],
+          [
+            -81.49999999999986,
+            -7.6299999999999875
+          ],
+          [
+            -79.00049985004983,
+            -7.580009997001021
+          ],
+          [
+            81.50000000000014,
+            -7.6299999999999875
+          ],
+          [
+            -78.51059782065963,
+            -7.070111966411171
+          ],
+          [
+            79.00049985005012,
+            -7.580009997001021
+          ],
+          [
+            -78.00069979006983,
+            -7.560013995801448
+          ],
+          [
+            1.4335199693960007e-13,
+            -5.999999999999986
+          ],
+          [
+            78.00069979007012,
+            -7.560013995801448
+          ],
+          [
+            78.51059782065992,
+            -7.070111966411171
+          ]
+        ],
+        "pass": true
+      },
+      {
+        "name": "BridgeDeckS2",
+        "valid": true,
+        "solids": 1,
+        "section_vertex_error_in": 4.356094719251277e-13,
+        "removed_volume_in3": 627.9000000004362,
+        "expected_removed_volume_in3": 627.9000000000005,
+        "section_points_in": [
+          [
+            4.254596674968524e-13,
+            0.0
+          ],
+          [
+            -81.49999999999957,
+            -1.630000000000002
+          ],
+          [
+            81.50000000000043,
+            -1.630000000000002
+          ],
+          [
+            -81.49999999999957,
+            -7.6299999999999875
+          ],
+          [
+            -79.00049985004955,
+            -7.580009997001021
+          ],
+          [
+            81.50000000000043,
+            -7.6299999999999875
+          ],
+          [
+            -78.51059782065934,
+            -7.070111966411171
+          ],
+          [
+            79.0004998500504,
+            -7.580009997001021
+          ],
+          [
+            -78.00069979006955,
+            -7.560013995801448
+          ],
+          [
+            4.254596674968524e-13,
+            -5.999999999999986
+          ],
+          [
+            78.00069979007041,
+            -7.560013995801448
+          ],
+          [
+            78.51059782066021,
+            -7.070111966411171
+          ]
+        ],
+        "pass": true
+      }
+    ],
+    "barriers": [
+      {
+        "name": "BarrierDeckS1LCorrected",
+        "outside_setback_in": 1.4999999999998175,
+        "valid": true,
+        "solids": 1,
+        "pass": true
+      },
+      {
+        "name": "BarrierDeckS1RCorrected",
+        "outside_setback_in": 1.4999999999996922,
+        "valid": true,
+        "solids": 1,
+        "pass": true
+      },
+      {
+        "name": "BarrierDeckS2LCorrected",
+        "outside_setback_in": 1.4999999999999964,
+        "valid": true,
+        "solids": 1,
+        "pass": true
+      },
+      {
+        "name": "BarrierDeckS2RCorrected",
+        "outside_setback_in": 1.4999999999992983,
+        "valid": true,
+        "solids": 1,
+        "pass": true
+      }
+    ],
+    "clear_width_in": 144.0,
+    "pass": true
+  }
+}

@@ -1,0 +1,269 @@
+{
+  "status": "PASS",
+  "model": "C:\\Users\\joshs\\Desktop\\CAD_AI\\reports\\end-bent-weather-closure-20261017\\B4 - Copings and closure slabs - Review.FCStd",
+  "sha256": "bd849f84699d984153542b28acb751b89b024030a586652b9747e4fa85ffc806",
+  "phase": "Complete",
+  "preserved_native_records": 2063,
+  "preserved_view_records": 2064,
+  "slabs": {
+    "EB1": {
+      "thickness_samples_in": [
+        3.9999999999990834,
+        4.000000000003667,
+        3.9999999999990834,
+        3.9999999999990834,
+        3.9999999999990834,
+        4.000000000003667,
+        4.000000000003667,
+        3.9999999999990834,
+        3.9999999999990834
+      ],
+      "grade_percent": 2.0000000000000053,
+      "low_elevation_ft": 41.61269223221821,
+      "high_elevation_ft": 41.65519924903436,
+      "rise_in": 0.5100842017938388,
+      "volume_ft3": 13.45931361766577,
+      "side_coping_flush_measurements": [
+        {
+          "wall": "A6",
+          "fraction": 0.05,
+          "difference_in": 0.0
+        },
+        {
+          "wall": "A7",
+          "fraction": 0.05,
+          "difference_in": 0.0
+        },
+        {
+          "wall": "A6",
+          "fraction": 0.5,
+          "difference_in": 0.0
+        },
+        {
+          "wall": "A7",
+          "fraction": 0.5,
+          "difference_in": 0.0
+        },
+        {
+          "wall": "A6",
+          "fraction": 0.95,
+          "difference_in": 0.0
+        },
+        {
+          "wall": "A7",
+          "fraction": 0.95,
+          "difference_in": 0.0
+        }
+      ]
+    },
+    "EB2": {
+      "thickness_samples_in": [
+        3.9999999999990834,
+        3.9999999999990834,
+        4.000000000003667,
+        3.9999999999990834,
+        3.9999999999990834,
+        3.9999999999990834,
+        3.9999999999990834,
+        3.9999999999990834,
+        3.9999999999990834
+      ],
+      "grade_percent": 1.999999999999938,
+      "low_elevation_ft": 41.62469214402962,
+      "high_elevation_ft": 41.66719916084589,
+      "rise_in": 0.5100842017951995,
+      "volume_ft3": 13.459313617665282,
+      "side_coping_flush_measurements": [
+        {
+          "wall": "B6",
+          "fraction": 0.05,
+          "difference_in": 0.0
+        },
+        {
+          "wall": "B7",
+          "fraction": 0.05,
+          "difference_in": 0.0
+        },
+        {
+          "wall": "B6",
+          "fraction": 0.5,
+          "difference_in": 0.0
+        },
+        {
+          "wall": "B7",
+          "fraction": 0.5,
+          "difference_in": 0.0
+        },
+        {
+          "wall": "B6",
+          "fraction": 0.95,
+          "difference_in": 0.0
+        },
+        {
+          "wall": "B7",
+          "fraction": 0.95,
+          "difference_in": 0.0
+        }
+      ]
+    }
+  },
+  "coping_seats": [
+    {
+      "wall": "A6",
+      "fraction": 0.05,
+      "gap_in": 0.0
+    },
+    {
+      "wall": "A7",
+      "fraction": 0.05,
+      "gap_in": 0.0
+    },
+    {
+      "wall": "A6",
+      "fraction": 0.5,
+      "gap_in": 0.0
+    },
+    {
+      "wall": "A7",
+      "fraction": 0.5,
+      "gap_in": 0.0
+    },
+    {
+      "wall": "A6",
+      "fraction": 0.95,
+      "gap_in": 0.0
+    },
+    {
+      "wall": "A7",
+      "fraction": 0.95,
+      "gap_in": 0.0
+    },
+    {
+      "wall": "A5",
+      "fraction": 0.1,
+      "gap_in": 0.0
+    },
+    {
+      "wall": "A5",
+      "fraction": 0.5,
+      "gap_in": 0.0
+    },
+    {
+      "wall": "A5",
+      "fraction": 0.9,
+      "gap_in": 0.0
+    },
+    {
+      "wall": "B6",
+      "fraction": 0.05,
+      "gap_in": 0.0
+    },
+    {
+      "wall": "B7",
+      "fraction": 0.05,
+      "gap_in": 0.0
+    },
+    {
+      "wall": "B6",
+      "fraction": 0.5,
+      "gap_in": 0.0
+    },
+    {
+      "wall": "B7",
+      "fraction": 0.5,
+      "gap_in": 0.0
+    },
+    {
+      "wall": "B6",
+      "fraction": 0.95,
+      "gap_in": 0.0
+    },
+    {
+      "wall": "B7",
+      "fraction": 0.95,
+      "gap_in": 0.0
+    },
+    {
+      "wall": "B1",
+      "fraction": 0.1,
+      "gap_in": 0.0
+    },
+    {
+      "wall": "B1",
+      "fraction": 0.5,
+      "gap_in": 0.0
+    },
+    {
+      "wall": "B1",
+      "fraction": 0.9,
+      "gap_in": 0.0
+    }
+  ],
+  "contact_joints": [
+    {
+      "a": "ClosureSlabEB1",
+      "b": "BridgeCapEB1",
+      "gap_in": 2.2379298764097643e-15
+    },
+    {
+      "a": "ClosureSlabEB1",
+      "b": "ClosureCopingA5",
+      "gap_in": 0.0
+    },
+    {
+      "a": "ClosureSlabEB1",
+      "b": "ClosureCopingA6",
+      "gap_in": 0.0
+    },
+    {
+      "a": "ClosureSlabEB1",
+      "b": "ClosureCopingA7",
+      "gap_in": 0.0
+    },
+    {
+      "a": "ClosureCopingA5",
+      "b": "ClosureCopingA6",
+      "gap_in": 4.296825362706748e-13
+    },
+    {
+      "a": "ClosureCopingA5",
+      "b": "ClosureCopingA7",
+      "gap_in": 0.0
+    },
+    {
+      "a": "ClosureSlabEB2",
+      "b": "BridgeCapEB2",
+      "gap_in": 8.593650725413496e-13
+    },
+    {
+      "a": "ClosureSlabEB2",
+      "b": "ClosureCopingB1",
+      "gap_in": 0.0
+    },
+    {
+      "a": "ClosureSlabEB2",
+      "b": "ClosureCopingB6",
+      "gap_in": 0.0
+    },
+    {
+      "a": "ClosureSlabEB2",
+      "b": "ClosureCopingB7",
+      "gap_in": 0.0
+    },
+    {
+      "a": "ClosureCopingB1",
+      "b": "ClosureCopingB6",
+      "gap_in": 0.0
+    },
+    {
+      "a": "ClosureCopingB1",
+      "b": "ClosureCopingB7",
+      "gap_in": 4.5585966900362825e-12
+    }
+  ],
+  "overlap_pairs": [],
+  "tested_pairs": 197,
+  "total_volume_ft3": 123.68436249611268,
+  "native_slope_edit_and_restore": "PASS",
+  "square_bridge_geometry_passes": 249
+}

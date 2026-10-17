@@ -1,0 +1,44 @@
+{
+  "status": "BUILT",
+  "source": "Before.FCStd",
+  "thickness": "4 in",
+  "slope": "2 %",
+  "phase": "Candidate ready for verification",
+  "added": [
+    "EndBentWeatherClosure",
+    "ClosureEB1",
+    "ClosureEB1Inputs",
+    "ClosureCopingA5",
+    "ClosureCopingA6",
+    "ClosureCopingA7",
+    "ClosureSlabEB1",
+    "ClosureEB2",
+    "ClosureEB2Inputs",
+    "ClosureCopingB1",
+    "ClosureCopingB6",
+    "ClosureCopingB7",
+    "ClosureSlabEB2",
+    "EndBentClosureSchedule"
+  ],
+  "physical": [
+    "ClosureCopingA5",
+    "ClosureCopingA6",
+    "ClosureCopingA7",
+    "ClosureSlabEB1",
+    "ClosureCopingB1",
+    "ClosureCopingB6",
+    "ClosureCopingB7",
+    "ClosureSlabEB2"
+  ],
+  "schedule": "EndBentClosureSchedule",
+  "preserved_original_objects": 2063,
+  "package": {
+    "status": "STAGED",
+    "source_sha256": "f28eb1c867ea9d95531117c0dcce07bab6a7d036de76903ad0f0d66f21bd43f7",
+    "output_sha256": "0eba7008040ce8dba5e83d18f9693e84646b9456b097293a301e4a8cfd7a2c80",
+    "retained_objects": 2063,
+    "native_resources_copied": 3571,
+    "view_count": 2078,
+    "source_unchanged": true
+  }
+}

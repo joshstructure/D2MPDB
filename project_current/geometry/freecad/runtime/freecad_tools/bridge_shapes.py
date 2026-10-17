@@ -7,14 +7,16 @@ IN = 25.4
 FT = 304.8
 
 
-def fib36_wire():
+def fib36_wire(bottom_chamfer_in=.75):
     """FDOT 450-036 section: 48 x 36 in, 38-in bottom flange, 7-in web.
 
     Radius 15 in is tangent to the web and the lower flange slope. The
     intersection of those tangents is (3.5,14.5) inches above bottom.
-    Top breaks and the two 3/4-in bottom chamfers follow sheet 1.
+    Top breaks follow sheet 1. Zero bottom chamfer models square corners.
     Local cross-section lies in the YZ plane at X=0.
     """
+    if not 0 <= bottom_chamfer_in < 7:
+        raise ValueError('FIB36 bottom chamfer must be between 0 and 7 in')
     v = lambda p: App.Vector(0, p[0]*IN, p[1]*IN)
     center_z = (224.5 + 15*math.sqrt(1186))/31
     tangent = (18.5-225/math.sqrt(1186), center_z-465/math.sqrt(1186))
@@ -23,7 +25,9 @@ def fib36_wire():
     path = [(-24,36),(24,36),(24,32.5),(7,31),(3.5,27.5),(3.5,center_z)]
     edges = [Part.makeLine(v(a),v(b)) for a,b in zip(path[:-1],path[1:])]
     edges.append(Part.Arc(v(path[-1]),v(mid),v(tangent)).toShape())
-    tail = [tangent,(19,7),(19,.75),(18.25,0),(-18.25,0),(-19,.75),(-19,7),(-tangent[0],tangent[1])]
+    ch = bottom_chamfer_in
+    bottom = [(19,ch),(19-ch,0),(-19+ch,0),(-19,ch)] if ch else [(19,0),(-19,0)]
+    tail = [tangent,(19,7)]+bottom+[(-19,7),(-tangent[0],tangent[1])]
     edges.extend(Part.makeLine(v(a),v(b)) for a,b in zip(tail[:-1],tail[1:]))
     edges.append(Part.Arc(v(tail[-1]),v((-mid[0],mid[1])),v((-3.5,center_z))).toShape())
     tail = [(-3.5,center_z),(-3.5,27.5),(-7,31),(-24,32.5),(-24,36)]
@@ -110,7 +114,7 @@ def deck_solid(model, start_ft, end_ft):
     return face.extrude(App.Vector((end_ft-start_ft)*FT,0,float(model.pgl(end_ft)-model.pgl(start_ft))*FT))
 
 
-def beam_solid(model, span_index, beam_index, start_ft=None, end_ft=None):
+def beam_solid(model, span_index, beam_index, start_ft=None, end_ft=None, bottom_chamfer_in=.75):
     """Exact FIB36 on the notebook's cambered soffit, optionally trimmed."""
     if abs(model.depth-3)>1e-10 or abs(model.flange-4)>1e-10:
         raise ValueError('Only the verified FIB36 section is supported')
@@ -118,7 +122,7 @@ def beam_solid(model, span_index, beam_index, start_ft=None, end_ft=None):
     a=float(row.start_ft) if start_ft is None else start_ft
     b=float(row.end_ft) if end_ft is None else end_ft
     z=model.evaluate([a,(a+b)/2,b],span_index)['bottom'][:,beam_index]*FT
-    return quadratic_solid(fib36_wire(),(a-model.start)*FT,(b-model.start)*FT,*z,
+    return quadratic_solid(fib36_wire(bottom_chamfer_in),(a-model.start)*FT,(b-model.start)*FT,*z,
                            offset_mm=model.offsets[beam_index]*FT)
 
 

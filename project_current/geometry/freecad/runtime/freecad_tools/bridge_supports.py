@@ -25,6 +25,8 @@ def pedestal_solid(model,beam,start_ft,end_ft,cap_top_ft,seats,pad_length_ft,pad
     interference and a sub-tolerance central gap; no elastic analysis implied.
     Pedestal bottom is level; top bevels run along transverse outer edges.
     """
+    if chamfer_ft < 0:
+        raise ValueError('Pedestal chamfer cannot be negative')
     planes=[bearing_plane(model,span,beam,s,pad_length_ft) for span,s in seats]
     if len(seats)==1:
         cuts=[start_ft,end_ft]; tops=[planes[0](s)-pad_thickness_ft for s in cuts]
@@ -38,9 +40,12 @@ def pedestal_solid(model,beam,start_ft,end_ft,cap_top_ft,seats,pad_length_ft,pad
         wires=[]
         for s,z in [(a,za),(b,zb)]:
             x=(s-model.start)*FT
-            points=[(x,(cy-width_ft/2)*FT,cap_top_ft*FT),(x,(cy+width_ft/2)*FT,cap_top_ft*FT),
-                (x,(cy+width_ft/2)*FT,(z-chamfer_ft)*FT),(x,(cy+width_ft/2-chamfer_ft)*FT,z*FT),
-                (x,(cy-width_ft/2+chamfer_ft)*FT,z*FT),(x,(cy-width_ft/2)*FT,(z-chamfer_ft)*FT)]
+            points=[(x,(cy-width_ft/2)*FT,cap_top_ft*FT),(x,(cy+width_ft/2)*FT,cap_top_ft*FT)]
+            if chamfer_ft:
+                points += [(x,(cy+width_ft/2)*FT,(z-chamfer_ft)*FT),(x,(cy+width_ft/2-chamfer_ft)*FT,z*FT),
+                    (x,(cy-width_ft/2+chamfer_ft)*FT,z*FT),(x,(cy-width_ft/2)*FT,(z-chamfer_ft)*FT)]
+            else:
+                points += [(x,(cy+width_ft/2)*FT,z*FT),(x,(cy-width_ft/2)*FT,z*FT)]
             wires.append(plane_polygon(points).OuterWire)
         solids.append(Part.makeLoft(wires,True,True))
     return solids[0] if len(solids)==1 else solids[0].multiFuse(solids[1:]).removeSplitter()

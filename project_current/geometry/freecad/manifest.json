@@ -3,9 +3,9 @@
   "authority": "Current editable FreeCAD geometry and modeled quantities; engineering acceptance remains separate",
   "model": {
     "path": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-    "sha256": "2d3b6af8ff550d4bb201e41c9cf373cf4bbfe60a96390485f71822be86055bdf",
-    "bytes": 5219544,
-    "objects": 2064
+    "sha256": "23f67653096125870770f6f4fd43aaf478e8afa319a7437d9db68488af895288",
+    "bytes": 5682914,
+    "objects": 2081
   },
   "source_revision": "01a1fcc34d6345ceacf96245bcf0c931d118a1ab",
   "tracker_used_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
@@ -22,10 +22,12 @@
     "15 October D-031: deck_edge_details native controllers, physical detail checks, and independent chamfer/groove volume deduction in bridge validation. Verified deck-edge geometry and viewing palette adopted in the saved main FCStd; prior model archived.",
     "15 October D-032: dependency-guarded model_cleanup helper; exact native geometry and editable source records preserved. Only 42 unused stages removed and construction visibility cleaned.",
     "D-033: native return_cheek_details controllers, shared editable elevations, deep transverse barriers and rear-lug coping stops. Native steel/WWR and affected label refresh; unchanged geometry preserved. Native 4-inch landing continuations and outer barrier lower legs close the four return voids. All finished face colors retained. Raw curved-landing quantities flagged COH-027.",
-    "D-034: landing_quantities maintains verified NetVolume for two curved finished landings using converged vertical-plane Gauss-Kronrod integration. Native geometry, all other object records and GUI resources unchanged; COH-027 Closed."
+    "D-034: landing_quantities maintains verified NetVolume for two curved finished landings using converged vertical-plane Gauss-Kronrod integration. Native geometry, all other object records and GUI resources unchanged; COH-027 Closed.",
+    "D-044: opt-in omission of exactly 3/4-in bridge chamfers; retain larger geometry, grooves, ramp/barrier details and nominal inputs. Add native end_bent_closure controllers and schedule for six copings and two 4-in slabs rising 2% to cap; side coping tops follow slab. Verified editable regeneration, saved-file reopen and scoped no-new-intersection checks.",
+    "D-044 completion: geotechnical_straps creates two native editable zero-thickness 2-in reference ribbons at the selected 18-in-above-cap trial level; actual backwall face attachment, illustrative 6-ft projection, no physical steel quantity. Cold and installed reopen verified."
   ],
   "runtime_files": {
-    "runtime/API.md": "a58f8d463173eb772eca4405b71c99d639d3bdebfe9600dacf949581136da888",
+    "runtime/API.md": "059d7745dd84e8b5f286593700c17ae25274d35e48bbeb7f48100eb34318d746",
     "runtime/freecad_tools/__init__.py": "54fc72e62296f90ef30d4395023d10589142c7979df962a5fa1669cf01886a32",
     "runtime/freecad_tools/adopt_drainage.py": "df2e4d293383aa5de9e425a8af75b7640524d07e71eebd541d42d2e81342eb07",
     "runtime/freecad_tools/api.py": "4f5d129384cf8b68bf10564f59141a31bd83921d47e8e477754ad2ea3ade71ca",
@@ -34,11 +36,11 @@
     "runtime/freecad_tools/beam_dxf.py": "494d3fb284f54d1ba7fee097cbac7d07f5fcf0d4753011438db2244bf163660f",
     "runtime/freecad_tools/beam_fdot.py": "a9f359369693a48e73d867e2412e9a1a672ea224d0a79ced53e6c001c82cb363",
     "runtime/freecad_tools/beam_hooks.py": "4bb3f93d7a92460b3c995dda3f75fb9cce91877f7d65346d6b869a6bccf8471b",
-    "runtime/freecad_tools/bridge.py": "d7cd926590c98e3fd5379cd54bad972b5e8a83abc3579465978e84d1560fd1d2",
+    "runtime/freecad_tools/bridge.py": "3f151886ccc3ced27de93c8fde8352910a7d77fe585bc276902820bff23f92ff",
     "runtime/freecad_tools/bridge_layout.py": "23380933da832ed247e68392784b43a6d3841333f682aa1eeddb74d9ce41aba4",
     "runtime/freecad_tools/bridge_notebook_engine.py": "af2f989a4b324b80a7bb669e86dc6e5d302e542628b6e81e29dc221d77a72eb9",
-    "runtime/freecad_tools/bridge_shapes.py": "d1ea0a4d22fd40f81212201b84a0770f7bfef8cc5203a3ce8e809e8f06190452",
-    "runtime/freecad_tools/bridge_supports.py": "8d0209af8b0b5a4093012cb2183d694c24e9d05db3e8d7b5d7f3739f15b660d2",
+    "runtime/freecad_tools/bridge_shapes.py": "a35362548a60ad4513822d8dec4393ea19a39232c5ec5b979985a306bbae57eb",
+    "runtime/freecad_tools/bridge_supports.py": "d5d8a00665c2b10bc5b32acceb77e09a7f45d93c76d45c5ed78d0e64acce265b",
     "runtime/freecad_tools/cap_cages.py": "67690622670056408e6f6586a07f6ff748c7e854b47d8e6cebcebd01f94fd70a",
     "runtime/freecad_tools/current_source.py": "2fcd9874e1ff55d393f1b4513d8b181e49afbbdacd8c2c82eda6c438ec1faee8",
     "runtime/freecad_tools/deck_gaps.py": "56dcb9878433b768fdbb005aceda19981ebbe61377ce9dac5d481c2a655b5a8a",
@@ -145,13 +147,16 @@
     "runtime/freecad_tools/end_cap_revision.py": "55092761a9184c4ef370bf5f8b11208c7be30a6064db0ef07d294ae46a5d8262",
     "runtime/freecad_tools/cap_cheek_coordination.py": "59c4bfb4e636104253c3bef968baa71b30ac3d05f41d1e6d0a1edfc2026e1f15",
     "runtime/freecad_tools/lug_wwr.py": "f78fdc93dd05217e5999b977183bfd60d7b7aad4be715486e00454586d22a0b2",
-    "runtime/freecad_tools/deck_edge_details.py": "046d3614f85839f3a4b0860f462efe815a29cb21b890a0e423d0256efe7e42a6",
+    "runtime/freecad_tools/deck_edge_details.py": "f285f1690e6454d1d8f9c2eb11ca9fec5503e83e89f025b49af5c11bc0dd687c",
     "runtime/freecad_tools/model_cleanup.py": "5bc3fcd969df0e09bae9fc30cb9dd34cb4f82922310dfb401bf22b09041f2424",
     "runtime/freecad_tools/return_cheek_details.py": "5fbc47c0919011611f7aaaa832b6cf878365b77e8d3850bac16a4a934aff4403",
     "viewing_palette.py": "9c513ba64dd8b4e120b5e833d0b041f0abef6dceb179f5082821b40ce5a67cb1",
-    "runtime/freecad_tools/landing_quantities.py": "7a0f584b62f00041641dc0b6ce4ecaa0603ec1dfdfd9e92568e7eccf46ee68af"
+    "runtime/freecad_tools/landing_quantities.py": "7a0f584b62f00041641dc0b6ce4ecaa0603ec1dfdfd9e92568e7eccf46ee68af",
+    "runtime/freecad_tools/end_bent_closure.py": "114d19edbf98e3440561e29a0d3998d60f2c89884fb4d42900c87210e343f8d4",
+    "runtime/freecad_tools/standard_chamfers.py": "d7830d32d20cebb798fb3475b18935862334bc41fa06f8bfcf5dde1b6b028283",
+    "runtime/freecad_tools/geotechnical_straps.py": "d7083a3bb12b6ba7c1bfc02572936dabb982af7cd8c22db5e7fe35bf851e79fc"
   },
-  "opener_sha256": "02f54477fda7a5d4c0de2c8a79bb52e20971d511df44b3b782a99d091e034495",
+  "opener_sha256": "86ca2a7617fd1bdf93dd9223e5ee48d210817fdaf4e428270538ee9856f8cc84",
   "evidence_files": {
     "evidence/bridge-current-cages-20261010-v1.json": "5daf358f8b140a1b5c8db4b1d33df5ab565d4299e9c1fb90d0aa15cd679ce1ee",
     "evidence/bridge-current-proxies-20261010-v1.json": "bc8d1595534050f961bece023cae100958064388e1b2e7d45ddd424666c834ba",
@@ -160,7 +165,7 @@
     "evidence/delivery-helper-fingerprints.json": "2eda36676cc40916485c708e385818c6e99ead3be41e5754a55bc5e772e58c62",
     "evidence/final-reopen-verification.json": "fde89e9b9c8bb47433a964e3d0b3faedcb00c201b8ada10b348c086e4bfaeec9",
     "evidence/final-save.json": "7767f925bccdf426225cf1d4269ce59919cdcf71267f7c56c7484547f758e946",
-    "evidence/Model-update-report.txt": "9dd9cc9e7e0569118b5ac413431cd1f5c880b30539a70c14f36ea4c02dfc4465",
+    "evidence/Model-update-report.txt": "f61555f07aa2a36a932bb85bb2854ddd34358ded52fa98af2cc0a96f21fe3f59",
     "evidence/opener-verification.json": "7cfd370f32a419bd160ce2f914df4e861372addcab97d9e64896fb6135d40fdf",
     "evidence/portable-verification.json": "5daa7dfc49c7f7b11c641a51d2e425ce853dc08ee134356c02746d93d028ec36",
     "evidence/session-checkpoint.json": "c22fc947838b3ed99425beeab12c10e80b62b12be04d01444f2a0677135096c5",
@@ -353,19 +358,30 @@
     "evidence/2026-10-16-sdm-bar-marks/native-preservation.json": "3ba04d519747a762aeb62930fc6b84187f2f355072988b0f1b20cc494a8c524f",
     "evidence/2026-10-16-sdm-bar-marks/native-update.json": "8c9f270c8fee118b0371a27c2729d8c2952666c7cee86435c7bca755c7d7a4d8",
     "evidence/2026-10-16-sdm-bar-marks/sdm-bar-marks.csv": "e148b4992abbf1f27e0a0049a9377fe14650039924bf66c3dc810290e40398c8",
-    "evidence/2026-10-16-sdm-bar-marks/update-summary.json": "26069235c5b513755aea31ec7e3938360efa29f6c576d40b0524e91a4ffea4be"
+    "evidence/2026-10-16-sdm-bar-marks/update-summary.json": "26069235c5b513755aea31ec7e3938360efa29f6c576d40b0524e91a4ffea4be",
+    "evidence/2026-10-17-square-edges-and-closure/closure-build-history.json": "f7e1adcdb548efe7cf86d289c2ec6a55eb848f61134e4849f6f78e4dc2dfff91",
+    "evidence/2026-10-17-square-edges-and-closure/closure-file-finish.json": "6c1ece5c3bf6d7525bce3e1190ee25b7684b588067867ad8420562ddc9c12b28",
+    "evidence/2026-10-17-square-edges-and-closure/closure-verification.json": "e2f0d8bb1d1ec6dcd40d4a6206d570bc4f8be77e552aacd7008ef08ef3f7098b",
+    "evidence/2026-10-17-square-edges-and-closure/installed-native-reopen.json": "9fdb5d5753c83efd6fc8792a72f1f9759be3845938f74276a64c2b78eb766407",
+    "evidence/2026-10-17-square-edges-and-closure/square-edge-cold-reopen.json": "e57bf3b1e40a6d53ca27336818de873b7cfaace352a85e0ade664d9f73c69d01",
+    "evidence/2026-10-17-square-edges-and-closure/square-edge-transaction.json": "ded8417f8d5c4773b8129f6f9b77e1c9f4cdf17b8f4095019460b32c5f8d0332",
+    "evidence/2026-10-17-square-edges-and-closure/square-edge-verification.json": "e0aa1e6ed8e601018c817865c1d78bad7bde3ff51755df1d0c0da4d104a02e6a",
+    "evidence/2026-10-17-square-edges-and-closure/update-summary.json": "62c3bd3c54263b81f73190a7e22ce3055e3af13ce1d13509b5fff79a6c36adb2",
+    "evidence/2026-10-17-square-edges-and-closure/strap-build-verification.json": "04f1a90aa411d7da372195ace7e892d1b0cd944e7c46b9e9d5a21c0d5b3fc7d0",
+    "evidence/2026-10-17-square-edges-and-closure/strap-cold-reopen.json": "7c9efad3c0dd3a952adaa20f23a7698dba917b2524b353cc37ac710a87f8b0fa",
+    "evidence/2026-10-17-square-edges-and-closure/strap-installed-reopen.json": "40f6d687370e25100a1d01d3c37e9a1b1856ee666bf19f47605e2d1ed2258386"
   },
   "known_review_status": "0 new WWR overlaps; 14 existing U-bar/hoop pairs Deferred in COH-025. Four cheek spacing findings Open in COH-024; 29 cap/backwall and 4 backwall internal overlaps and other existing findings retained.",
   "portability_verification": "Cold native reopen and live dependency test PASS; 172 accepted-trial solid matches; all 1677 prior native object/view records exact. Previous standalone GUI loader limitation retained.",
-  "updated_on": "2026-10-15",
+  "updated_on": "2026-10-17",
   "current_update": {
-    "date": "2026-10-16",
-    "decision": "D-042",
-    "scope": "Write FDOT SDM 4.3 bar marks (size + designation) into the Mark property of the 454 native end-bent and pier rebars.",
-    "summary": "evidence/2026-10-16-sdm-bar-marks/update-summary.json",
-    "previous_model_sha256": "78c4404029b432b25825fa823c09e2795f9f8de96f88ed62d1c2d2ea0b7740ba",
-    "follow_up": "Existing coherence findings and engineering dispositions unchanged. Rerun freecad_marks after bar regeneration.",
-    "publication": "Explicit user request and standing GitHub delivery instructions"
+    "date": "2026-10-17",
+    "decision": "D-044",
+    "scope": "Omit only nominal 3/4-in chamfers from the bridge decks, FIB beam bottom corners and pedestals; add six end-bent MSE copings and two native 4-in closure slabs. Add one editable 2-in-wide geotechnical strap reference at each backwall, 18 in above its cap.",
+    "summary": "evidence/2026-10-17-square-edges-and-closure/update-summary.json",
+    "previous_model_sha256": "2d3b6af8ff550d4bb201e41c9cf373cf4bbfe60a96390485f71822be86055bdf",
+    "follow_up": "Existing COH-023/024/025/026 dispositions remain unchanged. Reconcile new concrete quantities and loads; closure reinforcement, cap/slab weather seal and movement-joint detailing remain unspecified. Geotechnical backwall straps are schematic representations at the selected trial level; final strap/pullout design and connections remain with the MSE supplier. Prior bar intersections and concrete ownership overlaps remain recorded.",
+    "publication": "User-requested model revision and standing project GitHub delivery instructions"
   },
   "archive_files": {
     "archive/B4-before-pedestal-ubars-20261012.FCStd": "e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118",
@@ -391,16 +407,20 @@
     "archive/B4-before-railing-group-20261016.FCStd": "8151e3e8f5f04fee15a335e3ac7c65d7e0e3b7d9f04c3698fa2788721f0dceb9",
     "archive/B4-before-railing-group-record-20261016.zip": "5ddc751d3bf09c665fd48051be308be133cc6a50c21ac94c7e0354944c867c76",
     "archive/B4-before-sdm-bar-marks-20261016.FCStd": "78c4404029b432b25825fa823c09e2795f9f8de96f88ed62d1c2d2ea0b7740ba",
-    "archive/B4-before-sdm-bar-marks-record-20261016.zip": "7b64452b983740ca54c2846ddc7b2c8b29fbfd015c5abbb8a4714ef2b44af9fb"
+    "archive/B4-before-sdm-bar-marks-record-20261016.zip": "7b64452b983740ca54c2846ddc7b2c8b29fbfd015c5abbb8a4714ef2b44af9fb",
+    "archive/B4-before-square-edges-and-closure-20261017.FCStd": "2d3b6af8ff550d4bb201e41c9cf373cf4bbfe60a96390485f71822be86055bdf",
+    "archive/B4-before-square-edges-and-closure-record-20261017.zip": "59506ec8f35e25f02d281a41335aee256737c3c138e6ebcdbb51a40e8143f4c2",
+    "archive/B4-closure-before-strap-representation-20261017.FCStd": "bd849f84699d984153542b28acb751b89b024030a586652b9747e4fa85ffc806",
+    "archive/B4-closure-before-strap-representation-record-20261017.zip": "11c0c17ba667e36874c5d50d3284bc7d99c29e467ecb57d6e47e2c70deee45dd"
   },
   "previous_update": {
     "date": "2026-10-16",
-    "decision": "D-040",
-    "scope": "Group only the four bridge-deck railings under PGL-controlled bridge components > Bridge railing.",
-    "summary": "evidence/2026-10-16-railing-group/update-summary.json",
-    "previous_model_sha256": "8151e3e8f5f04fee15a335e3ac7c65d7e0e3b7d9f04c3698fa2788721f0dceb9",
-    "follow_up": "Existing coherence findings and engineering dispositions unchanged.",
-    "publication": "Explicit save/source request and standing GitHub delivery instructions"
+    "decision": "D-042",
+    "scope": "Write FDOT SDM 4.3 bar marks (size + designation) into the Mark property of the 454 native end-bent and pier rebars.",
+    "summary": "evidence/2026-10-16-sdm-bar-marks/update-summary.json",
+    "previous_model_sha256": "78c4404029b432b25825fa823c09e2795f9f8de96f88ed62d1c2d2ea0b7740ba",
+    "follow_up": "Existing coherence findings and engineering dispositions unchanged. Rerun freecad_marks after bar regeneration.",
+    "publication": "Explicit user request and standing GitHub delivery instructions"
   },
   "extra_macros": {
     "Show_Elevations.FCMacro": "f27415eb7d8fe05a5ff8d05a01a5298b36ac1d3cf987ec8738ed541d085a3fc4",

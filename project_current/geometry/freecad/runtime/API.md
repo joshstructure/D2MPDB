@@ -499,3 +499,12 @@ shape rebuild. Status is Needs review until successful integration.
 in one transaction, verifies unchanged BRep strings, and returns a receipt.
 It does not save. The caller records the receipt with the project change journal.
 Use NetVolume, not Shape.Volume, for those two finished landing quantities.
+
+
+## D-044 square bridge edges and end-bent weather closure
+
+`standard_chamfers.apply(doc, report_path, request_id)` updates only the two decks, four beam bottom-corner sections and six pedestals, retaining nominal chamfer inputs. `BridgePGL.OmitStandardChamfers` controls omission of exactly 3/4-in standard cuts. Use the tested scoped rebuild; avoid blanket reinforcement regeneration that resets SDM marks.
+
+`end_bent_closure.add(doc, thickness="4 in", slope="2 %")` creates the new closure once in a caller-owned transaction or disposable document. It does not save. Existing closure inputs are edited natively; do not repeat creation. `ClosureEB1Inputs` and `ClosureEB2Inputs` link to the cap, PGL and three wall profiles. Slab thickness is vertical; DrainageSlope is numeric percent. Front coping top equals slab low top, side coping tops follow the slab plane, and coping seats remain on the panels. Native quantity schedule uses the eight NetVolume properties. Validate actual BRep thickness, slope, panel seating, cap/coping contacts and affected interferences after changes. No strap, joint or reinforcement design is inferred.
+
+`geotechnical_straps.add(doc, width="2 in", projection="6 ft", elevation_above_cap="18 in")` creates one zero-thickness reference face per backwall in a caller-owned transaction. It uses the actual vertical fill-side backwall face (not the EB1 landing-seat bounding box), cap top and PGL frame. No save, steel quantity or design spacing is inferred. Native Width, Projection, ElevationAboveCap and LateralOffset remain editable. Full attachment-edge lengths use BRep section; face/solid common omits the lower-dimensional touching boundary.

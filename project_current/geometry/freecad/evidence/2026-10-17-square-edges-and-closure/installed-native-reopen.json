@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "model": "C:\\github\\D2MPDB\\project_current\\geometry\\freecad\\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "sha256": "bd849f84699d984153542b28acb751b89b024030a586652b9747e4fa85ffc806",
+  "objects": 2078,
+  "physical_additions": [
+    {
+      "name": "ClosureCopingA5",
+      "valid": true,
+      "volume_ft3": 38.15523726005783
+    },
+    {
+      "name": "ClosureCopingA6",
+      "valid": true,
+      "volume_ft3": 5.113413077458907
+    },
+    {
+      "name": "ClosureCopingA7",
+      "valid": true,
+      "volume_ft3": 5.114217292874572
+    },
+    {
+      "name": "ClosureSlabEB1",
+      "valid": true,
+      "volume_ft3": 13.45931361766577
+    },
+    {
+      "name": "ClosureCopingB1",
+      "valid": true,
+      "volume_ft3": 38.15523726005671
+    },
+    {
+      "name": "ClosureCopingB6",
+      "valid": true,
+      "volume_ft3": 5.11421729287468
+    },
+    {
+      "name": "ClosureCopingB7",
+      "valid": true,
+      "volume_ft3": 5.113413077458916
+    },
+    {
+      "name": "ClosureSlabEB2",
+      "valid": true,
+      "volume_ft3": 13.459313617665282
+    }
+  ],
+  "total_closure_concrete_ft3": 123.68436249611267,
+  "old_mark_properties_preserved": 634,
+  "installed_controllers": "C:\\github\\D2MPDB\\project_current\\geometry\\freecad\\runtime",
+  "native_reopen": "PASS",
+  "prior_full_geometry_checks": "Unchanged verified file bytes; see square-edge and closure verification reports",
+  "saved_file_unchanged": true
+}

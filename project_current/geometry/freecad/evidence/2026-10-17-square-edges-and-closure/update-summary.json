@@ -1,0 +1,80 @@
+{
+  "decision": "D-044",
+  "date": "2026-10-17",
+  "status": "ADOPTED_IN_PROJECT_SOURCE",
+  "model_sha256": "23f67653096125870770f6f4fd43aaf478e8afa319a7437d9db68488af895288",
+  "previous_model_sha256": "2d3b6af8ff550d4bb201e41c9cf373cf4bbfe60a96390485f71822be86055bdf",
+  "scope": "Omit only nominal 3/4-in chamfers from the bridge decks, FIB beam bottom corners and pedestals; add six end-bent MSE copings and two native 4-in closure slabs. Add one editable 2-in-wide geotechnical strap reference at each backwall, 18 in above its cap.",
+  "authority": "User-requested CAD modeling revision, including clarified side-coping/slab plane and geotechnical strap scope. Selection is separate from engineering acceptance.",
+  "chamfer_convention": "BridgePGL.OmitStandardChamfers=True. Keep nominal 3/4-in inputs as standard construction chamfers assumed under the user-stated FDOT convention; omit their solid cuts for 2D drawings. Ramps, barriers, larger section breaks, fillets and V grooves retain their geometry.",
+  "closure_basis": "Existing project coping section on the six low MSE walls: A5/A6/A7 and B1/B6/B7. Front coping top equals slab low top. Slab is 4 in vertically thick and rises at 2% toward the vertical cap face. Side coping tops follow the same slab plane; coping seats stay on the existing panel tops.",
+  "quantities": {
+    "new_concrete_ft3": 123.68436249611268,
+    "new_concrete_yd3": 4.5809023146708405,
+    "slab_volume_ft3": {
+      "EB1": 13.45931361766577,
+      "EB2": 13.459313617665282
+    }
+  },
+  "verification": {
+    "objects": 2081,
+    "physical_additions": 8,
+    "square_bridge_geometry_passes": 249,
+    "pedestal_steel_checks": 318,
+    "closure_intersection_pairs": 197,
+    "new_positive_overlaps": 0,
+    "closure_contact_joints": 12,
+    "native_slope_edit_and_restore": "PASS",
+    "original_view_records_preserved": 2064,
+    "original_native_records_except_chamfer_scope_and_assembly": "Preserved by successive exact-record comparisons",
+    "installed_native_reopen": "PASS",
+    "old_mark_properties_preserved": 634,
+    "strap_reference_faces": 2,
+    "strap_native_edit_and_restore": "PASS",
+    "strap_attachment_and_interference": "PASS",
+    "strap_retained_native_records": 2077,
+    "strap_retained_view_records": 2078,
+    "final_installed_native_reopen": "PASS"
+  },
+  "preserved": "All original ramp/barrier, cap/backwall/cheek and reinforcement geometry, SDM marks, links, expressions, placements and original view records. Cambers unchanged. Live closure inputs, proxies and quantity schedule added.",
+  "downstream_review": "CAD modeled concrete quantity changes are recorded; calculation cases, notebooks, journal and historical drawing packages are not regenerated or accepted. COH-023 continues to cover quantities, loads and connection/strap reconciliation. The tracker workbook remains byte-identical.",
+  "geotechnical_straps": {
+    "status": "SCHEMATIC_REPRESENTATION_MODELED",
+    "count": 2,
+    "width_in": 2,
+    "trial_level_above_cap_in": 18,
+    "illustrative_projection_ft": 6,
+    "layout": "One centered reference ribbon per backwall, extending into fill; not a design spacing.",
+    "thickness": "Zero-thickness reference face; excluded from physical steel quantities.",
+    "connection": "Full 2-in edge meets the actual vertical fill-side backwall face; connection hardware is not modeled.",
+    "design_status": "Strap length, thickness, spacing, capacity, pullout and connection design remain with the MSE supplier.",
+    "source": "project_current/cap_design/backwall/selected_case.json",
+    "source_sha256": "ac075073306e06f252404d0c26e73b975cad2ee18373e011ef0946ae1c20d0e1",
+    "measurements": [
+      {
+        "name": "GeotechnicalStrapEB1",
+        "connection_elevation_ft": 44.73769223221813,
+        "above_cap_in": 18.00000000000003,
+        "width_in": 2.0000000000000338,
+        "projection_ft": 5.999999999999999
+      },
+      {
+        "name": "GeotechnicalStrapEB2",
+        "connection_elevation_ft": 44.749692144029666,
+        "above_cap_in": 18.00000000000003,
+        "width_in": 2.0000000000000404,
+        "projection_ft": 5.999999999999986
+      }
+    ]
+  },
+  "remaining": "Existing COH-023/024/025/026 dispositions remain unchanged. Reconcile new concrete quantities and loads; closure reinforcement, cap/slab weather seal and movement-joint detailing remain unspecified. Geotechnical backwall straps are schematic representations at the selected trial level; final strap/pullout design and connections remain with the MSE supplier. Prior bar intersections and concrete ownership overlaps remain recorded.",
+  "tracker_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
+  "backups": [
+    "archive/B4-before-square-edges-and-closure-20261017.FCStd",
+    "archive/B4-before-square-edges-and-closure-record-20261017.zip",
+    "archive/B4-closure-before-strap-representation-20261017.FCStd",
+    "archive/B4-closure-before-strap-representation-record-20261017.zip"
+  ],
+  "closure_stage_sha256": "bd849f84699d984153542b28acb751b89b024030a586652b9747e4fa85ffc806",
+  "evidence_publication": "Published JSON evidence uses LF line endings; parsed values match the original local execution reports. Native model bytes are unchanged."
+}
