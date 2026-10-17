@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="D2 project information atlas with source-backed pier-cap traces.">
+  <title>D2 Design Atlas</title><link rel="stylesheet" href="atlas.css">
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand" href="#" aria-label="D2 Design Atlas home"><span class="brand-mark">D2</span><span>Design Atlas<small>I-95 pedestrian bridge</small></span></a>
+    <div class="header-meta"><span class="live-dot"></span><span>Project-file snapshot<small id="snapshot-time"></small></span></div>
+    <button id="about-button" class="quiet">Coverage & sources</button>
+  </header>
+  <main>
+    <section class="intro"><div><div class="eyebrow">INFORMATION, CONNECTED</div><h1>Follow the design.</h1><p>From a source file to a single value. Start with the pier cap.</p></div><div id="summary" class="summary"></div></section>
+    <div class="workspace">
+      <section class="map-panel" aria-label="Full project map">
+        <div class="panel-heading"><div><span class="eyebrow">01 / PROJECT MAP</span><h2 id="map-title">The full picture</h2></div><button id="sources-button" class="quiet">Source directory <span id="source-count"></span></button></div>
+        <div class="map-toolbar"><label class="search-field"><span aria-hidden="true">⌕</span><input id="source-search" placeholder="Find a source or component…" aria-label="Find a source or component" autocomplete="off"></label><button id="pier-view" class="active">Pier-cap trail</button><button id="fit-all">Fit full map</button></div>
+        <div id="source-results" class="source-results" hidden></div>
+        <div class="canvas" id="map-canvas" aria-label="Pan and zoom project dependency map">
+          <div class="map-world" id="map-world"><svg id="map-links" aria-hidden="true"></svg><div id="map-labels"></div><div id="map-nodes"></div></div>
+          <div class="map-caption">Drag to pan · scroll to zoom · select a source or path</div>
+          <div class="zoom-tools"><button id="zoom-out" aria-label="Zoom out">−</button><output id="zoom-label">100%</output><button id="zoom-in" aria-label="Zoom in">+</button></div>
+        </div>
+        <div class="map-legend"><span><i class="legend-line verified"></i>Compared handoff</span><span><i class="legend-line"></i>Recorded dependency</span><span><i class="legend-line gap"></i>Gap / conflict</span><span id="map-selection-label"></span></div>
+      </section>
+      <aside class="trace-panel" aria-label="Isolated information trace">
+        <div class="panel-heading"><div><span class="eyebrow">02 / ISOLATED TRACE</span><h2 id="trace-title">Pier saved cap case</h2></div><span class="small-mark">↳</span></div>
+        <div class="trace-controls" role="group" aria-label="Trace direction"><button data-direction="both" class="active" aria-pressed="true">Both ways</button><button data-direction="upstream" aria-pressed="false">Inputs</button><button data-direction="downstream" aria-pressed="false">Outputs</button></div>
+        <label class="dependency-toggle"><input id="include-dependencies" type="checkbox"> Include wider registered dependencies</label>
+        <div id="trace-body" class="trace-body"></div>
+        <div id="source-detail" class="source-detail"></div>
+      </aside>
+      <section class="values-panel" aria-label="Individual values and their sources">
+        <div class="panel-heading"><div><span class="eyebrow">03 / VALUES & EVIDENCE</span><h2 id="values-title">Inside the pier cap</h2></div><button id="all-values" class="quiet">All pier values</button></div>
+        <div class="value-controls"><label class="search-field"><span aria-hidden="true">⌕</span><input id="value-search" aria-label="Search values" placeholder="Search a value, symbol, or unit…"></label><select id="value-category" aria-label="Value category"><option value="">Every category</option></select><span id="value-count"></span></div>
+        <div class="value-grid"><div class="value-table-wrap"><table><thead><tr><th scope="col">Parameter</th><th scope="col">Selected value</th><th scope="col">Sheet transfer</th></tr></thead><tbody id="value-rows"></tbody></table><p id="empty-values" hidden>No values match this selection.</p></div><div id="value-detail" class="value-detail" aria-live="polite"></div></div>
+      </section>
+    </div>
+    <footer><span id="footer-snapshot"></span><span>Read-only evidence · transfer checks and engineering review remain separate</span></footer>
+  </main>
+  <dialog id="evidence-dialog"><div class="dialog-head"><div><span class="eyebrow">SOURCE EVIDENCE</span><h2 id="evidence-title">Source record</h2></div><button id="close-evidence" aria-label="Close evidence">×</button></div><div id="evidence-content"></div></dialog>
+  <dialog id="about-dialog"><div class="dialog-head"><h2>Coverage & source snapshot</h2><button id="close-about" aria-label="Close coverage">×</button></div><div id="about-content"></div></dialog>
+  <div id="announcement" class="sr-only" aria-live="polite"></div>
+  <script src="dataset.js"></script><script src="atlas.js"></script>
+</body></html>
