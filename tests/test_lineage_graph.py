@@ -5,7 +5,9 @@ Rebuild after any register, decision, tracker, saved-case or Mathcad-export chan
 """
 import datetime
 import importlib.util
+import json
 import re
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -349,6 +351,116 @@ class LineageGraphTests(unittest.TestCase):
         html = self.gen.OUT_HTML.read_text(encoding='utf-8')
         self.assertEqual(html, self.gen.render_html(self.written), REBUILD)
         self.assertNotIn(MARKER, html)
+
+    # ------------------------------------------------------------ sign-offs
+    @staticmethod
+    def write_sidecar(path, entries, schema=None):
+        doc = {'schema': 'd2mpdb.lineage-signoff' if schema is None else schema, 'schema_version': 1, 'signoffs': entries}
+        path.write_text(json.dumps(doc, indent=2), encoding='utf-8')
+
+    def signed_items(self, graph):
+        return {x['id']: x['signoff'] for x in graph['nodes'] + graph['edges'] if 'signoff' in x}
+
+    def test_signoff_sidecar_is_valid_and_merged(self):
+        self.assertTrue(self.gen.SIGNOFF.exists(), f'{rel(self.gen.SIGNOFF)} is missing')
+        sidecar = self.gen.load_signoffs(self.gen.SIGNOFF)
+        summary = self.graph['signoff']
+        self.assertEqual(summary['schema'], self.gen.SIGNOFF_SCHEMA)
+        self.assertIs(summary['present'], True)
+        self.assertEqual(summary['path'], rel(self.gen.SIGNOFF))
+        self.assertIn(rel(self.gen.SIGNOFF), {r['path'] for r in self.graph['inputs']},
+                      'the sidecar must be a fingerprint input so editing it makes the outputs stale')
+        self.assertEqual(summary['entries'], sidecar['entries'])
+        self.assertEqual(summary['orphans'], [], f"sign-offs name ids that are not in the graph: {summary['orphans']}")
+        signed = self.signed_items(self.graph)
+        self.assertEqual(set(signed), {e['id'] for e in sidecar['entries']})
+        self.assertEqual(summary['signed_nodes'], sum(1 for i in signed if '->' not in i))
+        self.assertEqual(summary['signed_edges'], sum(1 for i in signed if '->' in i))
+        for sid, so in signed.items():
+            with self.subTest(id=sid):
+                for key in ('by', 'on', 'basis', 'hashes', 'current', 'stale', 'stale_detail', 'pinned', 'previous'):
+                    self.assertIn(key, so)
+                self.assertEqual(set(so['hashes']), set(so['current']))
+                self.assertIs(so['stale'], any(so['hashes'][k] != so['current'][k] for k in so['current']))
+        self.assertEqual(summary['stale'], sum(1 for so in signed.values() if so['stale']))
+
+    def test_signoff_schema_rejects_malformed_entries(self):
+        good = {'id': 'EB-CASE', 'by': 'Q. Checker', 'on': '2026-10-17', 'basis': 'test entry', 'hashes': {'node': '0' * 64}}
+        bad = [
+            ('empty by', {**good, 'by': ' '}),
+            ('empty basis', {**good, 'basis': ''}),
+            ('non-ISO date', {**good, 'on': '17/10/2026'}),
+            ('impossible date', {**good, 'on': '2026-13-40'}),
+            ('unknown key', {**good, 'extra': 1}),
+            ('node with edge hashes', {**good, 'hashes': {'source': '0' * 64, 'target': '0' * 64}}),
+            ('edge with node hashes', {**good, 'id': 'EB-XML->EB-CASE'}),
+            ('hash not hex', {**good, 'hashes': {'node': 'not-a-hash'}}),
+            ('hashes not an object', {**good, 'hashes': ['0' * 64]}),
+        ]
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'signoff.json'
+            for label, entry in bad:
+                with self.subTest(case=label):
+                    self.write_sidecar(path, [entry])
+                    with self.assertRaises(SystemExit):
+                        self.gen.load_signoffs(path)
+            with self.subTest(case='wrong schema'):
+                self.write_sidecar(path, [], schema='something-else')
+                with self.assertRaises(SystemExit):
+                    self.gen.load_signoffs(path)
+            with self.subTest(case='valid entry'):
+                self.write_sidecar(path, [good])
+                self.assertEqual(self.gen.load_signoffs(path)['entries'], [good])
+            with self.subTest(case='absent file'):
+                self.assertEqual(self.gen.load_signoffs(Path(tmp) / 'absent.json'), {'present': False, 'note': '', 'entries': []})
+
+    def test_stale_signoff_detected_in_temp_copy(self):
+        eb_case, eb_xml = self.node('EB-CASE'), self.node('EB-XML')
+        self.assertTrue(eb_case['sha256'] and eb_xml['sha256'])
+        entries = [
+            {'id': 'EB-CASE', 'by': 'Q. Checker', 'on': '2026-10-17', 'basis': 'current hash', 'hashes': {'node': eb_case['sha256']}},
+            {'id': 'EB-XML->EB-CASE', 'by': 'P. Earlier', 'on': '2026-10-01', 'basis': 'superseded entry',
+             'hashes': {'source': eb_xml['sha256'], 'target': eb_case['sha256']}},
+            {'id': 'EB-XML->EB-CASE', 'by': 'Q. Checker', 'on': '2026-10-17', 'basis': 'fabricated stale source hash',
+             'hashes': {'source': 'f' * 64, 'target': eb_case['sha256']}},
+            {'id': 'RFQ', 'by': 'Q. Checker', 'on': '2026-10-17', 'basis': 'unregistered node, no hash', 'hashes': {'node': ''}},
+            {'id': 'NOT-A-NODE', 'by': 'Q. Checker', 'on': '2026-10-17', 'basis': 'orphan', 'hashes': {'node': ''}},
+        ]
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'signoff.json'
+            self.write_sidecar(path, entries)
+            graph = self.gen.build(signoff_path=path)
+        signed = self.signed_items(graph)
+        self.assertEqual(set(signed), {'EB-CASE', 'EB-XML->EB-CASE', 'RFQ'})
+        self.assertIs(signed['EB-CASE']['stale'], False)
+        self.assertIs(signed['EB-CASE']['pinned'], True)
+        stale = signed['EB-XML->EB-CASE']
+        self.assertIs(stale['stale'], True)
+        self.assertEqual(stale['by'], 'Q. Checker', 'the latest entry for an id is the effective one')
+        self.assertIn('source hash changed', stale['stale_detail'])
+        self.assertEqual(stale['current'], {'source': eb_xml['sha256'], 'target': eb_case['sha256']})
+        self.assertEqual([p['by'] for p in stale['previous']], ['P. Earlier'])
+        self.assertIs(signed['RFQ']['stale'], False)
+        self.assertIs(signed['RFQ']['pinned'], False, 'an empty register hash cannot pin a sign-off')
+        summary = graph['signoff']
+        self.assertEqual((summary['signed_nodes'], summary['signed_edges'], summary['stale']), (2, 1, 1))
+        self.assertEqual(summary['orphans'], ['NOT-A-NODE'])
+        self.assertEqual(len(summary['entries']), len(entries))
+        self.assertNotIn(path.as_posix(), {r['path'] for r in graph['inputs']}, 'a sidecar outside the repo is not a fingerprint input')
+
+    def test_empty_sidecar_leaves_graph_unchanged(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            empty = Path(tmp) / 'signoff.json'
+            self.write_sidecar(empty, [])
+            with_empty = self.gen.build(signoff_path=empty)
+            without = self.gen.build(signoff_path=Path(tmp) / 'absent.json')
+        for key in ('stages', 'nodes', 'edges', 'decisions', 'issues', 'inputs', 'fingerprint'):
+            with self.subTest(key=key):
+                self.assertEqual(with_empty[key], without[key])
+        self.assertEqual(self.signed_items(with_empty), {})
+        self.assertEqual((with_empty['signoff']['present'], without['signoff']['present']), (True, False))
+        self.assertEqual(with_empty['signoff']['entries'], [])
+        self.assertEqual((with_empty['signoff']['signed_nodes'], with_empty['signoff']['signed_edges'], with_empty['signoff']['stale']), (0, 0, 0))
 
 
 if __name__ == '__main__':

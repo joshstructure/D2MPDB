@@ -2,7 +2,7 @@
  "schema": "d2mpdb.lineage-graph",
  "schema_version": 1,
  "generator_version": "1.1.0",
- "fingerprint": "8878e320ebc185eb18d15e1e764f946625a3516d04aa0427c5db98e43ec1ef4f",
+ "fingerprint": "21138ea0b2a4d3091a21263dc5aed246d332fe4dbe96bcb365e280012403bba3",
  "inputs": [
   {
    "path": "FBMP_Envelope_Extractor.ipynb",
@@ -31,6 +31,10 @@
   {
    "path": "journal/D2_I95_Project_Journal.bpad",
    "sha256": "7a0d47ab899b9eb91f9ead3b31a3c55c8bedfe5f5d05f4f26df093d79f4bd0f0"
+  },
+  {
+   "path": "lineage/signoff.json",
+   "sha256": "ca44d42e8a14d5e68738af1eabf1edd87eb5768a2e5f2f27d202da54c1e9cb7f"
   },
   {
    "path": "project_current/cap_design/backwall/selected_case.json",
@@ -82,7 +86,7 @@
   },
   {
    "path": "scripts/build_lineage_graph.py",
-   "sha256": "249a3a0d439275e5ab5d1c355e4974f02e5445c2cc7bbd77555a7f97029f20ee"
+   "sha256": "1728f684ebff94b246637c34159c4ffef9f88c41baad768086ab9189a3cfd76f"
   }
  ],
  "derived": [
@@ -25156,6 +25160,18 @@
    "tracker_row": 36
   }
  ],
+ "signoff": {
+  "schema": "d2mpdb.lineage-signoff",
+  "schema_version": 1,
+  "path": "lineage/signoff.json",
+  "present": true,
+  "note": "Verification sign-offs for the lineage graph. Each entry is a recorded human statement: who checked a node or relation, when, and on what basis, pinned to the register SHA-256 hashes at that time. Edit this file by hand (index.html drafts entries to paste in), then rebuild with scripts/build_lineage_graph.py. The generator marks an entry stale when the current hashes differ from the recorded ones. Nothing here is generated automatically. Entry shape: {\"id\": \"<node id or source->target edge id>\", \"by\": \"name\", \"on\": \"YYYY-MM-DD\", \"basis\": \"what was checked\", \"hashes\": {\"node\": \"<sha256>\"} for a node or {\"source\": \"<sha256>\", \"target\": \"<sha256>\"} for an edge}.",
+  "entries": [],
+  "signed_nodes": 0,
+  "signed_edges": 0,
+  "stale": 0,
+  "orphans": []
+ },
  "health_legend": {
   "MATCH": "Registered bytes or text match",
   "CHANGED": "File differs from the registered revision",

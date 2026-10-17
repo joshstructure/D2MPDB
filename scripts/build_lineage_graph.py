@@ -20,6 +20,12 @@ information flows from the project inputs to the deliverables, at three levels:
 Decisions (D-###) and coherence items (COH-###) are attached to the nodes and
 edges they reference. Machine-check statuses colour the nodes.
 
+Verification sign-offs from the hand-edited sidecar lineage/signoff.json are
+merged in as node.signoff / edge.signoff. Each is pinned to the register
+SHA-256 hashes recorded when the person signed, and is marked stale when the
+current hashes differ. The generator never writes a sign-off: a sign-off is a
+statement by a named person, and only the sidecar holds it.
+
 Two parameter sources reuse project code instead of parsing anew:
 
 * FBMP envelopes come from the stdlib extractor embedded in
@@ -50,6 +56,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import datetime
 import hashlib
 import json
 import re
@@ -64,6 +71,7 @@ OUT_DIR = ROOT / "lineage"
 TEMPLATE = OUT_DIR / "viewer.html"
 OUT_JSON = OUT_DIR / "lineage.json"
 OUT_HTML = OUT_DIR / "index.html"
+SIGNOFF = OUT_DIR / "signoff.json"  # hand-edited verification sign-offs; merged, never written, by this script
 
 REGISTER = PC / "source_register.csv"
 DECISIONS = PC / "decisions.md"
@@ -362,7 +370,126 @@ class Graph:
         return self.edges.get((src, dst))
 
 
-def build() -> dict:
+# ------------------------------------------------------ verification sign-offs
+SIGNOFF_SCHEMA = "d2mpdb.lineage-signoff"
+SIGNOFF_KEYS = {"id", "by", "on", "basis", "hashes"}
+SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
+DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
+
+def rel_or_abs(path: Path) -> str:
+    try:
+        return rel(path)
+    except ValueError:
+        return path.as_posix()
+
+
+def load_signoffs(path: Path) -> dict:
+    """Read and validate the sign-off sidecar.
+
+    Returns {"present", "note", "entries"} with every entry normalised to
+    {id, by, on, basis, hashes}. A missing file is an empty sidecar. A malformed
+    file stops the build naming the offending entry: a sign-off that cannot be
+    read must not vanish from the record silently.
+
+    Entry shape: id is a node id or a "source->target" edge id; by and basis are
+    non-empty text; on is an ISO date; hashes is {"node": sha256} for a node or
+    {"source": sha256, "target": sha256} for an edge (empty strings are allowed
+    where the register has no hash, e.g. unregistered nodes).
+    """
+    if not path.exists():
+        return {"present": False, "note": "", "entries": []}
+
+    def fail(msg: str):
+        raise SystemExit(f"{rel_or_abs(path)}: {msg}")
+
+    data = read_json(path)
+    if not isinstance(data, dict) or data.get("schema") != SIGNOFF_SCHEMA:
+        fail(f'the top level must be an object with "schema": "{SIGNOFF_SCHEMA}"')
+    entries = data.get("signoffs")
+    if not isinstance(entries, list):
+        fail('"signoffs" must be a list')
+    out = []
+    for i, entry in enumerate(entries, start=1):
+        where = f"signoffs[{i}]"
+        if not isinstance(entry, dict):
+            fail(f"{where} is not an object")
+        unknown = sorted(set(entry) - SIGNOFF_KEYS)
+        if unknown:
+            fail(f"{where} has unknown keys {unknown}; allowed keys are {sorted(SIGNOFF_KEYS)}")
+        for key in ("id", "by", "on", "basis"):
+            if not isinstance(entry.get(key), str) or not entry[key].strip():
+                fail(f"{where}.{key} must be non-empty text")
+        if not DATE_RE.match(entry["on"]):
+            fail(f"{where}.on must be an ISO date YYYY-MM-DD, got {entry['on']!r}")
+        try:
+            datetime.date.fromisoformat(entry["on"])
+        except ValueError:
+            fail(f"{where}.on is not a calendar date: {entry['on']!r}")
+        hashes = entry.get("hashes")
+        if not isinstance(hashes, dict):
+            fail(f"{where}.hashes must be an object")
+        expected = {"source", "target"} if "->" in entry["id"] else {"node"}
+        if set(hashes) != expected:
+            fail(f"{where}.hashes must have exactly the keys {sorted(expected)} for id {entry['id']!r}")
+        for key, value in hashes.items():
+            if not isinstance(value, str) or (value and not SHA256_RE.match(value)):
+                fail(f"{where}.hashes.{key} must be a lowercase hex SHA-256, or empty where the register has none")
+        out.append({"id": entry["id"].strip(), "by": entry["by"].strip(), "on": entry["on"],
+                    "basis": entry["basis"].strip(), "hashes": {k: hashes[k] for k in sorted(hashes)}})
+    return {"present": True, "note": str(data.get("note", "")), "entries": out}
+
+
+def merge_signoffs(g: Graph, sidecar: dict, path: Path) -> dict:
+    """Attach each sign-off to its node or edge; mark it stale when the register hashes moved on.
+
+    One sign-off per id is effective: the latest `on` date, file order breaking
+    ties. Earlier ones stay under signoff.previous. Entries naming an id that is
+    not in the graph are listed as orphans rather than dropped. Returns the
+    summary block stored at the graph root; nodes and edges without a sign-off
+    gain no key at all.
+    """
+    grouped: dict[str, list] = {}
+    for order, entry in enumerate(sidecar["entries"]):
+        grouped.setdefault(entry["id"], []).append((entry["on"], order, entry))
+    orphans, signed_nodes, signed_edges, stale = [], 0, 0, 0
+    for sid, items in grouped.items():
+        items.sort(key=lambda t: (t[0], t[1]))
+        effective, previous = items[-1][2], [t[2] for t in items[:-1]]
+        if "->" in sid:
+            src, _, dst = sid.partition("->")
+            target = g.edge(src, dst)
+            if target is None:
+                orphans.append(sid)
+                continue
+            current = {"source": g.node(src)["sha256"], "target": g.node(dst)["sha256"]}
+            signed_edges += 1
+        else:
+            target = g.nodes.get(sid)
+            if target is None:
+                orphans.append(sid)
+                continue
+            current = {"node": target["sha256"]}
+            signed_nodes += 1
+        changed = [k for k in current if effective["hashes"].get(k, "") != current[k]]
+        record = dict(effective)
+        record.update({
+            "current": current, "stale": bool(changed),
+            "stale_detail": "; ".join(f"{k} hash changed since the sign-off" for k in changed),
+            "pinned": all(current.values()),
+            "previous": [{"by": p["by"], "on": p["on"], "basis": p["basis"]} for p in previous],
+        })
+        target["signoff"] = record
+        stale += int(record["stale"])
+    return {
+        "schema": SIGNOFF_SCHEMA, "schema_version": 1, "path": rel_or_abs(path), "present": sidecar["present"],
+        "note": sidecar["note"], "entries": sidecar["entries"], "signed_nodes": signed_nodes,
+        "signed_edges": signed_edges, "stale": stale, "orphans": sorted(orphans),
+    }
+
+
+def build(signoff_path: Path | None = None) -> dict:
+    """Build the graph. signoff_path overrides the sidecar (tests point it at a temp copy)."""
     g = Graph()
     # The generator is an input to its own outputs: editing it must show as stale.
     for p in (Path(__file__).resolve(), REGISTER, DECISIONS, ITEMS, CHECKS):
@@ -713,6 +840,12 @@ def build() -> dict:
     for e in g.edges.values():
         e["flags"] = sorted(set(e["flags"]))
 
+    # -- verification sign-offs: merge the hand-edited sidecar -------------
+    signoff_file = SIGNOFF if signoff_path is None else Path(signoff_path)
+    signoff = merge_signoffs(g, load_signoffs(signoff_file), signoff_file)
+    if signoff_file.exists() and rel_or_abs(signoff_file) != signoff_file.as_posix():
+        g.use(signoff_file)  # under the repo: the sidecar joins the fingerprint, so editing it makes the outputs stale
+
     inputs = sorted(g.inputs, key=rel)
     input_records = [{"path": rel(p), "sha256": sha256_file(p)} for p in inputs]
     derived.sort(key=lambda d: d["id"])
@@ -731,7 +864,7 @@ def build() -> dict:
         "stages": [{"id": sid, "label": label} for sid, label in STAGES],
         "nodes": sorted(g.nodes.values(), key=lambda n: n["id"]),
         "edges": sorted(g.edges.values(), key=lambda e: e["id"]),
-        "decisions": decisions, "issues": issues,
+        "decisions": decisions, "issues": issues, "signoff": signoff,
         "health_legend": {
             "MATCH": "Registered bytes or text match", "CHANGED": "File differs from the registered revision",
             "MISSING": "Registered file absent or no source selected", "EMULATED": "Generated; native recalculation not performed",
@@ -785,6 +918,10 @@ def main(argv=None) -> int:
                 if n.get("formula_trace") and not n["formula_trace"]["available"]]
     print(f"FBMP envelopes: {', '.join(envelopes) or 'none'}; formula traces: {', '.join(traced) or 'none'}"
           + (f"; no trace for {', '.join(untraced)}" if untraced else ""))
+    so = graph["signoff"]
+    print(f"sign-offs ({so['path']}{'' if so['present'] else ', absent'}): {so['signed_nodes']} nodes, "
+          f"{so['signed_edges']} edges, {so['stale']} stale"
+          + (f"; unknown ids: {', '.join(so['orphans'])}" if so["orphans"] else ""))
     return 0
 
 

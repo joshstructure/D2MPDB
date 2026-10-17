@@ -1,0 +1,6 @@
+{
+  "schema": "d2mpdb.lineage-signoff",
+  "schema_version": 1,
+  "note": "Verification sign-offs for the lineage graph. Each entry is a recorded human statement: who checked a node or relation, when, and on what basis, pinned to the register SHA-256 hashes at that time. Edit this file by hand (index.html drafts entries to paste in), then rebuild with scripts/build_lineage_graph.py. The generator marks an entry stale when the current hashes differ from the recorded ones. Nothing here is generated automatically. Entry shape: {\"id\": \"<node id or source->target edge id>\", \"by\": \"name\", \"on\": \"YYYY-MM-DD\", \"basis\": \"what was checked\", \"hashes\": {\"node\": \"<sha256>\"} for a node or {\"source\": \"<sha256>\", \"target\": \"<sha256>\"} for an edge}.",
+  "signoffs": []
+}

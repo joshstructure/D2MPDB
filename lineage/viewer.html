@@ -108,6 +108,23 @@ table.pt tr.chg td:first-child { border-left: 3px solid var(--amber); }
 .stat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 8px 0; }
 .stat div { background: var(--panel2); border-radius: 6px; padding: 6px 8px; text-align: center; }
 .stat b { display: block; font-size: 20px; line-height: 1.2; }
+#scrub input[type=range] { width: 150px; margin: 0; vertical-align: middle; accent-color: var(--accent); }
+#scrub output { min-width: 80px; font-variant-numeric: tabular-nums; }
+.glyph { display: inline-block; min-width: 1.1em; text-align: center; font-weight: 700; }
+.glyph.ok { color: var(--green); } .glyph.stale { color: var(--amber); } .glyph.none { color: var(--grey); }
+.walkbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 8px 0; }
+.hop { border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px 10px; margin: 8px 0; }
+.hop h3:first-of-type { margin-top: 10px; }
+ul.hops li { margin: 0; }
+ul.hops .itembtn { display: flex; gap: 6px; align-items: baseline; padding: 4px; }
+ul.hops li.cur .itembtn { background: var(--accent-bg); }
+ul.hops .num { color: var(--muted); min-width: 2em; text-align: right; }
+form.draft { display: grid; grid-template-columns: 50px 1fr; gap: 5px 8px; align-items: center; margin: 6px 0; }
+form.draft label { color: var(--muted); }
+form.draft input { width: 100%; }
+form.draft input[type=date] { font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 5px; padding: 2px 8px; }
+.row { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0; }
+textarea.snip { display: block; width: 100%; min-height: 170px; margin: 6px 0 2px; padding: 6px 8px; font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; font-size: 11.5px; line-height: 1.4; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 5px; resize: vertical; }
 </style>
 </head>
 <body>
@@ -130,6 +147,12 @@ table.pt tr.chg td:first-child { border-left: 3px solid var(--amber); }
       <button type="button" id="zout" aria-label="Zoom out" title="Zoom out">&minus;</button>
     </div>
     <div id="legend" role="group" aria-label="Filter nodes by health"></div>
+    <div class="ctl" id="scrub" title="Show the record as it stood on a date. Nodes registered later fade; later decisions and coherence items are hidden in the tabs.">
+      <label for="asof">As of</label>
+      <input id="asof" type="range" min="0" max="0" value="0" step="1" aria-label="Show the record as of a date">
+      <output id="asof-out" for="asof"></output>
+      <button type="button" id="asof-latest" class="small" title="Back to the latest date" disabled>Latest</button>
+    </div>
   </header>
   <div id="main">
     <section id="stage" aria-label="Lineage graph">
@@ -181,6 +204,8 @@ const PCOLS = [['name', 'Name'], ['value', 'Value'], ['unit', 'Unit'], ['state',
   ['source_text', 'Source text'], ['source_status', 'Source status'], ['status', 'Status'], ['detail', 'Detail']];
 const COL_W = 230, PITCH = 72, GAP = 12, LIMIT = 20;
 const ISSUE_ORDER = ['Open', 'Awaiting source', 'Deferred', 'Closed'];
+const CHECK = '✓', RING = '○';
+const SIGNOFF_SCHEMA = 'd2mpdb.lineage-signoff';
 
 const $ = (s, r) => (r || document).querySelector(s);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -193,6 +218,13 @@ const kv = (k, v) => v === '' || v == null ? '' : '<div class="kv"><dt>' + k + '
 const sec = (t, v) => v ? '<div class="sec"><div class="lbl">' + t + '</div><div>' + md(v) + '</div></div>' : '';
 const shaHtml = s => s ? '<span class="mono" title="' + esc(s) + '">' + esc(s.slice(0, 12)) + '</span>' : '';
 const copyBtn = (v, what) => '<button type="button" class="small" data-copy="' + esc(v) + '" aria-label="Copy ' + what + '">Copy</button>';
+const isoDay = s => { const m = /^(\d{4}-\d{2}-\d{2})/.exec(String(s == null ? '' : s)); return m ? m[1] : ''; };
+const todayIso = () => { const d = new Date(), p = x => String(x).padStart(2, '0'); return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()); };
+// Sign-off state of a node or edge: 'ok' (signed, hashes current), 'stale' (signed, hashes changed since) or 'none'.
+const soState = so => !so ? 'none' : so.stale ? 'stale' : 'ok';
+const SO_TITLE = { ok: 'Signed off; register hashes unchanged since', stale: 'Signed off, but the register hashes have changed since', none: 'Not signed off' };
+const soGlyph = so => { const s = soState(so); return '<span class="glyph ' + s + '" title="' + SO_TITLE[s] + '">' + (s === 'none' ? RING : CHECK) + '</span>'; };
+const soChip = so => { const s = soState(so); return chip(s === 'ok' ? 'Signed' : s === 'stale' ? 'Signed, stale' : 'Not signed', s === 'ok' ? 'green' : s === 'stale' ? 'amber' : 'grey', SO_TITLE[s]); };
 
 let D = null, cy = null, idx = null;
 const by = { nodes: {}, edges: {}, dec: {}, iss: {} };
@@ -200,7 +232,10 @@ const adj = { in: {}, out: {} };
 const stageIdx = {};
 const state = {
   dir: 'both', isolate: false, selId: null, selEdge: null, cone: null, health: {}, search: null,
-  open: { dec: null, iss: null }, refHits: new Set(), tab: 'overview'
+  open: { dec: null, iss: null }, refHits: new Set(), tab: 'overview',
+  walk: null,            // { target, hops: [edge ids in information-flow order], i }
+  dates: [], asOfIdx: 0, asOf: '',  // time scrubber: sorted unique dates; current index and date
+  draft: null, drafts: {}  // open draft form { id, by, on, basis, json }; drafts kept this session, by id
 };
 let graphKey = null, zmode = '', zlab = true, lastTap = { id: null, t: 0 }, pts = {}, ptSeq = 0, paneKey = '';
 
@@ -223,8 +258,22 @@ function loadData() {
   });
   D.decisions.forEach(d => { by.dec[d.id] = d; d.refs = d.refs || {}; });
   D.issues.forEach(i => { by.iss[i.id] = i; i.refs = i.refs || {}; i.checks = i.checks || []; });
+  D.signoff = Object.assign({ schema: SIGNOFF_SCHEMA, schema_version: 1, path: 'lineage/signoff.json', present: false, note: '',
+    entries: [], signed_nodes: 0, signed_edges: 0, stale: 0, orphans: [] }, D.signoff || {});
+  const dates = new Set();
+  D.nodes.forEach(n => { const d = isoDay(n.registered_on); if (d) dates.add(d); });
+  D.decisions.forEach(d => { const x = isoDay(d.date); if (x) dates.add(x); });
+  D.issues.forEach(i => { const x = isoDay(i.last_reviewed); if (x) dates.add(x); });
+  state.dates = [...dates].sort();
+  state.asOfIdx = Math.max(0, state.dates.length - 1); state.asOf = state.dates[state.asOfIdx] || '';
   buildIndex();
 }
+// The chosen scrubber date, or null when it sits at the latest date (nothing filtered).
+const asOfCut = () => state.dates.length > 1 && state.asOfIdx < state.dates.length - 1 ? state.asOf : null;
+const afterCut = (cut, dated) => !!cut && isoDay(dated) > cut;
+// Current register hashes for a sign-off of this id: {node} for a node, {source, target} for an edge.
+const curHashes = id => by.edges[id] ? { source: by.nodes[by.edges[id].source].sha256 || '', target: by.nodes[by.edges[id].target].sha256 || '' }
+  : { node: (by.nodes[id] || {}).sha256 || '' };
 const colOf = n => stageIdx[n.stage] !== undefined ? stageIdx[n.stage] : D.stages.length - 1;
 const stageOf = n => D.stages[colOf(n)].id;
 const stageLabel = n => D.stages[colOf(n)].label;
@@ -255,17 +304,21 @@ function buildIndex() {
     D.decisions.forEach(d => { if ((d.refs.sources || []).includes(n.id)) decs.add(d.id); });
     D.issues.forEach(i => { if ((i.refs.sources || []).includes(n.id)) iss.add(i.id); });
     nd[n.id] = [n.id, n.label, n.path, n.notes].concat(n.parameters.map(p => p.name),
-      [...decs].map(x => dT[x] || x), [...iss].map(x => iT[x] || x)).join('\n').toLowerCase();
+      [...decs].map(x => dT[x] || x), [...iss].map(x => iT[x] || x), soText(n.signoff)).join('\n').toLowerCase();
   });
-  D.edges.forEach(e => { ed[e.id] = [e.id, e.label, e.kind].concat(e.parameters.map(p => p.name)).join('\n').toLowerCase(); });
+  D.edges.forEach(e => { ed[e.id] = [e.id, e.label, e.kind].concat(e.parameters.map(p => p.name), soText(e.signoff)).join('\n').toLowerCase(); });
   idx = { nd, ed };
 }
+const soText = so => so ? ['signed', so.by, so.on, so.basis, so.stale ? 'stale' : ''] : [];
 
 // ---------- layout and graph elements ----------
+// Node label with the sign-off badge: a check mark before a signed node's name and a "sign-off stale" line when the hashes moved on.
+const nodeLabel = (n, extra) => (n.signoff ? CHECK + ' ' : '') + n.label + (extra || '') + (n.signoff && n.signoff.stale ? '\nsign-off stale' : '');
+
 function estHeight(n) {
   const k = KIND[n.kind] || KIND.source;
   let lines = 1, cur = 0;
-  String(n.label).split(/\s+/).forEach(w => {
+  nodeLabel(n).split(/\s+/).forEach(w => {
     const l = w.length * 6.2;
     if (cur && cur + 6.2 + l > k.tw) { lines++; cur = l; } else cur += (cur ? 6.2 : 0) + l;
   });
@@ -309,20 +362,22 @@ function buildElements(cn) {
     if (used.has(s.id)) els.push({ group: 'nodes', classes: 'stage', data: { id: s.id, label: s.label, minH: L.height } });
   });
   nodes.forEach(n => {
-    const np = n.parameters.length, h = HEALTH[n.health] ? n.health : 'NONE';
+    const np = n.parameters.length, h = HEALTH[n.health] ? n.health : 'NONE', so = soState(n.signoff);
     els.push({
       group: 'nodes', position: L.pos[n.id],
-      classes: 'k-' + (KIND[n.kind] ? n.kind : 'source') + ' h-' + h + (n.registered === false ? ' unreg' : '') + (n.open_issues.length ? ' issues' : ''),
-      data: { id: n.id, parent: stageOf(n), label: n.label, label2: n.label + '\n' + np + ' param' + (np === 1 ? '' : 's') + ' · ' + n.health }
+      classes: 'k-' + (KIND[n.kind] ? n.kind : 'source') + ' h-' + h + (n.registered === false ? ' unreg' : '') + (n.open_issues.length ? ' issues' : '') +
+        (so !== 'none' ? ' signed' : '') + (so === 'stale' ? ' stale' : ''),
+      data: { id: n.id, parent: stageOf(n), label: nodeLabel(n), label2: nodeLabel(n, '\n' + np + ' param' + (np === 1 ? '' : 's') + ' · ' + n.health) }
     });
   });
   D.edges.forEach(e => {
     if (!L.pos[e.source] || !L.pos[e.target] || (cn && !cn.edges.has(e.id))) return;
-    const c = ctrl(L.pos[e.source], L.pos[e.target]), np = e.parameters.length;
+    const c = ctrl(L.pos[e.source], L.pos[e.target]), np = e.parameters.length, so = soState(e.signoff);
+    const badge = so === 'ok' ? CHECK : so === 'stale' ? CHECK + ' stale' : '';
     els.push({
       group: 'edges',
-      classes: 'e-' + e.kind + e.flags.map(f => ' f-' + f).join(''),
-      data: { id: e.id, source: e.source, target: e.target, plabel: np ? np + ' params' : '', cpd: c.d, cpw: c.w }
+      classes: 'e-' + e.kind + e.flags.map(f => ' f-' + f).join('') + (so !== 'none' ? ' signed' : '') + (so === 'stale' ? ' stale' : ''),
+      data: { id: e.id, source: e.source, target: e.target, plabel: badge + (np ? (badge ? ' · ' : '') + np + ' params' : ''), cpd: c.d, cpw: c.w }
     });
   });
   return { els, pos: L.pos };
@@ -353,6 +408,11 @@ function buildStyle() {
   S.push({ selector: 'node.unreg', style: { 'border-style': 'dashed' } });
   S.push({ selector: 'node.path', style: { 'underlay-color': t.sel, 'underlay-opacity': 0.3, 'underlay-padding': 4 } });
   S.push({ selector: 'node.issues', style: { 'border-width': 3, 'border-color': '#d84a3a' } });
+  // Sign-off badge: a double border (amber when the recorded hashes are stale); the label also carries a check mark.
+  S.push({ selector: 'node.signed', style: { 'border-style': 'double', 'border-width': 4 } });
+  S.push({ selector: 'node.issues.signed', style: { 'border-width': 5 } });
+  S.push({ selector: 'node.stale', style: { 'border-color': '#ef9f27' } });
+  S.push({ selector: 'node.hop', style: { 'outline-width': 4, 'outline-color': t.sel, 'outline-offset': 2, 'outline-opacity': 1 } });
   S.push({ selector: 'node.zfar', style: { 'font-size': 9 } });
   S.push({ selector: 'node.znear', style: { 'label': 'data(label2)' } });
   S.push({ selector: ':parent', style: {
@@ -372,6 +432,7 @@ function buildStyle() {
   S.push({ selector: 'edge.e-mapping', style: { 'line-color': '#7f77dd', 'target-arrow-color': '#7f77dd' } });
   S.push({ selector: 'edge.f-review', style: { 'line-color': '#ef9f27', 'target-arrow-color': '#ef9f27', 'width': 2 } });
   S.push({ selector: 'edge.f-identity-mismatch', style: { 'line-color': '#d84a3a', 'target-arrow-color': '#d84a3a', 'line-style': 'dashed', 'width': 2 } });
+  S.push({ selector: 'edge.signed', style: { 'width': 2.4, 'line-cap': 'round' } });
   S.push({ selector: 'edge.path', style: { 'width': 2.8 } });
   S.push({ selector: 'edge.nolabel', style: { 'text-opacity': 0, 'text-background-opacity': 0 } });
   S.push({ selector: 'edge.hit', style: { 'width': 3.2, 'underlay-color': t.hit, 'underlay-opacity': 0.55, 'underlay-padding': 3 } });
@@ -404,19 +465,20 @@ function syncGraph() {
 function applyView() {
   if (!cy) return;
   const cn = state.selId ? state.cone : null, se = state.search, hf = Object.keys(state.health).some(k => state.health[k]);
+  const cut = asOfCut(), w = state.walk, hopId = w && w.hops.length ? w.hops[w.i] : null, hop = hopId ? by.edges[hopId] : null;
   cy.batch(() => {
     cy.nodes(':childless').forEach(n => {
       const id = n.id(), nd = by.nodes[id];
       const hit = (se && se.nodes.has(id)) || state.refHits.has(id);
-      const fade = (cn && !cn.nodes.has(id)) || (se && !se.nodes.has(id) && !se.ctx.has(id)) || (hf && !state.health[nd.health]);
+      const fade = (cn && !cn.nodes.has(id)) || (se && !se.nodes.has(id) && !se.ctx.has(id)) || (hf && !state.health[nd.health]) || afterCut(cut, nd.registered_on);
       n.toggleClass('faded', !!fade).toggleClass('hit', !!hit).toggleClass('sel', id === state.selId)
-        .toggleClass('path', !!cn && cn.nodes.has(id) && id !== state.selId);
+        .toggleClass('path', !!cn && cn.nodes.has(id) && id !== state.selId).toggleClass('hop', !!hop && (id === hop.source || id === hop.target));
     });
     cy.edges().forEach(e => {
-      const id = e.id(), ed = by.edges[id], hit = !!se && se.edges.has(id);
-      const hFade = hf && (!state.health[by.nodes[ed.source].health] || !state.health[by.nodes[ed.target].health]);
-      const fade = (cn && !cn.edges.has(id)) || (se && !hit) || hFade;
-      e.toggleClass('faded', !!fade).toggleClass('hit', hit).toggleClass('esel', id === state.selEdge)
+      const id = e.id(), ed = by.edges[id], hit = !!se && se.edges.has(id), s = by.nodes[ed.source], t = by.nodes[ed.target];
+      const hFade = hf && (!state.health[s.health] || !state.health[t.health]);
+      const fade = (cn && !cn.edges.has(id)) || (se && !hit) || hFade || afterCut(cut, s.registered_on) || afterCut(cut, t.registered_on);
+      e.toggleClass('faded', !!fade).toggleClass('hit', hit).toggleClass('esel', id === state.selEdge || id === hopId)
         .toggleClass('path', !!cn && cn.edges.has(id));
     });
   });
@@ -433,13 +495,14 @@ function applyZoomMode() {
 }
 
 function refreshSelection() {
-  state.cone = state.selId ? cone(state.selId, state.dir) : null;
+  state.cone = state.walk ? cone(state.walk.target, 'up') : state.selId ? cone(state.selId, state.dir) : null;
   syncGraph(); applyView(); renderPane();
 }
 
 function selectNode(id, fromPane) {
   if (!by.nodes[id]) return;
-  state.selId = id; state.selEdge = null;
+  if (state.walk && state.walk.target !== id) state.walk = null;
+  state.selId = id; state.selEdge = null; state.draft = null;
   refreshSelection();
   if (fromPane && cy) {
     const n = cy.getElementById(id);
@@ -449,14 +512,129 @@ function selectNode(id, fromPane) {
 
 function selectEdge(id) {
   if (!by.edges[id]) return;
-  state.selEdge = id;
+  if (state.walk) {
+    const i = state.walk.hops.indexOf(id);
+    if (i >= 0) { walkTo(i); return; }
+    state.walk = null; state.cone = state.selId ? cone(state.selId, state.dir) : null; syncGraph();
+  }
+  state.selEdge = id; state.draft = null;
   applyView(); renderPane();
 }
 
 function clearSelection() {
-  state.selId = null; state.selEdge = null; state.cone = null;
+  state.selId = null; state.selEdge = null; state.cone = null; state.walk = null; state.draft = null;
   state.open = { dec: null, iss: null }; state.refHits = new Set();
   syncGraph(); applyView(); renderPane();
+}
+
+// ---------- verification walk ----------
+// Topological rank of the nodes in a cone (Kahn's algorithm over the cone's edges; ties by stage column then label).
+function topoRank(cn) {
+  const indeg = {}, rank = {}, ready = [];
+  let next = 0;
+  cn.nodes.forEach(id => { indeg[id] = 0; });
+  cn.edges.forEach(eid => { indeg[by.edges[eid].target]++; });
+  cn.nodes.forEach(id => { if (!indeg[id]) ready.push(id); });
+  const order = (a, b) => colOf(by.nodes[a]) - colOf(by.nodes[b]) || by.nodes[a].label.localeCompare(by.nodes[b].label);
+  while (ready.length) {
+    ready.sort(order);
+    const id = ready.shift();
+    rank[id] = next++;
+    adj.out[id].forEach(e => { if (cn.edges.has(e.id) && --indeg[e.target] === 0) ready.push(e.target); });
+  }
+  [...cn.nodes].sort(order).forEach(id => { if (rank[id] === undefined) rank[id] = next++; }); // only if the record has a cycle
+  return rank;
+}
+
+// The hops of a walk: every edge in the node's upstream cone, ordered so each hop's source has been reached before it.
+function walkHops(id) {
+  const cn = cone(id, 'up'), rank = topoRank(cn);
+  return [...cn.edges].map(eid => by.edges[eid]).sort((a, b) => rank[a.target] - rank[b.target] || rank[a.source] - rank[b.source]).map(e => e.id);
+}
+
+function startWalk(id, hop) {
+  if (!by.nodes[id]) return;
+  const hops = walkHops(id);
+  state.walk = { target: id, hops, i: Math.max(0, Math.min(hops.length - 1, hop || 0)) };
+  state.selId = id; state.selEdge = null; state.draft = null;
+  refreshSelection(); centerHop();
+}
+
+function walkTo(i) {
+  const w = state.walk;
+  if (!w || !w.hops.length) return;
+  w.i = Math.max(0, Math.min(w.hops.length - 1, i)); state.draft = null;
+  applyView(); renderPane(); centerHop();
+}
+
+function endWalk() {
+  if (!state.walk) return;
+  state.walk = null; state.draft = null;
+  refreshSelection();
+}
+
+function centerHop() {
+  const w = state.walk;
+  if (!cy || !w || !w.hops.length) return;
+  const e = cy.getElementById(w.hops[w.i]);
+  if (e.nonempty()) cy.animate({ center: { eles: e } }, { duration: 200 });
+}
+
+function walkCounts(w) {
+  const c = { ok: 0, none: 0, stale: 0 };
+  w.hops.forEach(id => { c[soState(by.edges[id].signoff)]++; });
+  return c;
+}
+
+// ---------- sign-off drafts and export ----------
+function toggleDraft(id) {
+  state.draft = state.draft && state.draft.id === id ? null : { id, by: '', on: todayIso(), basis: '', json: '' };
+  renderPane();
+}
+
+// Turn the form's fields into the JSON entry for signoff.json. Only the person's own fields are typed in; the hashes are the current register hashes.
+function makeDraft(id) {
+  const d = state.draft;
+  if (!d || d.id !== id || !(by.nodes[id] || by.edges[id])) return;
+  const by_ = d.by.trim(), basis = d.basis.trim(), on = isoDay(d.on);
+  if (!by_ || !basis || !on) return;
+  d.json = JSON.stringify({ id, by: by_, on, basis, hashes: curHashes(id) }, null, 2);
+  renderPane();
+}
+
+function keepDraft(id) {
+  const d = state.draft;
+  if (!d || d.id !== id || !d.json) return;
+  state.drafts[id] = { entry: JSON.parse(d.json), json: d.json };
+  renderPane();
+}
+
+// The sidecar as it stands: recorded entries plus any drafts kept this session, in the file's own shape.
+function signoffDocument() {
+  const S = D.signoff, entries = (S.entries || []).map(e => ({ id: e.id, by: e.by, on: e.on, basis: e.basis, hashes: e.hashes }));
+  Object.keys(state.drafts).sort().forEach(id => entries.push(state.drafts[id].entry));
+  return { schema: S.schema || SIGNOFF_SCHEMA, schema_version: S.schema_version || 1, note: S.note || '', signoffs: entries };
+}
+
+function downloadSignoffs() {
+  const text = JSON.stringify(signoffDocument(), null, 2) + '\n';
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
+  a.download = 'signoff.json';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+
+// ---------- time scrubber ----------
+function setAsOf(i) {
+  const ds = state.dates;
+  if (!ds.length) return;
+  state.asOfIdx = Math.max(0, Math.min(ds.length - 1, i)); state.asOf = ds[state.asOfIdx];
+  $('#asof').value = state.asOfIdx;
+  $('#asof-out').textContent = state.asOf;
+  $('#asof-latest').disabled = state.asOfIdx === ds.length - 1;
+  applyView();
+  if (!state.selId && !state.selEdge) renderPane();
 }
 
 function fitCone() {
@@ -534,14 +712,56 @@ const issBlock = (i, head) => '<div class="expand">' + (head ? '<div><b class="m
   sec('Resolution', i.resolution) + sec('Last reviewed', i.last_reviewed) + sec('References', i.references) +
   (i.checks.length ? '<div class="sec"><div class="lbl">Checks</div>' + checksHtml(i.checks) + '</div>' : '') + srcChips(i.refs) + '</div>';
 
+// A recorded hash next to the current one: "current" when equal, otherwise the hash it has become.
+const hashPair = (rec, cur) => (rec ? shaHtml(rec) : '<span class="muted">none</span>') + ' ' +
+  ((rec || '') === (cur || '') ? chip('current', 'green', 'The register hash has not changed since the sign-off') : chip('now ' + (cur ? cur.slice(0, 12) : 'none'), 'amber', cur || 'The register no longer records a hash'));
+
+// The sign-off section of a node, edge or hop: the recorded statement with its stale state, then the draft form.
+function signoffHtml(so, id) {
+  let h = '<h3>Sign-off</h3>';
+  if (so) {
+    h += '<div class="chips">' + soChip(so) + (so.pinned === false ? chip('not hash-pinned', 'grey', 'The signed item has no register hash, so a change cannot be detected') : '') + '</div>' +
+      '<dl class="kvs">' + kv('By', esc(so.by)) + kv('On', esc(so.on)) + kv('Basis', esc(so.basis)) +
+      Object.keys(so.hashes || {}).map(k => kv(k[0].toUpperCase() + k.slice(1) + ' hash', hashPair(so.hashes[k], (so.current || {})[k]))).join('') +
+      (so.stale ? kv('Stale', esc(so.stale_detail)) : '') + '</dl>' +
+      (so.previous && so.previous.length ? '<p class="muted">Superseded: ' + so.previous.map(p => esc(p.by + ', ' + p.on)).join('; ') + '.</p>' : '') +
+      '<p class="muted">Recorded in <span class="mono">' + esc(D.signoff.path) + '</span>. ' + (so.stale ? 'Re-check and draft a new entry to replace it.' : 'Edit that file and rebuild to change it.') + '</p>';
+  } else {
+    h += '<p>' + soChip(null) + '</p><p class="muted">A sign-off is a statement by a named person. Draft one here, paste it into <span class="mono">' + esc(D.signoff.path) + '</span>' +
+      (D.signoff.present ? '' : ' (not present yet)') + ' and rebuild.</p>';
+  }
+  return h + draftHtml(id);
+}
+
+function draftHtml(id) {
+  const d = state.draft && state.draft.id === id ? state.draft : null, kept = state.drafts[id];
+  if (!d) return '<p class="row"><button type="button" class="small" data-act="draft" data-id="' + esc(id) + '">Draft sign-off</button>' +
+    (kept ? '<span class="muted">A draft by ' + esc(kept.entry.by) + ' is kept for download.</span>' : '') + '</p>';
+  const cur = curHashes(id);
+  let h = '<form class="draft" data-id="' + esc(id) + '" aria-label="Draft sign-off">' +
+    '<label for="d-by">By</label><input id="d-by" name="by" type="text" value="' + esc(d.by) + '" placeholder="Who checked it" required autocomplete="name">' +
+    '<label for="d-on">On</label><input id="d-on" name="on" type="date" value="' + esc(d.on) + '" required>' +
+    '<label for="d-basis">Basis</label><input id="d-basis" name="basis" type="text" value="' + esc(d.basis) + '" placeholder="What was checked, against what" required>' +
+    '<div class="row"><button type="submit" class="small">Make JSON</button><button type="button" class="small" data-act="draft" data-id="' + esc(id) + '">Cancel</button>' +
+    '<span class="muted">Pins ' + Object.keys(cur).map(k => k + ' ' + (cur[k] ? cur[k].slice(0, 12) : 'none')).join(', ') + '</span></div></form>';
+  if (d.json) h += '<textarea class="snip" readonly aria-label="Sign-off JSON">' + esc(d.json) + '</textarea><div class="row">' +
+    '<button type="button" class="small" data-copy-prev="1" aria-label="Copy sign-off JSON">Copy</button>' +
+    '<button type="button" class="small" data-act="keep" data-id="' + esc(id) + '"' + (kept && kept.json === d.json ? ' disabled' : '') + '>' + (kept && kept.json === d.json ? 'Kept for download' : 'Keep for download') + '</button>' +
+    '<span class="muted">Paste into the signoffs list of <span class="mono">' + esc(D.signoff.path) + '</span>, then rebuild.</span></div>';
+  return h;
+}
+
+const nodeLink = n => '<button type="button" class="link" data-act="node" data-id="' + esc(n.id) + '">' + esc(n.label) + '</button>';
+const healthChip = n => '<span class="chip hc h-' + (HEALTH[n.health] ? n.health : 'NONE') + '" title="' + esc(D.health_legend[n.health] || '') + '"><i class="dot"></i>' + esc(n.health) + '</span>';
+
 function nodeHtml(n) {
-  const hl = D.health_legend[n.health] || '';
   const up = adj.in[n.id], down = adj.out[n.id];
   const nb = (list, end) => list.length ? '<ul class="plain">' + list.slice().sort((a, b) => String((by.nodes[a[end]] || {}).label).localeCompare(String((by.nodes[b[end]] || {}).label))).map(e =>
-    '<li><button type="button" class="link" data-act="node" data-id="' + esc(e[end]) + '">' + esc((by.nodes[e[end]] || {}).label || e[end]) + '</button> ' +
+    '<li>' + soGlyph(e.signoff) + ' <button type="button" class="link" data-act="node" data-id="' + esc(e[end]) + '">' + esc((by.nodes[e[end]] || {}).label || e[end]) + '</button> ' +
     '<button type="button" class="link small" data-act="edge" data-id="' + esc(e.id) + '" title="Show this relation">(' + esc(e.label || e.kind) + ')</button></li>').join('') + '</ul>' : '<p class="muted">None.</p>';
-  let h = '<div class="hdr"><span class="muted">Node</span><button type="button" class="small" data-act="clear">Clear selection</button></div><h2>' + esc(n.label) + '</h2><div class="chips">' +
-    chip(n.id, 'mono') + chip(n.kind) + chip(stageLabel(n)) + '<span class="chip hc h-' + (HEALTH[n.health] ? n.health : 'NONE') + '" title="' + esc(hl) + '"><i class="dot"></i>' + esc(n.health) + '</span>' +
+  let h = '<div class="hdr"><span class="muted">Node</span><span class="row"><button type="button" class="small" data-act="walk" data-id="' + esc(n.id) + '" title="Step through everything that feeds this node, hop by hop">Verification walk</button>' +
+    '<button type="button" class="small" data-act="clear">Clear selection</button></span></div><h2>' + esc(n.label) + '</h2><div class="chips">' +
+    chip(n.id, 'mono') + chip(n.kind) + chip(stageLabel(n)) + healthChip(n) + soChip(n.signoff) +
     (n.registered === false ? chip('unregistered', 'grey') : '') +
     (n.open_issues.length ? chip(n.open_issues.length + ' open coherence item' + (n.open_issues.length === 1 ? '' : 's'), 'amber') : '') + '</div>';
   h += '<dl class="kvs">' + kv('Status', esc(n.status)) +
@@ -550,6 +770,7 @@ function nodeHtml(n) {
     kv('Scope', esc(n.scope)) + kv('Origin', esc(n.origin)) + kv('Notes', esc(n.notes)) + kv('Case', esc(n.case_name)) + kv('Analysis', esc(n.analysis_id)) +
     kv('Confirmations', n.confirmations ? Object.keys(n.confirmations).map(k => esc(k) + ': ' + (n.confirmations[k] ? 'yes' : 'no')).join('<br>') : '') + '</dl>';
   if (n.checks.length) h += '<h3>Checks</h3>' + checksHtml(n.checks);
+  h += signoffHtml(n.signoff, n.id);
   if (n.decisions.length) {
     h += '<h3>Decisions</h3><div class="chips">' + n.decisions.map(id => '<button type="button" class="chip' + (state.open.dec === id ? ' hc' : '') + '" data-act="dec" data-id="' + esc(id) + '" aria-expanded="' + (state.open.dec === id) + '">' + esc(id) + '</button>').join('') + '</div>';
     if (state.open.dec && n.decisions.includes(state.open.dec) && by.dec[state.open.dec]) h += decBlock(by.dec[state.open.dec], true);
@@ -567,14 +788,14 @@ function nodeHtml(n) {
   return h + '<h3>Parameters (' + n.parameters.length + ')</h3>' + ptHtml(n.parameters);
 }
 
-function edgeHtml(e) {
-  const s = by.nodes[e.source], t = by.nodes[e.target];
-  const lk = (n, id) => '<button type="button" class="link" data-act="node" data-id="' + esc(id) + '">' + esc(n ? n.label : id) + '</button>';
+const edgeChips = e => '<div class="chips">' + chip(e.kind) + (e.label ? chip(e.label) : '') +
+  e.flags.map(f => FLAGS[f] ? chip(FLAGS[f][0], FLAGS[f][1]) : chip(f, 'grey')).join('') + soChip(e.signoff) + '</div>';
+
+// The evidence carried by a relation: identity comparisons, FB-MultiPier export facts, checks, sign-off and parameters.
+function edgeFacts(e) {
   const sha = (label, v) => kv(label, shaHtml(v) + (v ? ' ' + copyBtn(v, label) : ''));
   const yesNo = (v, goodWhenYes) => chip(v ? 'yes' : 'no', (v === goodWhenYes) ? 'green' : 'red');
-  let h = '<div class="hdr"><span class="muted">Relation</span><button type="button" class="small" data-act="back">&larr; ' + (state.selId ? 'Back to node' : 'Overview') + '</button></div>' +
-    '<h2>' + lk(s, e.source) + ' &rarr; ' + lk(t, e.target) + '</h2><div class="chips">' + chip(e.kind) + (e.label ? chip(e.label) : '') +
-    e.flags.map(f => FLAGS[f] ? chip(FLAGS[f][0], FLAGS[f][1]) : chip(f, 'grey')).join('') + '</div>';
+  let h = '';
   const ai = e.analysis_identity;
   if (ai) h += '<h3>Analysis identity</h3><dl class="kvs">' + sha('Case requires', ai.case_requires_sha256) + sha('Registered', ai.registered_sha256) +
     kv('Match', yesNo(ai.match, true)) + kv('File present', yesNo(ai.file_present, true)) + '</dl>';
@@ -589,36 +810,98 @@ function edgeHtml(e) {
   if (fs && Object.keys(fs).length) h += '<h3>Extracted vs summary</h3><div class="tscroll"><table class="pt"><thead><tr><th>Quantity</th><th>Extracted</th><th>Summary</th></tr></thead><tbody>' +
     Object.keys(fs).map(k => '<tr' + (fs[k].extracted !== fs[k].summary ? ' class="chg"' : '') + '><td>' + esc(k) + '</td><td>' + esc(fmt(fs[k].extracted)) + '</td><td>' + esc(fmt(fs[k].summary)) + '</td></tr>').join('') + '</tbody></table></div>';
   if (e.checks.length) h += '<h3>Checks</h3>' + checksHtml(e.checks);
+  h += signoffHtml(e.signoff, e.id);
   return h + '<h3>Parameters (' + e.parameters.length + ')</h3>' + ptHtml(e.parameters);
+}
+
+function edgeHtml(e) {
+  const s = by.nodes[e.source], t = by.nodes[e.target];
+  return '<div class="hdr"><span class="muted">Relation</span><button type="button" class="small" data-act="back">&larr; ' + (state.selId ? 'Back to node' : 'Overview') + '</button></div>' +
+    '<h2>' + nodeLink(s) + ' &rarr; ' + nodeLink(t) + '</h2>' + edgeChips(e) + edgeFacts(e);
+}
+
+function walkHtml(w) {
+  const t = by.nodes[w.target], c = walkCounts(w), n = w.hops.length, e = n ? by.edges[w.hops[w.i]] : null;
+  let h = '<div class="hdr"><span class="muted">Verification walk</span><button type="button" class="small" data-act="wexit">Exit walk</button></div>' +
+    '<h2>' + nodeLink(t) + '</h2><div class="chips">' + chip(t.id, 'mono') + healthChip(t) + soChip(t.signoff) + '</div>' +
+    '<p class="muted">The ' + ((state.cone ? state.cone.nodes.size : 1) - 1) + ' nodes that feed this one, walked in information-flow order. Each hop is one relation; a hop is signed when <span class="mono">' + esc(D.signoff.path) + '</span> records a sign-off for it.</p>' +
+    '<div class="stat"><div><b>' + c.ok + '</b>signed</div><div><b>' + c.none + '</b>unsigned</div><div><b>' + c.stale + '</b>stale</div></div>';
+  if (!e) return h + '<p class="muted">Nothing feeds this node, so there is no hop to walk.</p>' + signoffHtml(t.signoff, t.id);
+  const s = by.nodes[e.source], tt = by.nodes[e.target];
+  h += '<div class="walkbar"><button type="button" class="small" data-act="wstep" data-d="-1"' + (w.i === 0 ? ' disabled' : '') + '>&larr; Previous</button>' +
+    '<b>Hop ' + (w.i + 1) + ' of ' + n + '</b><button type="button" class="small" data-act="wstep" data-d="1"' + (w.i === n - 1 ? ' disabled' : '') + '>Next &rarr;</button></div>';
+  h += '<div class="hop"><h2>' + soGlyph(e.signoff) + ' ' + nodeLink(s) + ' &rarr; ' + nodeLink(tt) + '</h2>' + edgeChips(e) +
+    '<dl class="kvs">' + kv('From', healthChip(s) + ' ' + soChip(s.signoff) + (s.registered === false ? ' ' + chip('unregistered', 'grey') : '') + (s.open_issues.length ? ' ' + chip(s.open_issues.length + ' open', 'amber', 'Open coherence items') : '')) +
+    kv('To', healthChip(tt) + ' ' + soChip(tt.signoff) + (tt.registered === false ? ' ' + chip('unregistered', 'grey') : '') + (tt.open_issues.length ? ' ' + chip(tt.open_issues.length + ' open', 'amber', 'Open coherence items') : '')) + '</dl>' +
+    edgeFacts(e) + '</div>';
+  h += '<h3>All hops</h3><ul class="plain hops">' + w.hops.map((id, i) => {
+    const x = by.edges[id];
+    return '<li' + (i === w.i ? ' class="cur"' : '') + '><button type="button" class="itembtn" data-act="wgo" data-i="' + i + '" aria-current="' + (i === w.i) + '">' + soGlyph(x.signoff) +
+      '<span class="num">' + (i + 1) + '.</span><span>' + esc(by.nodes[x.source].label) + ' &rarr; ' + esc(by.nodes[x.target].label) + ' <span class="muted">(' + esc(x.label || x.kind) + ')</span></span></button></li>';
+  }).join('') + '</ul>';
+  return h + '<p class="row"><button type="button" class="small" data-act="dl">Download signoff.json</button><span class="muted">' + signoffCountText() + '</span></p>';
+}
+
+const signoffCountText = () => { const k = Object.keys(state.drafts).length; return (D.signoff.entries || []).length + ' recorded' + (k ? ' + ' + k + ' drafted this session' : ''); };
+
+// What the record gained between the scrubber's previous date and the chosen one.
+function asOfHtml() {
+  const ds = state.dates;
+  if (!ds.length) return '';
+  const cut = asOfCut();
+  if (!cut) return '<p class="muted">The record spans ' + esc(ds[0]) + ' to ' + esc(ds[ds.length - 1]) + '. Drag the As-of slider to look back.</p>';
+  const prev = state.asOfIdx > 0 ? ds[state.asOfIdx - 1] : '';
+  const within = v => { const d = isoDay(v); return d && d > prev && d <= cut; };
+  const nodes = D.nodes.filter(n => within(n.registered_on)), decs = D.decisions.filter(d => within(d.date)), iss = D.issues.filter(i => within(i.last_reviewed));
+  const later = D.nodes.filter(n => afterCut(cut, n.registered_on)).length;
+  const list = (items, act) => items.length ? '<div class="chips">' + items.map(x => '<button type="button" class="chip" data-act="' + act + '" data-id="' + esc(x.id) + '" title="' + esc(x.label || x.decision || x.item || '') + '">' + esc(x.id) + '</button>').join('') + '</div>' : '<p class="muted">None.</p>';
+  return '<h3>As of ' + esc(cut) + '</h3><p class="muted">' + (prev ? 'Changes since ' + esc(prev) + '.' : 'The earliest date in the record.') + ' ' +
+    (later ? later + ' node' + (later === 1 ? '' : 's') + ' registered later ' + (later === 1 ? 'is' : 'are') + ' faded; later decisions and coherence items are hidden in their tabs.' : '') + '</p>' +
+    '<div class="sec"><div class="lbl">Sources registered (' + nodes.length + ')</div>' + list(nodes, 'node') + '</div>' +
+    '<div class="sec"><div class="lbl">Decisions recorded (' + decs.length + ')</div>' + list(decs, 'decgo') + '</div>' +
+    '<div class="sec"><div class="lbl">Coherence items reviewed (' + iss.length + ')</div>' + list(iss, 'issgo') + '</div>';
+}
+
+function signoffOverviewHtml() {
+  const S = D.signoff, signed = D.nodes.filter(n => n.signoff).concat(D.edges.filter(e => e.signoff));
+  return '<h3>Sign-offs</h3><p><b>' + (S.signed_nodes || 0) + '</b> node' + (S.signed_nodes === 1 ? '' : 's') + ' and <b>' + (S.signed_edges || 0) + '</b> relation' + (S.signed_edges === 1 ? '' : 's') +
+    ' signed off, <b>' + (S.stale || 0) + '</b> stale' + (S.orphans && S.orphans.length ? '; ' + S.orphans.length + ' entr' + (S.orphans.length === 1 ? 'y names' : 'ies name') + ' an id that is not in the graph (' + esc(S.orphans.join(', ')) + ')' : '') + '.' +
+    (S.present ? '' : ' <span class="mono">' + esc(S.path) + '</span> is not present.') + '</p>' +
+    (signed.length ? '<ul class="plain">' + signed.map(x => '<li>' + soGlyph(x.signoff) + ' <button type="button" class="link" data-act="' + (x.source ? 'edge' : 'node') + '" data-id="' + esc(x.id) + '">' + esc(x.id) + '</button> <span class="muted">' + esc(x.signoff.by + ', ' + x.signoff.on) + '</span></li>').join('') + '</ul>' : '') +
+    '<p class="row"><button type="button" class="small" data-act="dl">Download signoff.json</button><span class="muted">' + signoffCountText() + '</span></p>' +
+    '<p class="muted">Select a node and press Verification walk to step through what feeds it. The graph never asserts acceptance by itself: a sign-off is a statement by a named person, written by hand into <span class="mono">' + esc(S.path) + '</span>.</p>';
 }
 
 function overviewHtml() {
   const np = D.nodes.reduce((a, n) => a + n.parameters.length, 0), ep = D.edges.reduce((a, e) => a + e.parameters.length, 0);
   const open = D.issues.filter(i => i.status !== 'Closed').length, hc = healthCounts();
   return '<div class="stat"><div><b>' + D.nodes.length + '</b>nodes</div><div><b>' + D.edges.length + '</b>edges</div><div><b>' + (np + ep) + '</b>parameters</div></div>' +
-    '<p class="muted">' + np + ' on nodes, ' + ep + ' on edges.</p><h3>Health</h3><div class="chips">' +
+    '<p class="muted">' + np + ' on nodes, ' + ep + ' on edges.</p>' + asOfHtml() + '<h3>Health</h3><div class="chips">' +
     legendCodes().map(c => '<span class="chip hc h-' + (HEALTH[c] ? c : 'NONE') + '" title="' + esc(D.health_legend[c] || '') + '"><i class="dot"></i>' + esc(c) + ' ' + (hc[c] || 0) + '</span>').join('') + '</div>' +
-    '<h3>Coherence items</h3><p><b>' + open + '</b> open (not Closed) of ' + D.issues.length + '.</p>' +
+    '<h3>Coherence items</h3><p><b>' + open + '</b> open (not Closed) of ' + D.issues.length + '.</p>' + signoffOverviewHtml() +
     '<h3>Build</h3><dl class="kvs">' + kv('Checked (UTC)', esc(D.checked_at_utc)) + kv('Generator', esc(D.generator_version)) +
     kv('Fingerprint', '<span class="mono" title="' + esc(D.fingerprint) + '">' + esc(String(D.fingerprint || '').slice(0, 12)) + '</span>') + '</dl>' +
     '<p class="muted">Generated from project_current by scripts/build_lineage_graph.py</p>' +
     '<h3>Key</h3>' + EDGE_KEY.map(k => '<div class="key"><span class="sw" style="border-top-style:' + k[2] + ';border-top-color:' + k[3] + '"></span><span>' + esc(k[1]) + '</span></div>').join('') +
-    '<p class="muted">Arrows point in the direction information flows. Click a node to trace what feeds it and what it feeds; double-click to fit that cone. Dashed node borders are unregistered sources; a red border means open coherence items.</p>';
+    '<p class="muted">Arrows point in the direction information flows. Click a node to trace what feeds it and what it feeds; double-click to fit that cone. Dashed node borders are unregistered sources; a red border means open coherence items; a double border and a ' + CHECK + ' in the label mean a recorded sign-off (amber when its hashes are stale).</p>';
 }
 
+const hiddenNote = (cut, n, what) => cut ? '<p class="muted">As of ' + esc(cut) + (n ? ': ' + n + ' later ' + what + (n === 1 ? '' : 's') + ' hidden.' : '.') + '</p>' : '';
+
 function decisionsHtml() {
-  return D.decisions.map(d => {
+  const cut = asOfCut(), shown = D.decisions.filter(d => !afterCut(cut, d.date));
+  return hiddenNote(cut, D.decisions.length - shown.length, 'decision') + (shown.map(d => {
     const o = state.open.dec === d.id;
     return '<div class="item"><button type="button" class="itembtn" data-act="dec" data-id="' + esc(d.id) + '" aria-expanded="' + o + '"><span class="mono">' + esc(d.id) + '</span> <span class="muted">' + esc(d.date) + '</span>' +
       (o ? '' : '<span class="clamp">' + md(d.decision) + '</span>') + '</button>' + (o ? decBlock(d, false) : '') + '</div>';
-  }).join('') || '<p class="muted">No decisions.</p>';
+  }).join('') || '<p class="muted">No decisions.</p>');
 }
 
 function issuesHtml() {
-  const groups = {};
-  D.issues.forEach(i => (groups[i.status] = groups[i.status] || []).push(i));
+  const cut = asOfCut(), groups = {}, shown = D.issues.filter(i => !afterCut(cut, i.last_reviewed));
+  shown.forEach(i => (groups[i.status] = groups[i.status] || []).push(i));
   const order = ISSUE_ORDER.filter(s => groups[s]).concat(Object.keys(groups).filter(s => !ISSUE_ORDER.includes(s)));
-  return order.map(s => '<h3>' + chip(s, issCls(s)) + ' ' + groups[s].length + '</h3>' + groups[s].map(i => {
+  return hiddenNote(cut, D.issues.length - shown.length, 'item') + order.map(s => '<h3>' + chip(s, issCls(s)) + ' ' + groups[s].length + '</h3>' + groups[s].map(i => {
     const o = state.open.iss === i.id;
     return '<div class="item"><button type="button" class="itembtn" data-act="iss" data-id="' + esc(i.id) + '" aria-expanded="' + o + '"><span class="mono">' + esc(i.id) + '</span> <span class="muted">' + esc(i.area) + '</span>' +
       '<span class="' + (o ? '' : 'clamp') + '">' + esc(i.item) + '</span></button>' + (o ? issBlock(i, false) : '') + '</div>';
@@ -633,15 +916,17 @@ function tabsHtml() {
 
 function renderPane() {
   const pane = $('#pane'), ae = document.activeElement;
-  const fk = ae && pane.contains(ae) && ae.dataset && ae.dataset.act ? [ae.dataset.act, ae.dataset.id || ae.dataset.tab || ''] : null;
-  const key = state.selEdge ? 'e:' + state.selEdge : state.selId ? 'n:' + state.selId : 't:' + state.tab, top = pane.scrollTop;
+  const fkey = el => el.dataset.id || el.dataset.tab || el.dataset.d || el.dataset.i || '';
+  const fk = ae && pane.contains(ae) && ae.dataset && ae.dataset.act ? [ae.dataset.act, fkey(ae)] : null;
+  const w = state.walk && by.nodes[state.walk.target] ? state.walk : null;
+  const key = w ? 'w:' + w.target + ':' + w.i : state.selEdge ? 'e:' + state.selEdge : state.selId ? 'n:' + state.selId : 't:' + state.tab, top = pane.scrollTop;
   pts = {}; ptSeq = 0;
-  pane.innerHTML = state.selEdge && by.edges[state.selEdge] ? edgeHtml(by.edges[state.selEdge]) :
+  pane.innerHTML = w ? walkHtml(w) : state.selEdge && by.edges[state.selEdge] ? edgeHtml(by.edges[state.selEdge]) :
     state.selId && by.nodes[state.selId] ? nodeHtml(by.nodes[state.selId]) : tabsHtml();
   pane.scrollTop = key === paneKey ? top : 0;
   paneKey = key;
   if (fk) {
-    const el = [...pane.querySelectorAll('[data-act]')].find(x => x.dataset.act === fk[0] && (x.dataset.id || x.dataset.tab || '') === fk[1]);
+    const el = [...pane.querySelectorAll('[data-act]')].find(x => x.dataset.act === fk[0] && fkey(x) === fk[1]);
     if (el) el.focus({ preventScroll: true });
   }
 }
@@ -682,18 +967,28 @@ function zoomBy(f) {
 function wire() {
   const pane = $('#pane');
   pane.addEventListener('click', ev => {
-    const b = ev.target.closest('[data-act],[data-copy]');
+    const b = ev.target.closest('[data-act],[data-copy],[data-copy-prev]');
     if (!b) return;
     if (b.dataset.copy !== undefined) { copyText(b.dataset.copy, b); return; }
+    if (b.dataset.copyPrev !== undefined) { const ta = b.parentElement.previousElementSibling; if (ta && ta.tagName === 'TEXTAREA') copyText(ta.value, b); return; }
     const id = b.dataset.id;
     switch (b.dataset.act) {
       case 'tab': state.tab = b.dataset.tab; renderPane(); break;
       case 'dec': toggleRef('dec', id); break;
       case 'iss': toggleRef('iss', id); break;
+      case 'decgo': state.tab = 'decisions'; state.open.dec = null; toggleRef('dec', id); break;
+      case 'issgo': state.tab = 'issues'; state.open.iss = null; toggleRef('iss', id); break;
       case 'node': selectNode(id, true); break;
       case 'edge': selectEdge(id); break;
-      case 'back': state.selEdge = null; applyView(); renderPane(); break;
+      case 'back': state.selEdge = null; state.draft = null; applyView(); renderPane(); break;
       case 'clear': clearSelection(); break;
+      case 'walk': startWalk(id || state.selId); break;
+      case 'wstep': if (state.walk) walkTo(state.walk.i + Number(b.dataset.d)); break;
+      case 'wgo': walkTo(Number(b.dataset.i)); break;
+      case 'wexit': endWalk(); break;
+      case 'draft': toggleDraft(id); break;
+      case 'keep': keepDraft(id); break;
+      case 'dl': downloadSignoffs(); break;
       case 'more': {
         const t = pts[b.dataset.key];
         if (t) { t.all = !t.all; $('.ptwrap[data-key="' + b.dataset.key + '"] .pt-body', pane).innerHTML = ptBody(b.dataset.key); }
@@ -703,10 +998,28 @@ function wire() {
   });
   pane.addEventListener('input', ev => {
     const el = ev.target;
-    if (!el.classList || !el.classList.contains('pt-filter') || !pts[el.dataset.key]) return;
-    pts[el.dataset.key].filter = el.value;
-    $('.ptwrap[data-key="' + el.dataset.key + '"] .pt-body', pane).innerHTML = ptBody(el.dataset.key);
+    if (!el.classList) return;
+    if (el.classList.contains('pt-filter') && pts[el.dataset.key]) {
+      pts[el.dataset.key].filter = el.value;
+      $('.ptwrap[data-key="' + el.dataset.key + '"] .pt-body', pane).innerHTML = ptBody(el.dataset.key);
+      return;
+    }
+    const f = el.closest('form.draft');
+    if (f && state.draft && state.draft.id === f.dataset.id && el.name in state.draft) state.draft[el.name] = el.value;
   });
+  pane.addEventListener('submit', ev => {
+    const f = ev.target.closest && ev.target.closest('form.draft');
+    if (!f) return;
+    ev.preventDefault();
+    makeDraft(f.dataset.id);
+  });
+  const asof = $('#asof');
+  if (state.dates.length > 1) {
+    asof.max = state.dates.length - 1;
+    asof.addEventListener('input', () => setAsOf(Number(asof.value)));
+    $('#asof-latest').addEventListener('click', () => setAsOf(state.dates.length - 1));
+    setAsOf(state.dates.length - 1);
+  } else $('#scrub').hidden = true;
   let qt = null;
   const q = $('#q');
   q.addEventListener('input', () => { clearTimeout(qt); qt = setTimeout(doSearch, 150); });
@@ -788,7 +1101,8 @@ function init() {
 }
 
 try { init(); } catch (err) { const m = $('#cy-msg'); m.textContent = 'Viewer error: ' + err.message; m.hidden = false; }
-window.__lineage = { state, restyle, get cy() { return cy; }, get data() { return D; } };
+window.__lineage = { state, restyle, selectNode, selectEdge, clearSelection, startWalk, walkTo, endWalk, walkHops, setAsOf, toggleDraft, makeDraft, keepDraft,
+  signoffDocument, downloadSignoffs, get cy() { return cy; }, get data() { return D; } };
 })();
 </script>
 </body>
