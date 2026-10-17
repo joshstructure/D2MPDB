@@ -52,6 +52,7 @@ The graph has four levels.
 | `formula` | Journal -> cap case | The journal's `module.variable` (`BridgeGeometry_2Beam.PierCap_width`) -> the cap formula it feeds (`b`) |
 | `check` | Geometry notebook -> cap case | The notebook's quantity (`b`) -> the same quantity in the saved case (`b`), with both printed values |
 | `source` | Saved case, FBMP XML, CAD model, journal or Mathcad source -> backwall case | The saved-case input (`b`) -> the backwall input (`b_cap`). Where the backwall input only describes its source in prose, the source name is empty |
+| `embedded` | Saved case -> its report | Every case input under the same name and value: the report embeds (or was exported with) the case. The status is the machine check that compares the embedded case with the saved file (`PIER:report-case`, `EB:report-case`); where no check exists (End Bent 2, backwall) it reads `NOT COMPARED` and the detail quotes the register |
 
 A governing link compares the registered XML's envelope value with the case value and says `DIFFERS` when they are not the same file's numbers. The registered pier and End Bent 1 exports are earlier analyses than the ones the cases were built from (see [FBMP envelopes](#fbmp-envelopes)), so at the time of writing every force input that is compared reads `DIFFERS`. Two inputs per case (`Mu_P` and `MI_P`) are interior extremums inside the pile region: the link names the envelope row but compares nothing and has no status. Where the XML is missing (EB2-XML) the link has no source name and says the file is not present.
 
@@ -71,7 +72,7 @@ The generator reads these files:
 | `exports/cap-mathcad-20261017/` (when present) | Source and verification record, `Verification.json`, the three Input Mapping CSVs |
 | `lineage/signoff.json` | Verification sign-offs, merged as `node.signoff` and `edge.signoff` |
 
-At the time of writing the build has 35 nodes, 67 edges, 1989 parameters, 265 links, 43 decisions and 28 coherence items. The links are 174 mapping, 35 source, 27 governing, 15 formula and 14 check.
+At the time of writing the build has 35 nodes, 67 edges, 2301 parameters, 577 links, 44 decisions and 28 coherence items. The links are 312 embedded, 174 mapping, 35 source, 27 governing, 15 formula and 14 check.
 
 ### FBMP envelopes
 

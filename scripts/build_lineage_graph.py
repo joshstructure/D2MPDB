@@ -123,6 +123,13 @@ CASE_FILES = {
 }
 BACKWALL_CASE = PC / "cap_design" / "backwall" / "selected_case.json"
 XML_OF_CASE = {"PIER-CASE": "PIER-XML", "EB-CASE": "EB-XML", "EB2-CASE": "EB2-XML"}
+# Each report embeds (or was exported together with) its saved case, so the
+# case's inputs are the report's inputs. The machine check that compares the
+# embedded case with the saved file, where one exists, gives the link status.
+REPORT_OF_CASE = {
+    "PIER-CASE": ("PIER-REPORT", "PIER:report-case"), "EB-CASE": ("EB-REPORT", "EB:report-case"),
+    "EB2-CASE": ("EB2-REPORT", "EB2:report-case"), "BACKWALL-CASE": ("BACKWALL-REPORT", "BACKWALL:report-case"),
+}
 CASE_OF_XML = {xml: case for case, xml in XML_OF_CASE.items()}
 GEOMETRY_CHECK_CASE = {"PIER": "PIER-CASE", "EB": "EB-CASE"}
 MATHCAD_LABEL_CASE = {"End Bent 1": "EB-CASE", "End Bent 2": "EB2-CASE", "Pier Cap": "PIER-CASE"}
@@ -425,7 +432,13 @@ def derive_links(g: Graph) -> list[dict]:
             link = {"edge": e["id"], "source": e["source"], "target": e["target"], "index": i,
                     "source_name": "", "source_value": "", "target_name": p.get("name", ""),
                     "target_value": "", "unit": p.get("unit", ""), "detail": "", "status": ""}
-            if "load_case" in p and "state" in p:
+            if p.get("embedded"):
+                link["kind"] = "embedded"
+                link["source_name"] = p["name"]
+                link["source_value"] = link["target_value"] = p.get("value", "")
+                link["detail"] = p.get("detail", "")
+                link["status"] = p.get("status", "")
+            elif "load_case" in p and "state" in p:
                 link["kind"] = "governing"
                 link["target_value"] = p.get("value", "")
                 comp, extremum = FORCE_COMPONENT.get(p["name"], (None, None))
@@ -926,6 +939,24 @@ def build(signoff_path: Path | None = None) -> dict:
                         e["parameters"].append({"name": name, "region": row["region"], "before": row["before"],
                                                 "after": row["after"], "basis": basis,
                                                 "changed": row["before"] != row["after"]})
+
+    # -- reports carry their embedded case's inputs ---------------------------
+    check_by_id = {c["check_id"]: c for c in checks["checks"]}
+    for case_id, (report_id, check_id) in REPORT_OF_CASE.items():
+        e = g.edge(case_id, report_id) if case_id in g.nodes and report_id in g.nodes else None
+        if e is None:
+            continue
+        chk = check_by_id.get(check_id)
+        if chk is not None:
+            status, detail = chk["status"], f"{check_id}: {chk.get('detail', '')}"
+        else:
+            status = "NOT COMPARED"
+            detail = ("no machine check compares this report with its saved case; "
+                      + (g.node(report_id)["notes"] or "the register records the pairing"))
+        for p in g.node(case_id)["parameters"]:
+            if p.get("role") == "input":
+                e["parameters"].append({"name": p["name"], "value": p.get("value", ""), "unit": p.get("unit", ""),
+                                        "embedded": True, "status": status, "detail": detail})
 
     # -- parameter links: every edge parameter named on both sides ------------
     links = derive_links(g)

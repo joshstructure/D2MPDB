@@ -911,9 +911,17 @@ function groupHead(dir, g) {
 }
 
 // Inputs: every link that ends at this node, grouped by the node it comes from, then the inputs entered here with nothing recorded upstream.
+// Relations into or out of a node that carry no named parameter: still listed, so a file-level feed is never invisible.
+function bareEdgesHtml(dir, edges, end) {
+  return edges.slice().sort((a, b) => colOf(by.nodes[a[end]]) - colOf(by.nodes[b[end]]) || String(by.nodes[a[end]].label).localeCompare(by.nodes[b[end]].label))
+    .map(e => groupHead(dir, { e, other: by.nodes[e[end]], list: [] }).replace(' (0)', '') +
+      '<p class="muted">File-level relation: no named parameters are recorded crossing it. Open the relation for its checks, identity and sign-off.</p>').join('');
+}
+
 function inputsHtml(n) {
   const ins = lk.in[n.id] || [], named = new Set(ins.map(l => l.target_name)), entered = n.parameters.filter(p => p.role === 'input' && !named.has(p.name));
-  if (!ins.length && !entered.length) return '<h3>Inputs</h3><p class="muted">No recorded inputs.</p>';
+  const linked = new Set(ins.map(l => l.edge)), bare = (adj.in[n.id] || []).filter(e => !linked.has(e.id));
+  if (!ins.length && !entered.length && !bare.length) return '<h3>Inputs</h3><p class="muted">Nothing feeds this node.</p>';
   let h = '<h3>Inputs</h3>';
   linkGroups(ins, 'source').forEach(g => {
     const rows = g.list.map(l => ({ name: l.target_name, value: l.target_value, unit: l.unit, status: l.status, _l: l,
@@ -929,14 +937,14 @@ function inputsHtml(n) {
     h += '<h4 class="lkhead">Entered in this case (no recorded upstream) &middot; ' + entered.length + '</h4>' +
       ptHtml(entered, { label: 'entered inputs', cols: [['name', 'Name'], ['value', 'Value'], ['unit', 'Unit']].concat(src ? [['source_text', 'Source text']] : []), act: p => traceBtn(n.id, p.name) });
   }
-  return h;
+  return h + bareEdgesHtml('From', bare, 'source');
 }
 
 // Outputs: every link that starts at this node, grouped by the node it feeds.
 function outputsHtml(n) {
-  const outs = lk.out[n.id] || [];
+  const outs = lk.out[n.id] || [], linked = new Set(outs.map(l => l.edge)), bare = (adj.out[n.id] || []).filter(e => !linked.has(e.id));
   let h = '<h3>Outputs</h3>';
-  if (!outs.length) return h + '<p class="muted">No recorded outputs.</p>';
+  if (!outs.length && !bare.length) return h + '<p class="muted">Nothing reads this node.</p>';
   linkGroups(outs, 'target').forEach(g => {
     const rows = g.list.map(l => ({ name: l.source_name || '(derived)', value: l.source_value + (l.source_value !== '' && l.unit ? ' ' + l.unit : ''), there: l.target_name, vthere: l.target_value, status: l.status, _l: l }));
     h += groupHead('To', g) + ptHtml(rows, { label: 'outputs to ' + g.other.label, cols: [['name', 'Name here'], ['value', 'Value'], ['there', '→ Name there'], ['vthere', 'Value there'], ['status', 'Status']],

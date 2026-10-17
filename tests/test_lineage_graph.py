@@ -17,7 +17,7 @@ REBUILD = r'Rebuild with: .venv\Scripts\python.exe scripts\build_lineage_graph.p
 MARKER = '/*__LINEAGE_DATA__*/'
 ISSUE_STATUSES = {'Open', 'Closed', 'Deferred', 'Awaiting source'}
 GEOMETRY_CHECK_NAMES = ['b', 'h', 'N_pile', 'D_pile', 'S_pile', 'Pile_embed', 'length']
-LINK_KINDS = {'governing', 'mapping', 'formula', 'check', 'source'}
+LINK_KINDS = {'governing', 'mapping', 'formula', 'check', 'source', 'embedded'}
 LINK_VALUE_KEYS = ('source_name', 'source_value', 'target_name', 'target_value')
 # Printed check text, e.g. "Notebook 48; saved case 48.0. Units: in." or "...; source audit 230 in. Comparison ..."
 CHECK_TEXT = re.compile(r'^Notebook (.+?); (?:saved case|source audit) (.+?)\.(?: |$)')
@@ -488,6 +488,31 @@ class LineageGraphTests(unittest.TestCase):
                     if not l['source_name']:
                         self.assertEqual(l['source_value'], '')
 
+    def test_embedded_links(self):
+        # A report carries every input of the case it embeds, under the same name and value, so a
+        # report's Inputs are never empty and a trail through a report reaches the case.
+        checks = {c['check_id']: c for c in self.checks}
+        for case_id, (report_id, check_id) in self.gen.REPORT_OF_CASE.items():
+            edge_id = f'{case_id}->{report_id}'
+            if case_id not in self.nodes or report_id not in self.nodes:
+                continue
+            with self.subTest(edge=edge_id):
+                links = [l for l in self.links_on(edge_id) if l['kind'] == 'embedded']
+                inputs = self.case_inputs(case_id)
+                self.assertEqual({l['target_name'] for l in links}, set(inputs), REBUILD)
+                for l in links:
+                    self.assertEqual(l['source_name'], l['target_name'])
+                    self.assertEqual(l['source_value'], l['target_value'])
+                    self.assertEqual(l['target_value'], inputs[l['target_name']]['value'])
+                    self.assertTrue(l['detail'], 'an embedded link says how the report and case were compared')
+                statuses = {l['status'] for l in links}
+                if check_id in checks:
+                    self.assertEqual(statuses, {checks[check_id]['status']}, REBUILD)
+                else:
+                    self.assertEqual(statuses, {'NOT COMPARED'}, REBUILD)
+        with self.subTest(chain='BACKWALL-REPORT b_cap <- BACKWALL-CASE b_cap <- EB-CASE b'):
+            self.assertLessEqual({('BACKWALL-CASE', 'b_cap'), ('EB-CASE', 'b')}, self.upstream('BACKWALL-REPORT', 'b_cap'), REBUILD)
+
     def test_trail_continuity(self):
         # Each hop is found by matching (node, name) alone: the name a link writes on its target side
         # is the name the next link reads on its source side.
@@ -509,9 +534,9 @@ class LineageGraphTests(unittest.TestCase):
         if not self.gen.MATHCAD_EXPORT.exists():
             self.skipTest(f'{rel(self.gen.MATHCAD_EXPORT)} is not present')
         with self.subTest(chain='PIER-XML -> PIER-CASE Mu_B -> MCAD-CAP-PIER'):
-            out = self.links_out_of('PIER-CASE', 'Mu_B')
-            self.assertEqual({(l['target'], l['target_name'], l['kind']) for l in out},
-                             {('MCAD-CAP-PIER', 'indexer(Mu, 2)', 'mapping')}, REBUILD)
+            out = {(l['target'], l['target_name'], l['kind']) for l in self.links_out_of('PIER-CASE', 'Mu_B')}
+            # The case input reaches the Mathcad sheet (renamed) and the report (embedded, same name).
+            self.assertLessEqual({('MCAD-CAP-PIER', 'indexer(Mu, 2)', 'mapping'), ('PIER-REPORT', 'Mu_B', 'embedded')}, out, REBUILD)
             self.assertIn(('MCAD-CAP-PIER', 'indexer(Mu, 2)'), self.downstream('PIER-CASE', 'Mu_B'))
             reached = self.upstream('MCAD-CAP-PIER', 'indexer(Mu, 2)')
             self.assertIn(('PIER-CASE', 'Mu_B'), reached, REBUILD)
