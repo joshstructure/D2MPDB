@@ -7,7 +7,7 @@
   const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const byId = new Map(data.nodes.map(n => [n.id,n]));
   const valueById = new Map(data.values.map(v => [v.id,v]));
-  const state = { selected:'PIER-CASE', value:'inputs.Vu_G', direction:'both', dependencies:false, allValues:false, parameterFocus:false, overview:true, origin:'all', scale:.7,x:0,y:0, edge:null, depth:0 };
+  const state = { selected:null, value:'inputs.Vu_G', direction:'both', dependencies:false, allValues:false, parameterFocus:false, overview:true, origin:'all', scale:.7,x:0,y:0, edge:null, depth:0 };
   const params = new URLSearchParams(location.hash.slice(1));
   if (byId.has(params.get('source'))) {state.selected=params.get('source');state.overview=false;}
   if (valueById.has(params.get('value'))) {state.value=params.get('value');state.parameterFocus=params.get('trace')==='value';}
@@ -28,10 +28,10 @@
   const originNode=v=>v.origins[state.selected]?state.selected:v.node_ids.includes('PIER-CASE')?'PIER-CASE':v.node_ids[0];
   function snapshot() {return {...state, query:$('value-search').value,category:$('value-category').value,scroll:window.scrollY,tableScroll:document.querySelector('.value-table-wrap').scrollTop,detailScroll:$('value-detail').scrollTop};}
   function saveSelection(push=false) {
-    const hash=new URLSearchParams({source:state.selected,value:state.value,trace:state.parameterFocus?'value':'node'});
+    const hash=new URLSearchParams(state.selected?{source:state.selected,value:state.value,trace:state.parameterFocus?'value':'node'}:{view:'all'});
     history[push?'pushState':'replaceState']({atlas:snapshot()},'','#'+hash.toString());
     $('nav-back').disabled=state.depth===0;
-    $('breadcrumbs').textContent=(state.overview?'Overview · ':'')+byId.get(state.selected).title+(state.parameterFocus?' › '+valueById.get(state.value).label:'');
+    $('breadcrumbs').textContent=(byId.get(state.selected)?.title||'All sources')+(state.parameterFocus?' › '+valueById.get(state.value).label:'');
   }
   function navigate(change) {saveSelection();state.depth++;change();saveSelection(true);}
   function resetFilters() {state.origin='all';state.allValues=false;$('value-search').value='';$('value-category').value='';}
@@ -49,7 +49,8 @@
     window.scrollTo(0,saved.scroll||0);
   });
   $('nav-back').onclick=()=>history.back();
-  function overview() {navigate(()=>{resetFilters();state.selected='PIER-CASE';state.value='inputs.Vu_G';state.parameterFocus=false;state.overview=true;state.direction='both';state.dependencies=false;$('include-dependencies').checked=false;directoryOpen=false;$('source-search').value='';renderDirectory();renderSelection();fit(data.nodes.map(n=>n.id));window.scrollTo(0,0);});}
+  function clearSelection(fitMap=false) {navigate(()=>{resetFilters();state.selected=null;state.parameterFocus=false;state.overview=true;state.direction='both';state.dependencies=false;state.edge=null;$('include-dependencies').checked=false;directoryOpen=false;$('source-search').value='';renderDirectory();renderSelection();if(fitMap)fit(data.nodes.map(n=>n.id));announce('Selection cleared. All sources are visible.');});}
+  function overview() {clearSelection(true);window.scrollTo(0,0);}
   $('nav-overview').onclick=overview;
   $('help-button').onclick=()=>{$('quick-help').open=!$('quick-help').open;if($('quick-help').open)$('quick-help').scrollIntoView({block:'start'});};
   function announce(text) { $('announcement').textContent=text; }
@@ -130,6 +131,7 @@
     seen.delete(state.selected);return seen;
   }
   function traceSets() {
+    if(!state.selected&&!state.parameterFocus)return {upstream:new Set(),downstream:new Set(),all:new Set()};
     if(state.parameterFocus) {const v=valueById.get(state.value);return {upstream:new Set(),downstream:new Set(),all:new Set([...v.node_ids,...(v.upstream_context?.node_ids||[])])};}
     const upstream=state.direction==='downstream'?new Set():walk('upstream');
     const downstream=state.direction==='upstream'?new Set():walk('downstream');
@@ -161,7 +163,6 @@
     state.y=(box.height-(bottom-top)*state.scale)/2-top*state.scale;
     applyTransform();
   }
-  const pierIds=Object.keys(positions).filter(id=>positions[id][1]<600);
   function centerOn(id) {
     const box=$('map-canvas').getBoundingClientRect(),p=positions[id];state.scale=.95;
     state.x=box.width/2-(p[0]+105)*state.scale;state.y=box.height/2-(p[1]+43)*state.scale;applyTransform();
@@ -182,17 +183,56 @@
   $('map-canvas').addEventListener('pointerup',endDrag);$('map-canvas').addEventListener('pointercancel',endDrag);
   $('map-canvas').addEventListener('wheel',e=>{e.preventDefault();const b=$('map-canvas').getBoundingClientRect();zoom(Math.exp(-e.deltaY*.0015),e.clientX-b.left,e.clientY-b.top);},{passive:false});
   $('zoom-in').onclick=()=>zoom(1.2);$('zoom-out').onclick=()=>zoom(1/1.2);
-  $('pier-view').onclick=()=>{fit(pierIds);$('pier-view').classList.add('active');$('fit-all').classList.remove('active');};
-  $('fit-all').onclick=()=>{fit(data.nodes.map(n=>n.id));$('fit-all').classList.add('active');$('pier-view').classList.remove('active');};
-  $('journal-view').onclick=()=>{selectNode('JOURNAL');fit(['JOURNAL','JOURNAL-PIER-ENTRY','JOURNAL-EB-ENTRY','REQUIRED-PIER-XML','PIER-XML'].filter(id=>byId.has(id)));};
+  $('clear-selection').onclick=()=>clearSelection();
+  $('fit-all').onclick=()=>{fit(data.nodes.map(n=>n.id));saveSelection();announce('Map fitted to all sources.');};
 
-  function traceButtons(ids) {
-    return [...ids].sort((a,b)=>positions[a][1]-positions[b][1]||positions[a][0]-positions[b][0]).map(id=>{
-      const n=byId.get(id);return `<button class="trace-node ${id===state.selected?'selected':''}" data-source="${escape(id)}">${escape(n.title)}<small>${escape(prettyStatus[n.status]||n.status)} · ${escape(id)}</small></button>`;
+  function orderedTrace(ids,edges) {
+    const remaining=[...ids].sort((a,b)=>positions[a][1]-positions[b][1]||positions[a][0]-positions[b][0]),ordered=[];
+    while(remaining.length) {
+      const roots=remaining.filter(id=>!edges.some(e=>e.target===id&&remaining.includes(e.source)));
+      // Recorded dependency cycles stay visible, with arrows pointing back.
+      const next=roots[0]||remaining[0];ordered.push(next);remaining.splice(remaining.indexOf(next),1);
+    }
+    return ordered;
+  }
+  function traceButtons(ids,edges=null) {
+    const ordered=edges?orderedTrace(ids,edges):[...ids].sort((a,b)=>positions[a][1]-positions[b][1]||positions[a][0]-positions[b][0]);
+    return ordered.map(id=>{
+      const n=byId.get(id),feeds=edges?.filter(e=>e.source===id).map(e=>byId.get(e.target).title)||[];
+      return `<button class="trace-node ${id===state.selected?'selected':''}" data-source="${escape(id)}" ${id===state.selected?'aria-current="true"':''}>${id===state.selected&&edges?'<span class="trace-current">You are here</span>':''}${escape(n.title)}<small>${escape(prettyStatus[n.status]||n.status)} · ${escape(id)}</small>${feeds.length?'<span class="sr-only">Feeds '+escape(feeds.join('; '))+'.</span>':''}</button>`;
     }).join('');
+  }
+  function drawTraceFlow() {
+    const flow=$('trace-flow');if(!flow)return;
+    const cards=[...flow.querySelectorAll('[data-source]')],index=new Map(cards.map((el,i)=>[el.dataset.source,i]));
+    const links=data.edges.filter(e=>traversable(e)&&index.has(e.source)&&index.has(e.target));
+    // Separate overlapping branches. Routing uses only recorded edges, never list adjacency.
+    const lanes=[];
+    const routed=links.map(e=>({e,start:Math.min(index.get(e.source),index.get(e.target)),end:Math.max(index.get(e.source),index.get(e.target))})).sort((a,b)=>(a.end-a.start)-(b.end-b.start));
+    routed.forEach(link=>{let lane=lanes.findIndex(items=>items.every(item=>link.end<=item.start||link.start>=item.end));if(lane<0){lane=lanes.length;lanes.push([]);}lanes[lane].push(link);link.lane=lane;});
+    const gutter=links.length?Math.min(88,24+lanes.length*9):0;
+    flow.style.paddingLeft=gutter+'px';
+    const box=flow.getBoundingClientRect(),centers=new Map(cards.map(el=>[el.dataset.source,el.getBoundingClientRect().top-box.top+el.offsetHeight/2]));
+    const height=flow.scrollHeight;
+    const paths=routed.map(({e,lane})=>{
+      const a=centers.get(e.source),b=centers.get(e.target),x=gutter-16-lane*(gutter-24)/Math.max(1,lanes.length),end=gutter-2,mid=(a+b)/2;
+      const dashed=e.kind!=='flow';
+      const description=byId.get(e.source).title+' → '+byId.get(e.target).title+' · '+e.label+' · '+(prettyStatus[e.status]||e.status);
+      return `<g class="trace-flow-link${dashed?' dependency':''}" data-flow-source="${escape(e.source)}" data-flow-target="${escape(e.target)}"><title>${escape(description)}</title><path d="M${end},${a} H${x} V${b} H${end}" marker-end="url(#trace-arrow)"/><path class="trace-travel-arrow" d="M${x-3},${mid+(b>a?-4:4)} L${x},${mid} L${x+3},${mid+(b>a?-4:4)}"/><circle cx="${end}" cy="${a}" r="2"/></g>`;
+    }).join('');
+    $('trace-flow-lines').setAttribute('width',gutter);$('trace-flow-lines').setAttribute('height',height);
+    $('trace-flow-lines').innerHTML='<defs><marker id="trace-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#087c72"/></marker></defs>'+paths;
+    const feedback=links.some(e=>index.get(e.target)<=index.get(e.source));
+    $('trace-flow-note').textContent='Follow arrowheads from source to use.'+(links.some(e=>e.kind!=='flow')?' Dashed lines: registered dependencies.':'')+(feedback?' Upward arrows: recorded feedback links.':'');
   }
   function renderTrace() {
     const trace=traceSets(),node=byId.get(state.selected);
+    if(!node&&!state.parameterFocus) {
+      $('trace-title').textContent='Select a source';$('parameter-access').innerHTML='';
+      document.querySelector('.trace-controls').hidden=true;document.querySelector('.dependency-toggle').hidden=true;
+      $('trace-body').innerHTML='<div class="trace-empty"><span aria-hidden="true">↗</span><p>Select any node on the map or find a source above to see what feeds it and what uses it.</p></div>';
+      $('source-detail').innerHTML='';return;
+    }
     const nodeValues=data.values.filter(v=>v.node_ids.includes(state.selected)),count=nodeValues.length;
     const received=nodeValues.filter(v=>originOf(v).kind==='received').length;
     const local=nodeValues.filter(v=>['defined','derived'].includes(originOf(v).kind)).length;
@@ -213,9 +253,15 @@
       return;
     }
     $('trace-title').textContent=node.title;
-    $('trace-body').innerHTML=(trace.upstream.size?'<div class="trace-group">Upstream sources</div>'+traceButtons(trace.upstream):'')+
-      '<div class="trace-group">Selected</div>'+traceButtons([state.selected])+
-      (trace.downstream.size?'<div class="trace-group">Downstream consumers</div>'+traceButtons(trace.downstream):'');
+    const edges=data.edges.filter(e=>traversable(e)&&trace.all.has(e.source)&&trace.all.has(e.target));
+    const feedback=new Set([...trace.upstream].filter(id=>trace.downstream.has(id)));
+    const upstream=new Set([...trace.upstream].filter(id=>!feedback.has(id))),downstream=new Set([...trace.downstream].filter(id=>!feedback.has(id)));
+    $('trace-body').innerHTML='<div class="trace-flow-heading">Source → use</div><p id="trace-flow-note" class="trace-context-note"></p><div id="trace-flow" class="trace-flow"><svg id="trace-flow-lines" aria-hidden="true"></svg>'+
+      (upstream.size?'<div class="trace-group">Upstream sources</div>'+traceButtons(upstream,edges):'')+
+      '<div class="trace-group">Selected component</div>'+traceButtons([state.selected],edges)+
+      (downstream.size?'<div class="trace-group">Downstream uses</div>'+traceButtons(downstream,edges):'')+
+      (feedback.size?'<div class="trace-group">Recorded feedback</div>'+traceButtons(feedback,edges):'')+'</div>';
+    drawTraceFlow();$('trace-body').scrollTop=0;
     $('trace-body').querySelectorAll('[data-source]').forEach(el=>el.onclick=()=>selectNode(el.dataset.source));
     const issues=data.issues.filter(i=>i.node_ids.includes(node.id)&&!['Closed','Not applicable'].includes(i.Status));
     $('source-detail').innerHTML=badge(node.status)+'<p>'+escape(node.detail)+'</p>'+
@@ -258,6 +304,10 @@
   $('sources-button').onclick=()=>{directoryOpen=!directoryOpen;renderDirectory();};
   [...new Set(data.values.map(v=>v.category))].sort().forEach(cat=>{const o=document.createElement('option');o.value=cat;o.textContent=cat;$('value-category').appendChild(o);});
   function renderValues() {
+    const empty=!state.selected&&!state.allValues&&!state.parameterFocus;
+    $('values-panel').classList.toggle('no-selection',empty);
+    document.querySelector('.value-controls').hidden=empty;$('origin-filters').hidden=empty;$('origin-context').hidden=empty;
+    if(empty){$('values-title').textContent='Parameters & origins';$('value-rows').innerHTML='';$('value-count').textContent='';$('empty-values').hidden=true;$('value-detail').innerHTML='<h3>Select a source to explore its parameters</h3><p class="value-note">Choose a node on the map, or browse all extracted values.</p>';return;}
     const query=$('value-search').value.toLowerCase(),cat=$('value-category').value;
     const available=data.values.filter(v=>state.allValues||v.node_ids.includes(state.selected));
     const inOrigin=(v,kind)=>kind==='all'||(kind==='local'?['defined','derived'].includes(originOf(v).kind):originOf(v).kind===kind);
@@ -274,7 +324,7 @@
       const role=originOf(v);
       return `<tr class="${v.id===state.value?'selected':''}" data-value="${escape(v.id)}"><td><button data-value-button="${escape(v.id)}">${escape(v.label)}</button><small>${escape(v.key)} · ${escape(v.category)}</small></td><td>${v.value_kind==='expression'?'Formula':escape(format(v.value))} <small>${v.value_kind==='expression'?'Result not evaluated':escape(unitText(v.unit))}</small></td><td><span class="origin-badge ${role.kind}">${roleNames[role.kind]}</span>${role.from_node?`<button class="origin-link" data-origin-node="${escape(role.from_node)}">From ${escape(byId.get(role.from_node).title)} ↗</button>`:''}${state.allValues?`<small>At ${escape(byId.get(originNode(v)).title)}</small>`:''}</td></tr>`;
     }).join('');
-    $('value-rows').querySelectorAll('tr').forEach(row=>row.onclick=()=>navigate(()=>{state.value=row.dataset.value;state.parameterFocus=true;state.overview=false;renderValues();paintGraph();renderTrace();$('value-detail').scrollTop=0;if(matchMedia('(max-width:760px)').matches)$('value-detail').scrollIntoView({block:'start'});announce('Tracing '+valueById.get(state.value).label);}));
+    $('value-rows').querySelectorAll('tr').forEach(row=>row.onclick=()=>navigate(()=>{state.value=row.dataset.value;if(!state.selected)state.selected=originNode(valueById.get(state.value));state.parameterFocus=true;state.overview=false;renderValues();paintGraph();renderTrace();$('value-detail').scrollTop=0;if(matchMedia('(max-width:760px)').matches)$('value-detail').scrollIntoView({block:'start'});announce('Tracing '+valueById.get(state.value).label);}));
     $('value-rows').querySelectorAll('[data-origin-node]').forEach(b=>b.onclick=e=>{e.stopPropagation();selectNode(b.dataset.originNode,true,b.closest('tr').dataset.value);});
     if(shown.length)renderValue(valueById.get(state.value));
     else $('value-detail').innerHTML=available.length?'<h3>No parameters match these filters</h3><p class="value-note">Clear the filters to see all extracted parameters at this node.</p><button id="clear-value-filters">Clear parameter filters</button>':'<h3>Parameters not yet extracted</h3><p class="value-note">The project map includes every registered source. Detailed extraction covers the pier-cap trail and the journal’s pier/end-bent node-entry tables.</p><button id="open-all-values">Browse all extracted values</button>';
@@ -348,7 +398,8 @@
   $('source-count').textContent='('+data.nodes.length+')';
   document.querySelector('.brand').onclick=e=>{e.preventDefault();overview();};
   history.scrollRestoration='manual';
-  renderSelection();requestAnimationFrame(()=>{fit(pierIds);saveSelection();});
+  renderSelection();requestAnimationFrame(()=>{fit(data.nodes.map(n=>n.id));saveSelection();});
   let oldWidth=$('map-canvas').clientWidth;
-  new ResizeObserver(()=>{const width=$('map-canvas').clientWidth;if(Math.abs(width-oldWidth)>60){oldWidth=width;fit(pierIds);}}).observe($('map-canvas'));
+  new ResizeObserver(()=>{const width=$('map-canvas').clientWidth;if(Math.abs(width-oldWidth)>60){oldWidth=width;if(state.overview)fit(data.nodes.map(n=>n.id));}}).observe($('map-canvas'));
+  new ResizeObserver(drawTraceFlow).observe($('trace-body'));
 })();

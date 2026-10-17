@@ -23,10 +23,11 @@ through the same Sites project to refresh it. The initial site is
 
 ## Explore
 
-- Drag the full map to pan; use the wheel or +/- controls to zoom. **Fit full
-  map** includes every registered source. **Pier-cap trail** returns to the
-  first detailed lane. The source directory is also keyboard accessible.
-- **Project journal** brings its FBMP entry modules into view. The main pier
+- Drag the full map to pan; use the wheel or +/- controls to zoom. **Clear
+  selection** undims every node without moving the map. The **dashed-square
+  Fit map** button fits every source without changing the selection. The atlas
+  opens with no assumed topic. The source directory is also keyboard accessible.
+- Find **Project journal** in the search or source directory. The main pier
   lane now begins with the journal and its **FBMP Entry — Pier** module.
   **FBMP Entry — End Bent** also connects to the registered end-bent runs.
   Select either module to inspect saved node identities, coordinates and loads.
@@ -35,6 +36,10 @@ through the same Sites project to refresh it. The initial site is
   an identical moment value.
 - Select a component to isolate upstream sources, downstream uses or both. Wider registered
   dependencies are optional; recorded cycles are handled without recursion.
+  The isolated trace orders sources by their connections and draws directional
+  arrows for actual relationships. Separate branches keep their own lines;
+  dashed lines are registered dependencies. The selected component is marked
+  **You are here**. Recorded feedback links retain their actual direction.
 - **View parameters** opens values at the selected node. **Received inputs**
   shows values with a documented upstream handoff. **Defined / derived here**
   includes retained local settings and formulas. **Origin unconfirmed** means
