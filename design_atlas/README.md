@@ -27,8 +27,12 @@ through the same Sites project to refresh it. The initial site is
   selection** undims every node without moving the map. The **dashed-square
   Fit map** button fits every source without changing the selection. The atlas
   opens with no assumed topic. The source directory is also keyboard accessible.
-- Find **Project journal** in the search or source directory. The main pier
-  lane now begins with the journal and its **FBMP Entry — Pier** module.
+- Every source shares one map, placed in its registered **Basis**, **Analysis**,
+  **Design**, **Detailing**, or **Deliverables** column. Rows are alphabetical
+  within each stage. Selecting a trail highlights existing nodes in place;
+  there is no separate pier-cap group. Lines route through the gaps between cards.
+- Find **Project journal** in the search or source directory. It connects to
+  its **FBMP Entry — Pier** module in the same map.
   **FBMP Entry — End Bent** also connects to the registered end-bent runs.
   Select either module to inspect saved node identities, coordinates and loads.
   For analysis results such as negative moment, the journal appears under

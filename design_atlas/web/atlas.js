@@ -80,46 +80,38 @@
   $('help-button').onclick=()=>{$('quick-help').open=!$('quick-help').open;if($('quick-help').open)$('quick-help').scrollIntoView({block:'start'});};
   function announce(text) { $('announcement').textContent=text; }
 
-  // The pier trail occupies a dedicated lane. Other source-register records
-  // retain their own stages below; no dependencies are invented for layout.
-  const positions={
-    'JOURNAL':[35,75],'JOURNAL-PIER-ENTRY':[305,75],'REQUIRED-PIER-XML':[575,75],'PIER-AUDIT':[845,75],'PIER-CASE':[1115,75],
-    'RFQ':[35,240],'PIER-MINTIP-XML':[305,240],'PIER-XML':[575,240],'CAP-TOOL':[845,240],'PIER-REPORT':[1115,240],
-    'JOURNAL-EB-ENTRY':[35,405],'PIER-MATHCAD':[845,405],'PIER-ISSUED-PDF':[575,405]
-  };
-  Object.keys(positions).forEach(id=>{if(!byId.has(id))delete positions[id];});
+  // Every source uses the same stage columns and alphabetical row order.
+  // Selecting a trail changes emphasis, never the node positions.
+  const positions={};
   const stages=['Basis','Analysis','Design','Detailing','Deliverables'];
-  const slots=Object.fromEntries(stages.map(s=>[s,0]));
-  data.nodes.forEach(n => {
-    if (!positions[n.id]) {
-      const col=stages.indexOf(n.stage), row=slots[n.stage]++;
-      positions[n.id]=[35+col*270,650+row*135];
-    }
-  });
+  stages.forEach((stage,col)=>data.nodes.filter(n=>n.stage===stage)
+    .sort((a,b)=>a.title.localeCompare(b.title,undefined,{numeric:true})||a.id.localeCompare(b.id))
+    .forEach((n,row)=>{positions[n.id]=[35+col*270,75+row*135];}));
+  const width=35+(stages.length-1)*270+245;
   const bottom=Math.max(...Object.values(positions).map(p=>p[1]))+130;
+  $('map-world').style.width=width+'px';
   $('map-world').style.height=bottom+'px';
+  $('map-links').setAttribute('width',width);
+  $('map-links').style.width=width+'px';
   $('map-links').setAttribute('height',bottom);
   $('map-links').style.height=bottom+'px';
-  $('map-labels').innerHTML=stages.map((s,i)=>`<span class="map-group-label" style="left:${35+i*270}px;top:605px">${escape(s.toUpperCase())}</span>`).join('');
+  $('map-labels').innerHTML=stages.map((s,i)=>`<span class="map-group-label" style="left:${35+i*270}px;top:30px">${escape(s.toUpperCase())} · ${data.nodes.filter(n=>n.stage===s).length}</span>`).join('');
   const ns='http://www.w3.org/2000/svg';
   const svg=$('map-links');
   svg.innerHTML='<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/></marker></defs>';
   function edgePath(e,index) {
     const a=positions[e.source],b=positions[e.target];
-    if(e.source==='JOURNAL'&&e.target==='JOURNAL-EB-ENTRY')return 'M35,118 H15 Q5,118 5,130 V436 Q5,448 15,448 H35';
-    if(e.source==='PIER-CASE'&&e.target==='PIER-MATHCAD')return 'M1175,161 C1175,190 1085,190 1085,225 L1085,350 Q1085,380 950,380 L950,405';
-    if (Math.abs(a[1]-b[1])<20) {
-      const forward=b[0]>a[0];
-      const ax=a[0]+(forward?210:0), bx=b[0]+(forward?0:210), ay=a[1]+43, by=b[1]+43;
-      return `M${ax},${ay} C${(ax+bx)/2},${ay} ${(ax+bx)/2},${by} ${bx},${by}`;
-    }
+    const ay=a[1]+43,by=b[1]+43,offset=14+(index%4)*6;
+    // Route in the column gutters and row gaps so long edges do not cross cards.
     if (a[0]===b[0]) {
-      const down=b[1]>a[1]; const ax=a[0]+105,ay=a[1]+(down?86:0),by=b[1]+(down?0:86);
-      return `M${ax},${ay} C${ax},${(ay+by)/2} ${ax},${(ay+by)/2} ${ax},${by}`;
+      const x=a[0]+210,rail=x+offset;
+      return `M${x},${ay} H${rail} V${by} H${x}`;
     }
-    const ax=a[0]+210,ay=a[1]+43,bx=b[0],by=b[1]+43;
-    const offset=24+(index%5)*7;
-    return `M${ax},${ay} C${ax+offset},${ay} ${bx-offset},${by} ${bx},${by}`;
+    const forward=b[0]>a[0],sign=forward?1:-1;
+    const ax=a[0]+(forward?210:0),bx=b[0]+(forward?0:210),exit=ax+sign*offset,entry=bx-sign*offset;
+    if(Math.abs(a[0]-b[0])===270){const rail=(exit+entry)/2;return `M${ax},${ay} H${rail} V${by} H${bx}`;}
+    const corridor=a[1]+100+(index%3)*8;
+    return `M${ax},${ay} H${exit} V${corridor} H${entry} V${by} H${bx}`;
   }
   const edgeElements=new Map();
   data.edges.forEach((e,i)=>{
