@@ -13,14 +13,17 @@ The eight new solids total 123.684362 ft3. Native slope/thickness/contact checks
 pass, with no positive overlaps in 197 affected pairs. See
 [D-044 evidence](evidence/2026-10-17-square-edges-and-closure/update-summary.json).
 
-Each backwall now has one editable **2-in-wide geotechnical strap reference**
-connected to its fill-side face **18 in above the cap top**, following the
-selected backwall calculation's trial level. The 6-ft projection is illustrative.
-These zero-thickness reference faces show no design spacing or connection hardware
-and add no steel quantity. Expand **Geotechnical backwall straps - schematic**
-to edit width, projection, offset or elevation. Final strap and connection design
-remain with the MSE supplier. Closure reinforcement and weather-seal/joint details
-remain unspecified; calculation reconciliation stays under COH-023.
+Each backwall now has **seven editable 2-in-wide geotechnical strap references**,
+matching Figure B2 of the selected backwall report: **33.571429 in spacing**
+and **16.785714 in end offsets** along each 235-in backwall. They connect to the
+fill-side face **18 in above the cap top**. The 6-ft projection remains illustrative.
+These zero-thickness reference faces add no physical steel quantity. The report
+labels this arrangement schematic and assigns final layout to the Specialty Engineer.
+Expand **Geotechnical backwall straps - schematic** to edit native width,
+projection, signed offset or elevation. See
+[D-045 correction and checks](evidence/2026-10-17-strap-report-layout/update-summary.json).
+Final strap/connection design and closure reinforcement/weather-seal details remain
+unresolved; calculation reconciliation stays under COH-023.
 
 All 454 end-bent and pier rebars now carry FDOT SDM 4.3 bar marks in their
 **Mark** property (for example 6A1, 5B2, 4F3), matching the generated FDOT
@@ -77,7 +80,7 @@ See [adoption evidence](evidence/2026-10-15-deck-edges/adoption-summary.json).
 On each deck, use the **Deck edge details** properties; the four original deck
 barrier objects have **DeckEdgeSetback**. The opener loads their native controllers.
 
-**Current model: 17 October 2026, decision D-044.** This is the authoritative
+**Current model: 17 October 2026, decision D-045.** This is the authoritative
 editable bridge geometry and modeled-quantity source. The established native
 filename is retained for existing links; its date is not the current revision date.
 

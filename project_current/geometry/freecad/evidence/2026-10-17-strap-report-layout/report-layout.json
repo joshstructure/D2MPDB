@@ -1,0 +1,179 @@
+{
+  "report": "C:\\github\\D2MPDB\\project_current\\cap_design\\backwall\\Backwall Design 10-16.html",
+  "figure": "B2 - End-bent plan",
+  "layout": {
+    "figure_id": "e71a7100-54e3-42b1-9e4e-7d844546df83",
+    "count": 7,
+    "traces": [
+      {
+        "hoverinfo": "text",
+        "line": {
+          "color": "#7a3e9d",
+          "dash": "dash",
+          "width": 2
+        },
+        "mode": "lines",
+        "name": "Tie-back straps (schematic)",
+        "showlegend": true,
+        "text": "Tie-back strap (schematic; layout by the Specialty Engineer)",
+        "x": [
+          2.0654761904761916,
+          2.0654761904761916
+        ],
+        "y": [
+          -1.75,
+          -5.35
+        ],
+        "type": "scatter"
+      },
+      {
+        "hoverinfo": "text",
+        "line": {
+          "color": "#7a3e9d",
+          "dash": "dash",
+          "width": 2
+        },
+        "mode": "lines",
+        "name": "Tie-back straps (schematic)",
+        "showlegend": false,
+        "text": "Tie-back strap (schematic; layout by the Specialty Engineer)",
+        "x": [
+          4.863095238095239,
+          4.863095238095239
+        ],
+        "y": [
+          -1.75,
+          -5.35
+        ],
+        "type": "scatter"
+      },
+      {
+        "hoverinfo": "text",
+        "line": {
+          "color": "#7a3e9d",
+          "dash": "dash",
+          "width": 2
+        },
+        "mode": "lines",
+        "name": "Tie-back straps (schematic)",
+        "showlegend": false,
+        "text": "Tie-back strap (schematic; layout by the Specialty Engineer)",
+        "x": [
+          7.6607142857142865,
+          7.6607142857142865
+        ],
+        "y": [
+          -1.75,
+          -5.35
+        ],
+        "type": "scatter"
+      },
+      {
+        "hoverinfo": "text",
+        "line": {
+          "color": "#7a3e9d",
+          "dash": "dash",
+          "width": 2
+        },
+        "mode": "lines",
+        "name": "Tie-back straps (schematic)",
+        "showlegend": false,
+        "text": "Tie-back strap (schematic; layout by the Specialty Engineer)",
+        "x": [
+          10.458333333333334,
+          10.458333333333334
+        ],
+        "y": [
+          -1.75,
+          -5.35
+        ],
+        "type": "scatter"
+      },
+      {
+        "hoverinfo": "text",
+        "line": {
+          "color": "#7a3e9d",
+          "dash": "dash",
+          "width": 2
+        },
+        "mode": "lines",
+        "name": "Tie-back straps (schematic)",
+        "showlegend": false,
+        "text": "Tie-back strap (schematic; layout by the Specialty Engineer)",
+        "x": [
+          13.255952380952381,
+          13.255952380952381
+        ],
+        "y": [
+          -1.75,
+          -5.35
+        ],
+        "type": "scatter"
+      },
+      {
+        "hoverinfo": "text",
+        "line": {
+          "color": "#7a3e9d",
+          "dash": "dash",
+          "width": 2
+        },
+        "mode": "lines",
+        "name": "Tie-back straps (schematic)",
+        "showlegend": false,
+        "text": "Tie-back strap (schematic; layout by the Specialty Engineer)",
+        "x": [
+          16.05357142857143,
+          16.05357142857143
+        ],
+        "y": [
+          -1.75,
+          -5.35
+        ],
+        "type": "scatter"
+      },
+      {
+        "hoverinfo": "text",
+        "line": {
+          "color": "#7a3e9d",
+          "dash": "dash",
+          "width": 2
+        },
+        "mode": "lines",
+        "name": "Tie-back straps (schematic)",
+        "showlegend": false,
+        "text": "Tie-back strap (schematic; layout by the Specialty Engineer)",
+        "x": [
+          18.851190476190474,
+          18.851190476190474
+        ],
+        "y": [
+          -1.75,
+          -5.35
+        ],
+        "type": "scatter"
+      }
+    ],
+    "spacing_in": [
+      33.57142857142857,
+      33.57142857142857,
+      33.57142857142857,
+      33.57142857142857,
+      33.57142857142859,
+      33.57142857142853
+    ]
+  },
+  "report_sha256": "a02563223df9e8039b8771978d755cefd038e4c0335401d37bb9244fdd28e5bb",
+  "offsets_in": [
+    -100.71428571428571,
+    -67.14285714285714,
+    -33.57142857142857,
+    0.0,
+    33.57142857142857,
+    67.14285714285717,
+    100.7142857142857
+  ],
+  "center_spacing_in": 33.57142857142857,
+  "end_offset_in": 16.785714285714285,
+  "model_projection_ft": 6,
+  "projection_basis": "Retain the prior illustrative editable 6-ft projection; Figure B2 plan lines extend 3.6 ft for display only."
+}

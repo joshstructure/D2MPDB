@@ -1,0 +1,174 @@
+{
+  "status": "PASS",
+  "request_id": "report-strap-layout-20261017-v2",
+  "source_sha256": "23f67653096125870770f6f4fd43aaf478e8afa319a7437d9db68488af895288",
+  "phase": "Complete",
+  "added": [
+    "GeotechnicalStrapEB1S1",
+    "GeotechnicalStrapEB1S2",
+    "GeotechnicalStrapEB1S3",
+    "GeotechnicalStrapEB1S5",
+    "GeotechnicalStrapEB1S6",
+    "GeotechnicalStrapEB1S7",
+    "GeotechnicalStrapEB2S1",
+    "GeotechnicalStrapEB2S2",
+    "GeotechnicalStrapEB2S3",
+    "GeotechnicalStrapEB2S5",
+    "GeotechnicalStrapEB2S6",
+    "GeotechnicalStrapEB2S7"
+  ],
+  "straps": [
+    "GeotechnicalStrapEB1S1",
+    "GeotechnicalStrapEB1S2",
+    "GeotechnicalStrapEB1S3",
+    "GeotechnicalStrapEB1",
+    "GeotechnicalStrapEB1S5",
+    "GeotechnicalStrapEB1S6",
+    "GeotechnicalStrapEB1S7",
+    "GeotechnicalStrapEB2S1",
+    "GeotechnicalStrapEB2S2",
+    "GeotechnicalStrapEB2S3",
+    "GeotechnicalStrapEB2",
+    "GeotechnicalStrapEB2S5",
+    "GeotechnicalStrapEB2S6",
+    "GeotechnicalStrapEB2S7"
+  ],
+  "changed_existing": [
+    "BackwallGeotechnicalStraps",
+    "GeotechnicalStrapEB1",
+    "GeotechnicalStrapEB2"
+  ],
+  "measurements": [
+    {
+      "name": "GeotechnicalStrapEB1S1",
+      "width_in": 2.0000000000000253,
+      "offset_from_backwall_center_in": -100.71428571428571,
+      "above_cap_in": 18.00000000000003,
+      "attachment_width_in": 2.000000000000007,
+      "elevation_ft": 44.73769223221813
+    },
+    {
+      "name": "GeotechnicalStrapEB1S2",
+      "width_in": 2.0000000000000253,
+      "offset_from_backwall_center_in": -67.14285714285714,
+      "above_cap_in": 18.00000000000003,
+      "attachment_width_in": 2.000000000000007,
+      "elevation_ft": 44.73769223221813
+    },
+    {
+      "name": "GeotechnicalStrapEB1S3",
+      "width_in": 2.000000000000007,
+      "offset_from_backwall_center_in": -33.57142857142857,
+      "above_cap_in": 18.00000000000003,
+      "attachment_width_in": 1.9999999999999982,
+      "elevation_ft": 44.73769223221813
+    },
+    {
+      "name": "GeotechnicalStrapEB1",
+      "width_in": 2.0000000000000067,
+      "offset_from_backwall_center_in": -9.581137283379304e-15,
+      "above_cap_in": 18.00000000000003,
+      "attachment_width_in": 2.0,
+      "elevation_ft": 44.73769223221813
+    },
+    {
+      "name": "GeotechnicalStrapEB1S5",
+      "width_in": 2.000000000000007,
+      "offset_from_backwall_center_in": 33.57142857142857,
+      "above_cap_in": 18.00000000000003,
+      "attachment_width_in": 1.9999999999999982,
+      "elevation_ft": 44.73769223221813
+    },
+    {
+      "name": "GeotechnicalStrapEB1S6",
+      "width_in": 2.0000000000000253,
+      "offset_from_backwall_center_in": 67.14285714285717,
+      "above_cap_in": 18.00000000000003,
+      "attachment_width_in": 2.000000000000007,
+      "elevation_ft": 44.73769223221813
+    },
+    {
+      "name": "GeotechnicalStrapEB1S7",
+      "width_in": 2.0000000000000253,
+      "offset_from_backwall_center_in": 100.71428571428568,
+      "above_cap_in": 18.00000000000003,
+      "attachment_width_in": 2.000000000000007,
+      "elevation_ft": 44.73769223221813
+    },
+    {
+      "name": "GeotechnicalStrapEB2S1",
+      "width_in": 2.0000000000000253,
+      "offset_from_backwall_center_in": -100.71428571428628,
+      "above_cap_in": 18.00000000000003,
+      "attachment_width_in": 2.000000000000007,
+      "elevation_ft": 44.749692144029666
+    },
+    {
+      "name": "GeotechnicalStrapEB2S2",
+      "width_in": 2.0000000000000253,
+      "offset_from_backwall_center_in": -67.14285714285772,
+      "above_cap_in": 18.00000000000003,
+      "attachment_width_in": 2.000000000000007,
+      "elevation_ft": 44.749692144029666
+    },
+    {
+      "name": "GeotechnicalStrapEB2S3",
+      "width_in": 2.0000000000000115,
+      "offset_from_backwall_center_in": -33.57142857142914,
+      "above_cap_in": 18.00000000000003,
+      "attachment_width_in": 1.9999999999999982,
+      "elevation_ft": 44.749692144029666
+    },
+    {
+      "name": "GeotechnicalStrapEB2",
+      "width_in": 2.0,
+      "offset_from_backwall_center_in": 4.6856656787329445e-15,
+      "above_cap_in": 18.00000000000003,
+      "attachment_width_in": 2.0,
+      "elevation_ft": 44.749692144029666
+    },
+    {
+      "name": "GeotechnicalStrapEB2S5",
+      "width_in": 2.0000000000000115,
+      "offset_from_backwall_center_in": 33.571428571428,
+      "above_cap_in": 18.00000000000003,
+      "attachment_width_in": 1.9999999999999982,
+      "elevation_ft": 44.749692144029666
+    },
+    {
+      "name": "GeotechnicalStrapEB2S6",
+      "width_in": 2.0000000000000253,
+      "offset_from_backwall_center_in": 67.1428571428566,
+      "above_cap_in": 18.00000000000003,
+      "attachment_width_in": 2.000000000000007,
+      "elevation_ft": 44.749692144029666
+    },
+    {
+      "name": "GeotechnicalStrapEB2S7",
+      "width_in": 2.0000000000000253,
+      "offset_from_backwall_center_in": 100.71428571428514,
+      "above_cap_in": 18.00000000000003,
+      "attachment_width_in": 2.000000000000007,
+      "elevation_ft": 44.749692144029666
+    }
+  ],
+  "count_per_backwall": 7,
+  "spacing_in": 33.57142857142857,
+  "end_offset_in": 16.785714285714285,
+  "interference_pairs": 14,
+  "positive_intersections": [],
+  "preserved_native_objects": 2078,
+  "native_offset_edit_and_restore": "PASS",
+  "package": {
+    "status": "STAGED",
+    "source_sha256": "23f67653096125870770f6f4fd43aaf478e8afa319a7437d9db68488af895288",
+    "output_sha256": "ff1d3a20145ebcba63d5c672d3a548d61e513745477b01464e602f8e925d92eb",
+    "retained_objects": 2078,
+    "native_resources_copied": 3591,
+    "view_count": 2093,
+    "source_unchanged": true
+  },
+  "model": "C:\\Users\\joshs\\Desktop\\CAD_AI\\reports\\geotechnical-strap-layout-20261017\\B4 - Seven geotechnical straps per backwall.FCStd",
+  "sha256": "0875a3679f0d958083342341cfd10e68543035c93fb2923af1bdf6f4dac19926",
+  "objects": 2093
+}

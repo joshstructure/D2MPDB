@@ -1,0 +1,52 @@
+{
+  "decision": "D-045",
+  "date": "2026-10-17",
+  "status": "ADOPTED_IN_PROJECT_SOURCE",
+  "scope": "Correct the schematic geotechnical strap representation to seven per backwall (14 total), matching the selected backwall report Figure B2.",
+  "correction": "D-044 used one centered reference per backwall. Figure B2 contains seven evenly spaced schematic traces; this revision follows those plotted positions.",
+  "model_sha256": "0875a3679f0d958083342341cfd10e68543035c93fb2923af1bdf6f4dac19926",
+  "previous_model_sha256": "23f67653096125870770f6f4fd43aaf478e8afa319a7437d9db68488af895288",
+  "objects": 2093,
+  "report": {
+    "path": "project_current/cap_design/backwall/Backwall Design 10-16.html",
+    "sha256": "a02563223df9e8039b8771978d755cefd038e4c0335401d37bb9244fdd28e5bb",
+    "figure": "B2"
+  },
+  "layout": {
+    "count_per_backwall": 7,
+    "total_count": 14,
+    "backwall_length_in": 235,
+    "spacing_in": 33.57142857142857,
+    "end_offset_in": 16.785714285714285,
+    "offsets_from_backwall_center_in": [
+      -100.71428571428571,
+      -67.14285714285714,
+      -33.57142857142857,
+      0.0,
+      33.57142857142857,
+      67.14285714285717,
+      100.7142857142857
+    ],
+    "width_in": 2,
+    "height_above_cap_in": 18,
+    "illustrative_projection_ft": 6
+  },
+  "representation": "Zero-thickness native reference faces. Count/positions follow the report schematic; its hover text assigns layout to the Specialty Engineer. The prior 6-ft illustrative projection is retained. Final length, thickness, spacing and connection/pullout design are not established by these references.",
+  "verification": {
+    "actual_dimensions_and_attachment_edges": "PASS",
+    "native_signed_offset_edit_and_restore": "PASS",
+    "cold_and_installed_reopen": "PASS",
+    "retained_native_records": 2078,
+    "retained_view_records": 2081,
+    "positive_intersections": [],
+    "interference_pairs": 14
+  },
+  "preserved": "All concrete, physical reinforcement, quantities, chamfer convention, copings/closure slabs, source links and original view records. Existing central reference Names retained; 12 reference faces added.",
+  "remaining": "Existing coherence and engineering dispositions remain unchanged. Strap/pullout design and final connection/layout remain with the MSE supplier; Figure B2 is schematic.",
+  "tracker_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
+  "tracker_unchanged": true,
+  "backups": [
+    "archive/B4-before-seven-strap-layout-20261017.FCStd",
+    "archive/B4-before-seven-strap-layout-record-20261017.zip"
+  ]
+}

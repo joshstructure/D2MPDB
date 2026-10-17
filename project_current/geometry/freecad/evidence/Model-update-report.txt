@@ -311,3 +311,11 @@ Evidence: 2026-10-17-square-edges-and-closure/update-summary.json
 
 D-044 COMPLETION - GEOTECHNICAL STRAP REPRESENTATION
 Per user clarification, two editable 2-in-wide reference ribbons now meet the fill-side backwall faces 18 in above cap: EB1 EL 44.737692232 ft, EB2 EL 44.749692144 ft. One centered ribbon per wall, illustrative 6-ft projection, zero thickness and no physical steel quantity. Actual full-width attachment edges, native edits and saved/current-model reopen pass. Existing 2,077 non-assembly records and all 2,078 previous view records preserved. Final strap design and connections remain with the MSE supplier.
+
+
+17 OCTOBER 2026 - D-045 REPORT STRAP LAYOUT CORRECTION
+Correct the schematic geotechnical strap representation to seven per backwall (14 total), matching the selected backwall report Figure B2.
+Selected Figure B2: 33.571428571 in spacing and 16.785714286 in end offsets. Width remains 2 in and elevation 18 in above cap; 6-ft projection remains illustrative. Full attachment edges and all 14 physical reference faces pass the affected checks; native signed offset controls, cold and installed reopen verified.
+All concrete, physical reinforcement, quantities, chamfer convention, copings/closure slabs, source links and original view records. Existing central reference Names retained; 12 reference faces added.
+Existing coherence and engineering dispositions remain unchanged. Strap/pullout design and final connection/layout remain with the MSE supplier; Figure B2 is schematic.
+Evidence: 2026-10-17-strap-report-layout/update-summary.json

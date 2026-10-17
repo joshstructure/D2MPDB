@@ -1,8 +1,9 @@
 """Editable reference ribbons for backwall soil-reinforcement straps.
 
 The user requested a 2-in-wide representation at the calculated trial elevation.
-Projection is illustrative, with one centered ribbon per backwall. These are
-zero-thickness faces, excluded from physical steel quantities and design checks.
+Projection is illustrative. The corrected report layout contains seven ribbons
+per backwall. These are zero-thickness reference faces, excluded from physical
+steel quantities and design checks.
 """
 import FreeCAD as App
 from . import bridge, mse, mse_revision as rev
@@ -68,7 +69,7 @@ def add(doc,width='2 in',projection='6 ft',elevation_above_cap='18 in'):
             ('App::PropertyLength','Width',width),
             ('App::PropertyLength','Projection',projection),
             ('App::PropertyLength','ElevationAboveCap',elevation_above_cap),
-            ('App::PropertyLength','LateralOffset','0 in'),
+            ('App::PropertyDistance','LateralOffset','0 in'),
             ('App::PropertyLength','ConnectionElevation','0 ft'),
             ('App::PropertyLength','CapTopElevation','0 ft'),
             ('App::PropertyString','ComponentKind','SchematicGeotechnicalStrap'),
@@ -79,3 +80,50 @@ def add(doc,width='2 in',projection='6 ft',elevation_above_cap='18 in'):
         StrapProxy(obj);obj.Proxy.execute(obj)
     for obj in doc.Objects:obj.purgeTouched()
     return {'added':added,'straps':['GeotechnicalStrapEB1','GeotechnicalStrapEB2']}
+
+
+def match_report_layout(doc,offsets,source_sha256):
+    """Apply seven dimensioned offsets transcribed from selected Figure B2.
+
+    Keep the existing central reference Names, width, elevation and projection.
+    Caller owns the transaction, independent validation and save decision.
+    """
+    if len(offsets)!=7:raise ValueError('Figure B2 shows seven straps per backwall')
+    values=[App.Units.Quantity(value) for value in offsets]
+    if abs(values[3].Value)>1e-9:raise ValueError('Central strap must remain centered')
+    if any(a.Value>=b.Value for a,b in zip(values,values[1:])):raise ValueError('Strap offsets must increase')
+    group=doc.getObject('BackwallGeotechnicalStraps')
+    if not group:raise ValueError('Existing geotechnical strap group is required')
+    if any(doc.getObject('GeotechnicalStrap'+sid+'S'+str(i)) for sid in ('EB1','EB2') for i in (1,2,3,5,6,7)):
+        raise ValueError('Seven-strap layout exists; edit native controls instead')
+    rev.setprop(group,'App::PropertyInteger','CountPerBackwall',7,'Report layout')
+    rev.setprop(group,'App::PropertyString','LayoutSource','Selected Backwall Design 10-16.html, Figure B2; schematic layout by the Specialty Engineer.','Report layout')
+    rev.setprop(group,'App::PropertyString','SourceReportSHA256',source_sha256,'Report layout')
+    basis='Figure B2 schematic: seven evenly spaced 2-in-wide reference ribbons per backwall. Retained illustrative 6-ft projection. Zero thickness and no physical steel quantity; final layout/connection design by MSE supplier.'
+    props=['PGL','Cap','Backwall','SupportID','Width','Projection','ElevationAboveCap','LateralOffset',
+           'ConnectionElevation','CapTopElevation','ComponentKind','RepresentationBasis','ElevationBasis','DesignStatus']
+    added=[];straps=[]
+    for sid in ('EB1','EB2'):
+        central=doc.getObject('GeotechnicalStrap'+sid)
+        if not central or not isinstance(central.Proxy,StrapProxy):raise ValueError('Expected original editable strap')
+        # FreeCAD Length clamps negative values; the lateral coordinate must
+        # use its signed Distance property so both halves of the wall are shown.
+        if central.getTypeIdOfProperty('LateralOffset')=='App::PropertyLength':
+            if any(name=='LateralOffset' for name,expression in central.ExpressionEngine):
+                raise ValueError('Review an existing lateral-offset expression before migration')
+            old_offset=central.LateralOffset
+            central.removeProperty('LateralOffset')
+            rev.setprop(central,'App::PropertyDistance','LateralOffset',old_offset,'Geotechnical strap')
+        for i,value in enumerate(values,1):
+            if i==4:obj=central
+            else:
+                obj=doc.addObject('Part::FeaturePython','GeotechnicalStrap'+sid+'S'+str(i))
+                for name in props:rev.setprop(obj,central.getTypeIdOfProperty(name),name,getattr(central,name),'Geotechnical strap')
+                StrapProxy(obj);group.addObject(obj);added.append(obj.Name)
+            obj.Label=sid+' geotechnical strap '+str(i)+' of 7 - 2 in wide, schematic'
+            obj.LateralOffset=value
+            obj.RepresentationBasis=basis
+            rev.setprop(obj,'App::PropertyInteger','StrapIndex',i,'Report layout')
+            obj.Proxy.execute(obj);straps.append(obj.Name)
+    for obj in doc.Objects:obj.purgeTouched()
+    return {'added':added,'straps':straps,'changed_existing':[group.Name,'GeotechnicalStrapEB1','GeotechnicalStrapEB2']}

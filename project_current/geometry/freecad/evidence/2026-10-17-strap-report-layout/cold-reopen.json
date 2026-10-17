@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "model": "C:\\Users\\joshs\\Desktop\\CAD_AI\\reports\\geotechnical-strap-layout-20261017\\B4 - Seven geotechnical straps per backwall.FCStd",
+  "sha256": "0875a3679f0d958083342341cfd10e68543035c93fb2923af1bdf6f4dac19926",
+  "objects": 2093,
+  "straps": 14,
+  "count_per_backwall": 7,
+  "spacing_in": 33.57142857142857,
+  "end_offset_in": 16.785714285714285,
+  "retained_native_records": 2078,
+  "retained_view_records": 2081,
+  "native_reopen": "PASS",
+  "concrete_and_steel_quantities": "UNCHANGED"
+}

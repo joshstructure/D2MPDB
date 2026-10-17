@@ -3,9 +3,9 @@
   "authority": "Current editable FreeCAD geometry and modeled quantities; engineering acceptance remains separate",
   "model": {
     "path": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-    "sha256": "23f67653096125870770f6f4fd43aaf478e8afa319a7437d9db68488af895288",
-    "bytes": 5682914,
-    "objects": 2081
+    "sha256": "0875a3679f0d958083342341cfd10e68543035c93fb2923af1bdf6f4dac19926",
+    "bytes": 5837105,
+    "objects": 2093
   },
   "source_revision": "01a1fcc34d6345ceacf96245bcf0c931d118a1ab",
   "tracker_used_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
@@ -24,10 +24,11 @@
     "D-033: native return_cheek_details controllers, shared editable elevations, deep transverse barriers and rear-lug coping stops. Native steel/WWR and affected label refresh; unchanged geometry preserved. Native 4-inch landing continuations and outer barrier lower legs close the four return voids. All finished face colors retained. Raw curved-landing quantities flagged COH-027.",
     "D-034: landing_quantities maintains verified NetVolume for two curved finished landings using converged vertical-plane Gauss-Kronrod integration. Native geometry, all other object records and GUI resources unchanged; COH-027 Closed.",
     "D-044: opt-in omission of exactly 3/4-in bridge chamfers; retain larger geometry, grooves, ramp/barrier details and nominal inputs. Add native end_bent_closure controllers and schedule for six copings and two 4-in slabs rising 2% to cap; side coping tops follow slab. Verified editable regeneration, saved-file reopen and scoped no-new-intersection checks.",
-    "D-044 completion: geotechnical_straps creates two native editable zero-thickness 2-in reference ribbons at the selected 18-in-above-cap trial level; actual backwall face attachment, illustrative 6-ft projection, no physical steel quantity. Cold and installed reopen verified."
+    "D-044 completion: geotechnical_straps creates two native editable zero-thickness 2-in reference ribbons at the selected 18-in-above-cap trial level; actual backwall face attachment, illustrative 6-ft projection, no physical steel quantity. Cold and installed reopen verified.",
+    "D-045: report-based seven-strap layout helper; signed native lateral offsets; retain central reference Names and all prior physical geometry. Fourteen schematic faces verified against saved Figure B2 positions."
   ],
   "runtime_files": {
-    "runtime/API.md": "059d7745dd84e8b5f286593700c17ae25274d35e48bbeb7f48100eb34318d746",
+    "runtime/API.md": "4daffba833e19fe0d84c64c165458fab34fffc05c8902050935dd65cfe386f75",
     "runtime/freecad_tools/__init__.py": "54fc72e62296f90ef30d4395023d10589142c7979df962a5fa1669cf01886a32",
     "runtime/freecad_tools/adopt_drainage.py": "df2e4d293383aa5de9e425a8af75b7640524d07e71eebd541d42d2e81342eb07",
     "runtime/freecad_tools/api.py": "4f5d129384cf8b68bf10564f59141a31bd83921d47e8e477754ad2ea3ade71ca",
@@ -154,7 +155,7 @@
     "runtime/freecad_tools/landing_quantities.py": "7a0f584b62f00041641dc0b6ce4ecaa0603ec1dfdfd9e92568e7eccf46ee68af",
     "runtime/freecad_tools/end_bent_closure.py": "114d19edbf98e3440561e29a0d3998d60f2c89884fb4d42900c87210e343f8d4",
     "runtime/freecad_tools/standard_chamfers.py": "d7830d32d20cebb798fb3475b18935862334bc41fa06f8bfcf5dde1b6b028283",
-    "runtime/freecad_tools/geotechnical_straps.py": "d7083a3bb12b6ba7c1bfc02572936dabb982af7cd8c22db5e7fe35bf851e79fc"
+    "runtime/freecad_tools/geotechnical_straps.py": "117518715ef6a7b7beffaa6707a438faa87eb63c27d3c1f244b1f8ea5a6cd80f"
   },
   "opener_sha256": "86ca2a7617fd1bdf93dd9223e5ee48d210817fdaf4e428270538ee9856f8cc84",
   "evidence_files": {
@@ -165,7 +166,7 @@
     "evidence/delivery-helper-fingerprints.json": "2eda36676cc40916485c708e385818c6e99ead3be41e5754a55bc5e772e58c62",
     "evidence/final-reopen-verification.json": "fde89e9b9c8bb47433a964e3d0b3faedcb00c201b8ada10b348c086e4bfaeec9",
     "evidence/final-save.json": "7767f925bccdf426225cf1d4269ce59919cdcf71267f7c56c7484547f758e946",
-    "evidence/Model-update-report.txt": "f61555f07aa2a36a932bb85bb2854ddd34358ded52fa98af2cc0a96f21fe3f59",
+    "evidence/Model-update-report.txt": "4e8c4e07d7e1899cf5ee6c8a3de62cb8796fc6597990c5571e418fe283cf9e1d",
     "evidence/opener-verification.json": "7cfd370f32a419bd160ce2f914df4e861372addcab97d9e64896fb6135d40fdf",
     "evidence/portable-verification.json": "5daa7dfc49c7f7b11c641a51d2e425ce853dc08ee134356c02746d93d028ec36",
     "evidence/session-checkpoint.json": "c22fc947838b3ed99425beeab12c10e80b62b12be04d01444f2a0677135096c5",
@@ -369,19 +370,24 @@
     "evidence/2026-10-17-square-edges-and-closure/update-summary.json": "62c3bd3c54263b81f73190a7e22ce3055e3af13ce1d13509b5fff79a6c36adb2",
     "evidence/2026-10-17-square-edges-and-closure/strap-build-verification.json": "04f1a90aa411d7da372195ace7e892d1b0cd944e7c46b9e9d5a21c0d5b3fc7d0",
     "evidence/2026-10-17-square-edges-and-closure/strap-cold-reopen.json": "7c9efad3c0dd3a952adaa20f23a7698dba917b2524b353cc37ac710a87f8b0fa",
-    "evidence/2026-10-17-square-edges-and-closure/strap-installed-reopen.json": "40f6d687370e25100a1d01d3c37e9a1b1856ee666bf19f47605e2d1ed2258386"
+    "evidence/2026-10-17-square-edges-and-closure/strap-installed-reopen.json": "40f6d687370e25100a1d01d3c37e9a1b1856ee666bf19f47605e2d1ed2258386",
+    "evidence/2026-10-17-strap-report-layout/build-report.json": "fd87f694365ccc6fc435cfc1bafe897dcb014845c149e5ce9446af58f9543b47",
+    "evidence/2026-10-17-strap-report-layout/cold-reopen.json": "0eb7f14a52d54b88c1c9fd6bdbc507a820b6c21e61465aa9fc8a64d3c1b0d667",
+    "evidence/2026-10-17-strap-report-layout/installed-reopen.json": "fac30e2a41087b3f861ce0c1278b2cf08d60202aa2141649974b1d67d60ef0a3",
+    "evidence/2026-10-17-strap-report-layout/report-layout.json": "31589780b6f736c4545eb77ac7cdc4ad5be811e2f9c6e0ce46494a74d72d4e41",
+    "evidence/2026-10-17-strap-report-layout/update-summary.json": "44dfb74e29b20ff7a587adfd45ba4739cee74fe81fcc6e9e13cf2900ef332ed6"
   },
   "known_review_status": "0 new WWR overlaps; 14 existing U-bar/hoop pairs Deferred in COH-025. Four cheek spacing findings Open in COH-024; 29 cap/backwall and 4 backwall internal overlaps and other existing findings retained.",
   "portability_verification": "Cold native reopen and live dependency test PASS; 172 accepted-trial solid matches; all 1677 prior native object/view records exact. Previous standalone GUI loader limitation retained.",
   "updated_on": "2026-10-17",
   "current_update": {
     "date": "2026-10-17",
-    "decision": "D-044",
-    "scope": "Omit only nominal 3/4-in chamfers from the bridge decks, FIB beam bottom corners and pedestals; add six end-bent MSE copings and two native 4-in closure slabs. Add one editable 2-in-wide geotechnical strap reference at each backwall, 18 in above its cap.",
-    "summary": "evidence/2026-10-17-square-edges-and-closure/update-summary.json",
-    "previous_model_sha256": "2d3b6af8ff550d4bb201e41c9cf373cf4bbfe60a96390485f71822be86055bdf",
-    "follow_up": "Existing COH-023/024/025/026 dispositions remain unchanged. Reconcile new concrete quantities and loads; closure reinforcement, cap/slab weather seal and movement-joint detailing remain unspecified. Geotechnical backwall straps are schematic representations at the selected trial level; final strap/pullout design and connections remain with the MSE supplier. Prior bar intersections and concrete ownership overlaps remain recorded.",
-    "publication": "User-requested model revision and standing project GitHub delivery instructions"
+    "decision": "D-045",
+    "scope": "Correct the schematic geotechnical strap representation to seven per backwall (14 total), matching the selected backwall report Figure B2.",
+    "summary": "evidence/2026-10-17-strap-report-layout/update-summary.json",
+    "previous_model_sha256": "23f67653096125870770f6f4fd43aaf478e8afa319a7437d9db68488af895288",
+    "follow_up": "Existing coherence and engineering dispositions remain unchanged. Strap/pullout design and final connection/layout remain with the MSE supplier; Figure B2 is schematic.",
+    "publication": "Correction to user-requested report-based representation; standing GitHub delivery instructions"
   },
   "archive_files": {
     "archive/B4-before-pedestal-ubars-20261012.FCStd": "e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118",
@@ -411,16 +417,18 @@
     "archive/B4-before-square-edges-and-closure-20261017.FCStd": "2d3b6af8ff550d4bb201e41c9cf373cf4bbfe60a96390485f71822be86055bdf",
     "archive/B4-before-square-edges-and-closure-record-20261017.zip": "59506ec8f35e25f02d281a41335aee256737c3c138e6ebcdbb51a40e8143f4c2",
     "archive/B4-closure-before-strap-representation-20261017.FCStd": "bd849f84699d984153542b28acb751b89b024030a586652b9747e4fa85ffc806",
-    "archive/B4-closure-before-strap-representation-record-20261017.zip": "11c0c17ba667e36874c5d50d3284bc7d99c29e467ecb57d6e47e2c70deee45dd"
+    "archive/B4-closure-before-strap-representation-record-20261017.zip": "11c0c17ba667e36874c5d50d3284bc7d99c29e467ecb57d6e47e2c70deee45dd",
+    "archive/B4-before-seven-strap-layout-20261017.FCStd": "23f67653096125870770f6f4fd43aaf478e8afa319a7437d9db68488af895288",
+    "archive/B4-before-seven-strap-layout-record-20261017.zip": "11ac51d43fff6cf9c03bfee7dfd2f645a233fdb18f952180bb275239bda598f6"
   },
   "previous_update": {
-    "date": "2026-10-16",
-    "decision": "D-042",
-    "scope": "Write FDOT SDM 4.3 bar marks (size + designation) into the Mark property of the 454 native end-bent and pier rebars.",
-    "summary": "evidence/2026-10-16-sdm-bar-marks/update-summary.json",
-    "previous_model_sha256": "78c4404029b432b25825fa823c09e2795f9f8de96f88ed62d1c2d2ea0b7740ba",
-    "follow_up": "Existing coherence findings and engineering dispositions unchanged. Rerun freecad_marks after bar regeneration.",
-    "publication": "Explicit user request and standing GitHub delivery instructions"
+    "date": "2026-10-17",
+    "decision": "D-044",
+    "scope": "Omit only nominal 3/4-in chamfers from the bridge decks, FIB beam bottom corners and pedestals; add six end-bent MSE copings and two native 4-in closure slabs. Add one editable 2-in-wide geotechnical strap reference at each backwall, 18 in above its cap.",
+    "summary": "evidence/2026-10-17-square-edges-and-closure/update-summary.json",
+    "previous_model_sha256": "2d3b6af8ff550d4bb201e41c9cf373cf4bbfe60a96390485f71822be86055bdf",
+    "follow_up": "Existing COH-023/024/025/026 dispositions remain unchanged. Reconcile new concrete quantities and loads; closure reinforcement, cap/slab weather seal and movement-joint detailing remain unspecified. Geotechnical backwall straps are schematic representations at the selected trial level; final strap/pullout design and connections remain with the MSE supplier. Prior bar intersections and concrete ownership overlaps remain recorded.",
+    "publication": "User-requested model revision and standing project GitHub delivery instructions"
   },
   "extra_macros": {
     "Show_Elevations.FCMacro": "f27415eb7d8fe05a5ff8d05a01a5298b36ac1d3cf987ec8738ed541d085a3fc4",
