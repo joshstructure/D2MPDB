@@ -100,7 +100,7 @@
   $('map-world').style.height=bottom+'px';
   $('map-links').setAttribute('height',bottom);
   $('map-links').style.height=bottom+'px';
-  $('map-labels').innerHTML='<span class="map-group-label" style="left:35px;top:28px">PROJECT JOURNAL → FBMP → PIER CAP</span>'+stages.map((s,i)=>`<span class="map-group-label" style="left:${35+i*270}px;top:605px">${escape(s.toUpperCase())}</span>`).join('');
+  $('map-labels').innerHTML=stages.map((s,i)=>`<span class="map-group-label" style="left:${35+i*270}px;top:605px">${escape(s.toUpperCase())}</span>`).join('');
   const ns='http://www.w3.org/2000/svg';
   const svg=$('map-links');
   svg.innerHTML='<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/></marker></defs>';
