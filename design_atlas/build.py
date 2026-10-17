@@ -19,6 +19,7 @@ import subprocess
 import xml.etree.ElementTree as ET
 
 from tools.project_coherence import report_case, source_checks, read_tracker
+from design_atlas.origins import classify
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = Path(__file__).parent / 'web'
@@ -105,6 +106,22 @@ def sheet_definition(region, expected, unit):
                 'detail':'Literal worksheet input equals the case value after unit conversion.' if match else 'Literal worksheet input differs from the case value.'}
     except (ValueError,KeyError,ZeroDivisionError,OverflowError) as exc:
         return {'status':'unsupported','detail':str(exc)}
+
+
+def expression_text(node):
+    """Display a bounded subset of native MathML; never evaluate formulas."""
+    tag = local_name(node)
+    if tag == 'id':
+        return (node.text or '').strip() + ('[' + node.get('subscript') + ']' if node.get('subscript') else '')
+    if tag == 'real': return (node.text or '').strip()
+    children = list(node)
+    if tag == 'parens' and len(children) == 1: return '(' + expression_text(children[0]) + ')'
+    if tag == 'apply' and len(children) >= 2:
+        op = local_name(children[0]); args = [expression_text(n) for n in children[1:]]
+        if op in {'plus','mult','minus','div','pow'} and len(args)==2:
+            return '(' + {'plus':' + ','mult':' × ','minus':' − ','div':' / ','pow':' ^ '}[op].join(args) + ')'
+        if op == 'indexer' and len(args) == 2: return args[0] + '[' + args[1] + ']'
+    raise ValueError('Unsupported display expression: ' + tag)
 
 
 def category(key):
@@ -256,9 +273,11 @@ def build_data(root=ROOT):
             if field in gov: v['raw_value']=gov[field]
             if 'adopted' in gov: v['audit_agrees']=math.isclose(float(gov['adopted']),float(val),abs_tol=1e-9)
         elif key in case['analysis']['geometry']:
-            v['steps'].append(step('Recorded analysis geometry','PIER-AUDIT',CASE,
+            local_allowance=key in {'E_clear','E_detail'}
+            if local_allowance: v['source_status']='retained local allowance'
+            v['steps'].append(step('Retained local allowance' if local_allowance else 'Recorded analysis geometry','PIER-AUDIT',CASE,
                 '/analysis/geometry/'+key,case['analysis']['geometry'][key],'recorded',
-                'Saved analysis geometry, not an independent measurement of the unavailable matching XML.',unit))
+                'Saved local allowance retained during import; see /analysis/notes.' if local_allowance else 'Saved analysis geometry, not an independent measurement of the unavailable matching XML.',unit))
             v['node_ids'].insert(0,'PIER-AUDIT')
         if key=='Vu_L':
             v['transform']='Set equal to global shear; no low-shear interval is established by this import.'
@@ -302,7 +321,29 @@ def build_data(root=ROOT):
                 'label':run['id']+' · '+key.replace('_',' '),'value':run[key],'unit':unit,
                 'category':'Run details','source_status':'enabled run' if active else 'disabled run',
                 'node_ids':['PIER-CASE','PIER-REPORT'],'sheet_status':'not mapped',
-                'steps':[step('Saved transverse run','PIER-CASE',CASE,f'/transverse_detail/runs/{idx}',run)]})
+                'steps':[step('Saved transverse run','PIER-CASE',CASE,f'/transverse_detail/runs/{idx}',run),
+                         step('Report embedded transverse run','PIER-REPORT',REPORT,f'embedded case /transverse_detail/runs/{idx}',embedded.get('transverse_detail',{}).get('runs',[])[idx] if idx < len(embedded.get('transverse_detail',{}).get('runs',[])) else None)]})
+
+    # A bounded first set of locally defined worksheet formulas, with exact
+    # region evidence. These are expressions, never invented numerical results.
+    for region_id,label in [('41023','Provided top reinforcement area'),
+                            ('39756','Provided bottom reinforcement area at piles'),
+                            ('40442','Provided bottom reinforcement area in span'),
+                            ('38058','Provided side-face reinforcement area')]:
+        region=regions.get(region_id)
+        if region is None: continue
+        definitions=[n for n in region.iter() if local_name(n)=='define']
+        if len(definitions)!=1 or len(definitions[0])!=2: continue
+        try:
+            symbol=expression_text(definitions[0][0]); expression=expression_text(definitions[0][1])
+        except ValueError: continue
+        proof=step('Worksheet formula definition','PIER-MATHCAD',SHEET,
+                   '//region[@region-id="'+region_id+'"]',symbol+' := '+expression)
+        proof['evidence']['excerpt']=ET.tostring(region,encoding='unicode')
+        values.append({'id':'formula.'+region_id,'key':symbol,'label':label,'value':'Not evaluated',
+                       'unit':'','value_kind':'expression','expression':symbol+' := '+expression,
+                       'category':'Worksheet formulas','node_ids':['PIER-MATHCAD'],'steps':[proof],
+                       'source_status':'formula defined in worksheet','sheet_status':'not applicable'})
 
     # Add native XML facts from the preserved prior run without assigning them
     # to the report-matching run. Read exact elements rather than a filename guess.
@@ -330,6 +371,8 @@ def build_data(root=ROOT):
     try:
         commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True,stderr=subprocess.DEVNULL).strip()
     except (OSError,subprocess.CalledProcessError):commit=None
+    receipt_proof=evidence(RECEIPT,'label = Pier Cap',receipt) if receipt else None
+    for v in values: v['origins']=classify(v,case,same,receipt_ok,receipt_proof)
     for n in nodes: n['value_count']=sum(n['id'] in v['node_ids'] for v in values)
     result={'schema_version':1,'title':'D2 Design Atlas','generated_at':generated,
         'repository_revision':commit,'nodes':nodes,'edges':edges,'values':values,
@@ -337,7 +380,7 @@ def build_data(root=ROOT):
         'checks':{'report_case_equal':same,'required_xml_present':xml_match,
                   'mathcad_receipt_matches':receipt_ok,'sheet_comparisons':dict(Counter(v['sheet_status'] for v in values))},
         'coverage':{'map':'All registered sources plus explicitly identified pier-cap gaps.',
-                    'values':'Pier saved case, retained governing audit, selected report, mapped Mathcad input definitions, active transverse runs, and prior-XML node coordinates.',
+                    'values':'Pier saved case, retained governing audit, selected report, mapped Mathcad inputs, four worksheet formula definitions, active transverse runs, and prior-XML node coordinates. Formula extraction is partial; results are not evaluated.',
                     'limits':['No native solver was run.',('The matching pier XML and issued PDF remain unlinked.' if not xml_match else 'No issued PDF is linked; the retained audit is not independently re-extracted.'),
                               'Registered dependencies describe relationships, not proven parameter transfers.',
                               'Current calculation-tool revision is not attributed to the historical report run.',
@@ -361,6 +404,11 @@ def validate(data):
         if not v['steps']:raise ValueError('Value has no source evidence')
         for s in v['steps']:
             if s['evidence']['path'] not in data['documents']:raise ValueError('Untracked evidence file')
+        if set(v['origins']) != set(v['node_ids']): raise ValueError('Missing node-relative origin')
+        for origin in v['origins'].values():
+            if origin['kind'] not in {'received','defined','derived','unknown'}: raise ValueError('Unknown origin role')
+            if origin.get('from_node') and origin['from_node'] not in ids: raise ValueError('Unresolved origin source')
+            if any(e['path'] not in data['documents'] for e in origin['evidence']): raise ValueError('Untracked origin evidence')
     json.dumps(data,allow_nan=False)
 
 

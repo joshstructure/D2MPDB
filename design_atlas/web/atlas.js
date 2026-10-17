@@ -7,10 +7,10 @@
   const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const byId = new Map(data.nodes.map(n => [n.id,n]));
   const valueById = new Map(data.values.map(v => [v.id,v]));
-  const state = { selected:'PIER-CASE', value:'inputs.Vu_G', direction:'both', dependencies:false, allValues:false, parameterFocus:false, scale:.7,x:0,y:0, edge:null };
+  const state = { selected:'PIER-CASE', value:'inputs.Vu_G', direction:'both', dependencies:false, allValues:false, parameterFocus:false, overview:true, origin:'all', scale:.7,x:0,y:0, edge:null, depth:0 };
   const params = new URLSearchParams(location.hash.slice(1));
-  if (byId.has(params.get('source'))) state.selected=params.get('source');
-  if (valueById.has(params.get('value'))) state.value=params.get('value');
+  if (byId.has(params.get('source'))) {state.selected=params.get('source');state.overview=false;}
+  if (valueById.has(params.get('value'))) {state.value=params.get('value');state.parameterFocus=params.get('trace')==='value';}
   let directoryOpen = false;
   const prettyStatus = {match:'Fingerprint match',changed:'Revision changed',missing:'Source missing',unmapped:'Unmapped',recorded:'Recorded',mismatch:'Conflict',declared:'Registered',context:'Context only',error:'Read error',review:'Review'};
   const badge = (status,label) => `<span class="status ${escape(status)}">${escape(label || prettyStatus[status] || status)}</span>`;
@@ -23,10 +23,35 @@
     return String(value);
   }
   function unitText(unit) { return unit==='unitless'?'':(unit||'').replace('kip*ft','kip·ft'); }
-  function saveSelection() {
-    const hash=new URLSearchParams({source:state.selected,value:state.value});
-    history.replaceState(null,'','#'+hash.toString());
+  const roleNames={received:'Received input',defined:'Local setting',derived:'Derived / formula',unknown:'Origin unconfirmed'};
+  const originOf=v=>v.origins[state.selected]||v.origins[v.node_ids.includes('PIER-CASE')?'PIER-CASE':v.node_ids[0]];
+  const originNode=v=>v.origins[state.selected]?state.selected:v.node_ids.includes('PIER-CASE')?'PIER-CASE':v.node_ids[0];
+  function snapshot() {return {...state, query:$('value-search').value,category:$('value-category').value,scroll:window.scrollY,tableScroll:document.querySelector('.value-table-wrap').scrollTop,detailScroll:$('value-detail').scrollTop};}
+  function saveSelection(push=false) {
+    const hash=new URLSearchParams({source:state.selected,value:state.value,trace:state.parameterFocus?'value':'node'});
+    history[push?'pushState':'replaceState']({atlas:snapshot()},'','#'+hash.toString());
+    $('nav-back').disabled=state.depth===0;
+    $('breadcrumbs').textContent=(state.overview?'Overview · ':'')+byId.get(state.selected).title+(state.parameterFocus?' › '+valueById.get(state.value).label:'');
   }
+  function navigate(change) {saveSelection();state.depth++;change();saveSelection(true);}
+  function resetFilters() {state.origin='all';state.allValues=false;$('value-search').value='';$('value-category').value='';}
+  function renderSelection() {paintGraph();renderTrace();renderValues();}
+  function scrollToValues() {$('values-panel').scrollIntoView({block:'start'});$('values-title').focus({preventScroll:true});}
+  window.addEventListener('popstate',event=>{
+    if(!event.state?.atlas)return;
+    document.querySelectorAll('dialog[open]').forEach(dialog=>dialog.close());
+    const saved=event.state.atlas;Object.assign(state,saved);
+    $('value-search').value=saved.query||'';$('value-category').value=saved.category||'';
+    $('include-dependencies').checked=state.dependencies;
+    document.querySelectorAll('[data-direction]').forEach(b=>{b.classList.toggle('active',b.dataset.direction===state.direction);b.setAttribute('aria-pressed',String(b.dataset.direction===state.direction));});
+    renderSelection();applyTransform();saveSelection();
+    document.querySelector('.value-table-wrap').scrollTop=saved.tableScroll||0;$('value-detail').scrollTop=saved.detailScroll||0;
+    window.scrollTo(0,saved.scroll||0);
+  });
+  $('nav-back').onclick=()=>history.back();
+  function overview() {navigate(()=>{resetFilters();state.selected='PIER-CASE';state.value='inputs.Vu_G';state.parameterFocus=false;state.overview=true;state.direction='both';state.dependencies=false;$('include-dependencies').checked=false;directoryOpen=false;$('source-search').value='';renderDirectory();renderSelection();fit(data.nodes.map(n=>n.id));window.scrollTo(0,0);});}
+  $('nav-overview').onclick=overview;
+  $('help-button').onclick=()=>{$('quick-help').open=!$('quick-help').open;if($('quick-help').open)$('quick-help').scrollIntoView({block:'start'});};
   function announce(text) { $('announcement').textContent=text; }
 
   // The pier trail occupies a dedicated lane. Other source-register records
@@ -112,14 +137,14 @@
   function paintGraph() {
     const trace=traceSets();
     nodeElements.forEach((el,id)=>{
-      el.className='map-node'+(id===state.selected?' selected':trace.all.has(id)?' related':' dimmed');
+      el.className='map-node'+(id===state.selected?' selected':state.overview?'':trace.all.has(id)?' related':' dimmed');
       el.setAttribute('aria-pressed',String(id===state.selected));
     });
     data.edges.forEach(e=>{
       const related=trace.all.has(e.source)&&trace.all.has(e.target)&&traversable(e);
-      edgeElements.get(e.id).setAttribute('class','map-edge '+e.status+(related?' related':' dimmed'));
+      edgeElements.get(e.id).setAttribute('class','map-edge '+e.status+(related?' related':state.overview?'':' dimmed'));
     });
-    $('map-selection-label').textContent=trace.all.size+' sources in this trace';
+    $('map-selection-label').textContent=state.overview?'All '+data.nodes.length+' sources · select a node to isolate its trail':trace.all.size+' sources in this trace';
   }
   function applyTransform() {
     $('map-world').style.transform=`translate(${state.x}px,${state.y}px) scale(${state.scale})`;
@@ -166,6 +191,13 @@
   }
   function renderTrace() {
     const trace=traceSets(),node=byId.get(state.selected);
+    const nodeValues=data.values.filter(v=>v.node_ids.includes(state.selected)),count=nodeValues.length;
+    const received=nodeValues.filter(v=>originOf(v).kind==='received').length;
+    const local=nodeValues.filter(v=>['defined','derived'].includes(originOf(v).kind)).length;
+    $('parameter-access').innerHTML=count?`<button id="view-parameters" class="primary">View parameters (${count}) ↓</button><p>${received} received · ${local} defined / derived · ${count-received-local} unconfirmed</p>`:'<p>Parameters have not been extracted for this node yet.</p><button id="open-case-inputs">Open pier saved case inputs ↓</button>';
+    if($('view-parameters'))$('view-parameters').onclick=()=>navigate(()=>{resetFilters();state.parameterFocus=false;renderSelection();scrollToValues();});
+    if($('open-case-inputs'))$('open-case-inputs').onclick=()=>selectNode('PIER-CASE',true);
+    document.querySelectorAll('[data-direction]').forEach(b=>{b.classList.toggle('active',b.dataset.direction===state.direction);b.setAttribute('aria-pressed',String(b.dataset.direction===state.direction));});
     document.querySelector('.trace-controls').hidden=state.parameterFocus;
     document.querySelector('.dependency-toggle').hidden=state.parameterFocus;
     if(state.parameterFocus) {
@@ -195,23 +227,23 @@
     $('inspect-source').onclick=()=>showNodeEvidence(node);
     $('source-detail').querySelectorAll('[data-inspect-edge]').forEach(b=>b.onclick=()=>selectEdge(data.edges.find(e=>e.id===b.dataset.inspectEdge)));
   }
-  function selectNode(id) {
-    state.selected=id;state.edge=null;state.allValues=false;state.parameterFocus=false;
-    paintGraph();renderTrace();renderValues();saveSelection();announce('Selected '+byId.get(id).title);
+  function selectNode(id,openValues=false,valueId=null) {
+    navigate(()=>{state.selected=id;if(valueId)state.value=valueId;state.edge=null;resetFilters();state.parameterFocus=false;state.overview=false;
+      renderSelection();if(openValues)scrollToValues();announce('Selected '+byId.get(id).title);});
   }
   function selectEdge(edge) {
-    state.selected=edge.target;state.parameterFocus=false;paintGraph();renderTrace();renderValues();saveSelection();
+    selectNode(edge.target);
     showEvidence({path:edge.evidence[0]?.path||REGISTRY_PATH,locator:edge.source+' → '+edge.target,
       excerpt:JSON.stringify({label:edge.label,status:edge.status,basis:edge.basis,evidence:edge.evidence},null,2),
       note:'Relationship evidence; status is scoped to the stated check.'},edge.label);
   }
   const REGISTRY_PATH='project_current/source_register.csv';
   document.querySelectorAll('[data-direction]').forEach(button=>button.onclick=()=>{
-    state.direction=button.dataset.direction;
+    navigate(()=>{state.direction=button.dataset.direction;state.overview=false;
     document.querySelectorAll('[data-direction]').forEach(b=>{b.classList.toggle('active',b===button);b.setAttribute('aria-pressed',String(b===button));});
-    paintGraph();renderTrace();
+    paintGraph();renderTrace();});
   });
-  $('include-dependencies').onchange=e=>{state.dependencies=e.target.checked;paintGraph();renderTrace();};
+  $('include-dependencies').onchange=e=>navigate(()=>{state.dependencies=e.target.checked;paintGraph();renderTrace();});
 
   function renderDirectory() {
     const q=$('source-search').value.trim().toLowerCase();
@@ -225,19 +257,34 @@
   [...new Set(data.values.map(v=>v.category))].sort().forEach(cat=>{const o=document.createElement('option');o.value=cat;o.textContent=cat;$('value-category').appendChild(o);});
   function renderValues() {
     const query=$('value-search').value.toLowerCase(),cat=$('value-category').value;
-    const shown=data.values.filter(v=>(state.allValues||v.node_ids.includes(state.selected))&&(!cat||v.category===cat)&&
-      (v.label+' '+v.key+' '+v.unit+' '+format(v.value)).toLowerCase().includes(query));
-    $('values-title').textContent=state.allValues?'All pier-cap values':byId.get(state.selected).title+' · values';
+    const available=data.values.filter(v=>state.allValues||v.node_ids.includes(state.selected));
+    const inOrigin=(v,kind)=>kind==='all'||(kind==='local'?['defined','derived'].includes(originOf(v).kind):originOf(v).kind===kind);
+    $('origin-filters').innerHTML=[['all','All parameters'],['received','Received inputs'],['local','Defined / derived here'],['unknown','Origin unconfirmed']].map(([key,label])=>`<button data-origin="${key}" class="${state.origin===key?'active':''}" aria-pressed="${state.origin===key}">${label}<strong>${available.filter(v=>inOrigin(v,key)).length}</strong></button>`).join('');
+    $('origin-filters').querySelectorAll('button').forEach(b=>b.onclick=()=>navigate(()=>{state.origin=b.dataset.origin;state.parameterFocus=false;renderSelection();}));
+    $('origin-context').textContent=state.allValues?'Roles are relative to the node named in each row. “Local setting” does not establish first-ever authorship.':`Roles at ${byId.get(state.selected).title}. “Local setting” means retained here; first-ever authorship is not established.`;
+    const shown=available.filter(v=>inOrigin(v,state.origin)&&(!cat||v.category===cat)&&
+      (v.label+' '+v.key+' '+v.unit+' '+format(v.value)+' '+(v.expression||'')).toLowerCase().includes(query));
+    $('values-title').textContent=state.allValues?'All pier-cap values':byId.get(state.selected).title+' · parameters';
     $('value-count').textContent=shown.length+' values';$('empty-values').hidden=shown.length>0;
     if(!shown.some(v=>v.id===state.value)&&shown.length)state.value=shown[0].id;
-    $('value-rows').innerHTML=shown.map(v=>`<tr class="${v.id===state.value?'selected':''}" data-value="${escape(v.id)}"><td><button data-value-button="${escape(v.id)}">${escape(v.label)}</button><small>${escape(v.key)} · ${escape(v.category)}</small></td><td>${escape(format(v.value))} <small>${escape(unitText(v.unit))}</small></td><td>${badge(v.sheet_status,v.sheet_status==='match'?'Input matches':v.sheet_status==='not mapped'?'Not mapped':v.sheet_status)}</td></tr>`).join('');
-    $('value-rows').querySelectorAll('tr').forEach(row=>row.onclick=()=>{state.value=row.dataset.value;state.parameterFocus=true;renderValues();paintGraph();renderTrace();saveSelection();announce('Tracing '+valueById.get(state.value).label);});
+    if(!shown.length)state.parameterFocus=false;
+    $('value-rows').innerHTML=shown.map(v=>{
+      const role=originOf(v);
+      return `<tr class="${v.id===state.value?'selected':''}" data-value="${escape(v.id)}"><td><button data-value-button="${escape(v.id)}">${escape(v.label)}</button><small>${escape(v.key)} · ${escape(v.category)}</small></td><td>${v.value_kind==='expression'?'Formula':escape(format(v.value))} <small>${v.value_kind==='expression'?'Result not evaluated':escape(unitText(v.unit))}</small></td><td><span class="origin-badge ${role.kind}">${roleNames[role.kind]}</span>${role.from_node?`<button class="origin-link" data-origin-node="${escape(role.from_node)}">From ${escape(byId.get(role.from_node).title)} ↗</button>`:''}${state.allValues?`<small>At ${escape(byId.get(originNode(v)).title)}</small>`:''}</td></tr>`;
+    }).join('');
+    $('value-rows').querySelectorAll('tr').forEach(row=>row.onclick=()=>navigate(()=>{state.value=row.dataset.value;state.parameterFocus=true;state.overview=false;renderValues();paintGraph();renderTrace();$('value-detail').scrollTop=0;if(matchMedia('(max-width:760px)').matches)$('value-detail').scrollIntoView({block:'start'});announce('Tracing '+valueById.get(state.value).label);}));
+    $('value-rows').querySelectorAll('[data-origin-node]').forEach(b=>b.onclick=e=>{e.stopPropagation();selectNode(b.dataset.originNode,true,b.closest('tr').dataset.value);});
     if(shown.length)renderValue(valueById.get(state.value));
-    else $('value-detail').innerHTML='<h3>No extracted values for this view</h3><p class="value-note">The project map includes every registered source. Detailed parameter extraction currently covers the pier-cap trail.</p><button id="open-all-values">Browse all pier values</button>';
+    else $('value-detail').innerHTML=available.length?'<h3>No parameters match these filters</h3><p class="value-note">Clear the filters to see all extracted parameters at this node.</p><button id="clear-value-filters">Clear parameter filters</button>':'<h3>Parameters not yet extracted</h3><p class="value-note">The project map includes every registered source. Detailed parameter extraction currently covers the pier-cap trail.</p><button id="open-all-values">Browse all pier values</button>';
     if($('open-all-values'))$('open-all-values').onclick=showAllValues;
+    if($('clear-value-filters'))$('clear-value-filters').onclick=()=>navigate(()=>{resetFilters();renderSelection();});
   }
   function renderValue(v) {
-    $('value-detail').innerHTML=`<div class="value-top"><div><div class="eyebrow">${escape(v.category.toUpperCase())}</div><h3>${escape(v.label)}</h3></div><div class="big-value">${escape(format(v.value))} <small>${escape(unitText(v.unit))}</small></div></div>`+
+    const role=originOf(v),context=byId.get(originNode(v));
+    $('value-detail').innerHTML=`<div class="value-top"><div><div class="eyebrow">${escape(v.category.toUpperCase())}</div><h3>${escape(v.label)}</h3></div><div class="big-value ${v.value_kind==='expression'?'expression-value':''}">${escape(format(v.value))} <small>${escape(unitText(v.unit))}</small></div></div>`+
+      `<div class="origin-card ${role.kind}"><span class="origin-badge ${role.kind}">${roleNames[role.kind]}</span><small> at ${escape(context.title)}</small><p>${escape(role.basis)}</p>${role.from_node?`<button id="follow-origin">Open ${escape(byId.get(role.from_node).title)} ↗</button>`:''}${role.evidence.map((e,i)=>`<button data-origin-evidence="${i}">Origin evidence${role.evidence.length>1?' '+(i+1):''}</button>`).join('')}</div>`+
+      (v.expression?`<pre class="formula-expression">${escape(v.expression)}</pre>`:'')+
+      (v.sheet_status==='match'?badge('match','Mathcad input matches'):v.sheet_status!=='not mapped'&&v.sheet_status!=='not applicable'?badge(v.sheet_status,'Mathcad: '+v.sheet_status):'')+
       `<p class="value-note">${escape(v.source_status)}${v.transform?' · '+escape(v.transform):''}${v.note?'<br>'+escape(v.note):''}</p>`+
       v.steps.map((s,i)=>`<div class="value-step"><h4>${escape(s.title)}</h4>${badge(s.status,s.status==='match'?'Value matches':s.status==='recorded'?'Source record':s.status)}<div class="step-value">${escape(format(s.value))} ${escape(unitText(s.unit))}</div><code>${escape(s.evidence.locator)}</code>${s.note?'<p>'+escape(s.note)+'</p>':''}<button data-evidence-step="${i}">View exact source ↗</button>${s.mapping?` <button data-mapping-step="${i}">Mapping record</button>`:''}</div>`).join('')+
       (v.sheet_status==='not mapped'?'<div class="gap-note">This parameter has no explicit worksheet mapping in the current adapter.</div>':'')+
@@ -245,9 +292,11 @@
       (v.node_ids.includes('PIER-MATHCAD')?'<div class="value-note">Worksheet inputs were inspected directly. Native Mathcad recalculation and an issued PDF are not established.</div>':'');
     $('value-detail').querySelectorAll('[data-evidence-step]').forEach(b=>b.onclick=()=>showEvidence(v.steps[+b.dataset.evidenceStep].evidence,v.label));
     $('value-detail').querySelectorAll('[data-mapping-step]').forEach(b=>b.onclick=()=>showEvidence(v.steps[+b.dataset.mappingStep].mapping,v.label+' · mapping'));
+    $('value-detail').querySelectorAll('[data-origin-evidence]').forEach(b=>b.onclick=()=>showEvidence(role.evidence[+b.dataset.originEvidence],v.label+' · origin at '+context.title));
+    if($('follow-origin'))$('follow-origin').onclick=()=>selectNode(role.from_node,true);
   }
-  function showAllValues(){state.allValues=true;renderValues();}
-  function filterValues(){renderValues();if(state.parameterFocus){paintGraph();renderTrace();}}
+  function showAllValues(){navigate(()=>{resetFilters();state.allValues=true;state.parameterFocus=false;renderSelection();scrollToValues();});}
+  function filterValues(){renderValues();paintGraph();renderTrace();saveSelection();}
   $('all-values').onclick=showAllValues;$('value-search').oninput=filterValues;$('value-category').onchange=filterValues;
 
   function showNodeEvidence(node) {
@@ -282,8 +331,9 @@
   $('footer-snapshot').textContent='D2 · '+dt.toLocaleDateString()+' snapshot';
   $('summary').innerHTML='<div><strong>'+data.nodes.length+'</strong><span>source nodes</span></div><div><strong>'+data.values.length+'</strong><span>pier values</span></div><div><strong>'+data.edges.length+'</strong><span>connections</span></div>';
   $('source-count').textContent='('+data.nodes.length+')';
-  document.querySelector('.brand').onclick=e=>{e.preventDefault();selectNode('PIER-CASE');$('pier-view').click();};
-  paintGraph();renderTrace();renderValues();requestAnimationFrame(()=>fit(pierIds));
+  document.querySelector('.brand').onclick=e=>{e.preventDefault();overview();};
+  history.scrollRestoration='manual';
+  renderSelection();requestAnimationFrame(()=>{fit(pierIds);saveSelection();});
   let oldWidth=$('map-canvas').clientWidth;
   new ResizeObserver(()=>{const width=$('map-canvas').clientWidth;if(Math.abs(width-oldWidth)>60){oldWidth=width;fit(pierIds);}}).observe($('map-canvas'));
 })();

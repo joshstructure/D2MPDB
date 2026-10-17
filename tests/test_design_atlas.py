@@ -6,6 +6,7 @@ import unittest
 import xml.etree.ElementTree as ET
 
 from design_atlas.build import build_data, quantity, sheet_definition, validate, ROOT, CASE, SHEET, sha
+from design_atlas.origins import classify
 
 
 class LiteralWorksheetTests(unittest.TestCase):
@@ -94,6 +95,47 @@ class ProjectAtlasTests(unittest.TestCase):
         for v in self.data['values']:
             for s in v['steps']:
                 self.assertEqual(len(self.data['documents'][s['evidence']['path']]['sha256']),64)
+
+    def test_origins_are_relative_to_selected_node(self):
+        v=self.values['inputs.Vu_G']
+        self.assertEqual(v['origins']['PIER-CASE']['kind'],'received')
+        self.assertEqual(v['origins']['PIER-CASE']['from_node'],'PIER-AUDIT')
+        self.assertEqual(v['origins']['PIER-AUDIT']['kind'],'derived')
+        self.assertEqual(v['origins']['REQUIRED-PIER-XML']['kind'],'unknown')
+        if (ROOT/SHEET).is_file():
+            self.assertEqual(v['origins']['PIER-MATHCAD']['from_node'],'PIER-CASE')
+            self.assertEqual(v['origins']['PIER-MATHCAD']['kind'],'received')
+
+    def test_retained_clearance_is_not_mislabeled_as_received_geometry(self):
+        self.assertEqual(self.values['inputs.h']['origins']['PIER-CASE']['kind'],'received')
+        for key in ['E_clear','E_detail','C_t','phi_f','Bar_v']:
+            origin=self.values['inputs.'+key]['origins']['PIER-CASE']
+            self.assertEqual(origin['kind'],'defined')
+            self.assertNotIn('from_node',origin)
+        self.assertEqual(self.values['inputs.Vu_L']['origins']['PIER-CASE']['kind'],'derived')
+
+    def test_unlinked_value_does_not_imply_local_origin(self):
+        self.assertEqual(self.values['inputs.fc']['origins']['PIER-CASE']['kind'],'unknown')
+        if (ROOT/SHEET).is_file():
+            self.assertEqual(self.values['inputs.fc']['origins']['PIER-MATHCAD']['kind'],'received')
+
+    def test_broken_handoff_is_not_classified_as_received(self):
+        v=copy.deepcopy(self.values['inputs.Vu_G'])
+        v['audit_agrees']=False
+        roles=classify(v,self.case,False,False)
+        self.assertEqual(roles['PIER-CASE']['kind'],'unknown')
+        self.assertEqual(roles['PIER-REPORT']['kind'],'unknown')
+        if 'PIER-MATHCAD' in roles:
+            self.assertEqual(roles['PIER-MATHCAD']['kind'],'unknown')
+
+    def test_worksheet_formulas_are_never_presented_as_evaluated_results(self):
+        formulas=[v for v in self.data['values'] if v.get('value_kind')=='expression']
+        self.assertEqual(len(formulas),4 if (ROOT/SHEET).is_file() else 0)
+        for v in formulas:
+            self.assertEqual(v['value'],'Not evaluated')
+            self.assertEqual(v['origins']['PIER-MATHCAD']['kind'],'derived')
+            self.assertIn(':=',v['expression'])
+            self.assertIn('region-id=',v['steps'][0]['evidence']['locator'])
 
     def test_schema_rejects_dangling_sources(self):
         data=copy.deepcopy(self.data);data['edges'][0]['source']='unknown'

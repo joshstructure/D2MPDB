@@ -26,8 +26,22 @@ through the same Sites project to refresh it. The initial site is
 - Drag the full map to pan; use the wheel or +/- controls to zoom. **Fit full
   map** includes every registered source. **Pier-cap trail** returns to the
   first detailed lane. The source directory is also keyboard accessible.
-- Select a component to isolate inputs, outputs or both. Wider registered
+- Select a component to isolate upstream sources, downstream uses or both. Wider registered
   dependencies are optional; recorded cycles are handled without recursion.
+- **View parameters** opens values at the selected node. **Received inputs**
+  shows values with a documented upstream handoff. **Defined / derived here**
+  includes retained local settings and formulas. **Origin unconfirmed** means
+  the captured files do not establish the origin. A retained local setting is
+  not proof of first-ever authorship. These roles are node-relative: a case
+  setting can become a received input at the Mathcad node.
+- Each role includes its basis and exact source evidence. Formula extraction
+  currently covers four provided-reinforcement-area definitions; numerical
+  results are explicitly unevaluated. The active bar/pitch summaries are
+  derived by the atlas from saved runs and labeled as summaries.
+- **Back** (or browser Back) restores the previous selection, parameter filters
+  and map position. **Overview** clears filters and fits the full map. Selecting
+  a different source resets its parameter filters so stale filters cannot hide
+  that node’s inputs. **How to use** opens a short guide.
 - Select a value to focus the graph and trace pane on its actual evidence path.
   The inspector shows saved values, governing audit records, transformations,
   report inputs and supported literal Mathcad definitions.

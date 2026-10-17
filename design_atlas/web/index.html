@@ -12,7 +12,9 @@
     <button id="about-button" class="quiet">Coverage & sources</button>
   </header>
   <main>
-    <section class="intro"><div><div class="eyebrow">INFORMATION, CONNECTED</div><h1>Follow the design.</h1><p>From a source file to a single value. Start with the pier cap.</p></div><div id="summary" class="summary"></div></section>
+    <nav class="journey-nav" aria-label="Atlas navigation"><button id="nav-back" disabled>← Back</button><button id="nav-overview">Overview</button><div id="breadcrumbs" aria-live="polite"></div><button id="help-button" class="quiet">How to use</button></nav>
+    <section class="intro"><div><div class="eyebrow">INFORMATION, CONNECTED</div><h1>Follow the design.</h1><p>Select a node → open its parameters → follow a value to its source.</p></div><div id="summary" class="summary"></div></section>
+    <details id="quick-help" class="quick-help"><summary>A quick guide to the atlas</summary><ol><li><strong>Select a node</strong> on the map or in the source directory. The trace shows the files feeding it and using it.</li><li><strong>View parameters</strong> opens that node’s values. Filter by received inputs, local definitions or unconfirmed origins.</li><li><strong>Select a value</strong> to isolate its trail. Open its origin evidence or an exact source location to inspect the record.</li><li><strong>Back</strong> returns to your previous selection and filters. <strong>Overview</strong> returns to the full map.</li></ol><p>“Local setting” means a definition retained in this node, not proof that it was first authored there. A formula is shown as a formula until its result is available. Unlinked origins stay unconfirmed.</p></details>
     <div class="workspace">
       <section class="map-panel" aria-label="Full project map">
         <div class="panel-heading"><div><span class="eyebrow">01 / PROJECT MAP</span><h2 id="map-title">The full picture</h2></div><button id="sources-button" class="quiet">Source directory <span id="source-count"></span></button></div>
@@ -27,15 +29,18 @@
       </section>
       <aside class="trace-panel" aria-label="Isolated information trace">
         <div class="panel-heading"><div><span class="eyebrow">02 / ISOLATED TRACE</span><h2 id="trace-title">Pier saved cap case</h2></div><span class="small-mark">↳</span></div>
-        <div class="trace-controls" role="group" aria-label="Trace direction"><button data-direction="both" class="active" aria-pressed="true">Both ways</button><button data-direction="upstream" aria-pressed="false">Inputs</button><button data-direction="downstream" aria-pressed="false">Outputs</button></div>
+        <div id="parameter-access" class="parameter-access"></div>
+        <div class="trace-controls" role="group" aria-label="Trace direction"><button data-direction="both" class="active" aria-pressed="true">Both ways</button><button data-direction="upstream" aria-pressed="false">Upstream sources</button><button data-direction="downstream" aria-pressed="false">Downstream uses</button></div>
         <label class="dependency-toggle"><input id="include-dependencies" type="checkbox"> Include wider registered dependencies</label>
         <div id="trace-body" class="trace-body"></div>
         <div id="source-detail" class="source-detail"></div>
       </aside>
-      <section class="values-panel" aria-label="Individual values and their sources">
-        <div class="panel-heading"><div><span class="eyebrow">03 / VALUES & EVIDENCE</span><h2 id="values-title">Inside the pier cap</h2></div><button id="all-values" class="quiet">All pier values</button></div>
+      <section id="values-panel" class="values-panel" aria-label="Individual values and their sources">
+        <div class="panel-heading"><div><span class="eyebrow">03 / PARAMETERS & ORIGINS</span><h2 id="values-title" tabindex="-1">Inside the pier cap</h2></div><button id="all-values" class="quiet">All pier values</button></div>
+        <div id="origin-filters" class="origin-filters" role="group" aria-label="Parameter origin"></div>
+        <p id="origin-context" class="origin-context"></p>
         <div class="value-controls"><label class="search-field"><span aria-hidden="true">⌕</span><input id="value-search" aria-label="Search values" placeholder="Search a value, symbol, or unit…"></label><select id="value-category" aria-label="Value category"><option value="">Every category</option></select><span id="value-count"></span></div>
-        <div class="value-grid"><div class="value-table-wrap"><table><thead><tr><th scope="col">Parameter</th><th scope="col">Selected value</th><th scope="col">Sheet transfer</th></tr></thead><tbody id="value-rows"></tbody></table><p id="empty-values" hidden>No values match this selection.</p></div><div id="value-detail" class="value-detail" aria-live="polite"></div></div>
+        <div class="value-grid"><div class="value-table-wrap"><table><thead><tr><th scope="col">Parameter</th><th scope="col">Value / result</th><th scope="col">Role at this node</th></tr></thead><tbody id="value-rows"></tbody></table><p id="empty-values" hidden>No values match this selection.</p></div><div id="value-detail" class="value-detail" aria-live="polite"></div></div>
       </section>
     </div>
     <footer><span id="footer-snapshot"></span><span>Read-only evidence · transfer checks and engineering review remain separate</span></footer>
