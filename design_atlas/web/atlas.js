@@ -128,6 +128,7 @@
     el.style.left=positions[n.id][0]+'px';el.style.top=positions[n.id][1]+'px';
     el.innerHTML=`<span class="node-id">${escape(n.id)}<i class="node-dot ${escape(n.status)}"></i></span><span class="node-name">${escape(n.short_title||n.title)}</span><span class="node-status">${escape(prettyStatus[n.status]||n.status)}${n.value_count?' · '+n.value_count+' values':''}</span>`;
     el.setAttribute('aria-label',n.title+', '+(prettyStatus[n.status]||n.status));
+    el.title=n.title+'\n'+(prettyStatus[n.status]||n.status)+(n.value_count?' · '+n.value_count+' values':'');
     el.addEventListener('click',()=>selectNode(n.id));
     $('map-nodes').appendChild(el);nodeElements.set(n.id,el);
   });

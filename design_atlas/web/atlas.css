@@ -14,3 +14,4 @@
 @media(max-width:760px){.workspace.trace-collapsed{grid-template-columns:1fr}.trace-rail{flex-direction:row;justify-content:space-between;min-height:44px;height:44px;padding:8px 18px}.trace-rail-label{writing-mode:horizontal-tb}.trace-rail>span:first-child{transform:rotate(-90deg)}.trace-collapse-button{transform:rotate(-90deg)}}
 .step-actions{display:flex;flex-wrap:wrap;gap:0 6px}.step-actions button{white-space:nowrap}.map-panel{scroll-margin-top:75px}@media(max-width:760px){.map-panel{scroll-margin-top:100px}}
 .canvas{user-select:none;-webkit-user-select:none}
+.map-node{display:grid;grid-template-rows:12px minmax(0,1fr) 12px;gap:4px;padding:9px 11px}.map-node.selected{padding:8px 10px}.node-id{margin-bottom:0;line-height:12px;min-width:0}.node-name{font-size:13px;line-height:16px;align-self:center;min-width:0;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}.node-status{margin-top:0;line-height:12px;white-space:nowrap}
