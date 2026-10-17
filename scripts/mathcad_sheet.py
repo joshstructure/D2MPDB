@@ -464,7 +464,9 @@ def H2(text): return Block('h2', text)
 def P(text): return Block('p', text)
 def N(text): return Block('note', text)
 def BUL(items): return Block('bullets', items)
-def FIG(name, caption, width=540): return Block('fig', name, caption=caption, width=width)
+def FIG(name, caption, width=540, data=None):
+    """A picture with its caption: PNG `data` bytes when given, else the file figures_dir/<name>.png."""
+    return Block('fig', name, caption=caption, width=width, data=data)
 def INPUTS(title, items): return Block('inputs', items, title=title)
 def EQ(*items): return Block('eqs', list(items))
 def ROW(*items): return Block('row', list(items))
@@ -842,12 +844,13 @@ class Writer:
             heights.append(max(mh, ch))
         self.y += max(heights) + 4 + (6 if last else 0)
 
-    def figure(self, name, caption, width, figures_dir):
-        png = Path(figures_dir) / f'{name}.png'
-        px_w, px_h = _png_size(png.read_bytes())
+    def figure(self, name, caption, width, figures_dir, data=None):
+        if data is None:
+            data = (Path(figures_dir) / f'{name}.png').read_bytes()
+        px_w, px_h = _png_size(data)
         height = width * px_h / px_w
         item_id = len(self.items) + 1
-        self.items.append((item_id, png.read_bytes()))
+        self.items.append((item_id, data))
         self._region((LEFT + RIGHT - width) / 2, self.y, width + 2, height + 2,
                      f'<picture><png item-idref="{item_id}" display-width="{width:.2f}" display-height="{height:.2f}"/></picture>',
                      align_y=self.y, kind='picture', label=name)
@@ -887,7 +890,7 @@ def layout(blocks, figures_dir):
         elif kind == 'bullets':
             add(text_unit(['• ' + t for t in block.payload], 'List', gap=8))
         elif kind == 'fig':
-            add(lambda b=block: w.figure(b.payload, b.opts['caption'], b.opts['width'], figures_dir))
+            add(lambda b=block: w.figure(b.payload, b.opts['caption'], b.opts['width'], figures_dir, b.opts.get('data')))
         elif kind == 'inputs':
             add(text_unit([block.opts['title']], 'Heading 2', font=11, line=15, gap=3), heading=True)
             items = block.payload

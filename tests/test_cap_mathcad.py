@@ -1,4 +1,5 @@
 """The three distilled cap Mathcad worksheets (cap_mathcad/*.xmcd) are current, tied to their reports and verified."""
+import base64
 import copy
 import re
 import unittest
@@ -98,7 +99,7 @@ class CapMathcad(unittest.TestCase):
     def test_xml_is_well_formed_within_the_page_and_in_evaluation_order(self):
         for cap, text, env, w, e in self.each():
             root = ET.fromstring(text.encode('utf-8'))
-            self.assertEqual(len(root.findall(f'{NS}binaryContent/{NS}item')), 2)
+            self.assertEqual(len(root.findall(f'{NS}binaryContent/{NS}item')), 3)       # elevation, section, D/C chart
             regions = root.find(f'{NS}regions').findall(f'{NS}region')
             geom = lambda r: [float(r.get(k)) for k in ('left', 'top', 'width', 'height')]
             breaks = sorted(geom(r)[1] for r in regions if r.find(f'{NS}pageBreak') is not None)
@@ -128,6 +129,65 @@ class CapMathcad(unittest.TestCase):
                 self.assertAlmostEqual(t['x_in'], row['station_in'], places=9)
                 self.assertIn(f'x = {t["x_in"]:.3f} in', text)
             self.assertEqual([r['id'] for r in rows], env['__meta__']['stations'])
+
+    def test_dc_chart_items_are_the_verified_ratios_and_mark_exactly_those_over_one(self):
+        table = [('Flexure', 'DC_flex'), ('Minimum steel', 'DC_min'), ('Strain', 'DC_eps'), ('Service I', 'DC_I')]
+        labels = [f'{name} {x}' for name, _ in table for x in 'NPB']
+        labels += ['Shear (S)', 'Long. tension N', 'Long. tension P', 'Long. tension B', 'Min. transverse steel (M)',
+                   'Transverse spacing', 'Face steel area (max)', 'Face bar spacing (max)', 'Hook development']
+        for cap, text, env, w, e in self.each():
+            items = m.dc_chart_items(env, cap)
+            self.assertEqual([t[0] for t in items], labels)                       # sheet order, hook present on all three caps
+            expected = [env[name][i].v for _, name in table for i in range(3)]
+            expected += [env[name].v for name in ('DC_shear', 'DC_LN', 'DC_LP', 'DC_LB', 'DC_minAv', 'DC_sp', 'DC_tamax',
+                                                  'DC_tsmax', 'DC_hk')]
+            self.assertEqual([t[1] for t in items], expected)
+            self.assertEqual([t[2] for t in items], [v > 1.0 + 1e-9 for v in expected])
+            over = [t[0] for t in items if t[2]]
+            self.assertEqual(over, ['Face bar spacing (max)'] if cap['key'].startswith('end_bent') else [])
+            if over:
+                self.assertAlmostEqual(dict((t[0], t[1]) for t in items)['Face bar spacing (max)'], 2.9375, places=6)
+            self.assertAlmostEqual(max(expected), env['DC_dist'].v, places=12)      # the chart shows the governing ratio
+            self.assertEqual(any(t[2] for t in items), env['Status'] == 'FAIL')
+
+    def test_dc_chart_png_is_deterministic_and_is_the_picture_in_the_sheet_and_in_figures(self):
+        for cap, text, env, w, e in self.each():
+            items = m.dc_chart_items(env, cap)
+            png = m.dc_chart_png(items)
+            self.assertEqual(png, m.dc_chart_png(items), 'two draws of the chart differ')
+            self.assertEqual(png[:8], b'\x89PNG\r\n\x1a\n')
+            self.assertEqual((int.from_bytes(png[16:20], 'big'), int.from_bytes(png[20:24], 'big')),
+                             (1500, round(200 * (0.55 + 0.24 * len(items)))))
+            root = ET.fromstring(text.encode('utf-8'))
+            binary = root.findall(f'{NS}binaryContent/{NS}item')
+            self.assertEqual(binary[2].get('item-id'), '3')
+            self.assertEqual(base64.b64decode(binary[2].text), png, f'{cap["output"]} embeds a different chart: {HOW}')
+            committed = (ROOT / 'cap_mathcad' / 'figures' / f'{cap["key"]}_dc.png').read_bytes()
+            self.assertEqual(committed, png, f'figures/{cap["key"]}_dc.png is stale: {HOW}')
+
+    def test_the_dc_chart_follows_the_status_line_and_precedes_the_notes(self):
+        for cap, text, env, w, e in self.each():
+            regions = ET.fromstring(text.encode('utf-8')).find(f'{NS}regions').findall(f'{NS}region')
+            kind = lambda r: [c.tag.replace(NS, '') for c in r][0]
+            words = lambda r: ''.join(r.itertext()).strip()
+            pics = [i for i, r in enumerate(regions) if r.find(f'{NS}picture/{NS}png[@item-idref="3"]') is not None]
+            self.assertEqual(len(pics), 1)
+            at = pics[0]
+            png = regions[at].find(f'{NS}picture/{NS}png')
+            self.assertEqual(float(png.get('display-width')), 540.0)
+            status = max(i for i, r in enumerate(regions) if kind(r) == 'math' and words(r).startswith('Status'))
+            self.assertLess(status, at)
+            self.assertTrue(all(kind(r) in ('text', 'pageBreak') for r in regions[status + 1:at]), 'only the Status caption may sit between')
+            self.assertTrue(words(regions[at + 1]).startswith('Figure 3. Demand/capacity ratios'))
+            self.assertIn('does not recalculate inside Mathcad', words(regions[at + 1]))
+            notes = [i for i, r in enumerate(regions) if words(r).startswith(('Failing checks not recomputed', 'No tool check outside'))]
+            self.assertEqual(len(notes), 1)
+            self.assertGreater(notes[0], at + 1)
+
+    def test_fig_takes_png_bytes_without_a_file(self):
+        png = m.dc_chart_png([('a', 0.5, False), ('b', 1.5, True)])
+        w = mathcad_sheet.layout([mathcad_sheet.FIG('no_such_file', 'caption', width=200, data=png)], ROOT / 'no_such_folder')
+        self.assertEqual(w.items, [(1, png)])
 
 
 if __name__ == '__main__':

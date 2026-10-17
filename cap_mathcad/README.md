@@ -18,7 +18,7 @@ Each sheet has 12 sections:
 
 1. Scope.
 2. Inputs (yellow).
-3. Two figures: cap elevation (piles, bearings, runs R1 to R9, added span bars, governing stations S, N, P, B) and cross-section between piles.
+3. Two figures: Figure 1, cap elevation (piles, bearings, runs R1 to R9, added span bars, governing stations S, N, P, B), and Figure 2, cross-section between piles.
 4. Steel areas and effective depths.
 5. Flexure and minimum reinforcement.
 6. Service I crack control.
@@ -27,7 +27,7 @@ Each sheet has 12 sections:
 9. Transverse spacing at the governing interval.
 10. Face shrinkage and temperature steel, and skin steel.
 11. Hook development of the governing added span bar.
-12. Summary of D/C ratios.
+12. Summary of D/C ratios, then Figure 3: a bar chart of the distilled D/C ratios against the 1.0 limit. Red bars exceed the limit. The generator draws the chart from the verified values and embeds it as a picture, because Mathcad plots cannot be generated. It does not recalculate in Mathcad. The same PNG is saved as `figures/<cap>_dc.png`.
 
 Regions N, P, B are vectors (index r). The five governing stations are vectors (index k). Each equation appears once.
 
@@ -64,6 +64,6 @@ Rebuild after the selected case, the report or the cap tool changes. Edits made 
 - `End Bent 1 Cap Design.xmcd`
 - `End Bent 2 Cap Design.xmcd`
 - `Pier Cap Design.xmcd`
-- `figures/`: elevation and section PNGs for each cap
-- `../scripts/build_cap_mathcad.py`: builds the worksheets and runs the value comparison
+- `figures/`: elevation and section PNGs for each cap, and the D/C chart (`end_bent_1_dc.png`, `end_bent_2_dc.png`, `pier_dc.png`)
+- `../scripts/build_cap_mathcad.py`: builds the worksheets, runs the value comparison and draws the D/C chart (needs matplotlib)
 - `../scripts/cap_mathcad_figures.py`: draws the figure PNGs

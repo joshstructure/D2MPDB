@@ -5,9 +5,11 @@ actual-cage LRFD checks at the stations the tool found governing. The worksheet 
 lists below (the shared writer is scripts/mathcad_sheet.py). Every expression is parsed once and used two ways:
 emitted as Mathcad worksheet XML and evaluated here with unit checking, so each result can be compared with the cap
 tool (pier_cap) before the file is written. The build stops on any mismatch, on a region that crosses a page or the right
-edge of the text area, and on an evaluation order Mathcad would not follow.
+edge of the text area, and on an evaluation order Mathcad would not follow. Section 12 ends with Figure 3, a bar chart of
+the distilled D/C ratios that the generator draws from the verified values (a picture: Mathcad cannot take a generated
+plot, and the chart does not recalculate there).
 
-    python scripts/build_cap_mathcad.py                  # write cap_mathcad/*.xmcd
+    python scripts/build_cap_mathcad.py                  # write cap_mathcad/*.xmcd and figures/*_dc.png
     python scripts/build_cap_mathcad.py --render-figures  # redraw the PNGs first (needs Edge)
 """
 import contextlib
@@ -664,6 +666,85 @@ def sheet_tail(ctx, spacing, faces, hook):
     return blocks
 
 
+# ----------------------------------------------------------------------------- demand/capacity chart
+DC_CAPTION = ('Figure 3. Demand/capacity ratios of the distilled checks against the 1.0 limit; red bars exceed the limit. '
+              'The generator draws this chart from the values above when it builds the sheet; it does not recalculate inside Mathcad.')
+DC_BLUE, DC_RED, DC_GREY = '#1766a0', '#c8322b', '#233548'    # within the limit, over the limit, limit line and text
+DC_LIMIT_TOL = 1e-9
+
+
+def dc_chart_items(env, cap=None):
+    """(label, ratio, exceeds) of every distilled ratio of Section 12, in sheet order, from the verified environment.
+
+    The skin and hook rows exist exactly when the sheet defines DC_skin and DC_hk; `cap` is accepted for symmetry with the
+    other builders and is not needed."""
+    ratio = lambda name, i=None: float((env[name] if i is None else env[name][i]).v)
+    rows = [(f'{label} {x}', ratio(name, i)) for label, name in (('Flexure', 'DC_flex'), ('Minimum steel', 'DC_min'),
+                                                                 ('Strain', 'DC_eps'), ('Service I', 'DC_I'))
+            for i, x in enumerate(REGIONS)]
+    rows += [('Shear (S)', ratio('DC_shear')), ('Long. tension N', ratio('DC_LN')), ('Long. tension P', ratio('DC_LP')),
+             ('Long. tension B', ratio('DC_LB')), ('Min. transverse steel (M)', ratio('DC_minAv')),
+             ('Transverse spacing', ratio('DC_sp')), ('Face steel area (max)', ratio('DC_tamax')),
+             ('Face bar spacing (max)', ratio('DC_tsmax'))]
+    if 'DC_skin' in env:
+        rows.append(('Skin steel (max)', ratio('DC_skin')))
+    if 'DC_hk' in env:
+        rows.append(('Hook development', ratio('DC_hk')))
+    return [(label, value, value > 1.0 + DC_LIMIT_TOL) for label, value in rows]
+
+
+def dc_chart_png(items):
+    """PNG bytes of the demand/capacity bar chart: one bar per item, first item on top, a dashed line at the 1.0 limit.
+
+    Deterministic: pyplot is not used (no global backend or figure state), the fonts and the layout are pinned, and the
+    file carries neither a date nor a software tag. At 7.5 in wide it prints 1:1 when placed 540 pt wide."""
+    import io
+    from matplotlib import rc_context
+    from matplotlib.backends.backend_agg import FigureCanvasAgg
+    from matplotlib.figure import Figure
+    n = len(items)
+    labels, ratios = [t[0] for t in items], [t[1] for t in items]
+    pinned = {'font.family': 'sans-serif', 'font.sans-serif': ['DejaVu Sans'], 'font.size': 9, 'axes.unicode_minus': False,
+              'text.hinting': 'force_autohint', 'text.antialiased': True, 'axes.linewidth': 0.8,
+              'path.simplify': True, 'figure.facecolor': 'white', 'axes.facecolor': 'white'}
+    with rc_context(pinned):
+        fig = Figure(figsize=(7.5, 0.55 + 0.24 * n), dpi=200, layout='tight')
+        FigureCanvasAgg(fig)
+        ax = fig.subplots()
+        ys = list(range(n))
+        ax.barh(ys, ratios, height=0.62, color=[DC_RED if t[2] else DC_BLUE for t in items], zorder=2)
+        top = max(1.2, 1.08 * max(ratios))
+        ax.set_xlim(0, top)
+        ax.set_ylim(n - 0.4, -0.6)                                    # first item at the top
+        ax.set_yticks(ys, labels, fontsize=9, color=DC_GREY)
+        ax.tick_params(axis='y', length=0, pad=4)
+        ax.tick_params(axis='x', labelsize=9, colors=DC_GREY, length=3)
+        ax.set_xlabel('Demand / capacity', fontsize=9.5, color=DC_GREY)
+        ax.xaxis.grid(True, color='#d5dbe1', linewidth=0.7, zorder=0)
+        ax.set_axisbelow(True)
+        for side in ('top', 'right'):
+            ax.spines[side].set_visible(False)
+        for side in ('left', 'bottom'):
+            ax.spines[side].set_color('#8a97a5')
+        ax.axvline(1.0, color=DC_GREY, linestyle='--', linewidth=1.2, zorder=3)
+        ax.text(1.0, 1.0, 'limit 1.0', transform=ax.get_xaxis_transform(), ha='center', va='bottom', fontsize=9, color=DC_GREY)
+        for y, (label, value, exceeds) in zip(ys, items):
+            ax.text(value + 0.012 * top, y, f'{value:.3f}', ha='left', va='center', fontsize=9,
+                    color=DC_RED if exceeds else DC_GREY, fontweight='bold' if exceeds else 'normal', zorder=4,
+                    bbox=dict(boxstyle='square,pad=0.1', facecolor='white', edgecolor='none'))      # reads over the limit line
+        buf = io.BytesIO()
+        fig.savefig(buf, format='png', dpi=200, metadata={'Software': None})
+    return buf.getvalue()
+
+
+def add_dc_chart(blocks, env, cap):
+    """Insert the chart (Figure 3) after the Status line of Section 12 and before its notes; returns the PNG bytes."""
+    png = dc_chart_png(dc_chart_items(env, cap))
+    at = next(i for i, b in enumerate(blocks) if b.kind == 'eqs' and any(it.name == 'Status' for it in b.payload))
+    blocks.insert(at + 1, FIG(f'{cap["key"]}_dc', DC_CAPTION, width=540, data=png))
+    return png
+
+
 # ----------------------------------------------------------------------------- tool facts for the sheet
 def spacing_data(e):
     L = e.lrfd
@@ -945,6 +1026,7 @@ def build_all(cap):
     check_display_units(blocks, env)
     shown = comparisons(env, ctx)
     compare(shown, 'worksheet')
+    add_dc_chart(blocks, env, cap)           # Figure 3 from the verified ratios (a picture: the sheet does not recalculate it)
 
     # branch coverage: other rows of the tool's own station search, then synthetic actions through its section()
     real, synthetic = coverage_stations(e, rows), synthetic_stations(e, physical)
@@ -989,6 +1071,8 @@ def main():
         text, env = build(cap)
         meta = env['__meta__']
         (OUT_DIR / cap['output']).write_text(text, encoding='utf-8', newline='\n')
+        FIGURES.mkdir(parents=True, exist_ok=True)
+        (FIGURES / f'{cap["key"]}_dc.png').write_bytes(dc_chart_png(dc_chart_items(env, cap)))     # Figure 3, for viewing outside Mathcad
         print(f'Wrote cap_mathcad/{cap["output"]}: {len(text) // 1024} KB; {meta["comparisons"]} values match the tool '
               f'({meta["coverage"]} from {meta["coverage_real"]} + {meta["coverage_synthetic"]} branch-coverage rows); '
               f'report {meta["report"]}; {meta["pages"]} pages, fullest {max(meta["page_fills"])} of {mathcad_sheet.PAGE_H:g} pt')
