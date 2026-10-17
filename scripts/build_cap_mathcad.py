@@ -5,11 +5,11 @@ actual-cage LRFD checks at the stations the tool found governing. The worksheet 
 lists below (the shared writer is scripts/mathcad_sheet.py). Every expression is parsed once and used two ways:
 emitted as Mathcad worksheet XML and evaluated here with unit checking, so each result can be compared with the cap
 tool (pier_cap) before the file is written. The build stops on any mismatch, on a region that crosses a page or the right
-edge of the text area, and on an evaluation order Mathcad would not follow. Section 12 ends with Figure 3, a bar chart of
-the distilled D/C ratios that the generator draws from the verified values (a picture: Mathcad cannot take a generated
-plot, and the chart does not recalculate there).
+edge of the text area, and on an evaluation order Mathcad would not follow. Section 12 ends with Figure 3, a native
+Mathcad plot of the distilled D/C ratios against the 1.0 limit (blue within, red over). The plot is patched from the
+check-summary plot of the PSBeam run (scripts/mathcad_plot.py) and plots worksheet variables, so it recalculates.
 
-    python scripts/build_cap_mathcad.py                  # write cap_mathcad/*.xmcd and figures/*_dc.png
+    python scripts/build_cap_mathcad.py                  # write cap_mathcad/*.xmcd
     python scripts/build_cap_mathcad.py --render-figures  # redraw the PNGs first (needs Edge)
 """
 import contextlib
@@ -25,7 +25,7 @@ sys.path.insert(0, str(ROOT))
 from pier_cap.model import evaluate, DEFINITIONS, BAR_AREA, BAR_DIAMETER  # noqa: E402
 from pier_cap.transverse import scheduled_bars  # noqa: E402
 from pier_cap.lrfd_checks import section_window, settings  # noqa: E402
-from scripts import mathcad_sheet  # noqa: E402
+from scripts import mathcad_plot, mathcad_sheet  # noqa: E402
 from scripts.mathcad_sheet import (  # noqa: E402,F401
     BUL, D, E, EQ, FIG, H1, H2, I, INPUTS, N, P, R, ROW, S, V, Block, Item, U, check_names, document, ev, parse, run, _to)
 
@@ -662,22 +662,80 @@ def sheet_tail(ctx, spacing, faces, hook):
                 E('DC_dist', 'max(DC_sect, DC_det)', None, 'largest of the distilled ratios', key=True),
                 E('Status', 'IF(DC_dist <= 1, "PASS", "FAIL")', None, 'distilled numerical checks only', key=True)]
     blocks += [H1('12. Summary of checks'), EQ(*summary)]
+    blocks += dc_plot_blocks(skin_required, bool(hook))
     blocks += [N(text) for text in summary_notes(e)]
     return blocks
 
 
-# ----------------------------------------------------------------------------- demand/capacity chart
-DC_CAPTION = ('Figure 3. Demand/capacity ratios of the distilled checks against the 1.0 limit; red bars exceed the limit. '
-              'The generator draws this chart from the values above when it builds the sheet; it does not recalculate inside Mathcad.')
-DC_BLUE, DC_RED, DC_GREY = '#1766a0', '#c8322b', '#233548'    # within the limit, over the limit, limit line and text
-DC_LIMIT_TOL = 1e-9
+# ----------------------------------------------------------------------------- demand/capacity plot (Figure 3)
+DC_TITLE = 'Distilled checks: D/C by check number (Blue = within 1.0, Red = over 1.0)'
+DC_CAPTION = ('Figure 3. Demand/capacity ratio of each distilled check (stems) against the limit (dashed line). It is a '
+              'Mathcad plot of CheckGood and CheckNoGood, so it recalculates with the worksheet and a check turns red '
+              'when its ratio passes 1.0.')
+
+
+def dc_checks(skin, hook):
+    """(name, rows, key text) of the distilled ratios of Section 12, in Figure 3 order."""
+    out = [('DC_flex', 3, 'flexure'), ('DC_min', 3, 'minimum steel'), ('DC_eps', 3, 'tension-controlled strain'),
+           ('DC_I', 3, 'Service I'), ('DC_shear', 1, 'shear at S'), ('DC_LN', 1, 'longitudinal tension at N'),
+           ('DC_LP', 1, 'longitudinal tension at P'), ('DC_LB', 1, 'longitudinal tension at B'),
+           ('DC_minAv', 1, 'minimum transverse steel at M'), ('DC_sp', 1, 'transverse spacing'),
+           ('DC_tamax', 1, 'face steel area, largest'), ('DC_tsmax', 1, 'face bar spacing, largest')]
+    if skin:
+        out.append(('DC_skin', 1, 'skin steel'))
+    if hook:
+        out.append(('DC_hk', 1, 'hook development'))
+    return out
+
+
+def dc_plot_blocks(skin, hook):
+    """Figure 3: the ratios stacked in check order, split at the limit into the two traces of the native plot.
+
+    A check on the other side of the limit is parked at check number -1, outside the x range, so each trace always has
+    one row per check (the PSBeam sheet parks an empty trace the same way)."""
+    checks = dc_checks(skin, hook)
+    n, at, key = sum(rows for _, rows, _ in checks), 1, []
+    for _, rows, text in checks:
+        key.append(f'{at}–{at + rows - 1} {text} (N, P, B)' if rows == 3 else f'{at} {text}')
+        at += rows
+    return [
+        P('Figure 3 data: every distilled ratio in check order, split at the limit. A check on the other side of the '
+          'limit is parked at check number −1, outside the plot.'),
+        EQ(D('DC_NPB', 'stack(' + ', '.join(name for name, rows, _ in checks if rows == 3) + ')', 'checks 1 to 12'),
+           D('DC_all', 'stack(DC_NPB, ' + ', '.join(name for name, rows, _ in checks if rows == 1) + ')',
+             'distilled ratios in check order')),
+        ROW(D('Limit', '1'), R('j', 0, 'last(DC_all)'), D('ymax', 'max(1.2, 1.1*max(DC_all))')),
+        ROW(V('x_ok', 'j', 'IF(DC_all[j] <= Limit, j + 1, -1)', show=False),
+            V('y_ok', 'j', 'IF(DC_all[j] <= Limit, DC_all[j], 0)', show=False)),
+        ROW(V('x_ng', 'j', 'IF(DC_all[j] > Limit, j + 1, -1)', show=False),
+            V('y_ng', 'j', 'IF(DC_all[j] > Limit, DC_all[j], 0)', show=False)),
+        ROW(D('CheckGood', 'augment(x_ok, y_ok)'), D('CheckNoGood', 'augment(x_ng, y_ng)')),
+        mathcad_plot.plot_block(n, DC_CAPTION, title=DC_TITLE, over_label='D/C over 1.0', within_label='D/C within 1.0'),
+        N('Check numbers: ' + '; '.join(key) + '.'),
+    ]
+
+
+def check_plot_data(env):
+    """Figure 3 plots exactly the Section 12 ratios: DC_all holds them in chart order and each check sits in the trace
+    of its side of the limit (the other trace parks it at -1, 0)."""
+    items = dc_chart_items(env)
+    values = [y.v for y in env['DC_all']]
+    if values != [v for _, v, _ in items]:
+        raise AssertionError('DC_all is not the Section 12 ratios in chart order')
+    for j, (label, v, over) in enumerate(items):
+        shown, parked = (env['CheckNoGood'], env['CheckGood']) if over else (env['CheckGood'], env['CheckNoGood'])
+        if (shown[j, 0].v, shown[j, 1].v) != (j + 1, v) or (parked[j, 0].v, parked[j, 1].v) != (-1, 0):
+            raise AssertionError(f'Figure 3 traces misplace check {j + 1} ({label})')
+    if not env['ymax'].v >= max(1.2, 1.1 * max(values)):
+        raise AssertionError('Figure 3 y range does not reach the largest ratio')
 
 
 def dc_chart_items(env, cap=None):
     """(label, ratio, exceeds) of every distilled ratio of Section 12, in sheet order, from the verified environment.
 
-    The skin and hook rows exist exactly when the sheet defines DC_skin and DC_hk; `cap` is accepted for symmetry with the
-    other builders and is not needed."""
+    Read from the separate Section 12 names (not DC_all), so check_plot_data compares the worksheet's stack with them.
+    The skin and hook rows exist exactly when the sheet defines DC_skin and DC_hk; `cap` is accepted for symmetry with
+    the other builders and is not needed. A ratio exceeds the limit as in the worksheet: above exactly 1."""
     ratio = lambda name, i=None: float((env[name] if i is None else env[name][i]).v)
     rows = [(f'{label} {x}', ratio(name, i)) for label, name in (('Flexure', 'DC_flex'), ('Minimum steel', 'DC_min'),
                                                                  ('Strain', 'DC_eps'), ('Service I', 'DC_I'))
@@ -690,59 +748,7 @@ def dc_chart_items(env, cap=None):
         rows.append(('Skin steel (max)', ratio('DC_skin')))
     if 'DC_hk' in env:
         rows.append(('Hook development', ratio('DC_hk')))
-    return [(label, value, value > 1.0 + DC_LIMIT_TOL) for label, value in rows]
-
-
-def dc_chart_png(items):
-    """PNG bytes of the demand/capacity bar chart: one bar per item, first item on top, a dashed line at the 1.0 limit.
-
-    Deterministic: pyplot is not used (no global backend or figure state), the fonts and the layout are pinned, and the
-    file carries neither a date nor a software tag. At 7.5 in wide it prints 1:1 when placed 540 pt wide."""
-    import io
-    from matplotlib import rc_context
-    from matplotlib.backends.backend_agg import FigureCanvasAgg
-    from matplotlib.figure import Figure
-    n = len(items)
-    labels, ratios = [t[0] for t in items], [t[1] for t in items]
-    pinned = {'font.family': 'sans-serif', 'font.sans-serif': ['DejaVu Sans'], 'font.size': 9, 'axes.unicode_minus': False,
-              'text.hinting': 'force_autohint', 'text.antialiased': True, 'axes.linewidth': 0.8,
-              'path.simplify': True, 'figure.facecolor': 'white', 'axes.facecolor': 'white'}
-    with rc_context(pinned):
-        fig = Figure(figsize=(7.5, 0.55 + 0.24 * n), dpi=200, layout='tight')
-        FigureCanvasAgg(fig)
-        ax = fig.subplots()
-        ys = list(range(n))
-        ax.barh(ys, ratios, height=0.62, color=[DC_RED if t[2] else DC_BLUE for t in items], zorder=2)
-        top = max(1.2, 1.08 * max(ratios))
-        ax.set_xlim(0, top)
-        ax.set_ylim(n - 0.4, -0.6)                                    # first item at the top
-        ax.set_yticks(ys, labels, fontsize=9, color=DC_GREY)
-        ax.tick_params(axis='y', length=0, pad=4)
-        ax.tick_params(axis='x', labelsize=9, colors=DC_GREY, length=3)
-        ax.set_xlabel('Demand / capacity', fontsize=9.5, color=DC_GREY)
-        ax.xaxis.grid(True, color='#d5dbe1', linewidth=0.7, zorder=0)
-        ax.set_axisbelow(True)
-        for side in ('top', 'right'):
-            ax.spines[side].set_visible(False)
-        for side in ('left', 'bottom'):
-            ax.spines[side].set_color('#8a97a5')
-        ax.axvline(1.0, color=DC_GREY, linestyle='--', linewidth=1.2, zorder=3)
-        ax.text(1.0, 1.0, 'limit 1.0', transform=ax.get_xaxis_transform(), ha='center', va='bottom', fontsize=9, color=DC_GREY)
-        for y, (label, value, exceeds) in zip(ys, items):
-            ax.text(value + 0.012 * top, y, f'{value:.3f}', ha='left', va='center', fontsize=9,
-                    color=DC_RED if exceeds else DC_GREY, fontweight='bold' if exceeds else 'normal', zorder=4,
-                    bbox=dict(boxstyle='square,pad=0.1', facecolor='white', edgecolor='none'))      # reads over the limit line
-        buf = io.BytesIO()
-        fig.savefig(buf, format='png', dpi=200, metadata={'Software': None})
-    return buf.getvalue()
-
-
-def add_dc_chart(blocks, env, cap):
-    """Insert the chart (Figure 3) after the Status line of Section 12 and before its notes; returns the PNG bytes."""
-    png = dc_chart_png(dc_chart_items(env, cap))
-    at = next(i for i, b in enumerate(blocks) if b.kind == 'eqs' and any(it.name == 'Status' for it in b.payload))
-    blocks.insert(at + 1, FIG(f'{cap["key"]}_dc', DC_CAPTION, width=540, data=png))
-    return png
+    return [(label, value, value > 1.0) for label, value in rows]
 
 
 # ----------------------------------------------------------------------------- tool facts for the sheet
@@ -1026,7 +1032,7 @@ def build_all(cap):
     check_display_units(blocks, env)
     shown = comparisons(env, ctx)
     compare(shown, 'worksheet')
-    add_dc_chart(blocks, env, cap)           # Figure 3 from the verified ratios (a picture: the sheet does not recalculate it)
+    check_plot_data(env)
 
     # branch coverage: other rows of the tool's own station search, then synthetic actions through its section()
     real, synthetic = coverage_stations(e, rows), synthetic_stations(e, physical)
@@ -1071,8 +1077,6 @@ def main():
         text, env = build(cap)
         meta = env['__meta__']
         (OUT_DIR / cap['output']).write_text(text, encoding='utf-8', newline='\n')
-        FIGURES.mkdir(parents=True, exist_ok=True)
-        (FIGURES / f'{cap["key"]}_dc.png').write_bytes(dc_chart_png(dc_chart_items(env, cap)))     # Figure 3, for viewing outside Mathcad
         print(f'Wrote cap_mathcad/{cap["output"]}: {len(text) // 1024} KB; {meta["comparisons"]} values match the tool '
               f'({meta["coverage"]} from {meta["coverage_real"]} + {meta["coverage_synthetic"]} branch-coverage rows); '
               f'report {meta["report"]}; {meta["pages"]} pages, fullest {max(meta["page_fills"])} of {mathcad_sheet.PAGE_H:g} pt')

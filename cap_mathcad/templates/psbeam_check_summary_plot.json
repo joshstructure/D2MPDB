@@ -1,0 +1,13 @@
+{
+ "source": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd",
+ "source_sha256": "a6b0f967d271c193591d477e219ac66f98b72309d19958a04c6cd08e575a8dcd",
+ "region_id": "202644",
+ "item_id": "835",
+ "content_encoding": "content-encoding=\"gzip\"",
+ "region_width_pt": 525.75,
+ "region_height_pt": 142.5,
+ "title": "Summary of 30 Design Checks (Blue = OK, Red = No Good)",
+ "template_sha256": "24ad92cff247d3e931ac061c484f723059cbab8eccb8d4bd92687c2f76d9a0de",
+ "template_bytes": 1483,
+ "note": "Native Mathcad X-Y plot object (gzip-decompressed) written by Mathcad in the FDOT PSBeam (PrestressedBeamV6.2) run. scripts/mathcad_plot.py patches its title, legend text, axis limits and marker name; the traces stay CheckNoGood^<1> vs ^<0> (red) and CheckGood^<1> vs ^<0> (blue)."
+}

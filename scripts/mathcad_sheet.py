@@ -3,7 +3,7 @@
 Used by scripts/build_backwall_mathcad.py and scripts/build_cap_mathcad.py.
 
 A worksheet is a list of Blocks built from a compact equation list (E, D, V, R, F, S, I, INPUTS, EQ, ROW,
-H1, H2, P, N, BUL, FIG). Each expression is parsed once (`parse`, a Python-AST subset) and used two ways:
+H1, H2, P, N, BUL, FIG, PLOT). Each expression is parsed once (`parse`, a Python-AST subset) and used two ways:
 emitted as Mathcad worksheet XML (`x_expr`, `layout`, `document`) and evaluated with unit checking
 (`ev`, `run`) so results can be compared with an independent model before the file is written.
 `layout` places regions and `check_order` verifies Mathcad's evaluation order from the layout log.
@@ -33,7 +33,7 @@ GREEK = {'gamma': 'γ', 'phi': 'ϕ', 'beta': 'β', 'theta': 'θ', 'delta': 'δ',
          'Delta': 'Δ', 'Gamma': 'Γ', 'mu': 'μ', 'rho': 'ρ', 'alpha': 'α'}
 SPECIAL = {'fc': ("f'", 'c'), 'fy': ('f', 'y'), 'Es': ('E', 's'), 'dT': ('Δ', 'T')}
 UNITS = {'in', 'ft', 'kip', 'ksi', 'ksf', 'klf', 'psf', 'psi', 'deg', 'lbf'}
-FUNCTIONS = {'max', 'min', 'sin', 'tan', 'round'}
+FUNCTIONS = {'max', 'min', 'sin', 'tan', 'round', 'stack', 'augment', 'last'}
 
 
 def mc_name(name):
@@ -266,6 +266,24 @@ def ev(t, env):
             if vals[1].v != int(vals[1].v):
                 raise ValueError('round: the number of decimal places must be an integer')
             return U(round(vals[0].v, int(vals[1].v)))
+        if f == 'stack':                                # vectors and scalars, top to bottom: a vector
+            items = [y for v in vals for y in (v if isinstance(v, list) else [v])]
+            if any(not isinstance(y, U) for y in items):
+                raise UnitError('stack takes vectors and scalars')
+            for y in items[1:]:
+                items[0]._same(y, 'stack')
+            return items
+        if f == 'augment':                              # vectors of one length, left to right: a matrix
+            if not all(isinstance(v, list) for v in vals) or len({len(v) for v in vals}) != 1:
+                raise UnitError('augment takes vectors of one length')
+            for v in vals:
+                for y in v:
+                    vals[0][0]._same(y, 'augment')
+            return {(i, c): v[i] for c, v in enumerate(vals) for i in range(len(v))}
+        if f == 'last':
+            if not isinstance(vals[0], list):
+                raise UnitError('last takes a vector')
+            return U(len(vals[0]) - 1)
         if f in env and callable(env[f]):
             return env[f](*vals)
         raise NameError(f'unknown function {f}')
@@ -351,7 +369,7 @@ def x_expr(t):
             rows, cols = (1, len(args)) if f == 'row' else (len(args), 1)
             return f'<ml:matrix rows="{rows}" cols="{cols}">' + ''.join(x_expr(a) for a in args) + '</ml:matrix>'
         name = 'if' if f == 'IF' else f
-        head = f'<ml:id xml:space="preserve">{escape(name)}</ml:id>' if name in ('if', 'max', 'min', 'sin', 'tan', 'round') else x_id(name)
+        head = f'<ml:id xml:space="preserve">{escape(name)}</ml:id>' if name == 'if' or name in FUNCTIONS else x_id(name)
         body = x_expr(args[0]) if len(args) == 1 else '<ml:sequence>' + ''.join(x_expr(a) for a in args) + '</ml:sequence>'
         return f'<ml:apply>{head}{body}</ml:apply>'
     raise ValueError(kind)
@@ -443,6 +461,7 @@ def V(name, index, expr, unit=None, caption='', key=False, show=True):
 
 
 def R(name, lo, hi, caption=''):
+    """Range variable lo..hi; hi may be an expression (e.g. 'last(v)')."""
     return Item('range', name, f'{lo}..{hi}', caption=caption, index=(lo, hi))
 
 
@@ -467,6 +486,10 @@ def BUL(items): return Block('bullets', items)
 def FIG(name, caption, width=540, data=None):
     """A picture with its caption: PNG `data` bytes when given, else the file figures_dir/<name>.png."""
     return Block('fig', name, caption=caption, width=width, data=data)
+def PLOT(name, data, caption, width, height, uses):
+    """A native Mathcad X-Y plot with its caption: `data` is the stored (gzip) plot object Mathcad wrote, see
+    scripts/mathcad_plot.py; `uses` names the worksheet variables it plots (checked for evaluation order)."""
+    return Block('plot', name, data=data, caption=caption, width=width, height=height, uses=set(uses))
 def INPUTS(title, items): return Block('inputs', items, title=title)
 def EQ(*items): return Block('eqs', list(items))
 def ROW(*items): return Block('row', list(items))
@@ -481,6 +504,11 @@ def run(blocks):
         for item in items:
             if item.kind == 'range':
                 lo, hi = item.index
+                if isinstance(hi, str):
+                    end = ev(parse(hi), env)
+                    if end.d != (0.0, 0.0) or end.v != int(end.v):
+                        raise UnitError(f'range {item.name}: the end {hi} is not a whole number')
+                    hi = int(end.v)
                 env[item.name] = list(range(lo, hi + 1))
             elif item.kind in ('input', 'eq', 'def'):
                 env[item.name] = ev(item.tree, env)
@@ -561,7 +589,8 @@ def defines_of(item):
 
 def uses_of(item):
     if item.kind == 'range':
-        return set()
+        hi = item.index[1]
+        return uses_in(parse(hi)) - BUILTINS if isinstance(hi, str) else set()
     names = uses_in(item.tree) - BUILTINS
     if item.kind == 'fdef':
         names -= set(item.params)
@@ -704,6 +733,9 @@ class Writer:
         """(width, height, anchor) of a math region; anchor = baseline below the region top."""
         if item.kind == 'range':
             w, asc, desc = len(item.name) * CW + 60, 9, 4
+            if isinstance(item.index[1], str):
+                w0, a0, d0 = size(parse(item.index[1]))
+                w, asc, desc = w + w0, max(asc, a0), max(desc, d0)
         elif item.kind == 'fdef':
             w0, asc, desc = size(item.tree)
             w = w0 + len(item.name) * CW + 40 + 12 * len(item.params)
@@ -724,8 +756,9 @@ class Writer:
     def _inner(item):
         if item.kind == 'range':
             lo, hi = item.index
+            end = x_expr(parse(hi)) if isinstance(hi, str) else f'<ml:real>{hi}</ml:real>'
             return (f'<ml:define xmlns:ml="{ML}">{x_id(item.name)}<ml:range><ml:real>{lo}</ml:real>'
-                    f'<ml:real>{hi}</ml:real></ml:range></ml:define>')
+                    f'{end}</ml:range></ml:define>')
         if item.kind == 'fdef':
             head = (f'<ml:function>{x_id(item.name)}<ml:boundVars>' + ''.join(x_id(p) for p in item.params)
                     + '</ml:boundVars></ml:function>')
@@ -857,6 +890,20 @@ class Writer:
         self.y += height + 8
         self.block_text([caption], 'Note', font=9, line=11.5, gap=8)
 
+    def plot(self, name, data, caption, width, height, uses):
+        """A native plot region (stored gzip-compressed, as Mathcad does) with its caption below."""
+        item_id = len(self.items) + 1
+        self.items.append((item_id, data, 'gzip'))
+        left, top = (LEFT + RIGHT - width) / 2, self.y
+        self._region(left, top, width, height, f'<plot disable-calc="false" item-idref="{item_id}"/>',
+                     highlight=PLOT_BACKGROUND, align_y=top, kind='plot', label=name)
+        self.log.append(dict(top=top, align=top, left=left, defines=set(), uses=set(uses), label=name))
+        self.y += height + 8
+        self.block_text([caption], 'Note', font=9, line=11.5, gap=8)
+
+
+PLOT_BACKGROUND = '#ececec'     # the region colour of the PSBeam check-summary plot
+
 
 def layout(blocks, figures_dir):
     """Write every block; headings stay with the unit that follows them, and no unit is split across a page."""
@@ -891,6 +938,9 @@ def layout(blocks, figures_dir):
             add(text_unit(['• ' + t for t in block.payload], 'List', gap=8))
         elif kind == 'fig':
             add(lambda b=block: w.figure(b.payload, b.opts['caption'], b.opts['width'], figures_dir, b.opts.get('data')))
+        elif kind == 'plot':
+            add(lambda b=block: w.plot(b.payload, b.opts['data'], b.opts['caption'], b.opts['width'], b.opts['height'],
+                                       b.opts['uses']))
         elif kind == 'inputs':
             add(text_unit([block.opts['title']], 'Heading 2', font=11, line=15, gap=3), heading=True)
             items = block.payload
@@ -987,7 +1037,8 @@ def document(blocks, *, title, description, seed, figures_dir, check_width=False
     if check_width:
         w.check_width()
     ids = [str(uuid.UUID(int=(seed + n) % (1 << 128), version=4)).upper() for n in range(3)]
-    binary = ''.join(f'<item item-id="{n}">{_b64(data)}</item>\n' for n, data in w.items)
+    binary = ''.join(f'<item item-id="{n}"' + ''.join(f' content-encoding="{c}"' for c in encoding) + f'>{_b64(data)}</item>\n'
+                     for n, data, *encoding in w.items)
     return (
         '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n'
         '<worksheet version="3.0.3" xmlns="http://schemas.mathsoft.com/worksheet30" '

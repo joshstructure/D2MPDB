@@ -27,7 +27,7 @@ Each sheet has 12 sections:
 9. Transverse spacing at the governing interval.
 10. Face shrinkage and temperature steel, and skin steel.
 11. Hook development of the governing added span bar.
-12. Summary of D/C ratios, then Figure 3: a bar chart of the distilled D/C ratios against the 1.0 limit. Red bars exceed the limit. The generator draws the chart from the verified values and embeds it as a picture, because Mathcad plots cannot be generated. It does not recalculate in Mathcad. The same PNG is saved as `figures/<cap>_dc.png`.
+12. Summary of D/C ratios, then Figure 3: a live Mathcad plot of every distilled D/C ratio by check number, with a dashed line at the 1.0 limit. Each check is a stem. Blue stems are within the limit and red stems exceed it. The sheet stacks the ratios into `DC_all` and splits them at `Limit` into `CheckGood` and `CheckNoGood`. The plot draws those variables and scales to `ymax`, so it recalculates when an input changes. A check on the other side of the limit is parked at check number −1, outside the plot. A note under the plot says which number is which check.
 
 Regions N, P, B are vectors (index r). The five governing stations are vectors (index k). Each equation appears once.
 
@@ -37,9 +37,15 @@ The station search, the intersected-leg window areas and developed (credited) st
 
 The summary notes list failing and pending tool checks that the sheet does not recompute. End Bent 1 and End Bent 2 fail calculated anchorage and closure at R2, R4, R6 and R8. The pier fails the end-grid pile envelope clearance. The sheet does recompute face shrinkage spacing. Both End Bent sheets fail it at D/C 2.938, so their distilled Status reads FAIL.
 
+## The live plot
+
+A Mathcad plot is a compressed binary object, and it cannot safely be written from scratch without Mathcad. The generator starts from a plot Mathcad itself saved: the "Summary of 30 Design Checks" plot in the FDOT PSBeam run (`project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd`). That plot already draws `CheckGood` and `CheckNoGood` as blue and red stems. The object is kept in `templates/` with its SHA-256 and source.
+
+`scripts/mathcad_plot.py` changes only the title, the legend labels, the axis limits (`ymax` and the number of checks), the limit line's variable (`Limit`) and the y-axis numbering. It checks each change against the template bytes and keeps the plot's structure unchanged. The plot has not yet been opened in Mathcad.
+
 ## Verification
 
-`scripts/build_cap_mathcad.py` evaluates every expression with unit checking. It compares each result with the cap tool to 1 part in 10⁹ (about 830 to 890 values per cap). Rows the sheet does not print cover the general shear method, flange cracking, torsion, missing minimum transverse steel and the 0.006 strain limit. Some are real station rows from the tool. Others are synthetic actions run through the tool's own section calculation, because these caps' governing stations never reach those branches. The build stops on any mismatch.
+`scripts/build_cap_mathcad.py` evaluates every expression with unit checking. It compares each result with the cap tool to 1 part in 10⁹ (about 830 to 890 values per cap). Rows the sheet does not print cover the general shear method, flange cracking, torsion, missing minimum transverse steel and the 0.006 strain limit. Some are real station rows from the tool. Others are synthetic actions run through the tool's own section calculation, because these caps' governing stations never reach those branches. The build stops on any mismatch. It also checks that `DC_all` holds the Section 12 ratios in check order and that each check sits in the trace for its side of the limit.
 
 A distilled Status of PASS covers only the recomputed numerical checks. It is not design acceptance.
 
@@ -64,6 +70,8 @@ Rebuild after the selected case, the report or the cap tool changes. Edits made 
 - `End Bent 1 Cap Design.xmcd`
 - `End Bent 2 Cap Design.xmcd`
 - `Pier Cap Design.xmcd`
-- `figures/`: elevation and section PNGs for each cap, and the D/C chart (`end_bent_1_dc.png`, `end_bent_2_dc.png`, `pier_dc.png`)
-- `../scripts/build_cap_mathcad.py`: builds the worksheets, runs the value comparison and draws the D/C chart (needs matplotlib)
+- `figures/`: elevation and section PNGs for each cap
+- `templates/psbeam_check_summary_plot.bin` and `.json`: the PSBeam plot object behind Figure 3, with its source and SHA-256
+- `../scripts/build_cap_mathcad.py`: builds the worksheets and runs the value comparison
+- `../scripts/mathcad_plot.py`: patches the plot template for Figure 3
 - `../scripts/cap_mathcad_figures.py`: draws the figure PNGs
