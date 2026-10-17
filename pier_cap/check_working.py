@@ -27,9 +27,9 @@ def _values(values):
         '<dt>'+escape(label)+'</dt><dd>'+_value(value, unit)+'</dd>' for label, value, unit in values)+'</dl>'
 
 
-def _record_html(check, working):
+def _record_html(e, check, working):
     equation, values = working
-    return working_html(check, equation)+_values(values)
+    return working_html(check, equation,evaluation=e,values=values)+_values(values)
 
 
 def _section_comparison(e, check):
@@ -69,6 +69,7 @@ def _names(ast, engine):
 
 
 def _registered(e, check):
+    from .equation_schematics import schematic_html
     from .model import DEFINITIONS, RATIOS
     definitions = {d['name']: d for d in DEFINITIONS}
     ast = RATIOS.get(check.key, e.engine.defs.get(check.key))
@@ -101,6 +102,7 @@ def _registered(e, check):
             continue
         output.append('<div class="check-equation">'+mathml(symbol(name)+'<mo>=</mo>'+expression(formula)+
                       '<mo>=</mo>'+quantity(e.engine.get(name), e.engine, d['unit']), True)+'</div>')
+        output.append(schematic_html(e,name))
         for child in dict.fromkeys(_names(formula, e.engine)):
             queue.append((child, depth if name.startswith('DC_') else depth+1))
     output.append('<p><b>Variable values</b></p><dl class="check-values">'+''.join(values.values())+'</dl>')
@@ -252,7 +254,7 @@ def details_html(e, check):
     working = check.working or _actual(e, check)
     actual_key = e.lrfd and (key in REPLACED_KEYS or key.startswith(REPLACED_PREFIXES))
     if working:
-        body = _record_html(check, working)
+        body = _record_html(e, check, working)
     elif key in ('Status_layout', 'Status_section'):
         names = ('b', 'h') if key == 'Status_section' else ('N_pile', 'S_pile', 'D_pile', 'E_clear', 'E_detail')
         body = '<p>Required: current geometry must match the imported force model.</p>'+_values([
@@ -273,7 +275,10 @@ def details_html(e, check):
     body += '<p><b>Result:</b> '+escape(check.status)+' · '+('Check ratio: ' if physical else 'Recorded ratio / flag: ')+ratio+'</p>'
     if physical:
         body += '<p><b>Required:</b> '+mathml(expression(('bin','<=',('name','ratio'),('num',1))))+', together with the stated applicability and detailing conditions.</p>'
-    body = references_html(e, check) + body
+    from .equation_schematics import schematic_html
+    sketch=schematic_html(e,key,caption=check.label,values=working[1] if working else None,
+                          pending=check.ratio=='PENDING' or check.status=='REFERENCE',check=check)
+    body = references_html(e, check) + sketch + body
     body += '<p class="check-basis">'+escape(check.basis).replace('\n', '<br>')+'</p>'
     return '<details class="check-working" data-check="'+escape(key, quote=True)+'"><summary>Equation &amp; values</summary><div class="check-working-body">'+body+'</div></details>'
 

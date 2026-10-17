@@ -381,7 +381,8 @@ def results_figure(e):
     for prefix,name,color in [('Mu_','Demand',MOMENT),('Mr_','Resistance',MOMENT_CAPACITY)]:fig.add_trace(go.Bar(x=labels,y=[e.value(prefix+z,'kip*ft') for z in 'NPB'],name='Moment '+name,marker_color=color),row=1,col=1)
     fig.add_trace(go.Bar(x=labels,y=[e.value('fs_I_'+z,'ksi') for z in 'NPB'],name='Service I stress',marker_color=TEAL,
         customdata=[service_hover(e,z) for z in 'NPB'],hovertemplate='%{x}<br>Steel stress %{y:.3f} ksi<br>%{customdata}<extra></extra>'),row=1,col=2)
-    fig.add_hline(y=e.value('fs_I_limit','ksi'),line_color=AMBER,line_dash='dash',annotation_text='Stress limit',row=1,col=2)
+    from .service_limits import add_stress_limits
+    add_stress_limits(fig,e,'I',labels,row=1,col=2)
     for prefix,name,color in [('Vu_','Shear demand',SHEAR),('Vr_','Shear resistance',SHEAR_CAPACITY)]:fig.add_trace(go.Bar(x=['Overall (G)','Lower-shear (L)'],y=[e.value(prefix+z,'kip') for z in 'GL'],name=name,marker_color=color),row=2,col=1)
     fig.add_trace(go.Bar(x=['Overall (G)','Lower-shear (L)'],y=[e.value('Acomb_'+z,'in^2') for z in 'GL'],name='Combined area required',marker_color=AMBER),row=2,col=2)
     fig.add_hline(y=e.value('Av','in^2'),line_color=INK,line_dash='dash',annotation_text='Area provided',row=2,col=2)
@@ -447,7 +448,8 @@ def optional_service_figure(e):
     if e.case['inputs']['Ready_III']:
         fig.add_trace(go.Bar(x=labels,y=[e.value('fo_III_'+z,'ksi') for z in labels],name='Outer-bar stress',marker_color=BLUE,
             customdata=[service_hover(e,z,'III') for z in labels],hovertemplate='%{x}<br>Outer-bar stress %{y:.3f} ksi<br>%{customdata}<extra></extra>'),row=1,col=1)
-        fig.add_hline(y=24,line_dash='dash',line_color=AMBER,annotation_text='24 ksi limit',row=1,col=1)
+        from .service_limits import add_stress_limits
+        add_stress_limits(fig,e,'III',labels,row=1,col=1)
     else:fig.add_annotation(x=.22,y=.5,xref='paper',yref='paper',text='PENDING<br>Supply Service III loads',showarrow=False,font=dict(color=AMBER,size=16))
     if e.case['inputs']['Ready_fatigue']:
         for prefix,title,color in [('Df_','Stress range',BLUE),('FTH_','Fatigue threshold',TEAL)]:

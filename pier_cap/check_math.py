@@ -12,7 +12,7 @@ def equation_html(source):
     return '<div class="check-equation">'+mathml(expression(parse(source)), True)+'</div>'
 
 
-def working_html(check, equation):
+def working_html(check, equation, *, evaluation=None, values=None):
     key = check.key; notes = ''; lines = []
     if equation.startswith('FDOT bar'):
         lines = ['d_b >= d_min', 'd_b <= d_max']
@@ -79,7 +79,16 @@ def working_html(check, equation):
     else:
         # Nonnumerical review gates have a written requirement, not an equation.
         notes = equation
-    return ''.join(equation_html(line) for line in lines)+('<p>'+escape(notes)+'</p>' if notes else '')
+    output=[]
+    for line in lines:
+        output.append(equation_html(line))
+        if evaluation is not None:
+            from .equation_schematics import schematic_html,family
+            lhs=line.split('==')[0].strip()
+            concept=lhs if family(lhs)!='gate' else check.key
+            output.append(schematic_html(evaluation,check.key+' · '+lhs,concept_name=concept,
+                caption=line,values=values,check=check,pending=check.status=='REFERENCE'))
+    return ''.join(output)+('<p>'+escape(notes)+'</p>' if notes else '')
 
 
 def components_html(check):

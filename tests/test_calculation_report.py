@@ -60,7 +60,8 @@ class CalculationReportTests(unittest.TestCase):
             self.assertTrue(node.xpath('.//math'),name)
             if name.startswith(('fs_III_','fo_III_','SIII_','fmin_','Df_','FTH_','DC_fat_')):
                 self.assertIn('PENDING',node.text_content())
-                self.assertFalse(node.xpath('.//details'),name)
+                self.assertTrue(node.xpath('.//details//svg'),name)
+                self.assertNotIn('Numeric substitution',node.text_content())
             else:
                 self.assertIn(r.result(name),markup,name)
             # XML parse the original MathML without HTML's case normalization.
@@ -104,7 +105,7 @@ class CalculationReportTests(unittest.TestCase):
         self.assertIn('Pile center and face stations',gallery.text_content())
         self.assertIn('Print / save PDF includes all views',gallery.text_content())
         # One copy of each drawing, with links from its related calculation.
-        self.assertFalse(self.doc.get_element_by_id('steel').xpath('.//figure'))
+        self.assertFalse(self.doc.get_element_by_id('steel').xpath('.//figure[not(@class="equation-schematic")]'))
         self.assertTrue(self.doc.get_element_by_id('steel').xpath('.//a[@href="#geometry-3d"]'))
 
     def test_exported_geometry_uses_edited_case_and_retains_actual_cage(self):

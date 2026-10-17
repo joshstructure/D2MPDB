@@ -123,6 +123,24 @@ def cap_force_figure(case, *, show_resistance=False, evaluation=None):
     modes += [(state_label(state)+' · envelope',[k for k,v in states.items() if v == state])
               for state in dict.fromkeys(states.values())]
     modes += [(f'{state_label(state)} · combo {combo}',[combo]) for combo,state in states.items()]
+    prepared=[];resistance_note='';service_segments={}
+    if show_resistance:
+        from .model import evaluate
+        from .force_resistance import resistance_traces
+        from .service_limits import service_traces
+        try:
+            e = evaluation if evaluation is not None else evaluate(case)
+            prepared,resistance_note=resistance_traces(e)
+            # A geometry mismatch suppresses station-based service limits too.
+            if prepared:
+                ends=audit['end_records']
+                length=(max(r['x_in'] for r in ends)-min(r['x_in'] for r in ends))/12
+                service,service_segments,note=service_traces(e,length)
+                prepared+=service
+                resistance_note+=' '+note
+        except (ValueError,KeyError,TypeError,ZeroDivisionError,OverflowError) as exc:
+            prepared=[];service_segments={}
+            resistance_note='RESISTANCE OVERLAY UNAVAILABLE: '+str(exc)+'. Correct the current inputs; imported demand curves are retained.'
     fig = make_subplots(rows=4,cols=1,shared_xaxes=True,vertical_spacing=.065,
         row_heights=[.30,.24,.20,.26],subplot_titles=(
             'Moment · positive = bottom tension','Shear · signed','Torsion · magnitude','Analyzed cap, pile centers and bearings'))
@@ -137,8 +155,15 @@ def cap_force_figure(case, *, show_resistance=False, evaluation=None):
                     if records[0] is None:
                         points.append(None);continue
                     record = (max if kind == 'upper' else min)(records,key=lambda r:r[field])
+                    service_note=''
+                    state=record['state'].removeprefix('SERVICE-')
+                    if record['state'].startswith('SERVICE-'):
+                        if field == 'moment' and state in service_segments:
+                            from .service_limits import moment_hover
+                            service_note=moment_hover(service_segments[state],record['x'],record[field])
+                        elif field != 'moment':service_note='No service '+field+' limit is defined; demand only.'
                     points.append((record['x'],record[field],
-                        [state_label(record['state']),record['combination'],record['element'],record['station']]))
+                        [state_label(record['state']),record['combination'],record['element'],record['station'],service_note]))
                 x,y,custom=joined_trace(points)
                 name = {'moment':'Moment demand','shear':'Shear demand','torque':'Torsion demand |T|'}[field]
                 if len(combos)>1:name+=' · '+('maximum' if field == 'torque' else kind)
@@ -147,20 +172,14 @@ def cap_force_figure(case, *, show_resistance=False, evaluation=None):
                         width=2.5,dash='solid',shape='linear',simplify=False),
                     hovertemplate=f'x = %{{x:.3f}} ft from left cap edge<br>{name} = %{{y:.2f}} {unit}'
                         '<br>%{customdata[0]} · combo %{customdata[1]} · member %{customdata[2]}'
-                        '<br>%{customdata[3]}<extra></extra>'),row=row,col=1)
+                        '<br>%{customdata[3]}<br>%{customdata[4]}<extra></extra>'),row=row,col=1)
         trace_groups.append(list(range(start,len(fig.data))))
     force_count = len(fig.data)
-    resistance_indices=[];resistance_note=''
-    if show_resistance:
-        from .model import evaluate
-        from .force_resistance import resistance_traces
-        try:
-            traces,resistance_note=resistance_traces(evaluation if evaluation is not None else evaluate(case))
-            for trace,row in traces:
-                resistance_indices.append(len(fig.data))
-                fig.add_trace(trace,row=row,col=1)
-        except (ValueError,KeyError,TypeError,ZeroDivisionError,OverflowError) as exc:
-            resistance_note='RESISTANCE OVERLAY UNAVAILABLE: '+str(exc)+'. Correct the current inputs; imported demand curves are retained.'
+    resistance_indices=[];service_indices={}
+    for trace,row in prepared:
+        if trace.meta.get('role') == 'service_limit':service_indices[len(fig.data)]=trace.meta['state']
+        else:resistance_indices.append(len(fig.data))
+        fig.add_trace(trace,row=row,col=1)
     x0 = min(r['x_in'] for r in audit['end_records'])
     length = (max(r['x_in'] for r in audit['end_records'])-x0)/12
     depth=geometry['h']/12
@@ -180,20 +199,23 @@ def cap_force_figure(case, *, show_resistance=False, evaluation=None):
         hovertemplate='Bearing at x = %{x:.3f} ft<extra></extra>'),row=4,col=1)
     fig.add_trace(go.Scatter(x=pile_x,y=[0]*len(pile_x),mode='markers',name='Pile centers',
         marker=dict(size=7,color='#627386'),hovertemplate='Pile center x = %{x:.3f} ft<extra></extra>'),row=4,col=1)
-    def title(label, is_strength):
+    def title(label, is_strength, selected_state=None):
         detail=f'Analyzed cap {geometry["b"]:g} × {geometry["h"]:g} in · {length:.3f} ft long'
         if resistance_indices:
             p=case['inputs']
             detail+=(f' · Current resistance section {p["b"]:g} × {p["h"]:g} in' if is_strength else
-                     ' · Strength resistance overlay hidden for service demands')
+                     ' · Service stress / spacing limits; V and T demand only' if selected_state in service_indices.values() else
+                     ' · Service limits unavailable; see notice')
         elif resistance_note:detail+=' · Resistance overlay unavailable; see notice'
         return f'{html.escape(label)}<br><sup>{detail}</sup>'
     buttons=[]
     for (label,combos), group in zip(modes,trace_groups):
         is_strength=bool(combos) and all(states[k].startswith('STRENGTH-') for k in combos)
-        visible=[i in group if i<force_count else is_strength if i in resistance_indices else True for i in range(len(fig.data))]
+        selected_state=states[combos[0]] if combos else None
+        visible=[i in group if i<force_count else is_strength if i in resistance_indices else
+                 service_indices[i]==selected_state if i in service_indices else True for i in range(len(fig.data))]
         buttons.append(dict(label=label,method='update',args=[{'visible':visible},
-            {'title.text':title(label,is_strength),'yaxis.autorange':True,'yaxis2.autorange':True,'yaxis3.autorange':True}]))
+            {'title.text':title(label,is_strength,selected_state),'yaxis.autorange':True,'yaxis2.autorange':True,'yaxis3.autorange':True}]))
     for trace,visible in zip(fig.data,buttons[0]['args'][0]['visible']):trace.visible=visible
     fig.update_layout(template='plotly_white',autosize=True,width=None,height=910,margin=dict(l=65,r=20,t=140,b=90),
         title=dict(text=title(modes[0][0],bool(strength)),font=dict(size=16),y=.99),

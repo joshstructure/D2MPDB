@@ -16,6 +16,7 @@ from .model import DEFINITIONS, evaluate, bar_positions, BAR_AREA, BAR_DIAMETER,
 from .math_notation import mathml, expression, symbol, quantity, tag
 from .force_audit import force_basis, strength_audit
 from .transverse import enabled as actual_transverse
+from .check_working import STYLE as CHECK_STYLE
 
 BY_NAME = {d['name']:d for d in DEFINITIONS}
 # Boundaries are stable definition names, not positions in the source file.
@@ -71,6 +72,8 @@ figure{margin:20px 0;break-inside:avoid}.plot{width:100%;min-height:420px}figcap
 @page{size:letter;margin:.5in}
 @media print{body{background:white;font-size:11pt}main{margin:0;padding:0;max-width:none;box-shadow:none}.toolbar,.backlink{display:none}h1{font-size:16pt}details.section>summary{font-size:14pt}h3,details.region>summary{font-size:12pt}details{display:block!important}details.raw-source{display:none!important}details>summary{list-style:none}details::details-content{display:block!important;content-visibility:visible!important}.table-wrap,.equation-line{overflow:visible}.equation-line math{font-size:10pt;max-width:100%;width:auto}details.section{break-before:auto}figure{break-inside:auto}.plot{min-height:0}a{color:inherit;text-decoration:none}.notice,.result,th,td{-webkit-print-color-adjust:exact;print-color-adjust:exact}.equation{break-inside:auto}}
 '''
+
+CSS += CHECK_STYLE
 
 JS = r'''
 const details=[...document.querySelectorAll('details')];
@@ -173,6 +176,7 @@ class Report:
         return mathml(quantity(self.e.engine.get(name),self.e.engine,BY_NAME[name]['unit']))
 
     def equation(self, d):
+        from .equation_schematics import schematic_html
         name=d['name']
         # The actual-cage module supersedes these uniform-cage calculations.
         # Its equations and substitutions are printed in the LRFD working section.
@@ -185,15 +189,18 @@ class Report:
         caption=d['caption'] or name.replace('_',' ')
         output='<article class="equation" id="eq-'+name+'"><span class="equation-id">('+str(self.equation_count)+')</span><p class="caption">'+escape(caption)+'</p>'
         override=name in self.e.engine.overrides
+        sketch=schematic_html(self.e,name,pending=pending(name,self.e))
         if override:
             output+=('<p>Maximum spacing between adjacent continuous and added bar centers in the displayed span row; see the coordinate table above.</p>' if name in (self.e.spacing_values or {}) else
                 '<p>Derived from the actual longitudinal coordinates and the common envelope of the entered transverse shapes; see the coordinate table above. Includes the fitted row translation.</p>')
             output+='<div class="equation-line">'+mathml(symbol(name)+'<mo>=</mo>'+quantity(self.e.engine.get(name),self.e.engine,d['unit']),True)+'</div>'
+            output+='<details class="working"><summary>What it represents</summary>'+sketch+'</details>'
         else:
             ast=self.e.engine.defs[name]
             output+='<div class="equation-line">'+mathml(symbol(name)+'<mo>=</mo>'+expression(ast),True)+'</div>'
             if not pending(name,self.e):
-                output+='<details class="working"><summary>Numeric substitution</summary><div class="equation-line">'+mathml(symbol(name)+'<mo>=</mo>'+expression(ast,self.e.engine,BY_NAME,substitute=True),True)+'</div><p class="caption">Operands are rounded for display; the calculation retains full precision. Conditional expressions use the active branch.</p></details>'
+                output+='<details class="working"><summary>Numeric substitution and schematic</summary>'+sketch+'<div class="equation-line">'+mathml(symbol(name)+'<mo>=</mo>'+expression(ast,self.e.engine,BY_NAME,substitute=True),True)+'</div><p class="caption">Operands are rounded for display; the calculation retains full precision. Conditional expressions use the active branch.</p></details>'
+            else:output+='<details class="working"><summary>What it represents · inputs pending</summary>'+sketch+'</details>'
         reference=self.actual and (name in ('Av','S_leg') or name.startswith(('Vs_','Vr_','s_strength_','s_minsteel','s_allow_','s_suggest_','DC_shear_','At_','Av_shear_','Acomb_','F_vt','F_long_','As_add_','DC_long_','Ash_hoop','Ash_prov','s_shrink')))
         output+='<div class="result">'+('Uniform-cage reference: ' if reference else 'Result: ')+self.result(name)+'</div></article>'
         return output
@@ -223,14 +230,12 @@ class Report:
         return table(['Symbol','Input / meaning','Value and units','Basis'],rows,'inputs',True) if rows else ''
 
     def checks_table(self, checks, criteria=False):
+        from .check_working import details_html
         rows=[]
         for c in checks:
             ratio=f'{c.ratio:.6g}' if isinstance(c.ratio,(int,float)) else str(c.ratio)
             basis=escape(c.basis).replace('\n','<br>')
-            from .lrfd_checks import REPLACED_PREFIXES,REPLACED_KEYS
-            replaced=self.sectional and (c.key.startswith(REPLACED_PREFIXES) or c.key in REPLACED_KEYS)
-            if criteria and not replaced and c.key in self.e.engine.defs and c.key not in self.e.engine.overrides and c.status!='REFERENCE':
-                basis+='<details class="working"><summary>Check criterion</summary><div class="equation-line">'+mathml(expression(self.e.engine.defs[c.key]),True)+'</div></details>'
+            basis+=details_html(self.e,c)
             rows.append([escape(c.label),badge(c.status),escape(ratio),basis])
         return table(['Check / region','Status','D/C','Basis / application'],rows,'output',True)
 
@@ -300,7 +305,7 @@ class Report:
             if e.case['analysis'].get('xml_audit',{}).get('end_records'):
                 from .force_diagrams import cap_force_figure,diagram_notice
                 figure=cap_force_figure(e.case,show_resistance=True,evaluation=e)
-                result+='<p>'+escape(diagram_notice(e.case))+'</p><p>'+escape(figure.layout.meta['resistance_notice'])+'</p>'+self.plot(figure,'Imported demands and current sectional resistances; use the load-state selector. Strength overlays are hidden for service demands. Click resistance legend entries to hide/show them.')
+                result+='<p>'+escape(diagram_notice(e.case))+'</p><p>'+escape(figure.layout.meta['resistance_notice'])+'</p>'+self.plot(figure,'Imported demands and current sectional limits; use the load-state selector. Service I / III show their stress and crack-spacing moment limits, with utilization and remaining moment on hover. Service shear and torsion have no assigned limits. Click limit legend entries to hide/show them.')
             else:result+='<p>No source member-end records were saved; a force diagram cannot be reconstructed from scalar envelopes.</p>'
             return result
         if key=='steel':
@@ -313,10 +318,18 @@ class Report:
             return content
         if key=='flexure':return self.plot(v.results_figure(e),'Regional moment demand / resistance and service stress; transverse plots follow the selected actual/reference cage mode.')
         if key=='service':
+            from .equation_schematics import schematic_html
             params,ast=e.engine.functions['S_allow']
             return ('<p>Cracked transformed rectangular section. N = negative/top tension; P = positive at piles; B = positive between piles. Service I is evaluated; Service III is evaluated only when its inputs are confirmed.</p>'
                     '<p class="caption">Allowable crack-control spacing function, inherited from the source sectional calculation.</p><div class="equation-line">'+
-                    mathml(tag('mi','S_allow')+'<mo>(</mo>'+ '<mo>,</mo>'.join(symbol(p) for p in params)+'<mo>)</mo><mo>=</mo>'+expression(ast),True)+'</div>'+self.plot(v.optional_service_figure(e),'Service III and fatigue results or explicit pending status.'))
+                    mathml(tag('mi','S_allow')+'<mo>(</mo>'+ '<mo>,</mo>'.join(symbol(p) for p in params)+'<mo>)</mo><mo>=</mo>'+expression(ast),True)+'</div>'+
+                    '<details class="working"><summary>What it represents</summary>'+schematic_html(e,'S_allow')+'</details>'+
+                    '<p>Service plot limits solve the existing checks for moment: M_stress = f_limit / (stress per kip-ft); '
+                    'M_spacing = [700 γe / (βs (s + 2 dc))] / (centroid stress per kip-ft). '
+                    'The smaller moment controls. Service III uses outer-bar stress for its 24 ksi check and centroid stress for spacing. '
+                    'Moment utilization is |M| / min(M_stress, M_spacing); remaining capacity is that limit minus |M|. '
+                    'This moment utilization differs from the nonlinear spacing D/C in the check register.</p>'+
+                    self.plot(v.optional_service_figure(e),'Service III and fatigue results or explicit pending status. Service stress plots include the spacing limit converted to the plotted stress basis.'))
         if key=='fatigue':return '<p>Applicability, permanent stress, live-load range and load factor must be established. Unconfirmed placeholders do not establish zero demand or a passing check.</p>'
         if key=='shear':
             if self.actual:

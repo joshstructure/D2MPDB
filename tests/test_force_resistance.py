@@ -44,7 +44,9 @@ class ForceResistanceTests(unittest.TestCase):
         for t,same in zip(base.data,demands):
             self.assertEqual(same.x,t.x)
             self.assertEqual(same.y,t.y)
-            self.assertEqual(same.customdata,t.customdata)
+            # Service hover adds limits; imported provenance must stay intact.
+            self.assertEqual([r[:4] if r else r for r in same.customdata] if same.customdata is not None else None,
+                             [r[:4] if r else r for r in t.customdata] if t.customdata is not None else None)
         self.assertEqual(curves['T_threshold'].meta['role'],'threshold')
         self.assertIn('not resistance',curves['T_threshold'].name)
         # The authoritative threshold now includes the verified signed Nu.
@@ -67,11 +69,16 @@ class ForceResistanceTests(unittest.TestCase):
 
     def test_service_modes_hide_all_strength_overlays(self):
         fig=cap_force_figure(self.case,show_resistance=True)
-        ids=[i for i,t in enumerate(fig.data) if (t.meta or {}).get('role')]
+        ids=[i for i,t in enumerate(fig.data) if (t.meta or {}).get('role') in ('resistance','threshold')]
         for button in fig.layout.updatemenus[0].buttons:
             strength='strength' in button.label.lower()
             self.assertEqual([button.args[0]['visible'][i] for i in ids],[strength]*len(ids))
         self.assertTrue(ids)
+        service=[i for i,t in enumerate(fig.data) if (t.meta or {}).get('role')=='service_limit']
+        self.assertTrue(service)
+        for button in fig.layout.updatemenus[0].buttons:
+            active=button.label.startswith('Service I ·')
+            self.assertEqual([button.args[0]['visible'][i] for i in service],[active]*len(service))
 
     def test_actual_shear_matches_checks_and_has_no_uniform_fallback(self):
         self.case['transverse_detail']=suggested_detail(evaluate(self.case))

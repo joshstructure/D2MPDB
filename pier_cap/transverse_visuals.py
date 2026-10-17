@@ -83,7 +83,8 @@ def response_figure(e):
         fig.add_trace(go.Bar(x=['Top','At piles','Between piles'],y=[e.value(prefix+z,'kip*ft') for z in 'NPB'],name=name,marker_color=color),row=1,col=1)
     fig.add_trace(go.Bar(x=['Top','At piles','Between piles'],y=[e.value('fs_I_'+z,'ksi') for z in 'NPB'],name='Service I stress',marker_color='#167b75',
         customdata=[service_hover(e,z) for z in 'NPB'],hovertemplate='%{x}<br>Steel stress %{y:.3f} ksi<br>%{customdata}<extra></extra>'),row=1,col=2)
-    fig.add_hline(y=e.value('fs_I_limit','ksi'),line_dash='dash',line_color='#d88822',row=1,col=2)
+    from .service_limits import add_stress_limits
+    add_stress_limits(fig,e,'I',['Top','At piles','Between piles'],row=1,col=2)
     rows=e.lrfd['intervals'] if e.lrfd else []
     fig.add_trace(go.Scatter(x=[r['station_in']/12 for r in rows],y=[r['shear_ratio'] for r in rows],
         mode='markers',name=('Actual shear' if actual else 'Sectional shear')+' · conditional on prerequisites',marker=dict(color=['#bb3e39' if r['shear_ratio']>1 else '#7952a3' for r in rows]),
@@ -95,7 +96,10 @@ def response_figure(e):
     if e.lrfd:
         from .lrfd_checks import torsion_threshold
         threshold=min((r['threshold_kip_ft'] for r in e.lrfd['longitudinal']),default=torsion_threshold(e))
-    fig.add_annotation(x=.5,y=.5,xref='x4 domain',yref='y4 domain',showarrow=False,align='left',font=dict(size=12),
+    # Plotly can prune empty axes; anchor the text in the review panel's paper
+    # domain so it cannot fall back onto the moment chart when exported.
+    fig.add_annotation(x=sum(fig.layout.xaxis4.domain)/2,y=sum(fig.layout.yaxis4.domain)/2,
+        xref='paper',yref='paper',xanchor='center',yanchor='middle',showarrow=False,align='left',font=dict(size=12),
         text=f'Torque input: {torque:.2f} kip-ft<br>Investigation threshold: {threshold:.2f} kip-ft<br><br><b>Open U-bars have no closed-hoop<br>torsion capacity assigned.</b><br>Verify end development, closure<br>and local force zones.')
     fig.update_xaxes(visible=False,row=2,col=2);fig.update_yaxes(visible=False,row=2,col=2)
     fig.update_layout(title=('Actual cage' if actual else 'Conditional uniform placement')+' · shared LRFD station checks',template='plotly_white',height=650,

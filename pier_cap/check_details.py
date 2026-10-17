@@ -141,4 +141,7 @@ def service_hover(e,z,state='I'):
         if isinstance(ratio,(int,float)) and isinstance(drawn.ratio,(int,float)) and drawn.ratio>ratio:
             check.basis='Card readout controls: actual drawn bar spacing.\n'+check.basis
         check.basis+='\nSeparate drawn-spacing check: '+f'{drawn.ratio:.4f}. '+drawn.basis
-    return hover_basis(check)
+    from .service_limits import service_limit,moment_hover
+    record=service_limit(e,state,z)
+    demand=e.value(('MI_' if state=='I' else 'MIII_')+z,'kip*ft')
+    return hover_basis(check)+'<br>'+moment_hover([(0,1,1,record)],.5,demand)
