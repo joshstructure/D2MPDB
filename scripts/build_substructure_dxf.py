@@ -53,35 +53,90 @@ def extract():
     print("snapshot:", SNAPSHOT)
 
 
-PREVIEW_FONTS = {"FDOT Structures": "GOTHICI.TTF", "FDOT Structures Title": "GOTHICBI.TTF",
-                 "FDOT Serif": "times.ttf"}
+FONT_DIRS = [Path(os.environ.get("WINDIR", r"C:\Windows")) / "Fonts",
+             Path(os.environ.get("LOCALAPPDATA", "")) / "Microsoft" / "Windows" / "Fonts"]
+# Stand-ins for a machine without the FDOT fonts (Windows font files).
+FONT_SUBSTITUTES = {"FDOT.ttf": "GOTHICI.TTF", "FDOTBold.ttf": "GOTHICBI.TTF", "FDOTImprint.ttf": "times.ttf",
+                    "FDOTImprintBold.ttf": "timesbd.ttf", "FDOTMono.ttf": "consola.ttf"}
+
+
+def installed_fdot_fonts():
+    """(family, bold) -> file of the FDOT TrueType fonts installed on this
+    machine, registered with ezdxf's font manager.  The drawing add-on draws
+    text as glyph outlines from ezdxf's own font cache, which is built once
+    and does not see fonts installed later."""
+    from ezdxf.fonts import fonts
+    from ezdxf.fonts.font_manager import get_ttf_font_face
+    found = {}
+    for folder in FONT_DIRS:
+        if not folder.is_dir():
+            continue
+        for path in sorted(folder.glob("FDOT*.ttf")):
+            face = get_ttf_font_face(path)
+            if not fonts.font_manager.has_font(path.name):
+                fonts.font_manager._font_cache.add_entry(path, face)
+            found.setdefault((face.family.lower(), "bold" in face.style.lower()), path.name)
+    return found
+
+
+def plain_glyphs(doc):
+    """Without the FDOT fonts: the centerline character as CL, fraction
+    characters as plain (TEXT) or stacked (MTEXT) fractions."""
+    from substructure_drawings import fdot
+    for blk in doc.blocks:
+        for e in blk:
+            if e.dxftype() not in ("TEXT", "MTEXT"):
+                continue
+            s = e.dxf.text if e.dxftype() == "TEXT" else e.text
+            s = s.replace(fdot.CL_GLYPH, "CL")
+            for fr, g in fdot.FRACTION_GLYPHS.items():
+                s = s.replace(g, (" %s" % fdot._FRACTION_TEXT[fr]) if e.dxftype() == "TEXT" else
+                              "{\\H%gx;\\S%d#%d;}" % (fdot.FRACTION, fr.numerator, fr.denominator))
+            if e.dxftype() == "TEXT":
+                e.dxf.text = s
+            else:
+                e.text = s
 
 
 def preview_doc(dxf_path):
     """Read the DXF for review rendering, adjusted so the ezdxf renderer shows
     it as a plotted sheet would look.
 
-    - Lettering: the renderer ignores the oblique angle of TEXT entities and
-      has no engineering font, so the styles are mapped to an italic sans
-      (Century Gothic Italic; bold italic for view titles).
+    - Lettering: each text style's font is resolved by the family and bold
+      flag of its extended font data among the installed FDOT fonts (ezdxf's
+      own family match ignores the bold flag).  Where an FDOT font is not
+      installed, the style uses a stand-in (FONT_SUBSTITUTES) and the FDOT
+      font characters are replaced by plain text (``plain_glyphs``).
     - Linetypes: inside a viewport ezdxf applies the pattern after the
       transformation to paper space and multiplies it by the inverse viewport
       scale, while the DXF carries per-entity model-space scales for
       PSLTSCALE = 0 (``fdot.LTSCALE_PER_SF`` x drawing scale factor).  Each
       entity scale is divided by the square of its scale factor so the
       dashes plot at the intended paper size.
-    - Everything plots black; lineweights keep their level values.
+    - Everything plots black at the level lineweights (CADD Manual 5.10:
+      0.09 mm for annotation, 0.15 mm reinforcement, 0.30 mm concrete), true
+      size on the 17 x 11 PDF page.  The matplotlib backend takes the
+      lineweight in mm as a width in points, so it is scaled mm -> pt, and
+      the minimum width (pt) stays below 0.09 mm.
     """
     import ezdxf
     from ezdxf.addons.drawing.config import BackgroundPolicy, ColorPolicy, Configuration
     from substructure_drawings import fdot
     doc = ezdxf.readfile(dxf_path)
-    for name, font in PREVIEW_FONTS.items():
-        if name in doc.styles:
-            st = doc.styles.get(name)
-            st.dxf.font = font
-            st.dxf.oblique = 0.0
-            st.discard_extended_font_data()
+    installed = installed_fdot_fonts()
+    missing = False
+    for st in doc.styles:
+        family, italic, bold = st.get_extended_font_data()
+        if not family.startswith("FDOT"):
+            continue
+        file = installed.get((family.lower(), bold))
+        if file is None:
+            missing = True
+            file = FONT_SUBSTITUTES[st.dxf.font]
+        st.dxf.font = file
+        st.discard_extended_font_data()
+    if missing:
+        plain_glyphs(doc)
     layer_lt = {layer.dxf.name: layer.dxf.linetype for layer in doc.layers}
 
     def fix(entities):
@@ -95,14 +150,18 @@ def preview_doc(dxf_path):
                 e.dxf.ltscale = fdot.LTSCALE_PER_SF[lt] ** 2 / e.dxf.ltscale
     fix(doc.modelspace())
     cfg = Configuration(background_policy=BackgroundPolicy.WHITE, color_policy=ColorPolicy.BLACK,
-                        lineweight_scaling=1.0, min_lineweight=0.6, min_dash_length=2.5e-5)
+                        lineweight_scaling=72.0 / 25.4, min_lineweight=0.25, min_dash_length=2.5e-5)
     return doc, cfg
 
 
 def render_layout(doc, cfg, name, ax):
+    """Draw a layout into ``ax`` and keep the caller's figure size (by
+    default the backend shrinks the figure to matplotlib's default height,
+    which drew the absolute line widths too heavy for the sheet)."""
     from ezdxf.addons.drawing import Frontend, RenderContext
     from ezdxf.addons.drawing.matplotlib import MatplotlibBackend
-    Frontend(RenderContext(doc), MatplotlibBackend(ax), config=cfg).draw_layout(doc.layouts.get(name), finalize=True)
+    Frontend(RenderContext(doc), MatplotlibBackend(ax, adjust_figure=False), config=cfg).draw_layout(
+        doc.layouts.get(name), finalize=True)
 
 
 def previews(dxf_path, folder):
@@ -150,6 +209,9 @@ def main():
     print("dxf:", dxf)
     for w in manifest["layout_warnings"]:
         print("WARNING:", w)
+    audit = manifest["symbology_audit"]
+    for w in audit["not_on_fdot_level"] + audit["not_by_level"]:
+        print("WARNING (symbology):", w)
     for q in manifest["qc"]:
         print("QC %-8s %s model %s ref %s" % (q["status"], q["check"], q["model"], q["reference"]))
     if a.previews:

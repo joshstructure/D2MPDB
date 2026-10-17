@@ -238,7 +238,7 @@ def callouts(v, items, x_col, side, gap=None):
     gap = gap or 2.1 * v.th
     order = sorted(items, key=lambda it: sum(t[1] for t in it[0]) / len(it[0]))
     want = [sum(t[1] for t in it[0]) / len(it[0]) for it in order]
-    hs = [(1 + txt.count("\\P") * 1.67) * v.th for _, txt in order]
+    hs = [(1 + txt.count("\\P") * fdot.LINE_PITCH) * v.th for _, txt in order]
     ys = []
     for i, y in enumerate(want):
         if ys:

@@ -18,6 +18,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 import ezdxf  # noqa: E402
+from ezdxf.lldxf.const import VALID_DXF_LINEWEIGHTS  # noqa: E402
+from fractions import Fraction  # noqa: E402
 
 from substructure_drawings import bars, build, fdot, views  # noqa: E402
 
@@ -47,6 +49,7 @@ class SubstructureDxfTests(unittest.TestCase):
                          "The FreeCAD model changed. " + REBUILD + " --extract")
 
     def test_outputs_are_current_with_snapshot_and_generator(self):
+        """A rebuild in a temporary folder is byte-identical to the committed DXF."""
         self.assertEqual(self.manifest["snapshot_sha256"], sha(SNAPSHOT), REBUILD)
         self.assertEqual(self.manifest["dxf_sha256"], sha(DXF), REBUILD)
         with tempfile.TemporaryDirectory() as tmp:
@@ -95,14 +98,55 @@ class SubstructureDxfTests(unittest.TestCase):
             self.assertTrue(r["mark"].startswith(r["size"]))
 
     def test_only_fdot_levels_are_used(self):
+        """CADD Manual 5.10.1.3: no user levels; layer 0 and Defpoints carry
+        no entities (also inside blocks), and the file has no Defpoints layer
+        (ezdxf adds an empty one when reading)."""
         allowed = set(fdot.LEVELS)
-        used = {e.dxf.layer for e in self.doc.modelspace()}
-        for lay in self.doc.layouts:
-            used |= {e.dxf.layer for e in lay}
-        self.assertTrue(used <= allowed | {"0"}, sorted(used - allowed))
+        used = {e.dxf.layer for blk in self.doc.blocks for e in blk}
+        self.assertTrue(used <= allowed, sorted(used - allowed))
+        self.assertTrue({layer.dxf.name for layer in self.doc.layers} <= allowed | {"0", "Defpoints"})
+        self.assertNotIn(b"Defpoints", DXF.read_bytes())
+        self.assertEqual(self.doc.layers.get("ClipBorder_dp").dxf.plot, 0)
         for name in allowed:
             layer = self.doc.layers.get(name)
             self.assertEqual(layer.dxf.linetype, fdot.level_attrs(name)["linetype"])
+
+    def test_every_entity_is_by_level(self):
+        """Color, lineweight and linetype ByLayer for every entity in model
+        space, the layouts and all blocks; the one documented exception is the
+        hidden linetype on BearingPadMisc (no hidden twin in the level table)."""
+        audit = build.symbology_audit(self.doc)
+        self.assertEqual(audit["not_on_fdot_level"], [])
+        self.assertEqual(audit["not_by_level"], [])
+        self.assertEqual(set(audit["documented_overrides"]),
+                         {"BearingPadMisc linetype DGN2 (hidden pad edges; no FDOT hidden level)"})
+        self.assertEqual(self.manifest["symbology_audit"]["not_by_level"], [])
+        self.assertEqual(self.manifest["symbology_audit"]["not_on_fdot_level"], [])
+        self.assertNotIn("FDOT_CL_SYMBOL", self.doc.blocks)
+
+    def test_lineweights_follow_the_cadd_manual(self):
+        """CADD Manual 5.10 Line Weight Symbology (PDF p. 50): MS weight ->
+        Autodesk mm; each layer has the weight of its level."""
+        mm = {0: 0.09, 1: 0.15, 2: 0.20, 3: 0.30, 4: 0.35, 5: 0.40, 6: 0.53, 7: 0.60, 8: 0.70, 9: 0.80,
+              10: 0.90, 11: 0.90, 12: 1.00, 13: 1.06, 14: 1.20, 15: 1.20, 16: 1.40, 17: 1.40, 18: 1.40}
+        mm.update({w: 2.11 for w in range(19, 31)})
+        self.assertEqual(fdot.BENTLEY_WEIGHT_TO_LW, {w: round(v * 100) for w, v in mm.items()})
+        self.assertTrue(set(fdot.BENTLEY_WEIGHT_TO_LW.values()) <= set(VALID_DXF_LINEWEIGHTS))
+        for name, (number, desc, color, style, weight) in fdot.LEVELS.items():
+            layer = self.doc.layers.get(name)
+            self.assertEqual(layer.dxf.lineweight, round(mm[weight] * 100), name)
+            self.assertEqual(layer.dxf.color, fdot.BENTLEY_TO_ACI[color], name)
+        self.assertEqual(self.doc.header["$LWDISPLAY"], 1)
+
+    def test_linetype_names_follow_the_cadd_manual(self):
+        """CADD Manual 5.10.3.2 (PDF p. 49): Bentley line style n = Autodesk
+        linetype DGNn."""
+        self.assertEqual(fdot.STYLE_TO_LINETYPE, {0: "Continuous", 2: "DGN2", 4: "DGN4", 6: "DGN6", 7: "DGN7"})
+        names = {lt.dxf.name for lt in self.doc.linetypes}
+        self.assertTrue({"DGN2", "DGN4", "DGN6", "DGN7"} <= names)
+        self.assertFalse([n for n in names if n.startswith("DGN Style")])
+        for name, (_, _, _, style, _) in fdot.LEVELS.items():
+            self.assertEqual(self.doc.layers.get(name).dxf.linetype, "Continuous" if style == 0 else "DGN%d" % style)
 
     def test_units_sheets_and_viewports(self):
         self.assertEqual(self.doc.header["$INSUNITS"], 2)
@@ -125,12 +169,38 @@ class SubstructureDxfTests(unittest.TestCase):
         self.assertEqual(fdot.ft_in(19 + 7 / 12), "19'-7\"")
         self.assertEqual(fdot.elev(43.23769), "43.238")
         self.assertEqual(fdot.station(1593.22), "15+93.22")
-        # small diagonal fractions tight against the whole number (STYLE_PLAN item 3)
-        self.assertEqual(fdot.ft_in(4 + 0.5 / 12), "4'-0{\\H0.6x;\\S1#2;}\"")
-        self.assertEqual(fdot.ft_in(0.75 / 12), "{\\H0.6x;\\S3#4;}\"")
-        # bar list FT-IN without unit marks (item 18)
+        # FDOT font fraction characters tight against the whole number
+        self.assertEqual(fdot.ft_in(4 + 0.5 / 12), "4'-0½\"")
+        self.assertEqual(fdot.ft_in(0.75 / 12), "¾\"")
+        self.assertEqual(fdot.ft_in(2 + 5.875 / 12), "2'-5Ɔ\"")
+        # bar list FT-IN without unit marks (STYLE_PLAN item 18)
         self.assertEqual(fdot.ft_in_list(244, 1), "20-4")
-        self.assertEqual(fdot.ft_in_list(224.75), "18-8{\\H0.6x;\\S3#4;}")
+        self.assertEqual(fdot.ft_in_list(224.75), "18-8¾")
+
+    def test_fdot_font_characters(self):
+        """CADD Manual 5.12 FDOT Special Symbols (PDF p. 54), as rendered by
+        the installed FDOT fonts: U+00A1 centerline, U+00BC-00BE quarters,
+        U+0183-0186 eighths, U+0187-018E sixteenths; FDOT_FONT_GLYPHS off
+        gives U+2104 and MTEXT stacks for a workstation without the fonts."""
+        F = Fraction
+        expected = {F(1, 4): "¼", F(1, 2): "½", F(3, 4): "¾",
+                    F(1, 8): "ƃ", F(3, 8): "Ƅ", F(5, 8): "ƅ", F(7, 8): "Ɔ"}
+        expected.update({F(n, 16): chr(0x187 + i) for i, n in enumerate((1, 3, 5, 7, 9, 11, 13, 15))})
+        self.assertEqual(fdot.FRACTION_GLYPHS, expected)
+        self.assertEqual(fdot.CL_GLYPH, "¡")
+        texts = [e.dxf.text for e in self.doc.modelspace().query("TEXT")]
+        self.assertIn("¡ BEARING", texts)
+        self.assertIn("¡ CAP & ¡ PILES", texts)
+        dims = [e.text for blk in self.doc.blocks if blk.name.startswith("*D") for e in blk.query("MTEXT")]
+        self.assertTrue(any("½" in s for s in dims))
+        self.assertFalse(any("\\S" in s for s in dims + texts))
+        try:
+            fdot.FDOT_FONT_GLYPHS = False
+            self.assertEqual(fdot.ft_in(4 + 0.5 / 12), "4'-0{\\H0.7x;\\S1#2;}\"")
+            self.assertEqual(fdot.ft_in_list(224.75), "18-8{\\H0.7x;\\S3#4;}")
+            self.assertEqual(fdot.font_text("¡ BEARING"), "℄ BEARING")
+        finally:
+            fdot.FDOT_FONT_GLYPHS = True
 
     def test_sheet_set_follows_the_fdot_sample(self):
         """Plan and elevation with the reinforcement for each support (no
@@ -145,14 +215,88 @@ class SubstructureDxfTests(unittest.TestCase):
         self.assertEqual(sheets[0]["scales"], ["3/8\" = 1'-0\""])
         self.assertEqual(sheets[2]["scales"], ["1/2\" = 1'-0\"", "3/4\" = 1'-0\""])
 
-    def test_lettering_and_dimension_style(self):
-        for name in (fdot.TEXT_STYLE, fdot.TITLE_STYLE):
+    def test_text_styles_follow_the_cadd_manual(self):
+        """CADD Manual 5.12.1.1 (PDF pp. 52-53): FDOT text style names, fonts
+        and heights; the FDOT TrueType font by file and family (bold flag for
+        FDOT Bold), no oblique (the fonts are slanted), width = width/height.
+        Every text is in one of these styles at its height (model space: times
+        a sheet scale factor), except the border-cell lettering in FDOT
+        Imprint; MTEXT has the three-quarter-height line gap (5.12.1.2)."""
+        manual = {  # style: (font, height ft, width ft)
+            "FDOT Structures": ("FDOT", 0.0063, 0.0063),
+            "FDOT Structures Annotation": ("FDOT", 0.0063, 0.0063),
+            "FDOT Structures Views_SectionArrow": ("FDOT Bold", 0.008, 0.008),
+            "FDOT Structures Initials": ("FDOT", 0.0058, 0.0058),
+            "FDOT (Small)": ("FDOT", 0.005833, 0.005833),
+            "FDOT (Medium)": ("FDOT", 0.008333, 0.008333),
+            "FDOT (Large)": ("FDOT", 0.010417, 0.010417),
+            "FDOT Bold (Medium)": ("FDOT Bold", 0.008333, 0.008333),
+            "FDOT Bold (Large)": ("FDOT Bold", 0.010417, 0.010417),
+            "FDOT Mono (Small)": ("FDOT Mono", 0.006, 0.006),
+            "FDOT_SHEET_DESCRIPTION": ("FDOT Imprint Bold", 0.010417, 0.010417),
+            "FDOT_SHEET_COUNTY": ("FDOT Bold", 0.005833, 0.005833),
+            "FDOT_SHEET_FPID": ("FDOT Bold", 0.005833, 0.005833),
+            "FDOT_SHEET_SR": ("FDOT Bold", 0.005833, 0.005833),
+            "FDOT_SHEET_REVISION_DATE": ("FDOT Mono", 0.005, 0.004),
+            "FDOT_SHEET_REVISION_DESCRIPTION": ("FDOT Mono", 0.005, 0.004),
+        }
+        fonts = {"FDOT": ("FDOT.ttf", "FDOT", False), "FDOT Bold": ("FDOTBold.ttf", "FDOT", True),
+                 "FDOT Mono": ("FDOTMono.ttf", "FDOT Mono", False),
+                 "FDOT Imprint": ("FDOTImprint.ttf", "FDOT Imprint", False),
+                 "FDOT Imprint Bold": ("FDOTImprintBold.ttf", "FDOT Imprint Bold", True)}
+        for name, (font, h, w) in dict(manual, **{"FDOT Imprint": ("FDOT Imprint", None, None)}).items():
+            self.assertEqual(fdot.TEXT_STYLES[name], (font, h, w), name)
             st = self.doc.styles.get(name)
-            self.assertEqual(st.dxf.font, fdot.FONT_FILE)
-            self.assertAlmostEqual(st.dxf.oblique, fdot.OBLIQUE)
-        ds = self.doc.dimstyles.get(fdot.DIM_STYLE)
-        self.assertAlmostEqual(ds.dxf.dimtfac, fdot.FRACTION)
-        self.assertAlmostEqual(ds.dxf.dimtxt * 12, fdot.TEXT_IN)
+            file, family, bold = fonts[font]
+            self.assertEqual(st.dxf.font, file, name)
+            self.assertEqual(st.get_extended_font_data(), (family, False, bold), name)
+            self.assertEqual(st.dxf.oblique, 0.0, name)
+            self.assertEqual(st.dxf.height, 0.0, name)
+            self.assertAlmostEqual(st.dxf.width, w / h if h else 1.0, msg=name)
+        self.assertEqual(set(fdot.TEXT_STYLES), {s.dxf.name for s in self.doc.styles} - {"Standard"})
+        scales = set(fdot.SCALES.values())
+        for blk in self.doc.blocks:
+            paper = blk.name.upper().startswith("*PAPER_SPACE")
+            for e in blk.query("TEXT MTEXT"):
+                name = e.dxf.style
+                h = e.dxf.height if e.dxftype() == "TEXT" else e.dxf.char_height
+                self.assertIn(name, fdot.TEXT_STYLES)
+                if e.dxftype() == "TEXT":
+                    self.assertEqual(e.dxf.get("oblique", 0.0), 0.0)
+                elif not blk.name.startswith("*D"):
+                    self.assertAlmostEqual(e.dxf.line_spacing_factor, 1.05)
+                if name == fdot.BORDER_STYLE:
+                    self.assertTrue(paper)
+                    continue
+                k = h / fdot.TEXT_STYLES[name][1]
+                if paper:
+                    self.assertAlmostEqual(k, 1.0, msg="%s %s %r" % (blk.name, name, h))
+                else:
+                    self.assertTrue(any(abs(k - s) < 1e-6 for s in scales), "%s %s %r" % (blk.name, name, h))
+
+    def test_dimension_style_is_fdot_structures_note_arrow(self):
+        """FDOT Structures Note-Arrow as in the FDOT-workspace DXF export
+        (SYMBOLOGY_PLAN A6), with ByLayer dimension and extension lines."""
+        ds = self.doc.dimstyles.get("FDOT Structures Note-Arrow")
+        expected = {"dimtxsty": "FDOT Structures Annotation", "dimtxt": 0.0063, "dimasz": 0.006508,
+                    "dimexo": 0.00315, "dimexe": 0.00315, "dimgap": 0.00315, "dimlunit": 4, "dimlfac": 12.0,
+                    "dimzin": 15, "dimfrac": 1, "dimtad": 1, "dimtih": 0, "dimtoh": 0, "dimtfac": 0.7,
+                    "dimtmove": 1, "dimatfit": 1, "dimlwd": -1, "dimlwe": -1,
+                    "dimclrd": 256, "dimclre": 256, "dimclrt": 256}
+        for k, v in expected.items():
+            if isinstance(v, float):
+                self.assertAlmostEqual(ds.dxf.get(k), v, places=6, msg=k)
+            else:
+                self.assertEqual(ds.dxf.get(k), v, k)
+        self.assertEqual(self.doc.header["$DIMSTYLE"], "FDOT Structures Note-Arrow")
+        self.assertEqual(self.doc.header["$TEXTSTYLE"], "FDOT Structures")
+        self.assertEqual({d.dxf.dimstyle for d in self.doc.modelspace().query("DIMENSION")},
+                         {"FDOT Structures Note-Arrow"})
+
+    def test_source_provenance(self):
+        self.assertEqual(self.manifest["level_source"]["sha256"],
+                         "8d2ac22a556721927c11af15c3d9ea73f5b809806a100cd4b982b4328b735d50")
+        self.assertIn("625-050-001", self.manifest["cadd_manual"]["source"])
 
     def test_series_and_callout_text(self):
         """One dimension per bar series with count, mark and spacing; equal

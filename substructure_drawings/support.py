@@ -4,6 +4,7 @@ import re
 from collections import OrderedDict
 
 from . import bars as barlib
+from . import fdot
 
 # Profile start station at FFBW End Bent 1 (geometry notebook CONFIG
 # profile.start_sta_ft, carried in the selected CAD-tables workbook as
@@ -29,8 +30,8 @@ def layer_for(rec):
     vis, hid = ROLE_LAYERS.get(rec["role"], ROLE_LAYERS["unknown"])
     if rec["vis"]:
         return vis, None
-    if hid == vis:  # level without a hidden twin: hidden linetype override
-        return vis, "DGN Style 2"
+    if hid == vis:  # BearingPadMisc has no hidden twin in the level table: hidden linetype override
+        return vis, fdot.HIDDEN_LINETYPE
     return hid, None
 
 

@@ -78,9 +78,10 @@ It has no clock time, so rebuilds stay byte-identical.
   its space with a short leader, never on a second row. Concrete is
   dimensioned to 1/8" and bar spacing to 1/4". Bar-list lengths round to the
   nearest inch, elevations to 0.001 ft, pile cutoffs to 0.1 ft and stations
-  to 0.01 ft. Fractions are diagonal stacks at 60 % of the text height
-  (DIMTFAC 0.6; `{\H0.6x;\S1#2;}` in MTEXT). The dimension style uses
-  architectural units with DIMLFAC 12, as in the FDOT-seeded working DXF.
+  to 0.01 ft. Fractions are the FDOT font fraction characters, tight
+  against the whole number (`4'-0½"`, `2'-5⅞"`; see Symbology). The
+  dimension style is FDOT Structures Note-Arrow with architectural units and
+  DIMLFAC 12, as in the FDOT-workspace DXF export.
   The orientation follows SDM 2.8.B: End Bent 1 is drawn looking back
   station and the others looking ahead station, with stationing increasing
   left to right in sections.
@@ -88,18 +89,20 @@ It has no clock time, so rebuilds stay byte-identical.
   short horizontal landing and the text after it. Callouts sit beside the
   bars, and one callout may fan several arrows. Consecutive marks read
   `10E04 THRU 10E07`. Centerlines (beam, bearing, cap and piles) are labelled
-  with the centerline symbol by leader. Section cuts use the FDOT flag at both
+  with the FDOT font centerline character by leader (`¡ BEARING` displays as
+  ℄ BEARING). Section cuts use the FDOT flag at both
   ends: a short heavy line, a solid flag in the viewing direction and the
   letter beside it. Piles end in a curved break (round-member break for pipe
   piles, S-curve for square piles) with a dash-dot centerline and the circled
   pile number beside the bottom. DIRECTION OF STATIONING is a long thin arrow
   with the text along it.
-- **Lettering.** The text styles use the single-stroke engineering font
-  `isocpeur.ttf` (ISOCPEUR) slanted 15°. Dimension and callout text is 0.075",
-  notes 0.08". View titles are 0.14" on a separate style plotted at 0.35 mm,
-  underlined, with the subtitle in parentheses below. Table titles are 0.13".
-  The receiving workspace maps the font to the FDOT structures font. The
-  STATE OF FLORIDA block uses an upright serif (`times.ttf`).
+- **Lettering.** FDOT text styles and FDOT TrueType fonts (see Symbology).
+  Notes, callouts and table values are FDOT Structures (0.0756"),
+  dimension text FDOT Structures Annotation (0.0756"). View titles are FDOT
+  Bold (Large) (0.125"), underlined, with the subtitle in parentheses below.
+  Table titles are FDOT Bold (Medium) (0.10"), section and view letters FDOT
+  Structures Views_SectionArrow (0.096"). The border cell lettering is FDOT
+  Imprint and the sheet title FDOT_SHEET_DESCRIPTION.
 - **Bar list (FDOT form).** The columns are MARK (SIZE, DES), LENGTH, NO BARS,
   TYP BAR, STY A/G, B to K, N and Ø, with FT-IN values without unit marks
   (`20-5`, `18-8¾`). Each support has a heading row between blank rows.
@@ -118,10 +121,80 @@ It has no clock time, so rebuilds stay byte-identical.
   - Annotation: CL_Major, CL_Minor, BaseLineSurveyPGL, Dimension, Leader, TextStructures, Symbols, Tables, Border and TextStructShtNo.
   - Viewports: ClipBorder_dp (set not to plot).
 
-  Hidden lines are on the matching `_h` levels. Colors, weights and the "DGN Style n" linetypes follow the FDOT-seeded working
-  DXF, so MicroStation maps them back to standard line codes. Apply the FDOT
-  workspace level library (ByLevel) after import. The centerline symbol is a
-  small block (`FDOT_CL_SYMBOL`), so it displays in any font.
+  Hidden lines are on the matching `_h` levels. Level symbology is
+  described under Symbology.
+
+## Symbology
+
+The DXF follows the FDOT CADD Manual (Topic No. 625-050-001, publish date
+November 1, 2024; `caddmanual2025.pdf`, SHA-256 `3074D002...DE222`) and the
+FDOT CADD Standard Level Table (10-25-2023,
+`fdotcaddstandardleveltable-10-25-2023.xlsx`, SHA-256 `8D2AC22A...735D50`).
+Both are recorded in [`fdot.py`](fdot.py) and in the manifest.
+
+- **Levels (5.10.1.3, PDF p. 47).** Every element is on a Structures level
+  of the table (`fdot.LEVELS`). Color, line weight and line style are
+  ByLevel on every entity, including the contents of the dimension blocks.
+  The one exception is the hidden edges of the bearing pads. They keep the
+  DGN2 linetype on BearingPadMisc, because the table has no hidden twin for
+  that level. Layer 0 is empty and the file has no Defpoints layer:
+  ezdxf's dimension definition points are dropped. The build audits all of
+  this (`symbology_audit` in the manifest) and the tests fail on any other
+  override. Heavy border and table outlines and the section-cut ticks are
+  constant-width polylines, which are geometry and not a weight override.
+- **Colors (5.10, p. 48).** Default Bentley color table. Bentley 0-7 map to
+  ACI 7, 5, 3, 1, 2, 6, 30, 4, as in the FDOT-workspace DXF export.
+- **Line styles (5.10.3.2, p. 49).** Bentley line style n is the Autodesk
+  linetype `DGNn` (FDOT.LIN): `Continuous`, `DGN2` hidden, `DGN4` and
+  `DGN7` centerlines, `DGN6` baseline/PGL. The pattern lengths are those of
+  the FDOT-workspace export. A MicroStation DWG/DXF export names the same
+  linetypes `DGN Style n`. To write those names for a round trip to
+  MicroStation line codes, change the one line `LINETYPE_NAME = "DGN%d"` in
+  `fdot.py` to `"DGN Style %d"` and rebuild.
+- **Line weights (5.10 Line Weight Symbology, p. 50).** MicroStation weight
+  0, 1, 2, 3 ... 13 plot at 0.09, 0.15, 0.20, 0.30 ... 1.06 mm
+  (`fdot.BENTLEY_WEIGHT_TO_LW`, the manual's table to weight 30). Text and
+  dimensions plot at 0.09 mm, reinforcement at 0.15 mm, concrete at 0.30 mm.
+  `$LWDISPLAY` is on.
+- **Fonts and text styles (5.12, 5.12.1.1, pp. 52-53).** The styles carry
+  the FDOT text style names and heights: FDOT Structures, FDOT Structures
+  Annotation, FDOT Structures Views_SectionArrow, FDOT Structures Initials,
+  FDOT (Small/Medium/Large), FDOT Bold (Medium/Large), FDOT Mono (Small),
+  FDOT_SHEET_DESCRIPTION, FDOT_SHEET_COUNTY, FDOT_SHEET_FPID,
+  FDOT_SHEET_SR, FDOT_SHEET_REVISION_DATE and
+  FDOT_SHEET_REVISION_DESCRIPTION. FDOT Imprint holds the border cell
+  lettering. Fonts are given by file and family: `FDOT.ttf` (family FDOT),
+  `FDOTBold.ttf` (family FDOT, bold flag), `FDOTImprint.ttf`,
+  `FDOTImprintBold.ttf` and `FDOTMono.ttf`. The FDOT fonts have their own
+  12° slant, so the oblique angle is 0 and the width factor 1. The
+  revision styles use 0.8. The DXF styles have height 0. Entity heights are
+  the FDOT height times the sheet scale factor in model space, and the FDOT
+  height in the layouts. MTEXT uses a line spacing factor of 1.05, which
+  gives the three-quarter-height line gap of 5.12.1.2.
+- **Special characters (5.12 FDOT Special Symbols, p. 54).** The text uses
+  the FDOT font characters. U+00A1 is the centerline symbol. U+00BC-00BE are
+  ¼ ½ ¾, U+0183-0186 the eighths and U+0187-018E the sixteenths. They were
+  checked by rendering the installed fonts. `fdot.FDOT_FONT_GLYPHS = False`
+  writes U+2104 (℄) and MTEXT stacked fractions instead, for a receiving
+  workstation without the FDOT fonts.
+- **Dimension style.** FDOT Structures Note-Arrow with the values of the
+  FDOT-workspace export: text style FDOT Structures Annotation, DIMASZ
+  0.078", DIMEXO = DIMEXE = DIMGAP 0.038", DIMFRAC 1, DIMTFAC 0.7, DIMZIN 15,
+  DIMTMOVE 1, DIMATFIT 1, closed filled arrows. Lines are ByLayer.
+- **Printing (7.11, pp. 94-96).** PDF is the required print format. The
+  ClipBorder_dp viewports do not plot.
+
+The receiving OBM workstation needs:
+1. The FDOT TrueType fonts installed (part of the FDOTConnect workspace).
+   The styles find them by family name. Without them the special
+   characters show as `¡` and `ƃ`-`Ǝ`. If the fonts cannot be installed,
+   rebuild with `FDOT_FONT_GLYPHS = False`.
+2. Elements set to ByLevel after import, so the FDOT level library symbology
+   governs. The DXF already is ByLayer throughout, with the one documented
+   exception above.
+3. The right linetype names. Use `DGN2`-`DGN7` with FDOT.LIN (Autodesk, and
+   the manual's names), or switch `LINETYPE_NAME` to `DGN Style %d` when
+   MicroStation should map the linetypes back to its line codes.
 
 ## Bringing it into MicroStation / OpenBridge
 
@@ -152,21 +225,31 @@ with FreeCAD 1.1 `freecadcmd`
 Without `--extract`, the DXF is rebuilt from the committed snapshot, and the
 output is byte-identical. `tests/test_substructure_dxf.py` fails when the model hash,
 snapshot or generator output no longer match. It also checks the mark rules,
-the levels, the units, the sheet set, the lettering and dimension style, the
-dimension and callout text formats and the bar list types. A build reports a
+the levels, the units, the sheet set, the dimension and callout text formats
+and the bar list types. It checks the symbology against the CADD Manual:
+line weights, linetype names, text styles and heights, the dimension style,
+ByLevel on every entity, nothing on layer 0 or Defpoints, and the FDOT font
+characters. A build reports a
 layout warning, and the test fails, when a view leaves its viewport or draws
 over another view.
 
 `--previews` renders each sheet with the ezdxf drawing add-on to
-`output/previews` (PNG per sheet and `review_sheets.pdf`). The renderer has no
-single-stroke font and ignores the TEXT oblique angle, so the previews show
-the lettering in Century Gothic Italic (bold italic for view titles). The
+`output/previews` (PNG per sheet and `review_sheets.pdf`). The renderer draws
+text from ezdxf's own font cache, which does not see fonts installed after
+it was built. The preview therefore registers the installed
+`FDOT*.ttf` files with it and resolves each text style by its family and
+bold flag. Fonts installed later are picked up without code changes. On a
+machine without the FDOT fonts, the previews use stand-ins (Century Gothic
+Italic, Times, Consolas) and plain-text centerlines and fractions. The
 renderer also scales linetypes by the viewport scale, so the previews
 convert the per-entity linetype scales so that hidden and center lines plot
-dashed at their paper size. The DXF itself is not changed. If the PDF is
-open in a viewer, the new copy is written as `review_sheets_new.pdf`.
-`CAD_AI/reports/dxf-style-review-20261016/tools/crop.py` renders a
-paper-inch window of a layout with the same settings.
+dashed at their paper size. Pages are 17 x 11 in, and lines plot true size
+at their level weights. The DXF itself is not changed. If the PDF is open in a viewer, the new copy is written as
+`review_sheets_new.pdf`.
+`CAD_AI/reports/dxf-symbology-review-20261017/tools/crops.py` renders
+paper-inch windows of the layouts with the same settings, and `clipcheck.py`
+there lists model-space text that a viewport clips (measured with the FDOT
+fonts).
 
 ## Open items carried on the drawings
 

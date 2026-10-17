@@ -51,6 +51,73 @@ def sha256(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+# The one documented exception to ByLevel symbology: hidden bearing pad edges
+# keep the hidden linetype on BearingPadMisc, which has no hidden twin in the
+# FDOT level table.
+LINETYPE_OVERRIDES = {("BearingPadMisc", fdot.HIDDEN_LINETYPE)}
+
+
+def dimension_blocks_by_level(doc):
+    """ezdxf draws a dimension's lines, arrows and text into its block on
+    layer 0 and adds definition points on Defpoints.  FDOT does not allow
+    either for drawing elements (CADD Manual 5.10.1.3), so the block contents
+    go onto the dimension's level, ByLayer, the arrowhead block onto the
+    Dimension level, and the definition points (not plotted, not needed by
+    AutoCAD or MicroStation) are dropped, as is the then empty Defpoints
+    layer."""
+    for dim in doc.modelspace().query("DIMENSION"):
+        blk = doc.blocks.get(dim.dxf.geometry)
+        for e in list(blk):
+            if e.dxftype() == "POINT" and e.dxf.layer == "Defpoints":
+                blk.delete_entity(e)
+                continue
+            e.dxf.layer = dim.dxf.layer
+            e.dxf.color = 256
+            e.dxf.lineweight = -1
+            e.dxf.linetype = "BYLAYER"
+    # arrowhead blocks (_CLOSEDFILLED), inserted only by dimension blocks
+    used = {e.dxf.name for blk in doc.blocks for e in blk.query("INSERT")}
+    for blk in list(doc.blocks):
+        if not blk.name.startswith("_"):
+            continue
+        if blk.name not in used:
+            doc.blocks.delete_block(blk.name, safe=False)
+            continue
+        for e in blk:
+            e.dxf.layer = "Dimension"
+            e.dxf.color = 256
+            e.dxf.lineweight = -1
+            e.dxf.linetype = "BYLAYER"
+    if "Defpoints" in doc.layers:
+        doc.layers.remove("Defpoints")
+
+
+def symbology_audit(doc):
+    """ByLevel check of every entity in every block, layout and model space
+    (CADD Manual 5.10.1.3): on an FDOT level (never 0 or Defpoints), color,
+    lineweight and linetype ByLayer, apart from LINETYPE_OVERRIDES."""
+    out = {"entities": 0, "not_on_fdot_level": [], "not_by_level": [], "documented_overrides": {}}
+    for blk in doc.blocks:
+        for e in blk:
+            out["entities"] += 1
+            layer = e.dxf.get("layer", "0")
+            tag = "%s %s %s" % (blk.name, e.dxftype(), layer)
+            if layer not in fdot.LEVELS:
+                out["not_on_fdot_level"].append(tag)
+            lt = e.dxf.get("linetype", "BYLAYER")
+            if lt.upper() != "BYLAYER" and (layer, lt) in LINETYPE_OVERRIDES:
+                key = "%s linetype %s (hidden pad edges; no FDOT hidden level)" % (layer, lt)
+                out["documented_overrides"][key] = out["documented_overrides"].get(key, 0) + 1
+            elif lt.upper() != "BYLAYER":
+                out["not_by_level"].append(tag + " linetype " + lt)
+            if e.dxf.get("color", 256) != 256 or e.dxf.hasattr("true_color"):
+                out["not_by_level"].append(tag + " color")
+            if e.dxf.get("lineweight", -1) != -1:
+                out["not_by_level"].append(tag + " lineweight %d" % e.dxf.lineweight)
+    out["layers"] = sorted(layer.dxf.name for layer in doc.layers)
+    return out
+
+
 class Composer:
     def __init__(self, snap, info=INFO):
         self.snap = snap
@@ -212,7 +279,7 @@ class Composer:
             note = "A AT SPAN 1 EDGE, B AT SPAN 2 EDGE, E AND F AT THE PAD-END BREAKS."
         hdr = [(("BEAM NO.", 1, 2), ("ELEVATION (FEET)", 4)), (None,) + corners]
         y = sh.table(x, y_top, "TOP OF PEDESTAL ELEVATIONS", hdr, body, [0.85, 0.7, 0.7, 0.7, 0.7])
-        sh.ptext((x, y - 0.08), note, 0.07, "TOP_LEFT", "TextStructures")
+        sh.ptext((x, y - 0.08), note, None, "TOP_LEFT", "TextStructures", style=fdot.SMALL_STYLE)
         return y - 0.2
 
     def eb_details(self, key):
@@ -344,9 +411,9 @@ class Composer:
         # the left form runs down to the sheet note, as on the FDOT bar list sheet
         x0 = cols[0][0]
         sh.blank_rows(x0, bottoms[x0], self.BAR_COLS, DRAW[1] + 0.4, 0.15)
-        sh.ptext((x0, DRAW[1] + 0.3), "NOTE:", fdot.NOTE_IN, "TOP_LEFT", "TextStructures")
+        sh.ptext((x0, DRAW[1] + 0.3), "NOTE:", None, "TOP_LEFT", "TextStructures")
         sh.ptext((x0, DRAW[1] + 0.15), "FOR BAR BENDING DETAILS, REFER TO FDOT STANDARD PLANS INDEX 415-001.",
-                 fdot.NOTE_IN, "TOP_LEFT", "TextStructures")
+                 None, "TOP_LEFT", "TextStructures")
         xr = cols[1][0]
         y = bottoms[xr] - 0.35
         self._bending_diagrams(sh, xr, y)
@@ -389,9 +456,9 @@ class Composer:
 
     def _bending_diagrams(self, sh, x, y):
         """Bending diagram of the bars that match no Index 415-001 type."""
-        sh.ptext((x, y), "OPEN STIRRUP (NOT TO SCALE)", fdot.NOTE_IN * 1.1, "TOP_LEFT", "TextStructures")
+        sh.ptext((x, y), "OPEN STIRRUP (NOT TO SCALE)", None, "TOP_LEFT", "TextStructures", style=fdot.HEADING_STYLE)
         L = "Rebar"
-        t = lambda p, s, a: sh.ptext(p, s, 0.08, a, "TextStructures")  # noqa: E731
+        t = lambda p, s, a: sh.ptext(p, s, None, a, "TextStructures")  # noqa: E731
         ox, oy = x + 0.4, y - 1.05
         sh.pline([(ox, oy), (ox + 0.25, oy), (ox + 0.25, oy + 0.75), (ox + 1.25, oy + 0.75), (ox + 1.25, oy), (ox + 1.5, oy)], L)
         for p, s_, a in (((ox + 0.12, oy - 0.08), "B", "TOP_CENTER"), ((ox + 0.17, oy + 0.38), "C", "MIDDLE_RIGHT"),
@@ -412,6 +479,7 @@ class Composer:
         self.bar_list()
         if "Layout1" in self.doc.layouts:
             self.doc.layouts.delete("Layout1")
+        dimension_blocks_by_level(self.doc)
         return self.doc
 
     def qc(self):
@@ -481,6 +549,8 @@ def _write_outputs(snapshot_path, out_dir):
                     "scales": [k + "\" = 1'-0\"" for k in sh.scales]} for sh in comp.sheets],
         "levels_used": dict(sorted(layers.items())),
         "level_source": fdot.LEVEL_TABLE,
+        "cadd_manual": fdot.CADD_MANUAL,
+        "symbology_audit": symbology_audit(doc),
         "marks": {s.title: {m: {k: e[k] for k in ("size", "des", "description", "count", "lengths_in", "varies")}
                             for m, e in s.table.items()} for s in comp.sup.values()},
         "qc": comp.qc(),

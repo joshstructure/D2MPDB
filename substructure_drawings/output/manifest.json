@@ -2,7 +2,7 @@
  "generator": "substructure_drawings.build",
  "version": "2.0.0",
  "dxf": "B4_Substructure_EndBents_Pier.dxf",
- "dxf_sha256": "720a6d0761e335c282038048e01348eadc59982abb6baef360036ecbcc673fd6",
+ "dxf_sha256": "e75fcf4e5f12753fbaece18a849f9ae73e9cfad8fbc607508d5dd1a33ee5f6a2",
  "snapshot_sha256": "55a83f5905ad2742d51a79aba4757349303b241a8161b217e9cb4e3e5613ee55",
  "model_sha256": "2d3b6af8ff550d4bb201e41c9cf373cf4bbfe60a96390485f71822be86055bdf",
  "units": "international feet ($INSUNITS=2); model space 1:1",
@@ -105,12 +105,60 @@
   "SubStrConc2_h": 310,
   "SubStrConc_h": 680,
   "Symbols": 105,
-  "TextStructures": 421,
+  "TextStructures": 345,
   "WallMSEPanel": 18
  },
  "level_source": {
   "source": "FDOT CADD Standard Level Table, 10-25-2023, worksheet 'Level Definition Details'",
-  "url": "https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/cadd/downloads/publications/caddmanualfdm/levels/fdotcaddstandardleveltable-10-25-2023.xlsx?sfvrsn=5c1b90b4_2"
+  "url": "https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/cadd/downloads/publications/caddmanualfdm/levels/fdotcaddstandardleveltable-10-25-2023.xlsx?sfvrsn=5c1b90b4_2",
+  "file": "fdotcaddstandardleveltable-10-25-2023.xlsx",
+  "sha256": "8d2ac22a556721927c11af15c3d9ea73f5b809806a100cd4b982b4328b735d50"
+ },
+ "cadd_manual": {
+  "source": "FDOT CADD Manual, Topic No. 625-050-001, publish date November 1, 2024",
+  "file": "caddmanual2025.pdf",
+  "sha256": "3074d0027748686d38bababae898e1f9f1cf0b13d0fe241b2fb4cdbcf07de222",
+  "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
+ },
+ "symbology_audit": {
+  "entities": 9452,
+  "not_on_fdot_level": [],
+  "not_by_level": [],
+  "documented_overrides": {
+   "BearingPadMisc linetype DGN2 (hidden pad edges; no FDOT hidden level)": 121
+  },
+  "layers": [
+   "0",
+   "AppSlabConc",
+   "AppSlabConc_h",
+   "BaseLineSurveyPGL",
+   "BeamConc_h",
+   "BearingPadMisc",
+   "Border",
+   "CL_Major",
+   "CL_Minor",
+   "ClipBorder_dp",
+   "Dimension",
+   "Leader",
+   "Patterning",
+   "PileConc",
+   "PileConc_h",
+   "PileSteel",
+   "PileSteel_h",
+   "Rebar",
+   "Rebar2",
+   "Rebar_h",
+   "SubStrConc",
+   "SubStrConc2",
+   "SubStrConc2_h",
+   "SubStrConc_h",
+   "Symbols",
+   "Tables",
+   "TextStructShtNo",
+   "TextStructures",
+   "WallMSEPanel",
+   "WallMSEPanel_h"
+  ]
  },
  "marks": {
   "END BENT 1": {

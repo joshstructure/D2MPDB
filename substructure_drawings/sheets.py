@@ -18,6 +18,7 @@ W_IN, H_IN = 17.0, 11.0
 FRAME = (0.80, 0.30, 16.20, 10.70)          # inches
 TITLE_TOP = 1.10                           # top of title-block band
 DRAW = (0.95, 1.30, 16.05, 10.55)          # usable drawing window
+CLIP_MARGIN = 0.08                          # viewport clip beyond DRAW
 MODEL_PITCH_FT = 2000.0                    # model-space spacing between sheets
 
 
@@ -68,42 +69,54 @@ class Sheet:
     def P(px, py):
         return (px / 12.0, py / 12.0)
 
-    def pline(self, pts, layer="Border", closed=False, lw=None):
+    def pline(self, pts, layer="Border", closed=False, width=None):
+        """Paper-space polyline; ``width`` (inches) draws a heavy outline as
+        a constant-width polyline, so the lineweight stays ByLevel."""
         e = self.psp.add_lwpolyline([self.P(*p) for p in pts], close=closed, dxfattribs={"layer": layer})
-        if lw is not None:
-            e.dxf.lineweight = lw
+        if width:
+            e.dxf.const_width = width / 12.0
         return e
 
-    def ptext(self, p, s, h_in=fdot.TEXT_IN, align="BOTTOM_LEFT", layer="Border", rot=0.0, style=None, lw=None):
+    def ptext(self, p, s, h_in=None, align="BOTTOM_LEFT", layer="Border", rot=0.0, style=None):
+        """Paper-space text in an FDOT text style (default FDOT Structures);
+        the height is the style's unless ``h_in`` is given (border cell)."""
+        style = style or fdot.TEXT_STYLE
+        h_in = h_in or fdot.style_in(style)
+        s = fdot.font_text(s)
         if "\\S" in s:
-            return self.pmtext(p, s, h_in, ATTACH[align], layer=layer)
-        st = style or fdot.TEXT_STYLE
-        e = self.psp.add_text(s, height=h_in / 12.0, rotation=rot,
-                              dxfattribs={"layer": layer, "style": st,
-                                          "oblique": 0.0 if st == fdot.SERIF_STYLE else fdot.OBLIQUE})
+            return self.pmtext(p, s, h_in, ATTACH[align], layer=layer, style=style)
+        e = self.psp.add_text(s, height=h_in / 12.0, rotation=rot, dxfattribs={"layer": layer, "style": style})
         e.set_placement(self.P(*p), align=TextEntityAlignment[align])
-        if lw:
-            e.dxf.lineweight = lw
         return e
 
-    def pmtext(self, p, s, h_in=fdot.TEXT_IN, attach=1, width_in=None, layer="TextStructures"):
-        e = self.psp.add_mtext(s, dxfattribs={"layer": layer, "style": fdot.TEXT_STYLE,
-                                              "char_height": h_in / 12.0, "attachment_point": attach})
+    def pmtext(self, p, s, h_in=None, attach=1, width_in=None, layer="TextStructures", style=None):
+        style = style or fdot.TEXT_STYLE
+        h_in = h_in or fdot.style_in(style)
+        e = self.psp.add_mtext(fdot.font_text(s), dxfattribs={
+            "layer": layer, "style": style, "char_height": h_in / 12.0, "attachment_point": attach,
+            "line_spacing_factor": fdot.MTEXT_LINE_SPACING})
         e.dxf.insert = self.P(*p)
         if width_in:
             e.dxf.width = width_in / 12.0
         return e
 
-    def heading(self, p, s, h_in=fdot.NOTE_IN * 1.25):
+    def heading(self, p, s, style=fdot.HEADING_STYLE):
         """Underlined heading (NOTES:, LEGEND:) at its top-left corner."""
-        self.ptext(p, s, h_in, "TOP_LEFT", "TextStructures")
+        h_in = fdot.style_in(style)
+        self.ptext(p, s, None, "TOP_LEFT", "TextStructures", style=style)
         w = text_extent(s, h_in)
         self.pline([(p[0], p[1] - h_in * 1.25), (p[0] + w, p[1] - h_in * 1.25)], "TextStructures")
 
     # ---------------------------------------------------------- viewports
     def add_viewports(self):
+        """One viewport per zone.  Edges on the drawing-window boundary clip
+        CLIP_MARGIN outside it (still inside the frame): the layout check
+        lets a view pass its window by 0.05", and text widths are estimated."""
         for z in self.zones:
             x0, y0, x1, y1 = z.window
+            m = CLIP_MARGIN
+            x0, y0 = x0 - m * (abs(x0 - DRAW[0]) < 1e-9), y0 - m * (abs(y0 - DRAW[1]) < 1e-9)
+            x1, y1 = x1 + m * (abs(x1 - DRAW[2]) < 1e-9), y1 + m * (abs(y1 - DRAW[3]) < 1e-9)
             c = ((x0 + x1) / 2, (y0 + y1) / 2)
             self.psp.add_viewport(center=self.P(*c), size=((x1 - x0) / 12.0, (y1 - y0) / 12.0),
                                   view_center_point=z.paper_to_model(*c),
@@ -112,101 +125,111 @@ class Sheet:
 
     # ------------------------------------------------------------ border
     def border(self):
+        """Border cell: the cell lettering in FDOT Imprint (CADD Manual 5.12:
+        "used mainly within the FDOT sheet border") sized to its cell; the
+        fields in the FDOT_SHEET_* text styles."""
         info = self.info
         x0, y0, x1, y1 = FRAME
-        self.pline([(x0, y0), (x1, y0), (x1, y1), (x0, y1)], closed=True, lw=50)
+        self.pline([(x0, y0), (x1, y0), (x1, y1), (x0, y1)], closed=True, width=0.02)
         t = TITLE_TOP
-        self.pline([(x0, t), (x1, t)], lw=35)
+        self.pline([(x0, t), (x1, t)], width=0.014)
         # column boundaries (inches) after the sample border proportions
         c_rev, c_eor, c_init, c_dot, c_title, c_no = 0.80, 6.60, 8.90, 9.50, 11.63, 15.58
         for c in (c_eor, c_init, c_dot, c_title, c_no):
             self.pline([(c, y0), (c, t)])
         s = 0.055
+        cell = fdot.BORDER_STYLE
+
+        def label(p, txt, h_in=s, align="BOTTOM_LEFT"):
+            self.ptext(p, txt, h_in, align, style=cell)
         # revisions
-        self.ptext(((c_rev + c_eor) / 2, t - 0.11), "REVISIONS", 0.07, "BOTTOM_CENTER")
+        label(((c_rev + c_eor) / 2, t - 0.11), "REVISIONS", 0.07, "BOTTOM_CENTER")
         self.pline([(c_rev, t - 0.13), (c_eor, t - 0.13)])
         self.pline([(c_rev, t - 0.23), (c_eor, t - 0.23)])
         half = (c_rev + c_eor) / 2
         for base in (c_rev, half):
             for off, lab in ((0.25, "DATE"), (0.62, "BY"), (1.75, "DESCRIPTION")):
-                self.ptext((base + off, t - 0.21), lab, s, "BOTTOM_CENTER")
+                label((base + off, t - 0.21), lab, s, "BOTTOM_CENTER")
             for dx in (0.5, 0.75):
                 self.pline([(base + dx, y0), (base + dx, t - 0.13)])
         self.pline([(half, y0), (half, t - 0.13)])
         # engineer of record (61G15-23 block) - left blank for the EOR
         eor = info.get("eor_lines") or ["ENGINEER OF RECORD:", "", "", ""]
         for i, line in enumerate(eor):
-            self.ptext((c_eor + 0.06, t - 0.16 - i * 0.15), line, 0.07)
+            self.ptext((c_eor + 0.06, t - 0.16 - i * 0.15), line, style=fdot.SMALL_STYLE)
         # initials
         labels = ["DRAWN BY:", "CHECKED BY:", "DESIGNED BY:", "CHECKED BY:"]
         hh = (t - y0) / 4
         for i, lab in enumerate(labels):
             yy = t - i * hh
             self.pline([(c_init, yy), (c_dot, yy)])
-            self.ptext(((c_init + c_dot) / 2, yy - 0.07), lab, 0.04, "BOTTOM_CENTER")
-        # DOT block (upright serif, as the FDOT border cell)
-        self.ptext(((c_dot + c_title) / 2, t - 0.20), "STATE OF FLORIDA", 0.075, "BOTTOM_CENTER",
-                   style=fdot.SERIF_STYLE)
-        self.ptext(((c_dot + c_title) / 2, t - 0.34), "DEPARTMENT OF TRANSPORTATION", 0.075, "BOTTOM_CENTER",
-                   style=fdot.SERIF_STYLE)
+            label(((c_init + c_dot) / 2, yy - 0.07), lab, 0.04, "BOTTOM_CENTER")
+        # DOT block
+        label(((c_dot + c_title) / 2, t - 0.20), "STATE OF FLORIDA", 0.065, "BOTTOM_CENTER")
+        label(((c_dot + c_title) / 2, t - 0.34), "DEPARTMENT OF TRANSPORTATION", 0.065, "BOTTOM_CENTER")
         self.pline([(c_dot, t - 0.43), (c_title, t - 0.43)])
         self.pline([(c_dot, t - 0.53), (c_title, t - 0.53)])
         cols = [c_dot, c_dot + 0.55, c_dot + 1.25, c_title]
         for c in cols[1:-1]:
             self.pline([(c, y0), (c, t - 0.43)])
-        for (a, b), lab, val in zip(zip(cols, cols[1:]), ("ROAD NO.", "COUNTY", "FINANCIAL PROJECT ID"),
-                                    (info.get("road", ""), info.get("county", ""), info.get("fpid", ""))):
-            self.ptext(((a + b) / 2, t - 0.51), lab, s, "BOTTOM_CENTER")
-            self.ptext(((a + b) / 2, y0 + 0.12), val, 0.07, "BOTTOM_CENTER")
+        for (a, b), lab, val, st in zip(zip(cols, cols[1:]), ("ROAD NO.", "COUNTY", "FINANCIAL PROJECT ID"),
+                                        (info.get("road", ""), info.get("county", ""), info.get("fpid", "")),
+                                        ("FDOT_SHEET_SR", "FDOT_SHEET_COUNTY", "FDOT_SHEET_FPID")):
+            label(((a + b) / 2, t - 0.51), lab, 0.04, "BOTTOM_CENTER")
+            self.ptext(((a + b) / 2, y0 + 0.12), val, None, "BOTTOM_CENTER", style=st)
         # sheet title / project name
         mid = (y0 + t) / 2
         self.pline([(c_title, mid), (c_no, mid)])
-        self.ptext((c_title + 0.04, t - 0.08), "SHEET TITLE:", s)
-        self.ptext(((c_title + c_no) / 2, mid + 0.12), self.title, 0.10, "BOTTOM_CENTER")
-        self.ptext((c_title + 0.04, mid - 0.08), "PROJECT NAME:", s)
-        self.ptext(((c_title + c_no) / 2, y0 + 0.10), info.get("project", ""), 0.09, "BOTTOM_CENTER")
+        label((c_title + 0.04, t - 0.08), "SHEET TITLE:")
+        self.ptext(((c_title + c_no) / 2, mid + 0.10), self.title, None, "BOTTOM_CENTER", style=fdot.SHEET_TITLE_STYLE)
+        label((c_title + 0.04, mid - 0.08), "PROJECT NAME:")
+        self.ptext(((c_title + c_no) / 2, y0 + 0.10), info.get("project", ""), None, "BOTTOM_CENTER",
+                   style=fdot.HEADING_STYLE)
         # ref dwg / sheet no
         self.pline([(c_no, mid), (x1, mid)])
         self.pline([(c_no, mid + 0.12), (x1, mid + 0.12)])
         self.pline([(c_no, y0 + 0.17), (x1, y0 + 0.17)])
-        self.ptext(((c_no + x1) / 2, t - 0.08), "REF. DWG. NO.", s, "BOTTOM_CENTER")
-        self.ptext(((c_no + x1) / 2, mid - 0.08), "SHEET NO.", s, "BOTTOM_CENTER")
-        self.ptext(((c_no + x1) / 2, y0 + 0.04), self.number, 0.10, "BOTTOM_CENTER", layer="TextStructShtNo")
+        label(((c_no + x1) / 2, t - 0.08), "REF. DWG. NO.", 0.045, "BOTTOM_CENTER")
+        label(((c_no + x1) / 2, mid - 0.08), "SHEET NO.", 0.045, "BOTTOM_CENTER")
+        self.ptext(((c_no + x1) / 2, y0 + 0.04), self.number, None, "BOTTOM_CENTER", layer="TextStructShtNo",
+                   style=fdot.TABLE_TITLE_STYLE)
         # bridge number and name above the title block (SDM 2.2.D)
-        h = fdot.BRIDGE_NO_IN
-        self.ptext((x1 - 0.05, t + 0.08 + 1.45 * h), "BRIDGE NO. %s" % (info.get("bridge_no") or "______"), h,
-                   "BOTTOM_RIGHT")
-        self.ptext((x1 - 0.05, t + 0.08), info.get("bridge_name", ""), h, "BOTTOM_RIGHT")
+        h = fdot.TITLE_IN
+        self.ptext((x1 - 0.05, t + 0.08 + 1.45 * h), "BRIDGE NO. %s" % (info.get("bridge_no") or "______"), None,
+                   "BOTTOM_RIGHT", style=fdot.TITLE_STYLE)
+        self.ptext((x1 - 0.05, t + 0.08), info.get("bridge_name", ""), None, "BOTTOM_RIGHT", style=fdot.TITLE_STYLE)
         # 61G15-23.004 statement outside the right border
         self.ptext((x1 + 0.22, (y0 + y1) / 2),
                    "THE OFFICIAL RECORD OF THIS SHEET IS THE ELECTRONIC FILE DIGITALLY SIGNED AND SEALED UNDER RULE 61G15-23.004, F.A.C.",
-                   0.07, "MIDDLE_CENTER", rot=90.0)
+                   None, "MIDDLE_CENTER", rot=90.0, style=fdot.SMALL_STYLE)
         # plot stamp outside the left border: file and source model (no clock
         # time, so a rebuild from the same snapshot is byte-identical)
         stamp = info.get("stamp") or []
         for i, line in enumerate(stamp):
-            self.ptext((x0 - 0.12 - 0.08 * i, y0 + 0.05), line, 0.04, "BOTTOM_LEFT", rot=90.0)
+            self.ptext((x0 - 0.12 - 0.11 * i, y0 + 0.05), line, None, "BOTTOM_LEFT", rot=90.0, style=fdot.STAMP_STYLE)
         # draft status (not for construction)
-        self.ptext((x0 + 0.05, y1 + 0.06), info.get("status", ""), 0.08, "BOTTOM_LEFT")
+        self.ptext((x0 + 0.05, y1 + 0.06), info.get("status", ""), None, "BOTTOM_LEFT")
 
     # ------------------------------------------------------------ tables
-    def _box(self, x0, y0, x1, y1, lw=None):
-        self.pline([(x0, y0), (x1, y0), (x1, y1), (x0, y1)], "Tables", closed=True, lw=lw)
+    def _box(self, x0, y0, x1, y1, width=None):
+        self.pline([(x0, y0), (x1, y0), (x1, y1), (x0, y1)], "Tables", closed=True, width=width)
 
-    def _cell_text(self, x0, x1, y0, y1, val, h_in, align="CENTER"):
+    def _cell_text(self, x0, x1, y0, y1, val, style, align="CENTER"):
+        h_in = fdot.style_in(style)
         lines = str(val).split("\\P")
         n = len(lines)
         for i, line in enumerate(lines):
             yc = (y0 + y1) / 2 + ((n - 1) / 2 - i) * 1.45 * h_in
             if align == "LEFT":
-                self.ptext((x0 + 0.06, yc), line, h_in, "MIDDLE_LEFT", "Tables")
+                self.ptext((x0 + 0.06, yc), line, None, "MIDDLE_LEFT", "Tables", style=style)
             else:
-                self.ptext(((x0 + x1) / 2, yc), line, h_in, "MIDDLE_CENTER", "Tables")
+                self.ptext(((x0 + x1) / 2, yc), line, None, "MIDDLE_CENTER", "Tables", style=style)
 
-    def table(self, x, y_top, title, headers, rows, widths, row_h=0.15, h_in=fdot.TEXT_IN, title_h=None):
+    def table(self, x, y_top, title, headers, rows, widths, row_h=0.15):
         """Boxed table in the FDOT sheet style (paper inches): a title box in
-        larger italic lettering (lines split with \\P), header rows, thin cell
-        rules and centered values.  Returns the bottom y.
+        FDOT Bold (Medium) (lines split with \\P), header rows in FDOT (Small),
+        thin cell rules and centered values in FDOT Structures; the outline
+        and the rule under the headers are heavy.  Returns the bottom y.
 
         A header cell is text, (text, colspan) or (text, colspan, rowspan);
         None marks a cell covered by a span.  A body row is a list of values
@@ -217,12 +240,14 @@ class Sheet:
         for w in widths:
             edges.append(edges[-1] + w)
         y = y_top
+        heavy = 0.014
+        h_in = fdot.style_in(fdot.TEXT_STYLE)
         if title:
-            th = title_h or fdot.TABLE_TITLE_IN
+            th = fdot.TABLE_TITLE_IN
             n = title.count("\\P") + 1
             hh = th * (1.45 * n + 0.6)
-            self._box(x, y, x + total, y - hh, lw=35)
-            self._cell_text(x, x + total, y - hh, y, title, th)
+            self._box(x, y, x + total, y - hh, width=heavy)
+            self._cell_text(x, x + total, y - hh, y, title, fdot.TABLE_TITLE_STYLE)
             y -= hh
         covered = set()
         for r, hdr in enumerate(headers):
@@ -240,11 +265,11 @@ class Sheet:
                 x0, x1 = edges[c], edges[c + cs]
                 self._box(x0, y - r * row_h, x1, y - (r + rs) * row_h)
                 if txt:
-                    self._cell_text(x0, x1, y - (r + rs) * row_h, y - r * row_h, txt, h_in * 0.9)
+                    self._cell_text(x0, x1, y - (r + rs) * row_h, y - r * row_h, txt, fdot.SMALL_STYLE)
                 c += cs
         y -= row_h * len(headers)
         if headers:
-            self.pline([(x, y), (x + total, y)], "Tables", lw=35)
+            self.pline([(x, y), (x + total, y)], "Tables", width=heavy)
         for row in rows:
             if row and row[0] == "SPACER":
                 self._box(x, y, x + total, y - row_h)
@@ -253,7 +278,7 @@ class Sheet:
             if row and row[0] == "HEADING":
                 hh = row_h * 1.25
                 self._box(x, y, x + total, y - hh)
-                self._cell_text(x, x + total, y - hh, y, row[1], fdot.TABLE_TITLE_IN * 0.9, "LEFT")
+                self._cell_text(x, x + total, y - hh, y, row[1], fdot.TABLE_TITLE_STYLE, "LEFT")
                 y -= hh
                 continue
             n = max(str(v).count("\\P") + 1 for v in row if v not in (None, "")) if any(
@@ -262,9 +287,9 @@ class Sheet:
             for (x0, x1), val in zip(zip(edges, edges[1:]), row):
                 self._box(x0, y, x1, y - hgt)
                 if val not in (None, ""):
-                    self._cell_text(x0, x1, y - hgt, y, val, h_in)
+                    self._cell_text(x0, x1, y - hgt, y, val, fdot.TEXT_STYLE)
             y -= hgt
-        self._box(x, y_top, x + total, y, lw=35)
+        self._box(x, y_top, x + total, y, width=heavy)
         return y
 
     def blank_rows(self, x, y_top, widths, y_min, row_h):
@@ -277,7 +302,7 @@ class Sheet:
             for x0, x1 in zip(edges, edges[1:]):
                 self._box(x0, y, x1, y - row_h)
             y -= row_h
-        self.pline([(x, y_top), (x, y), (edges[-1], y), (edges[-1], y_top)], "Tables", lw=35)
+        self.pline([(x, y_top), (x, y), (edges[-1], y), (edges[-1], y_top)], "Tables", width=0.014)
         return y
 
     def notes(self, x, y_top, heading, items, width_in=4.4, h_in=fdot.NOTE_IN, numbered=True):

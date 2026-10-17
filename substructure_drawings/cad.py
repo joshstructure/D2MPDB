@@ -37,52 +37,48 @@ def new_document():
         layer.description = a["description"]
         if name == "ClipBorder_dp":
             layer.dxf.plot = 0
-    # FDOT structures lettering: single-stroke engineering font slanted 15
-    # degrees; titles use the same font plotted with a heavier stroke.
-    for name, oblique in ((fdot.TEXT_STYLE, fdot.OBLIQUE), (fdot.TITLE_STYLE, fdot.OBLIQUE)):
-        style = doc.styles.add(name, font=fdot.FONT_FILE)
-        style.set_extended_font_data(fdot.FONT_FAMILY)
-        style.dxf.oblique = oblique
-        style.dxf.width = 1.0
-    style = doc.styles.add(fdot.SERIF_STYLE, font="times.ttf")
-    style.set_extended_font_data("Times New Roman")
+    # FDOT text styles (CADD Manual 5.12.1.1): FDOT TrueType fonts by file
+    # and family, no oblique (the fonts are slanted), height 0 (variable).
+    for name, (font, h, w) in fdot.TEXT_STYLES.items():
+        file, family, bold = fdot.FONTS[font]
+        style = doc.styles.add(name, font=file)
+        style.set_extended_font_data(family, italic=False, bold=bold)
+        style.dxf.oblique = 0.0
+        style.dxf.width = w / h if h else 1.0
+    # FDOT Structures Note-Arrow, as in the FDOT-workspace DXF export; the
+    # lines and text are ByLayer (Dimension level).
     ds = doc.dimstyles.add(fdot.DIM_STYLE)
     paper = 1.0 / 12.0
-    ds.dxf.dimtxsty = fdot.TEXT_STYLE
-    ds.dxf.dimtxt = fdot.TEXT_IN * paper
+    ds.dxf.dimtxsty = fdot.DIM_TEXT_STYLE
+    ds.dxf.dimtxt = fdot.style_in(fdot.DIM_TEXT_STYLE) * paper
     ds.dxf.dimtfac = fdot.FRACTION
     ds.dxf.dimasz = fdot.ARROW_IN * paper
-    ds.dxf.dimexo = 0.04 * paper
-    ds.dxf.dimexe = 0.06 * paper
-    ds.dxf.dimgap = 0.03 * paper
+    ds.dxf.dimexo = 0.00315
+    ds.dxf.dimexe = 0.00315
+    ds.dxf.dimgap = 0.00315
     ds.dxf.dimtad = 1
     ds.dxf.dimtih = 0
     ds.dxf.dimtoh = 0
     ds.dxf.dimlunit = 4      # architectural
     ds.dxf.dimlfac = 12.0    # feet drawing -> inch based architectural text
-    ds.dxf.dimzin = 3        # 6" and 4'-0"
-    ds.dxf.dimfrac = 0
+    ds.dxf.dimzin = 15       # 6" and 4'-0"
+    ds.dxf.dimfrac = 1       # diagonal
+    ds.dxf.dimtmove = 1
+    ds.dxf.dimatfit = 1
     ds.dxf.dimdec = 3
     ds.dxf.dimtofl = 1
     ds.dxf.dimclrd = 256
     ds.dxf.dimclre = 256
     ds.dxf.dimclrt = 256
-    # Centerline symbol drawn as geometry (a C crossed by an L), one text
-    # height tall, so it shows correctly regardless of the receiving font.
-    blk = doc.blocks.new(CL_BLOCK)
-    blk.add_arc((0.42, 0.5), 0.42, 45, 315, dxfattribs={"layer": "0"})
-    blk.add_line((0.42, 1.05), (0.42, 0.0), dxfattribs={"layer": "0"})
-    blk.add_line((0.42, 0.0), (0.95, 0.0), dxfattribs={"layer": "0"})
+    ds.dxf.dimlwd = -1
+    ds.dxf.dimlwe = -1
+    doc.header["$TEXTSTYLE"] = fdot.TEXT_STYLE
+    doc.header["$DIMSTYLE"] = fdot.DIM_STYLE
+    doc.header["$CELWEIGHT"] = -1
     return doc
 
 
-CL_BLOCK = "FDOT_CL_SYMBOL"
-CL_CHAR = "℄"   # marks a centerline symbol inside a cltext() label
-
-
-def cl_width(s, h):
-    """Width of a cltext() label."""
-    return sum(1.25 * h + 0.85 * text_extent(p.strip(), h) + 0.35 * h for p in s.split(CL_CHAR))
+CL_CHAR = fdot.CL_GLYPH   # FDOT font centerline character; leader(cl=True) puts one before the label
 
 
 ATTACH = {"TOP_LEFT": 1, "TOP_CENTER": 2, "TOP_RIGHT": 3, "MIDDLE_LEFT": 4, "MIDDLE_CENTER": 5,
@@ -93,8 +89,9 @@ _FRAC = re.compile(r"\{\\H[0-9.]+x;\\S([^;#^/]*)[#^/]([^;]*);\}")
 
 
 def text_extent(s, h):
-    """Approximate width of single-line text (engineering capitals, wide
-    spacing); a stacked fraction counts as about one character."""
+    """Approximate width of single-line text (FDOT font capitals: 0.87 of
+    the height per character on average); a fraction counts as about one
+    character."""
     plain = _FRAC.sub("@", s)
     for code in ("\\S", ";", "#", "{", "}"):
         plain = plain.replace(code, "")
@@ -223,9 +220,13 @@ class View:
         self.ox = self.oy = 0.0
         self.xform = None
         self.ents = []
-        self.th = fdot.TEXT_IN / 12.0 * self.sf
+        self.th = self.style_h(fdot.TEXT_STYLE)
         self.local_bbox = [math.inf, math.inf, -math.inf, -math.inf]
         self.boxes = []   # local boxes of every primitive and text, for overlap checks
+
+    def style_h(self, style):
+        """Model-space text height of an FDOT text style at the view scale."""
+        return fdot.TEXT_STYLES[style][1] * self.sf
 
     # placement --------------------------------------------------------
     def place(self, lx, ly, px, py):
@@ -368,52 +369,36 @@ class View:
             pts.append((p[0] + dx * c - dy * s_, p[1] + dx * s_ + dy * c))
         self._track(pts)
 
-    def text(self, p, s, h=None, align="BOTTOM_LEFT", rot=0.0, layer="TextStructures", style=None, lw=None):
-        """Single-line text; text with a stacked fraction goes to MTEXT."""
-        h = h or self.th
+    def text(self, p, s, h=None, align="BOTTOM_LEFT", rot=0.0, layer="TextStructures", style=None):
+        """Single-line text in an FDOT text style (default FDOT Structures,
+        height from the style unless ``h`` is given); text with a stacked
+        fraction (FDOT_FONT_GLYPHS off) goes to MTEXT."""
+        style = style or fdot.TEXT_STYLE
+        h = h or self.style_h(style)
+        s = fdot.font_text(s)
         if "\\S" in s:
-            return self.mtext(p, s, h, ATTACH[align], rot, layer)
+            return self.mtext(p, s, h, ATTACH[align], rot, layer, style=style)
         vert, horiz = align.split("_")
         ax = {"LEFT": 0.0, "CENTER": 0.5, "RIGHT": 1.0}[horiz]
         ay = {"BOTTOM": 0.0, "MIDDLE": 0.5, "TOP": 1.0}[vert]
         self._track_box(p, text_extent(s, h), h, ax, ay, rot)
-        e = self.msp.add_text(s, height=h, rotation=rot,
-                              dxfattribs={"style": style or fdot.TEXT_STYLE, "oblique": fdot.OBLIQUE})
+        e = self.msp.add_text(s, height=h, rotation=rot, dxfattribs={"style": style})
         e.set_placement(self.T(p), align=TextEntityAlignment[align])
-        if lw:
-            e.dxf.lineweight = lw
         return self._add(e, layer)
 
-    def cltext(self, p, s, h=None, rot=0.0, valign="MIDDLE"):
-        """Centerline label, left aligned at p: drawn CL symbol then text.
-        Further CL symbols inside the text are written as CL_CHAR
-        (e.g. 'CAP & ℄ PILES')."""
-        h = h or self.th
-        c, s_ = math.cos(math.radians(rot)), math.sin(math.radians(rot))
-        oy = {"BOTTOM": 0.0, "MIDDLE": -0.5, "TOP": -1.0}[valign] * h
-        x, e = 0.0, None
-        for part in s.split(CL_CHAR):
-            ins = (p[0] + x * c - oy * s_, p[1] + x * s_ + oy * c)
-            self._track([ins])
-            blk = self.msp.add_blockref(CL_BLOCK, self.T(ins), dxfattribs={"xscale": h, "yscale": h, "rotation": rot})
-            self._add(blk, "TextStructures")
-            x += 1.25 * h
-            part = part.strip()
-            if part:
-                e = self.text((p[0] + x * c, p[1] + x * s_), part, h, valign + "_LEFT", rot)
-                x += 0.85 * text_extent(part, h) + 0.35 * h   # text_extent errs wide for safety
-        return e
-
-    def mtext(self, p, s, h=None, attach=7, rot=0.0, layer="TextStructures", width=None):
-        h = h or self.th
+    def mtext(self, p, s, h=None, attach=7, rot=0.0, layer="TextStructures", width=None, style=None):
+        """MTEXT with the FDOT line spacing (fdot.LINE_PITCH)."""
+        style = style or fdot.TEXT_STYLE
+        h = h or self.style_h(style)
+        s = fdot.font_text(s)
         lines = s.split("\\P")
         w = width or max(text_extent(x, h) for x in lines)
-        hgt = h * (1.0 + 1.67 * (len(lines) - 1))
+        hgt = h * (1.0 + fdot.LINE_PITCH * (len(lines) - 1))
         ax = {1: 0, 2: 0.5, 3: 1, 4: 0, 5: 0.5, 6: 1, 7: 0, 8: 0.5, 9: 1}[attach]
         ay = {1: 1, 2: 1, 3: 1, 4: 0.5, 5: 0.5, 6: 0.5, 7: 0, 8: 0, 9: 0}[attach]
         self._track_box(p, w, hgt, ax, ay, rot)
-        e = self.msp.add_mtext(s, dxfattribs={"style": fdot.TEXT_STYLE, "char_height": h,
-                                              "attachment_point": attach, "rotation": rot})
+        e = self.msp.add_mtext(s, dxfattribs={"style": style, "char_height": h, "attachment_point": attach,
+                                              "rotation": rot, "line_spacing_factor": fdot.MTEXT_LINE_SPACING})
         if width:
             e.dxf.width = width
         e.dxf.insert = self.T(p)
@@ -436,8 +421,7 @@ class View:
         nx, ny = -uy, ux
         base = (p1[0] + nx * offset, p1[1] + ny * offset)
         meas = abs((p2[0] - p1[0]) * ux + (p2[1] - p1[1]) * uy)
-        if text is None:
-            text = fdot.ft_in(meas, step)
+        text = fdot.font_text(text if text is not None else fdot.ft_in(meas, step))
         # dimension line midpoint
         t1 = (p1[0] - base[0]) * ux + (p1[1] - base[1]) * uy
         t2 = (p2[0] - base[0]) * ux + (p2[1] - base[1]) * uy
@@ -492,13 +476,14 @@ class View:
         return pts, align
 
     def _leader_text(self, end, text, align, h, cl=False):
-        """Text after a landing; the landing lines up with the first text line."""
+        """Text after a landing; the landing lines up with the first text line.
+        ``cl`` puts the FDOT centerline character before the label
+        (¡ BEARING); further ones inside the text are written as CL_CHAR
+        (¡ CAP & ¡ PILES)."""
         gap = 0.4 * h
         x = end[0] + gap if align == "left" else end[0] - gap
         if cl:
-            if align != "left":
-                x -= cl_width(text, h)
-            return self.cltext((x, end[1]), text, h)
+            text = CL_CHAR + " " + text
         if "\\P" in text:
             return self.mtext((x, end[1] + 0.5 * h), text, h, attach=1 if align == "left" else 3)
         return self.text((x, end[1]), text, h, "MIDDLE_LEFT" if align == "left" else "MIDDLE_RIGHT")
@@ -541,30 +526,31 @@ class View:
         return self._add(s, layer)
 
     def title(self, p, title, sub=None):
-        """View title centered at p: heavier, underlined, with the subtitle in
-        parentheses below at the normal text size (FDOT sheets)."""
-        h = fdot.TITLE_IN / 12.0 * self.sf
-        self.text(p, title, h, "BOTTOM_CENTER", style=fdot.TITLE_STYLE, lw=fdot.TITLE_LW)
-        w = text_extent(title, h)
-        ln = self.line((p[0] - w / 2, p[1] - 0.22 * h), (p[0] + w / 2, p[1] - 0.22 * h), "TextStructures")
-        ln.dxf.lineweight = fdot.TITLE_LW
+        """View title centered at p in FDOT Bold (Large), underlined, with the
+        subtitle in parentheses below at the normal text size (FDOT sheets)."""
+        h = self.style_h(fdot.TITLE_STYLE)
+        self.text(p, title, None, "BOTTOM_CENTER", style=fdot.TITLE_STYLE)
+        w = text_extent(title, h) * 1.07   # the bold face runs about 7 % wider
+        self.line((p[0] - w / 2, p[1] - 0.22 * h), (p[0] + w / 2, p[1] - 0.22 * h), "TextStructures")
         if sub:
-            self.text((p[0], p[1] - 0.4 * h - 1.45 * self.th), sub, self.th, "BOTTOM_CENTER")
+            self.text((p[0], p[1] - 0.4 * h - 1.45 * self.th), sub, None, "BOTTOM_CENTER")
 
     def section_cut(self, p_from, p_to, label, look):
         """FDOT section cut symbol at both ends of the cut: a short heavy line
-        along the cut, a solid triangular flag at its outer end pointing in
-        the viewing direction ``look`` (local unit vector), and the letter
-        beside the line under the flag.  The cut line itself is not drawn."""
+        along the cut (a polyline 0.014" wide, ByLevel weight), a solid
+        triangular flag at its outer end pointing in the viewing direction
+        ``look`` (local unit vector), and the letter (FDOT Structures
+        Views_SectionArrow) beside the line under the flag.  The cut line
+        itself is not drawn."""
         dx, dy = p_to[0] - p_from[0], p_to[1] - p_from[1]
         D = math.hypot(dx, dy) or 1.0
         u = (dx / D, dy / D)
         k = self.sf / 12.0
         tick, flag, thick = 0.25 * k, 0.27 * k, 0.05 * k
-        h = 0.12 * k
+        h = self.style_h(fdot.LETTER_STYLE)
         for p, inward in ((p_from, u), (p_to, (-u[0], -u[1]))):
             q = (p[0] + inward[0] * tick, p[1] + inward[1] * tick)
-            self.line(p, q, "Symbols").dxf.lineweight = fdot.TITLE_LW
+            self.pl([p, q], "Symbols", width=0.014 * k)
             tri = [p, (p[0] + look[0] * flag, p[1] + look[1] * flag),
                    (p[0] + inward[0] * thick, p[1] + inward[1] * thick)]
             self._track(tri)
@@ -572,7 +558,7 @@ class View:
             self._add(s, "Symbols")
             c = (p[0] + inward[0] * (thick + 0.55 * h) + look[0] * 0.55 * flag,
                  p[1] + inward[1] * (thick + 0.55 * h) + look[1] * 0.55 * flag)
-            self.text(c, label, h, "MIDDLE_CENTER")
+            self.text(c, label, None, "MIDDLE_CENTER", style=fdot.LETTER_STYLE)
 
     def pile_break(self, u, z, width, kind, layer):
         """Curved break at the cut bottom of a pile in elevation: the round
@@ -602,19 +588,12 @@ class View:
         self.line((x_end - gap - w - 0.6 * self.th, y), (x_end - 0.3 * gap, y), "Dimension")
 
     def legend(self, p, items, h=None):
-        """Footnote symbol legend, symbol column then text (FDOT sheets);
-        a CL_CHAR in the text is drawn as the centerline symbol."""
+        """Footnote symbol legend, symbol column then text (FDOT sheets)."""
         h = h or self.th
         for i, (sym, txt) in enumerate(items):
             y = p[1] - i * 2.0 * h
             self.text((p[0], y), sym, h, "BOTTOM_LEFT")
-            x = p[0] + 0.32 / 12 * self.sf
-            if CL_CHAR in txt:
-                head, tail = txt.split(CL_CHAR, 1)
-                self.text((x, y), head, h, "BOTTOM_LEFT")
-                self.cltext((x + text_extent(head, h), y), tail, h, valign="BOTTOM")
-            else:
-                self.text((x, y), txt, h, "BOTTOM_LEFT")
+            self.text((p[0] + 0.32 / 12 * self.sf, y), txt, h, "BOTTOM_LEFT")
 
     def break_line(self, p, q, layer="Symbols"):
         """Straight break line with a zig-zag at mid length."""
