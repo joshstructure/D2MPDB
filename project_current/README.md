@@ -1,7 +1,7 @@
 # Current project record
 
 Start here for the D2 I-95 pedestrian bridge's current source files, adopted
-decisions and outstanding coherence items. Initial inventory: **9 October 2026**. Source update: **16 October 2026**.
+decisions and outstanding coherence items. Initial inventory: **9 October 2026**. Source update: **17 October 2026**.
 "Current" identifies the selected source. Each source retains its own review and
 design-completion status.
 
@@ -17,9 +17,9 @@ design-completion status.
 | Current editable FreeCAD model and live quantities | [Open the bridge model](geometry/freecad/README.md) — raised cheeks, deep return barriers, rear-lug coping stops, deck-edge details and reinforcement; calculation reconciliation remains open |
 | Geometry notebook | [Bridge geometry](../Bridge_Geometry_2%20Beam_V2.ipynb) and [roadway XML](../Geometry%20Report.xml) — owns the end caps, backwalls, cheek webs and lugs (D-036) |
 | Geometry CAD tables | [Selected workbook](geometry/tables/B4_Geometry_CAD_Tables.xlsx) — FDOT CAD tables, method tabs and live charts recalculated from the geometry notebook (D-041; [how to rebuild](../geometry_tables/README.md)) |
-| Pier cap | [Report](cap_design/pier/Pier%20Cap%20Design%2010-12.html), [saved case](cap_design/pier/selected_case.json), [FBMP export](fbmp/pier/Pier_Fixed.XML) |
-| End Bent 1 cap | [Report](cap_design/end_bents/End%20Bent%201%20Cap%20Design%2010-14.html), [saved case](cap_design/end_bents/selected_case.json) |
-| End Bent 2 cap | [Report](cap_design/end_bent_2/End%20Bent%202%20Cap%20Design%2010-14.html), [saved case](cap_design/end_bent_2/selected_case.json) |
+| Pier cap | [Report](cap_design/pier/Pier%20Cap%20Design%2010-17.html), [saved case](cap_design/pier/selected_case.json), [FBMP export](fbmp/pier/Pier_Fixed.XML) — 17 October re-export of the 12 October case (D-043) |
+| End Bent 1 cap | [Report](cap_design/end_bents/End%20Bent%201%20Cap%20Design%2010-17.html), [saved case](cap_design/end_bents/selected_case.json) — 17 October re-export (D-043) |
+| End Bent 2 cap | [Report](cap_design/end_bent_2/End%20Bent%202%20Cap%20Design%2010-17.html), [saved case](cap_design/end_bent_2/selected_case.json) — 17 October re-export (D-043) |
 | Selected backwall and cheekwall design | [16 October report](cap_design/backwall/Backwall%20Design%2010-16.html) and [saved case](cap_design/backwall/selected_case.json) — one centered #4 mat at 10 in each way; analysis and detailing prerequisites remain pending |
 | FBMP source variants | [All four fixed/minimum-tip exports](fbmp/README.md) |
 | Mathcad | [Span 1](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd), [Span 2](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd) — 12 October beam runs; [changes and downstream review](mathcad/README.md) |

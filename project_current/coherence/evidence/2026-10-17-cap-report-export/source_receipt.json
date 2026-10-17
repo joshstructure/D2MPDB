@@ -1,0 +1,268 @@
+{
+  "date": "2026-10-17",
+  "decision": "D-043",
+  "authorization": "Requested by the session that corrected the equation schematics (commit 5cce568); no user instruction in this session beyond that brief.",
+  "scope": "Cap design report re-export only: pier, End Bent 1 and End Bent 2 reports regenerated from their unchanged selected_case.json. No case, input, FBMP export, tracker row or engineering disposition changed.",
+  "generator": {
+    "script": "scripts/export_project_cap_reports.py",
+    "command": ".venv\\Scripts\\python.exe scripts\\export_project_cap_reports.py --date 10-17",
+    "package": "pier_cap at repository commit 5cce568 (no uncommitted pier_cap changes)",
+    "python": "3.12.14",
+    "plotly": "6.9.0",
+    "note": "Reports embed their generation time, so a rerun gives new bytes; scripts/export_project_cap_reports.py --check verifies the registered reports."
+  },
+  "reports": [
+    {
+      "source_id": "PIER-REPORT",
+      "path": "project_current/cap_design/pier/Pier Cap Design 10-17.html",
+      "sha256": "cc180be66ebf2f93a6c2d4957c16dc0f372b1291276bc02e9300715500bd1823",
+      "bytes": 23871921,
+      "previous": {
+        "path": "project_current/cap_design/pier/Pier Cap Design 10-12.html",
+        "sha256": "26f10adba3cedb11194cde91ba5ccb63668d44ba0f7667976f1ac0305123ea0a",
+        "bytes": 14208067,
+        "retained_unchanged": true
+      },
+      "case": {
+        "path": "project_current/cap_design/pier/selected_case.json",
+        "sha256": "2045ab5fb71a85d7a3b7f6382eb18688bc826f3f9aec6a4d4d0b9bc6022e9dc8",
+        "unchanged": true,
+        "embedded_in_report_equals_saved_case": true
+      },
+      "canonical_case_sha256": "c1966ae092fc9db0b6b236ff25848a2e7e972c5194abd8d338606dc15dd7d099",
+      "formula_definition_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
+      "canonical_hashes_equal_previous_report": true,
+      "schematics": {
+        "figures": 1312,
+        "distinct_equations_and_checks": 1113,
+        "problems": [],
+        "L_cap_has_D_pile_and_E_CL": true,
+        "P_center_gap_has_Pile_left": true,
+        "concepts": {
+          "beta_1": [
+            "flexure"
+          ],
+          "alpha_1": [
+            "flexure"
+          ],
+          "Mcr": [
+            "gross"
+          ],
+          "P_pitch_left": [
+            "spacing"
+          ],
+          "P_center_gap": [
+            "spacing"
+          ],
+          "Pile_left": [
+            "spacing"
+          ],
+          "S_leg": [
+            "legs"
+          ],
+          "Chk_drawn_hoop_legs_G": [
+            "legs"
+          ]
+        }
+      }
+    },
+    {
+      "source_id": "EB-REPORT",
+      "path": "project_current/cap_design/end_bents/End Bent 1 Cap Design 10-17.html",
+      "sha256": "363d6ac30fd37e6fb05a218f812f892cace2724aa55adeaea9527c5233630fa8",
+      "bytes": 21224438,
+      "previous": {
+        "path": "project_current/cap_design/end_bents/End Bent 1 Cap Design 10-14.html",
+        "sha256": "1500c5cb8198bd31499cad2dbbec1cae5dc01b8cdb4e14694725c390afdbd2e6",
+        "bytes": 13719859,
+        "retained_unchanged": true
+      },
+      "case": {
+        "path": "project_current/cap_design/end_bents/selected_case.json",
+        "sha256": "37a04b9c8ab1dc8d215850cecd539dedc49b07397be2e668ac7ef9809173cf78",
+        "unchanged": true,
+        "embedded_in_report_equals_saved_case": true
+      },
+      "canonical_case_sha256": "851f5e1467f29ccb73ee482a4486ff6a1eb9c3bb1cb632f8bfc0d982db481fdc",
+      "formula_definition_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
+      "canonical_hashes_equal_previous_report": true,
+      "schematics": {
+        "figures": 1118,
+        "distinct_equations_and_checks": 919,
+        "problems": [],
+        "L_cap_has_D_pile_and_E_CL": true,
+        "P_center_gap_has_Pile_left": true,
+        "concepts": {
+          "beta_1": [
+            "flexure"
+          ],
+          "alpha_1": [
+            "flexure"
+          ],
+          "Mcr": [
+            "gross"
+          ],
+          "P_pitch_left": [
+            "spacing"
+          ],
+          "P_center_gap": [
+            "spacing"
+          ],
+          "Pile_left": [
+            "spacing"
+          ],
+          "S_leg": [
+            "legs"
+          ],
+          "Chk_drawn_hoop_legs_G": [
+            "legs"
+          ]
+        }
+      }
+    },
+    {
+      "source_id": "EB2-REPORT",
+      "path": "project_current/cap_design/end_bent_2/End Bent 2 Cap Design 10-17.html",
+      "sha256": "c07a3b763aeb1f4ed9605b60e41aff9f938c1ac0c7f967e90c943e11d5b982e3",
+      "bytes": 21226670,
+      "previous": {
+        "path": "project_current/cap_design/end_bent_2/End Bent 2 Cap Design 10-14.html",
+        "sha256": "7f8c78e888507ab8a051408b0e427815621bccf962ed71021742c5b0e0f69d56",
+        "bytes": 13735671,
+        "retained_unchanged": true
+      },
+      "case": {
+        "path": "project_current/cap_design/end_bent_2/selected_case.json",
+        "sha256": "c00bcca92a27318eb263ee79c8eba712598ac1518ab1af33c1da63a3bd7ca865",
+        "unchanged": true,
+        "embedded_in_report_equals_saved_case": true
+      },
+      "canonical_case_sha256": "def91929e9774de0d6de8ddb30078e6d5ea19b7770e87601ce4b5abb04acce21",
+      "formula_definition_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
+      "canonical_hashes_equal_previous_report": true,
+      "schematics": {
+        "figures": 1118,
+        "distinct_equations_and_checks": 919,
+        "problems": [],
+        "L_cap_has_D_pile_and_E_CL": true,
+        "P_center_gap_has_Pile_left": true,
+        "concepts": {
+          "beta_1": [
+            "flexure"
+          ],
+          "alpha_1": [
+            "flexure"
+          ],
+          "Mcr": [
+            "gross"
+          ],
+          "P_pitch_left": [
+            "spacing"
+          ],
+          "P_center_gap": [
+            "spacing"
+          ],
+          "Pile_left": [
+            "spacing"
+          ],
+          "S_leg": [
+            "legs"
+          ],
+          "Chk_drawn_hoop_legs_G": [
+            "legs"
+          ]
+        }
+      }
+    }
+  ],
+  "comparison_with_previous_reports": {
+    "end_bents_and_end_bent_2": {
+      "check_rows": 248,
+      "label_status_and_dc_identical_to_10_14_report": true,
+      "status_counts": {
+        "PASS": 186,
+        "FAIL": 6,
+        "PENDING": 45,
+        "NOT REQUIRED": 7,
+        "other pending/source entries": 4
+      },
+      "max_dc": "2.9375 Actual face shrinkage / temperature spacing"
+    },
+    "pier": {
+      "check_rows_previous": 297,
+      "check_rows_new": 306,
+      "cause": "The 12 October export predates two package fixes made on 12 and 14 October. Regenerating the 12 October case with the package at 9deb443^ reproduces all 297 previous rows exactly; with fdf327c^ only the eight minimum-shear-steel ratios differ.",
+      "added_pass_rows": "R1 to R9 clear cover at cap ends (nine rows, fdf327c Enforce cap end cover in transverse run edits)",
+      "changed_ratios": {
+        "package_commit": "9deb443 Truncate intersected shear-steel rate window at cap ends",
+        "rows": {
+          "R1-1 to R1-2": [
+            0.803711,
+            0.4831
+          ],
+          "R1-2 to R1-3": [
+            0.730841,
+            0.478974
+          ],
+          "R1-3 to R2-1": [
+            0.64556,
+            0.444329
+          ],
+          "R2-1 to R2-2": [
+            0.496202,
+            0.4831
+          ],
+          "R8-5 to R8-6": [
+            0.425316,
+            0.416713
+          ],
+          "R8-6 to R9-1": [
+            0.496202,
+            0.40939
+          ],
+          "R9-1 to R9-2": [
+            0.496202,
+            0.402494
+          ],
+          "R9-2 to R9-3": [
+            0.595442,
+            0.376519
+          ]
+        },
+        "format": "[previous D/C, new D/C]; all remain PASS"
+      },
+      "status_counts_previous": {
+        "PASS": 219,
+        "FAIL": 2,
+        "PENDING": 65,
+        "NOT REQUIRED": 7,
+        "other pending/source entries": 4
+      },
+      "status_counts_new": {
+        "PASS": 228,
+        "FAIL": 2,
+        "PENDING": 65,
+        "NOT REQUIRED": 7,
+        "other pending/source entries": 4
+      },
+      "max_dc": "2.0 End U grid pile envelope clearance (unchanged)"
+    },
+    "presentation_changes_beyond_sketches": "Commit 76ee576 also restructured the check-detail panels (code references, equation and values) and added service-limit lines to the force plots (Figure 5 caption now reads sectional limits)."
+  },
+  "verification": {
+    "tests": [
+      "tests.test_project_cap_reports",
+      "tests.test_project_coherence",
+      "tests.test_calculation_report",
+      "tests.test_equation_schematics"
+    ],
+    "result": "35 tests pass",
+    "coherence_tool": "tools/project_coherence.py --write-report: PIER:report-case and EB:report-case MATCH; SOURCE:PIER-REPORT, EB-REPORT and EB2-REPORT MATCH; all other automatic results and counts equal the 16 October run (4 changed, 9 error, 41 match, 5 missing, 10 review).",
+    "not_performed": "Reports were not opened in a browser (no rendering or interaction check of the drop-downs)."
+  },
+  "downstream_review": {
+    "lineage": "lineage/ is generated from these inputs; rebuild it with scripts/build_lineage_graph.py (its staleness test fails until then).",
+    "design_atlas": "design_atlas/build.py still reads Pier Cap Design 10-12.html, which is retained; it was not changed.",
+    "cap_tool_fingerprint": "CAP-TOOL stays CHANGED against its registered revision (D-011); its note records that the 17 October reports came from commit 5cce568."
+  }
+}

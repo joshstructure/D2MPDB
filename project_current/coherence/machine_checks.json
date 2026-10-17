@@ -1,7 +1,7 @@
 {
-  "checked_at_utc": "2026-10-16T21:26:25.940005+00:00",
+  "checked_at_utc": "2026-10-17T18:24:18.769277+00:00",
   "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
-  "register_sha256": "24bf04122fc9469ccb64e426cb2d3a78d0ed01f22d83d07ea4588aaf167b172e",
+  "register_sha256": "490dbb8a4c2e47150b4de2cf9574bc6995289d0844b474ce117b536c36d6659c",
   "tracker_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
   "source_count": 29,
   "item_count": 28,
@@ -62,7 +62,7 @@
       ],
       "path": "Cap_and_Pile_Design.ipynb",
       "expected_sha256": "1af14e6efa5095a973b88ced422bee1656596ec8cba4e5c6b6b31ee9796c4c74",
-      "actual_sha256": "06d0e90b4ace8f373a986d6ba81350a6010d7c33e5a12a079e5fc46577a14e74"
+      "actual_sha256": "2953452fe2952021f26ddca1a7bd65752a8ced20be54282d26a92c78b5b3a6e5"
     },
     {
       "check_id": "SOURCE:PIER-REPORT",
@@ -71,9 +71,9 @@
       "source_ids": [
         "PIER-REPORT"
       ],
-      "path": "project_current/cap_design/pier/Pier Cap Design 10-12.html",
-      "expected_sha256": "26f10adba3cedb11194cde91ba5ccb63668d44ba0f7667976f1ac0305123ea0a",
-      "actual_sha256": "26f10adba3cedb11194cde91ba5ccb63668d44ba0f7667976f1ac0305123ea0a"
+      "path": "project_current/cap_design/pier/Pier Cap Design 10-17.html",
+      "expected_sha256": "cc180be66ebf2f93a6c2d4957c16dc0f372b1291276bc02e9300715500bd1823",
+      "actual_sha256": "cc180be66ebf2f93a6c2d4957c16dc0f372b1291276bc02e9300715500bd1823"
     },
     {
       "check_id": "SOURCE:PIER-CASE",
@@ -104,9 +104,9 @@
       "source_ids": [
         "EB-REPORT"
       ],
-      "path": "project_current/cap_design/end_bents/End Bent 1 Cap Design 10-14.html",
-      "expected_sha256": "1500c5cb8198bd31499cad2dbbec1cae5dc01b8cdb4e14694725c390afdbd2e6",
-      "actual_sha256": "1500c5cb8198bd31499cad2dbbec1cae5dc01b8cdb4e14694725c390afdbd2e6"
+      "path": "project_current/cap_design/end_bents/End Bent 1 Cap Design 10-17.html",
+      "expected_sha256": "363d6ac30fd37e6fb05a218f812f892cace2724aa55adeaea9527c5233630fa8",
+      "actual_sha256": "363d6ac30fd37e6fb05a218f812f892cace2724aa55adeaea9527c5233630fa8"
     },
     {
       "check_id": "SOURCE:EB-CASE",
@@ -269,9 +269,9 @@
       "source_ids": [
         "EB2-REPORT"
       ],
-      "path": "project_current/cap_design/end_bent_2/End Bent 2 Cap Design 10-14.html",
-      "expected_sha256": "7f8c78e888507ab8a051408b0e427815621bccf962ed71021742c5b0e0f69d56",
-      "actual_sha256": "7f8c78e888507ab8a051408b0e427815621bccf962ed71021742c5b0e0f69d56"
+      "path": "project_current/cap_design/end_bent_2/End Bent 2 Cap Design 10-17.html",
+      "expected_sha256": "c07a3b763aeb1f4ed9605b60e41aff9f938c1ac0c7f967e90c943e11d5b982e3",
+      "actual_sha256": "c07a3b763aeb1f4ed9605b60e41aff9f938c1ac0c7f967e90c943e11d5b982e3"
     },
     {
       "check_id": "SOURCE:EB2-CASE",
