@@ -37,7 +37,7 @@ class LiteralWorksheetTests(unittest.TestCase):
 class ProjectAtlasTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.before={p:sha(ROOT/p) for p in [CASE,SHEET,'project_current/source_register.csv','project_current/coherence/Coherence_Tracker.xlsx']}
+        cls.before={p:sha(ROOT/p) for p in [CASE,SHEET,'project_current/source_register.csv','project_current/coherence/Coherence_Tracker.xlsx'] if (ROOT/p).is_file()}
         cls.data=build_data()
         cls.values={v['id']:v for v in cls.data['values']}
         cls.case=json.loads((ROOT/CASE).read_text(encoding='utf-8'))
@@ -66,10 +66,17 @@ class ProjectAtlasTests(unittest.TestCase):
         self.assertEqual(self.values['active_pitch']['value'],max(r['pitch_in'] for r in runs))
         self.assertEqual(self.values['active_bar']['value'],runs[0]['bar'])
         self.assertEqual(self.values['inputs.Bar_v']['source_status'],'dormant scalar')
-        self.assertEqual(self.values['active_bar']['sheet_status'],'match')
-        self.assertEqual(self.values['active_pitch']['sheet_status'],'match')
+        if (ROOT/SHEET).is_file():
+            self.assertEqual(self.values['active_bar']['sheet_status'],'match')
+            self.assertEqual(self.values['active_pitch']['sheet_status'],'match')
+        else:
+            self.assertEqual(self.values['active_bar']['sheet_status'],'not mapped')
 
     def test_worksheet_receipt_and_literal_transfers(self):
+        if not (ROOT/SHEET).is_file():
+            self.assertFalse(self.data['checks']['mathcad_receipt_matches'])
+            self.assertEqual(next(n for n in self.data['nodes'] if n['id']=='PIER-MATHCAD')['status'],'missing')
+            return
         self.assertTrue(self.data['checks']['mathcad_receipt_matches'])
         self.assertTrue(self.data['checks']['report_case_equal'])
         for key in ['h','b','fc','Mu_N','Mu_B','Vu_G','Tu']:
