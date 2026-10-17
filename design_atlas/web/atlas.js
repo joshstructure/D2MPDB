@@ -281,12 +281,23 @@
   }
   function renderValue(v) {
     const role=originOf(v),context=byId.get(originNode(v));
+    const flowSteps=v.steps.map((s,i)=>{
+      const previous=v.steps[i-1],next=v.steps[i+1],from=v.origins[s.node]?.from_node;
+      const nextFrom=next&&v.origins[next.node]?.from_node;
+      const connects=next&&(next.node===s.node||nextFrom===s.node);
+      const arrow=connects&&next.node!==s.node;
+      // Adjacent evidence records are not necessarily sequential handoffs.
+      // Restart a branch when, for example, report and worksheet both use the case.
+      const branch=previous&&previous.node!==s.node&&from!==previous.node;
+      const branchLabel=branch?(from?`<div class="value-flow-branch">Separate handoff from <strong>${escape(byId.get(from).title)}</strong><span class="sr-only">, flowing down to ${escape(byId.get(s.node).title)}</span></div>`:'<p class="value-flow-break">Separate source record · transfer not established</p>'):'';
+      return branchLabel+`<div class="value-step${s.node===context.id?' current-component':''}">${connects?`<span class="flow-connector${arrow?' with-arrow':''}" aria-hidden="true"></span>`:''}<h4>${escape(s.title)}${s.node===context.id?'<span class="current-label">Selected component</span>':''}</h4>${badge(s.status,s.status==='match'?'Value matches':s.status==='recorded'?'Source record':s.status)}<div class="step-value">${escape(format(s.value))} ${escape(unitText(s.unit))}</div><code>${escape(s.evidence.locator)}</code>${s.note?'<p>'+escape(s.note)+'</p>':''}<button data-evidence-step="${i}">View exact source ↗</button>${s.mapping?` <button data-mapping-step="${i}">Mapping record</button>`:''}</div>`;
+    }).join('');
     $('value-detail').innerHTML=`<div class="value-top"><div><div class="eyebrow">${escape(v.category.toUpperCase())}</div><h3>${escape(v.label)}</h3></div><div class="big-value ${v.value_kind==='expression'?'expression-value':''}">${escape(format(v.value))} <small>${escape(unitText(v.unit))}</small></div></div>`+
       `<div class="origin-card ${role.kind}"><span class="origin-badge ${role.kind}">${roleNames[role.kind]}</span><small> at ${escape(context.title)}</small><p>${escape(role.basis)}</p>${role.from_node?`<button id="follow-origin">Open ${escape(byId.get(role.from_node).title)} ↗</button>`:''}${role.evidence.map((e,i)=>`<button data-origin-evidence="${i}">Origin evidence${role.evidence.length>1?' '+(i+1):''}</button>`).join('')}</div>`+
       (v.expression?`<pre class="formula-expression">${escape(v.expression)}</pre>`:'')+
       (v.sheet_status==='match'?badge('match','Mathcad input matches'):v.sheet_status!=='not mapped'&&v.sheet_status!=='not applicable'?badge(v.sheet_status,'Mathcad: '+v.sheet_status):'')+
       `<p class="value-note">${escape(v.source_status)}${v.transform?' · '+escape(v.transform):''}${v.note?'<br>'+escape(v.note):''}</p>`+
-      v.steps.map((s,i)=>`<div class="value-step"><h4>${escape(s.title)}</h4>${badge(s.status,s.status==='match'?'Value matches':s.status==='recorded'?'Source record':s.status)}<div class="step-value">${escape(format(s.value))} ${escape(unitText(s.unit))}</div><code>${escape(s.evidence.locator)}</code>${s.note?'<p>'+escape(s.note)+'</p>':''}<button data-evidence-step="${i}">View exact source ↗</button>${s.mapping?` <button data-mapping-step="${i}">Mapping record</button>`:''}</div>`).join('')+
+      (v.steps.some(s=>v.origins[s.node]?.from_node)?'<p class="flow-direction">↓ Arrows follow recorded handoffs between components</p>':'')+flowSteps+
       (v.sheet_status==='not mapped'?'<div class="gap-note">This parameter has no explicit worksheet mapping in the current adapter.</div>':'')+
       (v.node_ids.includes('REQUIRED-PIER-XML')?'<div class="gap-note">'+(data.checks.required_xml_present?'Source identity matches. These loads are retained audit records, not independently re-extracted here.':'Upstream limit: the matching raw FBMP export is not registered. These loads are traceable to the saved audit, not independently re-extracted here.')+'</div>':'')+
       (v.node_ids.includes('PIER-MATHCAD')?'<div class="value-note">Worksheet inputs were inspected directly. Native Mathcad recalculation and an issued PDF are not established.</div>':'');
