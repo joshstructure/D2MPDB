@@ -266,10 +266,12 @@ def ev(t, env):
             if vals[1].v != int(vals[1].v):
                 raise ValueError('round: the number of decimal places must be an integer')
             return U(round(vals[0].v, int(vals[1].v)))
-        if f == 'stack':                                # vectors and scalars, top to bottom: a vector
-            items = [y for v in vals for y in (v if isinstance(v, list) else [v])]
-            if any(not isinstance(y, U) for y in items):
-                raise UnitError('stack takes vectors and scalars')
+        if f == 'stack':                                # vectors, top to bottom: a vector
+            # Arrays only, as the FDOT PSBeam sheets use it: a single value goes in as col(...). (The first cap sheets
+            # stacked scalars and their plot showed an error in Mathcad; the same plot fed without them did not.)
+            if not all(isinstance(v, list) and all(isinstance(y, U) for y in v) for v in vals):
+                raise UnitError('stack takes vectors; wrap single values in col(...)')
+            items = [y for v in vals for y in v]
             for y in items[1:]:
                 items[0]._same(y, 'stack')
             return items

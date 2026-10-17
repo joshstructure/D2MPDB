@@ -1688,64 +1688,58 @@
 <region region-id="534" left="18.00" top="10133.06" width="572.00" height="30.00" align-x="18.00" align-y="10143.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Normal" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Figure 3 data: every distilled ratio in check order, split at the limit. A check on the other side of the limit is parked at check number −1, outside the plot.</p></text>
 </region>
-<region region-id="535" left="18.00" top="10169.06" width="236.41" height="20.00" align-x="18.00" align-y="10180.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
-<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="NPB">DC</ml:id><ml:apply><ml:id xml:space="preserve">stack</ml:id><ml:sequence><ml:id xml:space="preserve" subscript="flex">DC</ml:id><ml:id xml:space="preserve" subscript="min">DC</ml:id><ml:id xml:space="preserve" subscript="eps">DC</ml:id><ml:id xml:space="preserve" subscript="I">DC</ml:id></ml:sequence></ml:apply></ml:define></math>
+<region region-id="535" left="18.00" top="10169.06" width="303.58" height="146.00" align-x="18.00" align-y="10241.56" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
+<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="all">DC</ml:id><ml:apply><ml:id xml:space="preserve">stack</ml:id><ml:sequence><ml:id xml:space="preserve" subscript="flex">DC</ml:id><ml:id xml:space="preserve" subscript="min">DC</ml:id><ml:id xml:space="preserve" subscript="eps">DC</ml:id><ml:id xml:space="preserve" subscript="I">DC</ml:id><ml:matrix rows="9" cols="1"><ml:id xml:space="preserve" subscript="shear">DC</ml:id><ml:id xml:space="preserve" subscript="LN">DC</ml:id><ml:id xml:space="preserve" subscript="LP">DC</ml:id><ml:id xml:space="preserve" subscript="LB">DC</ml:id><ml:id xml:space="preserve" subscript="minAv">DC</ml:id><ml:id xml:space="preserve" subscript="sp">DC</ml:id><ml:id xml:space="preserve" subscript="tamax">DC</ml:id><ml:id xml:space="preserve" subscript="tsmax">DC</ml:id><ml:id xml:space="preserve" subscript="hk">DC</ml:id></ml:matrix></ml:sequence></ml:apply></ml:define></math>
 </region>
-<region region-id="536" left="264.41" top="10171.06" width="325.59" height="15.00" align-x="264.41" align-y="10179.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
-<text use-page-width="false" push-down="false" lock-width="true"><p style="Note" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">checks 1 to 12</p></text>
-</region>
-<region region-id="537" left="18.00" top="10195.06" width="483.42" height="20.00" align-x="18.00" align-y="10206.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
-<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="all">DC</ml:id><ml:apply><ml:id xml:space="preserve">stack</ml:id><ml:sequence><ml:id xml:space="preserve" subscript="NPB">DC</ml:id><ml:id xml:space="preserve" subscript="shear">DC</ml:id><ml:id xml:space="preserve" subscript="LN">DC</ml:id><ml:id xml:space="preserve" subscript="LP">DC</ml:id><ml:id xml:space="preserve" subscript="LB">DC</ml:id><ml:id xml:space="preserve" subscript="minAv">DC</ml:id><ml:id xml:space="preserve" subscript="sp">DC</ml:id><ml:id xml:space="preserve" subscript="tamax">DC</ml:id><ml:id xml:space="preserve" subscript="tsmax">DC</ml:id><ml:id xml:space="preserve" subscript="hk">DC</ml:id></ml:sequence></ml:apply></ml:define></math>
-</region>
-<region region-id="538" left="42.00" top="10216.06" width="548.00" height="15.00" align-x="42.00" align-y="10224.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
+<region region-id="536" left="331.58" top="10171.06" width="258.42" height="15.00" align-x="331.58" align-y="10179.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Note" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">distilled ratios in check order</p></text>
 </region>
-<region region-id="539" left="18.00" top="10237.06" width="64.54" height="17.00" align-x="18.00" align-y="10248.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
+<region region-id="537" left="18.00" top="10321.06" width="64.54" height="17.00" align-x="18.00" align-y="10332.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve">Limit</ml:id><ml:real>1</ml:real></ml:define></math>
 </region>
-<region region-id="540" left="100.54" top="10237.06" width="143.79" height="20.00" align-x="100.54" align-y="10248.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
+<region region-id="538" left="100.54" top="10321.06" width="143.79" height="20.00" align-x="100.54" align-y="10332.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve">j</ml:id><ml:range><ml:real>0</ml:real><ml:apply><ml:id xml:space="preserve">last</ml:id><ml:id xml:space="preserve" subscript="all">DC</ml:id></ml:apply></ml:range></ml:define></math>
 </region>
-<region region-id="541" left="262.32" top="10237.06" width="197.46" height="20.00" align-x="262.32" align-y="10248.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
+<region region-id="539" left="262.32" top="10321.06" width="197.46" height="20.00" align-x="262.32" align-y="10332.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve">ymax</ml:id><ml:apply><ml:id xml:space="preserve">max</ml:id><ml:sequence><ml:real>1.2</ml:real><ml:apply><ml:mult/><ml:real>1.1</ml:real><ml:apply><ml:id xml:space="preserve">max</ml:id><ml:id xml:space="preserve" subscript="all">DC</ml:id></ml:apply></ml:apply></ml:sequence></ml:apply></ml:define></math>
 </region>
-<region region-id="542" left="18.00" top="10265.06" width="238.26" height="21.00" align-x="18.00" align-y="10276.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
+<region region-id="540" left="18.00" top="10349.06" width="238.26" height="21.00" align-x="18.00" align-y="10360.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:apply><ml:indexer/><ml:id xml:space="preserve" subscript="ok">x</ml:id><ml:id xml:space="preserve">j</ml:id></ml:apply><ml:apply><ml:id xml:space="preserve">if</ml:id><ml:sequence><ml:apply><ml:lessOrEqual/><ml:apply><ml:indexer/><ml:id xml:space="preserve" subscript="all">DC</ml:id><ml:id xml:space="preserve">j</ml:id></ml:apply><ml:id xml:space="preserve">Limit</ml:id></ml:apply><ml:apply><ml:plus/><ml:id xml:space="preserve">j</ml:id><ml:real>1</ml:real></ml:apply><ml:apply><ml:neg/><ml:real>1</ml:real></ml:apply></ml:sequence></ml:apply></ml:define></math>
 </region>
-<region region-id="543" left="274.26" top="10265.06" width="235.93" height="21.00" align-x="274.26" align-y="10276.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
+<region region-id="541" left="274.26" top="10349.06" width="235.93" height="21.00" align-x="274.26" align-y="10360.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:apply><ml:indexer/><ml:id xml:space="preserve" subscript="ok">y</ml:id><ml:id xml:space="preserve">j</ml:id></ml:apply><ml:apply><ml:id xml:space="preserve">if</ml:id><ml:sequence><ml:apply><ml:lessOrEqual/><ml:apply><ml:indexer/><ml:id xml:space="preserve" subscript="all">DC</ml:id><ml:id xml:space="preserve">j</ml:id></ml:apply><ml:id xml:space="preserve">Limit</ml:id></ml:apply><ml:apply><ml:indexer/><ml:id xml:space="preserve" subscript="all">DC</ml:id><ml:id xml:space="preserve">j</ml:id></ml:apply><ml:real>0</ml:real></ml:sequence></ml:apply></ml:define></math>
 </region>
-<region region-id="544" left="18.00" top="10294.06" width="238.26" height="21.00" align-x="18.00" align-y="10305.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
+<region region-id="542" left="18.00" top="10378.06" width="238.26" height="21.00" align-x="18.00" align-y="10389.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:apply><ml:indexer/><ml:id xml:space="preserve" subscript="ng">x</ml:id><ml:id xml:space="preserve">j</ml:id></ml:apply><ml:apply><ml:id xml:space="preserve">if</ml:id><ml:sequence><ml:apply><ml:greaterThan/><ml:apply><ml:indexer/><ml:id xml:space="preserve" subscript="all">DC</ml:id><ml:id xml:space="preserve">j</ml:id></ml:apply><ml:id xml:space="preserve">Limit</ml:id></ml:apply><ml:apply><ml:plus/><ml:id xml:space="preserve">j</ml:id><ml:real>1</ml:real></ml:apply><ml:apply><ml:neg/><ml:real>1</ml:real></ml:apply></ml:sequence></ml:apply></ml:define></math>
 </region>
-<region region-id="545" left="274.26" top="10294.06" width="235.93" height="21.00" align-x="274.26" align-y="10305.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
+<region region-id="543" left="274.26" top="10378.06" width="235.93" height="21.00" align-x="274.26" align-y="10389.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:apply><ml:indexer/><ml:id xml:space="preserve" subscript="ng">y</ml:id><ml:id xml:space="preserve">j</ml:id></ml:apply><ml:apply><ml:id xml:space="preserve">if</ml:id><ml:sequence><ml:apply><ml:greaterThan/><ml:apply><ml:indexer/><ml:id xml:space="preserve" subscript="all">DC</ml:id><ml:id xml:space="preserve">j</ml:id></ml:apply><ml:id xml:space="preserve">Limit</ml:id></ml:apply><ml:apply><ml:indexer/><ml:id xml:space="preserve" subscript="all">DC</ml:id><ml:id xml:space="preserve">j</ml:id></ml:apply><ml:real>0</ml:real></ml:sequence></ml:apply></ml:define></math>
 </region>
-<region region-id="546" left="18.00" top="10323.06" width="184.03" height="20.00" align-x="18.00" align-y="10334.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
+<region region-id="544" left="18.00" top="10407.06" width="184.03" height="20.00" align-x="18.00" align-y="10418.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve">CheckGood</ml:id><ml:apply><ml:id xml:space="preserve">augment</ml:id><ml:sequence><ml:id xml:space="preserve" subscript="ok">x</ml:id><ml:id xml:space="preserve" subscript="ok">y</ml:id></ml:sequence></ml:apply></ml:define></math>
 </region>
-<region region-id="547" left="220.03" top="10323.06" width="196.34" height="20.00" align-x="220.03" align-y="10334.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
+<region region-id="545" left="220.03" top="10407.06" width="196.34" height="20.00" align-x="220.03" align-y="10418.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve">CheckNoGood</ml:id><ml:apply><ml:id xml:space="preserve">augment</ml:id><ml:sequence><ml:id xml:space="preserve" subscript="ng">x</ml:id><ml:id xml:space="preserve" subscript="ng">y</ml:id></ml:sequence></ml:apply></ml:define></math>
 </region>
-<region region-id="548" left="0" top="10348.06" width="6000" height="6" align-x="0" align-y="10348.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
+<region region-id="546" left="0" top="10432.06" width="6000" height="6" align-x="0" align-y="10432.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <pageBreak/>
 </region>
-<region region-id="549" left="41.12" top="10360.06" width="525.75" height="142.50" align-x="41.12" align-y="10360.06" show-border="false" show-highlight="true" is-protected="true" z-order="0" background-color="#ececec" tag="">
+<region region-id="547" left="41.12" top="10444.06" width="525.75" height="142.50" align-x="41.12" align-y="10444.06" show-border="false" show-highlight="true" is-protected="true" z-order="0" background-color="#ececec" tag="">
 <plot disable-calc="false" item-idref="3"/>
 </region>
-<region region-id="550" left="18.00" top="10510.56" width="572.00" height="38.50" align-x="18.00" align-y="10519.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
+<region region-id="548" left="18.00" top="10594.56" width="572.00" height="38.50" align-x="18.00" align-y="10603.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Note" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Figure 3. Demand/capacity ratio of each distilled check (stems) against the limit (dashed line). It is a Mathcad plot of CheckGood and CheckNoGood, so it recalculates with the worksheet and a check turns red when its ratio passes 1.0.</p></text>
 </region>
-<region region-id="551" left="18.00" top="10557.06" width="572.00" height="50.00" align-x="18.00" align-y="10565.56" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
+<region region-id="549" left="18.00" top="10641.06" width="572.00" height="50.00" align-x="18.00" align-y="10649.56" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Note" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Check numbers: 1–3 flexure (N, P, B); 4–6 minimum steel (N, P, B); 7–9 tension-controlled strain (N, P, B); 10–12 Service I (N, P, B); 13 shear at S; 14 longitudinal tension at N; 15 longitudinal tension at P; 16 longitudinal tension at B; 17 minimum transverse steel at M; 18 transverse spacing; 19 face steel area, largest; 20 face bar spacing, largest; 21 hook development.</p></text>
 </region>
-<region region-id="552" left="18.00" top="10613.06" width="572.00" height="38.50" align-x="18.00" align-y="10621.56" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
+<region region-id="550" left="18.00" top="10697.06" width="572.00" height="38.50" align-x="18.00" align-y="10705.56" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Note" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Failing checks not recomputed here (tool): End U grid · pile envelope clearance: Conservative square pile envelope includes the current horizontal placement allowance, pile embedment and required clear gap, enlarged by bar radius. Review shape-specific and fabrication tolerances separately.</p></text>
 </region>
-<region region-id="553" left="18.00" top="10657.56" width="572.00" height="27.00" align-x="18.00" align-y="10666.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
+<region region-id="551" left="18.00" top="10741.56" width="572.00" height="27.00" align-x="18.00" align-y="10750.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Note" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">The tool reports 67 PENDING items: 2 Service III and fatigue; 3 FDOT covers; 4 D-regions, end regions and the end grid; 58 actual-cage prerequisites behind the distilled checks (anchorage and closure, splices, load path).</p></text>
 </region>
-<region region-id="554" left="18.00" top="10690.56" width="572.00" height="15.50" align-x="18.00" align-y="10699.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
+<region region-id="552" left="18.00" top="10774.56" width="572.00" height="15.50" align-x="18.00" align-y="10783.06" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Note" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Detailing and geometry flags: 50 pass, as reported by the tool.</p></text>
 </region>
 </regions>
@@ -3574,19 +3568,19 @@ AIAYwjMAAADEEJ4BAAAghvAMAAAAMYRnAAAAiCE8AwAAQAzhGQAAAGIIzwAAABBDeAYAAIAYwjMA
 AADEEJ4BAAAghvAMAAAAMYRnAAAAiCE8AwAAQAzhGQAAAGIIzwAAABBDeAYAAIAYwjMAAADEEJ4B
 AAAghvAMAAAAMYRnAAAAiCE8AwAAQAzhGQAAAGIIzwAAABBDeAYAAIAYwjMAAADEEJ4BAAAghvAM
 AAAAMYRnAAAAiPF/AAAA//+UD3M9AAAABklEQVQDADuhSBRriDLpAAAAAElFTkSuQmCC</item>
-<item item-id="3" content-encoding="gzip">H4sIAAAAAAAA/31TTW8SURS9j4GBoRQKSgtMKx/VWtpK20k3NjHBlqiNtSaYuLQOMJbRUioM2u6I
-W7e6duNPMO6N8Yew718weN+9w0BNdSZ33ntnzrlf770IAAi0Z2hhmiv4DVlvq9aR3T4JgHy20LRG
-u86Yn7C7ktaqP629tuoOIVAlvQ+/ard5utM+Y3gfLYhA1SM+kVq0j4cAv5C/93K8ls+nOQU0HH2g
-XFxcKJRgwot/33E6dq3nWILI22gxmHz824VL6wA58Dsdy9IJMNCmT2mqGukfAP1A0PiCY1kN8RjU
-eAyFedSmDB8GaWCLAv5zaIEJWF3E+PwYxWGYpr/fIpiyEBvSb5R0fS1myOR2ogjN0LQfpbhxI/wT
-F6GEsfUb/cevsf8EOp3ahSZYUIc3cABteIjWhgbAdQ6SoCCb6CNJ2n58lrVJ3EFtrPV0c6xLejqA
-FGcXTHN1qQyPaZ09ZS5VOU/g94xX3AKr0zeooPICQlnifMWpGtgHG6U20GbnOHhq3Jk8q9UCx8wv
-8li4SUxnEUARPkPu0S3WLnraJZYWbnNTlxBapumHJSqryE3Nr9BYLq5yc1fWuKzV/zT3Dsda9WKV
-uLkr66wt/aO5G6wrjevbZKQ4Rgy6E7GGcXjUMU+bh6/anZbpBCnlpLxaBFdMx+TzmnHPrcjjR3Ev
-6HPvgspV2Dyzuw/ID1/HeXnmhMudJWiIL4j5FyMUJtHUCPVNoHsV3LYubpwNx/haWGAOyx0V3cW7
-loMKrMMujjU4v/Q3ByfQw42v4bqDq2XYQR89XOXgHtp7OhJN/J7gahNKsAFrOKu6cSSnDe9cNf8v
-uuUGnY5Zt4yKQsnqbupZMQNCl5mDpoISGWX2txchhJQM/ZqqREekq9IRPiQOBgNBzVFYFcegwi90
-AcNhVgSE7uuXMbQqdIVyCArdP5STkOQAcjTkYFZZEUbOUCJTyCF5BDkkn5YcqYoSBycxyZFkLjl2
-0GtZHbtuHvM2h6j0R2gNzNnmI+WeiSueyOTiDxI8vnnlBQAA</item>
+<item item-id="3" content-encoding="gzip">H4sIAAAAAAAA/31TS08TURQ+d6ad6ZTS0mqh7YB9oEgBS5mwkcSkAlGJiElNXIrDdKRVSnEYFHaN
+W7e6duNPMO6N8Yew5y+Yeu457bQYdJpzH1+/77zuvTEAEGjP0KK0VnGMuG/r7n6rcxgG+a2iGY2O
+w1iIsLuS1nae7r12HZ8QqJNewVE7bh6td04Z3kbTEagHxCdSi/ZxF+AX8rdeDvfy+zSlgoGzAurF
+xYVKCaaC+Pd932vtnfiuIPIaWgJGv9Ba6dI+TA5Cvue6JgEW2vgRLTUr+wOgG9atLzjXtAjPusFz
+JMqzMWYpGKSBLQqHzqANNmB1MevzYxRHYZz+/RbDlIWoSr9x0nWNhCWTW48jNEHLbpziJq3oT9xE
+Utbqb/SfvMb+U+h0bAOa4IIDb2AHOvAQrQMNgOscJEVBVtBHmrTd5CRr03iCxlAb6KZYlw50ABnO
+Ts9ydZkcz1mTPeUuVTlN4PdcUNwMq7M3qKDaDEJ54nzFpRbehhZKW0CHXeDgmWFniqzWShyzOMtz
+6SYx/VkAVSiWPKNbrJ0NtHMsLd3mps4hNE/LD3NUVpmbWlyguVZe5OYuLHFZi/9p7h2OtRjEqnBz
+F5ZZW/lHc6usqwzrW2GkPEQsehOJhrW779lHzd1XHa9t+zqlnJZPi+BN27f5vub691YUcVD7D/R5
+8EDlLmqfto4fkB9+jtPyzok+d5KgHv5ATL8YoDCKZgaoMoJWN2EZNqAAe3CGoxOUW4B5WIcDOMF9
+Ae6hvacDbuJ4iLsVqEAVlnBVR0ajz+nAO9x5wf/lfvK679mOa22qFNrsJ5IXEyBMmQcYGqixQS5/
+exFCSEkvZGhqfEC6Kh2hIPH8/FxQqSqrkhhUhIQpoNfLi7AwlW4NQ2vCVCkHXZihnlxEJAeQYyAH
+s8qLKHJ6EhlDDsljyCH5uORIVZw4uEhIjiRzyYmdk7brtRz7gA8tQqU/Qmtgzi2+IP0TvuKLjW7+
+AJ4ADz2zBQAA</item>
 </binaryContent>
 </worksheet>

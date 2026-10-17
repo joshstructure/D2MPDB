@@ -257,17 +257,19 @@ class CapMathcad(unittest.TestCase):
 
     def test_writer_stack_augment_last_and_a_computed_range(self):
         rng = R('i', 0, 'last(b)')
-        blocks = [EQ(D('a', 'col(1, 2)'), D('b', 'stack(a, 3)')), ROW(rng),
+        blocks = [EQ(D('a', 'col(1, 2)'), D('b', 'stack(a, col(3, 4))')), ROW(rng),
                   EQ(V('c', 'i', 'b[i]*2', show=False), D('M', 'augment(b, c)'))]
         env = run(blocks)
-        self.assertEqual([y.v for y in env['b']], [1, 2, 3])
-        self.assertEqual(env['i'], [0, 1, 2])
+        self.assertEqual([y.v for y in env['b']], [1, 2, 3, 4])
+        self.assertEqual(env['i'], [0, 1, 2, 3])
         self.assertEqual((env['M'][2, 0].v, env['M'][2, 1].v), (3, 6))
+        with self.assertRaisesRegex(mathcad_sheet.UnitError, 'col'):      # arrays only, as PSBeam uses stack
+            run([EQ(D('a', 'col(1, 2)'), D('b', 'stack(a, 3)'))])
         self.assertEqual(mathcad_sheet.uses_of(rng), {'b'})
         self.assertIn('<ml:range><ml:real>0</ml:real><ml:apply><ml:id xml:space="preserve">last</ml:id>'
                       '<ml:id xml:space="preserve">b</ml:id></ml:apply></ml:range>', mathcad_sheet.Writer._inner(rng))
         with self.assertRaises(mathcad_sheet.UnitError):
-            run([EQ(D('b', 'stack(1*in, 2)'))])
+            run([EQ(D('b', 'stack(col(1*in), col(2))'))])
         with self.assertRaises(mathcad_sheet.UnitError):
             run([EQ(D('a', 'col(1, 2)'), D('M', 'augment(a, col(1, 2, 3))'))])
 

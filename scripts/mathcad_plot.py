@@ -42,6 +42,7 @@ TEMPLATE = ROOT / 'cap_mathcad' / 'templates' / 'psbeam_check_summary_plot.bin'
 PROVENANCE = ROOT / 'cap_mathcad' / 'templates' / 'psbeam_check_summary_plot.json'
 WIDTH_PT, HEIGHT_PT = 525.75, 142.5            # the template region's size in the PSBeam sheet
 USES = ('CheckNoGood', 'CheckGood', 'ymax', 'Limit')   # worksheet variables the patched plot refers to
+TITLE_MAX = 54          # the template's own title length; longer titles have not been tried in Mathcad
 
 
 def _u16(text):
@@ -82,6 +83,8 @@ def patched(n_checks, *, title, over_label, within_label):
     """Plot object bytes (uncompressed) for a worksheet with `n_checks` checks."""
     if not 1 <= n_checks <= 200:
         raise ValueError('number of checks out of range')
+    if len(title) > TITLE_MAX:
+        raise ValueError(f'plot title longer than {TITLE_MAX} characters, the longest tried in Mathcad: {title!r}')
     data = template()
     data = _replace_once(data, _counted(0x01, 'Summary of 30 Design Checks (Blue = OK, Red = No Good)'),
                          _counted(0x01, title), 'plot title')

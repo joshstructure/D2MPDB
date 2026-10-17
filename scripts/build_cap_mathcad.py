@@ -668,7 +668,7 @@ def sheet_tail(ctx, spacing, faces, hook):
 
 
 # ----------------------------------------------------------------------------- demand/capacity plot (Figure 3)
-DC_TITLE = 'Distilled checks: D/C by check number (Blue = within 1.0, Red = over 1.0)'
+DC_TITLE = 'D/C by check (Blue = within 1.0, Red = over 1.0)'
 DC_CAPTION = ('Figure 3. Demand/capacity ratio of each distilled check (stems) against the limit (dashed line). It is a '
               'Mathcad plot of CheckGood and CheckNoGood, so it recalculates with the worksheet and a check turns red '
               'when its ratio passes 1.0.')
@@ -701,9 +701,8 @@ def dc_plot_blocks(skin, hook):
     return [
         P('Figure 3 data: every distilled ratio in check order, split at the limit. A check on the other side of the '
           'limit is parked at check number −1, outside the plot.'),
-        EQ(D('DC_NPB', 'stack(' + ', '.join(name for name, rows, _ in checks if rows == 3) + ')', 'checks 1 to 12'),
-           D('DC_all', 'stack(DC_NPB, ' + ', '.join(name for name, rows, _ in checks if rows == 1) + ')',
-             'distilled ratios in check order')),
+        EQ(D('DC_all', 'stack(' + ', '.join(name for name, rows, _ in checks if rows == 3) + ', col('
+             + ', '.join(name for name, rows, _ in checks if rows == 1) + '))', 'distilled ratios in check order')),
         ROW(D('Limit', '1'), R('j', 0, 'last(DC_all)'), D('ymax', 'max(1.2, 1.1*max(DC_all))')),
         ROW(V('x_ok', 'j', 'IF(DC_all[j] <= Limit, j + 1, -1)', show=False),
             V('y_ok', 'j', 'IF(DC_all[j] <= Limit, DC_all[j], 0)', show=False)),
