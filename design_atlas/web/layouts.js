@@ -16,7 +16,7 @@
     if(n.id==='JOURNAL-EB-ENTRY')return 'End bents · shared';
     if(/^(PIER-|REQUIRED-PIER-|JOURNAL-PIER-)/.test(n.id))return 'Pier';
     if(/^EB2-/.test(n.id))return 'End Bent 2';
-    if(/^EB-/.test(n.id))return 'End Bent 1';
+    if(/^(EB-|REQUIRED-EB-)/.test(n.id))return 'End Bent 1';
     if(/^BACKWALL-/.test(n.id))return 'Backwall / cheek walls';
     if(/^(MCAD-|PSB-)/.test(n.id))return 'Spans / superstructure';
     return 'Shared / project-wide';

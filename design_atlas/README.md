@@ -48,6 +48,13 @@ through the same Sites project to refresh it. The initial site is
   its **FBMP Entry — Pier** module in the same map.
   **FBMP Entry — End Bent** also connects to the registered end-bent runs.
   Select either module to inspect saved node identities, coordinates and loads.
+- **End-bent cap report** now opens its own saved inputs and transverse-run
+  settings. Its trace includes the end-bent journal entry, required FBMP run,
+  retained audit and saved case. The required run and registered XML remain
+  distinct when their fingerprints differ. End-bent value IDs are scoped to
+  that component so a pier parameter with the same symbol cannot be substituted.
+  Components without extracted values show a coverage message and a source-record
+  action; registered-only connections can be opened directly in pane 02.
   For analysis results such as negative moment, the journal appears under
   **Model inputs upstream of this result**; it is not labeled as the source of
   an identical moment value.
@@ -140,6 +147,7 @@ establish design approval or validate unlinked source history.
 node --check design_atlas/web/atlas.js
 node --check design_atlas/web/layouts.js
 node tests/test_atlas_layouts.js
+.venv\Scripts\python.exe -m unittest tests.test_end_bent_atlas -v
 ```
 
 The browser app is buildless and uses no external network requests. Generated

@@ -26,8 +26,8 @@
   }
   function unitText(unit) { return unit==='unitless'?'':(unit||'').replace('kip*ft','kip·ft'); }
   const roleNames={received:'Received input',defined:'Local setting',derived:'Derived / formula',unknown:'Origin unconfirmed'};
-  const originOf=v=>v.origins[state.selected]||v.origins[v.node_ids.includes('PIER-CASE')?'PIER-CASE':v.node_ids[0]];
-  const originNode=v=>v.origins[state.selected]?state.selected:v.node_ids.includes('PIER-CASE')?'PIER-CASE':v.node_ids[0];
+  const originNode=v=>v.origins[state.selected]?state.selected:v.primary_node||(v.node_ids.includes('PIER-CASE')?'PIER-CASE':v.node_ids[0]);
+  const originOf=v=>v.origins[originNode(v)];
   function snapshot() {return {...state, query:$('value-search').value,category:$('value-category').value,scroll:window.scrollY,tableScroll:document.querySelector('.value-table-wrap').scrollTop,detailScroll:$('value-detail').scrollTop};}
   function saveSelection(push=false) {
     const hash=new URLSearchParams(state.selected?{source:state.selected,value:state.value,trace:state.parameterFocus?'value':'node'}:{view:'all'});
@@ -63,7 +63,7 @@
   }
   $('trace-collapse').onclick=()=>toggleTrace(true);$('trace-expand').onclick=()=>toggleTrace(false);
   function renderSelection(preserveCamera=false) {
-    renderTraceSidebar();const changed=updateLayout();paintGraph();renderTrace();renderValues();
+    renderTraceSidebar();const changed=updateLayout();renderValues();paintGraph();renderTrace();
     if(changed&&!preserveCamera&&state.layout==='neighborhood')fit(data.nodes.map(n=>n.id));
   }
   function scrollToValues() {$('values-panel').scrollIntoView({block:'start'});$('values-title').focus({preventScroll:true});}
@@ -239,14 +239,14 @@
     const height=flow.scrollHeight;
     const paths=routed.map(({e,lane})=>{
       const a=centers.get(e.source),b=centers.get(e.target),x=gutter-16-lane*(gutter-24)/Math.max(1,lanes.length),end=gutter-2,mid=(a+b)/2;
-      const dashed=e.kind!=='flow';
+      const gap=['missing','mismatch','unmapped'].includes(e.status),dashed=e.kind!=='flow'||gap;
       const description=byId.get(e.source).title+' → '+byId.get(e.target).title+' · '+e.label+' · '+(prettyStatus[e.status]||e.status);
-      return `<g class="trace-flow-link${dashed?' dependency':''}" data-flow-source="${escape(e.source)}" data-flow-target="${escape(e.target)}"><title>${escape(description)}</title><path d="M${end},${a} H${x} V${b} H${end}" marker-end="url(#trace-arrow)"/><path class="trace-travel-arrow" d="M${x-3},${mid+(b>a?-4:4)} L${x},${mid} L${x+3},${mid+(b>a?-4:4)}"/><circle cx="${end}" cy="${a}" r="2"/></g>`;
+      return `<g class="trace-flow-link${dashed?' dependency':''}${gap?' gap':''}" data-flow-source="${escape(e.source)}" data-flow-target="${escape(e.target)}"><title>${escape(description)}</title><path d="M${end},${a} H${x} V${b} H${end}" marker-end="url(#trace-arrow)"/><path class="trace-travel-arrow" d="M${x-3},${mid+(b>a?-4:4)} L${x},${mid} L${x+3},${mid+(b>a?-4:4)}"/><circle cx="${end}" cy="${a}" r="2"/></g>`;
     }).join('');
     $('trace-flow-lines').setAttribute('width',gutter);$('trace-flow-lines').setAttribute('height',height);
-    $('trace-flow-lines').innerHTML='<defs><marker id="trace-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#087c72"/></marker></defs>'+paths;
+    $('trace-flow-lines').innerHTML='<defs><marker id="trace-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="context-stroke"/></marker></defs>'+paths;
     const feedback=links.some(e=>index.get(e.target)<=index.get(e.source));
-    $('trace-flow-note').textContent='Follow arrowheads from source to use.'+(links.some(e=>e.kind!=='flow')?' Dashed lines: registered dependencies.':'')+(feedback?' Upward arrows: recorded feedback links.':'');
+    $('trace-flow-note').textContent='Follow arrowheads from source to use.'+(links.some(e=>e.kind!=='flow')?' Dashed lines: registered dependencies.':'')+(links.some(e=>['missing','mismatch','unmapped'].includes(e.status))?' Amber dashed lines: source gaps or conflicts.':'')+(feedback?' Upward arrows: recorded feedback links.':'');
   }
   function renderTrace() {
     const trace=traceSets(),node=byId.get(state.selected);
@@ -259,9 +259,9 @@
     const nodeValues=data.values.filter(v=>v.node_ids.includes(state.selected)),count=nodeValues.length;
     const received=nodeValues.filter(v=>originOf(v).kind==='received').length;
     const local=nodeValues.filter(v=>['defined','derived'].includes(originOf(v).kind)).length;
-    $('parameter-access').innerHTML=count?`<button id="view-parameters" class="primary">View parameters (${count}) ↓</button><p>${received} received · ${local} defined / derived · ${count-received-local} unconfirmed</p>`:'<p>Parameters have not been extracted for this node yet.</p><button id="open-case-inputs">Open pier saved case inputs ↓</button>';
+    $('parameter-access').innerHTML=count?`<button id="view-parameters" class="primary">View parameters (${count}) ↓</button><p>${received} received · ${local} defined / derived · ${count-received-local} unconfirmed</p>`:'<p>Parameters have not been extracted for this node yet.</p><button id="inspect-parameter-source">Inspect this source ↗</button>';
     if($('view-parameters'))$('view-parameters').onclick=()=>navigate(()=>{resetFilters();state.parameterFocus=false;renderSelection();scrollToValues();});
-    if($('open-case-inputs'))$('open-case-inputs').onclick=()=>selectNode('PIER-CASE',true);
+    if($('inspect-parameter-source'))$('inspect-parameter-source').onclick=()=>showNodeEvidence(node);
     document.querySelectorAll('[data-direction]').forEach(b=>{b.classList.toggle('active',b.dataset.direction===state.direction);b.setAttribute('aria-pressed',String(b.dataset.direction===state.direction));});
     document.querySelector('.trace-controls').hidden=state.parameterFocus;
     document.querySelector('.dependency-toggle').hidden=state.parameterFocus;
@@ -285,6 +285,10 @@
       (downstream.size?'<div class="trace-group">Downstream uses</div>'+traceButtons(downstream,edges):'')+
       (feedback.size?'<div class="trace-group">Recorded feedback</div>'+traceButtons(feedback,edges):'')+'</div>';
     drawTraceFlow();$('trace-body').scrollTop=0;
+    if(trace.all.size===1&&!state.dependencies&&data.edges.some(e=>e.kind==='dependency'&&(e.source===node.id||e.target===node.id))) {
+      $('trace-body').insertAdjacentHTML('beforeend','<p class="trace-context-note">This node has registered connections, but no detailed handoff has been extracted.</p><button id="show-registered-trace">Show registered connections</button>');
+      $('show-registered-trace').onclick=()=>navigate(()=>{state.dependencies=true;$('include-dependencies').checked=true;paintGraph();renderTrace();});
+    }
     $('trace-body').querySelectorAll('[data-source]').forEach(el=>el.onclick=()=>selectNode(el.dataset.source));
     const issues=data.issues.filter(i=>i.node_ids.includes(node.id)&&!['Closed','Not applicable'].includes(i.Status));
     $('source-detail').innerHTML=badge(node.status)+'<p>'+escape(node.detail)+'</p>'+
@@ -339,6 +343,8 @@
     if(empty){$('values-title').textContent='Parameters & origins';$('value-rows').innerHTML='';$('value-count').textContent='';$('empty-values').hidden=true;$('value-detail').innerHTML='<h3>Select a source to explore its parameters</h3><p class="value-note">Choose a node on the map, or browse all extracted values.</p>';return;}
     const query=$('value-search').value.toLowerCase(),cat=$('value-category').value;
     const available=data.values.filter(v=>state.allValues||v.node_ids.includes(state.selected));
+    $('values-panel').classList.toggle('no-values',!available.length);
+    document.querySelector('.value-controls').hidden=!available.length;$('origin-filters').hidden=!available.length;$('origin-context').hidden=!available.length;
     const inOrigin=(v,kind)=>kind==='all'||(kind==='local'?['defined','derived'].includes(originOf(v).kind):originOf(v).kind===kind);
     $('origin-filters').innerHTML=[['all','All parameters'],['received','Received inputs'],['local','Defined / derived here'],['unknown','Origin unconfirmed']].map(([key,label])=>`<button data-origin="${key}" class="${state.origin===key?'active':''}" aria-pressed="${state.origin===key}">${label}<strong>${available.filter(v=>inOrigin(v,key)).length}</strong></button>`).join('');
     $('origin-filters').querySelectorAll('button').forEach(b=>b.onclick=()=>navigate(()=>{state.origin=b.dataset.origin;state.parameterFocus=false;renderSelection();}));
@@ -347,7 +353,7 @@
       (v.label+' '+v.key+' '+v.unit+' '+format(v.value)+' '+(v.expression||'')).toLowerCase().includes(query));
     $('values-title').textContent=state.allValues?'All extracted values':byId.get(state.selected).title+' · parameters';
     $('value-count').textContent=shown.length+' values';$('empty-values').hidden=shown.length>0;
-    if(!shown.some(v=>v.id===state.value)&&shown.length)state.value=shown[0].id;
+    if(!shown.some(v=>v.id===state.value)&&shown.length)state.value=(shown.find(v=>v.key===valueById.get(state.value)?.key)||shown[0]).id;
     if(!shown.length)state.parameterFocus=false;
     $('value-rows').innerHTML=shown.map(v=>{
       const role=originOf(v);
@@ -356,7 +362,7 @@
     $('value-rows').querySelectorAll('tr').forEach(row=>row.onclick=()=>navigate(()=>{state.value=row.dataset.value;if(!state.selected)state.selected=originNode(valueById.get(state.value));state.parameterFocus=true;state.overview=false;state.traceCollapsed=false;renderSelection();keepSelectedVisible();$('value-detail').scrollTop=0;if(matchMedia('(max-width:760px)').matches)$('value-detail').scrollIntoView({block:'start'});announce('Tracing '+valueById.get(state.value).label);}));
     $('value-rows').querySelectorAll('[data-origin-node]').forEach(b=>b.onclick=e=>{e.stopPropagation();selectNode(b.dataset.originNode,true,b.closest('tr').dataset.value);});
     if(shown.length)renderValue(valueById.get(state.value));
-    else $('value-detail').innerHTML=available.length?'<h3>No parameters match these filters</h3><p class="value-note">Clear the filters to see all extracted parameters at this node.</p><button id="clear-value-filters">Clear parameter filters</button>':'<h3>Parameters not yet extracted</h3><p class="value-note">The project map includes every registered source. Detailed extraction covers the pier-cap trail and the journal’s pier/end-bent node-entry tables.</p><button id="open-all-values">Browse all extracted values</button>';
+    else $('value-detail').innerHTML=available.length?'<h3>No parameters match these filters</h3><p class="value-note">Clear the filters to see all extracted parameters at this node.</p><button id="clear-value-filters">Clear parameter filters</button>':'<h3>Parameters not yet extracted for this source</h3><p class="value-note">Its source record and registered connections are available in pane 02. Detailed values currently cover the pier trail, End Bent 1 case/report and journal node-entry tables.</p><button id="open-all-values">Browse all extracted values</button>';
     if($('open-all-values'))$('open-all-values').onclick=showAllValues;
     if($('clear-value-filters'))$('clear-value-filters').onclick=()=>navigate(()=>{resetFilters();renderSelection();});
   }

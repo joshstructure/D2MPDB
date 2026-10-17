@@ -414,6 +414,8 @@ def build_data(root=ROOT):
                               'Current calculation-tool revision is not attributed to the historical report run.',
                               'This is a read-only snapshot. Rebuild to capture changed project files.']}}
     # Detect concurrent edits during ingestion instead of publishing mixed bytes.
+    from design_atlas.end_bent import extend_end_bent
+    extend_end_bent(result, root, LABELS, category)
     changed=[p for p,digest in fingerprints.items() if not (root/p).is_file() or sha(root/p)!=digest]
     if changed: raise RuntimeError('Sources changed during atlas build: '+', '.join(changed))
     validate(result)

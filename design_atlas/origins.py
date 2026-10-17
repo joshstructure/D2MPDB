@@ -1,7 +1,7 @@
 """Conservative, node-relative provenance roles. Absence of a link is not origin."""
 
 
-def classify(value, case, same_report, receipt_ok, receipt_evidence=None):
+def classify(value, case, same_report, receipt_ok, receipt_evidence=None, case_path='project_current/cap_design/pier/selected_case.json'):
     roles = {}
     key = value['key']
     notes = case['analysis']['notes']
@@ -19,7 +19,7 @@ def classify(value, case, same_report, receipt_ok, receipt_evidence=None):
         role(node, 'unknown', 'The value is recorded here, but its original authoring source is not established by the captured evidence.', evidence=proof)
 
     case_proof = [s['evidence'] for s in value['steps'] if s['node'] == 'PIER-CASE']
-    note_proof = {'path': 'project_current/cap_design/pier/selected_case.json',
+    note_proof = {'path': case_path,
                   'locator': '/analysis/notes', 'excerpt': notes, 'note': 'Saved import policy and retained settings.'}
     if 'PIER-CASE' in roles:
         if key == 'Vu_L':
