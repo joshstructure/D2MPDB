@@ -1,5 +1,9 @@
 # End bent and pier DXF (FDOT format)
 
+**Model revision D-046 (17 October 2026) added 42 cheek horizontal hooks and
+updated native marks to 4E3/4E4. This DXF and its bar register predate that
+revision and must be regenerated before using the new hook geometry.**
+
 [`output/B4_Substructure_EndBents_Pier.dxf`](output/B4_Substructure_EndBents_Pier.dxf)
 is one DXF with plans, elevations (concrete and reinforcement together),
 sections and details for End Bent 1, the pier and End Bent 2, plus a

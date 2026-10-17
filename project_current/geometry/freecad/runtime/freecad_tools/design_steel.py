@@ -112,7 +112,8 @@ def write_wall_schedule(inp,sh,bars):
     sh.clearAll()
     for col,t in zip('ABCDEFGH',['Mark','Family','US #','Count','Dia (in)','Length (ft)','Total (ft)','Weight (lb)']):sh.set(col+'1',t)
     for r,b in enumerate(bars,2):
-        sh.set('A'+str(r),b.Mark);sh.set('B'+str(r),b.Base.Family)
+        # SDM marks such as 4E3 must remain text, not scientific notation.
+        sh.set('A'+str(r),"'"+b.Mark);sh.set('B'+str(r),b.Base.Family)
         for col,expr in {'C':b.Base.Name+'.BarNumber','D':b.Name+'.Amount','E':b.Name+'.Diameter/(1 in)','F':b.Name+'.Length/(1 ft)','G':b.Name+'.TotalLength/(1 ft)','H':b.Name+'.NominalWeightLb'}.items():sh.set(col+str(r),'='+expr)
     r=len(bars)+2;q=inp.Prefix+'Quantities';sh.set('A'+str(r),'TOTAL')
     for col,expr in [('D',q+'.TotalBars'),('G',q+'.TotalSteelLength/(1 ft)'),('H',q+'.NominalSteelWeightLb')]:sh.set(col+str(r),'='+expr)
@@ -153,9 +154,19 @@ def wall_detail_checks(doc,inputs):
     for inp in inputs:
         local=bridge.local_shape(inp.Host);bb=local.BoundBox;back=inp.Host.ComponentKind=='Backwall';cv=inp.Cover.Value
         host=inp.Host.Shape.copy().fuse(inp.Cap.Shape.copy())
+        hooked='HorizontalHooksJSON' in inp.PropertiesList
+        if hooked:
+            from .cheek_hooks import envelope
+            host=envelope(inp)
         rows=json.loads(inp.LayoutJSON)
         for b in doc.getObject(inp.Prefix+'Quantities').Bars:
             newbars.append(b);s=b.Shape.copy();outside=abs(s.cut(host.copy()).Volume)
+            if hooked:
+                from .cheek_hooks import local
+                sl=local(s,inp.CageFrame);hl=local(host,inp.CageFrame)
+                outside=abs(sl.cut(hl).Volume);cover=min(sl.distToShape(f)[0] for f in hl.Faces)
+                covers.append(result(b.Name+'_wall_cover',outside<=1e-7 and cover+.0254>=cv,minimum_in=cover/IN,required_in=cv/IN,outside_in3=outside/IN**3))
+                continue
             sl=s.copy();sl.Placement=inp.CageFrame.inverse().multiply(sl.Placement);sb=bounds(sl)
             margins=[sb.XMin-bb.XMin,bb.XMax-sb.XMax,sb.YMin-bb.YMin,bb.YMax-sb.YMax]
             # The top is measured against the actual sloped face independently.

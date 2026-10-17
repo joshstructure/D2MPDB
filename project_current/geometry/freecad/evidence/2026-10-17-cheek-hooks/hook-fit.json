@@ -1,0 +1,3653 @@
+{
+  "status": "COMPLETE",
+  "walls": [
+    {
+      "host": "BridgeCheekEB11",
+      "backwall_bounds": {
+        "XMin": -12.000000003936997,
+        "XMax": 3.9370983955545774e-09,
+        "YMin": -117.50000000393717,
+        "YMax": 117.50000000393759,
+        "ZMin": 518.8523067826808,
+        "ZMax": 567.932000003937
+      },
+      "hooks": {
+        "MH02": {
+          "start": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "end": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          }
+        },
+        "MH03": {
+          "start": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "end": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          }
+        },
+        "MH04": {
+          "start": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "end": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          }
+        },
+        "MH05": {
+          "start": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          }
+        },
+        "MH06": {
+          "start": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          }
+        },
+        "MH07": {
+          "start": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          }
+        },
+        "MH08": {
+          "start": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          }
+        },
+        "MH09": {
+          "start": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          }
+        }
+      },
+      "trials": [
+        {
+          "id": "MH01",
+          "end": "start",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH01",
+          "end": "end",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH02",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.2499999999999813,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "CageEB1Trans_R1_1",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.13856532781785713,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB1Trans_R1_2",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.08378828756161989,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "CageEB1Trans_R1_1",
+            "name": "clearance",
+            "status": "FAIL",
+            "classification": "OVERLAP",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.13856532781785713,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974471
+        },
+        {
+          "id": "MH02",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.2499999999999813,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB11MV04",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 4.270636370343252e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974473
+        },
+        {
+          "id": "MH02",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450448963,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "CageEB1Trans_R1_1",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.1323438569456605,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB1Trans_R1_2",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.02080639841636762,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "CageEB1Trans_R1_1",
+            "name": "clearance",
+            "status": "FAIL",
+            "classification": "OVERLAP",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.1323438569456605,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974495
+        },
+        {
+          "id": "MH02",
+          "end": "end",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450448963,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB11MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 4.1858861625524877e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974495
+        },
+        {
+          "id": "MH03",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.2499999999999813,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "CageEB1Trans_R1_1",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.13912254871839047,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB1Trans_R1_2",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.09740156541088091,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "SteelBridgeBackwallEB1F1V01",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.10813861074461627,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "CageEB1Trans_R1_1",
+            "name": "clearance",
+            "status": "FAIL",
+            "classification": "OVERLAP",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.13912254871839047,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974481
+        },
+        {
+          "id": "MH03",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.2499999999999813,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB11MV05",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 3.404302560704212e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974483
+        },
+        {
+          "id": "MH03",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450448963,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "CageEB1Trans_R1_1",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.13110878842915552,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB1Trans_R1_2",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.010261586774501941,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "CageEB1Trans_R1_1",
+            "name": "clearance",
+            "status": "FAIL",
+            "classification": "OVERLAP",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.13110878842915552,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974505
+        },
+        {
+          "id": "MH03",
+          "end": "end",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450448963,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB11MV03",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 4.65489414293231e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974505
+        },
+        {
+          "id": "MH04",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.2499999999999813,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "CageEB1Trans_R1_1",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 1.1189649382048822e-15,
+              "common_volume_in3": 0.13411902709571133,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB1Trans_R1_2",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.08510821559310625,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "SteelBridgeBackwallEB1F1V01",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.10813861071548495,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "CageEB1Trans_R1_2",
+            "name": "clearance",
+            "status": "FAIL",
+            "classification": "OVERLAP",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.08510821559310625,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974483
+        },
+        {
+          "id": "MH04",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.2499999999999813,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB11MV04",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 4.833928533045092e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974481
+        },
+        {
+          "id": "MH04",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450448963,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "CageEB1Trans_R1_1",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.24088500094116885,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB1Trans_R1_2",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.09969521929303972,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "CageEB1Trans_R1_1",
+            "name": "clearance",
+            "status": "FAIL",
+            "classification": "OVERLAP",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.24088500094116885,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974505
+        },
+        {
+          "id": "MH04",
+          "end": "end",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450448963,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB11MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 6.453401706512582e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974504
+        },
+        {
+          "id": "MH05",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 1.9999999999999591,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB11MV02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.9693802780381316e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974789
+        },
+        {
+          "id": "MH05",
+          "end": "end",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH06",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 1.9999999999999547,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB11MV05",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 6.625633197711537e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974788
+        },
+        {
+          "id": "MH06",
+          "end": "end",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH07",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 1.9999999999999514,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB11MV05",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 6.105735514131466e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974797
+        },
+        {
+          "id": "MH07",
+          "end": "end",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH08",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 1.999999999999947,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB11MV05",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 7.243705759076763e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974797
+        },
+        {
+          "id": "MH08",
+          "end": "end",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH09",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 1.9999999999999423,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB11MV05",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 4.938883585747415e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974796
+        },
+        {
+          "id": "MH09",
+          "end": "end",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH10",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 0.0,
+            "outside_mm3": 12870.369969076435
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB11MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 5.536332757897761e-14,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH10",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 1.1189649382048822e-15,
+            "outside_mm3": 12870.369969076439
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB11MV03",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH10",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 0.0,
+            "outside_mm3": 12870.369969076435
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB11MV02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 7.706416101643245e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH10",
+          "end": "end",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH11",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 0.0,
+            "outside_mm3": 12870.369969076435
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB11MV03",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH11",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 1.1189649382048822e-15,
+            "outside_mm3": 12870.369969076439
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB11MV03",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH11",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 0.0,
+            "outside_mm3": 12870.369969076439
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB11MV03",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH11",
+          "end": "end",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        }
+      ]
+    },
+    {
+      "host": "BridgeCheekEB12",
+      "backwall_bounds": {
+        "XMin": -12.000000003936997,
+        "XMax": 3.9370983955545774e-09,
+        "YMin": -117.50000000393717,
+        "YMax": 117.50000000393759,
+        "ZMin": 518.8523067826808,
+        "ZMax": 567.932000003937
+      },
+      "hooks": {
+        "MH02": {
+          "start": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "end": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          }
+        },
+        "MH03": {
+          "start": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "end": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          }
+        },
+        "MH04": {
+          "start": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "end": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          }
+        },
+        "MH05": {
+          "start": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          }
+        },
+        "MH06": {
+          "start": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          }
+        },
+        "MH07": {
+          "start": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          }
+        },
+        "MH08": {
+          "start": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          }
+        },
+        "MH09": {
+          "start": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          }
+        }
+      },
+      "trials": [
+        {
+          "id": "MH01",
+          "end": "start",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH01",
+          "end": "end",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH02",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.249999999999968,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "CageEB1Trans_R9_4",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.13738298629093593,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "CageEB1Trans_R9_4",
+            "name": "clearance",
+            "status": "FAIL",
+            "classification": "OVERLAP",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.13738298629093593,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974412
+        },
+        {
+          "id": "MH02",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.249999999999968,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB12MV04",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.93299112209937e-12,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974412
+        },
+        {
+          "id": "MH02",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450449011,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "CageEB1Trans_R9_3",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.011828723662268,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB1Trans_R9_4",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.13718940378315542,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "SteelBridgeCheekEB12MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974424
+        },
+        {
+          "id": "MH02",
+          "end": "end",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450449011,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB12MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974424
+        },
+        {
+          "id": "MH03",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.249999999999968,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "SteelBridgeBackwallEB1F1V20",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.10814125976899198,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "SteelBridgeBackwallEB1F1V21",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.10814201452745387,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB1Trans_R9_4",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.13604456242026114,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "SteelBridgeBackwallEB1F1V20",
+            "name": "clearance",
+            "status": "FAIL",
+            "classification": "OVERLAP",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.10814125976899198,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974422
+        },
+        {
+          "id": "MH03",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.249999999999968,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB12MV03",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 3.3060822251544093e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974422
+        },
+        {
+          "id": "MH03",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450449011,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "CageEB1Trans_R9_3",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.022598523614864394,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB1Trans_R9_4",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.1348717170121059,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "SteelBridgeCheekEB12MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974434
+        },
+        {
+          "id": "MH03",
+          "end": "end",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450449011,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB12MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974434
+        },
+        {
+          "id": "MH04",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.249999999999968,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "SteelBridgeBackwallEB1F1V20",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.10814126015072097,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "SteelBridgeBackwallEB1F1V21",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.10814201475506716,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB1Trans_R9_4",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 3.356894814614647e-15,
+              "common_volume_in3": 0.10998066225340511,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "SteelBridgeBackwallEB1F1V20",
+            "name": "clearance",
+            "status": "FAIL",
+            "classification": "OVERLAP",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.10814126015072097,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974422
+        },
+        {
+          "id": "MH04",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.249999999999968,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB12MV04",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 3.404302560704212e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974422
+        },
+        {
+          "id": "MH04",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450449011,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "CageEB1Trans_R9_3",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.0232216015286599,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB1Trans_R9_4",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.2420531222963118,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "SteelBridgeCheekEB12MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974433
+        },
+        {
+          "id": "MH04",
+          "end": "end",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB1",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450449011,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB12MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974432
+        },
+        {
+          "id": "MH05",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 1.99999999999994,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB12MV02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 9.529105430177227e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974169
+        },
+        {
+          "id": "MH05",
+          "end": "end",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH06",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 1.9999999999999356,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB12MV05",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.6113095110150305e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974167
+        },
+        {
+          "id": "MH06",
+          "end": "end",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH07",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 1.9999999999999312,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB12MV02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 3.567414831960154e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974176
+        },
+        {
+          "id": "MH07",
+          "end": "end",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH08",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 1.9999999999999256,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB12MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 3.9265944927535964e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974176
+        },
+        {
+          "id": "MH08",
+          "end": "end",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH09",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 1.9999999999999212,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB12MV02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 7.698662251198228e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633974175
+        },
+        {
+          "id": "MH09",
+          "end": "end",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH10",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 0.0,
+            "outside_mm3": 12870.369969076339
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB12MV02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.7903439011278116e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH10",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 1.1189649382048822e-15,
+            "outside_mm3": 12870.369969076339
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB12MV05",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 3.222929830635889e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH10",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 0.0,
+            "outside_mm3": 12870.369969076339
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB12MV04",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 2.0016653330119747e-14,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH10",
+          "end": "end",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH11",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 0.0,
+            "outside_mm3": 12870.369969076339
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB12MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 3.566700740528062e-15,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH11",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 1.1189649382048822e-15,
+            "outside_mm3": 12870.369969076339
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB12MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 3.566700740528062e-15,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH11",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeBackwallEB1",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 0.0,
+            "outside_mm3": 12870.369969076339
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB12MV02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 3.566700740528062e-15,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH11",
+          "end": "end",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        }
+      ]
+    },
+    {
+      "host": "BridgeCheekEB21",
+      "backwall_bounds": {
+        "XMin": 2547.0000000000005,
+        "XMax": 2559.0000000000005,
+        "YMin": -117.49999999999943,
+        "YMax": 117.50000000000058,
+        "ZMin": 518.996305728356,
+        "ZMax": 568.0759999999999
+      },
+      "hooks": {
+        "MH02": {
+          "start": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "end": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          }
+        },
+        "MH03": {
+          "start": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "end": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          }
+        },
+        "MH04": {
+          "start": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "end": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          }
+        },
+        "MH05": {
+          "end": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          }
+        },
+        "MH06": {
+          "end": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          }
+        },
+        "MH07": {
+          "end": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          }
+        },
+        "MH08": {
+          "end": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          }
+        }
+      },
+      "trials": [
+        {
+          "id": "MH01",
+          "end": "start",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH01",
+          "end": "end",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH02",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450448666,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "CageEB2Trans_R1_1",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.13856532931109794,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB2Trans_R1_2",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.0838219651467532,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "CageEB2Trans_R1_1",
+            "name": "clearance",
+            "status": "FAIL",
+            "classification": "OVERLAP",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.13856532931109794,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633971959
+        },
+        {
+          "id": "MH02",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450448666,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB21MV03",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 7.61264668957153e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633971959
+        },
+        {
+          "id": "MH02",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.2500000000009166,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "CageEB2Trans_R1_1",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.132343856909413,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB2Trans_R1_2",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.02080639840520634,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "CageEB2Trans_R1_1",
+            "name": "clearance",
+            "status": "FAIL",
+            "classification": "OVERLAP",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.132343856909413,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633971913
+        },
+        {
+          "id": "MH02",
+          "end": "end",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.2500000000009166,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB21MV02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.028006675287442e-12,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633971913
+        },
+        {
+          "id": "MH03",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450448666,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "CageEB2Trans_R1_1",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.1391226110440593,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB2Trans_R1_2",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.09741144281318408,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "CageEB2Trans_R1_1",
+            "name": "clearance",
+            "status": "FAIL",
+            "classification": "OVERLAP",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.1391226110440593,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633971969
+        },
+        {
+          "id": "MH03",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450448666,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB21MV04",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 8.951719505639058e-14,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633971969
+        },
+        {
+          "id": "MH03",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.2500000000009166,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "CageEB2Trans_R1_1",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.13110879368817596,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB2Trans_R1_2",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.010261586806543294,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "SteelBridgeBackwallEB2F2V01",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.10813685246875564,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "CageEB2Trans_R1_1",
+            "name": "clearance",
+            "status": "FAIL",
+            "classification": "OVERLAP",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.13110879368817596,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633971923
+        },
+        {
+          "id": "MH03",
+          "end": "end",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.2500000000009166,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB21MV03",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 7.381777010530348e-14,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633971923
+        },
+        {
+          "id": "MH04",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450448666,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "CageEB2Trans_R1_1",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.13411902710605733,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB2Trans_R1_2",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.08510821559327864,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "CageEB2Trans_R1_1",
+            "name": "clearance",
+            "status": "FAIL",
+            "classification": "OVERLAP",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.13411902710605733,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633971969
+        },
+        {
+          "id": "MH04",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450448666,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB21MV03",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.7903439011278115e-14,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633971969
+        },
+        {
+          "id": "MH04",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.2500000000009166,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "CageEB2Trans_R1_1",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.24088493036215494,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB2Trans_R1_2",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.09969521428545738,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "SteelBridgeBackwallEB2F2V01",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.10813685255420379,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "CageEB2Trans_R1_1",
+            "name": "clearance",
+            "status": "FAIL",
+            "classification": "OVERLAP",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.24088493036215494,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633971923
+        },
+        {
+          "id": "MH04",
+          "end": "end",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.2500000000009166,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB21MV04",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 7.161375604511246e-14,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633971923
+        },
+        {
+          "id": "MH05",
+          "end": "start",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH05",
+          "end": "end",
+          "status": "PASS",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.0000000000006875,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB21MV02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 5.241153413753368e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633971898
+        },
+        {
+          "id": "MH06",
+          "end": "start",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH06",
+          "end": "end",
+          "status": "PASS",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.0000000000006875,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB21MV02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.7903439011278115e-14,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633971899
+        },
+        {
+          "id": "MH07",
+          "end": "start",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH07",
+          "end": "end",
+          "status": "PASS",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.0000000000006875,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB21MV02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 7.161375604511246e-14,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633971899
+        },
+        {
+          "id": "MH08",
+          "end": "start",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH08",
+          "end": "end",
+          "status": "PASS",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.0000000000006875,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB21MV03",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 2.9527108042121393e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633971889
+        },
+        {
+          "id": "MH09",
+          "end": "start",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH09",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 1.7296942716440367,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB21MV03",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.0127714505147628e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633971893
+        },
+        {
+          "id": "MH09",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 1.7296942716440367,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB21MV03",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 3.222619022030061e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633971893
+        },
+        {
+          "id": "MH09",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 1.7296942716440367,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB21MV03",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.6113095110150305e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633971893
+        },
+        {
+          "id": "MH10",
+          "end": "start",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH10",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 0.0,
+            "outside_mm3": 12870.36996907588
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB21MV02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 2.6855158516917175e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH10",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 0.0,
+            "outside_mm3": 12870.36996907588
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB21MV05",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 2.0955438099688122e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH10",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 0.0,
+            "outside_mm3": 12870.36996907588
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB21MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 3.0435846319172797e-13,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH11",
+          "end": "start",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH11",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 0.0,
+            "outside_mm3": 12870.36996907588
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB21MV02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH11",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 0.0,
+            "outside_mm3": 12870.36996907588
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB21MV02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH11",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 0.0,
+            "outside_mm3": 12870.36996907588
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB21MV02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        }
+      ]
+    },
+    {
+      "host": "BridgeCheekEB22",
+      "backwall_bounds": {
+        "XMin": 2547.0000000000005,
+        "XMax": 2559.0000000000005,
+        "YMin": -117.49999999999943,
+        "YMax": 117.50000000000058,
+        "ZMin": 518.996305728356,
+        "ZMax": 568.0759999999999
+      },
+      "hooks": {
+        "MH02": {
+          "start": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "end": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          }
+        },
+        "MH03": {
+          "start": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "end": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          }
+        },
+        "MH04": {
+          "start": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "end": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          }
+        },
+        "MH05": {
+          "end": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          }
+        },
+        "MH06": {
+          "end": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          }
+        },
+        "MH07": {
+          "end": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          }
+        },
+        "MH08": {
+          "end": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          }
+        }
+      },
+      "trials": [
+        {
+          "id": "MH01",
+          "end": "start",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH01",
+          "end": "end",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH02",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450448753,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "CageEB2Trans_R9_4",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.13738297998877388,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "CageEB2Trans_R9_4",
+            "name": "clearance",
+            "status": "FAIL",
+            "classification": "OVERLAP",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.13738297998877388,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633975229
+        },
+        {
+          "id": "MH02",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450448753,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB22MV04",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.6818753991897403e-12,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633975228
+        },
+        {
+          "id": "MH02",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.25000000000063,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "CageEB2Trans_R9_3",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.011828723648677006,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB2Trans_R9_4",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.13718939277982517,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "CageEB2Trans_R9_3",
+            "name": "clearance",
+            "status": "FAIL",
+            "classification": "OVERLAP",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.011828723648677006,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.78539816339753
+        },
+        {
+          "id": "MH02",
+          "end": "end",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.25000000000063,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB22MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.1100132186992432e-12,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633975275
+        },
+        {
+          "id": "MH03",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450448753,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "CageEB2Trans_R9_4",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.13604456243944785,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "CageEB2Trans_R9_4",
+            "name": "clearance",
+            "status": "FAIL",
+            "classification": "OVERLAP",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.13604456243944785,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633975238
+        },
+        {
+          "id": "MH03",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450448753,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB22MV04",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.1816269747443557e-12,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633975238
+        },
+        {
+          "id": "MH03",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.25000000000063,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "SteelBridgeBackwallEB2F2V20",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.1081505974846291,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "SteelBridgeBackwallEB2F2V21",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.10815644505531134,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB2Trans_R9_3",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.02259852364294636,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB2Trans_R9_4",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.1348717320007331,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "SteelBridgeBackwallEB2F2V20",
+            "name": "clearance",
+            "status": "FAIL",
+            "classification": "OVERLAP",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.1081505974846291,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.785398163397531
+        },
+        {
+          "id": "MH03",
+          "end": "end",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.25000000000063,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB22MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.1100132186992432e-12,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633975284
+        },
+        {
+          "id": "MH04",
+          "end": "start",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450448753,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "CageEB2Trans_R9_4",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.10998066336803222,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "CageEB2Trans_R9_4",
+            "name": "clearance",
+            "status": "FAIL",
+            "classification": "OVERLAP",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.10998066336803222,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633975238
+        },
+        {
+          "id": "MH04",
+          "end": "start",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.462214450448753,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB22MV02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.3389330779811569e-12,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633975238
+        },
+        {
+          "id": "MH04",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.25000000000063,
+            "outside_mm3": 0.0
+          },
+          "clashes": [
+            {
+              "other": "SteelBridgeBackwallEB2F2V20",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.10815059747509097,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "SteelBridgeBackwallEB2F2V21",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.1081564448786577,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB2Trans_R9_3",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.023221601527418888,
+              "minimum_in": 0.0
+            },
+            {
+              "other": "CageEB2Trans_R9_4",
+              "name": "clearance",
+              "status": "FAIL",
+              "classification": "OVERLAP",
+              "distance_in": 0.0,
+              "common_volume_in3": 0.24205312494556105,
+              "minimum_in": 0.0
+            }
+          ],
+          "nearest": {
+            "other": "SteelBridgeBackwallEB2F2V20",
+            "name": "clearance",
+            "status": "FAIL",
+            "classification": "OVERLAP",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.10815059747509097,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.785398163397531
+        },
+        {
+          "id": "MH04",
+          "end": "end",
+          "status": "PASS",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeCapEB2",
+            "receiver_kind": "cap"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 2.25000000000063,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB22MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.1100132186992432e-12,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633975284
+        },
+        {
+          "id": "MH05",
+          "end": "start",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH05",
+          "end": "end",
+          "status": "PASS",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 1.9999999999992553,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB22MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.1100132186992432e-12,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633975302
+        },
+        {
+          "id": "MH06",
+          "end": "start",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH06",
+          "end": "end",
+          "status": "PASS",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 1.9999999999992553,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB22MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.1100132186992432e-12,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.78539816339753
+        },
+        {
+          "id": "MH07",
+          "end": "start",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH07",
+          "end": "end",
+          "status": "PASS",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 1.9999999999992553,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB22MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.1100132186992432e-12,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.785398163397531
+        },
+        {
+          "id": "MH08",
+          "end": "start",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH08",
+          "end": "end",
+          "status": "PASS",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "PASS",
+            "cover_in": 1.9999999999992553,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB22MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.1100132186992432e-12,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.785398163397531
+        },
+        {
+          "id": "MH09",
+          "end": "start",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH09",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 1.7296942716440367,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB22MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.1100132186992432e-12,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633975309
+        },
+        {
+          "id": "MH09",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 1.7296942716440367,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB22MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.1100132186992432e-12,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633975309
+        },
+        {
+          "id": "MH09",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 1.7296942716440367,
+            "outside_mm3": 0.0
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB22MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.1100132186992432e-12,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.7853981633975308
+        },
+        {
+          "id": "MH10",
+          "end": "start",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH10",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 0.0,
+            "outside_mm3": 12870.369969074094
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB22MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.1100132186992432e-12,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH10",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 0.0,
+            "outside_mm3": 12870.369969074098
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB22MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.1100132186992432e-12,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH10",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 0.0,
+            "outside_mm3": 12870.369969074094
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB22MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.1100132186992432e-12,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH11",
+          "end": "start",
+          "status": "NO_RECEIVER",
+          "reason": "No adjacent cap/backwall with required cover at retained mat elevation"
+        },
+        {
+          "id": "MH11",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "2.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 0.0,
+            "outside_mm3": 12870.369969074094
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB22MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.1100132186992432e-12,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH11",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "3.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 0.0,
+            "outside_mm3": 12870.369969074094
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB22MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.1100132186992432e-12,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        },
+        {
+          "id": "MH11",
+          "end": "end",
+          "status": "DOES_NOT_FIT",
+          "spec": {
+            "offset": "4.25 in",
+            "receiver": "BridgeBackwallEB2",
+            "receiver_kind": "backwall"
+          },
+          "cover": {
+            "name": "union_concrete_cover",
+            "status": "FAIL",
+            "cover_in": 0.0,
+            "outside_mm3": 12870.369969074094
+          },
+          "clashes": [],
+          "nearest": {
+            "other": "SteelBridgeCheekEB22MV01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.1100132186992432e-12,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          },
+          "embedded_in3": 0.0
+        }
+      ]
+    }
+  ]
+}

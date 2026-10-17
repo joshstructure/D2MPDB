@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "model": "C:\\github\\D2MPDB\\project_current\\geometry\\freecad\\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "sha256": "dcdda9c93a773f399acafb38d598564638823bb03a3eabf66d76ee7f3866d836",
+  "geometry_basis": "Exact SHA-256 match to cold-verified file; native installed controllers/links/quantities loaded successfully.",
+  "objects": 2093,
+  "retained_native_records": 2018,
+  "retained_view_records": 2093,
+  "native_reopen": "PASS"
+}

@@ -1,0 +1,159 @@
+{
+  "decision": "D-046",
+  "date": "2026-10-17",
+  "status": "ADOPTED_IN_PROJECT_SOURCE",
+  "scope": "Add standard 90-degree inward hooks to horizontal cheek bars where they fit the cap/backwall without moving retained steel or row elevations.",
+  "model_sha256": "dcdda9c93a773f399acafb38d598564638823bb03a3eabf66d76ee7f3866d836",
+  "previous_model_sha256": "0875a3679f0d958083342341cfd10e68543035c93fb2923af1bdf6f4dac19926",
+  "objects": 2093,
+  "total_cheek_bars": 64,
+  "hooked_bars": 30,
+  "hooks": {
+    "cap": 24,
+    "backwall": 18
+  },
+  "total_hooks": 42,
+  "hook_geometry": {
+    "bar": 4,
+    "angle_deg": 90,
+    "inside_diameter_in": 3,
+    "centerline_radius_in": 1.75,
+    "straight_tail_in": 6,
+    "out_to_out_hook_in": 8,
+    "standard": "https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/design/standardplans/2027/idx/415-001.pdf?sfvrsn=86261df5_1",
+    "cap_end_centerline_offset_in": 4.25,
+    "backwall_end_centerline_offset_in": 2.25
+  },
+  "affected_verification": {
+    "checks": 489,
+    "failures": [],
+    "lug_wwr": "PASS",
+    "edit_restore": "PASS",
+    "saved_and_installed_reopen": "PASS",
+    "protected_native_objects": 2018,
+    "all_view_records_preserved": true
+  },
+  "quantities": {
+    "before_length_ft": 290.478170161835,
+    "after_length_ft": 310.9742976634541,
+    "added_length_ft": 20.49612750161907,
+    "before_weight_lb": 194.03941766810584,
+    "after_weight_lb": 207.73083083918735
+  },
+  "layout_by_wall": [
+    {
+      "wall": "BridgeCheekEB11",
+      "bars": 16,
+      "hooked_bars": 8,
+      "hooks": 11,
+      "length_ft": 78.07241506030506,
+      "weight_lb": 52.152373260283795
+    },
+    {
+      "wall": "BridgeCheekEB12",
+      "bars": 16,
+      "hooked_bars": 8,
+      "hooks": 11,
+      "length_ft": 78.04975355626684,
+      "weight_lb": 52.13723537558627
+    },
+    {
+      "wall": "BridgeCheekEB21",
+      "bars": 16,
+      "hooked_bars": 7,
+      "hooks": 10,
+      "length_ft": 77.46916406834406,
+      "weight_lb": 51.74940159765383
+    },
+    {
+      "wall": "BridgeCheekEB22",
+      "bars": 16,
+      "hooked_bars": 7,
+      "hooks": 10,
+      "length_ft": 77.38296497853811,
+      "weight_lb": 51.69182060566345
+    }
+  ],
+  "straight_bar_exceptions": [
+    {
+      "wall": "BridgeCheekEB11",
+      "bar": "MH01",
+      "reason": "Retained bottom row has 2 in cover; a planar hook entering the cap would not meet its 3 in cover."
+    },
+    {
+      "wall": "BridgeCheekEB11",
+      "bar": "MH10",
+      "reason": "Row is above the backwall. No adjacent receiving concrete for an inward planar hook."
+    },
+    {
+      "wall": "BridgeCheekEB11",
+      "bar": "MH11",
+      "reason": "Row is above the backwall. No adjacent receiving concrete for an inward planar hook."
+    },
+    {
+      "wall": "BridgeCheekEB12",
+      "bar": "MH01",
+      "reason": "Retained bottom row has 2 in cover; a planar hook entering the cap would not meet its 3 in cover."
+    },
+    {
+      "wall": "BridgeCheekEB12",
+      "bar": "MH10",
+      "reason": "Row is above the backwall. No adjacent receiving concrete for an inward planar hook."
+    },
+    {
+      "wall": "BridgeCheekEB12",
+      "bar": "MH11",
+      "reason": "Row is above the backwall. No adjacent receiving concrete for an inward planar hook."
+    },
+    {
+      "wall": "BridgeCheekEB21",
+      "bar": "MH01",
+      "reason": "Retained bottom row has 2 in cover; a planar hook entering the cap would not meet its 3 in cover."
+    },
+    {
+      "wall": "BridgeCheekEB21",
+      "bar": "MH09",
+      "reason": "At End Bent 2 the hook would have only 1.729694 in cover to the backwall top, below 2 in."
+    },
+    {
+      "wall": "BridgeCheekEB21",
+      "bar": "MH10",
+      "reason": "Row is above the backwall. No adjacent receiving concrete for an inward planar hook."
+    },
+    {
+      "wall": "BridgeCheekEB21",
+      "bar": "MH11",
+      "reason": "Row is above the backwall. No adjacent receiving concrete for an inward planar hook."
+    },
+    {
+      "wall": "BridgeCheekEB22",
+      "bar": "MH01",
+      "reason": "Retained bottom row has 2 in cover; a planar hook entering the cap would not meet its 3 in cover."
+    },
+    {
+      "wall": "BridgeCheekEB22",
+      "bar": "MH09",
+      "reason": "At End Bent 2 the hook would have only 1.729694 in cover to the backwall top, below 2 in."
+    },
+    {
+      "wall": "BridgeCheekEB22",
+      "bar": "MH10",
+      "reason": "Row is above the backwall. No adjacent receiving concrete for an inward planar hook."
+    },
+    {
+      "wall": "BridgeCheekEB22",
+      "bar": "MH11",
+      "reason": "Row is above the backwall. No adjacent receiving concrete for an inward planar hook."
+    }
+  ],
+  "unhooked_front_ends": "Rows above the cap retain straight front ends because there is no adjacent cap/backwall concrete at that elevation.",
+  "marks": "4E1 vertical, 4E2 straight horizontal, 4E3 two cap hooks, 4E4 one backwall hook. Native marks and schedules agree; existing DXF predates these hook shapes and requires regeneration.",
+  "preserved": "All concrete, existing row elevations, vertical mat bars, cap/backwall/pedestal/lug steel, 14 strap references, object names, source links and view records.",
+  "limitations": "Standard-hook geometry and affected cover/intersection checks pass. Required development length, joint transfer and connection capacity are NOT VERIFIED. Existing unrelated wall/cap failures and COH-023 remain open. Design reports and DXF have not been regenerated.",
+  "tracker_unchanged": true,
+  "tracker_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
+  "backups": [
+    "archive/B4-before-cheek-hooks-20261017.FCStd",
+    "archive/B4-before-cheek-hooks-record-20261017.zip"
+  ]
+}

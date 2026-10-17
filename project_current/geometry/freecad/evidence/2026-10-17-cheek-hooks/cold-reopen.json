@@ -1,0 +1,3492 @@
+{
+  "status": "PASS",
+  "model": "C:\\Users\\joshs\\Desktop\\CAD_AI\\reports\\cheek-hooks-20261017\\Hooked Bridge.FCStd",
+  "sha256": "dcdda9c93a773f399acafb38d598564638823bb03a3eabf66d76ee7f3866d836",
+  "geometry": {
+    "checks": [
+      {
+        "name": "SteelBridgeCheekEB11MV01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH06_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH06_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH07_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH07_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH08_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH08_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH09_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH09_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH10_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH10_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH11_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH11_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11_live_totals",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV01_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2500000000002722,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV01_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV01_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB11MH01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 3.566700740528062e-15,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV02_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2500000000002722,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV02_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV02_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB11MH01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 3.566700740528062e-15,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV03_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2500000000002722,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV03_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV03_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB11MH01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 3.566700740528062e-15,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV04_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2500000000002722,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV04_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV04_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB11MH01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 3.566700740528062e-15,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV05_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2500000000002722,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV05_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MV05_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB11MH01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 3.566700740528062e-15,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH01_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999923,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH01_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH01_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH01_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB11MV01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 3.566700740528062e-15,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH02_assembly_cover",
+        "status": "PASS",
+        "cover_in": 3.999999999999925,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH02_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 2
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH02_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH02_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH02_start_enters_BridgeCapEB1",
+        "status": "PASS",
+        "length_in": 4.000000000000014
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH02_start_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 4.000000000000001,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH02_end_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH02_end_enters_BridgeCapEB1",
+        "status": "PASS",
+        "length_in": 4.000000000000014
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH02_end_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 4.000000000000003,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH02_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB11MV03",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 1.8717067771161868e-11,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH03_assembly_cover",
+        "status": "PASS",
+        "cover_in": 3.999999999999925,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH03_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 2
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH03_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH03_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH03_start_enters_BridgeCapEB1",
+        "status": "PASS",
+        "length_in": 4.000000000000014
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH03_start_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 4.000000000000001,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH03_end_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH03_end_enters_BridgeCapEB1",
+        "status": "PASS",
+        "length_in": 4.000000000000014
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH03_end_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 4.000000000000003,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH03_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB11MV03",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 5.552952994130187e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH04_assembly_cover",
+        "status": "PASS",
+        "cover_in": 3.999999999999925,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH04_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 2
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH04_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH04_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH04_start_enters_BridgeCapEB1",
+        "status": "PASS",
+        "length_in": 4.000000000000014
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH04_start_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 4.000000000000001,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH04_end_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH04_end_enters_BridgeCapEB1",
+        "status": "PASS",
+        "length_in": 4.000000000000014
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH04_end_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 4.000000000000003,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH04_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB11MV02",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 7.161376150880824e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH05_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.0000000000000107,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH05_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 1
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH05_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH05_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH05_start_enters_BridgeBackwallEB1",
+        "status": "PASS",
+        "length_in": 4.000000000000176
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH05_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB11MV02",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 5.516102769877799e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH06_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.000000000000006,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH06_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 1
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH06_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH06_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH06_start_enters_BridgeBackwallEB1",
+        "status": "PASS",
+        "length_in": 4.000000000000176
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH06_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB11MV02",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 7.161376150880824e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH07_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.000000000000004,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH07_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 1
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH07_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH07_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH07_start_enters_BridgeBackwallEB1",
+        "status": "PASS",
+        "length_in": 4.000000000000176
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH07_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB11MV02",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 6.472465623981044e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH08_assembly_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999999993,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH08_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 1
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH08_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH08_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH08_start_enters_BridgeBackwallEB1",
+        "status": "PASS",
+        "length_in": 4.000000000000176
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH08_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB11MV03",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 7.932380250780383e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH09_assembly_cover",
+        "status": "PASS",
+        "cover_in": 1.999999999999995,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH09_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 1
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH09_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH09_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH09_start_enters_BridgeBackwallEB1",
+        "status": "PASS",
+        "length_in": 4.000000000000176
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH09_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB11MV02",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 2.868100809681937e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH10_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999923,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH10_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH10_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH10_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB11MV02",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 2.7974123455122054e-16,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH11_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.000000000000258,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH11_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH11_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB11MH11_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB11MV01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 3.566700740528062e-15,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "BridgeCheekEB11_horizontal_spacing",
+        "status": "PASS",
+        "spaces_in": [
+          10.0,
+          10.0,
+          8.499999999999986,
+          10.0,
+          10.0,
+          10.0,
+          10.0,
+          10.0,
+          10.0,
+          3.376230286571734
+        ]
+      },
+      {
+        "name": "BridgeCheekEB11_vertical_spacing",
+        "status": "PASS",
+        "spaces_in": [
+          9.0,
+          9.999999999999998,
+          8.000000000000002,
+          4.499999999999998
+        ]
+      },
+      {
+        "name": "BridgeCheekEB11_schedule_links",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH06_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH06_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH07_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH07_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH08_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH08_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH09_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH09_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH10_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH10_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH11_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH11_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12_live_totals",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV01_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2500000000003437,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV01_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV01_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB12MH01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV02_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2500000000003437,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV02_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV02_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB12MH10",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV03_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2500000000003437,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV03_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV03_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB12MH01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV04_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2500000000003437,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV04_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV04_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB12MH01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV05_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2500000000003437,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV05_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MV05_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB12MH01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH01_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2500000000000218,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH01_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH01_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH01_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB12MV01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH02_assembly_cover",
+        "status": "PASS",
+        "cover_in": 3.9999999999999005,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH02_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 2
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH02_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH02_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH02_start_enters_BridgeCapEB1",
+        "status": "PASS",
+        "length_in": 3.9999999999999787
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH02_start_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 4.000000000000001,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH02_end_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH02_end_enters_BridgeCapEB1",
+        "status": "PASS",
+        "length_in": 3.9999999999999787
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH02_end_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 4.000000000000003,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH02_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB12MV04",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 1.7271251913097828e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH03_assembly_cover",
+        "status": "PASS",
+        "cover_in": 3.999999999999896,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH03_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 2
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH03_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH03_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH03_start_enters_BridgeCapEB1",
+        "status": "PASS",
+        "length_in": 3.9999999999999787
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH03_start_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 4.000000000000001,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH03_end_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH03_end_enters_BridgeCapEB1",
+        "status": "PASS",
+        "length_in": 3.9999999999999787
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH03_end_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 4.000000000000003,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH03_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB12MV02",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 9.511201974741499e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH04_assembly_cover",
+        "status": "PASS",
+        "cover_in": 3.9999999999998916,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH04_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 2
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH04_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH04_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH04_start_enters_BridgeCapEB1",
+        "status": "PASS",
+        "length_in": 3.9999999999999787
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH04_start_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 4.000000000000001,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH04_end_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH04_end_enters_BridgeCapEB1",
+        "status": "PASS",
+        "length_in": 3.9999999999999787
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH04_end_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 4.000000000000003,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH04_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB12MV02",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 3.2305752692850266e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH05_assembly_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999998865,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH05_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 1
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH05_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH05_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH05_start_enters_BridgeBackwallEB1",
+        "status": "PASS",
+        "length_in": 3.9999999999998535
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH05_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB12MV04",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 3.406361585208783e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH06_assembly_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999998819,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH06_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 1
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH06_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH06_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH06_start_enters_BridgeBackwallEB1",
+        "status": "PASS",
+        "length_in": 3.9999999999998535
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH06_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB12MV04",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 8.704943129799063e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH07_assembly_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999998774,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH07_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 1
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH07_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH07_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH07_start_enters_BridgeBackwallEB1",
+        "status": "PASS",
+        "length_in": 3.9999999999998535
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH07_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB12MV02",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 8.95241883140909e-14,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH08_assembly_cover",
+        "status": "PASS",
+        "cover_in": 1.999999999999873,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH08_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 1
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH08_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH08_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH08_start_enters_BridgeBackwallEB1",
+        "status": "PASS",
+        "length_in": 3.9999999999998535
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH08_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB12MV01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 5.902749519792832e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH09_assembly_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999998685,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH09_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 1
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH09_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH09_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH09_start_enters_BridgeBackwallEB1",
+        "status": "PASS",
+        "length_in": 3.9999999999998535
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH09_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB12MV02",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 7.161430241262698e-14,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH10_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2500000000000218,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH10_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH10_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH10_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB12MV01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH11_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.0000000000003295,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH11_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH11_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB12MH11_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB12MV01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "BridgeCheekEB12_horizontal_spacing",
+        "status": "PASS",
+        "spaces_in": [
+          10.0,
+          10.0,
+          8.499999999999986,
+          10.0,
+          10.0,
+          10.0,
+          10.0,
+          10.0,
+          10.0,
+          3.321842676880011
+        ]
+      },
+      {
+        "name": "BridgeCheekEB12_vertical_spacing",
+        "status": "PASS",
+        "spaces_in": [
+          9.0,
+          9.999999999999998,
+          8.000000000000002,
+          4.499999999999998
+        ]
+      },
+      {
+        "name": "BridgeCheekEB12_schedule_links",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH06_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH06_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH07_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH07_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH08_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH08_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH09_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH09_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH10_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH10_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH11_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH11_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21_live_totals",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV01_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2500000000000573,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV01_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV01_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB21MH11",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV02_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2500000000000573,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV02_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV02_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB21MH04",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV03_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2500000000000573,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV03_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV03_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB21MH01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 2.1470139751806177e-14,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV04_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2500000000000573,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV04_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV04_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB21MH03",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 1.7903439011278115e-14,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV05_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2500000000000573,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV05_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MV05_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB21MH01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 2.1470139751806177e-14,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH01_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.250000000001203,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH01_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH01_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH01_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB21MV01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 3.566700740528062e-15,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH02_assembly_cover",
+        "status": "PASS",
+        "cover_in": 4.000000000000516,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH02_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 2
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH02_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH02_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH02_start_enters_BridgeCapEB2",
+        "status": "PASS",
+        "length_in": 3.99999999999971
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH02_start_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 4.000000000000172,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH02_end_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH02_end_enters_BridgeCapEB2",
+        "status": "PASS",
+        "length_in": 3.99999999999971
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH02_end_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 3.999999999999886,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH02_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB21MV04",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 1.146379442665157e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH03_assembly_cover",
+        "status": "PASS",
+        "cover_in": 4.000000000000516,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH03_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 2
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH03_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH03_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH03_start_enters_BridgeCapEB2",
+        "status": "PASS",
+        "length_in": 3.99999999999971
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH03_start_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 4.000000000000172,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH03_end_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH03_end_enters_BridgeCapEB2",
+        "status": "PASS",
+        "length_in": 3.99999999999971
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH03_end_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 3.999999999999886,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH03_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB21MV04",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH04_assembly_cover",
+        "status": "PASS",
+        "cover_in": 4.000000000000516,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH04_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 2
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH04_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH04_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH04_start_enters_BridgeCapEB2",
+        "status": "PASS",
+        "length_in": 3.99999999999971
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH04_start_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 4.000000000000172,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH04_end_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH04_end_enters_BridgeCapEB2",
+        "status": "PASS",
+        "length_in": 3.99999999999971
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH04_end_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 3.999999999999886,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH04_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB21MV02",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 1.7903439011278116e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH05_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.0000000000006875,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH05_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 1
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH05_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH05_end_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH05_end_enters_BridgeBackwallEB2",
+        "status": "PASS",
+        "length_in": 3.9999999999996922
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH05_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB21MV05",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 9.872898477941107e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH06_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.0000000000006875,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH06_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 1
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH06_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH06_end_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH06_end_enters_BridgeBackwallEB2",
+        "status": "PASS",
+        "length_in": 3.9999999999996922
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH06_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB21MV02",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 3.363750798379481e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH07_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.0000000000006875,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH07_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 1
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH07_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH07_end_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH07_end_enters_BridgeBackwallEB2",
+        "status": "PASS",
+        "length_in": 3.9999999999996922
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH07_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB21MV02",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 2.6855158516917175e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH08_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.0000000000006875,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH08_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 1
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH08_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH08_end_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH08_end_enters_BridgeBackwallEB2",
+        "status": "PASS",
+        "length_in": 3.9999999999996922
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH08_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB21MV04",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 3.363750798379481e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH09_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.250000000001203,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH09_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH09_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH09_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB21MV03",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 3.8273181170731506e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH10_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.250000000001203,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH10_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH10_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH10_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB21MV01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 2.9527108042121393e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH11_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.000000000000043,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH11_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH11_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB21MH11_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB21MV01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "BridgeCheekEB21_horizontal_spacing",
+        "status": "PASS",
+        "spaces_in": [
+          10.0,
+          10.0,
+          8.499999999999986,
+          10.0,
+          10.0,
+          10.0,
+          10.0,
+          10.0,
+          10.0,
+          3.3282066202432397
+        ]
+      },
+      {
+        "name": "BridgeCheekEB21_vertical_spacing",
+        "status": "PASS",
+        "spaces_in": [
+          9.00000000000023,
+          10.0,
+          8.000000000000172,
+          4.499999999999829
+        ]
+      },
+      {
+        "name": "BridgeCheekEB21_schedule_links",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH06_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH06_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH07_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH07_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH08_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH08_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH09_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH09_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH10_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH10_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH11_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH11_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22_live_totals",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV01_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2499999999999143,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV01_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV01_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB22MH01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV02_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2499999999999143,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV02_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV02_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB22MH01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV03_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2499999999999143,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV03_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV03_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB22MH01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 1.7903439011278115e-14,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV04_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2499999999999143,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV04_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV04_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB22MH01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 1.7903439011278115e-14,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV05_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.2499999999999143,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV05_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MV05_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB22MH01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 1.7903439011278115e-14,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH01_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.25000000000063,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH01_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH01_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH01_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB22MV01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH02_assembly_cover",
+        "status": "PASS",
+        "cover_in": 3.999999999998475,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH02_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 2
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH02_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH02_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH02_start_enters_BridgeCapEB2",
+        "status": "PASS",
+        "length_in": 4.000000000000266
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH02_start_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 4.000000000000172,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH02_end_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH02_end_enters_BridgeCapEB2",
+        "status": "PASS",
+        "length_in": 4.000000000000283
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH02_end_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 3.999999999999886,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH02_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB22MV04",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 8.71954460185437e-13,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH03_assembly_cover",
+        "status": "PASS",
+        "cover_in": 3.999999999998475,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH03_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 2
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH03_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH03_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH03_start_enters_BridgeCapEB2",
+        "status": "PASS",
+        "length_in": 4.000000000000266
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH03_start_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 4.000000000000172,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH03_end_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH03_end_enters_BridgeCapEB2",
+        "status": "PASS",
+        "length_in": 4.000000000000283
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH03_end_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 3.999999999999886,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH03_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB22MV03",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 9.3458695420665e-12,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH04_assembly_cover",
+        "status": "PASS",
+        "cover_in": 3.999999999998475,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH04_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 2
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH04_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH04_start_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH04_start_enters_BridgeCapEB2",
+        "status": "PASS",
+        "length_in": 4.000000000000266
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH04_start_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 4.000000000000172,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH04_end_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH04_end_enters_BridgeCapEB2",
+        "status": "PASS",
+        "length_in": 4.000000000000283
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH04_end_cap_end_top_bottom_cover",
+        "status": "PASS",
+        "cover_in": 3.999999999999886,
+        "required_in": 3
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH04_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB22MV02",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 6.430924264501362e-12,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH05_assembly_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999992553,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH05_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 1
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH05_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH05_end_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH05_end_enters_BridgeBackwallEB2",
+        "status": "PASS",
+        "length_in": 4.000000000000283
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH05_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB22MV01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH06_assembly_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999992553,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH06_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 1
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH06_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH06_end_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH06_end_enters_BridgeBackwallEB2",
+        "status": "PASS",
+        "length_in": 4.000000000000283
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH06_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB22MV01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH07_assembly_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999992553,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH07_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 1
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH07_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH07_end_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH07_end_enters_BridgeBackwallEB2",
+        "status": "PASS",
+        "length_in": 4.000000000000283
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH07_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB22MV01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH08_assembly_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999992553,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH08_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 1
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH08_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH08_end_straight_tail",
+        "status": "PASS",
+        "length_in": 6.0000000000000036
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH08_end_enters_BridgeBackwallEB2",
+        "status": "PASS",
+        "length_in": 4.000000000000283
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH08_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB22MV01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH09_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.25000000000063,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH09_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH09_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH09_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB22MV01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH10_assembly_cover",
+        "status": "PASS",
+        "cover_in": 2.25000000000063,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH10_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH10_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH10_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB22MV01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH11_assembly_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999998999,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH11_standard_hook_bends",
+        "status": "PASS",
+        "hooks": 0
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH11_retained_mat_plane_and_level",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekEB22MH11_steel_intersections",
+        "status": "PASS",
+        "failures": [],
+        "nearest": {
+          "other": "SteelBridgeCheekEB22MV01",
+          "name": "clearance",
+          "status": "PASS",
+          "classification": "CONTACT / NEAR CONTACT",
+          "distance_in": 0.0,
+          "common_volume_in3": 0.0,
+          "minimum_in": 0.0
+        }
+      },
+      {
+        "name": "BridgeCheekEB22_horizontal_spacing",
+        "status": "PASS",
+        "spaces_in": [
+          10.0,
+          10.0,
+          8.499999999999986,
+          10.0,
+          10.0,
+          10.0,
+          10.0,
+          10.0,
+          10.0,
+          3.121328804708978
+        ]
+      },
+      {
+        "name": "BridgeCheekEB22_vertical_spacing",
+        "status": "PASS",
+        "spaces_in": [
+          9.00000000000023,
+          10.0,
+          8.000000000000172,
+          4.499999999999829
+        ]
+      },
+      {
+        "name": "BridgeCheekEB22_schedule_links",
+        "status": "PASS"
+      },
+      {
+        "name": "no_invalid_native_objects",
+        "status": "PASS"
+      }
+    ],
+    "failures": [],
+    "measurements": [
+      {
+        "wall": "BridgeCheekEB11",
+        "bars": 16,
+        "hooked_bars": 8,
+        "hooks": 11,
+        "length_ft": 78.07241506030506,
+        "weight_lb": 52.152373260283795
+      },
+      {
+        "wall": "BridgeCheekEB12",
+        "bars": 16,
+        "hooked_bars": 8,
+        "hooks": 11,
+        "length_ft": 78.04975355626684,
+        "weight_lb": 52.13723537558627
+      },
+      {
+        "wall": "BridgeCheekEB21",
+        "bars": 16,
+        "hooked_bars": 7,
+        "hooks": 10,
+        "length_ft": 77.46916406834406,
+        "weight_lb": 51.74940159765383
+      },
+      {
+        "wall": "BridgeCheekEB22",
+        "bars": 16,
+        "hooked_bars": 7,
+        "hooks": 10,
+        "length_ft": 77.38296497853811,
+        "weight_lb": 51.69182060566345
+      }
+    ],
+    "schedule": [
+      {
+        "bar": "SteelBridgeCheekEB11MV01",
+        "mark": "4E1",
+        "hooks": 0,
+        "length_ft": 7.656352523880976
+      },
+      {
+        "bar": "SteelBridgeCheekEB11MV02",
+        "mark": "4E1",
+        "hooks": 0,
+        "length_ft": 7.656352523880976
+      },
+      {
+        "bar": "SteelBridgeCheekEB11MV03",
+        "mark": "4E1",
+        "hooks": 0,
+        "length_ft": 7.656352523880976
+      },
+      {
+        "bar": "SteelBridgeCheekEB11MV04",
+        "mark": "4E1",
+        "hooks": 0,
+        "length_ft": 7.656352523880976
+      },
+      {
+        "bar": "SteelBridgeCheekEB11MV05",
+        "mark": "4E1",
+        "hooks": 0,
+        "length_ft": 7.656352523880976
+      },
+      {
+        "bar": "SteelBridgeCheekEB11MH01",
+        "mark": "4E2",
+        "hooks": 0,
+        "length_ft": 3.1250000000000044
+      },
+      {
+        "bar": "SteelBridgeCheekEB11MH02",
+        "mark": "4E3",
+        "hooks": 2,
+        "length_ft": 3.9581489286485168
+      },
+      {
+        "bar": "SteelBridgeCheekEB11MH03",
+        "mark": "4E3",
+        "hooks": 2,
+        "length_ft": 3.9581489286485168
+      },
+      {
+        "bar": "SteelBridgeCheekEB11MH04",
+        "mark": "4E3",
+        "hooks": 2,
+        "length_ft": 3.9581489286485168
+      },
+      {
+        "bar": "SteelBridgeCheekEB11MH05",
+        "mark": "4E4",
+        "hooks": 1,
+        "length_ft": 3.708241130990927
+      },
+      {
+        "bar": "SteelBridgeCheekEB11MH06",
+        "mark": "4E4",
+        "hooks": 1,
+        "length_ft": 3.708241130990927
+      },
+      {
+        "bar": "SteelBridgeCheekEB11MH07",
+        "mark": "4E4",
+        "hooks": 1,
+        "length_ft": 3.708241130990927
+      },
+      {
+        "bar": "SteelBridgeCheekEB11MH08",
+        "mark": "4E4",
+        "hooks": 1,
+        "length_ft": 3.708241130990927
+      },
+      {
+        "bar": "SteelBridgeCheekEB11MH09",
+        "mark": "4E4",
+        "hooks": 1,
+        "length_ft": 3.708241130990927
+      },
+      {
+        "bar": "SteelBridgeCheekEB11MH10",
+        "mark": "4E2",
+        "hooks": 0,
+        "length_ft": 3.1250000000000044
+      },
+      {
+        "bar": "SteelBridgeCheekEB11MH11",
+        "mark": "4E2",
+        "hooks": 0,
+        "length_ft": 3.1250000000000044
+      },
+      {
+        "bar": "SteelBridgeCheekEB12MV01",
+        "mark": "4E1",
+        "hooks": 0,
+        "length_ft": 7.651820223073333
+      },
+      {
+        "bar": "SteelBridgeCheekEB12MV02",
+        "mark": "4E1",
+        "hooks": 0,
+        "length_ft": 7.651820223073333
+      },
+      {
+        "bar": "SteelBridgeCheekEB12MV03",
+        "mark": "4E1",
+        "hooks": 0,
+        "length_ft": 7.651820223073333
+      },
+      {
+        "bar": "SteelBridgeCheekEB12MV04",
+        "mark": "4E1",
+        "hooks": 0,
+        "length_ft": 7.651820223073333
+      },
+      {
+        "bar": "SteelBridgeCheekEB12MV05",
+        "mark": "4E1",
+        "hooks": 0,
+        "length_ft": 7.651820223073333
+      },
+      {
+        "bar": "SteelBridgeCheekEB12MH01",
+        "mark": "4E2",
+        "hooks": 0,
+        "length_ft": 3.1250000000000044
+      },
+      {
+        "bar": "SteelBridgeCheekEB12MH02",
+        "mark": "4E3",
+        "hooks": 2,
+        "length_ft": 3.958148928648516
+      },
+      {
+        "bar": "SteelBridgeCheekEB12MH03",
+        "mark": "4E3",
+        "hooks": 2,
+        "length_ft": 3.958148928648516
+      },
+      {
+        "bar": "SteelBridgeCheekEB12MH04",
+        "mark": "4E3",
+        "hooks": 2,
+        "length_ft": 3.958148928648516
+      },
+      {
+        "bar": "SteelBridgeCheekEB12MH05",
+        "mark": "4E4",
+        "hooks": 1,
+        "length_ft": 3.708241130990927
+      },
+      {
+        "bar": "SteelBridgeCheekEB12MH06",
+        "mark": "4E4",
+        "hooks": 1,
+        "length_ft": 3.708241130990927
+      },
+      {
+        "bar": "SteelBridgeCheekEB12MH07",
+        "mark": "4E4",
+        "hooks": 1,
+        "length_ft": 3.708241130990927
+      },
+      {
+        "bar": "SteelBridgeCheekEB12MH08",
+        "mark": "4E4",
+        "hooks": 1,
+        "length_ft": 3.708241130990927
+      },
+      {
+        "bar": "SteelBridgeCheekEB12MH09",
+        "mark": "4E4",
+        "hooks": 1,
+        "length_ft": 3.708241130990927
+      },
+      {
+        "bar": "SteelBridgeCheekEB12MH10",
+        "mark": "4E2",
+        "hooks": 0,
+        "length_ft": 3.1250000000000044
+      },
+      {
+        "bar": "SteelBridgeCheekEB12MH11",
+        "mark": "4E2",
+        "hooks": 0,
+        "length_ft": 3.1250000000000044
+      },
+      {
+        "bar": "SteelBridgeCheekEB21MV01",
+        "mark": "4E1",
+        "hooks": 0,
+        "length_ft": 7.6523505516869355
+      },
+      {
+        "bar": "SteelBridgeCheekEB21MV02",
+        "mark": "4E1",
+        "hooks": 0,
+        "length_ft": 7.6523505516869355
+      },
+      {
+        "bar": "SteelBridgeCheekEB21MV03",
+        "mark": "4E1",
+        "hooks": 0,
+        "length_ft": 7.6523505516869355
+      },
+      {
+        "bar": "SteelBridgeCheekEB21MV04",
+        "mark": "4E1",
+        "hooks": 0,
+        "length_ft": 7.6523505516869355
+      },
+      {
+        "bar": "SteelBridgeCheekEB21MV05",
+        "mark": "4E1",
+        "hooks": 0,
+        "length_ft": 7.6523505516869355
+      },
+      {
+        "bar": "SteelBridgeCheekEB21MH01",
+        "mark": "4E2",
+        "hooks": 0,
+        "length_ft": 3.125
+      },
+      {
+        "bar": "SteelBridgeCheekEB21MH02",
+        "mark": "4E3",
+        "hooks": 2,
+        "length_ft": 3.958148928648529
+      },
+      {
+        "bar": "SteelBridgeCheekEB21MH03",
+        "mark": "4E3",
+        "hooks": 2,
+        "length_ft": 3.958148928648529
+      },
+      {
+        "bar": "SteelBridgeCheekEB21MH04",
+        "mark": "4E3",
+        "hooks": 2,
+        "length_ft": 3.958148928648529
+      },
+      {
+        "bar": "SteelBridgeCheekEB21MH05",
+        "mark": "4E4",
+        "hooks": 1,
+        "length_ft": 3.708241130990944
+      },
+      {
+        "bar": "SteelBridgeCheekEB21MH06",
+        "mark": "4E4",
+        "hooks": 1,
+        "length_ft": 3.708241130990944
+      },
+      {
+        "bar": "SteelBridgeCheekEB21MH07",
+        "mark": "4E4",
+        "hooks": 1,
+        "length_ft": 3.708241130990944
+      },
+      {
+        "bar": "SteelBridgeCheekEB21MH08",
+        "mark": "4E4",
+        "hooks": 1,
+        "length_ft": 3.708241130990944
+      },
+      {
+        "bar": "SteelBridgeCheekEB21MH09",
+        "mark": "4E2",
+        "hooks": 0,
+        "length_ft": 3.125
+      },
+      {
+        "bar": "SteelBridgeCheekEB21MH10",
+        "mark": "4E2",
+        "hooks": 0,
+        "length_ft": 3.125
+      },
+      {
+        "bar": "SteelBridgeCheekEB21MH11",
+        "mark": "4E2",
+        "hooks": 0,
+        "length_ft": 3.125
+      },
+      {
+        "bar": "SteelBridgeCheekEB22MV01",
+        "mark": "4E1",
+        "hooks": 0,
+        "length_ft": 7.635110733725747
+      },
+      {
+        "bar": "SteelBridgeCheekEB22MV02",
+        "mark": "4E1",
+        "hooks": 0,
+        "length_ft": 7.635110733725747
+      },
+      {
+        "bar": "SteelBridgeCheekEB22MV03",
+        "mark": "4E1",
+        "hooks": 0,
+        "length_ft": 7.635110733725747
+      },
+      {
+        "bar": "SteelBridgeCheekEB22MV04",
+        "mark": "4E1",
+        "hooks": 0,
+        "length_ft": 7.635110733725747
+      },
+      {
+        "bar": "SteelBridgeCheekEB22MV05",
+        "mark": "4E1",
+        "hooks": 0,
+        "length_ft": 7.635110733725747
+      },
+      {
+        "bar": "SteelBridgeCheekEB22MH01",
+        "mark": "4E2",
+        "hooks": 0,
+        "length_ft": 3.125
+      },
+      {
+        "bar": "SteelBridgeCheekEB22MH02",
+        "mark": "4E3",
+        "hooks": 2,
+        "length_ft": 3.95814892864853
+      },
+      {
+        "bar": "SteelBridgeCheekEB22MH03",
+        "mark": "4E3",
+        "hooks": 2,
+        "length_ft": 3.95814892864853
+      },
+      {
+        "bar": "SteelBridgeCheekEB22MH04",
+        "mark": "4E3",
+        "hooks": 2,
+        "length_ft": 3.95814892864853
+      },
+      {
+        "bar": "SteelBridgeCheekEB22MH05",
+        "mark": "4E4",
+        "hooks": 1,
+        "length_ft": 3.708241130990944
+      },
+      {
+        "bar": "SteelBridgeCheekEB22MH06",
+        "mark": "4E4",
+        "hooks": 1,
+        "length_ft": 3.708241130990944
+      },
+      {
+        "bar": "SteelBridgeCheekEB22MH07",
+        "mark": "4E4",
+        "hooks": 1,
+        "length_ft": 3.708241130990944
+      },
+      {
+        "bar": "SteelBridgeCheekEB22MH08",
+        "mark": "4E4",
+        "hooks": 1,
+        "length_ft": 3.708241130990944
+      },
+      {
+        "bar": "SteelBridgeCheekEB22MH09",
+        "mark": "4E2",
+        "hooks": 0,
+        "length_ft": 3.125
+      },
+      {
+        "bar": "SteelBridgeCheekEB22MH10",
+        "mark": "4E2",
+        "hooks": 0,
+        "length_ft": 3.125
+      },
+      {
+        "bar": "SteelBridgeCheekEB22MH11",
+        "mark": "4E2",
+        "hooks": 0,
+        "length_ft": 3.125
+      }
+    ],
+    "limitations": "Standard hook geometry and affected nominal-solid intersections only. Development, joint transfer and connection capacity NOT VERIFIED."
+  },
+  "native_geometry_cover_clearance_and_schedule": "PASS",
+  "objects": 2093,
+  "retained_native_records": 2018,
+  "retained_view_records": 2093,
+  "native_reopen": "PASS"
+}

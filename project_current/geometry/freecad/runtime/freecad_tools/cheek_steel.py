@@ -67,6 +67,11 @@ def refresh(inp):
     sh.touch();doc.recompute([sh])
 
 def validate(doc):
+    if all('HorizontalHooksJSON' in doc.getObject('Steel'+n+'Inputs').PropertiesList for n in HOSTS):
+        from . import cheek_hooks
+        report=cheek_hooks.validate(doc)
+        report['all_wall_detailing']=steel.wall_detail_checks(doc,list(doc.WallSteelChecks.Inputs))
+        return report
     checks=[]; measures=[]; rowsout=[]
     for name in HOSTS:
         inp=doc.getObject('Steel'+name+'Inputs');q=doc.getObject(inp.Prefix+'Quantities')

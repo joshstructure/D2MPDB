@@ -26,9 +26,11 @@ Final strap/connection design and closure reinforcement/weather-seal details rem
 unresolved; calculation reconciliation stays under COH-023.
 
 All 454 end-bent and pier rebars now carry FDOT SDM 4.3 bar marks in their
-**Mark** property (for example 6A1, 5B2, 4F3), matching the generated FDOT
+**Mark** property (for example 6A1, 5B2, 4F3), with new cheek hook shapes
+marked 4E3/4E4. The generated FDOT
 [end bent and pier DXF](../../../substructure_drawings/README.md) and its bar-mark
-register. The cage, wall and pedestal schedules show the same marks. Controllers
+register predate D-046 and require regeneration for these hook shapes.
+The native schedules match the current model marks. Controllers
 still give newly regenerated bars their default marks; rerun
 `substructure_drawings/freecad_marks.py` after a regeneration.
 See [D-042 evidence](evidence/2026-10-16-sdm-bar-marks/update-summary.json).
@@ -38,12 +40,18 @@ components → Bridge railing**. Their existing PGL links and geometry are
 preserved. Ramp and end-return barriers keep their prior groups.
 See [D-040 evidence](evidence/2026-10-16-railing-group/update-summary.json).
 
-The cheek steel now matches the selected 16 October backwall/cheek report:
-one centered #4 mat at **10 in maximum each way**, 64 bars total. All 342 cheek
-checks pass, including cover, spacing, native geometry and cap-bar clearance.
-The 180 lug WWR wires also pass the affected review. Native saved-file reopen,
-live controls and schedules are verified. Shorter local bays clear retained steel.
-See [D-039 evidence](evidence/2026-10-16-cheek-steel/update-summary.json).
+The cheek mats retain **64 #4 bars at 10 in maximum each way**. D-046 now
+adds **42 standard 90-degree hooks on 30 horizontal bars**: 24 hooks enter the
+caps and 18 enter the backwalls. Each hook has a 3-in inside bend and 6-in
+straight tail. The lower row and the rows above the available backwall retain
+straight ends; End Bent 2 row MH09 also lacks the required top cover.
+Cap hooks are set inward to clear retained hoops. All affected geometry,
+cover, steel-intersection, schedule, lug-mesh and saved-reopen checks pass.
+Native **Horizontal hooks** properties remain editable. Required development
+and connection design remain unverified; existing unrelated findings remain.
+See [D-046 evidence](evidence/2026-10-17-cheek-hooks/update-summary.json).
+The [D-039 mat revision](evidence/2026-10-16-cheek-steel/update-summary.json)
+records the unchanged bar spacing basis.
 
 All four cheek tops now meet the return barrier bases. The transverse return
 bottom bands extend to the slab, the return-to-ramp notches are removed, and
@@ -80,7 +88,7 @@ See [adoption evidence](evidence/2026-10-15-deck-edges/adoption-summary.json).
 On each deck, use the **Deck edge details** properties; the four original deck
 barrier objects have **DeckEdgeSetback**. The opener loads their native controllers.
 
-**Current model: 17 October 2026, decision D-045.** This is the authoritative
+**Current model: 17 October 2026, decision D-046.** This is the authoritative
 editable bridge geometry and modeled-quantity source. The established native
 filename is retained for existing links; its date is not the current revision date.
 

@@ -3,8 +3,8 @@
   "authority": "Current editable FreeCAD geometry and modeled quantities; engineering acceptance remains separate",
   "model": {
     "path": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-    "sha256": "0875a3679f0d958083342341cfd10e68543035c93fb2923af1bdf6f4dac19926",
-    "bytes": 5837105,
+    "sha256": "dcdda9c93a773f399acafb38d598564638823bb03a3eabf66d76ee7f3866d836",
+    "bytes": 6013526,
     "objects": 2093
   },
   "source_revision": "01a1fcc34d6345ceacf96245bcf0c931d118a1ab",
@@ -25,10 +25,11 @@
     "D-034: landing_quantities maintains verified NetVolume for two curved finished landings using converged vertical-plane Gauss-Kronrod integration. Native geometry, all other object records and GUI resources unchanged; COH-027 Closed.",
     "D-044: opt-in omission of exactly 3/4-in bridge chamfers; retain larger geometry, grooves, ramp/barrier details and nominal inputs. Add native end_bent_closure controllers and schedule for six copings and two 4-in slabs rising 2% to cap; side coping tops follow slab. Verified editable regeneration, saved-file reopen and scoped no-new-intersection checks.",
     "D-044 completion: geotechnical_straps creates two native editable zero-thickness 2-in reference ribbons at the selected 18-in-above-cap trial level; actual backwall face attachment, illustrative 6-ft projection, no physical steel quantity. Cold and installed reopen verified.",
-    "D-045: report-based seven-strap layout helper; signed native lateral offsets; retain central reference Names and all prior physical geometry. Fourteen schematic faces verified against saved Figure B2 positions."
+    "D-045: report-based seven-strap layout helper; signed native lateral offsets; retain central reference Names and all prior physical geometry. Fourteen schematic faces verified against saved Figure B2 positions.",
+    "D-046: native standard horizontal cheek hook controller; actual assembly cover and receiver checks; editable bend/tail lengths and conditional hook-aware legacy validation."
   ],
   "runtime_files": {
-    "runtime/API.md": "4daffba833e19fe0d84c64c165458fab34fffc05c8902050935dd65cfe386f75",
+    "runtime/API.md": "67e0cadabdb476119ef7ac9b700039d8bdce29f58c4a3148ea0d4bf5f5dd43d9",
     "runtime/freecad_tools/__init__.py": "54fc72e62296f90ef30d4395023d10589142c7979df962a5fa1669cf01886a32",
     "runtime/freecad_tools/adopt_drainage.py": "df2e4d293383aa5de9e425a8af75b7640524d07e71eebd541d42d2e81342eb07",
     "runtime/freecad_tools/api.py": "4f5d129384cf8b68bf10564f59141a31bd83921d47e8e477754ad2ea3ade71ca",
@@ -136,12 +137,12 @@
     "runtime/freecad_tools/vendor_cap_20261010/pier_cap/widget_compat.py": "c3246efcc871bfd58b56965a593de03605a37f75d78ed3866b61177ceda1a9da",
     "runtime/freecad_tools/vendor_cap_20261010/pier_cap/widgets.py": "f6482d1a6ac4c787135e24c9e364ccfc12d132c1c9ae5b949947b81b40ac042e",
     "runtime/freecad_tools/vendor_cap_20261010/pier_cap/zone_visuals.py": "f4f47a4f4308fe7a7c641dd45714d15ad0ca722324c15faf469686cdcdc0f331",
-    "runtime/freecad_tools/design_steel.py": "9986cef9e298ddc559d1ffce18293932ec0deb09ac84466a9d633a75ed440b8d",
+    "runtime/freecad_tools/design_steel.py": "0bc843db6862b9d81c96f2486639ae962ecb852d805150a9b75e3e6056eafa2c",
     "runtime/freecad_tools/native_archive.py": "35df1d59be632d3f337eeac3da1f9d8ffe879129f9afc092ba7b7e96667cb3e2",
     "runtime/freecad_tools/file_install.py": "f00c34f8ef44f66800ef656832ba772e8422001ed4b289cbfb214ec48a0fdbd6",
     "runtime/freecad_tools/notebook_update.py": "3ccc61a21e20201c35e1db5065beef7e0f9b79f0bdb78c9a056252dc4b5157a1",
     "runtime/freecad_tools/pedestal_ubars.py": "50617ad926c0c370d7144a76626b466124ae2d69b1f75dea80faa4f284468c1c",
-    "runtime/freecad_tools/cheek_steel.py": "69c09a99c0bc9dc7eeed3ccdd3c7758aa35106d728bb017dfc8cff47e45d9bd9",
+    "runtime/freecad_tools/cheek_steel.py": "d61782a75fdb1c92925108ad4e1713524fb9a80acf384555fb1a4a5f0b0d5f48",
     "runtime/freecad_tools/mse_corrections.py": "c134a1c06b72980b59695d13682a150782f76bb25f0d0f564839d113957d1c38",
     "runtime/freecad_tools/mse_revision.py": "6c0494b2328997e01784eb40f00b83905f62a1c0ee1066ac24261f0278bf7fe4",
     "runtime/freecad_tools/mse_wall_tops.py": "cbdb605ec6a50a51aafe86b2b8308dd99dfac2fd632c7eb9a5e19b110f32234a",
@@ -155,9 +156,10 @@
     "runtime/freecad_tools/landing_quantities.py": "7a0f584b62f00041641dc0b6ce4ecaa0603ec1dfdfd9e92568e7eccf46ee68af",
     "runtime/freecad_tools/end_bent_closure.py": "114d19edbf98e3440561e29a0d3998d60f2c89884fb4d42900c87210e343f8d4",
     "runtime/freecad_tools/standard_chamfers.py": "d7830d32d20cebb798fb3475b18935862334bc41fa06f8bfcf5dde1b6b028283",
-    "runtime/freecad_tools/geotechnical_straps.py": "117518715ef6a7b7beffaa6707a438faa87eb63c27d3c1f244b1f8ea5a6cd80f"
+    "runtime/freecad_tools/geotechnical_straps.py": "117518715ef6a7b7beffaa6707a438faa87eb63c27d3c1f244b1f8ea5a6cd80f",
+    "runtime/freecad_tools/cheek_hooks.py": "de1b8ac0bfa6e8c549059da4a1c3b4a4c0457d0a91ac171c1681cf47c0b472f7"
   },
-  "opener_sha256": "86ca2a7617fd1bdf93dd9223e5ee48d210817fdaf4e428270538ee9856f8cc84",
+  "opener_sha256": "7b70e6346c6680f2a7eacdcae524052556e855acf28ad7f89e112c366775c225",
   "evidence_files": {
     "evidence/bridge-current-cages-20261010-v1.json": "5daf358f8b140a1b5c8db4b1d33df5ab565d4299e9c1fb90d0aa15cd679ce1ee",
     "evidence/bridge-current-proxies-20261010-v1.json": "bc8d1595534050f961bece023cae100958064388e1b2e7d45ddd424666c834ba",
@@ -166,7 +168,7 @@
     "evidence/delivery-helper-fingerprints.json": "2eda36676cc40916485c708e385818c6e99ead3be41e5754a55bc5e772e58c62",
     "evidence/final-reopen-verification.json": "fde89e9b9c8bb47433a964e3d0b3faedcb00c201b8ada10b348c086e4bfaeec9",
     "evidence/final-save.json": "7767f925bccdf426225cf1d4269ce59919cdcf71267f7c56c7484547f758e946",
-    "evidence/Model-update-report.txt": "4e8c4e07d7e1899cf5ee6c8a3de62cb8796fc6597990c5571e418fe283cf9e1d",
+    "evidence/Model-update-report.txt": "8d84cd5a44456b30aac7b56401f04c603cb193b31e67fa0221357d0bcc262a5c",
     "evidence/opener-verification.json": "7cfd370f32a419bd160ce2f914df4e861372addcab97d9e64896fb6135d40fdf",
     "evidence/portable-verification.json": "5daa7dfc49c7f7b11c641a51d2e425ce853dc08ee134356c02746d93d028ec36",
     "evidence/session-checkpoint.json": "c22fc947838b3ed99425beeab12c10e80b62b12be04d01444f2a0677135096c5",
@@ -375,19 +377,27 @@
     "evidence/2026-10-17-strap-report-layout/cold-reopen.json": "0eb7f14a52d54b88c1c9fd6bdbc507a820b6c21e61465aa9fc8a64d3c1b0d667",
     "evidence/2026-10-17-strap-report-layout/installed-reopen.json": "fac30e2a41087b3f861ce0c1278b2cf08d60202aa2141649974b1d67d60ef0a3",
     "evidence/2026-10-17-strap-report-layout/report-layout.json": "31589780b6f736c4545eb77ac7cdc4ad5be811e2f9c6e0ce46494a74d72d4e41",
-    "evidence/2026-10-17-strap-report-layout/update-summary.json": "44dfb74e29b20ff7a587adfd45ba4739cee74fe81fcc6e9e13cf2900ef332ed6"
+    "evidence/2026-10-17-strap-report-layout/update-summary.json": "44dfb74e29b20ff7a587adfd45ba4739cee74fe81fcc6e9e13cf2900ef332ed6",
+    "evidence/2026-10-17-cheek-hooks/build-report.json": "8d17d8eff1628a902f89ca9efaad3eb852d9fe3da6b1f6e391277cdce4a6da02",
+    "evidence/2026-10-17-cheek-hooks/build_model.py": "87b86ce61afb7cb578f7ef34cfd83a4725ac98d91129aa645dac39565257a7dd",
+    "evidence/2026-10-17-cheek-hooks/cold-reopen.json": "c076dc90d1032d4e6197cfae7577c3edfa3731385759a03f1b88a6c7b9eaada4",
+    "evidence/2026-10-17-cheek-hooks/finalize_validated.py": "1fe9cf6ad27addda3d3b8c82c125e403fc1e9386efdab38389e6bccc3edcc44a",
+    "evidence/2026-10-17-cheek-hooks/hook-fit.json": "7661670f6271ce15c33441e6f5baf3104ebf83b950257b146935afd8061eef00",
+    "evidence/2026-10-17-cheek-hooks/installed-reopen.json": "98ea39f14ab746027b82ad6c6423ed0db67d366e39e3371daf4ac039b4d463df",
+    "evidence/2026-10-17-cheek-hooks/probe_hooks.py": "594d2f5db5337695a2803e6c3835714fdea0af30358099710caf6abe0f62c1c0",
+    "evidence/2026-10-17-cheek-hooks/update-summary.json": "a74d2eb60174de035fd3bea102527aea015854813cab33f87a2242da7f257b4c",
+    "evidence/2026-10-17-cheek-hooks/verify_saved.py": "85d038f4a4913a3c06966e470e52f621eb5d1ff9ceab4da8ab3ef6d5b431f8d2"
   },
   "known_review_status": "0 new WWR overlaps; 14 existing U-bar/hoop pairs Deferred in COH-025. Four cheek spacing findings Open in COH-024; 29 cap/backwall and 4 backwall internal overlaps and other existing findings retained.",
   "portability_verification": "Cold native reopen and live dependency test PASS; 172 accepted-trial solid matches; all 1677 prior native object/view records exact. Previous standalone GUI loader limitation retained.",
   "updated_on": "2026-10-17",
   "current_update": {
     "date": "2026-10-17",
-    "decision": "D-045",
-    "scope": "Correct the schematic geotechnical strap representation to seven per backwall (14 total), matching the selected backwall report Figure B2.",
-    "summary": "evidence/2026-10-17-strap-report-layout/update-summary.json",
-    "previous_model_sha256": "23f67653096125870770f6f4fd43aaf478e8afa319a7437d9db68488af895288",
-    "follow_up": "Existing coherence and engineering dispositions remain unchanged. Strap/pullout design and final connection/layout remain with the MSE supplier; Figure B2 is schematic.",
-    "publication": "Correction to user-requested report-based representation; standing GitHub delivery instructions"
+    "decision": "D-046",
+    "scope": "Add standard 90-degree inward hooks to horizontal cheek bars where they fit the cap/backwall without moving retained steel or row elevations.",
+    "summary": "evidence/2026-10-17-cheek-hooks/update-summary.json",
+    "previous_model_sha256": "0875a3679f0d958083342341cfd10e68543035c93fb2923af1bdf6f4dac19926",
+    "follow_up": "Standard-hook geometry and affected cover/intersection checks pass. Required development length, joint transfer and connection capacity are NOT VERIFIED. Existing unrelated wall/cap failures and COH-023 remain open. Design reports and DXF have not been regenerated."
   },
   "archive_files": {
     "archive/B4-before-pedestal-ubars-20261012.FCStd": "e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118",
@@ -419,16 +429,18 @@
     "archive/B4-closure-before-strap-representation-20261017.FCStd": "bd849f84699d984153542b28acb751b89b024030a586652b9747e4fa85ffc806",
     "archive/B4-closure-before-strap-representation-record-20261017.zip": "11c0c17ba667e36874c5d50d3284bc7d99c29e467ecb57d6e47e2c70deee45dd",
     "archive/B4-before-seven-strap-layout-20261017.FCStd": "23f67653096125870770f6f4fd43aaf478e8afa319a7437d9db68488af895288",
-    "archive/B4-before-seven-strap-layout-record-20261017.zip": "11ac51d43fff6cf9c03bfee7dfd2f645a233fdb18f952180bb275239bda598f6"
+    "archive/B4-before-seven-strap-layout-record-20261017.zip": "11ac51d43fff6cf9c03bfee7dfd2f645a233fdb18f952180bb275239bda598f6",
+    "archive/B4-before-cheek-hooks-20261017.FCStd": "0875a3679f0d958083342341cfd10e68543035c93fb2923af1bdf6f4dac19926",
+    "archive/B4-before-cheek-hooks-record-20261017.zip": "028b5ce18e2ec3ca9e11758aa0fb704f018c1f7f05b3411fbbfc3d7c38ef04f2"
   },
   "previous_update": {
     "date": "2026-10-17",
-    "decision": "D-044",
-    "scope": "Omit only nominal 3/4-in chamfers from the bridge decks, FIB beam bottom corners and pedestals; add six end-bent MSE copings and two native 4-in closure slabs. Add one editable 2-in-wide geotechnical strap reference at each backwall, 18 in above its cap.",
-    "summary": "evidence/2026-10-17-square-edges-and-closure/update-summary.json",
-    "previous_model_sha256": "2d3b6af8ff550d4bb201e41c9cf373cf4bbfe60a96390485f71822be86055bdf",
-    "follow_up": "Existing COH-023/024/025/026 dispositions remain unchanged. Reconcile new concrete quantities and loads; closure reinforcement, cap/slab weather seal and movement-joint detailing remain unspecified. Geotechnical backwall straps are schematic representations at the selected trial level; final strap/pullout design and connections remain with the MSE supplier. Prior bar intersections and concrete ownership overlaps remain recorded.",
-    "publication": "User-requested model revision and standing project GitHub delivery instructions"
+    "decision": "D-045",
+    "scope": "Correct the schematic geotechnical strap representation to seven per backwall (14 total), matching the selected backwall report Figure B2.",
+    "summary": "evidence/2026-10-17-strap-report-layout/update-summary.json",
+    "previous_model_sha256": "23f67653096125870770f6f4fd43aaf478e8afa319a7437d9db68488af895288",
+    "follow_up": "Existing coherence and engineering dispositions remain unchanged. Strap/pullout design and final connection/layout remain with the MSE supplier; Figure B2 is schematic.",
+    "publication": "Correction to user-requested report-based representation; standing GitHub delivery instructions"
   },
   "extra_macros": {
     "Show_Elevations.FCMacro": "f27415eb7d8fe05a5ff8d05a01a5298b36ac1d3cf987ec8738ed541d085a3fc4",

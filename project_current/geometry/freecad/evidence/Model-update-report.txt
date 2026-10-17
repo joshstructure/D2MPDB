@@ -319,3 +319,11 @@ Selected Figure B2: 33.571428571 in spacing and 16.785714286 in end offsets. Wid
 All concrete, physical reinforcement, quantities, chamfer convention, copings/closure slabs, source links and original view records. Existing central reference Names retained; 12 reference faces added.
 Existing coherence and engineering dispositions remain unchanged. Strap/pullout design and final connection/layout remain with the MSE supplier; Figure B2 is schematic.
 Evidence: 2026-10-17-strap-report-layout/update-summary.json
+
+
+17 OCTOBER 2026 - D-046 HORIZONTAL CHEEK HOOKS
+Add standard 90-degree inward hooks to horizontal cheek bars where they fit the cap/backwall without moving retained steel or row elevations.
+42 hooks: 24 into caps and 18 into backwalls, on 30 horizontal #4 bars. 3-in inside bends and 6-in straight tails. 64 cheek bars retained.
+All concrete, existing row elevations, vertical mat bars, cap/backwall/pedestal/lug steel, 14 strap references, object names, source links and view records.
+Standard-hook geometry and affected cover/intersection checks pass. Required development length, joint transfer and connection capacity are NOT VERIFIED. Existing unrelated wall/cap failures and COH-023 remain open. Design reports and DXF have not been regenerated.
+Evidence: 2026-10-17-cheek-hooks/update-summary.json
