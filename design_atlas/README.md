@@ -68,6 +68,9 @@ through the same Sites project to refresh it. The initial site is
 - **View exact source** opens the locator, excerpt and exact-byte fingerprint.
   When opened locally from `design_atlas/dist/`, it also links to the original
   repository file. Hosted copies show the embedded evidence snapshot.
+- **Show on map**, beside each exact-source button, selects and centers that
+  step's component and returns to the map. **Back** restores the previous value
+  trail and scroll position.
 - **Coverage & sources** includes current pier-related tracker records, read
   directly from the workbook, and the boundaries of each check.
 
