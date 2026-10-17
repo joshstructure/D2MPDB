@@ -1,5 +1,6 @@
 """Bounded lineage checks: identity gaps, unit conversions, active runs, evidence."""
 import copy
+import csv
 import json
 from pathlib import Path
 import unittest
@@ -7,6 +8,7 @@ import xml.etree.ElementTree as ET
 
 from design_atlas.build import build_data, quantity, sheet_definition, validate, ROOT, CASE, SHEET, sha
 from design_atlas.origins import classify
+from design_atlas.journal import cell_text, stored_value
 
 
 class LiteralWorksheetTests(unittest.TestCase):
@@ -38,7 +40,7 @@ class LiteralWorksheetTests(unittest.TestCase):
 class ProjectAtlasTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.before={p:sha(ROOT/p) for p in [CASE,SHEET,'project_current/source_register.csv','project_current/coherence/Coherence_Tracker.xlsx'] if (ROOT/p).is_file()}
+        cls.before={p:sha(ROOT/p) for p in [CASE,SHEET,'journal/D2_I95_Project_Journal.bpad','project_current/source_register.csv','project_current/coherence/Coherence_Tracker.xlsx'] if (ROOT/p).is_file()}
         cls.data=build_data()
         cls.values={v['id']:v for v in cls.data['values']}
         cls.case=json.loads((ROOT/CASE).read_text(encoding='utf-8'))
@@ -136,6 +138,54 @@ class ProjectAtlasTests(unittest.TestCase):
             self.assertEqual(v['origins']['PIER-MATHCAD']['kind'],'derived')
             self.assertIn(':=',v['expression'])
             self.assertIn('region-id=',v['steps'][0]['evidence']['locator'])
+
+    def test_journal_feeds_both_fbmp_entry_modules_and_runs(self):
+        nodes={n['id']:n for n in self.data['nodes']}
+        edges={(e['source'],e['target']):e for e in self.data['edges']}
+        for module,target in [('JOURNAL-PIER-ENTRY','REQUIRED-PIER-XML'),('JOURNAL-EB-ENTRY','EB-XML'),('JOURNAL-EB-ENTRY','EB2-XML')]:
+            self.assertIn(('JOURNAL',module),edges)
+            self.assertEqual(nodes[module]['path'],nodes['JOURNAL']['path'])
+            self.assertEqual(edges[module,target]['status'],'recorded')
+            self.assertIn('not verified',edges[module,target]['basis'])
+
+    def test_journal_context_is_not_presented_as_the_same_analysis_result(self):
+        value=self.values['inputs.Mu_N']
+        self.assertIn('JOURNAL',value['upstream_context']['node_ids'])
+        self.assertNotIn('JOURNAL',value['node_ids'])
+        self.assertNotIn('JOURNAL',value['origins'])
+        self.assertIn('not the same quantity',value['upstream_context']['detail'])
+
+    def test_journal_node_load_uses_saved_cache_and_exact_cell_evidence(self):
+        value=self.values['journal.FBMPPier.FE_NodeEntry_DC_PL_W1_W3.r2.c6']
+        journal=ET.parse(ROOT/'journal/D2_I95_Project_Journal.bpad').getroot()
+        cell=journal.find("./report[@name='FBMPPier']/.//table[@name='FE_NodeEntry_DC_PL_W1_W3']/row[2]/c[6]")
+        self.assertEqual(value['value'],float(cell.findtext('num')))
+        self.assertEqual(value['expression'],cell.get('formula'))
+        self.assertEqual(value['unit'],'kip')
+        self.assertIn('/row[2]/c[6]',value['steps'][0]['evidence']['locator'])
+        self.assertIn('without native recalculation',value['note'])
+        self.assertNotIn('PIER-XML',value['node_ids'])
+        self.assertEqual(self.values['journal.FBMPEndBent.EBNodeMap.r2.c2']['value'],15)
+        self.assertEqual(self.values['journal.FBMPEndBent.EBNodeMap.r3.c2']['value'],34)
+
+    def test_historical_mapping_is_not_substituted_for_live_entry_coordinates(self):
+        entry=self.values['journal.FBMPPier.FEPositionMap.r4.c4']
+        mapping=self.values['journal.FBMPPier.PierSourceBearingMap.r4.c5']
+        self.assertEqual(entry['value'],'0 ft 10.5 in')
+        self.assertEqual(mapping['value'],10.14)
+        self.assertIn('historical',mapping['note'])
+
+    def test_selected_report_evidence_follows_current_register(self):
+        with (ROOT/'project_current/source_register.csv').open(encoding='utf-8-sig') as handle:
+            selected=next(r for r in csv.DictReader(handle) if r['source_id']=='PIER-REPORT')['path']
+        report_steps=[s for v in self.data['values'] for s in v['steps'] if s['node']=='PIER-REPORT']
+        self.assertTrue(report_steps)
+        self.assertTrue(all(s['evidence']['path']==selected for s in report_steps))
+
+    def test_missing_journal_cache_is_not_evaluated(self):
+        self.assertIsNone(cell_text(ET.fromstring('<c formula="1+2"/>')))
+        self.assertEqual(stored_value(None),(None,''))
+        self.assertEqual(stored_value('-0 ft 10.5 in'),('-0 ft 10.5 in',''))
 
     def test_schema_rejects_dangling_sources(self):
         data=copy.deepcopy(self.data);data['edges'][0]['source']='unknown'

@@ -18,7 +18,7 @@
     <div class="workspace">
       <section class="map-panel" aria-label="Full project map">
         <div class="panel-heading"><div><span class="eyebrow">01 / PROJECT MAP</span><h2 id="map-title">The full picture</h2></div><button id="sources-button" class="quiet">Source directory <span id="source-count"></span></button></div>
-        <div class="map-toolbar"><label class="search-field"><span aria-hidden="true">⌕</span><input id="source-search" placeholder="Find a source or component…" aria-label="Find a source or component" autocomplete="off"></label><button id="pier-view" class="active">Pier-cap trail</button><button id="fit-all">Fit full map</button></div>
+        <div class="map-toolbar"><label class="search-field"><span aria-hidden="true">⌕</span><input id="source-search" placeholder="Find a source or component…" aria-label="Find a source or component" autocomplete="off"></label><button id="journal-view">Project journal</button><button id="pier-view" class="active">Pier-cap trail</button><button id="fit-all">Fit full map</button></div>
         <div id="source-results" class="source-results" hidden></div>
         <div class="canvas" id="map-canvas" aria-label="Pan and zoom project dependency map">
           <div class="map-world" id="map-world"><svg id="map-links" aria-hidden="true"></svg><div id="map-labels"></div><div id="map-nodes"></div></div>
@@ -36,7 +36,7 @@
         <div id="source-detail" class="source-detail"></div>
       </aside>
       <section id="values-panel" class="values-panel" aria-label="Individual values and their sources">
-        <div class="panel-heading"><div><span class="eyebrow">03 / PARAMETERS & ORIGINS</span><h2 id="values-title" tabindex="-1">Inside the pier cap</h2></div><button id="all-values" class="quiet">All pier values</button></div>
+        <div class="panel-heading"><div><span class="eyebrow">03 / PARAMETERS & ORIGINS</span><h2 id="values-title" tabindex="-1">Inside the pier cap</h2></div><button id="all-values" class="quiet">All extracted values</button></div>
         <div id="origin-filters" class="origin-filters" role="group" aria-label="Parameter origin"></div>
         <p id="origin-context" class="origin-context"></p>
         <div class="value-controls"><label class="search-field"><span aria-hidden="true">⌕</span><input id="value-search" aria-label="Search values" placeholder="Search a value, symbol, or unit…"></label><select id="value-category" aria-label="Value category"><option value="">Every category</option></select><span id="value-count"></span></div>

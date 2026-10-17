@@ -57,10 +57,11 @@
   // The pier trail occupies a dedicated lane. Other source-register records
   // retain their own stages below; no dependencies are invented for layout.
   const positions={
-    'RFQ':[35,75],'REQUIRED-PIER-XML':[305,75],'PIER-AUDIT':[575,75],'PIER-CASE':[845,75],
-    'PIER-MINTIP-XML':[35,240],'PIER-XML':[305,240],'CAP-TOOL':[845,240],
-    'PIER-REPORT':[845,405],'PIER-MATHCAD':[575,405],'PIER-ISSUED-PDF':[305,405]
+    'JOURNAL':[35,75],'JOURNAL-PIER-ENTRY':[305,75],'REQUIRED-PIER-XML':[575,75],'PIER-AUDIT':[845,75],'PIER-CASE':[1115,75],
+    'RFQ':[35,240],'PIER-MINTIP-XML':[305,240],'PIER-XML':[575,240],'CAP-TOOL':[845,240],'PIER-REPORT':[1115,240],
+    'JOURNAL-EB-ENTRY':[35,405],'PIER-MATHCAD':[845,405],'PIER-ISSUED-PDF':[575,405]
   };
+  Object.keys(positions).forEach(id=>{if(!byId.has(id))delete positions[id];});
   const stages=['Basis','Analysis','Design','Detailing','Deliverables'];
   const slots=Object.fromEntries(stages.map(s=>[s,0]));
   data.nodes.forEach(n => {
@@ -73,14 +74,14 @@
   $('map-world').style.height=bottom+'px';
   $('map-links').setAttribute('height',bottom);
   $('map-links').style.height=bottom+'px';
-  $('map-labels').innerHTML='<span class="map-group-label" style="left:35px;top:28px">PIER CAP / SELECTED DESIGN TRAIL</span>'+stages.map((s,i)=>`<span class="map-group-label" style="left:${35+i*270}px;top:605px">${escape(s.toUpperCase())}</span>`).join('');
+  $('map-labels').innerHTML='<span class="map-group-label" style="left:35px;top:28px">PROJECT JOURNAL → FBMP → PIER CAP</span>'+stages.map((s,i)=>`<span class="map-group-label" style="left:${35+i*270}px;top:605px">${escape(s.toUpperCase())}</span>`).join('');
   const ns='http://www.w3.org/2000/svg';
   const svg=$('map-links');
   svg.innerHTML='<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/></marker></defs>';
   function edgePath(e,index) {
     const a=positions[e.source],b=positions[e.target];
-    if(e.source==='PIER-CASE'&&e.target==='PIER-REPORT')return 'M1055,118 C1090,118 1090,448 1055,448';
-    if(e.source==='PIER-CASE'&&e.target==='PIER-MATHCAD')return 'M905,161 C905,235 680,300 680,405';
+    if(e.source==='JOURNAL'&&e.target==='JOURNAL-EB-ENTRY')return 'M35,118 H15 Q5,118 5,130 V436 Q5,448 15,448 H35';
+    if(e.source==='PIER-CASE'&&e.target==='PIER-MATHCAD')return 'M1175,161 C1175,190 1085,190 1085,225 L1085,350 Q1085,380 950,380 L950,405';
     if (Math.abs(a[1]-b[1])<20) {
       const forward=b[0]>a[0];
       const ax=a[0]+(forward?210:0), bx=b[0]+(forward?0:210), ay=a[1]+43, by=b[1]+43;
@@ -107,7 +108,7 @@
   data.nodes.forEach(n=>{
     const el=document.createElement('button');el.type='button';el.className='map-node';el.dataset.node=n.id;
     el.style.left=positions[n.id][0]+'px';el.style.top=positions[n.id][1]+'px';
-    el.innerHTML=`<span class="node-id">${escape(n.id)}<i class="node-dot ${escape(n.status)}"></i></span><span class="node-name">${escape(n.title)}</span><span class="node-status">${escape(prettyStatus[n.status]||n.status)}${n.value_count?' · '+n.value_count+' values':''}</span>`;
+    el.innerHTML=`<span class="node-id">${escape(n.id)}<i class="node-dot ${escape(n.status)}"></i></span><span class="node-name">${escape(n.short_title||n.title)}</span><span class="node-status">${escape(prettyStatus[n.status]||n.status)}${n.value_count?' · '+n.value_count+' values':''}</span>`;
     el.setAttribute('aria-label',n.title+', '+(prettyStatus[n.status]||n.status));
     el.addEventListener('click',()=>selectNode(n.id));
     $('map-nodes').appendChild(el);nodeElements.set(n.id,el);
@@ -129,7 +130,7 @@
     seen.delete(state.selected);return seen;
   }
   function traceSets() {
-    if(state.parameterFocus) return {upstream:new Set(),downstream:new Set(),all:new Set(valueById.get(state.value).node_ids)};
+    if(state.parameterFocus) {const v=valueById.get(state.value);return {upstream:new Set(),downstream:new Set(),all:new Set([...v.node_ids,...(v.upstream_context?.node_ids||[])])};}
     const upstream=state.direction==='downstream'?new Set():walk('upstream');
     const downstream=state.direction==='upstream'?new Set():walk('downstream');
     return {upstream,downstream,all:new Set([state.selected,...upstream,...downstream])};
@@ -183,6 +184,7 @@
   $('zoom-in').onclick=()=>zoom(1.2);$('zoom-out').onclick=()=>zoom(1/1.2);
   $('pier-view').onclick=()=>{fit(pierIds);$('pier-view').classList.add('active');$('fit-all').classList.remove('active');};
   $('fit-all').onclick=()=>{fit(data.nodes.map(n=>n.id));$('fit-all').classList.add('active');$('pier-view').classList.remove('active');};
+  $('journal-view').onclick=()=>{selectNode('JOURNAL');fit(['JOURNAL','JOURNAL-PIER-ENTRY','JOURNAL-EB-ENTRY','REQUIRED-PIER-XML','PIER-XML'].filter(id=>byId.has(id)));};
 
   function traceButtons(ids) {
     return [...ids].sort((a,b)=>positions[a][1]-positions[b][1]||positions[a][0]-positions[b][0]).map(id=>{
@@ -203,7 +205,7 @@
     if(state.parameterFocus) {
       const value=valueById.get(state.value);
       $('trace-title').textContent=value.label;
-      $('trace-body').innerHTML='<div class="trace-group">Individual value trail</div>'+value.steps.map(s=>
+      $('trace-body').innerHTML=(value.upstream_context?'<div class="trace-group">Model inputs upstream of this result</div>'+traceButtons(value.upstream_context.node_ids)+'<p class="trace-context-note">Journal inputs feed the analysis. They are different quantities from this result.</p>':'')+'<div class="trace-group">Individual value trail</div>'+value.steps.map(s=>
         `<button class="trace-node" data-source="${escape(s.node)}">${escape(s.title)}<small>${escape(format(s.value))} ${escape(unitText(s.unit))} · ${escape(byId.get(s.node).title)}</small></button>`).join('');
       $('trace-body').querySelectorAll('[data-source]').forEach(el=>el.onclick=()=>selectNode(el.dataset.source));
       $('source-detail').innerHTML='<strong>'+escape(value.key)+'</strong><p>'+escape(value.transform||value.note||value.source_status)+'</p><p>Exact source locations and handoff evidence are shown in the value inspector below.</p><button id="exit-parameter" class="quiet">Back to component trace ↗</button>';
@@ -264,7 +266,7 @@
     $('origin-context').textContent=state.allValues?'Roles are relative to the node named in each row. “Local setting” does not establish first-ever authorship.':`Roles at ${byId.get(state.selected).title}. “Local setting” means retained here; first-ever authorship is not established.`;
     const shown=available.filter(v=>inOrigin(v,state.origin)&&(!cat||v.category===cat)&&
       (v.label+' '+v.key+' '+v.unit+' '+format(v.value)+' '+(v.expression||'')).toLowerCase().includes(query));
-    $('values-title').textContent=state.allValues?'All pier-cap values':byId.get(state.selected).title+' · parameters';
+    $('values-title').textContent=state.allValues?'All extracted values':byId.get(state.selected).title+' · parameters';
     $('value-count').textContent=shown.length+' values';$('empty-values').hidden=shown.length>0;
     if(!shown.some(v=>v.id===state.value)&&shown.length)state.value=shown[0].id;
     if(!shown.length)state.parameterFocus=false;
@@ -275,7 +277,7 @@
     $('value-rows').querySelectorAll('tr').forEach(row=>row.onclick=()=>navigate(()=>{state.value=row.dataset.value;state.parameterFocus=true;state.overview=false;renderValues();paintGraph();renderTrace();$('value-detail').scrollTop=0;if(matchMedia('(max-width:760px)').matches)$('value-detail').scrollIntoView({block:'start'});announce('Tracing '+valueById.get(state.value).label);}));
     $('value-rows').querySelectorAll('[data-origin-node]').forEach(b=>b.onclick=e=>{e.stopPropagation();selectNode(b.dataset.originNode,true,b.closest('tr').dataset.value);});
     if(shown.length)renderValue(valueById.get(state.value));
-    else $('value-detail').innerHTML=available.length?'<h3>No parameters match these filters</h3><p class="value-note">Clear the filters to see all extracted parameters at this node.</p><button id="clear-value-filters">Clear parameter filters</button>':'<h3>Parameters not yet extracted</h3><p class="value-note">The project map includes every registered source. Detailed parameter extraction currently covers the pier-cap trail.</p><button id="open-all-values">Browse all pier values</button>';
+    else $('value-detail').innerHTML=available.length?'<h3>No parameters match these filters</h3><p class="value-note">Clear the filters to see all extracted parameters at this node.</p><button id="clear-value-filters">Clear parameter filters</button>':'<h3>Parameters not yet extracted</h3><p class="value-note">The project map includes every registered source. Detailed extraction covers the pier-cap trail and the journal’s pier/end-bent node-entry tables.</p><button id="open-all-values">Browse all extracted values</button>';
     if($('open-all-values'))$('open-all-values').onclick=showAllValues;
     if($('clear-value-filters'))$('clear-value-filters').onclick=()=>navigate(()=>{resetFilters();renderSelection();});
   }
@@ -295,6 +297,7 @@
     $('value-detail').innerHTML=`<div class="value-top"><div><div class="eyebrow">${escape(v.category.toUpperCase())}</div><h3>${escape(v.label)}</h3></div><div class="big-value ${v.value_kind==='expression'?'expression-value':''}">${escape(format(v.value))} <small>${escape(unitText(v.unit))}</small></div></div>`+
       `<div class="origin-card ${role.kind}"><span class="origin-badge ${role.kind}">${roleNames[role.kind]}</span><small> at ${escape(context.title)}</small><p>${escape(role.basis)}</p>${role.from_node?`<button id="follow-origin">Open ${escape(byId.get(role.from_node).title)} ↗</button>`:''}${role.evidence.map((e,i)=>`<button data-origin-evidence="${i}">Origin evidence${role.evidence.length>1?' '+(i+1):''}</button>`).join('')}</div>`+
       (v.expression?`<pre class="formula-expression">${escape(v.expression)}</pre>`:'')+
+      (v.upstream_context?`<div class="upstream-context"><strong>Model inputs: project journal</strong><p>${escape(v.upstream_context.detail)}</p>${v.upstream_context.node_ids.map(id=>`<button data-upstream-source="${escape(id)}">Open ${escape(byId.get(id).title)} ↗</button>`).join('')}</div>`:'')+
       (v.sheet_status==='match'?badge('match','Mathcad input matches'):v.sheet_status!=='not mapped'&&v.sheet_status!=='not applicable'?badge(v.sheet_status,'Mathcad: '+v.sheet_status):'')+
       `<p class="value-note">${escape(v.source_status)}${v.transform?' · '+escape(v.transform):''}${v.note?'<br>'+escape(v.note):''}</p>`+
       (v.steps.some(s=>v.origins[s.node]?.from_node)?'<p class="flow-direction">↓ Arrows follow recorded handoffs between components</p>':'')+flowSteps+
@@ -304,6 +307,7 @@
     $('value-detail').querySelectorAll('[data-evidence-step]').forEach(b=>b.onclick=()=>showEvidence(v.steps[+b.dataset.evidenceStep].evidence,v.label));
     $('value-detail').querySelectorAll('[data-mapping-step]').forEach(b=>b.onclick=()=>showEvidence(v.steps[+b.dataset.mappingStep].mapping,v.label+' · mapping'));
     $('value-detail').querySelectorAll('[data-origin-evidence]').forEach(b=>b.onclick=()=>showEvidence(role.evidence[+b.dataset.originEvidence],v.label+' · origin at '+context.title));
+    $('value-detail').querySelectorAll('[data-upstream-source]').forEach(b=>b.onclick=()=>selectNode(b.dataset.upstreamSource,true));
     if($('follow-origin'))$('follow-origin').onclick=()=>selectNode(role.from_node,true);
   }
   function showAllValues(){navigate(()=>{resetFilters();state.allValues=true;state.parameterFocus=false;renderSelection();scrollToValues();});}
@@ -340,7 +344,7 @@
   const dt=new Date(data.generated_at);
   $('snapshot-time').textContent=dt.toLocaleString(undefined,{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'});
   $('footer-snapshot').textContent='D2 · '+dt.toLocaleDateString()+' snapshot';
-  $('summary').innerHTML='<div><strong>'+data.nodes.length+'</strong><span>source nodes</span></div><div><strong>'+data.values.length+'</strong><span>pier values</span></div><div><strong>'+data.edges.length+'</strong><span>connections</span></div>';
+  $('summary').innerHTML='<div><strong>'+data.nodes.length+'</strong><span>source nodes</span></div><div><strong>'+data.values.length+'</strong><span>extracted values</span></div><div><strong>'+data.edges.length+'</strong><span>connections</span></div>';
   $('source-count').textContent='('+data.nodes.length+')';
   document.querySelector('.brand').onclick=e=>{e.preventDefault();overview();};
   history.scrollRestoration='manual';

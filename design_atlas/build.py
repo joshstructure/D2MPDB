@@ -20,6 +20,7 @@ import xml.etree.ElementTree as ET
 
 from tools.project_coherence import report_case, source_checks, read_tracker
 from design_atlas.origins import classify
+from design_atlas.journal import extract_journal
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = Path(__file__).parent / 'web'
@@ -145,6 +146,10 @@ def build_data(root=ROOT):
     root = Path(root)
     with (root / REGISTRY).open(encoding='utf-8-sig',newline='') as f:
         register = list(csv.DictReader(f))
+    registered={row['source_id']:row for row in register}
+    # Follow the selected records when the register advances to a newer report.
+    CASE=registered['PIER-CASE']['path']
+    REPORT=registered['PIER-REPORT']['path']
     checks = {c['check_id'][7:]:c for c in source_checks(root,register) if c['check_id'].startswith('SOURCE:')}
     nodes=[]; edges=[]; documents={}; fingerprints={}
 
@@ -233,6 +238,24 @@ def build_data(root=ROOT):
         edge(e['source'],e['target'],e['status'],e['label'],e['basis'],
              [evidence('design_atlas/manual_links.json','edges',e)],kind='context' if e['status']=='context' else 'flow')
 
+    journal_path=registered['JOURNAL']['path']
+    journal_modules=extract_journal(root,journal_path,evidence) if (root/journal_path).is_file() else []
+    journal_confirmation=evidence('design_atlas/manual_links.json','journal_handoff',manual['journal_handoff'])
+    for module in journal_modules:
+        node(module['id'],module['title'],journal_path,'recorded',
+             'Node coordinates, identities and load-entry values saved inside the project journal. Cached results are not recalculated; exact-run transfer is not verified.',
+             stage_name='Basis',module=module['module'],
+             short_title='Pier node data' if module['module']=='FBMPPier' else 'End-bent node data',
+             evidence=[module['evidence']])
+        edge('JOURNAL',module['id'],'recorded','Journal contains FBMP entry data',
+             'Native journal module and its saved node-entry tables were inspected.',[module['evidence']])
+        targets=['PIER-XML','PIER-MINTIP-XML','REQUIRED-PIER-XML'] if module['module']=='FBMPPier' else ['EB-XML','EB-MINTIP-XML','EB2-XML']
+        for target in targets:
+            if target not in {n['id'] for n in nodes}: continue
+            edge(module['id'],target,'recorded','Journal node-data handoff',
+                 'User confirms the journal supplied FBMP node data. The current entry module is available; the exact journal revision and cell-by-cell transfer into this run are not verified.',
+                 [journal_confirmation,module['evidence']])
+
     values=[]
     def step(title,node_id,path,locator,value,status='recorded',note='',unit=''):
         return {'title':title,'node':node_id,'value':value,'unit':unit,'status':status,
@@ -264,6 +287,9 @@ def build_data(root=ROOT):
             gov=governing[key]
             v['node_ids'][:0]=['REQUIRED-PIER-XML','PIER-AUDIT']
             v['governing']=gov
+            if any(m['id']=='JOURNAL-PIER-ENTRY' for m in journal_modules):
+                v['upstream_context']={'node_ids':['JOURNAL','JOURNAL-PIER-ENTRY'],
+                    'detail':'The journal supplies node data to the FBMP analysis. This result is produced by the analysis; it is not the same quantity as a journal node input. The exact journal revision used for the run is unconfirmed.'}
             v['steps'].append(step('Recorded governing source','PIER-AUDIT',CASE,
                 '/analysis/xml_audit/governing/'+key,gov,'recorded',
                 'Retained audit only. '+('Source identity matches, but the value was not independently re-extracted.' if xml_match else 'Matching raw XML is not present in the selected source register.')))
@@ -373,6 +399,7 @@ def build_data(root=ROOT):
     except (OSError,subprocess.CalledProcessError):commit=None
     receipt_proof=evidence(RECEIPT,'label = Pier Cap',receipt) if receipt else None
     for v in values: v['origins']=classify(v,case,same,receipt_ok,receipt_proof)
+    for module in journal_modules: values.extend(module['values'])
     for n in nodes: n['value_count']=sum(n['id'] in v['node_ids'] for v in values)
     result={'schema_version':1,'title':'D2 Design Atlas','generated_at':generated,
         'repository_revision':commit,'nodes':nodes,'edges':edges,'values':values,
@@ -380,9 +407,10 @@ def build_data(root=ROOT):
         'checks':{'report_case_equal':same,'required_xml_present':xml_match,
                   'mathcad_receipt_matches':receipt_ok,'sheet_comparisons':dict(Counter(v['sheet_status'] for v in values))},
         'coverage':{'map':'All registered sources plus explicitly identified pier-cap gaps.',
-                    'values':'Pier saved case, retained governing audit, selected report, mapped Mathcad inputs, four worksheet formula definitions, active transverse runs, and prior-XML node coordinates. Formula extraction is partial; results are not evaluated.',
+                    'values':'Pier saved case, retained governing audit, selected report, mapped Mathcad inputs, four worksheet formula definitions, active transverse runs, prior-XML coordinates, and the journal’s pier/end-bent node maps and load-entry tables. Journal results are saved values, not recalculated; worksheet formulas are not evaluated.',
                     'limits':['No native solver was run.',('The matching pier XML and issued PDF remain unlinked.' if not xml_match else 'No issued PDF is linked; the retained audit is not independently re-extracted.'),
                               'Registered dependencies describe relationships, not proven parameter transfers.',
+                              'Journal-to-FBMP provenance is user-confirmed; exact journal revision and per-cell run transfers remain unverified.',
                               'Current calculation-tool revision is not attributed to the historical report run.',
                               'This is a read-only snapshot. Rebuild to capture changed project files.']}}
     # Detect concurrent edits during ingestion instead of publishing mixed bytes.
@@ -401,6 +429,7 @@ def validate(data):
     if len(value_ids)!=len(set(value_ids)):raise ValueError('Duplicate value IDs')
     for v in data['values']:
         if any(n not in ids for n in v['node_ids']):raise ValueError('Unresolved value source')
+        if any(n not in ids for n in v.get('upstream_context',{}).get('node_ids',[])):raise ValueError('Unresolved upstream context')
         if not v['steps']:raise ValueError('Value has no source evidence')
         for s in v['steps']:
             if s['evidence']['path'] not in data['documents']:raise ValueError('Untracked evidence file')

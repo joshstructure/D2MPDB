@@ -26,6 +26,13 @@ through the same Sites project to refresh it. The initial site is
 - Drag the full map to pan; use the wheel or +/- controls to zoom. **Fit full
   map** includes every registered source. **Pier-cap trail** returns to the
   first detailed lane. The source directory is also keyboard accessible.
+- **Project journal** brings its FBMP entry modules into view. The main pier
+  lane now begins with the journal and its **FBMP Entry — Pier** module.
+  **FBMP Entry — End Bent** also connects to the registered end-bent runs.
+  Select either module to inspect saved node identities, coordinates and loads.
+  For analysis results such as negative moment, the journal appears under
+  **Model inputs upstream of this result**; it is not labeled as the source of
+  an identical moment value.
 - Select a component to isolate upstream sources, downstream uses or both. Wider registered
   dependencies are optional; recorded cycles are handled without recursion.
 - **View parameters** opens values at the selected node. **Received inputs**
@@ -65,6 +72,15 @@ The detailed adapter reads:
 - the preserved prior XML's pile-head node Z values;
 - the generated 17 October pier Mathcad file, mapping CSV and provenance receipt;
 - the current coherence workbook, without changing any cells.
+- the native journal’s `FBMPPier` and `FBMPEndBent` node-entry tables, including
+  cell formulas, saved results, unit definitions and exact table/cell locators.
+
+Journal values are read from native saved cells without recalculation. Mixed
+feet/inches strings and historical node mappings remain as recorded. Journal
+handoffs are user-confirmed workflow provenance; exact journal revision and
+per-cell transfer into each FBMP run remain unverified. The source-register
+journal fingerprint status is retained. No native journal file is edited.
+The selected pier case and report paths follow the current source register.
 
 Mathcad checks evaluate **literal scalar input definitions only**, with explicit
 dimensions and units. Worksheet formulas, cached output values and native solver
@@ -76,7 +92,8 @@ and `s_L` inputs. Individual run settings and development flags are inspectable.
 
 ## What is curated
 
-`manual_links.json` declares the unmapped RFQ handoff, missing issued PDF and
+`manual_links.json` records the user-confirmed journal-to-FBMP workflow and
+declares the unmapped RFQ handoff, missing issued PDF and
 current-tool context. Each edge carries its stated basis. Extend that file for
 documented manual relationships; do not imply adoption or evidence from a
 filename. New parameter mappings belong in the bounded adapter with tests.

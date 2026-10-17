@@ -1,6 +1,12 @@
 {
   "schema_version": 1,
   "description": "Explicitly curated context and missing handoffs. These records do not adopt sources or assert design acceptance.",
+  "journal_handoff": {
+    "confirmed_on": "2026-10-17",
+    "confirmed_by": "Project user, in this atlas conversation",
+    "statement": "The FBMP runs took their node data from the journal",
+    "scope": "Workflow provenance. The exact journal revision and individual cell transfers used in each FBMP run are not established by this statement."
+  },
   "nodes": [
     {"id":"RFQ","title":"RFQ / design requirements","stage":"Basis","status":"unmapped","detail":"No RFQ source is linked in the project source register. Requirements-to-analysis trace remains unmapped."},
     {"id":"PIER-ISSUED-PDF","title":"Issued pier-cap calculation","stage":"Deliverables","status":"missing","detail":"No issued PDF or print receipt is linked to this pier-cap Mathcad output. Native recalculation and issue history are not established."}
