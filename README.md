@@ -31,6 +31,10 @@ The initial case uses five ring rows at 3 ft spacing and selects **#5 at 5 in ea
 for the source register, journal, cap reports, Mathcad sheets, analysis files and
 the editable [coherence tracker](project_current/coherence/Coherence_Tracker.xlsx).
 
+## Information lineage graph
+
+`lineage/` holds the project information-lineage graph, which shows how the registered sources, saved cases, Mathcad cap sheets and deliverables depend on one another. Double-click [`lineage/index.html`](lineage/index.html) to open the interactive viewer. Rebuild it with `.venv\Scripts\python.exe scripts\build_lineage_graph.py` after changes to the register, decisions, tracker, saved cases or Mathcad exports. Details are in [`lineage/README.md`](lineage/README.md). The graph records what the project files say about each other; it is not engineering acceptance and does not rerun any calculation.
+
 ## Bridge geometry notebook
 
 [Open Bridge_Geometry_2 Beam_V2 in Colab](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Bridge_Geometry_2%20Beam_V2.ipynb) and choose **Runtime → Run all**.

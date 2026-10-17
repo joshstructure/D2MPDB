@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>D2 I-95 pedestrian bridge &middot; information lineage</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: #f4f5f7; --panel: #ffffff; --panel2: #eceff2; --text: #1d2127; --muted: #5b636e; --border: #d3d8de;
+  --accent: #1f6fd0; --accent-bg: #e3eefb;
+  --col-bg: #e9ecf0; --col-border: #d3d8de; --col-label: #4b535d; --node-border: #3b4048;
+  --edge: #7a828c; --edge-label-bg: #ffffff; --edge-label-text: #3b4048;
+  --fade: 0.14; --hit: #ffb300; --sel: #1f6fd0;
+  --amber: #ef9f27; --amber-bg: #fdf0d8; --red: #d84a3a; --red-bg: #fbe3df;
+  --green: #2e7d32; --green-bg: #e1f0e2; --grey: #9aa0a6; --grey-bg: #e8eaed; --purple: #7f77dd; --purple-bg: #ebe9fa;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14171b; --panel: #1c2026; --panel2: #272c34; --text: #e6e8eb; --muted: #9aa3ad; --border: #373d46;
+    --accent: #6aa9f0; --accent-bg: #1f3350;
+    --col-bg: #1f242b; --col-border: #323943; --col-label: #aab2bc; --node-border: #cdd2d8;
+    --edge: #8d95a0; --edge-label-bg: #1c2026; --edge-label-text: #cfd3d8;
+    --fade: 0.18; --hit: #ffca3a; --sel: #6aa9f0;
+    --amber-bg: #3d2f12; --red-bg: #43211d; --green-bg: #1b3320; --grey-bg: #2d3138; --purple-bg: #2b2850;
+  }
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { height: 100%; margin: 0; }
+body { font: 13px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: var(--bg); color: var(--text); }
+#app { display: flex; flex-direction: column; height: 100vh; height: 100dvh; }
+#topbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; padding: 8px 12px; background: var(--panel); border-bottom: 1px solid var(--border); }
+#topbar h1 { font-size: 15px; font-weight: 650; margin: 0; }
+.ctl { display: flex; align-items: center; gap: 6px; }
+.searchbox { display: flex; flex-direction: column; }
+.searchbox .ctl label { color: var(--muted); }
+#qcount { min-height: 1.45em; color: var(--muted); font-size: 12px; }
+input[type=search], input[type=text] { font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 5px; padding: 3px 8px; }
+#q { width: 230px; }
+button { font: inherit; color: var(--text); background: var(--panel2); border: 1px solid var(--border); border-radius: 5px; padding: 3px 10px; cursor: pointer; }
+button:hover:not(:disabled) { border-color: var(--accent); }
+button:disabled { opacity: .5; cursor: default; }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+button[aria-pressed=true] { background: var(--accent-bg); border-color: var(--accent); }
+.seg { display: inline-flex; }
+.seg button { border-radius: 0; margin-left: -1px; }
+.seg button:first-child { border-radius: 5px 0 0 5px; margin-left: 0; }
+.seg button:last-child { border-radius: 0 5px 5px 0; }
+.check { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
+#legend { display: flex; flex-wrap: wrap; gap: 5px; }
+#main { flex: 1; display: flex; min-height: 0; }
+#stage { flex: 1; position: relative; min-width: 0; background: var(--bg); }
+#cy { position: absolute; inset: 0; }
+#cy-msg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 24px; text-align: center; color: var(--muted); font-size: 14px; }
+#pane { width: 380px; flex: none; overflow: auto; padding: 12px 14px 24px; background: var(--panel); border-left: 1px solid var(--border); }
+@media (max-width: 900px) {
+  #main { flex-direction: column; }
+  #stage { flex: 1 1 55%; min-height: 280px; }
+  #pane { width: auto; flex: 1 1 45%; border-left: 0; border-top: 1px solid var(--border); }
+  #q { width: 160px; }
+}
+.h-MATCH { --hc: #2e7d32; } .h-CHANGED { --hc: #ef9f27; } .h-MISSING { --hc: #d84a3a; } .h-EMULATED { --hc: #7f77dd; } .h-NONE { --hc: #9aa0a6; }
+.chip { display: inline-block; padding: 0 8px; border: 1px solid var(--border); border-radius: 11px; background: var(--panel2); font-size: 12px; line-height: 1.6; color: var(--text); }
+button.chip { cursor: pointer; }
+.chip.hc { border-color: var(--hc, var(--grey)); }
+.chip.hc[aria-pressed=true] { background: var(--accent-bg); box-shadow: inset 0 0 0 1px var(--hc, var(--grey)); font-weight: 600; }
+.dot { display: inline-block; width: 9px; height: 9px; margin-right: 5px; border-radius: 50%; background: var(--hc, var(--grey)); }
+.chip.amber { border-color: var(--amber); background: var(--amber-bg); }
+.chip.red { border-color: var(--red); background: var(--red-bg); }
+.chip.green { border-color: var(--green); background: var(--green-bg); }
+.chip.grey { border-color: var(--grey); background: var(--grey-bg); }
+.chip.purple { border-color: var(--purple); background: var(--purple-bg); }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0; }
+#pane h2 { font-size: 15px; line-height: 1.3; margin: 0 0 6px; }
+#pane h3 { margin: 16px 0 5px; font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+#pane p { margin: 4px 0; }
+.muted { color: var(--muted); }
+.small { font-size: 12px; padding: 1px 7px; }
+.mono, code { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; font-size: 12px; word-break: break-all; }
+button.link { background: none; border: 0; padding: 0; color: var(--accent); text-align: left; cursor: pointer; }
+button.link:hover { text-decoration: underline; }
+h2 button.link { font: inherit; font-weight: 650; }
+.hdr { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
+.tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 10px; }
+.tabs button { background: none; border: 0; border-bottom: 2px solid transparent; border-radius: 0; padding: 5px 12px; }
+.tabs button[aria-selected=true] { border-bottom-color: var(--accent); font-weight: 600; }
+.kv { display: grid; grid-template-columns: 96px 1fr; gap: 3px 8px; margin: 6px 0; }
+.kv dt { color: var(--muted); } .kv dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+dl.kvs { margin: 0; }
+ul.plain { list-style: none; margin: 0; padding: 0; }
+ul.plain li { margin: 3px 0; }
+.expand { margin: 4px 0 8px; padding: 6px 9px; background: var(--panel2); border-left: 3px solid var(--accent); border-radius: 3px; }
+.sec { margin: 6px 0; } .lbl { font-size: 11.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.item { border-bottom: 1px solid var(--border); }
+.itembtn { display: block; width: 100%; background: none; border: 0; border-radius: 0; padding: 5px 2px; text-align: left; }
+.itembtn:hover { background: var(--panel2); }
+.clamp { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.tscroll { overflow-x: auto; margin: 4px 0; }
+table.pt { width: 100%; border-collapse: collapse; font-size: 12px; }
+table.pt th, table.pt td { padding: 3px 5px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+table.pt th { color: var(--muted); font-weight: 600; white-space: nowrap; }
+table.pt tr.chg td { background: var(--amber-bg); }
+table.pt tr.chg td:first-child { border-left: 3px solid var(--amber); }
+.ptwrap input { width: 100%; margin: 2px 0; }
+.key { display: flex; align-items: center; gap: 8px; margin: 3px 0; }
+.sw { display: inline-block; width: 34px; flex: none; border-top: 3px solid var(--edge); }
+.stat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 8px 0; }
+.stat div { background: var(--panel2); border-radius: 6px; padding: 6px 8px; text-align: center; }
+.stat b { display: block; font-size: 20px; line-height: 1.2; }
+</style>
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <h1>D2 I-95 pedestrian bridge &middot; information lineage</h1>
+    <div class="searchbox">
+      <div class="ctl"><label for="q">Search</label><input id="q" type="search" autocomplete="off" placeholder="id, label, parameter, decision, item"></div>
+      <div id="qcount" aria-live="polite"></div>
+    </div>
+    <div class="seg" id="dirs" role="group" aria-label="Cone direction">
+      <button type="button" data-dir="both" aria-pressed="true" title="Show upstream and downstream of the selected node">Both</button>
+      <button type="button" data-dir="up" aria-pressed="false" title="Show only what feeds the selected node">Upstream</button>
+      <button type="button" data-dir="down" aria-pressed="false" title="Show only what the selected node feeds">Downstream</button>
+    </div>
+    <label class="check"><input type="checkbox" id="isolate"> Isolate</label>
+    <div class="seg" role="group" aria-label="Zoom">
+      <button type="button" id="zfit" aria-label="Fit graph to window" title="Fit graph to window">Fit</button>
+      <button type="button" id="zin" aria-label="Zoom in" title="Zoom in">+</button>
+      <button type="button" id="zout" aria-label="Zoom out" title="Zoom out">&minus;</button>
+    </div>
+    <div id="legend" role="group" aria-label="Filter nodes by health"></div>
+  </header>
+  <div id="main">
+    <section id="stage" aria-label="Lineage graph">
+      <div id="cy"></div>
+      <div id="cy-msg" hidden></div>
+      <noscript>This viewer needs JavaScript.</noscript>
+    </section>
+    <aside id="pane" aria-label="Details"></aside>
+  </div>
+</div>
+<script id="lineage-data" type="application/json">/*__LINEAGE_DATA__*/</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.4/cytoscape.min.js" referrerpolicy="no-referrer"></script>
+<script>
+(function () {
+'use strict';
+
+const FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+const HEALTH = { MATCH: '#2e7d32', CHANGED: '#ef9f27', MISSING: '#d84a3a', EMULATED: '#7f77dd', NONE: '#9aa0a6' };
+const DARK_TEXT = { CHANGED: true, NONE: true };
+const INK = '#1d2127';
+// Node shapes by kind. tw = label wrap width, pad = padding, w = fixed width, bw = border width.
+const KIND = {
+  source: { shape: 'round-rectangle', tw: 150, pad: 8, w: 170 },
+  tool: { shape: 'ellipse', tw: 122, pad: 12, w: 170 },
+  case: { shape: 'round-rectangle', tw: 150, pad: 8, w: 170, bw: 3 },
+  report: { shape: 'rectangle', tw: 150, pad: 8, w: 170 },
+  analysis: { shape: 'hexagon', tw: 120, pad: 10, w: 176 },
+  model: { shape: 'barrel', tw: 130, pad: 10, w: 176 },
+  deliverable: { shape: 'round-tag', tw: 140, pad: 8, w: 172 },
+  external: { shape: 'diamond', tw: 88, pad: 26, w: 176, dashed: true }
+};
+const EDGE_KEY = [
+  ['depends_on', 'Depends on (information flows left to right)', 'solid', '#7a828c'],
+  ['supplement', 'Supplement (unregistered link or tool)', 'dashed', '#7a828c'],
+  ['check', 'Machine check', 'dotted', '#378add'],
+  ['parameter', 'Parameter supply', 'dashed', '#1d9e75'],
+  ['mapping', 'Input mapping', 'solid', '#7f77dd'],
+  ['', 'Flag: analysis identity mismatch', 'dashed', '#d84a3a'],
+  ['', 'Flag: dependency under review', 'solid', '#ef9f27']
+];
+const FLAGS = {
+  'identity-mismatch': ['Analysis identity mismatch', 'red'],
+  review: ['Dependency under review', 'amber'],
+  unregistered: ['Unregistered relation', 'grey']
+};
+const PCOLS = [['name', 'Name'], ['value', 'Value'], ['unit', 'Unit'], ['state', 'State'], ['load_case', 'Load case'],
+  ['combination', 'Comb.'], ['element', 'Element'], ['x_in', 'x (in)'], ['region', 'Region'], ['before', 'Before'],
+  ['after', 'After'], ['basis', 'Basis'], ['governing', 'Governing'], ['role', 'Role'], ['source', 'Source'],
+  ['source_text', 'Source text'], ['source_status', 'Source status'], ['status', 'Status'], ['detail', 'Detail']];
+const COL_W = 230, PITCH = 72, GAP = 12, LIMIT = 20;
+const ISSUE_ORDER = ['Open', 'Awaiting source', 'Deferred', 'Closed'];
+
+const $ = (s, r) => (r || document).querySelector(s);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const md = s => esc(s).replace(/`([^`]+)`/g, '<code>$1</code>');
+const fmt = v => v == null ? '' : typeof v === 'boolean' ? (v ? 'yes' : 'no') : String(v);
+const chip = (t, cls, title) => '<span class="chip ' + (cls || '') + '"' + (title ? ' title="' + esc(title) + '"' : '') + '>' + esc(t) + '</span>';
+const stCls = s => { s = String(s || '').toUpperCase(); return /^(MATCH|OK|PASS)/.test(s) ? 'green' : /^(CHANGED|WARN|REVIEW)/.test(s) ? 'amber' : /^(ERROR|MISSING|FAIL|MISMATCH)/.test(s) ? 'red' : s === 'EMULATED' ? 'purple' : 'grey'; };
+const issCls = s => s === 'Open' || s === 'Awaiting source' ? 'amber' : s === 'Closed' ? 'green' : 'grey';
+const kv = (k, v) => v === '' || v == null ? '' : '<div class="kv"><dt>' + k + '</dt><dd>' + v + '</dd></div>';
+const sec = (t, v) => v ? '<div class="sec"><div class="lbl">' + t + '</div><div>' + md(v) + '</div></div>' : '';
+const shaHtml = s => s ? '<span class="mono" title="' + esc(s) + '">' + esc(s.slice(0, 12)) + '</span>' : '';
+const copyBtn = (v, what) => '<button type="button" class="small" data-copy="' + esc(v) + '" aria-label="Copy ' + what + '">Copy</button>';
+
+let D = null, cy = null, idx = null;
+const by = { nodes: {}, edges: {}, dec: {}, iss: {} };
+const adj = { in: {}, out: {} };
+const stageIdx = {};
+const state = {
+  dir: 'both', isolate: false, selId: null, selEdge: null, cone: null, health: {}, search: null,
+  open: { dec: null, iss: null }, refHits: new Set(), tab: 'overview'
+};
+let graphKey = null, zmode = '', zlab = true, lastTap = { id: null, t: 0 }, pts = {}, ptSeq = 0, paneKey = '';
+
+// ---------- data ----------
+function loadData() {
+  D = JSON.parse(document.getElementById('lineage-data').textContent);
+  ['stages', 'nodes', 'edges', 'decisions', 'issues'].forEach(k => { D[k] = D[k] || []; });
+  D.health_legend = D.health_legend || {};
+  if (!D.stages.length) D.stages = [{ id: 'all', label: 'All' }];
+  D.stages.forEach((s, i) => { stageIdx[s.id] = i; });
+  D.nodes.forEach(n => {
+    ['parameters', 'checks', 'decisions', 'issues', 'open_issues'].forEach(k => { n[k] = n[k] || []; });
+    if (n.label == null) n.label = n.id;
+    by.nodes[n.id] = n; adj.in[n.id] = []; adj.out[n.id] = [];
+  });
+  D.edges.forEach(e => {
+    ['parameters', 'checks', 'flags'].forEach(k => { e[k] = e[k] || []; });
+    by.edges[e.id] = e;
+    if (adj.out[e.source] && adj.in[e.target]) { adj.out[e.source].push(e); adj.in[e.target].push(e); }
+  });
+  D.decisions.forEach(d => { by.dec[d.id] = d; d.refs = d.refs || {}; });
+  D.issues.forEach(i => { by.iss[i.id] = i; i.refs = i.refs || {}; i.checks = i.checks || []; });
+  buildIndex();
+}
+const colOf = n => stageIdx[n.stage] !== undefined ? stageIdx[n.stage] : D.stages.length - 1;
+const stageOf = n => D.stages[colOf(n)].id;
+const stageLabel = n => D.stages[colOf(n)].label;
+
+function cone(id, dir) {
+  const nodes = new Set([id]), edges = new Set();
+  const walk = (a, end) => {
+    const seen = new Set([id]), q = [id];
+    while (q.length) {
+      (a[q.pop()] || []).forEach(e => {
+        edges.add(e.id);
+        const o = end(e);
+        if (!seen.has(o)) { seen.add(o); nodes.add(o); q.push(o); }
+      });
+    }
+  };
+  if (dir !== 'down') walk(adj.in, e => e.source);
+  if (dir !== 'up') walk(adj.out, e => e.target);
+  return { nodes, edges };
+}
+
+function buildIndex() {
+  const dT = {}, iT = {}, nd = {}, ed = {};
+  D.decisions.forEach(d => { dT[d.id] = [d.id, d.date, d.decision, d.basis].join(' '); });
+  D.issues.forEach(i => { iT[i.id] = [i.id, i.status, i.area, i.item, i.finding, i.next_action, i.response, i.resolution, i.references].join(' '); });
+  D.nodes.forEach(n => {
+    const decs = new Set(n.decisions), iss = new Set(n.issues);
+    D.decisions.forEach(d => { if ((d.refs.sources || []).includes(n.id)) decs.add(d.id); });
+    D.issues.forEach(i => { if ((i.refs.sources || []).includes(n.id)) iss.add(i.id); });
+    nd[n.id] = [n.id, n.label, n.path, n.notes].concat(n.parameters.map(p => p.name),
+      [...decs].map(x => dT[x] || x), [...iss].map(x => iT[x] || x)).join('\n').toLowerCase();
+  });
+  D.edges.forEach(e => { ed[e.id] = [e.id, e.label, e.kind].concat(e.parameters.map(p => p.name)).join('\n').toLowerCase(); });
+  idx = { nd, ed };
+}
+
+// ---------- layout and graph elements ----------
+function estHeight(n) {
+  const k = KIND[n.kind] || KIND.source;
+  let lines = 1, cur = 0;
+  String(n.label).split(/\s+/).forEach(w => {
+    const l = w.length * 6.2;
+    if (cur && cur + 6.2 + l > k.tw) { lines++; cur = l; } else cur += (cur ? 6.2 : 0) + l;
+  });
+  return lines * 14 + 2 * k.pad;
+}
+
+// One column per stage; order by mean y of upstream neighbours already placed; centred vertically.
+function layoutPositions(ids) {
+  const cols = {}, pos = {}, ypos = {};
+  D.nodes.forEach(n => { if (!ids || ids.has(n.id)) (cols[colOf(n)] = cols[colOf(n)] || []).push(n); });
+  const order = Object.keys(cols).map(Number).sort((a, b) => a - b);
+  let span = 0;
+  order.forEach((c, k) => {
+    const list = cols[c].sort((a, b) => a.label.localeCompare(b.label)), m = list.length;
+    const keyed = list.map((n, i) => {
+      const ups = adj.in[n.id].map(e => e.source).filter(s => ypos[s] !== undefined);
+      return { n, i, key: ups.length ? ups.reduce((a, s) => a + ypos[s], 0) / ups.length : (i - (m - 1) / 2) * PITCH };
+    }).sort((a, b) => a.key - b.key || a.i - b.i);
+    const hs = keyed.map(o => estHeight(o.n)), ys = [];
+    let y = 0;
+    keyed.forEach((o, i) => { if (i) y += Math.max(PITCH, (hs[i - 1] + hs[i]) / 2 + GAP); ys.push(y); });
+    keyed.forEach((o, i) => { ypos[o.n.id] = ys[i] - y / 2; pos[o.n.id] = { x: k * COL_W, y: ys[i] - y / 2 }; });
+    span = Math.max(span, y + (hs[0] + hs[hs.length - 1]) / 2);
+  });
+  return { pos, height: span + 90 };
+}
+
+// Control points for a horizontal S-curve between two node centres.
+function ctrl(a, b) {
+  const dx = b.x - a.x, dy = b.y - a.y, l2 = dx * dx + dy * dy;
+  if (Math.abs(dx) < 4) return { d: String(dy > 0 ? -210 : 210), w: '0.5' };
+  const d = dx * dy / (2 * Math.sqrt(l2));
+  return { d: (-d).toFixed(1) + ' ' + d.toFixed(1), w: (dx * dx / (2 * l2)).toFixed(3) + ' ' + ((dx * dx / 2 + dy * dy) / l2).toFixed(3) };
+}
+
+function buildElements(cn) {
+  const L = layoutPositions(cn ? cn.nodes : null), els = [], used = new Set();
+  const nodes = D.nodes.filter(n => !cn || cn.nodes.has(n.id));
+  nodes.forEach(n => used.add(stageOf(n)));
+  D.stages.forEach(s => {
+    if (used.has(s.id)) els.push({ group: 'nodes', classes: 'stage', data: { id: s.id, label: s.label, minH: L.height } });
+  });
+  nodes.forEach(n => {
+    const np = n.parameters.length, h = HEALTH[n.health] ? n.health : 'NONE';
+    els.push({
+      group: 'nodes', position: L.pos[n.id],
+      classes: 'k-' + (KIND[n.kind] ? n.kind : 'source') + ' h-' + h + (n.registered === false ? ' unreg' : '') + (n.open_issues.length ? ' issues' : ''),
+      data: { id: n.id, parent: stageOf(n), label: n.label, label2: n.label + '\n' + np + ' param' + (np === 1 ? '' : 's') + ' · ' + n.health }
+    });
+  });
+  D.edges.forEach(e => {
+    if (!L.pos[e.source] || !L.pos[e.target] || (cn && !cn.edges.has(e.id))) return;
+    const c = ctrl(L.pos[e.source], L.pos[e.target]), np = e.parameters.length;
+    els.push({
+      group: 'edges',
+      classes: 'e-' + e.kind + e.flags.map(f => ' f-' + f).join(''),
+      data: { id: e.id, source: e.source, target: e.target, plabel: np ? np + ' params' : '', cpd: c.d, cpw: c.w }
+    });
+  });
+  return { els, pos: L.pos };
+}
+
+function theme() {
+  const cs = getComputedStyle(document.documentElement), g = (n, d) => cs.getPropertyValue(n).trim() || d;
+  return {
+    col: g('--col-bg', '#e9ecf0'), colBorder: g('--col-border', '#d3d8de'), colLabel: g('--col-label', '#4b535d'),
+    nodeBorder: g('--node-border', '#3b4048'), edge: g('--edge', '#7a828c'), edgeText: g('--edge-label-text', '#3b4048'),
+    edgeBg: g('--edge-label-bg', '#ffffff'), fade: parseFloat(g('--fade', '0.14')) || 0.14, hit: g('--hit', '#ffb300'), sel: g('--sel', '#1f6fd0')
+  };
+}
+
+function buildStyle() {
+  const t = theme(), S = [];
+  S.push({ selector: 'node', style: {
+    'shape': 'round-rectangle', 'width': 170, 'height': 'label', 'padding': '8px', 'label': 'data(label)', 'font-family': FONT,
+    'font-size': 12, 'color': '#ffffff', 'text-wrap': 'wrap', 'text-max-width': 150, 'text-valign': 'center', 'text-halign': 'center',
+    'background-color': HEALTH.NONE, 'border-width': 1, 'border-style': 'solid', 'border-color': t.nodeBorder
+  } });
+  Object.keys(KIND).forEach(k => {
+    const d = KIND[k], st = { 'shape': d.shape, 'text-max-width': d.tw, 'padding': d.pad + 'px', 'width': d.w, 'border-width': d.bw || 1 };
+    if (d.dashed) st['border-style'] = 'dashed';
+    S.push({ selector: 'node.k-' + k, style: st });
+  });
+  Object.keys(HEALTH).forEach(h => S.push({ selector: 'node.h-' + h, style: { 'background-color': HEALTH[h], 'color': DARK_TEXT[h] ? INK : '#ffffff' } }));
+  S.push({ selector: 'node.unreg', style: { 'border-style': 'dashed' } });
+  S.push({ selector: 'node.path', style: { 'underlay-color': t.sel, 'underlay-opacity': 0.3, 'underlay-padding': 4 } });
+  S.push({ selector: 'node.issues', style: { 'border-width': 3, 'border-color': '#d84a3a' } });
+  S.push({ selector: 'node.zfar', style: { 'font-size': 9 } });
+  S.push({ selector: 'node.znear', style: { 'label': 'data(label2)' } });
+  S.push({ selector: ':parent', style: {
+    'shape': 'round-rectangle', 'background-color': t.col, 'background-opacity': 1, 'border-width': 1, 'border-color': t.colBorder,
+    'padding': '16px', 'label': 'data(label)', 'text-valign': 'top', 'text-halign': 'center', 'font-size': 13, 'font-weight': 'bold',
+    'color': t.colLabel, 'min-width': 200, 'min-height': 'data(minH)', 'events': 'no', 'text-events': 'no', 'text-wrap': 'none'
+  } });
+  S.push({ selector: 'edge', style: {
+    'width': 1.5, 'line-color': t.edge, 'target-arrow-color': t.edge, 'target-arrow-shape': 'triangle', 'arrow-scale': 1,
+    'curve-style': 'unbundled-bezier', 'control-point-distances': e => e.data('cpd'), 'control-point-weights': e => e.data('cpw'),
+    'label': 'data(plabel)', 'font-family': FONT, 'font-size': 10, 'color': t.edgeText, 'text-background-color': t.edgeBg,
+    'text-background-opacity': 0.9, 'text-background-padding': '2px', 'text-background-shape': 'roundrectangle'
+  } });
+  S.push({ selector: 'edge.e-supplement', style: { 'line-style': 'dashed' } });
+  S.push({ selector: 'edge.e-check', style: { 'line-style': 'dotted', 'line-color': '#378add', 'target-arrow-color': '#378add' } });
+  S.push({ selector: 'edge.e-parameter', style: { 'line-style': 'dashed', 'line-color': '#1d9e75', 'target-arrow-color': '#1d9e75' } });
+  S.push({ selector: 'edge.e-mapping', style: { 'line-color': '#7f77dd', 'target-arrow-color': '#7f77dd' } });
+  S.push({ selector: 'edge.f-review', style: { 'line-color': '#ef9f27', 'target-arrow-color': '#ef9f27', 'width': 2 } });
+  S.push({ selector: 'edge.f-identity-mismatch', style: { 'line-color': '#d84a3a', 'target-arrow-color': '#d84a3a', 'line-style': 'dashed', 'width': 2 } });
+  S.push({ selector: 'edge.path', style: { 'width': 2.8 } });
+  S.push({ selector: 'edge.nolabel', style: { 'text-opacity': 0, 'text-background-opacity': 0 } });
+  S.push({ selector: 'edge.hit', style: { 'width': 3.2, 'underlay-color': t.hit, 'underlay-opacity': 0.55, 'underlay-padding': 3 } });
+  S.push({ selector: 'edge.esel', style: { 'width': 3.6, 'underlay-color': t.sel, 'underlay-opacity': 0.4, 'underlay-padding': 3 } });
+  S.push({ selector: 'node.hit', style: { 'outline-width': 4, 'outline-color': t.hit, 'outline-offset': 2, 'outline-opacity': 1 } });
+  S.push({ selector: 'node.sel', style: { 'outline-width': 4, 'outline-color': t.sel, 'outline-offset': 2, 'outline-opacity': 1 } });
+  S.push({ selector: 'node.faded, edge.faded', style: { 'opacity': t.fade } });
+  S.push({ selector: 'node:active, edge:active, node:selected, edge:selected', style: { 'overlay-opacity': 0 } });
+  return S;
+}
+
+// ---------- graph state ----------
+function rebuild(cn) {
+  const b = buildElements(cn);
+  cy.batch(() => { cy.elements().remove(); cy.add(b.els); });
+  cy.layout({ name: 'preset', positions: n => b.pos[n.id()] || null, fit: true, padding: 30, animate: false }).run();
+  zmode = ''; zlab = null;
+  applyZoomMode();
+}
+
+function syncGraph() {
+  if (!cy) return;
+  const cn = state.isolate && state.selId && state.cone ? state.cone : null;
+  const key = cn ? [...cn.nodes].sort().join('|') + '#' + cn.edges.size : '*';
+  if (key === graphKey) return;
+  graphKey = key;
+  rebuild(cn);
+}
+
+function applyView() {
+  if (!cy) return;
+  const cn = state.selId ? state.cone : null, se = state.search, hf = Object.keys(state.health).some(k => state.health[k]);
+  cy.batch(() => {
+    cy.nodes(':childless').forEach(n => {
+      const id = n.id(), nd = by.nodes[id];
+      const hit = (se && se.nodes.has(id)) || state.refHits.has(id);
+      const fade = (cn && !cn.nodes.has(id)) || (se && !se.nodes.has(id) && !se.ctx.has(id)) || (hf && !state.health[nd.health]);
+      n.toggleClass('faded', !!fade).toggleClass('hit', !!hit).toggleClass('sel', id === state.selId)
+        .toggleClass('path', !!cn && cn.nodes.has(id) && id !== state.selId);
+    });
+    cy.edges().forEach(e => {
+      const id = e.id(), ed = by.edges[id], hit = !!se && se.edges.has(id);
+      const hFade = hf && (!state.health[by.nodes[ed.source].health] || !state.health[by.nodes[ed.target].health]);
+      const fade = (cn && !cn.edges.has(id)) || (se && !hit) || hFade;
+      e.toggleClass('faded', !!fade).toggleClass('hit', hit).toggleClass('esel', id === state.selEdge)
+        .toggleClass('path', !!cn && cn.edges.has(id));
+    });
+  });
+}
+
+function applyZoomMode() {
+  if (!cy) return;
+  const z = cy.zoom(), mode = z < 0.5 ? 'far' : z > 1.4 ? 'near' : 'mid', lab = z >= 0.6;
+  if (mode !== zmode) {
+    zmode = mode;
+    cy.nodes(':childless').toggleClass('zfar', mode === 'far').toggleClass('znear', mode === 'near');
+  }
+  if (lab !== zlab) { zlab = lab; cy.edges().toggleClass('nolabel', !lab); }
+}
+
+function refreshSelection() {
+  state.cone = state.selId ? cone(state.selId, state.dir) : null;
+  syncGraph(); applyView(); renderPane();
+}
+
+function selectNode(id, fromPane) {
+  if (!by.nodes[id]) return;
+  state.selId = id; state.selEdge = null;
+  refreshSelection();
+  if (fromPane && cy) {
+    const n = cy.getElementById(id);
+    if (n.nonempty()) cy.animate({ center: { eles: n } }, { duration: 200 });
+  }
+}
+
+function selectEdge(id) {
+  if (!by.edges[id]) return;
+  state.selEdge = id;
+  applyView(); renderPane();
+}
+
+function clearSelection() {
+  state.selId = null; state.selEdge = null; state.cone = null;
+  state.open = { dec: null, iss: null }; state.refHits = new Set();
+  syncGraph(); applyView(); renderPane();
+}
+
+function fitCone() {
+  if (!cy || !state.cone) return;
+  const eles = cy.nodes(':childless').filter(n => state.cone.nodes.has(n.id()));
+  if (eles.nonempty()) cy.animate({ fit: { eles, padding: 40 } }, { duration: 250 });
+}
+
+function toggleRef(kind, id) {
+  const other = kind === 'dec' ? 'iss' : 'dec';
+  state.open[kind] = state.open[kind] === id ? null : id;
+  state.open[other] = null;
+  const o = state.open[kind] && (kind === 'dec' ? by.dec : by.iss)[state.open[kind]];
+  state.refHits = new Set(o ? (o.refs.sources || []).filter(s => by.nodes[s]) : []);
+  applyView(); renderPane();
+}
+
+function doSearch() {
+  const toks = $('#q').value.toLowerCase().split(/\s+/).filter(Boolean), out = $('#qcount');
+  if (!toks.length) { state.search = null; out.textContent = ''; applyView(); return; }
+  const nodes = new Set(), edges = new Set(), ctx = new Set();
+  D.nodes.forEach(n => { if (toks.every(t => idx.nd[n.id].includes(t))) nodes.add(n.id); });
+  D.edges.forEach(e => { if (toks.every(t => idx.ed[e.id].includes(t))) { edges.add(e.id); ctx.add(e.source); ctx.add(e.target); } });
+  state.search = { nodes, edges, ctx };
+  out.textContent = nodes.size + ' nodes · ' + edges.size + ' edges match';
+  applyView();
+}
+
+// ---------- detail pane ----------
+const ptKeyCols = rows => {
+  const known = PCOLS.filter(c => rows.some(r => r[c[0]] != null && r[c[0]] !== ''));
+  const names = new Set(PCOLS.map(c => c[0]).concat('changed'));
+  const extra = [];
+  rows.forEach(r => Object.keys(r).forEach(k => { if (!names.has(k) && !extra.includes(k) && r[k] != null && r[k] !== '') extra.push(k); }));
+  return known.concat(extra.map(k => [k, k]));
+};
+
+function ptHtml(rows) {
+  if (!rows.length) return '<p class="muted">None.</p>';
+  const key = 'pt' + (++ptSeq), cols = ptKeyCols(rows), chg = rows.filter(r => r.changed === true).length;
+  pts[key] = { rows, cols, all: false, filter: '', hay: rows.map(r => cols.map(c => fmt(r[c[0]])).join(' ').toLowerCase()) };
+  return '<div class="ptwrap" data-key="' + key + '">' +
+    (rows.some(r => 'changed' in r) ? '<p class="muted">' + chg + ' of ' + rows.length + ' rows changed (highlighted).</p>' : '') +
+    '<input type="search" class="pt-filter" data-key="' + key + '" placeholder="Filter ' + rows.length + ' rows" aria-label="Filter parameters">' +
+    '<div class="pt-body">' + ptBody(key) + '</div></div>';
+}
+
+function ptBody(key) {
+  const t = pts[key], toks = t.filter.toLowerCase().split(/\s+/).filter(Boolean), hit = [];
+  t.rows.forEach((r, i) => { if (toks.every(k => t.hay[i].includes(k))) hit.push(i); });
+  if (!hit.length) return '<p class="muted">No rows match.</p>';
+  const shown = t.all ? hit : hit.slice(0, LIMIT);
+  let h = '<div class="tscroll"><table class="pt"><thead><tr>' + t.cols.map(c => '<th>' + esc(c[1]) + '</th>').join('') + '</tr></thead><tbody>' +
+    shown.map(i => '<tr' + (t.rows[i].changed === true ? ' class="chg"' : '') + '>' +
+      t.cols.map(c => '<td>' + esc(fmt(t.rows[i][c[0]])) + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
+  h += '<div class="muted">Showing ' + shown.length + ' of ' + hit.length + (hit.length < t.rows.length ? ' (filtered from ' + t.rows.length + ')' : '');
+  if (hit.length > LIMIT) h += ' <button type="button" class="small" data-act="more" data-key="' + key + '">' + (t.all ? 'Show first ' + LIMIT : 'Show all ' + hit.length) + '</button>';
+  return h + '</div>';
+}
+
+const checksHtml = cs => cs.length ? '<ul class="plain">' + cs.map(c => '<li>' + chip(c.status, stCls(c.status)) + ' <span class="mono">' + esc(c.check_id) + '</span>' +
+  (c.detail ? '<div class="muted">' + esc(c.detail) + '</div>' : '') + '</li>').join('') + '</ul>' : '';
+
+const srcChips = refs => {
+  const s = (refs.sources || []).filter(x => by.nodes[x]);
+  return s.length ? '<div class="sec"><div class="lbl">Sources</div><div class="chips">' +
+    s.map(x => '<button type="button" class="chip" data-act="node" data-id="' + esc(x) + '">' + esc(x) + '</button>').join('') + '</div></div>' : '';
+};
+
+const decBlock = (d, head) => '<div class="expand">' + (head ? '<div><b class="mono">' + esc(d.id) + '</b> <span class="muted">' + esc(d.date) + '</span></div>' : '') +
+  '<p>' + md(d.decision) + '</p>' + (d.basis ? '<p class="muted">Basis: ' + md(d.basis) + '</p>' : '') + srcChips(d.refs) + '</div>';
+
+const issBlock = (i, head) => '<div class="expand">' + (head ? '<div><b class="mono">' + esc(i.id) + '</b> ' + chip(i.status, issCls(i.status)) + ' <span class="muted">' + esc(i.area) + '</span></div>' : '') +
+  '<p><b>' + esc(i.item) + '</b></p>' + sec('Finding', i.finding) + sec('Next action', i.next_action) + sec('Response', i.response) +
+  sec('Resolution', i.resolution) + sec('Last reviewed', i.last_reviewed) + sec('References', i.references) +
+  (i.checks.length ? '<div class="sec"><div class="lbl">Checks</div>' + checksHtml(i.checks) + '</div>' : '') + srcChips(i.refs) + '</div>';
+
+function nodeHtml(n) {
+  const hl = D.health_legend[n.health] || '';
+  const up = adj.in[n.id], down = adj.out[n.id];
+  const nb = (list, end) => list.length ? '<ul class="plain">' + list.slice().sort((a, b) => String((by.nodes[a[end]] || {}).label).localeCompare(String((by.nodes[b[end]] || {}).label))).map(e =>
+    '<li><button type="button" class="link" data-act="node" data-id="' + esc(e[end]) + '">' + esc((by.nodes[e[end]] || {}).label || e[end]) + '</button> ' +
+    '<button type="button" class="link small" data-act="edge" data-id="' + esc(e.id) + '" title="Show this relation">(' + esc(e.label || e.kind) + ')</button></li>').join('') + '</ul>' : '<p class="muted">None.</p>';
+  let h = '<div class="hdr"><span class="muted">Node</span><button type="button" class="small" data-act="clear">Clear selection</button></div><h2>' + esc(n.label) + '</h2><div class="chips">' +
+    chip(n.id, 'mono') + chip(n.kind) + chip(stageLabel(n)) + '<span class="chip hc h-' + (HEALTH[n.health] ? n.health : 'NONE') + '" title="' + esc(hl) + '"><i class="dot"></i>' + esc(n.health) + '</span>' +
+    (n.registered === false ? chip('unregistered', 'grey') : '') +
+    (n.open_issues.length ? chip(n.open_issues.length + ' open coherence item' + (n.open_issues.length === 1 ? '' : 's'), 'amber') : '') + '</div>';
+  h += '<dl class="kvs">' + kv('Status', esc(n.status)) +
+    kv('Path', n.path ? '<span class="mono">' + esc(n.path) + '</span> ' + copyBtn(n.path, 'path') : '') +
+    kv('Registered', esc(n.registered_on)) + kv('SHA-256', n.sha256 ? shaHtml(n.sha256) + ' ' + copyBtn(n.sha256, 'SHA-256') : '') +
+    kv('Scope', esc(n.scope)) + kv('Origin', esc(n.origin)) + kv('Notes', esc(n.notes)) + kv('Case', esc(n.case_name)) + kv('Analysis', esc(n.analysis_id)) +
+    kv('Confirmations', n.confirmations ? Object.keys(n.confirmations).map(k => esc(k) + ': ' + (n.confirmations[k] ? 'yes' : 'no')).join('<br>') : '') + '</dl>';
+  if (n.checks.length) h += '<h3>Checks</h3>' + checksHtml(n.checks);
+  if (n.decisions.length) {
+    h += '<h3>Decisions</h3><div class="chips">' + n.decisions.map(id => '<button type="button" class="chip' + (state.open.dec === id ? ' hc' : '') + '" data-act="dec" data-id="' + esc(id) + '" aria-expanded="' + (state.open.dec === id) + '">' + esc(id) + '</button>').join('') + '</div>';
+    if (state.open.dec && n.decisions.includes(state.open.dec) && by.dec[state.open.dec]) h += decBlock(by.dec[state.open.dec], true);
+  }
+  if (n.issues.length) {
+    h += '<h3>Coherence items</h3><div class="chips">' + n.issues.map(id => {
+      const i = by.iss[id] || { status: '' };
+      return '<button type="button" class="chip ' + issCls(i.status) + '" data-act="iss" data-id="' + esc(id) + '" title="' + esc((i.status || '') + (i.item ? ': ' + i.item : '')) + '" aria-expanded="' + (state.open.iss === id) + '">' + esc(id) + '</button>';
+    }).join('') + '</div>';
+    if (state.open.iss && n.issues.includes(state.open.iss) && by.iss[state.open.iss]) h += issBlock(by.iss[state.open.iss], true);
+  }
+  const cu = cone(n.id, 'up').nodes.size - 1, cd = cone(n.id, 'down').nodes.size - 1;
+  h += '<h3>Upstream (' + up.length + ' direct, ' + cu + ' in cone)</h3>' + nb(up, 'source') +
+    '<h3>Downstream (' + down.length + ' direct, ' + cd + ' in cone)</h3>' + nb(down, 'target');
+  return h + '<h3>Parameters (' + n.parameters.length + ')</h3>' + ptHtml(n.parameters);
+}
+
+function edgeHtml(e) {
+  const s = by.nodes[e.source], t = by.nodes[e.target];
+  const lk = (n, id) => '<button type="button" class="link" data-act="node" data-id="' + esc(id) + '">' + esc(n ? n.label : id) + '</button>';
+  const sha = (label, v) => kv(label, shaHtml(v) + (v ? ' ' + copyBtn(v, label) : ''));
+  const yesNo = (v, goodWhenYes) => chip(v ? 'yes' : 'no', (v === goodWhenYes) ? 'green' : 'red');
+  let h = '<div class="hdr"><span class="muted">Relation</span><button type="button" class="small" data-act="back">&larr; ' + (state.selId ? 'Back to node' : 'Overview') + '</button></div>' +
+    '<h2>' + lk(s, e.source) + ' &rarr; ' + lk(t, e.target) + '</h2><div class="chips">' + chip(e.kind) + (e.label ? chip(e.label) : '') +
+    e.flags.map(f => FLAGS[f] ? chip(FLAGS[f][0], FLAGS[f][1]) : chip(f, 'grey')).join('') + '</div>';
+  const ai = e.analysis_identity;
+  if (ai) h += '<h3>Analysis identity</h3><dl class="kvs">' + sha('Case requires', ai.case_requires_sha256) + sha('Registered', ai.registered_sha256) +
+    kv('Match', yesNo(ai.match, true)) + kv('File present', yesNo(ai.file_present, true)) + '</dl>';
+  const ci = e.case_identity;
+  if (ci) h += '<h3>Case identity</h3><dl class="kvs">' + sha('Mapping case', ci.mapping_case_sha256) + sha('Registered', ci.registered_sha256) + kv('Match', yesNo(ci.match, true)) + '</dl>';
+  const f = e.fbmp;
+  if (f) h += '<h3>FB-MultiPier export</h3><dl class="kvs">' + kv('Version', esc(f.version)) +
+    kv('Cap length', typeof f.cap_length_ft === 'number' ? f.cap_length_ft.toFixed(2) + ' ft (' + (f.cap_length_ft * 12).toFixed(1) + ' in)' : esc(f.cap_length_ft)) +
+    kv('Pile centres', esc((f.pile_centers_in || []).join(', ')) + ' in') + kv('Bearing stations', esc((f.bearing_stations_in || []).join(', ')) + ' in') +
+    kv('Combinations', Object.keys(f.combinations || {}).map(k => esc(k) + ': ' + esc(f.combinations[k])).join('<br>')) + '</dl>';
+  const fs = e.fbmp_summary;
+  if (fs && Object.keys(fs).length) h += '<h3>Extracted vs summary</h3><div class="tscroll"><table class="pt"><thead><tr><th>Quantity</th><th>Extracted</th><th>Summary</th></tr></thead><tbody>' +
+    Object.keys(fs).map(k => '<tr' + (fs[k].extracted !== fs[k].summary ? ' class="chg"' : '') + '><td>' + esc(k) + '</td><td>' + esc(fmt(fs[k].extracted)) + '</td><td>' + esc(fmt(fs[k].summary)) + '</td></tr>').join('') + '</tbody></table></div>';
+  if (e.checks.length) h += '<h3>Checks</h3>' + checksHtml(e.checks);
+  return h + '<h3>Parameters (' + e.parameters.length + ')</h3>' + ptHtml(e.parameters);
+}
+
+function overviewHtml() {
+  const np = D.nodes.reduce((a, n) => a + n.parameters.length, 0), ep = D.edges.reduce((a, e) => a + e.parameters.length, 0);
+  const open = D.issues.filter(i => i.status !== 'Closed').length, hc = healthCounts();
+  return '<div class="stat"><div><b>' + D.nodes.length + '</b>nodes</div><div><b>' + D.edges.length + '</b>edges</div><div><b>' + (np + ep) + '</b>parameters</div></div>' +
+    '<p class="muted">' + np + ' on nodes, ' + ep + ' on edges.</p><h3>Health</h3><div class="chips">' +
+    legendCodes().map(c => '<span class="chip hc h-' + (HEALTH[c] ? c : 'NONE') + '" title="' + esc(D.health_legend[c] || '') + '"><i class="dot"></i>' + esc(c) + ' ' + (hc[c] || 0) + '</span>').join('') + '</div>' +
+    '<h3>Coherence items</h3><p><b>' + open + '</b> open (not Closed) of ' + D.issues.length + '.</p>' +
+    '<h3>Build</h3><dl class="kvs">' + kv('Checked (UTC)', esc(D.checked_at_utc)) + kv('Generator', esc(D.generator_version)) +
+    kv('Fingerprint', '<span class="mono" title="' + esc(D.fingerprint) + '">' + esc(String(D.fingerprint || '').slice(0, 12)) + '</span>') + '</dl>' +
+    '<p class="muted">Generated from project_current by scripts/build_lineage_graph.py</p>' +
+    '<h3>Key</h3>' + EDGE_KEY.map(k => '<div class="key"><span class="sw" style="border-top-style:' + k[2] + ';border-top-color:' + k[3] + '"></span><span>' + esc(k[1]) + '</span></div>').join('') +
+    '<p class="muted">Arrows point in the direction information flows. Click a node to trace what feeds it and what it feeds; double-click to fit that cone. Dashed node borders are unregistered sources; a red border means open coherence items.</p>';
+}
+
+function decisionsHtml() {
+  return D.decisions.map(d => {
+    const o = state.open.dec === d.id;
+    return '<div class="item"><button type="button" class="itembtn" data-act="dec" data-id="' + esc(d.id) + '" aria-expanded="' + o + '"><span class="mono">' + esc(d.id) + '</span> <span class="muted">' + esc(d.date) + '</span>' +
+      (o ? '' : '<span class="clamp">' + md(d.decision) + '</span>') + '</button>' + (o ? decBlock(d, false) : '') + '</div>';
+  }).join('') || '<p class="muted">No decisions.</p>';
+}
+
+function issuesHtml() {
+  const groups = {};
+  D.issues.forEach(i => (groups[i.status] = groups[i.status] || []).push(i));
+  const order = ISSUE_ORDER.filter(s => groups[s]).concat(Object.keys(groups).filter(s => !ISSUE_ORDER.includes(s)));
+  return order.map(s => '<h3>' + chip(s, issCls(s)) + ' ' + groups[s].length + '</h3>' + groups[s].map(i => {
+    const o = state.open.iss === i.id;
+    return '<div class="item"><button type="button" class="itembtn" data-act="iss" data-id="' + esc(i.id) + '" aria-expanded="' + o + '"><span class="mono">' + esc(i.id) + '</span> <span class="muted">' + esc(i.area) + '</span>' +
+      '<span class="' + (o ? '' : 'clamp') + '">' + esc(i.item) + '</span></button>' + (o ? issBlock(i, false) : '') + '</div>';
+  }).join('')).join('') || '<p class="muted">No items.</p>';
+}
+
+function tabsHtml() {
+  const tabs = [['overview', 'Overview'], ['decisions', 'Decisions (' + D.decisions.length + ')'], ['issues', 'Issues (' + D.issues.length + ')']];
+  return '<div class="tabs" role="tablist">' + tabs.map(t => '<button type="button" role="tab" aria-selected="' + (state.tab === t[0]) + '" data-act="tab" data-tab="' + t[0] + '">' + t[1] + '</button>').join('') + '</div>' +
+    (state.tab === 'decisions' ? decisionsHtml() : state.tab === 'issues' ? issuesHtml() : overviewHtml());
+}
+
+function renderPane() {
+  const pane = $('#pane'), ae = document.activeElement;
+  const fk = ae && pane.contains(ae) && ae.dataset && ae.dataset.act ? [ae.dataset.act, ae.dataset.id || ae.dataset.tab || ''] : null;
+  const key = state.selEdge ? 'e:' + state.selEdge : state.selId ? 'n:' + state.selId : 't:' + state.tab, top = pane.scrollTop;
+  pts = {}; ptSeq = 0;
+  pane.innerHTML = state.selEdge && by.edges[state.selEdge] ? edgeHtml(by.edges[state.selEdge]) :
+    state.selId && by.nodes[state.selId] ? nodeHtml(by.nodes[state.selId]) : tabsHtml();
+  pane.scrollTop = key === paneKey ? top : 0;
+  paneKey = key;
+  if (fk) {
+    const el = [...pane.querySelectorAll('[data-act]')].find(x => x.dataset.act === fk[0] && (x.dataset.id || x.dataset.tab || '') === fk[1]);
+    if (el) el.focus({ preventScroll: true });
+  }
+}
+
+function copyText(text, btn) {
+  const done = () => { const o = btn.textContent; btn.textContent = 'Copied'; setTimeout(() => { btn.textContent = o; }, 1200); };
+  const fallback = () => {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(ta); ta.select();
+    try { if (document.execCommand('copy')) done(); } catch (err) { /* ignore */ }
+    ta.remove();
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+}
+
+// ---------- header controls ----------
+function legendCodes() {
+  const c = Object.keys(D.health_legend);
+  D.nodes.forEach(n => { if (!c.includes(n.health)) c.push(n.health); });
+  return c;
+}
+function healthCounts() {
+  const hc = {};
+  D.nodes.forEach(n => { hc[n.health] = (hc[n.health] || 0) + 1; });
+  return hc;
+}
+function renderLegend() {
+  const hc = healthCounts();
+  $('#legend').innerHTML = legendCodes().map(c => '<button type="button" class="chip hc h-' + (HEALTH[c] ? c : 'NONE') + '" data-health="' + esc(c) + '" aria-pressed="' + !!state.health[c] +
+    '" title="' + esc((D.health_legend[c] || c) + ' (click to filter)') + '"><i class="dot"></i>' + esc(c) + ' <b>' + (hc[c] || 0) + '</b></button>').join('');
+}
+
+function zoomBy(f) {
+  if (!cy) return;
+  cy.zoom({ level: Math.max(cy.minZoom(), Math.min(cy.maxZoom(), cy.zoom() * f)), renderedPosition: { x: cy.width() / 2, y: cy.height() / 2 } });
+}
+
+function wire() {
+  const pane = $('#pane');
+  pane.addEventListener('click', ev => {
+    const b = ev.target.closest('[data-act],[data-copy]');
+    if (!b) return;
+    if (b.dataset.copy !== undefined) { copyText(b.dataset.copy, b); return; }
+    const id = b.dataset.id;
+    switch (b.dataset.act) {
+      case 'tab': state.tab = b.dataset.tab; renderPane(); break;
+      case 'dec': toggleRef('dec', id); break;
+      case 'iss': toggleRef('iss', id); break;
+      case 'node': selectNode(id, true); break;
+      case 'edge': selectEdge(id); break;
+      case 'back': state.selEdge = null; applyView(); renderPane(); break;
+      case 'clear': clearSelection(); break;
+      case 'more': {
+        const t = pts[b.dataset.key];
+        if (t) { t.all = !t.all; $('.ptwrap[data-key="' + b.dataset.key + '"] .pt-body', pane).innerHTML = ptBody(b.dataset.key); }
+        break;
+      }
+    }
+  });
+  pane.addEventListener('input', ev => {
+    const el = ev.target;
+    if (!el.classList || !el.classList.contains('pt-filter') || !pts[el.dataset.key]) return;
+    pts[el.dataset.key].filter = el.value;
+    $('.ptwrap[data-key="' + el.dataset.key + '"] .pt-body', pane).innerHTML = ptBody(el.dataset.key);
+  });
+  let qt = null;
+  const q = $('#q');
+  q.addEventListener('input', () => { clearTimeout(qt); qt = setTimeout(doSearch, 150); });
+  q.addEventListener('keydown', ev => {
+    if (ev.key === 'Enter') {
+      clearTimeout(qt); doSearch();
+      if (state.search && state.search.nodes.size === 1) selectNode([...state.search.nodes][0], true);
+    }
+  });
+  $('#dirs').addEventListener('click', ev => {
+    const b = ev.target.closest('[data-dir]');
+    if (!b) return;
+    state.dir = b.dataset.dir;
+    document.querySelectorAll('#dirs button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    refreshSelection();
+  });
+  $('#isolate').addEventListener('change', ev => { state.isolate = ev.target.checked; syncGraph(); applyView(); });
+  $('#legend').addEventListener('click', ev => {
+    const b = ev.target.closest('[data-health]');
+    if (!b) return;
+    const c = b.dataset.health;
+    state.health[c] = !state.health[c];
+    b.setAttribute('aria-pressed', String(!!state.health[c]));
+    applyView();
+  });
+  $('#zfit').addEventListener('click', () => { if (cy) cy.animate({ fit: { eles: cy.elements(), padding: 30 } }, { duration: 200 }); });
+  $('#zin').addEventListener('click', () => zoomBy(1.25));
+  $('#zout').addEventListener('click', () => zoomBy(0.8));
+}
+
+// ---------- cytoscape ----------
+function showMsg(text) {
+  const m = $('#cy-msg');
+  m.textContent = text; m.hidden = false; $('#cy').hidden = true;
+  ['zfit', 'zin', 'zout', 'isolate'].forEach(id => { $('#' + id).disabled = true; });
+}
+
+function restyle() { if (cy) cy.style(buildStyle()); }
+
+function initCy() {
+  // width/height "label" sizing is deprecated in 3.30 but works in the pinned version; skip the console warning.
+  if (typeof window.cytoscape.warnings === 'function') window.cytoscape.warnings(false);
+  cy = window.cytoscape({
+    container: $('#cy'), elements: [], style: buildStyle(), minZoom: 0.15, maxZoom: 3,
+    autoungrabify: true, autounselectify: true, boxSelectionEnabled: false
+  });
+  rebuild(null);
+  graphKey = '*';
+  cy.on('zoom', applyZoomMode);
+  cy.on('tap', ev => {
+    const t = ev.target;
+    if (t === cy) { clearSelection(); return; }
+    if (t.isEdge()) { selectEdge(t.id()); return; }
+    if (!t.isNode() || t.isParent()) return;
+    const now = Date.now(), dbl = lastTap.id === t.id() && now - lastTap.t < 350;
+    lastTap = dbl ? { id: null, t: 0 } : { id: t.id(), t: now };
+    if (dbl) { fitCone(); return; }
+    selectNode(t.id(), false);
+  });
+  const mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  if (mq) { if (mq.addEventListener) mq.addEventListener('change', restyle); else if (mq.addListener) mq.addListener(restyle); }
+  window.addEventListener('resize', () => { if (cy) cy.resize(); });
+}
+
+function init() {
+  try {
+    loadData();
+  } catch (err) {
+    $('#pane').innerHTML = '<p>The lineage data could not be read (' + esc(err.message) + '). Open lineage/index.html, which is generated by scripts/build_lineage_graph.py.</p>';
+    showMsg('No lineage data is embedded in this page.');
+    return;
+  }
+  renderLegend(); wire(); renderPane();
+  if (!window.cytoscape) {
+    showMsg('Cytoscape could not be loaded from cdnjs. The graph needs an internet connection the first time it is opened.');
+    return;
+  }
+  try { initCy(); } catch (err) { cy = null; showMsg('The graph could not be drawn: ' + err.message); }
+}
+
+try { init(); } catch (err) { const m = $('#cy-msg'); m.textContent = 'Viewer error: ' + err.message; m.hidden = false; }
+window.__lineage = { state, restyle, get cy() { return cy; }, get data() { return D; } };
+})();
+</script>
+</body>
+</html>
