@@ -64,11 +64,26 @@ Development, cutoffs, fit, exposure and other existing conditions still apply.
 
 `pier_cap/equation_schematics.py` creates inline, accessible SVG diagrams for
 report equations and the live/exported **Equation & values** disclosures.
-The sketches illustrate the equation's concept and show current operands.
-They cover gross-section cracking, strength, cracked-section service,
-spacing, fatigue, shear windows, torsion, anchorage, clearance, face steel,
-geometry and quantities. Pending equations show their concept without
-adopting dormant load values. Drawings are conceptual, not construction details.
+Each sketch illustrates the equation's concept and lists up to eight current
+operands, or a check's recorded demand/limit components when the check has no
+formula operands. Concept families (the `data-concept` attribute) are: beam
+(cap length from pile spacing, pile width, tolerance and end extensions);
+section (bar areas, row coordinates with cover, hoop and s_row, centroid dc and
+effective depth d); flexure (stress block a, C = α1 fc a b, T = As fy, neutral
+axis c = a/β1); gross (M·yt/Ig cracking, Ig = b h³/12); strain (linear profile
+scaled from the current c); cracked (transformed n·As section, ccr, fc and
+fs/fo stresses); spacing (crack-control s ≤ 700γe/(βs fs) − 2dc, with a
+pile-region variant showing Pile_left, Pile_right, P_center_gap, P_side_span
+and C_pile); legs (transverse leg spacing S_leg ≤ Sw across the cap width);
+shear (inclined field, dv, pitch s and the dv·cotθ window, with an
+end-distance variant for the end-coverage check); torsion (closed shear-flow
+path, Ag/Pcp or Aoh/ph/Ao); longitudinal (M/(φ dv) + axial + shear/torsion
+tension with dv); fatigue; development (anchorage length, with a hook variant
+showing hook height, bend diameter and 12db tail); clearance (centre spacing,
+clear gap, cover, with a layer-alignment variant); face (skin steel over d/2
+and s ≤ min(d/6, 12 in), with shrinkage rates per face); quantity and gate.
+Pending equations show their concept without adopting dormant load values.
+Drawings are conceptual, not construction details.
 
 The report embeds these diagrams and its plotting library for offline use.
 Its existing expand, collapse and print controls include the new disclosures.
@@ -79,7 +94,8 @@ Its existing expand, collapse and print controls include the new disclosures.
 evaluation of the original service equations, Service III stress conversion,
 zero demand, applicability gates, bar extents, pile-gap treatment, step-boundary
 hover and load-state visibility. `tests/test_equation_schematics.py` verifies
-coverage, well-formed accessible SVG, current values, pending handling and
+coverage, family routing, well-formed accessible SVG, parameter labels, current
+values, component operands, the hook and pile variants, pending handling and
 escaped user text. Existing force, calculation, report and widget tests remain
 applicable. Refresh the portable package with
 `python scripts/build_portable_notebook.py` after source changes.
