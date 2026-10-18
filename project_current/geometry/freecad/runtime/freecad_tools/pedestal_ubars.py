@@ -41,17 +41,23 @@ def layout(inp):
     xmin=max(pb.XMin+cover+r,cb.XMin+cc+r)
     xmax=min(pb.XMax-cover-r,cb.XMax-cc-r)
     ymin=pb.YMin+cover+r;ymax=pb.YMax-cover-r
-    nx=len(centered(xmin,xmax,pitch))-inp.XGridCountReduction
-    if nx<2:raise ValueError('At least two crossing U-bars are required')
-    xpos=[(xmin+xmax-(nx-1)*pitch)/2+i*pitch+inp.XGridOffset.Value for i in range(nx)]
-    ypos=[y+inp.YGridOffset.Value for y in centered(ymin,ymax,pitch)]
-    if min(xpos)<xmin-TOL or max(xpos)>xmax+TOL or min(ypos)<ymin-TOL or max(ypos)>ymax+TOL:
-        raise ValueError('Grid phase violates cover')
-    xmin+=inp.LongitudinalReturnInset.Value;xmax-=inp.LongitudinalReturnInset.Value
-    # Inset transverse returns to separate perpendicular vertical legs at corners.
-    # Horizontal grid pitches stay exactly 6 in; this is not a spacing reduction.
-    yl=pb.YMin+inp.TransverseReturnCover.Value+r
-    yr=pb.YMax-inp.TransverseReturnCover.Value-r
+    edge_mode=getattr(inp,'MaximumSpacingLayout',False)
+    specified_mode=getattr(inp,'UseSpecifiedEmbedment',False)
+    if specified_mode and (not edge_mode or inp.SpecifiedEmbedment.Value<=0):raise ValueError('Specified embedment requires a positive length and edge layout')
+    if inp.LayerClearance.Value<0:raise ValueError('Horizontal layer clearance cannot be negative')
+    if edge_mode:
+        from .pedestal_edges import grid
+        xmin,xmax,yl,yr,xpos,ypos=grid(inp,pb,cb)
+    else:
+        nx=len(centered(xmin,xmax,pitch))-inp.XGridCountReduction
+        if nx<2:raise ValueError('At least two crossing U-bars are required')
+        xpos=[(xmin+xmax-(nx-1)*pitch)/2+i*pitch+inp.XGridOffset.Value for i in range(nx)]
+        ypos=[y+inp.YGridOffset.Value for y in centered(ymin,ymax,pitch)]
+        if min(xpos)<xmin-TOL or max(xpos)>xmax+TOL or min(ypos)<ymin-TOL or max(ypos)>ymax+TOL:
+            raise ValueError('Grid phase violates cover')
+        xmin+=inp.LongitudinalReturnInset.Value;xmax-=inp.LongitudinalReturnInset.Value
+        yl=pb.YMin+inp.TransverseReturnCover.Value+r
+        yr=pb.YMax-inp.TransverseReturnCover.Value-r
     topfaces=[f for f in ped.Faces if f.normalAt(0,0).z>.9]
     if not topfaces:raise ValueError('Pedestal top faces unavailable')
     ztop=min(v.Point.z for f in topfaces for v in f.Vertexes)-(cover+r)/min(f.normalAt(0,0).z for f in topfaces)
@@ -64,7 +70,7 @@ def layout(inp):
     for i,x in enumerate(xpos,1):plans.append(dict(id=f'Y{i:02}',direction='Y',a=yl,b=yr,t=x,z=lower))
     # User-authorized local adjustments: retain end stations / mean grid pitch.
     # Native signed distances keep the location editable without static solids.
-    for p in plans:
+    for p in ([] if edge_mode else plans):
         station=getattr(inp,p['id']+'StationAdjustment',App.Units.Quantity('0 in')).Value
         span=getattr(inp,p['id']+'SpanAdjustment',App.Units.Quantity('0 in')).Value
         if max(abs(station),abs(span))>IN+TOL:raise ValueError('Local adjustment exceeds the one-inch search envelope')
@@ -72,7 +78,9 @@ def layout(inp):
     for direction in 'XY':
         positions=[p['t'] for p in plans if p['direction']==direction]
         intervals=[b-a for a,b in zip(positions,positions[1:])]
-        if abs(sum(intervals)/len(intervals)-pitch)>TOL or any(abs(v-pitch)>IN+TOL for v in intervals):
+        if edge_mode:
+            if not intervals or min(intervals)<=d-TOL or max(intervals)>pitch+TOL:raise ValueError('Edge grid violates maximum spacing or same-family separation')
+        elif abs(sum(intervals)/len(intervals)-pitch)>TOL or any(abs(v-pitch)>IN+TOL for v in intervals):
             raise ValueError('Adjusted grid must average the specified spacing; individual intervals may vary by at most one inch')
     def point(p,u,z):return (u,p['t'],z) if p['direction']=='X' else (p['t'],u,z)
     legs=[point(p,u,pb.ZMin) for p in plans for u in (p['a'],p['b'])]
@@ -84,19 +92,41 @@ def layout(inp):
     calc=development(d/IN,inp.YieldStrength.getValueAs('ksi').Value,
         inp.ConcreteStrength.getValueAs('ksi').Value,min(side,nearest/2)/IN,inp.DensityFactor,inp.Coating)
     embed=math.ceil((calc['required_in']-1e-10)/inp.EmbedmentIncrement.Value*IN)*inp.EmbedmentIncrement.Value
+    if edge_mode:embed=max(embed,inp.MinimumEmbedment.Value)
+    if specified_mode:embed=inp.SpecifiedEmbedment.Value
     calc.update(provided_in=embed/IN,minimum_leg_centers_in=nearest/IN,
                 minimum_side_center_cover_in=side/IN,bar_count=len(plans))
+    if edge_mode:
+        by_bar={}
+        for plan in plans:
+            ends=[point(plan,u,pb.ZMin) for u in (plan['a'],plan['b'])]
+            others=[point(other,u,pb.ZMin) for other in plans if other is not plan for u in (other['a'],other['b'])]
+            gap=min(math.hypot(a[0]-b[0],a[1]-b[1]) for a in ends for b in others)
+            edge_cover=min(min(x-pb.XMin,pb.XMax-x,y-pb.YMin,pb.YMax-y,x-cb.XMin,cb.XMax-x,y-cb.YMin,cb.YMax-y) for x,y,z in ends)
+            detail=development(d/IN,inp.YieldStrength.getValueAs('ksi').Value,inp.ConcreteStrength.getValueAs('ksi').Value,min(edge_cover,gap/2)/IN,inp.DensityFactor,inp.Coating)
+            actual=max(inp.MinimumEmbedment.Value,math.ceil((detail['required_in']*IN-1e-8)/inp.EmbedmentIncrement.Value)*inp.EmbedmentIncrement.Value)
+            if specified_mode:actual=inp.SpecifiedEmbedment.Value
+            detail.update(provided_in=actual/IN,minimum_leg_centers_in=gap/IN,minimum_side_center_cover_in=edge_cover/IN)
+            by_bar[plan['id']]=detail
+        calc['by_bar']=by_bar;calc['required_in']=max(c['required_in'] for c in by_bar.values());calc['provided_in']=max(c['provided_in'] for c in by_bar.values())
+        embed=calc['provided_in']*IN
+    details=calc.get('by_bar',{'all':calc})
+    calc['embedment_mode']='USER_SPECIFIED' if specified_mode else 'CALCULATED_DEVELOPMENT'
+    calc['development_shortfalls']={k:c['required_in']-c['provided_in'] for k,c in details.items() if c['provided_in']+TOL/IN<c['required_in']}
+    calc['development_status']='FAIL' if calc['development_shortfalls'] else 'PASS'
     bottom=pb.ZMin-embed
-    if bottom<cb.ZMin+cc-TOL:raise ValueError('Required development does not fit cap bottom cover')
+    if bottom<cb.ZMin+cc-TOL:raise ValueError('Provided embedment does not fit cap bottom cover')
     rows={}
     for p in plans:
+        if edge_mode:bottom=pb.ZMin-calc['by_bar'][p['id']]['provided_in']*IN
         a,b,z=p['a'],p['b'],p['z'];q=math.sqrt(.5)
         uz=[(a,bottom),(a,z-rad),(a+rad*(1-q),z-rad*(1-q)),(a+rad,z),
             (b-rad,z),(b-rad*(1-q),z-rad*(1-q)),(b,z-rad),(b,bottom)]
         rows[p['id']]=dict(id=p['id'],kind='pedestal_u',bar=4,diameter=d/IN,
-            family=p['direction']+' U-bars @ '+str(round(pitch/IN,6))+' in average',direction=p['direction'],station=p['t']/IN,
+            family=p['direction']+' U-bars @ '+str(round(pitch/IN,6))+(' in maximum' if edge_mode else ' in average'),direction=p['direction'],station=p['t']/IN,
             points=[tuple(v/IN for v in point(p,u,h)) for u,h in uz],
             segments=[('line',0,1),('arc',1,2,3),('line',3,4),('arc',4,5,6),('line',6,7)])
+        if edge_mode:rows[p['id']].update(required_development_in=calc['by_bar'][p['id']]['required_in'],provided_embedment_in=calc['by_bar'][p['id']]['provided_in'])
     return rows,calc
 
 class InputsProxy(Serializable):
@@ -105,6 +135,7 @@ class InputsProxy(Serializable):
         rows,calc=layout(o);o.LayoutJSON=json.dumps(rows);o.DevelopmentJSON=json.dumps(calc)
         o.CageFrame=o.PGL.Frame;o.RequiredDevelopment=str(calc['required_in'])+' in'
         o.ProvidedEmbedment=str(calc['provided_in'])+' in'
+        if 'DevelopmentStatus' in o.PropertiesList:o.DevelopmentStatus=calc['development_status']
         if o.AutoSync:sync(o)
 
 class RebarProxy(cap.RebarProxy):
@@ -114,14 +145,18 @@ class RebarProxy(cap.RebarProxy):
 
 def write_schedule(inp,sh,bars):
     sh.clearAll()
-    for col,t in zip('ABCDEFGHIJ',['Mark','Direction','US #','Count','Dia (in)','Length (ft)','Total (ft)','Weight (lb)','Ld req (in)','Cap embed (in)']):sh.set(col+'1',t)
+    for col,t in zip('ABCDEFGHIJK',['Mark','Direction','US #','Count','Dia (in)','Length (ft)','Total (ft)','Weight (lb)','Ld req (in)','Cap embed (in)','Embed - Ld (in)']):sh.set(col+'1',t)
     for row,b in enumerate(bars,2):
-        sh.set('A'+str(row),b.Mark);sh.set('B'+str(row),b.Base.Family)
-        for col,expr in {'C':b.Base.Name+'.BarNumber','D':b.Name+'.Amount','E':b.Name+'.Diameter/(1 in)','F':b.Name+'.Length/(1 ft)','G':b.Name+'.TotalLength/(1 ft)','H':b.Name+'.NominalWeightLb','I':inp.Name+'.RequiredDevelopment/(1 in)','J':inp.Name+'.ProvidedEmbedment/(1 in)'}.items():sh.set(col+str(row),'='+expr)
+        sh.set('A'+str(row),"'"+b.Mark);sh.set('B'+str(row),b.Base.Family)
+        source=b.Base.Name if getattr(inp,'MaximumSpacingLayout',False) else inp.Name
+        for col,expr in {'C':b.Base.Name+'.BarNumber','D':b.Name+'.Amount','E':b.Name+'.Diameter/(1 in)','F':b.Name+'.Length/(1 ft)','G':b.Name+'.TotalLength/(1 ft)','H':b.Name+'.NominalWeightLb','I':source+'.RequiredDevelopment/(1 in)','J':source+'.ProvidedEmbedment/(1 in)'}.items():sh.set(col+str(row),'='+expr)
+        sh.set('K'+str(row),'=J'+str(row)+'-I'+str(row))
     row=len(bars)+2;q=inp.Prefix+'Quantities';sh.set('A'+str(row),'TOTAL')
     for col,expr in [('D',q+'.TotalBars'),('G',q+'.TotalSteelLength/(1 ft)'),('H',q+'.NominalSteelWeightLb')]:sh.set(col+str(row),'='+expr)
-    sh.set('A'+str(row+2),'#4 at specified average spacing EW; local shifts avoid clashes. 2 in pedestal cover; 3 in cap cover. Development below cap top.')
+    mode='maximum' if getattr(inp,'MaximumSpacingLayout',False) else 'average'
+    sh.set('A'+str(row+2),'#4 at specified '+mode+' spacing EW; local shifts avoid clashes. 2 in pedestal cover; 3 in cap cover. Development below cap top.')
     sh.set('A'+str(row+3),'LRFD 10th ed. 5.10.8.2.1. Uncoated Grade 60; normal weight; no tie/clamping/excess-steel credit.')
+    if getattr(inp,'UseSpecifiedEmbedment',False):sh.set('A'+str(row+4),'User-specified cap embedment. Negative Embed - Ld is an unresolved development shortfall; geometry acceptance is separate.')
     sh.BarNames=[b.Name for b in bars];sh.TotalRow=row
 
 def sync(inp):
@@ -143,6 +178,11 @@ def sync(inp):
             prop(rb,'App::PropertyLink','CageInputs',inp,'Source');rb.Host=inp.Host;rb.Mark=inp.Host.Name+'-'+ident;rb.Rounding=0
             prop(rb,'App::PropertyFloat','NominalWeightLb',0.,'Quantity');rb.setExpression('Diameter',path.Name+'.NominalDiameter');bg.addObject(rb)
             if App.GuiUp:path.ViewObject.Visibility=False;rb.ViewObject.ShapeColor=(.15,.65,.35)
+        if getattr(inp,'MaximumSpacingLayout',False):
+            for key,field in [('RequiredDevelopment','required_development_in'),('ProvidedEmbedment','provided_embedment_in')]:
+                value=str(row[field])+' in'
+                if key in rb.Base.PropertiesList:setattr(rb.Base,key,value)
+                else:prop(rb.Base,'App::PropertyLength',key,value,'Development')
         rb.Label=inp.Host.Label+' '+row['family'];bars.append(rb)
     q.Bars=bars
     sh=doc.getObject(prefix+'Schedule')
@@ -206,7 +246,10 @@ def validate(inp):
         direction='X' if abs(p0.y-p7.y)<1e-7 else 'Y'
         physical_stations[direction].append((p0.y if direction=='X' else p0.x)/IN)
         embed=pb.ZMin-bb.ZMin
-        checks.append(result(rb.Name+'_physical_embedment',abs(embed-inp.ProvidedEmbedment.Value)<TOL and embed+TOL>=inp.RequiredDevelopment.Value,provided_in=embed/IN))
+        provided=row.get('provided_embedment_in',inp.ProvidedEmbedment.Value/IN)*IN
+        required=row.get('required_development_in',inp.RequiredDevelopment.Value/IN)*IN
+        checks.append(result(rb.Name+'_physical_embedment',abs(embed-provided)<TOL,provided_in=embed/IN,required_in=required/IN))
+        checks.append(result(rb.Name+'_development_adequacy',embed+TOL>=required,category='development',provided_in=embed/IN,required_in=required/IN,shortfall_in=max(0.,(required-embed)/IN)))
         # BRep distance to real pedestal sides/roof includes chamfers and slopes.
         pedcover=min(local.distToShape(f)[0] for f in sides+roof)
         capcover=min(bb.XMin-cb.XMin,cb.XMax-bb.XMax,bb.YMin-cb.YMin,cb.YMax-bb.YMax,bb.ZMin-cb.ZMin)
@@ -221,7 +264,10 @@ def validate(inp):
         intervals=[b-a for a,b in zip(stations,stations[1:])]
         average=sum(intervals)/len(intervals)
         spacing_results[direction]=dict(intervals_in=intervals,average_in=average,minimum_in=min(intervals),maximum_in=max(intervals))
-        checks.append(result(inp.Prefix+'_'+direction+'_physical_average_pitch',len(stations)>=2 and abs(average*IN-inp.Spacing.Value)<TOL and all(abs(v*IN-inp.Spacing.Value)<=IN+TOL for v in intervals),**spacing_results[direction]))
+        if getattr(inp,'MaximumSpacingLayout',False):
+            checks.append(result(inp.Prefix+'_'+direction+'_physical_maximum_pitch',len(stations)>=2 and min(intervals)*IN>=inp.Diameter.Value-TOL and max(intervals)*IN<=inp.Spacing.Value+TOL,**spacing_results[direction]))
+        else:
+            checks.append(result(inp.Prefix+'_'+direction+'_physical_average_pitch',len(stations)>=2 and abs(average*IN-inp.Spacing.Value)<TOL and all(abs(v*IN-inp.Spacing.Value)<=IN+TOL for v in intervals),**spacing_results[direction]))
     nearest=min(math.hypot(a.x-b.x,a.y-b.y) for i,a in enumerate(legs) for b in legs[i+1:])/IN
     checks.append(result(inp.Prefix+'_development_spacing',abs(nearest-calc['minimum_leg_centers_in'])<TOL/IN))
     checks.append(result(inp.Prefix+'_live_quantity',q.TotalBars==len(rows)==len(q.Bars) and abs(q.TotalSteelLength.Value-total)<TOL))
@@ -231,7 +277,7 @@ def validate(inp):
 
 def clash_check(doc,inputs):
     new=[b for inp in inputs for b in doc.getObject(inp.Prefix+'Quantities').Bars]
-    old=[o for o in doc.Objects if hasattr(o,'CageInputs') and o not in new]
+    old=[o for o in doc.Objects if 'Shape' in o.PropertiesList and all(k in o.PropertiesList for k in ('Diameter','Amount','Base')) and o not in new]
     piles=[o for o in doc.Objects if getattr(o,'ComponentKind',None)=='Pile']
     shapes={o.Name:o.Shape.copy() for o in new+old+piles}
     boxes={name:bounds(shape) for name,shape in shapes.items()}

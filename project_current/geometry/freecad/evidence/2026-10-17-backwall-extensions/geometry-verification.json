@@ -1,0 +1,3660 @@
+{
+  "status": "PASS",
+  "counts": {
+    "PASS": 367
+  },
+  "checks": [
+    {
+      "name": "all_unchanged_native_objects_exact",
+      "status": "PASS",
+      "objects": 2067
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V08_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V08_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V09_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V09_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V10_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V10_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V11_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V11_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V12_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V12_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V13_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V13_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V14_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V14_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V15_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V15_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V16_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V16_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V17_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V17_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V18_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V18_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V19_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V19_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V20_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V20_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V21_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V21_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V08_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V08_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V09_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V09_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V10_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V10_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V11_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V11_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V12_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V12_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V13_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V13_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V14_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V14_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V15_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V15_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V16_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V16_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V17_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V17_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V18_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V18_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V19_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V19_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V20_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V20_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V21_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V21_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VEL_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VEL_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VER_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VER_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VEL_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VEL_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VER_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VER_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1_live_totals",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H01_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999998854,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H01_physical_end_cover_limit",
+      "status": "PASS",
+      "start_in": -122.50000000000003,
+      "end_in": 122.50000000000003
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H01_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H02_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999998854,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H02_physical_end_cover_limit",
+      "status": "PASS",
+      "start_in": -122.50000000000003,
+      "end_in": 122.50000000000003
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H02_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H03_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999998854,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H03_physical_end_cover_limit",
+      "status": "PASS",
+      "start_in": -122.50000000000003,
+      "end_in": 122.50000000000003
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H03_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H04_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999998854,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H04_physical_end_cover_limit",
+      "status": "PASS",
+      "start_in": -122.50000000000003,
+      "end_in": 122.50000000000003
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H04_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H05_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999998854,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H05_physical_end_cover_limit",
+      "status": "PASS",
+      "start_in": -122.50000000000003,
+      "end_in": 122.50000000000003
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H05_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H01_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999998854,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H01_physical_end_cover_limit",
+      "status": "PASS",
+      "start_in": -122.50000000000003,
+      "end_in": 122.50000000000003
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H01_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H02_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999998854,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H02_physical_end_cover_limit",
+      "status": "PASS",
+      "start_in": -122.50000000000003,
+      "end_in": 122.50000000000003
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H02_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H03_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999998854,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H03_physical_end_cover_limit",
+      "status": "PASS",
+      "start_in": -122.50000000000003,
+      "end_in": 122.50000000000003
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H03_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H04_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999998854,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H04_physical_end_cover_limit",
+      "status": "PASS",
+      "start_in": -122.50000000000003,
+      "end_in": 122.50000000000003
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H04_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H05_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999998854,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H05_physical_end_cover_limit",
+      "status": "PASS",
+      "start_in": -122.50000000000003,
+      "end_in": 122.50000000000003
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H05_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VEL_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999999574,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VEL_added_vertical_spacing",
+      "status": "PASS",
+      "centers_in": 8.00000000000001,
+      "clear_in": 7.3750000000000115
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VEL_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VER_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 3.000000000000011,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VER_added_vertical_spacing",
+      "status": "PASS",
+      "centers_in": 8.00000000000001,
+      "clear_in": 7.3750000000000115
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VER_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VEL_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999999574,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VEL_added_vertical_spacing",
+      "status": "PASS",
+      "centers_in": 8.00000000000001,
+      "clear_in": 7.3750000000000115
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VEL_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VER_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 3.000000000000011,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VER_added_vertical_spacing",
+      "status": "PASS",
+      "centers_in": 8.00000000000001,
+      "clear_in": 7.3750000000000115
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VER_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB1_live_schedule",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H01_independent_extension",
+      "status": "PASS",
+      "extension_each_end_in": [
+        8.250000000000007,
+        8.250000000000007
+      ],
+      "vertical_shift_in": 0.0,
+      "length_in": 245.00000000000006
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H02_independent_extension",
+      "status": "PASS",
+      "extension_each_end_in": [
+        8.250000000000007,
+        8.250000000000007
+      ],
+      "vertical_shift_in": 0.0,
+      "length_in": 245.00000000000006
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H03_independent_extension",
+      "status": "PASS",
+      "extension_each_end_in": [
+        8.250000000000007,
+        8.250000000000007
+      ],
+      "vertical_shift_in": 0.0,
+      "length_in": 245.00000000000006
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H04_independent_extension",
+      "status": "PASS",
+      "extension_each_end_in": [
+        8.250000000000007,
+        8.250000000000007
+      ],
+      "vertical_shift_in": 0.0,
+      "length_in": 245.00000000000006
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H05_independent_extension",
+      "status": "PASS",
+      "extension_each_end_in": [
+        8.250000000000007,
+        8.250000000000007
+      ],
+      "vertical_shift_in": 0.0,
+      "length_in": 245.00000000000006
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H01_independent_extension",
+      "status": "PASS",
+      "extension_each_end_in": [
+        8.250000000000007,
+        8.250000000000007
+      ],
+      "vertical_shift_in": 0.0,
+      "length_in": 245.00000000000006
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H02_independent_extension",
+      "status": "PASS",
+      "extension_each_end_in": [
+        8.250000000000007,
+        8.250000000000007
+      ],
+      "vertical_shift_in": 0.0,
+      "length_in": 245.00000000000006
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H03_independent_extension",
+      "status": "PASS",
+      "extension_each_end_in": [
+        8.250000000000007,
+        8.250000000000007
+      ],
+      "vertical_shift_in": 0.0,
+      "length_in": 245.00000000000006
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H04_independent_extension",
+      "status": "PASS",
+      "extension_each_end_in": [
+        8.250000000000007,
+        8.250000000000007
+      ],
+      "vertical_shift_in": 0.0,
+      "length_in": 245.00000000000006
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H05_independent_extension",
+      "status": "PASS",
+      "extension_each_end_in": [
+        8.250000000000007,
+        8.250000000000007
+      ],
+      "vertical_shift_in": 0.0,
+      "length_in": 245.00000000000006
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VEL_matching_added_vertical",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VER_matching_added_vertical",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VEL_matching_added_vertical",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VER_matching_added_vertical",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1_requested_counts",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V08_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V08_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V09_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V09_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V10_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V10_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V11_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V11_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V12_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V12_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V13_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V13_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V14_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V14_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V15_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V15_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V16_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V16_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V17_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V17_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V18_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V18_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V19_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V19_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V20_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V20_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V21_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V21_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V08_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V08_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V09_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V09_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V10_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V10_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V11_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V11_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V12_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V12_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V13_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V13_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V14_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V14_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V15_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V15_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V16_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V16_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V17_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V17_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V18_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V18_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V19_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V19_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V20_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V20_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V21_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V21_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VEL_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VEL_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VER_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VER_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VEL_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VEL_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VER_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VER_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2_live_totals",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H01_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999987397,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H01_physical_end_cover_limit",
+      "status": "PASS",
+      "start_in": -122.49999999999945,
+      "end_in": 122.50000000000114
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H01_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H02_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999987397,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H02_physical_end_cover_limit",
+      "status": "PASS",
+      "start_in": -122.49999999999945,
+      "end_in": 122.50000000000114
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H02_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H03_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999987397,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H03_physical_end_cover_limit",
+      "status": "PASS",
+      "start_in": -122.49999999999945,
+      "end_in": 122.50000000000114
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H03_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H04_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999987397,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H04_physical_end_cover_limit",
+      "status": "PASS",
+      "start_in": -122.49999999999945,
+      "end_in": 122.50000000000114
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H04_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H05_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999987397,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H05_physical_end_cover_limit",
+      "status": "PASS",
+      "start_in": -122.49999999999945,
+      "end_in": 122.50000000000114
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H05_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H01_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999987397,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H01_physical_end_cover_limit",
+      "status": "PASS",
+      "start_in": -122.49999999999945,
+      "end_in": 122.50000000000114
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H01_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H02_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999987397,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H02_physical_end_cover_limit",
+      "status": "PASS",
+      "start_in": -122.49999999999945,
+      "end_in": 122.50000000000114
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H02_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H03_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999987397,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H03_physical_end_cover_limit",
+      "status": "PASS",
+      "start_in": -122.49999999999945,
+      "end_in": 122.50000000000114
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H03_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H04_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999987397,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H04_physical_end_cover_limit",
+      "status": "PASS",
+      "start_in": -122.49999999999945,
+      "end_in": 122.50000000000114
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H04_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H05_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.9999999999987397,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H05_physical_end_cover_limit",
+      "status": "PASS",
+      "start_in": -122.49999999999945,
+      "end_in": 122.50000000000114
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H05_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VEL_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 3.0000000000004765,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VEL_added_vertical_spacing",
+      "status": "PASS",
+      "centers_in": 7.999999999999439,
+      "clear_in": 7.374999999999439
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VEL_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VER_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.999999999998883,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VER_added_vertical_spacing",
+      "status": "PASS",
+      "centers_in": 8.000000000001139,
+      "clear_in": 7.375000000001139
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VER_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VEL_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 3.0000000000004765,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VEL_added_vertical_spacing",
+      "status": "PASS",
+      "centers_in": 7.999999999999439,
+      "clear_in": 7.374999999999439
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VEL_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VER_combined_concrete_cover",
+      "status": "PASS",
+      "cover_in": 2.999999999998883,
+      "required_in": 2.9999999999999996,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VER_added_vertical_spacing",
+      "status": "PASS",
+      "centers_in": 8.000000000001139,
+      "clear_in": 7.375000000001139
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VER_no_new_steel_overlap",
+      "status": "PASS",
+      "failures": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB2_live_schedule",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H01_independent_extension",
+      "status": "PASS",
+      "extension_each_end_in": [
+        8.249999999999435,
+        8.250000000001135
+      ],
+      "vertical_shift_in": 0.0,
+      "length_in": 245.0000000000006
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H02_independent_extension",
+      "status": "PASS",
+      "extension_each_end_in": [
+        8.249999999999435,
+        8.250000000001135
+      ],
+      "vertical_shift_in": 0.0,
+      "length_in": 245.0000000000006
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H03_independent_extension",
+      "status": "PASS",
+      "extension_each_end_in": [
+        8.249999999999435,
+        8.250000000001135
+      ],
+      "vertical_shift_in": 0.0,
+      "length_in": 245.0000000000006
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H04_independent_extension",
+      "status": "PASS",
+      "extension_each_end_in": [
+        8.249999999999435,
+        8.250000000001135
+      ],
+      "vertical_shift_in": 0.0,
+      "length_in": 245.0000000000006
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H05_independent_extension",
+      "status": "PASS",
+      "extension_each_end_in": [
+        8.249999999999435,
+        8.250000000001135
+      ],
+      "vertical_shift_in": -0.12500000000004297,
+      "length_in": 245.0000000000006
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H01_independent_extension",
+      "status": "PASS",
+      "extension_each_end_in": [
+        8.249999999999435,
+        8.250000000001135
+      ],
+      "vertical_shift_in": 0.0,
+      "length_in": 245.0000000000006
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H02_independent_extension",
+      "status": "PASS",
+      "extension_each_end_in": [
+        8.249999999999435,
+        8.250000000001135
+      ],
+      "vertical_shift_in": 0.0,
+      "length_in": 245.0000000000006
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H03_independent_extension",
+      "status": "PASS",
+      "extension_each_end_in": [
+        8.249999999999435,
+        8.250000000001135
+      ],
+      "vertical_shift_in": 0.0,
+      "length_in": 245.0000000000006
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H04_independent_extension",
+      "status": "PASS",
+      "extension_each_end_in": [
+        8.249999999999435,
+        8.250000000001135
+      ],
+      "vertical_shift_in": 0.0,
+      "length_in": 245.0000000000006
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H05_independent_extension",
+      "status": "PASS",
+      "extension_each_end_in": [
+        8.249999999999435,
+        8.250000000001135
+      ],
+      "vertical_shift_in": -0.12500000000004297,
+      "length_in": 245.0000000000006
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VEL_matching_added_vertical",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VER_matching_added_vertical",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VEL_matching_added_vertical",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VER_matching_added_vertical",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2_requested_counts",
+      "status": "PASS"
+    },
+    {
+      "name": "native_view_records_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VELPath_native_visibility",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VEL_native_visibility",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VERPath_native_visibility",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VER_native_visibility",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VELPath_native_visibility",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VEL_native_visibility",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VERPath_native_visibility",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VER_native_visibility",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VELPath_native_visibility",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VEL_native_visibility",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VERPath_native_visibility",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VER_native_visibility",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VELPath_native_visibility",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VEL_native_visibility",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VERPath_native_visibility",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VER_native_visibility",
+      "status": "PASS"
+    },
+    {
+      "name": "editable_end_cover_drives_native_length",
+      "status": "PASS"
+    },
+    {
+      "name": "editable_end_cover_restores_native_length",
+      "status": "PASS"
+    },
+    {
+      "name": "editable_end_vertical_toggle_removes_four",
+      "status": "PASS"
+    },
+    {
+      "name": "editable_end_vertical_toggle_restores_four_and_marks",
+      "status": "PASS"
+    },
+    {
+      "name": "base_grid_change_requires_explicit_rebase",
+      "status": "PASS"
+    },
+    {
+      "name": "selected_candidate_bytes_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "registered_source_bytes_unchanged",
+      "status": "PASS"
+    }
+  ],
+  "results": {
+    "SteelBridgeBackwallEB1Inputs": {
+      "checks": [
+        {
+          "name": "SteelBridgeBackwallEB1F1V01_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V01_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V02_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V02_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V03_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V03_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V04_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V04_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V05_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V05_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V06_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V06_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V07_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V07_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V08_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V08_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V09_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V09_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V10_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V10_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V11_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V11_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V12_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V12_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V13_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V13_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V14_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V14_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V15_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V15_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V16_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V16_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V17_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V17_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V18_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V18_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V19_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V19_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V20_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V20_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V21_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1V21_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H01_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H01_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H02_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H02_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H03_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H03_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H04_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H04_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H05_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H05_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V01_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V01_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V02_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V02_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V03_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V03_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V04_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V04_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V05_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V05_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V06_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V06_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V07_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V07_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V08_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V08_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V09_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V09_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V10_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V10_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V11_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V11_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V12_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V12_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V13_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V13_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V14_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V14_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V15_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V15_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V16_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V16_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V17_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V17_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V18_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V18_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V19_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V19_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V20_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V20_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V21_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2V21_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H01_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H01_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H02_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H02_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H03_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H03_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H04_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H04_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H05_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H05_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1VEL_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1VEL_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1VER_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1VER_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2VEL_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2VEL_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2VER_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2VER_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1_live_totals",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H01_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H01_physical_end_cover_limit",
+          "status": "PASS",
+          "start_in": -122.50000000000003,
+          "end_in": 122.50000000000003
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H01_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H02_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H02_physical_end_cover_limit",
+          "status": "PASS",
+          "start_in": -122.50000000000003,
+          "end_in": 122.50000000000003
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H02_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H03_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H03_physical_end_cover_limit",
+          "status": "PASS",
+          "start_in": -122.50000000000003,
+          "end_in": 122.50000000000003
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H03_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H04_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H04_physical_end_cover_limit",
+          "status": "PASS",
+          "start_in": -122.50000000000003,
+          "end_in": 122.50000000000003
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H04_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H05_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H05_physical_end_cover_limit",
+          "status": "PASS",
+          "start_in": -122.50000000000003,
+          "end_in": 122.50000000000003
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1H05_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H01_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H01_physical_end_cover_limit",
+          "status": "PASS",
+          "start_in": -122.50000000000003,
+          "end_in": 122.50000000000003
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H01_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H02_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H02_physical_end_cover_limit",
+          "status": "PASS",
+          "start_in": -122.50000000000003,
+          "end_in": 122.50000000000003
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H02_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H03_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H03_physical_end_cover_limit",
+          "status": "PASS",
+          "start_in": -122.50000000000003,
+          "end_in": 122.50000000000003
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H03_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H04_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H04_physical_end_cover_limit",
+          "status": "PASS",
+          "start_in": -122.50000000000003,
+          "end_in": 122.50000000000003
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H04_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H05_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999998854,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H05_physical_end_cover_limit",
+          "status": "PASS",
+          "start_in": -122.50000000000003,
+          "end_in": 122.50000000000003
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2H05_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1VEL_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999999574,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1VEL_added_vertical_spacing",
+          "status": "PASS",
+          "centers_in": 8.00000000000001,
+          "clear_in": 7.3750000000000115
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1VEL_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1VER_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 3.000000000000011,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1VER_added_vertical_spacing",
+          "status": "PASS",
+          "centers_in": 8.00000000000001,
+          "clear_in": 7.3750000000000115
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F1VER_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2VEL_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999999574,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2VEL_added_vertical_spacing",
+          "status": "PASS",
+          "centers_in": 8.00000000000001,
+          "clear_in": 7.3750000000000115
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2VEL_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2VER_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 3.000000000000011,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2VER_added_vertical_spacing",
+          "status": "PASS",
+          "centers_in": 8.00000000000001,
+          "clear_in": 7.3750000000000115
+        },
+        {
+          "name": "SteelBridgeBackwallEB1F2VER_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB1_live_schedule",
+          "status": "PASS"
+        }
+      ],
+      "failures": [],
+      "new_clashes": [],
+      "retained_existing_clashes": [],
+      "measurements": [
+        {
+          "bar": "SteelBridgeBackwallEB1F1H01",
+          "kind": "wall_horizontal",
+          "added": false,
+          "length_in": 245.00000000000006,
+          "minimum_cover_in": 2.9999999999998854,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB1F1V02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB1F1H02",
+          "kind": "wall_horizontal",
+          "added": false,
+          "length_in": 245.00000000000006,
+          "minimum_cover_in": 2.9999999999998854,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB1F1V02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB1F1H03",
+          "kind": "wall_horizontal",
+          "added": false,
+          "length_in": 245.00000000000006,
+          "minimum_cover_in": 2.9999999999998854,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB1F1V02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB1F1H04",
+          "kind": "wall_horizontal",
+          "added": false,
+          "length_in": 245.00000000000006,
+          "minimum_cover_in": 2.9999999999998854,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB1F1V02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB1F1H05",
+          "kind": "wall_horizontal",
+          "added": false,
+          "length_in": 245.00000000000006,
+          "minimum_cover_in": 2.9999999999998854,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB1F1V02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB1F2H01",
+          "kind": "wall_horizontal",
+          "added": false,
+          "length_in": 245.00000000000006,
+          "minimum_cover_in": 2.9999999999998854,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB1F2V02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB1F2H02",
+          "kind": "wall_horizontal",
+          "added": false,
+          "length_in": 245.00000000000006,
+          "minimum_cover_in": 2.9999999999998854,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB1F2V02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB1F2H03",
+          "kind": "wall_horizontal",
+          "added": false,
+          "length_in": 245.00000000000006,
+          "minimum_cover_in": 2.9999999999998854,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB1F2V02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB1F2H04",
+          "kind": "wall_horizontal",
+          "added": false,
+          "length_in": 245.00000000000006,
+          "minimum_cover_in": 2.9999999999998854,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB1F2V02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB1F2H05",
+          "kind": "wall_horizontal",
+          "added": false,
+          "length_in": 245.00000000000006,
+          "minimum_cover_in": 2.9999999999998854,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB1F2V02",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB1F1VEL",
+          "kind": "wall_vertical",
+          "added": true,
+          "length_in": 59.482780779619034,
+          "minimum_cover_in": 2.9999999999999574,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB1F1H01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB1F1VER",
+          "kind": "wall_vertical",
+          "added": true,
+          "length_in": 59.482780779619034,
+          "minimum_cover_in": 3.000000000000011,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB1F1H01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.1189649382048822e-15,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB1F2VEL",
+          "kind": "wall_vertical",
+          "added": true,
+          "length_in": 59.482780779619034,
+          "minimum_cover_in": 2.9999999999999574,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB1F2H01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 5.594824691024411e-16,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB1F2VER",
+          "kind": "wall_vertical",
+          "added": true,
+          "length_in": 59.482780779619034,
+          "minimum_cover_in": 3.000000000000011,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB1F2H01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        }
+      ],
+      "bars": 56
+    },
+    "SteelBridgeBackwallEB2Inputs": {
+      "checks": [
+        {
+          "name": "SteelBridgeBackwallEB2F1V01_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V01_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V02_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V02_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V03_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V03_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V04_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V04_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V05_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V05_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V06_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V06_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V07_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V07_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V08_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V08_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V09_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V09_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V10_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V10_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V11_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V11_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V12_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V12_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V13_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V13_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V14_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V14_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V15_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V15_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V16_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V16_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V17_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V17_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V18_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V18_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V19_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V19_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V20_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V20_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V21_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1V21_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H01_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H01_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H02_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H02_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H03_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H03_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H04_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H04_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H05_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H05_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V01_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V01_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V02_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V02_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V03_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V03_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V04_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V04_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V05_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V05_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V06_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V06_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V07_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V07_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V08_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V08_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V09_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V09_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V10_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V10_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V11_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V11_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V12_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V12_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V13_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V13_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V14_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V14_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V15_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V15_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V16_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V16_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V17_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V17_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V18_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V18_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V19_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V19_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V20_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V20_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V21_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2V21_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H01_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H01_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H02_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H02_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H03_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H03_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H04_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H04_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H05_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H05_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1VEL_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1VEL_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1VER_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1VER_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2VEL_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2VEL_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2VER_physical_geometry",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2VER_links_and_placement",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2_live_totals",
+          "status": "PASS"
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H01_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999987397,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H01_physical_end_cover_limit",
+          "status": "PASS",
+          "start_in": -122.49999999999945,
+          "end_in": 122.50000000000114
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H01_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H02_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999987397,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H02_physical_end_cover_limit",
+          "status": "PASS",
+          "start_in": -122.49999999999945,
+          "end_in": 122.50000000000114
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H02_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H03_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999987397,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H03_physical_end_cover_limit",
+          "status": "PASS",
+          "start_in": -122.49999999999945,
+          "end_in": 122.50000000000114
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H03_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H04_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999987397,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H04_physical_end_cover_limit",
+          "status": "PASS",
+          "start_in": -122.49999999999945,
+          "end_in": 122.50000000000114
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H04_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H05_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999987397,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H05_physical_end_cover_limit",
+          "status": "PASS",
+          "start_in": -122.49999999999945,
+          "end_in": 122.50000000000114
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1H05_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H01_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999987397,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H01_physical_end_cover_limit",
+          "status": "PASS",
+          "start_in": -122.49999999999945,
+          "end_in": 122.50000000000114
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H01_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H02_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999987397,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H02_physical_end_cover_limit",
+          "status": "PASS",
+          "start_in": -122.49999999999945,
+          "end_in": 122.50000000000114
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H02_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H03_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999987397,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H03_physical_end_cover_limit",
+          "status": "PASS",
+          "start_in": -122.49999999999945,
+          "end_in": 122.50000000000114
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H03_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H04_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999987397,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H04_physical_end_cover_limit",
+          "status": "PASS",
+          "start_in": -122.49999999999945,
+          "end_in": 122.50000000000114
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H04_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H05_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.9999999999987397,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H05_physical_end_cover_limit",
+          "status": "PASS",
+          "start_in": -122.49999999999945,
+          "end_in": 122.50000000000114
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2H05_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1VEL_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 3.0000000000004765,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1VEL_added_vertical_spacing",
+          "status": "PASS",
+          "centers_in": 7.999999999999439,
+          "clear_in": 7.374999999999439
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1VEL_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1VER_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.999999999998883,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1VER_added_vertical_spacing",
+          "status": "PASS",
+          "centers_in": 8.000000000001139,
+          "clear_in": 7.375000000001139
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F1VER_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2VEL_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 3.0000000000004765,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2VEL_added_vertical_spacing",
+          "status": "PASS",
+          "centers_in": 7.999999999999439,
+          "clear_in": 7.374999999999439
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2VEL_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2VER_combined_concrete_cover",
+          "status": "PASS",
+          "cover_in": 2.999999999998883,
+          "required_in": 2.9999999999999996,
+          "outside_mm3": 0.0
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2VER_added_vertical_spacing",
+          "status": "PASS",
+          "centers_in": 8.000000000001139,
+          "clear_in": 7.375000000001139
+        },
+        {
+          "name": "SteelBridgeBackwallEB2F2VER_no_new_steel_overlap",
+          "status": "PASS",
+          "failures": []
+        },
+        {
+          "name": "SteelBridgeBackwallEB2_live_schedule",
+          "status": "PASS"
+        }
+      ],
+      "failures": [],
+      "new_clashes": [],
+      "retained_existing_clashes": [],
+      "measurements": [
+        {
+          "bar": "SteelBridgeBackwallEB2F1H01",
+          "kind": "wall_horizontal",
+          "added": false,
+          "length_in": 245.0000000000006,
+          "minimum_cover_in": 2.9999999999987397,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB2F1V01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB2F1H02",
+          "kind": "wall_horizontal",
+          "added": false,
+          "length_in": 245.0000000000006,
+          "minimum_cover_in": 2.9999999999987397,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB2F1V01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB2F1H03",
+          "kind": "wall_horizontal",
+          "added": false,
+          "length_in": 245.0000000000006,
+          "minimum_cover_in": 2.9999999999987397,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB2F1V01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB2F1H04",
+          "kind": "wall_horizontal",
+          "added": false,
+          "length_in": 245.0000000000006,
+          "minimum_cover_in": 2.9999999999987397,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB2F1V01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB2F1H05",
+          "kind": "wall_horizontal",
+          "added": false,
+          "length_in": 245.0000000000006,
+          "minimum_cover_in": 2.9999999999987397,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB2F1V01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB2F2H01",
+          "kind": "wall_horizontal",
+          "added": false,
+          "length_in": 245.0000000000006,
+          "minimum_cover_in": 2.9999999999987397,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB2F2V01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB2F2H02",
+          "kind": "wall_horizontal",
+          "added": false,
+          "length_in": 245.0000000000006,
+          "minimum_cover_in": 2.9999999999987397,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB2F2V01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB2F2H03",
+          "kind": "wall_horizontal",
+          "added": false,
+          "length_in": 245.0000000000006,
+          "minimum_cover_in": 2.9999999999987397,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB2F2V01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB2F2H04",
+          "kind": "wall_horizontal",
+          "added": false,
+          "length_in": 245.0000000000006,
+          "minimum_cover_in": 2.9999999999987397,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB2F2V01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB2F2H05",
+          "kind": "wall_horizontal",
+          "added": false,
+          "length_in": 245.0000000000006,
+          "minimum_cover_in": 2.9999999999987397,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB2F2V01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB2F1VEL",
+          "kind": "wall_vertical",
+          "added": true,
+          "length_in": 59.482781837880715,
+          "minimum_cover_in": 3.0000000000004765,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB2F1H01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB2F1VER",
+          "kind": "wall_vertical",
+          "added": true,
+          "length_in": 59.482781837880715,
+          "minimum_cover_in": 2.999999999998883,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB2F1H01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 1.7903439011278115e-14,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB2F2VEL",
+          "kind": "wall_vertical",
+          "added": true,
+          "length_in": 59.482781837880715,
+          "minimum_cover_in": 3.0000000000004765,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB2F2H01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        },
+        {
+          "bar": "SteelBridgeBackwallEB2F2VER",
+          "kind": "wall_vertical",
+          "added": true,
+          "length_in": 59.482781837880715,
+          "minimum_cover_in": 2.999999999998883,
+          "nearest": {
+            "other": "SteelBridgeBackwallEB2F2H01",
+            "name": "clearance",
+            "status": "PASS",
+            "classification": "CONTACT / NEAR CONTACT",
+            "distance_in": 0.0,
+            "common_volume_in3": 0.0,
+            "minimum_in": 0.0
+          }
+        }
+      ],
+      "bars": 56
+    }
+  },
+  "candidate": "C:\\Users\\joshs\\Desktop\\CAD_AI\\output\\backwall-extensions-20261017\\B4 - Backwall extensions - v3.FCStd",
+  "candidate_sha256": "aee8160a242a00be1c4259e711d8ef5fb5805ad3750485beee947aa44eb62407",
+  "source_sha256": "87e5a3f387d2089679dfcc908f55c5ed78c13ef316cf63d84b95c74942de79cc",
+  "objects": 2133,
+  "extended_horizontal_bars": 20,
+  "added_vertical_bars": 8,
+  "new_clashes": 0,
+  "minimum_cover_in": 2.9999999999987397,
+  "limits": "Checks cover affected bars, native editability and preservation. Unrelated existing model findings remain."
+}

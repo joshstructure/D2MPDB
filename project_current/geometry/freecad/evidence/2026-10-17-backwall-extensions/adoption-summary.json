@@ -1,0 +1,33 @@
+{
+  "status": "ADOPTED_EXACT_VERIFIED_CANDIDATE",
+  "date": "2026-10-17",
+  "decision": "D-048",
+  "model": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "model_sha256": "aee8160a242a00be1c4259e711d8ef5fb5805ad3750485beee947aa44eb62407",
+  "previous_model_sha256": "87e5a3f387d2089679dfcc908f55c5ed78c13ef316cf63d84b95c74942de79cc",
+  "objects": 2133,
+  "extended_horizontal_bars": 20,
+  "horizontal_bar_size": 4,
+  "horizontal_extension_each_end_in": 8.25,
+  "horizontal_length_in": 245,
+  "added_vertical_bars": 8,
+  "vertical_bar_size": 5,
+  "added_vertical_centers_from_adjacent_in": 8,
+  "clear_to_adjacent_backwall_vertical_in": 7.375,
+  "backwall_bars_before": 104,
+  "backwall_bars_after": 112,
+  "minimum_cover_in": 3,
+  "end_bent_2_top_row_lowering_in": 0.125,
+  "verification": {
+    "PASS": 367
+  },
+  "new_overlaps": 0,
+  "preserved_objects": 2067,
+  "pedestal_revision": "D-047 preserved exactly: 84 #4 U-bars, 12-in cap embedment, horizontal layer contact, user-accepted compression-only basis.",
+  "native_controls": "ReceiverCheeks, ExtensionEndCover, AddEndVerticals and HorizontalLevelAdjustmentsJSON. BaseLayoutJSON retains the selected mat analytic rows; a legacy grid/material change must be rebased explicitly rather than silently rebuilding prior source geometry.",
+  "scope_limits": "Unrelated existing model findings and previously schematic dowel basis retained. Drawings and calculation exports not regenerated.",
+  "backups": [
+    "archive/B4-before-backwall-extensions-20261017.FCStd",
+    "archive/B4-before-backwall-extensions-record-20261017.zip"
+  ]
+}

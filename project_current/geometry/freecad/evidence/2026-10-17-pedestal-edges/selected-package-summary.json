@@ -1,0 +1,59 @@
+{
+  "status": "GEOMETRY_PASS_WITH_DEVELOPMENT_FINDINGS",
+  "geometry_status": "PASS",
+  "development_status": "FAIL",
+  "model": "B4 - Pedestal 12in embedment and layer contact - v3.FCStd",
+  "model_sha256": "87e5a3f387d2089679dfcc908f55c5ed78c13ef316cf63d84b95c74942de79cc",
+  "source": "C:\\Users\\joshs\\Desktop\\CAD_AI\\output\\pedestal-edges-20261017\\B4 - Pedestal edge reinforcement - v2.FCStd",
+  "source_sha256": "4c037979c1fb28e432707b39ea931dd0217752b02ac88d95caff00402ff44da4",
+  "source_overwritten": false,
+  "bars": 84,
+  "pedestals": 6,
+  "geometry_checks": {
+    "PASS": 1103
+  },
+  "development_checks": {
+    "FAIL": 16,
+    "PASS": 68
+  },
+  "development_failure_bars": 16,
+  "maximum_required_development_in": 19.211867410673094,
+  "maximum_development_shortfall_in": 7.211867410673122,
+  "clash_pairs_checked": 874,
+  "positive_overlaps": 0,
+  "pile_clearance_failures": 0,
+  "protected_objects": 1911,
+  "provided_cap_embedment_in": 12,
+  "layer_clearance_in": 0,
+  "maximum_spacing_in": 6.0,
+  "pedestal_cover_in": 2,
+  "cap_cover_in": 3,
+  "outer_transverse_adjustments_in": {
+    "PedSteelEB1B1Inputs": [
+      0.24999999999999978,
+      -0.2500000000359734
+    ],
+    "PedSteelEB1B2Inputs": [
+      0.24999999999999978,
+      -0.2500000000359734
+    ],
+    "PedSteelPierB1Inputs": [
+      1.4374999960400001,
+      -1.4375000057000002
+    ],
+    "PedSteelPierB2Inputs": [
+      1.4374999960400001,
+      -1.4375000057000002
+    ],
+    "PedSteelEB2B1Inputs": [
+      0.24999999999999978,
+      -0.2500000000259206
+    ],
+    "PedSteelEB2B2Inputs": [
+      0.24999999999999978,
+      -0.2500000000259206
+    ]
+  },
+  "opening_macro": "Open_Pedestal_Contact_Revision.FCMacro",
+  "scope": "All six pedestal cages; revised bars checked against each other, existing physical reinforcement including WWR, and piles. Unrelated existing model findings remain."
+}

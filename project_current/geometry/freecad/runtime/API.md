@@ -515,3 +515,32 @@ D-045: `geotechnical_straps.match_report_layout(doc, offsets, source_sha256)` ap
 ## D-046 horizontal cheek hooks
 
 `cheek_hooks.configure(inp, settings)` installs the native hook input proxy on a disposable copy. HorizontalHooksJSON selects start/end hooks with unit-bearing centerline offsets from the cap end face and explicit receiving object names. HookInsideDiameter and HookTailLength are native editable lengths; #4 minima are 3 in and 6 in. Call `cheek_hooks.refresh(inp)` to rebuild changed native paths/bars and refresh quantities/schedules while retaining unchanged bar BReps, then `cheek_steel.validate(doc)` and `lug_wwr.validate(doc)`. The same retained straight mat layout controls spacing/elevations. The validator measures actual analytic arcs, straight tails, receiver penetration, combined concrete cover and intersections against all existing rebar/WWR. Boolean cover operations use the PGL frame to avoid large-coordinate kernel failures. Cap hook tails also retain at least 3-in end/top/bottom cover. Standard hook geometry does not prove required development or connection capacity. Existing unrelated failures are retained. New hook shapes have distinct SDM marks; existing DXF must be regenerated.
+
+
+## Pedestal edge/contact controls (17 October 2026)
+
+`pedestal_edges` adds native maximum-spacing station lists; `pedestal_contact`
+uses the existing native paths/bars for specified embedment and horizontal layer
+contact. `UseSpecifiedEmbedment` selects the `SpecifiedEmbedment` length (12 in);
+`LayerClearance` is 0 in. Prior computed-embedment documents remain compatible.
+`pedestal_ubars.validate`, `pedestal_contact.detail_checks`, and
+`pedestal_edges.alignment_checks` validate the physical detail. `clash_check`
+rejects every positive common volume. The inherited `development` calculation
+and `DevelopmentStatus` are tension-based diagnostic results. User acceptance
+and compression-only action are recorded in D-047 and the adoption disposition;
+compression development has not been recalculated by these helpers.
+
+
+## Backwall extensions (D-048, 17 October 2026)
+
+`backwall_extensions` controls both backwall input objects. The two explicit
+`ReceiverCheeks` links drive the outer faces; `ExtensionEndCover` is 3 in.
+`AddEndVerticals` adds one #5 per face at each end, using the adjacent native
+vertical length and bar mark. `HorizontalLevelAdjustmentsJSON` lowers EB2
+F1H05/F2H05 by 0.125 in for cover. `BaseLayoutJSON` retains the selected analytic
+mat geometry; original material/grid controls are guarded against silent changes
+and require an explicit rebase. Native bar paths and quantities remain editable.
+Use `cheek_hooks.refresh(inputs)` and `backwall_extensions.validate(inputs,
+before_shapes)` after edits. Cover is measured to the combined backwall/cap/cheek
+concrete. Positive overlap is rejected; unchanged historical overlaps, if any,
+are reported separately. External drawings are not automatically regenerated.

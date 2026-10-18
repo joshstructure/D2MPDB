@@ -1,0 +1,33 @@
+{
+  "status": "ADOPTED_AND_NATIVE_VERIFIED",
+  "date": "2026-10-17",
+  "decision": "D-047",
+  "authorization": "The bars a fine push the model",
+  "compression_basis": "The bars are only in compression",
+  "model": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "model_sha256": "87e5a3f387d2089679dfcc908f55c5ed78c13ef316cf63d84b95c74942de79cc",
+  "previous_model_sha256": "dcdda9c93a773f399acafb38d598564638823bb03a3eabf66d76ee7f3866d836",
+  "objects": 2117,
+  "bars_before": 72,
+  "bars_after": 84,
+  "cap_embedment_in": 12,
+  "layer_clearance_in": 0,
+  "maximum_spacing_in": 6,
+  "cover_in": {
+    "pedestal": 2,
+    "cap": 3
+  },
+  "preserved_native_objects": 1911,
+  "selected_geometry_checks": 1103,
+  "installed_checks": {
+    "PASS": 733
+  },
+  "clash_pairs": 874,
+  "positive_overlaps": 0,
+  "development_disposition": "User accepted compression-only bar detail. Retained tension calculation is non-governing; no compression recalculation claimed.",
+  "backups": [
+    "archive/B4-before-pedestal-edges-20261017.FCStd",
+    "archive/B4-before-pedestal-edges-record-20261017.zip"
+  ],
+  "downstream_review": "Drawings/calculation exports were not regenerated; consumers must refresh against this selected model. Unrelated existing dispositions retained."
+}

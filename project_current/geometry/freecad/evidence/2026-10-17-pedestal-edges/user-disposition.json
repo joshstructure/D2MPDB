@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-17",
+  "decision": "D-047",
+  "authorization": "The bars a fine push the model",
+  "compression_basis": "The bars are only in compression",
+  "geometry_status": "PASS",
+  "bars": 84,
+  "embedment_in": 12,
+  "layer_clearance_in": 0,
+  "maximum_spacing_in": 6,
+  "pedestal_cover_in": 2,
+  "cap_cover_in": 3,
+  "near_face_alignment": "Longitudinal pedestal legs retain actual cap-stirrup vertical planes",
+  "acceptance": "User accepted the bar detail and directed publication after clarifying compression-only action.",
+  "historical_tension_check": {
+    "status": "FAIL",
+    "flagged_bars": 16,
+    "maximum_required_in": 19.211867410673094,
+    "disposition": "Tension calculation is not the governing basis for the user-stated compression-only detail. Stored native values, schedules and verification diagnostics are retained as historical tension results, not asserted as compression failures."
+  },
+  "compression_recalculation": "NOT PERFORMED; this adoption records the user acceptance and does not invent a compression calculation.",
+  "geometry_changes_after_verification": false,
+  "other_review_dispositions": "Unchanged. Downstream drawings/calculation exports have not been regenerated for this pedestal revision."
+}

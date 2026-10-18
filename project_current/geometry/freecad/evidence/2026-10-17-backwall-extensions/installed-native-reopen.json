@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "model_sha256": "aee8160a242a00be1c4259e711d8ef5fb5805ad3750485beee947aa44eb62407",
+  "runtime_and_evidence_hashes": "PASS",
+  "native_reopen": "PASS",
+  "objects": 2133,
+  "pedestal_bars": 84,
+  "backwalls": {
+    "EB1": {
+      "bars": 56,
+      "controller": "freecad_tools.backwall_extensions",
+      "horizontal_length_in": 245.00000000000006
+    },
+    "EB2": {
+      "bars": 56,
+      "controller": "freecad_tools.backwall_extensions",
+      "horizontal_length_in": 245.0000000000006
+    }
+  }
+}

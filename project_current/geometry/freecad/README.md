@@ -1,5 +1,42 @@
 # Current FreeCAD bridge model
 
+## D-048: backwall bars extended into cheeks, 17 October 2026
+
+All 20 #4 backwall horizontal bars now extend **8-1/4 in at each end**, to the
+**3-in clear-cover limit** of the adjoining cheeks. Their new length is 245 in.
+Eight matching #5 verticals were added: one per face at each end of both
+backwalls. They are 8 in from the adjacent backwall verticals (7-3/8 in clear).
+The two top horizontals at End Bent 2 were lowered 1/8 in to retain full cover.
+
+The saved revision passed 367 checks: affected bar geometry, physical cover,
+no new overlaps, live schedules, native control edits, and exact preservation
+of all 2,067 unrelated native objects. Both backwalls now contain 56 bars each.
+The D-047 pedestal revision is preserved. See [adoption and verification](evidence/2026-10-17-backwall-extensions/adoption-summary.json).
+Existing unrelated findings remain; downstream drawings and calculation
+exports must be refreshed through their normal workflows.
+
+## D-047: pedestal edge reinforcement, 17 October 2026
+
+All six pedestals now contain 84 editable #4 U-bars (12 added) at **6 in maximum**
+each way, with **2 in pedestal cover**, **3 in cap cover**, **12 in cap embedment**
+and contacting horizontal layers. The near-face longitudinal legs share the
+actual cap-stirrup vertical planes. Outer transverse bars shifted locally to
+clear upper bends and cap steel. Live paths, bar marks, quantities and schedules remain.
+
+The selected model passed 1,103 geometry/editability/reporting checks after cold
+reopening. All 874 potentially conflicting pairs involving pedestal steel passed:
+zero positive overlaps and no retained 1 in pile-clearance failures. All 1,911
+unrelated native objects are preserved.
+
+The user clarified that these bars are **compression only**, accepted the detail,
+and directed the model push. The stored 16 development flags and schedule values
+come from the earlier **tension** calculation; they are retained as historical
+diagnostics and do not represent compression-check failures. No new compression
+calculation is claimed. See [user disposition](evidence/2026-10-17-pedestal-edges/user-disposition.json)
+and [adoption verification](evidence/2026-10-17-pedestal-edges/adoption-summary.json).
+Existing unrelated review items remain. Downstream drawings and calculation
+exports require their normal refresh against the new selected model.
+
 The bridge now omits modeled **3/4-in standard chamfers** on its decks, FIB
 beam bottom corners and pedestals for square 2D drawing edges. Nominal chamfer
 inputs remain recorded; `BridgePGL.OmitStandardChamfers` controls the convention.

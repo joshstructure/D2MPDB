@@ -1,0 +1,5275 @@
+{
+  "geometry_status": "PASS",
+  "counts": {
+    "PASS": 733
+  },
+  "checks": [
+    {
+      "name": "unrelated_native_objects_exact",
+      "status": "PASS",
+      "objects": 1911
+    },
+    {
+      "name": "PedSteelEB1B1X01_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1X01_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410671836
+    },
+    {
+      "name": "PedSteelEB1B1X01_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960629873,
+      "cap_cover_in": 3.1249999941359885,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X01_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1X02_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1X02_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB1B1X02_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.999999996062999,
+      "cap_cover_in": 3.1249999941359885,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X02_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1X03_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1X03_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB1B1X03_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.999999996062999,
+      "cap_cover_in": 3.1249999941359885,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X03_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1X04_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1X04_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB1B1X04_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.999999996062999,
+      "cap_cover_in": 3.1249999941359885,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X04_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1X05_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1X05_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB1B1X05_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.999999996062999,
+      "cap_cover_in": 3.124999994135993,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X05_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1X06_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1X06_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB1B1X06_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.999999996062999,
+      "cap_cover_in": 3.124999994135993,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X06_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1X07_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1X07_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB1B1X07_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.999999996062999,
+      "cap_cover_in": 3.124999994135993,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X07_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1X08_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1X08_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 18.472670572305866
+    },
+    {
+      "name": "PedSteelEB1B1X08_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.999999996062999,
+      "cap_cover_in": 3.124999994135993,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X08_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1Y01_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1Y01_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410671836
+    },
+    {
+      "name": "PedSteelEB1B1Y01_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.999999996062974,
+      "cap_cover_in": 15.749999992126025,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1Y01_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1Y02_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1Y02_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB1B1Y02_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.999999996062974,
+      "cap_cover_in": 20.125000000000007,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1Y02_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1Y03_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1Y03_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB1B1Y03_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.999999996062974,
+      "cap_cover_in": 15.312499997100003,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1Y03_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1Y04_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1Y04_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB1B1Y04_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.999999996062974,
+      "cap_cover_in": 9.968749995600007,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1Y04_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1Y05_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1Y05_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410671815
+    },
+    {
+      "name": "PedSteelEB1B1Y05_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.999999996062974,
+      "cap_cover_in": 4.874999994135986,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1Y05_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1_X_physical_maximum_pitch",
+      "status": "PASS",
+      "intervals_in": [
+        5.357142858270009,
+        5.357142858229992,
+        5.357142858300001,
+        3.9285714251999977,
+        6.0,
+        5.0,
+        6.0
+      ],
+      "average_in": 5.285714285714286,
+      "minimum_in": 3.9285714251999977,
+      "maximum_in": 6.0
+    },
+    {
+      "name": "PedSteelEB1B1_Y_physical_maximum_pitch",
+      "status": "PASS",
+      "intervals_in": [
+        5.625000000000001,
+        4.8125000028999985,
+        5.343750001499998,
+        5.093750001464024
+      ],
+      "average_in": 5.218750001466005,
+      "minimum_in": 4.8125000028999985,
+      "maximum_in": 5.625000000000001
+    },
+    {
+      "name": "PedSteelEB1B1_development_spacing",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1_live_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1_live_schedule",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B1X01_near_face_1",
+      "status": "PASS",
+      "actual_in": 26.625000001927024,
+      "stirrup_plane_in": 26.625000001926363
+    },
+    {
+      "name": "PedSteelEB1B1X02_near_face_1",
+      "status": "PASS",
+      "actual_in": 26.625000001927024,
+      "stirrup_plane_in": 26.625000001926363
+    },
+    {
+      "name": "PedSteelEB1B1X03_near_face_1",
+      "status": "PASS",
+      "actual_in": 26.625000001927024,
+      "stirrup_plane_in": 26.625000001926363
+    },
+    {
+      "name": "PedSteelEB1B1X04_near_face_1",
+      "status": "PASS",
+      "actual_in": 26.625000001927024,
+      "stirrup_plane_in": 26.625000001926363
+    },
+    {
+      "name": "PedSteelEB1B1X05_near_face_1",
+      "status": "PASS",
+      "actual_in": 26.625000001927024,
+      "stirrup_plane_in": 26.625000001926363
+    },
+    {
+      "name": "PedSteelEB1B1X06_near_face_1",
+      "status": "PASS",
+      "actual_in": 26.625000001927024,
+      "stirrup_plane_in": 26.625000001926363
+    },
+    {
+      "name": "PedSteelEB1B1X07_near_face_1",
+      "status": "PASS",
+      "actual_in": 26.625000001927024,
+      "stirrup_plane_in": 26.625000001926363
+    },
+    {
+      "name": "PedSteelEB1B1X08_near_face_1",
+      "status": "PASS",
+      "actual_in": 26.625000001927024,
+      "stirrup_plane_in": 26.625000001926363
+    },
+    {
+      "name": "PedSteelEB1B1X01_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B1X02_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B1X03_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B1X04_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B1X05_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B1X06_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B1X07_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B1X08_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B1Y01_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B1Y02_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B1Y03_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B1Y04_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B1Y05_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B1X02_PedSteelEB1B1Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X02_PedSteelEB1B1Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X02_PedSteelEB1B1Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X02_PedSteelEB1B1Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X02_PedSteelEB1B1Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X03_PedSteelEB1B1Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X03_PedSteelEB1B1Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X03_PedSteelEB1B1Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X03_PedSteelEB1B1Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X03_PedSteelEB1B1Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X04_PedSteelEB1B1Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X04_PedSteelEB1B1Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X04_PedSteelEB1B1Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X04_PedSteelEB1B1Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X04_PedSteelEB1B1Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X05_PedSteelEB1B1Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X05_PedSteelEB1B1Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X05_PedSteelEB1B1Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X05_PedSteelEB1B1Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X05_PedSteelEB1B1Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X06_PedSteelEB1B1Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X06_PedSteelEB1B1Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X06_PedSteelEB1B1Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X06_PedSteelEB1B1Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X06_PedSteelEB1B1Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X07_PedSteelEB1B1Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X07_PedSteelEB1B1Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X07_PedSteelEB1B1Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X07_PedSteelEB1B1Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1X07_PedSteelEB1B1Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B1_horizontal_crossings_present",
+      "status": "PASS",
+      "crossings": 30
+    },
+    {
+      "name": "PedSteelEB1B2X01_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2X01_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410671864
+    },
+    {
+      "name": "PedSteelEB1B2X01_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960629764,
+      "cap_cover_in": 3.1249999941360374,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X01_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2X02_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2X02_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB1B2X02_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960629764,
+      "cap_cover_in": 3.1249999941360374,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X02_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2X03_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2X03_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB1B2X03_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960629764,
+      "cap_cover_in": 3.1249999941360374,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X03_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2X04_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2X04_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB1B2X04_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960629764,
+      "cap_cover_in": 3.1249999941360374,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X04_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2X05_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2X05_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB1B2X05_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960629764,
+      "cap_cover_in": 3.1249999941360422,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X05_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2X06_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2X06_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB1B2X06_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960629764,
+      "cap_cover_in": 3.1249999941360422,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X06_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2X07_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2X07_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB1B2X07_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960629764,
+      "cap_cover_in": 3.1249999941360422,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X07_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2X08_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2X08_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410671864
+    },
+    {
+      "name": "PedSteelEB1B2X08_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960370274,
+      "cap_cover_in": 3.1249999941360422,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X08_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2Y01_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2Y01_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410671836
+    },
+    {
+      "name": "PedSteelEB1B2Y01_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960629873,
+      "cap_cover_in": 15.749999992125979,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2Y01_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2Y02_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2Y02_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB1B2Y02_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960629873,
+      "cap_cover_in": 20.125000000000053,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2Y02_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2Y03_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2Y03_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB1B2Y03_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960629873,
+      "cap_cover_in": 15.31249999710005,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2Y03_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2Y04_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2Y04_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB1B2Y04_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960629873,
+      "cap_cover_in": 9.96874999560005,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2Y04_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2Y05_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2Y05_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410671864
+    },
+    {
+      "name": "PedSteelEB1B2Y05_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960629873,
+      "cap_cover_in": 4.87499999413603,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2Y05_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2_X_physical_maximum_pitch",
+      "status": "PASS",
+      "intervals_in": [
+        5.25,
+        5.464285716500001,
+        5.357142858299994,
+        5.3571428583000085,
+        5.821428566899989,
+        4.892857149600005,
+        5.357142858299994
+      ],
+      "average_in": 5.357142858271428,
+      "minimum_in": 4.892857149600005,
+      "maximum_in": 5.821428566899989
+    },
+    {
+      "name": "PedSteelEB1B2_Y_physical_maximum_pitch",
+      "status": "PASS",
+      "intervals_in": [
+        5.624999999999999,
+        4.812500002900002,
+        5.343750001499998,
+        5.093750001464024
+      ],
+      "average_in": 5.218750001466006,
+      "minimum_in": 4.812500002900002,
+      "maximum_in": 5.624999999999999
+    },
+    {
+      "name": "PedSteelEB1B2_development_spacing",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2_live_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2_live_schedule",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB1B2X01_near_face_1",
+      "status": "PASS",
+      "actual_in": 26.625000001926995,
+      "stirrup_plane_in": 26.625000001926363
+    },
+    {
+      "name": "PedSteelEB1B2X02_near_face_1",
+      "status": "PASS",
+      "actual_in": 26.625000001926995,
+      "stirrup_plane_in": 26.625000001926363
+    },
+    {
+      "name": "PedSteelEB1B2X03_near_face_1",
+      "status": "PASS",
+      "actual_in": 26.625000001926995,
+      "stirrup_plane_in": 26.625000001926363
+    },
+    {
+      "name": "PedSteelEB1B2X04_near_face_1",
+      "status": "PASS",
+      "actual_in": 26.625000001926995,
+      "stirrup_plane_in": 26.625000001926363
+    },
+    {
+      "name": "PedSteelEB1B2X05_near_face_1",
+      "status": "PASS",
+      "actual_in": 26.625000001926995,
+      "stirrup_plane_in": 26.625000001926363
+    },
+    {
+      "name": "PedSteelEB1B2X06_near_face_1",
+      "status": "PASS",
+      "actual_in": 26.625000001926995,
+      "stirrup_plane_in": 26.625000001926363
+    },
+    {
+      "name": "PedSteelEB1B2X07_near_face_1",
+      "status": "PASS",
+      "actual_in": 26.625000001926995,
+      "stirrup_plane_in": 26.625000001926363
+    },
+    {
+      "name": "PedSteelEB1B2X08_near_face_1",
+      "status": "PASS",
+      "actual_in": 26.625000001926995,
+      "stirrup_plane_in": 26.625000001926363
+    },
+    {
+      "name": "PedSteelEB1B2X01_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B2X02_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B2X03_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B2X04_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B2X05_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B2X06_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B2X07_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B2X08_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B2Y01_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B2Y02_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B2Y03_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B2Y04_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B2Y05_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB1B2X02_PedSteelEB1B2Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X02_PedSteelEB1B2Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X02_PedSteelEB1B2Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X02_PedSteelEB1B2Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X03_PedSteelEB1B2Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X03_PedSteelEB1B2Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X03_PedSteelEB1B2Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X03_PedSteelEB1B2Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X04_PedSteelEB1B2Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X04_PedSteelEB1B2Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X04_PedSteelEB1B2Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X04_PedSteelEB1B2Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X05_PedSteelEB1B2Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X05_PedSteelEB1B2Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X05_PedSteelEB1B2Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X05_PedSteelEB1B2Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X06_PedSteelEB1B2Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X06_PedSteelEB1B2Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X06_PedSteelEB1B2Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X06_PedSteelEB1B2Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X07_PedSteelEB1B2Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X07_PedSteelEB1B2Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X07_PedSteelEB1B2Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2X07_PedSteelEB1B2Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB1B2_horizontal_crossings_present",
+      "status": "PASS",
+      "crossings": 24
+    },
+    {
+      "name": "PedSteelPierB1X01_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1X01_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB1X01_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960632648,
+      "cap_cover_in": 3.0624999942860245,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X01_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1X02_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1X02_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB1X02_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 2.023294436515915,
+      "cap_cover_in": 3.0624999942860245,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X02_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1X03_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1X03_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB1X03_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 2.023294436515938,
+      "cap_cover_in": 3.0624999942860245,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X03_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1X04_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1X04_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB1X04_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 2.023294436515972,
+      "cap_cover_in": 3.0624999942860245,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X04_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1X05_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1X05_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB1X05_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 2.023294436515955,
+      "cap_cover_in": 3.0624999942860245,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X05_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1X06_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1X06_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB1X06_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 2.023294436515939,
+      "cap_cover_in": 3.0624999942860245,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X06_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1X07_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1X07_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB1X07_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 2.0232944365159358,
+      "cap_cover_in": 3.0624999942860245,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X07_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1X08_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1X08_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB1X08_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960367454,
+      "cap_cover_in": 3.0624999942860245,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X08_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1Y01_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1Y01_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB1Y01_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960626964,
+      "cap_cover_in": 5.999999992125839,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1Y01_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1Y02_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1Y02_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB1Y02_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960626964,
+      "cap_cover_in": 10.04464285352618,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1Y02_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1Y03_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1Y03_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB1Y03_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960626964,
+      "cap_cover_in": 15.526785710825944,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1Y03_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1Y04_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1Y04_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB1Y04_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960626964,
+      "cap_cover_in": 21.00892856822597,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1Y04_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1Y05_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1Y05_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB1Y05_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960626964,
+      "cap_cover_in": 21.00892856650022,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1Y05_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1Y06_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1Y06_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB1Y06_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960626964,
+      "cap_cover_in": 15.526785709100052,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1Y06_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1Y07_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1Y07_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB1Y07_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960626964,
+      "cap_cover_in": 10.044642851700171,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1Y07_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1Y08_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1Y08_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB1Y08_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960626964,
+      "cap_cover_in": 6.000000000000058,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1Y08_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1_X_physical_maximum_pitch",
+      "status": "PASS",
+      "intervals_in": [
+        5.357142858269995,
+        5.357142858229999,
+        5.357142858300001,
+        5.357142858300001,
+        5.3571428581999925,
+        5.357142858300001,
+        5.357142858300001
+      ],
+      "average_in": 5.357142858271428,
+      "minimum_in": 5.3571428581999925,
+      "maximum_in": 5.357142858300001
+    },
+    {
+      "name": "PedSteelPierB1_Y_physical_maximum_pitch",
+      "status": "PASS",
+      "intervals_in": [
+        4.044642861400234,
+        5.4821428572997775,
+        5.482142857400049,
+        5.482142857399822,
+        5.482142857400277,
+        5.482142857399822,
+        4.044642851700246
+      ],
+      "average_in": 5.071428571428604,
+      "minimum_in": 4.044642851700246,
+      "maximum_in": 5.482142857400277
+    },
+    {
+      "name": "PedSteelPierB1_development_spacing",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1_live_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1_live_schedule",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB1X01_near_face_0",
+      "status": "PASS",
+      "actual_in": 1267.512500000022,
+      "stirrup_plane_in": 1267.512500000022
+    },
+    {
+      "name": "PedSteelPierB1X01_near_face_1",
+      "status": "PASS",
+      "actual_in": 1308.887500001776,
+      "stirrup_plane_in": 1308.887500001775
+    },
+    {
+      "name": "PedSteelPierB1X02_near_face_0",
+      "status": "PASS",
+      "actual_in": 1267.512500000022,
+      "stirrup_plane_in": 1267.512500000022
+    },
+    {
+      "name": "PedSteelPierB1X02_near_face_1",
+      "status": "PASS",
+      "actual_in": 1308.887500001776,
+      "stirrup_plane_in": 1308.887500001775
+    },
+    {
+      "name": "PedSteelPierB1X03_near_face_0",
+      "status": "PASS",
+      "actual_in": 1267.512500000022,
+      "stirrup_plane_in": 1267.512500000022
+    },
+    {
+      "name": "PedSteelPierB1X03_near_face_1",
+      "status": "PASS",
+      "actual_in": 1308.887500001776,
+      "stirrup_plane_in": 1308.887500001775
+    },
+    {
+      "name": "PedSteelPierB1X04_near_face_0",
+      "status": "PASS",
+      "actual_in": 1267.512500000022,
+      "stirrup_plane_in": 1267.512500000022
+    },
+    {
+      "name": "PedSteelPierB1X04_near_face_1",
+      "status": "PASS",
+      "actual_in": 1308.887500001776,
+      "stirrup_plane_in": 1308.887500001775
+    },
+    {
+      "name": "PedSteelPierB1X05_near_face_0",
+      "status": "PASS",
+      "actual_in": 1267.512500000022,
+      "stirrup_plane_in": 1267.512500000022
+    },
+    {
+      "name": "PedSteelPierB1X05_near_face_1",
+      "status": "PASS",
+      "actual_in": 1308.887500001776,
+      "stirrup_plane_in": 1308.887500001775
+    },
+    {
+      "name": "PedSteelPierB1X06_near_face_0",
+      "status": "PASS",
+      "actual_in": 1267.512500000022,
+      "stirrup_plane_in": 1267.512500000022
+    },
+    {
+      "name": "PedSteelPierB1X06_near_face_1",
+      "status": "PASS",
+      "actual_in": 1308.887500001776,
+      "stirrup_plane_in": 1308.887500001775
+    },
+    {
+      "name": "PedSteelPierB1X07_near_face_0",
+      "status": "PASS",
+      "actual_in": 1267.512500000022,
+      "stirrup_plane_in": 1267.512500000022
+    },
+    {
+      "name": "PedSteelPierB1X07_near_face_1",
+      "status": "PASS",
+      "actual_in": 1308.887500001776,
+      "stirrup_plane_in": 1308.887500001775
+    },
+    {
+      "name": "PedSteelPierB1X08_near_face_0",
+      "status": "PASS",
+      "actual_in": 1267.512500000022,
+      "stirrup_plane_in": 1267.512500000022
+    },
+    {
+      "name": "PedSteelPierB1X08_near_face_1",
+      "status": "PASS",
+      "actual_in": 1308.887500001776,
+      "stirrup_plane_in": 1308.887500001775
+    },
+    {
+      "name": "PedSteelPierB1X01_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB1X02_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB1X03_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB1X04_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB1X05_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB1X06_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB1X07_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB1X08_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB1Y01_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB1Y02_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB1Y03_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB1Y04_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB1Y05_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB1Y06_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB1Y07_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB1Y08_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB1X02_PedSteelPierB1Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X02_PedSteelPierB1Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X02_PedSteelPierB1Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X02_PedSteelPierB1Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X02_PedSteelPierB1Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X02_PedSteelPierB1Y06_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X02_PedSteelPierB1Y07_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X02_PedSteelPierB1Y08_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X03_PedSteelPierB1Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X03_PedSteelPierB1Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X03_PedSteelPierB1Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X03_PedSteelPierB1Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X03_PedSteelPierB1Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X03_PedSteelPierB1Y06_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X03_PedSteelPierB1Y07_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X03_PedSteelPierB1Y08_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X04_PedSteelPierB1Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X04_PedSteelPierB1Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X04_PedSteelPierB1Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X04_PedSteelPierB1Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X04_PedSteelPierB1Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X04_PedSteelPierB1Y06_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X04_PedSteelPierB1Y07_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X04_PedSteelPierB1Y08_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X05_PedSteelPierB1Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X05_PedSteelPierB1Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X05_PedSteelPierB1Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X05_PedSteelPierB1Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X05_PedSteelPierB1Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X05_PedSteelPierB1Y06_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X05_PedSteelPierB1Y07_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X05_PedSteelPierB1Y08_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X06_PedSteelPierB1Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X06_PedSteelPierB1Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X06_PedSteelPierB1Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X06_PedSteelPierB1Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X06_PedSteelPierB1Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X06_PedSteelPierB1Y06_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X06_PedSteelPierB1Y07_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X06_PedSteelPierB1Y08_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X07_PedSteelPierB1Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X07_PedSteelPierB1Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X07_PedSteelPierB1Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X07_PedSteelPierB1Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X07_PedSteelPierB1Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X07_PedSteelPierB1Y06_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X07_PedSteelPierB1Y07_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1X07_PedSteelPierB1Y08_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB1_horizontal_crossings_present",
+      "status": "PASS",
+      "crossings": 48
+    },
+    {
+      "name": "PedSteelPierB2X01_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2X01_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB2X01_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960632693,
+      "cap_cover_in": 3.0624999942860245,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X01_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2X02_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2X02_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB2X02_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 2.0232944365159224,
+      "cap_cover_in": 3.0624999942860245,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X02_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2X03_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2X03_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB2X03_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 2.023294436515919,
+      "cap_cover_in": 3.0624999942860245,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X03_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2X04_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2X04_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB2X04_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 2.023294436515972,
+      "cap_cover_in": 3.0624999942860245,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X04_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2X05_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2X05_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB2X05_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 2.023294436515955,
+      "cap_cover_in": 3.0624999942860245,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X05_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2X06_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2X06_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB2X06_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 2.0232944365159384,
+      "cap_cover_in": 3.0624999942860245,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X06_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2X07_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2X07_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB2X07_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 2.0232944365159224,
+      "cap_cover_in": 3.0624999942860245,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X07_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2X08_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2X08_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB2X08_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.999999996036741,
+      "cap_cover_in": 3.0624999942860245,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X08_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2Y01_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2Y01_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB2Y01_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960627097,
+      "cap_cover_in": 5.999999992125839,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2Y01_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2Y02_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2Y02_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB2Y02_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960627097,
+      "cap_cover_in": 10.04464285352618,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2Y02_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2Y03_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2Y03_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB2Y03_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960627097,
+      "cap_cover_in": 15.526785710825944,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2Y03_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2Y04_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2Y04_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB2Y04_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960627097,
+      "cap_cover_in": 21.00892856822597,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2Y04_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2Y05_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2Y05_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB2Y05_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960627097,
+      "cap_cover_in": 21.00892856650022,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2Y05_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2Y06_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2Y06_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB2Y06_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960627097,
+      "cap_cover_in": 15.526785709100052,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2Y06_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2Y07_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2Y07_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB2Y07_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960627097,
+      "cap_cover_in": 10.044642851700171,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2Y07_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2Y08_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2Y08_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelPierB2Y08_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960627097,
+      "cap_cover_in": 6.000000000000058,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2Y08_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2_X_physical_maximum_pitch",
+      "status": "PASS",
+      "intervals_in": [
+        5.357142858269995,
+        5.357142858230006,
+        5.357142858299994,
+        5.357142858300001,
+        5.3571428582,
+        5.357142858299994,
+        5.3571428583000085
+      ],
+      "average_in": 5.357142858271429,
+      "minimum_in": 5.3571428582,
+      "maximum_in": 5.3571428583000085
+    },
+    {
+      "name": "PedSteelPierB2_Y_physical_maximum_pitch",
+      "status": "PASS",
+      "intervals_in": [
+        4.044642861400234,
+        5.4821428572997775,
+        5.482142857400049,
+        5.482142857399822,
+        5.482142857400277,
+        5.482142857399822,
+        4.044642851700246
+      ],
+      "average_in": 5.071428571428604,
+      "minimum_in": 4.044642851700246,
+      "maximum_in": 5.482142857400277
+    },
+    {
+      "name": "PedSteelPierB2_development_spacing",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2_live_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2_live_schedule",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelPierB2X01_near_face_0",
+      "status": "PASS",
+      "actual_in": 1267.512500000022,
+      "stirrup_plane_in": 1267.512500000022
+    },
+    {
+      "name": "PedSteelPierB2X01_near_face_1",
+      "status": "PASS",
+      "actual_in": 1308.887500001776,
+      "stirrup_plane_in": 1308.887500001775
+    },
+    {
+      "name": "PedSteelPierB2X02_near_face_0",
+      "status": "PASS",
+      "actual_in": 1267.512500000022,
+      "stirrup_plane_in": 1267.512500000022
+    },
+    {
+      "name": "PedSteelPierB2X02_near_face_1",
+      "status": "PASS",
+      "actual_in": 1308.887500001776,
+      "stirrup_plane_in": 1308.887500001775
+    },
+    {
+      "name": "PedSteelPierB2X03_near_face_0",
+      "status": "PASS",
+      "actual_in": 1267.512500000022,
+      "stirrup_plane_in": 1267.512500000022
+    },
+    {
+      "name": "PedSteelPierB2X03_near_face_1",
+      "status": "PASS",
+      "actual_in": 1308.887500001776,
+      "stirrup_plane_in": 1308.887500001775
+    },
+    {
+      "name": "PedSteelPierB2X04_near_face_0",
+      "status": "PASS",
+      "actual_in": 1267.512500000022,
+      "stirrup_plane_in": 1267.512500000022
+    },
+    {
+      "name": "PedSteelPierB2X04_near_face_1",
+      "status": "PASS",
+      "actual_in": 1308.887500001776,
+      "stirrup_plane_in": 1308.887500001775
+    },
+    {
+      "name": "PedSteelPierB2X05_near_face_0",
+      "status": "PASS",
+      "actual_in": 1267.512500000022,
+      "stirrup_plane_in": 1267.512500000022
+    },
+    {
+      "name": "PedSteelPierB2X05_near_face_1",
+      "status": "PASS",
+      "actual_in": 1308.887500001776,
+      "stirrup_plane_in": 1308.887500001775
+    },
+    {
+      "name": "PedSteelPierB2X06_near_face_0",
+      "status": "PASS",
+      "actual_in": 1267.512500000022,
+      "stirrup_plane_in": 1267.512500000022
+    },
+    {
+      "name": "PedSteelPierB2X06_near_face_1",
+      "status": "PASS",
+      "actual_in": 1308.887500001776,
+      "stirrup_plane_in": 1308.887500001775
+    },
+    {
+      "name": "PedSteelPierB2X07_near_face_0",
+      "status": "PASS",
+      "actual_in": 1267.512500000022,
+      "stirrup_plane_in": 1267.512500000022
+    },
+    {
+      "name": "PedSteelPierB2X07_near_face_1",
+      "status": "PASS",
+      "actual_in": 1308.887500001776,
+      "stirrup_plane_in": 1308.887500001775
+    },
+    {
+      "name": "PedSteelPierB2X08_near_face_0",
+      "status": "PASS",
+      "actual_in": 1267.512500000022,
+      "stirrup_plane_in": 1267.512500000022
+    },
+    {
+      "name": "PedSteelPierB2X08_near_face_1",
+      "status": "PASS",
+      "actual_in": 1308.887500001776,
+      "stirrup_plane_in": 1308.887500001775
+    },
+    {
+      "name": "PedSteelPierB2X01_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB2X02_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB2X03_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB2X04_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB2X05_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB2X06_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB2X07_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB2X08_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB2Y01_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB2Y02_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB2Y03_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB2Y04_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB2Y05_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB2Y06_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB2Y07_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB2Y08_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelPierB2X02_PedSteelPierB2Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X02_PedSteelPierB2Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X02_PedSteelPierB2Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X02_PedSteelPierB2Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X02_PedSteelPierB2Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X02_PedSteelPierB2Y06_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X02_PedSteelPierB2Y07_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X02_PedSteelPierB2Y08_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X03_PedSteelPierB2Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X03_PedSteelPierB2Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X03_PedSteelPierB2Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X03_PedSteelPierB2Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X03_PedSteelPierB2Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X03_PedSteelPierB2Y06_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X03_PedSteelPierB2Y07_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X03_PedSteelPierB2Y08_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X04_PedSteelPierB2Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X04_PedSteelPierB2Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X04_PedSteelPierB2Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X04_PedSteelPierB2Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X04_PedSteelPierB2Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X04_PedSteelPierB2Y06_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X04_PedSteelPierB2Y07_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X04_PedSteelPierB2Y08_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X05_PedSteelPierB2Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X05_PedSteelPierB2Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X05_PedSteelPierB2Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X05_PedSteelPierB2Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X05_PedSteelPierB2Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X05_PedSteelPierB2Y06_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X05_PedSteelPierB2Y07_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X05_PedSteelPierB2Y08_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X06_PedSteelPierB2Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X06_PedSteelPierB2Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X06_PedSteelPierB2Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X06_PedSteelPierB2Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X06_PedSteelPierB2Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X06_PedSteelPierB2Y06_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X06_PedSteelPierB2Y07_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X06_PedSteelPierB2Y08_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X07_PedSteelPierB2Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X07_PedSteelPierB2Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X07_PedSteelPierB2Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X07_PedSteelPierB2Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X07_PedSteelPierB2Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X07_PedSteelPierB2Y06_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X07_PedSteelPierB2Y07_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2X07_PedSteelPierB2Y08_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 1.0028723258661257e-13,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelPierB2_horizontal_crossings_present",
+      "status": "PASS",
+      "crossings": 48
+    },
+    {
+      "name": "PedSteelEB2B1X01_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1X01_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410673094
+    },
+    {
+      "name": "PedSteelEB2B1X01_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960630768,
+      "cap_cover_in": 3.1249999961059305,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X01_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1X02_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1X02_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB2B1X02_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960630768,
+      "cap_cover_in": 3.1249999961059305,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X02_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1X03_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1X03_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB2B1X03_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960630768,
+      "cap_cover_in": 3.1249999961059305,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X03_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1X04_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1X04_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB2B1X04_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960630768,
+      "cap_cover_in": 3.1249999961059305,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X04_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1X05_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1X05_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB2B1X05_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960630768,
+      "cap_cover_in": 3.1249999961059305,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X05_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1X06_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1X06_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB2B1X06_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960630768,
+      "cap_cover_in": 3.1249999961059305,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X06_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1X07_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1X07_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB2B1X07_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960630768,
+      "cap_cover_in": 3.1249999961059305,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X07_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1X08_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1X08_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410673094
+    },
+    {
+      "name": "PedSteelEB2B1X08_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960364678,
+      "cap_cover_in": 3.1249999961059305,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X08_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1Y01_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1Y01_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.21186741066995
+    },
+    {
+      "name": "PedSteelEB2B1Y01_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960624233,
+      "cap_cover_in": 4.874999996106102,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1Y01_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1Y02_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1Y02_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB2B1Y02_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960624233,
+      "cap_cover_in": 9.968749997125826,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1Y02_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1Y03_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1Y03_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB2B1Y03_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960624233,
+      "cap_cover_in": 15.31249999802604,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1Y03_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1Y04_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1Y04_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB2B1Y04_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960624233,
+      "cap_cover_in": 20.12499999212604,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1Y04_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1Y05_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1Y05_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410673094
+    },
+    {
+      "name": "PedSteelEB2B1Y05_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960624233,
+      "cap_cover_in": 15.749999992126327,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1Y05_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1_X_physical_maximum_pitch",
+      "status": "PASS",
+      "intervals_in": [
+        5.357142858269995,
+        5.357142858229992,
+        5.357142858300001,
+        5.678571425199998,
+        5.03571429130001,
+        5.464285708699997,
+        5.250000007899992
+      ],
+      "average_in": 5.357142858271426,
+      "minimum_in": 5.03571429130001,
+      "maximum_in": 5.678571425199998
+    },
+    {
+      "name": "PedSteelEB2B1_Y_physical_maximum_pitch",
+      "status": "PASS",
+      "intervals_in": [
+        5.093750001019998,
+        5.343750000899945,
+        4.812499994100108,
+        5.62500000787395
+      ],
+      "average_in": 5.2187500009735,
+      "minimum_in": 4.812499994100108,
+      "maximum_in": 5.62500000787395
+    },
+    {
+      "name": "PedSteelEB2B1_development_spacing",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1_live_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1_live_schedule",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B1X01_near_face_0",
+      "status": "PASS",
+      "actual_in": 2520.375000000043,
+      "stirrup_plane_in": 2520.3750000000437
+    },
+    {
+      "name": "PedSteelEB2B1X02_near_face_0",
+      "status": "PASS",
+      "actual_in": 2520.375000000043,
+      "stirrup_plane_in": 2520.3750000000437
+    },
+    {
+      "name": "PedSteelEB2B1X03_near_face_0",
+      "status": "PASS",
+      "actual_in": 2520.375000000043,
+      "stirrup_plane_in": 2520.3750000000437
+    },
+    {
+      "name": "PedSteelEB2B1X04_near_face_0",
+      "status": "PASS",
+      "actual_in": 2520.375000000043,
+      "stirrup_plane_in": 2520.3750000000437
+    },
+    {
+      "name": "PedSteelEB2B1X05_near_face_0",
+      "status": "PASS",
+      "actual_in": 2520.375000000043,
+      "stirrup_plane_in": 2520.3750000000437
+    },
+    {
+      "name": "PedSteelEB2B1X06_near_face_0",
+      "status": "PASS",
+      "actual_in": 2520.375000000043,
+      "stirrup_plane_in": 2520.3750000000437
+    },
+    {
+      "name": "PedSteelEB2B1X07_near_face_0",
+      "status": "PASS",
+      "actual_in": 2520.375000000043,
+      "stirrup_plane_in": 2520.3750000000437
+    },
+    {
+      "name": "PedSteelEB2B1X08_near_face_0",
+      "status": "PASS",
+      "actual_in": 2520.375000000043,
+      "stirrup_plane_in": 2520.3750000000437
+    },
+    {
+      "name": "PedSteelEB2B1X01_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B1X02_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B1X03_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B1X04_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B1X05_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B1X06_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B1X07_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B1X08_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B1Y01_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B1Y02_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B1Y03_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B1Y04_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B1Y05_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B1X02_PedSteelEB2B1Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X02_PedSteelEB2B1Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X02_PedSteelEB2B1Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X02_PedSteelEB2B1Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X02_PedSteelEB2B1Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X03_PedSteelEB2B1Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X03_PedSteelEB2B1Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X03_PedSteelEB2B1Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X03_PedSteelEB2B1Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X03_PedSteelEB2B1Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X04_PedSteelEB2B1Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X04_PedSteelEB2B1Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X04_PedSteelEB2B1Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X04_PedSteelEB2B1Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X04_PedSteelEB2B1Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X05_PedSteelEB2B1Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X05_PedSteelEB2B1Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X05_PedSteelEB2B1Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X05_PedSteelEB2B1Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X05_PedSteelEB2B1Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X06_PedSteelEB2B1Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X06_PedSteelEB2B1Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X06_PedSteelEB2B1Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X06_PedSteelEB2B1Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X06_PedSteelEB2B1Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X07_PedSteelEB2B1Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X07_PedSteelEB2B1Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X07_PedSteelEB2B1Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X07_PedSteelEB2B1Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1X07_PedSteelEB2B1Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B1_horizontal_crossings_present",
+      "status": "PASS",
+      "crossings": 30
+    },
+    {
+      "name": "PedSteelEB2B2X01_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2X01_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410673094
+    },
+    {
+      "name": "PedSteelEB2B2X01_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960630768,
+      "cap_cover_in": 3.1249999961059305,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X01_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2X02_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2X02_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB2B2X02_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960630768,
+      "cap_cover_in": 3.1249999961059305,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X02_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2X03_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2X03_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB2B2X03_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960630768,
+      "cap_cover_in": 3.1249999961059305,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X03_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2X04_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2X04_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB2B2X04_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960630768,
+      "cap_cover_in": 3.1249999961059305,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X04_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2X05_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2X05_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB2B2X05_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960630768,
+      "cap_cover_in": 3.1249999961059305,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X05_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2X06_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2X06_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB2B2X06_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960630768,
+      "cap_cover_in": 3.1249999961059305,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X06_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2X07_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2X07_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB2B2X07_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960630768,
+      "cap_cover_in": 3.1249999961059305,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X07_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2X08_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2X08_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410673094
+    },
+    {
+      "name": "PedSteelEB2B2X08_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960364723,
+      "cap_cover_in": 3.1249999961059305,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X08_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2Y01_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2Y01_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.21186741066995
+    },
+    {
+      "name": "PedSteelEB2B2Y01_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960624324,
+      "cap_cover_in": 4.874999996106102,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2Y01_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2Y02_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2Y02_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB2B2Y02_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960624324,
+      "cap_cover_in": 9.968749997125826,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2Y02_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2Y03_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2Y03_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB2B2Y03_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960624324,
+      "cap_cover_in": 15.31249999802604,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2Y03_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2Y04_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2Y04_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998
+    },
+    {
+      "name": "PedSteelEB2B2Y04_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960624324,
+      "cap_cover_in": 20.12499999212604,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2Y04_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2Y05_physical_bar",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2Y05_physical_embedment",
+      "status": "PASS",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410673094
+    },
+    {
+      "name": "PedSteelEB2B2Y05_cover_containment",
+      "status": "PASS",
+      "pedestal_cover_in": 1.9999999960624324,
+      "cap_cover_in": 15.749999992126327,
+      "outside_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2Y05_editable_links",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2_X_physical_maximum_pitch",
+      "status": "PASS",
+      "intervals_in": [
+        5.25,
+        5.464285716500001,
+        5.357142858299994,
+        5.3571428583000085,
+        5.3571428581999925,
+        5.357142858300001,
+        5.357142858299994
+      ],
+      "average_in": 5.357142858271428,
+      "minimum_in": 5.25,
+      "maximum_in": 5.464285716500001
+    },
+    {
+      "name": "PedSteelEB2B2_Y_physical_maximum_pitch",
+      "status": "PASS",
+      "intervals_in": [
+        5.093750001019998,
+        5.343750000899945,
+        4.812499994100108,
+        5.62500000787395
+      ],
+      "average_in": 5.2187500009735,
+      "minimum_in": 4.812499994100108,
+      "maximum_in": 5.62500000787395
+    },
+    {
+      "name": "PedSteelEB2B2_development_spacing",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2_live_quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2_live_schedule",
+      "status": "PASS"
+    },
+    {
+      "name": "PedSteelEB2B2X01_near_face_0",
+      "status": "PASS",
+      "actual_in": 2520.375000000043,
+      "stirrup_plane_in": 2520.3750000000437
+    },
+    {
+      "name": "PedSteelEB2B2X02_near_face_0",
+      "status": "PASS",
+      "actual_in": 2520.375000000043,
+      "stirrup_plane_in": 2520.3750000000437
+    },
+    {
+      "name": "PedSteelEB2B2X03_near_face_0",
+      "status": "PASS",
+      "actual_in": 2520.375000000043,
+      "stirrup_plane_in": 2520.3750000000437
+    },
+    {
+      "name": "PedSteelEB2B2X04_near_face_0",
+      "status": "PASS",
+      "actual_in": 2520.375000000043,
+      "stirrup_plane_in": 2520.3750000000437
+    },
+    {
+      "name": "PedSteelEB2B2X05_near_face_0",
+      "status": "PASS",
+      "actual_in": 2520.375000000043,
+      "stirrup_plane_in": 2520.3750000000437
+    },
+    {
+      "name": "PedSteelEB2B2X06_near_face_0",
+      "status": "PASS",
+      "actual_in": 2520.375000000043,
+      "stirrup_plane_in": 2520.3750000000437
+    },
+    {
+      "name": "PedSteelEB2B2X07_near_face_0",
+      "status": "PASS",
+      "actual_in": 2520.375000000043,
+      "stirrup_plane_in": 2520.3750000000437
+    },
+    {
+      "name": "PedSteelEB2B2X08_near_face_0",
+      "status": "PASS",
+      "actual_in": 2520.375000000043,
+      "stirrup_plane_in": 2520.3750000000437
+    },
+    {
+      "name": "PedSteelEB2B2X01_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B2X02_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B2X03_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B2X04_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B2X05_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B2X06_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B2X07_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B2X08_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B2Y01_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B2Y02_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B2Y03_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B2Y04_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B2Y05_specified_cap_embedment",
+      "status": "PASS",
+      "embedments_in": [
+        11.999999999999972,
+        11.999999999999972
+      ]
+    },
+    {
+      "name": "PedSteelEB2B2X02_PedSteelEB2B2Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X02_PedSteelEB2B2Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X02_PedSteelEB2B2Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X02_PedSteelEB2B2Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X02_PedSteelEB2B2Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X03_PedSteelEB2B2Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X03_PedSteelEB2B2Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X03_PedSteelEB2B2Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X03_PedSteelEB2B2Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X03_PedSteelEB2B2Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X04_PedSteelEB2B2Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X04_PedSteelEB2B2Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X04_PedSteelEB2B2Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X04_PedSteelEB2B2Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X04_PedSteelEB2B2Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X05_PedSteelEB2B2Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X05_PedSteelEB2B2Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X05_PedSteelEB2B2Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X05_PedSteelEB2B2Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X05_PedSteelEB2B2Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X06_PedSteelEB2B2Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X06_PedSteelEB2B2Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X06_PedSteelEB2B2Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X06_PedSteelEB2B2Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X06_PedSteelEB2B2Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X07_PedSteelEB2B2Y01_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 0.0,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X07_PedSteelEB2B2Y02_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X07_PedSteelEB2B2Y03_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X07_PedSteelEB2B2Y04_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2X07_PedSteelEB2B2Y05_layer_contact",
+      "status": "PASS",
+      "clear_gap_in": 2.8673476541500105e-14,
+      "solid_distance_in": 7.161375604511246e-14,
+      "common_volume_mm3": 0.0
+    },
+    {
+      "name": "PedSteelEB2B2_horizontal_crossings_present",
+      "status": "PASS",
+      "crossings": 30
+    },
+    {
+      "name": "installed_pedestal_clashes",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_model_matches_selected_bytes",
+      "status": "PASS"
+    }
+  ],
+  "clashes": {
+    "status": "PASS",
+    "tested_pairs": 874,
+    "overlaps": [],
+    "clearance_failures": [],
+    "scope": "All new nominal bars against each other, all existing bars and all piles. Pile clearance 1 in. Bar-bar overlap check; general aggregate/concreting clearance NOT CONFIGURED."
+  },
+  "historical_tension_development": [
+    {
+      "name": "PedSteelEB1B1X01_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410671836,
+      "shortfall_in": 7.211867410671864
+    },
+    {
+      "name": "PedSteelEB1B1X02_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB1B1X03_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB1B1X04_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB1B1X05_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB1B1X06_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB1B1X07_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB1B1X08_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 18.472670572305866,
+      "shortfall_in": 6.472670572305893
+    },
+    {
+      "name": "PedSteelEB1B1Y01_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410671836,
+      "shortfall_in": 7.211867410671864
+    },
+    {
+      "name": "PedSteelEB1B1Y02_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB1B1Y03_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB1B1Y04_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB1B1Y05_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410671815,
+      "shortfall_in": 7.211867410671842
+    },
+    {
+      "name": "PedSteelEB1B2X01_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410671864,
+      "shortfall_in": 7.211867410671891
+    },
+    {
+      "name": "PedSteelEB1B2X02_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB1B2X03_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB1B2X04_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB1B2X05_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB1B2X06_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB1B2X07_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB1B2X08_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410671864,
+      "shortfall_in": 7.211867410671891
+    },
+    {
+      "name": "PedSteelEB1B2Y01_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410671836,
+      "shortfall_in": 7.211867410671864
+    },
+    {
+      "name": "PedSteelEB1B2Y02_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB1B2Y03_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB1B2Y04_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB1B2Y05_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410671864,
+      "shortfall_in": 7.211867410671891
+    },
+    {
+      "name": "PedSteelPierB1X01_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB1X02_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB1X03_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB1X04_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB1X05_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB1X06_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB1X07_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB1X08_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB1Y01_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB1Y02_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB1Y03_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB1Y04_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB1Y05_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB1Y06_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB1Y07_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB1Y08_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB2X01_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB2X02_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB2X03_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB2X04_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB2X05_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB2X06_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB2X07_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB2X08_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB2Y01_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB2Y02_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB2Y03_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB2Y04_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB2Y05_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB2Y06_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB2Y07_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelPierB2Y08_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB2B1X01_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410673094,
+      "shortfall_in": 7.211867410673122
+    },
+    {
+      "name": "PedSteelEB2B1X02_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB2B1X03_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB2B1X04_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB2B1X05_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB2B1X06_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB2B1X07_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB2B1X08_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410673094,
+      "shortfall_in": 7.211867410673122
+    },
+    {
+      "name": "PedSteelEB2B1Y01_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.21186741066995,
+      "shortfall_in": 7.211867410669978
+    },
+    {
+      "name": "PedSteelEB2B1Y02_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB2B1Y03_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB2B1Y04_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB2B1Y05_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410673094,
+      "shortfall_in": 7.211867410673122
+    },
+    {
+      "name": "PedSteelEB2B2X01_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410673094,
+      "shortfall_in": 7.211867410673122
+    },
+    {
+      "name": "PedSteelEB2B2X02_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB2B2X03_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB2B2X04_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB2B2X05_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB2B2X06_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB2B2X07_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB2B2X08_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410673094,
+      "shortfall_in": 7.211867410673122
+    },
+    {
+      "name": "PedSteelEB2B2Y01_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.21186741066995,
+      "shortfall_in": 7.211867410669978
+    },
+    {
+      "name": "PedSteelEB2B2Y02_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB2B2Y03_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB2B2Y04_development_adequacy",
+      "status": "PASS",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 11.999999999999998,
+      "shortfall_in": 2.6855158516917175e-14
+    },
+    {
+      "name": "PedSteelEB2B2Y05_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 11.999999999999972,
+      "required_in": 19.211867410673094,
+      "shortfall_in": 7.211867410673122
+    }
+  ],
+  "user_disposition": "Compression-only bars accepted by user; retain historical tension diagnostics without claiming compression recalculation."
+}
