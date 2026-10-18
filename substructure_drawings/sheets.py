@@ -315,3 +315,32 @@ class Sheet:
         # paragraph indents are multiples of the text height
         m = self.pmtext((x, y_top - 0.24), "\\pxi-2.6,l2.6;" + "\\P".join(lines), h_in, attach=1, width_in=width_in)
         return m
+
+    # Average capital of the FDOT Structures font over the text height
+    # (measured with the font: 0.90 to 0.94; rounded up), used to estimate
+    # how many lines a note takes.
+    NOTE_CHAR_W = 0.92
+
+    def note_line_count(self, items, width_in, h_in=fdot.NOTE_IN, numbered=True):
+        """Estimated number of lines of ``notes`` for the given width: greedy
+        word wrap by NOTE_CHAR_W, with the hanging indent (2.6 text heights)
+        on wrapped lines.  The estimate places the block below a note and
+        checks that it fits; it never changes the text."""
+        cw = self.NOTE_CHAR_W * h_in
+        total = 0
+        for i, it in enumerate(items, 1):
+            text = ("%d. %s" % (i, it)) if numbered else it
+            for part in text.split("\\P"):
+                n, cur, avail = 1, 0.0, width_in
+                for w in part.split(" "):
+                    wl = cw * len(w)
+                    if cur > 0 and cur + cw + wl > avail:
+                        n, cur, avail = n + 1, wl, width_in - 2.6 * h_in
+                    else:
+                        cur += wl if cur == 0 else cw + wl
+                total += n
+        return total
+
+    def notes_bottom(self, y_top, items, width_in, h_in=fdot.NOTE_IN, numbered=True):
+        """Estimated bottom of a ``notes`` block whose heading is at y_top."""
+        return y_top - 0.24 - self.note_line_count(items, width_in, h_in, numbered) * fdot.LINE_PITCH * h_in

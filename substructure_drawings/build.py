@@ -1,6 +1,7 @@
-"""Build the end bent and pier DXF (one file, 9 sheets) from the snapshot.
+"""Build the end bent and pier DXF (one file, 11 sheets) from the snapshot.
 
-Usage: see ``scripts/build_substructure_dxf.py``.
+Usage: see ``scripts/build_substructure_dxf.py``.  The drawing rules are in
+``STYLE_GUIDE.md`` (rule ids such as D5, E1 in the comments below).
 """
 import csv
 import hashlib
@@ -9,12 +10,12 @@ import math
 from pathlib import Path
 
 from . import bars as barlib
-from . import cad, fdot
-from .sheets import DRAW, Sheet
+from . import cad, details, fdot
+from .sheets import DRAW, TITLE_TOP, Sheet
 from .support import STATION_FFBW_EB1, Support
-from .views import Builder, z_on_edges
+from .views import DELTA, Builder, z_on_edges
 
-GENERATOR_VERSION = "2.0.0"
+GENERATOR_VERSION = "2.1.0"
 DXF_NAME = "B4_Substructure_EndBents_Pier.dxf"
 
 INFO = {
@@ -40,11 +41,16 @@ WORKBOOK_CHECKS = {
 
 RIGHT_COL = 12.3      # paper x where the table/notes column starts on plan sheets
 MAIN = (DRAW[0], DRAW[1], 12.15, DRAW[3])
-# Sheets per support: plan and elevation with the reinforcement (pier: with
-# the end view), then the details (EB: sections A-A, B-B, C-C; cheek views
-# with the pedestal details; pier: sections with the pedestal details), then
-# the bar list.
-SHEETS = (("EB1", 3), ("PIER", 2), ("EB2", 3), ("BARS", 1))
+# Sheets per support (E1): plan and elevation with the reinforcement (pier:
+# with the end view), then the details (EB: (1 OF 3) sections A-A and B-B with
+# the pedestal details, (2 OF 3) section C-C and the cheek views D-D and E-E,
+# (3 OF 3) the cheek wall sections F-F and G-G and details "A" and "B"; pier:
+# sections with the pedestal details), then the bar list.
+SHEETS = (("EB1", 4), ("PIER", 2), ("EB2", 4), ("BARS", 1))
+# TOP OF PEDESTAL ELEVATIONS table: column widths (BEAM NO., corners A-D), in
+PED_COLS = [0.85, 0.7, 0.7, 0.7, 0.7]
+NOTES_W = 5.0     # NOTES column beside a LEGEND column (sample B1-17), in
+BRIDGE_X = 13.8   # the bridge number and name over the title block start here
 
 
 def sha256(path):
@@ -64,11 +70,16 @@ def dimension_blocks_by_level(doc):
     go onto the dimension's level, ByLayer, the arrowhead block onto the
     Dimension level, and the definition points (not plotted, not needed by
     AutoCAD or MicroStation) are dropped, as is the then empty Defpoints
-    layer."""
+    layer.  ezdxf also leaves zero-length LINE entities in the blocks (they
+    plot as point markers, the "circles" of the B4-5 markup); they are
+    deleted (rule F)."""
     for dim in doc.modelspace().query("DIMENSION"):
         blk = doc.blocks.get(dim.dxf.geometry)
         for e in list(blk):
             if e.dxftype() == "POINT" and e.dxf.layer == "Defpoints":
+                blk.delete_entity(e)
+                continue
+            if e.dxftype() == "LINE" and (e.dxf.end - e.dxf.start).magnitude < 1e-9:
                 blk.delete_entity(e)
                 continue
             e.dxf.layer = dim.dxf.layer
@@ -173,6 +184,38 @@ class Composer:
                 self.warnings.append("%s / %s draws over %s (%d crossings)" % (sheet.number, view.name, other.name, n))
         placed.append((view, mine))
 
+    def _placed(self, sheet):
+        return self.__dict__.setdefault("placed", {}).setdefault(sheet.number, [])
+
+    def check_block(self, sheet, name, rect, margin=0.05, area=None):
+        """Layout check of a paper-space block (notes, legend, table) given as
+        (x0, y0, x1, y1) inches: inside the drawing window and ``margin``
+        clear of the views and blocks placed before it (later views are
+        checked against it by ``check``)."""
+        a = area or DRAW
+        if rect[0] < a[0] - 0.05 or rect[1] < a[1] - 0.05 or rect[2] > a[2] + 0.05 or rect[3] > a[3] + 0.05:
+            self.warnings.append("%s / %s outside its window: (%.2f, %.2f)-(%.2f, %.2f) in" %
+                                 ((sheet.number, name) + tuple(rect)))
+        grown = (rect[0] - margin, rect[1] - margin, rect[2] + margin, rect[3] + margin)
+        placed = self._placed(sheet)
+        for other, theirs in placed:
+            n = cad.boxes_cross([grown], theirs)
+            if n:
+                self.warnings.append("%s / %s is within %.2f in of %s (%d crossings)" %
+                                     (sheet.number, name, margin, other.name, n))
+        placed.append((type("Block", (), {"name": name})(), [tuple(rect)]))
+
+    def slide_down(self, sheet, x0, x1, y_top, height, margin=0.2, step=0.05):
+        """Highest top y at or below ``y_top`` where a block x0..x1 wide and
+        ``height`` tall keeps ``margin`` from everything placed so far."""
+        placed = self._placed(sheet)
+        while y_top - height > DRAW[1]:
+            grown = (x0 - margin, y_top - height - margin, x1 + margin, y_top + margin)
+            if not any(cad.boxes_cross([grown], theirs) for _, theirs in placed):
+                break
+            y_top -= step
+        return y_top
+
     def row(self, sheet, views, y_top, x0, x1, gap=0.3):
         widths = [self.paper_size(v)[0] for v in views]
         total = sum(widths) + gap * (len(views) - 1)
@@ -237,8 +280,9 @@ class Composer:
         notes = list(dict.fromkeys(b.notes))
         notes.append("REINFORCEMENT IS SHOWN REPRESENTATIVELY: THE FIRST AND LAST BAR OF EACH RUN ARE DRAWN.")
         if s.kind == "EB":
-            notes.append("FOR SECTIONS A-A, B-B AND C-C, SEE SHEET %s. FOR VIEWS D-D AND E-E AND PEDESTAL DETAILS, "
-                         "SEE SHEET %s." % (nums[1], nums[2]))
+            notes.append("FOR SECTIONS A-A AND B-B AND PEDESTAL DETAILS, SEE SHEET %s. FOR SECTION C-C AND VIEWS "
+                         "D-D AND E-E, SEE SHEET %s. FOR SECTIONS F-F AND G-G AND DETAILS \"A\" AND \"B\", SEE "
+                         "SHEET %s." % (nums[1], nums[2], nums[3]))
             notes.append("THE SOIL REINFORCEMENT ATTACHED TO THE BACKWALL SHALL BE DESIGNED BY A SPECIALTY ENGINEER "
                          "FOR A SERVICE LOAD OF ___ K/FT AND A FACTORED LOAD OF ___ K/FT USING THE DESIGN CRITERIA FOR "
                          "PERMANENT MSE WALLS. COST OF FURNISHING AND INSTALLING THE SOIL REINFORCEMENT IS CONSIDERED "
@@ -278,53 +322,116 @@ class Composer:
             corners = ("A", "E", "F", "B")
             note = "A AT SPAN 1 EDGE, B AT SPAN 2 EDGE, E AND F AT THE PAD-END BREAKS."
         hdr = [(("BEAM NO.", 1, 2), ("ELEVATION (FEET)", 4)), (None,) + corners]
-        y = sh.table(x, y_top, "TOP OF PEDESTAL ELEVATIONS", hdr, body, [0.85, 0.7, 0.7, 0.7, 0.7])
+        y = sh.table(x, y_top, "TOP OF PEDESTAL ELEVATIONS", hdr, body, PED_COLS)
         sh.ptext((x, y - 0.08), note, None, "TOP_LEFT", "TextStructures", style=fdot.SMALL_STYLE)
         return y - 0.2
 
+    @staticmethod
+    def _ped_table_height(s):
+        """Height of the TOP OF PEDESTAL ELEVATIONS table with its note (title
+        box, two header rows, one row per pedestal line, note line)."""
+        return fdot.TABLE_TITLE_IN * (1.45 + 0.6) + 0.15 * (2 + len(s.pedestal_table())) + 0.2
+
+    def legend_notes(self, sh, b, x, y_top, x_end, items, min_w=NOTES_W, gap=0.3):
+        """NOTES: (left) and beside it, ``gap`` to its right and up to
+        ``x_end``, the LEGEND: block of the Δ strap paragraph the views set in
+        ``b.legend`` (D6; sample B1-17 has the legend beside the notes).  The
+        width x..x_end is split where the taller block is shortest (the notes
+        are at least ``min_w`` wide, the legend at least 3 in); without a
+        strap legend the notes take the full width.  The blocks may use the
+        band down to 0.1 in above the title block.  Returns the estimated
+        bottom y."""
+        area = (DRAW[0], TITLE_TOP + 0.1, DRAW[2], DRAW[3])
+        leg = [DELTA + "  " + b.legend[DELTA]] if DELTA in b.legend else []
+        w = x_end - x
+        if leg:
+            total = x_end - x - gap
+            best = None
+            for k in range(int(round((total - 3.0 - min_w) / 0.1)) + 1):
+                wn = round(min_w + 0.1 * k, 6)
+                ln = sh.note_line_count(items, wn)
+                ll = sh.note_line_count(leg, total - wn, numbered=False)
+                if best is None or (max(ln, ll), ln + ll) < best[0]:
+                    best = ((max(ln, ll), ln + ll), wn)
+            w = best[1]
+        bottom = sh.notes_bottom(y_top, items, w)
+        sh.notes(x, y_top, "NOTES:", items, width_in=w)
+        self.check_block(sh, "notes", (x, bottom, x + w, y_top), area=area)
+        if leg:
+            xl = x + w + gap
+            lb = sh.notes_bottom(y_top, leg, x_end - xl, numbered=False)
+            sh.notes(xl, y_top, "LEGEND:", leg, width_in=x_end - xl, numbered=False)
+            self.check_block(sh, "legend", (xl, lb, x_end, y_top), area=area)
+            bottom = min(bottom, lb)
+        return bottom
+
     def eb_details(self, key):
+        """The three details sheets of an end bent (E1): (1 OF 3) sections
+        A-A and B-B with the pedestal details, (2 OF 3) section C-C and the
+        cheek wall views, (3 OF 3) the cheek wall sections and details A, B."""
         s = self.sup[key]
         nums = self.numbers[key]
         b = Builder(s, self.doc)
-        # (1 OF 2): sections A-A and B-B, pedestal plan and elevation, pedestal
+        self._eb_sections(key, s, nums, b)
+        self._eb_section_c(s, nums, b)
+        self._eb_cheek_sections(s, nums, b)
+
+    def _eb_sections(self, key, s, nums, b):
+        # (1 OF 3): sections A-A and B-B, pedestal plan and elevation, pedestal
         # table (FDOT End Bent Details sheet configuration)
-        sh = self.new_sheet(nums[1], s.title + " DETAILS (1 OF 2)")
+        sh = self.new_sheet(nums[1], s.title + " DETAILS (1 OF 3)")
         z = sh.zone(DRAW, "3/4")
         va = b.section(z, "between_piles", "A", "(SECTION BETWEEN PILES)")
         vb = b.section(z, "at_pile", "B", "(SECTION AT PILES)")
         pp = b.pedestal_plan(z, s.pedestals[0])
         pe = b.pedestal_elevation(z, s.pedestals[0])
         wp = max(self.paper_size(pp)[0], self.paper_size(pe)[0])
+        wt = sum(PED_COLS)
         # EB1: sections then the pedestal column; EB2 (drawn mirrored, the
-        # MSE wall on the left) is the mirror image of that arrangement
+        # MSE wall on the left) is the mirror image of that arrangement.  The
+        # two sections overlap by 0.2 in at their bounding boxes (the nearest
+        # linework is still 0.2 in apart), which moves section B-B's MSE wall
+        # stub 0.2 in farther from the pedestal column.
+        gap = -0.2
         if key == "EB1":
-            self.row(sh, [va, vb], DRAW[3] - 0.05, DRAW[0], DRAW[2] - wp - 0.1, gap=0.1)
-            x_r, x_t = DRAW[2] - wp, DRAW[2] - 3.5
-            x_n, w_n = DRAW[0] + 0.1, DRAW[2] - 3.5 - DRAW[0] - 0.4
+            self.row(sh, [va, vb], DRAW[3] - 0.05, DRAW[0], DRAW[2] - wp - 0.1, gap=gap)
+            x_r, x_t = DRAW[2] - wp, DRAW[2] - wt
         else:
-            ws = self.paper_size(va)[0] + self.paper_size(vb)[0] + 0.1
-            self.row(sh, [vb, va], DRAW[3] - 0.05, DRAW[2] - ws, DRAW[2], gap=0.1)
-            x_r, x_t = DRAW[0], DRAW[0] + 0.1
-            x_n, w_n = DRAW[0] + 3.9, DRAW[2] - DRAW[0] - 3.9 - 3.6
-        self.place_tl(pp, x_r + (wp - self.paper_size(pp)[0]) / 2, DRAW[3] - 0.05)
+            ws = self.paper_size(va)[0] + self.paper_size(vb)[0] + gap
+            self.row(sh, [vb, va], DRAW[3] - 0.05, DRAW[2] - ws, DRAW[2], gap=gap)
+            x_r, x_t = DRAW[0], DRAW[0]
+        # the pedestal column starts at the top of the window, so the MSE wall
+        # stub of section B-B clears the pedestal elevation (at least 0.15 in)
+        self.place_tl(pp, x_r + (wp - self.paper_size(pp)[0]) / 2, DRAW[3])
         # the pedestal elevation keeps to the outer edge, away from section B-B
         xe = x_r + wp - self.paper_size(pe)[0] if key == "EB1" else x_r
         self.place_tl(pe, xe, self.paper_bbox(pp)[1] - 0.15)
         for v in (pp, pe):
             self.check(sh, v)
-        self._ped_table(sh, s, x_t, self.paper_bbox(pe)[1] - 0.15)
-        # notes under the sections, beside the table
-        y = min(self.paper_bbox(va)[1], self.paper_bbox(vb)[1]) - 0.1
-        sh.notes(x_n, y, "NOTES:", [
+        # the table below the pedestal elevation, at least 0.2 in clear of the
+        # sections and the pedestal views
+        h = self._ped_table_height(s)
+        y_t = self.slide_down(sh, x_t, x_t + wt, self.paper_bbox(pe)[1] - 0.15, h, margin=0.2)
+        y_b = self._ped_table(sh, s, x_t, y_t)
+        if abs((y_t - y_b) - h) > 1e-6:
+            self.warnings.append("%s / pedestal table height %.3f in, expected %.3f" % (sh.number, y_t - y_b, h))
+        self.check_block(sh, "pedestal table", (x_t, y_b, x_t + wt, y_t), margin=0.2)
+        # notes under the sections (below the table where the table is above
+        # them), the Δ legend beside the notes
+        y = min(b0[1] for v in (va, vb) for b0 in v.paper_boxes()) - 0.06
+        self.legend_notes(sh, b, DRAW[0] + 0.1, y, BRIDGE_X, [
             "FOR LOCATION OF SECTIONS, SEE SHEET %s." % nums[0],
             "ALL BARS ARE SHOWN IN SECTIONS; BARS IN THE SECTION PLANE ARE THE NEAREST BAR OF THEIR SERIES "
             "WITHIN 1'-3\" BEYOND THE CUT.",
             b.pedestal_marks_note(s.pedestals[0]),
             "PEDESTALS ARE CAST ON THE CAP; THE CAP TOP IS A CONSTRUCTION JOINT.",
-            self.bar_list_ref()], width_in=w_n)
+            self.bar_list_ref()])
         self.finish(sh)
-        # (2 OF 2): section C-C (3/4") and the cheek wall views (1/2")
-        sh = self.new_sheet(nums[2], s.title + " DETAILS (2 OF 2)")
+
+    def _eb_section_c(self, s, nums, b):
+        # (2 OF 3): section C-C (3/4") and the cheek wall views (1/2"); the
+        # left cheek view D-D carries the flags of sections F-F and G-G (D8)
+        sh = self.new_sheet(nums[2], s.title + " DETAILS (2 OF 3)")
         z = sh.zone(DRAW, "3/4")
         vc = b.section(z, "at_beam", "C", "(SECTION AT CENTERLINE OF BEAM)")
         self.place_tl(vc, DRAW[0] + 0.05, DRAW[3] - 0.05)
@@ -332,15 +439,63 @@ class Composer:
         z.window = (DRAW[0], DRAW[1], xs, DRAW[3])
         self.check(sh, vc)
         z2 = sh.zone((xs, DRAW[1], DRAW[2], DRAW[3]), "1/2")
-        vd = b.cheek_view(z2, s.cheeks[0], "D", wwr_note=2)
+        vd = b.cheek_view(z2, s.cheeks[0], "D", wwr_note=2, cuts=details.cheek_cut_marks(b, s.cheeks[0]))
         ve = b.cheek_view(z2, s.cheeks[-1], "E", wwr_note=2)
         bottom = self.row(sh, [vd, ve], DRAW[3] - 0.05, xs + 0.1, DRAW[2], gap=0.5)
-        sh.notes(xs + 0.2, bottom - 0.25, "NOTES:", [
+        self.legend_notes(sh, b, xs + 0.2, bottom - 0.25, DRAW[2] - 0.1, [
             "FOR LOCATION OF SECTION C-C AND VIEWS D-D AND E-E, SEE SHEET %s." % nums[0],
             "WELDED WIRE REINFORCEMENT (WWR) 4x4-W1.4xW1.4 IN THE CHEEK LUGS SHALL BE TIED TO THE "
             "END BENT REINFORCING STEEL.",
             "FOR CHEEK TOP ELEVATIONS, SEE THE TABLE OF ELEVATIONS, SHEET %s." % nums[0],
-            self.bar_list_ref()], width_in=DRAW[2] - xs - 0.3)
+            "SECTIONS F-F AND G-G ARE LOCATED IN VIEW D-D; FOR SECTIONS F-F AND G-G, SEE SHEET %s." % nums[3],
+            self.bar_list_ref()])
+        self.finish(sh)
+
+    def _eb_cheek_sections(self, s, nums, b):
+        # (3 OF 3): the cheek wall sections F-F and G-G (3/4") through the
+        # left cheek wall, detail "A" (construction joint, 1 1/2") and detail
+        # "B" (V-groove and geotextile, 1")
+        sh = self.new_sheet(nums[3], s.title + " DETAILS (3 OF 3)")
+        top = DRAW[3] - 0.05
+        z1 = sh.zone((DRAW[0], DRAW[1], DRAW[0] + 8.0, DRAW[3]), "3/4")
+        vf = details.cheek_section_side(b, z1, s.cheeks[0], "F", wwr_note=2)
+        vg = details.cheek_section_top(b, z1, s.cheeks[0], "G", wwr_note=2)
+        self.place_tl(vf, DRAW[0] + 0.1, top)
+        self.place_tl(vg, self.paper_bbox(vf)[2] + 0.4, top)
+        w2 = (DRAW[0] + 8.0, DRAW[3] - 3.6, DRAW[0] + 11.4, DRAW[3])
+        w3 = (DRAW[0] + 11.4, DRAW[3] - 3.6, DRAW[2], DRAW[3])
+        z2 = sh.zone(w2, "1-1/2")
+        va = details.detail_construction_joint(b, z2)
+        self.place_tl(va, w2[0] + (w2[2] - w2[0] - self.paper_size(va)[0]) / 2, top)
+        z3 = sh.zone(w3, "1")
+        vb = details.detail_geotextile(b, z3, note=3)
+        self.place_tl(vb, w3[0] + (w3[2] - w3[0] - self.paper_size(vb)[0]) / 2, top)
+        for v in (vf, vg, va, vb):
+            self.check(sh, v)
+        # LEGEND (the Δ paragraph) and NOTES below the details
+        x = DRAW[0] + 8.2
+        w = DRAW[2] - x - 0.05
+        y = DRAW[3] - 3.9
+        if DELTA in b.legend:
+            leg = [DELTA + "  " + b.legend[DELTA]]
+            bottom = sh.notes_bottom(y, leg, w, numbered=False)
+            sh.notes(x, y, "LEGEND:", leg, width_in=w, numbered=False)
+            self.check_block(sh, "legend", (x, bottom, x + w, y))
+            y = bottom - 0.2
+        items = [
+            "FOR LOCATION OF SECTIONS F-F AND G-G, SEE VIEW D-D, SHEET %s; SECTIONS F-F AND G-G SHOW THE LEFT CHEEK "
+            "WALL, THE RIGHT CHEEK WALL IS SIMILAR (MIRRORED)." % nums[2],
+            "WELDED WIRE REINFORCEMENT (WWR) 4x4-W1.4xW1.4 IN THE CHEEK LUGS SHALL BE TIED TO THE END BENT "
+            "REINFORCING STEEL.",
+            "ATTACH TYPE D-5 (SPECIFICATIONS SECTION 985) GEOTEXTILE FABRIC, 1'-0\" WIDE AND FULL HEIGHT OF FILL, TO "
+            "THE BACK OF BACKWALL AT V-GROOVE LOCATIONS WITH AN ADHESIVE APPROVED BY THE ENGINEER.",
+            "CAP AND BACKWALL REINFORCEMENT IS NOT SHOWN IN SECTION F-F FOR CLARITY.",
+            "MODEL CHECK (REMOVE BEFORE ISSUE): DETAILS \"A\" AND \"B\" ARE SCHEMATIC; THE CONSTRUCTION JOINT KEY AND "
+            "THE V-GROOVE LOCATIONS ARE NOT IN THE CAD MODEL.",
+            self.bar_list_ref()]
+        bottom = sh.notes_bottom(y, items, w)
+        sh.notes(x, y, "NOTES:", items, width_in=w)
+        self.check_block(sh, "notes", (x, bottom, x + w, y))
         self.finish(sh)
 
     def pier_details(self):
@@ -416,32 +571,43 @@ class Composer:
                  None, "TOP_LEFT", "TextStructures")
         xr = cols[1][0]
         y = bottoms[xr] - 0.35
-        self._bending_diagrams(sh, xr, y)
-        notes = ["TYP BAR AND STY ARE THE BAR TYPE AND HOOK STYLE OF STANDARD PLANS INDEX 415-001 (FY 2025-26): "
-                 "TYPE 1 STRAIGHT (B = LENGTH), TYPE 4 CLOSED STIRRUP (B = HEIGHT, C = WIDTH), TYPE 11 U-BAR "
-                 "(B = BASE, C AND D = LEGS); STYLE 5 = 135° STIRRUP HOOK.",
-                 "OPEN STIRRUPS HAVE THEIR END LEGS TURNED IN PLAN TO CLEAR THE PILE AND MATCH NO STANDARD TYPE; "
-                 "THEIR DIMENSION LETTERS REFER TO THE BENDING DIAGRAM ON THIS SHEET.",
+        notes = ["TYP BAR AND STY ARE THE BAR TYPE AND HOOK STYLE OF STANDARD PLANS INDEX 415-001 (FY 2026-27): "
+                 "TYPE 1 STRAIGHT (B = LENGTH); TYPES 17 AND 18 STRAIGHT BARS WITH A STANDARD 90° HOOK (STYLE 3) AT "
+                 "ONE OR BOTH ENDS (B = LENGTH OUT-TO-OUT); TYPE 11 U-BAR (B = BASE, C AND D = LEGS); TYPE 4 CLOSED "
+                 "STIRRUP (B = HEIGHT, C = WIDTH); STYLES 4 AND 5 = 90° AND 135° STIRRUP HOOKS.",
+                 "FIELD BEND OPEN STIRRUP HOOKS AS REQUIRED TO CLEAR PILE HEAD LOCATION.",
                  "LENGTHS ARE THE MODEL CENTERLINE LENGTHS ROUNDED TO THE NEAREST INCH; BEND DIMENSIONS ARE "
                  "OUT-TO-OUT (SDM 4.3.10.C).",
                  ("VARYING LENGTHS: " + " ".join(foot)) if foot else "",
                  "PILES AND THE CHEEK LUG WELDED WIRE REINFORCEMENT ARE NOT INCLUDED IN THIS LIST."]
-        sh.notes(xr, y - 1.45, "NOTES:", [n for n in notes if n], width_in=7.3)
+        sh.notes(xr, y, "NOTES:", [n for n in notes if n], width_in=7.3)
         self.finish(sh)
 
     @staticmethod
     def bar_fields(e, bar):
         """(TYP BAR, STY A, STY G, {letter: FT-IN}) per Standard Plans Index
-        415-001 (FY 2025-26): Type 1 straight, B = length; Type 11 U-bar,
-        B = base, C and D = legs; Type 4 closed stirrup, B = height, C =
-        width, hooks A and G style 5 (135 degrees).  Open stirrups with the
-        end legs turned in plan match no standard type: no type, B to F along
-        the bar as in the diagram on the sheet."""
+        415-001 (FY 2026-27), rule C6: every bar has a standard type.
+        Type 1 straight, B = length; Type 17 straight bar with one standard
+        90 degree hook (style 3 at A), B = out-to-out length of the long leg;
+        Type 18 hooks at both ends (style 3 at A and G), B = out-to-out
+        length between the hooks' legs; Type 11 U-bar, B = base, C and D =
+        legs; Type 4 closed stirrup, B = height, C = width, hooks A and G
+        style 5 (135 degrees).  An open stirrup is a Type 11 U-bar (B = top
+        leg, C and D = the vertical legs) whose feet are standard 90 degree
+        stirrup hooks (style 4 at A and G) field bent in plan to clear the
+        pile; the feet are not dimensioned."""
         d = e["bend_dims"]
         name = barlib.shape_name(e)
         f = lambda x: fdot.ft_in_list(x, 0.25)  # noqa: E731
         if name == "STRAIGHT":
             return "1", "", "", {"B": fdot.ft_in_list(d[0]["len_in"], 1)}
+        if name == "HOOKED":
+            long_leg = d[1] if barlib._is_std_hook(e, 0) else d[0]
+            return "17", "3", "", {"B": f(long_leg["len_in"])}
+        if name == "HOOKED BOTH":
+            return "18", "3", "3", {"B": f(d[1]["len_in"])}
+        if name == "OPEN STIRRUP":
+            return "11", "4", "4", {"B": f(d[2]["len_in"]), "C": f(d[1]["len_in"]), "D": f(d[3]["len_in"])}
         if name == "U-BAR":
             return "11", "", "", {"B": f(d[1]["len_in"]), "C": f(d[0]["len_in"]), "D": f(d[2]["len_in"])}
         if name == "CLOSED HOOP":
@@ -453,20 +619,6 @@ class Composer:
                 full = full[::-1]
             return "4", "5", "5", {"B": f(full[0]), "C": f(full[1])}
         return "", "", "", {c: f(x["len_in"]) for c, x in zip("BCDEF", d)}
-
-    def _bending_diagrams(self, sh, x, y):
-        """Bending diagram of the bars that match no Index 415-001 type."""
-        sh.ptext((x, y), "OPEN STIRRUP (NOT TO SCALE)", None, "TOP_LEFT", "TextStructures", style=fdot.HEADING_STYLE)
-        L = "Rebar"
-        t = lambda p, s, a: sh.ptext(p, s, None, a, "TextStructures")  # noqa: E731
-        ox, oy = x + 0.4, y - 1.05
-        sh.pline([(ox, oy), (ox + 0.25, oy), (ox + 0.25, oy + 0.75), (ox + 1.25, oy + 0.75), (ox + 1.25, oy), (ox + 1.5, oy)], L)
-        for p, s_, a in (((ox + 0.12, oy - 0.08), "B", "TOP_CENTER"), ((ox + 0.17, oy + 0.38), "C", "MIDDLE_RIGHT"),
-                         ((ox + 0.75, oy + 0.83), "D", "BOTTOM_CENTER"), ((ox + 1.33, oy + 0.38), "E", "MIDDLE_LEFT"),
-                         ((ox + 1.38, oy - 0.08), "F", "TOP_CENTER")):
-            t(p, s_, a)
-        t((ox + 1.9, oy + 0.5), "LEGS B AND F TURNED IN PLAN", "MIDDLE_LEFT")
-        t((ox + 1.9, oy + 0.3), "TO CLEAR THE PILE", "MIDDLE_LEFT")
 
     # ------------------------------------------------------------------ run
     def build(self):

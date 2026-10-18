@@ -242,9 +242,23 @@ def signature(kind, fam, sub, bar):
 
 
 def _pos_key(bar):
-    """Order bars by beam line: line 1 (offset -) has the larger model x."""
+    """Order the members of a family so that the marks equal the FreeCAD Mark
+    properties (rule C7, D-042).
+
+    Bars are numbered bottom-up: by the lowest z of the bar's edge points,
+    then by beam line (line 1, offset -, has the larger model x), then by y.
+    Numbering from the bottom does not depend on which way round a support is
+    modelled (end bent 2 is built from the far end, so its first edge points
+    are at the other end of the cheek wall bars).  Pedestal bars are the
+    exception: the pedestals of a pier sit at different elevations, so their
+    z is no sequence, and they are numbered by beam line first (x, then y,
+    then z), as the model does."""
+    zmin = round(min(p[2] for e in bar["edges"] for p in e["p"]), 3)
     p = bar["edges"][0]["p"][0]
-    return (-round(p[0], 3), round(p[1], 3), round(p[2], 3))
+    x, y = -round(p[0], 3), round(p[1], 3)
+    if bar.get("family") == "pedestal":
+        return (x, y, zmin)
+    return (zmin, x, y)
 
 
 def assign_marks(kind, bars):
@@ -289,7 +303,32 @@ def assign_marks(kind, bars):
     return table
 
 
+# FDOT Standard Plans Index 415-001 (FY 2026-27), Bar Bending Details (Steel):
+# hook dimension "A or G", out-to-out, in inches, by bar size.
+STD_HOOK_90 = {3: 6.0, 4: 8.0, 5: 10.0, 6: 12.0, 7: 14.0, 8: 16.0, 9: 19.0, 10: 22.0, 11: 24.0}
+STIRRUP_HOOK_90 = {3: 4.0, 4: 4.5, 5: 6.0, 6: 12.0, 7: 14.0, 8: 16.0}
+STIRRUP_HOOK_135 = {3: 4.0, 4: 4.5, 5: 5.5, 6: 8.0, 7: 9.0, 8: 10.5}
+HOOK_TOL_IN = 0.5
+
+
+def _is_std_hook(entry, i):
+    """True if the end leg i (0 or -1) of the bar is a standard 90 degree
+    hook: its out-to-out bending dimension equals the Index 415-001 hook size
+    of the bar within HOOK_TOL_IN."""
+    std = STD_HOOK_90.get(entry["size"])
+    return std is not None and abs(entry["bend_dims"][i]["len_in"] - std) <= HOOK_TOL_IN
+
+
 def shape_name(entry):
+    """Shape of a bar for the bar list (Standard Plans Index 415-001 types).
+
+    STRAIGHT is Type 1.  HOOKED and HOOKED BOTH are straight bars with a
+    standard 90 degree hook (style 3) at one or both ends, Types 17 and 18:
+    legs [L, 90, L] or [L, 90, L, 90, L] whose end legs are the hook size
+    (``STD_HOOK_90``, out-to-out); a bar with longer end legs is a U-BAR
+    (Type 11).  A 135 degree bend is a CLOSED HOOP (Type 4); four 90 degree
+    bends make an OPEN STIRRUP (a U-bar with 90 degree stirrup hooks, style
+    4); anything else is BENT."""
     L = entry["legs"]
     if len(L) == 1:
         return "STRAIGHT"
@@ -298,6 +337,13 @@ def shape_name(entry):
         return "CLOSED HOOP"
     if len(angles) == 4:
         return "OPEN STIRRUP"
+    kinds = [x[0] for x in L]
+    if angles == [90] and kinds == ["L", "A", "L"]:
+        if _is_std_hook(entry, 0) or _is_std_hook(entry, -1):
+            return "HOOKED"
+    if angles == [90, 90] and kinds == ["L", "A", "L", "A", "L"]:
+        if _is_std_hook(entry, 0) and _is_std_hook(entry, -1):
+            return "HOOKED BOTH"
     if len(angles) == 2:
         return "U-BAR"
     return "BENT"

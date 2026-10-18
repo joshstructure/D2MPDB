@@ -56,6 +56,10 @@ STRUCTURES = {
             "mse": ["WallA5Mitred"],
             "landing": ["A_BridgeLandingAtReturns"],
             "beam": ["BridgeBeamS1B1", "BridgeBeamS1B2"],
+            # Schematic geotechnical straps (D-045): zero-thickness faces.
+            "strap": ["GeotechnicalStrapEB1S1", "GeotechnicalStrapEB1S2", "GeotechnicalStrapEB1S3",
+                      "GeotechnicalStrapEB1", "GeotechnicalStrapEB1S5", "GeotechnicalStrapEB1S6",
+                      "GeotechnicalStrapEB1S7"],
         },
         "bar_groups": {
             "cap": ["CageEB1Bars"],
@@ -103,6 +107,9 @@ STRUCTURES = {
             "mse": ["WallB1Mitred"],
             "landing": ["B_BridgeLandingAtReturns"],
             "beam": ["BridgeBeamS2B1", "BridgeBeamS2B2"],
+            "strap": ["GeotechnicalStrapEB2S1", "GeotechnicalStrapEB2S2", "GeotechnicalStrapEB2S3",
+                      "GeotechnicalStrapEB2", "GeotechnicalStrapEB2S5", "GeotechnicalStrapEB2S6",
+                      "GeotechnicalStrapEB2S7"],
         },
         "bar_groups": {
             "cap": ["CageEB2Bars"],
@@ -310,7 +317,7 @@ def model_hash(path):
 
 def run():
     doc = App.openDocument(MODEL)
-    snap = {"schema": 1, "units": "ft", "model_sha256": SOURCE_SHA or model_hash(MODEL),
+    snap = {"schema": 2, "units": "ft", "model_sha256": SOURCE_SHA or model_hash(MODEL),
             "station_direction": list(STATION), "structures": {}, "log": LOG}
     for key, cfg in STRUCTURES.items():
         S = {"title": cfg["title"], "e1": list(cfg["e1"]), "plan_up": list(cfg["plan_up"])}
@@ -388,6 +395,8 @@ def run():
             keep = Part.makeBox(SECTION_DEPTH_FT * FT, 400000.0, 400000.0, V(x, -200000.0, -200000.0))
             parts = {}
             for role, items in sec_ctx.items():
+                if role == "strap":
+                    continue
                 lst = []
                 for n, s in items:
                     if s is None:
@@ -397,6 +406,18 @@ def run():
                         lst.append((n, c))
                 if lst:
                     parts[role] = lst
+            # Geotechnical straps are zero-thickness reference faces (D-045),
+            # seen edge-on in a section: the strap nearest the cut (one lying
+            # in the slab if there is one) is projected whole, so each
+            # section shows one strap at its elevation.
+            straps = [(n, s) for n, s in sec_ctx.get("strap", []) if s is not None]
+            if straps:
+                def strap_dist(item, x=x):
+                    b = item[1].BoundBox
+                    if b.XMin <= x + SECTION_DEPTH_FT * FT and b.XMax >= x:
+                        return 0.0
+                    return min(abs(b.XMin - x), abs(b.XMax - x))
+                parts["strap"] = [min(straps, key=strap_dist)]
             S["sections"][tag] = {"x_ft": r6((x - origin[0]) / FT), "x_global_ft": r6(x / FT),
                                   "edges": project(parts, (x, 0, 0), STATION, (0, 0, 1))}
         # ---- end view of the whole support, looking +X (sheet right = station)
@@ -420,6 +441,39 @@ def run():
                 e1v = STATION if left else tuple(-v for v in STATION)
                 S["cheek_views"][n] = {"side": "left" if left else "right",
                                        "edges": project(parts, (cb.XMin if left else cb.XMax, origin[1], 0), e1v, (0, 0, 1))}
+        # ---- cheek wall sections (end bents), after sample sheet B1-19
+        # (Sections J-J and H-H): a vertical cut through the cheek wall 1 ft
+        # in front of the FFBW, seen as the elevation is seen (coordinates
+        # (u, z) of the elevation frame), and a horizontal cut at mid
+        # backwall height seen from above (coordinates (u, v) of the plan
+        # frame).  Each shows the cut face and SECTION_DEPTH_FT beyond it,
+        # within 3 ft of the cheek.
+        if "cheek" in cfg["concrete"]:
+            S["cheek_sections"] = {}
+            bw = get(cfg["concrete"]["backwall"][0]).Shape.BoundBox
+            ffbw_y = bw.YMin if e1[0] > 0 else bw.YMax   # backwall face toward the bridge
+            y_cut = ffbw_y - e1[0] * FT
+            y_far = y_cut + e1[0] * SECTION_DEPTH_FT * FT   # beyond the cut, away from the viewer
+            z_cut = cap.ZMax + 0.5 * (bw.ZMax - cap.ZMax)
+            for n in cfg["concrete"]["cheek"]:
+                cb = get(n).Shape.BoundBox
+                left = cb.XMax <= cap.XMin + 1.0
+                xr = (cb.XMin - 3 * FT, cb.XMax + 3 * FT)
+                side_parts, top_parts = {}, {}
+                for role in ("cheek", "cap", "backwall"):
+                    for m, s in conc[role]:
+                        c = clip_box(s, xmin=xr[0], xmax=xr[1], ymin=min(y_cut, y_far), ymax=max(y_cut, y_far))
+                        if c is not None:
+                            side_parts.setdefault(role, []).append((m, c))
+                        c = clip_box(s, xmin=xr[0], xmax=xr[1], zmin=z_cut - SECTION_DEPTH_FT * FT, zmax=z_cut)
+                        if c is not None:
+                            top_parts.setdefault(role, []).append((m, c))
+                S["cheek_sections"][n] = {
+                    "side": "left" if left else "right",
+                    "y_cut_ft": r6(y_cut / FT), "z_cut_ft": r6(z_cut / FT),
+                    "side_edges": project(side_parts, (origin[0], y_cut, 0), e1, (0, 0, 1)),
+                    "top_edges": project(top_parts, (origin[0], origin[1], z_cut), e1, up),
+                }
         # ---- reinforcement
         bars = []
         for comp, groups in cfg["bar_groups"].items():

@@ -67,6 +67,10 @@ def new_document():
     ds.dxf.dimatfit = 1
     ds.dxf.dimdec = 3
     ds.dxf.dimtofl = 1
+    # Dimension text is masked (STYLE_GUIDE B2): an opaque background in the
+    # drawing background colour (DIMTFILL 1 -> MTEXT bg_fill 3), so a line
+    # passing under the text is blocked out and the text wins.
+    ds.dxf.dimtfill = 1
     ds.dxf.dimclrd = 256
     ds.dxf.dimclre = 256
     ds.dxf.dimclrt = 256
@@ -204,6 +208,65 @@ def discretize_pl(pts, bulges, step_deg=4.0):
     return out
 
 
+def offset_polyline(pts, d):
+    """Points of the polyline ``pts`` offset by ``d`` to its left (negative
+    ``d`` offsets to the right), each corner mitred: the offset lines of two
+    consecutive segments are intersected.  Where the corner is so sharp that
+    the mitre point lies more than 3 |d| from the vertex, the two offset end
+    points are used instead (a bevel).  Repeated points are dropped; a
+    polyline of fewer than two distinct points offsets to an empty list."""
+    p = [tuple(pts[0])] if len(pts) else []
+    for q in pts[1:]:
+        if math.dist(q, p[-1]) > 1e-9:
+            p.append(tuple(q))
+    if len(p) < 2:
+        return []
+    normals = []
+    for a, b in zip(p, p[1:]):
+        L = math.dist(a, b)
+        normals.append((-(b[1] - a[1]) / L, (b[0] - a[0]) / L))
+    out = [(p[0][0] + normals[0][0] * d, p[0][1] + normals[0][1] * d)]
+    for j in range(1, len(p) - 1):
+        n1, n2 = normals[j - 1], normals[j]
+        c = n1[0] * n2[0] + n1[1] * n2[1]
+        v = p[j]
+        a = (v[0] + n1[0] * d, v[1] + n1[1] * d)
+        b = (v[0] + n2[0] * d, v[1] + n2[1] * d)
+        if 1.0 + c > 1e-9:
+            m = (v[0] + d * (n1[0] + n2[0]) / (1.0 + c), v[1] + d * (n1[1] + n2[1]) / (1.0 + c))
+            if math.dist(m, v) <= 3.0 * abs(d) + 1e-12:
+                if math.dist(m, out[-1]) > 1e-12:
+                    out.append(m)
+                continue
+        out.extend([a, b])
+    out.append((p[-1][0] + normals[-1][0] * d, p[-1][1] + normals[-1][1] * d))
+    return out
+
+
+def pointer_segment(mid, c, w, h, rot_deg):
+    """Segment from ``mid`` to the nearest edge of a text box (the pull-out
+    line of a dimension whose value does not fit, STYLE_GUIDE B1).  The box
+    is w x h centred on ``c`` and rotated by ``rot_deg``.  The segment from
+    ``mid`` toward the box centre is clipped against the box (rotated into
+    the text frame) and ends where it enters the box.  Returns None when
+    ``mid`` lies inside the box or coincides with the text location."""
+    a = math.radians(rot_deg)
+    ca, sa = math.cos(a), math.sin(a)
+    dx, dy = mid[0] - c[0], mid[1] - c[1]
+    lm = (dx * ca + dy * sa, -dx * sa + dy * ca)   # mid in the text frame
+    box = (-w / 2.0, -h / 2.0, w / 2.0, h / 2.0)
+    if box[0] < lm[0] < box[2] and box[1] < lm[1] < box[3]:
+        return None
+    seg = clip_segment(lm, (0.0, 0.0), box)
+    if seg is None:
+        return None
+    e = seg[0]
+    entry = (c[0] + e[0] * ca - e[1] * sa, c[1] + e[0] * sa + e[1] * ca)
+    if math.dist(entry, mid) < 1e-9:
+        return None
+    return mid, entry
+
+
 class View:
     """A view drawn into model space.
 
@@ -297,6 +360,28 @@ class View:
         if width:
             e.dxf.const_width = width
         return self._add(e, layer, ltype)
+
+    def bar(self, pts, dia_in, layer="Rebar"):
+        """A bar not seen end-on, along the centreline ``pts`` (local 2D
+        points, no bulges), drawn by scale (SDM 4.3.7.B, STYLE_GUIDE C1): a
+        single unbroken line at scales smaller than 1/2" = 1'-0" (the 3/8"
+        plan and elevation), and double unbroken lines at the true bar width
+        at 1/2" = 1'-0" and larger: the centreline offset by the bar radius to
+        each side with mitred corners (``offset_polyline``) and a short cap
+        line across each end.  Returns the entities drawn."""
+        pts = list(pts)
+        if len(pts) < 2:
+            return []
+        if self.sf > fdot.SCALES["1/2"]:
+            e = self.pl(pts, layer)
+            return [e] if e is not None else []
+        r = dia_in / 24.0   # bar radius, feet
+        left, right = offset_polyline(pts, r), offset_polyline(pts, -r)
+        if len(left) < 2:
+            return []
+        out = [self.pl(left, layer), self.pl(right, layer),
+               self.line(left[0], right[0], layer), self.line(left[-1], right[-1], layer)]
+        return out
 
     def circle(self, c, r, layer, ltype=None):
         self._track([(c[0] - r, c[1] - r), (c[0] + r, c[1] + r)])
@@ -435,10 +520,12 @@ class View:
             override["dimtih"] = 1
             override["dimtoh"] = 1
         kw = {}
+        pulled = None   # text location when the value is pulled out of its space (B1)
         if loc is not None:
             kw["location"] = self.T(loc)
             override["dimtmove"] = 1
             self._track_box(loc, tw, th_box, 0.5, 0.5, 0.0 if horizontal else angle)
+            pulled = loc
         elif outside is not None:
             arrow = (fdot.ARROW_IN + 0.06) / 12 * self.sf
             along = 0.0
@@ -454,6 +541,7 @@ class View:
             kw["location"] = self.T(loc)
             override["dimtmove"] = 1
             self._track_box(loc, tw, th_box, 0.5, 0.5, angle)
+            pulled = loc
         else:
             self._track_box(mid, tw, th_box, 0.5, 0.0 if sgn > 0 else 1.0, angle)
         self._track([p1, p2, base])
@@ -462,6 +550,13 @@ class View:
                                     dxfattribs={"layer": layer}, **kw)
         d.render()
         self.ents.append(d.dimension)
+        if pulled is not None:
+            # B1: a plain line (no arrowhead) from the dimension line midpoint
+            # to the nearest edge of the pulled-out text, so the reader sees
+            # which dimension the value belongs to.
+            seg = pointer_segment(mid, pulled, tw + 0.4 * self.th, th_box, 0.0 if horizontal else angle)
+            if seg is not None:
+                self.line(seg[0], seg[1], layer)   # tracks its points, ByLayer, into self.ents
         return meas
 
     def _landing(self, pts, align):
@@ -536,23 +631,29 @@ class View:
             self.text((p[0], p[1] - 0.4 * h - 1.45 * self.th), sub, None, "BOTTOM_CENTER")
 
     def section_cut(self, p_from, p_to, label, look):
-        """FDOT section cut symbol at both ends of the cut: a short heavy line
-        along the cut (a polyline 0.014" wide, ByLevel weight), a solid
-        triangular flag at its outer end pointing in the viewing direction
-        ``look`` (local unit vector), and the letter (FDOT Structures
-        Views_SectionArrow) beside the line under the flag.  The cut line
+        """FDOT section cut symbol (the "L" flag, STYLE_GUIDE A6) at both ends
+        of the cut: a heavy tick from the end of the cut inward along the cut
+        and a short heavy base from the same corner toward the viewing
+        direction ``look`` (local unit vector), together an L drawn as a
+        polyline 0.014" wide (ByLevel weight); a solid wedge OUTSIDE the L
+        (beyond the base, away from the letter), thick at the corner and
+        tapering in the viewing direction; and the letter (FDOT Structures
+        Views_SectionArrow) inside the L beside the tick.  The cut line
         itself is not drawn."""
         dx, dy = p_to[0] - p_from[0], p_to[1] - p_from[1]
         D = math.hypot(dx, dy) or 1.0
         u = (dx / D, dy / D)
         k = self.sf / 12.0
-        tick, flag, thick = 0.25 * k, 0.27 * k, 0.05 * k
+        tick, base, flag, thick = 0.25 * k, 0.09 * k, 0.27 * k, 0.05 * k
         h = self.style_h(fdot.LETTER_STYLE)
         for p, inward in ((p_from, u), (p_to, (-u[0], -u[1]))):
             q = (p[0] + inward[0] * tick, p[1] + inward[1] * tick)
-            self.pl([p, q], "Symbols", width=0.014 * k)
-            tri = [p, (p[0] + look[0] * flag, p[1] + look[1] * flag),
-                   (p[0] + inward[0] * thick, p[1] + inward[1] * thick)]
+            b = (p[0] + look[0] * base, p[1] + look[1] * base)
+            self.pl([q, p, b], "Symbols", width=0.014 * k)
+            # the wedge starts at the end of the base (sample sheets), thick
+            # there and tapering outward in the viewing direction
+            tri = [b, (b[0] + look[0] * flag, b[1] + look[1] * flag),
+                   (b[0] - inward[0] * thick, b[1] - inward[1] * thick)]
             self._track(tri)
             s = self.msp.add_solid([self.T(tri[0]), self.T(tri[1]), self.T(tri[2]), self.T(tri[2])])
             self._add(s, "Symbols")

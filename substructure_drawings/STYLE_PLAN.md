@@ -246,3 +246,30 @@ warning, which the test treats as a failure. `tests/test_substructure_dxf.py`
 gained checks for the sheet set, the lettering and dimension style, the text
 formats and the bar types (13 tests). Not in section B and not done: the plan
 callouts `3'-6" PEDESTAL (TYP.)` and `8" (TYP.) CHEEKWALL` (A4).
+
+## Markup round 2026-10-17
+
+The engineer's review markups of 17 October 2026 (`review_sheets.pdf`) were
+distilled into [`STYLE_GUIDE.md`](STYLE_GUIDE.md), one rule per instruction (the
+markup log is its section M; the table is not repeated here), and implemented in
+generator 2.1.0:
+
+- Annotation: A1 to A8 (clear of linework and of each other, angled bar leaders,
+  elevation points in plan and elevation, stationing arrow on every plan-type
+  view, L section flags, centerline labels, pile numbers).
+- Dimensions: B1 to B6 (pull-out lines, masked text, extension lines to the
+  feature, reoriented pile embedment, embedment across the construction joint,
+  precision).
+- Reinforcing: C1 to C7 (single or double lines by scale, end-on dots, daylight
+  between overlapping bars, open stirrups as standard Type 11 bars with field
+  bent hooks, hooked cheek bars Types 17 and 18).
+- Linework and context: D1 to D9 (coincident hidden edges dropped, break symbols
+  only where something is broken, long-dash short-dash centerlines, no landing
+  slab, construction joint, reinforcing strap and Δ legend, geotextile detail,
+  cheek wall sections F-F and G-G).
+- Sheets: E1 to E3 (a third details sheet per end bent, so the set is 11 sheets
+  B4-1 to B4-11 with the bar list last; legends and notes inside the window), and
+  F (no zero-length lines in dimension blocks).
+
+This supersedes the 9-sheet numbering in item 1 of the status table above.
+Regression tests for the testable rules are in `tests/test_substructure_dxf.py`.

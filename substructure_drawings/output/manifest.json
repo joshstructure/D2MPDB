@@ -1,10 +1,10 @@
 {
  "generator": "substructure_drawings.build",
- "version": "2.0.0",
+ "version": "2.1.0",
  "dxf": "B4_Substructure_EndBents_Pier.dxf",
- "dxf_sha256": "e75fcf4e5f12753fbaece18a849f9ae73e9cfad8fbc607508d5dd1a33ee5f6a2",
- "snapshot_sha256": "55a83f5905ad2742d51a79aba4757349303b241a8161b217e9cb4e3e5613ee55",
- "model_sha256": "2d3b6af8ff550d4bb201e41c9cf373cf4bbfe60a96390485f71822be86055bdf",
+ "dxf_sha256": "779911919f3c52863ed22649b3e67654c63d51e2ef7ef811774896846a20c82b",
+ "snapshot_sha256": "71e8614bdda4322882295611b9f031ff5b95fcbbf5e68926b506a796e5481f44",
+ "model_sha256": "dcdda9c93a773f399acafb38d598564638823bb03a3eabf66d76ee7f3866d836",
  "units": "international feet ($INSUNITS=2); model space 1:1",
  "station_reference": {
   "FFBW End Bent 1": 1593.22
@@ -20,16 +20,16 @@
   },
   {
    "number": "B4-2",
-   "title": "END BENT 1 DETAILS (1 OF 2)",
-   "layout": "B4-2 END BENT 1 DETAILS (1 OF 2)",
+   "title": "END BENT 1 DETAILS (1 OF 3)",
+   "layout": "B4-2 END BENT 1 DETAILS (1 OF 3)",
    "scales": [
     "3/4\" = 1'-0\""
    ]
   },
   {
    "number": "B4-3",
-   "title": "END BENT 1 DETAILS (2 OF 2)",
-   "layout": "B4-3 END BENT 1 DETAILS (2 OF 2)",
+   "title": "END BENT 1 DETAILS (2 OF 3)",
+   "layout": "B4-3 END BENT 1 DETAILS (2 OF 3)",
    "scales": [
     "1/2\" = 1'-0\"",
     "3/4\" = 1'-0\""
@@ -37,76 +37,95 @@
   },
   {
    "number": "B4-4",
-   "title": "PIER",
-   "layout": "B4-4 PIER",
+   "title": "END BENT 1 DETAILS (3 OF 3)",
+   "layout": "B4-4 END BENT 1 DETAILS (3 OF 3)",
    "scales": [
-    "3/8\" = 1'-0\""
+    "3/4\" = 1'-0\"",
+    "1\" = 1'-0\"",
+    "1-1/2\" = 1'-0\""
    ]
   },
   {
    "number": "B4-5",
-   "title": "PIER DETAILS",
-   "layout": "B4-5 PIER DETAILS",
-   "scales": [
-    "3/4\" = 1'-0\""
-   ]
-  },
-  {
-   "number": "B4-6",
-   "title": "END BENT 2",
-   "layout": "B4-6 END BENT 2",
+   "title": "PIER",
+   "layout": "B4-5 PIER",
    "scales": [
     "3/8\" = 1'-0\""
    ]
   },
   {
-   "number": "B4-7",
-   "title": "END BENT 2 DETAILS (1 OF 2)",
-   "layout": "B4-7 END BENT 2 DETAILS (1 OF 2)",
+   "number": "B4-6",
+   "title": "PIER DETAILS",
+   "layout": "B4-6 PIER DETAILS",
    "scales": [
     "3/4\" = 1'-0\""
    ]
   },
   {
+   "number": "B4-7",
+   "title": "END BENT 2",
+   "layout": "B4-7 END BENT 2",
+   "scales": [
+    "3/8\" = 1'-0\""
+   ]
+  },
+  {
    "number": "B4-8",
-   "title": "END BENT 2 DETAILS (2 OF 2)",
-   "layout": "B4-8 END BENT 2 DETAILS (2 OF 2)",
+   "title": "END BENT 2 DETAILS (1 OF 3)",
+   "layout": "B4-8 END BENT 2 DETAILS (1 OF 3)",
+   "scales": [
+    "3/4\" = 1'-0\""
+   ]
+  },
+  {
+   "number": "B4-9",
+   "title": "END BENT 2 DETAILS (2 OF 3)",
+   "layout": "B4-9 END BENT 2 DETAILS (2 OF 3)",
    "scales": [
     "1/2\" = 1'-0\"",
     "3/4\" = 1'-0\""
    ]
   },
   {
-   "number": "B4-9",
+   "number": "B4-10",
+   "title": "END BENT 2 DETAILS (3 OF 3)",
+   "layout": "B4-10 END BENT 2 DETAILS (3 OF 3)",
+   "scales": [
+    "3/4\" = 1'-0\"",
+    "1\" = 1'-0\"",
+    "1-1/2\" = 1'-0\""
+   ]
+  },
+  {
+   "number": "B4-11",
    "title": "REINFORCING BAR LIST",
-   "layout": "B4-9 REINFORCING BAR LIST",
+   "layout": "B4-11 REINFORCING BAR LIST",
    "scales": [
     "3/4\" = 1'-0\""
    ]
   }
  ],
  "levels_used": {
-  "AppSlabConc": 37,
   "BaseLineSurveyPGL": 6,
-  "BearingPadMisc": 263,
+  "BearingPadMisc": 177,
   "CL_Major": 16,
   "CL_Minor": 57,
-  "Dimension": 383,
-  "Leader": 566,
-  "Patterning": 8,
+  "Dimension": 613,
+  "Leader": 712,
+  "Patterning": 1008,
   "PileConc": 40,
-  "PileConc_h": 45,
-  "PileSteel": 32,
+  "PileConc_h": 41,
+  "PileSteel": 30,
   "PileSteel_h": 80,
-  "Rebar": 929,
-  "Rebar2": 8,
-  "SubStrConc": 320,
-  "SubStrConc2": 398,
-  "SubStrConc2_h": 310,
-  "SubStrConc_h": 680,
-  "Symbols": 105,
-  "TextStructures": 345,
-  "WallMSEPanel": 18
+  "Rebar": 1385,
+  "Rebar2": 54,
+  "SubStrConc": 343,
+  "SubStrConc2": 319,
+  "SubStrConc2_h": 46,
+  "SubStrConc_h": 362,
+  "Symbols": 135,
+  "TextStructures": 433,
+  "WallMSEPanel": 20
  },
  "level_source": {
   "source": "FDOT CADD Standard Level Table, 10-25-2023, worksheet 'Level Definition Details'",
@@ -121,11 +140,11 @@
   "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
  },
  "symbology_audit": {
-  "entities": 9452,
+  "entities": 11195,
   "not_on_fdot_level": [],
   "not_by_level": [],
   "documented_overrides": {
-   "BearingPadMisc linetype DGN2 (hidden pad edges; no FDOT hidden level)": 121
+   "BearingPadMisc linetype DGN2 (hidden pad edges; no FDOT hidden level)": 36
   },
   "layers": [
    "0",
@@ -259,9 +278,29 @@
     "size": 4,
     "des": "E2",
     "description": "CHEEK WALL HORIZONTAL",
-    "count": 22,
+    "count": 6,
     "lengths_in": {
-     "38": 22
+     "38": 6
+    },
+    "varies": false
+   },
+   "4E3": {
+    "size": 4,
+    "des": "E3",
+    "description": "CHEEK WALL HORIZONTAL",
+    "count": 6,
+    "lengths_in": {
+     "47": 6
+    },
+    "varies": false
+   },
+   "4E4": {
+    "size": 4,
+    "des": "E4",
+    "description": "CHEEK WALL HORIZONTAL",
+    "count": 10,
+    "lengths_in": {
+     "44": 10
     },
     "varies": false
    },
@@ -516,9 +555,29 @@
     "size": 4,
     "des": "E2",
     "description": "CHEEK WALL HORIZONTAL",
-    "count": 22,
+    "count": 8,
     "lengths_in": {
-     "38": 22
+     "38": 8
+    },
+    "varies": false
+   },
+   "4E3": {
+    "size": 4,
+    "des": "E3",
+    "description": "CHEEK WALL HORIZONTAL",
+    "count": 6,
+    "lengths_in": {
+     "47": 6
+    },
+    "varies": false
+   },
+   "4E4": {
+    "size": 4,
+    "des": "E4",
+    "description": "CHEEK WALL HORIZONTAL",
+    "count": 8,
+    "lengths_in": {
+     "44": 8
     },
     "varies": false
    },

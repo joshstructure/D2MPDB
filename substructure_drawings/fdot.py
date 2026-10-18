@@ -79,21 +79,29 @@ BENTLEY_WEIGHT_TO_LW.update({w: 211 for w in range(19, 31)})
 # same line codes; set LINETYPE_NAME = "DGN Style %d" to write those names for a
 # round trip to MicroStation line codes.
 LINETYPE_NAME = "DGN%d"
-# Pattern lengths (feet) as in the FDOT-workspace DXF export; style 6
-# (dash-dot-dot) is not in that file and is defined to the same scale.
+# Pattern lengths (feet).  Styles 2 and 6 are as in the FDOT-workspace DXF
+# export (style 6, dash-dot-dot, is not in that file and is defined to the
+# same scale).  Styles 4 and 7 are the two centerline styles and are long
+# dash, short dash (never dash-dot with a dot; STYLE_GUIDE D3, markup
+# "Centerlines should have dashes not dots"): each pattern is the long dash,
+# a gap, the short dash (a tenth of the long dash) and a gap, so that with
+# LTSCALE_PER_SF = 0.5 the long dash plots about 0.45 in (style 4) and 0.6 in
+# (style 7) on paper.
 LINETYPE_PATTERNS = {
     2: [0.895099, 0.53706, -0.35804],
-    4: [0.128582, 0.064252, -0.032126, 0.000079, -0.032126],
+    4: [0.1125, 0.075, -0.015, 0.0075, -0.015],
     6: [0.176696, 0.064252, -0.032126, 0.000079, -0.024094, 0.000079, -0.032126],
-    7: [0.16063, 0.072283, -0.032126, 0.024094, -0.032126],
+    7: [0.15, 0.1, -0.02, 0.01, -0.02],
 }
 STYLE_TO_LINETYPE = {0: "Continuous"}
 STYLE_TO_LINETYPE.update({n: LINETYPE_NAME % n for n in LINETYPE_PATTERNS})
 LINETYPES = {LINETYPE_NAME % n: ("DGN line code %d" % n, p) for n, p in LINETYPE_PATTERNS.items()}
 HIDDEN_LINETYPE = STYLE_TO_LINETYPE[2]
 # Per-entity linetype scale per unit of drawing scale factor (so patterns plot
-# at a consistent size in every view): dash ~0.12 in, centerline ~0.5 in.
-LTSCALE_PER_SF = {LINETYPE_NAME % n: s for n, s in {2: 0.0186, 4: 0.32, 6: 0.25, 7: 0.26}.items()}
+# at a consistent size in every view): hidden dash ~0.12 in, centerline long
+# dash ~0.45 in (style 4) and ~0.6 in (style 7) with a short dash a tenth as
+# long between them.
+LTSCALE_PER_SF = {LINETYPE_NAME % n: s for n, s in {2: 0.0186, 4: 0.5, 6: 0.25, 7: 0.5}.items()}
 
 # FDOT TrueType fonts (5.12, PDF p. 52): name -> (file, family, bold).  The
 # family and bold flag go into the text style's extended font data, from
@@ -163,7 +171,8 @@ FRACTION = 0.7         # DIMTFAC of FDOT Structures Note-Arrow; height of a stac
 LINE_PITCH = 1.75
 MTEXT_LINE_SPACING = LINE_PITCH / (5.0 / 3.0)
 
-SCALES = {"3/8": 32.0, "3/4": 16.0, "1": 12.0, "1/2": 24.0}
+# Drawing scale name (inches per foot) -> scale factor (feet per paper foot).
+SCALES = {"3/8": 32.0, "3/4": 16.0, "1": 12.0, "1/2": 24.0, "1-1/2": 8.0}
 
 
 def level_attrs(name):

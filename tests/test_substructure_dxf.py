@@ -21,7 +21,7 @@ import ezdxf  # noqa: E402
 from ezdxf.lldxf.const import VALID_DXF_LINEWEIGHTS  # noqa: E402
 from fractions import Fraction  # noqa: E402
 
-from substructure_drawings import bars, build, fdot, views  # noqa: E402
+from substructure_drawings import bars, build, cad, fdot, views  # noqa: E402
 
 PKG = ROOT / "substructure_drawings"
 SNAPSHOT = PKG / "data" / "model_snapshot.json"
@@ -173,7 +173,7 @@ class SubstructureDxfTests(unittest.TestCase):
         self.assertEqual(fdot.ft_in(4 + 0.5 / 12), "4'-0½\"")
         self.assertEqual(fdot.ft_in(0.75 / 12), "¾\"")
         self.assertEqual(fdot.ft_in(2 + 5.875 / 12), "2'-5Ɔ\"")
-        # bar list FT-IN without unit marks (STYLE_PLAN item 18)
+        # bar list FT-IN without unit marks (STYLE_GUIDE B6; STYLE_PLAN item 18)
         self.assertEqual(fdot.ft_in_list(244, 1), "20-4")
         self.assertEqual(fdot.ft_in_list(224.75), "18-8¾")
 
@@ -204,16 +204,107 @@ class SubstructureDxfTests(unittest.TestCase):
 
     def test_sheet_set_follows_the_fdot_sample(self):
         """Plan and elevation with the reinforcement for each support (no
-        separate reinforcement sheets), its details, then the bar list."""
+        separate reinforcement sheets), its details (STYLE_GUIDE E1: three
+        details sheets per end bent), then the bar list."""
         sheets = self.manifest["sheets"]
-        self.assertEqual([s["number"] for s in sheets], ["B4-%d" % i for i in range(1, 10)])
+        self.assertEqual([s["number"] for s in sheets], ["B4-%d" % i for i in range(1, 12)])
         self.assertEqual([s["title"] for s in sheets], [
-            "END BENT 1", "END BENT 1 DETAILS (1 OF 2)", "END BENT 1 DETAILS (2 OF 2)",
+            "END BENT 1", "END BENT 1 DETAILS (1 OF 3)", "END BENT 1 DETAILS (2 OF 3)",
+            "END BENT 1 DETAILS (3 OF 3)",
             "PIER", "PIER DETAILS",
-            "END BENT 2", "END BENT 2 DETAILS (1 OF 2)", "END BENT 2 DETAILS (2 OF 2)",
+            "END BENT 2", "END BENT 2 DETAILS (1 OF 3)", "END BENT 2 DETAILS (2 OF 3)",
+            "END BENT 2 DETAILS (3 OF 3)",
             "REINFORCING BAR LIST"])
         self.assertEqual(sheets[0]["scales"], ["3/8\" = 1'-0\""])
         self.assertEqual(sheets[2]["scales"], ["1/2\" = 1'-0\"", "3/4\" = 1'-0\""])
+        # the cheek wall sections at 3/4", detail "B" at 1", detail "A" at 1 1/2"
+        self.assertEqual(sheets[3]["scales"], ["3/4\" = 1'-0\"", "1\" = 1'-0\"", "1-1/2\" = 1'-0\""])
+        self.assertEqual(sheets[3]["scales"], sheets[9]["scales"])
+
+    def test_cross_references_name_the_sheets_that_carry_the_views(self):
+        """Plan-sheet note 3 and the details notes point at the right sheets
+        (the note used to say the pedestal details are on the (2 OF 2) sheet);
+        the strap legend (D6) is on every sheet that draws the strap symbol
+        and on the (3 OF 3) sheet."""
+        texts = {}
+        for lay in self.doc.layouts:
+            if lay.name != "Model":
+                texts[lay.name.split(" ")[0]] = [e.dxf.text if e.dxftype() == "TEXT" else e.text
+                                                 for e in lay.query("TEXT MTEXT")]
+        for first, nums in (("B4-1", ("B4-2", "B4-3", "B4-4")), ("B4-7", ("B4-8", "B4-9", "B4-10"))):
+            self.assertTrue(any(
+                "FOR SECTIONS A-A AND B-B AND PEDESTAL DETAILS, SEE SHEET %s. FOR SECTION C-C AND VIEWS D-D AND E-E, "
+                "SEE SHEET %s. FOR SECTIONS F-F AND G-G AND DETAILS \"A\" AND \"B\", SEE SHEET %s." % nums in t
+                for t in texts[first]), first)
+        self.assertTrue(any("SEE VIEW D-D, SHEET B4-3" in t for t in texts["B4-4"]))
+        self.assertTrue(any("SEE VIEW D-D, SHEET B4-9" in t for t in texts["B4-10"]))
+        for number in ("B4-2", "B4-3", "B4-4", "B4-8", "B4-9", "B4-10"):
+            self.assertIn("LEGEND:", texts[number], number)
+            self.assertTrue(any("PROPRIETARY WALL PROVIDER" in t for t in texts[number]), number)
+
+    def test_dimension_blocks_have_no_zero_length_lines_and_masked_text(self):
+        """Rules F and B2: ezdxf's zero-length lines in the dimension blocks
+        (point markers, the "circles" of the B4-5 markup) are removed, and
+        every dimension text has the drawing background fill (MTEXT bg_fill 3)."""
+        dims = list(self.doc.modelspace().query("DIMENSION"))
+        self.assertGreater(len(dims), 100)
+        texts = 0
+        for dim in dims:
+            for e in self.doc.blocks.get(dim.dxf.geometry):
+                if e.dxftype() == "LINE":
+                    self.assertGreater((e.dxf.end - e.dxf.start).magnitude, 1e-9, dim.dxf.geometry)
+                elif e.dxftype() == "MTEXT":
+                    texts += 1
+                    self.assertEqual(e.dxf.get("bg_fill", 0), 3, dim.dxf.geometry)
+        self.assertGreater(texts, 100)
+
+    def test_centerline_linetypes_are_dashes_not_dots(self):
+        """Rule D3: DGN4 and DGN7 are long dash, short dash with no element
+        shorter than 0.005 ft (a dot), plotted at 0.5 x the scale factor."""
+        for style in (4, 7):
+            pattern = fdot.LINETYPE_PATTERNS[style]       # total length, then the elements
+            self.assertFalse([v for v in pattern if 0 < abs(v) < 0.005], pattern)
+            dashes = [v for v in pattern[1:] if v > 0]
+            self.assertEqual(len(dashes), 2, pattern)
+            self.assertGreater(dashes[0], dashes[1])
+            self.assertAlmostEqual(pattern[0], sum(abs(v) for v in pattern[1:]), places=9)
+            self.assertIn("DGN%d" % style, self.doc.linetypes)
+        self.assertEqual(fdot.LTSCALE_PER_SF["DGN4"], 0.5)
+
+    def test_offset_polyline_mitres_corners_to_the_left_and_right(self):
+        """C4/B3: ``cad.offset_polyline`` offsets to the left for a positive
+        distance and to the right for a negative one, mitring the corner."""
+        pts = [(0, 0), (1, 0), (1, 1)]
+        for got, want in zip(cad.offset_polyline(pts, 0.1), [(0, 0.1), (0.9, 0.1), (0.9, 1)]):
+            self.assertAlmostEqual(got[0], want[0], places=9)
+            self.assertAlmostEqual(got[1], want[1], places=9)
+        right = cad.offset_polyline(pts, -0.1)
+        self.assertEqual(len(right), 3)
+        for got, want in zip(right, [(0, -0.1), (1.1, -0.1), (1.1, 1)]):
+            self.assertAlmostEqual(got[0], want[0], places=9)
+            self.assertAlmostEqual(got[1], want[1], places=9)
+
+    def test_coincident_hidden_edges_are_dropped(self):
+        """D1: a hidden line lying along a visible line tells the reader
+        nothing and is dropped; a hidden line that does not coincide stays."""
+        visible = {"t": "L", "vis": True, "role": "cap", "p": [[0, 0], [10, 0]]}
+        on_top = {"t": "L", "vis": False, "role": "backwall", "p": [[2, 0], [5, 0]]}
+        apart = {"t": "L", "vis": False, "role": "backwall", "p": [[2, 0.5], [5, 0.5]]}
+        out = views.drop_coincident_hidden([visible, on_top, apart])
+        self.assertEqual(out, [visible, apart])
+        # a hidden polyline is dropped only when every segment is covered
+        mixed = {"t": "P", "vis": False, "role": "pad", "p": [[2, 0], [5, 0], [5, 1]]}
+        self.assertIn(mixed, views.drop_coincident_hidden([visible, mixed]))
+
+    def test_bar_list_uses_the_standard_plans_note_and_no_bending_diagram(self):
+        """C6: open stirrups are standard bars with field bent hooks: the
+        bar list note says so and the custom bending diagram is gone."""
+        paper = [e for blk in self.doc.blocks if blk.name.upper().startswith("*PAPER_SPACE")
+                 for e in blk.query("TEXT MTEXT")]
+        texts = [e.dxf.text if e.dxftype() == "TEXT" else e.text for e in paper]
+        self.assertTrue(any("FIELD BEND OPEN STIRRUP HOOKS AS REQUIRED TO CLEAR PILE HEAD LOCATION" in t
+                            for t in texts))
+        self.assertFalse(any("OPEN STIRRUP (NOT TO SCALE)" in t for t in texts))
 
     def test_text_styles_follow_the_cadd_manual(self):
         """CADD Manual 5.12.1.1 (PDF pp. 52-53): FDOT text style names, fonts
@@ -300,7 +391,8 @@ class SubstructureDxfTests(unittest.TestCase):
 
     def test_series_and_callout_text(self):
         """One dimension per bar series with count, mark and spacing; equal
-        spaces as 'n EQUAL SPA'; THRU for consecutive marks (items 4-6)."""
+        spaces as 'n EQUAL SPA'; THRU for consecutive marks (STYLE_GUIDE B6
+        and C5; STYLE_PLAN items 4-6)."""
         self.assertEqual(views.series_text([0, 0.75, 1.5, 2.25], "6B1"), "4~6B1 @ 9\" = 2'-3\"")
         self.assertEqual(views.series_text([0, 0.75, 1.3], "6B1"), "3~6B1 @ 9\" MAX.")
         xs, texts = views.equal_chain([-6.75, -2.25, 2.25, 6.75], (-9.75, 9.75))
@@ -310,17 +402,19 @@ class SubstructureDxfTests(unittest.TestCase):
         self.assertEqual(views.mark_list(["5E26", "5E27"]), "5E26/5E27")
 
     def test_bar_list_types_follow_index_415_001(self):
-        """Straight bars are Type 1, U-bars Type 11, closed stirrups Type 4 with
-        style 5 (135 degree) hooks; open stirrups with legs turned in plan
-        have no standard type."""
+        """Straight bars are Type 1, bars with one standard 90 degree hook
+        Type 17 and with two Type 18 (style 3), U-bars Type 11, closed stirrups
+        Type 4 with style 5 (135 degree) hooks; open stirrups are Type 11
+        U-bars with style 4 (90 degree stirrup) hooks.  Every bar has a type."""
         comp = build.Composer(self.snap)
-        expected = {"STRAIGHT": ("1", "", ""), "U-BAR": ("11", "", ""), "CLOSED HOOP": ("4", "5", "5"),
-                    "OPEN STIRRUP": ("", "", "")}
+        expected = {"STRAIGHT": ("1", "", ""), "HOOKED": ("17", "3", ""), "HOOKED BOTH": ("18", "3", "3"),
+                    "U-BAR": ("11", "", ""), "CLOSED HOOP": ("4", "5", "5"), "OPEN STIRRUP": ("11", "4", "4")}
         for s in comp.sup.values():
             for mark, e in s.table.items():
                 bar = next(b for b in s.bars if b["name"] == e["members"][0])
                 typ, a, g, dims = build.Composer.bar_fields(e, bar)
                 self.assertEqual((typ, a, g), expected[bars.shape_name(e)], "%s %s" % (s.title, mark))
+                self.assertNotEqual(typ, "", "%s %s has no bar type" % (s.title, mark))
                 self.assertIn("B", dims)
 
 
