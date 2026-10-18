@@ -44,9 +44,16 @@ LEVELS = {
     "PileSteel": (2204, "Pile Steel H-Piles & Pipe", 6, 0, 1),
     "PileSteel_h": (2205, "Pile Steel H-Piles & Pipe Hidden", 6, 2, 1),
     "BearingPadMisc": (2450, "Bearings Miscellaneous Pads", 1, 0, 1),
+    "SupstrConc": (2100, "Concrete Deck, Segmental Box", 2, 0, 3),
+    "SupstrConc_h": (2101, "Concrete Deck, Segmental BoxHidden", 2, 2, 2),
+    "SupstrConc3_h": (2105, "Superstructure Concrete Misc Hidden", 2, 2, 2),
+    "BeamConc": (2110, "Beams Concrete", 2, 0, 3),
     "BeamConc_h": (2111, "Beams Concrete Hidden", 2, 2, 2),
+    "TrafBarrierConc": (2140, "Traffic Barrier Concrete", 2, 0, 3),
     "AppSlabConc": (2400, "Approach Slab Concrete", 2, 0, 3),
     "AppSlabConc_h": (2401, "Approach Slab Concrete Hidden", 2, 2, 2),
+    "WallConc": (2600, "Wall Coping Concrete", 2, 0, 3),
+    "WallConc_h": (2601, "Wall Coping Concrete Hidden", 2, 2, 2),
     "WallMSEPanel": (2606, "Wall MSE Panels", 2, 0, 3),
     "WallMSEPanel_h": (2607, "Wall MSE Panels Hidden", 2, 2, 2),
     "Rebar": (2250, "Reinforcing Major", 4, 0, 1),
@@ -171,8 +178,14 @@ FRACTION = 0.7         # DIMTFAC of FDOT Structures Note-Arrow; height of a stac
 LINE_PITCH = 1.75
 MTEXT_LINE_SPACING = LINE_PITCH / (5.0 / 3.0)
 
-# Drawing scale name (inches per foot) -> scale factor (feet per paper foot).
-SCALES = {"3/8": 32.0, "3/4": 16.0, "1": 12.0, "1/2": 24.0, "1-1/2": 8.0}
+# Drawing scale name (inches per foot, or 1=n for 1" = n') -> scale factor
+# (feet per paper foot).
+SCALES = {"3/8": 32.0, "3/4": 16.0, "1": 12.0, "1/2": 24.0, "1-1/2": 8.0, "1=40": 480.0}
+
+
+def scale_label(key):
+    """Scale as written on a sheet: 3/4" = 1'-0" or 1" = 40'."""
+    return ('1" = %s\'' % key[2:]) if key.startswith("1=") else (key + "\" = 1'-0\"")
 
 
 def level_attrs(name):

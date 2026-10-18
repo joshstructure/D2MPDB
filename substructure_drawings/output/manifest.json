@@ -1,9 +1,9 @@
 {
  "generator": "substructure_drawings.build",
- "version": "2.2.0",
+ "version": "2.2.1",
  "dxf": "B4_Substructure_EndBents_Pier.dxf",
- "dxf_sha256": "f61e2a3e375d9ec34b5ca878b336670153656faf295d850fd8bb95a7f3991f79",
- "snapshot_sha256": "b445fba9e738d4e472dcace69e5858560efda4509d1918a0a710b622371ad448",
+ "dxf_sha256": "2bd2fec643037db12c577a1c9445704e626d7e8ad273070d7bed6634ac88b331",
+ "snapshot_sha256": "7f20610129171b50b3fb9c9baec87028938acac79401a31ddeb6ad241b93060e",
  "model_sha256": "aee8160a242a00be1c4259e711d8ef5fb5805ad3750485beee947aa44eb62407",
  "units": "international feet ($INSUNITS=2); model space 1:1",
  "station_reference": {
@@ -107,25 +107,26 @@
  ],
  "levels_used": {
   "BaseLineSurveyPGL": 6,
-  "BearingPadMisc": 177,
+  "BearingPadMisc": 181,
   "CL_Major": 27,
   "CL_Minor": 57,
   "Dimension": 613,
   "Leader": 735,
   "Patterning": 1008,
-  "PileConc": 40,
-  "PileConc_h": 41,
-  "PileSteel": 30,
-  "PileSteel_h": 80,
+  "PileConc": 48,
+  "PileConc_h": 160,
+  "PileSteel": 35,
+  "PileSteel_h": 175,
   "Rebar": 1399,
   "Rebar2": 96,
-  "SubStrConc": 350,
-  "SubStrConc2": 352,
-  "SubStrConc2_h": 46,
-  "SubStrConc_h": 362,
+  "SubStrConc": 316,
+  "SubStrConc2": 361,
+  "SubStrConc2_h": 28,
+  "SubStrConc_h": 166,
   "Symbols": 135,
   "TextStructures": 437,
-  "WallMSEPanel": 41
+  "WallConc": 40,
+  "WallMSEPanel": 8
  },
  "level_source": {
   "source": "FDOT CADD Standard Level Table, 10-25-2023, worksheet 'Level Definition Details'",
@@ -140,7 +141,7 @@
   "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
  },
  "symbology_audit": {
-  "entities": 11308,
+  "entities": 11307,
   "not_on_fdot_level": [],
   "not_by_level": [],
   "documented_overrides": {
@@ -151,6 +152,7 @@
    "AppSlabConc",
    "AppSlabConc_h",
    "BaseLineSurveyPGL",
+   "BeamConc",
    "BeamConc_h",
    "BearingPadMisc",
    "Border",
@@ -171,10 +173,16 @@
    "SubStrConc2",
    "SubStrConc2_h",
    "SubStrConc_h",
+   "SupstrConc",
+   "SupstrConc3_h",
+   "SupstrConc_h",
    "Symbols",
    "Tables",
    "TextStructShtNo",
    "TextStructures",
+   "TrafBarrierConc",
+   "WallConc",
+   "WallConc_h",
    "WallMSEPanel",
    "WallMSEPanel_h"
   ]

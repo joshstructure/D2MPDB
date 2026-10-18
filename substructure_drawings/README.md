@@ -1,13 +1,15 @@
 # End bent and pier DXF (FDOT format)
 
-**Generator 2.2.0 (18 October 2026)** rebuilds this DXF from the model with
+**Generator 2.2.1 (18 October 2026)** rebuilds this DXF from the model with
 revision D-048 (D-044 weather closure and copings, D-045 strap references,
 D-046 cheek hooks, D-047 pedestal edge bars, D-048 backwall extensions) and
 applies the engineer's review markups of 2026-10-17 and the follow-up
 comments on the rebuilt sheets, which are distilled into
 [`STYLE_GUIDE.md`](STYLE_GUIDE.md) (every drawing rule has an id there).
 The build's annotation audit (text over linework or over other text) reports
-nothing on any sheet.
+nothing on any sheet. 2.2.1 moves the MSE copings to the WallConc level and
+tags an edge shared by two objects (a pile socket in a cap) with the smaller
+object, so hidden pile outlines are on the pile levels.
 
 [`output/B4_Substructure_EndBents_Pier.dxf`](output/B4_Substructure_EndBents_Pier.dxf)
 is one DXF with plans, elevations (concrete and reinforcement together),
@@ -156,7 +158,8 @@ It has no clock time, so rebuilds stay byte-identical.
   - Concrete: SubStrConc (cap, backwall, pier wall) and SubStrConc2 (cheek walls, pedestals).
   - Piles: PileConc and PileSteel.
   - Context: BearingPadMisc, WallMSEPanel (MSE wall front face, geotextile
-    fabric). The landing slab is not drawn (D4).
+    fabric), WallConc (MSE copings), SubStrConc2 (closure slab). The landing
+    slab is not drawn (D4).
   - Patterning: the WWR limit hatch and the fill behind the backwall in detail "B".
   - Reinforcement: Rebar, with Rebar2 for the WWR limits.
   - Annotation: CL_Major, CL_Minor, BaseLineSurveyPGL, Dimension, Leader, TextStructures, Symbols, Tables, Border and TextStructShtNo.
@@ -248,11 +251,49 @@ The receiving OBM workstation needs:
 4. Use the layouts as sheet models, or attach model space to your own
    sheets at the scales above. Text and dimensions are already sized for those scales.
 
+## Whole-model plan (B4_Model_Plan.dxf)
+
+[`output/B4_Model_Plan.dxf`](output/B4_Model_Plan.dxf) is a second DXF: the
+plan of the whole model (bridge and both ramps) looking down, with stationing
+increasing left to right, End Bent 1 at the left and End Bent 2 at the right.
+Model space is at full size in feet in that plan frame (u = -Y of the model,
+v = +X of the model). One 11 x 17 layout, `P-1 GENERAL PLAN`, shows it at
+1" = 40' with the FDOT border and notes; a review copy is
+[`output/B4_Model_Plan.png`](output/B4_Model_Plan.png). Rebuild with
+
+```
+.venv\Scripts\python.exe scripts\build_model_plan_dxf.py --extract --previews
+```
+
+What is drawn is what the model itself calls finished: the bridge assembly
+groups (decks, beams, haunches, bearings, pedestals, caps, piles, pier wall,
+end bent walls, deck barriers), `MSEAssembly.FinishedConcrete` (the mitred
+MSE wall panels and the walking slabs), `MSECopingsAndBarriers.FinishedDetails`
+(copings, barriers, plinths and returns, the corrected object where one
+exists), the end bent weather closures and the schematic geotechnical straps.
+Reinforcement, WWR, the MSE leveling footings, fill envelopes, sources, checks
+and schedules are left out (`model_plan_manifest.json` lists the objects by
+role and the ones skipped). Hidden lines (what lies under the deck and the
+slabs) are on the `_h` levels; visible superstructure concrete is on
+SupstrConc, beams and haunches on BeamConc, barriers on TrafBarrierConc,
+copings on WallConc, walking slabs on AppSlabConc, MSE panels on WallMSEPanel
+and the substructure on the levels of the bent sheets. The FFBW of each end
+bent and the pier centerline are drawn with their stations, the PGL through
+the bridge, the direction of stationing and the ramp names.
+[`freecad_plan_extract.py`](freecad_plan_extract.py) writes the snapshot
+[`data/model_plan_snapshot.json`](data/model_plan_snapshot.json) (one
+hidden-line pass over all components, `fc_hlr.py`), [`model_plan.py`](model_plan.py)
+builds the DXF and `tests/test_model_plan_dxf.py` fails when the model, the
+snapshot or the generator output no longer match.
+
 ## Modules
 
 | Module | Role |
 |---|---|
 | `freecad_extract.py` | Read-only FreeCAD side: writes the snapshot (projections, sections, bars, WWR, strap context, cheek wall sections) |
+| `fc_hlr.py` | Hidden-line projection helpers shared by the FreeCAD-side extractors (frames, edge records, HLR with role tagging, clip box) |
+| `freecad_plan_extract.py` | Read-only FreeCAD side of the whole-model plan: the finished components projected looking down |
+| `model_plan.py` | The whole-model plan DXF (`B4_Model_Plan.dxf`, sheet P-1) |
 | `support.py` | Derived geometry of one support (cap, backwall, cheek walls, pedestals, piles, elevations) |
 | `bars.py` | Bar geometry, SDM marks and Standard Plans Index 415-001 bar shapes and types |
 | `fdot.py` | FDOT CADD levels, line styles, text styles, symbols and number formats |

@@ -15,7 +15,7 @@ from .sheets import DRAW, TITLE_TOP, Sheet
 from .support import STATION_FFBW_EB1, Support
 from .views import DELTA, Builder, z_on_edges
 
-GENERATOR_VERSION = "2.2.0"
+GENERATOR_VERSION = "2.2.1"
 DXF_NAME = "B4_Substructure_EndBents_Pier.dxf"
 
 INFO = {

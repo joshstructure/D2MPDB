@@ -1,0 +1,359 @@
+{
+ "generator": "substructure_drawings.model_plan",
+ "version": "1.0.0",
+ "dxf": "B4_Model_Plan.dxf",
+ "dxf_sha256": "9df3f919159206a4c7bd5090c169d777e8ed696fcb1300f1f0b8ae83c6817420",
+ "snapshot_sha256": "265f6c49f0a95b8b9d1bd07eb96dfd04a0a14197d5ae0b2ae2d6223584a89543",
+ "model_sha256": "aee8160a242a00be1c4259e711d8ef5fb5805ad3750485beee947aa44eb62407",
+ "units": "international feet ($INSUNITS=2); model space 1:1 in the plan frame",
+ "frame": {
+  "e1": [
+   0,
+   -1,
+   0
+  ],
+  "e2": [
+   1,
+   0,
+   0
+  ],
+  "note": "u = -y (increasing station), v = x of the model, feet; looking down",
+  "origin_ft": [
+   0.0,
+   0.0,
+   0.0
+  ]
+ },
+ "plan_extents_ft": {
+  "u": [
+   -35.556,
+   288.818
+  ],
+  "v": [
+   -290.436,
+   61.263
+  ]
+ },
+ "sheet": {
+  "number": "P-1",
+  "title": "GENERAL PLAN",
+  "layout": "P-1 GENERAL PLAN",
+  "scale": "1\" = 40'"
+ },
+ "stations": [
+  {
+   "support": "EB1",
+   "station": "15+93.22",
+   "u_ft": -4.0715
+  },
+  {
+   "support": "PIER",
+   "station": "17+00.57",
+   "u_ft": 103.2783
+  },
+  {
+   "support": "EB2",
+   "station": "18+05.47",
+   "u_ft": 208.1781
+  }
+ ],
+ "objects_by_role": {
+  "backwall": [
+   "BridgeBackwallEB1",
+   "BridgeBackwallEB2"
+  ],
+  "barrier": [
+   "BarrierDeckS1LCorrected",
+   "BarrierDeckS1RCorrected",
+   "BarrierDeckS2LCorrected",
+   "BarrierDeckS2RCorrected",
+   "BarrierA1",
+   "BarrierA2",
+   "BarrierA3",
+   "BarrierA4",
+   "BarrierA8",
+   "BarrierA6AtCheek",
+   "BarrierA7AtCheek",
+   "BarrierB2AtReturn",
+   "BarrierB3",
+   "BarrierB4",
+   "BarrierB6AtCheek",
+   "BarrierB9",
+   "BarrierB5",
+   "BarrierB7BentJoint",
+   "BarrierB8",
+   "BarrierReturnEB1LCorrected",
+   "BarrierReturnEB1R",
+   "BarrierReturnEB2L",
+   "BarrierReturnEB2R"
+  ],
+  "beam": [
+   "BridgeBeamS1B1",
+   "BridgeBeamS1B2",
+   "BridgeBeamS2B1",
+   "BridgeBeamS2B2"
+  ],
+  "cap": [
+   "BridgeCapEB1",
+   "BridgeCapPier",
+   "BridgeCapEB2"
+  ],
+  "cheek": [
+   "BridgeCheekEB11",
+   "BridgeCheekEB12",
+   "BridgeCheekEB21",
+   "BridgeCheekEB22"
+  ],
+  "closure": [
+   "ClosureSlabEB1",
+   "ClosureSlabEB2"
+  ],
+  "coping": [
+   "ClosureCopingA5",
+   "ClosureCopingA6",
+   "ClosureCopingA7",
+   "ClosureCopingB1",
+   "ClosureCopingB6",
+   "ClosureCopingB7",
+   "CopingA1",
+   "CopingA2Corrected",
+   "CopingA3",
+   "CopingA4",
+   "CopingA8",
+   "CopingA6AtCheek",
+   "CopingA7AtCheek",
+   "CopingB2BentJoint",
+   "CopingB3Corrected",
+   "CopingB4Corrected",
+   "CopingB6AtCheek",
+   "CopingB9",
+   "CopingB5",
+   "CopingB7BentJoint",
+   "CopingB8"
+  ],
+  "deck": [
+   "BridgeDeckS1",
+   "BridgeDeckS2"
+  ],
+  "haunch": [
+   "BridgeHaunchS1B1",
+   "BridgeHaunchS1B2",
+   "BridgeHaunchS2B1",
+   "BridgeHaunchS2B2"
+  ],
+  "mse": [
+   "WallA1Mitred",
+   "WallA2Mitred",
+   "WallA3Mitred",
+   "WallA4Mitred",
+   "WallA5Mitred",
+   "WallA6Mitred",
+   "WallA7Mitred",
+   "WallA8Mitred",
+   "WallB1Mitred",
+   "WallB2Mitred",
+   "WallB3Mitred",
+   "WallB4Mitred",
+   "WallB5Mitred",
+   "WallB6Mitred",
+   "WallB7Mitred",
+   "WallB8Mitred",
+   "WallB9Mitred"
+  ],
+  "pad": [
+   "BridgePadEB1S1B1",
+   "BridgePadEB1S1B2",
+   "BridgePadPierS1B1",
+   "BridgePadPierS2B1",
+   "BridgePadPierS1B2",
+   "BridgePadPierS2B2",
+   "BridgePadEB2S2B1",
+   "BridgePadEB2S2B2"
+  ],
+  "pedestal": [
+   "BridgePedestalEB1B1",
+   "BridgePedestalEB1B2",
+   "BridgePedestalPierB1",
+   "BridgePedestalPierB2",
+   "BridgePedestalEB2B1",
+   "BridgePedestalEB2B2"
+  ],
+  "pgl": [
+   "BridgePGL"
+  ],
+  "pier_wall": [
+   "BridgePierWallSolid"
+  ],
+  "pile_conc": [
+   "BridgePileEB1P1",
+   "BridgePileEB1P2",
+   "BridgePileEB1P3",
+   "BridgePileEB1P4",
+   "BridgePileEB2P1",
+   "BridgePileEB2P2",
+   "BridgePileEB2P3",
+   "BridgePileEB2P4"
+  ],
+  "pile_steel": [
+   "BridgePilePierP1",
+   "BridgePilePierP2",
+   "BridgePilePierP3",
+   "BridgePilePierP4"
+  ],
+  "slab": [
+   "A_ApproachSlab",
+   "A_TurnLandingSlab",
+   "A_ReturnRunSlabFinished",
+   "A_BridgeLandingAtReturns",
+   "B_ApproachSlab",
+   "B_LowerEastLandingSlabFinished",
+   "B_LowerRunSlabFinished",
+   "B_WestTurnLandingSlabFinished",
+   "B_MiddleRunSlabFinished",
+   "B_UpperEastLandingSlab",
+   "B_UpperRunSlabBentJoint",
+   "B_BridgeLandingAtReturns"
+  ],
+  "strap": [
+   "GeotechnicalStrapEB1",
+   "GeotechnicalStrapEB2",
+   "GeotechnicalStrapEB1S1",
+   "GeotechnicalStrapEB1S2",
+   "GeotechnicalStrapEB1S3",
+   "GeotechnicalStrapEB1S5",
+   "GeotechnicalStrapEB1S6",
+   "GeotechnicalStrapEB1S7",
+   "GeotechnicalStrapEB2S1",
+   "GeotechnicalStrapEB2S2",
+   "GeotechnicalStrapEB2S3",
+   "GeotechnicalStrapEB2S5",
+   "GeotechnicalStrapEB2S6",
+   "GeotechnicalStrapEB2S7"
+  ]
+ },
+ "skipped_objects": [
+  "BarrierB7AtCheek",
+  "ClosureEB1Inputs",
+  "ClosureEB2Inputs",
+  "CopingB7AtCheek",
+  "EndBentClosureSchedule",
+  "FootingA1",
+  "FootingA2",
+  "FootingA3",
+  "FootingA4",
+  "FootingA5",
+  "FootingA6Finished",
+  "FootingA7Finished",
+  "FootingA8Corrected",
+  "FootingB1",
+  "FootingB2",
+  "FootingB3",
+  "FootingB4",
+  "FootingB5Finished",
+  "FootingB6Finished",
+  "FootingB7Finished",
+  "FootingB8Finished",
+  "FootingB9Finished",
+  "PlinthReturnEB1L",
+  "PlinthReturnEB1LCorrected",
+  "PlinthReturnEB1R",
+  "PlinthReturnEB2L",
+  "PlinthReturnEB2R"
+ ],
+ "levels_used": {
+  "AppSlabConc": 22,
+  "AppSlabConc_h": 9,
+  "BaseLineSurveyPGL": 13,
+  "BeamConc": 1,
+  "BeamConc_h": 80,
+  "BearingPadMisc": 36,
+  "CL_Major": 3,
+  "Leader": 2,
+  "PileConc": 10,
+  "PileConc_h": 19,
+  "PileSteel_h": 8,
+  "Rebar_h": 55,
+  "SubStrConc": 16,
+  "SubStrConc2": 26,
+  "SubStrConc2_h": 77,
+  "SubStrConc_h": 17,
+  "SupstrConc": 14,
+  "SupstrConc3_h": 20,
+  "SupstrConc_h": 12,
+  "Symbols": 2,
+  "TextStructures": 10,
+  "TrafBarrierConc": 396,
+  "WallConc": 149,
+  "WallConc_h": 33,
+  "WallMSEPanel": 147,
+  "WallMSEPanel_h": 128
+ },
+ "level_source": {
+  "source": "FDOT CADD Standard Level Table, 10-25-2023, worksheet 'Level Definition Details'",
+  "url": "https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/cadd/downloads/publications/caddmanualfdm/levels/fdotcaddstandardleveltable-10-25-2023.xlsx?sfvrsn=5c1b90b4_2",
+  "file": "fdotcaddstandardleveltable-10-25-2023.xlsx",
+  "sha256": "8d2ac22a556721927c11af15c3d9ea73f5b809806a100cd4b982b4328b735d50"
+ },
+ "cadd_manual": {
+  "source": "FDOT CADD Manual, Topic No. 625-050-001, publish date November 1, 2024",
+  "file": "caddmanual2025.pdf",
+  "sha256": "3074d0027748686d38bababae898e1f9f1cf0b13d0fe241b2fb4cdbcf07de222",
+  "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
+ },
+ "symbology_audit": {
+  "entities": 1372,
+  "not_on_fdot_level": [],
+  "not_by_level": [],
+  "documented_overrides": {
+   "BearingPadMisc linetype DGN2 (hidden pad edges; no FDOT hidden level)": 36
+  },
+  "layers": [
+   "0",
+   "AppSlabConc",
+   "AppSlabConc_h",
+   "BaseLineSurveyPGL",
+   "BeamConc",
+   "BeamConc_h",
+   "BearingPadMisc",
+   "Border",
+   "CL_Major",
+   "CL_Minor",
+   "ClipBorder_dp",
+   "Dimension",
+   "Leader",
+   "Patterning",
+   "PileConc",
+   "PileConc_h",
+   "PileSteel",
+   "PileSteel_h",
+   "Rebar",
+   "Rebar2",
+   "Rebar_h",
+   "SubStrConc",
+   "SubStrConc2",
+   "SubStrConc2_h",
+   "SubStrConc_h",
+   "SupstrConc",
+   "SupstrConc3_h",
+   "SupstrConc_h",
+   "Symbols",
+   "Tables",
+   "TextStructShtNo",
+   "TextStructures",
+   "TrafBarrierConc",
+   "WallConc",
+   "WallConc_h",
+   "WallMSEPanel",
+   "WallMSEPanel_h"
+  ]
+ },
+ "layout_warnings": [],
+ "annotation_overlaps": [],
+ "extraction_log": [
+  "CopingB7AtCheek has no valid shape; CopingB7BentJoint is drawn in its place",
+  "BarrierB7AtCheek has no valid shape; BarrierB7BentJoint is drawn in its place",
+  "136 objects chosen, 28 skipped",
+  "projection 64 s (3979 edges)",
+  "total 71 s"
+ ]
+}

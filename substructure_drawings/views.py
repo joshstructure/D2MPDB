@@ -562,14 +562,20 @@ class Builder:
         ext = 0.25 * k
         if ctx:
             # labels of the closure slab and the front coping, right of the cap
-            # end below the cap (the centerline labels are above, in the cap)
-            clos = [r for r in ctx if r["role"] == "closure"]
-            cops = [r for r in ctx if r["role"] == "coping" and extents([r])[3] < vf]
-            for recs, txt, dv in ((clos, "4\" CLOSURE SLAB", 0.0), (cops, "COPING", 0.0)):
-                if not recs:
+            # end below the cap (the centerline labels are above, in the cap);
+            # each tip at the middle of the object's own box (an edge shared
+            # with a neighbour may be tagged with the neighbour)
+            boxes = {}
+            for n, o in S.get("context", {}).items():
+                bb = o["bb_ft"]
+                lo, hi = sorted((s.v(bb[1]), s.v(bb[4])))
+                if o["role"] == "closure" or (o["role"] == "coping" and hi < vf):
+                    cb = ctx_boxes[o["role"]]   # the drawn part of the object
+                    boxes.setdefault(o["role"], []).append((max(lo, cb[1]), min(hi, cb[3])))
+            for role, txt in (("closure", "4\" CLOSURE SLAB"), ("coping", "COPING")):
+                if role not in boxes:
                     continue
-                ce = extents(recs)
-                vm = (ce[1] + ce[3]) / 2
+                vm = sum((lo + hi) / 2 for lo, hi in boxes[role]) / len(boxes[role])
                 tip = (u1 - 0.8, vm)
                 knee = (uR + 0.2 * k, vm - 0.1 * k)
                 v.leader([tip, knee, (knee[0] + 0.12 * k, knee[1])], txt, "left")

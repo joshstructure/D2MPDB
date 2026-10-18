@@ -40,7 +40,8 @@ def extract():
         shutil.copy2(MODEL, copy)
         out = Path(tmp) / "snapshot.json"
         env = dict(os.environ, SUBDWG_MODEL=str(copy), SUBDWG_RUNTIME=str(RUNTIME),
-                   SUBDWG_OUT=str(out), SUBDWG_SOURCE_SHA256=digest)
+                   SUBDWG_PKG=str(ROOT / "substructure_drawings"), SUBDWG_OUT=str(out),
+                   SUBDWG_SOURCE_SHA256=digest)
         subprocess.run([str(FREECADCMD), str(ROOT / "substructure_drawings" / "freecad_extract.py")],
                        env=env, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         err = Path(str(out) + ".error.txt")
