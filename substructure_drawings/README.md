@@ -1,9 +1,13 @@
 # End bent and pier DXF (FDOT format)
 
-**Generator 2.1.0 (17 October 2026)** rebuilds this DXF from the model with
-revision D-046 (42 cheek horizontal hooks, native marks 4E3/4E4) and applies the
-engineer's review markups of 2026-10-17, which are distilled into
+**Generator 2.2.0 (18 October 2026)** rebuilds this DXF from the model with
+revision D-048 (D-044 weather closure and copings, D-045 strap references,
+D-046 cheek hooks, D-047 pedestal edge bars, D-048 backwall extensions) and
+applies the engineer's review markups of 2026-10-17 and the follow-up
+comments on the rebuilt sheets, which are distilled into
 [`STYLE_GUIDE.md`](STYLE_GUIDE.md) (every drawing rule has an id there).
+The build's annotation audit (text over linework or over other text) reports
+nothing on any sheet.
 
 [`output/B4_Substructure_EndBents_Pier.dxf`](output/B4_Substructure_EndBents_Pier.dxf)
 is one DXF with plans, elevations (concrete and reinforcement together),
@@ -24,9 +28,9 @@ represent engineering acceptance.
 | Sheet | Content | Scale |
 |---|---|---|
 | B4-1 | End Bent 1 plan; elevation (looking back station) with the reinforcement; table of elevations, pile cutoff elevations, notes, footnote legend | 3/8" |
-| B4-2 | End Bent 1 details (1 of 3): sections A-A (between piles), B-B (at piles) with the construction joint, reinforcing strap and embedment; pedestal plan and elevation; top of pedestal elevations; notes and the strap legend | 3/4" |
-| B4-3 | End Bent 1 details (2 of 3): section C-C (at CL beam); views D-D and E-E (cheek walls, WWR limits; D-D carries the flags of sections F-F and G-G); notes and the strap legend | 3/4", 1/2" |
-| B4-4 | End Bent 1 details (3 of 3): section F-F (vertical, through the cheek wall) and section G-G (horizontal, through the cheek wall and backwall); detail "A" (construction joint); detail "B" (backwall V-groove and geotextile fabric); strap legend and notes | 3/4", 1", 1-1/2" |
+| B4-2 | End Bent 1 details (1 of 3): sections A-A (between piles), B-B (at piles) with the keyed construction joint, reinforcing strap with its embedment, bar embedment, closure slab and coping; beside them detail "A" (construction joint) over detail "B" (backwall V-groove and geotextile fabric); strap legend and notes | 3/4", 1-1/2", 1" |
+| B4-3 | End Bent 1 details (2 of 3): section C-C (at CL beam); views D-D and E-E (cheek walls, WWR limits; D-D carries the flags of sections F-F and G-G); notes and the strap legend | 3/4", 3/8" |
+| B4-4 | End Bent 1 details (3 of 3): section F-F (vertical, through the cheek wall) and section G-G (horizontal, through the cheek wall and backwall, monolithic); pedestal plan and elevation; top of pedestal elevations; notes | 3/4" |
 | B4-5 | Pier plan; broken elevation (looking ahead station) with the reinforcement; end view D-D; tables, notes | 3/8" |
 | B4-6 | Pier details: sections A-A, B-B, C-C; pedestal plan and elevation; top of pedestal elevations | 3/4" |
 | B4-7 to B4-10 | End Bent 2, as End Bent 1 (looking ahead station; B4-8 is laid out as the mirror image of B4-2) | |
@@ -77,13 +81,14 @@ It has no clock time, so rebuilds stay byte-identical.
   pile cutoff table at the upper right, notes below them, the footnote legend
   (`* DIMENSIONS MEASURED ALONG FFBW`) at the lower left. There are no
   separate reinforcement elevation sheets. The details follow the sample's
-  End Bent Details sheets: sections A-A and B-B with the pedestal plan,
-  elevation and TOP OF PEDESTAL ELEVATIONS table; section C-C with the cheek
-  wall views (1/2", as in the sample); and a third sheet with the cheek wall
-  sections F-F and G-G (sample B1-19 sections J-J and H-H) and the construction
-  joint and geotextile details A and B (sample B1-17). The strap legend (the
-  delta paragraph) is a LEGEND block beside the NOTES on each sheet that draws
-  the strap, as on the sample.
+  End Bent Details sheets: sections A-A and B-B (3/4", with the modelled
+  closure slab and coping) beside a column with the construction joint and
+  geotextile details A and B (sample B1-17); section C-C with the cheek
+  wall views (3/8", so the views and their callouts fit); and a third sheet
+  with the cheek wall sections F-F and G-G (sample B1-19 sections J-J and
+  H-H) and the pedestal plan, elevation and TOP OF PEDESTAL ELEVATIONS
+  table. The strap legend (the delta paragraph) is a LEGEND block beside the
+  NOTES on each sheet that draws the strap, as on the sample.
 - **Representation (SDM 4.3.B, 4.3.7).** Plan and elevation views draw the
   first and last bar of each run. Stirrups use the established CAD_AI symbol:
   a line at the bar station with filled end dots. Sections show all cut bars
@@ -99,8 +104,10 @@ It has no clock time, so rebuilds stay byte-identical.
   Equal spaces of piles and beams read `3 EQUAL SPA @ 4'-6" = 13'-6"`, in
   rows labelled at the left (`PILE SPACING *`, underlined). Odd end spaces
   are separate small dimensions. A value that does not fit is written beside
-  its space or just below the row, with a plain line to its dimension line,
-  never on a second row. Dimension text carries a background fill in the
+  its space or on the far side of the row, with a pointer to its dimension
+  line (one piece square to the row when the dimension is under the text,
+  otherwise a landing along the text and an angled piece), never on a
+  second row (STYLE_GUIDE B1, B7). Dimension text carries a background fill in the
   drawing colour, so it wins over any line under it. Concrete is
   dimensioned to 1/8" and bar spacing to 1/4". Bar-list lengths round to the
   nearest inch, elevations to 0.001 ft, pile cutoffs to 0.1 ft and stations

@@ -53,6 +53,14 @@ class Sheet:
         for vp in self.layout.viewports():  # the paper-space main viewport
             vp.dxf.layer = "ClipBorder_dp"
         self.psp = self.layout
+        # the BRIDGE NO. / bridge name block above the title block (paper
+        # inches), which notes and views at the lower right must keep clear
+        h = fdot.TITLE_IN
+        self.bridge_block = (FRAME[2] - 0.05 - max(text_extent(s, h) for s in self.bridge_lines()),
+                             TITLE_TOP + 0.08, FRAME[2] - 0.05, TITLE_TOP + 0.08 + 2.45 * h)
+
+    def bridge_lines(self):
+        return ["BRIDGE NO. %s" % (self.info.get("bridge_no") or "______"), self.info.get("bridge_name", "")]
 
     def zone(self, window, scale_key):
         z = Zone(self, len(self.zones), window, scale_key)
@@ -193,11 +201,12 @@ class Sheet:
         label(((c_no + x1) / 2, mid - 0.08), "SHEET NO.", 0.045, "BOTTOM_CENTER")
         self.ptext(((c_no + x1) / 2, y0 + 0.04), self.number, None, "BOTTOM_CENTER", layer="TextStructShtNo",
                    style=fdot.TABLE_TITLE_STYLE)
-        # bridge number and name above the title block (SDM 2.2.D)
+        # bridge number and name above the title block (SDM 2.2.D), in the
+        # block ``bridge_block`` the layout checks keep clear
         h = fdot.TITLE_IN
-        self.ptext((x1 - 0.05, t + 0.08 + 1.45 * h), "BRIDGE NO. %s" % (info.get("bridge_no") or "______"), None,
-                   "BOTTOM_RIGHT", style=fdot.TITLE_STYLE)
-        self.ptext((x1 - 0.05, t + 0.08), info.get("bridge_name", ""), None, "BOTTOM_RIGHT", style=fdot.TITLE_STYLE)
+        lines = self.bridge_lines()
+        self.ptext((x1 - 0.05, t + 0.08 + 1.45 * h), lines[0], None, "BOTTOM_RIGHT", style=fdot.TITLE_STYLE)
+        self.ptext((x1 - 0.05, t + 0.08), lines[1], None, "BOTTOM_RIGHT", style=fdot.TITLE_STYLE)
         # 61G15-23.004 statement outside the right border
         self.ptext((x1 + 0.22, (y0 + y1) / 2),
                    "THE OFFICIAL RECORD OF THIS SHEET IS THE ELECTRONIC FILE DIGITALLY SIGNED AND SEALED UNDER RULE 61G15-23.004, F.A.C.",

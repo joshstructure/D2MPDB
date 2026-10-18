@@ -216,16 +216,18 @@ class SubstructureDxfTests(unittest.TestCase):
             "END BENT 2 DETAILS (3 OF 3)",
             "REINFORCING BAR LIST"])
         self.assertEqual(sheets[0]["scales"], ["3/8\" = 1'-0\""])
-        self.assertEqual(sheets[2]["scales"], ["1/2\" = 1'-0\"", "3/4\" = 1'-0\""])
+        self.assertEqual(sheets[2]["scales"], ["3/8\" = 1'-0\"", "3/4\" = 1'-0\""])
+        self.assertEqual(sheets[1]["scales"], ["3/4\" = 1'-0\"", "1\" = 1'-0\"", "1-1/2\" = 1'-0\""])
         # the cheek wall sections at 3/4", detail "B" at 1", detail "A" at 1 1/2"
-        self.assertEqual(sheets[3]["scales"], ["3/4\" = 1'-0\"", "1\" = 1'-0\"", "1-1/2\" = 1'-0\""])
+        self.assertEqual(sheets[3]["scales"], ["3/4\" = 1'-0\""])
         self.assertEqual(sheets[3]["scales"], sheets[9]["scales"])
+        self.assertEqual(sheets[1]["scales"], sheets[7]["scales"])
 
     def test_cross_references_name_the_sheets_that_carry_the_views(self):
         """Plan-sheet note 3 and the details notes point at the right sheets
         (the note used to say the pedestal details are on the (2 OF 2) sheet);
         the strap legend (D6) is on every sheet that draws the strap symbol
-        and on the (3 OF 3) sheet."""
+        (the (1 OF 3) and (2 OF 3) sheets)."""
         texts = {}
         for lay in self.doc.layouts:
             if lay.name != "Model":
@@ -233,12 +235,12 @@ class SubstructureDxfTests(unittest.TestCase):
                                                  for e in lay.query("TEXT MTEXT")]
         for first, nums in (("B4-1", ("B4-2", "B4-3", "B4-4")), ("B4-7", ("B4-8", "B4-9", "B4-10"))):
             self.assertTrue(any(
-                "FOR SECTIONS A-A AND B-B AND PEDESTAL DETAILS, SEE SHEET %s. FOR SECTION C-C AND VIEWS D-D AND E-E, "
-                "SEE SHEET %s. FOR SECTIONS F-F AND G-G AND DETAILS \"A\" AND \"B\", SEE SHEET %s." % nums in t
+                "FOR SECTIONS A-A AND B-B AND DETAILS \"A\" AND \"B\", SEE SHEET %s. FOR SECTION C-C AND VIEWS D-D "
+                "AND E-E, SEE SHEET %s. FOR SECTIONS F-F AND G-G AND PEDESTAL DETAILS, SEE SHEET %s." % nums in t
                 for t in texts[first]), first)
         self.assertTrue(any("SEE VIEW D-D, SHEET B4-3" in t for t in texts["B4-4"]))
         self.assertTrue(any("SEE VIEW D-D, SHEET B4-9" in t for t in texts["B4-10"]))
-        for number in ("B4-2", "B4-3", "B4-4", "B4-8", "B4-9", "B4-10"):
+        for number in ("B4-2", "B4-3", "B4-8", "B4-9"):
             self.assertIn("LEGEND:", texts[number], number)
             self.assertTrue(any("PROPRIETARY WALL PROVIDER" in t for t in texts[number]), number)
 

@@ -1,10 +1,10 @@
 {
  "generator": "substructure_drawings.build",
- "version": "2.1.0",
+ "version": "2.2.0",
  "dxf": "B4_Substructure_EndBents_Pier.dxf",
- "dxf_sha256": "779911919f3c52863ed22649b3e67654c63d51e2ef7ef811774896846a20c82b",
- "snapshot_sha256": "71e8614bdda4322882295611b9f031ff5b95fcbbf5e68926b506a796e5481f44",
- "model_sha256": "dcdda9c93a773f399acafb38d598564638823bb03a3eabf66d76ee7f3866d836",
+ "dxf_sha256": "f61e2a3e375d9ec34b5ca878b336670153656faf295d850fd8bb95a7f3991f79",
+ "snapshot_sha256": "b445fba9e738d4e472dcace69e5858560efda4509d1918a0a710b622371ad448",
+ "model_sha256": "aee8160a242a00be1c4259e711d8ef5fb5805ad3750485beee947aa44eb62407",
  "units": "international feet ($INSUNITS=2); model space 1:1",
  "station_reference": {
   "FFBW End Bent 1": 1593.22
@@ -23,7 +23,9 @@
    "title": "END BENT 1 DETAILS (1 OF 3)",
    "layout": "B4-2 END BENT 1 DETAILS (1 OF 3)",
    "scales": [
-    "3/4\" = 1'-0\""
+    "3/4\" = 1'-0\"",
+    "1\" = 1'-0\"",
+    "1-1/2\" = 1'-0\""
    ]
   },
   {
@@ -31,7 +33,7 @@
    "title": "END BENT 1 DETAILS (2 OF 3)",
    "layout": "B4-3 END BENT 1 DETAILS (2 OF 3)",
    "scales": [
-    "1/2\" = 1'-0\"",
+    "3/8\" = 1'-0\"",
     "3/4\" = 1'-0\""
    ]
   },
@@ -40,9 +42,7 @@
    "title": "END BENT 1 DETAILS (3 OF 3)",
    "layout": "B4-4 END BENT 1 DETAILS (3 OF 3)",
    "scales": [
-    "3/4\" = 1'-0\"",
-    "1\" = 1'-0\"",
-    "1-1/2\" = 1'-0\""
+    "3/4\" = 1'-0\""
    ]
   },
   {
@@ -74,7 +74,9 @@
    "title": "END BENT 2 DETAILS (1 OF 3)",
    "layout": "B4-8 END BENT 2 DETAILS (1 OF 3)",
    "scales": [
-    "3/4\" = 1'-0\""
+    "3/4\" = 1'-0\"",
+    "1\" = 1'-0\"",
+    "1-1/2\" = 1'-0\""
    ]
   },
   {
@@ -82,7 +84,7 @@
    "title": "END BENT 2 DETAILS (2 OF 3)",
    "layout": "B4-9 END BENT 2 DETAILS (2 OF 3)",
    "scales": [
-    "1/2\" = 1'-0\"",
+    "3/8\" = 1'-0\"",
     "3/4\" = 1'-0\""
    ]
   },
@@ -91,9 +93,7 @@
    "title": "END BENT 2 DETAILS (3 OF 3)",
    "layout": "B4-10 END BENT 2 DETAILS (3 OF 3)",
    "scales": [
-    "3/4\" = 1'-0\"",
-    "1\" = 1'-0\"",
-    "1-1/2\" = 1'-0\""
+    "3/4\" = 1'-0\""
    ]
   },
   {
@@ -108,24 +108,24 @@
  "levels_used": {
   "BaseLineSurveyPGL": 6,
   "BearingPadMisc": 177,
-  "CL_Major": 16,
+  "CL_Major": 27,
   "CL_Minor": 57,
   "Dimension": 613,
-  "Leader": 712,
+  "Leader": 735,
   "Patterning": 1008,
   "PileConc": 40,
   "PileConc_h": 41,
   "PileSteel": 30,
   "PileSteel_h": 80,
-  "Rebar": 1385,
-  "Rebar2": 54,
-  "SubStrConc": 343,
-  "SubStrConc2": 319,
+  "Rebar": 1399,
+  "Rebar2": 96,
+  "SubStrConc": 350,
+  "SubStrConc2": 352,
   "SubStrConc2_h": 46,
   "SubStrConc_h": 362,
   "Symbols": 135,
-  "TextStructures": 433,
-  "WallMSEPanel": 20
+  "TextStructures": 437,
+  "WallMSEPanel": 41
  },
  "level_source": {
   "source": "FDOT CADD Standard Level Table, 10-25-2023, worksheet 'Level Definition Details'",
@@ -140,7 +140,7 @@
   "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
  },
  "symbology_audit": {
-  "entities": 11195,
+  "entities": 11308,
   "not_on_fdot_level": [],
   "not_by_level": [],
   "documented_overrides": {
@@ -245,9 +245,9 @@
     "size": 5,
     "des": "D1",
     "description": "BACKWALL VERTICAL",
-    "count": 42,
+    "count": 46,
     "lengths_in": {
-     "59": 6,
+     "59": 10,
      "60": 16,
      "61": 16,
      "62": 4
@@ -260,7 +260,7 @@
     "description": "BACKWALL HORIZONTAL",
     "count": 10,
     "lengths_in": {
-     "229": 10
+     "245": 10
     },
     "varies": false
    },
@@ -308,9 +308,9 @@
     "size": 4,
     "des": "F1",
     "description": "PEDESTAL, TRANSVERSE",
-    "count": 14,
+    "count": 16,
     "lengths_in": {
-     "51": 14
+     "54": 16
     },
     "varies": false
    },
@@ -318,19 +318,9 @@
     "size": 4,
     "des": "F2",
     "description": "PEDESTAL, LONGITUDINAL",
-    "count": 4,
+    "count": 10,
     "lengths_in": {
-     "57": 4
-    },
-    "varies": false
-   },
-   "4F3": {
-    "size": 4,
-    "des": "F3",
-    "description": "PEDESTAL, LONGITUDINAL",
-    "count": 4,
-    "lengths_in": {
-     "56": 4
+     "66": 10
     },
     "varies": false
    }
@@ -420,39 +410,19 @@
     "size": 4,
     "des": "E1",
     "description": "PEDESTAL, TRANSVERSE",
-    "count": 7,
+    "count": 16,
     "lengths_in": {
-     "67": 7
+     "71": 16
     },
     "varies": false
    },
    "4E2": {
     "size": 4,
     "des": "E2",
-    "description": "PEDESTAL, TRANSVERSE",
-    "count": 7,
-    "lengths_in": {
-     "75": 7
-    },
-    "varies": false
-   },
-   "4E3": {
-    "size": 4,
-    "des": "E3",
     "description": "PEDESTAL, LONGITUDINAL",
-    "count": 7,
+    "count": 16,
     "lengths_in": {
-     "59": 7
-    },
-    "varies": false
-   },
-   "4E4": {
-    "size": 4,
-    "des": "E4",
-    "description": "PEDESTAL, LONGITUDINAL",
-    "count": 7,
-    "lengths_in": {
-     "68": 7
+     "66": 16
     },
     "varies": false
    }
@@ -522,9 +492,9 @@
     "size": 5,
     "des": "D1",
     "description": "BACKWALL VERTICAL",
-    "count": 42,
+    "count": 46,
     "lengths_in": {
-     "59": 6,
+     "59": 10,
      "60": 16,
      "61": 16,
      "62": 4
@@ -537,7 +507,7 @@
     "description": "BACKWALL HORIZONTAL",
     "count": 10,
     "lengths_in": {
-     "229": 10
+     "245": 10
     },
     "varies": false
    },
@@ -585,9 +555,9 @@
     "size": 4,
     "des": "F1",
     "description": "PEDESTAL, TRANSVERSE",
-    "count": 14,
+    "count": 16,
     "lengths_in": {
-     "51": 14
+     "54": 16
     },
     "varies": false
    },
@@ -595,19 +565,9 @@
     "size": 4,
     "des": "F2",
     "description": "PEDESTAL, LONGITUDINAL",
-    "count": 4,
+    "count": 10,
     "lengths_in": {
-     "57": 4
-    },
-    "varies": false
-   },
-   "4F3": {
-    "size": 4,
-    "des": "F3",
-    "description": "PEDESTAL, LONGITUDINAL",
-    "count": 4,
-    "lengths_in": {
-     "57": 4
+     "66": 10
     },
     "varies": false
    }
@@ -687,5 +647,6 @@
    "status": "PASS"
   }
  ],
- "layout_warnings": []
+ "layout_warnings": [],
+ "annotation_overlaps": []
 }

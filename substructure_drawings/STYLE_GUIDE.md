@@ -33,8 +33,13 @@ symbol at page scale.
   leader texts, tables and dimension texts are placed in open space; a
   text may cross a line only when no open space exists, and then it is
   masked (B2).  The layout check (`Composer.check`, `cad.boxes_cross`) must
-  report no crossings between views, and the previews are inspected for
-  crossings inside a view.  Markups: "Fit annotations to minimize overlap
+  report no crossings between views, and the annotation audit
+  (`View.audit`, manifest `annotation_overlaps`, printed by the build as
+  "NOTE (annotation over linework)") lists every text inside a view that a
+  line runs through or ends in; the list is worked down to nothing but
+  justified cases before delivery.  Follow-up markup 2026-10-17: "in
+  general please double check that we are minimizing overlapping annotation
+  with linework".  Markups: "Fit annotations to minimize overlap
   with linework", "Prevent overlap of annotations as much as possible",
   "Place annotations in places that don't overlap linework".
 - **A2 Separate annotations read as separate.**  Unrelated texts are at
@@ -58,7 +63,10 @@ symbol at page scale.
   and elevation if applicable".
 - **A5 Direction of stationing on every plan-type view**, including the
   pedestal plan detail (sample B1-17), placed clear of labels (upper right
-  of the plan, right of the pedestal plan).  Markup on the pedestal plan.
+  of the plan, right of the pedestal plan).  The arrow line is long enough
+  for its text to sit along the plain part of the line, clear of the
+  arrowhead, which is on the other side of the line from the text.  Markups:
+  on the pedestal plan; follow-up "Stationing still has overlap".
 - **A6 Section flags are the FDOT "L" flag.**  A heavy tick along the cut, a
   short heavy base toward the viewing direction, a solid wedge on the
   outside of the L (beyond the base, thick at the corner, tapering in the
@@ -68,8 +76,15 @@ symbol at page scale.
 - **A7 Centerline labels by leader** (centerline glyph before the name:
   "CL BEARING", "CL CAP & CL PILES"), the leaders in open space, never under
   the stationing arrow or over the dimension rows (B4-1 markup).
-- **A8 Pile numbers** in circles beside the pile bottoms; the pile
-  description leader and the "PT." leaders stay clear of the number circles.
+- **A8 Pile numbers** in circles beside the pile bottoms (pier) or under
+  the stirrup row (end bents), there 0.5 ft off the pile on the side away
+  from the section flag letters, so the number at the pile that carries a
+  flag clears its letter; the pile description leader and the "PT." leaders
+  stay clear of the number circles.
+- **A9 Text widths for layout** are estimated per glyph from the installed
+  FDOT font (`cad.text_extent`, `_ADV`), so texts with quotes, parentheses
+  and points are not sized a quarter too wide; the audit boxes (A1) and the
+  fit tests of the dimension rows use the same estimate.
 
 ## B. Dimensions
 
@@ -78,9 +93,14 @@ symbol at page scale.
   space or beyond the end of the row) or just below the row, and a plain
   line (no arrowhead) runs from the text to the dimension line so the
   reader sees which dimension it belongs to.  Values are never stacked on a
-  second row.  Markups: "Add line/arrow when the dim doesn't fit right so we
-  can see which one it is", "If a dim text doesn't fit pull it out and add
-  a line pointing to the dim".
+  second row.  The pointer (`View.pointer`) is one piece square to the row
+  from the point of the text edge over the dimension when the dimension
+  lies under (over) the text, and otherwise two pieces: a 0.12" landing
+  along the text from the side facing the dimension, then the angled piece
+  to the dimension line.  Markups: "Add line/arrow when the dim doesn't fit
+  right so we can see which one it is", "If a dim text doesn't fit pull it
+  out and add a line pointing to the dim", follow-up "Make dim pointer two
+  piece lines, one straight looks weird".
 - **B2 Dimension text is masked.**  Dimension text carries an opaque
   background in the drawing background colour, so where a dimension line,
   extension line or object line passes under the text the text wins.
@@ -105,6 +125,32 @@ symbol at page scale.
   embedment dimension "x'-x" (MIN.)" from the joint to the bar end (sample
   B1-17, "1'-6" (MIN.)").  Markup: "Need to show the embed dim for the bars
   crossing the construction joint".
+- **B7 Pulled-out values sit in open space with a two-piece pointer.**  A
+  value that does not fit is placed on the side away from the object it
+  measures (above the row's other texts, or beyond a dimension column), never
+  between its own extension lines and never closer than a text height to any
+  line; a two-piece pointer (a short landing along the text, then the angled
+  piece, no arrowhead) runs from the text to its dimension line.  The same
+  goes for cover values: they go into open space beyond the concrete (past
+  the break line), not over the bars.  Several values pulled out beside one
+  row (`chain_dims`) sit at one level in row order, each over the middle of
+  its space; where two would overlap, the earlier slides back along the row
+  as far as its own space stays under it (its pointer then drops square to
+  the row) before the later one is pushed on, so no pointer runs through a
+  neighbouring text.  The end bent pile embedment value ("1'-0"" over
+  "(MIN.)") sits in the band between the pile cut-offs and the stirrup
+  row's two-line texts, in the first run space outboard of the last pile
+  wide enough for it, its landing clear of the extension line and the
+  angled piece passing above the row's texts into the pile.  Follow-up
+  markups 2026-10-17: "This text is too close to the lines, pull it out and
+  use a pointer", "Move the text into space and use a two-piece pointer for
+  this cover annotation", "Make dim pointer two piece lines, one straight
+  looks weird".
+- **B8 Dimension columns.**  A vertical column right of the view carries its
+  text on its outer (right) side; columns are 0.45" apart where a rotated
+  two-line series text sits between them; the back-face strap dimension
+  sits 0.15" off the face inside the first column.  Follow-up markup:
+  "overlap here" (Section A-A back side).
 - **B6 Precision and format** (SDM 2.11.3): concrete to 1/8", bar spacing and
   partial bar lengths to 1/4", overall bar lengths to 1", elevations to
   0.001 ft, stations to 0.01 ft; feet-inch-fraction text with the FDOT font
@@ -167,15 +213,34 @@ symbol at page scale.
   face is shown only where there is room; otherwise it is omitted with the
   note "MSE WALLS NOT SHOWN FOR CLARITY." and shown in a separate detail
   without reinforcing (sample B1-34 style).
-- **D5 Construction joints are shown and named.**  The cap/backwall joint is
-  labelled "CONST. JOINT (SEE DETAIL "A")" in the sections and detailed as a
-  keyed joint (DETAIL "A", sample B1-17); the cap/pedestal joint is labelled
-  "CONST. JOINT" in the pedestal elevation.
+- **D5 Construction joints are shown and named, with their shape.**  The
+  cap/backwall joint is labelled "CONST. JOINT (SEE DETAIL "A")" in the
+  sections, drawn there with the key of DETAIL "A" in the joint line (the
+  straight joint piece is cut out and the keyway profile drawn in its
+  place), and detailed as a keyed joint (DETAIL "A", sample B1-17); the
+  cap/pedestal joint is labelled "CONST. JOINT" in the pedestal elevation.
+  Follow-up markup: "Show the shape of the construction joint at the joint".
 - **D6 Reinforcing straps** (MSE soil reinforcement attached to the backwall)
-  are shown in the sections as a short line out of the back face at the
-  strap elevation, labelled "Δ REINF. STRAP" and dimensioned from the cap
-  top, with the Δ legend giving the design responsibility and loads (sample
-  B1-17).  They come from the model's schematic strap references (D-045).
+  are shown in the sections as a line out of the back face at the strap
+  elevation with a representative 6" embedment into the backwall, labelled
+  "Δ REINF. STRAP" and dimensioned from the cap top, with the Δ legend giving
+  the design responsibility and loads (sample B1-17); the plan shows them as
+  4" stubs out of the back face with one callout giving count and spacing
+  ("7~Δ REINF. STRAPS @ 2'-9⁹⁄₁₆"").  They come from the model's schematic
+  strap references (D-045).  Follow-up markup: "Show a representative embed
+  into the wall for the strap".
+- **D10 Monolithic pours have no joint line.**  The cheek wall and the
+  backwall are one pour: no line is drawn on the cheek's inner face within
+  the backwall thickness (SECTION G-G).  Follow-up markup: "Remove the joint
+  here and show it monolithic".
+- **D11 Every callout describes modelled geometry.**  A feature removed from
+  the model disappears from the sheets with its callout (D-044 omitted the
+  nominal 3/4" pedestal chamfers: no chamfer callout), and modelled context
+  near the bent is drawn: the end bent weather closure (4" rain closure slab
+  between the front coping and the cap face, the closure copings on the low
+  MSE walls, the side copings stopping at the cheek lugs) in the plan and
+  sections, labelled "4" CLOSURE SLAB" and "COPING".  Markup: "These don't
+  look like they incorporate the CAD model updates".
 - **D7 Geotextile fabric detail** (DETAIL "B", sample B1-17): the back of the
   backwall with the fabric strip and the note "ATTACH TYPE D-5
   (SPECIFICATIONS SECTION 985) GEOTEXTILE FABRIC, 1'-0" WIDE AND FULL HEIGHT
@@ -196,7 +261,10 @@ symbol at page scale.
   go to a further details sheet ("perhaps on the next sheet if there is
   more room"), never squeezed against the frame or over other views.
 - **E2 Tables** stay inside the drawing window with a margin to the frame;
-  notes are a single numbered column with hanging indents.
+  notes are a single numbered column with hanging indents.  Notes and other
+  blocks at the lower right stop short of the BRIDGE NO. / bridge name
+  block above the title block (`Sheet.bridge_block`; the layout check
+  warns when a block runs into it).
 - **E3 Notes** say what is representative, where sections are located, what
   is not shown and why, and carry the MODEL CHECK items (removed before
   issue).
@@ -218,7 +286,8 @@ markers; this was the source of the "circles" questioned on B4-5).
 Render the previews (`--previews`) and look at every sheet at full size:
 
 1. `manifest.json` `layout_warnings` is empty (views inside their windows,
-   no crossings between views).
+   no crossings between views) and `annotation_overlaps` is empty or every
+   entry is a justified exception (A1).
 2. No leader parallel to the bar it points to (A3); no leader under the
    stationing arrow (A7).
 3. Every dimension text either sits in its space or has a line to it (B1);
@@ -270,3 +339,18 @@ Render the previews (`--previews`) and look at every sheet at full size:
 | B4-5 | Not sure what these circles are | F | zero-length lines in dimension blocks removed |
 | B4-9 | Remove the bending diagram; refer to the Standard Plans | C6 | diagram removed, open stirrups typed per Index 415-001 |
 | B4-9 | Change note 2 to "FIELD BEND OPEN STIRRUP HOOKS AS REQUIRED [TO] CLEAR PILE HEAD LOCATION" | C6 | note changed ("TO" added for grammar) |
+
+Follow-up comments on the rebuilt sheets, 2026-10-17/18 (all general):
+
+| Where | Comment (engineer's words) | Rule | Resolution |
+|---|---|---|---|
+| all | These don't look like they incorporate the CAD model updates | D11 | chamfer callout gone with the chamfers; closure slab, copings and strap layout drawn; snapshot from model D-048 |
+| dims | Make dim pointer two-piece lines, one straight looks weird | B1 | `View.pointer`: landing along the text, then the angled piece |
+| plan | Stationing still has overlap | A5 | arrow sized to its text, wedge on the far side |
+| Section A-A | Overlap here (back-side columns and the strap dimension) | B8 | columns 0.45" apart, strap dimension 0.15" off the face, right-hand columns text outward |
+| pedestal elev. | Move the text into space and use a two-piece pointer for this cover annotation | B7 | cover values beyond the cap break with pointers |
+| sections | This text is too close to the lines, pull it out and use a pointer (3") | B7 | pulled-out values go to the side away from the object, beyond the row's texts |
+| Section A-A | Show the shape of the construction joint at the joint | D5 | keyway drawn in the joint line |
+| Section A-A | Show a representative embed into the wall for the strap | D6 | 6" embed drawn |
+| Section G-G | Remove the joint here and show it monolithic | D10 | cheek/backwall interface line dropped |
+| all | In general double check that we are minimizing overlapping annotation with linework | A1 | annotation audit in the build and manifest, worked down to no entries: pulled values placed in row order (B7), the end bent pile embedment value in the band above the stirrup row (B7), end bent pile numbers off the flag letters (A8), pier bottom flags below the pile breaks, per-glyph text widths (A9), notes clear of the BRIDGE NO. block (E2) |

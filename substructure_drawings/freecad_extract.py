@@ -60,6 +60,12 @@ STRUCTURES = {
             "strap": ["GeotechnicalStrapEB1S1", "GeotechnicalStrapEB1S2", "GeotechnicalStrapEB1S3",
                       "GeotechnicalStrapEB1", "GeotechnicalStrapEB1S5", "GeotechnicalStrapEB1S6",
                       "GeotechnicalStrapEB1S7"],
+            # End bent weather closure (D-044): the 4 in rain closure slab
+            # between the front coping and the cap face, the copings on the
+            # three low MSE walls and the side copings that stop at the cheek
+            # rear lugs.
+            "closure": ["ClosureSlabEB1"],
+            "coping": ["ClosureCopingA5", "ClosureCopingA6", "ClosureCopingA7", "CopingA6AtCheek", "CopingA7AtCheek"],
         },
         "bar_groups": {
             "cap": ["CageEB1Bars"],
@@ -110,6 +116,9 @@ STRUCTURES = {
             "strap": ["GeotechnicalStrapEB2S1", "GeotechnicalStrapEB2S2", "GeotechnicalStrapEB2S3",
                       "GeotechnicalStrapEB2", "GeotechnicalStrapEB2S5", "GeotechnicalStrapEB2S6",
                       "GeotechnicalStrapEB2S7"],
+            "closure": ["ClosureSlabEB2"],
+            # CopingB7AtCheek has an invalid shape in the model and is left out
+            "coping": ["ClosureCopingB1", "ClosureCopingB6", "ClosureCopingB7", "CopingB6AtCheek"],
         },
         "bar_groups": {
             "cap": ["CageEB2Bars"],
@@ -366,6 +375,26 @@ def run():
         up = cfg["plan_up"]
         # ---- plan (looking down): substructure concrete only
         S["plan"] = project(conc, origin, e1, up)
+        # ---- plan context (D-044/D-045): the weather closure, the copings,
+        # the front MSE wall and the straps around the bent, projected
+        # together (they hide each other, not the bent), clipped to 8 ft from
+        # the cap in plan
+        pctx = {}
+        for role in ("closure", "coping", "mse", "strap"):
+            items = []
+            for n in cfg["context"].get(role, []):
+                o = get(n)
+                if o is None:
+                    continue
+                shp = o.Shape
+                if role != "strap":
+                    shp = clip_box(shp, xmin=cap.XMin - 8 * FT, xmax=cap.XMax + 8 * FT,
+                                   ymin=cap.YMin - 8 * FT, ymax=cap.YMax + 8 * FT)
+                if shp is not None:
+                    items.append((n, shp))
+            if items:
+                pctx[role] = items
+        S["plan_context"] = project(pctx, origin, e1, up) if pctx else []
         # ---- elevation (looking along plan_up, z up)
         S["elev"] = project(conc, origin, e1, (0, 0, 1))
         # ---- transverse sections, sheet right = station, viewer looking +X
@@ -384,7 +413,7 @@ def run():
             sec_ctx[role] = [(n, get(n).Shape) for n in names if get(n) is not None]
         # Context is clipped near the bent so sections stay local.
         ymin, ymax = cap.YMin - 6 * FT, cap.YMax + 6 * FT
-        for role in ("mse", "landing"):
+        for role in ("mse", "landing", "closure", "coping"):
             if role in sec_ctx:
                 sec_ctx[role] = [(n, clip_box(s, ymin=ymin, ymax=ymax, zmin=clip_z)) for n, s in sec_ctx[role]]
                 sec_ctx[role] = [(n, s) for n, s in sec_ctx[role] if s is not None]

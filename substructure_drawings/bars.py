@@ -235,9 +235,11 @@ def signature(kind, fam, sub, bar):
     parts = []
     for item in L:
         if item[0] == "L":
-            parts.append(("L", float(fdot.round_in(item[1], 0.25))))
+            # to 1/8" first, so a leg modelled exactly on a 1/4" boundary
+            # (20 7/8") rounds the same way in every bar of the series
+            parts.append(("L", float(fdot.round_in(float(fdot.round_in(item[1], 0.125)), 0.25))))
         else:
-            parts.append(("A", int(round(item[1])), float(fdot.round_in(item[2], 0.0625))))
+            parts.append(("A", int(round(item[1])), float(fdot.round_in(float(fdot.round_in(item[2], 0.03125)), 0.0625))))
     return (size, tuple(parts))
 
 

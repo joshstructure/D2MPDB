@@ -469,7 +469,10 @@ def cheek_section_side(b, zone, cheek, letter, wwr_note=2):
     xb = X(reach)
     xd = xb + d * 0.45 * k
     v.dim((xb, s.cap_bot), (xb, s.cap_top), -d * 0.45 * k, 90, step=0.125)
-    v.text((xd + 0.45 * th, (s.cap_bot + s.cap_top) / 2), "END BENT CAP", None, "TOP_CENTER", rot=90.0)
+    # the value sits on the outer side of its line (cad.View.dim puts the
+    # text of a right-hand column on the right, B8); the name on the other side
+    v.text((xd - d * 0.45 * th, (s.cap_bot + s.cap_top) / 2), "END BENT CAP", None,
+           "BOTTOM_CENTER" if d > 0 else "TOP_CENTER", rot=90.0)
     # ------------------------------------------------------- callouts
     x_col = u_in + d * 0.45 * k
     land = 0.14 * k
@@ -545,6 +548,20 @@ def cheek_section_top(b, zone, cheek, letter, wwr_note=2):
         return u_in + d * off
     al_in = "left" if d > 0 else "right"
     edges = _clean(sec["top_edges"])
+    # monolithic cheek wall and backwall (markup 2026-10-17, "remove the joint
+    # here and show it monolithic"): no line on the cheek's inner face within
+    # the backwall thickness
+    be0 = extents(edges, ("backwall",)) if any(r["role"] == "backwall" for r in edges) else None
+    if be0:
+        lo_v, hi_v = min(be0[1], be0[3]), max(be0[1], be0[3])
+
+        def _joint(r):
+            if r["t"] not in ("L", "P") or len(r["p"]) != 2:
+                return False
+            (a, b) = r["p"]
+            return (abs(a[0] - u_in) < 0.01 and abs(b[0] - u_in) < 0.01
+                    and lo_v - 0.01 <= min(a[1], b[1]) and max(a[1], b[1]) <= hi_v + 0.01)
+        edges = [r for r in edges if not _joint(r)]
     reach = 2.99        # the snapshot clips the backwall 3 ft from the cheek: break just inside
     vs = [p[1] for r in edges for p in edge_points(r)]
     box = _box(u_out - d * 0.3, X(reach), min(vs) - 1.0, max(vs) + 1.0)
@@ -755,7 +772,9 @@ def detail_geotextile(b, zone, note=3):
         _earth(v, x0, x1, T + 0.01 * k, top)
     # labels
     _area_leader(v, (xm - 0.40, 0.42 * T), (xm - 0.68, T + 0.6), "END BENT\\PBACKWALL", "right")
-    v.leader([(xm + 0.25, T + fo), (xm + 0.6, T + 0.6), (xm + 0.72, T + 0.6)],
+    # (the label stays within the 3'-0" segment, so the detail fits the
+    # narrower details column of the End Bent 2 sheet)
+    v.leader([(xm + 0.25, T + fo), (xm + 0.38, T + 0.6), (xm + 0.5, T + 0.6)],
              "GEOTEXTILE FABRIC\\P(SEE NOTE %d)" % note, "left")
     v.leader([(xm - gw / 4, gd / 2), (xm - 0.3, -0.42), (xm - 0.42, -0.42)], "¾\" V-GROOVE (EF)", "right")
     v.leader([(xm + 0.62, 0), (xm + 0.72, -0.42), (xm + 0.84, -0.42)], "FFBW", "left")

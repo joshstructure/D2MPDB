@@ -209,6 +209,8 @@ def main():
     print("dxf:", dxf)
     for w in manifest["layout_warnings"]:
         print("WARNING:", w)
+    for w in manifest.get("annotation_overlaps", []):
+        print("NOTE (annotation over linework):", w)
     audit = manifest["symbology_audit"]
     for w in audit["not_on_fdot_level"] + audit["not_by_level"]:
         print("WARNING (symbology):", w)

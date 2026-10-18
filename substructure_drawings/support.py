@@ -21,6 +21,9 @@ ROLE_LAYERS = {
     "pile_conc": ("PileConc", "PileConc_h"),
     "pile_steel": ("PileSteel", "PileSteel_h"),
     "mse": ("WallMSEPanel", "WallMSEPanel_h"),
+    "coping": ("WallMSEPanel", "WallMSEPanel_h"),       # MSE wall copings (no coping level in the table)
+    "closure": ("SubStrConc2", "SubStrConc2_h"),        # end bent rain closure slab (D-044)
+    "strap": ("Rebar2", "Rebar2"),                      # schematic soil reinforcing straps (D-045)
     "landing": ("AppSlabConc", "AppSlabConc_h"),
     "unknown": ("SubStrConc", "SubStrConc_h"),
 }

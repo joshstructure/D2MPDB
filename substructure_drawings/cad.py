@@ -92,14 +92,28 @@ ATTACH = {"TOP_LEFT": 1, "TOP_CENTER": 2, "TOP_RIGHT": 3, "MIDDLE_LEFT": 4, "MID
 _FRAC = re.compile(r"\{\\H[0-9.]+x;\\S([^;#^/]*)[#^/]([^;]*);\}")
 
 
+# Advance width of the FDOT font glyphs as a fraction of the capital height
+# (measured on the installed FDOT.ttf: advance / cap height 717 em units),
+# so the layout estimate of a text with quotes, parentheses and points is
+# not a quarter too wide.  Unlisted characters count 0.95 (a wide capital).
+_ADV = {"A": 0.904, "B": 0.997, "C": 0.925, "D": 1.084, "E": 1.006, "F": 0.947, "G": 0.902, "H": 1.137,
+        "I": 0.639, "J": 0.755, "K": 1.008, "L": 0.782, "M": 1.089, "N": 0.978, "O": 0.898, "P": 0.968,
+        "Q": 0.898, "R": 0.969, "S": 0.997, "T": 0.898, "U": 0.946, "V": 0.962, "W": 1.177, "X": 0.989,
+        "Y": 0.835, "Z": 1.109, " ": 0.692, "'": 0.297, '"': 0.470, "(": 0.473, ")": 0.473, ".": 0.388,
+        ",": 0.431, "~": 0.932, "@": 1.402, "=": 1.103, "-": 0.728, "&": 1.114, "/": 0.718, "%": 1.237,
+        ":": 0.427, "#": 1.192, "+": 0.914, "¼": 1.038, "½": 1.137, "¾": 1.205,
+        "℄": 0.883, "Δ": 0.940, "°": 0.466, "¡": 0.856, "": 1.0}
+_ADV.update({d: 0.886 for d in "0123456789"})
+_ADV.update({chr(c): 1.2 for c in range(0x183, 0x18F)})   # eighths and sixteenths glyphs
+
+
 def text_extent(s, h):
-    """Approximate width of single-line text (FDOT font capitals: 0.87 of
-    the height per character on average); a fraction counts as about one
-    character."""
-    plain = _FRAC.sub("@", s)
+    """Approximate width of single-line text in the FDOT font (per-glyph
+    advances, ``_ADV``); an MTEXT stacked fraction counts as one character."""
+    plain = _FRAC.sub("", s)
     for code in ("\\S", ";", "#", "{", "}"):
         plain = plain.replace(code, "")
-    return 0.86 * h * len(plain)
+    return h * sum(_ADV.get(c, _ADV.get(c.upper(), 0.95)) for c in plain)
 
 
 def boxes_cross(mine, theirs):
@@ -286,6 +300,8 @@ class View:
         self.th = self.style_h(fdot.TEXT_STYLE)
         self.local_bbox = [math.inf, math.inf, -math.inf, -math.inf]
         self.boxes = []   # local boxes of every primitive and text, for overlap checks
+        self.texts = []   # (local box, string) of every text, for the annotation audit (A1)
+        self.segs = []    # (p, q, layer) local linework segments, for the annotation audit
 
     def style_h(self, style):
         """Model-space text height of an FDOT text style at the view scale."""
@@ -315,6 +331,46 @@ class View:
             self.boxes.append((min(q[0] for q in qs), min(q[1] for q in qs),
                                max(q[0] for q in qs), max(q[1] for q in qs)))
 
+    def _seg(self, p, q, layer):
+        if self.xform is not None:
+            p, q = self.xform(p), self.xform(q)
+        self.segs.append((p, q, layer))
+
+    def audit(self):
+        """Annotation over linework (STYLE_GUIDE A1, B7): for every text of the
+        view, the number of linework segments (concrete, bars, centerlines,
+        dimension and leader lines; not hatch patterns) that run through its
+        box or end inside it.  The box is inset by 0.15 text heights, so a
+        leader landing or a pointer that stops at the text's edge does not
+        count, and a piece shorter than 0.3 text heights inside the box is
+        ignored.  Returns [(text, crossings)] for the texts with crossings."""
+        m, short = 0.15 * self.th, 0.3 * self.th
+        out = []
+        for (x0, y0, x1, y1), label in self.texts:
+            box = (x0 + m, y0 + m, x1 - m, y1 - m)
+            if box[2] <= box[0] or box[3] <= box[1]:
+                continue
+            n = 0
+            for p, q, layer in self.segs:
+                if layer in ("Patterning", "Symbols"):   # hatch patterns; symbols drawn around their own letters
+                    continue
+                ip = box[0] < p[0] < box[2] and box[1] < p[1] < box[3]
+                iq = box[0] < q[0] < box[2] and box[1] < q[1] < box[3]
+                if ip or iq:
+                    n += 1
+                    continue
+                seg = clip_segment(p, q, box)
+                if seg is not None and math.dist(seg[0], seg[1]) > short:
+                    n += 1
+            if n:
+                out.append((label, n))
+        # texts over texts (A2): overlapping inset boxes, each pair once
+        for i, ((x0, y0, x1, y1), label) in enumerate(self.texts):
+            for (u0, v0, u1, v1), other in self.texts[i + 1:]:
+                if x0 + m < u1 - m and u0 + m < x1 - m and y0 + m < v1 - m and v0 + m < y1 - m:
+                    out.append(("%s / over text %s" % (label, other), 1))
+        return out
+
     def paper_boxes(self):
         """Paper-inch boxes of the view's primitives and texts (large area
         boxes, i.e. closed outlines and hatches, are left out)."""
@@ -341,6 +397,7 @@ class View:
     # geometry -----------------------------------------------------------
     def line(self, p, q, layer, ltype=None):
         self._track([p, q])
+        self._seg(p, q, layer)
         return self._add(self.msp.add_line(self.T(p), self.T(q)), layer, ltype)
 
     def pl(self, pts, layer, bulges=None, closed=False, ltype=None, width=None):
@@ -348,6 +405,8 @@ class View:
         if len(pts) < 2:
             return None
         self._track(pts)
+        for a, b in zip(pts, pts[1:] + ([pts[0]] if closed else [])):
+            self._seg(a, b, layer)
         if self.xform is not None and bulges and any(abs(b) > 1e-9 for b in bulges):
             pts = discretize_pl(pts, bulges)
             bulges = None
@@ -385,6 +444,10 @@ class View:
 
     def circle(self, c, r, layer, ltype=None):
         self._track([(c[0] - r, c[1] - r), (c[0] + r, c[1] + r)])
+        if r > 0.5 * self.th:   # audit: an octagon for circles larger than a dot
+            ring = [(c[0] + r * math.cos(i * math.pi / 4), c[1] + r * math.sin(i * math.pi / 4)) for i in range(9)]
+            for a, b in zip(ring, ring[1:]):
+                self._seg(a, b, layer)
         return self._add(self.msp.add_circle(self.T(c), r), layer, ltype)
 
     def arc(self, c, r, a0, a1, layer, ltype=None):
@@ -445,14 +508,19 @@ class View:
             self.pl(run, layer, ltype=ltype)
 
     # annotation --------------------------------------------------------
-    def _track_box(self, p, w, hgt, ax, ay, rot=0.0):
-        """Track a text box of size w x hgt anchored at fraction (ax, ay) of it."""
+    def _track_box(self, p, w, hgt, ax, ay, rot=0.0, label=None):
+        """Track a text box of size w x hgt anchored at fraction (ax, ay) of it;
+        with ``label`` the box is also kept for the annotation audit."""
         c, s_ = math.cos(math.radians(rot)), math.sin(math.radians(rot))
         pts = []
         for fx, fy in ((0, 0), (1, 0), (1, 1), (0, 1)):
             dx, dy = (fx - ax) * w, (fy - ay) * hgt
             pts.append((p[0] + dx * c - dy * s_, p[1] + dx * s_ + dy * c))
         self._track(pts)
+        if label is not None:
+            qs = [self.xform(q) if self.xform is not None else q for q in pts]
+            self.texts.append(((min(q[0] for q in qs), min(q[1] for q in qs),
+                                max(q[0] for q in qs), max(q[1] for q in qs)), label))
 
     def text(self, p, s, h=None, align="BOTTOM_LEFT", rot=0.0, layer="TextStructures", style=None):
         """Single-line text in an FDOT text style (default FDOT Structures,
@@ -466,7 +534,7 @@ class View:
         vert, horiz = align.split("_")
         ax = {"LEFT": 0.0, "CENTER": 0.5, "RIGHT": 1.0}[horiz]
         ay = {"BOTTOM": 0.0, "MIDDLE": 0.5, "TOP": 1.0}[vert]
-        self._track_box(p, text_extent(s, h), h, ax, ay, rot)
+        self._track_box(p, text_extent(s, h), h, ax, ay, rot, label=s)
         e = self.msp.add_text(s, height=h, rotation=rot, dxfattribs={"style": style})
         e.set_placement(self.T(p), align=TextEntityAlignment[align])
         return self._add(e, layer)
@@ -481,7 +549,7 @@ class View:
         hgt = h * (1.0 + fdot.LINE_PITCH * (len(lines) - 1))
         ax = {1: 0, 2: 0.5, 3: 1, 4: 0, 5: 0.5, 6: 1, 7: 0, 8: 0.5, 9: 1}[attach]
         ay = {1: 1, 2: 1, 3: 1, 4: 0.5, 5: 0.5, 6: 0.5, 7: 0, 8: 0, 9: 0}[attach]
-        self._track_box(p, w, hgt, ax, ay, rot)
+        self._track_box(p, w, hgt, ax, ay, rot, label=s)
         e = self.msp.add_mtext(s, dxfattribs={"style": style, "char_height": h, "attachment_point": attach,
                                               "rotation": rot, "line_spacing_factor": fdot.MTEXT_LINE_SPACING})
         if width:
@@ -490,7 +558,7 @@ class View:
         return self._add(e, layer)
 
     def dim(self, p1, p2, offset, angle=0.0, text=None, step=0.125, layer="Dimension", outside=None, level=0,
-            horizontal=False, loc=None):
+            horizontal=False, loc=None, row_lines=1, shift=0.0):
         """Linear dimension between local points; ``offset`` is the signed distance
         of the dimension line from p1 measured perpendicular to the dimension
         direction (angle 0 = horizontal, 90 = vertical).
@@ -519,12 +587,26 @@ class View:
         if horizontal:
             override["dimtih"] = 1
             override["dimtoh"] = 1
+        # Text side (STYLE_GUIDE B8): a vertical dimension column right of the
+        # points it measures carries its text on the outer (right) side, so
+        # the text never sits between the column and the object.
+        side = 1.0
+        if abs(angle - 90.0) < 1e-9 and sgn < 0:
+            override["dimtad"] = 4
+            side = -1.0
         kw = {}
         pulled = None   # text location when the value is pulled out of its space (B1)
+        rot = 0.0 if horizontal else angle
+        # audit: the extension lines and the dimension line as linework
+        f1 = (base[0] + ux * t1, base[1] + uy * t1)
+        f2 = (base[0] + ux * t2, base[1] + uy * t2)
+        self._seg(p1, f1, layer)
+        self._seg(p2, f2, layer)
+        self._seg(f1, f2, layer)
         if loc is not None:
             kw["location"] = self.T(loc)
             override["dimtmove"] = 1
-            self._track_box(loc, tw, th_box, 0.5, 0.5, 0.0 if horizontal else angle)
+            self._track_box(loc, tw, th_box, 0.5, 0.5, rot, label=text)
             pulled = loc
         elif outside is not None:
             arrow = (fdot.ARROW_IN + 0.06) / 12 * self.sf
@@ -533,17 +615,26 @@ class View:
                 lo, hi = sorted((t1, t2))
                 end = hi if outside > 0 else lo
                 along = end - (t1 + t2) / 2 + outside * (arrow + tw / 2)
-                lift = 0.9 * self.th
+                lift = 0.9 * self.th * side
             else:
-                # below the line, opposite the side where the text sits (+n)
-                lift = -(1.5 + 1.6 * level) * self.th * sgn
-            loc = (mid[0] + ux * along + nx * sgn * lift, mid[1] + uy * along + ny * sgn * lift)
+                # B7: pulled out on the side AWAY from the object (never between
+                # its own extension lines): beyond the row's in-place texts when
+                # they sit on that side, else just past the dimension line;
+                # ``shift`` moves it along the row (values pulled out of
+                # neighbouring spaces are staggered along the row, not stacked)
+                along = shift
+                same_side = (side * sgn) > 0
+                # ``row_lines``: the tallest in-place text of the row (lines),
+                # which a value pulled out on the same side must clear
+                beyond = 0.9 + 1.4 + 1.67 * (max(row_lines, 1) - 1)
+                lift = sgn * ((beyond if same_side else 1.5) + 1.6 * level) * self.th
+            loc = (mid[0] + ux * along + nx * lift, mid[1] + uy * along + ny * lift)
             kw["location"] = self.T(loc)
             override["dimtmove"] = 1
-            self._track_box(loc, tw, th_box, 0.5, 0.5, angle)
+            self._track_box(loc, tw, th_box, 0.5, 0.5, angle, label=text)
             pulled = loc
         else:
-            self._track_box(mid, tw, th_box, 0.5, 0.0 if sgn > 0 else 1.0, angle)
+            self._track_box(mid, tw, th_box, 0.5, 0.0 if side > 0 else 1.0, angle, label=text)
         self._track([p1, p2, base])
         d = self.msp.add_linear_dim(base=self.T(base), p1=self.T(p1), p2=self.T(p2), angle=angle,
                                     dimstyle=fdot.DIM_STYLE, text=text, override=override,
@@ -551,13 +642,45 @@ class View:
         d.render()
         self.ents.append(d.dimension)
         if pulled is not None:
-            # B1: a plain line (no arrowhead) from the dimension line midpoint
-            # to the nearest edge of the pulled-out text, so the reader sees
-            # which dimension the value belongs to.
-            seg = pointer_segment(mid, pulled, tw + 0.4 * self.th, th_box, 0.0 if horizontal else angle)
-            if seg is not None:
-                self.line(seg[0], seg[1], layer)   # tracks its points, ByLayer, into self.ents
+            # B1: a two-piece pointer (no arrowhead) from the pulled-out text to
+            # the dimension line midpoint: a short landing along the text's
+            # baseline, then the angled piece, so the reader sees which
+            # dimension the value belongs to.
+            pts = self.pointer(mid, pulled, tw + 0.4 * self.th, th_box, rot)
+            if pts is not None:
+                self.pl(pts, layer)   # tracks its points, ByLayer, into self.ents
         return meas
+
+    def pointer(self, mid, c, w, h, rot_deg):
+        """Points of the pointer from a pulled-out text (box w x h centred at
+        ``c``, rotated ``rot_deg``) to ``mid`` (STYLE_GUIDE B1): where the
+        dimension lies under (over) the text, one piece square to the
+        baseline from the point of the box edge over it; otherwise from the
+        middle of the box side facing ``mid`` along the baseline a landing
+        of 0.12", then straight to ``mid``.  None when ``mid`` lies inside
+        the box."""
+        a = math.radians(rot_deg)
+        dx, dy = math.cos(a), math.sin(a)      # baseline direction
+        rel = (mid[0] - c[0], mid[1] - c[1])
+        along = rel[0] * dx + rel[1] * dy
+        across = -rel[0] * dy + rel[1] * dx
+        if abs(along) <= w / 2 and abs(across) <= h / 2:
+            return None
+        margin = 0.3 * self.th
+        if abs(along) <= w / 2 - margin:
+            # the dimension is under (over) the value: one piece square to
+            # the baseline from the box edge facing it, over the dimension
+            t = 1.0 if across >= 0 else -1.0
+            start = (c[0] + dx * along - dy * t * h / 2, c[1] + dy * along + dx * t * h / 2)
+            return [start, mid]
+        s = 1.0 if along >= 0 else -1.0
+        start = (c[0] + dx * s * w / 2, c[1] + dy * s * w / 2)
+        land = 0.12 / 12.0 * self.sf
+        if abs(across) < 1e-9 or abs(along) - w / 2 < land:
+            # beside its own line, or too near the side for a landing: one piece
+            return [start, mid]
+        end = (start[0] + dx * s * land, start[1] + dy * s * land)
+        return [start, end, mid]
 
     def _landing(self, pts, align):
         """Leader points ending in a short horizontal landing (FDOT leaders);
@@ -722,7 +845,12 @@ class View:
     def stationing_arrow(self, p, direction, length_in=1.7):
         """DIRECTION OF STATIONING: a long thin line ending in a slender solid
         half arrowhead, the text written along the line (FDOT sheets)."""
-        L = length_in / 12 * self.sf
+        k = self.sf / 12.0
+        la, wa = 0.3 * k, 0.07 * k
+        label = "DIRECTION OF STATIONING"
+        # the line is long enough for the text to sit along its plain part,
+        # clear of the arrowhead (STYLE_GUIDE A5); the wedge is on the other side
+        L = max(length_in / 12 * self.sf, text_extent(label, self.th) + la + 0.3 * k)
         q = (p[0] + direction[0] * L, p[1] + direction[1] * L)
         self.line(p, q, "Symbols")
         ang = math.degrees(math.atan2(direction[1], direction[0]))
@@ -730,13 +858,11 @@ class View:
         # text side: the normal that is "up" for the reading direction
         r = math.radians(rot)
         nx, ny = -math.sin(r), math.cos(r)
-        k = self.sf / 12.0
-        la, wa = 0.3 * k, 0.07 * k
         b = (q[0] - direction[0] * la, q[1] - direction[1] * la)
-        tri = [q, b, (b[0] + nx * wa, b[1] + ny * wa)]
+        tri = [q, b, (b[0] - nx * wa, b[1] - ny * wa)]
         self._track(tri)
         s = self.msp.add_solid([self.T(tri[0]), self.T(tri[1]), self.T(tri[2]), self.T(tri[2])])
         self._add(s, "Symbols")
         mid = ((p[0] + b[0]) / 2, (p[1] + b[1]) / 2)
         off = 0.45 * self.th
-        self.text((mid[0] + nx * off, mid[1] + ny * off), "DIRECTION OF STATIONING", None, "BOTTOM_CENTER", rot)
+        self.text((mid[0] + nx * off, mid[1] + ny * off), label, None, "BOTTOM_CENTER", rot)
