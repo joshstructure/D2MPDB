@@ -1,0 +1,4663 @@
+{
+  "source": "C:\\github\\D2MPDB\\project_current\\geometry\\freecad\\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "source_sha256": "a831dec89084195338e78bef19bf014cd71421c9138e5ba0471479a5f6d6ed27",
+  "scope": "All backwall vertical bars against all native reinforcement solids",
+  "saved": false,
+  "recomputed": false,
+  "source_unchanged": true,
+  "steel_state_unchanged": true,
+  "status": "FAIL",
+  "steel_objects": 654,
+  "vertical_bars": 92,
+  "summaries": {
+    "EB1": {
+      "vertical_bars": 46,
+      "clashing_vertical_bars": 14,
+      "clash_pairs": 12,
+      "other_categories": {
+        "cap steel": 10,
+        "backwall steel": 2
+      },
+      "pair_families": {
+        "F1V / cap steel": 5,
+        "F1V / backwall steel": 1,
+        "F2V / cap steel": 5,
+        "F2V / backwall steel": 1
+      },
+      "overlap_volume_range_in3": [
+        0.01524339389436406,
+        5.196555350832228
+      ]
+    },
+    "EB2": {
+      "vertical_bars": 46,
+      "clashing_vertical_bars": 20,
+      "clash_pairs": 21,
+      "other_categories": {
+        "cap steel": 19,
+        "backwall steel": 2
+      },
+      "pair_families": {
+        "F1V / cap steel": 10,
+        "F1V / backwall steel": 1,
+        "F2V / cap steel": 9,
+        "F2V / backwall steel": 1
+      },
+      "overlap_volume_range_in3": [
+        0.0005367181763154306,
+        5.196555450015374
+      ]
+    }
+  },
+  "clashes": [
+    {
+      "support": "EB1",
+      "bar": "SteelBridgeBackwallEB1F1V01",
+      "bar_id": "F1V01",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB1Trans_R1_2",
+      "other_label": "EB1 R1 hoop #6 Trans_R1_2",
+      "other_mark": "6B1",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.6975773148516247,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        -8.65565632050647,
+        -113.97631368440845,
+        508.93361033814205
+      ],
+      "intersection_y_from_cap_min_in": 3.5236863155915588,
+      "intersection_z_above_cap_top_in": -9.91869644847554,
+      "intersection_bounds_local_in": [
+        -8.911749551286455,
+        -114.11228297890196,
+        502.85230678268056,
+        -8.38418720569221,
+        -113.87499999493414,
+        514.4235523800085
+      ]
+    },
+    {
+      "support": "EB1",
+      "bar": "SteelBridgeBackwallEB1F1V07",
+      "bar_id": "F1V07",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB1Trans_R3_4",
+      "other_label": "EB1 R3 hoop #6 Trans_R3_4",
+      "other_mark": "6B1",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 2.2575908605605965,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        -8.660118467071554,
+        -42.101857189311445,
+        508.68225824388554
+      ],
+      "intersection_y_from_cap_min_in": 75.39814281068857,
+      "intersection_z_above_cap_top_in": -10.170048542732035,
+      "intersection_bounds_local_in": [
+        -8.983640493806131,
+        -42.36135559111465,
+        502.85230678268056,
+        -8.374999996063009,
+        -41.86420925668671,
+        514.6432808630015
+      ]
+    },
+    {
+      "support": "EB1",
+      "bar": "SteelBridgeBackwallEB1F1V08",
+      "bar_id": "F1V08",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB1Trans_R4_2",
+      "other_label": "EB1 R4 pile_u #6 Trans_R4_2",
+      "other_mark": "6B2",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.3504733787677221,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        -8.657395605262082,
+        -29.938370432079395,
+        508.321407745189
+      ],
+      "intersection_y_from_cap_min_in": 87.56162956792062,
+      "intersection_z_above_cap_top_in": -10.530899041428555,
+      "intersection_bounds_local_in": [
+        -8.85321831105204,
+        -30.000000004034085,
+        502.8523067826806,
+        -8.437499995926375,
+        -29.874999995321193,
+        514.1874402743879
+      ]
+    },
+    {
+      "support": "EB1",
+      "bar": "SteelBridgeBackwallEB1F1V16",
+      "bar_id": "F1V16",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB1Trans_R7_4",
+      "other_label": "EB1 R7 hoop #6 Trans_R7_4",
+      "other_mark": "6B1",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 2.2575908605134,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        -8.660118467071614,
+        65.89814281069195,
+        508.682258243917
+      ],
+      "intersection_y_from_cap_min_in": 183.39814281069195,
+      "intersection_z_above_cap_top_in": -10.170048542700597,
+      "intersection_bounds_local_in": [
+        -8.983640493807233,
+        65.63864440888534,
+        502.85230678268056,
+        -8.374999996063035,
+        66.13579074331338,
+        514.6432808630016
+      ]
+    },
+    {
+      "support": "EB1",
+      "bar": "SteelBridgeBackwallEB1F1V17",
+      "bar_id": "F1V17",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB1Trans_R8_2",
+      "other_label": "EB1 R8 pile_u #6 Trans_R8_2",
+      "other_mark": "6B2",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.35047337755409075,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        -8.657395605611264,
+        78.06162956786731,
+        508.3214077303255
+      ],
+      "intersection_y_from_cap_min_in": 195.56162956786733,
+      "intersection_z_above_cap_top_in": -10.53089905629206,
+      "intersection_bounds_local_in": [
+        -8.853218311053451,
+        77.99999999596594,
+        502.8523067826806,
+        -8.437499995926412,
+        78.12500000467881,
+        514.1874402743878
+      ]
+    },
+    {
+      "support": "EB1",
+      "bar": "SteelBridgeBackwallEB1F1V20",
+      "bar_id": "F1V20",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "SteelBridgeBackwallEB1F1V21",
+      "other_label": "EB1 backwall Face 1 vertical; schematic dowel #108",
+      "other_mark": "5D1",
+      "other_category": "backwall steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 5.196555350832228,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        -8.687500000000053,
+        113.99999999999997,
+        532.5936971765177
+      ],
+      "intersection_y_from_cap_min_in": 231.49999999999994,
+      "intersection_z_above_cap_top_in": 13.741390389900124,
+      "intersection_bounds_local_in": [
+        -8.937500000004464,
+        113.87500000000001,
+        502.85230678661765,
+        -8.437499999995644,
+        114.12499999999996,
+        562.3350875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "bar": "SteelBridgeBackwallEB1F2V01",
+      "bar_id": "F2V01",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB1Trans_R1_2",
+      "other_label": "EB1 R1 hoop #6 Trans_R1_2",
+      "other_mark": "6B1",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 5.594824691024411e-16,
+      "common_volume_in3": 0.06439004903058253,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        -3.3115634537379037,
+        -114.011490057454,
+        515.477312400695
+      ],
+      "intersection_y_from_cap_min_in": 3.488509942546003,
+      "intersection_z_above_cap_top_in": -3.3749943859224665,
+      "intersection_bounds_local_in": [
+        -3.622538346001187,
+        -114.15165354850983,
+        515.1158851969773,
+        -3.0020627533981696,
+        -113.87499999599356,
+        515.8387283762579
+      ]
+    },
+    {
+      "support": "EB1",
+      "bar": "SteelBridgeBackwallEB1F2V07",
+      "bar_id": "F2V07",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB1Trans_R3_4",
+      "other_label": "EB1 R3 hoop #6 Trans_R3_4",
+      "other_mark": "6B1",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.17237094120118768,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        -3.312202395826684,
+        -42.13025646284562,
+        515.4773344220077
+      ],
+      "intersection_y_from_cap_min_in": 75.36974353715439,
+      "intersection_z_above_cap_top_in": -3.3749723646097687,
+      "intersection_bounds_local_in": [
+        -3.6250000039530113,
+        -42.40121503080952,
+        515.1023067816756,
+        -2.9999999960629555,
+        -41.87499999605341,
+        515.8523067913958
+      ]
+    },
+    {
+      "support": "EB1",
+      "bar": "SteelBridgeBackwallEB1F2V08",
+      "bar_id": "F2V08",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB1Trans_R4_2",
+      "other_label": "EB1 R4 pile_u #6 Trans_R4_2",
+      "other_mark": "6B2",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 8.951719505639057e-15,
+      "common_volume_in3": 0.01524339389784988,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        -3.312498017154193,
+        -29.93734239883837,
+        515.4773067865511
+      ],
+      "intersection_y_from_cap_min_in": 87.56265760116163,
+      "intersection_z_above_cap_top_in": -3.3750000000664007,
+      "intersection_bounds_local_in": [
+        -3.5625000039367567,
+        -30.00000000393675,
+        515.1977982854934,
+        -3.0624999960631762,
+        -29.874999996063025,
+        515.7568152877417
+      ]
+    },
+    {
+      "support": "EB1",
+      "bar": "SteelBridgeBackwallEB1F2V16",
+      "bar_id": "F2V16",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB1Trans_R7_4",
+      "other_label": "EB1 R7 hoop #6 Trans_R7_4",
+      "other_mark": "6B1",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.17237094122374558,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        -3.312202395829248,
+        65.86974353714723,
+        515.4773344220043
+      ],
+      "intersection_y_from_cap_min_in": 183.3697435371472,
+      "intersection_z_above_cap_top_in": -3.374972364613278,
+      "intersection_bounds_local_in": [
+        -3.6250000039530343,
+        65.59878496918924,
+        515.1023067816756,
+        -2.99999999606298,
+        66.12500000394657,
+        515.8523067913958
+      ]
+    },
+    {
+      "support": "EB1",
+      "bar": "SteelBridgeBackwallEB1F2V17",
+      "bar_id": "F2V17",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB1Trans_R8_2",
+      "other_label": "EB1 R8 pile_u #6 Trans_R8_2",
+      "other_mark": "6B2",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.01524339389436406,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        -3.312498017220231,
+        78.06265760119072,
+        515.4773067866805
+      ],
+      "intersection_y_from_cap_min_in": 195.56265760119072,
+      "intersection_z_above_cap_top_in": -3.374999999937066,
+      "intersection_bounds_local_in": [
+        -3.5625000039367802,
+        77.99999999606325,
+        515.1977982854934,
+        -3.0624999960631993,
+        78.125000003937,
+        515.7568152877417
+      ]
+    },
+    {
+      "support": "EB1",
+      "bar": "SteelBridgeBackwallEB1F2V20",
+      "bar_id": "F2V20",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "SteelBridgeBackwallEB1F2V21",
+      "other_label": "EB1 backwall Face 2 vertical; schematic dowel #108",
+      "other_mark": "5D1",
+      "other_category": "backwall steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 5.19655535080476,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        -3.3124999999999982,
+        113.99999999999994,
+        532.5936971763997
+      ],
+      "intersection_y_from_cap_min_in": 231.49999999999994,
+      "intersection_z_above_cap_top_in": 13.741390389782175,
+      "intersection_bounds_local_in": [
+        -3.5625000000003526,
+        113.87500000000001,
+        502.85230678661765,
+        -3.0624999999996434,
+        114.12499999999996,
+        562.3350875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "bar": "SteelBridgeBackwallEB2F1V01",
+      "bar_id": "F1V01",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB2Trans_R1_2",
+      "other_label": "EB2 R1 hoop #6 Trans_R1_2",
+      "other_mark": "6B1",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.12150709501019012,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        2550.3130951756675,
+        -114.0749916417627,
+        515.6213104867115
+      ],
+      "intersection_y_from_cap_min_in": 3.4250083582367545,
+      "intersection_z_above_cap_top_in": -3.3749952416444042,
+      "intersection_bounds_local_in": [
+        2549.9999999966744,
+        -114.28256977454357,
+        515.2463057227993,
+        2550.625000003937,
+        -113.87499999605444,
+        515.9963057339127
+      ]
+    },
+    {
+      "support": "EB2",
+      "bar": "SteelBridgeBackwallEB2F1V05",
+      "bar_id": "F1V05",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB2Trans_R3_1",
+      "other_label": "EB2 R3 hoop #6 Trans_R3_1",
+      "other_mark": "6B1",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.16401902385883108,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        2550.309305846659,
+        -66.30580419055013,
+        514.0131979842231
+      ],
+      "intersection_y_from_cap_min_in": 51.19419580944932,
+      "intersection_z_above_cap_top_in": -4.983107744132871,
+      "intersection_bounds_local_in": [
+        2549.999999995191,
+        -66.50000000416706,
+        513.2492994317251,
+        2550.625000003937,
+        -66.09809038651339,
+        514.7770520577633
+      ]
+    },
+    {
+      "support": "EB2",
+      "bar": "SteelBridgeBackwallEB2F1V07",
+      "bar_id": "F1V07",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB2Trans_R3_4",
+      "other_label": "EB2 R3 hoop #6 Trans_R3_4",
+      "other_mark": "6B1",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.20656334924208047,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        2550.3125468592843,
+        -42.17964795972036,
+        515.621298226567
+      ],
+      "intersection_y_from_cap_min_in": 75.32035204027909,
+      "intersection_z_above_cap_top_in": -3.3750075017889585,
+      "intersection_bounds_local_in": [
+        2549.9999999970396,
+        -42.50000000392652,
+        515.246305724356,
+        2550.625000003937,
+        -41.87499999600386,
+        515.9963057323561
+      ]
+    },
+    {
+      "support": "EB2",
+      "bar": "SteelBridgeBackwallEB2F1V08",
+      "bar_id": "F1V08",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB2Trans_R4_2",
+      "other_label": "EB2 R4 pile_u #6 Trans_R4_2",
+      "other_mark": "6B2",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 7.161375604511246e-14,
+      "common_volume_in3": 0.015243435467872863,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        2550.312502319425,
+        -29.937342533224772,
+        515.6213057287614
+      ],
+      "intersection_y_from_cap_min_in": 87.56265746677468,
+      "intersection_z_above_cap_top_in": -3.3749999995945372,
+      "intersection_bounds_local_in": [
+        2550.0624999960633,
+        -30.000000003936883,
+        515.3417972272315,
+        2550.562500003937,
+        -29.87499999606303,
+        515.9008142294803
+      ]
+    },
+    {
+      "support": "EB2",
+      "bar": "SteelBridgeBackwallEB2F1V11",
+      "bar_id": "F1V11",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB2Trans_R5_3",
+      "other_label": "EB2 R5 hoop #6 Trans_R5_3",
+      "other_mark": "6B1",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.16401902353221567,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        2550.309305846118,
+        5.694195809396741,
+        514.0131979842383
+      ],
+      "intersection_y_from_cap_min_in": 123.1941958093962,
+      "intersection_z_above_cap_top_in": -4.98310774411769,
+      "intersection_bounds_local_in": [
+        2549.9999999951915,
+        5.499999995832953,
+        513.2492994317248,
+        2550.625000003937,
+        5.90190961348729,
+        514.7770520577639
+      ]
+    },
+    {
+      "support": "EB2",
+      "bar": "SteelBridgeBackwallEB2F1V14",
+      "bar_id": "F1V14",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB2Trans_R7_1",
+      "other_label": "EB2 R7 hoop #6 Trans_R7_1",
+      "other_mark": "6B1",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.1640190241152278,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        2550.309305845998,
+        41.694195809391964,
+        514.0131979852607
+      ],
+      "intersection_y_from_cap_min_in": 159.19419580939143,
+      "intersection_z_above_cap_top_in": -4.9831077430952595,
+      "intersection_bounds_local_in": [
+        2549.999999995191,
+        41.49999999583296,
+        513.2492994317255,
+        2550.625000003937,
+        41.90190961348583,
+        514.7770520577627
+      ]
+    },
+    {
+      "support": "EB2",
+      "bar": "SteelBridgeBackwallEB2F1V16",
+      "bar_id": "F1V16",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB2Trans_R7_4",
+      "other_label": "EB2 R7 hoop #6 Trans_R7_4",
+      "other_mark": "6B1",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.2065633490998661,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        2550.3125468593025,
+        65.82035204034445,
+        515.6212982267054
+      ],
+      "intersection_y_from_cap_min_in": 183.3203520403439,
+      "intersection_z_above_cap_top_in": -3.375007501650529,
+      "intersection_bounds_local_in": [
+        2549.999999997038,
+        65.49999999607346,
+        515.2463057243559,
+        2550.625000003937,
+        66.12500000399612,
+        515.9963057323542
+      ]
+    },
+    {
+      "support": "EB2",
+      "bar": "SteelBridgeBackwallEB2F1V17",
+      "bar_id": "F1V17",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB2Trans_R8_2",
+      "other_label": "EB2 R8 pile_u #6 Trans_R8_2",
+      "other_mark": "6B2",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 8.951719505639057e-15,
+      "common_volume_in3": 0.015243435468971661,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        2550.31250231941,
+        78.06265746679138,
+        515.6213057285396
+      ],
+      "intersection_y_from_cap_min_in": 195.56265746679082,
+      "intersection_z_above_cap_top_in": -3.3749999998163966,
+      "intersection_bounds_local_in": [
+        2550.0624999960633,
+        77.99999999606311,
+        515.3417972272315,
+        2550.562500003937,
+        78.12500000393695,
+        515.9008142294803
+      ]
+    },
+    {
+      "support": "EB2",
+      "bar": "SteelBridgeBackwallEB2F1V20",
+      "bar_id": "F1V20",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "SteelBridgeBackwallEB2F1V21",
+      "other_label": "EB2 backwall Face 1 vertical; schematic dowel #108",
+      "other_mark": "5D1",
+      "other_category": "backwall steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 5.196555442982095,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        2550.3125,
+        113.99999999999999,
+        532.737696646091
+      ],
+      "intersection_y_from_cap_min_in": 231.49999999999946,
+      "intersection_z_above_cap_top_in": 13.74139091773504,
+      "intersection_bounds_local_in": [
+        2550.0624999999836,
+        113.87500000000001,
+        502.996305728356,
+        2550.562500000017,
+        114.12499999999996,
+        562.4790875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "bar": "SteelBridgeBackwallEB2F1V20",
+      "bar_id": "F1V20",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB2Trans_R9_3",
+      "other_label": "EB2 R9 hoop #6 Trans_R9_3",
+      "other_mark": "6B1",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.16401902354726855,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        2550.309305846101,
+        113.69419580940482,
+        514.01319798421
+      ],
+      "intersection_y_from_cap_min_in": 231.19419580940425,
+      "intersection_z_above_cap_top_in": -4.983107744145976,
+      "intersection_bounds_local_in": [
+        2549.999999995191,
+        113.49999999583294,
+        513.2492994317255,
+        2550.625000003937,
+        113.90190961348593,
+        514.7770520577627
+      ]
+    },
+    {
+      "support": "EB2",
+      "bar": "SteelBridgeBackwallEB2F1V21",
+      "bar_id": "F1V21",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB2Trans_R9_3",
+      "other_label": "EB2 R9 hoop #6 Trans_R9_3",
+      "other_mark": "6B1",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.0005367181763154306,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        2550.304306860452,
+        113.8845672368198,
+        514.0030491213303
+      ],
+      "intersection_y_from_cap_min_in": 231.3845672368193,
+      "intersection_z_above_cap_top_in": -4.9932566070257005,
+      "intersection_bounds_local_in": [
+        2550.1975212547723,
+        113.87499999403752,
+        513.8041081104259,
+        2550.411604986896,
+        113.89692103262725,
+        514.201974765585
+      ]
+    },
+    {
+      "support": "EB2",
+      "bar": "SteelBridgeBackwallEB2F2V01",
+      "bar_id": "F2V01",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB2Trans_R1_2",
+      "other_label": "EB2 R1 hoop #6 Trans_R1_2",
+      "other_mark": "6B1",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.6209851430697182,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        2555.628316241738,
+        -114.1304040639646,
+        512.9526217771058
+      ],
+      "intersection_y_from_cap_min_in": 3.369595936034845,
+      "intersection_z_above_cap_top_in": -6.0436839512500935,
+      "intersection_bounds_local_in": [
+        2555.374999995879,
+        -114.42258378869357,
+        511.17792978624544,
+        2555.990901691871,
+        -113.87499999557681,
+        514.7790121797166
+      ]
+    },
+    {
+      "support": "EB2",
+      "bar": "SteelBridgeBackwallEB2F2V05",
+      "bar_id": "F2V05",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB2Trans_R3_1",
+      "other_label": "EB2 R3 hoop #6 Trans_R3_1",
+      "other_mark": "6B1",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.6269489156130476,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        2555.6553980533477,
+        -66.40583571876309,
+        509.0782483201902
+      ],
+      "intersection_y_from_cap_min_in": 51.09416428123636,
+      "intersection_z_above_cap_top_in": -9.918057408165796,
+      "intersection_bounds_local_in": [
+        2555.387392290446,
+        -66.50000000393705,
+        502.99630572441896,
+        2555.9033451572395,
+        -66.27462986369892,
+        514.5595546627123
+      ]
+    },
+    {
+      "support": "EB2",
+      "bar": "SteelBridgeBackwallEB2F2V07",
+      "bar_id": "F2V07",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB2Trans_R3_4",
+      "other_label": "EB2 R3 hoop #6 Trans_R3_4",
+      "other_mark": "6B1",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.6942778556140213,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        2555.634122059001,
+        -42.20903734688763,
+        513.0191810107158
+      ],
+      "intersection_y_from_cap_min_in": 75.29096265311182,
+      "intersection_z_above_cap_top_in": -5.977124717640214,
+      "intersection_bounds_local_in": [
+        2555.3749999958904,
+        -42.500000003943384,
+        511.1808502881896,
+        2555.9987741830323,
+        -41.88068361038096,
+        514.8327377197061
+      ]
+    },
+    {
+      "support": "EB2",
+      "bar": "SteelBridgeBackwallEB2F2V08",
+      "bar_id": "F2V08",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB2Trans_R4_2",
+      "other_label": "EB2 R4 pile_u #6 Trans_R4_2",
+      "other_mark": "6B2",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.35040144127398254,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        2555.657730593864,
+        -29.9381091756922,
+        508.46461580555047
+      ],
+      "intersection_y_from_cap_min_in": 87.56189082430726,
+      "intersection_z_above_cap_top_in": -10.531689922805512,
+      "intersection_bounds_local_in": [
+        2555.4374999959336,
+        -30.000000004031588,
+        502.99630572441896,
+        2555.853218312094,
+        -29.874999996052804,
+        514.3314392157354
+      ]
+    },
+    {
+      "support": "EB2",
+      "bar": "SteelBridgeBackwallEB2F2V11",
+      "bar_id": "F2V11",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB2Trans_R5_3",
+      "other_label": "EB2 R5 hoop #6 Trans_R5_3",
+      "other_mark": "6B1",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.6269489157190399,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        2555.6553980542317,
+        5.594164280834168,
+        509.07824830305736
+      ],
+      "intersection_y_from_cap_min_in": 123.09416428083362,
+      "intersection_z_above_cap_top_in": -9.9180574252986,
+      "intersection_bounds_local_in": [
+        2555.387392286972,
+        5.499999996062962,
+        502.99630572441896,
+        2555.903345155796,
+        5.725370135860589,
+        514.5595546627122
+      ]
+    },
+    {
+      "support": "EB2",
+      "bar": "SteelBridgeBackwallEB2F2V14",
+      "bar_id": "F2V14",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB2Trans_R7_1",
+      "other_label": "EB2 R7 hoop #6 Trans_R7_1",
+      "other_mark": "6B1",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.6269489178685581,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        2555.6553980535155,
+        41.59416428121393,
+        509.0782483170435
+      ],
+      "intersection_y_from_cap_min_in": 159.09416428121338,
+      "intersection_z_above_cap_top_in": -9.918057411312432,
+      "intersection_bounds_local_in": [
+        2555.387392290448,
+        41.49999999606296,
+        502.99630572441896,
+        2555.903345155796,
+        41.72537013630102,
+        514.5595546627122
+      ]
+    },
+    {
+      "support": "EB2",
+      "bar": "SteelBridgeBackwallEB2F2V16",
+      "bar_id": "F2V16",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB2Trans_R7_4",
+      "other_label": "EB2 R7 hoop #6 Trans_R7_4",
+      "other_mark": "6B1",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.694668819143769,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        2555.6341403140377,
+        65.79110494231772,
+        513.0192302878557
+      ],
+      "intersection_y_from_cap_min_in": 183.29110494231716,
+      "intersection_z_above_cap_top_in": -5.9770754405002755,
+      "intersection_bounds_local_in": [
+        2555.374999995921,
+        65.49999999602613,
+        511.18085028814744,
+        2555.9987741829927,
+        66.1193163896038,
+        514.8327377198332
+      ]
+    },
+    {
+      "support": "EB2",
+      "bar": "SteelBridgeBackwallEB2F2V17",
+      "bar_id": "F2V17",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB2Trans_R8_2",
+      "other_label": "EB2 R8 pile_u #6 Trans_R8_2",
+      "other_mark": "6B2",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.3504062977830562,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        2555.6577308972082,
+        78.06189093216922,
+        508.4646706764982
+      ],
+      "intersection_y_from_cap_min_in": 195.56189093216867,
+      "intersection_z_above_cap_top_in": -10.531635051857798,
+      "intersection_bounds_local_in": [
+        2555.437499995934,
+        77.99999999596845,
+        502.99630572441896,
+        2555.853218312094,
+        78.12500000394687,
+        514.3314392157301
+      ]
+    },
+    {
+      "support": "EB2",
+      "bar": "SteelBridgeBackwallEB2F2V20",
+      "bar_id": "F2V20",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "SteelBridgeBackwallEB2F2V21",
+      "other_label": "EB2 backwall Face 2 vertical; schematic dowel #108",
+      "other_mark": "5D1",
+      "other_category": "backwall steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 5.196555450015374,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        2555.6875000000005,
+        113.99999999999999,
+        532.7376966762831
+      ],
+      "intersection_y_from_cap_min_in": 231.49999999999946,
+      "intersection_z_above_cap_top_in": 13.741390947927187,
+      "intersection_bounds_local_in": [
+        2555.4374999985816,
+        113.87500000000001,
+        502.996305728356,
+        2555.9375000014197,
+        114.12499999999996,
+        562.4790875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "bar": "SteelBridgeBackwallEB2F2V20",
+      "bar_id": "F2V20",
+      "bar_mark": "5D1",
+      "bar_size": 5,
+      "bar_kind": "wall_vertical",
+      "bar_added": false,
+      "other": "CageEB2Trans_R9_3",
+      "other_label": "EB2 R9 hoop #6 Trans_R9_3",
+      "other_mark": "6B1",
+      "other_category": "cap steel",
+      "name": "clearance",
+      "status": "FAIL",
+      "classification": "OVERLAP",
+      "distance_in": 0.0,
+      "common_volume_in3": 0.6269489191274578,
+      "minimum_in": 0.0,
+      "intersection_center_local_in": [
+        2555.6553980535055,
+        113.59416428118365,
+        509.0782483078829
+      ],
+      "intersection_y_from_cap_min_in": 231.09416428118308,
+      "intersection_z_above_cap_top_in": -9.91805742047305,
+      "intersection_bounds_local_in": [
+        2555.3873922883467,
+        113.49999999606295,
+        502.9963057244189,
+        2555.903345155796,
+        113.72537013640715,
+        514.5595546627122
+      ]
+    }
+  ],
+  "bars": [
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1V01",
+      "bar_id": "F1V01",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB1Trans_R1_2",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.6975773148516247,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.000000000000002,
+        -114.50000000000001,
+        502.85230678661765,
+        -8.375000000000002,
+        -113.87500000000001,
+        562.3350875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1V02",
+      "bar_id": "F1V02",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.000000000000005,
+        -102.5,
+        502.85230678661765,
+        -8.375000000000005,
+        -101.875,
+        562.5750875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1V03",
+      "bar_id": "F1V03",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 1.1189649382048822e-15,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.000000000000009,
+        -90.50000000000001,
+        502.85230678661765,
+        -8.375000000000009,
+        -89.87500000000001,
+        562.8150875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1V04",
+      "bar_id": "F1V04",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 1.1189649382048822e-15,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.00000000000001,
+        -78.50000000000001,
+        502.85230678661765,
+        -8.37500000000001,
+        -77.87500000000001,
+        563.0550875662368
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1V05",
+      "bar_id": "F1V05",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.000000000000014,
+        -66.50000000000001,
+        502.85230678661765,
+        -8.375000000000014,
+        -65.87500000000001,
+        563.2950875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1V06",
+      "bar_id": "F1V06",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 1.1189649382048822e-15,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.000000000000016,
+        -54.50000000000002,
+        502.85230678661765,
+        -8.375000000000016,
+        -53.87500000000002,
+        563.5350875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1V07",
+      "bar_id": "F1V07",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB1Trans_R3_4",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 2.2575908605605965,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.00000000000002,
+        -42.50000000000002,
+        502.85230678661765,
+        -8.37500000000002,
+        -41.87500000000002,
+        563.7750875662366
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1V08",
+      "bar_id": "F1V08",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB1Trans_R4_2",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.3504733787677221,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.000000000000021,
+        -30.500000000000032,
+        502.85230678661765,
+        -8.375000000000021,
+        -29.875000000000032,
+        564.0150875662366
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1V09",
+      "bar_id": "F1V09",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 1.1189649382048822e-15,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.000000000000023,
+        -18.50000000000002,
+        502.85230678661765,
+        -8.375000000000023,
+        -17.87500000000002,
+        564.2550875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1V10",
+      "bar_id": "F1V10",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 2.2379298764097643e-15,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.000000000000027,
+        -6.500000000000017,
+        502.85230678661765,
+        -8.375000000000027,
+        -5.875000000000017,
+        564.4950875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1V11",
+      "bar_id": "F1V11",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 2.5020816662649684e-15,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.00000000000003,
+        5.499999999999973,
+        502.85230678661765,
+        -8.37500000000003,
+        6.124999999999973,
+        564.5025875662366
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1V12",
+      "bar_id": "F1V12",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 2.2379298764097643e-15,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.000000000000032,
+        17.499999999999964,
+        502.85230678661765,
+        -8.375000000000032,
+        18.124999999999964,
+        564.2625875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1V13",
+      "bar_id": "F1V13",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.000000000000036,
+        29.49999999999997,
+        502.85230678661765,
+        -8.375000000000036,
+        30.12499999999997,
+        564.0225875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1V14",
+      "bar_id": "F1V14",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 1.793837258403022e-14,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.000000000000037,
+        41.49999999999998,
+        502.85230678661765,
+        -8.375000000000037,
+        42.12499999999998,
+        563.7825875662368
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1V15",
+      "bar_id": "F1V15",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 1.7903439011278115e-14,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.00000000000004,
+        53.49999999999995,
+        502.85230678661765,
+        -8.37500000000004,
+        54.12499999999995,
+        563.5425875662368
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1V16",
+      "bar_id": "F1V16",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB1Trans_R7_4",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 2.2575908605134,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.000000000000043,
+        65.49999999999996,
+        502.85230678661765,
+        -8.375000000000043,
+        66.12499999999996,
+        563.3025875662368
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1V17",
+      "bar_id": "F1V17",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB1Trans_R8_2",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.35047337755409075,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.000000000000044,
+        77.49999999999997,
+        502.85230678661765,
+        -8.375000000000044,
+        78.12499999999997,
+        563.0625875662366
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1V18",
+      "bar_id": "F1V18",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 1.7903439011278115e-14,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.000000000000048,
+        89.49999999999997,
+        502.85230678661765,
+        -8.375000000000048,
+        90.12499999999997,
+        562.8225875662366
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1V19",
+      "bar_id": "F1V19",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 1.793837258403022e-14,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.000000000000052,
+        101.49999999999999,
+        502.85230678661765,
+        -8.37500000000005,
+        102.12499999999999,
+        562.5825875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1V20",
+      "bar_id": "F1V20",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F1V21",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 5.196555350832228,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.000000000000053,
+        113.49999999999996,
+        502.85230678661765,
+        -8.375000000000053,
+        114.12499999999996,
+        562.3425875662368
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1V21",
+      "bar_id": "F1V21",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 1.7903439011278115e-14,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.000000000000053,
+        113.87500000000001,
+        502.85230678661765,
+        -8.375000000000053,
+        114.50000000000001,
+        562.3350875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2V01",
+      "bar_id": "F2V01",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB1Trans_R1_2",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 5.594824691024411e-16,
+        "common_volume_in3": 0.06439004903058253,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.6249999999999476,
+        -114.50000000000001,
+        502.85230678661765,
+        -2.9999999999999476,
+        -113.87500000000001,
+        562.3350875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2V02",
+      "bar_id": "F2V02",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.62499999999995,
+        -102.5,
+        502.85230678661765,
+        -2.99999999999995,
+        -101.875,
+        562.5750875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2V03",
+      "bar_id": "F2V03",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.624999999999953,
+        -90.50000000000001,
+        502.85230678661765,
+        -2.999999999999953,
+        -89.87500000000001,
+        562.8150875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2V04",
+      "bar_id": "F2V04",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.6249999999999556,
+        -78.50000000000001,
+        502.85230678661765,
+        -2.9999999999999556,
+        -77.87500000000001,
+        563.0550875662368
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2V05",
+      "bar_id": "F2V05",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 5.594824691024411e-16,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.6249999999999583,
+        -66.50000000000001,
+        502.85230678661765,
+        -2.9999999999999583,
+        -65.87500000000001,
+        563.2950875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2V06",
+      "bar_id": "F2V06",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.6249999999999605,
+        -54.50000000000002,
+        502.85230678661765,
+        -2.9999999999999605,
+        -53.87500000000002,
+        563.5350875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2V07",
+      "bar_id": "F2V07",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB1Trans_R3_4",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.17237094120118768,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.6249999999999636,
+        -42.50000000000002,
+        502.85230678661765,
+        -2.999999999999963,
+        -41.87500000000002,
+        563.7750875662366
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2V08",
+      "bar_id": "F2V08",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.6249999999999662,
+        -30.500000000000032,
+        502.85230678661765,
+        -2.9999999999999662,
+        -29.875000000000032,
+        564.0150875662366
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2V09",
+      "bar_id": "F2V09",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 5.594824691024411e-16,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.624999999999969,
+        -18.50000000000002,
+        502.85230678661765,
+        -2.999999999999969,
+        -17.87500000000002,
+        564.2550875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2V10",
+      "bar_id": "F2V10",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 5.594824691024411e-16,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.6249999999999716,
+        -6.500000000000016,
+        502.85230678661765,
+        -2.9999999999999716,
+        -5.875000000000016,
+        564.4950875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2V11",
+      "bar_id": "F2V11",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.624999999999974,
+        5.499999999999974,
+        502.85230678661765,
+        -2.999999999999974,
+        6.124999999999974,
+        564.5025875662366
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2V12",
+      "bar_id": "F2V12",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.624999999999977,
+        17.499999999999964,
+        502.85230678661765,
+        -2.999999999999977,
+        18.124999999999964,
+        564.2625875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2V13",
+      "bar_id": "F2V13",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 5.594824691024411e-16,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.6249999999999796,
+        29.49999999999997,
+        502.85230678661765,
+        -2.9999999999999796,
+        30.12499999999997,
+        564.0225875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2V14",
+      "bar_id": "F2V14",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 5.594824691024411e-16,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.6249999999999822,
+        41.49999999999998,
+        502.85230678661765,
+        -2.9999999999999822,
+        42.12499999999998,
+        563.7825875662368
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2V15",
+      "bar_id": "F2V15",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.6249999999999845,
+        53.49999999999995,
+        502.85230678661765,
+        -2.9999999999999845,
+        54.12499999999995,
+        563.5425875662368
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2V16",
+      "bar_id": "F2V16",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB1Trans_R7_4",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.17237094122374558,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.6249999999999876,
+        65.49999999999996,
+        502.85230678661765,
+        -2.9999999999999876,
+        66.12499999999996,
+        563.3025875662368
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2V17",
+      "bar_id": "F2V17",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB1Trans_R8_2",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.01524339389436406,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.6249999999999902,
+        77.49999999999997,
+        502.85230678661765,
+        -2.9999999999999902,
+        78.12499999999997,
+        563.0625875662366
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2V18",
+      "bar_id": "F2V18",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 5.594824691024411e-16,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.624999999999993,
+        89.49999999999997,
+        502.85230678661765,
+        -2.999999999999993,
+        90.12499999999997,
+        562.8225875662366
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2V19",
+      "bar_id": "F2V19",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.624999999999995,
+        101.49999999999999,
+        502.85230678661765,
+        -2.999999999999995,
+        102.12499999999999,
+        562.5825875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2V20",
+      "bar_id": "F2V20",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.6249999999999982,
+        113.49999999999996,
+        502.85230678661765,
+        -2.9999999999999982,
+        114.12499999999996,
+        562.3425875662368
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2V21",
+      "bar_id": "F2V21",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.6249999999999982,
+        113.87500000000001,
+        502.85230678661765,
+        -2.9999999999999982,
+        114.50000000000001,
+        562.3350875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1VEL",
+      "bar_id": "F1VEL",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": true,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.000000000000002,
+        -122.50000000000003,
+        502.85230678661765,
+        -8.375000000000002,
+        -121.87500000000003,
+        562.3350875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F1VER",
+      "bar_id": "F1VER",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": true,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 1.1189649382048822e-15,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -9.000000000000055,
+        121.87500000000003,
+        502.85230678661765,
+        -8.375000000000055,
+        122.50000000000003,
+        562.3350875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2VEL",
+      "bar_id": "F2VEL",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": true,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 5.594824691024411e-16,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.6249999999999463,
+        -122.50000000000003,
+        502.85230678661765,
+        -2.999999999999946,
+        -121.87500000000003,
+        562.3350875662367
+      ]
+    },
+    {
+      "support": "EB1",
+      "name": "SteelBridgeBackwallEB1F2VER",
+      "bar_id": "F2VER",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": true,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB1F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        -3.6249999999999996,
+        121.87500000000003,
+        502.85230678661765,
+        -2.9999999999999996,
+        122.50000000000003,
+        562.3350875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1V01",
+      "bar_id": "F1V01",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB2Trans_R1_2",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.12150709501019012,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        -114.50000000000001,
+        502.996305728356,
+        2550.625,
+        -113.87500000000001,
+        562.4790875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1V02",
+      "bar_id": "F1V02",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        -102.5,
+        502.996305728356,
+        2550.625,
+        -101.875,
+        562.7190875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1V03",
+      "bar_id": "F1V03",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        -90.50000000000001,
+        502.996305728356,
+        2550.625,
+        -89.87500000000001,
+        562.9590875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1V04",
+      "bar_id": "F1V04",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        -78.50000000000003,
+        502.996305728356,
+        2550.625,
+        -77.87500000000003,
+        563.1990875662368
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1V05",
+      "bar_id": "F1V05",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB2Trans_R3_1",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.16401902385883108,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        -66.50000000000004,
+        502.996305728356,
+        2550.625,
+        -65.87500000000004,
+        563.4390875662368
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1V06",
+      "bar_id": "F1V06",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        -54.50000000000003,
+        502.996305728356,
+        2550.625,
+        -53.87500000000003,
+        563.6790875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1V07",
+      "bar_id": "F1V07",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB2Trans_R3_4",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.20656334924208047,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        -42.50000000000003,
+        502.996305728356,
+        2550.625,
+        -41.87500000000003,
+        563.9190875662366
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1V08",
+      "bar_id": "F1V08",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 4.475859752819529e-15,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        -30.500000000000036,
+        502.996305728356,
+        2550.625,
+        -29.875000000000036,
+        564.1590875662366
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1V09",
+      "bar_id": "F1V09",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 8.951719505639057e-15,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        -18.500000000000032,
+        502.996305728356,
+        2550.625,
+        -17.875000000000032,
+        564.3990875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1V10",
+      "bar_id": "F1V10",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 6.713789629229294e-15,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        -6.500000000000021,
+        502.996305728356,
+        2550.625,
+        -5.875000000000021,
+        564.6390875662368
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1V11",
+      "bar_id": "F1V11",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB2Trans_R5_3",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.16401902353221567,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        5.499999999999969,
+        502.996305728356,
+        2550.625,
+        6.124999999999969,
+        564.6465875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1V12",
+      "bar_id": "F1V12",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 6.713789629229294e-15,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        17.499999999999957,
+        502.996305728356,
+        2550.625,
+        18.124999999999957,
+        564.4065875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1V13",
+      "bar_id": "F1V13",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 4.475859752819529e-15,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        29.499999999999968,
+        502.996305728356,
+        2550.625,
+        30.124999999999968,
+        564.1665875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1V14",
+      "bar_id": "F1V14",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB2Trans_R7_1",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.1640190241152278,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        41.49999999999997,
+        502.996305728356,
+        2550.625,
+        42.12499999999997,
+        563.9265875662368
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1V15",
+      "bar_id": "F1V15",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 8.951719505639057e-15,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        53.49999999999994,
+        502.996305728356,
+        2550.625,
+        54.12499999999994,
+        563.6865875662368
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1V16",
+      "bar_id": "F1V16",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB2Trans_R7_4",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.2065633490998661,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        65.49999999999996,
+        502.996305728356,
+        2550.625,
+        66.12499999999996,
+        563.4465875662368
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1V17",
+      "bar_id": "F1V17",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        77.49999999999996,
+        502.996305728356,
+        2550.625,
+        78.12499999999996,
+        563.2065875662366
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1V18",
+      "bar_id": "F1V18",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 1.7903439011278115e-14,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        89.49999999999997,
+        502.996305728356,
+        2550.625,
+        90.12499999999997,
+        562.9665875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1V19",
+      "bar_id": "F1V19",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 1.7903439011278115e-14,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        101.49999999999999,
+        502.996305728356,
+        2550.625,
+        102.12499999999999,
+        562.7265875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1V20",
+      "bar_id": "F1V20",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F1V21",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 5.196555442982095,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        113.49999999999996,
+        502.996305728356,
+        2550.625,
+        114.12499999999996,
+        562.4865875662368
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1V21",
+      "bar_id": "F1V21",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB2Trans_R9_3",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0005367181763154306,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        113.87500000000001,
+        502.996305728356,
+        2550.625,
+        114.50000000000001,
+        562.4790875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2V01",
+      "bar_id": "F2V01",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB2Trans_R1_2",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.6209851430697182,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        -114.50000000000001,
+        502.996305728356,
+        2556.0000000000005,
+        -113.87500000000001,
+        562.4790875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2V02",
+      "bar_id": "F2V02",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        -102.5,
+        502.996305728356,
+        2556.0000000000005,
+        -101.875,
+        562.7190875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2V03",
+      "bar_id": "F2V03",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        -90.50000000000001,
+        502.996305728356,
+        2556.0000000000005,
+        -89.87500000000001,
+        562.9590875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2V04",
+      "bar_id": "F2V04",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        -78.50000000000003,
+        502.996305728356,
+        2556.0000000000005,
+        -77.87500000000003,
+        563.1990875662368
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2V05",
+      "bar_id": "F2V05",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB2Trans_R3_1",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.6269489156130476,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        -66.50000000000004,
+        502.996305728356,
+        2556.0000000000005,
+        -65.87500000000004,
+        563.4390875662368
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2V06",
+      "bar_id": "F2V06",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        -54.50000000000003,
+        502.996305728356,
+        2556.0000000000005,
+        -53.87500000000003,
+        563.6790875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2V07",
+      "bar_id": "F2V07",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB2Trans_R3_4",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.6942778556140213,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        -42.50000000000003,
+        502.996305728356,
+        2556.0000000000005,
+        -41.87500000000003,
+        563.9190875662366
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2V08",
+      "bar_id": "F2V08",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB2Trans_R4_2",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.35040144127398254,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        -30.500000000000036,
+        502.996305728356,
+        2556.0000000000005,
+        -29.875000000000036,
+        564.1590875662366
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2V09",
+      "bar_id": "F2V09",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        -18.50000000000003,
+        502.996305728356,
+        2556.0000000000005,
+        -17.87500000000003,
+        564.3990875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2V10",
+      "bar_id": "F2V10",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        -6.50000000000002,
+        502.996305728356,
+        2556.0000000000005,
+        -5.87500000000002,
+        564.6390875662368
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2V11",
+      "bar_id": "F2V11",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB2Trans_R5_3",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.6269489157190399,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        5.49999999999997,
+        502.996305728356,
+        2556.0000000000005,
+        6.12499999999997,
+        564.6465875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2V12",
+      "bar_id": "F2V12",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        17.49999999999996,
+        502.996305728356,
+        2556.0000000000005,
+        18.12499999999996,
+        564.4065875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2V13",
+      "bar_id": "F2V13",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        29.499999999999968,
+        502.996305728356,
+        2556.0000000000005,
+        30.124999999999968,
+        564.1665875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2V14",
+      "bar_id": "F2V14",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB2Trans_R7_1",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.6269489178685581,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        41.49999999999997,
+        502.996305728356,
+        2556.0000000000005,
+        42.12499999999997,
+        563.9265875662368
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2V15",
+      "bar_id": "F2V15",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        53.49999999999994,
+        502.996305728356,
+        2556.0000000000005,
+        54.12499999999994,
+        563.6865875662368
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2V16",
+      "bar_id": "F2V16",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB2Trans_R7_4",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.694668819143769,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        65.49999999999996,
+        502.996305728356,
+        2556.0000000000005,
+        66.12499999999996,
+        563.4465875662368
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2V17",
+      "bar_id": "F2V17",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "CageEB2Trans_R8_2",
+        "name": "clearance",
+        "status": "FAIL",
+        "classification": "OVERLAP",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.3504062977830562,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        77.49999999999996,
+        502.996305728356,
+        2556.0000000000005,
+        78.12499999999996,
+        563.2065875662366
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2V18",
+      "bar_id": "F2V18",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        89.49999999999997,
+        502.996305728356,
+        2556.0000000000005,
+        90.12499999999997,
+        562.9665875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2V19",
+      "bar_id": "F2V19",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        101.49999999999999,
+        502.996305728356,
+        2556.0000000000005,
+        102.12499999999999,
+        562.7265875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2V20",
+      "bar_id": "F2V20",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        113.49999999999996,
+        502.996305728356,
+        2556.0000000000005,
+        114.12499999999996,
+        562.4865875662368
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2V21",
+      "bar_id": "F2V21",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": false,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        113.87500000000001,
+        502.996305728356,
+        2556.0000000000005,
+        114.50000000000001,
+        562.4790875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1VEL",
+      "bar_id": "F1VEL",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": true,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        -122.49999999999945,
+        502.996305728356,
+        2550.625,
+        -121.87499999999945,
+        562.4790875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F1VER",
+      "bar_id": "F1VER",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": true,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F1H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 1.7903439011278115e-14,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2550.0,
+        121.87500000000115,
+        502.996305728356,
+        2550.625,
+        122.50000000000115,
+        562.4790875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2VEL",
+      "bar_id": "F2VEL",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": true,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        -122.49999999999945,
+        502.996305728356,
+        2556.0000000000005,
+        -121.87499999999945,
+        562.4790875662367
+      ]
+    },
+    {
+      "support": "EB2",
+      "name": "SteelBridgeBackwallEB2F2VER",
+      "bar_id": "F2VER",
+      "mark": "5D1",
+      "bar_size": 5,
+      "kind": "wall_vertical",
+      "added": true,
+      "valid": true,
+      "solids": 1,
+      "nearest": {
+        "other": "SteelBridgeBackwallEB2F2H01",
+        "name": "clearance",
+        "status": "PASS",
+        "classification": "CONTACT / NEAR CONTACT",
+        "distance_in": 0.0,
+        "common_volume_in3": 0.0,
+        "minimum_in": 0.0
+      },
+      "physical_bounds_local_in": [
+        2555.3750000000005,
+        121.87500000000115,
+        502.996305728356,
+        2556.0000000000005,
+        122.50000000000115,
+        562.4790875662367
+      ]
+    }
+  ],
+  "geometry_checks": [
+    {
+      "name": "SteelBridgeBackwallEB1F1V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V08_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V08_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V09_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V09_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V10_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V10_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V11_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V11_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V12_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V12_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V13_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V13_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V14_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V14_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V15_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V15_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V16_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V16_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V17_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V17_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V18_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V18_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V19_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V19_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V20_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V20_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V21_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V21_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V08_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V08_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V09_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V09_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V10_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V10_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V11_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V11_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V12_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V12_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V13_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V13_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V14_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V14_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V15_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V15_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V16_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V16_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V17_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V17_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V18_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V18_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V19_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V19_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V20_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V20_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V21_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V21_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VEL_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VEL_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VER_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VER_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VEL_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VEL_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VER_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VER_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB1_live_totals",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V08_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V08_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V09_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V09_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V10_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V10_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V11_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V11_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V12_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V12_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V13_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V13_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V14_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V14_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V15_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V15_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V16_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V16_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V17_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V17_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V18_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V18_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V19_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V19_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V20_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V20_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V21_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V21_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V06_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V06_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V07_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V07_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V08_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V08_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V09_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V09_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V10_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V10_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V11_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V11_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V12_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V12_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V13_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V13_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V14_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V14_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V15_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V15_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V16_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V16_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V17_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V17_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V18_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V18_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V19_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V19_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V20_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V20_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V21_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V21_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H01_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H01_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H02_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H02_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H03_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H03_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H04_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H04_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H05_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H05_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VEL_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VEL_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VER_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VER_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VEL_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VEL_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VER_physical_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VER_links_and_placement",
+      "status": "PASS"
+    },
+    {
+      "name": "SteelBridgeBackwallEB2_live_totals",
+      "status": "PASS"
+    }
+  ],
+  "geometry_failures": [],
+  "method": "Existing cheek_hooks.collisions and geometry.pair on copied nominal BRep solids in the input cage frame; bounding boxes used only for candidate rejection; positive common volume is overlap; zero-volume contact permitted; 0.001 in distance tolerance unchanged.",
+  "limits": "Saved CAD only. Bars and their schematic embedded legs are tested as modeled. Concrete cover, code spacing, development and fabrication approval are outside this clash review."
+}

@@ -558,3 +558,8 @@ transaction and never saves; a repeated installation is rejected. Later edits
 use the native controls and require refreshed contact, cover and clash checks.
 The unchanged PGL engine/source record remains historical provenance; the two
 backwalls carry `TopNotebookModelID` for the adopted notebook revision.
+
+
+## Backwall vertical coordination (D-055)
+
+`backwall_extensions.configure_verticals(inputs, omitted, stations)` adds native `OmittedVerticalIDsJSON` and `VerticalStationOverridesJSON` controls. Station values require units and are local Y coordinates. Original analytic lengths, marks and grid basis remain. The controller rejects missing/nonvertical IDs and spacing violations; it preserves added-end mark links when a partner is omitted. Caller owns the transaction and must check nominal solid overlap, assembly cover and schedules after `cheek_hooks.refresh(inputs)`. The helper never saves.

@@ -1,5 +1,9 @@
 # Current FreeCAD bridge model
 
+## D-055: backwall vertical coordination, 19 October 2026
+
+Four doubled #5 verticals removed; one end bar per face moved inside each cheekwall hook. Small station adjustments clear the cap stirrups with 12-in maximum spacing. Each backwall now has 44 verticals and 10 horizontals. All 88 verticals pass physical overlap and cover checks; native edits and cold reopen verified. See [saved-file verification](evidence/2026-10-19-backwall-vertical-coordination/adoption-summary.json). Existing unrelated findings and downstream calculation/drawing review remain.
+
 ## D-053: simple backwall tops and ramp connections, 19 October 2026
 
 Both backwall tops have two straight 2% slopes down from the PGL, level

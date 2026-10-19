@@ -1,3 +1,13 @@
+D-055 — BACKWALL VERTICAL COORDINATION, 19 OCTOBER 2026
+
+Removed four overlapping #5 verticals (one redundant bar per face on each backwall). Each backwall now has 44 verticals and 10 horizontals. One end vertical per face sits inside the cheekwall horizontal hooks at all four corners. Interior stations shift only as needed to clear the cap transverse steel and maintain 12-in maximum spacing.
+
+All 88 retained backwall verticals have zero positive-volume overlaps with modeled steel. The placement search required at least 1/16-in physical separation from other steel, while retaining intentional tangent contact with backwall horizontals. Nominal geometry, 3-in assembly cover, spacing, native links/quantities/schedules, editable station controls, and cold reopen pass. All 1939 unrelated native objects are preserved.
+
+Scoped geometric coordination only. Existing unrelated findings, schematic dowel/anchorage basis, and broader calculation/drawing reconciliation remain. Tracker statuses and responses unchanged.
+
+PREVIOUS UPDATES (historical)
+
 B4 — SIMPLE BACKWALL TOPS, 19 OCTOBER 2026
 
 ## D-053: simple backwall tops and ramp connections, 19 October 2026

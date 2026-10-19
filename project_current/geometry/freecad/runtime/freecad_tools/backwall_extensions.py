@@ -43,7 +43,39 @@ def layout(inp):
                 ident='F'+str(face)+'VE'+end;row=copy.deepcopy(nearest)
                 row.update(id=ident,family='Face '+str(face)+' added end vertical; into cheek',points=[(p[0],station/IN,p[2]) for p in nearest['points']],matching_bar_id=nearest['id'])
                 rows[ident]=row
+    omitted=json.loads(getattr(inp,'OmittedVerticalIDsJSON','[]'))
+    stations=json.loads(getattr(inp,'VerticalStationOverridesJSON','{}'))
+    for ident in omitted:
+        if ident not in rows or rows[ident]['kind']!='wall_vertical':
+            raise ValueError('Only existing vertical rows may be omitted: '+ident)
+        del rows[ident]
+    for ident,value in stations.items():
+        if ident not in rows or rows[ident]['kind']!='wall_vertical':
+            raise ValueError('Station override requires a retained vertical: '+ident)
+        y=length(value)/IN
+        rows[ident]['points']=[(p[0],y,p[2]) for p in rows[ident]['points']]
+    for ident,row in rows.items():
+        if row.get('matching_bar_id') in omitted:
+            choices=[r for k,r in rows.items() if k.startswith(ident[:2]+'V') and 'matching_bar_id' not in r]
+            row['matching_bar_id']=min(choices,key=lambda r:abs(r['points'][0][1]-row['points'][0][1]))['id']
+    for face in (1,2):
+        values=sorted(r['points'][0][1] for k,r in rows.items() if k.startswith('F'+str(face)+'V'))
+        if stations and any(b-a>inp.VerticalSpacing.Value/IN+TOL/IN or b-a<cap.BAR_DIAMETER[inp.VerticalBar] for a,b in zip(values,values[1:])):
+            raise ValueError('Vertical overrides violate clear separation or maximum spacing')
     return rows
+
+
+def configure_verticals(inp,omitted,stations):
+    """Apply explicit user-selected vertical omissions/stations, without saving.
+
+    Caller owns the transaction and physical clearance/cover validation. Lengths
+    retain their selected analytic values; all station inputs carry units.
+    """
+    for value in stations.values():length(value)
+    prop(inp,'App::PropertyString','OmittedVerticalIDsJSON',json.dumps(omitted),'Backwall vertical coordination')
+    prop(inp,'App::PropertyString','VerticalStationOverridesJSON',json.dumps(stations),'Backwall vertical coordination')
+    prop(inp,'App::PropertyString','VerticalCoordinationBasis','2026-10-19 user direction: remove doubled verticals; retain one end vertical per face inside cheekwall hooks at all four corners; shift verticals clear of cap stirrups.','Backwall vertical coordination')
+    hooks.refresh(inp)
 
 class InputsProxy(Serializable):
     def __init__(self,o):o.Proxy=self

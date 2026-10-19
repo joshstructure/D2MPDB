@@ -1,0 +1,42 @@
+{
+  "status": "ADOPTED_EXACT_VERIFIED_CANDIDATE",
+  "decision": "D-055",
+  "date": "2026-10-19",
+  "model": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "model_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df",
+  "previous_model_sha256": "a831dec89084195338e78bef19bf014cd71421c9138e5ba0471479a5f6d6ed27",
+  "objects": 2125,
+  "removed_verticals": 4,
+  "verticals_before": 92,
+  "verticals_after": 88,
+  "verticals_per_backwall": 44,
+  "total_bars_per_backwall": 54,
+  "backwall_vertical_clashes_before": 33,
+  "backwall_vertical_clashes_after": 0,
+  "minimum_cover_in": 2.999999999999026,
+  "minimum_other_steel_gap_in": 0.09400792409951068,
+  "maximum_spacing_in": 12,
+  "interior_max_shift_in": 2.125,
+  "corner_stations_in": {
+    "EB1": [
+      -119.25,
+      118.75
+    ],
+    "EB2": [
+      -118.5,
+      118.5
+    ]
+  },
+  "native_controls": [
+    "OmittedVerticalIDsJSON",
+    "VerticalStationOverridesJSON"
+  ],
+  "protected_objects": 1939,
+  "native_edit_restore": true,
+  "cold_reopen": true,
+  "scope_limits": "Scoped geometric coordination only. Existing unrelated findings, schematic dowel/anchorage basis, and broader calculation/drawing reconciliation remain. Tracker statuses and responses unchanged.",
+  "backups": [
+    "archive/B4-before-backwall-vertical-coordination-20261019.FCStd",
+    "archive/B4-before-backwall-vertical-coordination-record-20261019.zip"
+  ]
+}
