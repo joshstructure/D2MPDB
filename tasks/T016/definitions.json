@@ -1,0 +1,914 @@
+{
+  "edited": [
+    {
+      "report": "BridgeGeometry_2Beam",
+      "text": "NotebookGeometryUpdate20260929 heading and basis paragraph",
+      "change": "names the current notebook build e9b41b8eaf (D-036, D-053) and the CAD model D-055"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "formula": "Check_notebook_quantity = If(And(Beam_count == 2, Abs(Deck_area-6.79166666666667 ft^2)<0.000001 ft^2, Abs(Beam_camber_1-0.124592744006574 in)<0.000001 in, Abs(Beam_camber_2-0.5671714630550072 in)<0.000001 in, Abs(Haunch_min-0.5 in)<0.000001 in, Abs(Beam_topFlange_width-48 in)<0.000001 in), \"MATCHES NOTEBOOK BUILD e9b41b8eaf (2026-10-19)\", \"INPUTS CHANGED - RECONCILE NOTEBOOK\")",
+      "was": "Check_notebook_quantity = If(And(Beam_count == 2, Abs(Deck_area-6.79166666666667 ft^2)<0.000001 ft^2, Abs(Haunch_totalVolume-185.836666666667 ft^3)<0.000001 ft^3), \"MATCHES 2026-09-29 NOTEBOOK\", \"INPUTS CHANGED - RECONCILE NOTEBOOK\")",
+      "change": "snapshot retargeted from the 29 September notebook haunch volume to the e9b41b8eaf build inputs; cache INPUTS CHANGED - RECONCILE NOTEBOOK -> MATCHES NOTEBOOK BUILD e9b41b8eaf (2026-10-19)"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "text": "NotebookGeometryUpdate20260929 analysis-export note",
+      "change": "D-049 exports named as current; currency not asserted"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "text": "EndBentGeometry basis paragraph",
+      "change": "8 October report -> notebook e9b41b8eaf and D-049 models"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "text": "PierCurrentGeometry heading and paragraph",
+      "change": "10-9 report -> 10-19 report (D-051) on the D-049 XML"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "formula": "EndBent_backwallDrop = 4.25 in",
+      "change": "amber input added (notebook backwall drop, D-053)"
+    },
+    {
+      "report": "FBMPEndBent",
+      "text": "model basis, cap cell, cheek notes, design record (heading, note, context rows, hashes, block 3 heading and note, block 5 heading and values, block 5 summary, coherence rows)",
+      "change": "8 October record -> 19 October 2026 case and D-049 exports; 8 October transverse schedule marked historical"
+    },
+    {
+      "report": "FBMPPier",
+      "text": "PierSourceModelRecord heading, source, hashes and source-limit paragraphs",
+      "change": "10-9 report -> 10-19 report (D-051), D-049 XML recorded, ±10.50-in rows confirmed"
+    },
+    {
+      "report": "PileProperties",
+      "text": "applicability paragraph; section PileDesignRecords20261019 added",
+      "change": "pile design reports (D-054) and the pipe shell/grade reconciliation recorded"
+    },
+    {
+      "report": "FoundationModeling",
+      "text": "section ModelSources20261019 added; EB heading dated; pier raw-XML sentence",
+      "change": "D-049 exports recorded as the current model sources"
+    },
+    {
+      "report": "PedBridge",
+      "text": "section CurrentRecord20261019 added; 8 October heading; revision paragraph; pier sentence",
+      "change": "19 October 2026 record indexed"
+    },
+    {
+      "report": "DecisionLog",
+      "text": "Journal aligned with the 19 October 2026 calculations and CAD model (task T016). The D-049 fixed-run FB-MultiPier exports (End Bent 1, End Bent 2, Pier) are recorded as the current model sources in Foundation Modeling and both FBMP entry modules, with the D-051 cap reports and the D-054 pile reports as the current design records. The end-bent design record is refreshed to the 19 October case (forces, status, report and XML identities; the 8 October transverse schedule kept as history). The pier source record names the 10-19 report and the D-049 XML, whose bearing rows are ±10.50 in. Pile Section Properties notes the pile design reports and the pipe reconciliation (FBMP 0.48-in shell at 60 ksi; PileDesignPier 0.48 in at 45 ksi, grade and corrosion pending). The notebook reconciliation check is retargeted to build e9b41b8eaf and the D-053 backwall top drop (4.25 in) is recorded. The MSE exclusion wall lines are re-extracted from the D-055 model: at both end bents the front wall back of facing is 46.5 in from the pile row (37.5-in strap clearance met; cap face 25.5 in from the facing) and the side walls are 114 in from the pile row, at the 24-in criterion within 0.0002 in, so one side-wall row at each end bent reads MEETS CLEAR and the other SHORTFALL by the last digits; the cap caches follow the 235-in cap. The 16 October backwall report (D-037) predates the D-049 exports and the D-053 geometry and is not in the journal. Native recalculation not performed; FBMP not rerun.",
+      "change": "entry appended (19 October 2026, T016)"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "formula": "Bent1W1x = -9.95834880941483 ft",
+      "was": "Bent1W1x = -8.66449266016689 ft",
+      "change": "wall line re-extracted from the D-055 model"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "formula": "Bent1W1y = -3.87515478292704 ft",
+      "was": "Bent1W1y = -3.84865400014849 ft",
+      "change": "wall line re-extracted from the D-055 model"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "formula": "Bent1W1len = 19.9166666622123 ft",
+      "was": "Bent1W1len = 17.333335694482 ft",
+      "change": "wall line re-extracted from the D-055 model"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "formula": "Bent1W2x = -9.5000154760815 ft",
+      "was": "Bent1W2x = -8.66449266016689 ft",
+      "change": "wall line re-extracted from the D-055 model"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "formula": "Bent1W2y = -4.33348811626037 ft",
+      "was": "Bent1W2y = -3.84865400014849 ft",
+      "change": "wall line re-extracted from the D-055 model"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "formula": "Bent1W2len = 23.1098329385179 ft",
+      "was": "Bent1W2len = 22.624998822406 ft",
+      "change": "wall line re-extracted from the D-055 model"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "formula": "Bent1W3x = 9.49998451946412 ft",
+      "was": "Bent1W3x = 8.66884303431515 ft",
+      "change": "wall line re-extracted from the D-055 model"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "formula": "Bent1W3y = -4.33348811626037 ft",
+      "was": "Bent1W3y = -3.84865400014849 ft",
+      "change": "wall line re-extracted from the D-055 model"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "formula": "Bent1W3len = 10.1515001933395 ft",
+      "was": "Bent1W3len = 9.66666607722765 ft",
+      "change": "wall line re-extracted from the D-055 model"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "formula": "Bent2W1x = -9.95831785279752 ft",
+      "was": "Bent2W1x = -8.66884342402739 ft",
+      "change": "wall line re-extracted from the D-055 model"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "formula": "Bent2W1y = -3.87515478292698 ft",
+      "was": "Bent2W1y = -3.80158899647901 ft",
+      "change": "wall line re-extracted from the D-055 model"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "formula": "Bent2W1len = 19.9166666622123 ft",
+      "was": "Bent2W1len = 17.3332686005741 ft",
+      "change": "wall line re-extracted from the D-055 model"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "formula": "Bent2W2x = -9.49998451946418 ft",
+      "was": "Bent2W2x = -8.66884342402739 ft",
+      "change": "wall line re-extracted from the D-055 model"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "formula": "Bent2W2y = 41.0730339531239 ft",
+      "was": "Bent2W2y = 41.0730327708297 ft",
+      "change": "wall line re-extracted from the D-055 model"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "formula": "Bent2W2len = 45.4065220693842 ft",
+      "was": "Bent2W2len = 44.8746217673087 ft",
+      "change": "wall line re-extracted from the D-055 model"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "formula": "Bent2W3x = 9.50001547608143 ft",
+      "was": "Bent2W3x = 8.66442517654671 ft",
+      "change": "wall line re-extracted from the D-055 model"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "formula": "Bent2W3len = 6.53189914902233 ft",
+      "was": "Bent2W3len = 6.00000002924105 ft",
+      "change": "wall line re-extracted from the D-055 model"
+    }
+  ],
+  "cache_refreshes": [
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "Check_notebook_quantity",
+      "was": "= INPUTS CHANGED - RECONCILE NOTEBOOK",
+      "now": "= MATCHES NOTEBOOK BUILD e9b41b8eaf (2026-10-19)"
+    },
+    {
+      "report": "FBMPEndBent",
+      "cell": "BridgeGeometry_2Beam.EndBentCap_volume to ft^3",
+      "was": "185.5 ft^3",
+      "now": "205.625 ft^3"
+    },
+    {
+      "report": "FBMPEndBent",
+      "cell": "BridgeGeometry_2Beam.EndBentCaps_volume to ft^3",
+      "was": "371 ft^3",
+      "now": "411.25 ft^3"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "CapLength",
+      "formula": "CapLength = BridgeGeometry_2Beam.EndBentCap_length",
+      "was": "= 17 ft 8 in",
+      "now": "= 19 ft 7 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "CapX",
+      "formula": "CapX = (CapLength*Abs(Sin(FrameAngle))+CapWidth*Abs(Cos(FrameAngle)))/2",
+      "was": "= 8 ft 10 in",
+      "now": "= 9 ft 9.5 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1W1xend",
+      "formula": "Bent1W1xend = Bent1W1x+Bent1W1tx*Bent1W1len",
+      "was": "= 8.669 ft",
+      "now": "= 9.958 ft"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1W1yend",
+      "formula": "Bent1W1yend = Bent1W1y+Bent1W1ty*Bent1W1len",
+      "was": "= -3.849 ft",
+      "now": "= -3.875 ft"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1Wall1Pile1Face",
+      "formula": "Bent1Wall1Pile1Face = (Bent1P1x-Bent1W1x)*Bent1W1nx+(Bent1P1y-Bent1W1y)*Bent1W1ny-Half",
+      "was": "= 3 ft 1.182 in",
+      "now": "= 3 ft 1.5 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1Wall1Pile1Extra",
+      "formula": "Bent1Wall1Pile1Extra = Max(0 in,LayoutClear-Bent1Wall1Pile1Face)",
+      "was": "= 0 ft 0.318 in",
+      "now": "= 0 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1Wall1Pile2Face",
+      "formula": "Bent1Wall1Pile2Face = (Bent1P2x-Bent1W1x)*Bent1W1nx+(Bent1P2y-Bent1W1y)*Bent1W1ny-Half",
+      "was": "= 3 ft 1.183 in",
+      "now": "= 3 ft 1.501 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1Wall1Pile2Extra",
+      "formula": "Bent1Wall1Pile2Extra = Max(0 in,LayoutClear-Bent1Wall1Pile2Face)",
+      "was": "= 0 ft 0.317 in",
+      "now": "= 0 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1Wall1Pile3Face",
+      "formula": "Bent1Wall1Pile3Face = (Bent1P3x-Bent1W1x)*Bent1W1nx+(Bent1P3y-Bent1W1y)*Bent1W1ny-Half",
+      "was": "= 3 ft 1.184 in",
+      "now": "= 3 ft 1.502 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1Wall1Pile3Extra",
+      "formula": "Bent1Wall1Pile3Extra = Max(0 in,LayoutClear-Bent1Wall1Pile3Face)",
+      "was": "= 0 ft 0.316 in",
+      "now": "= 0 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1Wall1Pile4Face",
+      "formula": "Bent1Wall1Pile4Face = (Bent1P4x-Bent1W1x)*Bent1W1nx+(Bent1P4y-Bent1W1y)*Bent1W1ny-Half",
+      "was": "= 3 ft 1.186 in",
+      "now": "= 3 ft 1.504 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1Wall1Pile4Extra",
+      "formula": "Bent1Wall1Pile4Extra = Max(0 in,LayoutClear-Bent1Wall1Pile4Face)",
+      "was": "= 0 ft 0.314 in",
+      "now": "= 0 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1W1Gap",
+      "formula": "Bent1W1Gap = Min(Bent1Wall1Pile1Face,Bent1Wall1Pile2Face,Bent1Wall1Pile3Face,Bent1Wall1Pile4Face)",
+      "was": "= 3 ft 1.182 in",
+      "now": "= 3 ft 1.5 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1W1Extra",
+      "formula": "Bent1W1Extra = Max(0 in,LayoutClear-Bent1W1Gap)",
+      "was": "= 0 ft 0.318 in",
+      "now": "= 0 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1W1Status",
+      "formula": "Bent1W1Status = If(InputsValid,If(Bent1W1Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+      "was": "= SHORTFALL",
+      "now": "= MEETS CLEAR"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1W2xend",
+      "formula": "Bent1W2xend = Bent1W2x+Bent1W2tx*Bent1W2len",
+      "was": "= -8.664 ft",
+      "now": "= -9.500 ft"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1Wall2Pile1Face",
+      "formula": "Bent1Wall2Pile1Face = (Bent1P1x-Bent1W2x)*Bent1W2nx+(Bent1P1y-Bent1W2y)*Bent1W2ny-Half",
+      "was": "= 1 ft 1.974 in",
+      "now": "= 2 ft 0.000186 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1Wall2Pile1Extra",
+      "formula": "Bent1Wall2Pile1Extra = Max(0 in,SideClear-Bent1Wall2Pile1Face)",
+      "was": "= 0 ft 10.026 in",
+      "now": "= 0 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1Wall2Pile2Face",
+      "formula": "Bent1Wall2Pile2Face = (Bent1P2x-Bent1W2x)*Bent1W2nx+(Bent1P2y-Bent1W2y)*Bent1W2ny-Half",
+      "was": "= 5 ft 7.974 in",
+      "now": "= 6 ft 6 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1Wall2Pile3Face",
+      "formula": "Bent1Wall2Pile3Face = (Bent1P3x-Bent1W2x)*Bent1W2nx+(Bent1P3y-Bent1W2y)*Bent1W2ny-Half",
+      "was": "= 10 ft 1.974 in",
+      "now": "= 11 ft 0.000186 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1Wall2Pile4Face",
+      "formula": "Bent1Wall2Pile4Face = (Bent1P4x-Bent1W2x)*Bent1W2nx+(Bent1P4y-Bent1W2y)*Bent1W2ny-Half",
+      "was": "= 14 ft 7.974 in",
+      "now": "= 15 ft 6 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1W2Gap",
+      "formula": "Bent1W2Gap = Min(Bent1Wall2Pile1Face,Bent1Wall2Pile2Face,Bent1Wall2Pile3Face,Bent1Wall2Pile4Face)",
+      "was": "= 1 ft 1.974 in",
+      "now": "= 2 ft 0.000186 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1W2Extra",
+      "formula": "Bent1W2Extra = Max(0 in,SideClear-Bent1W2Gap)",
+      "was": "= 0 ft 10.026 in",
+      "now": "= 0 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1W2Status",
+      "formula": "Bent1W2Status = If(InputsValid,If(Bent1W2Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+      "was": "= SHORTFALL",
+      "now": "= MEETS CLEAR"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1W3xend",
+      "formula": "Bent1W3xend = Bent1W3x+Bent1W3tx*Bent1W3len",
+      "was": "= 8.669 ft",
+      "now": "= 9.500 ft"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1Wall3Pile1Face",
+      "formula": "Bent1Wall3Pile1Face = (Bent1P1x-Bent1W3x)*Bent1W3nx+(Bent1P1y-Bent1W3y)*Bent1W3ny-Half",
+      "was": "= 14 ft 8.026 in",
+      "now": "= 15 ft 6 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1Wall3Pile2Face",
+      "formula": "Bent1Wall3Pile2Face = (Bent1P2x-Bent1W3x)*Bent1W3nx+(Bent1P2y-Bent1W3y)*Bent1W3ny-Half",
+      "was": "= 10 ft 2.026 in",
+      "now": "= 11 ft 0 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1Wall3Pile3Face",
+      "formula": "Bent1Wall3Pile3Face = (Bent1P3x-Bent1W3x)*Bent1W3nx+(Bent1P3y-Bent1W3y)*Bent1W3ny-Half",
+      "was": "= 5 ft 8.026 in",
+      "now": "= 6 ft 6 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1Wall3Pile4Face",
+      "formula": "Bent1Wall3Pile4Face = (Bent1P4x-Bent1W3x)*Bent1W3nx+(Bent1P4y-Bent1W3y)*Bent1W3ny-Half",
+      "was": "= 1 ft 2.026 in",
+      "now": "= 2 ft 0 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1Wall3Pile4Extra",
+      "formula": "Bent1Wall3Pile4Extra = Max(0 in,SideClear-Bent1Wall3Pile4Face)",
+      "was": "= 0 ft 9.974 in",
+      "now": "= 0 ft 0.000186 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1W3Gap",
+      "formula": "Bent1W3Gap = Min(Bent1Wall3Pile1Face,Bent1Wall3Pile2Face,Bent1Wall3Pile3Face,Bent1Wall3Pile4Face)",
+      "was": "= 1 ft 2.026 in",
+      "now": "= 2 ft 0 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1W3Extra",
+      "formula": "Bent1W3Extra = Max(0 in,SideClear-Bent1W3Gap)",
+      "was": "= 0 ft 9.974 in",
+      "now": "= 0 ft 0.000186 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent1CapGap",
+      "formula": "Bent1CapGap = -Bent1W1x*Bent1W1nx-Bent1W1y*Bent1W1ny-CapX*Abs(Bent1W1nx)-CapY*Abs(Bent1W1ny)",
+      "was": "= 2 ft 1.182 in",
+      "now": "= 2 ft 1.499 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2W1xend",
+      "formula": "Bent2W1xend = Bent2W1x+Bent2W1tx*Bent2W1len",
+      "was": "= 8.664 ft",
+      "now": "= 9.958 ft"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2W1yend",
+      "formula": "Bent2W1yend = Bent2W1y+Bent2W1ty*Bent2W1len",
+      "was": "= -3.802 ft",
+      "now": "= -3.875 ft"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2Wall1Pile1Face",
+      "formula": "Bent2Wall1Pile1Face = (Bent2P1x-Bent2W1x)*Bent2W1nx+(Bent2P1y-Bent2W1y)*Bent2W1ny-Half",
+      "was": "= 3 ft 0.621 in",
+      "now": "= 3 ft 1.504 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2Wall1Pile1Extra",
+      "formula": "Bent2Wall1Pile1Extra = Max(0 in,LayoutClear-Bent2Wall1Pile1Face)",
+      "was": "= 0 ft 0.879 in",
+      "now": "= 0 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2Wall1Pile2Face",
+      "formula": "Bent2Wall1Pile2Face = (Bent2P2x-Bent2W1x)*Bent2W1nx+(Bent2P2y-Bent2W1y)*Bent2W1ny-Half",
+      "was": "= 3 ft 0.62 in",
+      "now": "= 3 ft 1.502 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2Wall1Pile2Extra",
+      "formula": "Bent2Wall1Pile2Extra = Max(0 in,LayoutClear-Bent2Wall1Pile2Face)",
+      "was": "= 0 ft 0.88 in",
+      "now": "= 0 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2Wall1Pile3Face",
+      "formula": "Bent2Wall1Pile3Face = (Bent2P3x-Bent2W1x)*Bent2W1nx+(Bent2P3y-Bent2W1y)*Bent2W1ny-Half",
+      "was": "= 3 ft 0.619 in",
+      "now": "= 3 ft 1.501 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2Wall1Pile3Extra",
+      "formula": "Bent2Wall1Pile3Extra = Max(0 in,LayoutClear-Bent2Wall1Pile3Face)",
+      "was": "= 0 ft 0.881 in",
+      "now": "= 0 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2Wall1Pile4Face",
+      "formula": "Bent2Wall1Pile4Face = (Bent2P4x-Bent2W1x)*Bent2W1nx+(Bent2P4y-Bent2W1y)*Bent2W1ny-Half",
+      "was": "= 3 ft 0.617 in",
+      "now": "= 3 ft 1.5 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2Wall1Pile4Extra",
+      "formula": "Bent2Wall1Pile4Extra = Max(0 in,LayoutClear-Bent2Wall1Pile4Face)",
+      "was": "= 0 ft 0.883 in",
+      "now": "= 0 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2W1Gap",
+      "formula": "Bent2W1Gap = Min(Bent2Wall1Pile1Face,Bent2Wall1Pile2Face,Bent2Wall1Pile3Face,Bent2Wall1Pile4Face)",
+      "was": "= 3 ft 0.617 in",
+      "now": "= 3 ft 1.5 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2W1Extra",
+      "formula": "Bent2W1Extra = Max(0 in,LayoutClear-Bent2W1Gap)",
+      "was": "= 0 ft 0.883 in",
+      "now": "= 0 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2W1Status",
+      "formula": "Bent2W1Status = If(InputsValid,If(Bent2W1Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+      "was": "= SHORTFALL",
+      "now": "= MEETS CLEAR"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2W2xend",
+      "formula": "Bent2W2xend = Bent2W2x+Bent2W2tx*Bent2W2len",
+      "was": "= -8.669 ft",
+      "now": "= -9.500 ft"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2W2yend",
+      "formula": "Bent2W2yend = Bent2W2y+Bent2W2ty*Bent2W2len",
+      "was": "= -3.802 ft",
+      "now": "= -4.333 ft"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2Wall2Pile1Face",
+      "formula": "Bent2Wall2Pile1Face = (Bent2P1x-Bent2W2x)*Bent2W2nx+(Bent2P1y-Bent2W2y)*Bent2W2ny-Half",
+      "was": "= 1 ft 2.026 in",
+      "now": "= 2 ft 0 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2Wall2Pile1Extra",
+      "formula": "Bent2Wall2Pile1Extra = Max(0 in,SideClear-Bent2Wall2Pile1Face)",
+      "was": "= 0 ft 9.974 in",
+      "now": "= 0 ft 0.000186 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2Wall2Pile2Face",
+      "formula": "Bent2Wall2Pile2Face = (Bent2P2x-Bent2W2x)*Bent2W2nx+(Bent2P2y-Bent2W2y)*Bent2W2ny-Half",
+      "was": "= 5 ft 8.026 in",
+      "now": "= 6 ft 6 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2Wall2Pile3Face",
+      "formula": "Bent2Wall2Pile3Face = (Bent2P3x-Bent2W2x)*Bent2W2nx+(Bent2P3y-Bent2W2y)*Bent2W2ny-Half",
+      "was": "= 10 ft 2.026 in",
+      "now": "= 11 ft 0 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2Wall2Pile4Face",
+      "formula": "Bent2Wall2Pile4Face = (Bent2P4x-Bent2W2x)*Bent2W2nx+(Bent2P4y-Bent2W2y)*Bent2W2ny-Half",
+      "was": "= 14 ft 8.026 in",
+      "now": "= 15 ft 6 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2W2Gap",
+      "formula": "Bent2W2Gap = Min(Bent2Wall2Pile1Face,Bent2Wall2Pile2Face,Bent2Wall2Pile3Face,Bent2Wall2Pile4Face)",
+      "was": "= 1 ft 2.026 in",
+      "now": "= 2 ft 0 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2W2Extra",
+      "formula": "Bent2W2Extra = Max(0 in,SideClear-Bent2W2Gap)",
+      "was": "= 0 ft 9.974 in",
+      "now": "= 0 ft 0.000186 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2W3xend",
+      "formula": "Bent2W3xend = Bent2W3x+Bent2W3tx*Bent2W3len",
+      "was": "= 8.664 ft",
+      "now": "= 9.500 ft"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2W3yend",
+      "formula": "Bent2W3yend = Bent2W3y+Bent2W3ty*Bent2W3len",
+      "was": "= -3.802 ft",
+      "now": "= -4.333 ft"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2Wall3Pile1Face",
+      "formula": "Bent2Wall3Pile1Face = (Bent2P1x-Bent2W3x)*Bent2W3nx+(Bent2P1y-Bent2W3y)*Bent2W3ny-Half",
+      "was": "= 14 ft 7.973 in",
+      "now": "= 15 ft 6 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2Wall3Pile2Face",
+      "formula": "Bent2Wall3Pile2Face = (Bent2P2x-Bent2W3x)*Bent2W3nx+(Bent2P2y-Bent2W3y)*Bent2W3ny-Half",
+      "was": "= 10 ft 1.973 in",
+      "now": "= 11 ft 0.000186 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2Wall3Pile3Face",
+      "formula": "Bent2Wall3Pile3Face = (Bent2P3x-Bent2W3x)*Bent2W3nx+(Bent2P3y-Bent2W3y)*Bent2W3ny-Half",
+      "was": "= 5 ft 7.973 in",
+      "now": "= 6 ft 6 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2Wall3Pile4Face",
+      "formula": "Bent2Wall3Pile4Face = (Bent2P4x-Bent2W3x)*Bent2W3nx+(Bent2P4y-Bent2W3y)*Bent2W3ny-Half",
+      "was": "= 1 ft 1.973 in",
+      "now": "= 2 ft 0.000186 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2Wall3Pile4Extra",
+      "formula": "Bent2Wall3Pile4Extra = Max(0 in,SideClear-Bent2Wall3Pile4Face)",
+      "was": "= 0 ft 10.027 in",
+      "now": "= 0 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2W3Gap",
+      "formula": "Bent2W3Gap = Min(Bent2Wall3Pile1Face,Bent2Wall3Pile2Face,Bent2Wall3Pile3Face,Bent2Wall3Pile4Face)",
+      "was": "= 1 ft 1.973 in",
+      "now": "= 2 ft 0.000186 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2W3Extra",
+      "formula": "Bent2W3Extra = Max(0 in,SideClear-Bent2W3Gap)",
+      "was": "= 0 ft 10.027 in",
+      "now": "= 0 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2W3Status",
+      "formula": "Bent2W3Status = If(InputsValid,If(Bent2W3Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+      "was": "= SHORTFALL",
+      "now": "= MEETS CLEAR"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "name": "Bent2CapGap",
+      "formula": "Bent2CapGap = -Bent2W1x*Bent2W1nx-Bent2W1y*Bent2W1ny-CapX*Abs(Bent2W1nx)-CapY*Abs(Bent2W1ny)",
+      "was": "= 2 ft 0.617 in",
+      "now": "= 2 ft 1.499 in"
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent1Wall1Pile1Face to in",
+      "was": "37.18217634444487 in",
+      "now": "37.50018573778746 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent1Wall1Pile1Extra to in",
+      "was": "0.3178236555551308 in",
+      "now": "0 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent1Wall1Pile2Face to in",
+      "was": "37.183290782669545 in",
+      "now": "37.50130017601214 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent1Wall1Pile2Extra to in",
+      "was": "0.3167092173304553 in",
+      "now": "0 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent1Wall1Pile3Face to in",
+      "was": "37.18440522089422 in",
+      "now": "37.50241461423681 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent1Wall1Pile3Extra to in",
+      "was": "0.3155947791057798 in",
+      "now": "0 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent1Wall1Pile4Face to in",
+      "was": "37.185519659118896 in",
+      "now": "37.50352905246149 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent1Wall1Pile4Extra to in",
+      "was": "0.3144803408811043 in",
+      "now": "0 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent1W1Gap to in",
+      "was": "37.18217634444487 in",
+      "now": "37.50018573778746 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent1W1Extra to in",
+      "was": "0.3178236555551308 in",
+      "now": "0 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent1W1Status",
+      "was": "SHORTFALL",
+      "now": "MEETS CLEAR",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent1W2Gap to in",
+      "was": "13.97391193925229 in",
+      "now": "24.000185730227628 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent1W2Extra to in",
+      "was": "10.02608806074771 in",
+      "now": "0 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent1W2Status",
+      "was": "SHORTFALL",
+      "now": "MEETS CLEAR",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent1W3Gap to in",
+      "was": "14.026116429031418 in",
+      "now": "23.999814250819043 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent1W3Extra to in",
+      "was": "9.973883570968582 in",
+      "now": "0.00018574918095737303 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent2Wall1Pile1Face to in",
+      "was": "36.620739615085135 in",
+      "now": "37.50352905246077 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent2Wall1Pile1Extra to in",
+      "was": "0.8792603849148648 in",
+      "now": "0 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent2Wall1Pile2Face to in",
+      "was": "36.61962517686046 in",
+      "now": "37.502414614236095 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent2Wall1Pile2Extra to in",
+      "was": "0.8803748231395403 in",
+      "now": "0 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent2Wall1Pile3Face to in",
+      "was": "36.618510738635784 in",
+      "now": "37.50130017601142 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent2Wall1Pile3Extra to in",
+      "was": "0.8814892613642158 in",
+      "now": "0 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent2Wall1Pile4Face to in",
+      "was": "36.61739630041111 in",
+      "now": "37.500185737786744 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent2Wall1Pile4Extra to in",
+      "was": "0.8826036995888913 in",
+      "now": "0 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent2W1Gap to in",
+      "was": "36.61739630041111 in",
+      "now": "37.500185737786744 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent2W1Extra to in",
+      "was": "0.8826036995888913 in",
+      "now": "0 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent2W1Status",
+      "was": "SHORTFALL",
+      "now": "MEETS CLEAR",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent2W2Gap to in",
+      "was": "14.026121105578298 in",
+      "now": "23.99981425081978 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent2W2Extra to in",
+      "was": "9.973878894421702 in",
+      "now": "0.00018574918021840858 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent2W3Gap to in",
+      "was": "13.973102135810137 in",
+      "now": "24.000185730226775 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent2W3Extra to in",
+      "was": "10.026897864189863 in",
+      "now": "0 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent2W3Status",
+      "was": "SHORTFALL",
+      "now": "MEETS CLEAR",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent1CapGap to in",
+      "was": "25.18166040529446 in",
+      "now": "25.499432464570685 in",
+      "occurrences": 1
+    },
+    {
+      "report": "MSEWallExclusion",
+      "cell": "Bent2CapGap to in",
+      "was": "24.616880361260698 in",
+      "now": "25.499432464569967 in",
+      "occurrences": 1
+    }
+  ],
+  "mse": {
+    "caches_validated": 126,
+    "cells_validated": 59,
+    "cells_exact_text": 59,
+    "definition_caches_refreshed": 66,
+    "wall_literals_changed": 17,
+    "summary": {
+      "CapLength": "19 ft 7 in",
+      "CapX": "9 ft 9.5 in",
+      "Bent1W1Gap": "3 ft 1.5 in",
+      "Bent1W2Gap": "2 ft 0.000186 in",
+      "Bent1W3Gap": "2 ft 0 in",
+      "Bent1CapGap": "2 ft 1.499 in",
+      "Bent1W1Status": "MEETS CLEAR",
+      "Bent1W2Status": "MEETS CLEAR",
+      "Bent1W3Status": "SHORTFALL",
+      "Bent1CapStatus": "✓ PASS",
+      "Bent2W1Gap": "3 ft 1.5 in",
+      "Bent2W2Gap": "2 ft 0 in",
+      "Bent2W3Gap": "2 ft 0.000186 in",
+      "Bent2CapGap": "2 ft 1.499 in",
+      "Bent2W1Status": "MEETS CLEAR",
+      "Bent2W2Status": "SHORTFALL",
+      "Bent2W3Status": "MEETS CLEAR",
+      "Bent2CapStatus": "✓ PASS"
+    }
+  }
+}

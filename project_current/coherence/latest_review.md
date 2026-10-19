@@ -1,73 +1,37 @@
 # Latest project coherence review
 
-## 19 October backwall/ramp geometry update
-
-D-053 updates both backwall tops in the notebook, B4 spreadsheet and native CAD.
-The two 2% top slopes are level through the wall thickness; the ramp slabs
-thicken locally to them while keeping their walking faces. Both connections
-have at least 4 in of slab at the checked points. Native solids, contact, cover,
-spacing and new-overlap checks pass; the spreadsheet recalculates without errors.
-See the [verified source receipt](evidence/2026-10-19-simple-backwall-tops/source_receipt.json).
-
-The former EB1 curved-seat rebuild action is superseded by this completed
-geometry revision. COH-023 and other broader calculation/detailing items remain
-open; tracker statuses and responses are unchanged. The D-052 interactive report
-is retained as a **prior geometry snapshot**, not the current backwall detail.
-The dated baseline and earlier receipts below remain historical.
-
-## 19 October geometry report source receipt
-
-The supplied interactive geometry report is registered as GEOMETRY-REPORT
-under D-052, with its original bytes preserved. It matches notebook model
-622e5ca1bf: 19,494 numeric values agree within 1e-9. All four registered
-input fingerprints match. See the [source receipt](evidence/2026-10-19-geometry-report/source_receipt.json).
-This bounded source addition leaves the tracker and the dated project-wide
-check below unchanged; it does not close existing engineering items.
-
-## 19 October cap notebook rerun
-
-D-051 selects three new cap reports and saved cases recalculated from the
-D-049 fixed XMLs. All three report/case/XML fingerprints match; EB2 is checked
-explicitly in the [receipt](evidence/2026-10-19-cap-rerun/source_receipt.json).
-Geometry and reinforcement are preserved. Check ratios are refreshed with no
-status changes or new failures: Pier retains 2 FAIL entries including its summary;
-each end bent retains 6. Pending and detailing reviews remain.
-
-COH-013's report/raw-source fingerprint gap is resolved. Its existing tracker
-status/responses are preserved for native-run documentation and disposition.
-COH-028 pile-head review remains: EB1 matches the recorded target at printed
-precision; Pier and EB2 remain about 0.08 in above the recorded cutoffs.
-The workbook below retains its existing findings and next actions as historical
-unamended entries. This update does not assert full-project engineering approval.
-
-## Automatic check and existing tracker view
-
-Checked at 2026-10-19T14:41:13.951970+00:00. **15 outstanding items remain.**
+Checked at 2026-10-19T21:38:25.291387+00:00. **15 outstanding items remain.**
 
 The [workbook](Coherence_Tracker.xlsx) owns item status and responses. This report is a generated view.
 The initial findings were carried forward from the latest adopted pier/end-bent reviews plus source-inventory gaps.
 Previously resolved decisions were excluded. This run did not perform native calculations or a complete engineering review.
 
-Registered sources: 29. Tracker items: 28.
-Automatic results: 2 changed, 9 error, 44 match, 4 missing, 7 review.
+Registered sources: 37. Tracker items: 28.
+Automatic results: 3 changed, 9 error, 51 match, 4 missing, 12 review.
 
 ## Files and relationships needing attention
 
 | Check | Status | Finding |
 | --- | --- | --- |
-| SOURCE:JOURNAL | CHANGED | File differs from the registered revision; review its consumers before adoption. |
 | SOURCE:CAP-TOOL | CHANGED | File differs from the registered revision; review its consumers before adoption. |
 | SOURCE:MCAD-DAT1 | MISSING | Registered file is absent. |
 | SOURCE:PSB-S1 | MISSING | No source file has been selected. |
 | SOURCE:MCAD-DAT2 | MISSING | Registered file is absent. |
 | SOURCE:PSB-S2 | MISSING | No source file has been selected. |
-| DEP:GEOMETRY:JOURNAL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
+| SOURCE:BACKWALL-TOOL | CHANGED | File differs from the registered revision; review its consumers before adoption. |
+| SOURCE:PILE-TOOL | CHANGED | File differs from the registered revision; review its consumers before adoption. |
 | DEP:MCAD-S1:MCAD-DAT1 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S1:PSB-S1 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S2:MCAD-DAT2 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S2:PSB-S2 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
-| DEP:CAD-MODEL:JOURNAL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
-| DEP:BACKWALL-TOOL:JOURNAL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
+| DEP:BACKWALL-REPORT:BACKWALL-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
+| DEP:BACKWALL-CASE:BACKWALL-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
+| DEP:PILE-EB1-REPORT:PILE-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
+| DEP:PILE-EB1-CASE:PILE-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
+| DEP:PILE-EB2-REPORT:PILE-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
+| DEP:PILE-EB2-CASE:PILE-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
+| DEP:PILE-PIER-REPORT:PILE-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
+| DEP:PILE-PIER-CASE:PILE-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | TRACKER:10 | ERROR | Closed / not-applicable item requires resolution evidence. |
 | TRACKER:11 | ERROR | Closed / not-applicable item requires resolution evidence. |
 | TRACKER:15 | ERROR | Closed / not-applicable item requires resolution evidence. |

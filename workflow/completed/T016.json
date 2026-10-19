@@ -1,0 +1,29 @@
+{
+  "task": "T016",
+  "journal_sha256": "855e2cecf27db3de141d037a33dfce060014cc00b6f4c180326172b0e4acf1db",
+  "previous_sha256": "033bf8ff64ca83f0cb9dd38aa5f43bb0c427852b8e2111623cb2123b8fa0f49d",
+  "promoted": "2026-10-19T21:34:27.868194+00:00",
+  "review": {
+    "candidate_sha256": "855e2cecf27db3de141d037a33dfce060014cc00b6f4c180326172b0e4acf1db",
+    "reviewer": "Josh (repository owner), executed through the Claude Code session of 19 October 2026 on the user's instruction (update the project journal to make it coherent with the latest calculations and CAD model); native Blockpad reviews not performed",
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false,
+    "design_outcome": "unreviewed",
+    "external_analysis_disposition": "FB-MultiPier models and results were not re-run. The D-049 fixed-run exports (End Bent 1_Fixed.XML c1a4afa1…, End Bent 2_Fixed.XML 3543df29…, Pier_Fixed.XML bb73e6ad…) are recorded as the current model sources and were read for the facts stated (loaded nodes 15 and 34 in both end-bent exports; pier bearing rows at Y = -10.50 and +10.50 in; pier pile section 20 in x 0.48 in shell, Fy 60 ksi); the cap reports (D-051) and pile reports (D-054) that read them are the registered notebook outputs. The MSE exclusion wall lines were re-extracted from the saved D-055 FreeCAD model (native WallProfile properties, no FreeCAD run) and the module's cached results recomputed by tasks/T016/mse_eval.py after it reproduced every existing cached value; the side walls stand at the 24-in criterion within 0.0002 in, so two of the four side-wall rows read SHORTFALL by the last digits, as the module now says. Currency of the FBMP models against the current haunch dead load, wind heights and the D-053/D-055 backwall and cheek geometry is not asserted. The 16 October 2026 backwall report (D-037) predates the D-049 exports and the D-053 geometry and is not in the journal.",
+    "external_analysis_status": "unreviewed",
+    "inherited_issues_disposition": "No inherited structural issues or stored errors (0 before, 0 after); no new ones. Recorded and left open: stale caches left by T014 in the wind chain, BearingDesign, PierWallFins, the FBMP wind rows and the quantity sheets (native recalculation); the pipe-pile steel grade (45 ksi in PileDesignPier against 60 ksi in the FBMP model) and corrosion allowance; the side walls at the 24-in limit; the backwall report to be rerun before it is added to the journal. Table-cell caches in MSEWallExclusion are written at Python's shortest round-trip precision and are rewritten by Blockpad on recalculation.",
+    "evidence_files": [
+      {
+        "path": "independent-checks.json",
+        "sha256": "8914fb94d5d44947c2ea27b89ad66e8e43baabf622520e0f71a6f3d189d41b16"
+      }
+    ]
+  },
+  "promotion_policy": {
+    "reviews_required": false,
+    "effective_date": "2026-10-16",
+    "basis": "User instructed that BPAD changes may proceed without mandatory native recalculation, appearance review or engineering review, until the user reinstates those requirements. Scope, dependency, exact-byte, reference-integrity and evidence checks remain mandatory."
+  },
+  "history": "workflow/history/855e2cecf27db3de141d037a33dfce060014cc00b6f4c180326172b0e4acf1db"
+}

@@ -1,0 +1,177 @@
+{
+  "candidate_sha256": "855e2cecf27db3de141d037a33dfce060014cc00b6f4c180326172b0e4acf1db",
+  "base_sha256": "033bf8ff64ca83f0cb9dd38aa5f43bb0c427852b8e2111623cb2123b8fa0f49d",
+  "all_passed": true,
+  "checks": {
+    "changed_components": {
+      "passed": true,
+      "detail": {
+        "changed": [
+          "report:PedBridge",
+          "report:BridgeGeometry_2Beam",
+          "report:PileProperties",
+          "report:FBMPPier",
+          "report:FBMPEndBent",
+          "report:FoundationModeling",
+          "report:DecisionLog",
+          "report:MSEWallExclusion"
+        ],
+        "base_is_current": true
+      }
+    },
+    "report_json_changed_set": {
+      "passed": true,
+      "detail": [
+        "report:PedBridge",
+        "report:BridgeGeometry_2Beam",
+        "report:PileProperties",
+        "report:FBMPPier",
+        "report:FBMPEndBent",
+        "report:FoundationModeling",
+        "report:DecisionLog",
+        "report:MSEWallExclusion"
+      ]
+    },
+    "structural": {
+      "passed": true,
+      "detail": {
+        "issues": {},
+        "cached_errors": 0
+      }
+    },
+    "links_resolve": {
+      "passed": true,
+      "detail": {
+        "new_links": 6,
+        "unresolved": []
+      }
+    },
+    "register_identities": {
+      "passed": true,
+      "detail": {
+        "register": {
+          "EB-XML": true,
+          "EB2-XML": true,
+          "PIER-XML": true,
+          "EB-REPORT": true,
+          "PIER-REPORT": true,
+          "CAD-MODEL": true
+        },
+        "files": {
+          "EB-XML": true,
+          "EB2-XML": true,
+          "PIER-XML": true,
+          "EB-REPORT": true,
+          "PIER-REPORT": true,
+          "CAD-MODEL": true
+        },
+        "in_text": {
+          "EB-XML": true,
+          "EB2-XML": true,
+          "PIER-XML": true,
+          "EB-REPORT": true,
+          "PIER-REPORT": true,
+          "CAD-MODEL": true
+        }
+      }
+    },
+    "xml_facts": {
+      "passed": true,
+      "detail": {
+        "eb1_nodes": [
+          "15",
+          "34"
+        ],
+        "eb2_nodes": [
+          "15",
+          "34"
+        ],
+        "pier_bearing_Y": [
+          "-10.50",
+          "10.50"
+        ],
+        "pier_shell_in": "0.48",
+        "pier_fy_ksi": null
+      }
+    },
+    "notebook_values": {
+      "passed": true,
+      "detail": "backwall drop 4.25 in both CONFIG entries; check compares the camber literals of the report; cache MATCHES"
+    },
+    "mse_wall_literals": {
+      "passed": true,
+      "detail": {
+        "mismatch": {},
+        "model_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df"
+      }
+    },
+    "mse_gaps_and_statuses": {
+      "passed": true,
+      "detail": {
+        "gaps_in": {
+          "Bent1W1": 37.500186,
+          "Bent1W2": 24.000186,
+          "Bent1W3": 23.999814,
+          "Bent2W1": 37.500186,
+          "Bent2W2": 23.999814,
+          "Bent2W3": 24.000186
+        },
+        "status": {
+          "Bent1W1Status": "MEETS CLEAR",
+          "Bent1W2Status": "MEETS CLEAR",
+          "Bent1W3Status": "SHORTFALL",
+          "Bent2W1Status": "MEETS CLEAR",
+          "Bent2W2Status": "SHORTFALL",
+          "Bent2W3Status": "MEETS CLEAR"
+        },
+        "expected": {
+          "Bent1W1": "MEETS CLEAR",
+          "Bent1W2": "MEETS CLEAR",
+          "Bent1W3": "SHORTFALL",
+          "Bent2W1": "MEETS CLEAR",
+          "Bent2W2": "SHORTFALL",
+          "Bent2W3": "MEETS CLEAR"
+        }
+      }
+    },
+    "mse_cap_cache": {
+      "passed": true,
+      "detail": "19 ft 7 in"
+    },
+    "stale_text_removed": {
+      "passed": true,
+      "detail": {
+        "17 ft 8 in long": 0,
+        "INPUTS CHANGED cache": 0,
+        "matching raw XML is still needed": 0,
+        "SOURCE LIMIT": 0,
+        "185.5 ft^3 cell": 0,
+        "old EB xml sha as current": 0
+      }
+    },
+    "endbent_forces": {
+      "passed": true,
+      "detail": "19 October End Bent 1 case values present (selected_case.json inputs Mu_N 79.3, Mu_P 67.16, Mu_B 182.09, Vu_G 91.77, Tu 3.09, MI 53.3/49.33/138.47)"
+    },
+    "endbent_case_values": {
+      "passed": true,
+      "detail": {
+        "Mu_N": 79.3,
+        "Mu_P": 67.16,
+        "Mu_B": 182.09,
+        "Vu_G": 91.77,
+        "Tu": 3.09,
+        "MI_N": 53.3,
+        "MI_P": 49.33,
+        "MI_B": 138.47,
+        "Bar_v": 6,
+        "s_G": 9.0,
+        "n_loop": 1
+      }
+    },
+    "new_sections": {
+      "passed": true,
+      "detail": "four dated sections present"
+    }
+  }
+}

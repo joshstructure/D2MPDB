@@ -1,9 +1,9 @@
 {
-  "checked_at_utc": "2026-10-19T14:41:13.951970+00:00",
+  "checked_at_utc": "2026-10-19T21:38:25.291387+00:00",
   "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
-  "register_sha256": "79ec75772e98eac459f63976f179df3837b23b49def0f537554aab8a35703728",
+  "register_sha256": "26bc36634eb384fe731bba38f95a66bc61b879372d3a26637c77920c797d2ed9",
   "tracker_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
-  "source_count": 29,
+  "source_count": 37,
   "item_count": 28,
   "outstanding_count": 15,
   "status_counts": {
@@ -13,23 +13,23 @@
     "Awaiting source": 1
   },
   "check_counts": {
-    "CHANGED": 2,
-    "MATCH": 44,
+    "MATCH": 51,
+    "CHANGED": 3,
     "MISSING": 4,
-    "REVIEW": 7,
+    "REVIEW": 12,
     "ERROR": 9
   },
   "checks": [
     {
       "check_id": "SOURCE:JOURNAL",
-      "status": "CHANGED",
-      "detail": "File differs from the registered revision; review its consumers before adoption.",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
       "source_ids": [
         "JOURNAL"
       ],
       "path": "journal/D2_I95_Project_Journal.bpad",
-      "expected_sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351",
-      "actual_sha256": "7a0d47ab899b9eb91f9ead3b31a3c55c8bedfe5f5d05f4f26df093d79f4bd0f0"
+      "expected_sha256": "855e2cecf27db3de141d037a33dfce060014cc00b6f4c180326172b0e4acf1db",
+      "actual_sha256": "855e2cecf27db3de141d037a33dfce060014cc00b6f4c180326172b0e4acf1db"
     },
     {
       "check_id": "SOURCE:GEOMETRY",
@@ -39,8 +39,8 @@
         "GEOMETRY"
       ],
       "path": "Bridge_Geometry_2 Beam_V2.ipynb",
-      "expected_sha256": "2d45fc34b606f2157e2d634beb4d9dd04319c0664d9e96e5bf53e8eca993dafd",
-      "actual_sha256": "2d45fc34b606f2157e2d634beb4d9dd04319c0664d9e96e5bf53e8eca993dafd"
+      "expected_sha256": "4ccd84724ab53d45b9e2bcc7201ece64c0406f8b72e9772d8df5456b0199310b",
+      "actual_sha256": "4ccd84724ab53d45b9e2bcc7201ece64c0406f8b72e9772d8df5456b0199310b"
     },
     {
       "check_id": "SOURCE:ROADWAY",
@@ -62,7 +62,7 @@
       ],
       "path": "Cap_and_Pile_Design.ipynb",
       "expected_sha256": "1af14e6efa5095a973b88ced422bee1656596ec8cba4e5c6b6b31ee9796c4c74",
-      "actual_sha256": "2953452fe2952021f26ddca1a7bd65752a8ced20be54282d26a92c78b5b3a6e5"
+      "actual_sha256": "8074059d62f51fb2bec757b8a9f2f0668d79a3e1e04cf0e52dace25e06796978"
     },
     {
       "check_id": "SOURCE:PIER-REPORT",
@@ -226,8 +226,8 @@
         "CAD-MODEL"
       ],
       "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-      "expected_sha256": "aee8160a242a00be1c4259e711d8ef5fb5805ad3750485beee947aa44eb62407",
-      "actual_sha256": "aee8160a242a00be1c4259e711d8ef5fb5805ad3750485beee947aa44eb62407"
+      "expected_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df",
+      "actual_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df"
     },
     {
       "check_id": "SOURCE:CAD-RUNTIME",
@@ -237,8 +237,8 @@
         "CAD-RUNTIME"
       ],
       "path": "project_current/geometry/freecad/manifest.json",
-      "expected_sha256": "e5600e4fb3c8258aab7f6b7ca98bcd58e31955d6c0ed8e265ba6f99283baf953",
-      "actual_sha256": "e5600e4fb3c8258aab7f6b7ca98bcd58e31955d6c0ed8e265ba6f99283baf953"
+      "expected_sha256": "9e8ab2821428062a7cf861c441548156a0762dc116064f819bc7aba594f37c18",
+      "actual_sha256": "9e8ab2821428062a7cf861c441548156a0762dc116064f819bc7aba594f37c18"
     },
     {
       "check_id": "SOURCE:CAD-REPORT",
@@ -248,19 +248,19 @@
         "CAD-REPORT"
       ],
       "path": "project_current/geometry/freecad/evidence/Model-update-report.txt",
-      "expected_sha256": "aa29cde7c87a65374145a1e553516a51a4d641251d82a7f960eb043bd8bd4c98",
-      "actual_sha256": "aa29cde7c87a65374145a1e553516a51a4d641251d82a7f960eb043bd8bd4c98"
+      "expected_sha256": "8503651894b3b173c5ee43d606a52dbc5d6eb00a543121cb967e3c66bc2f18f0",
+      "actual_sha256": "8503651894b3b173c5ee43d606a52dbc5d6eb00a543121cb967e3c66bc2f18f0"
     },
     {
       "check_id": "SOURCE:BACKWALL-TOOL",
-      "status": "MATCH",
-      "detail": "Registered text content matches after CRLF/LF normalization.",
+      "status": "CHANGED",
+      "detail": "File differs from the registered revision; review its consumers before adoption.",
       "source_ids": [
         "BACKWALL-TOOL"
       ],
       "path": "End_Bent_Backwall_Design.ipynb",
       "expected_sha256": "48bab4c3f7cc9dc445908021012083e88cb988e17af09620366e70f6a5da35d9",
-      "actual_sha256": "48bab4c3f7cc9dc445908021012083e88cb988e17af09620366e70f6a5da35d9"
+      "actual_sha256": "279061f0247e5318a375481b7a70bca6463783f997704683c44a6362b37d4a05"
     },
     {
       "check_id": "SOURCE:EB2-REPORT",
@@ -336,17 +336,96 @@
         "GEOMETRY-TABLES"
       ],
       "path": "project_current/geometry/tables/B4_Geometry_CAD_Tables.xlsx",
-      "expected_sha256": "baa7e358c3a952779151480a95b5a3016dd875fe7b4ca00aad9fb9b75b1b65b5",
-      "actual_sha256": "baa7e358c3a952779151480a95b5a3016dd875fe7b4ca00aad9fb9b75b1b65b5"
+      "expected_sha256": "7ae68ec09a308fe6eda6df52d28eb402e61dec18033c219b411c551a51f14977",
+      "actual_sha256": "7ae68ec09a308fe6eda6df52d28eb402e61dec18033c219b411c551a51f14977"
     },
     {
-      "check_id": "DEP:GEOMETRY:JOURNAL",
-      "status": "REVIEW",
-      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "check_id": "SOURCE:GEOMETRY-REPORT",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
       "source_ids": [
-        "GEOMETRY",
-        "JOURNAL"
-      ]
+        "GEOMETRY-REPORT"
+      ],
+      "path": "project_current/geometry/reports/Bridge_Geometry_Interactive_Report_physical_v2_622e5ca1bf.html",
+      "expected_sha256": "23642af61597dd7444ca0634f0ef8e5c552fc633da23fd63d48165b065263022",
+      "actual_sha256": "23642af61597dd7444ca0634f0ef8e5c552fc633da23fd63d48165b065263022"
+    },
+    {
+      "check_id": "SOURCE:PILE-TOOL",
+      "status": "CHANGED",
+      "detail": "File differs from the registered revision; review its consumers before adoption.",
+      "source_ids": [
+        "PILE-TOOL"
+      ],
+      "path": "Pile_Design.ipynb",
+      "expected_sha256": "1c6b9162e589d075023b94d1b7a2c0f42603cb4e2fafc1123bd804e3ec389d2a",
+      "actual_sha256": "ab9ed70a65be1ba31e1aebef82dfa1bc24c3080b09ffff4624ce7372967e025e"
+    },
+    {
+      "check_id": "SOURCE:PILE-EB1-REPORT",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "PILE-EB1-REPORT"
+      ],
+      "path": "project_current/pile_design/end_bent_1/End Bent 1 Pile Design 10-19.html",
+      "expected_sha256": "470bc14a2027d66e25e298080aa3482bf6ca92d37ab8fd716167ce69ff570e42",
+      "actual_sha256": "470bc14a2027d66e25e298080aa3482bf6ca92d37ab8fd716167ce69ff570e42"
+    },
+    {
+      "check_id": "SOURCE:PILE-EB1-CASE",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "PILE-EB1-CASE"
+      ],
+      "path": "project_current/pile_design/end_bent_1/selected_case.json",
+      "expected_sha256": "b733ea1396f5e715920935268f36a11ff20a764ee04c40da4ca0167607666440",
+      "actual_sha256": "b733ea1396f5e715920935268f36a11ff20a764ee04c40da4ca0167607666440"
+    },
+    {
+      "check_id": "SOURCE:PILE-EB2-REPORT",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "PILE-EB2-REPORT"
+      ],
+      "path": "project_current/pile_design/end_bent_2/End Bent 2 Pile Design 10-19.html",
+      "expected_sha256": "e9d0253756825f015971a3d54645ba66a4d6b2538faf76daa8e1ced403947591",
+      "actual_sha256": "e9d0253756825f015971a3d54645ba66a4d6b2538faf76daa8e1ced403947591"
+    },
+    {
+      "check_id": "SOURCE:PILE-EB2-CASE",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "PILE-EB2-CASE"
+      ],
+      "path": "project_current/pile_design/end_bent_2/selected_case.json",
+      "expected_sha256": "a74e7d6078314a87ef96c133a0fbf147cc0c8bbf2caa2002de3259bfeddc77bf",
+      "actual_sha256": "a74e7d6078314a87ef96c133a0fbf147cc0c8bbf2caa2002de3259bfeddc77bf"
+    },
+    {
+      "check_id": "SOURCE:PILE-PIER-REPORT",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "PILE-PIER-REPORT"
+      ],
+      "path": "project_current/pile_design/pier/Pier Pile Design 10-19.html",
+      "expected_sha256": "e3880f74db02b4bc997a4efc92688d6b8439360f3cf116c830a8cb0de1701a59",
+      "actual_sha256": "e3880f74db02b4bc997a4efc92688d6b8439360f3cf116c830a8cb0de1701a59"
+    },
+    {
+      "check_id": "SOURCE:PILE-PIER-CASE",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "PILE-PIER-CASE"
+      ],
+      "path": "project_current/pile_design/pier/selected_case.json",
+      "expected_sha256": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c",
+      "actual_sha256": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c"
     },
     {
       "check_id": "DEP:MCAD-S1:MCAD-DAT1",
@@ -385,27 +464,81 @@
       ]
     },
     {
-      "check_id": "DEP:CAD-MODEL:JOURNAL",
+      "check_id": "DEP:BACKWALL-REPORT:BACKWALL-TOOL",
       "status": "REVIEW",
       "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
       "source_ids": [
-        "CAD-MODEL",
-        "JOURNAL"
+        "BACKWALL-REPORT",
+        "BACKWALL-TOOL"
       ]
     },
     {
-      "check_id": "DEP:BACKWALL-TOOL:JOURNAL",
+      "check_id": "DEP:BACKWALL-CASE:BACKWALL-TOOL",
       "status": "REVIEW",
       "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
       "source_ids": [
-        "BACKWALL-TOOL",
-        "JOURNAL"
+        "BACKWALL-CASE",
+        "BACKWALL-TOOL"
+      ]
+    },
+    {
+      "check_id": "DEP:PILE-EB1-REPORT:PILE-TOOL",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "PILE-EB1-REPORT",
+        "PILE-TOOL"
+      ]
+    },
+    {
+      "check_id": "DEP:PILE-EB1-CASE:PILE-TOOL",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "PILE-EB1-CASE",
+        "PILE-TOOL"
+      ]
+    },
+    {
+      "check_id": "DEP:PILE-EB2-REPORT:PILE-TOOL",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "PILE-EB2-REPORT",
+        "PILE-TOOL"
+      ]
+    },
+    {
+      "check_id": "DEP:PILE-EB2-CASE:PILE-TOOL",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "PILE-EB2-CASE",
+        "PILE-TOOL"
+      ]
+    },
+    {
+      "check_id": "DEP:PILE-PIER-REPORT:PILE-TOOL",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "PILE-PIER-REPORT",
+        "PILE-TOOL"
+      ]
+    },
+    {
+      "check_id": "DEP:PILE-PIER-CASE:PILE-TOOL",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "PILE-PIER-CASE",
+        "PILE-TOOL"
       ]
     },
     {
       "check_id": "JOURNAL:acceptance",
       "status": "MATCH",
-      "detail": "Journal matches acceptance receipt T010. Review scope remains as recorded.",
+      "detail": "Journal matches acceptance receipt T016. Review scope remains as recorded.",
       "source_ids": [
         "JOURNAL"
       ]

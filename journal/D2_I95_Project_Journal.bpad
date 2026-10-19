@@ -60,8 +60,27 @@
         <stylerule applytoall="True" type="Any" leftindent="0.25 in" spacingafter="4" />
         <stylerule type="AnyEquation" name="Required Input" texthighlight="#F7E6B9" />
         <heading level="0" keepwithnext="True">D2 I-95 Pedestrian Bridge - Project Index</heading>
+        <section name="CurrentRecord20261019" capture="False" hide="false">
+            <heading level="1" keepwithnext="True">Current project record — 19 October 2026</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Geometry: the geometry notebook build e9b41b8eaf (D-036; backwall tops D-053) owns the bridge geometry; the CAD model (D-055) and the CAD tables are built from it. Analysis: the 19 October 2026 fixed-run FB-MultiPier exports (D-049). Design records: the 10-19 cap design reports (D-051) and pile design reports (D-054), distilled in the journal. The 16 October 2026 backwall report (D-037) is separate and predates D-049 and D-053. Journal tasks T014 to T016.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#FoundationModeling.ModelSources20261019">Current model sources (D-049 exports)</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#FBMPEndBent.EBCurrentDesignRecord">Current end-bent design and coherence record</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#FBMPPier.PierSourceModelRecord">Current pier source record</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#PileProperties.PileDesignRecords20261019">Pile design records and section reconciliation</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#MSEWallExclusion">MSE wall exclusion boxes (D-055 wall lines)</link>
+            </paragraph>
+        </section>
         <section name="CurrentEndBentRecord" capture="False" hide="false">
-            <heading level="1" keepwithnext="True">Current end-bent data — 8 October 2026</heading>
+            <heading level="1" keepwithnext="True">End-bent data — 8 October 2026 (superseded by the 19 October 2026 record above)</heading>
             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
                 <link address="#BridgeGeometry_2Beam.EndBentCurrentGeometry">Both end bents — cap and square pile geometry</link>
             </paragraph>
@@ -181,10 +200,11 @@
         <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
             <link address="#VoidPedBridge">Archive - Previous Ped Bridge</link>
         </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Revision: 19 October 2026, coherence with the 19 October calculations and CAD model (T016): D-049 exports, D-051 cap reports and D-054 pile reports recorded as current; end-bent design record refreshed; MSE exclusion wall lines re-extracted from the D-055 model; notebook check retargeted to build e9b41b8eaf.</paragraph>
         <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Revision: 8 October 2026, coherence responses. End-bent input uses loaded nodes 15 and 34, 103-in bearing spacing and a 42-in-wide by 36-in-deep cap. Both end bents follow the controlling configuration. End-bent pedestals are 30 in long; pier pedestals remain 48 in. Deferred wall quantities and remaining design checks are identified in the current record.</paragraph>
         <section name="PierJournalRevision20261009" capture="False" hide="false">
             <heading level="1" keepwithnext="True">Pier revision — responses applied, 9 October 2026</heading>
-            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Current pier geometry and source references use the replacement Pier_Fixed report. The shared cap length and gross direct-pier wind width are both 230 in; gross cap volume remains 230 ft³ and pier pedestals remain 48 in. The matching raw XML is still needed to verify the offset correction. The former C005 (removed 19 October 2026) was left unchanged in that revision and reinforcement remains separate. Completed Excel responses and source snapshots are archived under tasks/T006/sources.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Current pier geometry and source references use the replacement Pier_Fixed report. The shared cap length and gross direct-pier wind width are both 230 in; gross cap volume remains 230 ft³ and pier pedestals remain 48 in. The matching raw Pier_Fixed.XML (D-049, 19 October 2026) is now in project_current and confirms the symmetric ±10.50-in bearing rows. The former C005 (removed 19 October 2026) was left unchanged in that revision and reinforcement remains separate. Completed Excel responses and source snapshots are archived under tasks/T006/sources.</paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
                 <link address="#BridgeGeometry_2Beam.PierCurrentGeometry">Current pier cap geometry</link>
             </paragraph>
@@ -436,8 +456,8 @@
             </table>
         </embed>
         <section name="NotebookGeometryUpdate20260929" capture="False" hide="false">
-            <heading>Coordinated notebook geometry — 29 September 2026</heading>
-            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Current project basis: Bridge_Geo_2_Beam_Reorganized, intersecting-tangent profile, centered two-beam crowned deck, zero beam raises and parabolic span cambers. The normal slab area excludes all haunch concrete. Haunches are calculated and counted separately. This journal form reproduces that selected notebook mode; changing notebook profile or deck mode requires a coordinated update.</paragraph>
+            <heading>Coordinated notebook geometry — 29 September 2026, aligned with the notebook build e9b41b8eaf on 19 October 2026</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Current project basis: the geometry notebook Bridge_Geometry_2 Beam_V2.ipynb (model e9b41b8eaf, 19 October 2026; decisions D-036 and D-053), which supersedes Bridge_Geo_2_Beam_Reorganized as the geometry owner; the CAD model (D-055) and the CAD tables are built from it. Intersecting-tangent profile, centered two-beam crowned deck, zero beam raises and parabolic span cambers. The normal slab area excludes all haunch concrete. Haunches are calculated and counted separately. This journal form reproduces that selected notebook mode; changing notebook profile or deck mode requires a coordinated update.</paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="2" keepwithnext="True">
                 <dynexp formula="Pier_pile_count = 4" mathlayout="on" showsteps="False">
                     <expbody>Pier_pile_count = 4</expbody>
@@ -593,7 +613,7 @@
                     <expresult> = 186.538 ft^3</expresult>
                 </dynexp>
             </paragraph>
-            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Full bridge haunch volume, 185.8366667 ft³ at the selected notebook inputs. The pier tributary takes half once; do not multiply by beam count again.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Full bridge haunch volume with the notebook build e9b41b8eaf net cambers (the 29 September 2026 snapshot was 185.8366667 ft³ with the 1-in placeholder cambers). The pier tributary takes half once; do not multiply by beam count again.</paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="2" keepwithnext="True">
                 <dynexp formula="Haunch_volume_perBeam = Haunch_totalVolume/Beam_count to ft^3" mathlayout="on" showsteps="False">
                     <expbody>Haunch_volume_perBeam = Haunch_totalVolume/Beam_count to ft^3</expbody>
@@ -602,14 +622,14 @@
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Full bridge haunch volume for each identical transverse beam line.</paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="2" keepwithnext="True">
-                <dynexp formula="Check_notebook_quantity = If(And(Beam_count == 2, Abs(Deck_area-6.79166666666667 ft^2)&lt;0.000001 ft^2, Abs(Haunch_totalVolume-185.836666666667 ft^3)&lt;0.000001 ft^3), &quot;MATCHES 2026-09-29 NOTEBOOK&quot;, &quot;INPUTS CHANGED - RECONCILE NOTEBOOK&quot;)" mathlayout="on" showsteps="False">
-                    <expbody>Check_notebook_quantity = If(And(Beam_count == 2, Abs(Deck_area-6.79166666666667 ft^2)&lt;0.000001 ft^2, Abs(Haunch_totalVolume-185.836666666667 ft^3)&lt;0.000001 ft^3), "MATCHES 2026-09-29 NOTEBOOK", "INPUTS CHANGED - RECONCILE NOTEBOOK")</expbody>
-                    <expresult> = INPUTS CHANGED - RECONCILE NOTEBOOK</expresult>
+                <dynexp formula="Check_notebook_quantity = If(And(Beam_count == 2, Abs(Deck_area-6.79166666666667 ft^2)&lt;0.000001 ft^2, Abs(Beam_camber_1-0.124592744006574 in)&lt;0.000001 in, Abs(Beam_camber_2-0.5671714630550072 in)&lt;0.000001 in, Abs(Haunch_min-0.5 in)&lt;0.000001 in, Abs(Beam_topFlange_width-48 in)&lt;0.000001 in), &quot;MATCHES NOTEBOOK BUILD e9b41b8eaf (2026-10-19)&quot;, &quot;INPUTS CHANGED - RECONCILE NOTEBOOK&quot;)" mathlayout="on" showsteps="False">
+                    <expbody>Check_notebook_quantity = If(And(Beam_count == 2, Abs(Deck_area-6.79166666666667 ft^2)&lt;0.000001 ft^2, Abs(Beam_camber_1-0.124592744006574 in)&lt;0.000001 in, Abs(Beam_camber_2-0.5671714630550072 in)&lt;0.000001 in, Abs(Haunch_min-0.5 in)&lt;0.000001 in, Abs(Beam_topFlange_width-48 in)&lt;0.000001 in), "MATCHES NOTEBOOK BUILD e9b41b8eaf (2026-10-19)", "INPUTS CHANGED - RECONCILE NOTEBOOK")</expbody>
+                    <expresult> = MATCHES NOTEBOOK BUILD e9b41b8eaf (2026-10-19)</expresult>
                 </dynexp>
             </paragraph>
-            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Snapshot reconciliation check. Future input changes retain live formulas and request reconciliation rather than silently showing the old check.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Snapshot reconciliation check against the geometry notebook build e9b41b8eaf (19 October 2026, D-036): deck area, net cambers, minimum haunch and flange width, the inputs that drive the haunch volume (that notebook build publishes no haunch volume; the 29 September check compared a notebook haunch volume of 185.8366667 ft³). Future input changes retain live formulas and request reconciliation rather than silently showing the old check.</paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Bearing stations: the notebook retains the common idealized support at 17+00.57. Physical pier bearing rows are 10.5 in either side of pier CL. Confirm end-bearing station datums and individual seat grades before using these elevations for setting out.</paragraph>
-            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Local thickened deck ends remain a separate unresolved detail and quantity. Existing analysis force exports predate the revised 36-in cap and revised deck dead load; regenerate the structural analysis forces before final use of the pier cap design (CapDesignPier).</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Local thickened deck ends remain a separate unresolved detail and quantity. The current analysis force exports are the 19 October 2026 fixed-run FB-MultiPier models (D-049: End Bent 1_Fixed.XML, End Bent 2_Fixed.XML, Pier_Fixed.XML), which model the 36-in caps; the cap design reports (D-051) and pile design reports (D-054) read them. Their currency against the current haunch dead load, wind heights and the backwall and cheek geometry is not asserted (see Foundation Modeling, current model sources).</paragraph>
         </section>
         <float />
         <stylerule applytoall="True" type="Any" leftindent="0.25 in" spacingafter="4" />
@@ -2134,7 +2154,7 @@
         <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Equal transverse gravity sharing follows the centered, symmetric section. Unequal longitudinal bearing loads are retained from the separate span tributaries. Haunch allocation retains the entered total volume and equivalent uniform longitudinal distribution.</paragraph>
         <section name="EndBentGeometry" capture="False" hide="false">
             <heading level="0" keepwithnext="True">End-bent geometry for FBMP entry</heading>
-            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" leftindent="0">Current geometry for both end bents: cap and pile dimensions follow the 8 October 2026 End Bent 1 cap report; applicability to both end bents is confirmed by the user. Bearing spacing and the backwall/beam-end placement chain remain the journal basis. End Bent 1 analysis results are recorded separately from this shared geometry.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" leftindent="0">Current geometry for both end bents: cap and pile dimensions follow the geometry notebook (model e9b41b8eaf, D-036) and the 19 October 2026 fixed-run FB-MultiPier models (D-049: 251-in cap envelope with the 8-in cheek webs, four 18-in square piles at 54-in centers, 44.5 in from each envelope end to the first pile center, 36.5 in from each 235-in cap-body end); applicability to both end bents is confirmed by the user (D-004), and End Bent 2 has its own export, case and reports since 19 October 2026. Bearing spacing and the backwall/beam-end placement chain remain the journal basis. End Bent 1 analysis results are recorded separately from this shared geometry.</paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="2" leftindent="0" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="EndBentCap_width = 42 in to in" mathlayout="on" showsteps="False" seplines="False" style="Required Input">
                     <expbody>EndBentCap_width = 42 in to in</expbody>
@@ -2386,6 +2406,12 @@
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">MSE panel joint to cheek and lug faces; notebook CONFIG end_bents.*.mse_joint_in (D-026)</paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="2" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="EndBent_backwallDrop = 4.25 in" mathlayout="on" showsteps="False" seplines="False" style="Required Input">
+                    <expbody>EndBent_backwallDrop = 4.25 in</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">Top of each backwall below the deck-top line at the front face of backwall; the top follows two straight 2% slopes (the deck crossfall) down from the PGL and is level across the 12-in thickness; notebook CONFIG end_bents.*.backwall_drop_in (D-053; CAD model D-053/D-055). Backwall design and quantities remain separate (16 October 2026 backwall report, D-037).</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="2" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="EndBentCage_envelope = EndBentCap_length+2*EndBent_cheekThickness to in" mathlayout="on" showsteps="False" seplines="False">
                     <expbody>EndBentCage_envelope = EndBentCap_length+2*EndBent_cheekThickness to in</expbody>
                     <expresult> = 251 in</expresult>
@@ -2498,8 +2524,8 @@
             </paragraph>
         </section>
         <section name="PierCurrentGeometry" capture="False" hide="false">
-            <heading level="0" keepwithnext="True">Current pier cap geometry — 9 October 2026</heading>
-            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Pier Cap Design 10-9.html confirms the existing 48-in by 36-in cap and four 20-in pipe piles at 60-in centers. The live project geometry above remains the owner. The new record below completes the cap-end datum, physical embedment and gross quantity definitions. Pier pedestals remain 48 in long by the user’s prior direction.</paragraph>
+            <heading level="0" keepwithnext="True">Current pier cap geometry — 19 October 2026 (record opened 9 October 2026)</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Pier Cap Design 10-19.html (D-051, built on the 19 October 2026 fixed-run Pier_Fixed.XML, D-049; previously Pier Cap Design 10-9.html) confirms the existing 48-in by 36-in cap and four 20-in pipe piles at 60-in centers, 15 in from each outer pile face to the cap end as the notebook pier.pile_end_clear_in. The live project geometry above remains the owner. The new record below completes the cap-end datum, physical embedment and gross quantity definitions. Pier pedestals remain 48 in long by the user’s prior direction.</paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="2" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="PierCap_edgeClear = 9 in" mathlayout="on" showsteps="False" seplines="False">
                     <expbody>PierCap_edgeClear = 9 in</expbody>
@@ -3884,9 +3910,24 @@
         <heading level="0">Pile Properties</heading>
         <section name="EBApplicability20261008" capture="False" hide="false">
             <heading level="1" keepwithnext="True">Pile section applicability</heading>
-            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">The pipe section formulas below apply to the pier’s 20-in pipe piles. Both end bents use the current 18-in square pile envelope recorded in Bridge Geometry. Do not apply these pipe thickness, steel area, stiffness or corrosion allowances to the end-bent piles; their material, reinforcement, section properties and foundation checks require the applicable pile design/model.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">The pipe section formulas below apply to the pier’s 20-in pipe piles. Both end bents use the 18-in square prestressed concrete piles recorded in Bridge Geometry and designed in PileDesignEndBentOne and PileDesignEndBentTwo (19 October 2026, D-054: Standard Plans Index 455-018, 12 x 0.6-in strands, 18 tons of downdrag per pile). Do not apply these pipe thickness, steel area, stiffness or corrosion allowances to the end-bent piles. The pier piles are designed in PileDesignPier (D-054).</paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
                 <link address="#FBMPEndBent.EBCurrentDesignRecord">Current end-bent design and coherence record</link>
+            </paragraph>
+        </section>
+        <section name="PileDesignRecords20261019" capture="False" hide="false">
+            <heading level="1" keepwithnext="True">Pile design records and section reconciliation — 19 October 2026</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">The 19 October 2026 fixed-run pier model (Pier_Fixed.XML, D-049) uses a 20-in circular steel section with a 0.48-in shell, A = 29.14 in², I = 1389.26 in⁴, E = 29000 ksi and Fy = 60 ksi: to the model’s precision this is the effective section A_eff and I_x below (0.475-in effective wall from the 5/8-in pipe less the 0.15-in allowance).</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">PileDesignPier (D-054) reads the model section (D_out 20 in, t_wall 0.48 in) with no further corrosion allowance (t_corr 0; LRFD 10.7.5 and the FDOT environment classification are pending) and Fy = 45 ksi (Specification 962, ASTM A252 Grade 3) against 60 ksi in the FBMP model. The pipe steel grade and corrosion allowance are pending reconciliation; the sacrificial-thickness basis of this module is not changed here.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">The end-bent piles (18-in square prestressed concrete, Index 455-018) are designed in PileDesignEndBentOne and PileDesignEndBentTwo from the D-049 end-bent exports with the D-050 downdrag; their structural demand/capacity ratios are 0.550 and 0.557 and the pier’s 0.457 at the 19 October cases. Pending in all three: downdrag source documentation, pile-to-cap connection (12-in embedment), minimum tip elevation, scour, drivability, environment classification and FBMP export currency.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#PileDesignEndBentOne">Pile design - End Bent 1 (distilled, 19 October 2026 case)</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#PileDesignEndBentTwo">Pile design - End Bent 2 (distilled, 19 October 2026 case)</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#PileDesignPier">Pile design - Pier (distilled, 19 October 2026 case)</link>
             </paragraph>
         </section>
         <heading level="1">Sacrificial Thickness</heading>
@@ -14188,12 +14229,12 @@
             </table>
         </embed>
         <section name="PierSourceModelRecord" capture="False" hide="false">
-            <heading level="0" keepwithnext="True">Current pier source — response reconciliation, 9 October 2026</heading>
-            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">Geometry source: Pier Cap Design 10-9.html, generated 2026-10-09T22:19:21+00:00; case Pier_Fixed — XML analysis.</paragraph>
-            <paragraph fontfamily="Times New Roman" fontsize="9" leftindent="0" spacingafter="7">Report SHA-256: 7a9f48ce08bdc29f22a1b6717432dc363f0c2d8cec02ffbfc0a36bb7da39dee2</paragraph>
-            <paragraph fontfamily="Times New Roman" fontsize="9" leftindent="0" spacingafter="7">Report-identified Pier_Fixed.XML SHA-256: a992aa331e11b4eb9bc426a3f811938a8f71b22b3300bae3431eb2931eaff9d8</paragraph>
+            <heading level="0" keepwithnext="True">Current pier source — 19 October 2026 (response reconciliation 9 October 2026)</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">Geometry source: Pier Cap Design 10-19.html (D-051; supersedes Pier Cap Design 10-9.html generated 2026-10-09T22:19:21+00:00); case Pier_Fixed — XML analysis. Pile design: PileDesignPier (D-054).</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="9" leftindent="0" spacingafter="7">Report SHA-256: e49d579c0186e7c2617828d236cb982adb92122345493a097e7c352df2f3a701 (Pier Cap Design 10-19.html; the 10-9 report was 7a9f48ce08bdc29f22a1b6717432dc363f0c2d8cec02ffbfc0a36bb7da39dee2)</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="9" leftindent="0" spacingafter="7">Report-identified Pier_Fixed.XML SHA-256: bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7 (D-049, 19 October 2026, held in project_current/fbmp/pier/; the 10-9 report identified a992aa331e11b4eb9bc426a3f811938a8f71b22b3300bae3431eb2931eaff9d8)</paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">The replacement report supersedes the earlier Pier_MinTip report. Cap geometry remains 48 × 36 × 230 in with four 20-in pipes at 60-in centers. The report is archived in tasks/T006/sources; the earlier exact report/model pair remains in tasks/T005/sources.</paragraph>
-            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7" fontweight="bold" background="#FFF8E9">SOURCE LIMIT: the matching Pier_Fixed.XML is not available locally. The report identifies the revised analysis, but its bearing-row offsets and full input currency have not been independently verified. Retain the journal’s symmetric +/-10.50-in offsets pending the matching raw model.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7" fontweight="bold" background="#FFF8E9">RESOLVED 19 October 2026: the exact Pier_Fixed.XML (D-049) is in project_current and matches the 19 October report and case (D-051). Its bearing-row nodes carry Y = -10.50 and +10.50 in, as the journal’s symmetric offsets; the +10.14-in value belonged only to the superseded Pier_MinTip.XML. Full input currency of the model against the current journal loads is not asserted.</paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">C005 was removed from the journal on 19 October 2026 (T014); the pier cap design record is CapDesignPier. BPAD contains geometry and source references; reinforcement details and design findings remain in the separate report and Excel review. The current cap-end detail allowance is 3 in; the former C005 (removed 19 October 2026) used an earlier 3.44-in input.</paragraph>
             <heading level="1" keepwithnext="True">Earlier verified model — historical comparison</heading>
             <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">The following bearing mapping belongs only to the superseded Pier_MinTip.XML (SHA-256 cb094424ed16e60b16957ed84a62aea21533fb61671c58a27ca73a997eaf70e4). Its right-row Y = +10.14 in differed from the journal +10.50 in by 0.36 in; this is the typo identified for correction in response 02.</paragraph>
@@ -19152,7 +19193,7 @@
             </table>
         </embed>
         <heading level="0" keepwithnext="True">Entry Reference - End Bent</heading>
-        <paragraph fontfamily="Times New Roman" fontsize="11" background="#FFF8E9" fontweight="bold" spacingafter="10">CURRENT MODEL BASIS: the user confirms the cap report contains the latest FBMP model. Loaded nodes are 15 and 34; added model nodes changed their numbering. Physical axes, node-line choice, elevation and load-transfer conventions are retained. Both end bents follow the controlling End Bent 1 design. The different same-named Downloads XML is not the report source.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" background="#FFF8E9" fontweight="bold" spacingafter="10">CURRENT MODEL BASIS (19 October 2026): the fixed-run FB-MultiPier exports selected under D-049 are the current end-bent models, End Bent 1_Fixed.XML (SHA-256 c1a4afa13886…) and End Bent 2_Fixed.XML (SHA-256 3543df298b92…): 251-in cap (the cage envelope with the 8-in cheek webs), four 18-in square piles at 54-in centers, first pile center 44.5 in from each cap end. The 19 October cap design reports (D-051; CapDesignEndBentOne, CapDesignEndBentTwo) and pile design reports (D-054; PileDesignEndBentOne, PileDesignEndBentTwo) read these exports. Loaded nodes 15 and 34 carry the DC, LL, IM, BR and PL node loads in both exports. Physical axes, node-line choice, elevation and load-transfer conventions are retained. Both end bents share the End Bent 1 geometry and cage (D-004); End Bent 2 has its own export, case and reports. This entry table is the journal's tributary load set and was not re-derived from the exports.</paragraph>
         <paragraph fontfamily="Times New Roman" fontsize="16" spacingafter="8" leftindent="0" fontweight="bold">END BENT 1 | SPAN 1 | NODES 15 AND 34</paragraph>
         <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" leftindent="0">Live superstructure DC / PL / W1–W3 inputs for the end bent beside the largest adjacent span. The current geometry selects the beginning-of-bridge end bent, beside the 107.35-ft span. Values follow the source journal’s simple-span, symmetric two-beam tributary model.</paragraph>
         <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" leftindent="0" background="#F1F5FA" fontweight="bold">Separate load cases. Apply DC and PL once; each W row contains wind only. Select one matching wind set in each combination.</paragraph>
@@ -20898,7 +20939,7 @@
         </embed>
         <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Wind reversal: change the controls and take the recalculated complete set. Do not negate the whole W2 row; direct deck uplift stays upward. The W1/W3 longitudinal moments follow the source tributary convention. Bearing shear restraint and the real longitudinal load path still govern whether that convention fits the FBMP model.</paragraph>
         <heading level="1" keepwithnext="True">Other applications and combination reference</heading>
-        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Below-pad weights belong to the end bent. Each bearing uses the separate 30-in end-bent pedestal. The cheek-wall quantity remains provisional and is deferred by the user. These local weights are excluded from the master superstructure DC rows.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Below-pad weights belong to the end bent. Each bearing uses the separate 30-in end-bent pedestal. The cheek-wall geometry is defined by the geometry notebook and the CAD model (8-in webs, D-036; tops D-053); the cheek-wall quantity cell below remains the earlier provisional entry until the quantity sheets are updated. These local weights are excluded from the master superstructure DC rows.</paragraph>
         <embed spacingbefore="5" spacingafter="10" leftindent="0">
             <table name="EBAdditionalGravity" capture="False" colwidths="1:60, 2:135, 3:135, 4:150, 5:120">
                 <stylerule range="A1:E3" fontfamily="Times New Roman" fontsize="9.5" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.7, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.35, &quot;#CCD6D0&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.35, &quot;#CCD6D0&quot;);" horzalign="Center" vertalign="Center" />
@@ -20933,7 +20974,7 @@
                 <expresult>FITS AVAILABLE CAP WIDTH</expresult>
             </dynexp>
         </paragraph>
-        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">The end-bent pedestal length is 30 in = 42-in cap minus 12-in backwall. Its concrete quantity and dead weight follow the live end-bent geometry. The longitudinal centroid is 27 in from the cap rear face, 6 in toward the span from the centered pile line. The table lists gravity magnitudes only: apply local weights once at their own centroids and include the corresponding moment if transferring to another line. Cheek-wall geometry and centroid remain deferred. The report analysis has not been rerun by this journal update.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">The end-bent pedestal length is 30 in = 42-in cap minus 12-in backwall. Its concrete quantity and dead weight follow the live end-bent geometry. The longitudinal centroid is 27 in from the cap rear face, 6 in toward the span from the centered pile line. The table lists gravity magnitudes only: apply local weights once at their own centroids and include the corresponding moment if transferring to another line. Cheek-wall geometry is defined by the notebook and CAD (D-036, D-053); its quantity and centroid in this entry remain the earlier provisional values. The analysis was not rerun by this journal update.</paragraph>
         <embed spacingbefore="5" spacingafter="10" leftindent="0">
             <table name="EBUnresolvedApplications" capture="False" colwidths="1:155, 2:445">
                 <stylerule range="A1:B6" fontfamily="Times New Roman" fontsize="9.5" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.7, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.35, &quot;#CCD6D0&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.35, &quot;#CCD6D0&quot;);" horzalign="Center" vertalign="Center" />
@@ -20952,7 +20993,7 @@
                         <paragraph fontfamily="Times New Roman" fontsize="9.5" leftindent="0" spacingafter="3">Cap / piles / modeled concrete self-weight</paragraph>
                     </textcell>
                     <textcell capture="False">
-                        <paragraph fontfamily="Times New Roman" fontsize="9.5" leftindent="0" spacingafter="3">Use FBMP modeled self-weight once. Current cap: 42 in wide × 36 in deep × 17 ft 8 in long, linked to Bridge Geometry. Keep unmodeled local concrete weights separate.</paragraph>
+                        <paragraph fontfamily="Times New Roman" fontsize="9.5" leftindent="0" spacingafter="3">Use FBMP modeled self-weight once. Current cap: 42 in wide × 36 in deep × 19 ft 7 in long (235 in; 251 in over the 8-in cheek webs, as modeled in the D-049 exports), linked to Bridge Geometry. Keep unmodeled local concrete weights separate.</paragraph>
                     </textcell>
                 </row>
                 <row>
@@ -21148,8 +21189,8 @@
         </section>
         <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" background="#F1F5FA">Revision — 30 September 2026: the pile line is centered in the cap width; bearings have a geometry-derived longitudinal eccentricity. Bearing location and application-node location are separate. Wind and gravity force magnitudes are unchanged; residual moments and whole-cap resultants now include that offset.</paragraph>
         <section name="EBCurrentDesignRecord" capture="False" hide="false">
-            <heading level="0" keepwithnext="True" pagebreakbefore="break">Current end-bent cap design record — 8 October 2026</heading>
-            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7" background="#FFF8E9">Block 2 (longitudinal reinforcement) is live from CapDesignEndBentOne, the 19 October 2026 case selected under D-051. Blocks 1 and 3 remain the 8 October record pending refresh.</paragraph>
+            <heading level="0" keepwithnext="True" pagebreakbefore="break">Current end-bent cap design record — 19 October 2026 (record opened 8 October 2026)</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7" background="#FFF8E9">Blocks 1, 2, 5 and 6 record the 19 October 2026 case (D-051, built on the D-049 fixed-run export); block 2 is live from CapDesignEndBentOne. Block 3 keeps the 8 October transverse schedule as history: the current transverse reinforcement (#6 stirrups, one closed loop, 9-in pitch) is in CapDesignEndBentOne.</paragraph>
             <embed spacingbefore="8" spacingafter="12" leftindent="0">
                 <table name="EBDesignRecordContext" capture="False" colwidths="1:110, 2:410">
                     <stylerule range="A1:B5" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.7, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.35, &quot;#7189A6&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.35, &quot;#7189A6&quot;);" vertalign="Center" />
@@ -21168,25 +21209,25 @@
                     <row>
                         <c capture="False"><textvalue>Analysis</textvalue></c>
                         <textcell capture="False">
-                            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Latest model per user: End Bent 1 controls the common design. Independent envelope maxima are not a concurrent action vector.</paragraph>
+                            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">End Bent 1_Fixed.XML, the 19 October 2026 fixed-run export (D-049), for this record; End Bent 2 has its own export, case and report (CapDesignEndBentTwo). Independent envelope maxima are not a concurrent action vector.</paragraph>
                         </textcell>
                     </row>
                     <row>
                         <c capture="False"><textvalue>Design status</textvalue></c>
                         <textcell capture="False">
-                            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Original report: 0 failed scalar checks, 48 pending/conditional checks. Current dispositions below exclude Service III and record field-adjusted U hooks; source results have not been rerun.</paragraph>
+                            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">19 October 2026 report (D-051): check ratios refreshed from the D-049 export with no status change versus the 8 October report; the existing detailing failures and pending checks remain, and CapDesignEndBentOne.Status reads ⊗ There are FAILURES for them. Current dispositions below exclude Service III and record field-adjusted U hooks.</paragraph>
                         </textcell>
                     </row>
                     <row>
                         <c capture="False"><textvalue>Source</textvalue></c>
                         <textcell capture="False">
-                            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">End bent 1 Cap Design Report_10-8.html; generated 2026-10-08T15:27:00+00:00.</paragraph>
+                            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">End Bent 1 Cap Design 10-19.html (D-051; supersedes End bent 1 Cap Design Report_10-8.html of 2026-10-08T15:27:00+00:00).</paragraph>
                         </textcell>
                     </row>
                 </table>
             </embed>
-            <paragraph fontfamily="Times New Roman" fontsize="8" leftindent="0" spacingafter="7">Source report SHA-256: 42120857965352febea29e4a672b2ba93f45199430360a89f8e1e529d2df50ef</paragraph>
-            <paragraph fontfamily="Times New Roman" fontsize="8" leftindent="0" spacingafter="7">Recorded analysis XML SHA-256: 739f44c1d542464cfd536493ce1ed6cb240f98a75ed3e1188c6f6812742d6fe2</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="8" leftindent="0" spacingafter="7">Source report SHA-256: 6a42c16b0595ac16070608abd5d129a6152803693cb06a870b3168685c52e7a1 (End Bent 1 Cap Design 10-19.html)</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="8" leftindent="0" spacingafter="7">Recorded analysis XML SHA-256: c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d (End Bent 1_Fixed.XML, D-049; End Bent 2_Fixed.XML 3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e)</paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
                 <link address="#BridgeGeometry_2Beam.EndBentCurrentGeometry">Shared cap and pile geometry</link>
             </paragraph>
@@ -21403,8 +21444,8 @@
                 </table>
             </embed>
             <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Additional top rows and second bottom rows are zero in the current case. The transverse schedule below is the 8 October record; the current actual station schedule is in the cap design report of CapDesignEndBentOne.</paragraph>
-            <heading level="1" keepwithnext="True" pagebreakbefore="break">3. Actual transverse schedule</heading>
-            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">All stations are inches from the left cap end. Each run uses #4 bars at 6-in pitch, global shear basis G: 19 closed hoops and 16 open-bottom U-bars. The source uses 90-degree U ends, 6-in tails and 3-in inside bend diameter. User direction: field bend the potentially interfering hooks to provide pile clearance. The table retains the original as-drawn screening; revised hook coordinates and development checks are not supplied.</paragraph>
+            <heading level="1" keepwithnext="True" pagebreakbefore="break">3. Transverse schedule — 8 October 2026 record (historical)</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Historical 8 October 2026 record; the 19 October 2026 case (CapDesignEndBentOne) uses #6 stirrups, one closed loop, at 9-in pitch. All stations are inches from the left cap end. Each run of this record uses #4 bars at 6-in pitch, global shear basis G: 19 closed hoops and 16 open-bottom U-bars. The source uses 90-degree U ends, 6-in tails and 3-in inside bend diameter. User direction: field bend the potentially interfering hooks to provide pile clearance. The table retains the original as-drawn screening; revised hook coordinates and development checks are not supplied.</paragraph>
             <embed spacingbefore="8" spacingafter="12" leftindent="0">
                 <table name="EBActualTransverseSchedule" capture="False" colwidths="1:115, 2:75, 3:75, 4:50, 5:205">
                     <stylerule range="A1:E10" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.7, &quot;#A78638&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.35, &quot;#A78638&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.35, &quot;#A78638&quot;);" vertalign="Center" />
@@ -21528,7 +21569,7 @@
                     </row>
                 </table>
             </embed>
-            <heading level="1" keepwithnext="True">5. End Bent 1 analysis snapshot</heading>
+            <heading level="1" keepwithnext="True">5. End Bent 1 analysis snapshot — 19 October 2026 case (D-051)</heading>
             <embed spacingbefore="8" spacingafter="12" leftindent="0">
                 <table name="EBRecordedForces" capture="False" colwidths="1:180, 2:145, 3:195">
                     <stylerule range="A1:C8" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.7, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.35, &quot;#7189A6&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.35, &quot;#7189A6&quot;);" vertalign="Center" />
@@ -21543,7 +21584,7 @@
                         <textcell capture="False">
                             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Negative strength moment magnitude</paragraph>
                         </textcell>
-                        <c capture="False"><textvalue>67.13 kip-ft</textvalue></c>
+                        <c capture="False"><textvalue>79.30 kip-ft</textvalue></c>
                         <textcell capture="False">
                             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Strength III / C2 / member 38 J</paragraph>
                         </textcell>
@@ -21552,7 +21593,7 @@
                         <textcell capture="False">
                             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Positive at-pile moment</paragraph>
                         </textcell>
-                        <c capture="False"><textvalue>75.96 kip-ft</textvalue></c>
+                        <c capture="False"><textvalue>67.16 kip-ft</textvalue></c>
                         <textcell capture="False">
                             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Strength I / C1 / member 29 interior</paragraph>
                         </textcell>
@@ -21561,7 +21602,7 @@
                         <textcell capture="False">
                             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Positive span/bearing moment</paragraph>
                         </textcell>
-                        <c capture="False"><textvalue>190.92 kip-ft</textvalue></c>
+                        <c capture="False"><textvalue>182.09 kip-ft</textvalue></c>
                         <textcell capture="False">
                             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Strength I / C1 / member 32 J</paragraph>
                         </textcell>
@@ -21570,14 +21611,14 @@
                         <textcell capture="False">
                             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Global and low-zone shear magnitude</paragraph>
                         </textcell>
-                        <c capture="False"><textvalue>91.79 kip</textvalue></c>
+                        <c capture="False"><textvalue>91.77 kip</textvalue></c>
                         <textcell capture="False">
                             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Strength I / C1 / member 28 I; no low-shear zone established</paragraph>
                         </textcell>
                     </row>
                     <row>
                         <c capture="False"><textvalue>Torque magnitude</textvalue></c>
-                        <c capture="False"><textvalue>2.93 kip-ft</textvalue></c>
+                        <c capture="False"><textvalue>3.09 kip-ft</textvalue></c>
                         <textcell capture="False">
                             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Strength III / C3 / member 17 I</paragraph>
                         </textcell>
@@ -21585,7 +21626,7 @@
                     <row>
                         <c capture="False"><textvalue>Service I N / P / B</textvalue></c>
                         <textcell capture="False">
-                            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">45.82 / 57.50 / 146.82 kip-ft</paragraph>
+                            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">53.30 / 49.33 / 138.47 kip-ft</paragraph>
                         </textcell>
                         <c capture="False"><textvalue>Service I / C4</textvalue></c>
                     </row>
@@ -21600,7 +21641,7 @@
                     </row>
                 </table>
             </embed>
-            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Original source summary: maximum available D/C = 0.966155 for B row spacing / shrinkage, with 48 pending/conditional checks. This historical count is unchanged because no source calculation was rerun. Current user basis: Service III is not applicable to the nonprestressed substructure; Strength III and Service I remain applicable. Fatigue and remaining detailing/load-path checks retain their separate status. Axial force, weak-axis bending and lateral shear remain outside the source sectional calculation. Both end bents follow the controlling End Bent 1 design by user direction.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">The values above are the 19 October 2026 case (D-051, End Bent 1_Fixed.XML), live in CapDesignEndBentOne (Mu_N, Mu_P, Mu_B and the Service I moments), with the same governing members as the 8 October report. Historical 8 October summary: maximum available D/C = 0.966155 for B row spacing / shrinkage, with 48 pending/conditional checks. Current user basis: Service III is not applicable to the nonprestressed substructure; Strength III and Service I remain applicable. Fatigue and remaining detailing/load-path checks retain their separate status. Axial force, weak-axis bending and lateral shear remain outside the source sectional calculation. Both end bents follow the controlling End Bent 1 design by user direction.</paragraph>
             <heading level="1" keepwithnext="True" pagebreakbefore="break">6. Quantities and unresolved coherence items</heading>
             <embed spacingbefore="8" spacingafter="12" leftindent="0">
                 <table name="EBCurrentQuantities" capture="False" colwidths="1:160, 2:120, 3:240">
@@ -21616,7 +21657,7 @@
                         <textcell capture="False">
                             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Gross cap concrete, one</paragraph>
                         </textcell>
-                        <c capture="False" formula="BridgeGeometry_2Beam.EndBentCap_volume to ft^3"><num>185.5 ft^3</num></c>
+                        <c capture="False" formula="BridgeGeometry_2Beam.EndBentCap_volume to ft^3"><num>205.625 ft^3</num></c>
                         <textcell capture="False">
                             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Rectangular cap only; no pile deduction</paragraph>
                         </textcell>
@@ -21625,7 +21666,7 @@
                         <textcell capture="False">
                             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Gross cap concrete, both</paragraph>
                         </textcell>
-                        <c capture="False" formula="BridgeGeometry_2Beam.EndBentCaps_volume to ft^3"><num>371 ft^3</num></c>
+                        <c capture="False" formula="BridgeGeometry_2Beam.EndBentCaps_volume to ft^3"><num>411.25 ft^3</num></c>
                         <textcell capture="False">
                             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Backwalls, pedestals and cheek walls separate</paragraph>
                         </textcell>
@@ -21664,7 +21705,7 @@
                             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Cap and square pile layout</paragraph>
                         </textcell>
                         <textcell capture="False">
-                            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Shared dimensions and cap-only quantities aligned with the supplied report. Existing pier pipe-pile calculations remain pier-only.</paragraph>
+                            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Shared dimensions follow the geometry notebook (D-036: 235-in cap, 251-in envelope) and the D-049 models; cap-only quantities are live. The end-bent piles are designed in PileDesignEndBentOne and PileDesignEndBentTwo (D-054); the pipe-pile calculations remain pier-only.</paragraph>
                         </textcell>
                     </row>
                     <row>
@@ -21672,7 +21713,7 @@
                             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Bearing line and load moments</paragraph>
                         </textcell>
                         <textcell capture="False">
-                            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Loaded nodes updated to 15/34 following the user-confirmed model renumbering. The live 42-in cap bearing chain and existing physical axes/elevation conventions are retained.</paragraph>
+                            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Loaded nodes 15/34 carry the DC, LL, IM, BR and PL node loads in both 19 October 2026 exports (D-049). The live 42-in cap bearing chain and existing physical axes/elevation conventions are retained.</paragraph>
                         </textcell>
                     </row>
                     <row>
@@ -21684,7 +21725,7 @@
                     <row>
                         <c capture="False"><textvalue>Backwall quantity</textvalue></c>
                         <textcell capture="False">
-                            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Deferred by user. Cap volume remains separate; backwall and cheek-wall final quantities remain open.</paragraph>
+                            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">Backwall and cheek geometry is defined (D-036, D-053: 12-in backwall with its top 4.25 in below the deck-top line on two 2% slopes; 8-in cheek webs) and modeled (D-055); cap volume remains separate, and the backwall and cheek-wall quantity entries remain the earlier provisional values.</paragraph>
                         </textcell>
                     </row>
                     <row>
@@ -21702,7 +21743,7 @@
                     <row>
                         <c capture="False"><textvalue>Analysis provenance</textvalue></c>
                         <textcell capture="False">
-                            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">User confirms the report contains the latest FBMP model. Its recorded hash identifies the accepted source; the different Downloads XML was not substituted. Both end bents use the controlling End Bent 1 configuration; no separate End Bent 2 action vector is claimed.</paragraph>
+                            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="3">The 19 October 2026 fixed-run exports (D-049) are the current models; their hashes are recorded above and in Foundation Modeling. Both end bents use the controlling End Bent 1 configuration (D-004); End Bent 2 has its own export, case and reports (D-051, D-054), which are not folded into this entry table.</paragraph>
                         </textcell>
                     </row>
                     <row>
@@ -21783,10 +21824,25 @@
         </embed>
         <heading level="0">Foundation Modeling</heading>
         <section name="EBApplicability20261008" capture="False" hide="false">
-            <heading level="1" keepwithnext="True">End-bent model reconciliation</heading>
+            <heading level="1" keepwithnext="True">End-bent model reconciliation — 8 October 2026 (model sources superseded by the 19 October 2026 record below)</heading>
             <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Both end bents follow the controlling End Bent 1 configuration by user direction. The user confirms the cap report contains the latest FBMP model; loaded nodes are 15 and 34 after model refinement. Shared square-pile geometry and the separate 30-in end-bent pedestal are recorded in Bridge Geometry. The p-multiplier discussion below remains for pier pipe piles. The different same-named Downloads XML is not the source model. This update does not rerun FBMP or verify raw input loads absent from the report; backwall and cheek-wall quantities remain deferred.</paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
                 <link address="#FBMPEndBent.EBCurrentDesignRecord">Current end-bent design and coherence record</link>
+            </paragraph>
+        </section>
+        <section name="ModelSources20261019" capture="False" hide="false">
+            <heading level="1" keepwithnext="True">Current model sources — 19 October 2026</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Current FB-MultiPier models are the 19 October 2026 fixed-run exports selected under D-049 (FB-MultiPier 6.1.0): End Bent 1_Fixed.XML (SHA-256 c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d), End Bent 2_Fixed.XML (SHA-256 3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e) and Pier_Fixed.XML (SHA-256 bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7), held in project_current/fbmp/. The 19 October cap reports and cases (D-051: CapDesignEndBentOne, CapDesignEndBentTwo, CapDesignPier) and pile reports (D-054: PileDesignEndBentOne, PileDesignEndBentTwo, PileDesignPier) read these exports.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">End-bent models: 251-in cap (the cage envelope with the 8-in cheek webs), 42 x 36 in, four 18-in square prestressed piles at 54-in centers, first pile center 44.5 in from each cap end (36.5 in from the 235-in cap-body end recorded in Bridge Geometry); loaded nodes 15 and 34 carry the DC, LL, IM, BR and PL node loads. Pier model: 230-in cap, 48 x 36 in, four 20-in x 0.48-in steel pipe piles at 60-in centers, bearing rows at Y = -10.50 and +10.50 in. Pile cutoff and ground elevations in the pile reports come from these exports.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Currency of these models against the current journal loads (haunch weights with the notebook cambers, wind heights, backwall and cheek geometry of D-053/D-055) is not asserted; FBMP was not rerun for this record. The 16 October 2026 backwall report (D-037) predates these exports and the D-053 geometry and is not in the journal.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#FBMPEndBent.EBCurrentDesignRecord">Current end-bent design and coherence record</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#FBMPPier.PierSourceModelRecord">Current pier source record</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#PileProperties.PileDesignRecords20261019">Pile design records and section reconciliation</link>
             </paragraph>
         </section>
         <heading level="0">Current Files</heading>
@@ -21883,7 +21939,7 @@
         </paragraph>
         <section name="PierSourceReconciliation" capture="False" hide="false">
             <heading level="1" keepwithnext="True">Current pier model source — 9 October 2026</heading>
-            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">The replacement Pier Cap Design 10-9.html identifies Pier_Fixed.XML, SHA-256 a992aa331e11b4eb9bc426a3f811938a8f71b22b3300bae3431eb2931eaff9d8. The reported cap layout remains 48 × 36 × 230 in, with four 20-in pipes at 60-in centers. The matching raw XML remains required to verify the right-row offset correction. The prior Pier_MinTip mapping is retained only as historical evidence. Full journal/model load-input currency and structural adequacy remain outside this source-record acceptance; no FBMP rerun is claimed.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">The replacement Pier Cap Design 10-9.html identifies Pier_Fixed.XML, SHA-256 a992aa331e11b4eb9bc426a3f811938a8f71b22b3300bae3431eb2931eaff9d8. The reported cap layout remains 48 × 36 × 230 in, with four 20-in pipes at 60-in centers. The matching raw XML (D-049, 19 October 2026) now confirms symmetric ±10.50-in bearing rows. The prior Pier_MinTip mapping is retained only as historical evidence. Full journal/model load-input currency and structural adequacy remain outside this source-record acceptance; no FBMP rerun is claimed.</paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
                 <link address="#FBMPPier.PierSourceModelRecord">Current source and historical bearing comparison</link>
             </paragraph>
@@ -26304,6 +26360,10 @@
             <heading level="1" keepwithnext="True">2026-10-19 - C005 removed; geometry aligned with the notebook; project stamp</heading>
             <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">C005 (PierCapDesign) removed from the journal by user direction; CapDesignPier is the pier cap record. Material properties moved to Materials; pier cap covers to Bridge Geometry. End-bent cap geometry aligned with the geometry notebook (D-026/D-036: 27.5-in pile end clearance, 235-in cap, 251-in cage envelope with 8-in cheek webs); beam cambers and the support drop taken from the notebook build e9b41b8eaf. ProjectInfo added and a live project stamp placed on every calculation report. Journal task T014.</paragraph>
         </section>
+        <section name="CoherenceDecision20261019b" capture="False" hide="false">
+            <heading level="1" keepwithnext="True">2026-10-19 - Journal aligned with the 19 October calculations and CAD model (T016)</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Journal aligned with the 19 October 2026 calculations and CAD model (task T016). The D-049 fixed-run FB-MultiPier exports (End Bent 1, End Bent 2, Pier) are recorded as the current model sources in Foundation Modeling and both FBMP entry modules, with the D-051 cap reports and the D-054 pile reports as the current design records. The end-bent design record is refreshed to the 19 October case (forces, status, report and XML identities; the 8 October transverse schedule kept as history). The pier source record names the 10-19 report and the D-049 XML, whose bearing rows are ±10.50 in. Pile Section Properties notes the pile design reports and the pipe reconciliation (FBMP 0.48-in shell at 60 ksi; PileDesignPier 0.48 in at 45 ksi, grade and corrosion pending). The notebook reconciliation check is retargeted to build e9b41b8eaf and the D-053 backwall top drop (4.25 in) is recorded. The MSE exclusion wall lines are re-extracted from the D-055 model: at both end bents the front wall back of facing is 46.5 in from the pile row (37.5-in strap clearance met; cap face 25.5 in from the facing) and the side walls are 114 in from the pile row, at the 24-in criterion within 0.0002 in, so one side-wall row at each end bent reads MEETS CLEAR and the other SHORTFALL by the last digits; the cap caches follow the 235-in cap. The 16 October backwall report (D-037) predates the D-049 exports and the D-053 geometry and is not in the journal. Native recalculation not performed; FBMP not rerun.</paragraph>
+        </section>
     </report>
     <report name="Notes" title="Notes" unit="in" pagesize="816, 1056">
         <paragraph>
@@ -28028,7 +28088,7 @@
         </embed>
         <paragraph fontfamily="Times New Roman" fontsize="16" spacingafter="6" fontweight="bold">D2 I-95 PEDESTRIAN BRIDGE</paragraph>
         <paragraph fontfamily="Times New Roman" fontsize="16" spacingafter="6" fontweight="bold">MSE WALL CLEARANCE — FRONT AND SIDES</paragraph>
-        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Both end bents | 13 October 2026 | Front strap check; specified side offsets</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Both end bents | 19 October 2026 (first issued 13 October 2026) | Front strap check; specified side offsets</paragraph>
         <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" background="#F1F5FA">Evaluate a straight strap from the FRONT wall on the normal through a nominal pile center. Use the selected alpha in either skew direction. The SIDE walls use a separate specified 24-inch minimum; their strap routing is not evaluated.</paragraph>
         <embed spacingbefore="5" spacingafter="8">
             <table name="ResultSummary" capture="False" colwidths="1:370, 2:160">
@@ -28089,7 +28149,7 @@
             </canvas>
         </embed>
         <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True" pagebreakbefore="break">2. INPUTS AND FRONT-WALL MINIMUM</paragraph>
-        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" background="#FFF8E9">Shared pile size and spacing are live journal references. Use nominal pile width only, without a placement envelope. Wall positions remain the saved CAD snapshot.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" background="#FFF8E9">Shared pile size, spacing and cap dimensions are live journal references (235-in cap since 19 October 2026, D-036). Use nominal pile width only, without a placement envelope. Wall positions are the saved CAD snapshot of 19 October 2026 (D-055 model); the 8-in cheek webs outside the cap ends are not part of this screen. In that model the side walls stand 114 in from the pile row, at the 24-in criterion within 0.0002 in: the side-wall rows below read MEETS CLEAR or SHORTFALL only by the last digits of the saved coordinates.</paragraph>
         <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
             <dynexp formula="PileSize = BridgeGeometry_2Beam.EndBent_pileWidth" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                 <expbody>PileSize = BridgeGeometry_2Beam.EndBent_pileWidth</expbody>
@@ -28185,7 +28245,7 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="CapLength = BridgeGeometry_2Beam.EndBentCap_length" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>CapLength = BridgeGeometry_2Beam.EndBentCap_length</expbody>
-                    <expresult> = 17 ft 8 in</expresult>
+                    <expresult> = 19 ft 7 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28197,7 +28257,7 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="CapX = (CapLength*Abs(Sin(FrameAngle))+CapWidth*Abs(Cos(FrameAngle)))/2" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>CapX = (CapLength*Abs(Sin(FrameAngle))+CapWidth*Abs(Cos(FrameAngle)))/2</expbody>
-                    <expresult> = 8 ft 10 in</expresult>
+                    <expresult> = 9 ft 9.5 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28326,18 +28386,18 @@
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-                <dynexp formula="Bent1W1x = -8.66449266016689 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
-                    <expbody>Bent1W1x = -8.66449266016689 ft</expbody>
+                <dynexp formula="Bent1W1x = -9.95834880941483 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W1x = -9.95834880941483 ft</expbody>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-                <dynexp formula="Bent1W1y = -3.84865400014849 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
-                    <expbody>Bent1W1y = -3.84865400014849 ft</expbody>
+                <dynexp formula="Bent1W1y = -3.87515478292704 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W1y = -3.87515478292704 ft</expbody>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-                <dynexp formula="Bent1W1len = 17.333335694482 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
-                    <expbody>Bent1W1len = 17.333335694482 ft</expbody>
+                <dynexp formula="Bent1W1len = 19.9166666622123 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W1len = 19.9166666622123 ft</expbody>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28363,94 +28423,94 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1W1xend = Bent1W1x+Bent1W1tx*Bent1W1len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1W1xend = Bent1W1x+Bent1W1tx*Bent1W1len</expbody>
-                    <expresult> = 8.669 ft</expresult>
+                    <expresult> = 9.958 ft</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1W1yend = Bent1W1y+Bent1W1ty*Bent1W1len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1W1yend = Bent1W1y+Bent1W1ty*Bent1W1len</expbody>
-                    <expresult> = -3.849 ft</expresult>
+                    <expresult> = -3.875 ft</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1Wall1Pile1Face = (Bent1P1x-Bent1W1x)*Bent1W1nx+(Bent1P1y-Bent1W1y)*Bent1W1ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1Wall1Pile1Face = (Bent1P1x-Bent1W1x)*Bent1W1nx+(Bent1P1y-Bent1W1y)*Bent1W1ny-Half</expbody>
-                    <expresult> = 3 ft 1.182 in</expresult>
+                    <expresult> = 3 ft 1.5 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1Wall1Pile1Extra = Max(0 in,LayoutClear-Bent1Wall1Pile1Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1Wall1Pile1Extra = Max(0 in,LayoutClear-Bent1Wall1Pile1Face)</expbody>
-                    <expresult> = 0 ft 0.318 in</expresult>
+                    <expresult> = 0 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1Wall1Pile2Face = (Bent1P2x-Bent1W1x)*Bent1W1nx+(Bent1P2y-Bent1W1y)*Bent1W1ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1Wall1Pile2Face = (Bent1P2x-Bent1W1x)*Bent1W1nx+(Bent1P2y-Bent1W1y)*Bent1W1ny-Half</expbody>
-                    <expresult> = 3 ft 1.183 in</expresult>
+                    <expresult> = 3 ft 1.501 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1Wall1Pile2Extra = Max(0 in,LayoutClear-Bent1Wall1Pile2Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1Wall1Pile2Extra = Max(0 in,LayoutClear-Bent1Wall1Pile2Face)</expbody>
-                    <expresult> = 0 ft 0.317 in</expresult>
+                    <expresult> = 0 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1Wall1Pile3Face = (Bent1P3x-Bent1W1x)*Bent1W1nx+(Bent1P3y-Bent1W1y)*Bent1W1ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1Wall1Pile3Face = (Bent1P3x-Bent1W1x)*Bent1W1nx+(Bent1P3y-Bent1W1y)*Bent1W1ny-Half</expbody>
-                    <expresult> = 3 ft 1.184 in</expresult>
+                    <expresult> = 3 ft 1.502 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1Wall1Pile3Extra = Max(0 in,LayoutClear-Bent1Wall1Pile3Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1Wall1Pile3Extra = Max(0 in,LayoutClear-Bent1Wall1Pile3Face)</expbody>
-                    <expresult> = 0 ft 0.316 in</expresult>
+                    <expresult> = 0 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1Wall1Pile4Face = (Bent1P4x-Bent1W1x)*Bent1W1nx+(Bent1P4y-Bent1W1y)*Bent1W1ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1Wall1Pile4Face = (Bent1P4x-Bent1W1x)*Bent1W1nx+(Bent1P4y-Bent1W1y)*Bent1W1ny-Half</expbody>
-                    <expresult> = 3 ft 1.186 in</expresult>
+                    <expresult> = 3 ft 1.504 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1Wall1Pile4Extra = Max(0 in,LayoutClear-Bent1Wall1Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1Wall1Pile4Extra = Max(0 in,LayoutClear-Bent1Wall1Pile4Face)</expbody>
-                    <expresult> = 0 ft 0.314 in</expresult>
+                    <expresult> = 0 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1W1Gap = Min(Bent1Wall1Pile1Face,Bent1Wall1Pile2Face,Bent1Wall1Pile3Face,Bent1Wall1Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1W1Gap = Min(Bent1Wall1Pile1Face,Bent1Wall1Pile2Face,Bent1Wall1Pile3Face,Bent1Wall1Pile4Face)</expbody>
-                    <expresult> = 3 ft 1.182 in</expresult>
+                    <expresult> = 3 ft 1.5 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1W1Extra = Max(0 in,LayoutClear-Bent1W1Gap)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1W1Extra = Max(0 in,LayoutClear-Bent1W1Gap)</expbody>
-                    <expresult> = 0 ft 0.318 in</expresult>
+                    <expresult> = 0 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1W1Status = If(InputsValid,If(Bent1W1Extra &lt;= 0 in,&quot;MEETS CLEAR&quot;,&quot;SHORTFALL&quot;),&quot;INVALID&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1W1Status = If(InputsValid,If(Bent1W1Extra &lt;= 0 in,"MEETS CLEAR","SHORTFALL"),"INVALID")</expbody>
-                    <expresult> = SHORTFALL</expresult>
+                    <expresult> = MEETS CLEAR</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-                <dynexp formula="Bent1W2x = -8.66449266016689 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
-                    <expbody>Bent1W2x = -8.66449266016689 ft</expbody>
+                <dynexp formula="Bent1W2x = -9.5000154760815 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W2x = -9.5000154760815 ft</expbody>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-                <dynexp formula="Bent1W2y = -3.84865400014849 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
-                    <expbody>Bent1W2y = -3.84865400014849 ft</expbody>
+                <dynexp formula="Bent1W2y = -4.33348811626037 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W2y = -4.33348811626037 ft</expbody>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-                <dynexp formula="Bent1W2len = 22.624998822406 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
-                    <expbody>Bent1W2len = 22.624998822406 ft</expbody>
+                <dynexp formula="Bent1W2len = 23.1098329385179 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W2len = 23.1098329385179 ft</expbody>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28476,7 +28536,7 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1W2xend = Bent1W2x+Bent1W2tx*Bent1W2len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1W2xend = Bent1W2x+Bent1W2tx*Bent1W2len</expbody>
-                    <expresult> = -8.664 ft</expresult>
+                    <expresult> = -9.500 ft</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28488,19 +28548,19 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1Wall2Pile1Face = (Bent1P1x-Bent1W2x)*Bent1W2nx+(Bent1P1y-Bent1W2y)*Bent1W2ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1Wall2Pile1Face = (Bent1P1x-Bent1W2x)*Bent1W2nx+(Bent1P1y-Bent1W2y)*Bent1W2ny-Half</expbody>
-                    <expresult> = 1 ft 1.974 in</expresult>
+                    <expresult> = 2 ft 0.000186 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1Wall2Pile1Extra = Max(0 in,SideClear-Bent1Wall2Pile1Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1Wall2Pile1Extra = Max(0 in,SideClear-Bent1Wall2Pile1Face)</expbody>
-                    <expresult> = 0 ft 10.026 in</expresult>
+                    <expresult> = 0 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1Wall2Pile2Face = (Bent1P2x-Bent1W2x)*Bent1W2nx+(Bent1P2y-Bent1W2y)*Bent1W2ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1Wall2Pile2Face = (Bent1P2x-Bent1W2x)*Bent1W2nx+(Bent1P2y-Bent1W2y)*Bent1W2ny-Half</expbody>
-                    <expresult> = 5 ft 7.974 in</expresult>
+                    <expresult> = 6 ft 6 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28512,7 +28572,7 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1Wall2Pile3Face = (Bent1P3x-Bent1W2x)*Bent1W2nx+(Bent1P3y-Bent1W2y)*Bent1W2ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1Wall2Pile3Face = (Bent1P3x-Bent1W2x)*Bent1W2nx+(Bent1P3y-Bent1W2y)*Bent1W2ny-Half</expbody>
-                    <expresult> = 10 ft 1.974 in</expresult>
+                    <expresult> = 11 ft 0.000186 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28524,7 +28584,7 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1Wall2Pile4Face = (Bent1P4x-Bent1W2x)*Bent1W2nx+(Bent1P4y-Bent1W2y)*Bent1W2ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1Wall2Pile4Face = (Bent1P4x-Bent1W2x)*Bent1W2nx+(Bent1P4y-Bent1W2y)*Bent1W2ny-Half</expbody>
-                    <expresult> = 14 ft 7.974 in</expresult>
+                    <expresult> = 15 ft 6 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28536,34 +28596,34 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1W2Gap = Min(Bent1Wall2Pile1Face,Bent1Wall2Pile2Face,Bent1Wall2Pile3Face,Bent1Wall2Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1W2Gap = Min(Bent1Wall2Pile1Face,Bent1Wall2Pile2Face,Bent1Wall2Pile3Face,Bent1Wall2Pile4Face)</expbody>
-                    <expresult> = 1 ft 1.974 in</expresult>
+                    <expresult> = 2 ft 0.000186 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1W2Extra = Max(0 in,SideClear-Bent1W2Gap)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1W2Extra = Max(0 in,SideClear-Bent1W2Gap)</expbody>
-                    <expresult> = 0 ft 10.026 in</expresult>
+                    <expresult> = 0 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1W2Status = If(InputsValid,If(Bent1W2Extra &lt;= 0 in,&quot;MEETS CLEAR&quot;,&quot;SHORTFALL&quot;),&quot;INVALID&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1W2Status = If(InputsValid,If(Bent1W2Extra &lt;= 0 in,"MEETS CLEAR","SHORTFALL"),"INVALID")</expbody>
-                    <expresult> = SHORTFALL</expresult>
+                    <expresult> = MEETS CLEAR</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-                <dynexp formula="Bent1W3x = 8.66884303431515 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
-                    <expbody>Bent1W3x = 8.66884303431515 ft</expbody>
+                <dynexp formula="Bent1W3x = 9.49998451946412 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W3x = 9.49998451946412 ft</expbody>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-                <dynexp formula="Bent1W3y = -3.84865400014849 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
-                    <expbody>Bent1W3y = -3.84865400014849 ft</expbody>
+                <dynexp formula="Bent1W3y = -4.33348811626037 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W3y = -4.33348811626037 ft</expbody>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-                <dynexp formula="Bent1W3len = 9.66666607722765 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
-                    <expbody>Bent1W3len = 9.66666607722765 ft</expbody>
+                <dynexp formula="Bent1W3len = 10.1515001933395 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W3len = 10.1515001933395 ft</expbody>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28589,7 +28649,7 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1W3xend = Bent1W3x+Bent1W3tx*Bent1W3len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1W3xend = Bent1W3x+Bent1W3tx*Bent1W3len</expbody>
-                    <expresult> = 8.669 ft</expresult>
+                    <expresult> = 9.500 ft</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28601,7 +28661,7 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1Wall3Pile1Face = (Bent1P1x-Bent1W3x)*Bent1W3nx+(Bent1P1y-Bent1W3y)*Bent1W3ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1Wall3Pile1Face = (Bent1P1x-Bent1W3x)*Bent1W3nx+(Bent1P1y-Bent1W3y)*Bent1W3ny-Half</expbody>
-                    <expresult> = 14 ft 8.026 in</expresult>
+                    <expresult> = 15 ft 6 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28613,7 +28673,7 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1Wall3Pile2Face = (Bent1P2x-Bent1W3x)*Bent1W3nx+(Bent1P2y-Bent1W3y)*Bent1W3ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1Wall3Pile2Face = (Bent1P2x-Bent1W3x)*Bent1W3nx+(Bent1P2y-Bent1W3y)*Bent1W3ny-Half</expbody>
-                    <expresult> = 10 ft 2.026 in</expresult>
+                    <expresult> = 11 ft 0 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28625,7 +28685,7 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1Wall3Pile3Face = (Bent1P3x-Bent1W3x)*Bent1W3nx+(Bent1P3y-Bent1W3y)*Bent1W3ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1Wall3Pile3Face = (Bent1P3x-Bent1W3x)*Bent1W3nx+(Bent1P3y-Bent1W3y)*Bent1W3ny-Half</expbody>
-                    <expresult> = 5 ft 8.026 in</expresult>
+                    <expresult> = 6 ft 6 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28637,25 +28697,25 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1Wall3Pile4Face = (Bent1P4x-Bent1W3x)*Bent1W3nx+(Bent1P4y-Bent1W3y)*Bent1W3ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1Wall3Pile4Face = (Bent1P4x-Bent1W3x)*Bent1W3nx+(Bent1P4y-Bent1W3y)*Bent1W3ny-Half</expbody>
-                    <expresult> = 1 ft 2.026 in</expresult>
+                    <expresult> = 2 ft 0 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1Wall3Pile4Extra = Max(0 in,SideClear-Bent1Wall3Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1Wall3Pile4Extra = Max(0 in,SideClear-Bent1Wall3Pile4Face)</expbody>
-                    <expresult> = 0 ft 9.974 in</expresult>
+                    <expresult> = 0 ft 0.000186 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1W3Gap = Min(Bent1Wall3Pile1Face,Bent1Wall3Pile2Face,Bent1Wall3Pile3Face,Bent1Wall3Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1W3Gap = Min(Bent1Wall3Pile1Face,Bent1Wall3Pile2Face,Bent1Wall3Pile3Face,Bent1Wall3Pile4Face)</expbody>
-                    <expresult> = 1 ft 2.026 in</expresult>
+                    <expresult> = 2 ft 0 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1W3Extra = Max(0 in,SideClear-Bent1W3Gap)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1W3Extra = Max(0 in,SideClear-Bent1W3Gap)</expbody>
-                    <expresult> = 0 ft 9.974 in</expresult>
+                    <expresult> = 0 ft 0.000186 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28667,7 +28727,7 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent1CapGap = -Bent1W1x*Bent1W1nx-Bent1W1y*Bent1W1ny-CapX*Abs(Bent1W1nx)-CapY*Abs(Bent1W1ny)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent1CapGap = -Bent1W1x*Bent1W1nx-Bent1W1y*Bent1W1ny-CapX*Abs(Bent1W1nx)-CapY*Abs(Bent1W1ny)</expbody>
-                    <expresult> = 2 ft 1.182 in</expresult>
+                    <expresult> = 2 ft 1.499 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28755,18 +28815,18 @@
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-                <dynexp formula="Bent2W1x = -8.66884342402739 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
-                    <expbody>Bent2W1x = -8.66884342402739 ft</expbody>
+                <dynexp formula="Bent2W1x = -9.95831785279752 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W1x = -9.95831785279752 ft</expbody>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-                <dynexp formula="Bent2W1y = -3.80158899647901 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
-                    <expbody>Bent2W1y = -3.80158899647901 ft</expbody>
+                <dynexp formula="Bent2W1y = -3.87515478292698 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W1y = -3.87515478292698 ft</expbody>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-                <dynexp formula="Bent2W1len = 17.3332686005741 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
-                    <expbody>Bent2W1len = 17.3332686005741 ft</expbody>
+                <dynexp formula="Bent2W1len = 19.9166666622123 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W1len = 19.9166666622123 ft</expbody>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28792,94 +28852,94 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2W1xend = Bent2W1x+Bent2W1tx*Bent2W1len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2W1xend = Bent2W1x+Bent2W1tx*Bent2W1len</expbody>
-                    <expresult> = 8.664 ft</expresult>
+                    <expresult> = 9.958 ft</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2W1yend = Bent2W1y+Bent2W1ty*Bent2W1len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2W1yend = Bent2W1y+Bent2W1ty*Bent2W1len</expbody>
-                    <expresult> = -3.802 ft</expresult>
+                    <expresult> = -3.875 ft</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2Wall1Pile1Face = (Bent2P1x-Bent2W1x)*Bent2W1nx+(Bent2P1y-Bent2W1y)*Bent2W1ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2Wall1Pile1Face = (Bent2P1x-Bent2W1x)*Bent2W1nx+(Bent2P1y-Bent2W1y)*Bent2W1ny-Half</expbody>
-                    <expresult> = 3 ft 0.621 in</expresult>
+                    <expresult> = 3 ft 1.504 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2Wall1Pile1Extra = Max(0 in,LayoutClear-Bent2Wall1Pile1Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2Wall1Pile1Extra = Max(0 in,LayoutClear-Bent2Wall1Pile1Face)</expbody>
-                    <expresult> = 0 ft 0.879 in</expresult>
+                    <expresult> = 0 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2Wall1Pile2Face = (Bent2P2x-Bent2W1x)*Bent2W1nx+(Bent2P2y-Bent2W1y)*Bent2W1ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2Wall1Pile2Face = (Bent2P2x-Bent2W1x)*Bent2W1nx+(Bent2P2y-Bent2W1y)*Bent2W1ny-Half</expbody>
-                    <expresult> = 3 ft 0.62 in</expresult>
+                    <expresult> = 3 ft 1.502 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2Wall1Pile2Extra = Max(0 in,LayoutClear-Bent2Wall1Pile2Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2Wall1Pile2Extra = Max(0 in,LayoutClear-Bent2Wall1Pile2Face)</expbody>
-                    <expresult> = 0 ft 0.88 in</expresult>
+                    <expresult> = 0 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2Wall1Pile3Face = (Bent2P3x-Bent2W1x)*Bent2W1nx+(Bent2P3y-Bent2W1y)*Bent2W1ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2Wall1Pile3Face = (Bent2P3x-Bent2W1x)*Bent2W1nx+(Bent2P3y-Bent2W1y)*Bent2W1ny-Half</expbody>
-                    <expresult> = 3 ft 0.619 in</expresult>
+                    <expresult> = 3 ft 1.501 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2Wall1Pile3Extra = Max(0 in,LayoutClear-Bent2Wall1Pile3Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2Wall1Pile3Extra = Max(0 in,LayoutClear-Bent2Wall1Pile3Face)</expbody>
-                    <expresult> = 0 ft 0.881 in</expresult>
+                    <expresult> = 0 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2Wall1Pile4Face = (Bent2P4x-Bent2W1x)*Bent2W1nx+(Bent2P4y-Bent2W1y)*Bent2W1ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2Wall1Pile4Face = (Bent2P4x-Bent2W1x)*Bent2W1nx+(Bent2P4y-Bent2W1y)*Bent2W1ny-Half</expbody>
-                    <expresult> = 3 ft 0.617 in</expresult>
+                    <expresult> = 3 ft 1.5 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2Wall1Pile4Extra = Max(0 in,LayoutClear-Bent2Wall1Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2Wall1Pile4Extra = Max(0 in,LayoutClear-Bent2Wall1Pile4Face)</expbody>
-                    <expresult> = 0 ft 0.883 in</expresult>
+                    <expresult> = 0 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2W1Gap = Min(Bent2Wall1Pile1Face,Bent2Wall1Pile2Face,Bent2Wall1Pile3Face,Bent2Wall1Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2W1Gap = Min(Bent2Wall1Pile1Face,Bent2Wall1Pile2Face,Bent2Wall1Pile3Face,Bent2Wall1Pile4Face)</expbody>
-                    <expresult> = 3 ft 0.617 in</expresult>
+                    <expresult> = 3 ft 1.5 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2W1Extra = Max(0 in,LayoutClear-Bent2W1Gap)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2W1Extra = Max(0 in,LayoutClear-Bent2W1Gap)</expbody>
-                    <expresult> = 0 ft 0.883 in</expresult>
+                    <expresult> = 0 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2W1Status = If(InputsValid,If(Bent2W1Extra &lt;= 0 in,&quot;MEETS CLEAR&quot;,&quot;SHORTFALL&quot;),&quot;INVALID&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2W1Status = If(InputsValid,If(Bent2W1Extra &lt;= 0 in,"MEETS CLEAR","SHORTFALL"),"INVALID")</expbody>
-                    <expresult> = SHORTFALL</expresult>
+                    <expresult> = MEETS CLEAR</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-                <dynexp formula="Bent2W2x = -8.66884342402739 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
-                    <expbody>Bent2W2x = -8.66884342402739 ft</expbody>
+                <dynexp formula="Bent2W2x = -9.49998451946418 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W2x = -9.49998451946418 ft</expbody>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-                <dynexp formula="Bent2W2y = 41.0730327708297 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
-                    <expbody>Bent2W2y = 41.0730327708297 ft</expbody>
+                <dynexp formula="Bent2W2y = 41.0730339531239 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W2y = 41.0730339531239 ft</expbody>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-                <dynexp formula="Bent2W2len = 44.8746217673087 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
-                    <expbody>Bent2W2len = 44.8746217673087 ft</expbody>
+                <dynexp formula="Bent2W2len = 45.4065220693842 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W2len = 45.4065220693842 ft</expbody>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28905,31 +28965,31 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2W2xend = Bent2W2x+Bent2W2tx*Bent2W2len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2W2xend = Bent2W2x+Bent2W2tx*Bent2W2len</expbody>
-                    <expresult> = -8.669 ft</expresult>
+                    <expresult> = -9.500 ft</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2W2yend = Bent2W2y+Bent2W2ty*Bent2W2len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2W2yend = Bent2W2y+Bent2W2ty*Bent2W2len</expbody>
-                    <expresult> = -3.802 ft</expresult>
+                    <expresult> = -4.333 ft</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2Wall2Pile1Face = (Bent2P1x-Bent2W2x)*Bent2W2nx+(Bent2P1y-Bent2W2y)*Bent2W2ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2Wall2Pile1Face = (Bent2P1x-Bent2W2x)*Bent2W2nx+(Bent2P1y-Bent2W2y)*Bent2W2ny-Half</expbody>
-                    <expresult> = 1 ft 2.026 in</expresult>
+                    <expresult> = 2 ft 0 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2Wall2Pile1Extra = Max(0 in,SideClear-Bent2Wall2Pile1Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2Wall2Pile1Extra = Max(0 in,SideClear-Bent2Wall2Pile1Face)</expbody>
-                    <expresult> = 0 ft 9.974 in</expresult>
+                    <expresult> = 0 ft 0.000186 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2Wall2Pile2Face = (Bent2P2x-Bent2W2x)*Bent2W2nx+(Bent2P2y-Bent2W2y)*Bent2W2ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2Wall2Pile2Face = (Bent2P2x-Bent2W2x)*Bent2W2nx+(Bent2P2y-Bent2W2y)*Bent2W2ny-Half</expbody>
-                    <expresult> = 5 ft 8.026 in</expresult>
+                    <expresult> = 6 ft 6 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28941,7 +29001,7 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2Wall2Pile3Face = (Bent2P3x-Bent2W2x)*Bent2W2nx+(Bent2P3y-Bent2W2y)*Bent2W2ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2Wall2Pile3Face = (Bent2P3x-Bent2W2x)*Bent2W2nx+(Bent2P3y-Bent2W2y)*Bent2W2ny-Half</expbody>
-                    <expresult> = 10 ft 2.026 in</expresult>
+                    <expresult> = 11 ft 0 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28953,7 +29013,7 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2Wall2Pile4Face = (Bent2P4x-Bent2W2x)*Bent2W2nx+(Bent2P4y-Bent2W2y)*Bent2W2ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2Wall2Pile4Face = (Bent2P4x-Bent2W2x)*Bent2W2nx+(Bent2P4y-Bent2W2y)*Bent2W2ny-Half</expbody>
-                    <expresult> = 14 ft 8.026 in</expresult>
+                    <expresult> = 15 ft 6 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28965,13 +29025,13 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2W2Gap = Min(Bent2Wall2Pile1Face,Bent2Wall2Pile2Face,Bent2Wall2Pile3Face,Bent2Wall2Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2W2Gap = Min(Bent2Wall2Pile1Face,Bent2Wall2Pile2Face,Bent2Wall2Pile3Face,Bent2Wall2Pile4Face)</expbody>
-                    <expresult> = 1 ft 2.026 in</expresult>
+                    <expresult> = 2 ft 0 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2W2Extra = Max(0 in,SideClear-Bent2W2Gap)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2W2Extra = Max(0 in,SideClear-Bent2W2Gap)</expbody>
-                    <expresult> = 0 ft 9.974 in</expresult>
+                    <expresult> = 0 ft 0.000186 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28981,8 +29041,8 @@
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-                <dynexp formula="Bent2W3x = 8.66442517654671 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
-                    <expbody>Bent2W3x = 8.66442517654671 ft</expbody>
+                <dynexp formula="Bent2W3x = 9.50001547608143 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W3x = 9.50001547608143 ft</expbody>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -28991,8 +29051,8 @@
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-                <dynexp formula="Bent2W3len = 6.00000002924105 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
-                    <expbody>Bent2W3len = 6.00000002924105 ft</expbody>
+                <dynexp formula="Bent2W3len = 6.53189914902233 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W3len = 6.53189914902233 ft</expbody>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -29018,19 +29078,19 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2W3xend = Bent2W3x+Bent2W3tx*Bent2W3len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2W3xend = Bent2W3x+Bent2W3tx*Bent2W3len</expbody>
-                    <expresult> = 8.664 ft</expresult>
+                    <expresult> = 9.500 ft</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2W3yend = Bent2W3y+Bent2W3ty*Bent2W3len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2W3yend = Bent2W3y+Bent2W3ty*Bent2W3len</expbody>
-                    <expresult> = -3.802 ft</expresult>
+                    <expresult> = -4.333 ft</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2Wall3Pile1Face = (Bent2P1x-Bent2W3x)*Bent2W3nx+(Bent2P1y-Bent2W3y)*Bent2W3ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2Wall3Pile1Face = (Bent2P1x-Bent2W3x)*Bent2W3nx+(Bent2P1y-Bent2W3y)*Bent2W3ny-Half</expbody>
-                    <expresult> = 14 ft 7.973 in</expresult>
+                    <expresult> = 15 ft 6 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -29042,7 +29102,7 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2Wall3Pile2Face = (Bent2P2x-Bent2W3x)*Bent2W3nx+(Bent2P2y-Bent2W3y)*Bent2W3ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2Wall3Pile2Face = (Bent2P2x-Bent2W3x)*Bent2W3nx+(Bent2P2y-Bent2W3y)*Bent2W3ny-Half</expbody>
-                    <expresult> = 10 ft 1.973 in</expresult>
+                    <expresult> = 11 ft 0.000186 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -29054,7 +29114,7 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2Wall3Pile3Face = (Bent2P3x-Bent2W3x)*Bent2W3nx+(Bent2P3y-Bent2W3y)*Bent2W3ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2Wall3Pile3Face = (Bent2P3x-Bent2W3x)*Bent2W3nx+(Bent2P3y-Bent2W3y)*Bent2W3ny-Half</expbody>
-                    <expresult> = 5 ft 7.973 in</expresult>
+                    <expresult> = 6 ft 6 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -29066,37 +29126,37 @@
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2Wall3Pile4Face = (Bent2P4x-Bent2W3x)*Bent2W3nx+(Bent2P4y-Bent2W3y)*Bent2W3ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2Wall3Pile4Face = (Bent2P4x-Bent2W3x)*Bent2W3nx+(Bent2P4y-Bent2W3y)*Bent2W3ny-Half</expbody>
-                    <expresult> = 1 ft 1.973 in</expresult>
+                    <expresult> = 2 ft 0.000186 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2Wall3Pile4Extra = Max(0 in,SideClear-Bent2Wall3Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2Wall3Pile4Extra = Max(0 in,SideClear-Bent2Wall3Pile4Face)</expbody>
-                    <expresult> = 0 ft 10.027 in</expresult>
+                    <expresult> = 0 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2W3Gap = Min(Bent2Wall3Pile1Face,Bent2Wall3Pile2Face,Bent2Wall3Pile3Face,Bent2Wall3Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2W3Gap = Min(Bent2Wall3Pile1Face,Bent2Wall3Pile2Face,Bent2Wall3Pile3Face,Bent2Wall3Pile4Face)</expbody>
-                    <expresult> = 1 ft 1.973 in</expresult>
+                    <expresult> = 2 ft 0.000186 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2W3Extra = Max(0 in,SideClear-Bent2W3Gap)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2W3Extra = Max(0 in,SideClear-Bent2W3Gap)</expbody>
-                    <expresult> = 0 ft 10.027 in</expresult>
+                    <expresult> = 0 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2W3Status = If(InputsValid,If(Bent2W3Extra &lt;= 0 in,&quot;MEETS CLEAR&quot;,&quot;SHORTFALL&quot;),&quot;INVALID&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2W3Status = If(InputsValid,If(Bent2W3Extra &lt;= 0 in,"MEETS CLEAR","SHORTFALL"),"INVALID")</expbody>
-                    <expresult> = SHORTFALL</expresult>
+                    <expresult> = MEETS CLEAR</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
                 <dynexp formula="Bent2CapGap = -Bent2W1x*Bent2W1nx-Bent2W1y*Bent2W1ny-CapX*Abs(Bent2W1nx)-CapY*Abs(Bent2W1ny)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
                     <expbody>Bent2CapGap = -Bent2W1x*Bent2W1nx-Bent2W1y*Bent2W1ny-CapX*Abs(Bent2W1nx)-CapY*Abs(Bent2W1ny)</expbody>
-                    <expresult> = 2 ft 0.617 in</expresult>
+                    <expresult> = 2 ft 1.499 in</expresult>
                 </dynexp>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -29160,27 +29220,27 @@
                 </row>
                 <row>
                     <c capture="False" background="#EFF7F1"><textvalue>P1</textvalue></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile1Face to in"><num>37.18217634444487 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile1Face to in"><num>37.50018573778746 in</num></c>
                     <c capture="False" background="#EFF7F1" formula="LayoutClear to in"><num>37.5 in</num></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile1Extra to in"><num>0.3178236555551308 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile1Extra to in"><num>0 in</num></c>
                 </row>
                 <row>
                     <c capture="False" background="#EFF7F1"><textvalue>P2</textvalue></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile2Face to in"><num>37.183290782669545 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile2Face to in"><num>37.50130017601214 in</num></c>
                     <c capture="False" background="#EFF7F1" formula="LayoutClear to in"><num>37.5 in</num></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile2Extra to in"><num>0.3167092173304553 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile2Extra to in"><num>0 in</num></c>
                 </row>
                 <row>
                     <c capture="False" background="#EFF7F1"><textvalue>P3</textvalue></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile3Face to in"><num>37.18440522089422 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile3Face to in"><num>37.50241461423681 in</num></c>
                     <c capture="False" background="#EFF7F1" formula="LayoutClear to in"><num>37.5 in</num></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile3Extra to in"><num>0.3155947791057798 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile3Extra to in"><num>0 in</num></c>
                 </row>
                 <row>
                     <c capture="False" background="#EFF7F1"><textvalue>P4</textvalue></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile4Face to in"><num>37.185519659118896 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile4Face to in"><num>37.50352905246149 in</num></c>
                     <c capture="False" background="#EFF7F1" formula="LayoutClear to in"><num>37.5 in</num></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile4Extra to in"><num>0.3144803408811043 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile4Extra to in"><num>0 in</num></c>
                 </row>
             </table>
         </embed>
@@ -29197,22 +29257,22 @@
                 <row>
                     <c capture="False" background="#EFF7F1"><textvalue>Front / strap</textvalue></c>
                     <c capture="False" background="#EFF7F1" formula="LayoutClear to in"><num>37.5 in</num></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent1W1Gap to in"><num>37.18217634444487 in</num></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent1W1Extra to in"><num>0.3178236555551308 in</num></c>
-                    <c capture="False" formula="Bent1W1Status"><textvalue>SHORTFALL</textvalue></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1W1Gap to in"><num>37.50018573778746 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1W1Extra to in"><num>0 in</num></c>
+                    <c capture="False" formula="Bent1W1Status"><textvalue>MEETS CLEAR</textvalue></c>
                 </row>
                 <row>
                     <c capture="False" background="#EFF7F1"><textvalue>Left / specified</textvalue></c>
                     <c capture="False" background="#EFF7F1" formula="SideClear to in"><num>24 in</num></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent1W2Gap to in"><num>13.97391193925229 in</num></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent1W2Extra to in"><num>10.02608806074771 in</num></c>
-                    <c capture="False" formula="Bent1W2Status"><textvalue>SHORTFALL</textvalue></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1W2Gap to in"><num>24.000185730227628 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1W2Extra to in"><num>0 in</num></c>
+                    <c capture="False" formula="Bent1W2Status"><textvalue>MEETS CLEAR</textvalue></c>
                 </row>
                 <row>
                     <c capture="False" background="#EFF7F1"><textvalue>Right / specified</textvalue></c>
                     <c capture="False" background="#EFF7F1" formula="SideClear to in"><num>24 in</num></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent1W3Gap to in"><num>14.026116429031418 in</num></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent1W3Extra to in"><num>9.973883570968582 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1W3Gap to in"><num>23.999814250819043 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1W3Extra to in"><num>0.00018574918095737303 in</num></c>
                     <c capture="False" formula="Bent1W3Status"><textvalue>SHORTFALL</textvalue></c>
                 </row>
             </table>
@@ -29272,27 +29332,27 @@
                 </row>
                 <row>
                     <c capture="False" background="#EFF7F1"><textvalue>P1</textvalue></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile1Face to in"><num>36.620739615085135 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile1Face to in"><num>37.50352905246077 in</num></c>
                     <c capture="False" background="#EFF7F1" formula="LayoutClear to in"><num>37.5 in</num></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile1Extra to in"><num>0.8792603849148648 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile1Extra to in"><num>0 in</num></c>
                 </row>
                 <row>
                     <c capture="False" background="#EFF7F1"><textvalue>P2</textvalue></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile2Face to in"><num>36.61962517686046 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile2Face to in"><num>37.502414614236095 in</num></c>
                     <c capture="False" background="#EFF7F1" formula="LayoutClear to in"><num>37.5 in</num></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile2Extra to in"><num>0.8803748231395403 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile2Extra to in"><num>0 in</num></c>
                 </row>
                 <row>
                     <c capture="False" background="#EFF7F1"><textvalue>P3</textvalue></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile3Face to in"><num>36.618510738635784 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile3Face to in"><num>37.50130017601142 in</num></c>
                     <c capture="False" background="#EFF7F1" formula="LayoutClear to in"><num>37.5 in</num></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile3Extra to in"><num>0.8814892613642158 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile3Extra to in"><num>0 in</num></c>
                 </row>
                 <row>
                     <c capture="False" background="#EFF7F1"><textvalue>P4</textvalue></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile4Face to in"><num>36.61739630041111 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile4Face to in"><num>37.500185737786744 in</num></c>
                     <c capture="False" background="#EFF7F1" formula="LayoutClear to in"><num>37.5 in</num></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile4Extra to in"><num>0.8826036995888913 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile4Extra to in"><num>0 in</num></c>
                 </row>
             </table>
         </embed>
@@ -29309,23 +29369,23 @@
                 <row>
                     <c capture="False" background="#EFF7F1"><textvalue>Front / strap</textvalue></c>
                     <c capture="False" background="#EFF7F1" formula="LayoutClear to in"><num>37.5 in</num></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent2W1Gap to in"><num>36.61739630041111 in</num></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent2W1Extra to in"><num>0.8826036995888913 in</num></c>
-                    <c capture="False" formula="Bent2W1Status"><textvalue>SHORTFALL</textvalue></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2W1Gap to in"><num>37.500185737786744 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2W1Extra to in"><num>0 in</num></c>
+                    <c capture="False" formula="Bent2W1Status"><textvalue>MEETS CLEAR</textvalue></c>
                 </row>
                 <row>
                     <c capture="False" background="#EFF7F1"><textvalue>Left / specified</textvalue></c>
                     <c capture="False" background="#EFF7F1" formula="SideClear to in"><num>24 in</num></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent2W2Gap to in"><num>14.026121105578298 in</num></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent2W2Extra to in"><num>9.973878894421702 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2W2Gap to in"><num>23.99981425081978 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2W2Extra to in"><num>0.00018574918021840858 in</num></c>
                     <c capture="False" formula="Bent2W2Status"><textvalue>SHORTFALL</textvalue></c>
                 </row>
                 <row>
                     <c capture="False" background="#EFF7F1"><textvalue>Right / specified</textvalue></c>
                     <c capture="False" background="#EFF7F1" formula="SideClear to in"><num>24 in</num></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent2W3Gap to in"><num>13.973102135810137 in</num></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent2W3Extra to in"><num>10.026897864189863 in</num></c>
-                    <c capture="False" formula="Bent2W3Status"><textvalue>SHORTFALL</textvalue></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2W3Gap to in"><num>24.000185730226775 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2W3Extra to in"><num>0 in</num></c>
+                    <c capture="False" formula="Bent2W3Status"><textvalue>MEETS CLEAR</textvalue></c>
                 </row>
             </table>
         </embed>
@@ -29341,8 +29401,8 @@
                 </row>
                 <row>
                     <c capture="False" background="#EFF7F1"><textvalue>Front cap face to back of front facing</textvalue></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent1CapGap to in"><num>25.18166040529446 in</num></c>
-                    <c capture="False" background="#EFF7F1" formula="Bent2CapGap to in"><num>24.616880361260698 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1CapGap to in"><num>25.499432464570685 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2CapGap to in"><num>25.499432464569967 in</num></c>
                 </row>
                 <row>
                     <c capture="False" background="#EFF7F1"><textvalue>SDG 3.13.2.N.2.i: 24 in minimum</textvalue></c>
@@ -29371,7 +29431,7 @@
         <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">The plan assumes wall faces parallel to these axes. Nominal pile width defines the clearance; the tiny saved frame rotation is retained for pile centers and the cap outline. The open boundary has no rear edge or rear-wall requirement.</paragraph>
         <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" fontweight="bold">SOURCE AND PROVENANCE</paragraph>
         <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6">Shared pile and cap dimensions: BridgeGeometry_2Beam. Current MSE wall back-face lines: saved FreeCAD model, project_current\geometry\freecad\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd. Facing thickness projects outward from the profile.</paragraph>
-        <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="6">Saved model SHA-256: 7368774487c1456238df13c80e33ddf3871907982ff91938e1ae1b4eebf52676</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="6">Saved model SHA-256: d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df (19 October 2026, D-055). Wall lines re-extracted from the saved WallProfile properties on 19 October 2026 (journal task T016, tasks/T016/mse_layout_20261019.json); the 13 October 2026 lines came from model 7368774487c1456238df13c80e33ddf3871907982ff91938e1ae1b4eebf52676 and were superseded when the walls moved with the 235-in caps and cheek webs (D-026/D-036).</paragraph>
         <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6">
             <link address="https://www.fdot.gov/Structures/StructuresManual/CurrentRelease">FDOT Structures Manual, January 2026 — SDG 3.13.2.K.8 and N.2.</link>
         </paragraph>
