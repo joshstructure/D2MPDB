@@ -35,6 +35,13 @@ It excludes generated output, publication receipts, Git HEAD and unrelated files
 It never chooses a file because its filename or modification time looks newer.
 Unregistered new sources need explicit selection or a documented adapter change.
 
+The journal adapter discovers named current calculation reports and saved
+spreadsheet cells within the already registered journal file. New modules in
+that file are included automatically on its next hash change. Formula parsing,
+literal extraction, reference resolution and exact source locations are fixed
+code; no AI mapping or native recalculation runs during refresh. Archived
+modules, ambiguous definitions and unexpanded ranges are not silently adopted.
+
 Preparation verifies all evidence paths are watched, hashes inputs before and
 after ingestion, validates source IDs and origins, checks JavaScript, and tests
 all layouts against the candidate graph. A changing source aborts preparation;
@@ -111,7 +118,7 @@ completion rather than waiting for the next scheduled check.
 ## Verification after workflow changes
 
 ```powershell
-.venv\Scripts\python.exe -m unittest tests.test_atlas_refresh tests.test_design_atlas tests.test_end_bent_atlas -v
+.venv\Scripts\python.exe -m unittest tests.test_atlas_refresh tests.test_design_atlas tests.test_end_bent_atlas tests.test_journal_calcs -v
 ```
 
 The refresh state lock is held during each local operation and releases on a

@@ -21,6 +21,7 @@ import xml.etree.ElementTree as ET
 from tools.project_coherence import report_case, source_checks, read_tracker
 from design_atlas.origins import classify
 from design_atlas.journal import extract_journal
+from design_atlas.journal_calcs import extract_calculations
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = Path(__file__).parent / 'web'
@@ -256,6 +257,22 @@ def build_data(root=ROOT):
                  'User confirms the journal supplied FBMP node data. The current entry module is available; the exact journal revision and cell-by-cell transfer into this run are not verified.',
                  [journal_confirmation,module['evidence']])
 
+    calculation_modules, calculation_values, calculation_links = extract_calculations(root,journal_path,evidence,journal_modules) if (root/journal_path).is_file() else ([],[],{})
+    for module in calculation_modules:
+        existing=next((n for n in nodes if n['id']==module['id']),None)
+        if existing:
+            existing['detail']+=' Native definitions and their explicit formula references are also indexed.'
+            continue
+        node(module['id'],module['title'],journal_path,'recorded',
+             'Calculation module inside the registered journal. Literal definitions and saved results are inspected without native recalculation.',
+             stage_name=module['stage'],module=module['module'],short_title=module['short_title'],
+             component=module['component'],evidence=[module['evidence']])
+        edge('JOURNAL',module['id'],'recorded','Journal contains calculation module',
+             'Containment in the source document; this does not establish a calculation dependency.',[module['evidence']],kind='context')
+    for (source,target),link in calculation_links.items():
+        edge(source,target,'recorded','Explicit journal formula references',
+             'Native formulas reference '+', '.join(sorted(link['references']))+'. Saved results are not recalculated or asserted to agree.',link['evidence'])
+
     values=[]
     def step(title,node_id,path,locator,value,status='recorded',note='',unit=''):
         return {'title':title,'node':node_id,'value':value,'unit':unit,'status':status,
@@ -401,17 +418,19 @@ def build_data(root=ROOT):
     receipt_proof=evidence(RECEIPT,'label = Pier Cap',receipt) if receipt else None
     for v in values: v['origins']=classify(v,case,same,receipt_ok,receipt_proof)
     for module in journal_modules: values.extend(module['values'])
+    values.extend(calculation_values)
     for n in nodes: n['value_count']=sum(n['id'] in v['node_ids'] for v in values)
     result={'schema_version':1,'title':'D2 Design Atlas','generated_at':generated,
         'repository_revision':commit,'nodes':nodes,'edges':edges,'values':values,
         'documents':documents,'issues':issues,'fingerprints':fingerprints,
         'checks':{'report_case_equal':same,'required_xml_present':xml_match,
                   'mathcad_receipt_matches':receipt_ok,'sheet_comparisons':dict(Counter(v['sheet_status'] for v in values))},
-        'coverage':{'map':'All registered sources plus explicitly identified pier-cap gaps.',
-                    'values':'Pier saved case, retained governing audit, selected report, mapped Mathcad inputs, four worksheet formula definitions, active transverse runs, prior-XML coordinates, and the journal’s pier/end-bent node maps and load-entry tables. Journal results are saved values, not recalculated; worksheet formulas are not evaluated.',
+        'coverage':{'map':'All registered sources, named current journal calculation modules, and explicitly identified pier-cap gaps.',
+                    'values':'Pier and End Bent 1 trails, mapped Mathcad inputs, and the registered journal’s named calculation definitions, saved spreadsheet cells, and FBMP entry tables. Journal literals and saved results are read without recalculation. Formula inputs link to unambiguous native definitions.',
                     'limits':['No native solver was run.',('The matching pier XML and issued PDF remain unlinked.' if not xml_match else 'No issued PDF is linked; the retained audit is not independently re-extracted.'),
                               'Registered dependencies describe relationships, not proven parameter transfers.',
                               'Journal-to-FBMP provenance is user-confirmed; exact journal revision and per-cell run transfers remain unverified.',
+                              'Archived journal modules are excluded. Repeated definitions and unextracted or nested references stay unresolved. Journal calculations are not assumed to generate an external report merely because values agree.',
                               'Current calculation-tool revision is not attributed to the historical report run.',
                               'This is a read-only snapshot. Rebuild to capture changed project files.']}}
     # Detect concurrent edits during ingestion instead of publishing mixed bytes.
@@ -431,6 +450,9 @@ def validate(data):
     value_ids=[v['id'] for v in data['values']]
     if len(value_ids)!=len(set(value_ids)):raise ValueError('Duplicate value IDs')
     for v in data['values']:
+        for item in v.get('inputs',[]):
+            if item.get('node') and item['node'] not in ids: raise ValueError('Unresolved formula input node')
+            if item.get('value_id') and item['value_id'] not in value_ids: raise ValueError('Unresolved formula input value')
         if any(n not in ids for n in v['node_ids']):raise ValueError('Unresolved value source')
         if any(n not in ids for n in v.get('upstream_context',{}).get('node_ids',[])):raise ValueError('Unresolved upstream context')
         if not v['steps']:raise ValueError('Value has no source evidence')

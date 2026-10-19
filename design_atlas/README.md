@@ -27,6 +27,19 @@ The existing site is
 
 ## Explore
 
+- Search for **Cap Design** to open the journal's Pier, End Bent 1, End Bent 2,
+  and shared-factor modules. Current named calculation reports and numeric or
+  formula spreadsheet cells are discovered inside the registered journal.
+  Geometry, materials, wind, movement, uplift and other calculations appear on
+  the same map. Archived modules are excluded.
+- Each calculation parameter shows its literal input or saved result, native
+  formula, and exact XML source. **Inputs referenced by this formula** lets you
+  inspect each unambiguous input and its source, including intermediate values
+  within the same module. Received inputs follow explicit qualified references;
+  derived formulas remain local. Missing results are never calculated, repeated
+  definitions remain unresolved, and cell ranges are not expanded. Equal values
+  alone do not create a link to a report or analysis run.
+
 - Drag the full map to pan; use the wheel or +/- controls to zoom. **Clear
   selection** undims every node without moving the map. The **dashed-square
   Fit map** button fits every source without changing the selection. The atlas

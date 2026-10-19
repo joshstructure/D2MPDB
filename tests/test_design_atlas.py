@@ -149,7 +149,7 @@ class ProjectAtlasTests(unittest.TestCase):
             self.assertEqual(roles['PIER-MATHCAD']['kind'],'unknown')
 
     def test_worksheet_formulas_are_never_presented_as_evaluated_results(self):
-        formulas=[v for v in self.data['values'] if v.get('value_kind')=='expression']
+        formulas=[v for v in self.data['values'] if v.get('value_kind')=='expression' and 'PIER-MATHCAD' in v['node_ids']]
         self.assertEqual(len(formulas),4 if (ROOT/SHEET).is_file() else 0)
         for v in formulas:
             self.assertEqual(v['value'],'Not evaluated')

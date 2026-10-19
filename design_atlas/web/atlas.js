@@ -153,10 +153,11 @@
   }
   function traceSets() {
     if(!state.selected&&!state.parameterFocus)return {upstream:new Set(),downstream:new Set(),all:new Set()};
-    if(state.parameterFocus) {const v=valueById.get(state.value);return {upstream:new Set(),downstream:new Set(),all:new Set([...v.node_ids,...(v.upstream_context?.node_ids||[])])};}
+    if(state.parameterFocus) {const v=valueById.get(state.value);return {upstream:new Set(),downstream:new Set(),all:new Set([...v.node_ids,...(v.upstream_context?.node_ids||[]),...(v.inputs||[]).map(i=>i.node).filter(Boolean)])};}
     const upstream=state.direction==='downstream'?new Set():walk('upstream');
     const downstream=state.direction==='upstream'?new Set():walk('downstream');
-    return {upstream,downstream,all:new Set([state.selected,...upstream,...downstream])};
+    const contained=state.selected==='JOURNAL'?data.nodes.filter(n=>n.module).map(n=>n.id):[];
+    return {upstream,downstream,all:new Set([state.selected,...upstream,...downstream,...contained])};
   }
   function paintGraph() {
     const trace=traceSets();
@@ -165,7 +166,7 @@
       el.setAttribute('aria-pressed',String(id===state.selected));
     });
     data.edges.forEach(e=>{
-      const related=trace.all.has(e.source)&&trace.all.has(e.target)&&traversable(e);
+      const related=trace.all.has(e.source)&&trace.all.has(e.target)&&(traversable(e)||(state.selected==='JOURNAL'&&e.source==='JOURNAL'&&e.kind==='context'));
       edgeElements.get(e.id).setAttribute('class','map-edge '+e.status+(related?' related':state.overview?'':' dimmed'));
     });
     $('map-selection-label').textContent=state.overview?'All '+data.nodes.length+' sources · select a node to isolate its trail':trace.all.size+' sources in this trace';
@@ -270,6 +271,7 @@
       $('trace-title').textContent=value.label;
       $('trace-body').innerHTML=(value.upstream_context?'<div class="trace-group">Model inputs upstream of this result</div>'+traceButtons(value.upstream_context.node_ids)+'<p class="trace-context-note">Journal inputs feed the analysis. They are different quantities from this result.</p>':'')+'<div class="trace-group">Individual value trail</div>'+value.steps.map(s=>
         `<button class="trace-node" data-source="${escape(s.node)}">${escape(s.title)}<small>${escape(format(s.value))} ${escape(unitText(s.unit))} · ${escape(byId.get(s.node).title)}</small></button>`).join('');
+      if(value.inputs?.length){$('trace-body').innerHTML+='<div class="trace-group">Inputs referenced by this formula</div>'+formulaInputs(value);bindFormulaInputs($('trace-body'),value);}
       $('trace-body').querySelectorAll('[data-source]').forEach(el=>el.onclick=()=>selectNode(el.dataset.source));
       $('source-detail').innerHTML='<strong>'+escape(value.key)+'</strong><p>'+escape(value.transform||value.note||value.source_status)+'</p><p>Exact source locations and handoff evidence are shown in the value inspector below.</p><button id="exit-parameter" class="quiet">Back to component trace ↗</button>';
       $('exit-parameter').onclick=()=>selectNode(state.selected);
@@ -285,6 +287,10 @@
       (downstream.size?'<div class="trace-group">Downstream uses</div>'+traceButtons(downstream,edges):'')+
       (feedback.size?'<div class="trace-group">Recorded feedback</div>'+traceButtons(feedback,edges):'')+'</div>';
     drawTraceFlow();$('trace-body').scrollTop=0;
+    if(node.id==='JOURNAL') {
+      const modules=data.nodes.filter(n=>n.module);
+      $('trace-body').insertAdjacentHTML('afterbegin','<details open class="journal-modules"><summary>Modules inside this journal ('+modules.length+')</summary><p class="trace-context-note">Open a module to inspect its inputs, formulas and saved results.</p>'+traceButtons(modules.map(n=>n.id))+'</details>');
+    }
     if(trace.all.size===1&&!state.dependencies&&data.edges.some(e=>e.kind==='dependency'&&(e.source===node.id||e.target===node.id))) {
       $('trace-body').insertAdjacentHTML('beforeend','<p class="trace-context-note">This node has registered connections, but no detailed handoff has been extracted.</p><button id="show-registered-trace">Show registered connections</button>');
       $('show-registered-trace').onclick=()=>navigate(()=>{state.dependencies=true;$('include-dependencies').checked=true;paintGraph();renderTrace();});
@@ -362,9 +368,16 @@
     $('value-rows').querySelectorAll('tr').forEach(row=>row.onclick=()=>navigate(()=>{state.value=row.dataset.value;if(!state.selected)state.selected=originNode(valueById.get(state.value));state.parameterFocus=true;state.overview=false;state.traceCollapsed=false;renderSelection();keepSelectedVisible();$('value-detail').scrollTop=0;if(matchMedia('(max-width:760px)').matches)$('value-detail').scrollIntoView({block:'start'});announce('Tracing '+valueById.get(state.value).label);}));
     $('value-rows').querySelectorAll('[data-origin-node]').forEach(b=>b.onclick=e=>{e.stopPropagation();selectNode(b.dataset.originNode,true,b.closest('tr').dataset.value);});
     if(shown.length)renderValue(valueById.get(state.value));
-    else $('value-detail').innerHTML=available.length?'<h3>No parameters match these filters</h3><p class="value-note">Clear the filters to see all extracted parameters at this node.</p><button id="clear-value-filters">Clear parameter filters</button>':'<h3>Parameters not yet extracted for this source</h3><p class="value-note">Its source record and registered connections are available in pane 02. Detailed values currently cover the pier trail, End Bent 1 case/report and journal node-entry tables.</p><button id="open-all-values">Browse all extracted values</button>';
+    else $('value-detail').innerHTML=available.length?'<h3>No parameters match these filters</h3><p class="value-note">Clear the filters to see all extracted parameters at this node.</p><button id="clear-value-filters">Clear parameter filters</button>':'<h3>Parameters not yet extracted for this source</h3><p class="value-note">Its source record and registered connections are available in pane 02. Detailed values cover the pier trail, End Bent 1 case/report, and current journal calculation modules and entry tables.</p><button id="open-all-values">Browse all extracted values</button>';
     if($('open-all-values'))$('open-all-values').onclick=showAllValues;
     if($('clear-value-filters'))$('clear-value-filters').onclick=()=>navigate(()=>{resetFilters();renderSelection();});
+  }
+  function formulaInputs(v) {
+    return '<div class="formula-inputs">'+v.inputs.map((input,i)=>`<div class="formula-input"><code>${escape(input.reference)}</code>${input.value_id?`<span>${escape(format(input.value))} ${escape(unitText(input.unit))}</span><small>${escape(byId.get(input.node).title)}</small><button data-formula-input="${i}">Inspect input & source ↗</button>`:`<small>${escape(input.note||'Source not resolved')}</small>${input.node?`<button data-formula-module="${i}">Open source module ↗</button>`:''}`}</div>`).join('')+'</div>';
+  }
+  function bindFormulaInputs(container,v) {
+    container.querySelectorAll('[data-formula-input]').forEach(b=>b.onclick=()=>{const input=v.inputs[+b.dataset.formulaInput];selectNode(input.node,true,input.value_id);});
+    container.querySelectorAll('[data-formula-module]').forEach(b=>b.onclick=()=>selectNode(v.inputs[+b.dataset.formulaModule].node,true));
   }
   function renderValue(v) {
     const role=originOf(v),context=byId.get(originNode(v));
@@ -382,6 +395,7 @@
     $('value-detail').innerHTML=`<div class="value-top"><div><div class="eyebrow">${escape(v.category.toUpperCase())}</div><h3>${escape(v.label)}</h3></div><div class="big-value ${v.value_kind==='expression'?'expression-value':''}">${escape(format(v.value))} <small>${escape(unitText(v.unit))}</small></div></div>`+
       `<div class="origin-card ${role.kind}"><span class="origin-badge ${role.kind}">${roleNames[role.kind]}</span><small> at ${escape(context.title)}</small><p>${escape(role.basis)}</p>${role.from_node?`<button id="follow-origin">Open ${escape(byId.get(role.from_node).title)} ↗</button>`:''}${role.evidence.map((e,i)=>`<button data-origin-evidence="${i}">Origin evidence${role.evidence.length>1?' '+(i+1):''}</button>`).join('')}</div>`+
       (v.expression?`<pre class="formula-expression">${escape(v.expression)}</pre>`:'')+
+      (v.inputs?.length?'<h4>Inputs referenced by this formula</h4>'+formulaInputs(v):'')+
       (v.upstream_context?`<div class="upstream-context"><strong>Model inputs: project journal</strong><p>${escape(v.upstream_context.detail)}</p>${v.upstream_context.node_ids.map(id=>`<button data-upstream-source="${escape(id)}">Open ${escape(byId.get(id).title)} ↗</button>`).join('')}</div>`:'')+
       (v.sheet_status==='match'?badge('match','Mathcad input matches'):v.sheet_status!=='not mapped'&&v.sheet_status!=='not applicable'?badge(v.sheet_status,'Mathcad: '+v.sheet_status):'')+
       `<p class="value-note">${escape(v.source_status)}${v.transform?' · '+escape(v.transform):''}${v.note?'<br>'+escape(v.note):''}</p>`+
@@ -394,6 +408,7 @@
     $('value-detail').querySelectorAll('[data-mapping-step]').forEach(b=>b.onclick=()=>showEvidence(v.steps[+b.dataset.mappingStep].mapping,v.label+' · mapping'));
     $('value-detail').querySelectorAll('[data-origin-evidence]').forEach(b=>b.onclick=()=>showEvidence(role.evidence[+b.dataset.originEvidence],v.label+' · origin at '+context.title));
     $('value-detail').querySelectorAll('[data-upstream-source]').forEach(b=>b.onclick=()=>selectNode(b.dataset.upstreamSource,true));
+    bindFormulaInputs($('value-detail'),v);
     if($('follow-origin'))$('follow-origin').onclick=()=>selectNode(role.from_node,true);
   }
   function showAllValues(){navigate(()=>{resetFilters();state.allValues=true;state.parameterFocus=false;renderSelection();scrollToValues();});}

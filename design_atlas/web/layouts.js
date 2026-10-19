@@ -13,6 +13,7 @@
   ];
   const alphabetical=(a,b)=>a.title.localeCompare(b.title,undefined,{numeric:true})||a.id.localeCompare(b.id);
   function component(n) {
+    if(n.component)return n.component;
     if(n.id==='JOURNAL-EB-ENTRY')return 'End bents · shared';
     if(/^(PIER-|REQUIRED-PIER-|JOURNAL-PIER-)/.test(n.id))return 'Pier';
     if(/^EB2-/.test(n.id))return 'End Bent 2';
