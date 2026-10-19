@@ -410,8 +410,7 @@ def substructure_method(R, ctx):
              NUM('EB1_LugW', 'General'), ' in wide on the outer face:'))
     R.eq(r'z_{cheek,bot} = z_{cap}(y_{end}) - d_{cap},\qquad z_{lug,bot} = z_{cheek,bot} - p,\qquad s_{lug} = s_{rear} \pm p')
     R.eq(r'V_{cheek} = w\,t_c\,(z_{top}-z_{bot}) + w\,w_l\,p + p\,w_l\,(z_{top}-z_{bot}+p)')
-    R.note('At the D-036 build these matched the native D-034 CAD solids: all four cheeks to 1e-12 ft3 and the EB2 backwall exactly. The CAD EB1 '
-           'backwall seat follows the MSE landing and holds 0.117 ft3 more concrete; it is to be rebuilt from the notebook geometry.')
+    R.note('D-053: both backwall tops have two straight 2% slopes down from the PGL, level through their 12-in thickness, and lie 4-1/4 in below the FFBW deck-top lines. Ramp slabs thicken locally (about 4.05-4.95 in at checked CAD points). Recheck fit and steel cover after profile edits; downstream slab/backwall design and drawings require reconciliation. Cheek geometry is unchanged.')
     R.vars([
         ('σ, yc', 'Cap cross slope and center offset', 'Pier_Slope, Pier_Ctr ...', 'ft/ft, ft'),
         ('hped,min', 'Minimum pedestal height at CL bearing', 'Pier_Reveal, EB1_Reveal', 'in'),
@@ -532,7 +531,7 @@ def cad_pedestals_method(R, ctx):
     R.p('Cap tops, undersides and pile cutoffs come from the Substructure tab (cutoff = local cap top - cap depth + embedment).')
     R.chart(charts.cap_section(R.data(), ctx, 'Pier'), 'Figure 3. Pier section, drawn from the Substructure and Bearing Seats tables.')
     R.p(live('The end-bent wall table lists the backwall top at both cap ends and at the PGL (deck-top line at the FFBW less the ',
-             NUM('EB1_BwDrop', 'General'), '-in seat), both cheek tops (D-033 return bases), the cheek bottom at the cap underside, the lug '
+             NUM('EB1_BwDrop', 'General'), '-in EB1 / ', NUM('EB2_BwDrop', 'General'), '-in EB2 seat), both cheek tops (D-033 return bases), the cheek bottom at the cap underside, the lug '
              'bottom and the rear-lug face station where the MSE copings stop. All values link to Substructure section F.'))
     R.chart(charts.cap_section(R.data(), ctx, 'EB2'), 'Figure 4. End Bent 2 section with cheeks and the backwall behind the cap (dashed).')
 

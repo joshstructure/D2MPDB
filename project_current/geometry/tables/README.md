@@ -1,7 +1,11 @@
 # Geometry CAD tables
 
 [`B4_Geometry_CAD_Tables.xlsx`](B4_Geometry_CAD_Tables.xlsx) is the selected
-geometry CAD-tables workbook (D-041), registered as GEOMETRY-TABLES.
+geometry CAD-tables workbook (D-041, updated by D-053), registered as GEOMETRY-TABLES.
+
+Both backwall tops now use two 2% slopes, level through their thickness,
+4-1/4 in below the FFBW deck-top line. The ramp slabs thicken locally to
+meet them. Model e9b41b8eaf agrees with the adopted CAD backwalls.
 
 It recalculates the geometry notebook as live Excel formulas. It also fills the FGE,
 Build-Up & Deflection, Table of Beam Variables, Bearing Plate and Pedestal

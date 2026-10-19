@@ -24,7 +24,7 @@ from openpyxl.workbook.defined_name import DefinedName
 
 from . import figures, sources
 
-GENERATOR_VERSION = '1.1.0'
+GENERATOR_VERSION = '1.1.1'
 OUTPUT = sources.ROOT / 'project_current' / 'geometry' / 'tables' / 'B4_Geometry_CAD_Tables.xlsx'   # selected source (D-041)
 FGE_INCREMENTS = 10
 PACKAGE = Path(__file__).resolve().parent
@@ -352,7 +352,7 @@ def build_inputs(book: Book, ctx):
             dict(label='Backwall rear-face inset', value=e['rear_face_inset_in'], unit='in', name=f'{tag}_Inset', src=f'{src}.rear_face_inset_in'),
             dict(label='Beam end clearance (end-bent record)', value=e['beam_end_clear_in'], unit='in', name=f'{tag}_BmClr', src=f'{src}.beam_end_clear_in (QC: equals physical value)'),
             dict(label='Beam end to CL bearing (end-bent record)', value=e['beam_end_to_bearing_in'], unit='in', name=f'{tag}_BmBrg', src=f'{src}.beam_end_to_bearing_in (QC: equals physical value)'),
-            dict(label='Backwall top below the deck-top line at FFBW', value=e['backwall_drop_in'], unit='in', name=f'{tag}_BwDrop', src=f'{src}.backwall_drop_in (D-017 landing seat)'),
+            dict(label='Backwall top below the deck-top line at FFBW', value=e['backwall_drop_in'], unit='in', name=f'{tag}_BwDrop', src=f'{src}.backwall_drop_in (' + 'D-053 simple backwall top; slab thickens locally' + ')'),
             dict(label='Cheek web thickness (outside each cap end)', value=e['cheek_thickness_in'], unit='in', name=f'{tag}_CkT', src=f'{src}.cheek_thickness_in (D-026)'),
             dict(label='Lug projection (bottom and rear)', value=e['lug_projection_in'], unit='in', name=f'{tag}_LugP', src=f'{src}.lug_projection_in (D-026 DXF)'),
             dict(label='Lug width on the cheek outer face', value=e['lug_width_in'], unit='in', name=f'{tag}_LugW', src=f'{src}.lug_width_in (D-026 DXF)'),
@@ -1148,7 +1148,7 @@ def end_bent_walls_section(book: Book, ws, row: int, ctx):
     row += len(WALL_ROWS)
     check_formatting(ws, f'F{first}:G{row-1}')
     book.put(ws, f'B{row}', 'Backwall top = deck-top line at the FFBW less the landing seat; cheek tops are the D-033 barrier-return '
-             'bases (MSE interface inputs). The CAD EB1 backwall seat follows the MSE landing and is to be rebuilt from this geometry.', font=F_NOTE)
+             'bases (MSE interface inputs). Both backwall tops have two straight transverse slopes, level through their thickness (D-053); the ramp slabs thicken locally.', font=F_NOTE)
     return row + 2
 
 
@@ -1856,8 +1856,7 @@ def build(output: Path = OUTPUT) -> dict:
         ('Mathcad Span 2', ctx['mathcad'][2]['source_file'], hashes['mathcad_span2']),
     ]
     ctx['open_items'] = [
-        'End caps, backwalls, cheek webs and lugs (D-026/D-027/D-033) are notebook geometry (D-036). The CAD EB1 backwall seat follows the '
-        'MSE landing and holds 0.117 ft3 more concrete than the notebook rule; rebuild it from the notebook.',
+        'Both backwall tops use two straight 2% slopes (D-053), 4-1/4 in below their FFBW deck-top lines. Ramp slabs thicken locally (about 4.05-4.95 in at checked points). Recheck profile edits and reconcile downstream drawings, quantities and backwall/slab design.',
         'Cheek tops are the four D-033 MSE barrier-return base elevations, entered as notebook inputs.',
         'Deck barrier (D-031, 12 ft clear) is not in the notebook, so no barrier-face FGE line is tabulated.',
         'Job number, calculated/checked by and dates are blank on the Inputs tab.',

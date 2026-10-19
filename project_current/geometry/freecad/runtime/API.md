@@ -544,3 +544,17 @@ Use `cheek_hooks.refresh(inputs)` and `backwall_extensions.validate(inputs,
 before_shapes)` after edits. Cover is measured to the combined backwall/cap/cheek
 concrete. Positive overlap is rejected; unchanged historical overlaps, if any,
 are reported separately. External drawings are not automatically regenerated.
+
+
+## Simple backwall tops (D-053, 19 October 2026)
+
+`backwall_top` retains the existing backwall and finished-landing object Names.
+Each backwall's `TopDrop` is 4.25 in; its top follows the FFBW deck crossfall
+as at most two planes, constant through the wall thickness. The finished landing
+links `BackwallTopSource` and projects its existing trimmed walking faces down
+to the two planes. Verified NetVolume uses the existing adaptive integration.
+The helper `apply(doc, model_id)` is a one-time installation inside a caller-owned
+transaction and never saves; a repeated installation is rejected. Later edits
+use the native controls and require refreshed contact, cover and clash checks.
+The unchanged PGL engine/source record remains historical provenance; the two
+backwalls carry `TopNotebookModelID` for the adopted notebook revision.

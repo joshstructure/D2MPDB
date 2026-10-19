@@ -15,8 +15,8 @@ design-completion status.
 | Recorded decisions and ownership | [Decisions](decisions.md) |
 | Native project journal | [D2 I-95 Project Journal](../journal/D2_I95_Project_Journal.bpad) with [References](../journal/References/) |
 | Current editable FreeCAD model and live quantities | [Open the bridge model](geometry/freecad/README.md) — square bridge edges, end-bent MSE copings, 2% closure slabs and seven schematic geotechnical straps per backwall (D-044/D-045), plus fitted standard cheek horizontal hooks (D-046); calculation/detailing reconciliation remains open |
-| Geometry notebook | [Bridge geometry](../Bridge_Geometry_2%20Beam_V2.ipynb) and [roadway XML](../Geometry%20Report.xml) — owns the end caps, backwalls, cheek webs and lugs (D-036) |
-| Geometry interactive report | [Selected station explorer](geometry/reports/Bridge_Geometry_Interactive_Report_physical_v2_622e5ca1bf.html) â€” 19 October export of notebook model 622e5ca1bf (D-052) |
+| Geometry notebook | [Bridge geometry](../Bridge_Geometry_2%20Beam_V2.ipynb) and [roadway XML](../Geometry%20Report.xml) — owns the end caps, backwalls, cheek webs and lugs (D-036); both backwall tops and ramp connections updated under D-053 |
+| Geometry interactive report | [Prior station explorer snapshot](geometry/reports/Bridge_Geometry_Interactive_Report_physical_v2_622e5ca1bf.html) â€” 19 October export of notebook model 622e5ca1bf (D-052) |
 | Geometry CAD tables | [Selected workbook](geometry/tables/B4_Geometry_CAD_Tables.xlsx) — FDOT CAD tables, method tabs and live charts recalculated from the geometry notebook (D-041; [how to rebuild](../geometry_tables/README.md)) |
 | Pier cap | [Report](cap_design/pier/Pier%20Cap%20Design%2010-19.html), [saved case](cap_design/pier/selected_case.json), [FBMP export](fbmp/pier/Pier_Fixed.XML) — 19 October rerun with the latest fixed XML (D-051) |
 | End Bent 1 cap | [Report](cap_design/end_bents/End%20Bent%201%20Cap%20Design%2010-19.html), [saved case](cap_design/end_bents/selected_case.json) — 19 October rerun with the latest fixed XML (D-051) |

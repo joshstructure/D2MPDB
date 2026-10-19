@@ -1,0 +1,120 @@
+{
+  "status": "ADOPTED_VERIFIED_UPDATE",
+  "decision": "D-053",
+  "date": "2026-10-19",
+  "user_direction": [
+    "Simplify the backwall top to one or at most two slopes; slab may thicken at the connection.",
+    "Update CAD as well unless solids present too much difficulty.",
+    "Check both end bent backwalls."
+  ],
+  "sources": [
+    {
+      "id": "GEOMETRY",
+      "path": "Bridge_Geometry_2 Beam_V2.ipynb",
+      "old_sha256": "2d45fc34b606f2157e2d634beb4d9dd04319c0664d9e96e5bf53e8eca993dafd",
+      "new_sha256": "4ccd84724ab53d45b9e2bcc7201ece64c0406f8b72e9772d8df5456b0199310b",
+      "hash_basis": "lf_text"
+    },
+    {
+      "id": "CAD-MODEL",
+      "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+      "old_sha256": "aee8160a242a00be1c4259e711d8ef5fb5805ad3750485beee947aa44eb62407",
+      "new_sha256": "a831dec89084195338e78bef19bf014cd71421c9138e5ba0471479a5f6d6ed27",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "id": "CAD-RUNTIME",
+      "path": "project_current/geometry/freecad/manifest.json",
+      "old_sha256": "e5600e4fb3c8258aab7f6b7ca98bcd58e31955d6c0ed8e265ba6f99283baf953",
+      "new_sha256": "91439d8d7c8e26dded32f1626c30e15a8bf6c74d149006c5bb605cbaec5719ad",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "id": "CAD-REPORT",
+      "path": "project_current/geometry/freecad/evidence/Model-update-report.txt",
+      "old_sha256": "aa29cde7c87a65374145a1e553516a51a4d641251d82a7f960eb043bd8bd4c98",
+      "new_sha256": "db46f6407b2bc2345b1804468b9dbdc2b0048e3e8bb8eec7c7e47837f65d4380",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "id": "GEOMETRY-TABLES",
+      "path": "project_current/geometry/tables/B4_Geometry_CAD_Tables.xlsx",
+      "old_sha256": "baa7e358c3a952779151480a95b5a3016dd875fe7b4ca00aad9fb9b75b1b65b5",
+      "new_sha256": "7ae68ec09a308fe6eda6df52d28eb402e61dec18033c219b411c551a51f14977",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "id": "GEOMETRY-REPORT",
+      "path": "project_current/geometry/reports/Bridge_Geometry_Interactive_Report_physical_v2_622e5ca1bf.html",
+      "old_sha256": "23642af61597dd7444ca0634f0ef8e5c552fc633da23fd63d48165b065263022",
+      "new_sha256": "23642af61597dd7444ca0634f0ef8e5c552fc633da23fd63d48165b065263022",
+      "hash_basis": "exact_bytes"
+    }
+  ],
+  "notebook_model_id": "e9b41b8eaf",
+  "workbook_fingerprint": "8291d84b1993a439602b",
+  "input_changes": {
+    "end_bents.start.backwall_drop_in": [
+      4,
+      4.25
+    ],
+    "end_bents.end.backwall_drop_in": [
+      4,
+      4.25
+    ]
+  },
+  "native_checks": 447,
+  "native_failures": [],
+  "protected_native_objects": 2100,
+  "walls": {
+    "EB1": {
+      "probe_endpoint_roundoff_max_in": 1.812932907796494e-06,
+      "minimum_cover_in": 2.9999999999998526,
+      "bar_count": 56,
+      "slab_volume_ft3": 111.98703546834597,
+      "slab_added_ft3": 0.5059237925525795,
+      "wall_volume_ft3": 77.76981184128368
+    },
+    "EB2": {
+      "probe_endpoint_roundoff_max_in": 2.9761278028672677e-06,
+      "minimum_cover_in": 2.9999999999987397,
+      "bar_count": 56,
+      "slab_volume_ft3": 89.03840085322024,
+      "slab_added_ft3": 0.4821316024563424,
+      "wall_volume_ft3": 77.76981356830764
+    }
+  },
+  "steel_changes": {
+    "backwall_top_horizontals": "EB1 F1H05/F2H05 down 3/8 in; EB2 down an additional 1/4 in (total 3/8 in from base layout).",
+    "EB1_cheek_rows": "MH09 and MH10 down 5/8 in on both sides; standard hooks retained; max spacing 10 in.",
+    "counts_and_marks": "unchanged"
+  },
+  "verification": {
+    "notebook_code_cells": 10,
+    "notebook_tests": 16,
+    "workbook_tests": 12,
+    "excel_recalculation": "PASS",
+    "workbook_charts_preserved": 15,
+    "native_controls": {
+      "status": "PASS",
+      "repeat_installation_rejected": true,
+      "wall_drop_drives_slab_underside": true,
+      "walking_faces_exact": true,
+      "restored_volume_error_mm3": 0.0003662109375,
+      "quarter_inch_drop_added_slab_ft3": 0.4077342312206163,
+      "candidate_unchanged": true
+    },
+    "installed_native_reopen": "PASS",
+    "excel_input_response": "Both drops tested in a disposable Excel copy; top elevations, concrete quantities and edited-input banners respond and restore correctly."
+  },
+  "downstream_disposition": [
+    "D-052 report is a retained prior snapshot and marked accordingly in the source register.",
+    "Backwall/slab calculations, load/quantity takeoffs, drawing exports and broader COH-023/024 reviews require normal refresh; no engineering status closed.",
+    "Existing tracker responses/statuses remain byte-identical."
+  ],
+  "tracker_preserved": true,
+  "backups": [
+    "project_current/geometry/freecad/archive/B4-before-simple-backwall-tops-20261019.FCStd",
+    "project_current/geometry/freecad/archive/B4-before-simple-backwall-tops-record-20261019.zip"
+  ]
+}

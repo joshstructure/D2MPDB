@@ -1,5 +1,20 @@
 # Latest project coherence review
 
+## 19 October backwall/ramp geometry update
+
+D-053 updates both backwall tops in the notebook, B4 spreadsheet and native CAD.
+The two 2% top slopes are level through the wall thickness; the ramp slabs
+thicken locally to them while keeping their walking faces. Both connections
+have at least 4 in of slab at the checked points. Native solids, contact, cover,
+spacing and new-overlap checks pass; the spreadsheet recalculates without errors.
+See the [verified source receipt](evidence/2026-10-19-simple-backwall-tops/source_receipt.json).
+
+The former EB1 curved-seat rebuild action is superseded by this completed
+geometry revision. COH-023 and other broader calculation/detailing items remain
+open; tracker statuses and responses are unchanged. The D-052 interactive report
+is retained as a **prior geometry snapshot**, not the current backwall detail.
+The dated baseline and earlier receipts below remain historical.
+
 ## 19 October geometry report source receipt
 
 The supplied interactive geometry report is registered as GEOMETRY-REPORT

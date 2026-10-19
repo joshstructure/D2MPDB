@@ -1,0 +1,20 @@
+{
+  "code_cells_executed": [
+    "bridge-output-layout",
+    "bridge-02",
+    "bridge-03",
+    "bridge-05",
+    "bridge-06",
+    "bridge-17",
+    "bridge-07",
+    "bridge-11",
+    "bridge-snapshots",
+    "bridge-report-export"
+  ],
+  "test_count": 16,
+  "failures": 0,
+  "errors": 1,
+  "skipped": [],
+  "environment_error_resolved": "Portable export test rerun with temporary directory inside the authorized workspace: PASS; original system-temp PermissionError was not a model failure.",
+  "final_passed_tests": 16
+}

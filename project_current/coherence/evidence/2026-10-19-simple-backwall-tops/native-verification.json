@@ -1,0 +1,3745 @@
+{
+  "candidate_sha256": "a831dec89084195338e78bef19bf014cd71421c9138e5ba0471479a5f6d6ed27",
+  "walls": {
+    "EB1": {
+      "samples": [
+        {
+          "station": 1593.21999,
+          "offset_ft": -9.791656666666666,
+          "slab_present": false
+        },
+        {
+          "station": 1593.21999,
+          "offset_ft": -9,
+          "slab_present": true,
+          "gap_in": 2.5579538487363607e-13,
+          "thickness_in": 4.779999400138337,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.21999,
+          "offset_ft": -8,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.539999400138129,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.21999,
+          "offset_ft": -7,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.299999400137921,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.21999,
+          "offset_ft": -6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.24999940008766,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.21999,
+          "offset_ft": -4,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.249999400085869,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.21999,
+          "offset_ft": -2,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.249999400084249,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.21999,
+          "offset_ft": 0,
+          "slab_present": true,
+          "gap_in": 0.0,
+          "thickness_in": 4.249999400082629,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.21999,
+          "offset_ft": 2,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.249999400182219,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.21999,
+          "offset_ft": 4,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.24999940018273,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.21999,
+          "offset_ft": 6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.249999400183327,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.21999,
+          "offset_ft": 7,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.2999994001339985,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.21999,
+          "offset_ft": 8,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.539999400133695,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.21999,
+          "offset_ft": 9,
+          "slab_present": true,
+          "gap_in": 2.5579538487363607e-13,
+          "thickness_in": 4.779999400133391,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.21999,
+          "offset_ft": 9.791656666666666,
+          "slab_present": false
+        },
+        {
+          "station": 1593.219,
+          "offset_ft": -9.791656666666666,
+          "slab_present": false
+        },
+        {
+          "station": 1593.219,
+          "offset_ft": -9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.779940001963382,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.219,
+          "offset_ft": -8,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.539939999153177,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.219,
+          "offset_ft": -7,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.299939996342971,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.219,
+          "offset_ft": -6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.249939984130322,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.219,
+          "offset_ft": -4,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.2499399672691425,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.219,
+          "offset_ft": -2,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.249939950407708,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.219,
+          "offset_ft": 0,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.249939933545932,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.219,
+          "offset_ft": 2,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.249939949071944,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.219,
+          "offset_ft": 4,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.249939954691854,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.219,
+          "offset_ft": 6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.249939960311764,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.219,
+          "offset_ft": 7,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.299939956997804,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.219,
+          "offset_ft": 8,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.539939954187332,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.219,
+          "offset_ft": 9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.779939951376775,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1593.219,
+          "offset_ft": 9.791656666666666,
+          "slab_present": false
+        },
+        {
+          "station": 1592.97,
+          "offset_ft": -9.791656666666666,
+          "slab_present": true,
+          "gap_in": -2.3999998575163772e-06,
+          "thickness_in": 4.954398486590776,
+          "walking_change_ft": 1.4420464822251233e-10
+        },
+        {
+          "station": 1592.97,
+          "offset_ft": -9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.764261480773143,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.97,
+          "offset_ft": -8,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.5240884196702496,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.97,
+          "offset_ft": -7,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.283915357314726,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.97,
+          "offset_ft": -6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.2334670498530045,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.97,
+          "offset_ft": -4,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.232428682726834,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.97,
+          "offset_ft": -2,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.231390300566545,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.97,
+          "offset_ft": 0,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.230351903372053,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.97,
+          "offset_ft": 2,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.230700462503563,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.97,
+          "offset_ft": 4,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.231046553688287,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.97,
+          "offset_ft": 6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.231392649883958,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.97,
+          "offset_ft": 7,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.281492352785335,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.97,
+          "offset_ft": 8,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.5213192716362585,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.97,
+          "offset_ft": 9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.761146189234296,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.97,
+          "offset_ft": 9.791656666666666,
+          "slab_present": true,
+          "gap_in": -2.3999998575163772e-06,
+          "thickness_in": 4.9510091647458125,
+          "walking_change_ft": -1.468620780542551e-10
+        },
+        {
+          "station": 1592.72,
+          "offset_ft": -9.791656666666666,
+          "slab_present": true,
+          "gap_in": -2.3999998575163772e-06,
+          "thickness_in": 4.937613226171976,
+          "walking_change_ft": 5.682494474967825e-10
+        },
+        {
+          "station": 1592.72,
+          "offset_ft": -9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.747073393478104,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.72,
+          "offset_ft": -8,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.506391495161267,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.72,
+          "offset_ft": -7,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.265709591946376,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.72,
+          "offset_ft": -6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.21394557282224,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.72,
+          "offset_ft": -4,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.209854181365614,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.72,
+          "offset_ft": -2,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.205762731131131,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.72,
+          "offset_ft": 0,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.201671222118108,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.72,
+          "offset_ft": 2,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.203039802356216,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.72,
+          "offset_ft": 4,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.2044034772724785,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.72,
+          "offset_ft": 6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.205767171780025,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.72,
+          "offset_ft": 7,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.256162432618311,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.72,
+          "offset_ft": 8,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.495480455927549,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.72,
+          "offset_ft": 9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.73479847433822,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.72,
+          "offset_ft": 9.791656666666666,
+          "slab_present": true,
+          "gap_in": -2.3999998575163772e-06,
+          "thickness_in": 4.924258568775912,
+          "walking_change_ft": -5.680149683939817e-10
+        },
+        {
+          "station": 1592.47,
+          "offset_ft": -9.791656666666666,
+          "slab_present": true,
+          "gap_in": -2.3999998575163772e-06,
+          "thickness_in": 4.919683617944429,
+          "walking_change_ft": 1.2591527820404735e-09
+        },
+        {
+          "station": 1592.47,
+          "offset_ft": -9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.728487423182969,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.47,
+          "offset_ft": -8,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.486976430682148,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.47,
+          "offset_ft": -7,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.245465427415411,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.47,
+          "offset_ft": -6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.191558393237841,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.47,
+          "offset_ft": -4,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.182492435818091,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.47,
+          "offset_ft": -2,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.173426349204959,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.47,
+          "offset_ft": 0,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.1643601333965705,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.47,
+          "offset_ft": 2,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.1673891428338266,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.47,
+          "offset_ft": 4,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.170410859294918,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.47,
+          "offset_ft": 6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.173432618818055,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.47,
+          "offset_ft": 7,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.224310251203548,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.47,
+          "offset_ft": 8,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.4627990864366325,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.47,
+          "offset_ft": 9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.701287910902522,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.47,
+          "offset_ft": 9.791656666666666,
+          "slab_present": true,
+          "gap_in": -2.3999998575163772e-06,
+          "thickness_in": 4.890091555961902,
+          "walking_change_ft": -1.2598420084941608e-09
+        },
+        {
+          "station": 1592.23,
+          "offset_ft": -9.791656666666666,
+          "slab_present": true,
+          "gap_in": -2.3999998575163772e-06,
+          "thickness_in": 4.901431163871251,
+          "walking_change_ft": 2.1608883571389015e-09
+        },
+        {
+          "station": 1592.23,
+          "offset_ft": -9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.709377740053412,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.23,
+          "offset_ft": -8,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.466783925114498,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.23,
+          "offset_ft": -7,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.224190091843155,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.23,
+          "offset_ft": -6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.167484659412025,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.23,
+          "offset_ft": -4,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.1519217673887,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.23,
+          "offset_ft": -2,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.136358655370941,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.23,
+          "offset_ft": 0,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.120795323355594,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.23,
+          "offset_ft": 2,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.12599201598232,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.23,
+          "offset_ft": 4,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.131179186859555,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.23,
+          "offset_ft": 6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.136366431064374,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.23,
+          "offset_ft": 7,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.187874501034372,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.23,
+          "offset_ft": 8,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.425280392755695,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.23,
+          "offset_ft": 9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.662686266142373,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.23,
+          "offset_ft": 9.791656666666666,
+          "slab_present": true,
+          "gap_in": -2.3999998575163772e-06,
+          "thickness_in": 4.850632569575282,
+          "walking_change_ft": -2.1613502099171455e-09
+        },
+        {
+          "station": 1592.22001,
+          "offset_ft": -9.791656666666666,
+          "slab_present": true,
+          "gap_in": -2.3999999427815055e-06,
+          "thickness_in": 4.900649060789476,
+          "walking_change_ft": -6.304231447984421e-08
+        },
+        {
+          "station": 1592.22001,
+          "offset_ft": -9,
+          "slab_present": true,
+          "gap_in": 2.5579538487363607e-13,
+          "thickness_in": 4.708556078156022,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.22001,
+          "offset_ft": -8,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.465911304883406,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.22001,
+          "offset_ft": -7,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.223266512924425,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.22001,
+          "offset_ft": -6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.166429392888688,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.22001,
+          "offset_ft": -4,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.150560750890861,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.22001,
+          "offset_ft": -2,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.134691884653847,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.22001,
+          "offset_ft": 0,
+          "slab_present": true,
+          "gap_in": 0.0,
+          "thickness_in": 4.118822794174065,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.22001,
+          "offset_ft": 2,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.124121485737533,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.22001,
+          "offset_ft": 4,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.129410564350309,
+          "walking_change_ft": -7.105427357601002e-15
+        },
+        {
+          "station": 1592.22001,
+          "offset_ft": 6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.1346997177058995,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.22001,
+          "offset_ft": 7,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.186237463343048,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.22001,
+          "offset_ft": 8,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.423592391070258,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.22001,
+          "offset_ft": 9,
+          "slab_present": true,
+          "gap_in": 2.5579538487363607e-13,
+          "thickness_in": 4.660947300108461,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1592.22001,
+          "offset_ft": 9.791656666666666,
+          "slab_present": true,
+          "gap_in": -2.3999999427815055e-06,
+          "thickness_in": 4.848851470028137,
+          "walking_change_ft": -1.510777423163745e-07
+        }
+      ],
+      "probe_endpoint_roundoff_max_in": 1.812932907796494e-06,
+      "minimum_cover_in": 2.9999999999998526,
+      "bar_count": 56,
+      "slab_volume_ft3": 111.98703546834597,
+      "slab_added_ft3": 0.5059237925525795,
+      "wall_volume_ft3": 77.76981184128368
+    },
+    "EB2": {
+      "samples": [
+        {
+          "station": 1805.47001,
+          "offset_ft": -9.791656666666666,
+          "slab_present": false
+        },
+        {
+          "station": 1805.47001,
+          "offset_ft": -9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.779999399855086,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.47001,
+          "offset_ft": -8,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.539999399854537,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.47001,
+          "offset_ft": -7,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.299999399853903,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.47001,
+          "offset_ft": -6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.249999399901782,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.47001,
+          "offset_ft": -4,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.24999939989803,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.47001,
+          "offset_ft": -2,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.2499993998946195,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.47001,
+          "offset_ft": 0,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.2499993997917045,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.47001,
+          "offset_ft": 2,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.249999399793069,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.47001,
+          "offset_ft": 4,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.249999399794177,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.47001,
+          "offset_ft": 6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.249999399795371,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.47001,
+          "offset_ft": 7,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.2999993998452055,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.47001,
+          "offset_ft": 8,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.539999399844731,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.47001,
+          "offset_ft": 9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.779999399844087,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.47001,
+          "offset_ft": 9.791656666666666,
+          "slab_present": false
+        },
+        {
+          "station": 1805.471,
+          "offset_ft": -9.791656666666666,
+          "slab_present": false
+        },
+        {
+          "station": 1805.471,
+          "offset_ft": -9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.779939967079798,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.471,
+          "offset_ft": -8,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.5399399610056435,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.471,
+          "offset_ft": -7,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.299939954931318,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.471,
+          "offset_ft": -6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.249939944192732,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.471,
+          "offset_ft": -4,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.249939907747773,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.471,
+          "offset_ft": -2,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.249939871303752,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.471,
+          "offset_ft": 0,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.24993982495414,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.471,
+          "offset_ft": 2,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.249939837104165,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.471,
+          "offset_ft": 4,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.249939849253934,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.471,
+          "offset_ft": 6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.249939861403362,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.471,
+          "offset_ft": 7,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.299939869900157,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.471,
+          "offset_ft": 8,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.539939863827101,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.471,
+          "offset_ft": 9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.779939857753874,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.471,
+          "offset_ft": 9.791656666666666,
+          "slab_present": false
+        },
+        {
+          "station": 1805.72,
+          "offset_ft": -9.791656666666666,
+          "slab_present": true,
+          "gap_in": -2.3999998575163772e-06,
+          "thickness_in": 4.954146537264563,
+          "walking_change_ft": 3.0949820484238444e-10
+        },
+        {
+          "station": 1805.72,
+          "offset_ft": -9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.763852469291521,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.72,
+          "offset_ft": -8,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.523481018537893,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.72,
+          "offset_ft": -7,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.283109571723259,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.72,
+          "offset_ft": -6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.232151221459304,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.72,
+          "offset_ft": -4,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.229922537552909,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.72,
+          "offset_ft": -2,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.227693900915881,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.72,
+          "offset_ft": 0,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.225462842683555,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.72,
+          "offset_ft": 2,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.22620583846421,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.72,
+          "offset_ft": 4,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.2269488184871875,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.72,
+          "offset_ft": 6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.227691782752572,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.72,
+          "offset_ft": 7,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.277909729913347,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.72,
+          "offset_ft": 8,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.517538342181638,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.72,
+          "offset_ft": 9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.757166958388325,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.72,
+          "offset_ft": 9.791656666666666,
+          "slab_present": true,
+          "gap_in": -2.3999999427815055e-06,
+          "thickness_in": 4.946872948709682,
+          "walking_change_ft": -3.346727339703648e-10
+        },
+        {
+          "station": 1805.97,
+          "offset_ft": -9.791656666666666,
+          "slab_present": true,
+          "gap_in": -2.3999998575163772e-06,
+          "thickness_in": 4.936646967011825,
+          "walking_change_ft": 1.2108998248550051e-09
+        },
+        {
+          "station": 1805.97,
+          "offset_ft": -9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.745496725544825,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.97,
+          "offset_ft": -8,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.504043802598545,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.97,
+          "offset_ft": -7,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.2625908948801055,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.97,
+          "offset_ft": -6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.208839942742969,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.97,
+          "offset_ft": -4,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.2001224833558695,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.97,
+          "offset_ft": -2,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.191405206700296,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.97,
+          "offset_ft": 0,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.182683219682275,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.97,
+          "offset_ft": 2,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.185589431414087,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.97,
+          "offset_ft": 4,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.188495582230445,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.97,
+          "offset_ft": 6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.191401672132798,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.97,
+          "offset_ft": 7,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.242251785662404,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.97,
+          "offset_ft": 8,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.4807991063424595,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.97,
+          "offset_ft": 9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.7193464422475415,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1805.97,
+          "offset_ft": 9.791656666666666,
+          "slab_present": true,
+          "gap_in": -2.3999999427815055e-06,
+          "thickness_in": 4.908196427375259,
+          "walking_change_ft": -1.2045546782246674e-09
+        },
+        {
+          "station": 1806.22,
+          "offset_ft": -9.791656666666666,
+          "slab_present": true,
+          "gap_in": -2.3999998575163772e-06,
+          "thickness_in": 4.917581792414637,
+          "walking_change_ft": 2.662609688286466e-09
+        },
+        {
+          "station": 1806.22,
+          "offset_ft": -9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.725052317582595,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.22,
+          "offset_ft": -8,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.481857221106992,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.22,
+          "offset_ft": -7,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.238662157704198,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.22,
+          "offset_ft": -6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.180411741784212,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.22,
+          "offset_ft": -4,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.161241329700545,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.22,
+          "offset_ft": -2,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.142071314483246,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.22,
+          "offset_ft": 0,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.122894464351191,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.22,
+          "offset_ft": 2,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.129285455118236,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.22,
+          "offset_ft": 4,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.135676313585861,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.22,
+          "offset_ft": 6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.1420670397569666,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.22,
+          "offset_ft": 7,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.19393474251396,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.22,
+          "offset_ft": 8,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.430740175159713,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.22,
+          "offset_ft": 9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.66754564087239,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.22,
+          "offset_ft": 9.791656666666666,
+          "slab_present": true,
+          "gap_in": -2.3999999427815055e-06,
+          "thickness_in": 4.855016657948255,
+          "walking_change_ft": -2.6674200626075617e-09
+        },
+        {
+          "station": 1806.46,
+          "offset_ft": -9.791656666666666,
+          "slab_present": true,
+          "gap_in": -2.3999998575163772e-06,
+          "thickness_in": 4.89788103273392,
+          "walking_change_ft": 4.536289566203777e-09
+        },
+        {
+          "station": 1806.46,
+          "offset_ft": -9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.703571643491927,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46,
+          "offset_ft": -8,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.458128254291552,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46,
+          "offset_ft": -7,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.2126849207268435,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46,
+          "offset_ft": -6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.148627456014225,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46,
+          "offset_ft": -4,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.115967395695634,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46,
+          "offset_ft": -2,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.0833080029914015,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46,
+          "offset_ft": 0,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.050639915688549,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46,
+          "offset_ft": 2,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.061528041846714,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46,
+          "offset_ft": 4,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.072415945448654,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46,
+          "offset_ft": 6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.0833036264996565,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46,
+          "offset_ft": 7,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.136484092226766,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46,
+          "offset_ft": 8,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.371041593123039,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46,
+          "offset_ft": 9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.605599149644917,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46,
+          "offset_ft": 9.791656666666666,
+          "slab_present": true,
+          "gap_in": -2.3999999427815055e-06,
+          "thickness_in": 4.791290588027607,
+          "walking_change_ft": -4.533639241799392e-09
+        },
+        {
+          "station": 1806.46999,
+          "offset_ft": -9.791656666666666,
+          "slab_present": true,
+          "gap_in": -2.3999999427815055e-06,
+          "thickness_in": 4.897031517674833,
+          "walking_change_ft": -6.626268600484764e-08
+        },
+        {
+          "station": 1806.46999,
+          "offset_ft": -9,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.702639729572752,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46999,
+          "offset_ft": -8,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.457091184045169,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46999,
+          "offset_ft": -7,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.211542695197409,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46999,
+          "offset_ft": -6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.147213618367033,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46999,
+          "offset_ft": -4,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.113922624994672,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46999,
+          "offset_ft": -2,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.080632311764077,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46999,
+          "offset_ft": 0,
+          "slab_present": true,
+          "gap_in": 0.0,
+          "thickness_in": 4.047333230669437,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46999,
+          "offset_ft": 2,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.058431695020033,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46999,
+          "offset_ft": 4,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.069529932638886,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46999,
+          "offset_ft": 6,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.080627943530601,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46999,
+          "offset_ft": 7,
+          "slab_present": true,
+          "gap_in": 1.7053025658242404e-13,
+          "thickness_in": 4.133869802342673,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46999,
+          "offset_ft": 8,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.368322163613811,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46999,
+          "offset_ft": 9,
+          "slab_present": true,
+          "gap_in": 8.526512829121202e-14,
+          "thickness_in": 4.602774581554286,
+          "walking_change_ft": 0.0
+        },
+        {
+          "station": 1806.46999,
+          "offset_ft": 9.791656666666666,
+          "slab_present": true,
+          "gap_in": -2.400000028046634e-06,
+          "thickness_in": 4.7883798652942176,
+          "walking_change_ft": -2.48010650238939e-07
+        }
+      ],
+      "probe_endpoint_roundoff_max_in": 2.9761278028672677e-06,
+      "minimum_cover_in": 2.9999999999987397,
+      "bar_count": 56,
+      "slab_volume_ft3": 89.03840085322024,
+      "slab_added_ft3": 0.4821316024563424,
+      "wall_volume_ft3": 77.76981356830764
+    }
+  },
+  "verification_continuation": "Retained successful checks from the exact same candidate; corrected Compound bounding-box inspection and completed remaining checks.",
+  "checks": [
+    {
+      "name": "protected_native_state_exact",
+      "ok": true,
+      "objects": 2100
+    },
+    {
+      "name": "EB1_solid_validity",
+      "ok": true
+    },
+    {
+      "name": "EB1_two_planar_tops",
+      "ok": true
+    },
+    {
+      "name": "EB1_wall_volume_matches_notebook",
+      "ok": true
+    },
+    {
+      "name": "EB1_wall_slab_no_overlap",
+      "ok": true
+    },
+    {
+      "name": "EB1_walking_faces_exact",
+      "ok": true,
+      "added_mm2": 0.0,
+      "removed_mm2": 0.0
+    },
+    {
+      "name": "EB1_footprint_0",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_1",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_2",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_3",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_4",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_5",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_6",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_7",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_8",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_9",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_10",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_11",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_12",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_13",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_14",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_15",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_16",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_17",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_18",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_19",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_20",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_21",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_22",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_23",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_24",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_25",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_26",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_27",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_28",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_29",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_30",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_31",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_32",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_33",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_34",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_35",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_36",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_37",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_38",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_39",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_40",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_41",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_42",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_43",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_44",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_45",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_46",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_47",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_48",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_49",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_50",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_51",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_52",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_53",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_54",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_55",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_56",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_57",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_58",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_59",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_60",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_61",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_62",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_63",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_64",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_65",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_66",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_67",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_68",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_69",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_70",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_71",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_72",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_73",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_74",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_75",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_76",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_77",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_78",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_79",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_80",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_81",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_82",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_83",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_84",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_85",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_86",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_87",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_88",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_89",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_90",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_91",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_92",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_93",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_94",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_95",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_96",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_97",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_98",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_99",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_100",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_101",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_102",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_103",
+      "ok": true
+    },
+    {
+      "name": "EB1_footprint_104",
+      "ok": true
+    },
+    {
+      "name": "EB1_slab_contact",
+      "ok": true,
+      "max_gap_in": 2.3999999427815055e-06
+    },
+    {
+      "name": "EB1_minimum_four_inches",
+      "ok": true,
+      "min_in": 4.118822794174065,
+      "max_in": 4.954398486590776
+    },
+    {
+      "name": "EB1_verified_slab_quantity",
+      "ok": true
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V01_cover",
+      "ok": true,
+      "cover_in": 3.000000000000003
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V02_cover",
+      "ok": true,
+      "cover_in": 2.9999999999999996
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V03_cover",
+      "ok": true,
+      "cover_in": 2.9999999999999973
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V04_cover",
+      "ok": true,
+      "cover_in": 2.999999999999995
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V05_cover",
+      "ok": true,
+      "cover_in": 2.999999999999992
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V06_cover",
+      "ok": true,
+      "cover_in": 2.99999999999999
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V07_cover",
+      "ok": true,
+      "cover_in": 2.9999999999999862
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V08_cover",
+      "ok": true,
+      "cover_in": 2.999999999999984
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V09_cover",
+      "ok": true,
+      "cover_in": 2.999999999999982
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V10_cover",
+      "ok": true,
+      "cover_in": 2.9999999999999782
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V11_cover",
+      "ok": true,
+      "cover_in": 2.999999999999976
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V12_cover",
+      "ok": true,
+      "cover_in": 2.999999999999973
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V13_cover",
+      "ok": true,
+      "cover_in": 2.9999999999999707
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V14_cover",
+      "ok": true,
+      "cover_in": 2.9999999999999685
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V15_cover",
+      "ok": true,
+      "cover_in": 2.999999999999965
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V16_cover",
+      "ok": true,
+      "cover_in": 2.9999999999999627
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V17_cover",
+      "ok": true,
+      "cover_in": 2.9999999999999605
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V18_cover",
+      "ok": true,
+      "cover_in": 2.9999999999999574
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V19_cover",
+      "ok": true,
+      "cover_in": 2.999999999999955
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V20_cover",
+      "ok": true,
+      "cover_in": 2.9999999999999516
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1V21_cover",
+      "ok": true,
+      "cover_in": 2.9999999999999516
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H01_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H02_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H03_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H04_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H05_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V01_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998526
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V02_cover",
+      "ok": true,
+      "cover_in": 2.999999999999862
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V03_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998717
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V04_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998948
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V05_cover",
+      "ok": true,
+      "cover_in": 2.9999999999999063
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V06_cover",
+      "ok": true,
+      "cover_in": 2.999999999999918
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V07_cover",
+      "ok": true,
+      "cover_in": 2.9999999999999303
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V08_cover",
+      "ok": true,
+      "cover_in": 2.9999999999999423
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V09_cover",
+      "ok": true,
+      "cover_in": 2.9999999999999543
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V10_cover",
+      "ok": true,
+      "cover_in": 2.999999999999963
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V11_cover",
+      "ok": true,
+      "cover_in": 2.999999999999973
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V12_cover",
+      "ok": true,
+      "cover_in": 2.9999999999999902
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V13_cover",
+      "ok": true,
+      "cover_in": 3.0000000000000004
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V14_cover",
+      "ok": true,
+      "cover_in": 3.0000000000000098
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V15_cover",
+      "ok": true,
+      "cover_in": 3.000000000000026
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V16_cover",
+      "ok": true,
+      "cover_in": 3.0000000000000373
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V17_cover",
+      "ok": true,
+      "cover_in": 3.00000000000005
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V18_cover",
+      "ok": true,
+      "cover_in": 3.000000000000062
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V19_cover",
+      "ok": true,
+      "cover_in": 3.000000000000074
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V20_cover",
+      "ok": true,
+      "cover_in": 3.0000000000000835
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2V21_cover",
+      "ok": true,
+      "cover_in": 3.0000000000000844
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H01_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H02_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H03_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H04_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H05_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VEL_cover",
+      "ok": true,
+      "cover_in": 2.9999999999999574
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1VER_cover",
+      "ok": true,
+      "cover_in": 3.000000000000011
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VEL_cover",
+      "ok": true,
+      "cover_in": 2.9999999999999574
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2VER_cover",
+      "ok": true,
+      "cover_in": 3.000000000000011
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H05_mark_preserved",
+      "ok": true
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F1H05_no_new_overlap",
+      "ok": true,
+      "collisions": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H05_mark_preserved",
+      "ok": true
+    },
+    {
+      "name": "SteelBridgeBackwallEB1F2H05_no_new_overlap",
+      "ok": true,
+      "collisions": []
+    },
+    {
+      "name": "A_BridgeLandingAtReturns_no_new_concrete_overlap_WallA2Mitred",
+      "ok": true,
+      "prior_mm3": 0.0,
+      "new_mm3": 0.0
+    },
+    {
+      "name": "A_BridgeLandingAtReturns_no_new_concrete_overlap_WallA4Mitred",
+      "ok": true,
+      "prior_mm3": 0.0,
+      "new_mm3": 0.0
+    },
+    {
+      "name": "A_BridgeLandingAtReturns_no_new_concrete_overlap_WallA6Mitred",
+      "ok": true,
+      "prior_mm3": 0.0,
+      "new_mm3": 0.0
+    },
+    {
+      "name": "A_BridgeLandingAtReturns_no_new_concrete_overlap_WallA7Mitred",
+      "ok": true,
+      "prior_mm3": 0.0,
+      "new_mm3": 0.0
+    },
+    {
+      "name": "A_BridgeLandingAtReturns_no_new_concrete_overlap_A_ReturnRunSlabFinished",
+      "ok": true,
+      "prior_mm3": 0.0,
+      "new_mm3": 0.0
+    },
+    {
+      "name": "A_BridgeLandingAtReturns_no_new_concrete_overlap_BridgeCheekEB11",
+      "ok": true,
+      "prior_mm3": 0.0,
+      "new_mm3": 0.0
+    },
+    {
+      "name": "A_BridgeLandingAtReturns_no_new_concrete_overlap_BridgeCheekEB12",
+      "ok": true,
+      "prior_mm3": 0.0,
+      "new_mm3": 0.0
+    },
+    {
+      "name": "EB2_solid_validity",
+      "ok": true
+    },
+    {
+      "name": "EB2_two_planar_tops",
+      "ok": true
+    },
+    {
+      "name": "EB2_wall_volume_matches_notebook",
+      "ok": true
+    },
+    {
+      "name": "EB2_wall_slab_no_overlap",
+      "ok": true
+    },
+    {
+      "name": "EB2_walking_faces_exact",
+      "ok": true,
+      "added_mm2": 0.0,
+      "removed_mm2": 0.0
+    },
+    {
+      "name": "EB2_footprint_0",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_1",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_2",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_3",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_4",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_5",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_6",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_7",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_8",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_9",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_10",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_11",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_12",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_13",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_14",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_15",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_16",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_17",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_18",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_19",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_20",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_21",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_22",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_23",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_24",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_25",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_26",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_27",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_28",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_29",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_30",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_31",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_32",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_33",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_34",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_35",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_36",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_37",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_38",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_39",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_40",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_41",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_42",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_43",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_44",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_45",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_46",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_47",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_48",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_49",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_50",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_51",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_52",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_53",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_54",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_55",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_56",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_57",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_58",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_59",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_60",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_61",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_62",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_63",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_64",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_65",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_66",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_67",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_68",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_69",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_70",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_71",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_72",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_73",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_74",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_75",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_76",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_77",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_78",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_79",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_80",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_81",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_82",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_83",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_84",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_85",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_86",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_87",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_88",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_89",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_90",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_91",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_92",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_93",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_94",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_95",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_96",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_97",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_98",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_99",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_100",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_101",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_102",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_103",
+      "ok": true
+    },
+    {
+      "name": "EB2_footprint_104",
+      "ok": true
+    },
+    {
+      "name": "EB2_slab_contact",
+      "ok": true,
+      "max_gap_in": 2.400000028046634e-06
+    },
+    {
+      "name": "EB2_minimum_four_inches",
+      "ok": true,
+      "min_in": 4.047333230669437,
+      "max_in": 4.954146537264563
+    },
+    {
+      "name": "EB2_verified_slab_quantity",
+      "ok": true
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V01_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V02_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V03_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V04_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V05_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V06_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V07_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V08_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V09_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V10_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V11_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V12_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V13_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V14_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V15_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V16_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V17_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V18_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V19_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V20_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1V21_cover",
+      "ok": true,
+      "cover_in": 2.9999999999998854
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H01_cover",
+      "ok": true,
+      "cover_in": 2.9999999999987397
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H02_cover",
+      "ok": true,
+      "cover_in": 2.9999999999987397
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H03_cover",
+      "ok": true,
+      "cover_in": 2.9999999999987397
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H04_cover",
+      "ok": true,
+      "cover_in": 2.9999999999987397
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H05_cover",
+      "ok": true,
+      "cover_in": 2.9999999999987397
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V01_cover",
+      "ok": true,
+      "cover_in": 2.9999999999993125
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V02_cover",
+      "ok": true,
+      "cover_in": 2.999999999999026
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V03_cover",
+      "ok": true,
+      "cover_in": 2.9999999999993125
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V04_cover",
+      "ok": true,
+      "cover_in": 2.9999999999993125
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V05_cover",
+      "ok": true,
+      "cover_in": 2.999999999999026
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V06_cover",
+      "ok": true,
+      "cover_in": 2.999999999999026
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V07_cover",
+      "ok": true,
+      "cover_in": 2.9999999999993125
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V08_cover",
+      "ok": true,
+      "cover_in": 2.999999999999026
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V09_cover",
+      "ok": true,
+      "cover_in": 2.9999999999993125
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V10_cover",
+      "ok": true,
+      "cover_in": 2.999999999999599
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V11_cover",
+      "ok": true,
+      "cover_in": 2.999999999999026
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V12_cover",
+      "ok": true,
+      "cover_in": 2.9999999999993125
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V13_cover",
+      "ok": true,
+      "cover_in": 2.999999999999026
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V14_cover",
+      "ok": true,
+      "cover_in": 2.9999999999993125
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V15_cover",
+      "ok": true,
+      "cover_in": 2.9999999999993125
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V16_cover",
+      "ok": true,
+      "cover_in": 2.999999999999026
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V17_cover",
+      "ok": true,
+      "cover_in": 2.999999999999026
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V18_cover",
+      "ok": true,
+      "cover_in": 2.9999999999993125
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V19_cover",
+      "ok": true,
+      "cover_in": 2.999999999999026
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V20_cover",
+      "ok": true,
+      "cover_in": 2.9999999999993125
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2V21_cover",
+      "ok": true,
+      "cover_in": 2.9999999999993125
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H01_cover",
+      "ok": true,
+      "cover_in": 2.9999999999987397
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H02_cover",
+      "ok": true,
+      "cover_in": 2.9999999999987397
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H03_cover",
+      "ok": true,
+      "cover_in": 2.9999999999987397
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H04_cover",
+      "ok": true,
+      "cover_in": 2.9999999999987397
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H05_cover",
+      "ok": true,
+      "cover_in": 2.9999999999987397
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VEL_cover",
+      "ok": true,
+      "cover_in": 3.0000000000004765
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1VER_cover",
+      "ok": true,
+      "cover_in": 2.999999999998883
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VEL_cover",
+      "ok": true,
+      "cover_in": 3.0000000000004765
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2VER_cover",
+      "ok": true,
+      "cover_in": 2.999999999998883
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H05_mark_preserved",
+      "ok": true
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F1H05_no_new_overlap",
+      "ok": true,
+      "collisions": []
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H05_mark_preserved",
+      "ok": true
+    },
+    {
+      "name": "SteelBridgeBackwallEB2F2H05_no_new_overlap",
+      "ok": true,
+      "collisions": []
+    },
+    {
+      "name": "B_BridgeLandingAtReturns_no_new_concrete_overlap_WallB2Mitred",
+      "ok": true,
+      "prior_mm3": 0.0,
+      "new_mm3": 0.0
+    },
+    {
+      "name": "B_BridgeLandingAtReturns_no_new_concrete_overlap_WallB3Mitred",
+      "ok": true,
+      "prior_mm3": 0.0,
+      "new_mm3": 0.0
+    },
+    {
+      "name": "B_BridgeLandingAtReturns_no_new_concrete_overlap_WallB6Mitred",
+      "ok": true,
+      "prior_mm3": 0.0,
+      "new_mm3": 0.0
+    },
+    {
+      "name": "B_BridgeLandingAtReturns_no_new_concrete_overlap_WallB7Mitred",
+      "ok": true,
+      "prior_mm3": 0.0,
+      "new_mm3": 0.0
+    },
+    {
+      "name": "B_BridgeLandingAtReturns_no_new_concrete_overlap_B_UpperRunSlabBentJoint",
+      "ok": true,
+      "prior_mm3": 0.0,
+      "new_mm3": 0.0
+    },
+    {
+      "name": "B_BridgeLandingAtReturns_no_new_concrete_overlap_BridgeCheekEB21",
+      "ok": true,
+      "prior_mm3": 0.0,
+      "new_mm3": 0.0
+    },
+    {
+      "name": "B_BridgeLandingAtReturns_no_new_concrete_overlap_BridgeCheekEB22",
+      "ok": true,
+      "prior_mm3": 0.0,
+      "new_mm3": 0.0
+    },
+    {
+      "name": "SteelBridgeCheekEB11MV01_retained_cover",
+      "ok": true,
+      "cover_in": 2.2500000000002722
+    },
+    {
+      "name": "SteelBridgeCheekEB11MV02_retained_cover",
+      "ok": true,
+      "cover_in": 2.2500000000002722
+    },
+    {
+      "name": "SteelBridgeCheekEB11MV03_retained_cover",
+      "ok": true,
+      "cover_in": 2.2500000000002722
+    },
+    {
+      "name": "SteelBridgeCheekEB11MV04_retained_cover",
+      "ok": true,
+      "cover_in": 2.2500000000002722
+    },
+    {
+      "name": "SteelBridgeCheekEB11MV05_retained_cover",
+      "ok": true,
+      "cover_in": 2.2500000000002722
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH01_retained_cover",
+      "ok": true,
+      "cover_in": 2.249999999999923
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH02_retained_cover",
+      "ok": true,
+      "cover_in": 3.999999999999925
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH03_retained_cover",
+      "ok": true,
+      "cover_in": 3.999999999999925
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH04_retained_cover",
+      "ok": true,
+      "cover_in": 3.999999999999925
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH05_retained_cover",
+      "ok": true,
+      "cover_in": 2.0000000000000195
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH06_retained_cover",
+      "ok": true,
+      "cover_in": 2.0000000000000195
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH07_retained_cover",
+      "ok": true,
+      "cover_in": 2.0000000000000195
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH08_retained_cover",
+      "ok": true,
+      "cover_in": 2.0000000000000195
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH09_retained_cover",
+      "ok": true,
+      "cover_in": 2.0000000000000195
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH10_retained_cover",
+      "ok": true,
+      "cover_in": 2.249999999999923
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH11_retained_cover",
+      "ok": true,
+      "cover_in": 2.000000000000258
+    },
+    {
+      "name": "SteelBridgeCheekEB11Inputs_horizontal_spacing",
+      "ok": true,
+      "spaces_in": [
+        10.0,
+        10.0,
+        8.499999999999943,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        9.375,
+        10.0,
+        4.00123028657174
+      ]
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH09_mark_preserved",
+      "ok": true
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH09_no_new_overlap",
+      "ok": true,
+      "collisions": []
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH09_lowered_five_eighths",
+      "ok": true
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH10_mark_preserved",
+      "ok": true
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH10_no_new_overlap",
+      "ok": true,
+      "collisions": []
+    },
+    {
+      "name": "SteelBridgeCheekEB11MH10_lowered_five_eighths",
+      "ok": true
+    },
+    {
+      "name": "SteelBridgeCheekEB11Inputs_standard_hook_retained",
+      "ok": true
+    },
+    {
+      "name": "SteelBridgeCheekEB12MV01_retained_cover",
+      "ok": true,
+      "cover_in": 2.2500000000003437
+    },
+    {
+      "name": "SteelBridgeCheekEB12MV02_retained_cover",
+      "ok": true,
+      "cover_in": 2.2500000000003437
+    },
+    {
+      "name": "SteelBridgeCheekEB12MV03_retained_cover",
+      "ok": true,
+      "cover_in": 2.2500000000003437
+    },
+    {
+      "name": "SteelBridgeCheekEB12MV04_retained_cover",
+      "ok": true,
+      "cover_in": 2.2500000000003437
+    },
+    {
+      "name": "SteelBridgeCheekEB12MV05_retained_cover",
+      "ok": true,
+      "cover_in": 2.2500000000003437
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH01_retained_cover",
+      "ok": true,
+      "cover_in": 2.2500000000000218
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH02_retained_cover",
+      "ok": true,
+      "cover_in": 3.999999999999927
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH03_retained_cover",
+      "ok": true,
+      "cover_in": 3.999999999999927
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH04_retained_cover",
+      "ok": true,
+      "cover_in": 3.999999999999927
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH05_retained_cover",
+      "ok": true,
+      "cover_in": 1.9999999999999267
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH06_retained_cover",
+      "ok": true,
+      "cover_in": 1.9999999999999267
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH07_retained_cover",
+      "ok": true,
+      "cover_in": 1.9999999999999267
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH08_retained_cover",
+      "ok": true,
+      "cover_in": 1.9999999999999267
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH09_retained_cover",
+      "ok": true,
+      "cover_in": 1.9999999999999267
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH10_retained_cover",
+      "ok": true,
+      "cover_in": 2.2500000000000218
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH11_retained_cover",
+      "ok": true,
+      "cover_in": 2.0000000000003295
+    },
+    {
+      "name": "SteelBridgeCheekEB12Inputs_horizontal_spacing",
+      "ok": true,
+      "spaces_in": [
+        10.0,
+        10.0,
+        8.499999999999943,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        9.375,
+        10.0,
+        3.94684267688001
+      ]
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH09_mark_preserved",
+      "ok": true
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH09_no_new_overlap",
+      "ok": true,
+      "collisions": []
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH09_lowered_five_eighths",
+      "ok": true
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH10_mark_preserved",
+      "ok": true
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH10_no_new_overlap",
+      "ok": true,
+      "collisions": []
+    },
+    {
+      "name": "SteelBridgeCheekEB12MH10_lowered_five_eighths",
+      "ok": true
+    },
+    {
+      "name": "SteelBridgeCheekEB12Inputs_standard_hook_retained",
+      "ok": true
+    },
+    {
+      "name": "SteelBridgeCheekEB21MV01_retained_cover",
+      "ok": true,
+      "cover_in": 2.2500000000000573
+    },
+    {
+      "name": "SteelBridgeCheekEB21MV02_retained_cover",
+      "ok": true,
+      "cover_in": 2.2500000000000573
+    },
+    {
+      "name": "SteelBridgeCheekEB21MV03_retained_cover",
+      "ok": true,
+      "cover_in": 2.2500000000000573
+    },
+    {
+      "name": "SteelBridgeCheekEB21MV04_retained_cover",
+      "ok": true,
+      "cover_in": 2.2500000000000573
+    },
+    {
+      "name": "SteelBridgeCheekEB21MV05_retained_cover",
+      "ok": true,
+      "cover_in": 2.2500000000000573
+    },
+    {
+      "name": "SteelBridgeCheekEB21MH01_retained_cover",
+      "ok": true,
+      "cover_in": 2.250000000001203
+    },
+    {
+      "name": "SteelBridgeCheekEB21MH02_retained_cover",
+      "ok": true,
+      "cover_in": 4.000000000000516
+    },
+    {
+      "name": "SteelBridgeCheekEB21MH03_retained_cover",
+      "ok": true,
+      "cover_in": 4.000000000000516
+    },
+    {
+      "name": "SteelBridgeCheekEB21MH04_retained_cover",
+      "ok": true,
+      "cover_in": 4.000000000000516
+    },
+    {
+      "name": "SteelBridgeCheekEB21MH05_retained_cover",
+      "ok": true,
+      "cover_in": 2.0000000000006875
+    },
+    {
+      "name": "SteelBridgeCheekEB21MH06_retained_cover",
+      "ok": true,
+      "cover_in": 2.0000000000006875
+    },
+    {
+      "name": "SteelBridgeCheekEB21MH07_retained_cover",
+      "ok": true,
+      "cover_in": 2.0000000000006875
+    },
+    {
+      "name": "SteelBridgeCheekEB21MH08_retained_cover",
+      "ok": true,
+      "cover_in": 2.0000000000006875
+    },
+    {
+      "name": "SteelBridgeCheekEB21MH09_retained_cover",
+      "ok": true,
+      "cover_in": 2.250000000001203
+    },
+    {
+      "name": "SteelBridgeCheekEB21MH10_retained_cover",
+      "ok": true,
+      "cover_in": 2.250000000001203
+    },
+    {
+      "name": "SteelBridgeCheekEB21MH11_retained_cover",
+      "ok": true,
+      "cover_in": 2.000000000000043
+    },
+    {
+      "name": "SteelBridgeCheekEB21Inputs_horizontal_spacing",
+      "ok": true,
+      "spaces_in": [
+        10.0,
+        10.0,
+        8.5,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        3.328206620243236
+      ]
+    },
+    {
+      "name": "SteelBridgeCheekEB22MV01_retained_cover",
+      "ok": true,
+      "cover_in": 2.2499999999999143
+    },
+    {
+      "name": "SteelBridgeCheekEB22MV02_retained_cover",
+      "ok": true,
+      "cover_in": 2.2499999999999143
+    },
+    {
+      "name": "SteelBridgeCheekEB22MV03_retained_cover",
+      "ok": true,
+      "cover_in": 2.2499999999999143
+    },
+    {
+      "name": "SteelBridgeCheekEB22MV04_retained_cover",
+      "ok": true,
+      "cover_in": 2.2499999999999143
+    },
+    {
+      "name": "SteelBridgeCheekEB22MV05_retained_cover",
+      "ok": true,
+      "cover_in": 2.2499999999999143
+    },
+    {
+      "name": "SteelBridgeCheekEB22MH01_retained_cover",
+      "ok": true,
+      "cover_in": 2.25000000000063
+    },
+    {
+      "name": "SteelBridgeCheekEB22MH02_retained_cover",
+      "ok": true,
+      "cover_in": 3.999999999998475
+    },
+    {
+      "name": "SteelBridgeCheekEB22MH03_retained_cover",
+      "ok": true,
+      "cover_in": 3.999999999998475
+    },
+    {
+      "name": "SteelBridgeCheekEB22MH04_retained_cover",
+      "ok": true,
+      "cover_in": 3.999999999998475
+    },
+    {
+      "name": "SteelBridgeCheekEB22MH05_retained_cover",
+      "ok": true,
+      "cover_in": 1.9999999999998281
+    },
+    {
+      "name": "SteelBridgeCheekEB22MH06_retained_cover",
+      "ok": true,
+      "cover_in": 1.9999999999998281
+    },
+    {
+      "name": "SteelBridgeCheekEB22MH07_retained_cover",
+      "ok": true,
+      "cover_in": 1.9999999999998281
+    },
+    {
+      "name": "SteelBridgeCheekEB22MH08_retained_cover",
+      "ok": true,
+      "cover_in": 1.9999999999998281
+    },
+    {
+      "name": "SteelBridgeCheekEB22MH09_retained_cover",
+      "ok": true,
+      "cover_in": 2.25000000000063
+    },
+    {
+      "name": "SteelBridgeCheekEB22MH10_retained_cover",
+      "ok": true,
+      "cover_in": 2.25000000000063
+    },
+    {
+      "name": "SteelBridgeCheekEB22MH11_retained_cover",
+      "ok": true,
+      "cover_in": 1.9999999999998999
+    },
+    {
+      "name": "SteelBridgeCheekEB22Inputs_horizontal_spacing",
+      "ok": true,
+      "spaces_in": [
+        10.0,
+        10.0,
+        8.5,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        3.1213288047089236
+      ]
+    },
+    {
+      "name": "editable_drop_drives_solid",
+      "ok": true
+    },
+    {
+      "name": "editable_drop_restores_solid",
+      "ok": true
+    },
+    {
+      "name": "source_preserved_until_adoption",
+      "ok": true
+    },
+    {
+      "name": "candidate_preserved",
+      "ok": true
+    }
+  ],
+  "status": "PASS",
+  "failures": []
+}

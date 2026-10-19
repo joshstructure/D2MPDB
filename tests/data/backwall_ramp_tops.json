@@ -1,0 +1,1021 @@
+{
+  "source_file": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "source_sha256": "aee8160a242a00be1c4259e711d8ef5fb5805ad3750485beee947aa44eb62407",
+  "units": "feet",
+  "walls": {
+    "EB1": [
+      {
+        "station": 1593.21999,
+        "offset_ft": -9,
+        "slab_top_ft": 47.525166616678206
+      },
+      {
+        "station": 1593.21999,
+        "offset_ft": -8,
+        "slab_top_ft": 47.525166616678185
+      },
+      {
+        "station": 1593.21999,
+        "offset_ft": -7,
+        "slab_top_ft": 47.52516661667816
+      },
+      {
+        "station": 1593.21999,
+        "offset_ft": -6,
+        "slab_top_ft": 47.54099995000731
+      },
+      {
+        "station": 1593.21999,
+        "offset_ft": -4,
+        "slab_top_ft": 47.58099995000716
+      },
+      {
+        "station": 1593.21999,
+        "offset_ft": -2,
+        "slab_top_ft": 47.620999950007025
+      },
+      {
+        "station": 1593.21999,
+        "offset_ft": 0,
+        "slab_top_ft": 47.660999950006875
+      },
+      {
+        "station": 1593.21999,
+        "offset_ft": 2,
+        "slab_top_ft": 47.62099995001519
+      },
+      {
+        "station": 1593.21999,
+        "offset_ft": 4,
+        "slab_top_ft": 47.58099995001523
+      },
+      {
+        "station": 1593.21999,
+        "offset_ft": 6,
+        "slab_top_ft": 47.540999950015284
+      },
+      {
+        "station": 1593.21999,
+        "offset_ft": 7,
+        "slab_top_ft": 47.525166616677836
+      },
+      {
+        "station": 1593.21999,
+        "offset_ft": 8,
+        "slab_top_ft": 47.52516661667781
+      },
+      {
+        "station": 1593.21999,
+        "offset_ft": 9,
+        "slab_top_ft": 47.525166616677794
+      },
+      {
+        "station": 1593.219,
+        "offset_ft": -9,
+        "slab_top_ft": 47.525161666830286
+      },
+      {
+        "station": 1593.219,
+        "offset_ft": -8,
+        "slab_top_ft": 47.525161666596105
+      },
+      {
+        "station": 1593.219,
+        "offset_ft": -7,
+        "slab_top_ft": 47.52516166636192
+      },
+      {
+        "station": 1593.219,
+        "offset_ft": -6,
+        "slab_top_ft": 47.54099499867753
+      },
+      {
+        "station": 1593.219,
+        "offset_ft": -4,
+        "slab_top_ft": 47.58099499727243
+      },
+      {
+        "station": 1593.219,
+        "offset_ft": -2,
+        "slab_top_ft": 47.62099499586731
+      },
+      {
+        "station": 1593.219,
+        "offset_ft": 0,
+        "slab_top_ft": 47.660994994462165
+      },
+      {
+        "station": 1593.219,
+        "offset_ft": 2,
+        "slab_top_ft": 47.620994995756
+      },
+      {
+        "station": 1593.219,
+        "offset_ft": 4,
+        "slab_top_ft": 47.58099499622432
+      },
+      {
+        "station": 1593.219,
+        "offset_ft": 6,
+        "slab_top_ft": 47.54099499669265
+      },
+      {
+        "station": 1593.219,
+        "offset_ft": 7,
+        "slab_top_ft": 47.52516166308315
+      },
+      {
+        "station": 1593.219,
+        "offset_ft": 8,
+        "slab_top_ft": 47.52516166284895
+      },
+      {
+        "station": 1593.219,
+        "offset_ft": 9,
+        "slab_top_ft": 47.525161662614735
+      },
+      {
+        "station": 1592.97,
+        "offset_ft": -9.791656666666666,
+        "slab_top_ft": 47.52386654040503
+      },
+      {
+        "station": 1592.97,
+        "offset_ft": -9,
+        "slab_top_ft": 47.523855123397766
+      },
+      {
+        "station": 1592.97,
+        "offset_ft": -8,
+        "slab_top_ft": 47.523840701639195
+      },
+      {
+        "station": 1592.97,
+        "offset_ft": -7,
+        "slab_top_ft": 47.52382627977623
+      },
+      {
+        "station": 1592.97,
+        "offset_ft": -6,
+        "slab_top_ft": 47.53962225415442
+      },
+      {
+        "station": 1592.97,
+        "offset_ft": -4,
+        "slab_top_ft": 47.57953572356057
+      },
+      {
+        "station": 1592.97,
+        "offset_ft": -2,
+        "slab_top_ft": 47.61944919171388
+      },
+      {
+        "station": 1592.97,
+        "offset_ft": 0,
+        "slab_top_ft": 47.65936265861434
+      },
+      {
+        "station": 1592.97,
+        "offset_ft": 2,
+        "slab_top_ft": 47.619391705208635
+      },
+      {
+        "station": 1592.97,
+        "offset_ft": 4,
+        "slab_top_ft": 47.57942054614069
+      },
+      {
+        "station": 1592.97,
+        "offset_ft": 6,
+        "slab_top_ft": 47.539449387490336
+      },
+      {
+        "station": 1592.97,
+        "offset_ft": 7,
+        "slab_top_ft": 47.523624362732114
+      },
+      {
+        "station": 1592.97,
+        "offset_ft": 8,
+        "slab_top_ft": 47.52360993930303
+      },
+      {
+        "station": 1592.97,
+        "offset_ft": 9,
+        "slab_top_ft": 47.52359551576953
+      },
+      {
+        "station": 1592.97,
+        "offset_ft": 9.791656666666666,
+        "slab_top_ft": 47.52358409720902
+      },
+      {
+        "station": 1592.72,
+        "offset_ft": -9.791656666666666,
+        "slab_top_ft": 47.52246776827942
+      },
+      {
+        "station": 1592.72,
+        "offset_ft": -9,
+        "slab_top_ft": 47.522422782789846
+      },
+      {
+        "station": 1592.72,
+        "offset_ft": -8,
+        "slab_top_ft": 47.52236595793011
+      },
+      {
+        "station": 1592.72,
+        "offset_ft": -7,
+        "slab_top_ft": 47.5223091326622
+      },
+      {
+        "station": 1592.72,
+        "offset_ft": -6,
+        "slab_top_ft": 47.53799546440186
+      },
+      {
+        "station": 1592.72,
+        "offset_ft": -4,
+        "slab_top_ft": 47.5776545151138
+      },
+      {
+        "station": 1592.72,
+        "offset_ft": -2,
+        "slab_top_ft": 47.6173135609276
+      },
+      {
+        "station": 1592.72,
+        "offset_ft": 0,
+        "slab_top_ft": 47.65697260184318
+      },
+      {
+        "station": 1592.72,
+        "offset_ft": 2,
+        "slab_top_ft": 47.617086650196356
+      },
+      {
+        "station": 1592.72,
+        "offset_ft": 4,
+        "slab_top_ft": 47.577200289772705
+      },
+      {
+        "station": 1592.72,
+        "offset_ft": 6,
+        "slab_top_ft": 47.537313930981675
+      },
+      {
+        "station": 1592.72,
+        "offset_ft": 7,
+        "slab_top_ft": 47.52151353605153
+      },
+      {
+        "station": 1592.72,
+        "offset_ft": 8,
+        "slab_top_ft": 47.521456704660636
+      },
+      {
+        "station": 1592.72,
+        "offset_ft": 9,
+        "slab_top_ft": 47.52139987286152
+      },
+      {
+        "station": 1592.72,
+        "offset_ft": 9.791656666666666,
+        "slab_top_ft": 47.521354881299345
+      },
+      {
+        "station": 1592.47,
+        "offset_ft": -9.791656666666666,
+        "slab_top_ft": 47.520973633569554
+      },
+      {
+        "station": 1592.47,
+        "offset_ft": -9,
+        "slab_top_ft": 47.52087395193192
+      },
+      {
+        "station": 1592.47,
+        "offset_ft": -8,
+        "slab_top_ft": 47.520748035890186
+      },
+      {
+        "station": 1592.47,
+        "offset_ft": -7,
+        "slab_top_ft": 47.52062211895129
+      },
+      {
+        "station": 1592.47,
+        "offset_ft": -6,
+        "slab_top_ft": 47.53612986610316
+      },
+      {
+        "station": 1592.47,
+        "offset_ft": -4,
+        "slab_top_ft": 47.575374369651506
+      },
+      {
+        "station": 1592.47,
+        "offset_ft": -2,
+        "slab_top_ft": 47.61461886243375
+      },
+      {
+        "station": 1592.47,
+        "offset_ft": 0,
+        "slab_top_ft": 47.65386334444972
+      },
+      {
+        "station": 1592.47,
+        "offset_ft": 2,
+        "slab_top_ft": 47.61411576190282
+      },
+      {
+        "station": 1592.47,
+        "offset_ft": 4,
+        "slab_top_ft": 47.57436757160791
+      },
+      {
+        "station": 1592.47,
+        "offset_ft": 6,
+        "slab_top_ft": 47.53461938490151
+      },
+      {
+        "station": 1592.47,
+        "offset_ft": 7,
+        "slab_top_ft": 47.5188591876003
+      },
+      {
+        "station": 1592.47,
+        "offset_ft": 8,
+        "slab_top_ft": 47.51873325720306
+      },
+      {
+        "station": 1592.47,
+        "offset_ft": 9,
+        "slab_top_ft": 47.51860732590855
+      },
+      {
+        "station": 1592.47,
+        "offset_ft": 9.791656666666666,
+        "slab_top_ft": 47.51850763092334
+      },
+      {
+        "station": 1592.23,
+        "offset_ft": -9.791656666666666,
+        "slab_top_ft": 47.51945259482839
+      },
+      {
+        "station": 1592.23,
+        "offset_ft": -9,
+        "slab_top_ft": 47.51928147833779
+      },
+      {
+        "station": 1592.23,
+        "offset_ft": -8,
+        "slab_top_ft": 47.51906532709288
+      },
+      {
+        "station": 1592.23,
+        "offset_ft": -7,
+        "slab_top_ft": 47.518849174320266
+      },
+      {
+        "station": 1592.23,
+        "offset_ft": -6,
+        "slab_top_ft": 47.534123721617675
+      },
+      {
+        "station": 1592.23,
+        "offset_ft": -4,
+        "slab_top_ft": 47.57282681394906
+      },
+      {
+        "station": 1592.23,
+        "offset_ft": -2,
+        "slab_top_ft": 47.61152988794758
+      },
+      {
+        "station": 1592.23,
+        "offset_ft": 0,
+        "slab_top_ft": 47.65023294361297
+      },
+      {
+        "station": 1592.23,
+        "offset_ft": 2,
+        "slab_top_ft": 47.610666001331865
+      },
+      {
+        "station": 1592.23,
+        "offset_ft": 4,
+        "slab_top_ft": 47.57109826557163
+      },
+      {
+        "station": 1592.23,
+        "offset_ft": 6,
+        "slab_top_ft": 47.53153053592204
+      },
+      {
+        "station": 1592.23,
+        "offset_ft": 7,
+        "slab_top_ft": 47.5158228750862
+      },
+      {
+        "station": 1592.23,
+        "offset_ft": 8,
+        "slab_top_ft": 47.515606699396315
+      },
+      {
+        "station": 1592.23,
+        "offset_ft": 9,
+        "slab_top_ft": 47.515390522178535
+      },
+      {
+        "station": 1592.23,
+        "offset_ft": 9.791656666666666,
+        "slab_top_ft": 47.515219382959295
+      },
+      {
+        "station": 1592.22001,
+        "offset_ft": -9.791656666666666,
+        "slab_top_ft": 47.51938748477477
+      },
+      {
+        "station": 1592.22001,
+        "offset_ft": -9,
+        "slab_top_ft": 47.51921300651301
+      },
+      {
+        "station": 1592.22001,
+        "offset_ft": -8,
+        "slab_top_ft": 47.51899260874029
+      },
+      {
+        "station": 1592.22001,
+        "offset_ft": -7,
+        "slab_top_ft": 47.51877220941037
+      },
+      {
+        "station": 1592.22001,
+        "offset_ft": -6,
+        "slab_top_ft": 47.53403578274073
+      },
+      {
+        "station": 1592.22001,
+        "offset_ft": -4,
+        "slab_top_ft": 47.57271339590758
+      },
+      {
+        "station": 1592.22001,
+        "offset_ft": -2,
+        "slab_top_ft": 47.611390990387825
+      },
+      {
+        "station": 1592.22001,
+        "offset_ft": 0,
+        "slab_top_ft": 47.65006856618116
+      },
+      {
+        "station": 1592.22001,
+        "offset_ft": 2,
+        "slab_top_ft": 47.610510123811466
+      },
+      {
+        "station": 1592.22001,
+        "offset_ft": 4,
+        "slab_top_ft": 47.57095088036254
+      },
+      {
+        "station": 1592.22001,
+        "offset_ft": 6,
+        "slab_top_ft": 47.531391643142165
+      },
+      {
+        "station": 1592.22001,
+        "offset_ft": 7,
+        "slab_top_ft": 47.51568645527859
+      },
+      {
+        "station": 1592.22001,
+        "offset_ft": 8,
+        "slab_top_ft": 47.51546603258919
+      },
+      {
+        "station": 1592.22001,
+        "offset_ft": 9,
+        "slab_top_ft": 47.51524560834238
+      },
+      {
+        "station": 1592.22001,
+        "offset_ft": 9.791656666666666,
+        "slab_top_ft": 47.51507110691342
+      }
+    ],
+    "EB2": [
+      {
+        "station": 1805.47001,
+        "offset_ft": -9,
+        "slab_top_ft": 47.537166616654595
+      },
+      {
+        "station": 1805.47001,
+        "offset_ft": -8,
+        "slab_top_ft": 47.537166616654545
+      },
+      {
+        "station": 1805.47001,
+        "offset_ft": -7,
+        "slab_top_ft": 47.5371666166545
+      },
+      {
+        "station": 1805.47001,
+        "offset_ft": -6,
+        "slab_top_ft": 47.55299994999182
+      },
+      {
+        "station": 1805.47001,
+        "offset_ft": -4,
+        "slab_top_ft": 47.59299994999151
+      },
+      {
+        "station": 1805.47001,
+        "offset_ft": -2,
+        "slab_top_ft": 47.632999949991216
+      },
+      {
+        "station": 1805.47001,
+        "offset_ft": 0,
+        "slab_top_ft": 47.672999949982646
+      },
+      {
+        "station": 1805.47001,
+        "offset_ft": 2,
+        "slab_top_ft": 47.63299994998276
+      },
+      {
+        "station": 1805.47001,
+        "offset_ft": 4,
+        "slab_top_ft": 47.592999949982854
+      },
+      {
+        "station": 1805.47001,
+        "offset_ft": 6,
+        "slab_top_ft": 47.552999949982954
+      },
+      {
+        "station": 1805.47001,
+        "offset_ft": 7,
+        "slab_top_ft": 47.53716661665378
+      },
+      {
+        "station": 1805.47001,
+        "offset_ft": 8,
+        "slab_top_ft": 47.537166616653735
+      },
+      {
+        "station": 1805.47001,
+        "offset_ft": 9,
+        "slab_top_ft": 47.537166616653685
+      },
+      {
+        "station": 1805.471,
+        "offset_ft": -9,
+        "slab_top_ft": 47.53716166392332
+      },
+      {
+        "station": 1805.471,
+        "offset_ft": -8,
+        "slab_top_ft": 47.53716166341714
+      },
+      {
+        "station": 1805.471,
+        "offset_ft": -7,
+        "slab_top_ft": 47.537161662910954
+      },
+      {
+        "station": 1805.471,
+        "offset_ft": -6,
+        "slab_top_ft": 47.5529949953494
+      },
+      {
+        "station": 1805.471,
+        "offset_ft": -4,
+        "slab_top_ft": 47.59299499231232
+      },
+      {
+        "station": 1805.471,
+        "offset_ft": -2,
+        "slab_top_ft": 47.63299498927531
+      },
+      {
+        "station": 1805.471,
+        "offset_ft": 0,
+        "slab_top_ft": 47.67299498541285
+      },
+      {
+        "station": 1805.471,
+        "offset_ft": 2,
+        "slab_top_ft": 47.63299498642535
+      },
+      {
+        "station": 1805.471,
+        "offset_ft": 4,
+        "slab_top_ft": 47.592994987437834
+      },
+      {
+        "station": 1805.471,
+        "offset_ft": 6,
+        "slab_top_ft": 47.55299498845029
+      },
+      {
+        "station": 1805.471,
+        "offset_ft": 7,
+        "slab_top_ft": 47.537161655825024
+      },
+      {
+        "station": 1805.471,
+        "offset_ft": 8,
+        "slab_top_ft": 47.53716165531893
+      },
+      {
+        "station": 1805.471,
+        "offset_ft": 9,
+        "slab_top_ft": 47.537161654812834
+      },
+      {
+        "station": 1805.72,
+        "offset_ft": -9.791656666666666,
+        "slab_top_ft": 47.53584554446255
+      },
+      {
+        "station": 1805.72,
+        "offset_ft": -9,
+        "slab_top_ft": 47.53582103910763
+      },
+      {
+        "station": 1805.72,
+        "offset_ft": -8,
+        "slab_top_ft": 47.53579008487816
+      },
+      {
+        "station": 1805.72,
+        "offset_ft": -7,
+        "slab_top_ft": 47.53575913097695
+      },
+      {
+        "station": 1805.72,
+        "offset_ft": -6,
+        "slab_top_ft": 47.55151260178828
+      },
+      {
+        "station": 1805.72,
+        "offset_ft": -4,
+        "slab_top_ft": 47.591326878129415
+      },
+      {
+        "station": 1805.72,
+        "offset_ft": -2,
+        "slab_top_ft": 47.631141158409655
+      },
+      {
+        "station": 1805.72,
+        "offset_ft": 0,
+        "slab_top_ft": 47.6709552368903
+      },
+      {
+        "station": 1805.72,
+        "offset_ft": 2,
+        "slab_top_ft": 47.631017153205356
+      },
+      {
+        "station": 1805.72,
+        "offset_ft": 4,
+        "slab_top_ft": 47.59107906820727
+      },
+      {
+        "station": 1805.72,
+        "offset_ft": 6,
+        "slab_top_ft": 47.551140981896054
+      },
+      {
+        "station": 1805.72,
+        "offset_ft": 7,
+        "slab_top_ft": 47.53532581082612
+      },
+      {
+        "station": 1805.72,
+        "offset_ft": 8,
+        "slab_top_ft": 47.53529486184848
+      },
+      {
+        "station": 1805.72,
+        "offset_ft": 9,
+        "slab_top_ft": 47.53526391319904
+      },
+      {
+        "station": 1805.72,
+        "offset_ft": 9.791656666666666,
+        "slab_top_ft": 47.53523941272715
+      },
+      {
+        "station": 1805.97,
+        "offset_ft": -9.791656666666666,
+        "slab_top_ft": 47.53438724604009
+      },
+      {
+        "station": 1805.97,
+        "offset_ft": -9,
+        "slab_top_ft": 47.53429139379541
+      },
+      {
+        "station": 1805.97,
+        "offset_ft": -8,
+        "slab_top_ft": 47.53417031688321
+      },
+      {
+        "station": 1805.97,
+        "offset_ft": -7,
+        "slab_top_ft": 47.53404924124002
+      },
+      {
+        "station": 1805.97,
+        "offset_ft": -6,
+        "slab_top_ft": 47.54956999522859
+      },
+      {
+        "station": 1805.97,
+        "offset_ft": -4,
+        "slab_top_ft": 47.58884354027966
+      },
+      {
+        "station": 1805.97,
+        "offset_ft": -2,
+        "slab_top_ft": 47.628117100558356
+      },
+      {
+        "station": 1805.97,
+        "offset_ft": 0,
+        "slab_top_ft": 47.66739026830686
+      },
+      {
+        "station": 1805.97,
+        "offset_ft": 2,
+        "slab_top_ft": 47.627632452617846
+      },
+      {
+        "station": 1805.97,
+        "offset_ft": 4,
+        "slab_top_ft": 47.58787463185254
+      },
+      {
+        "station": 1805.97,
+        "offset_ft": 6,
+        "slab_top_ft": 47.54811680601107
+      },
+      {
+        "station": 1805.97,
+        "offset_ft": 7,
+        "slab_top_ft": 47.53235431547188
+      },
+      {
+        "station": 1805.97,
+        "offset_ft": 8,
+        "slab_top_ft": 47.53223325886188
+      },
+      {
+        "station": 1805.97,
+        "offset_ft": 9,
+        "slab_top_ft": 47.53211220352064
+      },
+      {
+        "station": 1805.97,
+        "offset_ft": 9.791656666666666,
+        "slab_top_ft": 47.5320163701525
+      },
+      {
+        "station": 1806.22,
+        "offset_ft": -9.791656666666666,
+        "slab_top_ft": 47.532798480038615
+      },
+      {
+        "station": 1806.22,
+        "offset_ft": -9,
+        "slab_top_ft": 47.53258769313189
+      },
+      {
+        "station": 1806.22,
+        "offset_ft": -8,
+        "slab_top_ft": 47.53232143509225
+      },
+      {
+        "station": 1806.22,
+        "offset_ft": -7,
+        "slab_top_ft": 47.532055179808694
+      },
+      {
+        "station": 1806.22,
+        "offset_ft": -6,
+        "slab_top_ft": 47.547200978482024
+      },
+      {
+        "station": 1806.22,
+        "offset_ft": -4,
+        "slab_top_ft": 47.58560344414172
+      },
+      {
+        "station": 1806.22,
+        "offset_ft": -2,
+        "slab_top_ft": 47.6240059428736
+      },
+      {
+        "station": 1806.22,
+        "offset_ft": 0,
+        "slab_top_ft": 47.66240787202927
+      },
+      {
+        "station": 1806.22,
+        "offset_ft": 2,
+        "slab_top_ft": 47.62294045459319
+      },
+      {
+        "station": 1806.22,
+        "offset_ft": 4,
+        "slab_top_ft": 47.58347302613216
+      },
+      {
+        "station": 1806.22,
+        "offset_ft": 6,
+        "slab_top_ft": 47.54400558664642
+      },
+      {
+        "station": 1806.22,
+        "offset_ft": 7,
+        "slab_top_ft": 47.52832789520951
+      },
+      {
+        "station": 1806.22,
+        "offset_ft": 8,
+        "slab_top_ft": 47.52806168126332
+      },
+      {
+        "station": 1806.22,
+        "offset_ft": 9,
+        "slab_top_ft": 47.52779547007271
+      },
+      {
+        "station": 1806.22,
+        "offset_ft": 9.791656666666666,
+        "slab_top_ft": 47.52758472416311
+      },
+      {
+        "station": 1806.46,
+        "offset_ft": -9.791656666666666,
+        "slab_top_ft": 47.53115674819154
+      },
+      {
+        "station": 1806.46,
+        "offset_ft": -9,
+        "slab_top_ft": 47.530797636957665
+      },
+      {
+        "station": 1806.46,
+        "offset_ft": -8,
+        "slab_top_ft": 47.53034402119096
+      },
+      {
+        "station": 1806.46,
+        "offset_ft": -7,
+        "slab_top_ft": 47.52989041006058
+      },
+      {
+        "station": 1806.46,
+        "offset_ft": -6,
+        "slab_top_ft": 47.54455228800119
+      },
+      {
+        "station": 1806.46,
+        "offset_ft": -4,
+        "slab_top_ft": 47.581830616307975
+      },
+      {
+        "station": 1806.46,
+        "offset_ft": -2,
+        "slab_top_ft": 47.61910900024928
+      },
+      {
+        "station": 1806.46,
+        "offset_ft": 0,
+        "slab_top_ft": 47.65638665964072
+      },
+      {
+        "station": 1806.46,
+        "offset_ft": 2,
+        "slab_top_ft": 47.61729400348723
+      },
+      {
+        "station": 1806.46,
+        "offset_ft": 4,
+        "slab_top_ft": 47.578201328787394
+      },
+      {
+        "station": 1806.46,
+        "offset_ft": 6,
+        "slab_top_ft": 47.539108635541645
+      },
+      {
+        "station": 1806.46,
+        "offset_ft": 7,
+        "slab_top_ft": 47.52354034101891
+      },
+      {
+        "station": 1806.46,
+        "offset_ft": 8,
+        "slab_top_ft": 47.52308679942693
+      },
+      {
+        "station": 1806.46,
+        "offset_ft": 9,
+        "slab_top_ft": 47.52263326247042
+      },
+      {
+        "station": 1806.46,
+        "offset_ft": 9.791656666666666,
+        "slab_top_ft": 47.52227422020261
+      },
+      {
+        "station": 1806.46999,
+        "offset_ft": -9.791656666666666,
+        "slab_top_ft": 47.53108602606892
+      },
+      {
+        "station": 1806.46999,
+        "offset_ft": -9,
+        "slab_top_ft": 47.5307199774644
+      },
+      {
+        "station": 1806.46999,
+        "offset_ft": -8,
+        "slab_top_ft": 47.53025759867044
+      },
+      {
+        "station": 1806.46999,
+        "offset_ft": -7,
+        "slab_top_ft": 47.529795224599795
+      },
+      {
+        "station": 1806.46999,
+        "offset_ft": -6,
+        "slab_top_ft": 47.54443446819726
+      },
+      {
+        "station": 1806.46999,
+        "offset_ft": -4,
+        "slab_top_ft": 47.58166021874956
+      },
+      {
+        "station": 1806.46999,
+        "offset_ft": -2,
+        "slab_top_ft": 47.61888602598034
+      },
+      {
+        "station": 1806.46999,
+        "offset_ft": 0,
+        "slab_top_ft": 47.656111102555776
+      },
+      {
+        "station": 1806.46999,
+        "offset_ft": 2,
+        "slab_top_ft": 47.61703597458501
+      },
+      {
+        "station": 1806.46999,
+        "offset_ft": 4,
+        "slab_top_ft": 47.57796082771991
+      },
+      {
+        "station": 1806.46999,
+        "offset_ft": 6,
+        "slab_top_ft": 47.53888566196089
+      },
+      {
+        "station": 1806.46999,
+        "offset_ft": 7,
+        "slab_top_ft": 47.52332248352857
+      },
+      {
+        "station": 1806.46999,
+        "offset_ft": 8,
+        "slab_top_ft": 47.52286018030116
+      },
+      {
+        "station": 1806.46999,
+        "offset_ft": 9,
+        "slab_top_ft": 47.522397881796195
+      },
+      {
+        "station": 1806.46999,
+        "offset_ft": 9.791656666666666,
+        "slab_top_ft": 47.52203190345183
+      }
+    ]
+  }
+}

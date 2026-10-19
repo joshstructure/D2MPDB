@@ -61,6 +61,11 @@ class PhysicalGeometryTests(unittest.TestCase):
             # dimensional baseline remains historical provenance (not CAD input).
             config=copy.deepcopy(self.model.cfg)
             config['roadway']['xml_path']='Geometry Report.xml'
+            # D-053 lowers only the two backwall tops by 1/4 in. This native
+            # fixture excludes backwalls; retain its original configuration ID
+            # check for every other input instead of relabeling old CAD evidence.
+            config['end_bents']['start']['backwall_drop_in']=4.0
+            config['end_bents']['end']['backwall_drop_in']=4.0
             self.assertEqual(self.env['configuration_id'](config),self.reference['notebook_model_id'])
             current=json.loads((ROOT/'bridge_geometry/project_source.json').read_text())['current_geometry_source']
             self.assertEqual(current['sha256'],self.reference['source_sha256'])

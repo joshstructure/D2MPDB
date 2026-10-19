@@ -1,5 +1,31 @@
 # Current FreeCAD bridge model
 
+## D-053: simple backwall tops and ramp connections, 19 October 2026
+
+Both backwall tops have two straight 2% slopes down from the PGL, level
+through their 12-in thickness. Each top lies 4-1/4 in below its FFBW
+deck-top line. EB1 top elevations are 47.111000 / 47.306833 / 47.111000 ft;
+EB2 elevations are 47.123000 / 47.318833 / 47.123000 ft (left / PGL / right).
+The ramp slabs thicken locally to these tops; their walking faces and footprints
+are preserved. Checked thicknesses are 4.119-4.954 in at EB1 and
+4.047-4.954 in at EB2. Both wall and landing solids are valid and meet without
+positive overlap; adjacent finished concrete gains no overlaps.
+
+Four top backwall horizontals move down for 3-in cover: 3/8 in at EB1 and
+an additional 1/4 in at EB2. EB1 cheek rows MH09/MH10 move down 5/8 in
+on both sides, preserving their standard hooks and the 10-in maximum spacing.
+Bar counts, marks, other steel and all 2,100 unrelated native objects remain.
+Both backwalls retain 56 bars. Native cover, changed-bar intersections,
+walking faces, live controls, quantities and saved-file reopening are checked.
+The verified landing quantities are now A = 111.987035 ft3 and
+B = 89.038401 ft3. TopDrop and BackwallTopSource are editable native controls.
+
+Notebook model e9b41b8eaf and the B4 workbook carry the same wall geometry.
+The earlier interactive report (622e5ca1bf) is a retained prior snapshot.
+Backwall/slab calculations, load takeoffs and drawing exports require their
+normal downstream refresh; existing tracker statuses/responses are preserved.
+See [source receipt](../../coherence/evidence/2026-10-19-simple-backwall-tops/source_receipt.json).
+
 ## D-048: backwall bars extended into cheeks, 17 October 2026
 
 All 20 #4 backwall horizontal bars now extend **8-1/4 in at each end**, to the

@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "installed_file_sha256": "a831dec89084195338e78bef19bf014cd71421c9138e5ba0471479a5f6d6ed27",
+  "native_controllers": "PASS",
+  "native_layouts_and_schedules": "PASS",
+  "runtime_hashes": "PASS",
+  "source_unchanged_during_reopen": true,
+  "walls": {
+    "EB1": {
+      "backwall_volume_ft3": 77.76981184128364,
+      "landing_volume_ft3": 111.98703546833744,
+      "backwall_bars": 56
+    },
+    "EB2": {
+      "backwall_volume_ft3": 77.76981356830761,
+      "landing_volume_ft3": 89.03840085322877,
+      "backwall_bars": 56
+    }
+  }
+}

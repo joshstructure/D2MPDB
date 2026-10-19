@@ -3,8 +3,8 @@
   "authority": "Current editable FreeCAD geometry and modeled quantities; engineering acceptance remains separate",
   "model": {
     "path": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-    "sha256": "aee8160a242a00be1c4259e711d8ef5fb5805ad3750485beee947aa44eb62407",
-    "bytes": 6521707,
+    "sha256": "a831dec89084195338e78bef19bf014cd71421c9138e5ba0471479a5f6d6ed27",
+    "bytes": 6711412,
     "objects": 2133
   },
   "source_revision": "01a1fcc34d6345ceacf96245bcf0c931d118a1ab",
@@ -28,10 +28,11 @@
     "D-045: report-based seven-strap layout helper; signed native lateral offsets; retain central reference Names and all prior physical geometry. Fourteen schematic faces verified against saved Figure B2 positions.",
     "D-046: native standard horizontal cheek hook controller; actual assembly cover and receiver checks; editable bend/tail lengths and conditional hook-aware legacy validation.",
     "D-047: native maximum-spacing pedestal edge grids, specified 12-in cap embedment and tangent horizontal layers; strict physical overlap checks. User accepted compression-only basis; historical tension diagnostics retained separately.",
-    "D-048: native backwall extension controls, retained base analytic mat, cover-limited horizontal ends and matching optional end verticals; physical union-cover and no-new-overlap validation."
+    "D-048: native backwall extension controls, retained base analytic mat, cover-limited horizontal ends and matching optional end verticals; physical union-cover and no-new-overlap validation.",
+    "D-053: backwall_top native two-plane top and local landing thickening controllers, preserved walking faces; native level adjustments retain all hooks and bar counts."
   ],
   "runtime_files": {
-    "runtime/API.md": "22b72bafecf34e3e3b920be937bb6d3cbd552261d1ffe95ca8c0cca65443a430",
+    "runtime/API.md": "ad53d21150df2442e93d7012c82ce943a46a256a396a43495ae746c0c7be0187",
     "runtime/freecad_tools/__init__.py": "54fc72e62296f90ef30d4395023d10589142c7979df962a5fa1669cf01886a32",
     "runtime/freecad_tools/adopt_drainage.py": "df2e4d293383aa5de9e425a8af75b7640524d07e71eebd541d42d2e81342eb07",
     "runtime/freecad_tools/api.py": "4f5d129384cf8b68bf10564f59141a31bd83921d47e8e477754ad2ea3ade71ca",
@@ -162,9 +163,10 @@
     "runtime/freecad_tools/cheek_hooks.py": "de1b8ac0bfa6e8c549059da4a1c3b4a4c0457d0a91ac171c1681cf47c0b472f7",
     "runtime/freecad_tools/pedestal_edges.py": "39995bbf7267b6575aab841aec1c7b404fc1601acae7042ca03ad04dd5f2f921",
     "runtime/freecad_tools/pedestal_contact.py": "9fbd1143f866b1c402821d669d7b7064e66ec826e2ce5630530646369e74f94d",
-    "runtime/freecad_tools/backwall_extensions.py": "38b1a13b04b7a8786178b294be9d6f6a0bdaea08989c83448448d6bd68d4f05a"
+    "runtime/freecad_tools/backwall_extensions.py": "38b1a13b04b7a8786178b294be9d6f6a0bdaea08989c83448448d6bd68d4f05a",
+    "runtime/freecad_tools/backwall_top.py": "8361bb753d77de4623af10712eefed70e3ec7caba2911afd2e6eda9d80bd4092"
   },
-  "opener_sha256": "98fa8868cbc3949c824148a65b2b1b477f372a791c5492af6411942229fa7c55",
+  "opener_sha256": "1c17fef19e872ce65a5ef598b663f110432083dbd298c8c27a763a6eb9750776",
   "evidence_files": {
     "evidence/bridge-current-cages-20261010-v1.json": "5daf358f8b140a1b5c8db4b1d33df5ab565d4299e9c1fb90d0aa15cd679ce1ee",
     "evidence/bridge-current-proxies-20261010-v1.json": "bc8d1595534050f961bece023cae100958064388e1b2e7d45ddd424666c834ba",
@@ -173,7 +175,7 @@
     "evidence/delivery-helper-fingerprints.json": "2eda36676cc40916485c708e385818c6e99ead3be41e5754a55bc5e772e58c62",
     "evidence/final-reopen-verification.json": "fde89e9b9c8bb47433a964e3d0b3faedcb00c201b8ada10b348c086e4bfaeec9",
     "evidence/final-save.json": "7767f925bccdf426225cf1d4269ce59919cdcf71267f7c56c7484547f758e946",
-    "evidence/Model-update-report.txt": "aa29cde7c87a65374145a1e553516a51a4d641251d82a7f960eb043bd8bd4c98",
+    "evidence/Model-update-report.txt": "db46f6407b2bc2345b1804468b9dbdc2b0048e3e8bb8eec7c7e47837f65d4380",
     "evidence/opener-verification.json": "7cfd370f32a419bd160ce2f914df4e861372addcab97d9e64896fb6135d40fdf",
     "evidence/portable-verification.json": "5daa7dfc49c7f7b11c641a51d2e425ce853dc08ee134356c02746d93d028ec36",
     "evidence/session-checkpoint.json": "c22fc947838b3ed99425beeab12c10e80b62b12be04d01444f2a0677135096c5",
@@ -407,12 +409,12 @@
   "portability_verification": "Cold native reopen and live dependency test PASS; 172 accepted-trial solid matches; all 1677 prior native object/view records exact. Previous standalone GUI loader limitation retained.",
   "updated_on": "2026-10-17",
   "current_update": {
-    "date": "2026-10-17",
-    "decision": "D-048",
-    "scope": "Extend horizontal backwall bars to cheek-wall cover limits and add matching verticals where they fit.",
-    "summary": "evidence/2026-10-17-backwall-extensions/adoption-summary.json",
-    "previous_model_sha256": "87e5a3f387d2089679dfcc908f55c5ed78c13ef316cf63d84b95c74942de79cc",
-    "follow_up": "Unrelated existing model findings and previously schematic dowel basis retained. Drawings and calculation exports not regenerated."
+    "date": "2026-10-19",
+    "decision": "D-053",
+    "scope": "Two planar backwall tops, local landing thickening and required steel-cover adjustments",
+    "summary": "../../coherence/evidence/2026-10-19-simple-backwall-tops/source_receipt.json",
+    "previous_model_sha256": "aee8160a242a00be1c4259e711d8ef5fb5805ad3750485beee947aa44eb62407",
+    "follow_up": "Refresh downstream backwall/slab calculations, takeoffs and drawings. Prior geometry report retained as historical snapshot."
   },
   "archive_files": {
     "archive/B4-before-pedestal-ubars-20261012.FCStd": "e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118",
@@ -450,16 +452,17 @@
     "archive/B4-before-pedestal-edges-20261017.FCStd": "dcdda9c93a773f399acafb38d598564638823bb03a3eabf66d76ee7f3866d836",
     "archive/B4-before-pedestal-edges-record-20261017.zip": "b570483dbb0920ed9ef12696b86779a79ec798e35f026789d024f9cc2b701963",
     "archive/B4-before-backwall-extensions-20261017.FCStd": "87e5a3f387d2089679dfcc908f55c5ed78c13ef316cf63d84b95c74942de79cc",
-    "archive/B4-before-backwall-extensions-record-20261017.zip": "7913e46f069a41e762e6df91a41e2e83ad1db0b265edd051b77f578f92bb3e7f"
+    "archive/B4-before-backwall-extensions-record-20261017.zip": "7913e46f069a41e762e6df91a41e2e83ad1db0b265edd051b77f578f92bb3e7f",
+    "archive/B4-before-simple-backwall-tops-20261019.FCStd": "aee8160a242a00be1c4259e711d8ef5fb5805ad3750485beee947aa44eb62407",
+    "archive/B4-before-simple-backwall-tops-record-20261019.zip": "9e64c8db9f5cc117b62bb147dbf87a35f3f858029a172fe028dc496eac2f8317"
   },
   "previous_update": {
     "date": "2026-10-17",
-    "decision": "D-047",
-    "scope": "Adopt accepted pedestal edge reinforcement: 84 #4 bars, 12-in cap embedment, contacting horizontal layers.",
-    "summary": "evidence/2026-10-17-pedestal-edges/adoption-summary.json",
-    "previous_model_sha256": "dcdda9c93a773f399acafb38d598564638823bb03a3eabf66d76ee7f3866d836",
-    "follow_up": "Drawings/calculation exports were not regenerated; consumers must refresh against this selected model. Unrelated existing dispositions retained.",
-    "development_disposition": "User accepted compression-only bar detail. Retained tension calculation is non-governing; no compression recalculation claimed."
+    "decision": "D-048",
+    "scope": "Extend horizontal backwall bars to cheek-wall cover limits and add matching verticals where they fit.",
+    "summary": "evidence/2026-10-17-backwall-extensions/adoption-summary.json",
+    "previous_model_sha256": "87e5a3f387d2089679dfcc908f55c5ed78c13ef316cf63d84b95c74942de79cc",
+    "follow_up": "Unrelated existing model findings and previously schematic dowel basis retained. Drawings and calculation exports not regenerated."
   },
   "extra_macros": {
     "Show_Elevations.FCMacro": "f27415eb7d8fe05a5ff8d05a01a5298b36ac1d3cf987ec8738ed541d085a3fc4",
