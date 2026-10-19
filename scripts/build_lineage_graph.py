@@ -99,6 +99,8 @@ STAGE_OF = {
     "BACKWALL-TOOL": "design", "BACKWALL-CASE": "design",
     "PIER-REPORT": "reports", "EB-REPORT": "reports", "EB2-REPORT": "reports",
     "BACKWALL-REPORT": "reports",
+    "PILE-TOOL": "design", "PILE-EB1-CASE": "design", "PILE-EB2-CASE": "design", "PILE-PIER-CASE": "design",
+    "PILE-EB1-REPORT": "reports", "PILE-EB2-REPORT": "reports", "PILE-PIER-REPORT": "reports",
     "CAD-MODEL": "cad", "CAD-RUNTIME": "cad", "CAD-REPORT": "cad",
     "GEOMETRY-TABLES": "deliverables",
 }
@@ -108,6 +110,8 @@ KIND_OF = {
     "PIER-REPORT": "report", "EB-REPORT": "report", "EB2-REPORT": "report", "BACKWALL-REPORT": "report",
     "PIER-XML": "analysis", "PIER-MINTIP-XML": "analysis", "EB-XML": "analysis",
     "EB-MINTIP-XML": "analysis", "EB2-XML": "analysis",
+    "PILE-TOOL": "tool", "PILE-EB1-CASE": "case", "PILE-EB2-CASE": "case", "PILE-PIER-CASE": "case",
+    "PILE-EB1-REPORT": "report", "PILE-EB2-REPORT": "report", "PILE-PIER-REPORT": "report",
     "CAD-MODEL": "model", "CAD-RUNTIME": "model", "CAD-REPORT": "report",
     "GEOMETRY-TABLES": "deliverable",
 }
@@ -180,12 +184,23 @@ DECISION_SOURCES = {
     "D-017": ["BACKWALL-TOOL", "BACKWALL-CASE", "CAD-MODEL"],
     "D-018": ["BACKWALL-TOOL", "BACKWALL-CASE"],
     "D-019": ["BACKWALL-TOOL", "BACKWALL-CASE", "CAD-MODEL"],
+    "D-020": ["PIER-REPORT", "EB-REPORT", "EB2-REPORT", "BACKWALL-REPORT", "PIER-CASE", "EB-CASE", "EB2-CASE"],
     "D-021": ["CAD-MODEL"],
     "D-024": ["CAD-MODEL"],
+    "D-025": ["GEOMETRY"],
+    "D-027": ["EB-CASE", "EB2-CASE", "EB-REPORT", "EB2-REPORT", "CAD-MODEL"],
+    "D-028": ["CAD-MODEL"],
     "D-029": ["CAD-MODEL"],
     "D-030": ["CAD-MODEL"],
     "D-032": ["CAD-MODEL"],
+    "D-040": ["CAD-MODEL"],
+    "D-041": ["GEOMETRY-TABLES", "GEOMETRY"],
+    "D-042": ["CAD-MODEL"],
+    "D-044": ["CAD-MODEL", "BACKWALL-CASE"],
+    "D-045": ["CAD-MODEL", "BACKWALL-REPORT"],
 }
+# D-054 (pile reports and cases) and D-055 (backwall vertical coordination) name their
+# register IDs in the decision text, so find_refs attaches them without a hand map.
 
 
 # --------------------------------------------------------------------------- io

@@ -110,16 +110,16 @@ class LineageGraphTests(unittest.TestCase):
 
     # ---------------------------------------------------- analysis identity
     def test_analysis_identity_flags(self):
-        pier = self.edge('PIER-XML->PIER-CASE')
-        self.assertIn('identity-mismatch', pier['flags'])
-        self.assertIs(pier['analysis_identity']['match'], False)
-
-        eb2 = self.edge('EB2-XML->EB2-CASE')
-        self.assertIs(eb2['analysis_identity']['match'], True)
-        self.assertIs(eb2['analysis_identity']['file_present'], False)
-
-        eb = self.edge('EB-XML->EB-CASE')
-        self.assertIn('identity-mismatch', eb['flags'])
+        # The flag must say what the identity comparison says, whichever way the current exports fall
+        # (the 19 October fixed-run exports bring all three cases and registered XML into agreement).
+        for edge_id in ('PIER-XML->PIER-CASE', 'EB-XML->EB-CASE', 'EB2-XML->EB2-CASE'):
+            with self.subTest(edge=edge_id):
+                e = self.edge(edge_id)
+                identity = e['analysis_identity']
+                self.assertEqual(identity['match'],
+                                 identity['case_requires_sha256'] == identity['registered_sha256'])
+                self.assertEqual('identity-mismatch' in e['flags'], not identity['match'])
+                self.assertIs(identity['file_present'], (ROOT / self.node(e['source'])['path']).exists())
 
     # ------------------------------------------------------------- Mathcad
     def test_mathcad_mapping_edges(self):
@@ -136,7 +136,12 @@ class LineageGraphTests(unittest.TestCase):
                 e = self.edge(f'{case_id}->{nid}')
                 self.assertEqual(e['kind'], 'mapping')
                 self.assertEqual(len(e['parameters']), 58)
-                self.assertIs(e['case_identity']['match'], True)
+                # The sheets were generated from an earlier saved case; a case saved since then reads
+                # as a mismatch (and flags the edge) rather than being hidden.
+                identity = e['case_identity']
+                self.assertEqual(identity['match'], identity['mapping_case_sha256'] == identity['registered_sha256'])
+                self.assertEqual(identity['registered_sha256'], self.node(case_id)['sha256'])
+                self.assertEqual('identity-mismatch' in e['flags'], not identity['match'])
                 case_names = {p['name'] for p in self.node(case_id)['parameters']}
                 from_case = [p for p in e['parameters'] if p['basis'].startswith('Selected case inputs.')]
                 self.assertTrue(from_case, 'no mapping parameter is taken from the selected case')
