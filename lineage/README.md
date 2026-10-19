@@ -38,8 +38,6 @@ The graph has four levels.
 | --- | --- | --- |
 | `input` | Case nodes | A saved-case input with its unit, and the governing FBMP load case where the case records one |
 | `identity` | FBMP XML nodes | The file's SHA-256 against the register and against the hash the saved case requires |
-| `envelope` | FBMP XML nodes | One row per member, exact limit state and force component (M2, M3, V2, V3, T): signed minimum and maximum, absolute maximum, governing load case, combination, element and end |
-| `summary` | FBMP XML nodes | The XML's own `OUTPUT_SUMMARY` extremes, with a magnitude comparison against the element-end rows |
 | `formula` | Case nodes, journal edges | One row per cap formula definition: name, formula, evaluated value, note |
 | `output` | Mathcad sheet nodes | Verification snapshot values |
 
@@ -47,14 +45,14 @@ The graph has four levels.
 
 | Kind | From -> to | What the two names are |
 | --- | --- | --- |
-| `governing` | FBMP XML -> saved case | The XML's envelope row (member, force component and limit state, for example `PIER_CAP: M3 STRENGTH-I`) -> the case's force input (`Mu_B`) |
+| `governing` | FBMP XML -> saved case | The saved case's governing load case, combination and location -> its force input (`Mu_B`); the XML force value is not extracted |
 | `mapping` | Saved case -> generated Mathcad sheet | The case input (`Mu_B`) -> the Mathcad definition it fills (`indexer(Mu, 2)`). Regions derived from the case rather than copied from an input have no source name |
 | `formula` | Journal -> cap case | The journal's `module.variable` (`BridgeGeometry_2Beam.PierCap_width`) -> the cap formula it feeds (`b`) |
 | `check` | Geometry notebook -> cap case | The notebook's quantity (`b`) -> the same quantity in the saved case (`b`), with both printed values |
 | `source` | Saved case, FBMP XML, CAD model, journal or Mathcad source -> backwall case | The saved-case input (`b`) -> the backwall input (`b_cap`). Where the backwall input only describes its source in prose, the source name is empty |
 | `embedded` | Saved case -> its report | Every case input under the same name and value: the report embeds (or was exported with) the case. The status is the machine check that compares the embedded case with the saved file (`PIER:report-case`, `EB:report-case`); where no check exists (End Bent 2, backwall) it reads `NOT COMPARED` and the detail quotes the register |
 
-A governing link compares the registered XML's envelope value with the case value and says `DIFFERS` when they are not the same file's numbers. The registered pier and End Bent 1 exports are earlier analyses than the ones the cases were built from (see [FBMP envelopes](#fbmp-envelopes)), so at the time of writing every force input that is compared reads `DIFFERS`. Two inputs per case (`Mu_P` and `MI_P`) are interior extremums inside the pile region: the link names the envelope row but compares nothing and has no status. Where the XML is missing (EB2-XML) the link has no source name and says the file is not present.
+A governing link retains the load case, combination, element and location recorded in the saved case, and reads `NOT COMPARED`. Its XML source name and value remain blank because the graph does not extract XML forces. Analysis identity mismatches remain visible on the edge and XML node. Missing XML files remain explicitly marked.
 
 The generator reads these files:
 
@@ -65,20 +63,17 @@ The generator reads these files:
 | `project_current/coherence/items_snapshot.csv` | COH-### items |
 | `project_current/coherence/machine_checks.json` | Health statuses |
 | `project_current/cap_design/{pier,end_bents,end_bent_2,backwall}/selected_case.json` | Inputs with units, governing FBMP load cases, backwall input sources; the cap cases are also evaluated for the formula trace |
-| `project_current/fbmp/**/*.XML` (every registered export that is present) | Envelope and summary rows on the XML node |
-| `FBMP_Envelope_Extractor.ipynb` | The embedded, stdlib-only extractor that computes the envelopes |
+| `project_current/fbmp/**/*.XML` (every registered export that is present) | SHA-256 identity against the register and the saved case |
 | `pier_cap/` (the cap notebook's package, via the project `.venv`) | The formula trace; the package content hash is recorded as `cap_package` |
 | `journal/D2_I95_Project_Journal.bpad` | Whether each journal module and variable named by a cap formula occurs in the journal |
 | `exports/cap-mathcad-20261017/` (when present) | Source and verification record, `Verification.json`, the three Input Mapping CSVs |
 | `lineage/signoff.json` | Verification sign-offs, merged as `node.signoff` and `edge.signoff` |
 
-At the time of writing the build has 35 nodes, 67 edges, 2301 parameters, 577 links, 44 decisions and 28 coherence items. The links are 312 embedded, 174 mapping, 35 source, 27 governing, 15 formula and 14 check.
+### FBMP XML identity
 
-### FBMP envelopes
+Each registered FB-MultiPier XML that is present carries its SHA-256 identity as a parameter. The node's `xml_source` records the actual and registered hashes, the hash required by its saved case, and whether they match. Minimum-tip variants without a saved case read `VARIANT`. Governing provenance and saved import-audit summaries still come from the selected cases; the graph does not extract force tables from XML files.
 
-Each registered FB-MultiPier XML that is present (PIER-XML, PIER-MINTIP-XML, EB-XML, EB-MINTIP-XML; EB2-XML is missing) carries the full strength and service envelope tables as parameters. They are computed by the same code as the standalone [FBMP_Envelope_Extractor.ipynb](../FBMP_Envelope_Extractor.ipynb): the generator executes the notebook's first code cell up to its Colab interface and calls `read_fbmp`, `limit_state_table`, `native_envelopes` and `comparison`. The rows use the XML's original element-local I/J end-force signs for each exact limit state and member (the cap and each pile); no signs are changed, no load factors or unit conversions are applied, and no interior peaks are inferred.
-
-The first parameter on each XML node is its identity row, and every envelope row repeats the file's SHA-256 in `xml_sha256`. The registered pier and End Bent 1 exports are not the exports the selected reports name, so their identity rows read `MISMATCH: PIER-CASE requires c8420fad…` and `MISMATCH: EB-CASE requires 23bb3afc…`. Those envelopes therefore describe the preserved earlier analyses, not the analyses behind the current cap cases, and the FBMP-export-to-case edge keeps its governing rows and `identity-mismatch` flag. The minimum-tip variants have no saved case and read `VARIANT`. The node's `envelope_source` records the extractor version, FBMP version, load cases, members and the extractor's diagnostics: for both pier exports the `OUTPUT_SUMMARY` M2 and V3 magnitudes differ from the exported element ends, which the `summary` rows show as `DIFFERENT MAGNITUDE`.
+When an export differs from the one named by its selected case, the identity row reads `MISMATCH` and the export-to-case edge carries the `identity-mismatch` flag. Removing force extraction does not change those identity checks or resolve source discrepancies.
 
 ### Cap formula traces
 
@@ -168,10 +163,10 @@ The first command rewrites `lineage.json` and `index.html`. `--check` reports wh
 
 The fingerprint covers every file the generator reads plus the content of the three formula traces (`derived` in `lineage.json`), so the graph is stale whenever the cap package's answer for a saved case changes, not whenever any package file is edited. `cap_package.sha256` records the package content at the last build.
 
-Rebuild after any change to the source register, decisions, the coherence tracker, saved cases, FBMP XML exports, the envelope notebook, the cap package, Mathcad exports or `signoff.json`. Rebuild after editing `viewer.html` too, because `index.html` is generated from it.
+Rebuild after any change to the source register, decisions, the coherence tracker, saved cases, FBMP XML exports, the cap package, Mathcad exports or `signoff.json`. Rebuild after editing `viewer.html` too, because `index.html` is generated from it.
 
 ## Limits
 
-The graph records what the project files say about each other. It is not engineering acceptance. The only calculations it runs are the two reused project extractors described above, on the saved cases and XML exports as they are; it changes no source. The EMULATED Mathcad sheets have not been recalculated natively, and the formula traces are the current package's evaluation, not the registered reports'. A sign-off in `signoff.json` is the signer's statement, not the graph's; the graph only reports whether the hashes it was pinned to still hold.
+The graph records what the project files say about each other. It is not engineering acceptance. The only calculations it runs are the cap package formula traces on the saved cases; XML files are hashed for identity. It changes no source. The EMULATED Mathcad sheets have not been recalculated natively, and the formula traces are the current package's evaluation, not the registered reports'. A sign-off in `signoff.json` is the signer's statement, not the graph's; the graph only reports whether the hashes it was pinned to still hold.
 
 A link follows the names the files declare. Where a file only describes an input in prose (some backwall inputs) or where a Mathcad region is derived from the case rather than copied from an input, the trail stops there and shows the description. A link between two names says they were declared as the same quantity, not that the values agree; the status chip and the two values show that.

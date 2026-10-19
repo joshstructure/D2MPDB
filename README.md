@@ -6,7 +6,6 @@
 
 - [Ring-supported pier wall STM study](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Ring_Supported_Wall_STM.ipynb)
 - [Bridge geometry](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Bridge_Geometry_2%20Beam_V2.ipynb)
-- [FBMP envelope extractor](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/FBMP_Envelope_Extractor.ipynb)
 - [End-bent backwall, cheek walls and tie-back straps](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/End_Bent_Backwall_Design.ipynb)
 - [Pile analysis and design (prestressed and pipe piles)](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Pile_Design.ipynb)
 - [Cap and pile design](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Cap_and_Pile_Design.ipynb)
@@ -83,16 +82,6 @@ dependency and conflict checks, lossless assembly, and evidence-gated promotion.
 Use [the task-order prompt](prompts/create-task-order.md) to begin a journal task.
 The initial reference-path candidate awaits native Blockpad review; the imported
 journal has not been represented as a validated engineering revision.
-
-## Standalone FBMP envelope extractor
-
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/FBMP_Envelope_Extractor.ipynb)
-
-Open **[FBMP_Envelope_Extractor.ipynb](FBMP_Envelope_Extractor.ipynb)**, choose **Runtime → Run all**, and upload an analyzed FB-MultiPier XML. The tool extracts moment M2/M3, shear V2/V3, and torsion envelopes with governing cases, member filters, plots, and CSV/ZIP downloads. All code is embedded in this notebook.
-
-**Strength and Service tables appear directly in the notebook after upload**, with each exact limit state kept separate. They show minimum, maximum, absolute maximum, units, and governing case/combination for all five components. Separate **Download Strength CSV** and **Download Service CSV** buttons export the same rows. The supplied XML includes **Service I: load case 11, combination 4**.
-
-The reported FBMP summary and original XML element-end envelopes remain separately labeled, with source discrepancies flagged. See [the extractor guide](FBMP_ENVELOPE_EXTRACTOR.md). The Colab link becomes available after the notebook is pushed to `main`.
 
 ## End-bent backwall, cheek walls and tie-back straps
 

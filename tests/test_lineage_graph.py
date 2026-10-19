@@ -36,12 +36,6 @@ def rel(path):
     return Path(path).relative_to(ROOT).as_posix()
 
 
-def leading_number(text):
-    """The number a printed value starts with, or None ("369.55" -> 369.55, "235 in + ..." -> 235.0)."""
-    m = re.match(r'^\s*(-?\d+(?:\.\d+)?)', str(text or ''))
-    return float(m.group(1)) if m else None
-
-
 class LineageGraphTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -172,43 +166,9 @@ class LineageGraphTests(unittest.TestCase):
                 for name in GEOMETRY_CHECK_NAMES:
                     self.assertIn(name, names)
 
-    # ------------------------------------------------------- FBMP envelopes
+    # ------------------------------------------------------- FBMP identity
     def present_xml_nodes(self):
         return [n for n in self.graph['nodes'] if n['kind'] == 'analysis' and n['path'] and (ROOT / n['path']).exists()]
-
-    def test_fbmp_envelope_parameters(self):
-        if not self.gen.ENVELOPE_NOTEBOOK.exists():
-            self.skipTest(f'{rel(self.gen.ENVELOPE_NOTEBOOK)} is not present')
-        present = self.present_xml_nodes()
-        if not present:
-            self.skipTest('no registered FBMP XML is present')
-        self.assertIn(rel(self.gen.ENVELOPE_NOTEBOOK), {i['path'] for i in self.graph['inputs']},
-                      'the envelope notebook is an input of the graph')
-        for node in present:
-            with self.subTest(node=node['id']):
-                src = node['envelope_source']
-                self.assertIs(src['available'], True, src.get('reason', ''))
-                digest = self.gen.sha256_file(ROOT / node['path'])
-                self.assertEqual(src['sha256'], digest, REBUILD)
-                self.assertEqual(src['register_match'], digest == node['sha256'])
-                identity = node['parameters'][0]
-                self.assertEqual(identity['role'], 'identity')
-                self.assertEqual(identity['value'], digest)
-                for p in node['parameters']:
-                    self.assertEqual(p['xml_sha256'], digest, f"{p['name']} does not carry the XML hash")
-                rows = [p for p in node['parameters'] if p['role'] == 'envelope']
-                self.assertGreater(len(rows), 0)
-                self.assertEqual(len(rows), src['envelope_rows'])
-                self.assertEqual({r['component'] for r in rows}, {'M2', 'M3', 'V2', 'V3', 'T'})
-                self.assertLessEqual({'Strength', 'Service'}, {r['family'] for r in rows})
-                self.assertIn('PIER_CAP', {r['member'] for r in rows})
-                for r in rows:
-                    self.assertLessEqual(r['min'], r['max'])
-                    self.assertEqual(r['abs_max'], max(abs(r['min']), abs(r['max'])))
-                    for key in ('min_load_case', 'min_combination', 'max_load_case', 'max_combination',
-                                'abs_max_load_case', 'abs_max_combination', 'limit_state', 'unit'):
-                        self.assertTrue(r[key], f"{r['name']} lacks {key}")
-                self.assertGreater(len([p for p in node['parameters'] if p['role'] == 'summary']), 0)
 
     def test_xml_identity_row_agrees_with_case_edge(self):
         present = self.present_xml_nodes()
@@ -216,7 +176,12 @@ class LineageGraphTests(unittest.TestCase):
             self.skipTest('no registered FBMP XML is present')
         for node in present:
             case_id = self.gen.CASE_OF_XML.get(node['id'])
-            src = node['envelope_source']
+            src = node['xml_source']
+            digest = self.gen.sha256_file(ROOT / node['path'])
+            self.assertEqual(src['sha256'], digest, REBUILD)
+            self.assertEqual(src['register_match'], digest == node['sha256'])
+            self.assertIn(node['path'], {i['path'] for i in self.graph['inputs']})
+            self.assertEqual([(p['role'], p['value']) for p in node['parameters']], [('identity', digest)])
             status = node['parameters'][0]['status']
             with self.subTest(node=node['id'], case=case_id):
                 if not case_id or f"{node['id']}->{case_id}" not in self.edges:
@@ -309,9 +274,6 @@ class LineageGraphTests(unittest.TestCase):
     def case_inputs(self, node_id):
         return {p['name']: p for p in self.node(node_id)['parameters'] if p.get('role') == 'input'}
 
-    def xml_has_envelope(self, node_id):
-        return any(p.get('role') == 'envelope' for p in self.node(node_id)['parameters'])
-
     def test_links_reference_edge_parameters(self):
         links = self.graph['links']
         self.assertTrue(links, 'the graph has no parameter links. ' + REBUILD)
@@ -329,47 +291,23 @@ class LineageGraphTests(unittest.TestCase):
                     self.assertIn(key, p, f"{l['edge']}[{l['index']}] does not carry {key}. {REBUILD}")
                     self.assertEqual(p[key], l[key], f"{key} differs between link and edge parameter. {REBUILD}")
 
-    def test_governing_links(self):
-        if not self.xml_has_envelope('PIER-XML'):
-            self.skipTest('PIER-XML has no envelope rows here (XML or envelope notebook not present)')
+    def test_governing_links_retain_case_provenance_without_xml_force_comparisons(self):
         for edge_id in ('PIER-XML->PIER-CASE', 'EB-XML->EB-CASE', 'EB2-XML->EB2-CASE'):
             with self.subTest(edge=edge_id):
                 e = self.edge(edge_id)
                 links = self.links_on(edge_id)
                 self.assertEqual(len(links), len(e['parameters']), REBUILD)
-                for l in links:
-                    with self.subTest(edge=edge_id, name=l['target_name']):
-                        p = e['parameters'][l['index']]
-                        self.assertEqual(l['kind'], 'governing')
-                        self.assertEqual(l['target_name'], p['name'])
-                        self.assertEqual(l['target_value'], p['value'])
-                        if l['source_value']:
-                            a, b = leading_number(l['source_value']), leading_number(l['target_value'])
-                            self.assertIsNotNone(a, f"source value {l['source_value']!r} is not a number")
-                            self.assertIsNotNone(b, f"target value {l['target_value']!r} is not a number")
-                            same = abs(abs(a) - abs(b)) <= 0.011
-                            self.assertEqual(l['status'], 'MATCH' if same else 'DIFFERS', REBUILD)
-                        else:
-                            self.assertEqual(l['status'], '', 'a link with nothing to compare has no status')
-        with self.subTest(edge='PIER-XML->PIER-CASE', check='registered XML is a prior export'):
-            links = {l['target_name']: l for l in self.links_on('PIER-XML->PIER-CASE')}
-            self.assertEqual(len(links), 9, REBUILD)
-            mu_b = links['Mu_B']
-            self.assertEqual((mu_b['source_name'], mu_b['source_value'], mu_b['target_value'], mu_b['status']),
-                             ('PIER_CAP: M3 STRENGTH-I', '369.55', '366.16', 'DIFFERS'), REBUILD)
-            self.assertEqual(mu_b['target_value'], self.case_inputs('PIER-CASE')['Mu_B']['value'])
-            for name in ('Mu_P', 'MI_P'):
-                with self.subTest(name=name):
-                    l = links[name]
-                    self.assertTrue(l['source_name'], 'the envelope row is still named')
-                    self.assertEqual((l['source_value'], l['status']), ('', ''), REBUILD)
-                    self.assertIn('interior extremum', l['detail'])
-        with self.subTest(edge='EB2-XML->EB2-CASE', check='XML missing'):
-            if (ROOT / self.node('EB2-XML')['path']).exists():
-                self.skipTest('EB2-XML is present here')
-            for l in self.links_on('EB2-XML->EB2-CASE'):
-                self.assertEqual((l['source_name'], l['source_value'], l['status']), ('', '', ''), REBUILD)
-                self.assertIn('not present', l['detail'])
+                self.assertTrue(links)
+                for link in links:
+                    p = e['parameters'][link['index']]
+                    self.assertEqual(link['kind'], 'governing')
+                    self.assertEqual((link['target_name'], link['target_value']), (p['name'], p['value']))
+                    self.assertEqual((link['source_name'], link['source_value'], link['status']),
+                                     ('', '', 'NOT COMPARED'))
+                    self.assertIn(f"load case {p['load_case']}, combination {p['combination']}", link['detail'])
+                    self.assertIn('XML forces are not extracted', link['detail'])
+                    self.assertEqual('not present' in link['detail'], not e['analysis_identity']['file_present'])
+                self.assertEqual('identity-mismatch' in e['flags'], not e['analysis_identity']['match'])
 
     def test_mapping_links(self):
         if not self.gen.MATHCAD_EXPORT.exists():
@@ -526,11 +464,10 @@ class LineageGraphTests(unittest.TestCase):
             self.assertLessEqual(want, feeds_b, REBUILD)
             reached = self.upstream('BACKWALL-CASE', 'b_cap')
             self.assertLessEqual({('EB-CASE', 'b'), ('GEOMETRY', 'b')}, reached, REBUILD)
-        with self.subTest(chain='PIER-CASE Mu_B <- PIER-XML envelope row'):
+        with self.subTest(chain='PIER-CASE Mu_B <- saved FBMP governing provenance'):
             into = self.links_into('PIER-CASE', 'Mu_B')
             self.assertEqual({(l['source'], l['kind']) for l in into}, {('PIER-XML', 'governing')}, REBUILD)
-            if self.xml_has_envelope('PIER-XML'):
-                self.assertEqual({l['source_name'] for l in into}, {'PIER_CAP: M3 STRENGTH-I'}, REBUILD)
+            self.assertEqual({l['source_name'] for l in into}, {''}, REBUILD)
         if not self.gen.MATHCAD_EXPORT.exists():
             self.skipTest(f'{rel(self.gen.MATHCAD_EXPORT)} is not present')
         with self.subTest(chain='PIER-XML -> PIER-CASE Mu_B -> MCAD-CAP-PIER'):
@@ -540,8 +477,8 @@ class LineageGraphTests(unittest.TestCase):
             self.assertIn(('MCAD-CAP-PIER', 'indexer(Mu, 2)'), self.downstream('PIER-CASE', 'Mu_B'))
             reached = self.upstream('MCAD-CAP-PIER', 'indexer(Mu, 2)')
             self.assertIn(('PIER-CASE', 'Mu_B'), reached, REBUILD)
-            if self.xml_has_envelope('PIER-XML'):
-                self.assertIn(('PIER-XML', 'PIER_CAP: M3 STRENGTH-I'), reached, REBUILD)
+            self.assertFalse(any(node_id == 'PIER-XML' for node_id, _ in reached),
+                             'the value trail stops at the saved case; no XML force value is extracted')
 
     def test_links_sorted_and_counted(self):
         links = self.graph['links']
