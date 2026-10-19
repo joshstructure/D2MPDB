@@ -5,7 +5,7 @@
 <generator>Mathcad Professional 14.1</generator>
 <userData>
 <title>Pier Pile Design</title>
-<description>Written by pile_design/mathcad.py (scripts/build_pile_mathcad.py) from the pile_design package e17a271b8e25; FBMP Pier_Fixed.XML (SHA-256 bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7)</description>
+<description>Written by pile_design/mathcad.py (scripts/build_pile_mathcad.py) from the pile_design package 32d46a79afd4; FBMP Pier_Fixed.XML (SHA-256 bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7)</description>
 <author>D2MPDB</author>
 <company/>
 <keywords/>
@@ -13,8 +13,8 @@
 </userData>
 <identityInfo>
 <revision>1</revision>
-<documentID>00000000-0000-4000-8000-E17A271B8E25</documentID>
-<versionID>00000000-0000-4000-8000-E17A271B8E26</versionID>
+<documentID>00000000-0000-4000-8000-32D46A79AFD4</documentID>
+<versionID>00000000-0000-4000-8000-32D46A79AFD5</versionID>
 <parentVersionID>00000000-0000-0000-0000-000000000000</parentVersionID>
 <branchID>00000000-0000-0000-0000-000000000000</branchID>
 </identityInfo>
@@ -93,7 +93,7 @@
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Normal" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Project: D2 I-95 Pedestrian Bridge.</p></text>
 </region>
 <region region-id="3" left="18.00" top="75.00" width="572.00" height="43.00" align-x="18.00" align-y="85.00" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
-<text use-page-width="false" push-down="false" lock-width="true"><p style="Normal" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Distilled from the pile design notebook (package e17a271b8e25), case &quot;Pier piles: 20 in steel pipe, FBMP fixed run&quot;. Same inputs, equations and load combinations as the notebook; results should match its exported report.</p></text>
+<text use-page-width="false" push-down="false" lock-width="true"><p style="Normal" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Distilled from the pile design notebook (package 32d46a79afd4), case &quot;Pier piles: 20 in steel pipe, FBMP fixed run&quot;. Same inputs, equations and load combinations as the notebook; results should match its exported report.</p></text>
 </region>
 <region region-id="4" left="18.00" top="124.00" width="572.00" height="43.00" align-x="18.00" align-y="134.00" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Normal" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Codes: AASHTO LRFD Bridge Design Specifications, 10th edition (2024): 6.5.4.2, 6.8.2.1, 6.9.2.2.1, 6.9.4.1, 6.12.1.2.3b, 6.12.2.2.3, 10.7.3.13; FDOT Structures Design Guidelines (SDG) 3.5 and Structures Detailing Manual (SDM) 11.4, January 2026; Specification 455-8.2 (Table 962-11).</p></text>

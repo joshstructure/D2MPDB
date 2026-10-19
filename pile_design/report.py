@@ -7,10 +7,11 @@ boxes, then the check register, pending items and the registered sources.
 from datetime import datetime, timezone
 import html
 import math
-from pier_cap.engine import parse
+from pier_cap.engine import parse, UNITS
 from .model import SECTIONS, INPUTS, REFERENCES, SOURCES, CONFIRMATIONS, formula_trace
 from .notation import symbol, mathml
 from .reviews import review_html
+from .schematics import schematic, meaning
 from . import visuals
 
 STYLE = '''
@@ -40,7 +41,14 @@ details.report-section>summary:focus-visible,.contents a:focus-visible{outline:2
 @media(max-width:650px){.contents ul{columns:1}.toolbar button{margin-bottom:4px}}
 .flow span{border:1px solid #7189a6;background:#fff;border-radius:3px;padding:4px 7px}.flow b{color:#7189a6}
 .ebw-review{margin:4px 0;padding:4px 6px;background:#fff3d6;border-left:3px solid #805600;font-size:9.5pt}
-@media print{.toolbar,.contents{display:none}details.report-section>summary{list-style:none}details.report-section>summary::-webkit-details-marker{display:none}svg{max-width:100%}}
+details.qc{margin:-6px 0 14px;border-left:3px solid #a4bdce;background:#f7fafc;padding:3px 8px}
+details.qc>summary{color:#1f2a36;font-size:10pt;list-style-position:outside}
+details.qc>summary b{color:#245c85}details.qc[open]{background:#f1f5fa}
+.qc-body{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start;padding:8px 0 4px}
+.qc-body figure{margin:0;flex:0 1 760px}.qc-body figcaption{font-size:9pt;color:#485969;margin-top:2px}
+.qc-terms{flex:1 1 320px}.qc-terms table{font-size:9pt}.qc-terms td{padding:2px 5px}.qc-terms math{font-size:11pt}
+.qc-note{font-size:9pt;color:#485969;margin:4px 0}
+@media print{.toolbar,.contents{display:none}details.report-section>summary{list-style:none}details.report-section>summary::-webkit-details-marker{display:none}details.qc{break-inside:avoid}svg{max-width:100%}}
 '''
 
 REPORT_SCRIPT = '''
@@ -82,7 +90,7 @@ REPORT_SCRIPT = '''
   let printState;
   window.addEventListener('beforeprint', () => {
     if (printState) return;
-    printState = Array.from(document.querySelectorAll('details'), d => [d, d.open]);
+    printState = Array.from(document.querySelectorAll('details:not(.qc)'), d => [d, d.open]);
     printState.forEach(([detail]) => { detail.open = true; });
     resizePlots(document);
   });
@@ -94,6 +102,11 @@ REPORT_SCRIPT = '''
 })();
 </script>
 '''
+
+QC_NOTE = ('Under every equation: <b>What it represents</b> is always visible. Open it for a schematic drawn from the current case, '
+           'with the defined quantity in red, and a legend of every term with its value and source.')
+
+STANDARD_PLAN_TERMS = ('N_str', 'A_str', 'P_jack', 'd_void', 'R_drive_tons')
 
 PSC_SECTIONS = ('geometry', 'psc_mat', 'psc_axial', 'psc_flex', 'psc_tension', 'psc_shear', 'psc_service', 'geotech')
 PIPE_SECTIONS = ('geometry', 'pipe_sec', 'pipe_axial', 'pipe_flex', 'pipe_comb', 'pipe_tension', 'pipe_shear', 'geotech')
@@ -163,6 +176,57 @@ def _status_cell(status):
     return f'<span class="{css}">{html.escape(status)}</span>'
 
 
+def _input_value(e, name):
+    spec = INPUTS[name]
+    unit = visuals.unit_label(spec['unit']) if spec['unit'] not in (None, 'bar') else ''
+    return f'{visuals.input_text(name, e.case["inputs"].get(name))} {unit}'.strip()
+
+
+def _term_value(e, name):
+    """Value text of a calculated or carried term; small magnitudes (strains) keep their significant digits."""
+    number = e.value(name)
+    places = 7 if isinstance(number, (int, float)) and 0 < abs(number) < 0.01 else 4
+    return e.text(name, places)
+
+
+def qc_blocks(e):
+    """Collapsible QC row for every formula: meaning (always visible), schematic and term legend."""
+    defs = {d['name']: d for d in e.definitions}
+    titles = dict(SECTIONS)
+    blocks = {}
+    for d in e.definitions:
+        svg, drawing = schematic(e, d['name'])
+        names = []
+        for n in sorted(_names(parse(d['expr']), set())):
+            if n not in UNITS and n not in names:
+                names.append(n)
+        rows = []
+        for n in names:
+            if n in INPUTS:
+                src = e.case['sources'].get(n, {})
+                what, where = INPUTS[n]['caption'], f'input · {src.get("source", INPUTS[n]["source"])} ({src.get("status", INPUTS[n]["status"])})'
+                value = _input_value(e, n)
+            elif n in defs:
+                what, where, value = defs[n]['caption'], f'calculated · {titles[defs[n]["section"]]}', _term_value(e, n)
+            elif n in e.external_meta:
+                what = e.external_meta[n][1]
+                where = ('Standard Plans Index 455 / SDG Table 3.5.13-1' if n in STANDARD_PLAN_TERMS
+                         else 'from the FBMP records / numerical interaction result')
+                value = _term_value(e, n)
+            else:
+                what, where, value = '', '', e.text(n, 4) if n in e.units else ''
+            rows.append(f'<tr><td>{mathml(symbol(n))}</td><td>{html.escape(what)}</td><td class="num">{html.escape(value)}</td>'
+                        f'<td>{html.escape(where)}</td></tr>')
+        legend = ('<div class="qc-terms"><table><tr><th>Term</th><th>Meaning</th><th>Value</th><th>Source</th></tr>'
+                  + ''.join(rows) + '</table></div>') if rows else '<div class="qc-terms"><p class="qc-note">Constant; no input terms.</p></div>'
+        text = meaning(d['name'], e.family) or d['caption']
+        caption = f'<figcaption>{html.escape(drawing)}</figcaption>' if drawing and drawing != text else ''
+        figure = f'<figure>{svg}{caption}</figure>' if svg else ''
+        blocks[d['name']] = (f'<details class="qc"><summary><b>What it represents:</b> {html.escape(text)}</summary>'
+                             f'<div class="qc-body">{figure}{legend}</div></details>')
+    return blocks
+
+
 def _input_rows(e, names):
     rows = []
     for name in sorted(names, key=lambda n: list(INPUTS).index(n)):
@@ -176,17 +240,18 @@ def _input_rows(e, names):
     return ('<table><tr><th>Symbol</th><th>Value</th><th>Meaning</th><th>Source / basis</th></tr>' + ''.join(rows) + '</table>') if rows else ''
 
 
-def _equations(subset):
+def _equations(subset, qc):
     return ''.join(f'<p class="cap">{html.escape(t["caption"])}' + (f' <span class="ref">({html.escape(_refs(t["refs"]))})</span>' if t['refs'] else '')
-                   + f'</p><div class="eq">{t["mathml"]}</div>' for t in subset)
+                   + f'</p><div class="eq">{t["mathml"]}</div>{qc.get(t["name"], "")}' for t in subset)
 
 
-def checks_html(e):
+def checks_html(e, qc=None):
     trace = {t['name']: t for t in formula_trace(e)}
+    qc = qc or {}
     rows = []
     for c in e.checks:
         ratio = f'{c.ratio:.3f}' if isinstance(c.ratio, (int, float)) else '—'
-        details = ''.join(f'<div class="eq">{trace[n]["mathml"]}</div>' for n in c.names if n in trace)
+        details = ''.join(f'<div class="eq">{trace[n]["mathml"]}</div>{qc.get(n, "")}' for n in c.names if n in trace)
         refs = _refs(c.refs)
         body = (f'<p>{html.escape(c.basis)}</p>' + (f'<p class="ref">{html.escape(refs)}</p>' if refs else '') + details
                 + (f'<p><i>{html.escape(c.note)}</i></p>' if c.note else ''))
@@ -312,13 +377,17 @@ def build_report(e, title=None):
     family_name = 'Prestressed Concrete' if e.family == 'psc' else 'Steel Pipe'
     title = title or f'Pile Analysis and Design · {e.case["support"]} · {family_name} Piles'
     trace = formula_trace(e)
+    qc = qc_blocks(e)
     figures = {name: fn(e) for name, fn in visuals.FIGURES}
-    toggle = lambda state: f"document.querySelectorAll('details').forEach(d=>d.open={state})"
+    toggle = lambda sel, state: f"document.querySelectorAll('{sel}').forEach(d=>d.open={state})"
     parts = ['<div class="toolbar"><button onclick="setReportSections(true)">Expand sections</button>'
              '<button onclick="setReportSections(false)">Collapse sections</button>'
-             f'<button onclick="{toggle("true")}">Open all disclosures</button>'
-             f'<button onclick="{toggle("false")}">Close all disclosures</button>'
-             '<button onclick="window.print()">Print / save PDF</button></div>',
+             f'<button onclick="{toggle("details:not(.qc)", "true")}">Open all disclosures</button>'
+             f'<button onclick="{toggle("details:not(.qc)", "false")}">Close all disclosures</button>'
+             f'<button onclick="{toggle("details.qc", "true")}">Open all QC schematics</button>'
+             f'<button onclick="{toggle("details.qc", "false")}">Close all QC schematics</button>'
+             '<button title="Prints all sections, equations and tables; QC schematics print as currently shown" '
+             'onclick="window.print()">Print / save PDF</button></div>',
              f'<p><b>D2 I-95 Pedestrian Bridge · FDOT District 2</b></p><h1>{html.escape(title)}</h1>',
              f'<p>{html.escape(e.case["name"])}<br>Generated {datetime.now(timezone.utc):%Y-%m-%d %H:%M UTC} · {html.escape(SOURCES["editions"])}</p>']
     keys = PSC_SECTIONS if e.family == 'psc' else PIPE_SECTIONS
@@ -341,7 +410,8 @@ def build_report(e, title=None):
           'of January 2026. Downdrag is carried as a drag load. The Nominal Bearing Resistance and the SDM 11.4 Pile Data Table follow SDG Section 3.5.</p>'
         f'<div class="flow">{flow}</div>'
         '<p>Outside this calculation: composite concrete-filled pipe, drivability and driving stresses (LRFD 10.7.8), pile-to-cap connection design, '
-        'minimum tip elevation and scour (geotechnical handoff).</p>')))
+        'minimum tip elevation and scour (geotechnical handoff).</p>'
+        f'<p>{QC_NOTE}</p>')))
     parts.append(_report_section('results', 'Result summary', summary_html(e)))
     by_section = {}
     for t in trace:
@@ -356,7 +426,7 @@ def build_report(e, title=None):
         section = [_box('discussion', 'Purpose', f'<p>{html.escape(SECTION_TEXT.get(key, ""))}</p>')]
         if inputs:
             section.append(_box('inputs', 'Inputs', _input_rows(e, inputs)))
-        section.append(_equations(items))
+        section.append(_equations(items, qc))
         for name in FIGURE_AFTER.get(key, []):
             section.append(figures[name].to_html(full_html=False, include_plotlyjs=False))
         parts.append(_report_section(key, heading, ''.join(section)))
@@ -366,7 +436,7 @@ def build_report(e, title=None):
         '<p>Loads are rounded up to the nearest ton, minimum tip elevations down and pile lengths up to the nearest foot, and cut-off elevations to 0.1 ft. '
         '“N/A” marks entries that are not applicable or not yet received; no column is removed. Column I excludes the downdrag, which is column J.</p>')
         + _box('outputs', 'Pile Data Table', visuals.data_table_html(e, css=''))))
-    parts.append(_report_section('checks', tail[3][1], figures['ratios'].to_html(full_html=False, include_plotlyjs=False) + checks_html(e)))
+    parts.append(_report_section('checks', tail[3][1], figures['ratios'].to_html(full_html=False, include_plotlyjs=False) + checks_html(e, qc)))
     parts.append(_report_section('pending', tail[4][1], _pending_section(e)))
     parts.append(_report_section('sources', tail[5][1], _sources_section(e)))
     body = ''.join(parts) + REPORT_SCRIPT

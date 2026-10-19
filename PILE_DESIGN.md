@@ -272,7 +272,7 @@ A second sheet, "Basis", records the NBR equation, FDL, downdrag and its source,
 The notebook writes each export to `exports/pile-YYYYMMDD-HHMMSS/`.
 
 - `pile_case.json`, the case with its demand records, confirmations and receipts
-- `pile_calculation_report.html`, the calculation report with equations, substitutions and figures
+- `pile_calculation_report.html`, the calculation report with equations, substitutions and figures; under every equation a collapsible "What it represents" QC block holds a schematic drawn from the current case (the defined quantity in red) and a legend of each term with its value and source (`pile_design/schematics.py`, one drawing for every definition of both pile families)
 - `pile_checks.csv`, the D/C register
 - `pile_data_table.xlsx`, the SDM 11.4 Pile Data Table with its Basis sheet
 - `pile_design.xmcd`, the distilled Mathcad worksheet for the current case

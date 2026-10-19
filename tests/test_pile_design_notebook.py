@@ -265,6 +265,74 @@ class CalculationReport(unittest.TestCase):
         self.assertIn('No FBMP results are loaded', html)
 
 
+class QCSchematics(unittest.TestCase):
+    """Every equation in the report carries a collapsible QC drawing of what it represents."""
+
+    @classmethod
+    def setUpClass(cls):
+        from pile_design.model import select_psc
+        cls.cases = {support: evaluation(support) for support in PRESETS}
+        heavy = default_case('End Bent 1')
+        heavy['inputs']['DD_tons'] = 60.0              # drag load large enough for P_u >= 0.10 phi f'c Ag: Eq. 5.6.4.5-1
+        cls.cases['End Bent 1 · Eq. 5.6.4.5-1'] = evaluate(heavy)
+        voided = default_case('End Bent 1')
+        select_psc(voided, '455-030')                  # hollow 30 in pile: void subtracted, web width
+        cls.cases['End Bent 1 · Index 455-030 void'] = evaluate(voided)
+        cls.no_results = evaluation('End Bent 1', load_xml=False)
+
+    @unittest.skipUnless(registered_xml_available('End Bent 1'), 'registered FBMP exports are not in this checkout')
+    def test_both_biaxial_branches_are_exercised(self):
+        self.assertEqual(self.cases['End Bent 1'].details['branch'], 'eq3')
+        eq1 = self.cases['End Bent 1 · Eq. 5.6.4.5-1']
+        self.assertEqual(eq1.details['branch'], 'eq1')
+        names = {d['name'] for d in eq1.definitions}
+        self.assertTrue({'e_y', 'e_x', 'P_rxy', 'DC_bi'} <= names)
+        self.assertNotIn('e_y', {d['name'] for d in self.cases['End Bent 1'].definitions})
+        self.assertGreater(self.cases['End Bent 1 · Index 455-030 void'].value('d_void', 'in'), 0)
+
+    def test_every_definition_has_a_drawing_meaning_and_its_result(self):
+        from html import escape
+        from pile_design.schematics import schematic, meaning
+        for label, e in self.cases.items():
+            for d in e.definitions:
+                name = d['name']
+                svg, caption = schematic(e, name)
+                self.assertTrue(svg and svg.startswith('<svg') and caption, f'{label}: {name}')
+                self.assertTrue(meaning(name), name)
+                self.assertTrue(meaning(name, e.family), name)
+                shown = {escape(e.text(name, places)) for places in range(6)}
+                self.assertTrue(any(text in svg for text in shown), f'{label}: {name}: result value not shown')
+
+    def test_drawings_build_without_fbmp_results(self):
+        from pile_design.schematics import schematic
+        for d in self.no_results.definitions:
+            svg, caption = schematic(self.no_results, d['name'])
+            self.assertTrue(svg and caption, d['name'])
+
+    def test_report_places_a_collapsible_block_under_every_equation(self):
+        import re
+        for label, e in self.cases.items():
+            text = build_report(e)
+            equations = text.count('<div class="eq">')
+            self.assertGreater(equations, 80, label)
+            self.assertEqual(len(re.findall(r'<div class="eq">.*?</div>\s*<details class="qc">', text, re.S)), equations, label)
+            self.assertEqual(text.count('<details class="qc"><summary><b>What it represents:</b>'), equations, label)
+            self.assertEqual(text.count('<details class="qc">'), equations, label)
+            self.assertIn('Open all QC schematics', text)
+            self.assertIn('Close all QC schematics', text)
+            self.assertIn('Under every equation:', text)
+
+    def test_legend_lists_every_term_with_value_and_source(self):
+        from pile_design.report import qc_blocks
+        e = self.cases['End Bent 1']
+        blocks = qc_blocks(e)
+        self.assertEqual(set(blocks), {d['name'] for d in e.definitions})
+        text = blocks['R_n_req']
+        for needle in ('Factored Design Load', 'from the FBMP records / numerical interaction result', 'input · ', 'calculated · ', '<svg'):
+            self.assertIn(needle, text)
+        self.assertIn('Standard Plans Index 455', blocks['A_ps'])
+
+
 class FiguresBuild(unittest.TestCase):
     def test_every_figure_builds_for_both_presets(self):
         for support in ('End Bent 1', 'Pier'):
