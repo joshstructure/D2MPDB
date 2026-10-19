@@ -1,0 +1,21 @@
+{
+  "candidate_sha256": "542fba20a8efa3fe75c6210901d77b0a4e9bcfc8f075ef934c6e8a0add6ceff5",
+  "reviewer": "Codex, executing the user-requested native recalculation on 19 October 2026",
+  "native_recalculation": true,
+  "native_visual_review": false,
+  "engineering_review": false,
+  "design_outcome": "fails",
+  "external_analysis_disposition": "No external analysis solver was run. Native journal load-entry results were refreshed; FBMPPier.NB_checkUplift and FBMPEndBent.EB_CheckGravity now fail their internal consistency checks. Existing external analysis currency gaps remain open.",
+  "external_analysis_status": "unreviewed",
+  "inherited_issues_disposition": "Zero stored native errors before and after. All authored formulas/inputs/styles preserved; every module matches the Blockpad saved result. Existing cap failures remain visible. Two previously stale PASS caches now report FAIL: pier uplift and end-bent gravity consistency. Full native appearance review and engineering review were not performed; limited project index and wind summary views were inspected.",
+  "evidence_files": [
+    {
+      "path": "native-verification.json",
+      "sha256": "91bcf7b52c75021cecd394ca55faaa5ae7e204d73fd83e9430f39b4137b09ee7"
+    },
+    {
+      "path": "cache-changes.json",
+      "sha256": "4571ecbc2d1827bfbb21a85464ad2213ad68e7f6e198284d7f1bd25f76690122"
+    }
+  ]
+}

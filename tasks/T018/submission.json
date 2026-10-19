@@ -1,0 +1,26 @@
+{
+  "summary": "Full native Blockpad recalculation of the T017 source journal; import the exact native module bytes while preserving the source wrapper, component order and non-module resources.",
+  "published_outputs": [
+    "All 40 journal modules match the native recalculated save; existing output names, units, signs and cases retained"
+  ],
+  "assumptions_and_conventions": [
+    "All 8,901 formulas and authored inputs, expressions and styles preserved; native display/result caches and XML whitespace may differ"
+  ],
+  "downstream_impact": [
+    "Journal bearing, wind, gravity, uplift, FBMP entry, fin and quantity results refreshed; registered calculation modules saved by Blockpad"
+  ],
+  "external_analysis": "FB-MultiPier was not rerun; its journal entry tables now show current native calculations, including two newly exposed consistency failures",
+  "checks_performed": [
+    "Native Update All and save",
+    "Zero stored native errors",
+    "Authored structure/input/expression comparison",
+    "Exact native module bytes and protected source bytes verified",
+    "Scope/dependency/reference checks"
+  ],
+  "open_items": [
+    "FBMPPier.NB_checkUplift changed PASS to FAIL",
+    "FBMPEndBent.EB_CheckGravity changed PASS to FAIL",
+    "Existing cap and other engineering failures retained; no engineering acceptance",
+    "Full native pagination/appearance review not performed"
+  ]
+}

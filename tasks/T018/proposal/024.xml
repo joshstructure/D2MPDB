@@ -1,0 +1,84 @@
+<report name="ProjectInfo" title="Project Information" unit="in" pagesize="816,1056" margin="48,48,48,48" bordermargin="0,0,0,0" collapsemargins="False">
+        <stylerule type="AnyEquation" name="Required Input" texthighlight="#F7E6B9" />
+        <paragraph fontfamily="Times New Roman" fontsize="16" spacingafter="2" fontweight="bold">D2 I-95 PEDESTRIAN BRIDGE</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold">PROJECT INFORMATION</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" background="#F1F5FA">Project identification used by every calculation report; edit here, not in the reports.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="Firm = &quot;Parsons Transportation Group Inc&quot;" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+                <expbody>Firm = "Parsons Transportation Group Inc"</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Firm name shown in the project stamp of every calculation report.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="Address = &quot;1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301&quot;" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+                <expbody>Address = "1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301"</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Firm address.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="Project = &quot;I-95 Capacity Improvements from South of SR 152 to South of SR 126&quot;" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+                <expbody>Project = "I-95 Capacity Improvements from South of SR 152 to South of SR 126"</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Project title.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="JobNo = &quot;&quot;" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+                <expbody>JobNo = ""</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Job number (blank until assigned).</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="DesignedBy = &quot;JAT&quot;" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+                <expbody>DesignedBy = "JAT"</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Designer initials.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="DesignDate = &quot;10/17/2026&quot;" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+                <expbody>DesignDate = "10/17/2026"</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Date of design.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="CheckedBy = &quot;MIK&quot;" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+                <expbody>CheckedBy = "MIK"</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Checker initials.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="CheckDate = &quot;&quot;" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+                <expbody>CheckDate = ""</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Date of check (blank until checked).</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" fontweight="bold" spacingbefore="8" keepwithnext="True">PROJECT STAMP (as placed at the top of each calculation report)</paragraph>
+        <embed spacingbefore="5" spacingafter="8">
+            <table name="ProjectStamp" capture="False" colwidths="1:95, 2:165, 3:95, 4:165">
+                <stylerule range="A1:D4" fontfamily="Times New Roman" fontsize="9" vertalign="Center" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);" />
+                <row>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Firm</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.Firm"><textvalue>Parsons Transportation Group Inc</textvalue></c>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Project</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.Project"><textvalue>I-95 Capacity Improvements from South of SR 152 to South of SR 126</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Address</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.Address"><textvalue>1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301</textvalue></c>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Job no.</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.JobNo"><textvalue></textvalue></c>
+                </row>
+                <row>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Designed by</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.DesignedBy"><textvalue>JAT</textvalue></c>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Date</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.DesignDate"><textvalue>10/17/2026</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Checked by</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.CheckedBy"><textvalue>MIK</textvalue></c>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Date</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.CheckDate"><textvalue></textvalue></c>
+                </row>
+            </table>
+        </embed>
+    </report>

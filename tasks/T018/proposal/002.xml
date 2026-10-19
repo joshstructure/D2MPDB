@@ -1,0 +1,530 @@
+<report name="AccessGeometry" title="Access Geometry and ADA" unit="in" pagesize="816, 1056" margin="48,48,48,48" collapsemargins="False">
+        <stylerule applytoall="True" type="Any" leftindent="0.25 in" spacingafter="4" />
+        <stylerule type="AnyEquation" name="Required Input" texthighlight="#F7E6B9" />
+        <embed spacingbefore="5" spacingafter="8">
+            <table name="ProjectStamp" capture="False" colwidths="1:95, 2:165, 3:95, 4:165">
+                <stylerule range="A1:D4" fontfamily="Times New Roman" fontsize="9" vertalign="Center" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);" />
+                <row>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Firm</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.Firm"><textvalue>Parsons Transportation Group Inc</textvalue></c>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Project</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.Project"><textvalue>I-95 Capacity Improvements from South of SR 152 to South of SR 126</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Address</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.Address"><textvalue>1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301</textvalue></c>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Job no.</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.JobNo"><textvalue></textvalue></c>
+                </row>
+                <row>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Designed by</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.DesignedBy"><textvalue>JAT</textvalue></c>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Date</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.DesignDate"><textvalue>10/17/2026</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Checked by</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.CheckedBy"><textvalue>MIK</textvalue></c>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Date</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.CheckDate"><textvalue></textvalue></c>
+                </row>
+            </table>
+        </embed>
+        <heading>ADA</heading>
+        <heading level="1">Handrails</heading>
+        <paragraph>SDG:</paragraph>
+        <paragraph>
+            <image source="Resource41" width="559.7887187773985" height="322.1493788060899" />
+        </paragraph>
+        <paragraph />
+        <paragraph>ADA:</paragraph>
+        <paragraph>
+            <image source="Resource28" />
+        </paragraph>
+        <paragraph>
+            <image source="Resource29" />
+        </paragraph>
+        <paragraph>
+            <image source="Resource30" />
+        </paragraph>
+        <paragraph>
+            <image source="Resource31" />
+        </paragraph>
+        <paragraph>
+            <image source="Resource18" />
+        </paragraph>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="2.19ft to in">
+                <expbody>2.19ft to in</expbody>
+                <expresult> = 26.28 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Entered length expressed in inches.</paragraph>
+        <section name="EqNotes_PedBridge_011_2_19ft_to_in" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">Express the entered length entirely in inches. One foot becomes 12 inches; the distance itself stays the same. This lets the value be compared directly with dimensions written in inches.</paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="1 3/8&quot; to ft">
+                <expbody>1 3/8" to ft</expbody>
+                <expresult> = 0.115 ft</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Entered length expressed in decimal feet.</paragraph>
+        <section name="EqNotes_PedBridge_012_1_3_8_to_ft" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">Express the entered length entirely in feet. Divide the inches portion by 12 and add it to any whole feet. This changes the unit display without changing the distance.</paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="2 1/4 in to ft">
+                <expbody>2 1/4 in to ft</expbody>
+                <expresult> = 0.188 ft</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Entered length expressed in decimal feet.</paragraph>
+        <section name="EqNotes_PedBridge_013_2_1_4_in_to_ft" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">Express the entered length entirely in feet. Divide the inches portion by 12 and add it to any whole feet. This changes the unit display without changing the distance.</paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="34in to ft in">
+                <expbody>34in to ft in</expbody>
+                <expresult> = 2 ft 10 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Entered length displayed in feet and inches.</paragraph>
+        <section name="EqNotes_PedBridge_014_34in_to_ft_in" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">Display the entered length as whole feet plus the remaining inches. This is a unit-display conversion, not a change to the physical length.</paragraph>
+        </section>
+        <paragraph spacingafter="4" />
+        <heading level="1">ADA Ramp length</heading>
+        <paragraph spacingafter="4" level="1">ADA requirements:</paragraph>
+        <paragraph>2010 ADA Standards for Accessible Design , Chapter 4, Section 405 — Ramps</paragraph>
+        <paragraph spacingafter="4" level="1" />
+        <embed>
+            <table colwidths="2: 374, 1: 310, 3: 149">
+                <row>
+                    <c><textvalue>Requirement</textvalue></c>
+                    <c><textvalue>ADA Section</textvalue></c>
+                </row>
+                <row>
+                    <textcell capture="False">
+                        <paragraph>When a sloped walking surface becomes a ramp</paragraph>
+                    </textcell>
+                    <textcell>
+                        <paragraph>403.3 / 405 — generally steeper than 1:20</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False">
+                        <paragraph>Max running slope</paragraph>
+                    </textcell>
+                    <textcell>
+                        <paragraph>405.2 — not steeper than 1:12</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False">
+                        <paragraph>Max cross slope</paragraph>
+                    </textcell>
+                    <textcell>
+                        <paragraph>405.3 — not steeper than 1:48</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False">
+                        <paragraph>Clear width</paragraph>
+                    </textcell>
+                    <textcell>
+                        <paragraph>405.5 — 36 in. min. clear</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False">
+                        <paragraph>Max rise per ramp run</paragraph>
+                    </textcell>
+                    <textcell>
+                        <paragraph>405.6 — 30 in. max. rise per run</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False">
+                        <paragraph>Landings required</paragraph>
+                    </textcell>
+                    <textcell>
+                        <paragraph>405.7 — at top and bottom of each run</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False">
+                        <paragraph>Landing length</paragraph>
+                    </textcell>
+                    <textcell>
+                        <paragraph>405.7.3 — 60 in. min.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False">
+                        <paragraph>Turning landing</paragraph>
+                    </textcell>
+                    <textcell>
+                        <paragraph>405.7.4 — 60 in. × 60 in. min.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False">
+                        <paragraph>Handrails</paragraph>
+                    </textcell>
+                    <textcell>
+                        <paragraph>505 , triggered for ramp runs with rise greater than 6 in.</paragraph>
+                    </textcell>
+                </row>
+            </table>
+        </embed>
+        <embed>
+            <table colwidths="4: 439.05128205128216, 3: 86.10256410256409, 2: 88.70940170940172">
+                <row>
+                    <c><textvalue>Slope</textvalue></c>
+                    <c><textvalue>Decimal</textvalue></c>
+                    <c><textvalue>Percent</textvalue></c>
+                    <c><textvalue>Comfort level</textvalue></c>
+                </row>
+                <row>
+                    <textcell>
+                        <paragraph>1:50</paragraph>
+                    </textcell>
+                    <textcell>
+                        <paragraph>0.020</paragraph>
+                    </textcell>
+                    <textcell>
+                        <paragraph>2.0%</paragraph>
+                    </textcell>
+                    <c><textvalue>Very comfortable; typical max cross-slope target</textvalue></c>
+                </row>
+                <row>
+                    <textcell>
+                        <paragraph>1:33</paragraph>
+                    </textcell>
+                    <textcell>
+                        <paragraph>0.030</paragraph>
+                    </textcell>
+                    <textcell>
+                        <paragraph>3.0%</paragraph>
+                    </textcell>
+                    <c><textvalue>Comfortable walking grade</textvalue></c>
+                </row>
+                <row>
+                    <textcell>
+                        <paragraph>1:25</paragraph>
+                    </textcell>
+                    <textcell>
+                        <paragraph>0.040</paragraph>
+                    </textcell>
+                    <textcell>
+                        <paragraph>4.0%</paragraph>
+                    </textcell>
+                    <c><textvalue>Still comfortable for most people</textvalue></c>
+                </row>
+                <row>
+                    <textcell>
+                        <paragraph>1:20</paragraph>
+                    </textcell>
+                    <textcell>
+                        <paragraph>0.050</paragraph>
+                    </textcell>
+                    <textcell>
+                        <paragraph>5.0%</paragraph>
+                    </textcell>
+                    <c><textvalue>Upper end before ADA treats it as a ramp</textvalue></c>
+                </row>
+                <row>
+                    <textcell>
+                        <paragraph>1:12</paragraph>
+                    </textcell>
+                    <textcell>
+                        <paragraph>0.0833</paragraph>
+                    </textcell>
+                    <textcell>
+                        <paragraph>8.33%</paragraph>
+                    </textcell>
+                    <c><textvalue>ADA ramp maximum, but not “comfortable” for long distances</textvalue></c>
+                </row>
+            </table>
+        </embed>
+        <paragraph spacingafter="4" level="1" fontweight="bold">
+            <image source="Resource169" />
+        </paragraph>
+        <paragraph spacingafter="4" level="1" fontweight="bold">ADA Ch. 1 Definitions</paragraph>
+        <paragraph spacingafter="4" level="1" />
+        <paragraph spacingafter="2" level="1" spacingbefore="6">
+            <dynexp formula="Wall_beginbridge_ht=23.4266 ft">
+                <expbody>Wall_beginbridge_ht=23.4266 ft</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Entered wall-top height used in the begin-bridge ramp notes.</paragraph>
+        <section name="EqNotes_PedBridge_015_Wall_beginbridge_ht" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This is the height recorded for the top of the MSE wall at the beginning of the bridge. It is an input to the geometry discussion. The 5 percent ramp-length equation below contains its own fixed rise value rather than a live reference to this variable.</paragraph>
+        </section>
+        <paragraph spacingafter="2" level="1" spacingbefore="6">
+            <dynexp formula="Distance_topSlab_btExtFIB45=4.46 ft">
+                <expbody>Distance_topSlab_btExtFIB45=4.46 ft</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Vertical distance from the slab top to the bottom of the exterior FIB45 beam.</paragraph>
+        <section name="EqNotes_PedBridge_016_Distance_topSlab_btExtFIB45" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This entered depth follows the name of the exterior-beam geometry used in this clearance note. Subtract it from the slab-top-to-terrain distance to obtain the space remaining below the beam. It is a vertical offset, not a ground elevation.</paragraph>
+        </section>
+        <paragraph spacingafter="2" level="1" spacingbefore="6">
+            <dynexp formula="VerticalClearance=BridgeGeometry_2Beam.Distance_Algn2Terrain-Distance_topSlab_btExtFIB45 to ft">
+                <expbody>VerticalClearance=BridgeGeometry_2Beam.Distance_Algn2Terrain-Distance_topSlab_btExtFIB45 to ft</expbody>
+                <expresult> = 18.211 ft</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Clear vertical space from the exterior beam bottom down to the terrain.</paragraph>
+        <section name="EqNotes_PedBridge_017_VerticalClearance" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                <dynexp formula="BridgeGeometry_2Beam.Distance_Algn2Terrain" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>BridgeGeometry_2Beam.Distance_Algn2Terrain</expbody>
+                </dynexp>
+                 is the full vertical distance from the slab top to the terrain. Subtract 
+                <dynexp formula="Distance_topSlab_btExtFIB45" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Distance_topSlab_btExtFIB45</expbody>
+                </dynexp>
+                , the depth occupied above the exterior beam bottom. The remaining distance is the under-beam clearance for these entered geometries; “to ft” displays it in feet.
+            </paragraph>
+        </section>
+        <paragraph spacingafter="4" level="1" />
+        <paragraph spacingafter="4" level="1" />
+        <paragraph spacingafter="4" level="1">
+            <image source="Resource11" width="175.14036901498008" height="235.48666196573748" />
+        </paragraph>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Length_req_5p=(23.4266 ft-9 in)/0.05">
+                <expbody>Length_req_5p=(23.4266 ft-9 in)/0.05</expbody>
+                <expresult> = 453 ft 6.384 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Horizontal sloping-run length needed for the entered rise at a 5 percent grade.</paragraph>
+        <section name="EqNotes_PedBridge_018_Length_req_5p" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">Subtract the fixed 9 in allowance from the fixed 23.4266 ft rise in this expression. Divide the remaining vertical rise by 0.05, which means 0.05 ft of rise for each horizontal foot of run.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">Dividing by the slope converts a vertical height change into a horizontal run. This equation does not add separate level landing lengths. Its fixed rise value is not linked to the wall-height variable above.</paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Option_1=Length_req_5p-447.8174 ft">
+                <expbody>Option_1=Length_req_5p-447.8174 ft</expbody>
+                <expresult> = 5 ft 8.575 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Remaining run-length difference for ramp layout option 1.</paragraph>
+        <section name="EqNotes_PedBridge_019_Option_1" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                <dynexp formula="Length_req_5p" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Length_req_5p</expbody>
+                </dynexp>
+                 is the required horizontal sloping run at 5 percent. Subtract the 447.8174 ft length entered for this layout option. A positive result means the option is short by that distance; a negative result means the entered option length exceeds the calculated run requirement.
+            </paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Option_2=Length_req_5p-460.64 ft">
+                <expbody>Option_2=Length_req_5p-460.64 ft</expbody>
+                <expresult> = -7 ft 1.296 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Remaining run-length difference for ramp layout option 2.</paragraph>
+        <section name="EqNotes_PedBridge_020_Option_2" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                <dynexp formula="Length_req_5p" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Length_req_5p</expbody>
+                </dynexp>
+                 is the required horizontal sloping run at 5 percent. Subtract the 460.64 ft length entered for this layout option. A positive result means the option is short by that distance; a negative result means the entered option length exceeds the calculated run requirement.
+            </paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="1 ft/0.05">
+                <expbody>1 ft/0.05</expbody>
+                <expresult> = 20 ft</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Horizontal run needed for one vertical foot at a 5 percent slope.</paragraph>
+        <section name="EqNotes_PedBridge_021_1_ft_0_05" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">Divide 1 ft of rise by 0.05 ft of rise per horizontal foot of run. Dividing by the slope converts the vertical distance into the required horizontal distance.</paragraph>
+        </section>
+        <paragraph />
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Elev_toEB2Ramp=47' 2 5/8&quot;">
+                <expbody>Elev_toEB2Ramp=47' 2 5/8"</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Elevation at the upper end of the End Bent 2 ramp.</paragraph>
+        <section name="EqNotes_PedBridge_022_Elev_toEB2Ramp" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This input is identified as coming from the pedestrian alignment in the 3D model. Use the same project elevation datum as the lower ramp elevation so their difference gives a real vertical drop.</paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Elev_boEB2Ramp = 24 ft 8 in">
+                <expbody>Elev_boEB2Ramp = 24 ft 8 in</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Elevation at the lower end of the End Bent 2 ramp.</paragraph>
+        <section name="EqNotes_PedBridge_023_Elev_boEB2Ramp" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This is the entered lower endpoint elevation. It is subtracted from the upper endpoint elevation to determine how much height the sloping ramp must lose.</paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Elev_dropEB2ramp=Elev_toEB2Ramp-Elev_boEB2Ramp">
+                <expbody>Elev_dropEB2ramp=Elev_toEB2Ramp-Elev_boEB2Ramp</expbody>
+                <expresult> = 22 ft 6 5/8 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Vertical drop from the upper to the lower end of the End Bent 2 ramp.</paragraph>
+        <section name="EqNotes_PedBridge_024_Elev_dropEB2ramp" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Subtract 
+                <dynexp formula="Elev_boEB2Ramp" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Elev_boEB2Ramp</expbody>
+                </dynexp>
+                , the lower endpoint elevation, from 
+                <dynexp formula="Elev_toEB2Ramp" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Elev_toEB2Ramp</expbody>
+                </dynexp>
+                , the upper endpoint elevation. The common datum cancels, leaving the height difference the ramp must accommodate.
+            </paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="EB2_rampLength=20*Elev_dropEB2ramp">
+                <expbody>EB2_rampLength=20*Elev_dropEB2ramp</expbody>
+                <expresult> = 451 ft 0 1/2 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Horizontal run needed for the End Bent 2 ramp at 5 percent.</paragraph>
+        <section name="EqNotes_PedBridge_025_EB2_rampLength" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                <dynexp formula="Elev_dropEB2ramp" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Elev_dropEB2ramp</expbody>
+                </dynexp>
+                 is the required vertical drop. Multiply it by 20 because a 5 percent slope uses 20 horizontal feet for each vertical foot. This gives sloping-run plan length; no separate landing lengths are added in this expression.
+            </paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Switchback_offramp_reqd = EB2_rampLength-(129.54'+138.54'+138.54')">
+                <expbody>Switchback_offramp_reqd = EB2_rampLength-(129.54'+138.54'+138.54')</expbody>
+                <expresult> = 44 ft 5 1/16 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Additional ramp run needed beyond the three entered End Bent 2 runs.</paragraph>
+        <section name="EqNotes_PedBridge_026_Switchback_offramp_reqd" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                <dynexp formula="EB2_rampLength" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>EB2_rampLength</expbody>
+                </dynexp>
+                 is the total horizontal sloping run required. Add the three entered available run lengths inside the parentheses, then subtract that total from the required run.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">A positive answer is the run still to provide in the switchback or off-ramp layout. A negative answer means the entered runs together are longer than this calculated requirement.</paragraph>
+        </section>
+        <paragraph />
+        <paragraph>Scenario where we dont notch the noise wall and raise the alignment:</paragraph>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Current_clearance=6 3/8&quot;">
+                <expbody>Current_clearance=6 3/8"</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Current gap used in the scenario that raises the alignment above the noise wall.</paragraph>
+        <section name="EqNotes_PedBridge_027_Current_clearance" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This is the measured or adopted vertical clearance before the alignment is raised. The following expression compares it with the target gap to find the additional height needed.</paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Req_Elev_Incrs=2ft-Current_clearance">
+                <expbody>Req_Elev_Incrs=2ft-Current_clearance</expbody>
+                <expresult> = 1 ft 5 5/8 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Additional elevation needed to reach the stated 2 ft clearance target.</paragraph>
+        <section name="EqNotes_PedBridge_028_Req_Elev_Incrs" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Subtract 
+                <dynexp formula="Current_clearance" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Current_clearance</expbody>
+                </dynexp>
+                , the gap already available, from the 2 ft target gap. A positive difference is how far the upper alignment must rise in this scenario, assuming the obstructing wall stays at the same elevation.
+            </paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Elev_toEB2Ramp1 =  Elev_toEB2Ramp+Req_Elev_Incrs">
+                <expbody>Elev_toEB2Ramp1 =  Elev_toEB2Ramp+Req_Elev_Incrs</expbody>
+                <expresult> = 48 ft 8 1/4 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Upper ramp elevation after raising the alignment in the alternate scenario.</paragraph>
+        <section name="EqNotes_PedBridge_029_Elev_toEB2Ramp1" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Add 
+                <dynexp formula="Req_Elev_Incrs" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Req_Elev_Incrs</expbody>
+                </dynexp>
+                , the required extra height, to 
+                <dynexp formula="Elev_toEB2Ramp" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Elev_toEB2Ramp</expbody>
+                </dynexp>
+                , the original upper ramp elevation. The suffix 1 identifies this raised-alignment scenario; the original input remains a separate value.
+            </paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Elev_boEB2Ramp1 = 24 ft 8 in">
+                <expbody>Elev_boEB2Ramp1 = 24 ft 8 in</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Lower ramp elevation entered for the raised-alignment scenario.</paragraph>
+        <section name="EqNotes_PedBridge_030_Elev_boEB2Ramp1" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This is the lower endpoint for the alternate ramp geometry. The upper elevation changes in the preceding equation; this lower endpoint is independently entered here.</paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Elev_dropEB2ramp1 = Elev_toEB2Ramp1-Elev_boEB2Ramp1">
+                <expbody>Elev_dropEB2ramp1 = Elev_toEB2Ramp1-Elev_boEB2Ramp1</expbody>
+                <expresult> = 24 ft 0 1/4 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Vertical drop required by the raised-alignment ramp scenario.</paragraph>
+        <section name="EqNotes_PedBridge_031_Elev_dropEB2ramp1" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Subtract 
+                <dynexp formula="Elev_boEB2Ramp1" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Elev_boEB2Ramp1</expbody>
+                </dynexp>
+                , the alternate lower endpoint, from 
+                <dynexp formula="Elev_toEB2Ramp1" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Elev_toEB2Ramp1</expbody>
+                </dynexp>
+                , the alternate upper endpoint. The answer is the vertical distance the new ramp layout must descend.
+            </paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="EB2_rampLength1 = 20*Elev_dropEB2ramp1">
+                <expbody>EB2_rampLength1 = 20*Elev_dropEB2ramp1</expbody>
+                <expresult> = 480 ft 5 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Horizontal sloping run required after the upper alignment is raised.</paragraph>
+        <section name="EqNotes_PedBridge_032_EB2_rampLength1" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Multiply 
+                <dynexp formula="Elev_dropEB2ramp1" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Elev_dropEB2ramp1</expbody>
+                </dynexp>
+                , the revised vertical drop, by 20 horizontal feet per vertical foot. This uses the same 5 percent grade as the original scenario. It does not separately add landing lengths.
+            </paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Switchback_offramp_reqd1 = EB2_rampLength1-(129.54 ft+138.54 ft+138.54 ft)">
+                <expbody>Switchback_offramp_reqd1 = EB2_rampLength1-(129.54 ft+138.54 ft+138.54 ft)</expbody>
+                <expresult> = 73 ft 9 9/16 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Additional run needed beyond the three entered runs in the raised-alignment scenario.</paragraph>
+        <section name="EqNotes_PedBridge_033_Switchback_offramp_reqd1" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Add the three available run lengths inside the parentheses. Subtract their sum from 
+                <dynexp formula="EB2_rampLength1" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>EB2_rampLength1</expbody>
+                </dynexp>
+                , the revised required horizontal sloping run. A positive result is additional run still needed; a negative result is extra length already available.
+            </paragraph>
+        </section>
+        <paragraph />
+        <paragraph />
+        <paragraph />
+    </report>

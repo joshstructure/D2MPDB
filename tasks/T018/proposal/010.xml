@@ -1,0 +1,417 @@
+<report title="C003 - Bridge Temperature Movement" name="BridgeMovement" unit="in" pagesize="816,1056" margin="48,48,48,48" bordermargin="0,0,0,0" collapsemargins="False">
+        <embed spacingbefore="5" spacingafter="8">
+            <table name="ProjectStamp" capture="False" colwidths="1:95, 2:165, 3:95, 4:165">
+                <stylerule range="A1:D4" fontfamily="Times New Roman" fontsize="9" vertalign="Center" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);" />
+                <row>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Firm</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.Firm"><textvalue>Parsons Transportation Group Inc</textvalue></c>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Project</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.Project"><textvalue>I-95 Capacity Improvements from South of SR 152 to South of SR 126</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Address</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.Address"><textvalue>1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301</textvalue></c>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Job no.</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.JobNo"><textvalue></textvalue></c>
+                </row>
+                <row>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Designed by</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.DesignedBy"><textvalue>JAT</textvalue></c>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Date</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.DesignDate"><textvalue>10/17/2026</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Checked by</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.CheckedBy"><textvalue>MIK</textvalue></c>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Date</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.CheckDate"><textvalue></textvalue></c>
+                </row>
+            </table>
+        </embed>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="7">
+            <link address="#CodeReferencesGeneral;paragraphreferenceindex">Code references and calculation backlinks</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" fontweight="bold" textdecoration="underline" spacingafter="4" id="paragraphrefreturn0028">PROJECT INFORMATION:</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4">
+            <span fontweight="bold">Project Name:</span>
+             D2 MPDB
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4">
+            <span fontweight="bold">Designed By:</span>
+             JAT
+            <break type="tab" />
+            <span fontweight="bold">Date:</span>
+            <dynexp formula="Today()" style="Result only">
+                <expresult>2026-10-19</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="12">This calculation determines longitudinal thermal movement of the two-span FIB 36 pedestrian bridge for joint and bearing detailing. The two simple spans are treated as one continuous deck unit with the center of movement at the intermediate pier. Geometry is referenced live from Bridge Geometry_2 Beam.</paragraph>
+        <embed spacingbefore="8" spacingafter="12">
+            <table name="MovementScopeBox" capture="False" colwidths="1:520">
+                <stylerule range="A1:A4" background="#F1F5FA" fontfamily="Times New Roman" fontsize="11" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;);" />
+                <stylerule range="A1" background="#DCE7F3" fontweight="bold" />
+                <row>
+                    <textcell name="MovementScopeTitle" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" fontweight="bold" spacingafter="7">MOVEMENT MODEL</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="MovementScope1" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">
+                            • Concrete-only superstructure temperature range is taken from
+                            <link address="#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003">FDOT SDG Table 2.7.1-1</link>
+                            .
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="MovementScope2" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• Center of movement is assumed at the intermediate pier; each end movement therefore uses the adjacent span length.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="MovementScope3" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• This module calculates thermal movement only. Creep, shrinkage, skew resolution, and final expansion-joint or bearing capacity checks are separate design items.</paragraph>
+                    </textcell>
+                </row>
+            </table>
+        </embed>
+        <paragraph id="paragraphc003packetnav" fontfamily="Times New Roman" fontsize="10" spacingafter="7">
+            Reference packet:
+            <link address="#CodeReferencesGeneral;paragraphreferenceindex">C003 highlighted code references</link>
+            . Edition basis:
+            <link address="#CodeReferencesC003.CodePage17;paragraphprojectcoderef17C003">FDOT Structures Manual I.6.B.5</link>
+            .
+        </paragraph>
+        <heading id="paragraphrefreturn0029">
+            <paragraphlabel numbergroup="heading">1.</paragraphlabel>
+            DESIGN BASIS AND ASSUMPTIONS
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="7">
+            •
+            <link address="#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003">FDOT SDG 2.7.1</link>
+            : Concrete Only temperature range = 70°F mean, 105°F high, 35°F low.
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="7">
+            •
+            <link address="#CodeReferencesC003.CodePage19;paragraphprojectcoderef19C003">FDOT SDG 6.3</link>
+            : Calculate bridge movement about an assumed 70°F construction mean and base joint/bearing design on the
+            <link address="#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003">SDG Table 2.7.1-1</link>
+            temperature range.
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="7">
+            •
+            <link address="#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003">FDOT SDG 2.7.1.D</link>
+            : Temperature rise and fall load effects use 120% of the tabulated maximum temperature change in accordance with
+            <link address="#CodeReferencesC003.CodePage14;paragraphprojectcoderef14C003">LRFD Table 3.4.1-1</link>
+            .
+        </paragraph>
+        <paragraph id="paragraphc003factorrefs" fontfamily="Times New Roman" fontsize="10" spacingafter="7">
+            Related factor provisions:
+            <link address="#CodeReferencesC003.CodePage21;paragraphprojectcoderef21C003">LRFD Table 3.4.1-6</link>
+            and
+            <link address="#CodeReferencesC003.CodePage22;paragraphprojectcoderef22C003">LRFD C3.4.1</link>
+            . See the packet’s QC qualification on the unfactored joint/bearing label.
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="12">
+            •
+            <link address="#CodeReferencesC003.CodePage20;paragraphprojectcoderef20C003">LRFD 5.4.2.2</link>
+            : Normal-weight concrete coefficient of thermal expansion is taken as 6.0×10⁻⁶ /°F.
+        </paragraph>
+        <heading>
+            <paragraphlabel numbergroup="heading">2.</paragraphlabel>
+            INPUTS
+        </heading>
+        <heading level="1">
+            <paragraphlabel numbergroup="heading">2.1.</paragraphlabel>
+            Bridge Geometry
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="L_left = BridgeGeometry_2Beam.Span_1" showsteps="False">
+                <expbody>L_left = BridgeGeometry_2Beam.Span_1</expbody>
+                <expresult> = 107.35 ft</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4" fontweight="bold">Movement length from the intermediate pier to Begin Bridge.</paragraph>
+        <section name="EqNotes_Movement_001_L_left" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">The center of movement is assumed at the intermediate pier. Under this assumption, the left end movement is based on Span 1 rather than the full bridge length.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="L_right = BridgeGeometry_2Beam.Span_2" showsteps="False">
+                <expbody>L_right = BridgeGeometry_2Beam.Span_2</expbody>
+                <expresult> = 104.9 ft</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4" fontweight="bold">Movement length from the intermediate pier to End Bridge.</paragraph>
+        <section name="EqNotes_Movement_002_L_right" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">The center of movement is assumed at the intermediate pier. Under this assumption, the right end movement is based on Span 2.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="L_unit = L_left + L_right" showsteps="True">
+                <expbody>L_unit = L_left + L_right</expbody>
+                <expstep> = 107.35 ft+104.9 ft</expstep>
+                <expresult> = 212.25 ft</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4" fontweight="bold">Total continuous deck-unit length.</paragraph>
+        <section name="EqNotes_Movement_003_L_unit" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Sum the two live span lengths from Bridge Geometry_2 Beam. This total is reported for context; individual end movements are calculated from the center of movement to each end.</paragraph>
+        </section>
+        <heading level="1" id="paragraphrefreturn0030">
+            <paragraphlabel numbergroup="heading">2.2.</paragraphlabel>
+            Temperature Parameters
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="T_mean = 70" showsteps="False" style="Required Input">
+                <expbody>T_mean = 70</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4" fontweight="bold">
+            Mean construction temperature, °F —
+            <link address="#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003">FDOT SDG Table 2.7.1-1</link>
+            .
+        </paragraph>
+        <section name="EqNotes_Movement_004_T_mean" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">The FDOT concrete-only temperature table uses a 70°F mean. Temperature values are entered numerically in degrees Fahrenheit so the thermal coefficient and temperature difference are paired consistently.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="T_high = 105" showsteps="False" style="Required Input">
+                <expbody>T_high = 105</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4" fontweight="bold">High design temperature, °F — concrete-only superstructure.</paragraph>
+        <section name="EqNotes_Movement_005_T_high" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">
+                <link address="#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003">FDOT SDG Table 2.7.1-1</link>
+                gives 105°F as the high temperature for a concrete-only superstructure.
+            </paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="T_low = 35" showsteps="False" style="Required Input">
+                <expbody>T_low = 35</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4" fontweight="bold">Low design temperature, °F — concrete-only superstructure.</paragraph>
+        <section name="EqNotes_Movement_006_T_low" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">
+                <link address="#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003">FDOT SDG Table 2.7.1-1</link>
+                gives 35°F as the low temperature for a concrete-only superstructure.
+            </paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="α_T = 6*10^-6" showsteps="False" style="Required Input">
+                <expbody>α_T = 6*10^-6</expbody>
+                <expresult> = 0.000006</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4" fontweight="bold">
+            Coefficient of thermal expansion, 1/°F — normal-weight concrete per
+            <link address="#CodeReferencesC003.CodePage20;paragraphprojectcoderef20C003">LRFD 5.4.2.2</link>
+            .
+        </paragraph>
+        <section name="EqNotes_Movement_007_alpha_T" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Use the LRFD normal-weight concrete coefficient of 6.0×10⁻⁶ per degree Fahrenheit. It is entered numerically because the temperature inputs in this module are numerical Fahrenheit values.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="γ_TU = 1.20" showsteps="False" style="Required Input">
+                <expbody>γ_TU = 1.20</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="12" fontweight="bold">
+            Temperature load factor used for the factored TU movement envelope —
+            <link address="#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003">FDOT SDG 2.7.1.D</link>
+            .
+        </paragraph>
+        <section name="EqNotes_Movement_008_gamma_TU" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">
+                <link address="#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003">FDOT SDG 2.7.1.D</link>
+                directs temperature rise and fall load effects to be based on 120% of the maximum value from the temperature table. This factor is shown separately from the unfactored
+                <link address="#CodeReferencesC003.CodePage19;paragraphprojectcoderef19C003">SDG 6.3</link>
+                joint/bearing detailing movement.
+            </paragraph>
+        </section>
+        <heading>
+            <paragraphlabel numbergroup="heading">3.</paragraphlabel>
+            TEMPERATURE CHANGE
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="ΔT_rise = T_high - T_mean" showsteps="True">
+                <expbody>ΔT_rise = T_high - T_mean</expbody>
+                <expstep> = 105-70</expstep>
+                <expresult> = 35</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4" fontweight="bold">Temperature rise from the 70°F mean, °F.</paragraph>
+        <section name="EqNotes_Movement_009_dT_rise" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Subtract the FDOT mean construction temperature from the concrete-only high temperature.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="ΔT_fall = T_mean - T_low" showsteps="True">
+                <expbody>ΔT_fall = T_mean - T_low</expbody>
+                <expstep> = 70-35</expstep>
+                <expresult> = 35</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="12" fontweight="bold">Temperature fall from the 70°F mean, °F.</paragraph>
+        <section name="EqNotes_Movement_010_dT_fall" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Subtract the concrete-only low temperature from the FDOT mean construction temperature.</paragraph>
+        </section>
+        <heading id="paragraphrefreturn0031">
+            <paragraphlabel numbergroup="heading">4.</paragraphlabel>
+            THERMAL MOVEMENT
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="7">For uniform temperature change, longitudinal movement is calculated from δ = α·ΔT·L. Temperature rise moves each end away from the intermediate pier; temperature fall moves each end toward the pier. For an end joint referenced to the approach, these correspond respectively to joint closing and opening.</paragraph>
+        <paragraph id="paragraphc003equationref" fontfamily="Times New Roman" fontsize="10" spacingafter="7">
+            Supplemental equation context:
+            <link address="#CodeReferencesC003.CodePage23;paragraphprojectcoderef23C003">LRFD Eq. 3.12.2.3-1</link>
+            gives the full high-to-low thermal movement range; C003 calculates excursions from the mean.
+        </paragraph>
+        <heading level="1">
+            <paragraphlabel numbergroup="heading">4.1.</paragraphlabel>
+            Unfactored Joint/Bearing Detailing Movement
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="δ_left = α_T*ΔT_rise*L_left to in" showsteps="True">
+                <expbody>δ_left = α_T*ΔT_rise*L_left to in</expbody>
+                <expstep> = 0.000006*35*107.35 ft to in</expstep>
+                <expresult> = 0.271 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4" fontweight="bold">Thermal movement magnitude at Begin Bridge for a 35°F rise or fall.</paragraph>
+        <section name="EqNotes_Movement_011_delta_left" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Multiply the concrete thermal coefficient by the FDOT temperature change and the live left-side movement length. The result is the magnitude of longitudinal movement at Begin Bridge.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="δ_right = α_T*ΔT_rise*L_right to in" showsteps="True">
+                <expbody>δ_right = α_T*ΔT_rise*L_right to in</expbody>
+                <expstep> = 0.000006*35*104.9 ft to in</expstep>
+                <expresult> = 0.264 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4" fontweight="bold">Thermal movement magnitude at End Bridge for a 35°F rise or fall.</paragraph>
+        <section name="EqNotes_Movement_012_delta_right" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Multiply the concrete thermal coefficient by the FDOT temperature change and the live right-side movement length. The result is the magnitude of longitudinal movement at End Bridge.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="δ_end_max = Max(δ_left, δ_right)" showsteps="True">
+                <expbody>δ_end_max = Max(δ_left, δ_right)</expbody>
+                <expstep> = Max(0.271 in, 0.264 in)</expstep>
+                <expresult> = 0.271 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4" fontweight="bold">Governing unfactored end movement for joint/bearing detailing.</paragraph>
+        <section name="EqNotes_Movement_013_delta_end_max" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">The longer Span 1 governs because the movement center is at the pier and thermal movement is proportional to movement length.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="δ_end_to_end = δ_left + δ_right" showsteps="True">
+                <expbody>δ_end_to_end = δ_left + δ_right</expbody>
+                <expstep> = 0.271 in+0.264 in</expstep>
+                <expresult> = 0.535 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="12" fontweight="bold">Total relative thermal change between the two bridge ends.</paragraph>
+        <section name="EqNotes_Movement_014_delta_end_to_end" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Add the magnitudes at the two ends to obtain the total end-to-end change in bridge length. This is not the movement demand at a single end joint.</paragraph>
+        </section>
+        <heading level="1" id="paragraphrefreturn0032">
+            <paragraphlabel numbergroup="heading">4.2.</paragraphlabel>
+            Factored TU Movement Envelope
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="δ_left_TU = γ_TU*δ_left" showsteps="True">
+                <expbody>δ_left_TU = γ_TU*δ_left</expbody>
+                <expstep> = 1.2*0.271 in</expstep>
+                <expresult> = 0.325 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4" fontweight="bold">Factored TU movement magnitude at Begin Bridge.</paragraph>
+        <section name="EqNotes_Movement_015_delta_left_TU" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">
+                Apply the 1.20 temperature factor to the unfactored Begin Bridge thermal movement. This is a load-effect envelope and is kept distinct from the
+                <link address="#CodeReferencesC003.CodePage19;paragraphprojectcoderef19C003">SDG 6.3</link>
+                unfactored joint/bearing detailing movement.
+            </paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="δ_right_TU = γ_TU*δ_right" showsteps="True">
+                <expbody>δ_right_TU = γ_TU*δ_right</expbody>
+                <expstep> = 1.2*0.264 in</expstep>
+                <expresult> = 0.317 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4" fontweight="bold">Factored TU movement magnitude at End Bridge.</paragraph>
+        <section name="EqNotes_Movement_016_delta_right_TU" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Apply the 1.20 temperature factor to the unfactored End Bridge thermal movement.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="δ_end_max_TU = Max(δ_left_TU, δ_right_TU)" showsteps="True">
+                <expbody>δ_end_max_TU = Max(δ_left_TU, δ_right_TU)</expbody>
+                <expstep> = Max(0.325 in, 0.317 in)</expstep>
+                <expresult> = 0.325 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="12" fontweight="bold">Governing factored TU end movement envelope.</paragraph>
+        <section name="EqNotes_Movement_017_delta_end_max_TU" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">The Begin Bridge side governs because Span 1 is slightly longer than Span 2.</paragraph>
+        </section>
+        <heading>
+            <paragraphlabel numbergroup="heading">5.</paragraphlabel>
+            RESULT SUMMARY
+        </heading>
+        <embed spacingbefore="8" spacingafter="12">
+            <table title="Movement Summary" name="MovementSummary" capture="False" colwidths="1:230,2:145,3:145">
+                <stylerule range="A1:C7" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#6A9075&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 1, &quot;#6A9075&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 1, &quot;#6A9075&quot;);" />
+                <stylerule range="A1:C1" background="#DCECE0" fontweight="bold" horzalign="Center" />
+                <stylerule range="A2:C7" background="#EFF7F1" />
+                <stylerule range="B2:C7" horzalign="Center" />
+                <row>
+                    <c capture="False"><textvalue>Item</textvalue></c>
+                    <c capture="False"><textvalue>Begin Bridge</textvalue></c>
+                    <c capture="False"><textvalue>End Bridge</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False"><textvalue>Movement length</textvalue></c>
+                    <c capture="False" formula="L_left"><num>107.34999999999991 ft</num></c>
+                    <c capture="False" formula="L_right"><num>104.90000000000009 ft</num></c>
+                </row>
+                <row>
+                    <c capture="False"><textvalue>Unfactored temperature rise</textvalue></c>
+                    <c capture="False" formula="δ_left"><num>0.27052199999999976 in</num></c>
+                    <c capture="False" formula="δ_right"><num>0.26434800000000025 in</num></c>
+                </row>
+                <row>
+                    <c capture="False"><textvalue>Unfactored temperature fall</textvalue></c>
+                    <c capture="False" formula="δ_left"><num>0.27052199999999976 in</num></c>
+                    <c capture="False" formula="δ_right"><num>0.26434800000000025 in</num></c>
+                </row>
+                <row>
+                    <c capture="False"><textvalue>Factored TU rise/fall</textvalue></c>
+                    <c capture="False" formula="δ_left_TU"><num>0.3246263999999997 in</num></c>
+                    <c capture="False" formula="δ_right_TU"><num>0.31721760000000027 in</num></c>
+                </row>
+                <row>
+                    <c capture="False"><textvalue>Direction for temperature rise</textvalue></c>
+                    <c capture="False"><textvalue>Toward Begin Bridge</textvalue></c>
+                    <c capture="False"><textvalue>Toward End Bridge</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False"><textvalue>Direction for temperature fall</textvalue></c>
+                    <c capture="False"><textvalue>Toward Pier</textvalue></c>
+                    <c capture="False"><textvalue>Toward Pier</textvalue></c>
+                </row>
+            </table>
+        </embed>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">
+            Governing thermal movement at a single bridge end is
+            <dynexp formula="δ_end_max" mathlayout="on" showformula="False" showidentifier="False" showresult="True" showsteps="False">
+                <expresult>0.271 in</expresult>
+            </dynexp>
+            unfactored, or
+            <dynexp formula="δ_end_max_TU" mathlayout="on" showformula="False" showidentifier="False" showresult="True" showsteps="False">
+                <expresult>0.325 in</expresult>
+            </dynexp>
+            for the 120% TU envelope.
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="12">No joint or bearing adequacy conclusion is made in this module because allowable movement depends on the selected joint/bearing system and, for expansion-joint design, the applicable creep, shrinkage, skew, and other movement components.</paragraph>
+    </report>

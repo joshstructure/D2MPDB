@@ -1,0 +1,74 @@
+{
+  "base_sha256": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50",
+  "native_sha256": "3cb32f55f81ad758beb67862c917525f0f3f3f3bb0d21d6a8a0d9ee4eaad1816",
+  "candidate_sha256": "542fba20a8efa3fe75c6210901d77b0a4e9bcfc8f075ef934c6e8a0add6ceff5",
+  "formula_count": 8901,
+  "native_calculation_action": "Blockpad Formulas > Update All (F5), followed by Ctrl+S on tasks/T018/working.bpad on 19 October 2026",
+  "native_saved_copy": "native-recalculated.bpad",
+  "stored_errors": 0,
+  "authored_input_expression_style_and_structure_comparison": "passed",
+  "comparison_exclusions": "Only formula-owned expbody/expresult/expstep and formula-owned cell num/textvalue/error caches; XML whitespace and native collapse of repeated prose spaces",
+  "all_40_modules_exactly_match_native_save": true,
+  "unassigned_components_preserved_byte_exact": 239,
+  "document_shell_and_component_order_preserved_byte_exact": true,
+  "changed_components": [
+    "report:Materials",
+    "report:BridgeGeometry_2Beam",
+    "report:AccessGeometry",
+    "report:BearingDesign",
+    "report:PileProperties",
+    "spreadsheet:PedBridgeWeights_2Beams",
+    "report:GeneralLoads",
+    "report:PedBridgeWind",
+    "report:C001WindLoadOnPedBridgeSuperstructure",
+    "report:FenceWind",
+    "report:BridgeMovement",
+    "report:SuperstructureUplift",
+    "report:LoadCombinations",
+    "report:FBMPPier",
+    "report:FBMPEndBent",
+    "report:FoundationModeling",
+    "report:PierWallFins",
+    "spreadsheet:QauntitiesBridge",
+    "report:DecisionLog",
+    "report:MSEWallExclusion",
+    "report:CapDesignBasis",
+    "report:CapDesignEndBentOne",
+    "report:CapDesignEndBentTwo",
+    "report:CapDesignPier",
+    "report:ProjectInfo",
+    "report:PileDesignEndBentOne",
+    "report:PileDesignEndBentTwo",
+    "report:PileDesignPier",
+    "report:EndBentBackwallDesign"
+  ],
+  "changed_formula_cache_records": 2497,
+  "pass_fail_transitions": [
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckGravity = If(And(Abs(EB_TotalDC-PedBridgeWeights_2Beams.w_DC_super*EB_Trib)<0.000001 kip,Abs(EB_TotalPL-PedBridgeWeights_2Beams.D46*BridgeGeometry_2Beam.Bridge_clearWidth*EB_Trib)<0.000001 kip),\"PASS\",\"FAIL\")",
+      "before": "= PASS",
+      "after": "= FAIL"
+    },
+    {
+      "component": "report:FBMPEndBent",
+      "formula": "EB_CheckGravity",
+      "before": "PASS",
+      "after": "FAIL"
+    },
+    {
+      "component": "report:FBMPPier",
+      "formula": "NB_checkUplift = If(And(Abs(SuperstructureUplift.η_bearing*(SuperstructureUplift.γ_DC_III*PedBridgeWeights_2Beams.DC_super_B1+SuperstructureUplift.γ_DW_III*PedBridgeWeights_2Beams.DW_B1+SuperstructureUplift.γ_WS_III*NB_N_IIIU_1)-If(NB_signT==1,SuperstructureUplift.R_W1_III,SuperstructureUplift.R_L1_III))<0.000001 kip,Abs(SuperstructureUplift.η_bearing*(SuperstructureUplift.γ_DC_III*PedBridgeWeights_2Beams.DC_super_B2+SuperstructureUplift.γ_DW_III*PedBridgeWeights_2Beams.DW_B2+SuperstructureUplift.γ_WS_III*NB_N_IIIU_2)-If(NB_signT==1,SuperstructureUplift.R_L1_III,SuperstructureUplift.R_W1_III))<0.000001 kip,Abs(SuperstructureUplift.η_bearing*(SuperstructureUplift.γ_DC_III*PedBridgeWeights_2Beams.DC_super_B3+SuperstructureUplift.γ_DW_III*PedBridgeWeights_2Beams.DW_B3+SuperstructureUplift.γ_WS_III*NB_N_IIIU_3)-If(NB_signT==1,SuperstructureUplift.R_W2_III,SuperstructureUplift.R_L2_III))<0.000001 kip,Abs(SuperstructureUplift.η_bearing*(SuperstructureUplift.γ_DC_III*PedBridgeWeights_2Beams.DC_super_B4+SuperstructureUplift.γ_DW_III*PedBridgeWeights_2Beams.DW_B4+SuperstructureUplift.γ_WS_III*NB_N_IIIU_4)-If(NB_signT==1,SuperstructureUplift.R_L2_III,SuperstructureUplift.R_W2_III))<0.000001 kip), \"✓ PASS\", \"⊗ FAIL\")",
+      "before": "= ✓ PASS",
+      "after": "= ⊗ FAIL"
+    },
+    {
+      "component": "report:FBMPPier",
+      "formula": "NB_checkUplift",
+      "before": "✓ PASS",
+      "after": "⊗ FAIL"
+    }
+  ],
+  "engineering_review": "not performed; failed checks retained",
+  "external_analysis": "FB-MultiPier was not rerun; its journal entry tables now show current native calculations, including two newly exposed consistency failures"
+}
