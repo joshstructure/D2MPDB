@@ -2,7 +2,7 @@
  "generator": "substructure_drawings.build",
  "version": "2.5.0",
  "dxf": "B4_Substructure_EndBents_Pier.dxf",
- "dxf_sha256": "40761b293886ef09cd2782ce1f7b8d83105f2181dd19f4404f1b556c1599339c",
+ "dxf_sha256": "f07636233fe9e84a931bf2c2efc94962e4c5b4bf2217afcc4d9e103559510097",
  "snapshot_sha256": "a4ab0c7e7baf2ea4f976b7867fae43b747b16f2b0dab1145133aa296f6822063",
  "model_sha256": "a831dec89084195338e78bef19bf014cd71421c9138e5ba0471479a5f6d6ed27",
  "units": "international feet ($INSUNITS=2); model space 1:1",
@@ -118,8 +118,8 @@
   "BearingPadMisc": 181,
   "CL_Major": 26,
   "CL_Minor": 57,
-  "Dimension": 607,
-  "Leader": 708,
+  "Dimension": 608,
+  "Leader": 679,
   "Patterning": 1008,
   "PileConc": 48,
   "PileConc_h": 160,
@@ -127,12 +127,12 @@
   "PileSteel_h": 175,
   "Rebar": 1687,
   "Rebar2": 102,
-  "SubStrConc": 332,
+  "SubStrConc": 328,
   "SubStrConc2": 358,
   "SubStrConc2_h": 28,
   "SubStrConc_h": 175,
   "Symbols": 143,
-  "TextStructures": 431,
+  "TextStructures": 427,
   "WallConc": 16,
   "WallMSEPanel": 2
  },
@@ -149,7 +149,7 @@
   "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
  },
  "symbology_audit": {
-  "entities": 11598,
+  "entities": 11562,
   "not_on_fdot_level": [],
   "not_by_level": [],
   "documented_overrides": {

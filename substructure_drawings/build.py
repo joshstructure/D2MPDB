@@ -467,16 +467,23 @@ class Composer:
         va = b.section(z, "between_piles", "A", "(SECTION BETWEEN PILES)")
         vb = b.section(z, "at_pile", "B", "(SECTION AT PILES)")
         wd = 3.6      # the details column
-        gap = -0.2    # the sections' bounding boxes overlap; their linework stays apart
+        # (markup 2026-10-19 round 3 follow-up, "shift Section B-B over slightly
+        # to make room for the overlapping annos between the details": the
+        # sections' boxes overlap 0.25 in (0.35 put B-B's dimension texts on
+        # A-A's labels), their linework stays apart, and the details column
+        # starts 0.3 in beyond the sections, so the legend ends 0.3 in before
+        # B-B's pile label)
+        gap = -0.25   # the sections' bounding boxes overlap; their linework stays apart
+        sep = 0.3     # the details column to the sections
         if key == "EB1":
             self.row(sh, [va, vb], DRAW[3] - 0.05, DRAW[0], DRAW[2] - wd - 0.2, gap=gap)
-            xs = max(self.paper_bbox(v)[2] for v in (va, vb)) + 0.2
+            xs = max(self.paper_bbox(v)[2] for v in (va, vb)) + sep
             win_s = (DRAW[0], DRAW[1], xs, DRAW[3])
             xd0, xd1 = xs, DRAW[2]
         else:
             ws = self.paper_size(va)[0] + self.paper_size(vb)[0] + gap
             self.row(sh, [vb, va], DRAW[3] - 0.05, DRAW[2] - ws, DRAW[2], gap=gap)
-            xs = min(self.paper_bbox(v)[0] for v in (va, vb)) - 0.2
+            xs = min(self.paper_bbox(v)[0] for v in (va, vb)) - sep
             win_s = (xs, DRAW[1], DRAW[2], DRAW[3])
             xd0, xd1 = DRAW[0], xs
         z.window = win_s
@@ -511,6 +518,8 @@ class Composer:
             "THE BACK OF BACKWALL AT V-GROOVE LOCATIONS WITH AN ADHESIVE APPROVED BY THE ENGINEER.",
             "MODEL CHECK (REMOVE BEFORE ISSUE): DETAILS \"A\" AND \"B\" ARE SCHEMATIC; THE CONSTRUCTION JOINT KEY AND "
             "THE V-GROOVE LOCATIONS ARE NOT IN THE CAD MODEL.",
+            # (the backwall cross-slope MODEL CHECK note is on the (2 OF 3)
+            # sheet: this notes block fills the sheet to the title block)
             self.bar_list_ref()]
         bottom = sh.notes_bottom(y, items, w_n)
         sh.notes(x_n, y, "NOTES:", items, width_in=w_n)
@@ -542,6 +551,14 @@ class Composer:
             "FOR CHEEK TOP ELEVATIONS, SEE THE TABLE OF ELEVATIONS, SHEET %s." % nums[0],
             "SECTIONS F-F AND G-G ARE LOCATED IN VIEW D-D; FOR SECTIONS F-F AND G-G, SEE SHEET %s." % nums[3],
             "FOR THE %s REINFORCING STRAP LEGEND, SEE SHEET %s." % (DELTA, nums[1]),
+            # D14 (markup 2026-10-19 round 3 follow-up, "Check the model for all
+            # the backwalls, there should be a slope of the top of the backwall
+            # across the thickness of the wall"): the model's backwall tops
+            # slope along the bent only; the sections draw the model.  (On this
+            # sheet: the (1 OF 3) notes block fills its sheet to the title block.)
+            "MODEL CHECK (REMOVE BEFORE ISSUE): THE BACKWALL TOP IS LEVEL ACROSS THE WALL THICKNESS IN THE CAD MODEL "
+            "(ITS SLOPE RUNS ALONG THE BENT TO THE CROWN ONLY); THE SECTIONS SHOW THE MODEL. ADD THE CROSS SLOPE TO THE "
+            "MODEL.",
             self.bar_list_ref()], legend=False)
         self.finish(sh)
 

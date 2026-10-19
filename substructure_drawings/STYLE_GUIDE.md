@@ -159,15 +159,23 @@ symbol at page scale.
   break line if needed and shift these annos out into the space. I don't
   like the text overlapping drawing lines and I don't like the leader break
   line overlapping drawings".
-- **A18 Parallel leaders meet the text at one point.**  Several lines
-  called out by one label (A12) get horizontal leaders joined by one
-  vertical connector and one landing to the text (`View.parallel_leaders`);
-  the arrows of a fan are at least 12 degrees apart, otherwise the callout
-  points at one bar or uses parallel leaders.  Markups 2026-10-19 (round
-  2): "Put these parallel leaders in the same plane. It should feel like
-  the leaders only touch the text at one point", "Either put these leaders
-  parallel or move the anno and spread these leaders out so they are
-  distinct. Don't do these kind of almost parallel leaders".
+- **A18 Bars get splayed fans; centerlines get one leader line.**  Several
+  bars called out by one label (a column of side-bar ends included) get a
+  fan of arrows splayed from the knee at the text, the arrows at least 5
+  degrees apart (A12; the row sits at the middle of the bar ends so the
+  arrows open up and down).  Horizontal leaders joined by a vertical
+  connector read as drawn construction, so they are not used for bars
+  (follow-up 2026-10-19: "splay out the leaders for the bars because too
+  geometric makes it look like there's some construction on the drawing. We
+  want to differentiate from drawn objects and annos").  Two centerlines
+  called out by one label (the pier's "CL BEARING (TYP.)") get ONE level
+  leader line with an arrowhead at each centerline; the nearer centerline
+  ends at its arrowhead and the farther runs on above the line (follow-up:
+  "Put the CL leader two arrows on the same line").  Markups 2026-10-19
+  (round 2): "Put these parallel leaders in the same plane. It should feel
+  like the leaders only touch the text at one point", "Either put these
+  leaders parallel or move the anno and spread these leaders out so they
+  are distinct. Don't do these kind of almost parallel leaders".
 - **A19 Deterministic checks.**  Every rule above that can be measured is
   a check in `anno_check.py` (rule ids in the findings), run on every view
   by the build and written to the manifest; the tests fail on any finding.
@@ -407,11 +415,21 @@ symbol at page scale.
   sections, drawn there with the key of DETAIL "A" in the joint line: the
   straight joint piece is cut out across the key and the keyway profile is
   drawn dashed (hidden level) in its place, so it reads as a shear key; the
-  joint is detailed as a keyed joint (DETAIL "A", sample B1-17); the
-  cap/pedestal joint is labelled "CONST. JOINT" in the pedestal elevation.
-  Follow-up markups: "Show the shape of the construction joint at the
-  joint", 2026-10-19 "construction joint shape should be dashed and the
-  horizontal line be removed to indicate a shear key".
+  joint is detailed as a keyed joint (DETAIL "A", sample B1-17).  The
+  callout's tip is ON the joint line, at the corner where the straight
+  piece meets the key on the FFBW side, never in the open top of the key
+  (follow-up 2026-10-19: "it should point to the line where the two
+  concrete surfaces interface").  The cap/pedestal joint is NOT called
+  out (follow-up: "Don't call out the construction joint at the
+  pedestals"); the pedestal sheet's note says the pedestals are cast on
+  the cap and the cap top is a construction joint.  In Section C-C the
+  joint row sits between the 5D1 and FFBW rows and its leader runs level to
+  just before the FFBW face, then down to the key corner, so it crosses
+  the face bar only and never the pedestal (follow-up sketch "Put the
+  construction joint anno like this").  Follow-up markups: "Show the shape
+  of the construction joint at the joint", 2026-10-19 "construction joint
+  shape should be dashed and the horizontal line be removed to indicate a
+  shear key".
 - **D6 Reinforcing straps** (MSE soil reinforcement attached to the backwall)
   are shown in the sections as a line out of the back face at the strap
   elevation with a representative 6" embedment into the backwall, labelled
@@ -441,14 +459,30 @@ symbol at page scale.
   cut member are joined by its top and bottom edges; an edge the extractor
   tags with a context role because a context solid shares it (the landing
   slab sits on the backwall top, so that edge came back as "landing" and
-  was skipped with the slab) is reclassified to the member before the
-  context filter.  Checked: an end of a visible concrete outline segment
-  in a section that no other outline, hidden edge or break line meets, and
-  that is not a window clip, is a finding.  Markup 2026-10-19 (round 3):
-  "Where are the tops of the backwalls?" (Sections A-A, B-B, C-C).
+  was skipped with the slab) is rebuilt from the model (the backwall top at
+  the cut from the FFBW top edge, `Support.backwall_top`).  Checked: an end
+  of a visible concrete outline segment in a section that no other outline,
+  hidden edge or break line meets, and that is not a window clip, is a
+  finding.  Markup 2026-10-19 (round 3): "Where are the tops of the
+  backwalls?" (Sections A-A, B-B, C-C).
+- **D14 A section draws the cut outline, not the silhouette beyond the
+  cut.**  Concrete within the bar depth beyond the cut (1'-3") is not
+  drawn: the backwall top rises toward the crown beyond the cut and its
+  silhouette on the face edges (up to 0.025 ft above the cut) read as a
+  sloped top with a second line under it.  The face edges are trimmed to
+  the cut top and one level line joins them.  Model fact (checked
+  2026-10-19 on the snapshot's backwall vertices): both backwall tops are
+  two planes sloping along the bent to the crown and level across the
+  wall thickness; the engineer expects a cross slope ("Check the model for
+  all the backwalls, there should be a slope of the top of the backwall
+  across the thickness of the wall"), so the (2 OF 3) sheets carry a MODEL
+  CHECK note until the model has it.  The drawings follow the model (D11).
 - **D11 Every callout describes modelled geometry.**  A feature removed from
   the model disappears from the sheets with its callout (D-044 omitted the
-  nominal 3/4" pedestal chamfers: no chamfer callout), and modelled context
+  nominal 3/4" pedestal chamfers: no chamfer callout; and chamfers are never
+  called out on the details, they belong in the General Notes: follow-up
+  2026-10-19 "Don't call out 3/4 chamfers. This will go in the General Notes
+  later"), and modelled context
   near the bent is drawn: the end bent weather closure (4" rain closure slab
   between the front coping and the cap face, the closure copings on the low
   MSE walls, the side copings stopping at the cheek lugs) in the plan and
@@ -472,7 +506,14 @@ symbol at page scale.
 - **E1 Sheet set**: for each support a plan/elevation sheet with the
   reinforcement, then details; the bar list last.  Details that do not fit
   go to a further details sheet ("perhaps on the next sheet if there is
-  more room"), never squeezed against the frame or over other views.
+  more room"), never squeezed against the frame or over other views.  On
+  the (1 OF 3) sheets the sections' boxes overlap 0.25" (their linework
+  stays apart; at 0.35" B-B's dimension texts ran onto A-A's labels) and
+  the details column starts 0.3" beyond them, so the pile label of Section
+  B-B keeps clear of the legend (follow-up 2026-10-19: "Slide this down
+  and shift Section B-B over slightly to make room for the overlapping
+  annos between the details").  The notes block of those sheets runs to
+  the title block, so further notes go on the (2 OF 3) sheet.
 - **E2 Tables** stay inside the drawing window with a margin to the frame;
   notes are a single numbered column with hanging indents.  Notes and other
   blocks at the lower right stop short of the BRIDGE NO. / bridge name
@@ -655,3 +696,9 @@ Markups on the 2.4.0 sheets, 2026-10-19 round 3 (all general):
 | B4-4 pedestal elev. | Remove. Only detail cover to the outermost bar (2¼" COVER) | C11 | top cover dimension removed; side cover to the outer leg stays |
 | B4-1 elevation | Shift up a bit to create space between drawing and title | E6 | title 0.25" lower under the flags (the rows above are at their minimum pitch, A16) |
 | B4-4 Section G-G | Remove this interface line to make appear monolithic | D10 | the cheek face edge is cut within the backwall thickness |
+| B4-9 Section B-B (follow-up) | Check the model for all the backwalls; there should be a slope of the top of the backwall across the thickness of the wall | D14, C9 | the model's backwall tops are level across the thickness (slope along the bent only); the wedge was the silhouette of the top rising beyond the cut; sections draw the cut top level; MODEL CHECK note added |
+| B4-11 pedestal elev. (follow-up) | Don't call out the construction joint at the pedestals; if you did it should point to the line where the two concrete surfaces interface | D5 | pedestal joint callout removed (the note stays); every joint tip on the joint line at the key corner |
+| B4-10 Section C-C (follow-up) | Put the construction joint anno like this (sketch: column row between 5D1 and FFBW, level leader to the FFBW face, then down to the keyway) | D5 | C-C joint row between 5D1 and FFBW, leader by hand as sketched |
+| B4-9 Section B-B (follow-up) | Slide this down and shift Section B-B over slightly to make room for the overlapping annos between the details (18" SQUARE PRESTRESSED CONCRETE PILE) | E1 | label 0.1" lower in its band; sections overlap 0.25", details column 0.3" off |
+| B4-7 pedestal elev. (follow-up) | Don't call out 3/4 chamfers. This will go in the General Notes later | D11 | chamfer callout removed |
+| B4-6 Section A-A (follow-up) | Put the CL leader two arrows on the same line; splay out the leaders for the bars, too geometric makes it look like there's some construction on the drawing | A18 | one CL BEARING leader line with two arrowheads; stacked bar ends get a splayed fan |

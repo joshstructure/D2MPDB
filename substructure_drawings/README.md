@@ -23,6 +23,11 @@ writes the cover and the stirrup callouts in two lines, keeps dimension lines
 off parallel bars, stops pointers short of their text, removes the inner-bar
 cover of the pedestal elevation, cuts the cheek/backwall interface line in
 G-G, lowers the elevation titles, and adds the checks A3, B11, B12 and D13.
+Its follow-ups draw the cut backwall top level at the cut (the model's tops
+slope along the bent only; MODEL CHECK note), drop the pedestal joint and
+chamfer callouts, put every joint tip on the keyway corner (C-C routed as
+sketched), give bar columns splayed fans and the pier bearing centerlines one
+two-arrow leader, and move Section B-B off the details column.
 
 [`output/B4_Substructure_EndBents_Pier.dxf`](output/B4_Substructure_EndBents_Pier.dxf)
 is one DXF with plans, elevations (concrete and reinforcement together),
@@ -415,6 +420,11 @@ are not made again:
 - Details "A" (construction joint) and "B" (V-groove and geotextile fabric) on
   the (3 OF 3) sheets are schematic: the joint key and the V-groove locations
   are not in the CAD model, and those sheets carry a "MODEL CHECK" note.
+- The backwall tops are level across the wall thickness in the model (two
+  planes sloping along the bent to the crown; both faces share the same z at
+  the ends and at the crown). The engineer expects a cross slope, so the
+  (2 OF 3) sheets carry a "MODEL CHECK" note until the model has it; the
+  sections draw the cut top level (D14).
 - The pier wall is provisional and has no modeled reinforcement.
 - The SDM 12.3.F soil-reinforcement legend carries the tie-back loads of the
   selected backwall case (3.09 kip/ft service, 3.75 kip/ft factored, Strength

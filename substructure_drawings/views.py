@@ -642,19 +642,14 @@ def callouts(v, items, x_col, side, gap=None, slide=False, spread=None, avoid=No
             tips = [(xk - side * max(dx_min, side * (xk - t[0])), t[1]) for t in tips]
         return tips, knee
 
-    def stacked(tips):
-        """A column of bar ends (three or more tips at one x): drawn as
-        parallel leaders (A18), not as a fan."""
-        return len(tips) >= 3 and max(t[0] for t in tips) - min(t[0] for t in tips) < 0.03
-
     def pieces(r, y):
         """The leader pieces of row r at height y as they are drawn: the
-        arrows of a fan or single leader, or the level pieces and the
-        connector of parallel leaders."""
+        arrows of a fan or of a single leader.  (A column of bar ends is a
+        fan too, its arrows splayed from the knee: markup 2026-10-19 round 3
+        follow-up, "splay out the leaders for the bars because too geometric
+        makes it look like there's some construction on the drawing";
+        parallel leaders are for centerlines only, A18.)"""
         tips, knee = layout(r, y)
-        if stacked(tips):
-            ys_t = [t[1] for t in tips] + [y]
-            return [(t, (xk, t[1])) for t in tips] + [((xk, min(ys_t)), (xk, max(ys_t)))]
         return [(t, knee) for t in tips]
 
     def crossings(ys_):
@@ -749,12 +744,9 @@ def callouts(v, items, x_col, side, gap=None, slide=False, spread=None, avoid=No
         tips, knee = layout(r, y)
         if len(tips) == 1:
             v.leader([tips[0], knee, (x_col, y)], r["txt"], al)
-        elif stacked(tips):
-            # a column of bar ends (the side bars): parallel leaders joined by
-            # one connector and one landing (A18; a fan onto them would have
-            # its arrows within a few degrees of each other, A12)
-            v.parallel_leaders(tips, xk, y, r["txt"], al)
         else:
+            # several bars (a column of side-bar ends included): a fan with
+            # splayed arrows (A18 follow-up; A12 keeps them 5 degrees apart)
             v.leader_fan(tips, knee, r["txt"], al)
     # the rows placed: (height of the first text line, number of text lines,
     # the heights of the leader tips)
@@ -1648,32 +1640,59 @@ class Builder:
         x_front, x_back = (cs[1], cs[0]) if fs > 0 else (cs[0], cs[1])
         edges = [r for r in sec["edges"] if r["role"] not in skip_roles]
         # V2 (markup "Where are the tops of the backwalls?", Sections A-A, B-B
-        # and C-C of End Bent 1, C-C of End Bent 2; rules D4, D13): the
+        # and C-C of End Bent 1, C-C of End Bent 2; rules D4, D13, D14): the
         # extractor tags the backwall's top edge "landing" where the landing
         # slab sits on it (its outline shares the edge) and "landing" edges
         # are not drawn (D4), so the two faces of the cut backwall rose to the
-        # top with no edge joining them; and the backwall top is sloped across
-        # its thickness (the faces end 0.01 ft apart in height), so the
-        # landing edge does not meet the back face either.  The top edge is
-        # built from the faces: one visible line from the highest visible
-        # backwall point at the back face to the highest at the FFBW face,
-        # unless a backwall-role edge already joins those two points.
+        # top with no edge joining them.  The model's backwall top is two
+        # planes sloping along the bent to the crown and LEVEL across the
+        # wall thickness (both faces share the same z at the ends and at the
+        # crown; markup round 3 follow-up "Check the model for all the
+        # backwalls, there should be a slope ... across the thickness":
+        # there is none, a MODEL CHECK note says so).  Beyond the cut the
+        # top rises toward the crown, so the face edges of the section carry
+        # the silhouette of that rise (up to 0.025 ft above the cut), which
+        # read as a sloped top.  D14: a section shows the cut outline only:
+        # the top of the cut backwall is the FFBW top edge of the model at
+        # the cut (``s.backwall_top`` interpolated at the cut's u), the face
+        # edges are trimmed to it and one level line joins them.
         if eb:
-            bw_vis = [r for r in sec["edges"] if r["role"] == "backwall" and r["vis"]]
-
-            def face_top(x):
-                zs = [p[1] for r in bw_vis for p in edge_points(r) if abs(p[0] - x) <= 0.01]
-                return max(zs) if zs else None
-            z_bk, z_ff = face_top(x_back), face_top(s.ffbw_s)
-            tmpl = next((r for r in bw_vis if r["t"] in ("L", "P")), None)
-            if z_bk is not None and z_ff is not None and tmpl is not None:
-                top_a, top_b = (x_back, z_bk), (s.ffbw_s, z_ff)
-                joined = any(r["t"] in ("L", "P") and any(
-                    (math.dist(a, top_a) <= 0.005 and math.dist(b, top_b) <= 0.005)
-                    or (math.dist(a, top_b) <= 0.005 and math.dist(b, top_a) <= 0.005)
+            u_cut = s.u(xc)
+            top = s.backwall_top
+            z_cut = None
+            for (ua, za), (ub, zb) in zip(top, top[1:]):
+                if min(ua, ub) - 1e-6 <= u_cut <= max(ua, ub) + 1e-6 and abs(ub - ua) > 1e-9:
+                    z_cut = za + (zb - za) * (u_cut - ua) / (ub - ua)
+                    break
+            if z_cut is not None:
+                trimmed = []
+                for r in edges:
+                    if r["role"] != "backwall" or not r["vis"] or r["t"] not in ("L", "P"):
+                        trimmed.append(r)
+                        continue
+                    pts = [list(p) for p in r["p"]]
+                    if all(p[1] <= z_cut + 1e-6 for p in pts):
+                        trimmed.append(r)
+                        continue
+                    if all(p[1] >= z_cut - 1e-6 for p in pts):
+                        continue   # wholly above the cut top: the silhouette beyond the cut
+                    # a two-point face edge crossing the cut top: keep the part below
+                    if len(pts) == 2:
+                        lo, hi = sorted(pts, key=lambda p: p[1])
+                        t = (z_cut - lo[1]) / (hi[1] - lo[1])
+                        cut_pt = [lo[0] + t * (hi[0] - lo[0]), z_cut] + list(lo[2:])
+                        trimmed.append(dict(r, p=[lo, cut_pt]))
+                    else:
+                        trimmed.append(dict(r, p=[p for p in pts if p[1] <= z_cut + 1e-6]))
+                edges = trimmed
+                bw_vis = [r for r in edges if r["role"] == "backwall" and r["vis"] and r["t"] in ("L", "P")]
+                top_a, top_b = (x_back, z_cut), (s.ffbw_s, z_cut)
+                joined = any(any(
+                    (math.dist(a[:2], top_a) <= 0.005 and math.dist(b[:2], top_b) <= 0.005)
+                    or (math.dist(a[:2], top_b) <= 0.005 and math.dist(b[:2], top_a) <= 0.005)
                     for a, b in zip(r["p"], r["p"][1:])) for r in bw_vis)
-                if not joined:
-                    edges.append(dict(tmpl, t="L", p=[list(top_a), list(top_b)], vis=1, role="backwall"))
+                if not joined and bw_vis:
+                    edges.append(dict(bw_vis[0], t="L", p=[list(top_a), list(top_b)], vis=1, role="backwall"))
         straps = [r for r in sec["edges"] if r["role"] == "strap" and r["vis"]] if eb else []
         # D5: the keyed construction joint at the cap/backwall interface (the
         # key of DETAIL "A": 4" wide at the middle third of the backwall, 1/2"
@@ -1805,8 +1824,8 @@ class Builder:
             # the leaders come from the right of the section: one crosses the
             # cap centerline when its bearing lies left of it (the farther
             # bearing, smaller s, has the upper leader y_a)
-            gaps = [(y - 0.06 * k, y + 0.06 * k)
-                    for y, b in zip((y_a, y_b), sorted(s.bearings, key=lambda b: b["s"])) if b["s"] < ccl - 1e-6]
+            # (V22: one leader at y_a for both bearings)
+            gaps = [(y_a - 0.06 * k, y_a + 0.06 * k)] if min(b["s"] for b in s.bearings) < ccl - 1e-6 else []
         # V19 (a stub shorter than its dash pattern plots solid): adjacent gaps
         # are merged and no piece shorter than one pattern is left; the stub
         # under the bottom row that the centerline label points to is made a
@@ -1898,20 +1917,14 @@ class Builder:
         # V3 (markups "Move to make the leader cross less drawing items" and
         # "Adjust so leader doesnt cross so many drawing items", B4-10 and
         # B4-3; rules A14, A11): in Section C-C the pedestal stands on the
-        # cap between the label column and the backwall, so the CONST. JOINT
-        # leader from the column ran across the pedestal, its bars, the
-        # bearing centerline and the extension lines.  Where a pedestal
-        # stands (``ped_here``) the joint is called out with the cap
-        # callouts instead: one line, its tip the corner where the cap front
-        # face meets the cap top (the pedestal is cast on the cap there, its
-        # sheet's note calls the cap top a construction joint); the packer
-        # puts its row between the pedestal bar rows and the cap bar rows.
-        # The keyway under the backwall stays drawn, DETAIL "A" is referenced
-        # from A-A and B-B.
+        # cap between the label column and the backwall.  The joint callout
+        # stays in the backwall column (follow-up markups "Don't call out the
+        # construction joint at the pedestals", "Put the construction joint
+        # anno like this": its row between the 5D1 and FFBW rows, the leader
+        # level to just before the FFBW face and then down to the keyway, so
+        # it crosses no pedestal bar; see ``ped_here`` below)
         ped_here = eb and (any(rb["family"] == "pedestal" for rb, _ in shapes)
                            or any(s.table[m]["family"] == "pedestal" for m in cap_dots))
-        if ped_here:
-            items.append(([(x_front, s.cap_top)], "CONST. JOINT"))
         rows_front = callouts(v, items, x_front + fs * 0.25 * k, fs)
         # backwall: horizontals cut (dots), verticals in plane.  On the bridge
         # side the cap and bearing centerlines and the extension lines (B3)
@@ -1942,12 +1955,16 @@ class Builder:
                     lab += "\\P(%s BEYOND CUT)" % fdot.ft_in(rb["dist"], 0.25)
                 col_items.append(([(pts[0][0], None)], lab, 2.0))
             col_items.append(([(s.ffbw_s, None)], "FFBW", 1.0))
-            # the joint's tip: at the keyway (mid thickness of the backwall);
-            # where a pedestal stands between the column and the backwall
-            # (Section C-C) the joint is called out with the cap callouts
-            # above instead (V3, ``ped_here``)
+            # the joint's tip ON the joint line (markup 2026-10-19 round 3
+            # follow-up: "it should point to the line where the two concrete
+            # surfaces interface"): the corner where the straight joint piece
+            # meets the keyway on the FFBW side (D5); the joint row is the
+            # bottom row, except with a pedestal in the cut (C-C), where it
+            # is drawn by hand below between the 5D1 and FFBW rows
+            x_key = x_back + fs * 8 * IN
+            cj_txt = "CONST. JOINT\\P(SEE DETAIL \"A\")"
             if not ped_here:
-                col_items.append(([((x_back + s.ffbw_s) / 2, s.cap_top)], "CONST. JOINT\\P(SEE DETAIL \"A\")", 0.0))
+                col_items.append(([(x_key, s.cap_top)], cj_txt, 0.0))
             # (deviation from the 0.4 k beyond the bearing centerline: there the
             # texts run across the extension lines of the dimension rows at the
             # cap front face, A1; the column stands on the cap callouts' column,
@@ -1977,7 +1994,26 @@ class Builder:
                 if not hit:
                     break
                 z_lo_row = max(hit) + 0.081 * k
-            callouts(v, col_items, x_front + fs * 0.25 * k, fs, spread=(z_lo_row, z_hi_row))
+            x_col = x_front + fs * 0.25 * k
+            if ped_here:
+                # Section C-C: four rows at equal pitch, FFBW, CONST. JOINT,
+                # 5D1, CL BEARING from the bottom; the joint's leader runs
+                # level from its text to 0.1 ft before the FFBW face and then
+                # down to the key corner, so the angled piece lies within the
+                # backwall (it crosses the FFBW line and the face bar only,
+                # never the pedestal, A14) and stays above the FFBW leader
+                # (A11; the engineer's sketch)
+                n_rows = len(col_items) + 1
+                pitch_rows = (z_hi_row - z_lo_row) / (n_rows - 1)
+                fixed = []
+                for i, it in enumerate(sorted(col_items, key=lambda it: it[2])):
+                    fixed.append((it[0], it[1], z_lo_row + pitch_rows * (i if i == 0 else i + 1)))
+                callouts(v, fixed, x_col, fs)
+                y_cj = z_lo_row + pitch_rows
+                v.leader([(x_key, s.cap_top), (s.ffbw_s + fs * 0.1, y_cj), (x_col, y_cj)], cj_txt,
+                         "left" if fs > 0 else "right")
+            else:
+                callouts(v, col_items, x_col, fs, spread=(z_lo_row, z_hi_row))
             # B5: embedment of the backwall verticals below the joint, beside
             # the FFBW on the bridge side, from the cap top to the bar end
             if bw:
@@ -2046,9 +2082,12 @@ class Builder:
                     else "20\" Ø STEEL\\PPIPE PILE")
             # the label on the front side beyond the cap face at the pile stub's
             # level (the bottom row's extension lines fill the space under the
-            # cap; A1)
+            # cap; A1).  Markup 2026-10-19 round 3 follow-up ("Slide this down
+            # ... to make room for the overlapping annos between the
+            # details"): the text as low as the band over the bottom row's
+            # pulled values allows, its first line 0.2 k under the tip
             side_x = pe[2] if fs > 0 else pe[0]
-            v.leader([(side_x, z_lo + 0.25), (x_front + fs * 0.3 * k, z_lo + 0.25 - 0.1 * k)], desc, al_f)
+            v.leader([(side_x, z_lo + 0.25), (x_front + fs * 0.3 * k, z_lo + 0.25 - 0.2 * k)], desc, al_f)
         # ------------------------------------------------ dimensions
         dot_all = [p for ps in cap_dots.values() for p in ps]
         lowz = min(p[1] for p in dot_all if p[1] < s.cap_bot + 0.6)
@@ -2198,17 +2237,17 @@ class Builder:
         near, far = max(bearings, key=lambda b: b["s"]), min(bearings, key=lambda b: b["s"])
         z_lo = s.cap_top - 0.2
         v.line((far["s"], z_lo), (far["s"], z_bct), "CL_Minor")
-        # V19: the farther bearing has the upper leader (y_a), which passes over
-        # the nearer bearing's centerline, so that line ends just above its own
-        # leader (y_b): no crossing, no gap, no stub shorter than a dash pattern
+        # V22 (markup 2026-10-19 round 3 follow-up, "Put the CL leader two
+        # arrows on the same line"): ONE level leader at y_a from the text to
+        # the farther bearing's centerline, with a second arrowhead where it
+        # crosses the nearer one; the nearer centerline ends at that
+        # arrowhead (its tip on the line's end), the farther one runs on above
+        # the leader (A13: the label points at the extended centerline)
         if near is not far:
-            v.line((near["s"], z_lo), (near["s"], y_b + 0.06 * k), "CL_Minor")
-        # V11 (markup "Put these parallel leaders in the same plane. It should
-        # feel like the leaders only touch the text at one point"): the two
-        # horizontal leaders join one vertical connector at xe, one landing at
-        # y_a, the text once
-        tips = [(far["s"], y_a)] + ([(near["s"], y_b)] if near is not far else [])
-        v.parallel_leaders(tips, xe, y_a, CL + " BEARING\\P(TYP.)", "left")   # two lines: sheet room
+            v.line((near["s"], z_lo), (near["s"], y_a), "CL_Minor")
+        v.leader([(far["s"], y_a), (xe, y_a)], CL + " BEARING\\P(TYP.)", "left")   # two lines: sheet room
+        if near is not far:
+            v.arrowhead((near["s"], y_a), (xe, y_a), "Leader")
 
     def _daylight(self, v, shapes, ccl):
         """C4: an in-plane bar drawn along another (a backwall vertical over a
@@ -2639,25 +2678,15 @@ class Builder:
         v.break_line((box[0], box[1]), (box[2], box[1]))
         for xv in (box[0], box[2]):
             v.break_line((xv, box[1]), (xv, s.cap_top + 0.04 * k))
-        # construction joint at the cap top (pedestal cast on the cap): the cap
-        # top line itself, named by the leader (D5); no hidden line over it (D1)
-        # B6 (markup "Make leaders either 90 degree bends or obtuse interior
-        # angles"): the knee directly above the tip, so the leader is vertical
+        # the cap top under the pedestal is a construction joint, but it is not
+        # called out here (markup 2026-10-19 round 3 follow-up, "Don't call out
+        # the construction joint at the pedestals"): the sheet note says the
+        # pedestals are cast on the cap and the cap top is a construction joint
+        # (D5).  No chamfer callout either (follow-up "Don't call out 3/4
+        # chamfers. This will go in the General Notes later"; D11).
         W = uu[1] - uu[0]
-        # V20: the tip on the cap top line just beyond the pedestal end (inside
-        # the cap stub), not through the pedestal and its bars; the text over
-        # the stub, under the TOP OF PEDESTAL text and clear of the 2" COVER value
-        # (two lines, 0.25 k up: under the chamfer label of the pier's pedestal
-        # and left of the 2" COVER value beyond the break line)
-        xj = uu[1] + 0.2 * k
-        v.leader([(xj, s.cap_top), (xj, s.cap_top + 0.25 * k)], "CONST.\\PJOINT", "left")
         v.leader([(uu[0] + 0.8 * W, ztop), (uu[0] + 0.8 * W, ztop + 0.52 * k)],
                  "TOP OF PEDESTAL\\P(SEE TABLE FOR\\PELEVATIONS)", "left")
-        # chamfer callout only when the model's pedestal top is chamfered
-        # (D-044 omitted the nominal 3/4" chamfers: 4 top corners, no callout)
-        if len(ped["top_vertices"]) > 4:
-            v.leader([(uu[1] - 0.02, ztop - 0.02), (uu[1] + 0.12 * k, ztop + 0.12 * k)],
-                     "¾\" X ¾\"\\PCHAMFER (TYP.)", "left")
         # marks
         xb = [x for x in pbars if x["subtype"] == "x"]
         yb = [x for x in pbars if x["subtype"] == "y"]
