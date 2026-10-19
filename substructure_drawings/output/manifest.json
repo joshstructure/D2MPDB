@@ -2,7 +2,7 @@
  "generator": "substructure_drawings.build",
  "version": "2.5.0",
  "dxf": "B4_Substructure_EndBents_Pier.dxf",
- "dxf_sha256": "c7ff2a571a5f58788d26ad9121aef90ae7d88de44dbfbddfe81de3dadbf9de69",
+ "dxf_sha256": "eadd77d30f494751c1bc043cf7545aeaac1b7959a20218b058ecf003d6d301e6",
  "snapshot_sha256": "3c9602f2917d3e93114489f07ed55255cf4d77c8651f7a3d86517ad8a6ebd941",
  "model_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df",
  "units": "international feet ($INSUNITS=2); model space 1:1",

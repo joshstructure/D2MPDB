@@ -454,9 +454,9 @@ are not made again:
 - The open stirrups at the piles are listed as Type 5 (feet D and E
   dimensioned, no hook style) and field bent to clear the pile heads. Check
   the type and hook style assignments with the FDOT Rebar program before issue.
-- The backwall verticals 5D1 and the cheek wall verticals 4E1 are to be Type
-  10 L-bars with a leg into the cap (engineer's bar-list review 2026-10-19),
-  but the model carries them as straight schematic dowels, so the list shows
-  Type 1 and carries a "MODEL CHECK" note until the model has the legs.
+- The cheek wall verticals 4E1 are to be Type 10 L-bars (engineer's bar-list
+  review 2026-10-19), but the model carries them straight, so the list shows
+  Type 1 and carries a "MODEL CHECK" note until the model has the legs. The
+  backwall verticals 5D1 and horizontals 4D2 are straight bars, Type 1.
 - Existing coordination findings in the model remain open, as the FreeCAD
   README records (COH-024/025). The drawings show the model as it is.

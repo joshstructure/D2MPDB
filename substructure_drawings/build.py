@@ -724,18 +724,17 @@ class Composer:
                  "OUT-TO-OUT (SDM 4.3.10.C).",
                  ("VARYING LENGTHS: " + " ".join(foot)) if foot else "",
                  "PILES AND THE CHEEK LUG WELDED WIRE REINFORCEMENT ARE NOT INCLUDED IN THIS LIST."]
-        # engineer's review 2026-10-19 ("D should be a 10", "E1 and E4 are
-        # type 10s"): the backwall verticals and the cheek wall verticals are
-        # L-bars with a leg into the cap, but the CAD model carries them as
-        # straight schematic dowels, so the list follows the model (Type 1) and
-        # says so until the model has the legs (D11: no invented geometry)
-        dowels = sorted({"%s %s" % (s.title, mark) for s in self.sup.values() for mark, e in s.table.items()
-                         if e["family"] in ("backwall", "cheek") and e["subtype"] == "vert"
-                         and barlib.shape_name(e) == "STRAIGHT"})
-        if dowels:
-            notes.insert(3, "MODEL CHECK (REMOVE BEFORE ISSUE): %s ARE STRAIGHT SCHEMATIC DOWELS IN THE CAD MODEL AND "
-                            "ARE LISTED AS TYPE 1; THEY ARE TO BE TYPE 10 WITH A LEG INTO THE CAP. ADD THE LEGS TO THE "
-                            "MODEL." % ", ".join(dowels))
+        # engineer's review 2026-10-19 ("E1 and E4 are type 10s"; the backwall
+        # D1/D2 are straight bars): the cheek wall verticals are L-bars, but
+        # the CAD model carries them straight, so the list follows the model
+        # (Type 1) and says so until the model has the legs (D11: no invented
+        # geometry)
+        straight_l = sorted({"%s %s" % (s.title, mark) for s in self.sup.values() for mark, e in s.table.items()
+                             if e["family"] == "cheek" and e["subtype"] == "vert"
+                             and barlib.shape_name(e) == "STRAIGHT"})
+        if straight_l:
+            notes.insert(3, "MODEL CHECK (REMOVE BEFORE ISSUE): %s ARE STRAIGHT IN THE CAD MODEL AND ARE LISTED AS "
+                            "TYPE 1; THEY ARE TO BE TYPE 10 L-BARS. ADD THE LEGS TO THE MODEL." % ", ".join(straight_l))
         sh.notes(xr, y, "NOTES:", [n for n in notes if n], width_in=7.3)
         self.finish(sh)
 

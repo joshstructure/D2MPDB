@@ -358,12 +358,12 @@ symbol at page scale.
   to equal the index's standard-hook size is still a leg, so no bar
   carries a 90 degree hook style and Types 17 and 18 (hooked straight
   bars) are not used (bar-list review 2026-10-19: "C should be an 11", "E3
-  is type 11", "E1 and E4 are type 10s", "D should be a 10").  The backwall
-  verticals 5D1 and the cheek verticals 4E1 are to be Type 10 with a leg
-  into the cap; the model carries them as straight schematic dowels, so
-  the list follows the model and a MODEL CHECK note says so until the
-  model has the legs (D11).  Markups on B4-9: "Remove this, they can refer
-  to the Standard Plans"; note 2 wording.
+  is type 11", "E1 and E4 are type 10s"; the backwall D1 and D2 are
+  straight bars, Type 1).  The cheek verticals 4E1 are to be Type 10
+  L-bars; the model carries them straight, so the list follows the model
+  and a MODEL CHECK note says so until the model has the legs (D11).
+  Markups on B4-9: "Remove this, they can refer to the Standard Plans";
+  note 2 wording.
 - **C7 Bar marks** per SDM 4.3 (size + designation, unique within a
   component, numbers from 1 without gaps, no I, O or Q); the FreeCAD rebar
   Mark properties carry the same marks (D-042), so marks are re-applied to
@@ -805,4 +805,4 @@ Markups on the round-4 sheets, 2026-10-19 round 5:
 | B4-1 / B4-8 plan | Breaklines should be at broken elements (the break lines across the cheek wall corners) | D12, D15 | the coping behind each cheek begins beyond the clip, so nothing of it is drawn; cuts are read from the drawn edges, and a break-breaks-nothing check (D15) guards it |
 | B4-1 elevation | Move 1 (the 1'-0" (MIN.) embedment value) to make room for the other anno and adjust the leaders | B7, A2 | embedment dimension in the pile nearest the PGL, value in the run space at the PGL; the pile description's leader keeps the outboard spaces |
 | B4-12 bar list | Should Bar B2 be a type 5 not a type 11 | C6 | yes: the open stirrups 6B2/5B2 are Type 5 (B = height, C = width, D = E = feet), no hook style |
-| B4-12 bar list | Check the other types closely, there are other wrong ones: C should be an 11, D should be a 10, E1 and E4 are type 10s, E3 is type 11 | C6 | 90° end legs are legs, not hooks: 5C, 4E3, pier 5D1/5D2 Type 11; 4E4 Type 10; 5D1 and 4E1 straight in the model → MODEL CHECK note on the bar list (Type 10 intended) |
+| B4-12 bar list | Check the other types closely, there are other wrong ones: C should be an 11, E1 and E4 are type 10s, E3 is type 11; D1 and D2 are straight bars | C6 | 90° end legs are legs, not hooks: 5C, 4E3, pier 5D1/5D2 Type 11; 4E4 Type 10; 4E1 straight in the model → MODEL CHECK note on the bar list (Type 10 intended); backwall 5D1/4D2 Type 1 |
