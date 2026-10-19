@@ -493,6 +493,8 @@ class CapBpadJournal(unittest.TestCase):
             if name != 'CapDesignBasis':
                 self.assertEqual(shape(part), shape(fragment_tree), f'{fragment.name} differs from the review document')
             self.assertNotIn(b'<!--', fragment.read_bytes())
+            # Tied to the report by the case and formula hashes only: a pier_cap edit must not force a journal task.
+            self.assertNotIn(b'cap notebook package', fragment.read_bytes())
             if name in taken:                 # promoted (T012): the journal's report must be the committed fragment
                 journal_part = Journal.load(JOURNAL).part(f'report:{name}')
                 self.assertEqual(shape(ET.fromstring(journal_part)), shape(fragment_tree),

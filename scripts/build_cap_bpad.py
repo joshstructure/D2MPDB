@@ -191,6 +191,10 @@ class Sheet:
             self.in_fig3_data = True
             return
         if text.startswith('Distilled from'):
+            if self.journal is not None:
+                # The journal edition is tied to its report by the case and formula hashes alone: the notebook package
+                # revision changes with every pier_cap edit and would force a journal task each time.
+                text = re.sub(r';\s*cap notebook package [0-9a-f]+', '', text)
             text = text + ' ' + self.extra_provenance
         elif text.startswith('Tool status:'):
             text = text.replace('Inputs are highlighted yellow; key results are boxed.',

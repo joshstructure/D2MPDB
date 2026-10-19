@@ -1,0 +1,18 @@
+{
+  "task": "T013",
+  "base_sha256": "c0ecb6e34aa07ac5a5402ef41d0a08b3fbf1b00d301292a3da80ff06e77e8238",
+  "components": {
+    "report:CapDesignEndBentOne": {
+      "file": "000.xml",
+      "sha256": "b51a551e26d3d695dfcdc8783ea3d58f988e69bd38a156848ba681eb79fe5af6"
+    },
+    "report:CapDesignEndBentTwo": {
+      "file": "001.xml",
+      "sha256": "5ab002dd4fb0b77e1834fbe981fea06e7816297399a964aafc32334b3404ca74"
+    },
+    "report:CapDesignPier": {
+      "file": "002.xml",
+      "sha256": "f3fb8fbd63ab45c7aee10aa076a132b82c262c41f17f168ebfac56ec0b1765bf"
+    }
+  }
+}

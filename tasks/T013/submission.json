@@ -1,0 +1,25 @@
+{
+  "summary": "Provenance-only refresh of CapDesignEndBentOne, CapDesignEndBentTwo and CapDesignPier: the 'Distilled from' paragraph no longer names the cap notebook package revision. CapDesignBasis is unchanged. No formula, cache, table or canvas changes.",
+  "published_outputs": [
+    "No published name changes; every DC_*, Status and Chk_* definition is byte-identical to T012"
+  ],
+  "assumptions_and_conventions": [
+    "Each report remains tied to its source by the report file name, the canonical case SHA-256 and the C005 formula SHA-256 printed in its provenance paragraph",
+    "The cap notebook package revision is recorded in cap_bpad/journal/verification.json, not in the journal"
+  ],
+  "downstream_impact": [
+    "FBMPEndBent reads CapDesignEndBentOne (block 2 steel); the referenced values are unchanged"
+  ],
+  "external_analysis": "FB-MultiPier results unchanged; no engineering value changes.",
+  "checks_performed": [
+    "tools/bpad_workflow.py check T013: structural delta passed, 0 structural issues, 0 cached errors",
+    "tasks/T013/build_components.py: CapDesignBasis unchanged; the three cap reports differ from the journal only where the package revision text was removed",
+    "scripts/build_cap_bpad.py --journal: 14/14/15 journal references verified; 891/891/859 values match the cap tool; 535 match the Mathcad sheet",
+    "Line diff of each changed report against the T012 journal recorded in independent-checks.json"
+  ],
+  "open_items": [
+    "Native Blockpad recalculation and visual review not performed (optional under the promotion policy)",
+    "BridgeGeometry_2Beam.EndBentCap_length (17 ft 8 in) remains incoherent with the 235-in caps and the 251-in cap+cheek envelope; the end-bent reports keep L_cap = 251 in literal",
+    "C005 (PierCapDesign) still duplicates the pier inputs under D-003"
+  ]
+}
