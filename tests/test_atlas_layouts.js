@@ -59,7 +59,7 @@ function validate(data,mode,selected) {
 const wide={nodes:Array.from({length:45},(_,i)=>node('SOURCE-'+i,stages[i%5],'match')),edges:[]};
 wide.edges=wide.nodes.slice(1).map((n,i)=>link(wide.nodes[i].id,n.id));
 for(const data of [graph,wide])for(const mode of layouts.modes)validate(data,mode.id,data.nodes[2].id);
-const snapshot=path.join(__dirname,'../design_atlas/dist/atlas-data.json');
+const snapshot=process.argv[2]||path.join(__dirname,'../design_atlas/dist/atlas-data.json');
 if(fs.existsSync(snapshot)) {
   const data=JSON.parse(fs.readFileSync(snapshot,'utf8'));
   for(const mode of layouts.modes)validate(data,mode.id,'PIER-REPORT');

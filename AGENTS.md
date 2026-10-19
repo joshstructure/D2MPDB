@@ -7,6 +7,28 @@ from the local checkout to GitHub after verification. This applies across projec
 chats. Include only completed work; preserve concurrent unfinished changes and
 never force-push. Do not commit or push for read-only or planning-only requests.
 
+## Design atlas refresh (required after source changes)
+
+- The user requires the private design atlas to follow the current project
+  sources. Before finishing a task that changes source files, source selection,
+  the coherence workbook, journal, cases, reports, analysis exports, or atlas
+  code, run `.venv\Scripts\python.exe -m design_atlas.refresh status`.
+- If it reports `refresh_required`, run `prepare` and follow
+  `design_atlas/UPDATE_WORKFLOW.md` through verified publication. If it reports
+  `deployment_pending`, reconcile that deployment first. Do not stop at a local
+  build or mark a failed/pending publication complete. The user's 19 October
+  request authorizes these routine updates to the existing private Site.
+- Run this gate even when unsure whether a changed file is used: its deterministic
+  source inventory decides. A `current` result means no action. Read-only tasks
+  do not require a refresh. New unregistered files are not automatically adopted;
+  follow the source-selection workflow before they become controlling evidence.
+- Use the fixed parsers and checks; never let an AI rewrite values, infer source
+  handoffs, update expected hashes to hide differences, or run native solvers as
+  part of an atlas refresh. Keep existing gaps and conflicts visible.
+- If publication tools/access are unavailable, keep the prepared candidate and
+  report the exact blocker. Never claim the hosted atlas is current. Preserve
+  unrelated work and never store credentials in the repository.
+
 ## BPAD workflow
 
 Existing notebook workflows are documented in README.md. These additional rules

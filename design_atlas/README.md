@@ -16,9 +16,13 @@ Equivalent command, from the repository root:
 .venv\Scripts\python.exe -m design_atlas.build
 ```
 
-The private hosted copy is a published snapshot. A local refresh does **not**
-automatically update that publication. Publish the rebuilt `dist/` directory
-through the same Sites project to refresh it. The initial site is
+The private hosted copy is a published snapshot. Source-changing agents must run
+the deterministic refresh gate and complete the publication workflow in
+[UPDATE_WORKFLOW.md](UPDATE_WORKFLOW.md), as required by the root AGENTS.md.
+`python -m design_atlas.refresh status` compares source hashes to the last
+confirmed publication; `prepare` builds only when needed. The local scheduled
+fallback uses the same gate. A plain local build is **not** a publication.
+The existing site is
 `https://d2-pier-cap-design-atlas.ochrebee15.chatgpt.site`.
 
 ## Explore

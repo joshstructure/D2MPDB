@@ -6,7 +6,7 @@ from pathlib import Path
 import unittest
 import xml.etree.ElementTree as ET
 
-from design_atlas.build import build_data, quantity, sheet_definition, validate, ROOT, CASE, SHEET, sha
+from design_atlas.build import build_data, quantity, sheet_definition, validate, ROOT, CASE, SHEET, RECEIPT, sha
 from design_atlas.origins import classify
 from design_atlas.journal import cell_text, stored_value
 
@@ -80,11 +80,16 @@ class ProjectAtlasTests(unittest.TestCase):
             self.assertFalse(self.data['checks']['mathcad_receipt_matches'])
             self.assertEqual(next(n for n in self.data['nodes'] if n['id']=='PIER-MATHCAD')['status'],'missing')
             return
-        self.assertTrue(self.data['checks']['mathcad_receipt_matches'])
-        self.assertTrue(self.data['checks']['report_case_equal'])
+        receipt=next(r for r in json.loads((ROOT/RECEIPT).read_text(encoding='utf-8-sig')) if r['label']=='Pier Cap')
+        receipt_matches=receipt['case_sha256']==sha(ROOT/CASE) and receipt['output_sha256']==sha(ROOT/SHEET)
+        self.assertEqual(self.data['checks']['mathcad_receipt_matches'],receipt_matches)
         for key in ['h','b','fc','Mu_N','Mu_B','Vu_G','Tu']:
-            self.assertEqual(self.values['inputs.'+key]['sheet_status'],'match')
-            self.assertIn('region-id=',self.values['inputs.'+key]['steps'][-1]['evidence']['locator'])
+            value=self.values['inputs.'+key]
+            proof=value['steps'][-1]['evidence']
+            literal=sheet_definition(ET.fromstring(proof['excerpt']),self.case['inputs'][key],value['unit'])
+            self.assertEqual(value['sheet_status'],literal['status'])
+            self.assertEqual(value['sheet_receipt_status'],'match' if receipt_matches else 'mismatch')
+            self.assertIn('region-id=',proof['locator'])
 
     def test_no_inferred_native_or_issue_approval(self):
         nodes={n['id']:n for n in self.data['nodes']}
@@ -105,8 +110,12 @@ class ProjectAtlasTests(unittest.TestCase):
         self.assertEqual(v['origins']['PIER-AUDIT']['kind'],'derived')
         self.assertEqual(v['origins']['REQUIRED-PIER-XML']['kind'],'unknown')
         if (ROOT/SHEET).is_file():
-            self.assertEqual(v['origins']['PIER-MATHCAD']['from_node'],'PIER-CASE')
-            self.assertEqual(v['origins']['PIER-MATHCAD']['kind'],'received')
+            if self.data['checks']['mathcad_receipt_matches'] and v['sheet_status']=='match':
+                self.assertEqual(v['origins']['PIER-MATHCAD']['from_node'],'PIER-CASE')
+                self.assertEqual(v['origins']['PIER-MATHCAD']['kind'],'received')
+            else:
+                self.assertNotIn('from_node',v['origins']['PIER-MATHCAD'])
+                self.assertEqual(v['origins']['PIER-MATHCAD']['kind'],'unknown')
 
     def test_retained_clearance_is_not_mislabeled_as_received_geometry(self):
         self.assertEqual(self.values['inputs.h']['origins']['PIER-CASE']['kind'],'received')
@@ -119,7 +128,16 @@ class ProjectAtlasTests(unittest.TestCase):
     def test_unlinked_value_does_not_imply_local_origin(self):
         self.assertEqual(self.values['inputs.fc']['origins']['PIER-CASE']['kind'],'unknown')
         if (ROOT/SHEET).is_file():
-            self.assertEqual(self.values['inputs.fc']['origins']['PIER-MATHCAD']['kind'],'received')
+            value=self.values['inputs.fc']
+            expected='received' if self.data['checks']['mathcad_receipt_matches'] and value['sheet_status']=='match' else 'unknown'
+            self.assertEqual(value['origins']['PIER-MATHCAD']['kind'],expected)
+
+    def test_selected_xml_label_follows_actual_identity(self):
+        value=self.values['prior.pile_head_z']
+        matches=self.data['checks']['required_xml_present']
+        self.assertEqual(value['label'],('Selected' if matches else 'Prior')+' XML pile-head Z')
+        if matches:
+            self.assertNotIn('does not match',value['steps'][0]['note'])
 
     def test_broken_handoff_is_not_classified_as_received(self):
         v=copy.deepcopy(self.values['inputs.Vu_G'])

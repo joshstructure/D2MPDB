@@ -195,7 +195,7 @@ def build_data(root=ROOT):
     registered_xml=next(n for n in nodes if n['id']=='PIER-XML')
     xml_match=registered_xml['document']['sha256']==required_hash
     node('REQUIRED-PIER-XML','Report-matching FBMP run',registered_xml['path'] if xml_match else '',status='match' if xml_match else 'missing',
-         detail='Exact analysis export required by the selected case. A retained audit is available; the registered prior XML is not substituted.',
+         detail='Exact analysis export required by the selected case. '+('The registered XML fingerprint matches.' if xml_match else 'A retained audit is available; a different registered XML is not substituted.'),
          stage_name='Analysis',expected_sha256=required_hash,
          evidence=[evidence(CASE,'/analysis/xml_audit/sha256',required_hash)])
     node('PIER-AUDIT','Retained analysis audit',CASE,'recorded',
@@ -303,7 +303,7 @@ def build_data(root=ROOT):
             if local_allowance: v['source_status']='retained local allowance'
             v['steps'].append(step('Retained local allowance' if local_allowance else 'Recorded analysis geometry','PIER-AUDIT',CASE,
                 '/analysis/geometry/'+key,case['analysis']['geometry'][key],'recorded',
-                'Saved local allowance retained during import; see /analysis/notes.' if local_allowance else 'Saved analysis geometry, not an independent measurement of the unavailable matching XML.',unit))
+                'Saved local allowance retained during import; see /analysis/notes.' if local_allowance else 'Saved analysis geometry; not independently re-extracted from XML.',unit))
             v['node_ids'].insert(0,'PIER-AUDIT')
         if key=='Vu_L':
             v['transform']='Set equal to global shear; no low-shear interval is established by this import.'
@@ -384,10 +384,11 @@ def build_data(root=ROOT):
                 if z is not None: prior_nodes.append((n,z))
         if prior_nodes:
             zvals=sorted({float(z.text) for _,z in prior_nodes})
-            values.append({'id':'prior.pile_head_z','key':'Z','label':'Prior XML pile-head Z','value':zvals,'unit':'in',
-                'category':'Prior XML','node_ids':['PIER-XML'],'source_status':'direct XML; prior run',
-                'sheet_status':'not applicable','steps':[step('Preserved prior XML nodes','PIER-XML',prior_path,
-                '//NODE[@location="Pier"]/COORDINATES/Z',zvals,'recorded','This prior file does not match the selected cap report.') ]})
+            # Retain the stable ID so saved links survive source-register changes.
+            values.append({'id':'prior.pile_head_z','key':'Z','label':('Selected' if xml_match else 'Prior')+' XML pile-head Z','value':zvals,'unit':'in',
+                'category':'Selected XML' if xml_match else 'Prior XML','node_ids':['PIER-XML'],'source_status':'direct XML; '+('matching selected run' if xml_match else 'prior run'),
+                'sheet_status':'not applicable','steps':[step('Registered XML nodes','PIER-XML',prior_path,
+                '//NODE[@location="Pier"]/COORDINATES/Z',zvals,'recorded','Registered XML fingerprint matches the selected case.' if xml_match else 'This prior file does not match the selected cap report.') ]})
     issues=read_tracker(root/TRACKER);document(TRACKER)
     for issue in issues:
         refs=issue.get('Source references','')
