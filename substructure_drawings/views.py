@@ -2782,6 +2782,36 @@ class Builder:
                 "%s VERTICALS (%s, %s); RECONCILE THE CAGES."
                 % (b["mark"], fdot.ft_in(d, 0.125), cb["mark"], b["name"].upper(), cb["name"].upper()))
 
+    def bar_overlap_note(self):
+        """Model finding (markup 2026-10-19, Section G-G: "I'm seeing doubled
+        bars here.  Do they exist in the model?"; C9): two backwall verticals
+        of one face closer than a bar diameter, centre to centre.  The model's
+        run of 21 bars at 1'-0" from one end bar lands 3/8" short of the
+        other end bar's offset, where a closing bar stands as well, on both
+        faces of both backwalls.  Returns the note for the closest pair, or
+        None."""
+        s = self.s
+        if s.kind != "EB":
+            return None
+        vert = [b for b in s.bars if b["family"] == "backwall" and b["subtype"] == "vert"]
+        best = None
+        for i, a in enumerate(vert):
+            for b in vert[i + 1:]:
+                if abs(a["pts"][0][1] - b["pts"][0][1]) > 0.01:
+                    continue   # not the same face
+                d = abs(s.u(a["pts"][0][0]) - s.u(b["pts"][0][0]))
+                if d < (a["dia_in"] + b["dia_in"]) / 24.0 and (best is None or d < best[0]):
+                    best = (d, a, b)
+        if best is None:
+            return None
+        d, a, b = best
+        side = "LEFT" if s.u(a["pts"][0][0]) < 0 else "RIGHT"
+        return ("MODEL CHECK (REMOVE BEFORE ISSUE): BACKWALL VERTICALS %s %s AND %s STAND %s APART, CENTRE TO CENTRE "
+                "(OVERLAPPING), NEAR THE %s CHEEK WALL ON BOTH FACES: THE RUN AT 1'-0\" FROM THE OTHER END BAR LANDS "
+                "%s SHORT OF ITS END BAR; RECONCILE THE LAYOUT."
+                % (a["mark"], a["name"].upper(), b["name"].upper(), fdot.ft_in(d, 0.125), side,
+                   fdot.ft_in(d, 0.125)))
+
     def pedestal_elevation(self, zone, ped):
         """Pedestal elevation: U-bars into the cap, construction joint, top of
         pedestal, chamfer, covers and embedment (FDOT sheets)."""
@@ -2832,13 +2862,20 @@ class Builder:
         xb = [x for x in pbars if x["subtype"] == "x"]
         yb = [x for x in pbars if x["subtype"] == "y"]
         if yb:
-            # B6: the tip on the top-left bend of the bar (its highest point), the
-            # knee above the pedestal's left top corner, the text to the right,
-            # clear of "TOP OF PEDESTAL" by a text height
+            # round 7 (markup 2026-10-19, "4F2 has a ton of space available:
+            # shift right and point at the bar midway between the other bars.
+            # No need to be so close to the corner and to the other bars";
+            # A21): the tip on the top of the in-plane bar's run midway
+            # between the second and third end-on bar from the left, the knee
+            # straight above it over the pedestal top, the text to the right
+            # (clear of "TOP OF PEDESTAL", whose leader stands at 0.8 W)
             pts = proj(yb[0], s.P_elev)
             z_max = max(p[1] for p in pts)
-            top = min((p for p in pts if p[1] > z_max - 0.01), key=lambda p: p[0])
-            v.leader([(top[0], top[1] + yb[0]["dia_in"] / 24.0), (uu[0] + 0.1 * k, ztop + 0.45 * k)],
+            run = sorted(p[0] for p in pts if p[1] > z_max - 0.01)
+            us = sorted(s.u(x["pts"][0][0]) for x in xb)
+            x_tip = (us[1] + us[2]) / 2 if len(us) >= 3 else (run[0] + run[-1]) / 2
+            x_tip = min(max(x_tip, run[0] + 0.1), run[-1] - 0.1)
+            v.leader([(x_tip, z_max + yb[0]["dia_in"] / 24.0), (x_tip, ztop + 0.45 * k)],
                      mark_list(sorted({x["mark"] for x in yb})), "left")
         if xb:
             x = max(xb, key=lambda x: s.u(x["pts"][0][0]))

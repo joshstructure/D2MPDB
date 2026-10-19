@@ -395,7 +395,15 @@ symbol at page scale.
   MV05; End Bent 1 interleaves its bars 3.4" apart).  The sheet carries a
   MODEL CHECK note (`Builder.cage_clash_note`) until the cage is reconciled.
   Markup 2026-10-19: "There appear to be multiple clashing bars here that
-  don't exist in the model".
+  don't exist in the model".  The doubled 5D1 dots of End Bent 2's Section
+  G-G are the model's too: each backwall's run of 21 verticals at 1'-0"
+  from one end bar lands 3/8" short of the other end bar's offset, where a
+  closing bar stands as well (V20 and V21 of both faces, 3/8" centre to
+  centre, overlapping; End Bent 1's pair is at its right end, which no
+  section cuts).  `Builder.bar_overlap_note` reports the closest such pair
+  on the (3 OF 3) sheet.  Markup 2026-10-19 (round 5): "I'm seeing doubled
+  bars here.  Do they exist in the model?"  The answer to such a question
+  is always measured from the snapshot, never guessed.
 
 ## D. Linework and context
 
@@ -753,3 +761,10 @@ Markups on the 2.5.0 follow-up sheets, 2026-10-19 round 4 ("Look at the applicab
 | B4-10 Section C-C | Move to a better spot (Δ REINF. STRAP) | A22 | beyond the back dimension columns under the strap level (A-A and C-C of both bents) |
 | B4-11 Section F-F | Remove this clear spacing anno; the project has a required clear spacing and these bars are in a mat centered in the wall | C11 | cover values removed from F-F and G-G |
 | B4-10 Section C-C | Adjust so the leader ends are not so close to each other (4F1 / 5~4F2) | A21 | the U-bar's tip on its top run between the second and third dot; tips-apart check |
+
+Markups on the round-4 sheets, 2026-10-19 round 5:
+
+| Where | Comment (engineer's words) | Rule | Resolution |
+|---|---|---|---|
+| B4-11 pedestal elev. | 4F2 has a ton of space available: shift right and point at the bar midway between the other bars. No need to be so close to the corner and to the other bars | A21 | tip on the run midway between the second and third end-on bar, knee straight above, text to the right (end bents and pier) |
+| B4-11 Section G-G | I'm seeing doubled bars here. Do they exist in the model? | C9 | yes: V20 and V21 of each face stand 3/8" apart (the run at 1'-0" from one end lands 3/8" short of the other end bar); drawn as modelled, MODEL CHECK note on the (3 OF 3) sheets |

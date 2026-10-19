@@ -436,6 +436,12 @@ are not made again:
   selected backwall case (3.09 kip/ft service, 3.75 kip/ft factored, Strength
   I), which the backwall design calls provisional pending the current
   analysis loads.
+- Each backwall's run of 21 verticals 5D1 at 1'-0" from one end bar lands
+  3/8" short of the other end bar's offset, where a closing bar stands as
+  well: bars V20 and V21 of both faces overlap (3/8" centre to centre, near
+  End Bent 1's right cheek and End Bent 2's left cheek). Section G-G of End
+  Bent 2 shows both dots; the (3 OF 3) sheets carry a "MODEL CHECK" note
+  (`Builder.bar_overlap_note`).
 - The model has bars tangent to each other: the backwall verticals 5D1
   against the horizontals 4D2 (0.55" centre to centre), the pedestal U-bar
   legs against the cap top bars 6A1 and hoops 6B2 (zero clear), and the 4F2

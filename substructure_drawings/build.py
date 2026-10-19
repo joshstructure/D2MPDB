@@ -607,6 +607,9 @@ class Composer:
         clash = b.cage_clash_note()
         if clash:
             items.insert(-1, clash)
+        overlap = b.bar_overlap_note()   # C9: the doubled 5D1 of Section G-G are the model's
+        if overlap:
+            items.insert(-1, overlap)
         bottom = sh.notes_bottom(y, items, w)
         sh.notes(xg, y, "NOTES:", items, width_in=w)
         self.check_block(sh, "notes", (xg, bottom, xg + w, y))
