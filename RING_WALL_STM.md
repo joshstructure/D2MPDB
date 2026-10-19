@@ -72,6 +72,10 @@ Default failures have not been tuned away. Increasing ring diameter also affects
 
 ## Exports and reproducibility
 
+The HTML calculation report groups repeated checks into **15 method sections**. Each method states its physical purpose, shows the equations once, identifies its worked example, and includes a table with every applicable check/location. There are **96 equation explanations and 178 check-result rows** for the starting case. Each equation has its own **Numeric substitution and schematic** dropdown with an inline SVG mechanics sketch, current operands, units and numerical substitution. Symbols and fractions are rendered as native MathML directly from the evaluated ledger, rather than copied into a separate calculation implementation.
+
+Use the method index to jump to a check, **Expand methods** to compare equations and result tables, or **Expand schematics** to open all explanations. **Print / save PDF** expands the report for printing and restores the previous expansion state afterward. The HTML remains usable offline. Geometry plots sit in a separate expandable section. Repeated tables preserve original statuses; a worked example with failed contact stays visibly marked as a trial, even when its numerical strength ratio is small. This report presentation does not change the calculation engine or the formula-based native worksheet format.
+
 Optional exports: offline interactive HTML; case JSON; checks and ring-load CSV; formula-based Mathcad 15 `.xmcd` and Blockpad `.bpad`; source ZIP; full ZIP with results, spacing comparison, formula verification and SHA-256 manifest. Both native sheets contain editable expressions. Every numeric value and check status is independently evaluated in both expression dialects before export.
 
 Native sheets use **labeled fixed scalar units**, not native dimensional quantities. They preserve exported topology, selected bar/coating and adopted pitch. Regenerate after changing those choices. Formula parity and XML checks are not native-application recalculation or engineering acceptance.

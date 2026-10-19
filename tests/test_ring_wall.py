@@ -128,7 +128,7 @@ class RingWallTests(unittest.TestCase):
                 manifest=json.loads(z.read('ring_wall_export_manifest.json'))
                 for name,sha in manifest['files'].items():self.assertEqual(hashlib.sha256(z.read(name)).hexdigest(),sha)
                 report=z.read('ring_wall_report.html').decode()
-                self.assertIn('Equation &amp; values',report);self.assertIn('Plotly.newPlot',report)
+                self.assertIn('Numeric substitution and schematic',report);self.assertIn('Plotly.newPlot',report)
                 self.assertNotIn('<script src=',report);self.assertIn('FULL CONTACT FAILS',report)
                 with zipfile.ZipFile(io.BytesIO(z.read('ring_wall_source.zip'))) as src:
                     self.assertIn('ring_wall/_native/bpad_sheet.py',src.namelist())

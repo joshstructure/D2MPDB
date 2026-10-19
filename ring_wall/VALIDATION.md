@@ -4,10 +4,10 @@ The former ring-wall STM engine has been replaced by minimum wall steel/detailin
 
 ## Automated verification
 
-`python -m unittest discover -s tests -p 'test_ring_wall*.py' -q` passes **24 tests** in both environments:
+`python -m unittest discover -s tests -p 'test_ring_wall*.py' -q` passes **28 tests** in both environments:
 
-- Local ipywidgets **8.1.9**, Plotly **6.9.0**: 24 tests, 23.870 s.
-- Colab-pinned ipywidgets **7.7.1**, Plotly **5.24.1**: 24 tests, 24.756 s.
+- Local ipywidgets **8.1.9**, Plotly **6.9.0**: 28 tests, 26.041 s.
+- Colab-pinned ipywidgets **7.7.1**, Plotly **5.24.1**: 28 tests, 26.781 s.
 
 Coverage includes midpoint tributaries and global force/moment equilibrium, 30 randomized geometries, single-pile and single-row boundaries, load-factor/density scaling, minimum steel independent of ring pitch, detailing failures, minimum weld table boundaries, invalid input rejection, and legacy-case migration without silently removing added gravity.
 
@@ -19,11 +19,15 @@ The full export ZIP is checked against its SHA-256 manifest. HTML includes inter
 
 Embedded package SHA-256:
 
-`fe47000355c30e18149400e46010e34a5a80f35af1223cd91156bd3ef181d5b4`
+`65ef112544a6daed3d78013e216542a834f4961cad01c015407b88b71be95b45`
+
+The rebuilt HTML exporter has **15 method sections, 96 equation explanations and 178 check-result rows**. Tests verify that every check appears exactly once with its original status for default, single-ring and full-contact cases; new unassigned check types fail closed. Each equation has native MathML, a schematic and current operands. Both conditional branches and mathematical grouping are preserved; rendered expressions come directly from the current ledger. Reports retain pending/trial warnings and escape case/check text without mutating results.
 
 ## Browser and review limits
 
 Local JupyterLab browser review rendered the workbench and clicked all seven result panels. The 3D cage, annular-ring section, pressure plot, tables and navigation rendered. A typed radial-tolerance edit cleared calculated results; manual Recalc was exercised. Standalone report, cage view buttons and ring connection drawing were also visually reviewed.
+
+The rebuilt report was reviewed in the browser: method-index navigation, individual equation dropdowns, method expansion, all 96 schematic expansions, collapse controls and all 178 result rows were checked. Weld, radial plate and contact-pressure equations/sketches were visually inspected. Expanded SVG labels stayed within their drawing bounds, with no browser errors. Printing preparation is included; a native print/PDF save was not exercised.
 
 The Google-hosted Colab runtime and downloads were not directly exercised. Its pinned Python widget/chart versions passed the same automated suite. Native Mathcad/Blockpad application recalculation and native page appearance were not performed. Formula parity, XML parsing and cached values do not establish native execution or engineering acceptance. Native sheets use fixed scalar units with labels and the exported topology, as described in the guide.
 

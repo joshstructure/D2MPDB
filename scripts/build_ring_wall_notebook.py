@@ -31,7 +31,7 @@ Choose **Runtime → Run all**. Edit the amber input cards, inspect **Live layou
 
 Wall checks cover minimum shrinkage/temperature reinforcement, spacing, cover, lap allowances and bend fit. Ring design assigns gross concrete self-weight between pile/row midplanes and wall edges. It checks full annular compression contact, concrete bearing, plate bending/shear, two continuous top/bottom fillet welds and adjacent base metal. Nominal tributary eccentricity and pile tolerance are included. No STM analysis is performed.
 
-**Report and exports** includes an offline interactive HTML report, case JSON, check and ring-load CSVs, formula-based Mathcad and Blockpad sheets, a source ZIP and a complete bundle with verification records. Exports are optional; Run all does not create them. Save your case before ending the runtime. Legacy cases with zero added gravity migrate with a visible notice; former STM inputs are discarded.
+**Report and exports** includes an offline interactive HTML report, case JSON, check and ring-load CSVs, formula-based Mathcad and Blockpad sheets, a source ZIP and a complete bundle with verification records. The HTML report groups repeated checks: each method has readable equations, a schematic and numeric-substitution dropdown for every equation, and tables covering all locations. Exports are optional; Run all does not create them. Save your case before ending the runtime. Legacy cases with zero added gravity migrate with a visible notice; former STM inputs are discarded.
 
 Native sheets use labeled fixed scalar units and the exported layout. Re-export after changing counts, bar size/coating or automatic spacing. Formula parity is verified; native application recalculation is not implied.
 

@@ -48,24 +48,8 @@ SOURCES=[('AASHTO LRFD BDS, 10th edition (2024)','https://store.transportation.o
 
 
 def render_report(r):
-    from . import plots as V
-    pieces=['<!doctype html><html><head><meta charset="utf-8"><title>Wall steel and annular rings</title><style>'+STYLE+'</style></head><body>',
-        '<h1>'+esc(r['case']['title'])+'</h1>',V.note(esc(r['overall']),True),V.summary(r),
-        '<h2>Design basis</h2><p>Concrete self-weight only. Gross wall volume is retained conservatively without subtracting piles or plates. '
-        'Midplanes between piles and ring rows define tributary cells, clipped at all wall edges. Nominal cell-centroid eccentricity and radial pile tolerance load the annulus. '
-        'Two continuous fillets, above and below the plate, resist vertical shear and a local radial bending couple. The upper fillet footprint is excluded from bearing area.</p>',
-        '<p>Minimum wall reinforcement uses AASHTO LRFD 5.10.6 and an explicit project spacing cap. No STM steel demand or band-depth spacing restriction is used. '
-        'Normalweight concrete, two mats and matching end returns are assumed. Cover is checked against the entered project requirement.</p>',
-        '<p>'+ '; '.join('<a href="'+url+'">'+esc(label)+'</a>' for label,url in SOURCES)+'</p>']
-    for title,fig in [('Wall layout',V.layout_figure(r['case'])),('Reinforcement and rings',V.cage_figure(r['case'])),
-                      ('Ring connection',V.connection_figure(r)),('Ring tributary reactions',V.reaction_figure(r))]:
-        pieces.extend(['<h2>'+title+'</h2>',fig.to_html(full_html=False,include_plotlyjs=True if title=='Wall layout' else False,config={'responsive':True})])
-    pieces.extend(['<h2>Reinforcement</h2>',V.steel_table(r),'<h2>Tributary loads and ring design</h2>',V.ring_table(r),
-        '<h2>D/C check register</h2>',V.checks_table(r),'<h2>Case inputs</h2>',table(['Input','Value'],[[esc(k),esc(v)] for k,v in r['case'].items()]),
-        '<h2>Calculation provenance</h2><p>Case SHA-256: '+case_hash(r)+'; source SHA-256: '+source_hash()+'.</p>',
-        '<p>Native sheets reproduce this fixed topology and selected bar spacing. Re-export after changing counts, bar size, coating or automatic-spacing selection. '
-        'Programmatic verification is not native application recalculation or engineering acceptance.</p></body></html>'])
-    return ''.join(pieces)
+    from .calculation_report import render_report as grouped_report
+    return grouped_report(r)
 
 
 def case_hash(r):return hashlib.sha256(json.dumps(r['case'],sort_keys=True,allow_nan=False).encode()).hexdigest()

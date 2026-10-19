@@ -54,7 +54,7 @@ class RingWallNotebook:
         self.saved_html_button=W.Button(description='Download saved HTML report',disabled=True,layout=W.Layout(width='250px'))
         self.saved_zip_button=W.Button(description='Download saved ZIP',disabled=True,layout=W.Layout(width='240px'))
         self.saved_html_button.on_click(lambda _:self._download_clicked('html'));self.saved_zip_button.on_click(lambda _:self._download_clicked('zip'))
-        export_box=W.VBox([W.HTML(V.note('Exports use the current completed Recalc. The HTML report contains offline interactive drawings and the complete check register. '
+        export_box=W.VBox([W.HTML(V.note('Exports use the current completed Recalc. The HTML report explains each check family once, with readable equations, individual schematic/substitution dropdowns and tables for all locations. '
             'Native sheets contain formulas for the exported layout, with a verification record in the full ZIP. Source ZIP preserves the calculation code. '
             'Regenerate native sheets after changing layout counts, bar size/coating or automatic spacing.')),
             W.HBox(list(self.export_buttons.values()),layout=W.Layout(flex_flow='row wrap',grid_gap='6px')),
