@@ -2,9 +2,9 @@
  "generator": "substructure_drawings.model_plan",
  "version": "1.0.0",
  "dxf": "B4_Model_Plan.dxf",
- "dxf_sha256": "149e45671b2516f1819d81c4ef33c7c5a9ef0732562c25954011e8b85627657e",
- "snapshot_sha256": "2caf0d63dc9976dac938df58b19636f93da625501947c1da8be7188fcc878a75",
- "model_sha256": "a831dec89084195338e78bef19bf014cd71421c9138e5ba0471479a5f6d6ed27",
+ "dxf_sha256": "607d8ecd06a1f32a69f70bf6057f83212ea4a12bb32e30d4282677daf4803767",
+ "snapshot_sha256": "4f42701dd047c5c3b001cf78004ad5c609e47f558bdc06013a33873213260437",
+ "model_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df",
  "units": "international feet ($INSUNITS=2); model space 1:1 in the plan frame",
  "frame": {
   "e1": [
@@ -353,7 +353,7 @@
   "CopingB7AtCheek has no valid shape; CopingB7BentJoint is drawn in its place",
   "BarrierB7AtCheek has no valid shape; BarrierB7BentJoint is drawn in its place",
   "136 objects chosen, 28 skipped",
-  "projection 64 s (4008 edges)",
-  "total 77 s"
+  "projection 85 s (4008 edges)",
+  "total 95 s"
  ]
 }

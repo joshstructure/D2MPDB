@@ -2,9 +2,9 @@
  "generator": "substructure_drawings.build",
  "version": "2.5.0",
  "dxf": "B4_Substructure_EndBents_Pier.dxf",
- "dxf_sha256": "bf706231cef469d9a5234905196c4d104b59a7d3323badadf83c8df657f0affb",
- "snapshot_sha256": "a4ab0c7e7baf2ea4f976b7867fae43b747b16f2b0dab1145133aa296f6822063",
- "model_sha256": "a831dec89084195338e78bef19bf014cd71421c9138e5ba0471479a5f6d6ed27",
+ "dxf_sha256": "1b733e2c6a4550444592c352a113916b7ebbd7459c4f10d55f188eb6ebce3f4e",
+ "snapshot_sha256": "3c9602f2917d3e93114489f07ed55255cf4d77c8651f7a3d86517ad8a6ebd941",
+ "model_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df",
  "units": "international feet ($INSUNITS=2); model space 1:1",
  "station_reference": {
   "FFBW End Bent 1": 1593.22
@@ -125,7 +125,7 @@
   "PileConc_h": 160,
   "PileSteel": 37,
   "PileSteel_h": 175,
-  "Rebar": 1687,
+  "Rebar": 1683,
   "Rebar2": 102,
   "SubStrConc": 328,
   "SubStrConc2": 358,
@@ -149,7 +149,7 @@
   "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
  },
  "symbology_audit": {
-  "entities": 11551,
+  "entities": 11547,
   "not_on_fdot_level": [],
   "not_by_level": [],
   "documented_overrides": {
@@ -261,9 +261,9 @@
     "size": 5,
     "des": "D1",
     "description": "BACKWALL VERTICAL",
-    "count": 46,
+    "count": 44,
     "lengths_in": {
-     "59": 10,
+     "59": 8,
      "60": 16,
      "61": 16,
      "62": 4
@@ -508,9 +508,9 @@
     "size": 5,
     "des": "D1",
     "description": "BACKWALL VERTICAL",
-    "count": 46,
+    "count": 44,
     "lengths_in": {
-     "59": 10,
+     "59": 8,
      "60": 16,
      "61": 16,
      "62": 4

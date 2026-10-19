@@ -96,7 +96,6 @@ END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V17,EB1 backwall F
 END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V18,EB1 backwall Face 1 vertical; schematic dowel #105,5D1,59.970,60
 END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V19,EB1 backwall Face 1 vertical; schematic dowel #106,5D1,59.730,60
 END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V20,EB1 backwall Face 1 vertical; schematic dowel #107,5D1,59.490,59
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1V21,EB1 backwall Face 1 vertical; schematic dowel #108,5D1,59.483,59
 END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1VEL,EB1 backwall - seat follows landing underside Face 1 added end vertical; into cheek #5,5D1,59.483,59
 END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F1VER,EB1 backwall - seat follows landing underside Face 1 added end vertical; into cheek #001,5D1,59.483,59
 END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V01,EB1 backwall Face 2 vertical; schematic dowel #5,5D1,59.483,59
@@ -119,7 +118,6 @@ END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V17,EB1 backwall F
 END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V18,EB1 backwall Face 2 vertical; schematic dowel #105,5D1,59.970,60
 END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V19,EB1 backwall Face 2 vertical; schematic dowel #106,5D1,59.730,60
 END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V20,EB1 backwall Face 2 vertical; schematic dowel #107,5D1,59.490,59
-END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2V21,EB1 backwall Face 2 vertical; schematic dowel #108,5D1,59.483,59
 END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2VEL,EB1 backwall - seat follows landing underside Face 2 added end vertical; into cheek #5,5D1,59.483,59
 END BENT 1,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB1F2VER,EB1 backwall - seat follows landing underside Face 2 added end vertical; into cheek #001,5D1,59.483,59
 END BENT 1,6A1,6,A1,CAP TOP,CageEB1Long01,EB1 Top row 1 #6 Long01,6A1,245.000,245
@@ -394,7 +392,6 @@ END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V17,EB2 backwall F
 END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V18,EB2 backwall Face 1 vertical; schematic dowel #105,5D1,59.970,60
 END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V19,EB2 backwall Face 1 vertical; schematic dowel #106,5D1,59.730,60
 END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V20,EB2 backwall Face 1 vertical; schematic dowel #107,5D1,59.490,59
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1V21,EB2 backwall Face 1 vertical; schematic dowel #108,5D1,59.483,59
 END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1VEL,EB2 backwall Face 1 added end vertical; into cheek #5,5D1,59.483,59
 END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F1VER,EB2 backwall Face 1 added end vertical; into cheek #001,5D1,59.483,59
 END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V01,EB2 backwall Face 2 vertical; schematic dowel #5,5D1,59.483,59
@@ -417,7 +414,6 @@ END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V17,EB2 backwall F
 END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V18,EB2 backwall Face 2 vertical; schematic dowel #105,5D1,59.970,60
 END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V19,EB2 backwall Face 2 vertical; schematic dowel #106,5D1,59.730,60
 END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V20,EB2 backwall Face 2 vertical; schematic dowel #107,5D1,59.490,59
-END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2V21,EB2 backwall Face 2 vertical; schematic dowel #108,5D1,59.483,59
 END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2VEL,EB2 backwall Face 2 added end vertical; into cheek #5,5D1,59.483,59
 END BENT 2,5D1,5,D1,BACKWALL VERTICAL,SteelBridgeBackwallEB2F2VER,EB2 backwall Face 2 added end vertical; into cheek #001,5D1,59.483,59
 END BENT 2,6A1,6,A1,CAP TOP,CageEB2Long01,EB2 Top row 1 #6 Long01,6A1,245.000,245

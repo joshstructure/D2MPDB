@@ -403,7 +403,10 @@ symbol at page scale.
   section cuts).  `Builder.bar_overlap_note` reports the closest such pair
   on the (3 OF 3) sheet.  Markup 2026-10-19 (round 5): "I'm seeing doubled
   bars here.  Do they exist in the model?"  The answer to such a question
-  is always measured from the snapshot, never guessed.
+  is always measured from the snapshot, never guessed.  Resolved the same
+  day by model decision D-055 (44 verticals per backwall, 22 per face at
+  1'-0" maximum, one end bar per face inside each cheek hook); the sheets
+  were re-extracted and the note went silent on its own.
 
 ## D. Linework and context
 

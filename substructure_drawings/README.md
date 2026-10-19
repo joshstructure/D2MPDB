@@ -1,9 +1,10 @@
 # End bent and pier DXF (FDOT format)
 
 **Generator 2.5.0 (19 October 2026)** rebuilds this DXF from the model with
-revision D-053 (D-044 weather closure and copings, D-045 strap references,
+revision D-055 (D-044 weather closure and copings, D-045 strap references,
 D-046 cheek hooks, D-047 pedestal edge bars, D-048 backwall extensions, D-053
-simplified backwall tops) and applies the engineer's review markups of
+simplified backwall tops, D-055 backwall vertical coordination) and applies
+the engineer's review markups of
 2026-10-17, 18 and 19 (three rounds), which are distilled into
 [`STYLE_GUIDE.md`](STYLE_GUIDE.md) (every drawing rule has an id there). The
 measurable rules are deterministic checks in [`anno_check.py`](anno_check.py),
@@ -436,12 +437,11 @@ are not made again:
   selected backwall case (3.09 kip/ft service, 3.75 kip/ft factored, Strength
   I), which the backwall design calls provisional pending the current
   analysis loads.
-- Each backwall's run of 21 verticals 5D1 at 1'-0" from one end bar lands
-  3/8" short of the other end bar's offset, where a closing bar stands as
-  well: bars V20 and V21 of both faces overlap (3/8" centre to centre, near
-  End Bent 1's right cheek and End Bent 2's left cheek). Section G-G of End
-  Bent 2 shows both dots; the (3 OF 3) sheets carry a "MODEL CHECK" note
-  (`Builder.bar_overlap_note`).
+- Resolved 2026-10-19 with model decision D-055 (backwall vertical
+  coordination): the four doubled 5D1 verticals are gone, one end bar per
+  face sits inside each cheek hook, and each backwall has 44 verticals
+  (22 per face at 1'-0" maximum). `Builder.bar_overlap_note` stays as a
+  guard and is silent.
 - The model has bars tangent to each other: the backwall verticals 5D1
   against the horizontals 4D2 (0.55" centre to centre), the pedestal U-bar
   legs against the cap top bars 6A1 and hoops 6B2 (zero clear), and the 4F2
