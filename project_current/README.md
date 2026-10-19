@@ -1,7 +1,7 @@
 # Current project record
 
 Start here for the D2 I-95 pedestrian bridge's current source files, adopted
-decisions and outstanding coherence items. Initial inventory: **9 October 2026**. Source update: **17 October 2026**.
+decisions and outstanding coherence items. Initial inventory: **9 October 2026**. Source update: **19 October 2026**.
 "Current" identifies the selected source. Each source retains its own review and
 design-completion status.
 
@@ -21,7 +21,7 @@ design-completion status.
 | End Bent 1 cap | [Report](cap_design/end_bents/End%20Bent%201%20Cap%20Design%2010-17.html), [saved case](cap_design/end_bents/selected_case.json) — 17 October re-export (D-043) |
 | End Bent 2 cap | [Report](cap_design/end_bent_2/End%20Bent%202%20Cap%20Design%2010-17.html), [saved case](cap_design/end_bent_2/selected_case.json) — 17 October re-export (D-043) |
 | Selected backwall and cheekwall design | [16 October report](cap_design/backwall/Backwall%20Design%2010-16.html) and [saved case](cap_design/backwall/selected_case.json) — one centered #4 mat at 10 in each way; analysis and detailing prerequisites remain pending |
-| FBMP source variants | [All four fixed/minimum-tip exports](fbmp/README.md) |
+| FBMP source variants | [Three current fixed exports and two minimum-tip variants](fbmp/README.md) |
 | Mathcad | [Span 1](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd), [Span 2](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd) — 12 October beam runs; [changes and downstream review](mathcad/README.md) |
 | Calculation tool | [Cap and pile notebook](../Cap_and_Pile_Design.ipynb) |
 | End-bent backwall, cheek walls and tie-back straps | [Backwall notebook](../End_Bent_Backwall_Design.ipynb) and [calculation basis](../BACKWALL_DESIGN.md); decisions D-014 to D-019 |
@@ -263,3 +263,14 @@ where the generator writes it.
 
 Its pile cutoffs are the notebook pile-head elevations for the COH-028 reruns.
 See the [source receipt](coherence/evidence/2026-10-16-geometry-tables/source_receipt.json).
+
+## 19 October FBMP source update
+
+D-049 selects the supplied Pier, End Bent 1 and End Bent 2 fixed-run XMLs.
+The previous pier and EB1 fixed exports are archived. All three new fingerprints
+differ from the analyses in the selected cap reports/cases, which remain unchanged
+pending downstream reconciliation. EB1 pile heads match the recorded 16 October
+target at printed precision; Pier and EB2 remain about 0.08 in above their targets.
+Tracker statuses/responses and minimum-tip variants are preserved. See the
+[FBMP source overview](fbmp/README.md) and
+[receipt](coherence/evidence/2026-10-19-fbmp/source_receipt.json).

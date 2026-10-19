@@ -16,5 +16,7 @@ all PASS (9deb443). FAIL, PENDING and the governing check are unchanged. See the
 [receipt](../../coherence/evidence/2026-10-17-cap-report-export/source_receipt.json).
 
 The report embedded case and `selected_case.json` are exactly equal when parsed as
-UTF-8. The current raw FBMP analysis hash differs from the registered `Pier_Fixed.XML`;
-native rerun, anchorage and detailing remain unverified.
+UTF-8. The fixed FBMP export supplied on 19 October is registered under D-049. Its
+analysis fingerprint differs from this saved case; reconcile/regenerate the cap
+calculation before claiming matching provenance. Native rerun, anchorage and
+detailing remain unverified. See the [source receipt](../../coherence/evidence/2026-10-19-fbmp/source_receipt.json).

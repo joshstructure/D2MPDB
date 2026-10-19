@@ -1,13 +1,26 @@
 # Latest project coherence review
 
-Checked at 2026-10-17T20:07:19.729282+00:00. **15 outstanding items remain.**
+## 19 October FBMP source receipt
+
+The three supplied fixed-run exports are registered under D-049. Their exact
+bytes are verified and the two prior fixed files are archived. All three differ
+from the analysis hashes in the selected cap reports/cases, including EB2 (checked
+separately in the receipt). Reports/cases, minimum-tip variants and workbook
+responses/statuses are unchanged. EB1 node Z matches the recorded 16 October
+target; Pier and EB2 remain about 0.08 in above their recorded cutoffs.
+COH-013 and COH-028 remain open. See the [source receipt](evidence/2026-10-19-fbmp/source_receipt.json).
+Existing project-wide findings below remain outside this source import's scope.
+
+## Automatic check and existing tracker view
+
+Checked at 2026-10-19T14:28:59.650172+00:00. **15 outstanding items remain.**
 
 The [workbook](Coherence_Tracker.xlsx) owns item status and responses. This report is a generated view.
 The initial findings were carried forward from the latest adopted pier/end-bent reviews plus source-inventory gaps.
 Previously resolved decisions were excluded. This run did not perform native calculations or a complete engineering review.
 
 Registered sources: 29. Tracker items: 28.
-Automatic results: 4 changed, 9 error, 41 match, 5 missing, 10 review.
+Automatic results: 4 changed, 9 error, 42 match, 4 missing, 7 review.
 
 ## Files and relationships needing attention
 
@@ -19,17 +32,13 @@ Automatic results: 4 changed, 9 error, 41 match, 5 missing, 10 review.
 | SOURCE:PSB-S1 | MISSING | No source file has been selected. |
 | SOURCE:MCAD-DAT2 | MISSING | Registered file is absent. |
 | SOURCE:PSB-S2 | MISSING | No source file has been selected. |
-| SOURCE:EB2-XML | MISSING | Registered file is absent. |
 | DEP:GEOMETRY:JOURNAL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S1:MCAD-DAT1 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S1:PSB-S1 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S2:MCAD-DAT2 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S2:PSB-S2 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:CAD-MODEL:JOURNAL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
-| DEP:BACKWALL-TOOL:EB2-XML | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:BACKWALL-TOOL:JOURNAL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
-| DEP:EB2-REPORT:EB2-XML | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
-| DEP:EB2-CASE:EB2-XML | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | PIER:analysis-identity | CHANGED | Raw XML does not match the case analysis fingerprint. |
 | EB:analysis-identity | CHANGED | Raw XML does not match the case analysis fingerprint. |
 | TRACKER:10 | ERROR | Closed / not-applicable item requires resolution evidence. |

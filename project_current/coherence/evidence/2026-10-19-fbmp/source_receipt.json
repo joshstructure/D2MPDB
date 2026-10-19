@@ -1,0 +1,597 @@
+{
+  "date": "2026-10-19",
+  "decision": "D-049",
+  "authorization": "User supplied End Bent 1_Fixed.XML, End Bent 2_Fixed.XML and Pier_Fixed.XML and requested: Add these latest fbmp runs to the source.",
+  "scope": "Select the three supplied fixed-run exports as current raw sources; preserve exact bytes, previous exports, selected cap reports/cases, minimum-tip variants and tracker responses.",
+  "prior_register_rows": [
+    {
+      "source_id": "JOURNAL",
+      "topic": "Project journal",
+      "path": "journal/D2_I95_Project_Journal.bpad",
+      "status": "Current - bounded review",
+      "scope": "Adopted project geometry, assumptions, decisions and live journal quantities",
+      "sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351",
+      "registered_on": "2026-10-10",
+      "depends_on": "",
+      "origin": "workflow/accepted.json",
+      "notes": "Reconciled to existing T006 acceptance and verified receipt evidence. Geometry/source bookkeeping, 230-in wind width, historical-sketch labels and three repaired reference links only; C005 preserved. New cap report results are not incorporated into BPAD.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "GEOMETRY",
+      "topic": "Geometry notebook",
+      "path": "Bridge_Geometry_2 Beam_V2.ipynb",
+      "status": "Current tool",
+      "scope": "Geometry model and derived schedules",
+      "sha256": "2d45fc34b606f2157e2d634beb4d9dd04319c0664d9e96e5bf53e8eca993dafd",
+      "registered_on": "2026-10-16",
+      "depends_on": "JOURNAL;ROADWAY;MCAD-S1;MCAD-S2",
+      "origin": "Repository main",
+      "notes": "D-036. The notebook owns the D-026/D-027/D-033 end caps (235-in body; 251 in with cheeks), backwalls, cheek webs and lugs; cheek tops are the four D-033 MSE barrier-return bases. Model ID 622e5ca1bf; all 10 code cells execute; 105 native station cuts against the archived D-034 snapshot pass. The CAD EB1 backwall seat differs by 0.117 ft3; rebuild CAD from notebook exports. Earlier D-023/D-025 provenance retained in decisions. See coherence/evidence/2026-10-16-geometry-end-bents/disposition.json.",
+      "hash_basis": "lf_text"
+    },
+    {
+      "source_id": "ROADWAY",
+      "topic": "Roadway elevations",
+      "path": "Geometry Report.xml",
+      "status": "Current input",
+      "scope": "Roadway geometry input",
+      "sha256": "9880ef7adeeac4228666146f5d5bb4dd17ef93f66ffeaf465a2c813eb69489e4",
+      "registered_on": "2026-10-09",
+      "depends_on": "",
+      "origin": "Repository main",
+      "notes": "",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "CAP-TOOL",
+      "topic": "Cap and pile notebook",
+      "path": "Cap_and_Pile_Design.ipynb",
+      "status": "Current tool",
+      "scope": "Calculation engine; load a registered project case",
+      "sha256": "1af14e6efa5095a973b88ced422bee1656596ec8cba4e5c6b6b31ee9796c4c74",
+      "registered_on": "2026-10-09",
+      "depends_on": "",
+      "origin": "Repository main",
+      "notes": "Tool revision is distinct from a saved design. Existing reports were not regenerated with this tool, except the D-043 17 October cap reports, which the repository package at commit 5cce568 generated rather than this registered revision.",
+      "hash_basis": "lf_text"
+    },
+    {
+      "source_id": "PIER-REPORT",
+      "topic": "Pier cap report",
+      "path": "project_current/cap_design/pier/Pier Cap Design 10-17.html",
+      "status": "User-selected current - engineering review retained",
+      "scope": "Current Pier cage and recorded calculation results",
+      "sha256": "cc180be66ebf2f93a6c2d4957c16dc0f372b1291276bc02e9300715500bd1823",
+      "registered_on": "2026-10-17",
+      "depends_on": "PIER-CASE;PIER-XML",
+      "origin": "Project re-export of Pier Cap Design 10-12.html from the selected saved case, 17 October 2026",
+      "notes": "D-043. Re-exported 17 October 2026 from the unchanged saved case with the current package (scripts/export_project_cap_reports.py), adding the corrected equation schematics (commit 5cce568). Inputs are unchanged, but the check register also reflects two package fixes made after the 12 October export (9deb443, fdf327c): nine new PASS end-cover rows and eight lower minimum-shear-steel ratios, all PASS. FAIL, PENDING and governing-check entries are unchanged; the prior 10-12 report is retained unchanged. See coherence/evidence/2026-10-17-cap-report-export/source_receipt.json. D-020. Selected by the 12 October source/model update request. Prior report and case retained. Current raw-analysis hash differs from registered XML; native rerun, anchorage and detailing remain unverified.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "PIER-CASE",
+      "topic": "Pier saved cap case",
+      "path": "project_current/cap_design/pier/selected_case.json",
+      "status": "User-selected current - engineering review retained",
+      "scope": "Editable Pier case extracted exactly from the selected report",
+      "sha256": "2045ab5fb71a85d7a3b7f6382eb18688bc826f3f9aec6a4d4d0b9bc6022e9dc8",
+      "registered_on": "2026-10-12",
+      "depends_on": "PIER-XML",
+      "origin": "User-supplied Pier Cap Design 10-12.html",
+      "notes": "D-020. Selected by the 12 October source/model update request. Prior report and case retained. Current raw-analysis hash differs from registered XML; native rerun, anchorage and detailing remain unverified.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "PIER-XML",
+      "topic": "Pier FBMP fixed results",
+      "path": "project_current/fbmp/pier/Pier_Fixed.XML",
+      "status": "Prior export - does not match current report",
+      "scope": "Preserved earlier analysis export; current report requires a different exact hash",
+      "sha256": "a992aa331e11b4eb9bc426a3f811938a8f71b22b3300bae3431eb2931eaff9d8",
+      "registered_on": "2026-10-10",
+      "depends_on": "",
+      "origin": "User-supplied Pier_Fixed.XML",
+      "notes": "12 October selected report requires SHA-256 c8420fadbebaa35dee7c675bc36039be6149c188dca2089c95d13da6220e362f. This existing XML is retained unchanged; no native analysis equivalence inferred.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "EB-REPORT",
+      "topic": "End-bent cap report",
+      "path": "project_current/cap_design/end_bents/End Bent 1 Cap Design 10-17.html",
+      "status": "User-selected current - engineering review retained",
+      "scope": "Current EB1 cage and recorded calculation results",
+      "sha256": "363d6ac30fd37e6fb05a218f812f892cace2724aa55adeaea9527c5233630fa8",
+      "registered_on": "2026-10-17",
+      "depends_on": "EB-CASE;EB-XML",
+      "origin": "Project re-export of End Bent 1 Cap Design 10-14.html from the selected saved case, 17 October 2026",
+      "notes": "D-043. Re-exported 17 October 2026 from the unchanged saved case with the current package (scripts/export_project_cap_reports.py), adding the corrected equation schematics (commit 5cce568). Inputs and all 248 check labels, statuses and D/C ratios equal the 14 October report; the prior 10-14 report is retained unchanged. See coherence/evidence/2026-10-17-cap-report-export/source_receipt.json. D-027. User clarified 251 in is the out-to-out cap plus two cheek webs (235 + 8 + 8); existing concrete is unchanged. Exact supplied 14 October case/report selected. Native modeling and coordination review do not accept engineering or fabrication. The HTML embedded case and supplied JSON are exactly equal when parsed as UTF-8.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "EB-CASE",
+      "topic": "End-bent saved cap case",
+      "path": "project_current/cap_design/end_bents/selected_case.json",
+      "status": "User-selected current - engineering review retained",
+      "scope": "Exact user-supplied editable EB1 case; cap cage spans combined cap/cheek envelope",
+      "sha256": "37a04b9c8ab1dc8d215850cecd539dedc49b07397be2e668ac7ef9809173cf78",
+      "registered_on": "2026-10-14",
+      "depends_on": "EB-XML",
+      "origin": "Updated End Bent Cap Designs.zip / End Bent 1 Cap Design 10-14.json",
+      "notes": "D-027. User clarified 251 in is the out-to-out cap plus two cheek webs (235 + 8 + 8); existing concrete is unchanged. Exact supplied 14 October case/report selected. Native modeling and coordination review do not accept engineering or fabrication. The HTML embedded case and supplied JSON are exactly equal when parsed as UTF-8. D-028 adds separate editable CAD hoop-station overrides; this supplied case remains unchanged.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "EB-XML",
+      "topic": "End Bent 1 FBMP fixed results",
+      "path": "project_current/fbmp/end_bents/End Bent 1_Fixed.XML",
+      "status": "Prior export - does not match current report",
+      "scope": "Preserved earlier analysis export; current report requires a different exact hash",
+      "sha256": "8414fbedfbf1270fbd65b2cf940f2dc2050818c282cc6f66db2d20b2f3ff17ee",
+      "registered_on": "2026-10-10",
+      "depends_on": "",
+      "origin": "User-supplied End Bent 1_Fixed.XML",
+      "notes": "14 October selected report requires SHA-256 23bb3afcb3627ba19c1e8660c05ceddfdc68e6815f23582cb84e2a5de0f16b04. Earlier XML is not substituted; native analysis run identity remains unverified.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "MCAD-S1",
+      "topic": "Span 1 Mathcad",
+      "path": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd",
+      "status": "User-selected current - downstream review retained",
+      "scope": "Span 1 superstructure worksheet",
+      "sha256": "a6b0f967d271c193591d477e219ac66f98b72309d19958a04c6cd08e575a8dcd",
+      "registered_on": "2026-10-12",
+      "depends_on": "MCAD-DAT1;PSB-S1",
+      "origin": "User-supplied 12 October beam run: PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd",
+      "notes": "D-022/D-023. Exact 12 October supplied bytes; prior worksheets archived under mathcad/archive/2026-10-09/. New saved cambers applied to the geometry notebook and verified downstream CAD. Full native calculation/load comparison and backwall provenance remain under review. See geometry/freecad/evidence/2026-10-12-cambers/update-summary.json.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "MCAD-DAT1",
+      "topic": "Span 1 Mathcad input data",
+      "path": "project_current/mathcad/PedestrianBridge2Beam_Span1.dat",
+      "status": "Missing",
+      "scope": "Input file named in MCAD-S1",
+      "sha256": "",
+      "registered_on": "2026-10-09",
+      "depends_on": "",
+      "origin": "PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd",
+      "notes": "The native worksheet names this file; it was not supplied.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "PSB-S1",
+      "topic": "Span 1 PSBeam run",
+      "path": "",
+      "status": "Not selected",
+      "scope": "Native input, output/report and run identity for Span 1",
+      "sha256": "",
+      "registered_on": "2026-10-09",
+      "depends_on": "",
+      "origin": "Requested project scope",
+      "notes": "No PSBeam run has been selected or imported. Mathcad sheets do not establish a PSBeam run identity.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "MCAD-S2",
+      "topic": "Span 2 Mathcad",
+      "path": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd",
+      "status": "User-selected current - downstream review retained",
+      "scope": "Span 2 superstructure worksheet",
+      "sha256": "182e3471f169d3a379c437ad12f359d567813bd4631bcc0b82e78ad860fa91b8",
+      "registered_on": "2026-10-12",
+      "depends_on": "MCAD-DAT2;PSB-S2",
+      "origin": "User-supplied 12 October beam run: PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd",
+      "notes": "D-022/D-023. Exact 12 October supplied bytes; prior worksheets archived under mathcad/archive/2026-10-09/. New saved cambers applied to the geometry notebook and verified downstream CAD. Full native calculation/load comparison and backwall provenance remain under review. See geometry/freecad/evidence/2026-10-12-cambers/update-summary.json.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "MCAD-DAT2",
+      "topic": "Span 2 Mathcad input data",
+      "path": "project_current/mathcad/PedestrianBridge2Beam_Span2.dat",
+      "status": "Missing",
+      "scope": "Input file named in MCAD-S2",
+      "sha256": "",
+      "registered_on": "2026-10-09",
+      "depends_on": "",
+      "origin": "PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd",
+      "notes": "The native worksheet names this file; it was not supplied.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "PSB-S2",
+      "topic": "Span 2 PSBeam run",
+      "path": "",
+      "status": "Not selected",
+      "scope": "Native input, output/report and run identity for Span 2",
+      "sha256": "",
+      "registered_on": "2026-10-09",
+      "depends_on": "",
+      "origin": "Requested project scope",
+      "notes": "No PSBeam run has been selected or imported. Mathcad sheets do not establish a PSBeam run identity.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "PIER-MINTIP-XML",
+      "topic": "Pier FBMP minimum-tip results",
+      "path": "project_current/fbmp/pier/Pier_MinTip.XML",
+      "status": "Current variant",
+      "scope": "User-supplied minimum-tip analysis variant; not the analysis source selected by the current cap report",
+      "sha256": "a3210e99418f8b56d7b6a475a9db6edab152cceb77f0300f6f7245d27dee93cb",
+      "registered_on": "2026-10-10",
+      "depends_on": "",
+      "origin": "User-supplied Pier_MinTip.XML",
+      "notes": "Retained separately for fixed/minimum-tip comparison. No controlling envelope or native design acceptance inferred. Superseded Pier_MinTip.XML preserved under fbmp/pier/archive/2026-10-09/.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "EB-MINTIP-XML",
+      "topic": "End Bent 1 FBMP minimum-tip results",
+      "path": "project_current/fbmp/end_bents/End Bent 1_Min_tip.XML",
+      "status": "Current variant",
+      "scope": "User-supplied minimum-tip analysis variant; not the analysis source selected by the current cap report",
+      "sha256": "739f44c1d542464cfd536493ce1ed6cb240f98a75ed3e1188c6f6812742d6fe2",
+      "registered_on": "2026-10-10",
+      "depends_on": "",
+      "origin": "User-supplied End Bent 1_Min_tip.XML",
+      "notes": "Retained separately for fixed/minimum-tip comparison. No controlling envelope or native design acceptance inferred. This fingerprint also matches the superseded 8 October end-bent report.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "CAD-MODEL",
+      "topic": "Current FreeCAD bridge model",
+      "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+      "status": "User-selected current - review limitations retained",
+      "scope": "Authoritative native bridge geometry and quantities; D-046 standard horizontal cheek hooks where cover and retained steel allow; D-047 accepted pedestal reinforcement; D-048 backwall extensions and added end verticals",
+      "sha256": "aee8160a242a00be1c4259e711d8ef5fb5805ad3750485beee947aa44eb62407",
+      "registered_on": "2026-10-17",
+      "depends_on": "JOURNAL;GEOMETRY;PIER-CASE;EB-CASE;EB2-CASE;BACKWALL-REPORT;CAD-RUNTIME;MSE-DETAIL-DXF;BACKWALL-CASE",
+      "origin": "Verified CAD_AI saved delivery; user-selected GitHub source home",
+      "notes": "Replace all four cheek-wall mats with one centered #4 mat at 10 in maximum each way, using the selected 16 October report and case. 64 cheek bars; 342 checks and lug WWR review pass. Saved native reopen and exact unchanged geometry verified. D-034 landing NetVolume values remain verified. 33 pre-existing backwall/cap bar intersections and existing cap detailing findings remain. COH-024 stays Open for these other findings; COH-025 remains Deferred for 14 U-bar/hoop pairs. COH-023 reconciliation, anchorage/development, cap/lug/strap interfaces and EB1 backwall seat rebuild remain open. No engineering or fabrication acceptance inferred. D-040 groups only four bridge-deck railings under the PGL assembly. Geometry, quantities, controllers, saved view records and all other groups preserved; native reopen verified. D-042 writes FDOT SDM 4.3 marks into the Mark property of 454 end-bent and pier bars (schedules follow). Geometry, quantities, controllers and saved view records preserved; native reopen verified. D-044: Omit only nominal 3/4-in chamfers from the bridge decks, FIB beam bottom corners and pedestals; add six end-bent MSE copings and two native 4-in closure slabs. Slab/front coping tops coincide; side coping tops follow the 2% slab to cap face. New closure concrete 123.684362496 ft3. 249 bridge checks, 318 pedestal-steel checks and 197 affected pair checks pass; installed native reopen and original marks/views verified. User-requested geotechnical strap representations added: one 2-in-wide ribbon per backwall at 18 in above cap, illustrative 6-ft projection, zero thickness and no steel quantity. Actual full-width attachment, editable controls and final installed reopen verified; strap/pullout and connection design remain with MSE supplier. New quantities/loads and closure detailing remain under COH-023; prior tracker dispositions retained. See geometry/freecad/evidence/2026-10-17-square-edges-and-closure/update-summary.json. D-045 corrects the D-044 strap count to selected Figure B2: seven per backwall (14 total), 33.571429-in spacing and 16.785714-in end offsets, all plotted positions preserved. 2-in width, 18-in-above-cap trial level and illustrative 6-ft projection retained. Actual attachment, signed offset editing, no affected intersections and installed reopen pass; all prior physical geometry/quantities and views preserved. Figure B2 remains schematic; final design by MSE supplier. D-046: 42 standard #4 90-degree hooks on 30 cheek horizontals, 24 cap/18 backwall. All 64 cheek bars and levels retained. Affected native geometry, cover, intersections, schedules, mesh and saved reopen pass. Development/connection capacity and drawing/report reconciliation remain open. D-047: User accepted compression-only pedestal bars and directed push. 84 #4 bars, 6-in maximum spacing, 12-in cap embedment and contacting layers; 2/3-in pedestal/cap cover, near-face stirrup-plane alignment. Native geometry/editability and zero-overlap checks pass. Earlier tension flags are historical/non-governing; no compression recalculation claimed. Downstream drawings/calculation exports require refresh. See geometry/freecad/evidence/2026-10-17-pedestal-edges/adoption-summary.json. D-048: 20 backwall horizontals extended 8-1/4 in at both ends to cheek cover limits; eight #5 verticals added, 8-in centers from adjacent backwall bars. EB2 top horizontal pair lowered 1/8 in for cover. 367 checks pass; no new overlaps. D-047 pedestals and unrelated native objects preserved. Drawings/calculation exports require refresh. See geometry/freecad/evidence/2026-10-17-backwall-extensions/adoption-summary.json.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "CAD-RUNTIME",
+      "topic": "Pinned FreeCAD controller manifest",
+      "path": "project_current/geometry/freecad/manifest.json",
+      "status": "User-selected current - review limitations retained",
+      "scope": "Exact controller and evidence fingerprints; preserve with model",
+      "sha256": "e5600e4fb3c8258aab7f6b7ca98bcd58e31955d6c0ed8e265ba6f99283baf953",
+      "registered_on": "2026-10-17",
+      "depends_on": "",
+      "origin": "Verified CAD_AI saved delivery; user-selected GitHub source home",
+      "notes": "D-046 native cheek hook controller and scoped validation. Existing sources and unrelated failures retained; standard hooks use 3-in inside bend / 6-in straight tail. Saved/current-source reopen verified. D-047: User accepted compression-only pedestal bars and directed push. 84 #4 bars, 6-in maximum spacing, 12-in cap embedment and contacting layers; 2/3-in pedestal/cap cover, near-face stirrup-plane alignment. Native geometry/editability and zero-overlap checks pass. Earlier tension flags are historical/non-governing; no compression recalculation claimed. Downstream drawings/calculation exports require refresh. See geometry/freecad/evidence/2026-10-17-pedestal-edges/adoption-summary.json. D-048: 20 backwall horizontals extended 8-1/4 in at both ends to cheek cover limits; eight #5 verticals added, 8-in centers from adjacent backwall bars. EB2 top horizontal pair lowered 1/8 in for cover. 367 checks pass; no new overlaps. D-047 pedestals and unrelated native objects preserved. Drawings/calculation exports require refresh. See geometry/freecad/evidence/2026-10-17-backwall-extensions/adoption-summary.json.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "CAD-REPORT",
+      "topic": "FreeCAD model update report",
+      "path": "project_current/geometry/freecad/evidence/Model-update-report.txt",
+      "status": "User-selected current - review limitations retained",
+      "scope": "Model scope, quantities, tests and unresolved detailing/coordination failures",
+      "sha256": "aa29cde7c87a65374145a1e553516a51a4d641251d82a7f960eb043bd8bd4c98",
+      "registered_on": "2026-10-17",
+      "depends_on": "CAD-MODEL",
+      "origin": "Verified CAD_AI saved delivery; user-selected GitHub source home",
+      "notes": "D-046 records 42 fitted standard horizontal cheek hooks, exceptions, native validation, updated quantities and preserved existing review dispositions. D-047: User accepted compression-only pedestal bars and directed push. 84 #4 bars, 6-in maximum spacing, 12-in cap embedment and contacting layers; 2/3-in pedestal/cap cover, near-face stirrup-plane alignment. Native geometry/editability and zero-overlap checks pass. Earlier tension flags are historical/non-governing; no compression recalculation claimed. Downstream drawings/calculation exports require refresh. See geometry/freecad/evidence/2026-10-17-pedestal-edges/adoption-summary.json. D-048: 20 backwall horizontals extended 8-1/4 in at both ends to cheek cover limits; eight #5 verticals added, 8-in centers from adjacent backwall bars. EB2 top horizontal pair lowered 1/8 in for cover. 367 checks pass; no new overlaps. D-047 pedestals and unrelated native objects preserved. Drawings/calculation exports require refresh. See geometry/freecad/evidence/2026-10-17-backwall-extensions/adoption-summary.json.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "BACKWALL-TOOL",
+      "topic": "End-bent backwall notebook",
+      "path": "End_Bent_Backwall_Design.ipynb",
+      "status": "Current tool - bounded verification",
+      "scope": "Backwall, cheek-wall and tie-back strap calculation; reads EB-CASE, EB-XML and CAD-MODEL",
+      "sha256": "48bab4c3f7cc9dc445908021012083e88cb988e17af09620366e70f6a5da35d9",
+      "registered_on": "2026-10-16",
+      "depends_on": "EB-CASE;EB2-CASE;EB-XML;EB2-XML;CAD-MODEL;JOURNAL;MCAD-S1",
+      "origin": "Repository main",
+      "notes": "D-035. Reconciled D-026/D-033 geometry and D-034 landing quantities; one centered #4 mat at 10 in each way. Three source-backed confirmations; six pending. 27 tests and notebook/widget execution pass. Current analysis exports, development, strap coordination and other prerequisites remain pending. D-039 now applies the report cheek steel to CAD; COH-023/024 remain open for other reconciliation and detailing. See coherence/evidence/2026-10-16-backwall/disposition.json. D-037 selects the exported report and saved case from a fresh notebook run. D-038 adds collapsible report sections and linked contents; selected case, calculations and confirmations unchanged. See coherence/evidence/2026-10-16-backwall-navigation/disposition.json.",
+      "hash_basis": "lf_text"
+    },
+    {
+      "source_id": "EB2-REPORT",
+      "topic": "End Bent 2 cap report",
+      "path": "project_current/cap_design/end_bent_2/End Bent 2 Cap Design 10-17.html",
+      "status": "User-selected current - engineering review retained",
+      "scope": "Separate End Bent 2 current report",
+      "sha256": "c07a3b763aeb1f4ed9605b60e41aff9f938c1ac0c7f967e90c943e11d5b982e3",
+      "registered_on": "2026-10-17",
+      "depends_on": "EB2-CASE;EB2-XML",
+      "origin": "Project re-export of End Bent 2 Cap Design 10-14.html from the selected saved case, 17 October 2026",
+      "notes": "D-043. Re-exported 17 October 2026 from the unchanged saved case with the current package (scripts/export_project_cap_reports.py), adding the corrected equation schematics (commit 5cce568). Inputs and all 248 check labels, statuses and D/C ratios equal the 14 October report; the prior 10-14 report is retained unchanged. See coherence/evidence/2026-10-17-cap-report-export/source_receipt.json. D-027. User clarified 251 in is the out-to-out cap plus two cheek webs (235 + 8 + 8); existing concrete is unchanged. Exact supplied 14 October case/report selected. Native modeling and coordination review do not accept engineering or fabrication. The HTML embedded case and supplied JSON are exactly equal when parsed as UTF-8.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "EB2-CASE",
+      "topic": "End Bent 2 saved cap case",
+      "path": "project_current/cap_design/end_bent_2/selected_case.json",
+      "status": "User-selected current - engineering review retained",
+      "scope": "Exact user-supplied editable EB2 case; cap cage spans combined cap/cheek envelope",
+      "sha256": "c00bcca92a27318eb263ee79c8eba712598ac1518ab1af33c1da63a3bd7ca865",
+      "registered_on": "2026-10-14",
+      "depends_on": "EB2-XML",
+      "origin": "Updated End Bent Cap Designs.zip / End Bent 2 Cap Design 10-14.json",
+      "notes": "D-027. User clarified 251 in is the out-to-out cap plus two cheek webs (235 + 8 + 8); existing concrete is unchanged. Exact supplied 14 October case/report selected. Native modeling and coordination review do not accept engineering or fabrication. The HTML embedded case and supplied JSON are exactly equal when parsed as UTF-8. D-028 adds separate editable CAD hoop-station overrides; this supplied case remains unchanged.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "EB2-XML",
+      "topic": "End Bent 2 report-matching FBMP export",
+      "path": "project_current/fbmp/end_bents/End Bent 2_Fixed.XML",
+      "status": "Missing",
+      "scope": "Exact raw export required by EB2-CASE",
+      "sha256": "56f78267b769a237ca0d0abfdb78464f6839c3a09033d27230c06c0a384b6a47",
+      "registered_on": "2026-10-12",
+      "depends_on": "",
+      "origin": "User-supplied 12 October design reports",
+      "notes": "14 October selected report requires SHA-256 56f78267b769a237ca0d0abfdb78464f6839c3a09033d27230c06c0a384b6a47. Earlier XML is not substituted; native analysis run identity remains unverified.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "BACKWALL-REPORT",
+      "topic": "Backwall and cheek-wall calculation report",
+      "path": "project_current/cap_design/backwall/Backwall Design 10-16.html",
+      "status": "User-selected current - engineering review retained",
+      "scope": "Executed D-035 backwall and cheek calculation report; one centered #4 mat at 10 in each way; provisional strap loads",
+      "sha256": "a02563223df9e8039b8771978d755cefd038e4c0335401d37bb9244fdd28e5bb",
+      "registered_on": "2026-10-16",
+      "depends_on": "BACKWALL-CASE;BACKWALL-TOOL;CAD-MODEL;GEOMETRY",
+      "origin": "User-requested notebook execution and source export, 16 October 2026",
+      "notes": "D-037 selects the report and paired saved case from the same completed notebook run. All numerical checks pass; nine check entries remain pending across six unconfirmed prerequisites. COH-013/023/024/028 remain open. Prior 12 October report retained unchanged. See coherence/evidence/2026-10-16-backwall-export/source_receipt.json. D-038 adds collapsible report sections and linked contents; selected case, calculations and confirmations unchanged. See coherence/evidence/2026-10-16-backwall-navigation/disposition.json.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "BACKWALL-CASE",
+      "topic": "Backwall and cheek-wall saved case",
+      "path": "project_current/cap_design/backwall/selected_case.json",
+      "status": "User-selected current - engineering review retained",
+      "scope": "Editable exported notebook case paired with the 16 October backwall report",
+      "sha256": "ac075073306e06f252404d0c26e73b975cad2ee18373e011ef0946ae1c20d0e1",
+      "registered_on": "2026-10-16",
+      "depends_on": "BACKWALL-TOOL;CAD-MODEL;GEOMETRY",
+      "origin": "User-requested notebook execution and source export, 16 October 2026",
+      "notes": "D-037. Built-in notebook export; reload matches the executed case exactly and reproduces every check ratio/status. Six confirmations remain pending. This is source selection, not engineering completion. See coherence/evidence/2026-10-16-backwall-export/source_receipt.json.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "MSE-DETAIL-DXF",
+      "topic": "Bridge/MSE detail drawing",
+      "path": "project_current/geometry/details/B4 Pedestrian Bridge - Working.dxf",
+      "status": "User-selected current - geometry reference",
+      "scope": "DXF reference for copings, pedestrian barrier, cap extension, MSE strap offsets and cheek/lug half-inch joints",
+      "sha256": "dcf8bfdb441372e08a24c903f88cd3c3d772bb1f2ccce8f0eb35859fd6d8ea07",
+      "registered_on": "2026-10-14",
+      "depends_on": "",
+      "origin": "User-supplied B4 Pedestrian Bridge - Working.dxf",
+      "notes": "D-026. Original supplied bytes preserved. Read as geometry evidence; document text is not an instruction source or engineering acceptance.",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "GEOMETRY-TABLES",
+      "topic": "Geometry CAD tables workbook",
+      "path": "project_current/geometry/tables/B4_Geometry_CAD_Tables.xlsx",
+      "status": "User-selected current - review limitations retained",
+      "scope": "Standalone workbook of FDOT-style CAD tables, Method tabs and live charts recalculated from the geometry notebook and Mathcad runs",
+      "sha256": "baa7e358c3a952779151480a95b5a3016dd875fe7b4ca00aad9fb9b75b1b65b5",
+      "registered_on": "2026-10-16",
+      "depends_on": "GEOMETRY;MCAD-S1;MCAD-S2;ROADWAY",
+      "origin": "User-requested source selection, 16 October 2026; generated by scripts/build_geometry_cad_tables.py",
+      "notes": "D-041 selects the workbook as a current project source and moves it from geometry_tables/ to project_current/geometry/tables/, where the generator (1.1.0) now writes it. Rebuilt there from notebook model 622e5ca1bf: QC 182 pass / 0 fail, and every calculation and CAD value equals the D-036 build. No macros or external links. Template-method items and Cover open items remain for review before issue. A rebuild changes this hash and needs a recorded disposition. See coherence/evidence/2026-10-16-geometry-tables/source_receipt.json.",
+      "hash_basis": "exact_bytes"
+    }
+  ],
+  "files": [
+    {
+      "source_id": "EB-XML",
+      "support": "End Bent 1",
+      "supplied_path": "C:\\Users\\joshs\\Downloads\\End Bent 1_Fixed.XML",
+      "path": "project_current/fbmp/end_bents/End Bent 1_Fixed.XML",
+      "sha256": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
+      "bytes": 1698246,
+      "project": "D2 I95 MPDB",
+      "software_version": "6.1.0",
+      "units": "English",
+      "analysis": "Static",
+      "load_combinations": [
+        {
+          "number": "1",
+          "limitstate": "STRENGTH-I"
+        },
+        {
+          "number": "2",
+          "limitstate": "STRENGTH-III"
+        },
+        {
+          "number": "3",
+          "limitstate": "STRENGTH-III"
+        },
+        {
+          "number": "4",
+          "limitstate": "SERVICE-I"
+        }
+      ],
+      "selected_report": "project_current/cap_design/end_bents/End Bent 1 Cap Design 10-17.html",
+      "selected_case": "project_current/cap_design/end_bents/selected_case.json",
+      "report_case_equal": true,
+      "selected_case_required_xml_sha256": "23bb3afcb3627ba19c1e8660c05ceddfdc68e6815f23582cb84e2a5de0f16b04",
+      "matches_selected_cap_report": false,
+      "pier_node_count": 40,
+      "pier_node_z_in": -494.85,
+      "pile_head_el_ft": 41.237500000000004,
+      "recorded_target_cutoff_ft": 41.237692,
+      "recorded_target_node_z_in": -494.85,
+      "matches_recorded_rounded_node_z": true,
+      "offset_above_recorded_cutoff_in": -0.002304
+    },
+    {
+      "source_id": "EB2-XML",
+      "support": "End Bent 2",
+      "supplied_path": "C:\\Users\\joshs\\Downloads\\End Bent 2_Fixed.XML",
+      "path": "project_current/fbmp/end_bents/End Bent 2_Fixed.XML",
+      "sha256": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
+      "bytes": 1700003,
+      "project": "D2 I95 MPDB",
+      "software_version": "6.1.0",
+      "units": "English",
+      "analysis": "Static",
+      "load_combinations": [
+        {
+          "number": "1",
+          "limitstate": "STRENGTH-I"
+        },
+        {
+          "number": "2",
+          "limitstate": "STRENGTH-III"
+        },
+        {
+          "number": "3",
+          "limitstate": "STRENGTH-III"
+        },
+        {
+          "number": "4",
+          "limitstate": "SERVICE-I"
+        }
+      ],
+      "selected_report": "project_current/cap_design/end_bent_2/End Bent 2 Cap Design 10-17.html",
+      "selected_case": "project_current/cap_design/end_bent_2/selected_case.json",
+      "report_case_equal": true,
+      "selected_case_required_xml_sha256": "56f78267b769a237ca0d0abfdb78464f6839c3a09033d27230c06c0a384b6a47",
+      "matches_selected_cap_report": false,
+      "pier_node_count": 40,
+      "pier_node_z_in": -495.08,
+      "pile_head_el_ft": 41.25666666666667,
+      "recorded_target_cutoff_ft": 41.249692,
+      "recorded_target_node_z_in": -495.0,
+      "matches_recorded_rounded_node_z": false,
+      "offset_above_recorded_cutoff_in": 0.083696
+    },
+    {
+      "source_id": "PIER-XML",
+      "support": "Pier",
+      "supplied_path": "C:\\Users\\joshs\\Downloads\\Pier_Fixed.XML",
+      "path": "project_current/fbmp/pier/Pier_Fixed.XML",
+      "sha256": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+      "bytes": 2070343,
+      "project": "D2 I95 MPDB",
+      "software_version": "6.1.0",
+      "units": "English",
+      "analysis": "Static",
+      "load_combinations": [
+        {
+          "number": "1",
+          "limitstate": "STRENGTH-I"
+        },
+        {
+          "number": "2",
+          "limitstate": "STRENGTH-III"
+        },
+        {
+          "number": "3",
+          "limitstate": "STRENGTH-III"
+        },
+        {
+          "number": "4",
+          "limitstate": "SERVICE-I"
+        }
+      ],
+      "selected_report": "project_current/cap_design/pier/Pier Cap Design 10-17.html",
+      "selected_case": "project_current/cap_design/pier/selected_case.json",
+      "report_case_equal": true,
+      "selected_case_required_xml_sha256": "c8420fadbebaa35dee7c675bc36039be6149c188dca2089c95d13da6220e362f",
+      "matches_selected_cap_report": false,
+      "pier_node_count": 40,
+      "pier_node_z_in": -501.26,
+      "pile_head_el_ft": 41.77166666666667,
+      "recorded_target_cutoff_ft": 41.76494,
+      "recorded_target_node_z_in": -501.18,
+      "matches_recorded_rounded_node_z": false,
+      "offset_above_recorded_cutoff_in": 0.08072
+    }
+  ],
+  "archives": [
+    {
+      "previous_path": "project_current/fbmp/end_bents/End Bent 1_Fixed.XML",
+      "path": "project_current/fbmp/end_bents/archive/2026-10-10/End Bent 1_Fixed.XML",
+      "sha256": "8414fbedfbf1270fbd65b2cf940f2dc2050818c282cc6f66db2d20b2f3ff17ee"
+    },
+    {
+      "previous_path": "project_current/fbmp/pier/Pier_Fixed.XML",
+      "path": "project_current/fbmp/pier/archive/2026-10-10/Pier_Fixed.XML",
+      "sha256": "a992aa331e11b4eb9bc426a3f811938a8f71b22b3300bae3431eb2931eaff9d8"
+    }
+  ],
+  "pile_head_comparison_basis": {
+    "path": "project_current/coherence/evidence/2026-10-16-fbmp-pile-heads/pile_heads.json",
+    "sha256": "158ade735578bcefbc929e9d5e9ba0793049b3c7c784d739253c81bdde0505cb",
+    "method": "NODE location=Pier: elevation (ft) = -COORDINATES/Z (in) / 12. Compare with the recorded 16 October notebook cutoff targets; no new notebook or native analysis rerun."
+  },
+  "direct_consumers": {
+    "EB-XML": [
+      "EB-REPORT",
+      "EB-CASE",
+      "BACKWALL-TOOL"
+    ],
+    "EB2-XML": [
+      "BACKWALL-TOOL",
+      "EB2-REPORT",
+      "EB2-CASE"
+    ],
+    "PIER-XML": [
+      "PIER-REPORT",
+      "PIER-CASE"
+    ]
+  },
+  "downstream_disposition": "All three fixed XML hashes differ from their selected reports/cases. Regenerate/reconcile affected calculations with these runs before claiming matching provenance. No analysis demands, reinforcement, model or notebook inputs were changed.",
+  "tracker_disposition": "COH-013 and COH-028 retain their existing workbook status and human responses. This receipt records the submitted exports and measured elevations; it does not close the report/run reconciliation or pile-head review.",
+  "verification": {
+    "exact_supplied_bytes": true,
+    "archived_bytes_verified": true,
+    "unrelated_register_rows_unchanged": true,
+    "protected_source_hashes": {
+      "journal/D2_I95_Project_Journal.bpad": "7a0d47ab899b9eb91f9ead3b31a3c55c8bedfe5f5d05f4f26df093d79f4bd0f0",
+      "Bridge_Geometry_2 Beam_V2.ipynb": "155216e3481b87f173da974b134d9499ac632aff3dc02018176602dda26ae1b6",
+      "Geometry Report.xml": "9880ef7adeeac4228666146f5d5bb4dd17ef93f66ffeaf465a2c813eb69489e4",
+      "Cap_and_Pile_Design.ipynb": "57c70ea9eeee59611d0057238f4d043f0458f2817a6c68b90f5171853935f7d8",
+      "project_current/cap_design/pier/Pier Cap Design 10-17.html": "cc180be66ebf2f93a6c2d4957c16dc0f372b1291276bc02e9300715500bd1823",
+      "project_current/cap_design/pier/selected_case.json": "2045ab5fb71a85d7a3b7f6382eb18688bc826f3f9aec6a4d4d0b9bc6022e9dc8",
+      "project_current/cap_design/end_bents/End Bent 1 Cap Design 10-17.html": "363d6ac30fd37e6fb05a218f812f892cace2724aa55adeaea9527c5233630fa8",
+      "project_current/cap_design/end_bents/selected_case.json": "37a04b9c8ab1dc8d215850cecd539dedc49b07397be2e668ac7ef9809173cf78",
+      "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd": "a6b0f967d271c193591d477e219ac66f98b72309d19958a04c6cd08e575a8dcd",
+      "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd": "182e3471f169d3a379c437ad12f359d567813bd4631bcc0b82e78ad860fa91b8",
+      "project_current/fbmp/pier/Pier_MinTip.XML": "a3210e99418f8b56d7b6a475a9db6edab152cceb77f0300f6f7245d27dee93cb",
+      "project_current/fbmp/end_bents/End Bent 1_Min_tip.XML": "739f44c1d542464cfd536493ce1ed6cb240f98a75ed3e1188c6f6812742d6fe2",
+      "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd": "aee8160a242a00be1c4259e711d8ef5fb5805ad3750485beee947aa44eb62407",
+      "project_current/geometry/freecad/manifest.json": "e5600e4fb3c8258aab7f6b7ca98bcd58e31955d6c0ed8e265ba6f99283baf953",
+      "project_current/geometry/freecad/evidence/Model-update-report.txt": "aa29cde7c87a65374145a1e553516a51a4d641251d82a7f960eb043bd8bd4c98",
+      "End_Bent_Backwall_Design.ipynb": "9a4fc401a6d0c931a4fa0650a5cc739bdc621e7eb78d11520a87899496e07c8b",
+      "project_current/cap_design/end_bent_2/End Bent 2 Cap Design 10-17.html": "c07a3b763aeb1f4ed9605b60e41aff9f938c1ac0c7f967e90c943e11d5b982e3",
+      "project_current/cap_design/end_bent_2/selected_case.json": "c00bcca92a27318eb263ee79c8eba712598ac1518ab1af33c1da63a3bd7ca865",
+      "project_current/cap_design/backwall/Backwall Design 10-16.html": "a02563223df9e8039b8771978d755cefd038e4c0335401d37bb9244fdd28e5bb",
+      "project_current/cap_design/backwall/selected_case.json": "ac075073306e06f252404d0c26e73b975cad2ee18373e011ef0946ae1c20d0e1",
+      "project_current/geometry/details/B4 Pedestrian Bridge - Working.dxf": "dcf8bfdb441372e08a24c903f88cd3c3d772bb1f2ccce8f0eb35859fd6d8ea07",
+      "project_current/geometry/tables/B4_Geometry_CAD_Tables.xlsx": "baa7e358c3a952779151480a95b5a3016dd875fe7b4ca00aad9fb9b75b1b65b5",
+      "project_current/coherence/Coherence_Tracker.xlsx": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad"
+    },
+    "tracker_sha256_unchanged": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
+    "tracker_rows_unchanged": true,
+    "automatic_counts_before": {
+      "CHANGED": 4,
+      "MATCH": 41,
+      "MISSING": 5,
+      "REVIEW": 10,
+      "ERROR": 9
+    },
+    "automatic_counts_after": {
+      "CHANGED": 4,
+      "MATCH": 42,
+      "MISSING": 4,
+      "REVIEW": 7,
+      "ERROR": 9
+    },
+    "preexisting_automatic_errors_unchanged": true,
+    "automatic_check_limit": "project_coherence.py checks report/case/XML relationships for Pier and EB1; this receipt explicitly checks EB2 as well. Existing project-wide findings remain.",
+    "native_recalculation_performed": false
+  }
+}

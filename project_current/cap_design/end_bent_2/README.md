@@ -18,5 +18,7 @@ including #6 transverse bars. Cheek steel coordination remains open in COH-024.
 
 The report embedded case and supplied JSON are exactly equal when parsed as UTF-8.
 Original supplied file bytes are preserved.
-Required raw FBMP SHA-256: `56f78267b769a237ca0d0abfdb78464f6839c3a09033d27230c06c0a384b6a47`. This exact raw export was not supplied.
+Required raw FBMP SHA-256: `56f78267b769a237ca0d0abfdb78464f6839c3a09033d27230c06c0a384b6a47`. The fixed export supplied on 19 October is now registered under D-049, but it
+has a different fingerprint. This report/case remains unchanged pending
+reconciliation with the new run. See the [source receipt](../../coherence/evidence/2026-10-19-fbmp/source_receipt.json).
 Structural, anchorage and fabrication acceptance remain separate from modeling.

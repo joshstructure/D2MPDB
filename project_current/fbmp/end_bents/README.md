@@ -1,27 +1,23 @@
 # End-bent analysis sources
 
-Both user-supplied 10 October variants are present:
+The fixed exports supplied on **19 October 2026** are current under D-049:
 
 - [End Bent 1_Fixed.XML](End%20Bent%201_Fixed.XML), registered as `EB-XML`.
-- [End Bent 1_Min_tip.XML](End%20Bent%201_Min_tip.XML), registered as `EB-MINTIP-XML`.
+- [End Bent 2_Fixed.XML](End%20Bent%202_Fixed.XML), registered as `EB2-XML`.
+- [End Bent 1_Min_tip.XML](End%20Bent%201_Min_tip.XML) remains the separate
+  10 October minimum-tip variant, registered as `EB-MINTIP-XML`.
 
-The fixed export SHA-256 is
-`8414fbedfbf1270fbd65b2cf940f2dc2050818c282cc6f66db2d20b2f3ff17ee`.
-It exactly matches the current `End Bent 1 Cap Design 10-10.html` and saved case,
-whose embedded audit uses the earlier filename `End Bent 1.XML`. The source bytes
-match despite that filename difference. The formerly missing raw XML is supplied.
+Both fixed runs differ from the analyses embedded in the selected 17 October
+cap reports and saved cases. Those reports retain their earlier source hashes:
+EB1 `23bb3afcb3627ba19c1e8660c05ceddfdc68e6815f23582cb84e2a5de0f16b04`
+and EB2 `56f78267b769a237ca0d0abfdb78464f6839c3a09033d27230c06c0a384b6a47`.
+Reconcile/regenerate downstream calculations before claiming matching provenance.
 
-The minimum-tip export SHA-256 is
-`739f44c1d542464cfd536493ce1ed6cb240f98a75ed3e1188c6f6812742d6fe2`.
-It also matches the superseded 8 October report. It is a separate current variant,
-not a replacement analysis basis for the 10 October report.
+EB1 node Z is -494.85 in, matching the recorded 16 October target at printed
+precision. EB2 node Z is -495.08 in, about 0.084 in above the recorded cutoff
+(target Z -495.00 in). COH-013 and COH-028 remain open with their existing responses.
 
-This source import leaves the workbook's COH-013 disposition unchanged. Its
-raw-export gap is resolved; separately requested native-run documentation and
-engineering verification have not been completed by this receipt.
-
-**Update (16 October 2026).** The selected 14 October reports name exports that
-are not here: End Bent 1 needs `23bb3afc…` and End Bent 2 needs `56f78267…`.
-Both files above are now prior exports. COH-013 tracks the submittal. COH-028
-tracks the final rerun with pile heads at the current notebook cutoffs: EB1
-41.237692 ft and EB2 41.249692 ft. The prior export above has them at 40.3608 ft.
+The previous EB1 fixed source is [archived](archive/2026-10-10/End%20Bent%201_Fixed.XML).
+See the [source overview](../README.md) and
+[19 October receipt](../../coherence/evidence/2026-10-19-fbmp/source_receipt.json)
+for exact identities, comparisons and scope.

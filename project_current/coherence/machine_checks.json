@@ -1,7 +1,7 @@
 {
-  "checked_at_utc": "2026-10-17T20:07:19.729282+00:00",
+  "checked_at_utc": "2026-10-19T14:28:59.650172+00:00",
   "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
-  "register_sha256": "35e4df1cf7b6b14c00fa93906ed860699704fe6467195357493c007e31587b2b",
+  "register_sha256": "3723930c2e6b42652cbb410e8b1d6e2b6f1e1ec8f891445d7f062edddc8034ae",
   "tracker_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
   "source_count": 29,
   "item_count": 28,
@@ -14,9 +14,9 @@
   },
   "check_counts": {
     "CHANGED": 4,
-    "MATCH": 41,
-    "MISSING": 5,
-    "REVIEW": 10,
+    "MATCH": 42,
+    "MISSING": 4,
+    "REVIEW": 7,
     "ERROR": 9
   },
   "checks": [
@@ -94,8 +94,8 @@
         "PIER-XML"
       ],
       "path": "project_current/fbmp/pier/Pier_Fixed.XML",
-      "expected_sha256": "a992aa331e11b4eb9bc426a3f811938a8f71b22b3300bae3431eb2931eaff9d8",
-      "actual_sha256": "a992aa331e11b4eb9bc426a3f811938a8f71b22b3300bae3431eb2931eaff9d8"
+      "expected_sha256": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+      "actual_sha256": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7"
     },
     {
       "check_id": "SOURCE:EB-REPORT",
@@ -127,8 +127,8 @@
         "EB-XML"
       ],
       "path": "project_current/fbmp/end_bents/End Bent 1_Fixed.XML",
-      "expected_sha256": "8414fbedfbf1270fbd65b2cf940f2dc2050818c282cc6f66db2d20b2f3ff17ee",
-      "actual_sha256": "8414fbedfbf1270fbd65b2cf940f2dc2050818c282cc6f66db2d20b2f3ff17ee"
+      "expected_sha256": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
+      "actual_sha256": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d"
     },
     {
       "check_id": "SOURCE:MCAD-S1",
@@ -226,8 +226,8 @@
         "CAD-MODEL"
       ],
       "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-      "expected_sha256": "dcdda9c93a773f399acafb38d598564638823bb03a3eabf66d76ee7f3866d836",
-      "actual_sha256": "dcdda9c93a773f399acafb38d598564638823bb03a3eabf66d76ee7f3866d836"
+      "expected_sha256": "aee8160a242a00be1c4259e711d8ef5fb5805ad3750485beee947aa44eb62407",
+      "actual_sha256": "aee8160a242a00be1c4259e711d8ef5fb5805ad3750485beee947aa44eb62407"
     },
     {
       "check_id": "SOURCE:CAD-RUNTIME",
@@ -237,8 +237,8 @@
         "CAD-RUNTIME"
       ],
       "path": "project_current/geometry/freecad/manifest.json",
-      "expected_sha256": "79ece0bc059b7c0d1b44a943e0ce072655171f3771eea9b4c74912f77f1aca70",
-      "actual_sha256": "79ece0bc059b7c0d1b44a943e0ce072655171f3771eea9b4c74912f77f1aca70"
+      "expected_sha256": "e5600e4fb3c8258aab7f6b7ca98bcd58e31955d6c0ed8e265ba6f99283baf953",
+      "actual_sha256": "e5600e4fb3c8258aab7f6b7ca98bcd58e31955d6c0ed8e265ba6f99283baf953"
     },
     {
       "check_id": "SOURCE:CAD-REPORT",
@@ -248,8 +248,8 @@
         "CAD-REPORT"
       ],
       "path": "project_current/geometry/freecad/evidence/Model-update-report.txt",
-      "expected_sha256": "8d84cd5a44456b30aac7b56401f04c603cb193b31e67fa0221357d0bcc262a5c",
-      "actual_sha256": "8d84cd5a44456b30aac7b56401f04c603cb193b31e67fa0221357d0bcc262a5c"
+      "expected_sha256": "aa29cde7c87a65374145a1e553516a51a4d641251d82a7f960eb043bd8bd4c98",
+      "actual_sha256": "aa29cde7c87a65374145a1e553516a51a4d641251d82a7f960eb043bd8bd4c98"
     },
     {
       "check_id": "SOURCE:BACKWALL-TOOL",
@@ -286,14 +286,14 @@
     },
     {
       "check_id": "SOURCE:EB2-XML",
-      "status": "MISSING",
-      "detail": "Registered file is absent.",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
       "source_ids": [
         "EB2-XML"
       ],
       "path": "project_current/fbmp/end_bents/End Bent 2_Fixed.XML",
-      "expected_sha256": "56f78267b769a237ca0d0abfdb78464f6839c3a09033d27230c06c0a384b6a47",
-      "actual_sha256": ""
+      "expected_sha256": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
+      "actual_sha256": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e"
     },
     {
       "check_id": "SOURCE:BACKWALL-REPORT",
@@ -394,39 +394,12 @@
       ]
     },
     {
-      "check_id": "DEP:BACKWALL-TOOL:EB2-XML",
-      "status": "REVIEW",
-      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
-      "source_ids": [
-        "BACKWALL-TOOL",
-        "EB2-XML"
-      ]
-    },
-    {
       "check_id": "DEP:BACKWALL-TOOL:JOURNAL",
       "status": "REVIEW",
       "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
       "source_ids": [
         "BACKWALL-TOOL",
         "JOURNAL"
-      ]
-    },
-    {
-      "check_id": "DEP:EB2-REPORT:EB2-XML",
-      "status": "REVIEW",
-      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
-      "source_ids": [
-        "EB2-REPORT",
-        "EB2-XML"
-      ]
-    },
-    {
-      "check_id": "DEP:EB2-CASE:EB2-XML",
-      "status": "REVIEW",
-      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
-      "source_ids": [
-        "EB2-CASE",
-        "EB2-XML"
       ]
     },
     {
