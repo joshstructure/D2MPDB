@@ -1,11 +1,72 @@
 <report name="CapDesignEndBentOne" title="End Bent 1 Cap Design - Distilled" unit="in" pagesize="816,1056" margin="48,48,48,48" bordermargin="0,0,0,0" collapsemargins="False">
   <include target="Library.Geometry"/>
   <stylerule type="AnyEquation" name="Required Input" texthighlight="#F7E6B9"/>
+  <embed spacingbefore="5" spacingafter="8">
+    <table name="ProjectStamp" capture="False" colwidths="1:95, 2:165, 3:95, 4:165">
+      <stylerule range="A1:D4" fontfamily="Times New Roman" fontsize="9" vertalign="Center" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);"/>
+      <row>
+        <c capture="False" background="#F1F5FA" fontweight="bold">
+          <textvalue>Firm</textvalue>
+        </c>
+        <c capture="False" background="#F1F5FA" formula="ProjectInfo.Firm">
+          <textvalue>Parsons Transportation Group Inc</textvalue>
+        </c>
+        <c capture="False" background="#F1F5FA" fontweight="bold">
+          <textvalue>Project</textvalue>
+        </c>
+        <c capture="False" background="#F1F5FA" formula="ProjectInfo.Project">
+          <textvalue>I-95 Capacity Improvements from South of SR 152 to South of SR 126</textvalue>
+        </c>
+      </row>
+      <row>
+        <c capture="False" background="#F1F5FA" fontweight="bold">
+          <textvalue>Address</textvalue>
+        </c>
+        <c capture="False" background="#F1F5FA" formula="ProjectInfo.Address">
+          <textvalue>1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301</textvalue>
+        </c>
+        <c capture="False" background="#F1F5FA" fontweight="bold">
+          <textvalue>Job no.</textvalue>
+        </c>
+        <c capture="False" background="#F1F5FA" formula="ProjectInfo.JobNo">
+          <textvalue></textvalue>
+        </c>
+      </row>
+      <row>
+        <c capture="False" background="#F1F5FA" fontweight="bold">
+          <textvalue>Designed by</textvalue>
+        </c>
+        <c capture="False" background="#F1F5FA" formula="ProjectInfo.DesignedBy">
+          <textvalue>JAT</textvalue>
+        </c>
+        <c capture="False" background="#F1F5FA" fontweight="bold">
+          <textvalue>Date</textvalue>
+        </c>
+        <c capture="False" background="#F1F5FA" formula="ProjectInfo.DesignDate">
+          <textvalue>10/17/2026</textvalue>
+        </c>
+      </row>
+      <row>
+        <c capture="False" background="#F1F5FA" fontweight="bold">
+          <textvalue>Checked by</textvalue>
+        </c>
+        <c capture="False" background="#F1F5FA" formula="ProjectInfo.CheckedBy">
+          <textvalue>MIK</textvalue>
+        </c>
+        <c capture="False" background="#F1F5FA" fontweight="bold">
+          <textvalue>Date</textvalue>
+        </c>
+        <c capture="False" background="#F1F5FA" formula="ProjectInfo.CheckDate">
+          <textvalue></textvalue>
+        </c>
+      </row>
+    </table>
+  </embed>
   <paragraph fontfamily="Times New Roman" fontsize="16" spacingafter="2" fontweight="bold">D2 I-95 PEDESTRIAN BRIDGE</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold">End Bent 1 — Distilled Cap Design Calculation</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Project: D2 I-95 Pedestrian Bridge.</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Distilled from End Bent 1 Cap Design 10-19.html (generated 2026-10-19T14:37:01+00:00); same case (canonical SHA-256 0a29c474da90) and C005 formula set (327838126d06) as the report; FBMP End Bent 1_Fixed.XML (c1a4afa13886). Blockpad edition written by scripts/build_cap_bpad.py from the same case; every definition was evaluated independently and compared with the cap tool to 1 part in 10⁹.</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Codes: AASHTO LRFD Bridge Design Specifications, 10th edition (2024); FDOT Structures Design Guidelines, January 2026, 4.1.4A–C; inherited C005 sectional relations.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Codes: AASHTO LRFD Bridge Design Specifications, 10th edition (2024); FDOT Structures Design Guidelines, January 2026, 4.1.4A–C; inherited sectional relations of the cap tool (C005 formula set 327838126d06).</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Tool status: CHECK FAILURES — revise the trial cage or section. Inputs are highlighted amber; distilled results are the green tables.</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">1. Scope</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Computed here: sectional flexure, minimum steel, strain and Service I crack control in regions N (top steel), P (bottom steel at the piles) and B (bottom steel with the added span bars); the shear depth; actual-cage shear, longitudinal tension, torsion screen and minimum transverse steel at the governing stations found by the tool's station search; the governing transverse spacing; face shrinkage and temperature steel; skin steel; and the governing hook development.</paragraph>
@@ -50,26 +111,26 @@
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shared journal value — BridgeGeometry_2Beam.EndBent_coverSide</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-    <dynexp formula="fc = FBMPEndBent.EBSteel_fc to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
-      <expbody>fc = FBMPEndBent.EBSteel_fc to ksi</expbody>
+    <dynexp formula="fc = Materials.Substructure_fc to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>fc = Materials.Substructure_fc to ksi</expbody>
       <expresult> = 5.500 ksi</expresult>
     </dynexp>
   </paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shared journal value — FBMPEndBent.EBSteel_fc</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shared journal value — Materials.Substructure_fc</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-    <dynexp formula="fy = FBMPEndBent.EBSteel_fy to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
-      <expbody>fy = FBMPEndBent.EBSteel_fy to ksi</expbody>
+    <dynexp formula="fy = Materials.Rebar_fy to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>fy = Materials.Rebar_fy to ksi</expbody>
       <expresult> = 60.000 ksi</expresult>
     </dynexp>
   </paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shared journal value — FBMPEndBent.EBSteel_fy</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shared journal value — Materials.Rebar_fy</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-    <dynexp formula="Es = FBMPEndBent.EBSteel_Es to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
-      <expbody>Es = FBMPEndBent.EBSteel_Es to ksi</expbody>
+    <dynexp formula="Es = Materials.Rebar_Es to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>Es = Materials.Rebar_Es to ksi</expbody>
       <expresult> = 29000.000 ksi</expresult>
     </dynexp>
   </paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shared journal value — FBMPEndBent.EBSteel_Es</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shared journal value — Materials.Rebar_Es</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="φ_f = CapDesignBasis.φ_f" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>φ_f = CapDesignBasis.φ_f</expbody>
@@ -106,11 +167,12 @@
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shared journal value — CapDesignBasis.φ_a</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-    <dynexp formula="L_cap = 251 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-      <expbody>L_cap = 251 in</expbody>
+    <dynexp formula="L_cap = BridgeGeometry_2Beam.EndBentCage_envelope to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>L_cap = BridgeGeometry_2Beam.EndBentCage_envelope to in</expbody>
+      <expresult> = 251.000 in</expresult>
     </dynexp>
   </paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">cap + cheek cage envelope (D-027: 235 in cap + two 8 in cheeks); BridgeGeometry_2Beam.EndBentCap_length still holds 17 ft 8 in</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shared journal value — BridgeGeometry_2Beam.EndBentCage_envelope</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="s_proj = CapDesignBasis.s_proj to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>s_proj = CapDesignBasis.s_proj to in</expbody>
@@ -118,7 +180,7 @@
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shared journal value — CapDesignBasis.s_proj</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Actions (C005 inputs from the analysis envelope)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Actions (cap tool inputs from the analysis envelope)</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="Mu_N = 79.3 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>Mu_N = 79.3 kip*ft</expbody></dynexp><break type="tab"/>Strength moment, N</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="MI_N = 53.3 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>MI_N = 53.3 kip*ft</expbody></dynexp><break type="tab"/>Service I moment, N</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="Mu_P = 67.16 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>Mu_P = 67.16 kip*ft</expbody></dynexp><break type="tab"/>Strength moment, P</paragraph>
@@ -357,7 +419,7 @@
     </canvas>
   </embed>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Figure 2. Cross-section between piles: continuous top (N) and bottom (P) steel, added span bars (B), skin bars and the hoop.</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">4. Steel areas and effective depths (C005)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">4. Steel areas and effective depths (cap tool)</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="d_vbar = CapDesignBasis.Db(Bar_v) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>d_vbar = CapDesignBasis.Db(Bar_v) to in</expbody>
@@ -912,7 +974,7 @@
       <expresult> = 4428.299 ksi</expresult>
     </dynexp>
   </paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">concrete modulus (C005)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">concrete modulus (cap tool)</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="n_m = Round(Es/E_c, 2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>n_m = Round(Es/E_c, 2)</expbody>
@@ -1253,7 +1315,7 @@
       <expresult> = 30.308 in</expresult>
     </dynexp>
   </paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">effective shear depth (C005)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">effective shear depth (cap tool)</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True" pagebreakbefore="break">8. Actual-cage section checks at the governing stations</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Stations k: 0 = S, the shear-governing point; 1, 2, 3 = N, P, B, the longitudinal-tension points of each region; 4 = M, the least minimum transverse steel. Each line gives the interval, combination C, element E, load state, station and tension face; the equations recompute every check there.</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• S shear: R6-2 → R6-3 · C1 E28 · STRENGTH-I · x = 156.029 in · bottom face</paragraph>

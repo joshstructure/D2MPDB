@@ -1,0 +1,48 @@
+{
+  "summary": "BridgeGeometry_2Beam is aligned with the geometry notebook (model e9b41b8eaf, D-036): 27.5-in pile end clearance gives the 235-in end caps, new EndBentCage_envelope = 251 in, notebook net cambers (the existing support-drop formula then equals the notebook drop). C005 (PierCapDesign) is deleted after its consumers move to Materials (new strengths) and BridgeGeometry_2Beam (pier cap covers). ProjectInfo is added and a live project stamp sits at the top of 17 calculation reports, the 4 regenerated cap design reports and ProjectInfo itself (22 stamps). The four cap reports are refreshed from the generator against the preview journal.",
+  "published_outputs": [
+    "ProjectInfo (new report): Firm, Address, Project, JobNo, DesignedBy, DesignDate, CheckedBy, CheckDate (strings) and a preview of the project stamp",
+    "Materials: Substructure_fc 5.5 ksi, Deck_fc 4.5 ksi, Beam_fc 8.5 ksi, Railing_fc 3.4 ksi, Rebar_fy 60 ksi, Rebar_Es 29000 ksi (amber inputs, showresult False)",
+    "BridgeGeometry_2Beam new names: EndBent_pileEndClear 27.5 in, EndBent_cheekThickness 8 in, EndBent_lugProjection 6 in, EndBent_lugWidth 5.5 in, EndBent_mseJoint 0.5 in, EndBentCage_envelope 251 in (derived), PierCap_coverTop/Bottom/Side 3 in",
+    "BridgeGeometry_2Beam changed definitions: EndBent_endDetail (now derived, 15.5 in), Beam_camber_1 0.124592744006574 in, Beam_camber_2 0.5671714630550072 in, Beam_support_drop keeps its original closed-form formula and attributes (cache 3.751 -> 3.715 ft; equals the notebook 3.7147642885879173 ft with the notebook cambers)",
+    "FBMPEndBent EBSteel_fc/fy/Es and PierWallFins f_c, f_y, E_s, c_w are live references with unchanged values (5.5 ksi, 60 ksi, 29000 ksi, 3 in)",
+    "CapDesignBasis, CapDesignEndBentOne, CapDesignEndBentTwo, CapDesignPier regenerated: references to Materials.*, BridgeGeometry_2Beam.PierCap_cover*, EndBentCage_envelope (End Bent L_cap, now a reference, 251 in) and ProjectInfo.* (stamp)",
+    "Removed: report PierCapDesign (C005) and its PedBridge and Materials links"
+  ],
+  "assumptions_and_conventions": [
+    "User direction of 19 October 2026 supersedes D-003 (preserve C005 unchanged): C005 is removed; DecisionLog history is kept unchanged and a 19 October entry is appended",
+    "The notebook is the geometry owner (D-036). Values are copied from its CONFIG as mirrored in B4_Geometry_CAD_Tables.xlsx (Inputs, Camber & Haunch, Substructure) for build e9b41b8eaf",
+    "Beam_support_drop is NOT replaced by a typed value: its original formula reproduces the notebook support drop (3.7147642885879173 ft) once the cambers are the notebook net cambers, so only its caption (equality note) and cache change",
+    "The 8-in cheek webs, 6-in lugs, 5.5-in lug width and 0.5-in MSE joint are recorded as inputs only; EndBentCap_length (and the volume, weight, pile stations) remain the 235-in cap body, EndBentCage_envelope (251 in) is the cage envelope used by the cap reports",
+    "The project stamp uses the helper's own embed (spacingbefore 5, spacingafter 8) in all 22 places, not the 0/10 spacing first requested",
+    "Spreadsheets, reference/archive reports, PedBridge and DecisionLog get no stamp",
+    "Caption of PierCap_endDetail and two extra text mentions of C005 (FBMPPier 3.44-in sentence, BridgeGeometry notebook-update note) were reworded in the same spirit; the PierCap_endDetail sentence says 'consistent with the 15-in notebook pier end clearance' rather than 'derived', because PierCap_endDetail itself remains a 3-in input",
+    "Cached results were refreshed only inside BridgeGeometry_2Beam (35 definitions and 12 pile-table cells) with a unit-aware evaluator that first reproduced all current caches; fraction-format values (Wind_exposureHeight) are rounded to 1/64 in as Blockpad displays them"
+  ],
+  "downstream_impact": [
+    "EndBent_endFace 16 -> 27.5 in; EndBent_endCenter 25 -> 36.5 in; EndBentCap_length 17 ft 8 in -> 19 ft 7 in; EndBentCap_volume 185.5 -> 205.625 ft^3; EndBentCaps_volume 371 -> 411.25 ft^3; EndBentCap_DC 27.825 -> 30.844 kip; EndBent_P1..P4_station 25/79/133/187 -> 36.5/90.5/144.5/198.5 in; pile faces +11.5 in",
+    "Haunch_average_1 1.313 -> 1.464 in; Haunch_average_2 1.313 -> 1.169 in; Haunch_volume_span1 93.991 -> 104.781 ft^3; Haunch_volume_span2 91.846 -> 81.756 ft^3; Haunch_totalVolume 185.837 -> 186.538 ft^3; Haunch_volume_perBeam 92.918 -> 93.269 ft^3; Check_notebook_quantity 'MATCHES 2026-09-29 NOTEBOOK' -> 'INPUTS CHANGED - RECONCILE NOTEBOOK'",
+    "Beam_support_drop 3.751 -> 3.715 ft (formula unchanged); beam soffit and cap elevations rise 0.036 ft (BO_LowBeam / Bearing_soffit_elev 44.447 -> 44.483 ft; CapTop_elev 43.733 -> 43.769; CapCG_elev 42.233 -> 42.269; CapBottom_elev 40.733 -> 40.769; Beam_bottom_start 43.910 -> 43.946; Beam_bottom_end 43.922 -> 43.958)",
+    "CapTop_aboveTerrain and PierCap_ht_toTop 18 ft 2.482 in -> 18 ft 2.915 in; CapCG_aboveTerrain 16 ft 8.482 -> 16 ft 8.915 in; CapBottom_aboveTerrain 15 ft 2.482 -> 15 ft 2.915 in; Pile_ht_exposed 16.707 -> 16.743 ft; Pier_wall_area 348.965 -> 349.656 ft^2; Wind_clearHeight 18 ft 11.045 -> 18 ft 11.478 in; Concrete_top_aboveGround 26 ft 0.045 -> 26 ft 0.478 in; Wind_exposureHeight 35 ft 8 23/64 -> 35 ft 8 51/64 in",
+    "NOT refreshed, stale until native recalculation: cached values in consumers of the changed names: C001 (Z, K_Z_*, P_Z_III, w_T*, W_Frame), FenceWind, PedBridgeWind, SuperstructureUplift, BearingDesign (PedN_H and the PedN_* chain), FBMPEndBent and FBMPPier wind rows and sums, PierWallFins, MSEWallExclusion (cap length / gap), FBMPEndBent cells showing EndBentCap_volume (185.5 / 371 ft^3), and the unregistered PedBridgeWeights_2Beams haunch weights (span 1 3.525 -> about 3.929 kip, span 2 3.444 -> about 3.066 kip per beam half) and quantity sheets. check lists PedBridgeWeights_2Beams, QauntitiesBridge and Notes as detected downstream impact",
+    "Wind exposure height rises 0.43 in; K_Z changes by about +0.023 percent, so wind pressures change in the fourth significant digit. FBMP models and results are unchanged and were not re-run; their currency against the new heights, haunch weights and cap length is not asserted",
+    "The FBMP model cap length: the end-bent FBMP analysis still reflects the 8 October 212-in cap record; FBMPEndBent blocks 1 and 3 (station + 25 in text, transverse schedule) remain the 8 October record"
+  ],
+  "external_analysis": "FBMP models and results are unchanged and were not re-run; no Mathcad or notebook file was changed. The notebook values adopted (cambers, support drop, 27.5-in pile end clearance, cheek/lug/joint) come from the mirrored workbook of build e9b41b8eaf. Currency of the FBMP analyses against the changed haunch weights, cap length and wind heights is not asserted.",
+  "checks_performed": [
+    "tools/bpad_workflow.py prepare T014 accepted the mixed add/delete scope (25 components); import-components, check and assemble T014 passed (structural_delta passed, 0 cached errors, no inherited or candidate structural issues, deleted-module consumer check clean)",
+    "geom_eval.py reproduced every current dependent cache (35) of BridgeGeometry_2Beam before refreshing them",
+    "build_components.py assertions: every edit anchor occurs exactly the stated number of times; the stamp block is spliced at a computed byte offset; 12 reports show a single-line-block insertion only",
+    "scripts/build_cap_bpad.py --journal against tasks/T014/preview-journal.bpad: coherence gate passed; 15 journal references verified per cap, 0 literals kept; 891/891/859 values match the cap tool, 535 per cap match the Mathcad sheet; fragment hashes equal verification.json",
+    "tasks/T014/verify_task.py (independent-checks.json): scope, report.json deletion, no PierCapDesign report/link/formula, all Materials/BridgeGeometry/ProjectInfo/CapDesign references resolve, 22 stamps equal PROJECT_STAMP, ProjectInfo inputs, geometry chain 27.5/36.5/235/251 in, 35 refreshed caches and 12 pile-table cells equal an independent recomputation, literals and styles, consumer redirections, PedBridge links, DecisionLog entry, coherence.json has no literal_incoherent_journal row and L_cap is owned by EndBentCage_envelope"
+  ],
+  "open_items": [
+    "Native Blockpad recalculation and visual review not performed (optional under workflow/promotion_policy.json). Check string inputs read through ProjectInfo.*, the stamp ahead of section elements, and the wind chain after recalculation",
+    "Stale caches in unrefreshed consumers (see downstream_impact); recalculate natively or schedule a follow-up refresh task. PedBridgeWeights_2Beams and the quantity sheets are not in this scope and need their own task",
+    "Check_notebook_quantity now flags 'INPUTS CHANGED - RECONCILE NOTEBOOK': the 29 September haunch snapshot (185.8367 ft^3) is superseded by the notebook cambers; update or retire that check in a follow-up",
+    "C005 history is retained in DecisionLog and FBMPEndBent / PedBridge historical text; project_current/decisions.md entry for this change is to be recorded by the coherence process",
+    "pier_cap/io.py export_blockpad (C005 review-copy exporter) and the C005 formula-set provenance of the cap reports are now obsolete or detached from the journal; review separately",
+    "FBMPEndBent blocks 1 and 3 and the DecisionLog 8 October station note ('+ 25 in') still describe the 212-in cap record",
+    "JobNo and CheckDate are blank in ProjectInfo until assigned; stamp date format follows the user's PDF (10/17/2026)"
+  ]
+}

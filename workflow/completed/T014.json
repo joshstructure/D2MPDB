@@ -1,0 +1,29 @@
+{
+  "task": "T014",
+  "journal_sha256": "119261e3e7cc86d67bdde67052ca2953cdb81c24d559e468032f32d072c1e01b",
+  "previous_sha256": "0384f0280175c2d597aa75ce9cf33fae1eb602ee2dcf581eaa30f11454442d07",
+  "promoted": "2026-10-19T17:31:58.340266+00:00",
+  "review": {
+    "candidate_sha256": "119261e3e7cc86d67bdde67052ca2953cdb81c24d559e468032f32d072c1e01b",
+    "reviewer": "Josh (repository owner), executed through the Claude Code session of 19 October 2026 on the user's instruction (align Bridge Geometry with the CAD model and geometry notebook, remove C005, add the project stamp); native Blockpad reviews not performed",
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false,
+    "design_outcome": "unreviewed",
+    "external_analysis_disposition": "FB-MultiPier models and results were not re-run. Bridge Geometry now carries the geometry notebook build e9b41b8eaf (D-036): 27.5-in end-bent pile end clearance (235-in cap body, 251-in cage envelope with 8-in cheek webs, D-026/D-027), the Mathcad net cambers (0.1246 / 0.5672 in) in place of 1-in placeholders, and the support-drop formula now reproduces the notebook's 3.7148 ft. Derived caches changed: end-bent cap length, volumes and self-weight (27.825 to 30.844 kip), pile stations, haunch averages and volumes, beam soffit and cap elevations (+0.036 ft) and the wind heights (+0.43 in, K_Z about +0.023%). The wind chain (PedBridgeWind, C001, C002, C004, FBMP wind rows), BearingDesign pedestal values, MSEWallExclusion and the weight and quantity spreadsheets hold caches computed from the previous geometry until recalculated natively; their formulas are unchanged. C005 (PierCapDesign) is deleted by user direction superseding D-003; its consumers now read Materials and Bridge Geometry, and CapDesignPier is the pier cap record.",
+    "external_analysis_status": "unreviewed",
+    "inherited_issues_disposition": "No structural issues or stored errors before or after; the deleted-module consumer check is clean. Recorded and left open: Check_notebook_quantity in Bridge Geometry now reads INPUTS CHANGED - RECONCILE NOTEBOOK because the haunch total no longer equals the 29 September snapshot (retire or update that check); blocks 1 and 3 of the FBMPEndBent record and the 8 October '+25 in' station notes still describe the 212-in cap; the project_current/decisions.md entry for the C005 removal is left to the coherence process; the pier_cap/io.py C005 review-copy exporter is obsolete; spreadsheets, references, archives and logs carry no project stamp.",
+    "evidence_files": [
+      {
+        "path": "independent-checks.json",
+        "sha256": "39c5cec1c50522811656c8c29e21ff0df458ba6bfd1abe23cee576bf65797ce4"
+      }
+    ]
+  },
+  "promotion_policy": {
+    "reviews_required": false,
+    "effective_date": "2026-10-16",
+    "basis": "User instructed that BPAD changes may proceed without mandatory native recalculation, appearance review or engineering review, until the user reinstates those requirements. Scope, dependency, exact-byte, reference-integrity and evidence checks remain mandatory."
+  },
+  "history": "workflow/history/119261e3e7cc86d67bdde67052ca2953cdb81c24d559e468032f32d072c1e01b"
+}

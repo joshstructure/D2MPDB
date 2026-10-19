@@ -38,6 +38,18 @@ SIDE_BY_KEY = {
     'pier': ('CapDesignPier', 'Pier Cap Design - Distilled', 'Pier Cap Design.bpad'),
 }
 TOL = bm.TOL
+#: The project stamp at the top of every cap report. The standalone sheets carry it as static text; in the journal edition
+#: the cells read the ProjectInfo report, whose strings must equal these (the coherence gate stops the build otherwise).
+PROJECT_STAMP = {
+    'Firm': 'Parsons Transportation Group Inc',
+    'Address': '1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301',
+    'Project': 'I-95 Capacity Improvements from South of SR 152 to South of SR 126',
+    'JobNo': '',
+    'DesignedBy': 'JAT',
+    'DesignDate': '10/17/2026',
+    'CheckedBy': 'MIK',
+    'CheckDate': '',
+}
 REGION_TAGS = list(bm.REGIONS)                   # N P B
 STATION_TAGS = list(bm.TAGS)                     # S N P B M
 REGION_D = {'A_s': 'As', 'd_c': 'dc', 'M_u': 'Mu', 'M_I': 'MI', 'S_p': 'SP'}      # region vectors that map onto existing names
@@ -169,6 +181,8 @@ class Sheet:
 
     # -- plain blocks
     def do_title(self, blk):
+        # the project stamp comes first (right after the report-level stylerule): static text here, live ProjectInfo.* in the journal
+        bs.project_stamp_table(self.rep, PROJECT_STAMP, live=self.journal is not None)
         bs.para(self.rep, 'D2 I-95 PEDESTRIAN BRIDGE', fontsize=16, fontweight='bold', spacingafter=2)
         bs.para(self.rep, blk.payload, fontsize=14, fontweight='bold', spacingafter=6)
 
@@ -722,6 +736,8 @@ def build_cap(cap, mathcad_compare=True, e=None, report=None, revision=None, nam
     bs.note(sheet.rep, 'A distilled result of ✓ covers only the recomputed numerical checks; it is not design acceptance. Recalculate in Blockpad after any input change.', size=9)
 
     rep = sheet.rep
+    reword(rep, ctx.report['formula_sha'])
+    check_no_retired_names(rep)
     # ---- (a) syntax and names: the engine is built from the XML that will be written
     eng = new_engine(report_name, jctx)
     n_defs = n_funcs = 0
@@ -765,6 +781,7 @@ def build_cap(cap, mathcad_compare=True, e=None, report=None, revision=None, nam
         if not isinstance(el.tag, str):
             raise BuildError('XML comment in the report')
     check_formula_rules(rep)
+    check_stamp(rep, live=jctx is not None)
     if jctx is not None:
         check_journal_edition(rep, jctx)
 
@@ -864,6 +881,59 @@ def coverage_comparisons(sheet, eng, ctx, cover, cover_rows, cover_values):
     return bm.station_comparisons(env, ctx, cover_rows, [label for label, _ in cover], ratio_rows=range(n), prefix='coverage ')
 
 
+def check_stamp(rep, live):
+    """The first element after the stylerules is the ProjectStamp table, with the PROJECT_STAMP values (live ProjectInfo cells or static)."""
+    tables = [t for t in rep.iter('table') if t.get('name') == 'ProjectStamp']
+    if len(tables) != 1:
+        raise BuildError(f'the report holds {len(tables)} ProjectStamp tables, not 1')
+    table = tables[0]
+    first = next(el for el in rep if el.tag not in ('include', 'stylerule'))
+    if table.getparent().getparent() is not rep or first is not table.getparent():
+        raise BuildError('the ProjectStamp table is not the first thing after the report stylerules')
+    cells = [c for c in table.iter('c')]
+    values = [''.join(c.find('textvalue').itertext()) for c in cells]
+    formulas = [c.get('formula') for c in cells]
+    wanted = []
+    for _, left, _, right in bs.STAMP_ROWS:
+        wanted += [left, right]
+    if values[1::2] != [PROJECT_STAMP[k] for k in wanted]:
+        raise BuildError('the ProjectStamp values differ from PROJECT_STAMP')
+    expect = [f'{PROJECT_INFO}.{k}' if live else None for k in wanted]
+    if formulas[1::2] != expect or any(f is not None for f in formulas[0::2]):
+        raise BuildError('the ProjectStamp cells are ' + ('not live ProjectInfo references' if live else 'not static text'))
+
+
+RETIRED_NAMES = ('PierCapDesign',)                  # the C005 report is deleted from the journal (T014): nothing may mention it
+
+
+def reword(rep, formula_sha):
+    """The Mathcad edition's wording that named the retired C005 report, in the Blockpad edition (same text in both editions)."""
+    rules = [('inherited C005 sectional relations',
+              f'inherited sectional relations of the cap tool (C005 formula set {formula_sha[:12]})'),
+             ('(C005 inputs from the analysis envelope)', '(cap tool inputs from the analysis envelope)'),
+             ('(C005)', '(cap tool)')]
+    for el in rep.iter():
+        for attr in ('text', 'tail'):
+            text = getattr(el, attr)
+            if text and 'C005' in text:
+                for old, new in rules:
+                    text = text.replace(old, new)
+                setattr(el, attr, text)
+
+
+def check_no_retired_names(rep):
+    """No retired report name in any text, attribute or formula, and no C005 wording other than the formula-set hash."""
+    for el in rep.iter():
+        pieces = [el.text or '', el.tail or ''] + [str(v) for v in el.attrib.values()]
+        for piece in pieces:
+            for name in RETIRED_NAMES:
+                if name in piece:
+                    raise BuildError(f'{name} is retired and must not appear: {piece[:80]!r}')
+            for m in re.finditer(r'C005', piece):
+                if not piece[m.start():].startswith('C005 formula set'):
+                    raise BuildError(f'C005 wording left in the report: {piece[:80]!r}')
+
+
 FUNCTION_NAMES = {'If', 'And', 'Or', 'Not', 'Min', 'Max', 'Sqrt', 'Abs', 'Round', 'Floor', 'Tan', 'Sin', 'Cos', 'Atan', 'Asin',
                   'PlotLines', 'Ab', 'Db'}
 
@@ -931,20 +1001,23 @@ REFERENCE_CAPTION = 'shared journal value —'
 JOURNAL_SECTION2 = 'Shared geometry, materials and factors are live references to the journal; the owner is named beside each.'
 BAR_TABLE_NOTE = (f'Bar areas and diameters by bar number are the shared functions {BASIS_NAME}.Ab(k) and {BASIS_NAME}.Db(k) '
                   f'({REFERENCE_CAPTION} {BASIS_NAME}); this report defines no bar table of its own.')
-REVIEW_BANNER = ('Review copy: the references to BridgeGeometry_2Beam, FBMPEndBent and PierCapDesign resolve only inside the project '
+REVIEW_BANNER = ('Review copy: the references to BridgeGeometry_2Beam, Materials and ProjectInfo resolve only inside the project '
                  'journal (D2_I95_Project_Journal.bpad). Opened on its own, this file shows them as undefined; the values stored in it '
                  'are the journal values at the time of the build.')
 BG = 'BridgeGeometry_2Beam'
+MATERIALS = 'Materials'
+PROJECT_INFO = bs.PROJECT_INFO
 # Section 2 inputs that become live references: Mathcad name -> (qualified owner in the journal, display unit)
 END_BENT_REFS = {
     'b': (f'{BG}.EndBentCap_width', 'in'), 'h': (f'{BG}.EndBentCap_depth', 'in'),
+    'L_cap': (f'{BG}.EndBentCage_envelope', 'in'),
     'C_t': (f'{BG}.EndBent_coverTop', 'in'), 'C_b': (f'{BG}.EndBent_coverBottom', 'in'), 'C_s': (f'{BG}.EndBent_coverSide', 'in'),
-    'fc': ('FBMPEndBent.EBSteel_fc', 'ksi'), 'fy': ('FBMPEndBent.EBSteel_fy', 'ksi'), 'Es': ('FBMPEndBent.EBSteel_Es', 'ksi'),
+    'fc': (f'{MATERIALS}.Substructure_fc', 'ksi'), 'fy': (f'{MATERIALS}.Rebar_fy', 'ksi'), 'Es': (f'{MATERIALS}.Rebar_Es', 'ksi'),
 }
 PIER_REFS = {
     'b': (f'{BG}.PierCap_width', 'in'), 'h': (f'{BG}.PierCap_ht', 'in'), 'L_cap': (f'{BG}.PierCap_length', 'in'),
-    'C_t': ('PierCapDesign.C_t', 'in'), 'C_b': ('PierCapDesign.C_b', 'in'), 'C_s': ('PierCapDesign.C_s', 'in'),
-    'fc': ('PierCapDesign.fc', 'ksi'), 'fy': ('PierCapDesign.fy', 'ksi'), 'Es': ('PierCapDesign.Es', 'ksi'),
+    'C_t': (f'{BG}.PierCap_coverTop', 'in'), 'C_b': (f'{BG}.PierCap_coverBottom', 'in'), 'C_s': (f'{BG}.PierCap_coverSide', 'in'),
+    'fc': (f'{MATERIALS}.Substructure_fc', 'ksi'), 'fy': (f'{MATERIALS}.Rebar_fy', 'ksi'), 'Es': (f'{MATERIALS}.Rebar_Es', 'ksi'),
 }
 # The cap design constants that no journal report owns: Mathcad name, value, display unit, caption with its code reference.
 BASIS_CONSTANTS = [
@@ -957,13 +1030,10 @@ BASIS_CONSTANTS = [
 ]
 BASIS_REFS = {mc: (f'{BASIS_NAME}.{bs.bp_name(mc)}', unit) for mc, _, unit, _ in BASIS_CONSTANTS}
 # Inputs that stay literals although the journal holds a similar quantity: (cap key, Mathcad name) -> why, and what to report.
-# 'owner' is the journal definition that is evaluated and reported (never compared) next to the case value.
-CAP_LENGTH_REASON = ('cap + cheek cage envelope (D-027: 235 in cap + two 8 in cheeks); '
-                     f'{BG}.EndBentCap_length still holds 17 ft 8 in')
-KEEP_LITERAL = {
-    (key, 'L_cap'): dict(status='literal_incoherent_journal', owner=f'{BG}.EndBentCap_length', unit='in', reason=CAP_LENGTH_REASON)
-    for key in ('end_bent_1', 'end_bent_2')
-}
+# 'owner' is the journal definition that is evaluated and reported (never compared) next to the case value, e.g.
+#   (key, name): dict(status='literal_incoherent_journal', owner='BridgeGeometry_2Beam.Some_name', unit='in', reason='why')
+# The table is empty now that BridgeGeometry_2Beam.EndBentCage_envelope owns the 251-in End Bent cap + cheek envelope.
+KEEP_LITERAL = {}
 LITERAL_STATUSES = ('literal_owner_here', 'literal_incoherent_journal')
 INPUT_ORDER = [name for _, group in bm.INPUT_GROUPS for name, _, _ in group]
 
@@ -1054,7 +1124,11 @@ class CapBasis:
             if el.get('name') in taken:
                 raise BuildError(f'{el.tag} name {el.get("name")} is also a definition')
         check_formula_rules(self.rep)
-        self.fragment = bs.serialize(self.rep, declaration=False).rstrip()
+        check_no_retired_names(self.rep)
+        check_no_retired_names(self.review_rep)
+        check_stamp(self.rep, live=True)
+        check_stamp(self.review_rep, live=True)
+        self.fragment =bs.serialize(self.rep, declaration=False).rstrip()
         written = bs.ET.fromstring(self.fragment)                    # what the written XML defines, read back
         self.names = set()
         for dyn in written.iter('dynexp'):
@@ -1074,6 +1148,7 @@ def build_basis_report(bars, banner=False):
     """(document, report element) of CapDesignBasis; `banner` adds the review-copy notice at the top."""
     doc = bs.new_document()
     rep = bs.new_report(doc, BASIS_NAME, BASIS_TITLE)
+    bs.project_stamp_table(rep, PROJECT_STAMP, live=True)            # CapDesignBasis exists only in the journal edition
     if banner:
         bs.para(rep, REVIEW_BANNER, fontsize='10', textcolor='#8A2B1F', background='#FBE9E5', spacingafter='8')
     bs.para(rep, 'D2 I-95 PEDESTRIAN BRIDGE', fontsize=16, fontweight='bold', spacingafter=2)
@@ -1095,8 +1170,8 @@ def build_basis_report(bars, banner=False):
          'CapDesignBasis.φ_a, CapDesignBasis.γ_e, CapDesignBasis.λ, CapDesignBasis.s_proj, CapDesignBasis.Ab(k) and CapDesignBasis.Db(k).'],
         ['Codes. AASHTO LRFD Bridge Design Specifications, 10th edition (2024); FDOT Structures Design Guidelines, January 2026; '
          'article numbers are cited beside each factor.'],
-        ['C005. PierCapDesign keeps its own copies of φ_f, φ_v and γ_e under decision D-003 (preserve C005 unchanged). This report '
-         'neither reads nor changes them; the pier cap report reads PierCapDesign for its cover and materials and this report for the factors.'],
+        ['Sources. Material properties come from Materials; geometry and covers come from BridgeGeometry_2Beam; the project stamp '
+         'comes from ProjectInfo. The cap design reports read each of them from the report that owns it.'],
     ], [620], 'discussion')
     return doc, rep
 
@@ -1136,8 +1211,31 @@ def journal_basis(links, blocks):
     return links.basis
 
 
+def check_project_info(links):
+    """The ProjectInfo strings of the journal must equal PROJECT_STAMP; returns {ProjectInfo.<Key>: text} (the stamp's externals)."""
+    bad, found = [], {}
+    for key in bs.STAMP_KEYS:
+        qualified = f'{PROJECT_INFO}.{key}'
+        try:
+            value = links.value(qualified)
+        except bs.BpError as ex:
+            bad.append(f'  {qualified} cannot be evaluated: {ex}')
+            continue
+        if not isinstance(value, str):
+            bad.append(f'  {qualified} is not text in the journal ({value!r})')
+        elif value != PROJECT_STAMP[key]:
+            bad.append(f'  {qualified}: the journal holds {value!r} but PROJECT_STAMP holds {PROJECT_STAMP[key]!r}')
+        else:
+            found[qualified] = value
+    if bad:
+        raise BuildError('coherence gate, project stamp: the journal ProjectInfo report disagrees with PROJECT_STAMP in '
+                         'scripts/build_cap_bpad.py\n' + '\n'.join(bad))
+    return found
+
+
 def journal_context(links, cap, ctx, blocks):
     """The coherence gate: every referenced journal value must equal the cap-case input, else the build stops."""
+    stamp = check_project_info(links)
     basis = journal_basis(links, blocks)
     key = cap['key']
     refs, keep = references_for(key), literals_for(key)
@@ -1146,7 +1244,7 @@ def journal_context(links, cap, ctx, blocks):
     unknown = [n for n in list(refs) + list(keep) if n not in INPUT_ORDER]
     if unknown:
         raise BuildError(f'not Section 2 inputs: {unknown}')
-    rows, bad, externals, units = [], [], {}, {}
+    rows, bad, externals, units = [], [], dict(stamp), {}
     for mc in INPUT_ORDER:
         if mc not in refs and mc not in keep:
             continue
@@ -1248,7 +1346,7 @@ def write_journal_outputs(links, results, out_dir=None):
     (base / REVIEW_FILE).write_bytes(review)
     write_json(base / 'coherence.json', coherence, sort_keys=False)       # rows keep the field order of the specification
     write_json(base / 'verification.json', {
-        'journal_file': links.source, 'basis': {
+        'journal_file': links.source, 'project_stamp': {'owner': PROJECT_INFO, **PROJECT_STAMP}, 'basis': {
             'report_name': BASIS_NAME, 'fragment': f'{shown_base}/{BASIS_NAME}.xml', 'fragment_sha256': hashlib.sha256(basis.fragment).hexdigest(),
             'constants': {name: clean(q.v) for name, q in basis.values.items()}, 'functions': sorted(basis.bars),
             'read_by': [e['report_name'] for e in entries]},

@@ -668,6 +668,18 @@ class JournalError(BpError):
     pass
 
 
+REPO_ROOT = Path(__file__).resolve().parent.parent
+
+
+def display_path(path):
+    """A journal path as it is recorded in the outputs: relative to the repository when inside it, else as given."""
+    p = Path(path)
+    try:
+        return p.resolve().relative_to(REPO_ROOT).as_posix()
+    except ValueError:
+        return p.as_posix()
+
+
 def tree_names(tree, names=None, calls=None):
     """(names, calls): the identifiers and the called function names of a parse tree from `parse`."""
     names = set() if names is None else names
@@ -710,8 +722,9 @@ class JournalLinks:
 
     @classmethod
     def load(cls, path):
+        """Parse any journal file (the stable one or a preview); `source` records the path as given (repo-relative if inside)."""
         parser = ET.XMLParser(huge_tree=True, resolve_entities=False, no_network=True)
-        return cls(ET.parse(str(path), parser).getroot(), Path(path).name)
+        return cls(ET.parse(str(path), parser).getroot(), display_path(path))
 
     def definitions(self, owner):
         """{name: [right-hand sides]} of the `name = ...` dynexps of an owner report (functions are not collected)."""
@@ -921,6 +934,40 @@ def table(parent, name, headers, rows, widths, palette='output', font='10'):
             else:
                 cell = ET.SubElement(tr, 'c', **attrs)
                 ET.SubElement(cell, 'textvalue').text = str(v)
+    return t
+
+
+STAMP_COLWIDTHS = (95, 165, 95, 165)
+# (left label, left key, right label, right key) of the four rows of the project stamp; the keys are ProjectInfo names
+STAMP_ROWS = (('Firm', 'Firm', 'Project', 'Project'), ('Address', 'Address', 'Job no.', 'JobNo'),
+              ('Designed by', 'DesignedBy', 'Date', 'DesignDate'), ('Checked by', 'CheckedBy', 'Date', 'CheckDate'))
+STAMP_KEYS = tuple(key for row in STAMP_ROWS for key in (row[1], row[3]))
+PROJECT_INFO = 'ProjectInfo'
+
+
+def project_stamp_table(parent, values, live=True, name='ProjectStamp'):
+    """The project stamp: a 4-column discussion-palette table (Firm | value | Project | value, ...), appended to `parent`.
+
+    `values` maps the ProjectInfo names (Firm, Address, Project, JobNo, DesignedBy, DesignDate, CheckedBy, CheckDate) to
+    text. With `live` each value cell is a live reference (`formula="ProjectInfo.<Key>"`) that caches the text; without it
+    the cell is static text. The same inputs always give the same XML."""
+    missing = [k for k in STAMP_KEYS if k not in values]
+    if missing:
+        raise ValueError(f'project stamp values missing: {missing}')
+    body, _, border = PALETTE['discussion']
+    embed = ET.SubElement(parent, 'embed', spacingbefore='5', spacingafter='8')
+    t = ET.SubElement(embed, 'table', name=name, capture='False',
+                      colwidths=', '.join(f'{i + 1}:{w}' for i, w in enumerate(STAMP_COLWIDTHS)))
+    ET.SubElement(t, 'stylerule', range=f'A1:D{len(STAMP_ROWS)}', fontfamily=TNR, fontsize='9', vertalign='Center',
+                  border=f'Border("AllSides", "Solid", 0.6, "{border}"); Border("BetweenRows", "Solid", 0.4, "{border}");')
+    for left_label, left_key, right_label, right_key in STAMP_ROWS:
+        tr = ET.SubElement(t, 'row')
+        for label, key in ((left_label, left_key), (right_label, right_key)):
+            cell = ET.SubElement(tr, 'c', capture='False', background=body, fontweight='bold')
+            ET.SubElement(cell, 'textvalue').text = label
+            attrs = {'formula': f'{PROJECT_INFO}.{key}'} if live else {}
+            cell = ET.SubElement(tr, 'c', capture='False', background=body, **attrs)
+            ET.SubElement(cell, 'textvalue').text = str(values[key])
     return t
 
 

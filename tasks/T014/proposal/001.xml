@@ -1,0 +1,180 @@
+<report name="Materials" title="Materials" unit="in" pagesize="816, 1056" margin="48,48,48,48" collapsemargins="False">
+        <stylerule applytoall="True" type="Any" leftindent="0.25 in" spacingafter="4" />
+        <stylerule type="AnyEquation" name="Required Input" texthighlight="#F7E6B9" />
+        <embed spacingbefore="5" spacingafter="8">
+            <table name="ProjectStamp" capture="False" colwidths="1:95, 2:165, 3:95, 4:165">
+                <stylerule range="A1:D4" fontfamily="Times New Roman" fontsize="9" vertalign="Center" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);"/>
+                <row>
+                    <c capture="False" background="#F1F5FA" fontweight="bold">
+                        <textvalue>Firm</textvalue>
+                    </c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.Firm">
+                        <textvalue>Parsons Transportation Group Inc</textvalue>
+                    </c>
+                    <c capture="False" background="#F1F5FA" fontweight="bold">
+                        <textvalue>Project</textvalue>
+                    </c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.Project">
+                        <textvalue>I-95 Capacity Improvements from South of SR 152 to South of SR 126</textvalue>
+                    </c>
+                </row>
+                <row>
+                    <c capture="False" background="#F1F5FA" fontweight="bold">
+                        <textvalue>Address</textvalue>
+                    </c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.Address">
+                        <textvalue>1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301</textvalue>
+                    </c>
+                    <c capture="False" background="#F1F5FA" fontweight="bold">
+                        <textvalue>Job no.</textvalue>
+                    </c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.JobNo">
+                        <textvalue></textvalue>
+                    </c>
+                </row>
+                <row>
+                    <c capture="False" background="#F1F5FA" fontweight="bold">
+                        <textvalue>Designed by</textvalue>
+                    </c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.DesignedBy">
+                        <textvalue>JAT</textvalue>
+                    </c>
+                    <c capture="False" background="#F1F5FA" fontweight="bold">
+                        <textvalue>Date</textvalue>
+                    </c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.DesignDate">
+                        <textvalue>10/17/2026</textvalue>
+                    </c>
+                </row>
+                <row>
+                    <c capture="False" background="#F1F5FA" fontweight="bold">
+                        <textvalue>Checked by</textvalue>
+                    </c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.CheckedBy">
+                        <textvalue>MIK</textvalue>
+                    </c>
+                    <c capture="False" background="#F1F5FA" fontweight="bold">
+                        <textvalue>Date</textvalue>
+                    </c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.CheckDate">
+                        <textvalue></textvalue>
+                    </c>
+                </row>
+            </table>
+        </embed>
+        <heading>Materials</heading>
+        <embed>
+            <table colwidth="256" capture="False" name="Table1" title="Table 1" colwidths="2: 140, 3: 310.99999999999983, 1: 151.99999999999991">
+                <row>
+                    <textcell name="MultilineCell1" title="MultilineCell 1" capture="False">
+                        <paragraph>
+                            <span fontweight="bold">CONCRETE CLASS</span>
+                        </paragraph>
+                    </textcell>
+                    <textcell name="MultilineCell2" title="MultilineCell 2" capture="False">
+                        <paragraph rightindent="0" hangingindent="-0.7708333333333334 in">
+                            <span fontweight="bold">
+                                MIN. 28-DAY
+                                <break type="line" />
+                                COMPRESSIVE STRENGTH (PSI)
+                            </span>
+                        </paragraph>
+                    </textcell>
+                    <textcell name="MultilineCell3" title="MultilineCell 3" capture="False">
+                        <paragraph>
+                            <span fontweight="bold">
+                                LOCATION OF CONCRETE
+                                <break type="line" />
+                                IN STRUCTURE
+                            </span>
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="MultilineCell4" title="MultilineCell 4" capture="False">
+                        <paragraph>II</paragraph>
+                    </textcell>
+                    <textcell name="MultilineCell5" title="MultilineCell 5" capture="False">
+                        <paragraph>3,400</paragraph>
+                    </textcell>
+                    <textcell name="MultilineCell6" title="MultilineCell 6" capture="False">
+                        <paragraph>RAILINGS</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="MultilineCell7" title="MultilineCell 7" capture="False">
+                        <paragraph>II (BRIDGE DECK)</paragraph>
+                    </textcell>
+                    <textcell name="MultilineCell8" title="MultilineCell 8" capture="False">
+                        <paragraph>4,500</paragraph>
+                    </textcell>
+                    <textcell name="MultilineCell9" title="MultilineCell 9" capture="False">
+                        <paragraph>BRIDGE DECK</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="MultilineCell10" title="MultilineCell 10" capture="False">
+                        <paragraph>IV</paragraph>
+                    </textcell>
+                    <textcell name="MultilineCell11" title="MultilineCell 11" capture="False">
+                        <paragraph>5,500</paragraph>
+                    </textcell>
+                    <textcell name="MultilineCell12" title="MultilineCell 12" capture="False">
+                        <paragraph>C.I.P. SUBSTRUCTURE (UNO)</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="MultilineCell13" title="MultilineCell 13" capture="False">
+                        <paragraph>VI</paragraph>
+                    </textcell>
+                    <textcell name="MultilineCell14" title="MultilineCell 14" capture="False">
+                        <paragraph>8,500</paragraph>
+                    </textcell>
+                    <textcell name="MultilineCell15" title="MultilineCell 15" capture="False">
+                        <paragraph>PRESTRESSED BEAMS</paragraph>
+                    </textcell>
+                </row>
+            </table>
+        </embed>
+        <paragraph />
+        <paragraph fontfamily="Times New Roman" fontsize="11" fontweight="bold" spacingbefore="6" spacingafter="6" leftindent="0">MATERIAL PROPERTIES USED BY THE CALCULATIONS</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="Substructure_fc = 5.5 ksi" mathlayout="on" showformula="True" showresult="False" showsteps="False" seplines="False" style="Required Input">
+                <expbody>Substructure_fc = 5.5 ksi</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">Class IV concrete, C.I.P. substructure: caps, pier wall and backwalls (min. 28-day strength, table above).</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="Deck_fc = 4.5 ksi" mathlayout="on" showformula="True" showresult="False" showsteps="False" seplines="False" style="Required Input">
+                <expbody>Deck_fc = 4.5 ksi</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">Class II concrete, bridge deck (min. 28-day strength, table above).</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="Beam_fc = 8.5 ksi" mathlayout="on" showformula="True" showresult="False" showsteps="False" seplines="False" style="Required Input">
+                <expbody>Beam_fc = 8.5 ksi</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">Class VI concrete, prestressed beams (min. 28-day strength, table above).</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="Railing_fc = 3.4 ksi" mathlayout="on" showformula="True" showresult="False" showsteps="False" seplines="False" style="Required Input">
+                <expbody>Railing_fc = 3.4 ksi</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">Class II concrete, railings (min. 28-day strength, table above).</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="Rebar_fy = 60 ksi" mathlayout="on" showformula="True" showresult="False" showsteps="False" seplines="False" style="Required Input">
+                <expbody>Rebar_fy = 60 ksi</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">Reinforcing steel yield strength, ASTM A615 Grade 60.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="Rebar_Es = 29000 ksi" mathlayout="on" showformula="True" showresult="False" showsteps="False" seplines="False" style="Required Input">
+                <expbody>Rebar_Es = 29000 ksi</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">Reinforcing steel modulus of elasticity, LRFD 5.4.3.2.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#PileProperties">Pipe steel unit weight and effective section properties</link>
+        </paragraph>
+    </report>

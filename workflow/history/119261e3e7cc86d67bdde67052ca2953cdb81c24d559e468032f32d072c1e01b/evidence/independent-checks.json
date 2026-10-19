@@ -1,0 +1,534 @@
+{
+  "candidate": "C:\\github\\D2MPDB\\generated\\T014-journal-coherence-02\\candidate.bpad",
+  "candidate_sha256": "119261e3e7cc86d67bdde67052ca2953cdb81c24d559e468032f32d072c1e01b",
+  "all_passed": true,
+  "checks": {
+    "candidate_differs_from_current_only_in_registered_scope": {
+      "passed": true,
+      "detail": {
+        "differing": [
+          "report:AccessGeometry",
+          "report:BearingDesign",
+          "report:BridgeGeometry_2Beam",
+          "report:BridgeMovement",
+          "report:C001WindLoadOnPedBridgeSuperstructure",
+          "report:CapDesignBasis",
+          "report:CapDesignEndBentOne",
+          "report:CapDesignEndBentTwo",
+          "report:CapDesignPier",
+          "report:DecisionLog",
+          "report:FBMPEndBent",
+          "report:FBMPPier",
+          "report:FenceWind",
+          "report:FoundationModeling",
+          "report:GeneralLoads",
+          "report:LoadCombinations",
+          "report:MSEWallExclusion",
+          "report:Materials",
+          "report:PedBridge",
+          "report:PedBridgeWind",
+          "report:PierCapDesign",
+          "report:PierWallFins",
+          "report:PileProperties",
+          "report:ProjectInfo",
+          "report:SuperstructureUplift"
+        ],
+        "expected": [
+          "report:AccessGeometry",
+          "report:BearingDesign",
+          "report:BridgeGeometry_2Beam",
+          "report:BridgeMovement",
+          "report:C001WindLoadOnPedBridgeSuperstructure",
+          "report:CapDesignBasis",
+          "report:CapDesignEndBentOne",
+          "report:CapDesignEndBentTwo",
+          "report:CapDesignPier",
+          "report:DecisionLog",
+          "report:FBMPEndBent",
+          "report:FBMPPier",
+          "report:FenceWind",
+          "report:FoundationModeling",
+          "report:GeneralLoads",
+          "report:LoadCombinations",
+          "report:MSEWallExclusion",
+          "report:Materials",
+          "report:PedBridge",
+          "report:PedBridgeWind",
+          "report:PierCapDesign",
+          "report:PierWallFins",
+          "report:PileProperties",
+          "report:ProjectInfo",
+          "report:SuperstructureUplift"
+        ],
+        "shell_identical": true,
+        "current_matches_task_base": true
+      }
+    },
+    "report_json_changed_and_deleted_components": {
+      "passed": true,
+      "detail": {
+        "changed": 25,
+        "deleted": [
+          "report:PierCapDesign"
+        ],
+        "added": [
+          "report:ProjectInfo"
+        ],
+        "detected_downstream_impact": [
+          "report:Notes",
+          "spreadsheet:PedBridgeWeights_2Beams",
+          "spreadsheet:QauntitiesBridge"
+        ],
+        "candidate_sha256": "119261e3e7cc86d67bdde67052ca2953cdb81c24d559e468032f32d072c1e01b"
+      }
+    },
+    "no_new_structural_issues_or_stored_errors": {
+      "passed": true,
+      "detail": {
+        "new_issues": {},
+        "candidate_structural_issues": {}
+      }
+    },
+    "no_PierCapDesign_report_link_or_formula": {
+      "passed": true,
+      "detail": {
+        "report_present": false,
+        "references_left": {}
+      }
+    },
+    "remaining_C005_mentions_are_history_or_cap_provenance": {
+      "passed": true,
+      "detail": {
+        "paragraphs_mentioning_C005": {
+          "PedBridge": 1,
+          "BridgeGeometry_2Beam": 4,
+          "FBMPPier": 1,
+          "DecisionLog": 3,
+          "CapDesignEndBentOne": 2,
+          "CapDesignEndBentTwo": 2,
+          "CapDesignPier": 2
+        }
+      }
+    },
+    "every_Materials_Geometry_ProjectInfo_CapBasis_CapOne_reference_resolves": {
+      "passed": true,
+      "detail": {
+        "distinct_references": 152,
+        "unresolved": {},
+        "sample": {
+          "CapDesignBasis.Ab": 92,
+          "BridgeGeometry_2Beam.Pier_tributaryLength": 57,
+          "BridgeGeometry_2Beam.EndBent_rearFaceInset": 46,
+          "CapDesignEndBentOne.DC_ymax": 45,
+          "BridgeGeometry_2Beam.Backwall_thickness_shown": 36,
+          "BridgeGeometry_2Beam.PierTrib_1": 30,
+          "BridgeGeometry_2Beam.PierTrib_2": 30,
+          "BridgeGeometry_2Beam.EndBent_bearingCL_fromRear": 28
+        }
+      }
+    },
+    "new_owners_are_used": {
+      "passed": true,
+      "detail": {
+        "missing": []
+      }
+    },
+    "stamp_table_exactly_once_in_22_reports_with_PROJECT_STAMP_cells": {
+      "passed": true,
+      "detail": {
+        "reports_checked": 22,
+        "stamp_tables_in_journal": 22,
+        "per_report": {
+          "Materials": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          },
+          "BridgeGeometry_2Beam": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          },
+          "AccessGeometry": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          },
+          "BearingDesign": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          },
+          "PileProperties": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          },
+          "GeneralLoads": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          },
+          "PedBridgeWind": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          },
+          "C001WindLoadOnPedBridgeSuperstructure": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          },
+          "FenceWind": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          },
+          "BridgeMovement": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          },
+          "SuperstructureUplift": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          },
+          "LoadCombinations": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          },
+          "FBMPPier": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          },
+          "FBMPEndBent": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          },
+          "FoundationModeling": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          },
+          "PierWallFins": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          },
+          "MSEWallExclusion": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          },
+          "CapDesignBasis": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          },
+          "CapDesignEndBentOne": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          },
+          "CapDesignEndBentTwo": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          },
+          "CapDesignPier": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          },
+          "ProjectInfo": {
+            "tables": 1,
+            "cells_equal_PROJECT_STAMP": true
+          }
+        }
+      }
+    },
+    "ProjectInfo_inputs_equal_PROJECT_STAMP": {
+      "passed": true,
+      "detail": {
+        "projectinfo": {
+          "Firm": "Parsons Transportation Group Inc",
+          "Address": "1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301",
+          "Project": "I-95 Capacity Improvements from South of SR 152 to South of SR 126",
+          "JobNo": "",
+          "DesignedBy": "JAT",
+          "DesignDate": "10/17/2026",
+          "CheckedBy": "MIK",
+          "CheckDate": ""
+        }
+      }
+    },
+    "stamp_is_a_single_insertion_in_unedited_reports": {
+      "passed": true,
+      "detail": {
+        "AccessGeometry": [
+          [
+            "insert",
+            0,
+            61
+          ]
+        ],
+        "BearingDesign": [
+          [
+            "insert",
+            0,
+            61
+          ]
+        ],
+        "PileProperties": [
+          [
+            "insert",
+            0,
+            61
+          ]
+        ],
+        "GeneralLoads": [
+          [
+            "insert",
+            0,
+            61
+          ]
+        ],
+        "PedBridgeWind": [
+          [
+            "insert",
+            0,
+            61
+          ]
+        ],
+        "C001WindLoadOnPedBridgeSuperstructure": [
+          [
+            "insert",
+            0,
+            61
+          ]
+        ],
+        "FenceWind": [
+          [
+            "insert",
+            0,
+            61
+          ]
+        ],
+        "BridgeMovement": [
+          [
+            "insert",
+            0,
+            61
+          ]
+        ],
+        "SuperstructureUplift": [
+          [
+            "insert",
+            0,
+            61
+          ]
+        ],
+        "LoadCombinations": [
+          [
+            "insert",
+            0,
+            61
+          ]
+        ],
+        "FoundationModeling": [
+          [
+            "insert",
+            0,
+            61
+          ]
+        ],
+        "MSEWallExclusion": [
+          [
+            "insert",
+            0,
+            61
+          ]
+        ]
+      }
+    },
+    "geometry_chain_endbent_27p5_36p5_235_251": {
+      "passed": true,
+      "detail": {
+        "endFace": 27.5,
+        "endCenter": 36.5,
+        "capLength": 235.0,
+        "envelope": 251.0,
+        "cache_EndBentCap_length": "19 ft 7 in"
+      }
+    },
+    "every_refreshed_geometry_cache_equals_recomputed_value": {
+      "passed": true,
+      "detail": {
+        "compared": 36,
+        "mismatches": [],
+        "refreshed_without_expectation": [],
+        "Check_notebook_quantity": "INPUTS CHANGED - RECONCILE NOTEBOOK"
+      }
+    },
+    "pile_table_cells_equal_recomputed_centers_and_faces": {
+      "passed": true,
+      "detail": {
+        "table": {
+          "P1": [
+            "36.5 in",
+            "27.5 in",
+            "45.5 in"
+          ],
+          "P2": [
+            "90.5 in",
+            "81.5 in",
+            "99.5 in"
+          ],
+          "P3": [
+            "144.5 in",
+            "135.5 in",
+            "153.5 in"
+          ],
+          "P4": [
+            "198.5 in",
+            "189.5 in",
+            "207.5 in"
+          ]
+        },
+        "expected": {
+          "P1": [
+            "36.5 in",
+            "27.5 in",
+            "45.5 in"
+          ],
+          "P2": [
+            "90.5 in",
+            "81.5 in",
+            "99.5 in"
+          ],
+          "P3": [
+            "144.5 in",
+            "135.5 in",
+            "153.5 in"
+          ],
+          "P4": [
+            "198.5 in",
+            "189.5 in",
+            "207.5 in"
+          ]
+        }
+      }
+    },
+    "notebook_literals_present_with_expected_styles": {
+      "passed": true,
+      "detail": {}
+    },
+    "Materials_six_amber_inputs_and_C005_link_gone": {
+      "passed": true,
+      "detail": {
+        "Substructure_fc": [
+          "Substructure_fc = 5.5 ksi",
+          "Required Input",
+          "False"
+        ],
+        "Deck_fc": [
+          "Deck_fc = 4.5 ksi",
+          "Required Input",
+          "False"
+        ],
+        "Beam_fc": [
+          "Beam_fc = 8.5 ksi",
+          "Required Input",
+          "False"
+        ],
+        "Railing_fc": [
+          "Railing_fc = 3.4 ksi",
+          "Required Input",
+          "False"
+        ],
+        "Rebar_fy": [
+          "Rebar_fy = 60 ksi",
+          "Required Input",
+          "False"
+        ],
+        "Rebar_Es": [
+          "Rebar_Es = 29000 ksi",
+          "Required Input",
+          "False"
+        ]
+      }
+    },
+    "consumers_redirected_with_unchanged_caches": {
+      "passed": true,
+      "detail": {
+        "FBMPEndBent.EBSteel_fc": {
+          "formula": "EBSteel_fc = Materials.Substructure_fc to ksi",
+          "style": null,
+          "cache": "5.5 ksi"
+        },
+        "FBMPEndBent.EBSteel_fy": {
+          "formula": "EBSteel_fy = Materials.Rebar_fy to ksi",
+          "style": null,
+          "cache": "60 ksi"
+        },
+        "FBMPEndBent.EBSteel_Es": {
+          "formula": "EBSteel_Es = Materials.Rebar_Es to ksi",
+          "style": null,
+          "cache": "29000 ksi"
+        },
+        "PierWallFins.f_c": {
+          "formula": "f_c = Materials.Substructure_fc to ksi",
+          "style": null,
+          "cache": "5.5 ksi"
+        },
+        "PierWallFins.f_y": {
+          "formula": "f_y = Materials.Rebar_fy to ksi",
+          "style": null,
+          "cache": "60 ksi"
+        },
+        "PierWallFins.E_s": {
+          "formula": "E_s = Materials.Rebar_Es to ksi",
+          "style": null,
+          "cache": "29000 ksi"
+        },
+        "PierWallFins.c_w": {
+          "formula": "c_w = BridgeGeometry_2Beam.PierCap_coverSide to in",
+          "style": null,
+          "cache": "3 in"
+        }
+      }
+    },
+    "PedBridge_links": {
+      "passed": true,
+      "detail": {
+        "first_link_under_project_basis": "ProjectInfo"
+      }
+    },
+    "DecisionLog_entry_appended_history_kept": {
+      "passed": true,
+      "detail": {}
+    },
+    "cap_reports_match_generator_and_coherence_has_no_incoherent_rows": {
+      "passed": true,
+      "detail": {
+        "statuses": {
+          "reference": 45
+        },
+        "L_cap_owner": {
+          "CapDesignEndBentOne": "BridgeGeometry_2Beam.EndBentCage_envelope",
+          "CapDesignEndBentTwo": "BridgeGeometry_2Beam.EndBentCage_envelope",
+          "CapDesignPier": "BridgeGeometry_2Beam.PierCap_length"
+        },
+        "fragments": {
+          "CapDesignBasis": {
+            "bytes": 10873,
+            "sha256": "21f50373dde0105cb508acb3a89f6ab0fdef47e264118b033ef762f034096ae6",
+            "matches_fragment": true
+          },
+          "CapDesignEndBentOne": {
+            "bytes": 353648,
+            "sha256": "c560d3fafa1e4576c87c33c38e7f30bc1921d9e6947b8d04f94668da4b008701",
+            "matches_fragment": true
+          },
+          "CapDesignEndBentTwo": {
+            "bytes": 353652,
+            "sha256": "2dc8a777ab571caa7f04912f591f2ff5421db6596e2666b2aa844732c589f99c",
+            "matches_fragment": true
+          },
+          "CapDesignPier": {
+            "bytes": 353866,
+            "sha256": "987eb9804a9278c3f04300dca28950f99cbb2a66865b8f6e5284492db0d8604e",
+            "matches_fragment": true
+          }
+        }
+      }
+    },
+    "cap_reports_do_not_read_deleted_C005": {
+      "passed": true,
+      "detail": {}
+    }
+  }
+}

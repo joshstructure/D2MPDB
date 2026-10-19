@@ -42,27 +42,27 @@
   },
   {
    "input": "fc",
-   "owner": "FBMPEndBent.EBSteel_fc",
+   "owner": "Materials.Substructure_fc",
    "journal_value": 5.5,
    "case_value": 5.5,
    "status": "reference",
-   "note": "shared journal value — FBMPEndBent.EBSteel_fc (ksi)"
+   "note": "shared journal value — Materials.Substructure_fc (ksi)"
   },
   {
    "input": "fy",
-   "owner": "FBMPEndBent.EBSteel_fy",
+   "owner": "Materials.Rebar_fy",
    "journal_value": 60.0,
    "case_value": 60.0,
    "status": "reference",
-   "note": "shared journal value — FBMPEndBent.EBSteel_fy (ksi)"
+   "note": "shared journal value — Materials.Rebar_fy (ksi)"
   },
   {
    "input": "Es",
-   "owner": "FBMPEndBent.EBSteel_Es",
+   "owner": "Materials.Rebar_Es",
    "journal_value": 29000.0,
    "case_value": 29000.0,
    "status": "reference",
-   "note": "shared journal value — FBMPEndBent.EBSteel_Es (ksi)"
+   "note": "shared journal value — Materials.Rebar_Es (ksi)"
   },
   {
    "input": "φ_f",
@@ -106,11 +106,11 @@
   },
   {
    "input": "L_cap",
-   "owner": "BridgeGeometry_2Beam.EndBentCap_length",
-   "journal_value": 212.0,
+   "owner": "BridgeGeometry_2Beam.EndBentCage_envelope",
+   "journal_value": 251.0,
    "case_value": 251.0,
-   "status": "literal_incoherent_journal",
-   "note": "cap + cheek cage envelope (D-027: 235 in cap + two 8 in cheeks); BridgeGeometry_2Beam.EndBentCap_length still holds 17 ft 8 in"
+   "status": "reference",
+   "note": "shared journal value — BridgeGeometry_2Beam.EndBentCage_envelope (in)"
   },
   {
    "input": "s_proj",
@@ -164,27 +164,27 @@
   },
   {
    "input": "fc",
-   "owner": "FBMPEndBent.EBSteel_fc",
+   "owner": "Materials.Substructure_fc",
    "journal_value": 5.5,
    "case_value": 5.5,
    "status": "reference",
-   "note": "shared journal value — FBMPEndBent.EBSteel_fc (ksi)"
+   "note": "shared journal value — Materials.Substructure_fc (ksi)"
   },
   {
    "input": "fy",
-   "owner": "FBMPEndBent.EBSteel_fy",
+   "owner": "Materials.Rebar_fy",
    "journal_value": 60.0,
    "case_value": 60.0,
    "status": "reference",
-   "note": "shared journal value — FBMPEndBent.EBSteel_fy (ksi)"
+   "note": "shared journal value — Materials.Rebar_fy (ksi)"
   },
   {
    "input": "Es",
-   "owner": "FBMPEndBent.EBSteel_Es",
+   "owner": "Materials.Rebar_Es",
    "journal_value": 29000.0,
    "case_value": 29000.0,
    "status": "reference",
-   "note": "shared journal value — FBMPEndBent.EBSteel_Es (ksi)"
+   "note": "shared journal value — Materials.Rebar_Es (ksi)"
   },
   {
    "input": "φ_f",
@@ -228,11 +228,11 @@
   },
   {
    "input": "L_cap",
-   "owner": "BridgeGeometry_2Beam.EndBentCap_length",
-   "journal_value": 212.0,
+   "owner": "BridgeGeometry_2Beam.EndBentCage_envelope",
+   "journal_value": 251.0,
    "case_value": 251.0,
-   "status": "literal_incoherent_journal",
-   "note": "cap + cheek cage envelope (D-027: 235 in cap + two 8 in cheeks); BridgeGeometry_2Beam.EndBentCap_length still holds 17 ft 8 in"
+   "status": "reference",
+   "note": "shared journal value — BridgeGeometry_2Beam.EndBentCage_envelope (in)"
   },
   {
    "input": "s_proj",
@@ -262,51 +262,51 @@
   },
   {
    "input": "C_t",
-   "owner": "PierCapDesign.C_t",
+   "owner": "BridgeGeometry_2Beam.PierCap_coverTop",
    "journal_value": 3.0,
    "case_value": 3.0,
    "status": "reference",
-   "note": "shared journal value — PierCapDesign.C_t (in)"
+   "note": "shared journal value — BridgeGeometry_2Beam.PierCap_coverTop (in)"
   },
   {
    "input": "C_b",
-   "owner": "PierCapDesign.C_b",
+   "owner": "BridgeGeometry_2Beam.PierCap_coverBottom",
    "journal_value": 3.0,
    "case_value": 3.0,
    "status": "reference",
-   "note": "shared journal value — PierCapDesign.C_b (in)"
+   "note": "shared journal value — BridgeGeometry_2Beam.PierCap_coverBottom (in)"
   },
   {
    "input": "C_s",
-   "owner": "PierCapDesign.C_s",
+   "owner": "BridgeGeometry_2Beam.PierCap_coverSide",
    "journal_value": 3.0,
    "case_value": 3.0,
    "status": "reference",
-   "note": "shared journal value — PierCapDesign.C_s (in)"
+   "note": "shared journal value — BridgeGeometry_2Beam.PierCap_coverSide (in)"
   },
   {
    "input": "fc",
-   "owner": "PierCapDesign.fc",
+   "owner": "Materials.Substructure_fc",
    "journal_value": 5.5,
    "case_value": 5.5,
    "status": "reference",
-   "note": "shared journal value — PierCapDesign.fc (ksi)"
+   "note": "shared journal value — Materials.Substructure_fc (ksi)"
   },
   {
    "input": "fy",
-   "owner": "PierCapDesign.fy",
+   "owner": "Materials.Rebar_fy",
    "journal_value": 60.0,
    "case_value": 60.0,
    "status": "reference",
-   "note": "shared journal value — PierCapDesign.fy (ksi)"
+   "note": "shared journal value — Materials.Rebar_fy (ksi)"
   },
   {
    "input": "Es",
-   "owner": "PierCapDesign.Es",
+   "owner": "Materials.Rebar_Es",
    "journal_value": 29000.0,
    "case_value": 29000.0,
    "status": "reference",
-   "note": "shared journal value — PierCapDesign.Es (ksi)"
+   "note": "shared journal value — Materials.Rebar_Es (ksi)"
   },
   {
    "input": "φ_f",

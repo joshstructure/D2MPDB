@@ -1,0 +1,589 @@
+{
+  "edited": [
+    {
+      "report": "BridgeGeometry_2Beam",
+      "formula": "EndBent_pileEndClear = 27.5 in",
+      "change": "amber input added (notebook pile end clearance)"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "formula": "EndBent_endDetail = EndBent_pileEndClear-EndBent_edgeClear-EndBent_pileTolerance to in",
+      "was": "EndBent_endDetail = 4 in",
+      "change": "amber literal replaced by a derived value; cached 15.5 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "text": "EndBentCurrentGeometry Source row",
+      "change": "names the geometry notebook (e9b41b8eaf, D-036)"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "formula": "EndBent_cheekThickness = 8 in",
+      "change": "added"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "formula": "EndBent_lugProjection = 6 in",
+      "change": "added"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "formula": "EndBent_lugWidth = 5.5 in",
+      "change": "added"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "formula": "EndBent_mseJoint = 0.5 in",
+      "change": "added"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "formula": "EndBentCage_envelope = EndBentCap_length+2*EndBent_cheekThickness to in",
+      "change": "added"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "formula": "PierCap_coverTop = 3 in",
+      "change": "added (moved from C005)"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "formula": "PierCap_coverBottom = 3 in",
+      "change": "added (moved from C005)"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "formula": "PierCap_coverSide = 3 in",
+      "change": "added (moved from C005)"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "formula": "Beam_camber_1 = 0.124592744006574 in",
+      "was": "Beam_camber_1 = 1 in",
+      "change": "placeholder replaced by the notebook net camber"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "formula": "Beam_camber_2 = 0.5671714630550072 in",
+      "was": "Beam_camber_2 = 1 in",
+      "change": "placeholder replaced by the notebook net camber"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "formula": "Beam_support_drop = Thickness_slab_peak+Beam_depth+Deck_crossfall*(Beam_spacing/2+Beam_topFlange_width/2)+Haunch_min+Max(Beam_camber_1,Beam_camber_2) to ft",
+      "change": "formula and attributes kept; caption extended; cached result refreshed 3.751 -> 3.715 ft (equals the notebook 3.7147642885879173 ft)"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "text": "PierCap_endDetail caption",
+      "change": "C005 sentence replaced"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "text": "NotebookGeometryUpdate20260929 note",
+      "change": "C005 mention replaced by CapDesignPier"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "text": "bearing audit stations paragraph",
+      "change": "54.50/157.49 in -> 66.00/168.99 in (endCenter 25 -> 36.5 in)"
+    },
+    {
+      "report": "Materials",
+      "formula": "Substructure_fc = 5.5 ksi",
+      "change": "amber input added (moved from C005)"
+    },
+    {
+      "report": "Materials",
+      "formula": "Deck_fc = 4.5 ksi",
+      "change": "amber input added (moved from C005)"
+    },
+    {
+      "report": "Materials",
+      "formula": "Beam_fc = 8.5 ksi",
+      "change": "amber input added (moved from C005)"
+    },
+    {
+      "report": "Materials",
+      "formula": "Railing_fc = 3.4 ksi",
+      "change": "amber input added (moved from C005)"
+    },
+    {
+      "report": "Materials",
+      "formula": "Rebar_fy = 60 ksi",
+      "change": "amber input added (moved from C005)"
+    },
+    {
+      "report": "Materials",
+      "formula": "Rebar_Es = 29000 ksi",
+      "change": "amber input added (moved from C005)"
+    },
+    {
+      "report": "Materials",
+      "link": "#PierCapDesign",
+      "change": "link to deleted C005 removed"
+    },
+    {
+      "report": "FBMPEndBent",
+      "formula": "EBSteel_fc = Materials.Substructure_fc to ksi",
+      "was": "EBSteel_fc = 5.5 ksi",
+      "change": "amber literal replaced by live reference to Materials; Required Input style dropped; cached result unchanged"
+    },
+    {
+      "report": "FBMPEndBent",
+      "formula": "EBSteel_fy = Materials.Rebar_fy to ksi",
+      "was": "EBSteel_fy = 60 ksi",
+      "change": "amber literal replaced by live reference to Materials; Required Input style dropped; cached result unchanged"
+    },
+    {
+      "report": "FBMPEndBent",
+      "formula": "EBSteel_Es = Materials.Rebar_Es to ksi",
+      "was": "EBSteel_Es = 29000 ksi",
+      "change": "amber literal replaced by live reference to Materials; Required Input style dropped; cached result unchanged"
+    },
+    {
+      "report": "FBMPPier",
+      "text": "two C005 sentences replaced (removal note)"
+    },
+    {
+      "report": "PierWallFins",
+      "formula": "f_c = Materials.Substructure_fc to ksi",
+      "was": "f_c = PierCapDesign.fc to ksi",
+      "change": "consumer moved off C005; cached result unchanged"
+    },
+    {
+      "report": "PierWallFins",
+      "formula": "f_y = Materials.Rebar_fy to ksi",
+      "was": "f_y = PierCapDesign.fy to ksi",
+      "change": "consumer moved off C005; cached result unchanged"
+    },
+    {
+      "report": "PierWallFins",
+      "formula": "E_s = Materials.Rebar_Es to ksi",
+      "was": "E_s = PierCapDesign.Es to ksi",
+      "change": "consumer moved off C005; cached result unchanged"
+    },
+    {
+      "report": "PierWallFins",
+      "formula": "c_w = BridgeGeometry_2Beam.PierCap_coverSide to in",
+      "was": "c_w = PierCapDesign.C_s to in",
+      "change": "consumer moved off C005; cached result unchanged"
+    },
+    {
+      "report": "PierWallFins",
+      "text": "c_w caption (unchanged): Adopted wall-face cover, matching the current formed substructure cover. (FDOT SDG 1.4.2)"
+    },
+    {
+      "report": "PedBridge",
+      "link": "#PierCapDesign",
+      "change": "link paragraph removed"
+    },
+    {
+      "report": "PedBridge",
+      "link": "#ProjectInfo",
+      "text": "Project information and stamp",
+      "change": "index link added"
+    },
+    {
+      "report": "PedBridge",
+      "text": "The former C005 (removed 19 October 2026) was left unchanged in that revision and reinforcement remains separate.",
+      "was": "C005 is completely unchanged and reinforcement remains separate."
+    },
+    {
+      "report": "DecisionLog",
+      "text": "C005 (PierCapDesign) removed from the journal by user direction; CapDesignPier is the pier cap record. Material properties moved to Materials; pier cap covers to Bridge Geometry. End-bent cap geometry aligned with the geometry notebook (D-026/D-036: 27.5-in pile end clearance, 235-in cap, 251-in cage envelope with 8-in cheek webs); beam cambers and the support drop taken from the notebook build e9b41b8eaf. ProjectInfo added and a live project stamp placed on every calculation report. Journal task T014.",
+      "change": "entry appended (19 October 2026)"
+    }
+  ],
+  "refreshed_caches": [
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "BO_LowBeam",
+      "formula": "BO_LowBeam = Beam_bottom_pier to ft",
+      "was": " = 44.447 ft",
+      "now": "= 44.483 ft"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "Beam_bottom_end",
+      "formula": "Beam_bottom_end = PGL_end_elev-Beam_support_drop to ft",
+      "was": " = 43.922 ft",
+      "now": "= 43.958 ft"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "Beam_bottom_pier",
+      "formula": "Beam_bottom_pier = PGL_pier_elev-Beam_support_drop to ft",
+      "was": " = 44.447 ft",
+      "now": "= 44.483 ft"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "Beam_bottom_start",
+      "formula": "Beam_bottom_start = PGL_start_elev-Beam_support_drop to ft",
+      "was": " = 43.910 ft",
+      "now": "= 43.946 ft"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "Beam_support_drop",
+      "formula": "Beam_support_drop = Thickness_slab_peak+Beam_depth+Deck_crossfall*(Beam_spacing/2+Beam_topFlange_width/2)+Haunch_min+Max(Beam_camber_1,Beam_camber_2) to ft",
+      "was": " = 3.751 ft",
+      "now": "= 3.715 ft"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "Bearing_soffit_elev",
+      "formula": "Bearing_soffit_elev = BO_LowBeam to ft",
+      "was": " = 44.447 ft",
+      "now": "= 44.483 ft"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "CapBottom_aboveTerrain",
+      "formula": "CapBottom_aboveTerrain = CapTop_aboveTerrain - PierCap_ht to ft in",
+      "was": " = 15 ft 2.482 in",
+      "now": "= 15 ft 2.915 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "CapBottom_elev",
+      "formula": "CapBottom_elev = CapTop_elev-PierCap_ht to ft",
+      "was": " = 40.733 ft",
+      "now": "= 40.769 ft"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "CapCG_aboveTerrain",
+      "formula": "CapCG_aboveTerrain = CapTop_aboveTerrain - PierCap_ht/2 to ft in",
+      "was": " = 16 ft 8.482 in",
+      "now": "= 16 ft 8.915 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "CapCG_elev",
+      "formula": "CapCG_elev = CapTop_elev-PierCap_ht/2 to ft",
+      "was": " = 42.233 ft",
+      "now": "= 42.269 ft"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "CapTop_aboveTerrain",
+      "formula": "CapTop_aboveTerrain = CapTop_elev-Terrain_elev to ft in",
+      "was": " = 18 ft 2.482 in",
+      "now": "= 18 ft 2.915 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "CapTop_elev",
+      "formula": "CapTop_elev = Bearing_soffit_elev-BearingPlane_aboveCap to ft",
+      "was": " = 43.733 ft",
+      "now": "= 43.769 ft"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "Check_notebook_quantity",
+      "formula": "Check_notebook_quantity = If(And(Beam_count == 2, Abs(Deck_area-6.79166666666667 ft^2)<0.000001 ft^2, Abs(Haunch_totalVolume-185.836666666667 ft^3)<0.000001 ft^3), \"MATCHES 2026-09-29 NOTEBOOK\", \"INPUTS CHANGED - RECONCILE NOTEBOOK\")",
+      "was": " = MATCHES 2026-09-29 NOTEBOOK",
+      "now": "= INPUTS CHANGED - RECONCILE NOTEBOOK"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "Concrete_top_aboveGround",
+      "formula": "Concrete_top_aboveGround = Wind_clearHeight + Depth_SuperStr",
+      "was": " = 26 ft 0.045 in",
+      "now": "= 26 ft 0.478 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "EndBentCap_DC",
+      "formula": "EndBentCap_DC = EndBentCap_volume*PedBridgeWeights_2Beams.I29 to kip",
+      "was": " = 27.825 kip",
+      "now": "= 30.844 kip"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "EndBentCap_length",
+      "formula": "EndBentCap_length = (EndBent_pileCount-1)*EndBent_pileSpacing+2*EndBent_endCenter to ft in",
+      "was": " = 17 ft 8 in",
+      "now": "= 19 ft 7 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "EndBentCap_volume",
+      "formula": "EndBentCap_volume = EndBentCap_area*EndBentCap_length to ft^3",
+      "was": " = 185.5 ft^3",
+      "now": "= 205.625 ft^3"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "EndBentCaps_volume",
+      "formula": "EndBentCaps_volume = EndBent_count*EndBentCap_volume to ft^3",
+      "was": " = 371 ft^3",
+      "now": "= 411.25 ft^3"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "EndBent_P1_station",
+      "formula": "EndBent_P1_station = EndBent_endCenter+0*EndBent_pileSpacing to in",
+      "was": " = 25 in",
+      "now": "= 36.5 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "EndBent_P2_station",
+      "formula": "EndBent_P2_station = EndBent_endCenter+1*EndBent_pileSpacing to in",
+      "was": " = 79 in",
+      "now": "= 90.5 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "EndBent_P3_station",
+      "formula": "EndBent_P3_station = EndBent_endCenter+2*EndBent_pileSpacing to in",
+      "was": " = 133 in",
+      "now": "= 144.5 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "EndBent_P4_station",
+      "formula": "EndBent_P4_station = EndBent_endCenter+3*EndBent_pileSpacing to in",
+      "was": " = 187 in",
+      "now": "= 198.5 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "EndBent_endCenter",
+      "formula": "EndBent_endCenter = EndBent_endFace+EndBent_pileWidth/2 to in",
+      "was": " = 25 in",
+      "now": "= 36.5 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "EndBent_endFace",
+      "formula": "EndBent_endFace = EndBent_edgeClear+EndBent_pileTolerance+EndBent_endDetail to in",
+      "was": " = 16 in",
+      "now": "= 27.5 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "Haunch_average_1",
+      "formula": "Haunch_average_1 = Haunch_min+Max(Beam_camber_1,Beam_camber_2)-2*Beam_camber_1/3+Deck_crossfall*Beam_topFlange_width/2 to in",
+      "was": " = 1.313 in",
+      "now": "= 1.464 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "Haunch_average_2",
+      "formula": "Haunch_average_2 = Haunch_min+Max(Beam_camber_1,Beam_camber_2)-2*Beam_camber_2/3+Deck_crossfall*Beam_topFlange_width/2 to in",
+      "was": " = 1.313 in",
+      "now": "= 1.169 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "Haunch_totalVolume",
+      "formula": "Haunch_totalVolume = Haunch_volume_span1+Haunch_volume_span2 to ft^3",
+      "was": " = 185.837 ft^3",
+      "now": "= 186.538 ft^3"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "Haunch_volume_perBeam",
+      "formula": "Haunch_volume_perBeam = Haunch_totalVolume/Beam_count to ft^3",
+      "was": " = 92.918 ft^3",
+      "now": "= 93.269 ft^3"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "Haunch_volume_span1",
+      "formula": "Haunch_volume_span1 = Beam_count*Span_1*Beam_topFlange_width*Haunch_average_1 to ft^3",
+      "was": " = 93.991 ft^3",
+      "now": "= 104.781 ft^3"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "Haunch_volume_span2",
+      "formula": "Haunch_volume_span2 = Beam_count*Span_2*Beam_topFlange_width*Haunch_average_2 to ft^3",
+      "was": " = 91.846 ft^3",
+      "now": "= 81.756 ft^3"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "PierCap_ht_toTop",
+      "formula": "PierCap_ht_toTop = CapTop_aboveTerrain to ft in",
+      "was": " = 18 ft 2.482 in",
+      "now": "= 18 ft 2.915 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "Pier_wall_area",
+      "formula": "Pier_wall_area = Pier_windFace_width*PierCap_ht_toTop to ft^2",
+      "was": " = 348.965 ft^2",
+      "now": "= 349.656 ft^2"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "Pile_ht_exposed",
+      "formula": "Pile_ht_exposed = CapCG_aboveTerrain to ft",
+      "was": " = 16.707 ft",
+      "now": "= 16.743 ft"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "Wind_clearHeight",
+      "formula": "Wind_clearHeight = CapTop_aboveTerrain + BearingPlane_aboveCap to ft in",
+      "was": " = 18 ft 11.045 in",
+      "now": "= 18 ft 11.478 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "name": "Wind_exposureHeight",
+      "formula": "Wind_exposureHeight = Wind_clearHeight + Depth_SuperStr + Fence_ht",
+      "was": " = 35 ft 8 23/64 in",
+      "now": "= 35 ft 8 51/64 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "cell": "EndBent_P1_station to in",
+      "was": "25 in",
+      "now": "36.5 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "cell": "EndBent_P1_station-EndBent_pileWidth/2 to in",
+      "was": "16 in",
+      "now": "27.5 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "cell": "EndBent_P1_station+EndBent_pileWidth/2 to in",
+      "was": "34 in",
+      "now": "45.5 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "cell": "EndBent_P2_station to in",
+      "was": "79 in",
+      "now": "90.5 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "cell": "EndBent_P2_station-EndBent_pileWidth/2 to in",
+      "was": "70 in",
+      "now": "81.5 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "cell": "EndBent_P2_station+EndBent_pileWidth/2 to in",
+      "was": "88 in",
+      "now": "99.5 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "cell": "EndBent_P3_station to in",
+      "was": "133 in",
+      "now": "144.5 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "cell": "EndBent_P3_station-EndBent_pileWidth/2 to in",
+      "was": "124 in",
+      "now": "135.5 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "cell": "EndBent_P3_station+EndBent_pileWidth/2 to in",
+      "was": "142 in",
+      "now": "153.5 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "cell": "EndBent_P4_station to in",
+      "was": "187 in",
+      "now": "198.5 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "cell": "EndBent_P4_station-EndBent_pileWidth/2 to in",
+      "was": "178 in",
+      "now": "189.5 in"
+    },
+    {
+      "report": "BridgeGeometry_2Beam",
+      "cell": "EndBent_P4_station+EndBent_pileWidth/2 to in",
+      "was": "196 in",
+      "now": "207.5 in"
+    }
+  ],
+  "stamp_placement": {
+    "Materials": {
+      "before": "heading",
+      "line": 4
+    },
+    "BridgeGeometry_2Beam": {
+      "before": "section",
+      "line": 2
+    },
+    "AccessGeometry": {
+      "before": "heading",
+      "line": 4
+    },
+    "BearingDesign": {
+      "before": "heading",
+      "line": 4
+    },
+    "PileProperties": {
+      "before": "heading",
+      "line": 4
+    },
+    "GeneralLoads": {
+      "before": "heading",
+      "line": 4
+    },
+    "PedBridgeWind": {
+      "before": "paragraph",
+      "line": 4
+    },
+    "C001WindLoadOnPedBridgeSuperstructure": {
+      "before": "paragraph",
+      "line": 2
+    },
+    "FenceWind": {
+      "before": "paragraph",
+      "line": 2
+    },
+    "BridgeMovement": {
+      "before": "paragraph",
+      "line": 2
+    },
+    "SuperstructureUplift": {
+      "before": "paragraph",
+      "line": 2
+    },
+    "LoadCombinations": {
+      "before": "heading",
+      "line": 4
+    },
+    "FBMPPier": {
+      "before": "section",
+      "line": 2
+    },
+    "FBMPEndBent": {
+      "before": "heading",
+      "line": 4
+    },
+    "FoundationModeling": {
+      "before": "heading",
+      "line": 4
+    },
+    "PierWallFins": {
+      "before": "paragraph",
+      "line": 4
+    },
+    "MSEWallExclusion": {
+      "before": "paragraph",
+      "line": 4
+    }
+  },
+  "pedbridge_sentence": "The matching raw XML is still needed to verify the offset correction. C005 is completely unchanged and reinforcement remains separate. => The former C005 (removed 19 October 2026) was left unchanged in that revision and reinforcement remains separate.",
+  "cap_reports_refreshed": true
+}

@@ -1,0 +1,7 @@
+CapDesignEndBentOne: 15 journal references verified, 0 literals kept; 891 values match the cap tool; 535 match the Mathcad sheet
+CapDesignEndBentTwo: 15 journal references verified, 0 literals kept; 891 values match the cap tool; 535 match the Mathcad sheet
+CapDesignPier: 15 journal references verified, 0 literals kept; 859 values match the cap tool; 535 match the Mathcad sheet
+CapDesignBasis: 6 shared factors, 2 bar functions; read by CapDesignEndBentOne, CapDesignEndBentTwo, CapDesignPier
+Wrote 4 reports, Cap Design - Journal Edition (review).bpad, coherence.json and verification.json to cap_bpad/journal/
+
+--- stderr ---

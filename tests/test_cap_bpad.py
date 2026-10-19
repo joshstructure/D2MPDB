@@ -59,6 +59,35 @@ def unix(data):
     return data.replace(b'\r\n', b'\n')
 
 
+STAMP = {'Firm': 'Parsons Transportation Group Inc', 'Address': '1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301',
+         'Project': 'I-95 Capacity Improvements from South of SR 152 to South of SR 126', 'JobNo': '', 'DesignedBy': 'JAT',
+         'DesignDate': '10/17/2026', 'CheckedBy': 'MIK', 'CheckDate': ''}
+STAMP_LAYOUT = [('Firm', 'Firm', 'Project', 'Project'), ('Address', 'Address', 'Job no.', 'JobNo'),
+                ('Designed by', 'DesignedBy', 'Date', 'DesignDate'), ('Checked by', 'CheckedBy', 'Date', 'CheckDate')]
+
+
+def check_stamp(test, rep, live):
+    """The ProjectStamp table is the first element after the report stylerules: 4 rows of label | value | label | value."""
+    first = [el for el in rep if el.tag not in ('include', 'stylerule')][0]
+    test.assertEqual(first.tag, 'embed')
+    table = first.find('table')
+    test.assertEqual((table.get('name'), table.get('colwidths')), ('ProjectStamp', '1:95, 2:165, 3:95, 4:165'))
+    rule = table.find('stylerule')
+    test.assertEqual((rule.get('fontsize'), rule.get('range')), ('9', 'A1:D4'))
+    test.assertIn('#7189A6', rule.get('border'))
+    rows = table.findall('row')
+    test.assertEqual(len(rows), 4)
+    test.assertEqual(len([t for t in rep.iter('table') if t.get('name') == 'ProjectStamp']), 1)
+    for row, (label_a, key_a, label_b, key_b) in zip(rows, STAMP_LAYOUT):
+        cells = row.findall('c')
+        test.assertEqual(len(cells), 4)
+        test.assertEqual([c.find('textvalue').text or '' for c in cells], [label_a, STAMP[key_a], label_b, STAMP[key_b]])
+        test.assertEqual([c.get('fontweight') for c in cells], ['bold', None, 'bold', None])
+        test.assertEqual({c.get('background') for c in cells}, {'#F1F5FA'})
+        test.assertEqual([c.get('formula') for c in cells],
+                         [None, f'ProjectInfo.{key_a}' if live else None, None, f'ProjectInfo.{key_b}' if live else None])
+
+
 class CapBpad(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -265,6 +294,45 @@ class CapBpad(unittest.TestCase):
             ratios = [eng.get(dc).v for dc, _ in expected]
             self.assertGreaterEqual(eng.get('DC_ymax').v, max(1.2, 1.1 * max(ratios)) - 1e-12)
 
+    def test_project_stamp_is_static_text_at_the_top_of_every_report(self):
+        for cap, b in self.each():
+            for source, data in (('fresh build', b['data']), ('committed file', (OUT / b['filename']).read_bytes())):
+                with self.subTest(source=source):
+                    check_stamp(self, self.report_of(data), live=False)
+
+    def test_project_stamp_table_helper_is_deterministic(self):
+        self.assertEqual(bc.PROJECT_STAMP, STAMP)
+
+        def make(live, **kw):
+            rep = bs.ET.Element('report')
+            bs.project_stamp_table(rep, STAMP, live=live, **kw)
+            return bs.ET.tostring(rep, pretty_print=True)
+
+        self.assertEqual(make(True), make(True))
+        self.assertEqual(make(False), make(False))
+        self.assertNotEqual(make(True), make(False))
+        self.assertIn(b'formula="ProjectInfo.Firm"', make(True))
+        self.assertNotIn(b'formula=', make(False))
+        self.assertIn(b'name="Other"', make(True, name='Other'))
+        with self.assertRaises(ValueError):
+            bs.project_stamp_table(bs.ET.Element('report'), {'Firm': 'x'})
+
+    def test_no_retired_report_name_and_cap_tool_wording(self):
+        for cap, b in self.each():
+            for data in (b['data'], b['fragment']):
+                self.assertNotIn(b'PierCapDesign', data)
+                text = data.decode('utf-8')
+                for m in re.finditer('C005', text):         # only the words "C005 formula set", which name a hash, may remain
+                    self.assertTrue(text[m.start():].startswith('C005 formula set'), f'C005 wording left: {text[m.start() - 40:m.start() + 40]!r}')
+            paragraphs = [text_of(p) for p in self.report_of(b['data']).iter('paragraph')]
+            sha = b['entry']['formula_sha256'][:12]
+            self.assertTrue(any(t.endswith(f'4.1.4A–C; inherited sectional relations of the cap tool (C005 formula set {sha}).')
+                                for t in paragraphs), 'the Codes paragraph does not carry the new wording')
+            for wanted in ('4. Steel areas and effective depths (cap tool)', 'Actions (cap tool inputs from the analysis envelope)',
+                           'concrete modulus (cap tool)', 'effective shear depth (cap tool)'):
+                self.assertTrue(any(wanted in t for t in paragraphs), f'{wanted!r} is missing')
+            self.assertFalse([t for t in paragraphs if 'inherited C005' in t])
+
     def test_preview_sidecar_matches_the_canvases(self):
         for cap, b in self.each():
             sidecar = json.loads(b['sidecar'].decode('utf-8'))
@@ -283,12 +351,14 @@ JOURNAL_OUT = OUT / 'journal'
 BG = 'BridgeGeometry_2Beam'
 EXPECTED_REFERENCES = {                       # Section 2 order: input, owner (the reference mapping of the journal edition)
     'CapDesignEndBentOne': [('b', f'{BG}.EndBentCap_width'), ('h', f'{BG}.EndBentCap_depth'), ('C_t', f'{BG}.EndBent_coverTop'),
-                            ('C_b', f'{BG}.EndBent_coverBottom'), ('C_s', f'{BG}.EndBent_coverSide'), ('fc', 'FBMPEndBent.EBSteel_fc'),
-                            ('fy', 'FBMPEndBent.EBSteel_fy'), ('Es', 'FBMPEndBent.EBSteel_Es'), ('φ_f', 'CapDesignBasis.φ_f'),
-                            ('φ_v', 'CapDesignBasis.φ_v'), ('γ_e', 'CapDesignBasis.γ_e'), ('λ', 'CapDesignBasis.λ'),
-                            ('φ_a', 'CapDesignBasis.φ_a'), ('s_proj', 'CapDesignBasis.s_proj')],
-    'CapDesignPier': [('b', f'{BG}.PierCap_width'), ('h', f'{BG}.PierCap_ht'), ('C_t', 'PierCapDesign.C_t'), ('C_b', 'PierCapDesign.C_b'),
-                      ('C_s', 'PierCapDesign.C_s'), ('fc', 'PierCapDesign.fc'), ('fy', 'PierCapDesign.fy'), ('Es', 'PierCapDesign.Es'),
+                            ('C_b', f'{BG}.EndBent_coverBottom'), ('C_s', f'{BG}.EndBent_coverSide'),
+                            ('fc', 'Materials.Substructure_fc'), ('fy', 'Materials.Rebar_fy'), ('Es', 'Materials.Rebar_Es'),
+                            ('φ_f', 'CapDesignBasis.φ_f'), ('φ_v', 'CapDesignBasis.φ_v'), ('γ_e', 'CapDesignBasis.γ_e'),
+                            ('λ', 'CapDesignBasis.λ'), ('φ_a', 'CapDesignBasis.φ_a'), ('L_cap', f'{BG}.EndBentCage_envelope'),
+                            ('s_proj', 'CapDesignBasis.s_proj')],
+    'CapDesignPier': [('b', f'{BG}.PierCap_width'), ('h', f'{BG}.PierCap_ht'), ('C_t', f'{BG}.PierCap_coverTop'),
+                      ('C_b', f'{BG}.PierCap_coverBottom'), ('C_s', f'{BG}.PierCap_coverSide'),
+                      ('fc', 'Materials.Substructure_fc'), ('fy', 'Materials.Rebar_fy'), ('Es', 'Materials.Rebar_Es'),
                       ('φ_f', 'CapDesignBasis.φ_f'), ('φ_v', 'CapDesignBasis.φ_v'), ('γ_e', 'CapDesignBasis.γ_e'),
                       ('λ', 'CapDesignBasis.λ'), ('φ_a', 'CapDesignBasis.φ_a'), ('L_cap', f'{BG}.PierCap_length'),
                       ('s_proj', 'CapDesignBasis.s_proj')],
@@ -307,6 +377,11 @@ class CapBpadJournal(unittest.TestCase):
         if not JOURNAL.is_file():
             raise unittest.SkipTest('journal/D2_I95_Project_Journal.bpad is not in this checkout')
         cls.links = bs.JournalLinks.load(JOURNAL)
+        try:                                      # the owners the journal edition reads arrive with journal task T014
+            cls.links.value('Materials.Substructure_fc')
+        except bs.BpError as ex:
+            raise unittest.SkipTest(f'journal task T014 (Materials, ProjectInfo and the new BridgeGeometry_2Beam owners) is not '
+                                    f'promoted yet: {ex}') from None
         cls.tmp = tempfile.TemporaryDirectory()
         cls.addClassCleanup(cls.tmp.cleanup)
         out, results, cls.built = Path(cls.tmp.name), [], {}
@@ -352,7 +427,6 @@ class CapBpadJournal(unittest.TestCase):
     def test_coherence_rows_are_exactly_the_reference_mapping(self):
         coherence = json.loads((self.committed / 'coherence.json').read_text(encoding='utf-8'))
         self.assertEqual(sorted(coherence), sorted(n for n, _ in NAMES.values()))
-        incoherent = []
         for cap, b in self.reports():
             rows = coherence[b['name']]
             self.assertTrue(all(list(r) == ROW_KEYS for r in rows))
@@ -360,21 +434,18 @@ class CapBpadJournal(unittest.TestCase):
             by_input = {r['input']: r for r in rows}
             references = [(r['input'], r['owner']) for r in rows if r['status'] == 'reference']
             self.assertEqual(sorted(references), sorted(expected))
+            self.assertEqual([r['status'] for r in rows if r['status'] != 'reference'], [],
+                             'no literal_incoherent_journal or literal_owner_here row is expected any more')
             for r in rows:
-                if r['status'] == 'reference':
-                    self.assertAlmostEqual(r['journal_value'], r['case_value'], delta=1e-9 * abs(r['case_value']))
-                    self.assertTrue(r['note'].startswith('shared journal value'))
-                else:
-                    incoherent.append((b['name'], r['input']))
-                    self.assertEqual(r['status'], 'literal_incoherent_journal')
-                    self.assertEqual((r['owner'], r['journal_value'], r['case_value']), (f'{BG}.EndBentCap_length', 212.0, 251.0))
-                    self.assertIn('235 in cap + two 8 in cheeks', r['note'])
-                    self.assertIn('still holds 17 ft 8 in', r['note'])
+                self.assertAlmostEqual(r['journal_value'], r['case_value'], delta=1e-9 * abs(r['case_value']))
+                self.assertTrue(r['note'].startswith('shared journal value'))
             if b['name'] == 'CapDesignPier':
-                self.assertEqual(by_input['L_cap']['status'], 'reference')
                 self.assertEqual((by_input['L_cap']['journal_value'], by_input['b']['journal_value']), (230.0, 48.0))
-            self.assertEqual(len(rows), len(expected) + (0 if b['name'] == 'CapDesignPier' else 1))
-        self.assertEqual(incoherent, [('CapDesignEndBentOne', 'L_cap'), ('CapDesignEndBentTwo', 'L_cap')])
+            else:
+                self.assertEqual(by_input['L_cap']['owner'], f'{BG}.EndBentCage_envelope')
+                self.assertEqual(by_input['L_cap']['journal_value'], 251.0)
+            self.assertEqual(len(rows), len(expected))
+            self.assertEqual(by_input['fc']['journal_value'], 5.5)
         for cap, b in self.reports():                                   # the rows the build computed are the rows written
             self.assertEqual(b['meta']['journal']['rows'], coherence[b['name']])
 
@@ -403,9 +474,13 @@ class CapBpadJournal(unittest.TestCase):
         amber = [d.get('style') for d in basis.iter('dynexp') if '(' not in d.get('formula').split('=')[0]]
         self.assertEqual(amber, ['Required Input'] * 6)
         text = ' '.join(text_of(p) for p in basis.iter('paragraph'))
-        for word in ('CapDesignEndBentOne', 'CapDesignEndBentTwo', 'CapDesignPier', 'D-003', 'LRFD', 'FDOT Structures Design Guidelines'):
+        for word in ('CapDesignEndBentOne', 'CapDesignEndBentTwo', 'CapDesignPier', 'LRFD', 'FDOT Structures Design Guidelines',
+                     'Materials', 'BridgeGeometry_2Beam'):
             self.assertIn(word, text)
+        for word in ('C005', 'D-003', 'PierCapDesign'):
+            self.assertNotIn(word, text)
         self.assertNotIn('Review copy', text)                          # the banner is in the review document only
+        check_stamp(self, basis, live=True)
 
     def test_cap_reports_have_no_local_bar_tables_and_no_literals_for_references(self):
         for cap, b in self.reports():
@@ -417,10 +492,14 @@ class CapBpadJournal(unittest.TestCase):
             for name, owner in EXPECTED_REFERENCES[b['name']]:
                 self.assertRegex(defs[name], rf'^{re.escape(owner)}( to (in|ksi))?$', f'{name} is not a reference')
                 self.assertNotRegex(defs[name], r'^[\d.]+')
-            if b['name'] != 'CapDesignPier':
-                self.assertEqual(defs['L_cap'], '251 in')
             for formula in self.formulas(rep):
                 self.check_formula(formula)
+            check_stamp(self, rep, live=True)
+            raw = (self.committed / f'{b["name"]}.xml').read_bytes()
+            self.assertNotIn(b'PierCapDesign', raw)
+            self.assertNotIn(b'FBMPEndBent', raw)
+            for m in re.finditer(b'C005', raw):
+                self.assertTrue(raw[m.start():].startswith(b'C005 formula set'))
             self.assertIn('Shared geometry, materials and factors are live references to the journal; the owner is named beside each.',
                           [text_of(p) for p in rep.iter('paragraph')])
 
@@ -437,15 +516,48 @@ class CapBpadJournal(unittest.TestCase):
         self.assertIn('End Bent 1', message)
         # the pier does not read that name
         links = bs.JournalLinks.load(JOURNAL)
-        links.override('PierCapDesign.fc', bs.Q(6, (-2., 1., 0.)))
-        with self.assertRaisesRegex(bc.BuildError, 'PierCapDesign.fc'):
+        links.override('Materials.Substructure_fc', bs.Q(6, (-2., 1., 0.)))
+        with self.assertRaisesRegex(bc.BuildError, 'Materials.Substructure_fc'):
             bc.build_cap(bm.CAPS[2], mathcad_compare=False, journal=links)
+        links = bs.JournalLinks.load(JOURNAL)
+        links.override(f'{BG}.PierCap_coverTop', bs.Q(4, (1., 0., 0.)))
+        with self.assertRaisesRegex(bc.BuildError, 'PierCap_coverTop'):
+            bc.build_cap(bm.CAPS[2], mathcad_compare=False, journal=links)
+        links = bs.JournalLinks.load(JOURNAL)
+        links.override(f'{BG}.EndBentCage_envelope', bs.Q(235, (1., 0., 0.)))
+        with self.assertRaisesRegex(bc.BuildError, 'EndBentCage_envelope'):
+            bc.build_cap(bm.CAPS[0], mathcad_compare=False, journal=links)
+
+    def test_a_project_info_string_that_disagrees_stops_the_build(self):
+        links = bs.JournalLinks.load(JOURNAL)
+        links.override('ProjectInfo.CheckedBy', 'XYZ')
+        with self.assertRaisesRegex(bc.BuildError, 'ProjectInfo.CheckedBy.*XYZ.*MIK'):
+            bc.build_cap(bm.CAPS[0], mathcad_compare=False, journal=links)
+
+    # The table of kept literals is empty; these two tests drive the mechanism with a synthetic entry.
+    SYNTHETIC = {('end_bent_1', 'L_cap'): dict(status='literal_incoherent_journal', owner=f'{BG}.EndBentCap_length', unit='in',
+                                               reason='synthetic reason for the test')}
+
+    def patched_refs(self):
+        return {k: v for k, v in bc.END_BENT_REFS.items() if k != 'L_cap'}
 
     def test_a_kept_literal_that_now_agrees_must_become_a_reference(self):
+        self.assertEqual(bc.KEEP_LITERAL, {})
         links = bs.JournalLinks.load(JOURNAL)
         links.override(f'{BG}.EndBentCap_length', bs.Q(251, (1., 0., 0.)))
-        with self.assertRaisesRegex(bc.BuildError, 'KEEP_LITERAL'):
-            bc.build_cap(bm.CAPS[0], mathcad_compare=False, journal=links)
+        with mock.patch.object(bc, 'KEEP_LITERAL', self.SYNTHETIC), mock.patch.object(bc, 'END_BENT_REFS', self.patched_refs()):
+            with self.assertRaisesRegex(bc.BuildError, 'KEEP_LITERAL'):
+                bc.build_cap(bm.CAPS[0], mathcad_compare=False, journal=links)
+
+    def test_a_kept_literal_that_disagrees_is_reported_and_stays_a_literal(self):
+        links = bs.JournalLinks.load(JOURNAL)
+        links.override(f'{BG}.EndBentCap_length', bs.Q(212, (1., 0., 0.)))
+        with mock.patch.object(bc, 'KEEP_LITERAL', self.SYNTHETIC), mock.patch.object(bc, 'END_BENT_REFS', self.patched_refs()):
+            sheet, eng, meta, filename, ctx = bc.build_cap(bm.CAPS[0], mathcad_compare=False, journal=links)
+        row = next(r for r in meta['journal']['rows'] if r['input'] == 'L_cap')
+        self.assertEqual((row['status'], row['journal_value'], row['case_value']), ('literal_incoherent_journal', 212.0, 251.0))
+        defs = self.definitions(sheet.rep)
+        self.assertEqual(defs['L_cap'], '251 in')
 
     def test_a_basis_factor_that_disagrees_with_the_case_stops_the_build(self):
         links = bs.JournalLinks.load(JOURNAL)
@@ -469,6 +581,7 @@ class CapBpadJournal(unittest.TestCase):
             for key in ('tool_comparisons', 'sheet_comparisons', 'coverage_comparisons', 'mathcad_values_compared', 'status', 'case_sha256'):
                 self.assertEqual(entry[key], theirs[key], key)
             self.assertEqual(entry['functions'], 0)                    # the bar tables are read from CapDesignBasis
+        self.assertEqual(listed['project_stamp'], {'owner': 'ProjectInfo', **STAMP})
         self.assertEqual(listed['basis']['functions'], ['Ab', 'Db'])
         self.assertEqual(listed['basis']['read_by'], [n for n, _ in NAMES.values()])
 
@@ -482,7 +595,8 @@ class CapBpadJournal(unittest.TestCase):
         root = ET.fromstring(data)
         basis_text = ' '.join(text_of(p) for p in root.find('report').iter('paragraph'))
         self.assertIn('Review copy', basis_text)
-        self.assertIn('BridgeGeometry_2Beam, FBMPEndBent and PierCapDesign', basis_text)
+        self.assertIn('BridgeGeometry_2Beam, Materials and ProjectInfo', basis_text)
+        self.assertNotIn(b'PierCapDesign', data)
         for report in root.findall('report')[1:]:
             self.assertNotIn('Review copy', ' '.join(text_of(p) for p in report.iter('paragraph')))
         for name in ['CapDesignBasis'] + [n for n, _ in NAMES.values()]:

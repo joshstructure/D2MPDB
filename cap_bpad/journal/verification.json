@@ -9,7 +9,7 @@
    "φ_v": 0.9
   },
   "fragment": "cap_bpad/journal/CapDesignBasis.xml",
-  "fragment_sha256": "7017db909ba0c7680a40670e89c128743afefebf95b7b7551d44c1277d402a8b",
+  "fragment_sha256": "21f50373dde0105cb508acb3a89f6ab0fdef47e264118b033ef762f034096ae6",
   "functions": [
    "Ab",
    "Db"
@@ -21,7 +21,18 @@
   ],
   "report_name": "CapDesignBasis"
  },
- "journal_file": "D2_I95_Project_Journal.bpad",
+ "journal_file": "journal/D2_I95_Project_Journal.bpad",
+ "project_stamp": {
+  "Address": "1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301",
+  "CheckDate": "",
+  "CheckedBy": "MIK",
+  "DesignDate": "10/17/2026",
+  "DesignedBy": "JAT",
+  "Firm": "Parsons Transportation Group Inc",
+  "JobNo": "",
+  "Project": "I-95 Capacity Improvements from South of SR 152 to South of SR 126",
+  "owner": "ProjectInfo"
+ },
  "reports": [
   {
    "branches_reached": [
@@ -38,7 +49,7 @@
    ],
    "cap": "End Bent 1",
    "case_sha256": "0a29c474da90eb4062de01eeebde4a841d5ba9ab64f44ee57609ddd15c9d0657",
-   "cells_and_labels": 529,
+   "cells_and_labels": 538,
    "coverage_comparisons": 603,
    "coverage_rows_real": 7,
    "coverage_rows_synthetic": 12,
@@ -47,15 +58,14 @@
    "fbmp_sha256": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
    "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
    "fragment": "cap_bpad/journal/CapDesignEndBentOne.xml",
-   "fragment_sha256": "b51a551e26d3d695dfcdc8783ea3d58f988e69bd38a156848ba681eb79fe5af6",
+   "fragment_sha256": "c560d3fafa1e4576c87c33c38e7f30bc1921d9e6947b8d04f94668da4b008701",
    "functions": 0,
-   "journal_references": 14,
-   "literals_kept": [
-    "L_cap"
-   ],
+   "journal_references": 15,
+   "literals_kept": [],
    "mathcad_values_compared": 535,
    "package_revision": "22cddbd9999a",
    "references": [
+    "BridgeGeometry_2Beam.EndBentCage_envelope",
     "BridgeGeometry_2Beam.EndBentCap_depth",
     "BridgeGeometry_2Beam.EndBentCap_width",
     "BridgeGeometry_2Beam.EndBent_coverBottom",
@@ -67,9 +77,9 @@
     "CapDesignBasis.φ_a",
     "CapDesignBasis.φ_f",
     "CapDesignBasis.φ_v",
-    "FBMPEndBent.EBSteel_Es",
-    "FBMPEndBent.EBSteel_fc",
-    "FBMPEndBent.EBSteel_fy"
+    "Materials.Rebar_Es",
+    "Materials.Rebar_fy",
+    "Materials.Substructure_fc"
    ],
    "report_file": "End Bent 1 Cap Design 10-19.html",
    "report_name": "CapDesignEndBentOne",
@@ -99,7 +109,7 @@
    ],
    "cap": "End Bent 2",
    "case_sha256": "8a08d9d2856826806c8538616ba31da3e52848b102991a109f621a6abd60b144",
-   "cells_and_labels": 529,
+   "cells_and_labels": 538,
    "coverage_comparisons": 603,
    "coverage_rows_real": 7,
    "coverage_rows_synthetic": 12,
@@ -108,15 +118,14 @@
    "fbmp_sha256": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
    "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
    "fragment": "cap_bpad/journal/CapDesignEndBentTwo.xml",
-   "fragment_sha256": "5ab002dd4fb0b77e1834fbe981fea06e7816297399a964aafc32334b3404ca74",
+   "fragment_sha256": "2dc8a777ab571caa7f04912f591f2ff5421db6596e2666b2aa844732c589f99c",
    "functions": 0,
-   "journal_references": 14,
-   "literals_kept": [
-    "L_cap"
-   ],
+   "journal_references": 15,
+   "literals_kept": [],
    "mathcad_values_compared": 535,
    "package_revision": "22cddbd9999a",
    "references": [
+    "BridgeGeometry_2Beam.EndBentCage_envelope",
     "BridgeGeometry_2Beam.EndBentCap_depth",
     "BridgeGeometry_2Beam.EndBentCap_width",
     "BridgeGeometry_2Beam.EndBent_coverBottom",
@@ -128,9 +137,9 @@
     "CapDesignBasis.φ_a",
     "CapDesignBasis.φ_f",
     "CapDesignBasis.φ_v",
-    "FBMPEndBent.EBSteel_Es",
-    "FBMPEndBent.EBSteel_fc",
-    "FBMPEndBent.EBSteel_fy"
+    "Materials.Rebar_Es",
+    "Materials.Rebar_fy",
+    "Materials.Substructure_fc"
    ],
    "report_file": "End Bent 2 Cap Design 10-19.html",
    "report_name": "CapDesignEndBentTwo",
@@ -160,7 +169,7 @@
    ],
    "cap": "Pier Cap",
    "case_sha256": "868e96bca964cab589cbc4507dcc6cf18591f37ce0fd6e2bd934524769ddb7a5",
-   "cells_and_labels": 530,
+   "cells_and_labels": 538,
    "coverage_comparisons": 571,
    "coverage_rows_real": 6,
    "coverage_rows_synthetic": 12,
@@ -169,13 +178,16 @@
    "fbmp_sha256": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
    "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
    "fragment": "cap_bpad/journal/CapDesignPier.xml",
-   "fragment_sha256": "f3fb8fbd63ab45c7aee10aa076a132b82c262c41f17f168ebfac56ec0b1765bf",
+   "fragment_sha256": "987eb9804a9278c3f04300dca28950f99cbb2a66865b8f6e5284492db0d8604e",
    "functions": 0,
    "journal_references": 15,
    "literals_kept": [],
    "mathcad_values_compared": 535,
    "package_revision": "22cddbd9999a",
    "references": [
+    "BridgeGeometry_2Beam.PierCap_coverBottom",
+    "BridgeGeometry_2Beam.PierCap_coverSide",
+    "BridgeGeometry_2Beam.PierCap_coverTop",
     "BridgeGeometry_2Beam.PierCap_ht",
     "BridgeGeometry_2Beam.PierCap_length",
     "BridgeGeometry_2Beam.PierCap_width",
@@ -185,12 +197,9 @@
     "CapDesignBasis.φ_a",
     "CapDesignBasis.φ_f",
     "CapDesignBasis.φ_v",
-    "PierCapDesign.C_b",
-    "PierCapDesign.C_s",
-    "PierCapDesign.C_t",
-    "PierCapDesign.Es",
-    "PierCapDesign.fc",
-    "PierCapDesign.fy"
+    "Materials.Rebar_Es",
+    "Materials.Rebar_fy",
+    "Materials.Substructure_fc"
    ],
    "report_file": "Pier Cap Design 10-19.html",
    "report_name": "CapDesignPier",
@@ -207,5 +216,5 @@
   }
  ],
  "review_document": "cap_bpad/journal/Cap Design - Journal Edition (review).bpad",
- "review_sha256": "64fa6395eb19976681b7c584f11cfd15433bf2e9b6235885e8af47abf323cf40"
+ "review_sha256": "7bae544f9faed0d60d70fbd55edd55b5a509b59b31be83c5eb1811b189668fbb"
 }
