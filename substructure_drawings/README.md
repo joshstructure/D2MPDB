@@ -1,20 +1,28 @@
 # End bent and pier DXF (FDOT format)
 
-**Generator 2.4.0 (19 October 2026)** rebuilds this DXF from the model with
-revision D-048 (D-044 weather closure and copings, D-045 strap references,
-D-046 cheek hooks, D-047 pedestal edge bars, D-048 backwall extensions) and
-applies the engineer's review markups of 2026-10-17, 18 and 19 (two rounds),
-which are distilled into [`STYLE_GUIDE.md`](STYLE_GUIDE.md) (every drawing
-rule has an id there). The measurable rules are deterministic checks in
-[`anno_check.py`](anno_check.py), run on every view by the build; the
-findings list is empty on every sheet and the tests fail otherwise. 2.4.0
-(the fourth round) adds those checks, puts end labels outside the plan in one
-column, spreads label columns evenly, keeps pile numbers under the pulled
-values, breaks every clipped stub, shortens the centerline dashes so short
-centerlines still read dashed, puts cover values at their dimensions, joins
-parallel leaders at one landing, draws full-width bars at their true
-positions, ends U-bar runs at their leg dots, centres and aligns titles, and
-fills the strap legend from the backwall design calc (once per bent).
+**Generator 2.5.0 (19 October 2026)** rebuilds this DXF from the model with
+revision D-053 (D-044 weather closure and copings, D-045 strap references,
+D-046 cheek hooks, D-047 pedestal edge bars, D-048 backwall extensions, D-053
+simplified backwall tops) and applies the engineer's review markups of
+2026-10-17, 18 and 19 (three rounds), which are distilled into
+[`STYLE_GUIDE.md`](STYLE_GUIDE.md) (every drawing rule has an id there). The
+measurable rules are deterministic checks in [`anno_check.py`](anno_check.py),
+run on every view by the build; the findings list is empty on every sheet and
+the tests fail otherwise. 2.4.0 (the fourth round) added those checks, put
+end labels outside the plan in one column, spread label columns evenly, kept
+pile numbers under the pulled values, broke every clipped stub, shortened the
+centerline dashes so short centerlines still read dashed, put cover values at
+their dimensions, joined parallel leaders at one landing, drew full-width bars
+at their true positions, ended U-bar runs at their leg dots, centred and
+aligned titles, and filled the strap legend from the backwall design calc
+(once per bent). 2.5.0 (the fifth round) closes the backwall outlines in the
+sections (the top edge came back from the extractor tagged as the landing
+slab's), drops the spurious dots at the bar bends (0.001 ft joint segments in
+the model's bar polylines), moves the C-C joint callout off the pedestal,
+writes the cover and the stirrup callouts in two lines, keeps dimension lines
+off parallel bars, stops pointers short of their text, removes the inner-bar
+cover of the pedestal elevation, cuts the cheek/backwall interface line in
+G-G, lowers the elevation titles, and adds the checks A3, B11, B12 and D13.
 
 [`output/B4_Substructure_EndBents_Pier.dxf`](output/B4_Substructure_EndBents_Pier.dxf)
 is one DXF with plans, elevations (concrete and reinforcement together),
@@ -376,12 +384,15 @@ are not made again:
    window, views drawing over each other, a block in the BRIDGE NO. area, a
    title off its subject) and `NOTE (annotation check)` lines, each with the
    STYLE_GUIDE rule id it fails: text over linework (A1), texts too close or
-   overlapping (A2), acute leader bends and fans leaving toward their text
-   (A10), leaders crossing leaders (A11), near-parallel fan arrows (A12),
-   leaders through circled numbers or flags (A13), leaders over many drawing
-   lines (A14), pulled values too near a dimension line (B9), centerlines too
-   short to show dashes (D3), clipped edges without a break line (D12),
-   titles off centre (E5). Both lists must be empty before delivery; they are
+   overlapping (A2), a leader running along a drawn line (A3), acute leader
+   bends and fans leaving toward their text (A10), leaders crossing leaders
+   (A11), near-parallel fan arrows (A12), leaders through circled numbers or
+   flags (A13), leaders over many drawing lines (A14), pulled values too near
+   a dimension line (B9), a pointer touching its text (B11), a dimension line
+   along a parallel drawn line (B12), centerlines too short to show dashes
+   (D3), clipped edges without a break line (D12), an open concrete outline
+   in a section (D13), titles off centre (E5). Both lists must be empty
+   before delivery; they are
    in `manifest.json` (`layout_warnings`, `annotation_overlaps`,
    `anno_rules_checked`) and the tests fail on either.
 3. Look at every sheet at full size and crop the places you changed (the

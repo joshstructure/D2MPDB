@@ -18,6 +18,11 @@ APPID = "D2MPDB_SUBDWG"
 # levels whose line segments are recorded in ``View.centerlines``
 CENTERLINE_LAYERS = ("CL_Major", "CL_Minor", "BaseLineSurveyPGL")
 
+# STYLE_GUIDE B11: the pointer of a pulled-out dimension value starts this many
+# text heights off the text box, so it never touches a glyph (the stacked
+# fractions of the FDOT font rise above the capital line)
+POINTER_GAP_TH = 0.35
+
 
 def new_document():
     doc = ezdxf.new("R2010", setup=False)
@@ -440,8 +445,8 @@ class View:
         return rec
 
     def audit(self):
-        """Annotation checks of the view (STYLE_GUIDE A1, A2, A10-A14, B9, D3,
-        D12, E5): a thin wrapper around ``anno_check.check_view``, which holds
+        """Annotation checks of the view (STYLE_GUIDE A1, A2, A3, A10-A14, B9,
+        B11, B12, D3, D12, D13, E5): a thin wrapper around ``anno_check.check_view``, which holds
         every rule and threshold.  Returns [(message, 1)], each message
         starting with its rule id in brackets, e.g. "[A10] acute bend at knee
         (12.31, 43.80) of '4F2'"."""
@@ -811,7 +816,8 @@ class View:
                 self.pl(pts, layer)   # tracks its points, ByLayer, into self.ents
                 self._end_call()
                 # record: text side first; the knee is the bend (the end of
-                # the landing), "end" the point at the text edge
+                # the landing), "end" the pointer's first point, 0.35 th off
+                # the text box (POINTER_GAP_TH, checked by B11)
                 cx = (text_box[0] + text_box[2]) / 2.0
                 self._note_leader("pointer", ptr_call, pts, [mid], pts[1] if len(pts) > 2 else pts[0], pts[0],
                                   "left" if cx >= self._X(pts[0])[0] else "right", tail=(text_box, text))
@@ -827,7 +833,14 @@ class View:
         baseline from the point of the box edge over it; otherwise from the
         middle of the box side facing ``mid`` along the baseline a landing
         of 0.12", then straight to ``mid``.  None when ``mid`` lies inside
-        the box."""
+        the box.
+
+        STYLE_GUIDE B11: the pointer stops ``POINTER_GAP_TH`` (0.35) text
+        heights short of the text so it never touches a glyph; the stacked
+        fractions rise above the capital line.  The first point is pulled back
+        from the box along the piece's own direction (the box normal for the
+        square piece, the baseline for the landing) and the landing length is
+        measured from it."""
         a = math.radians(rot_deg)
         dx, dy = math.cos(a), math.sin(a)      # baseline direction
         rel = (mid[0] - c[0], mid[1] - c[1])
@@ -836,16 +849,19 @@ class View:
         if abs(along) <= w / 2 and abs(across) <= h / 2:
             return None
         margin = 0.3 * self.th
+        gap = POINTER_GAP_TH * self.th
         if abs(along) <= w / 2 - margin:
             # the dimension is under (over) the value: one piece square to
-            # the baseline from the box edge facing it, over the dimension
+            # the baseline from the box edge facing it (``gap`` off it), over
+            # the dimension
             t = 1.0 if across >= 0 else -1.0
-            start = (c[0] + dx * along - dy * t * h / 2, c[1] + dy * along + dx * t * h / 2)
+            off = h / 2 + gap
+            start = (c[0] + dx * along - dy * t * off, c[1] + dy * along + dx * t * off)
             return [start, mid]
         s = 1.0 if along >= 0 else -1.0
-        start = (c[0] + dx * s * w / 2, c[1] + dy * s * w / 2)
+        start = (c[0] + dx * s * (w / 2 + gap), c[1] + dy * s * (w / 2 + gap))
         land = 0.12 / 12.0 * self.sf
-        if abs(across) < 1e-9 or abs(along) - w / 2 < land:
+        if abs(across) < 1e-9 or abs(along) - w / 2 - gap < land:
             # beside its own line, or too near the side for a landing: one piece
             return [start, mid]
         end = (start[0] + dx * s * land, start[1] + dy * s * land)

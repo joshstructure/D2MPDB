@@ -557,14 +557,30 @@ def cheek_section_top(b, zone, cheek, letter, wwr_note=2):
     be0 = extents(edges, ("backwall",)) if any(r["role"] == "backwall" for r in edges) else None
     if be0:
         lo_v, hi_v = min(be0[1], be0[3]), max(be0[1], be0[3])
+        # (markup 2026-10-19 round 3, "Remove this interface line to make
+        # appear monolithic": the cheek's inner face is one edge from the
+        # cheek top to the lug, longer than the backwall, so dropping only
+        # edges wholly inside the backwall left it; the part within the
+        # backwall thickness is cut out of any face edge, D10)
 
-        def _joint(r):
+        def _cut_joint(r):
+            """The edge with the stretch v in [lo_v, hi_v] on the cheek's
+            inner face removed: [] (gone), [r] (untouched) or the pieces."""
             if r["t"] not in ("L", "P") or len(r["p"]) != 2:
-                return False
+                return [r]
             (a, b) = r["p"]
-            return (abs(a[0] - u_in) < 0.01 and abs(b[0] - u_in) < 0.01
-                    and lo_v - 0.01 <= min(a[1], b[1]) and max(a[1], b[1]) <= hi_v + 0.01)
-        edges = [r for r in edges if not _joint(r)]
+            if not (abs(a[0] - u_in) < 0.01 and abs(b[0] - u_in) < 0.01):
+                return [r]
+            v0, v1 = sorted((a[1], b[1]))
+            if v1 <= lo_v + 0.01 or v0 >= hi_v - 0.01:
+                return [r]
+            out = []
+            if v0 < lo_v - 0.01:
+                out.append(dict(r, p=[[a[0], v0] + list(a[2:]), [a[0], lo_v] + list(a[2:])]))
+            if v1 > hi_v + 0.01:
+                out.append(dict(r, p=[[a[0], hi_v] + list(a[2:]), [a[0], v1] + list(a[2:])]))
+            return out
+        edges = [piece for r in edges for piece in _cut_joint(r)]
     reach = 2.99        # the snapshot clips the backwall 3 ft from the cheek: break just inside
     vs = [p[1] for r in edges for p in edge_points(r)]
     box = _box(u_out - d * 0.3, X(reach), min(vs) - 1.0, max(vs) + 1.0)

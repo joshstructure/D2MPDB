@@ -56,7 +56,11 @@ symbol at page scale.
   where the bar ends.  The leader is a horizontal landing beside the text
   and an angled segment (30 to 60 degrees to the bar) ending in the arrowhead
   on the bar.  Several bars of one callout fan from one knee.  Markup on
-  the elevation callouts (5~6A1, 4~6A3 (EF), 4~8A2).
+  the elevation callouts (5~6A1, 4~6A3 (EF), 4~8A2).  Checked since
+  2026-10-19 (round 3): an arrow piece of any leader that runs within 0.05"
+  of a parallel drawn line (concrete or bar) for more than 0.2" is a
+  finding; the "3~5C (TYP.)" callout under the elevation had its leader
+  along the stirrup legs (markup "Hard to see leader").
 - **A4 Elevation points in plan and elevation.**  Every lettered point of the
   table of elevations is called out in the elevation and, where it has a
   plan location (cheek wall tops, backwall top at the ends and at the PGL,
@@ -170,6 +174,14 @@ symbol at page scale.
   The checks are the first thing to extend when a markup names a new kind
   of fault.  Request 2026-10-19: "Perhaps there should be deterministic
   helpers to help check the anno layouts".
+- **A20 A label beside a column breaks into two lines rather than reach
+  its neighbours.**  Where a one-line label would come within 0.4 th of a
+  neighbouring annotation (a parallel-leader connector, the next column, a
+  pulled value) or would push its own leader into a vertical run along the
+  bars, the label is written in two lines ("3" COVER" over "(TYP., U.N.O.)",
+  "3~5C" over "(TYP.)") and placed in the nearer gap.  Markups 2026-10-19
+  (round 3): "Overlapping put in 2 lines of text for fit", "Hard to see
+  leader make 2 lines of text for fit".
 
 ## B. Dimensions
 
@@ -255,6 +267,20 @@ symbol at page scale.
   2026-10-19 (round 2): "Why all the way up here for the text and not here?
   Look at how drawing items get crossed", "Overlap" (the cover text on the
   bottom-bar leader).
+- **B11 A pointer stops short of its text.**  The pointer of a pulled-out
+  value (B1) ends 0.35 text heights before the text box (`View.pointer`,
+  `cad.POINTER_GAP_TH`; checked at 0.3): the FDOT font's stacked fractions
+  rise about a fifth of a text height above the capital line, so a pointer
+  drawn to the box edge touched the glyph.  Markup 2026-10-19 (round 3):
+  "Dim leaders are still overlapping dim text" (the 3½" under the pile
+  spacing row).
+- **B12 A dimension line keeps off parallel drawn lines.**  A dimension
+  line is never laid along a parallel bar line, outline or surface break
+  within 0.08" when there is room elsewhere (checked at 0.05"): the cover
+  dimension of a pedestal plan goes in the widest band clear of the bars,
+  the top-surface breaks and the centerline labels.  Markup 2026-10-19
+  (round 3): "Dont put a dim so close to a parallel line if there is plenty
+  of space".
 - **B6 Precision and format** (SDM 2.11.3): concrete to 1/8", bar spacing and
   partial bar lengths to 1/4", overall bar lengths to 1", elevations to
   0.001 ft, stations to 0.01 ft; feet-inch-fraction text with the FDOT font
@@ -304,7 +330,18 @@ symbol at page scale.
   views).  Markups 2026-10-19 on the pedestal plan: "The bar ends at the
   bends here have odd shapes instead of smooth semi-circles", "appears to
   show multiple clashing bars that don't occur in the model" (the 4F2 legs
-  stand under the first 4F1 bar: end-on dots on its line, not stubs).
+  stand under the first 4F1 bar: end-on dots on its line, not stubs).  A
+  dot is a leg, never a joint: the model's bar polylines carry segments of
+  about 0.001 ft where a bend arc meets a straight leg (a FreeCAD arc-end /
+  line-start mismatch), and `draw_bar3` ignores segments under 0.001 ft, so
+  no dot appears 1¾" off the leg dots.  Markup 2026-10-19 (round 3): "Where
+  are these extra dots coming from?" (pedestal plan and elevation).
+- **C11 Cover is dimensioned to the outermost bar only.**  A cover
+  dimension runs from the concrete face to the bar nearest it (the leg of
+  the pedestal U-bar at the side, the hoop leg of a cap section); no cover
+  is given to an inner bar (the pedestal elevation carried a top cover down
+  to the second layer).  Markup 2026-10-19 (round 3): "Remove. Only detail
+  cover to the outermost bar".
 - **C10 Full-width bars are at their true positions.**  At double-line
   scales (C1) every bar is drawn exactly where the model has it; the C4
   daylight nudge is for single-line views only.  Bars the model has tangent
@@ -394,8 +431,21 @@ symbol at page scale.
   indicate strap anchorage within the concrete").
 - **D10 Monolithic pours have no joint line.**  The cheek wall and the
   backwall are one pour: no line is drawn on the cheek's inner face within
-  the backwall thickness (SECTION G-G).  Follow-up markup: "Remove the joint
-  here and show it monolithic".
+  the backwall thickness (SECTION G-G).  The face edge is one line from the
+  cheek top to the lug, so the stretch within the backwall is cut out of it
+  (`details._cut_joint`), not merely edges lying wholly inside it dropped.
+  Follow-up markup: "Remove the joint here and show it monolithic";
+  2026-10-19 (round 3): "Remove this interface line to make appear
+  monolithic".
+- **D13 A cut member's outline is closed.**  In a section the faces of a
+  cut member are joined by its top and bottom edges; an edge the extractor
+  tags with a context role because a context solid shares it (the landing
+  slab sits on the backwall top, so that edge came back as "landing" and
+  was skipped with the slab) is reclassified to the member before the
+  context filter.  Checked: an end of a visible concrete outline segment
+  in a section that no other outline, hidden edge or break line meets, and
+  that is not a window clip, is a finding.  Markup 2026-10-19 (round 3):
+  "Where are the tops of the backwalls?" (Sections A-A, B-B, C-C).
 - **D11 Every callout describes modelled geometry.**  A feature removed from
   the model disappears from the sheets with its callout (D-044 omitted the
   nominal 3/4" pedestal chamfers: no chamfer callout), and modelled context
@@ -440,6 +490,11 @@ symbol at page scale.
   (`Composer.row` moves the higher ones down; checked).  Markup 2026-10-19
   (round 2): "Center the title on the drawing and line titles up
   vertically".
+- **E6 A title stands clear of its view.**  The title is at least 0.3"
+  below the lowest annotation of the view (the section flags and pile
+  numbers under an elevation), so the drawing and its name do not read as
+  one block.  Markup 2026-10-19 (round 3): "Shift up a bit to create space
+  between drawing and title".
 
 ## F. Symbology
 
@@ -457,23 +512,29 @@ Render the previews (`--previews`) and look at every sheet at full size:
 
 1. `manifest.json` `layout_warnings` is empty (views inside their windows,
    no crossings between views, titles centred and aligned) and
-   `annotation_overlaps` (the `anno_check` findings, rule ids A1, A2, A10,
-   A11, A12, A13, A14, B9, D3, D12, E5) is empty (A19).
-2. No leader parallel to the bar it points to (A3); no leader under the
-   stationing arrow (A7); no leader crossing another (A11, audit); no acute
-   bend under a text (A10); fans leave the text toward the bars (A10);
-   label columns with even rows (A14), end labels outside the plan (A15),
-   pile numbers below the pulled values (A16), labels beyond the stub
-   breaks (A17), parallel leaders joined at one landing (A18).
+   `annotation_overlaps` (the `anno_check` findings, rule ids A1, A2, A3,
+   A10, A11, A12, A13, A14, B9, B11, B12, D3, D12, D13, E5) is empty (A19).
+2. No leader parallel to or along the bar it points to (A3, checked); no
+   leader under the stationing arrow (A7); no leader crossing another
+   (A11, audit); no acute bend under a text (A10); fans leave the text
+   toward the bars (A10); label columns with even rows (A14), end labels
+   outside the plan (A15), pile numbers below the pulled values (A16),
+   labels beyond the stub breaks (A17), parallel leaders joined at one
+   landing (A18); labels beside a column in two lines where one line would
+   reach a neighbour (A20).
 3. Every dimension text either sits in its space or has a line to it (B1);
    none crosses a line without a mask (B2); no stacked values; pulled-out
-   values stand clear of their line (B9).
+   values stand clear of their line (B9) and their pointer stops short of
+   the text (B11); no dimension line along a parallel drawn line (B12).
 4. Centerlines show as long-short dashes on every line, short ones included
    (D3); no stray break symbols (D2) and a break on everything clipped
-   (D12); no dashed line over a solid line (D1).
+   (D12); no dashed line over a solid line (D1); every cut outline closed,
+   backwall tops included (D13); no joint line in a monolithic pour (D10).
 5. Sections at 1/2" and larger draw bars as double lines (C1) with round
-   ends and end-on legs as dots (C8) at their true positions (C10);
-   single-line views give overlapping bars daylight (C4).
+   ends and end-on legs as dots (C8, one dot per leg, none at a bend
+   joint) at their true positions (C10); single-line views give
+   overlapping bars daylight (C4); cover only to the outermost bar (C11);
+   the title clear of the view (E6).
 6. Plan shows the PT. labels (A4) and the stationing arrow (A5); the
    pedestal plan shows the stationing arrow.
 7. No landing slab in the sections (D4); construction joint, embedment and
@@ -579,3 +640,18 @@ Markups on the 2.3.0 sheets, 2026-10-19 round 2 (all general; "for every comment
 | B4-7 plan | Move this slightly so it doesn't look like it's an anno about the dim line (strap callout) | A14 | strap callout in its own row |
 | B4-8 | Center the title on the drawing and line titles up vertically | E5 | titles on the subject centre, rows aligned |
 | all | Perhaps there should be deterministic helpers to help check the anno layouts | A19 | `anno_check.py` with rule-id findings, run by the build and the tests |
+
+Markups on the 2.4.0 sheets, 2026-10-19 round 3 (all general):
+
+| Where | Comment (engineer's words) | Rule | Resolution |
+|---|---|---|---|
+| B4-11 pedestal plan/elev. | Where are these extra dots coming from? | C8 | 0.001 ft joint segments between the bend arcs and the legs of the model's bars were taken as end-on legs; `draw_bar3` ignores them |
+| B4-10 Section C-C | Where are the tops of the backwalls? | D13 | the backwall top edge came back tagged "landing" (the slab shares it) and was skipped with the slab; reclassified to the backwall in every section; open-outline check |
+| B4-10/B4-3 Section C-C | Move to make the leader cross less drawing items; adjust so leader doesn't cross so many drawing items | A14 | with a pedestal in the cut the joint callout points at the cap-top corner at the front face from the front column ("CONST. JOINT"); the keyed joint keeps its DETAIL "A" callout in A-A and B-B |
+| B4-9 Section A-A | Overlapping put in 2 lines of text for fit (3" COVER) | A20 | cover value in two lines in every section |
+| B4-8 elevation | Hard to see leader make 2 lines of text for fit (3~5C (TYP.)) | A20, A3 | two lines in the first gap right of the tip, angled leader; leader-along-line check |
+| B4-7 pedestal plan | Dont put a dim so close to a parallel line if there is plenty of space (2" MIN. COVER) | B12 | cover dimension in the widest band clear of bars and surface breaks; parallel-line check |
+| B4-6 Section A-A | Dim leaders are still overlapping dim text (3½") | B11 | pointer stops 0.35 th short of the text; pointer-gap check |
+| B4-4 pedestal elev. | Remove. Only detail cover to the outermost bar (2¼" COVER) | C11 | top cover dimension removed; side cover to the outer leg stays |
+| B4-1 elevation | Shift up a bit to create space between drawing and title | E6 | title 0.25" lower under the flags (the rows above are at their minimum pitch, A16) |
+| B4-4 Section G-G | Remove this interface line to make appear monolithic | D10 | the cheek face edge is cut within the backwall thickness |

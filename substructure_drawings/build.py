@@ -22,7 +22,7 @@ except ModuleNotFoundError as err:   # the annotation checker module is new; bui
         raise
     anno_check = None
 
-GENERATOR_VERSION = "2.4.0"
+GENERATOR_VERSION = "2.5.0"
 DXF_NAME = "B4_Substructure_EndBents_Pier.dxf"
 
 INFO = {

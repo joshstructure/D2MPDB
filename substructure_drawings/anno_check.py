@@ -30,6 +30,12 @@ A2    text buffer                    the edge-to-edge gap of two text boxes, or 
                                      0.4 th (not the lines of one title, not
                                      two dimension texts, not a symbol's own
                                      letter or number inside its box)
+A3    leader along a drawn line      an arrow piece (not the landing) of a       ALONG_DEG,
+                                     leader, fan, pointer or parallel leader     ALONG_K,
+                                     runs within 6 degrees of a line of the      ALONG_MIN_K
+                                     concrete / bar levels, closer than 0.05 k,
+                                     over more than 0.2 k (its own segments
+                                     are no drawn line)
 A10   acute bend                     the interior angle at a knee of a leader    BEND_MIN_DEG
                                      or pointer, or between a fan arrow and      (89 degrees)
                                      the fan landing, is below 90 degrees - 1
@@ -49,6 +55,14 @@ A14   leader over linework           an arrow piece (not the landing) of a      
 B9    pulled value clearance         the box of a pulled-out dimension value     PULLED_CLEAR_TH
                                      is under 0.5 th from a Dimension segment
                                      other than its own pointer
+B11   pointer gap                    the end of a dimension pointer lies under   POINTER_GAP_TH
+                                     0.3 th from the box of its value (the
+                                     stacked fractions rise above the capital
+                                     line)
+B12   dimension beside a line        a dimension line (not its extension lines)  DIM_PARALLEL_DEG,
+                                     within 3 degrees of parallel to a drawn     DIM_PARALLEL_K,
+                                     line of the concrete / bar levels, closer   DIM_OVERLAP_K
+                                     than 0.05 k, over more than 0.1 k
 D3    short centerline               a centerline segment is shorter than one    CL_SHORT_FACTOR
                                      pattern length (``fdot.pattern_length``)
                                      of its level's linetype, so it would plot
@@ -57,14 +71,21 @@ D12   clipped edge, no break line    a segment end cut at a view window on the  
                                      concrete / context levels lies more than    CLIP_MERGE_K
                                      0.12 k from every break line segment
                                      (cut ends within 0.2 k are one finding)
+D13   open concrete outline          in a section, an end of a visible           JOIN_TOL,
+                                     SubStrConc / PileConc / PileSteel segment   OUTLINE_CLIP_TOL,
+                                     that no other segment of those levels (the  CLIP_MERGE_K
+                                     hidden twins included) or break line meets
+                                     within 0.005 ft and that is no window cut
+                                     (D12's); open ends within 0.2 k are one
+                                     finding
 E5    title centred                  the title anchor is more than 0.05 k from   TITLE_TOL_K
                                      the centre of its subject
 ====  =============================  ==========================================  ===============
 
 A finding is a candidate, not a verdict: the lead reads the list, fixes what
 is wrong and justifies the rest.  The geometry helpers (``angle_deg``,
-``point_seg_dist``, ``seg_seg_dist``, ``seg_box_dist``, ``box_gap``) are
-public so that the checks can be unit-tested.
+``point_seg_dist``, ``seg_seg_dist``, ``seg_box_dist``, ``point_box_dist``,
+``box_gap``) are public so that the checks can be unit-tested.
 """
 import math
 
@@ -83,6 +104,15 @@ CL_SHORT_FACTOR = 1.0    # a centerline must span this many pattern lengths (D3)
 CLIP_BREAK_K = 0.12      # a clipped end this close (paper inches) to a break line is broken (D12)
 CLIP_MERGE_K = 0.2       # clipped ends this close (paper inches) are reported once (D12)
 TITLE_TOL_K = 0.05       # title anchor to subject centre, paper inches (E5)
+POINTER_GAP_TH = 0.3     # a dimension pointer ends at least this many text heights off its value's box (B11)
+DIM_PARALLEL_DEG = 3.0   # a dimension line within this angle of a drawn line is parallel to it (B12)
+DIM_PARALLEL_K = 0.05    # ... and closer than this (paper inches) it runs "beside" it (B12)
+DIM_OVERLAP_K = 0.1      # ... over a stretch longer than this (paper inches) (B12)
+ALONG_DEG = 6.0          # a leader piece within this angle of a drawn line is parallel to it (A3)
+ALONG_K = 0.05           # ... and closer than this (paper inches) it runs "along" it (A3)
+ALONG_MIN_K = 0.2        # ... over a stretch longer than this (paper inches) (A3)
+JOIN_TOL = 0.005         # an outline end is met by a segment that ends or passes within this many feet (D13)
+OUTLINE_CLIP_TOL = 0.01  # an outline end this close (feet) to a recorded window cut is D12's, not D13's (D13)
 
 # levels
 LINEWORK_SKIP = ("Patterning", "Symbols")         # hatch patterns; symbols drawn around their own letters
@@ -90,8 +120,9 @@ LEADER_LAYERS = ("Leader", "Dimension")           # layers whose segments may no
 CONCRETE_PREFIXES = ("SubStrConc", "PileConc", "PileSteel", "WallConc", "WallMSEPanel", "AppSlabConc")
 LEADER_LINE_EXACT = ("Rebar", "Rebar2", "BearingPadMisc")   # with the prefixes: the levels of A14
 CLIP_EXACT = ("Rebar2",)                                    # with the prefixes: the levels of D12
+OUTLINE_PREFIXES = ("SubStrConc", "PileConc", "PileSteel")  # the concrete outline levels of D13
 
-RULES = ("A1", "A2", "A10", "A11", "A12", "A13", "A14", "B9", "D3", "D12", "E5")
+RULES = ("A1", "A2", "A3", "A10", "A11", "A12", "A13", "A14", "B9", "B11", "B12", "D3", "D12", "D13", "E5")
 
 
 # ------------------------------------------------------------------ geometry
@@ -130,6 +161,14 @@ def seg_box_dist(p, q, box):
         dy = max(y0 - pt[1], 0.0, pt[1] - y1)
         ends.append(math.hypot(dx, dy))
     return min(ends + [point_seg_dist(c, p, q) for c in corners])
+
+
+def point_box_dist(p, box):
+    """Distance from the point p to the box (x0, y0, x1, y1); 0 when p lies
+    inside or on the box."""
+    dx = max(box[0] - p[0], 0.0, p[0] - box[2])
+    dy = max(box[1] - p[1], 0.0, p[1] - box[3])
+    return math.hypot(dx, dy)
 
 
 def box_gap(a, b):
@@ -374,26 +413,43 @@ def _line_key(a, b):
     return (round(ux, 3), round(uy, 3), round(c, 3))
 
 
-def leader_over_linework(view):
-    """A14: an arrow piece of a leader (not its landing) that crosses more
-    than four drawn lines of the concrete / bar levels (one object once,
-    collinear pieces once)."""
+def _drawing_segments(view):
+    """The segments of the visible concrete / bar levels with their bounding
+    box and call id: (a, b, (x0, y0, x1, y1), call)."""
+    return [(s[0], s[1], (min(s[0][0], s[1][0]), min(s[0][1], s[1][1]), max(s[0][0], s[1][0]), max(s[0][1], s[1][1])),
+             s[3]) for s in view.segs if _is_drawing_level(s[2])]
+
+
+def _leader_arrows(view):
+    """{call id: (record, [(p, q), ...])} for every leader call (leader, fan,
+    pointer, parallel): the arrow pieces of the call, i.e. its segments minus
+    the landing from the knee to the text end (all of them when nothing else
+    is left)."""
     recs = {r["call"]: r for r in view.leaders}
-    target = [(s[0], s[1], (min(s[0][0], s[1][0]), min(s[0][1], s[1][1]), max(s[0][0], s[1][0]), max(s[0][1], s[1][1])),
-               s[3]) for s in view.segs if _is_drawing_level(s[2])]
     pieces = {}
     for p, q, _layer, call in view.segs:
         if call in recs:
             pieces.setdefault(call, []).append((p, q))
-    out = []
+    out = {}
     for call, segs in pieces.items():
         r = recs[call]
         knee, end = r["knee"], r["end"]
         arrows = [(p, q) for p, q in segs
                   if not ((math.dist(p, knee) < 1e-9 and math.dist(q, end) < 1e-9)
                           or (math.dist(q, knee) < 1e-9 and math.dist(p, end) < 1e-9))]
+        out[call] = (r, arrows or segs)
+    return out
+
+
+def leader_over_linework(view):
+    """A14: an arrow piece of a leader (not its landing) that crosses more
+    than four drawn lines of the concrete / bar levels (one object once,
+    collinear pieces once)."""
+    target = _drawing_segments(view)
+    out = []
+    for call, (r, arrows) in _leader_arrows(view).items():
         worst = 0
-        for p, q in arrows or segs:
+        for p, q in arrows:
             x0, y0, x1, y1 = min(p[0], q[0]), min(p[1], q[1]), max(p[0], q[0]), max(p[1], q[1])
             # one drawn object (a double-line bar, a dot's ring, an outline
             # polyline) counts once however many of its segments the piece
@@ -411,6 +467,57 @@ def leader_over_linework(view):
             worst = max(worst, len(hit))
         if worst > LEADER_LINES_MAX:
             out.append(("A14", "[A14] leader of '%s' crosses %d drawing lines" % (_name(r["text"]), worst)))
+    return out
+
+
+def _along_stretch(p, q, a, b, near):
+    """Length of the stretch of the piece pq (along its direction) over which
+    the segment ab lies within ``near`` of the line through pq, taken over the
+    overlap of their projections onto pq; 0 when the two are not parallel
+    within ``ALONG_DEG``."""
+    Lp, La = math.dist(p, q), math.dist(a, b)
+    if Lp < 1e-6 or La < 1e-6:
+        return 0.0
+    ux, uy = (q[0] - p[0]) / Lp, (q[1] - p[1]) / Lp
+    vx, vy = (b[0] - a[0]) / La, (b[1] - a[1]) / La
+    if math.degrees(math.atan2(abs(ux * vy - uy * vx), abs(ux * vx + uy * vy))) > ALONG_DEG:
+        return 0.0
+    sa, sb = (a[0] - p[0]) * ux + (a[1] - p[1]) * uy, (b[0] - p[0]) * ux + (b[1] - p[1]) * uy
+    oa, ob = -(a[0] - p[0]) * uy + (a[1] - p[1]) * ux, -(b[0] - p[0]) * uy + (b[1] - p[1]) * ux
+    lo, hi = max(0.0, min(sa, sb)), min(Lp, max(sa, sb))
+    if hi <= lo:
+        return 0.0
+    slope = (ob - oa) / (sb - sa)       # |sb - sa| >= La cos(ALONG_DEG): not zero
+    o_lo, o_hi = oa + slope * (lo - sa), oa + slope * (hi - sa)
+    d = o_hi - o_lo
+    if abs(d) < 1e-12:
+        return (hi - lo) if abs(o_lo) < near else 0.0
+    t1, t2 = (-near - o_lo) / d, (near - o_lo) / d   # the offset is linear in the station: |offset| < near on [t1, t2]
+    t0, t3 = max(0.0, min(t1, t2)), min(1.0, max(t1, t2))
+    return (t3 - t0) * (hi - lo) if t3 > t0 else 0.0
+
+
+def leader_along_line(view):
+    """A3: an arrow piece of a leader (not its landing) that runs along a
+    drawn line of the concrete / bar levels: within 6 degrees of it, closer
+    than 0.05 k, over more than 0.2 k of its length (the engineer's "Hard to
+    see leader": a vertical leader beside the stirrup legs it points at).  A
+    call's own segments are no drawn line.  Reported once per leader with the
+    longest stretch."""
+    k = view.sf / 12.0
+    near, need = ALONG_K * k, ALONG_MIN_K * k
+    target = _drawing_segments(view)
+    out = []
+    for call, (r, arrows) in _leader_arrows(view).items():
+        worst = 0.0
+        for p, q in arrows:
+            x0, y0, x1, y1 = min(p[0], q[0]), min(p[1], q[1]), max(p[0], q[0]), max(p[1], q[1])
+            for a, b, (u0, v0, u1, v1), other in target:
+                if other == call or u1 < x0 - near or u0 > x1 + near or v1 < y0 - near or v0 > y1 + near:
+                    continue
+                worst = max(worst, _along_stretch(p, q, a, b, near))
+        if worst > need:
+            out.append(("A3", "[A3] leader of '%s' runs %.2f k along a drawn line" % (_name(r["text"]), worst / k)))
     return out
 
 
@@ -435,6 +542,59 @@ def pulled_clearance(view):
     return out
 
 
+def pointer_gap(view):
+    """B11: the pointer of a pulled-out dimension value stops at least 0.3 th
+    short of the value's text box, so it never touches a glyph (the stacked
+    fractions of the FDOT font rise about 0.2 th above the capital line)."""
+    need = POINTER_GAP_TH * view.th
+    out = []
+    for r in view.leaders:
+        if r["kind"] != "pointer":
+            continue
+        d = point_box_dist(r["end"], r["box"])
+        if d < need * (1.0 - 1e-6):   # a pointer placed at the gap exactly passes
+            out.append(("B11", "[B11] pointer of '%s' ends %.2f th from its text" % (_name(r["text"]), d / view.th)))
+    return out
+
+
+def dimension_beside_line(view):
+    """B12: a dimension line (the segment f1-f2, not its extension lines) that
+    runs closer than 0.05 k to a drawn line of the concrete / bar levels, within
+    3 degrees of parallel to it, over more than 0.1 k of its length ("Don't put
+    a dim so close to a parallel line if there is plenty of space").
+    Reported once per dimension, with the closest line."""
+    k = view.sf / 12.0
+    near, need = DIM_PARALLEL_K * k, DIM_OVERLAP_K * k
+    segs = [(s[0], s[1]) for s in view.segs if _is_drawing_level(s[2])]
+    out = []
+    for d in view.dims:
+        f1, f2 = d["f1"], d["f2"]
+        L = math.dist(f1, f2)
+        if L < 1e-6:
+            continue
+        ux, uy = (f2[0] - f1[0]) / L, (f2[1] - f1[1]) / L
+        best = None
+        for a, b in segs:
+            La = math.dist(a, b)
+            if La < 1e-6:
+                continue
+            vx, vy = (b[0] - a[0]) / La, (b[1] - a[1]) / La
+            if math.degrees(math.atan2(abs(ux * vy - uy * vx), abs(ux * vx + uy * vy))) > DIM_PARALLEL_DEG:
+                continue
+            # perpendicular distance: the mean of the distances of f1 and f2
+            # to the infinite line through a-b
+            dist = (abs((f1[0] - a[0]) * vy - (f1[1] - a[1]) * vx) + abs((f2[0] - a[0]) * vy - (f2[1] - a[1]) * vx)) / 2.0
+            if dist >= near or (best is not None and dist >= best):
+                continue
+            pa, pb = (a[0] - f1[0]) * ux + (a[1] - f1[1]) * uy, (b[0] - f1[0]) * ux + (b[1] - f1[1]) * uy
+            if min(L, max(pa, pb)) - max(0.0, min(pa, pb)) > need:
+                best = dist
+        if best is not None:
+            out.append(("B12", "[B12] dimension line of '%s' runs %.3f k beside a parallel drawn line"
+                        % (_name(d["text"]), best / k)))
+    return out
+
+
 def short_centerlines(view):
     """D3: a centerline segment too short to show its dashes."""
     out = []
@@ -452,6 +612,23 @@ def short_centerlines(view):
     return out
 
 
+def _merge_ends(ends, merge):
+    """Group (x, y, layer) ends that lie within ``merge`` of the group's first
+    end: [[x, y, [layers], count], ...], in the order of (x, y) rounded to a
+    mm."""
+    groups = []
+    for x, y, layer in sorted(ends, key=lambda c: (round(c[0], 3), round(c[1], 3))):
+        for g in groups:
+            if math.dist((x, y), (g[0], g[1])) < merge:
+                g[3] += 1
+                if layer not in g[2]:
+                    g[2].append(layer)
+                break
+        else:
+            groups.append([x, y, [layer], 1])
+    return groups
+
+
 def clipped_without_break(view):
     """D12: a segment end cut at a view window on the concrete / context
     levels with no break line within 0.12 k."""
@@ -464,22 +641,50 @@ def clipped_without_break(view):
         if any(point_seg_dist((x, y), a, b) <= near for a, b in view.breaks):
             continue
         bare.append((x, y, layer))
-    groups = []   # [x, y, layers, count]: cut ends within 0.2 k of the group's first are one finding
-    for x, y, layer in sorted(bare, key=lambda c: (round(c[0], 3), round(c[1], 3))):
-        for g in groups:
-            if math.dist((x, y), (g[0], g[1])) < merge:
-                g[3] += 1
-                if layer not in g[2]:
-                    g[2].append(layer)
-                break
-        else:
-            groups.append([x, y, [layer], 1])
     out = []
-    for x, y, layers, n in groups:
+    for x, y, layers, n in _merge_ends(bare, merge):   # cut ends within 0.2 k are one finding
         msg = "[D12] clipped edge at %s on %s has no break line" % (_pt((x, y)), ", ".join(layers))
         if n > 1:
             msg += " (%d cut ends)" % n
         out.append(("D12", msg))
+    return out
+
+
+def open_outlines(view):
+    """D13: in a section, an end of a concrete outline segment (levels
+    SubStrConc / PileConc / PileSteel, visible) that no other segment of those
+    levels (hidden twins included: the dashed keyway closes the cap top line)
+    or break line meets within 5 mm of a foot: the outline is open ("Where are
+    the tops of the backwalls?").  Ends cut at the view window (within 0.01 ft
+    of a recorded clip) are D12's.  Open ends within 0.2 k are one finding."""
+    if "SECTION" not in view.name.upper():
+        return []
+    k = view.sf / 12.0
+    outline = [(p, q, layer) for p, q, layer, _call in view.segs if layer.startswith(OUTLINE_PREFIXES)]
+    partners = [(p, q, i) for i, (p, q, _layer) in enumerate(outline)]
+    partners += [(a, b, None) for a, b in view.breaks]
+    open_ends = []
+    for i, (p, q, layer) in enumerate(outline):
+        if layer.endswith("_h") or math.dist(p, q) < 1e-6:
+            continue
+        for e in (p, q):
+            if any(math.dist(e, (cx, cy)) <= OUTLINE_CLIP_TOL for cx, cy, _l in view.clips):
+                continue
+            for a, b, j in partners:
+                if j == i:
+                    continue
+                if (math.dist(a, p) < 1e-9 and math.dist(b, q) < 1e-9) or (math.dist(a, q) < 1e-9 and math.dist(b, p) < 1e-9):
+                    continue   # a duplicate of the segment itself closes nothing
+                if point_seg_dist(e, a, b) <= JOIN_TOL:
+                    break
+            else:
+                open_ends.append((e[0], e[1], layer))
+    out = []
+    for x, y, layers, n in _merge_ends(open_ends, CLIP_MERGE_K * k):
+        msg = "[D13] open outline at %s on %s" % (_pt((x, y)), ", ".join(layers))
+        if n > 1:
+            msg += " (%d ends)" % n
+        out.append(("D13", msg))
     return out
 
 
@@ -496,8 +701,9 @@ def title_centred(view):
 
 
 CHECKS = (text_over_linework, leader_through_symbol, text_clearance, acute_bends, fan_direction,
-          leader_crossings, fan_spread, leader_over_linework, pulled_clearance, short_centerlines,
-          clipped_without_break, title_centred)
+          leader_crossings, fan_spread, leader_over_linework, leader_along_line, pulled_clearance,
+          pointer_gap, dimension_beside_line, short_centerlines, clipped_without_break, open_outlines,
+          title_centred)
 
 
 def check_view(view):
