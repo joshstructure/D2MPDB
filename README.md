@@ -1,5 +1,7 @@
 # D2MPDB notebooks
 
+**[Open the D2 Design Atlas](https://d2-pier-cap-design-atlas.ochrebee15.chatgpt.site/#view=all)** — project map, source trails, and individual values with their evidence. Private site.
+
 ## Quick links — open in Colab
 
 - [Ring-supported pier wall STM study](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Ring_Supported_Wall_STM.ipynb)

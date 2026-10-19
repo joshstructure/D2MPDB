@@ -118,6 +118,10 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(r.stage(self.root, checkout)['status'], 'staged')
         self.assertIn('dist/** -text', (checkout / '.gitattributes').read_text())
         self.assertEqual(r.artifact_hashes(checkout / 'dist'), pending['artifacts'])
+        self.put('source.json', 'another agent saved a newer source')
+        self.assertEqual(r.prepare(self.root)['status'], 'publication_in_progress')
+        self.assertEqual(r.read_json(r.pending_path(self.root))['inputs'], pending['inputs'])
+        with self.assertRaisesRegex(RuntimeError, 'already in progress'): r.stage(self.root, checkout)
         result = {'project_id': 'atlas-test', 'id': 'deployment-test', 'version_id': 'version-test', 'status': 'pending'}
         def committed(args, **kwargs):
             if args[1] == 'rev-parse': return 'commit-test\n'

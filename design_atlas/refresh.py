@@ -109,9 +109,11 @@ def status(root):
     state = 'current' if published.get('inputs', {}).get('digest') == current['digest'] else 'refresh_required'
     if deployment and deployment['status'] not in ('failed', 'succeeded'):
         state = 'deployment_pending'
+    elif pending.get('staged_at') and not deployment:
+        state = 'publication_in_progress'
     return {'status': state, 'input_digest': current['digest'],
             'changed_paths': changed_paths(published.get('inputs', {}), current),
-            'deployment': deployment, 'published_at': published.get('published_at'),
+            'deployment': deployment, 'staged_at': pending.get('staged_at'), 'published_at': published.get('published_at'),
             'workflow': 'design_atlas/UPDATE_WORKFLOW.md'}
 
 
@@ -138,7 +140,7 @@ def check_browser_code(root, folder):
 def prepare(root):
     with lock(root):
         state = status(root)
-        if state['status'] in ('current', 'deployment_pending'):
+        if state['status'] in ('current', 'deployment_pending', 'publication_in_progress'):
             return state
         before = inventory(root)
         pending = read_json(pending_path(root), {})
@@ -178,6 +180,8 @@ def stage(root, checkout):
             raise RuntimeError('No prepared atlas. Run prepare first.')
         if pending.get('deployment', {}).get('status') in ('pending', 'building', 'publishing'):
             raise RuntimeError('Reconcile the existing deployment first.')
+        if pending.get('staged_at') and not pending.get('deployment'):
+            raise RuntimeError('Publication already in progress. Reconcile the staged Site revision first.')
         source = verify_artifact(root, pending)
         site = read_json(root / 'design_atlas/site.json')
         manifest = read_json(checkout / '.openai/hosting.json', {})
@@ -200,6 +204,9 @@ def stage(root, checkout):
         local_dist.mkdir(parents=True, exist_ok=True)
         for name in ASSETS:
             shutil.copyfile(source / name, local_dist / name)
+        pending['staged_at'] = datetime.now(timezone.utc).isoformat()
+        pending['staged_checkout'] = str(checkout)
+        write_json(pending_path(root), pending)
         return {'status': 'staged', 'input_digest': pending['inputs']['digest'], 'project_id': site['project_id']}
 
 

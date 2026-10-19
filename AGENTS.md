@@ -15,7 +15,8 @@ never force-push. Do not commit or push for read-only or planning-only requests.
   code, run `.venv\Scripts\python.exe -m design_atlas.refresh status`.
 - If it reports `refresh_required`, run `prepare` and follow
   `design_atlas/UPDATE_WORKFLOW.md` through verified publication. If it reports
-  `deployment_pending`, reconcile that deployment first. Do not stop at a local
+  `deployment_pending` or `publication_in_progress`, reconcile that publication
+  first. Do not stop at a local
   build or mark a failed/pending publication complete. The user's 19 October
   request authorizes these routine updates to the existing private Site.
 - Run this gate even when unsure whether a changed file is used: its deterministic

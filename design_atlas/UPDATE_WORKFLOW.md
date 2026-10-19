@@ -20,6 +20,14 @@ exact bytes, including its capture time. `deployment_pending` means reconcile
 the stored deployment before starting another. A failed command is never a
 successful refresh; keep the last successful publication.
 
+`publication_in_progress` protects a staged candidate while its agent is using
+Sites. Do not prepare or stage another candidate over it. If the original run
+was interrupted, read pending.json's staged checkout and artifacts, open that
+checkout with the Sites helper, reconcile versions/deployments for its pushed
+commit, then resume steps 3–5 below with the same candidate. Never assume a
+missing local deployment ID proves publication did not start. The guard persists
+across process crashes; a later source save waits until this publication resolves.
+
 The inventory hashes the current register and every path it selects (including
 absent files), coherence workbook, explicitly selected generated Mathcad files,
 manual links, and parser/UI code. It detects additions, removals and byte changes.
