@@ -264,7 +264,11 @@ symbol at page scale.
   "(MIN.)") sits in the band between the pile cut-offs and the stirrup
   row's two-line texts, in the first run space outboard of the last pile
   wide enough for it, its landing clear of the extension line and the
-  angled piece passing above the row's texts into the pile.  Follow-up
+  angled piece passing above the row's texts into the pile; since
+  2026-10-19 (round 5, "Move 1 to make room for the other anno and adjust
+  the leaders") the dimension sits in the pile nearest the PGL and the
+  value in the run space straddling the PGL, so the outboard spaces at
+  the described pile belong to the pile description's leader alone.  Follow-up
   markups 2026-10-17: "This text is too close to the lines, pull it out and
   use a pointer", "Move the text into space and use a two-piece pointer for
   this cover annotation", "Make dim pointer two piece lines, one straight
@@ -435,9 +439,20 @@ symbol at page scale.
   cut (checked: a clipped edge without a break within 0.12" is a finding).
   Separate stubs along one clip get separate short break lines (one per
   strap stub, 0.08" beyond its edges); only elements that overlap along
-  the clip (the closure slab and the front coping) share one.  Markups
-  2026-10-19: "Add breaklines for elements that are broken" (round 2), "Do
-  a bunch of small breaklines at the straps not one giant one" (round 4).
+  the clip (the closure slab and the front coping) share one.  And the
+  converse (D15): a break line sits only where something IS cut.  What is
+  cut is read from the drawn edges that cross the clip line, never from an
+  object's bounding box (the coping behind each cheek wall has a box that
+  reaches the cap back face, but its drawn edges begin beyond the clip, so
+  nothing of it is in the view and the box test laid a break line across
+  the whole, unbroken cheek wall).  Checked: a break line that a drawn
+  concrete or bar edge crosses and runs past by more than 0.12" on both
+  sides is a finding (a break with no edge crossing it cuts a solid
+  between its edges, as at the cap stub of a pedestal elevation, and is
+  fine).  Markups 2026-10-19: "Add breaklines
+  for elements that are broken" (round 2), "Do a bunch of small breaklines
+  at the straps not one giant one" (round 4), "Breaklines should be at
+  broken elements" (round 5).
 - **D4 Context is minimal.**  Bent sections do not show the landing or
   approach slab ("we want to focus on the end bents").  The end bent
   sections end at a break line through the rain closure slab 1.2 ft beyond
@@ -600,8 +615,8 @@ Render the previews (`--previews`) and look at every sheet at full size:
 1. `manifest.json` `layout_warnings` is empty (views inside their windows,
    no crossings between views, titles centred and aligned) and
    `annotation_overlaps` (the `anno_check` findings, rule ids A1, A2, A3,
-   A10, A11, A12, A13, A14, A21, B9, B11, B12, D3, D12, D13, E5) is empty
-   (A19).
+   A10, A11, A12, A13, A14, A21, B9, B11, B12, D3, D12, D13, D15, E5) is
+   empty (A19).
 2. No leader parallel to or along the bar it points to (A3, checked); no
    leader under the stationing arrow (A7); no leader crossing another
    (A11, audit); no acute bend under a text (A10); fans leave the text
@@ -616,7 +631,7 @@ Render the previews (`--previews`) and look at every sheet at full size:
    values stand clear of their line (B9) and their pointer stops short of
    the text (B11); no dimension line along a parallel drawn line (B12).
 4. Centerlines show as long-short dashes on every line, short ones included
-   (D3); no stray break symbols (D2) and a break on everything clipped
+   (D3); no stray break symbols (D2, D15) and a break on everything clipped
    (D12); no dashed line over a solid line (D1); every cut outline closed,
    backwall tops included (D13); no joint line in a monolithic pour (D10).
 5. Sections at 1/2" and larger draw bars as double lines (C1) with round
@@ -770,4 +785,6 @@ Markups on the round-4 sheets, 2026-10-19 round 5:
 | Where | Comment (engineer's words) | Rule | Resolution |
 |---|---|---|---|
 | B4-11 pedestal elev. | 4F2 has a ton of space available: shift right and point at the bar midway between the other bars. No need to be so close to the corner and to the other bars | A21 | tip on the run midway between the second and third end-on bar, knee straight above, text to the right (end bents and pier) |
-| B4-11 Section G-G | I'm seeing doubled bars here. Do they exist in the model? | C9 | yes: V20 and V21 of each face stand 3/8" apart (the run at 1'-0" from one end lands 3/8" short of the other end bar); drawn as modelled, MODEL CHECK note on the (3 OF 3) sheets |
+| B4-11 Section G-G | I'm seeing doubled bars here. Do they exist in the model? | C9 | yes: V20 and V21 of each face stand 3/8" apart (the run at 1'-0" from one end lands 3/8" short of the other end bar); drawn as modelled, MODEL CHECK note on the (3 OF 3) sheets; resolved by model D-055 |
+| B4-1 / B4-8 plan | Breaklines should be at broken elements (the break lines across the cheek wall corners) | D12, D15 | the coping behind each cheek begins beyond the clip, so nothing of it is drawn; cuts are read from the drawn edges, and a break-breaks-nothing check (D15) guards it |
+| B4-1 elevation | Move 1 (the 1'-0" (MIN.) embedment value) to make room for the other anno and adjust the leaders | B7, A2 | embedment dimension in the pile nearest the PGL, value in the run space at the PGL; the pile description's leader keeps the outboard spaces |

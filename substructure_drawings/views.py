@@ -875,32 +875,38 @@ class Builder:
                 cx_lo = min(cx_lo, max(extents(recs)[1], cb[1]))
         v_bot = min(v_bot, cx_lo)
         # V1 / D12 (markup "Add breaklines for elements that are broken"): a
-        # break line wherever the plan clips an element of the context.  The
-        # objects whose box crosses a clip line of ``ctx_boxes`` (the strap
-        # stubs and the coping stubs behind the backwall, the closure slab and
-        # the side copings in front of the cap) get a break line along that
-        # clip, over the u-range of the objects cut, 0.1 k beyond them; the u
-        # clips (none cut at present: the copings end at the cheek faces)
-        # get vertical ones over the drawn v-range.  Only where an element
-        # is cut, so EB only.
+        # break line wherever the plan clips an element of the context (the
+        # strap stubs and the coping stubs behind the backwall, the closure
+        # slab and the side copings in front of the cap), along the clip
+        # line of ``ctx_boxes``, 0.08 k beyond the element.  Round 7 (markup
+        # "Breaklines should be at broken elements", D12/D15): what is cut is
+        # read from the DRAWN edges, not from the objects' bounding boxes:
+        # an element is cut where one of its visible edges crosses the clip
+        # line, and its break spans the crossings of its edges.  (The coping
+        # behind each cheek wall has a box reaching from the cap back face,
+        # but its visible edges begin at the cheek's back end, 6" beyond
+        # the clip: nothing of it is drawn, so nothing is broken; the box
+        # test laid a break line across the whole, unbroken cheek wall.)
         if ctx:
-            cut = {"back": [], "front": [], "left": [], "right": []}
-            for o in S.get("context", {}).values():
-                if o["role"] not in ctx_boxes:
+            cut = {"back": {}, "front": {}, "left": {}, "right": {}}   # side -> {object: [crossings]}
+            for r in ctx:
+                if r["role"] not in ctx_boxes:
                     continue
-                cb = ctx_boxes[o["role"]]
-                bb = o["bb_ft"]
-                ou, ov = sorted((s.u(bb[0]), s.u(bb[3]))), sorted((s.v(bb[1]), s.v(bb[4])))
-                if ov[1] < cb[1] or ov[0] > cb[3] or ou[1] < cb[0] or ou[0] > cb[2]:
-                    continue    # wholly outside the drawn window: nothing drawn, nothing cut
-                if ov[0] < cb[3] - TOL and ov[1] > cb[3] + TOL:
-                    cut["back"].append((max(ou[0], cb[0]), min(ou[1], cb[2])))
-                if ov[0] < cb[1] - TOL and ov[1] > cb[1] + TOL:
-                    cut["front"].append((max(ou[0], cb[0]), min(ou[1], cb[2])))
-                if ou[0] < cb[0] - TOL:
-                    cut["left"].append((max(ov[0], cb[1]), min(ov[1], cb[3])))
-                if ou[1] > cb[2] + TOL:
-                    cut["right"].append((max(ov[0], cb[1]), min(ov[1], cb[3])))
+                cb = ctx_boxes[r["role"]]
+                obj = r.get("obj") or r["role"]
+                pts = edge_points(r)
+                for p, q in zip(pts, pts[1:]):
+                    for side, axis, c, lo, hi in (("back", 1, cb[3], cb[0], cb[2]), ("front", 1, cb[1], cb[0], cb[2]),
+                                                  ("left", 0, cb[0], cb[1], cb[3]), ("right", 0, cb[2], cb[1], cb[3])):
+                        a, b = p[axis] - c, q[axis] - c
+                        if not ((a < -TOL and b > TOL) or (b < -TOL and a > TOL)):
+                            continue   # the edge does not cross the clip line (a touch is no cut)
+                        t = a / (a - b)
+                        x = p[1 - axis] + t * (q[1 - axis] - p[1 - axis])
+                        if lo - TOL <= x <= hi + TOL:
+                            cut[side].setdefault(obj, []).append(x)
+            for side in cut:
+                cut[side] = [(min(xs), max(xs)) for xs in cut[side].values()]
             # round 6 (markup "Do a bunch of small breaklines at the straps
             # not one giant one", rule D12): one break line per group of cut
             # objects, not one across the whole bent: the (lo, hi) intervals
@@ -1380,32 +1386,56 @@ class Builder:
             # see the title note below)
             for q in s.piles:
                 v.circled_number((q["u"] + off, z_row - 0.5 * k), q["no"])
-            p = max(s.piles, key=lambda q: q["u"])
-            xd = p["u"] + 0.55
-            txt = fdot.ft_in(p["top"] - s.cap_bot) + "\\P(MIN.)"
+            p_lab = max(s.piles, key=lambda q: q["u"])   # the described pile: its leader comes in from the right
+            txt = fdot.ft_in(p_lab["top"] - s.cap_bot) + "\\P(MIN.)"
             bw = text_w(v, txt) + 0.4 * th
             land, mgn = 0.12 * k, 0.1 * k
             wide = [(a, b) for a, b in zip(self._ext_below, self._ext_below[1:]) if b - a >= bw + land + 2 * mgn]
-            out_gaps = [g for g in wide if g[0] >= p["u"] + p["width"] / 2 - 0.01]
-            # (the space just inboard of the last pile when the pile description's
-            # leader runs through the outboard spaces)
-            in_gaps = sorted((g for g in wide if g[1] <= p["u"] - p["width"] / 2 + 0.01), key=lambda g: -g[0])
             z_mid = (zp + z_row + (1.4 + 1.67) * th) / 2   # between the pile bottoms and the run texts
             hh = 0.5 * (1.4 + 1.67) * th + 0.3 * th
 
-            def clear_of_desc(g):
-                """True when the pile description's leader (drawn above) stays
-                off the value's text box in this space (A1)."""
-                box = (g[0] + mgn + land - 0.3 * th, z_mid - hh, g[0] + mgn + land + bw + 0.3 * th, z_mid + hh)
+            def clear_at(x_text):
+                """True when the pile description's leader (drawn above) and the
+                callouts under the cap stay off the value's box centred at
+                x_text (A1, A2)."""
+                box = (x_text - bw / 2 - 0.3 * th, z_mid - hh, x_text + bw / 2 + 0.3 * th, z_mid + hh)
                 return (cad_clip(desc_leg[0], desc_leg[1], box) is None
                         and all(b[0] > box[2] or b[2] < box[0] or b[1] > box[3] or b[3] < box[1]
                                 for b in self._below_boxes))
-            gap = next((g for g in out_gaps if clear_of_desc(g)), None)
-            if gap is None:   # the leader runs through the outboard spaces: the value inboard of the last pile
-                gap = next((g for g in in_gaps if clear_of_desc(g)), out_gaps[0] if out_gaps else None)
-            if gap:
-                loc = (gap[0] + mgn + land + bw / 2, z_mid)
+            # round 7 (markup "Move 1 to make room for the other anno and adjust
+            # the leaders": the value sat in the run space beside the last pile,
+            # where the pile description's leader comes in; A2): the dimension
+            # goes in the pile nearest the PGL (on the described pile's side of
+            # it), 0.55 ft from its centre toward the value, and the value in
+            # the first run space wide enough beside that pile on its PGL side
+            # (the space straddling the PGL, which no label uses), else on its
+            # other side, else beside the next pile out; the pointer's landing
+            # faces the pile.  The outboard spaces stay the description's.
+            sgn = 1 if p_lab["u"] > 0 else -1
+            cands = sorted((q for q in s.piles if q is not p_lab), key=lambda q: (abs(q["u"]), -sgn * q["u"]))
+            place = None
+            for q in cands:
+                toward_pgl = -1 if q["u"] > 0 else 1
+                for side in (toward_pgl, -toward_pgl):
+                    face = q["u"] + side * q["width"] / 2
+                    if side < 0:
+                        gaps = sorted((g for g in wide if g[1] <= face + 0.01), key=lambda g: -g[1])
+                        xs = [g[1] - mgn - land - bw / 2 for g in gaps[:1]]
+                    else:
+                        gaps = sorted((g for g in wide if g[0] >= face - 0.01), key=lambda g: g[0])
+                        xs = [g[0] + mgn + land + bw / 2 for g in gaps[:1]]
+                    if xs and clear_at(xs[0]):
+                        place = (q, side, xs[0])
+                        break
+                if place:
+                    break
+            if place:
+                p, side, x_text = place
+                xd = p["u"] + side * 0.55
+                loc = (x_text, z_mid)
             else:
+                p = p_lab
+                xd = p["u"] + 0.55
                 txt = fdot.ft_in(p["top"] - s.cap_bot) + " (MIN.) (TYP.)"
                 loc = (p["u"] + 2.0, z_row - 0.42 * k)
         else:

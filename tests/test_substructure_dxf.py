@@ -341,14 +341,14 @@ class SubstructureDxfTests(unittest.TestCase):
 
     def test_annotation_checks_are_clean(self):
         """A1: the annotation checks (rules A1, A2, A3, A10, A11, A12, A13,
-        A14, A21, B9, B11, B12, D3, D12, D13, E5 of STYLE_GUIDE.md;
+        A14, A21, B9, B11, B12, D3, D12, D13, D15, E5 of STYLE_GUIDE.md;
         ``anno_check.RULES``) run on every view and find nothing; E5 (a
         title centred on its subject) is a layout check."""
         self.assertEqual(self.manifest["annotation_overlaps"], [])
         self.assertEqual(self.manifest["layout_warnings"], [])
         rules = self.manifest["anno_rules_checked"]
         for rule in ("A1", "A2", "A3", "A10", "A11", "A12", "A13", "A14", "A21", "B9", "B11", "B12",
-                     "D3", "D12", "D13", "E5"):
+                     "D3", "D12", "D13", "D15", "E5"):
             self.assertIn(rule, rules, rule)
 
     def test_dimension_blocks_have_no_zero_length_lines_and_masked_text(self):

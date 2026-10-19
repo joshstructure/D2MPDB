@@ -402,8 +402,9 @@ are not made again:
    callouts too close (A21), pulled values too near a dimension line (B9), a
    pointer touching its text (B11), a dimension line
    along a parallel drawn line (B12), centerlines too short to show dashes
-   (D3), clipped edges without a break line (D12), an open concrete outline
-   in a section (D13), titles off centre (E5). Both lists must be empty
+   (D3), clipped edges without a break line (D12), a break line that breaks
+   nothing (D15), an open concrete outline in a section (D13), titles off
+   centre (E5). Both lists must be empty
    before delivery; they are
    in `manifest.json` (`layout_warnings`, `annotation_overlaps`,
    `anno_rules_checked`) and the tests fail on either.

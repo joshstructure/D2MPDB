@@ -75,6 +75,11 @@ D12   clipped edge, no break line    a segment end cut at a view window on the  
                                      concrete / context levels lies more than    CLIP_MERGE_K
                                      0.12 k from every break line segment
                                      (cut ends within 0.2 k are one finding)
+D15   break line breaks nothing      a drawn edge of the concrete / bar levels   BREAK_CLIP_K
+                                     crosses a break line (or pile break lobe)
+                                     and runs on more than 0.12 k on both
+                                     sides: the element under the break is
+                                     drawn whole
 D13   open concrete outline          in a section, an end of a visible           JOIN_TOL,
                                      SubStrConc / PileConc / PileSteel segment   OUTLINE_CLIP_TOL,
                                      that no other segment of those levels (the  CLIP_MERGE_K
@@ -118,6 +123,7 @@ ALONG_MIN_K = 0.2        # ... over a stretch longer than this (paper inches) (A
 JOIN_TOL = 0.005         # an outline end is met by a segment that ends or passes within this many feet (D13)
 OUTLINE_CLIP_TOL = 0.01  # an outline end this close (feet) to a recorded window cut is D12's, not D13's (D13)
 TIP_APART_K = 0.1        # tips of two different callouts are at least this far apart, paper inches (A21)
+BREAK_CLIP_K = 0.12      # an edge running on this far (paper inches) past a break line on both sides is drawn whole (D15)
 
 # levels
 LINEWORK_SKIP = ("Patterning", "Symbols")         # hatch patterns; symbols drawn around their own letters
@@ -128,7 +134,7 @@ CLIP_EXACT = ("Rebar2",)                                    # with the prefixes:
 OUTLINE_PREFIXES = ("SubStrConc", "PileConc", "PileSteel")  # the concrete outline levels of D13
 
 RULES = ("A1", "A2", "A3", "A10", "A11", "A12", "A13", "A14", "A21", "B9", "B11", "B12", "D3", "D12", "D13",
-         "E5")
+         "D15", "E5")
 
 
 # ------------------------------------------------------------------ geometry
@@ -656,6 +662,47 @@ def clipped_without_break(view):
     return out
 
 
+def _break_chains(view):
+    """The break lines of the view as chains of consecutive segments (a
+    straight break with its zig-zag, a pile break lobe): ``view.breaks``
+    holds every segment of every break polyline in drawing order, so a new
+    chain starts where a segment does not begin at the previous one's end."""
+    chains = []
+    for a, b in view.breaks:
+        if chains and math.dist(chains[-1][-1][1], a) < 1e-9:
+            chains[-1].append((a, b))
+        else:
+            chains.append([(a, b)])
+    return chains
+
+
+def break_without_clip(view):
+    """D15: a break line that breaks nothing ("Breaklines should be at
+    broken elements"): a drawn edge of the concrete / bar levels crosses it
+    properly and runs on for more than 0.12 k on both sides, so the element
+    under the break is drawn whole.  (A break with no edge crossing it cuts
+    a solid between its edges, the cap stub of a pedestal elevation or a
+    schematic detail's wall, and is fine; an edge that ends at the break is
+    D12's clipped end.)  The converse of D12."""
+    k = view.sf / 12.0
+    over = BREAK_CLIP_K * k
+    segs = [(p, q) for p, q, layer, _c in view.segs if _is_drawing_level(layer)]
+    out = []
+    for ch in _break_chains(view):
+        hit = None
+        for a, b in ch:
+            for p, q in segs:
+                x = cad.segments_cross(a, b, p, q)
+                if x is not None and math.dist(p, x) >= over and math.dist(q, x) >= over:
+                    hit = x
+                    break
+            if hit is not None:
+                break
+        if hit is not None:
+            out.append(("D15", "[D15] break line at %s crosses an element drawn whole: it breaks nothing" % _pt(hit)))
+    return out
+
+
 def open_outlines(view):
     """D13: in a section, an end of a concrete outline segment (levels
     SubStrConc / PileConc / PileSteel, visible) that no other segment of those
@@ -730,8 +777,8 @@ def title_centred(view):
 
 CHECKS = (text_over_linework, leader_through_symbol, text_clearance, acute_bends, fan_direction,
           leader_crossings, fan_spread, leader_over_linework, leader_along_line, pulled_clearance,
-          pointer_gap, dimension_beside_line, short_centerlines, clipped_without_break, open_outlines,
-          tips_apart, title_centred)
+          pointer_gap, dimension_beside_line, short_centerlines, clipped_without_break, break_without_clip,
+          open_outlines, tips_apart, title_centred)
 
 
 def check_view(view):
