@@ -1,0 +1,1883 @@
+{
+  "date": "2026-10-19",
+  "notebook": "Cap_and_Pile_Design.ipynb",
+  "notebook_sha256": "57c70ea9eeee59611d0057238f4d043f0458f2817a6c68b90f5171853935f7d8",
+  "python": "3.12.14",
+  "cells": [
+    {
+      "index": 3,
+      "id": "disable-output-scrolling",
+      "success": true,
+      "elapsed_seconds": 0.016,
+      "stdout": "Output scrolling disabled for future cell executions.\n",
+      "stderr": "",
+      "display_outputs": 0
+    },
+    {
+      "index": 4,
+      "id": "a1e54f80",
+      "success": true,
+      "elapsed_seconds": 5.859,
+      "stdout": "Ready. Upload an XML or load a saved case in the workbench below.\n",
+      "stderr": "",
+      "display_outputs": 1
+    },
+    {
+      "index": 5,
+      "id": "7447e4cc",
+      "success": true,
+      "elapsed_seconds": 6.563,
+      "stdout": "Out[0]: <pier_cap.widgets.CapNotebook at 0x21eabf42960>\n",
+      "stderr": "",
+      "display_outputs": 2
+    },
+    {
+      "index": 6,
+      "id": "fixed-depth-cap",
+      "success": true,
+      "elapsed_seconds": 0.14,
+      "stdout": "",
+      "stderr": "",
+      "display_outputs": 2
+    },
+    {
+      "index": 7,
+      "id": "509fc7f9",
+      "success": true,
+      "elapsed_seconds": 0.031,
+      "stdout": "Out[0]: <pier_cap.section_widgets.SectionStudy at 0x21ebcbfc740>\n",
+      "stderr": "",
+      "display_outputs": 2
+    }
+  ],
+  "runs": [
+    {
+      "prefix": "PIER",
+      "folder": "pier",
+      "title": "Pier Cap Design",
+      "previous_case": "C:\\github\\D2MPDB\\project_current\\cap_design\\pier\\selected_case.json",
+      "previous_case_sha256": "2045ab5fb71a85d7a3b7f6382eb18688bc826f3f9aec6a4d4d0b9bc6022e9dc8",
+      "xml_path": "project_current/fbmp/pier/Pier_Fixed.XML",
+      "xml_sha256": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+      "bundle": "C:\\Users\\joshs\\Desktop\\D2 MPDB\\outputs\\cap-rerun-20261019\\bundles\\pier\\case-20261019-143613-920201",
+      "case_sha256": "0192dc9d9bef7718fc1d8944ce55b90278c46bbf0458decf1e8be6752c7bed9b",
+      "report_sha256": "e49d579c0186e7c2617828d236cb982adb92122345493a097e7c352df2f3a701",
+      "inputs_changed": {
+        "Mu_N": {
+          "before": 26.72,
+          "after": 39.12
+        },
+        "Mu_P": {
+          "before": 159.4,
+          "after": 158.98
+        },
+        "Mu_B": {
+          "before": 366.16,
+          "after": 365.84
+        },
+        "Tu": {
+          "before": 26.47,
+          "after": 26.55
+        },
+        "MI_N": {
+          "before": 21.75,
+          "after": 21.91
+        },
+        "MI_P": {
+          "before": 126.44,
+          "after": 121.97
+        },
+        "MI_B": {
+          "before": 315.67,
+          "after": 312.22
+        }
+      },
+      "geometry_and_reinforcement_preserved": true,
+      "before": {
+        "status": "CHECK FAILURES — revise the trial cage or section",
+        "counts": {
+          "✓ PASS": 19,
+          "PENDING — three Service III moments": 1,
+          "PENDING — applicability and fatigue loads": 1,
+          "SOURCE PILE LAYOUT": 1,
+          "SOURCE SECTION": 1,
+          "PASS": 209,
+          "PENDING": 65,
+          "FAIL": 2,
+          "NOT REQUIRED": 7
+        },
+        "max_dc": 2.0,
+        "stale_geometry": [],
+        "issues": [],
+        "failed_checks": [
+          {
+            "key": "Chk_end_grid_piles",
+            "label": "End U grid · pile envelope clearance",
+            "status": "FAIL",
+            "ratio": 2.0,
+            "calculated_status": "FAIL",
+            "basis": "Conservative square pile envelope includes the current horizontal placement allowance, pile embedment and required clear gap, enlarged by bar radius. Review shape-specific and fabrication tolerances separately.",
+            "review_state": ""
+          },
+          {
+            "key": "Status_overall",
+            "label": "Actual-cage check summary",
+            "status": "FAIL",
+            "ratio": "N/A",
+            "calculated_status": "FAIL",
+            "basis": "Collects actual-cage numerical results and outstanding applicability/detailing requirements. No reference result is treated as a passed check.",
+            "review_state": ""
+          }
+        ]
+      },
+      "after": {
+        "status": "CHECK FAILURES — revise the trial cage or section",
+        "counts": {
+          "✓ PASS": 19,
+          "PENDING — three Service III moments": 1,
+          "PENDING — applicability and fatigue loads": 1,
+          "SOURCE PILE LAYOUT": 1,
+          "SOURCE SECTION": 1,
+          "PASS": 209,
+          "PENDING": 65,
+          "FAIL": 2,
+          "NOT REQUIRED": 7
+        },
+        "max_dc": 2.0,
+        "stale_geometry": [],
+        "issues": [],
+        "failed_checks": [
+          {
+            "key": "Chk_end_grid_piles",
+            "label": "End U grid · pile envelope clearance",
+            "status": "FAIL",
+            "ratio": 2.0,
+            "calculated_status": "FAIL",
+            "basis": "Conservative square pile envelope includes the current horizontal placement allowance, pile embedment and required clear gap, enlarged by bar radius. Review shape-specific and fabrication tolerances separately.",
+            "review_state": ""
+          },
+          {
+            "key": "Status_overall",
+            "label": "Actual-cage check summary",
+            "status": "FAIL",
+            "ratio": "N/A",
+            "calculated_status": "FAIL",
+            "basis": "Collects actual-cage numerical results and outstanding applicability/detailing requirements. No reference result is treated as a passed check.",
+            "review_state": ""
+          }
+        ]
+      },
+      "check_changes": [
+        {
+          "key": "Chk_flex_N",
+          "label": "Flexural strength — N",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.08513842503656598,
+          "after_ratio": 0.12464877198467293
+        },
+        {
+          "key": "Chk_min_N",
+          "label": "Minimum flexural steel — N",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.11323410529863277,
+          "after_ratio": 0.165782866739615
+        },
+        {
+          "key": "Chk_I_N",
+          "label": "Service I — N",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.08068928913673447,
+          "after_ratio": 0.0812828655165909
+        },
+        {
+          "key": "Chk_flex_P",
+          "label": "Flexural strength — P",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.28318245631577105,
+          "after_ratio": 0.282436304297875
+        },
+        {
+          "key": "Chk_min_P",
+          "label": "Minimum flexural steel — P",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.37663266689997554,
+          "after_ratio": 0.3756402847161738
+        },
+        {
+          "key": "Chk_I_P",
+          "label": "Service I — P",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.26327912063783426,
+          "after_ratio": 0.25397148326634483
+        },
+        {
+          "key": "Chk_flex_B",
+          "label": "Flexural strength — B",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.4708932637943885,
+          "after_ratio": 0.4704817337408212
+        },
+        {
+          "key": "Chk_min_B",
+          "label": "Minimum flexural steel — B",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.6262880408465368,
+          "after_ratio": 0.6257407058752922
+        },
+        {
+          "key": "Chk_I_B",
+          "label": "Service I — B",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.4771747116816642,
+          "after_ratio": 0.4719596049078126
+        },
+        {
+          "key": "Chk_drawn_I_P",
+          "label": "P actual row spacing · Service I",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.10302755067844926,
+          "after_ratio": 0.09862021664503927
+        },
+        {
+          "key": "Chk_drawn_I_B",
+          "label": "B actual row spacing · Service I",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.3134236293239118,
+          "after_ratio": 0.3084140914215905
+        },
+        {
+          "key": "Chk_actual_shear_R1-1_R1-2",
+          "label": "R1-1 → R1-2 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.016104106142278744,
+          "after_ratio": 0.013833861684864371
+        },
+        {
+          "key": "Chk_actual_min_R1-1_R1-2",
+          "label": "R1-1 → R1-2 minimum shear steel",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.4831002147431615,
+          "after_ratio": 0.48310021474316134
+        },
+        {
+          "key": "Chk_actual_min_R1-2_R1-3",
+          "label": "R1-2 → R1-3 minimum shear steel",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.4789735855110716,
+          "after_ratio": 0.4789735855110715
+        },
+        {
+          "key": "Chk_actual_shear_R2-3_R2-4",
+          "label": "R2-3 → R2-4 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.3114203456958439,
+          "after_ratio": 0.3114453310753709
+        },
+        {
+          "key": "Chk_actual_shear_R2-4_R2-5",
+          "label": "R2-4 → R2-5 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.310282769445881,
+          "after_ratio": 0.31030775482540807
+        },
+        {
+          "key": "Chk_actual_shear_R2-5_R2-6",
+          "label": "R2-5 → R2-6 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.30804443530370135,
+          "after_ratio": 0.3080905278376365
+        },
+        {
+          "key": "Chk_actual_min_R2-5_R2-6",
+          "label": "R2-5 → R2-6 minimum shear steel",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.5372863893247303,
+          "after_ratio": 0.5371861673298002
+        },
+        {
+          "key": "Chk_actual_shear_R2-6_R3-1",
+          "label": "R2-6 → R3-1 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.3057886411504489,
+          "after_ratio": 0.3058204125274833
+        },
+        {
+          "key": "Chk_actual_min_R2-6_R3-1",
+          "label": "R2-6 → R3-1 minimum shear steel",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.5387827632960956,
+          "after_ratio": 0.538689487804563
+        },
+        {
+          "key": "Chk_actual_shear_R3-1_R3-2",
+          "label": "R3-1 → R3-2 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.30558629745525967,
+          "after_ratio": 0.3056160850705765
+        },
+        {
+          "key": "Chk_actual_min_R3-1_R3-2",
+          "label": "R3-1 → R3-2 minimum shear steel",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.5414049501211102,
+          "after_ratio": 0.5413916652254659
+        },
+        {
+          "key": "Chk_actual_shear_R3-2_R3-3",
+          "label": "R3-2 → R3-3 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.30278484131037786,
+          "after_ratio": 0.30280982668990486
+        },
+        {
+          "key": "Chk_actual_min_R3-2_R3-3",
+          "label": "R3-2 → R3-3 minimum shear steel",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.5027481611708796,
+          "after_ratio": 0.5026860845545907
+        },
+        {
+          "key": "Chk_actual_shear_R3-3_R3-4",
+          "label": "R3-3 → R3-4 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.3268567152820854,
+          "after_ratio": 0.3269063298951924
+        },
+        {
+          "key": "Chk_actual_shear_R3-4_R3-5",
+          "label": "R3-4 → R3-5 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.5373899177394983,
+          "after_ratio": 0.5373649323599712
+        },
+        {
+          "key": "Chk_actual_shear_R3-5_R3-6",
+          "label": "R3-5 → R3-6 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.5887048167696872,
+          "after_ratio": 0.5886770241626739
+        },
+        {
+          "key": "Chk_actual_shear_R3-6_R4-1",
+          "label": "R3-6 → R4-1 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.5411435158662126,
+          "after_ratio": 0.541101694008463
+        },
+        {
+          "key": "Chk_actual_shear_R4-1_R4-2",
+          "label": "R4-1 → R4-2 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.5917927665604329,
+          "after_ratio": 0.5917415061169771
+        },
+        {
+          "key": "Chk_actual_shear_R4-2_R4-3",
+          "label": "R4-2 → R4-3 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.5457332349004339,
+          "after_ratio": 0.5457082495209068
+        },
+        {
+          "key": "Chk_actual_shear_R4-3_R4-4",
+          "label": "R4-3 → R4-4 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.5047387969560834,
+          "after_ratio": 0.5047157402908294
+        },
+        {
+          "key": "Chk_actual_shear_R4-4_R4-5",
+          "label": "R4-4 → R4-5 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.012032924396673111,
+          "after_ratio": 0.011707484097741768
+        },
+        {
+          "key": "Chk_actual_shear_R4-5_R4-6",
+          "label": "R4-5 → R4-6 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.009815067043821735,
+          "after_ratio": 0.009469149955562054
+        },
+        {
+          "key": "Chk_actual_shear_R4-6_R5-1",
+          "label": "R4-6 → R5-1 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.007925337352311072,
+          "after_ratio": 0.007602544038756262
+        },
+        {
+          "key": "Chk_actual_shear_R5-1_R5-2",
+          "label": "R5-1 → R5-2 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.007360807420498954,
+          "after_ratio": 0.009032695187093131
+        },
+        {
+          "key": "Chk_actual_shear_R5-2_R5-3",
+          "label": "R5-2 → R5-3 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.0045366882550846015,
+          "after_ratio": 0.011838116292641948
+        },
+        {
+          "key": "Chk_actual_shear_R5-3_R5-4",
+          "label": "R5-3 → R5-4 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.007318263508203367,
+          "after_ratio": 0.015198809569252942
+        },
+        {
+          "key": "Chk_actual_min_R5-3_R5-4",
+          "label": "R5-3 → R5-4 minimum shear steel",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.5954422474691309,
+          "after_ratio": 0.5954422474691307
+        },
+        {
+          "key": "Chk_actual_shear_R5-4_R5-5",
+          "label": "R5-4 → R5-5 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.010248358247879546,
+          "after_ratio": 0.01826462932694062
+        },
+        {
+          "key": "Chk_actual_shear_R5-5_R5-6",
+          "label": "R5-5 → R5-6 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.013305077528841143,
+          "after_ratio": 0.021321348607902215
+        },
+        {
+          "key": "Chk_actual_shear_R5-6_R6-1",
+          "label": "R5-6 → R6-1 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.013860215228845006,
+          "after_ratio": 0.021205916809795042
+        },
+        {
+          "key": "Chk_actual_shear_R6-1_R6-2",
+          "label": "R6-1 → R6-2 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.016681619059418725,
+          "after_ratio": 0.024385830562205457
+        },
+        {
+          "key": "Chk_actual_shear_R6-2_R6-3",
+          "label": "R6-2 → R6-3 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.01846677074128885,
+          "after_ratio": 0.02581247232223888
+        },
+        {
+          "key": "Chk_actual_shear_R6-3_R6-4",
+          "label": "R6-3 → R6-4 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.5454583957256365,
+          "after_ratio": 0.5457332349004339
+        },
+        {
+          "key": "Chk_actual_shear_R6-4_R6-5",
+          "label": "R6-4 → R6-5 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.5443208194756736,
+          "after_ratio": 0.544595658650471
+        },
+        {
+          "key": "Chk_actual_min_R6-4_R6-5",
+          "label": "R6-4 → R6-5 minimum shear steel",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.5155289016750165,
+          "after_ratio": 0.5134962454203418
+        },
+        {
+          "key": "Chk_actual_shear_R6-5_R6-6",
+          "label": "R6-5 → R6-6 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.542103592487902,
+          "after_ratio": 0.5423784316626994
+        },
+        {
+          "key": "Chk_actual_min_R6-5_R6-6",
+          "label": "R6-5 → R6-6 minimum shear steel",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.5157777820959323,
+          "after_ratio": 0.5137563547526578
+        },
+        {
+          "key": "Chk_actual_shear_R6-6_R7-1",
+          "label": "R6-6 → R7-1 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.5398516765597684,
+          "after_ratio": 0.5401083163525462
+        },
+        {
+          "key": "Chk_actual_min_R6-6_R7-1",
+          "label": "R6-6 → R7-1 minimum shear steel",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.5163101162098037,
+          "after_ratio": 0.5142734149401607
+        },
+        {
+          "key": "Chk_actual_shear_R7-1_R7-2",
+          "label": "R7-1 → R7-2 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.5396493328645793,
+          "after_ratio": 0.5399039888956394
+        },
+        {
+          "key": "Chk_actual_min_R7-1_R7-2",
+          "label": "R7-1 → R7-2 minimum shear steel",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.5259989029146641,
+          "after_ratio": 0.5242668022715858
+        },
+        {
+          "key": "Chk_actual_shear_R7-2_R7-3",
+          "label": "R7-2 → R7-3 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.5368439007511829,
+          "after_ratio": 0.5370937545464534
+        },
+        {
+          "key": "Chk_actual_shear_R7-3_R7-4",
+          "label": "R7-3 → R7-4 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.3271566437918462,
+          "after_ratio": 0.32685671528208543
+        },
+        {
+          "key": "Chk_actual_shear_R7-4_R7-5",
+          "label": "R7-4 → R7-5 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.3302175457063208,
+          "after_ratio": 0.3299427081956457
+        },
+        {
+          "key": "Chk_actual_shear_R7-5_R7-6",
+          "label": "R7-5 → R7-6 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.3333015312154425,
+          "after_ratio": 0.3330016027056817
+        },
+        {
+          "key": "Chk_actual_shear_R7-6_R8-1",
+          "label": "R7-6 → R8-1 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.30708862935819753,
+          "after_ratio": 0.30681379018340005
+        },
+        {
+          "key": "Chk_actual_shear_R8-1_R8-2",
+          "label": "R8-1 → R8-2 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.3363627411568814,
+          "after_ratio": 0.3360660846599849
+        },
+        {
+          "key": "Chk_actual_shear_R8-2_R8-3",
+          "label": "R8-2 → R8-3 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.3116701994911143,
+          "after_ratio": 0.3114203456958439
+        },
+        {
+          "key": "Chk_actual_shear_R8-3_R8-4",
+          "label": "R8-3 → R8-4 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.2887439568574079,
+          "after_ratio": 0.28851339020486877
+        },
+        {
+          "key": "Chk_shear_G",
+          "label": "Actual shear · G",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.5917927665604329,
+          "after_ratio": 0.5917415061169771
+        },
+        {
+          "key": "Chk_long_N",
+          "label": "Actual longitudinal tension · N",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.9551059475202734,
+          "after_ratio": 0.9549257082685926
+        },
+        {
+          "key": "Chk_long_P",
+          "label": "Actual longitudinal tension · P",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.7712869688325463,
+          "after_ratio": 0.7711420042553263
+        },
+        {
+          "key": "Chk_long_B",
+          "label": "Actual longitudinal tension · B",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.8588688524743681,
+          "after_ratio": 0.858765711958058
+        }
+      ],
+      "exported_checks_match_reloaded_evaluation": true,
+      "elapsed_seconds": 39.922
+    },
+    {
+      "prefix": "EB",
+      "folder": "end_bents",
+      "title": "End Bent 1 Cap Design",
+      "previous_case": "C:\\github\\D2MPDB\\project_current\\cap_design\\end_bents\\selected_case.json",
+      "previous_case_sha256": "37a04b9c8ab1dc8d215850cecd539dedc49b07397be2e668ac7ef9809173cf78",
+      "xml_path": "project_current/fbmp/end_bents/End Bent 1_Fixed.XML",
+      "xml_sha256": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
+      "bundle": "C:\\Users\\joshs\\Desktop\\D2 MPDB\\outputs\\cap-rerun-20261019\\bundles\\end_bents\\case-20261019-143656-429031",
+      "case_sha256": "898b3e134b286b7a5a8f3eaf96f3c2996e1400e11206195dc0ea2448d750274f",
+      "report_sha256": "6a42c16b0595ac16070608abd5d129a6152803693cb06a870b3168685c52e7a1",
+      "inputs_changed": {
+        "Mu_N": {
+          "before": 79.19,
+          "after": 79.3
+        },
+        "Mu_P": {
+          "before": 68.08,
+          "after": 67.16
+        },
+        "Mu_B": {
+          "before": 182.68,
+          "after": 182.09
+        },
+        "Vu_G": {
+          "before": 91.51,
+          "after": 91.77
+        },
+        "Vu_L": {
+          "before": 91.51,
+          "after": 91.77
+        },
+        "Tu": {
+          "before": 3.22,
+          "after": 3.09
+        },
+        "MI_N": {
+          "before": 51.88,
+          "after": 53.3
+        },
+        "MI_P": {
+          "before": 48.0,
+          "after": 49.33
+        },
+        "MI_B": {
+          "before": 138.65,
+          "after": 138.47
+        }
+      },
+      "geometry_and_reinforcement_preserved": true,
+      "before": {
+        "status": "CHECK FAILURES — revise the trial cage or section",
+        "counts": {
+          "✓ PASS": 19,
+          "PENDING — three Service III moments": 1,
+          "PENDING — applicability and fatigue loads": 1,
+          "SOURCE PILE LAYOUT": 1,
+          "SOURCE SECTION": 1,
+          "PASS": 167,
+          "PENDING": 45,
+          "FAIL": 6,
+          "NOT REQUIRED": 7
+        },
+        "max_dc": 2.9375,
+        "stale_geometry": [],
+        "issues": [
+          "R2: Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+          "R4: Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+          "R6: Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+          "R8: Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends."
+        ],
+        "failed_checks": [
+          {
+            "key": "Status_transverse_development_R2",
+            "label": "R2 calculated anchorage / closure",
+            "status": "FAIL",
+            "ratio": 2.0,
+            "calculated_status": "FAIL",
+            "basis": "AASHTO LRFD BDS, 10th ed. (2024) 5.10.2.1/.3, 5.10.8.2.6a/b/d. Bend 4.500/4.500 in; hook extension 9.000/9.000 in; midheight embedment 15.000/8.443 in.  CRSI Table 7-2: straight stirrup/tie hook extensions; automatic 9 in. Trial hook rotation: left +50°, right +50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance. Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+            "review_state": ""
+          },
+          {
+            "key": "Status_transverse_development_R4",
+            "label": "R4 calculated anchorage / closure",
+            "status": "FAIL",
+            "ratio": 2.0,
+            "calculated_status": "FAIL",
+            "basis": "AASHTO LRFD BDS, 10th ed. (2024) 5.10.2.1/.3, 5.10.8.2.6a/b/d. Bend 4.500/4.500 in; hook extension 9.000/9.000 in; midheight embedment 15.000/8.443 in.  CRSI Table 7-2: straight stirrup/tie hook extensions; automatic 9 in. Trial hook rotation: left +50°, right +50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance. Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+            "review_state": ""
+          },
+          {
+            "key": "Status_transverse_development_R6",
+            "label": "R6 calculated anchorage / closure",
+            "status": "FAIL",
+            "ratio": 2.0,
+            "calculated_status": "FAIL",
+            "basis": "AASHTO LRFD BDS, 10th ed. (2024) 5.10.2.1/.3, 5.10.8.2.6a/b/d. Bend 4.500/4.500 in; hook extension 9.000/9.000 in; midheight embedment 15.000/8.443 in.  CRSI Table 7-2: straight stirrup/tie hook extensions; automatic 9 in. Trial hook rotation: left +50°, right +50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance. Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+            "review_state": ""
+          },
+          {
+            "key": "Status_transverse_development_R8",
+            "label": "R8 calculated anchorage / closure",
+            "status": "FAIL",
+            "ratio": 2.0,
+            "calculated_status": "FAIL",
+            "basis": "AASHTO LRFD BDS, 10th ed. (2024) 5.10.2.1/.3, 5.10.8.2.6a/b/d. Bend 4.500/4.500 in; hook extension 9.000/9.000 in; midheight embedment 15.000/8.443 in.  CRSI Table 7-2: straight stirrup/tie hook extensions; automatic 9 in. Trial hook rotation: left -50°, right -50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance. Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+            "review_state": ""
+          },
+          {
+            "key": "Chk_shrink_space",
+            "label": "Actual face shrinkage / temperature spacing",
+            "status": "FAIL",
+            "ratio": 2.9375,
+            "calculated_status": "FAIL",
+            "basis": "AASHTO LRFD BDS, 10th ed. (2024) 5.10.6-1/-2, pp. 5-182–183. Each included face and direction. Bottom · Transverse excluded for open pile stirrups (project check scope, not a code exemption). Code spacing 108 in; adopted project spacing 12 in. Governing: End left · Vertical; End right · Vertical (tie); ratio 2.9375.",
+            "review_state": ""
+          },
+          {
+            "key": "Status_overall",
+            "label": "Actual-cage check summary",
+            "status": "FAIL",
+            "ratio": "N/A",
+            "calculated_status": "FAIL",
+            "basis": "Collects actual-cage numerical results and outstanding applicability/detailing requirements. No reference result is treated as a passed check.",
+            "review_state": ""
+          }
+        ]
+      },
+      "after": {
+        "status": "CHECK FAILURES — revise the trial cage or section",
+        "counts": {
+          "✓ PASS": 19,
+          "PENDING — three Service III moments": 1,
+          "PENDING — applicability and fatigue loads": 1,
+          "SOURCE PILE LAYOUT": 1,
+          "SOURCE SECTION": 1,
+          "PASS": 167,
+          "PENDING": 45,
+          "FAIL": 6,
+          "NOT REQUIRED": 7
+        },
+        "max_dc": 2.9375,
+        "stale_geometry": [],
+        "issues": [
+          "R2: Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+          "R4: Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+          "R6: Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+          "R8: Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends."
+        ],
+        "failed_checks": [
+          {
+            "key": "Status_transverse_development_R2",
+            "label": "R2 calculated anchorage / closure",
+            "status": "FAIL",
+            "ratio": 2.0,
+            "calculated_status": "FAIL",
+            "basis": "AASHTO LRFD BDS, 10th ed. (2024) 5.10.2.1/.3, 5.10.8.2.6a/b/d. Bend 4.500/4.500 in; hook extension 9.000/9.000 in; midheight embedment 15.000/8.443 in.  CRSI Table 7-2: straight stirrup/tie hook extensions; automatic 9 in. Trial hook rotation: left +50°, right +50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance. Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+            "review_state": ""
+          },
+          {
+            "key": "Status_transverse_development_R4",
+            "label": "R4 calculated anchorage / closure",
+            "status": "FAIL",
+            "ratio": 2.0,
+            "calculated_status": "FAIL",
+            "basis": "AASHTO LRFD BDS, 10th ed. (2024) 5.10.2.1/.3, 5.10.8.2.6a/b/d. Bend 4.500/4.500 in; hook extension 9.000/9.000 in; midheight embedment 15.000/8.443 in.  CRSI Table 7-2: straight stirrup/tie hook extensions; automatic 9 in. Trial hook rotation: left +50°, right +50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance. Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+            "review_state": ""
+          },
+          {
+            "key": "Status_transverse_development_R6",
+            "label": "R6 calculated anchorage / closure",
+            "status": "FAIL",
+            "ratio": 2.0,
+            "calculated_status": "FAIL",
+            "basis": "AASHTO LRFD BDS, 10th ed. (2024) 5.10.2.1/.3, 5.10.8.2.6a/b/d. Bend 4.500/4.500 in; hook extension 9.000/9.000 in; midheight embedment 15.000/8.443 in.  CRSI Table 7-2: straight stirrup/tie hook extensions; automatic 9 in. Trial hook rotation: left +50°, right +50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance. Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+            "review_state": ""
+          },
+          {
+            "key": "Status_transverse_development_R8",
+            "label": "R8 calculated anchorage / closure",
+            "status": "FAIL",
+            "ratio": 2.0,
+            "calculated_status": "FAIL",
+            "basis": "AASHTO LRFD BDS, 10th ed. (2024) 5.10.2.1/.3, 5.10.8.2.6a/b/d. Bend 4.500/4.500 in; hook extension 9.000/9.000 in; midheight embedment 15.000/8.443 in.  CRSI Table 7-2: straight stirrup/tie hook extensions; automatic 9 in. Trial hook rotation: left -50°, right -50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance. Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+            "review_state": ""
+          },
+          {
+            "key": "Chk_shrink_space",
+            "label": "Actual face shrinkage / temperature spacing",
+            "status": "FAIL",
+            "ratio": 2.9375,
+            "calculated_status": "FAIL",
+            "basis": "AASHTO LRFD BDS, 10th ed. (2024) 5.10.6-1/-2, pp. 5-182–183. Each included face and direction. Bottom · Transverse excluded for open pile stirrups (project check scope, not a code exemption). Code spacing 108 in; adopted project spacing 12 in. Governing: End left · Vertical; End right · Vertical (tie); ratio 2.9375.",
+            "review_state": ""
+          },
+          {
+            "key": "Status_overall",
+            "label": "Actual-cage check summary",
+            "status": "FAIL",
+            "ratio": "N/A",
+            "calculated_status": "FAIL",
+            "basis": "Collects actual-cage numerical results and outstanding applicability/detailing requirements. No reference result is treated as a passed check.",
+            "review_state": ""
+          }
+        ]
+      },
+      "check_changes": [
+        {
+          "key": "Chk_flex_N",
+          "label": "Flexural strength — N",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.25366848501889233,
+          "after_ratio": 0.2540208468493264
+        },
+        {
+          "key": "Chk_min_N",
+          "label": "Minimum flexural steel — N",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.33737908507512676,
+          "after_ratio": 0.33784772630960413
+        },
+        {
+          "key": "Chk_I_N",
+          "label": "Service I — N",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.19379707303800034,
+          "after_ratio": 0.19910146478267957
+        },
+        {
+          "key": "Chk_flex_P",
+          "label": "Flexural strength — P",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.15744817917674753,
+          "after_ratio": 0.15532050107976442
+        },
+        {
+          "key": "Chk_min_P",
+          "label": "Minimum flexural steel — P",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.2094060783050742,
+          "after_ratio": 0.20657626643608668
+        },
+        {
+          "key": "Chk_I_P",
+          "label": "Service I — P",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.13001420849655362,
+          "after_ratio": 0.13361668552364567
+        },
+        {
+          "key": "Chk_flex_B",
+          "label": "Flexural strength — B",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.3274882430118595,
+          "after_ratio": 0.32643055709453417
+        },
+        {
+          "key": "Chk_min_B",
+          "label": "Minimum flexural steel — B",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.43555936320577315,
+          "after_ratio": 0.4341526409357304
+        },
+        {
+          "key": "Chk_I_B",
+          "label": "Service I — B",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.2918269650982233,
+          "after_ratio": 0.29144810571331387
+        },
+        {
+          "key": "Chk_drawn_I_P",
+          "label": "P actual row spacing · Service I",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.03726290476758463,
+          "after_ratio": 0.03843056064242342
+        },
+        {
+          "key": "Chk_drawn_I_B",
+          "label": "B actual row spacing · Service I",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.2634843968464645,
+          "after_ratio": 0.26302836127135004
+        },
+        {
+          "key": "Chk_actual_shear_R2-2_R2-3",
+          "label": "R2-2 → R2-3 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.23234611437017777,
+          "after_ratio": 0.23176259413810735
+        },
+        {
+          "key": "Chk_actual_shear_R2-3_R2-4",
+          "label": "R2-3 → R2-4 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.23104984711091534,
+          "after_ratio": 0.23045803614913893
+        },
+        {
+          "key": "Chk_actual_shear_R2-4_R3-1",
+          "label": "R2-4 → R3-1 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.2282483433989832,
+          "after_ratio": 0.22765236769747907
+        },
+        {
+          "key": "Chk_actual_shear_R3-1_R3-2",
+          "label": "R3-1 → R3-2 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.22740218070433837,
+          "after_ratio": 0.22681665145585453
+        },
+        {
+          "key": "Chk_actual_shear_R3-2_R3-3",
+          "label": "R3-2 → R3-3 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.24153083625069,
+          "after_ratio": 0.2421143564827604
+        },
+        {
+          "key": "Chk_actual_shear_R3-3_R3-4",
+          "label": "R3-3 → R3-4 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.24482442763329815,
+          "after_ratio": 0.2454337255266728
+        },
+        {
+          "key": "Chk_actual_shear_R3-4_R4-1",
+          "label": "R3-4 → R4-1 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.24608501469268798,
+          "after_ratio": 0.2466787497828603
+        },
+        {
+          "key": "Chk_actual_shear_R4-1_R4-2",
+          "label": "R4-1 → R4-2 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.24976836129913754,
+          "after_ratio": 0.2503718532844468
+        },
+        {
+          "key": "Chk_actual_shear_R4-2_R4-3",
+          "label": "R4-2 → R4-3 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.22174873679056806,
+          "after_ratio": 0.22226808945609536
+        },
+        {
+          "key": "Chk_actual_shear_R4-3_R4-4",
+          "label": "R4-3 → R4-4 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.06757569423064864,
+          "after_ratio": 0.06785356100782504
+        },
+        {
+          "key": "Chk_actual_shear_R4-4_R5-1",
+          "label": "R4-4 → R5-1 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.07038764439560109,
+          "after_ratio": 0.07066551117277747
+        },
+        {
+          "key": "Chk_actual_shear_R5-1_R5-2",
+          "label": "R5-1 → R5-2 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.07448541536679568,
+          "after_ratio": 0.07476993170534034
+        },
+        {
+          "key": "Chk_actual_shear_R5-2_R5-3",
+          "label": "R5-2 → R5-3 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.07858777029093349,
+          "after_ratio": 0.07887687058242139
+        },
+        {
+          "key": "Chk_actual_shear_R5-3_R5-4",
+          "label": "R5-3 → R5-4 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.0818833494970618,
+          "after_ratio": 0.08218699393554244
+        },
+        {
+          "key": "Chk_actual_shear_R5-4_R6-1",
+          "label": "R5-4 → R6-1 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.08314393655645165,
+          "after_ratio": 0.08343201819172995
+        },
+        {
+          "key": "Chk_actual_shear_R6-1_R6-2",
+          "label": "R6-1 → R6-2 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.08684725491614004,
+          "after_ratio": 0.08712512169331642
+        },
+        {
+          "key": "Chk_actual_shear_R6-2_R6-3",
+          "label": "R6-2 → R6-3 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.252658175781772,
+          "after_ratio": 0.2533806294024306
+        },
+        {
+          "key": "Chk_actual_shear_R6-3_R6-4",
+          "label": "R6-3 → R6-4 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.2513619085225096,
+          "after_ratio": 0.2520760714134622
+        },
+        {
+          "key": "Chk_actual_shear_R6-4_R7-1",
+          "label": "R6-4 → R7-1 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.24856040481057748,
+          "after_ratio": 0.24927040296180236
+        },
+        {
+          "key": "Chk_actual_min_R6-4_R7-1",
+          "label": "R6-4 → R7-1 minimum shear steel",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.500771784580198,
+          "after_ratio": 0.5010599604183473
+        },
+        {
+          "key": "Chk_actual_shear_R7-1_R7-2",
+          "label": "R7-1 → R7-2 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.24771424211593263,
+          "after_ratio": 0.24843468672017782
+        },
+        {
+          "key": "Chk_actual_min_R7-1_R7-2",
+          "label": "R7-1 → R7-2 minimum shear steel",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.4841602414517892,
+          "after_ratio": 0.48494520880984127
+        },
+        {
+          "key": "Chk_actual_shear_R7-2_R7-3",
+          "label": "R7-2 → R7-3 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.243616689053154,
+          "after_ratio": 0.2443327546025435
+        },
+        {
+          "key": "Chk_actual_shear_R7-3_R7-4",
+          "label": "R7-3 → R7-4 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.23532138385386553,
+          "after_ratio": 0.23773681579888675
+        },
+        {
+          "key": "Chk_actual_shear_R7-4_R8-1",
+          "label": "R7-4 → R8-1 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.23658197091325536,
+          "after_ratio": 0.23898184005507425
+        },
+        {
+          "key": "Chk_actual_shear_R8-1_R8-2",
+          "label": "R8-1 → R8-2 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.24026531751970492,
+          "after_ratio": 0.24267494355666075
+        },
+        {
+          "key": "Chk_actual_shear_R8-2_R8-3",
+          "label": "R8-2 → R8-3 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.21335413542074932,
+          "after_ratio": 0.21546895325890303
+        },
+        {
+          "key": "Chk_shear_G",
+          "label": "Actual shear · G",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.252658175781772,
+          "after_ratio": 0.2533806294024306
+        },
+        {
+          "key": "Chk_long_N",
+          "label": "Actual longitudinal tension · N",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.4135761265474739,
+          "after_ratio": 0.41824935866552665
+        },
+        {
+          "key": "Chk_long_P",
+          "label": "Actual longitudinal tension · P",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.34245198171459573,
+          "after_ratio": 0.3419973003356014
+        },
+        {
+          "key": "Chk_long_B",
+          "label": "Actual longitudinal tension · B",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.36726512615257767,
+          "after_ratio": 0.36692134485564676
+        }
+      ],
+      "exported_checks_match_reloaded_evaluation": true,
+      "elapsed_seconds": 43.234
+    },
+    {
+      "prefix": "EB2",
+      "folder": "end_bent_2",
+      "title": "End Bent 2 Cap Design",
+      "previous_case": "C:\\github\\D2MPDB\\project_current\\cap_design\\end_bent_2\\selected_case.json",
+      "previous_case_sha256": "c00bcca92a27318eb263ee79c8eba712598ac1518ab1af33c1da63a3bd7ca865",
+      "xml_path": "project_current/fbmp/end_bents/End Bent 2_Fixed.XML",
+      "xml_sha256": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
+      "bundle": "C:\\Users\\joshs\\Desktop\\D2 MPDB\\outputs\\cap-rerun-20261019\\bundles\\end_bent_2\\case-20261019-143746-973831",
+      "case_sha256": "4592c02435231cd9d9e4bb2c0682062a6613196e99c69d7fd046fda4d58372f5",
+      "report_sha256": "3405297e0d4c410b28be90f86f4fbcee1f3ea7db065e2851377a9435a6425605",
+      "inputs_changed": {
+        "Mu_N": {
+          "before": 79.67,
+          "after": 79.01
+        },
+        "Mu_P": {
+          "before": 68.4,
+          "after": 67.81
+        },
+        "Mu_B": {
+          "before": 182.92,
+          "after": 182.54
+        },
+        "Vu_G": {
+          "before": 91.45,
+          "after": 91.61
+        },
+        "Vu_L": {
+          "before": 91.45,
+          "after": 91.61
+        },
+        "Tu": {
+          "before": 2.78,
+          "after": 2.64
+        },
+        "MI_N": {
+          "before": 53.22,
+          "after": 54.57
+        },
+        "MI_P": {
+          "before": 48.67,
+          "after": 50.08
+        },
+        "MI_B": {
+          "before": 137.79,
+          "after": 137.84
+        }
+      },
+      "geometry_and_reinforcement_preserved": true,
+      "before": {
+        "status": "CHECK FAILURES — revise the trial cage or section",
+        "counts": {
+          "✓ PASS": 19,
+          "PENDING — three Service III moments": 1,
+          "PENDING — applicability and fatigue loads": 1,
+          "SOURCE PILE LAYOUT": 1,
+          "SOURCE SECTION": 1,
+          "PASS": 167,
+          "PENDING": 45,
+          "FAIL": 6,
+          "NOT REQUIRED": 7
+        },
+        "max_dc": 2.9375,
+        "stale_geometry": [],
+        "issues": [
+          "R2: Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+          "R4: Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+          "R6: Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+          "R8: Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends."
+        ],
+        "failed_checks": [
+          {
+            "key": "Status_transverse_development_R2",
+            "label": "R2 calculated anchorage / closure",
+            "status": "FAIL",
+            "ratio": 2.0,
+            "calculated_status": "FAIL",
+            "basis": "AASHTO LRFD BDS, 10th ed. (2024) 5.10.2.1/.3, 5.10.8.2.6a/b/d. Bend 4.500/4.500 in; hook extension 9.000/9.000 in; midheight embedment 15.000/8.443 in.  CRSI Table 7-2: straight stirrup/tie hook extensions; automatic 9 in. Trial hook rotation: left +50°, right +50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance. Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+            "review_state": ""
+          },
+          {
+            "key": "Status_transverse_development_R4",
+            "label": "R4 calculated anchorage / closure",
+            "status": "FAIL",
+            "ratio": 2.0,
+            "calculated_status": "FAIL",
+            "basis": "AASHTO LRFD BDS, 10th ed. (2024) 5.10.2.1/.3, 5.10.8.2.6a/b/d. Bend 4.500/4.500 in; hook extension 9.000/9.000 in; midheight embedment 15.000/8.443 in.  CRSI Table 7-2: straight stirrup/tie hook extensions; automatic 9 in. Trial hook rotation: left +50°, right +50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance. Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+            "review_state": ""
+          },
+          {
+            "key": "Status_transverse_development_R6",
+            "label": "R6 calculated anchorage / closure",
+            "status": "FAIL",
+            "ratio": 2.0,
+            "calculated_status": "FAIL",
+            "basis": "AASHTO LRFD BDS, 10th ed. (2024) 5.10.2.1/.3, 5.10.8.2.6a/b/d. Bend 4.500/4.500 in; hook extension 9.000/9.000 in; midheight embedment 15.000/8.443 in.  CRSI Table 7-2: straight stirrup/tie hook extensions; automatic 9 in. Trial hook rotation: left +50°, right +50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance. Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+            "review_state": ""
+          },
+          {
+            "key": "Status_transverse_development_R8",
+            "label": "R8 calculated anchorage / closure",
+            "status": "FAIL",
+            "ratio": 2.0,
+            "calculated_status": "FAIL",
+            "basis": "AASHTO LRFD BDS, 10th ed. (2024) 5.10.2.1/.3, 5.10.8.2.6a/b/d. Bend 4.500/4.500 in; hook extension 9.000/9.000 in; midheight embedment 15.000/8.443 in.  CRSI Table 7-2: straight stirrup/tie hook extensions; automatic 9 in. Trial hook rotation: left -50°, right -50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance. Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+            "review_state": ""
+          },
+          {
+            "key": "Chk_shrink_space",
+            "label": "Actual face shrinkage / temperature spacing",
+            "status": "FAIL",
+            "ratio": 2.9375,
+            "calculated_status": "FAIL",
+            "basis": "AASHTO LRFD BDS, 10th ed. (2024) 5.10.6-1/-2, pp. 5-182–183. Each included face and direction. Bottom · Transverse excluded for open pile stirrups (project check scope, not a code exemption). Code spacing 108 in; adopted project spacing 12 in. Governing: End left · Vertical; End right · Vertical (tie); ratio 2.9375.",
+            "review_state": ""
+          },
+          {
+            "key": "Status_overall",
+            "label": "Actual-cage check summary",
+            "status": "FAIL",
+            "ratio": "N/A",
+            "calculated_status": "FAIL",
+            "basis": "Collects actual-cage numerical results and outstanding applicability/detailing requirements. No reference result is treated as a passed check.",
+            "review_state": ""
+          }
+        ]
+      },
+      "after": {
+        "status": "CHECK FAILURES — revise the trial cage or section",
+        "counts": {
+          "✓ PASS": 19,
+          "PENDING — three Service III moments": 1,
+          "PENDING — applicability and fatigue loads": 1,
+          "SOURCE PILE LAYOUT": 1,
+          "SOURCE SECTION": 1,
+          "PASS": 167,
+          "PENDING": 45,
+          "FAIL": 6,
+          "NOT REQUIRED": 7
+        },
+        "max_dc": 2.9375,
+        "stale_geometry": [],
+        "issues": [
+          "R2: Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+          "R4: Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+          "R6: Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+          "R8: Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends."
+        ],
+        "failed_checks": [
+          {
+            "key": "Status_transverse_development_R2",
+            "label": "R2 calculated anchorage / closure",
+            "status": "FAIL",
+            "ratio": 2.0,
+            "calculated_status": "FAIL",
+            "basis": "AASHTO LRFD BDS, 10th ed. (2024) 5.10.2.1/.3, 5.10.8.2.6a/b/d. Bend 4.500/4.500 in; hook extension 9.000/9.000 in; midheight embedment 15.000/8.443 in.  CRSI Table 7-2: straight stirrup/tie hook extensions; automatic 9 in. Trial hook rotation: left +50°, right +50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance. Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+            "review_state": ""
+          },
+          {
+            "key": "Status_transverse_development_R4",
+            "label": "R4 calculated anchorage / closure",
+            "status": "FAIL",
+            "ratio": 2.0,
+            "calculated_status": "FAIL",
+            "basis": "AASHTO LRFD BDS, 10th ed. (2024) 5.10.2.1/.3, 5.10.8.2.6a/b/d. Bend 4.500/4.500 in; hook extension 9.000/9.000 in; midheight embedment 15.000/8.443 in.  CRSI Table 7-2: straight stirrup/tie hook extensions; automatic 9 in. Trial hook rotation: left +50°, right +50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance. Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+            "review_state": ""
+          },
+          {
+            "key": "Status_transverse_development_R6",
+            "label": "R6 calculated anchorage / closure",
+            "status": "FAIL",
+            "ratio": 2.0,
+            "calculated_status": "FAIL",
+            "basis": "AASHTO LRFD BDS, 10th ed. (2024) 5.10.2.1/.3, 5.10.8.2.6a/b/d. Bend 4.500/4.500 in; hook extension 9.000/9.000 in; midheight embedment 15.000/8.443 in.  CRSI Table 7-2: straight stirrup/tie hook extensions; automatic 9 in. Trial hook rotation: left +50°, right +50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance. Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+            "review_state": ""
+          },
+          {
+            "key": "Status_transverse_development_R8",
+            "label": "R8 calculated anchorage / closure",
+            "status": "FAIL",
+            "ratio": 2.0,
+            "calculated_status": "FAIL",
+            "basis": "AASHTO LRFD BDS, 10th ed. (2024) 5.10.2.1/.3, 5.10.8.2.6a/b/d. Bend 4.500/4.500 in; hook extension 9.000/9.000 in; midheight embedment 15.000/8.443 in.  CRSI Table 7-2: straight stirrup/tie hook extensions; automatic 9 in. Trial hook rotation: left -50°, right -50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance. Bar intersects embedded pile / clearance envelope. Keep the bottom open and shorten, raise or relocate the ends.",
+            "review_state": ""
+          },
+          {
+            "key": "Chk_shrink_space",
+            "label": "Actual face shrinkage / temperature spacing",
+            "status": "FAIL",
+            "ratio": 2.9375,
+            "calculated_status": "FAIL",
+            "basis": "AASHTO LRFD BDS, 10th ed. (2024) 5.10.6-1/-2, pp. 5-182–183. Each included face and direction. Bottom · Transverse excluded for open pile stirrups (project check scope, not a code exemption). Code spacing 108 in; adopted project spacing 12 in. Governing: End left · Vertical; End right · Vertical (tie); ratio 2.9375.",
+            "review_state": ""
+          },
+          {
+            "key": "Status_overall",
+            "label": "Actual-cage check summary",
+            "status": "FAIL",
+            "ratio": "N/A",
+            "calculated_status": "FAIL",
+            "basis": "Collects actual-cage numerical results and outstanding applicability/detailing requirements. No reference result is treated as a passed check.",
+            "review_state": ""
+          }
+        ]
+      },
+      "check_changes": [
+        {
+          "key": "Chk_flex_N",
+          "label": "Flexural strength — N",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.2552060639153321,
+          "after_ratio": 0.25309189293272744
+        },
+        {
+          "key": "Chk_min_N",
+          "label": "Minimum flexural steel — N",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.33942406500739175,
+          "after_ratio": 0.3366122176005275
+        },
+        {
+          "key": "Chk_I_N",
+          "label": "Service I — N",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.19880262581114835,
+          "after_ratio": 0.20384553345573783
+        },
+        {
+          "key": "Chk_flex_P",
+          "label": "Flexural strength — P",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.15818824112352425,
+          "after_ratio": 0.15682375190915465
+        },
+        {
+          "key": "Chk_min_P",
+          "label": "Minimum flexural steel — P",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.21039036069428727,
+          "after_ratio": 0.20857559003917572
+        },
+        {
+          "key": "Chk_I_P",
+          "label": "Service I — P",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.13182899015681804,
+          "after_ratio": 0.1356481575314043
+        },
+        {
+          "key": "Chk_flex_B",
+          "label": "Flexural strength — B",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.32791848813077157,
+          "after_ratio": 0.3272372666924942
+        },
+        {
+          "key": "Chk_min_B",
+          "label": "Minimum flexural steel — B",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.4361315892139262,
+          "after_ratio": 0.4352255647010173
+        },
+        {
+          "key": "Chk_I_B",
+          "label": "Service I — B",
+          "before_status": "✓ PASS",
+          "after_status": "✓ PASS",
+          "before_ratio": 0.2900168591481009,
+          "after_ratio": 0.2901220978661312
+        },
+        {
+          "key": "Chk_drawn_I_P",
+          "label": "P actual row spacing · Service I",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.03785009394340168,
+          "after_ratio": 0.039092654971683384
+        },
+        {
+          "key": "Chk_drawn_I_B",
+          "label": "B actual row spacing · Service I",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.2613091194426161,
+          "after_ratio": 0.26143534293951776
+        },
+        {
+          "key": "Chk_actual_min_R1-3_R1-4",
+          "label": "R1-3 → R1-4 minimum shear steel",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.49984685875318324,
+          "after_ratio": 0.4998468587434657
+        },
+        {
+          "key": "Chk_actual_min_R2-1_R2-2",
+          "label": "R2-1 → R2-2 minimum shear steel",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.44666638710878903,
+          "after_ratio": 0.4489559406944542
+        },
+        {
+          "key": "Chk_actual_shear_R2-2_R2-3",
+          "label": "R2-2 → R2-3 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.2325050195120048,
+          "after_ratio": 0.23214379270167546
+        },
+        {
+          "key": "Chk_actual_shear_R2-3_R2-4",
+          "label": "R2-3 → R2-4 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.23120827644751518,
+          "after_ratio": 0.23084704963718589
+        },
+        {
+          "key": "Chk_actual_shear_R2-4_R3-1",
+          "label": "R2-4 → R3-1 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.2283872767875714,
+          "after_ratio": 0.2280260499772421
+        },
+        {
+          "key": "Chk_actual_shear_R3-1_R3-2",
+          "label": "R3-1 → R3-2 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.22754111409292654,
+          "after_ratio": 0.22717988728259725
+        },
+        {
+          "key": "Chk_actual_shear_R3-2_R3-3",
+          "label": "R3-2 → R3-3 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.2413919028621018,
+          "after_ratio": 0.24173669208015985
+        },
+        {
+          "key": "Chk_actual_shear_R3-3_R3-4",
+          "label": "R3-3 → R3-4 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.24468549424470995,
+          "after_ratio": 0.24504672105503925
+        },
+        {
+          "key": "Chk_actual_shear_R3-4_R4-1",
+          "label": "R3-4 → R4-1 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.2459460813040998,
+          "after_ratio": 0.2463073081144291
+        },
+        {
+          "key": "Chk_actual_shear_R4-1_R4-2",
+          "label": "R4-1 → R4-2 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.24962942791054935,
+          "after_ratio": 0.24999065472087864
+        },
+        {
+          "key": "Chk_actual_shear_R4-2_R4-3",
+          "label": "R4-2 → R4-3 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.22162600870036603,
+          "after_ratio": 0.2219451017348913
+        },
+        {
+          "key": "Chk_actual_shear_R4-3_R4-4",
+          "label": "R4-3 → R4-4 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.06827036117358962,
+          "after_ratio": 0.0680668049345748
+        },
+        {
+          "key": "Chk_actual_shear_R4-4_R5-1",
+          "label": "R4-4 → R5-1 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.07108231133854208,
+          "after_ratio": 0.07086202693321435
+        },
+        {
+          "key": "Chk_actual_shear_R5-1_R5-2",
+          "label": "R5-1 → R5-2 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.07518008230973665,
+          "after_ratio": 0.07498557556571318
+        },
+        {
+          "key": "Chk_actual_shear_R5-2_R5-3",
+          "label": "R5-2 → R5-3 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.07929367074818597,
+          "after_ratio": 0.079087930489851
+        },
+        {
+          "key": "Chk_actual_shear_R5-3_R5-4",
+          "label": "R5-3 → R5-4 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.08260379410130703,
+          "after_ratio": 0.08238350969597931
+        },
+        {
+          "key": "Chk_actual_shear_R5-4_R6-1",
+          "label": "R5-4 → R6-1 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.08384881835749453,
+          "after_ratio": 0.08364409675536914
+        },
+        {
+          "key": "Chk_actual_shear_R6-1_R6-2",
+          "label": "R6-1 → R6-2 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.08754192185908101,
+          "after_ratio": 0.0873274433618187
+        },
+        {
+          "key": "Chk_actual_shear_R6-2_R6-3",
+          "label": "R6-2 → R6-3 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.2524914557154662,
+          "after_ratio": 0.2529360425589484
+        },
+        {
+          "key": "Chk_actual_shear_R6-3_R6-4",
+          "label": "R6-3 → R6-4 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.25119518845620376,
+          "after_ratio": 0.25163977529968595
+        },
+        {
+          "key": "Chk_actual_shear_R6-4_R7-1",
+          "label": "R6-4 → R7-1 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.24839368474427165,
+          "after_ratio": 0.24883827158775385
+        },
+        {
+          "key": "Chk_actual_min_R6-4_R7-1",
+          "label": "R6-4 → R7-1 minimum shear steel",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.500771784580198,
+          "after_ratio": 0.5009654894616352
+        },
+        {
+          "key": "Chk_actual_shear_R7-1_R7-2",
+          "label": "R7-1 → R7-2 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.2475475220496268,
+          "after_ratio": 0.24799210889310902
+        },
+        {
+          "key": "Chk_actual_min_R7-1_R7-2",
+          "label": "R7-1 → R7-2 minimum shear steel",
+          "before_status": "PASS",
+          "after_status": "PASS",
+          "before_ratio": 0.48394365605604805,
+          "after_ratio": 0.48474429794424645
+        },
+        {
+          "key": "Chk_actual_shear_R7-2_R7-3",
+          "label": "R7-2 → R7-3 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.2434499689868482,
+          "after_ratio": 0.24389455583033043
+        },
+        {
+          "key": "Chk_actual_shear_R7-3_R7-4",
+          "label": "R7-3 → R7-4 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.23462671691092454,
+          "after_ratio": 0.23709772221138103
+        },
+        {
+          "key": "Chk_actual_shear_R7-4_R8-1",
+          "label": "R7-4 → R8-1 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.2358873039703144,
+          "after_ratio": 0.23834274646756853
+        },
+        {
+          "key": "Chk_actual_shear_R8-1_R8-2",
+          "label": "R8-1 → R8-2 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.23957065057676394,
+          "after_ratio": 0.24203584996915503
+        },
+        {
+          "key": "Chk_actual_shear_R8-2_R8-3",
+          "label": "R8-2 → R8-3 shear",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.21274049496973918,
+          "after_ratio": 0.21490440404397368
+        },
+        {
+          "key": "Chk_shear_G",
+          "label": "Actual shear · G",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.2524914557154662,
+          "after_ratio": 0.2529360425589484
+        },
+        {
+          "key": "Chk_long_N",
+          "label": "Actual longitudinal tension · N",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.41335442998322103,
+          "after_ratio": 0.4168007216552191
+        },
+        {
+          "key": "Chk_long_P",
+          "label": "Actual longitudinal tension · P",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.342731556813431,
+          "after_ratio": 0.3424214921871222
+        },
+        {
+          "key": "Chk_long_B",
+          "label": "Actual longitudinal tension · B",
+          "before_status": "PENDING",
+          "after_status": "PENDING",
+          "before_ratio": 0.36748679103691734,
+          "after_ratio": 0.3672479351747523
+        }
+      ],
+      "exported_checks_match_reloaded_evaluation": true,
+      "elapsed_seconds": 52.359
+    }
+  ],
+  "portable_package_sha256": "cfb3565da8c3f05e140594a761557febaa49d443fed7068efbd0baf49b5f0f15",
+  "package_source_files": {
+    "requirements-pier-cap-colab.txt": "3484c166218795157c85f07629bb273b4599270af20fb62751082da2dec88a6b",
+    "pier_cap/added_steel.py": "dafa14ba6ced64da962b2a256209d3266bcffa72553d336d03a323c06dad07d9",
+    "pier_cap/added_steel_widgets.py": "72a39acfeaf2ceae75475c3b6373b81a8312db22841e1c8ca68560f9531c4314",
+    "pier_cap/axial.py": "005fcca25e31f59c8015403c47c7c22a3d0b7c705906f474a3d0a8b5768cc46e",
+    "pier_cap/blockpad_regions.py": "f4354b94d13b3e4b3793b12cf89399458b16abb44014a8d21048cb63371494a4",
+    "pier_cap/blockpad_widgets.py": "a9a4286964037c4ee5e40edb85affbca151c6865ef6215d48ab5ccd330fa6c3f",
+    "pier_cap/cage_3d.py": "da3b40a3b3fee831db4ac17cc0d5b886f0a7fed2fe9a53158a7c76738f4edafb",
+    "pier_cap/calculation_report.py": "94df6499ad412134f79668c25ea6a696c476867e68cfd53839e87c44d1bfb7a3",
+    "pier_cap/case_widgets.py": "409b4c1feccb46fcb9ef3cfcd76141ebbb545863568a8afbae77dc176f445e51",
+    "pier_cap/check_details.py": "34c30d92a01468bf4ec91d33d5383f8b2f39a1ffdd2caa78fd373f36085aea57",
+    "pier_cap/check_math.py": "9070fcf8919c5aa273639f9d11b4e6402c31845ecb721eaae35365cfd924a2b6",
+    "pier_cap/check_references.py": "315e2a8de7d613053cd2b22bb7b01a2612f84cfe54b46a63ada6eb9e6f2911be",
+    "pier_cap/check_reviews.py": "99c253952c63629e448deec31bd7685e4db3b2f946243da949b0aaa94eb8c082",
+    "pier_cap/check_review_widgets.py": "4e043b4c946dc336fdce6015f6649d649d48c2e26c108f76690a42b121b4c37b",
+    "pier_cap/check_working.py": "d6664b14b6dbdc2550a2eabed5fbaa5123fecc2416d4fe4a2953f923cf040367",
+    "pier_cap/critical_locations.py": "ca687110e62fc6e1855a63564c4cf047b697124f194d55b965f6f9c75c581d5f",
+    "pier_cap/detailing.py": "1c3d9db89d5d101efa3247e5fb425b381a8b3110a08544b7c7618f027d6f4c82",
+    "pier_cap/end_grid.py": "84b05168ae33310eca6eb6c9dc6993db39cb481c05b783c8e7dda3a174ebbf04",
+    "pier_cap/end_grid_alignment.py": "2346e8c0a362f9096ced594be9a5fc47a366fc5e45a3af089671a109182f77e1",
+    "pier_cap/end_grid_views.py": "5ccea3a61317977f42f19c5c437467107301b380e389be6d165eb0bfc315c389",
+    "pier_cap/end_grid_widgets.py": "525bb387551817a9d2a88d7f783c4e652a9d6c5d47e344cde47736fc29ca1f41",
+    "pier_cap/engine.py": "50797c8ff09f946911c8dafc0c80d0cbe743c35bad645d1116fc732fc206ecfc",
+    "pier_cap/equation_schematics.py": "a9bdb7f3171899e68f04fbe9ed77905e381207caef3acb99525ef5557767cb3b",
+    "pier_cap/fbmp.py": "2bd5fc839b9d330e97d0b77453b047dafb1a4a6b27d4a42dd00e84b1f4570430",
+    "pier_cap/fbmp_widgets.py": "7964d0f9c3009f960836fb365bc4a56d98ae441d00b8fd4fe99b839036676afe",
+    "pier_cap/fdot_detailing.py": "0a8c7e697f552466517086017fe8cd438819167fbdfdaa006cb24a437864ea53",
+    "pier_cap/force_audit.py": "32412aaf720c7ada19cee844c2d500559ec43dc0ca3be0c33314f8cd0494e58c",
+    "pier_cap/force_diagrams.py": "1df1e684409de712d031fa46137a6d351258c73441e96a6564c91185cd9bfc50",
+    "pier_cap/force_resistance.py": "3a59c062608ee4651c17b5c65d142729c5710111c645af6dd50cc93a396ce380",
+    "pier_cap/force_trace.py": "4f39ae3c0eff46f78d0510ce7ae42612d23f222f0cc4df71132f9f017ea8bfec",
+    "pier_cap/geometry_dimensions.py": "bf8464968dc66fb33fc1b32cf9b645c5eb6936dbc2ceb5a6589d16abe976757a",
+    "pier_cap/geotech_handoff.py": "464d8e3f9023a7495fc2e313d60073112a6e397681bdfdb458347aa04f4fdd9b",
+    "pier_cap/hooks.py": "02eeb2f8242e4a52e4f79f9a1b032548bbee9ade0f328c868d4a2645f18d2a37",
+    "pier_cap/io.py": "c105233b88011c50f3e6581f9876aa85ef80394a2c566f98c619906392b93f5a",
+    "pier_cap/live_refresh.py": "54722ff2242611185795bf308d8d8c06f44eacd6a16637b5cafeafff673acd9b",
+    "pier_cap/live_views.py": "17d0b8c60a5519253a149bcb8eb5415dd015a80f302562a96c65a88c4b0073bb",
+    "pier_cap/lrfd_checks.py": "259cc3593d0c81a13ac18a86a6e7ea2d6e9e857817af75c878c719671119e04f",
+    "pier_cap/lrfd_views.py": "2a5dcc8b5dc952acec9fd6dbb8f8eec7785eafede965408ebcee1e2fcef34c83",
+    "pier_cap/math_notation.py": "85f976064e12f890268b660eb98daa67dac4bcfc4a39152da631f757d6f7ae2a",
+    "pier_cap/model.py": "a2a81e4d1640aa9e61b07478f6940aff89b634db0f62f0ab04af9501bbb27b74",
+    "pier_cap/numerical_locations.py": "0e59973d3d4e316e1227bb6a0980f2df504d0bb85b243d5e68fea8f31463d104",
+    "pier_cap/optimizer.py": "ac21c1c85cc269f4e929caf014e8b1da0296b08224ebd809d0d32032d51ef769",
+    "pier_cap/output_labels.py": "6db9bfda43dbe8c0d1f3f26a81621f5e3fc6e7325cdfb4ae89418e6a3e87c830",
+    "pier_cap/pile_fixity.py": "061d8bbf9cfdf0c751b3c12076da15fb8dd54ee4a70ea9def5c4858b81ee641e",
+    "pier_cap/pile_fixity_visual.py": "61f3569870bd7fd376043ca66108c7f75f7366f3dc2d2690a3b58aa73946c99b",
+    "pier_cap/pile_reporting.py": "7500a1cdb4401f9fb5dfed477cd5c804b2288ed0053a47215059c1c2fec2c27e",
+    "pier_cap/pile_review.py": "21443949da92960e8f3ded7e2a48551fce2d4d280f76a08a9dd0f7421723513b",
+    "pier_cap/pile_visual.py": "93b65845879537d53ad32d9a634551044c92712ad5e898031283e924e4787eb8",
+    "pier_cap/pile_visual_widgets.py": "7d53c0183b817690e3fa30d029d3066b5d9a9ad2e622662a5f100da43462104f",
+    "pier_cap/pile_widgets.py": "2a460eebff89ec25fb764fa71856efa296e01d41901799f7d3bece841c62e0d6",
+    "pier_cap/placement.py": "8c78e367b6684824c47e42bd3e480d689a3f87db23b6cd2a169e711e9c8e49de",
+    "pier_cap/plotly_compat.py": "f4c7977698a225613341442863fc89c48064eb288a989ee1020b219160517f7c",
+    "pier_cap/recalc_control.py": "988c69ecf1d5839e60f70b7ea5b35ae276a80640035fe021244d62f21e3efc9e",
+    "pier_cap/sections.py": "9b53671078037dc2712de61c0774970793a57df18dce64eff1f993fd9fe6eec8",
+    "pier_cap/section_search.py": "99b2a3d37d37b5eda97c844a9923097a88bfc60d000b194d4831d68ab5f73878",
+    "pier_cap/section_visuals.py": "060f56f366c41e735cf32385e73da5edc8152a1935432aa8b7e6cacdc547d43d",
+    "pier_cap/section_widgets.py": "fe1be33c54336c3c9fee1f497a9352edb5c5ca91f1f3fa5448487a1a1d88c681",
+    "pier_cap/service_limits.py": "07011c079a1e440c87a3202effefff36a43840fef14c7a171a3e62b4a26b6388",
+    "pier_cap/shear.py": "221338bcbb913e32e29cb03850062a337acb12711261f98a355514f5a329555f",
+    "pier_cap/soil_properties.py": "7e3c297d838f51461157f48bffe02f37894be2240a1f3ea7c01d394a3bc5078f",
+    "pier_cap/source_status.py": "603f1af4b4fc18d3059fb31cd0a1404cc2c9bb19d625dfdb6fee189ebd63bb5a",
+    "pier_cap/steel_feedback.py": "bcf4b19f10ce03bb5740560c7d9eb303041b04144552e5fe1b1910cbca12f805",
+    "pier_cap/transverse.py": "c03bdb23234d233d80dacdfbe02a754d2e8bc27ccc7bd478e9942f525b3480cb",
+    "pier_cap/transverse_visuals.py": "ba9b390b198d205dbc35e3d05cb8510024514ec3e3c47ea3255c4b2a65c2ef33",
+    "pier_cap/transverse_widgets.py": "14316db26a8fa9899b230bd74f8365084e2c9764737b826a309e179731eb2cdb",
+    "pier_cap/transverse_zones.py": "bb98144855ddf0ef79c1eb9449095ad422823f76609fa8fdaba7f05effc35621",
+    "pier_cap/view_controls.py": "2589dbeacd6fef1571fd0c60d93cdd29ab1bf89ae6f5255152ed46faa2e18895",
+    "pier_cap/visuals.py": "39365e590d3a2c9fce7b98f805e2f393c091ca887f0d6f5b804e54e4abec5880",
+    "pier_cap/widgets.py": "f6482d1a6ac4c787135e24c9e364ccfc12d132c1c9ae5b949947b81b40ac042e",
+    "pier_cap/widget_compat.py": "c3246efcc871bfd58b56965a593de03605a37f75d78ed3866b61177ceda1a9da",
+    "pier_cap/zone_visuals.py": "f4f47a4f4308fe7a7c641dd45714d15ad0ca722324c15faf469686cdcdc0f331",
+    "pier_cap/__init__.py": "97721ae77b7cd0e9b237d5b23b3f08109e5b3a8421210ad0095efdb4d820f535",
+    "pier_cap/data/baseline_reference.json": "f3a2d43dea810f6bf149ce07e4561ea552bfcb976d05e032ad826af9e9873f91",
+    "pier_cap/data/c005_formulas.json": "9c2a461c22efb7d7e1781c2daa6d89e7cdb02ca5cc63e94a08ea4a2562d2748c",
+    "pier_cap/data/dc_ratio_spec.json": "a9765299c44f2b4717fd9d376e754d8d67c8f0042860a85f480c13007e3a83c0",
+    "pier_cap/data/default_case.json": "bb55abe7f3854c79b9cc658aeb3c138ad2983787cec3b987e7934010ab2d6622",
+    "pier_cap/data/provenance.json": "65df63e93485d5fb160e83ca86beeb852f5b7d3992bcc79a60102ba3ce2fb6c7"
+  },
+  "package_matches_repository": true,
+  "package_loaded_from": "C:\\Users\\joshs\\Desktop\\D2 MPDB\\outputs\\cap-rerun-20261019\\runtime\\cap-pile-tool-cfb3565da8c3\\pier_cap\\__init__.py",
+  "plotly": "6.9.0",
+  "ipywidgets": "8.1.9",
+  "completed": true
+}

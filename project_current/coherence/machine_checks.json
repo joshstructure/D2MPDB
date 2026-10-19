@@ -1,7 +1,7 @@
 {
-  "checked_at_utc": "2026-10-19T14:28:59.650172+00:00",
+  "checked_at_utc": "2026-10-19T14:41:13.951970+00:00",
   "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
-  "register_sha256": "3723930c2e6b42652cbb410e8b1d6e2b6f1e1ec8f891445d7f062edddc8034ae",
+  "register_sha256": "79ec75772e98eac459f63976f179df3837b23b49def0f537554aab8a35703728",
   "tracker_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
   "source_count": 29,
   "item_count": 28,
@@ -13,8 +13,8 @@
     "Awaiting source": 1
   },
   "check_counts": {
-    "CHANGED": 4,
-    "MATCH": 42,
+    "CHANGED": 2,
+    "MATCH": 44,
     "MISSING": 4,
     "REVIEW": 7,
     "ERROR": 9
@@ -71,9 +71,9 @@
       "source_ids": [
         "PIER-REPORT"
       ],
-      "path": "project_current/cap_design/pier/Pier Cap Design 10-17.html",
-      "expected_sha256": "cc180be66ebf2f93a6c2d4957c16dc0f372b1291276bc02e9300715500bd1823",
-      "actual_sha256": "cc180be66ebf2f93a6c2d4957c16dc0f372b1291276bc02e9300715500bd1823"
+      "path": "project_current/cap_design/pier/Pier Cap Design 10-19.html",
+      "expected_sha256": "e49d579c0186e7c2617828d236cb982adb92122345493a097e7c352df2f3a701",
+      "actual_sha256": "e49d579c0186e7c2617828d236cb982adb92122345493a097e7c352df2f3a701"
     },
     {
       "check_id": "SOURCE:PIER-CASE",
@@ -83,8 +83,8 @@
         "PIER-CASE"
       ],
       "path": "project_current/cap_design/pier/selected_case.json",
-      "expected_sha256": "2045ab5fb71a85d7a3b7f6382eb18688bc826f3f9aec6a4d4d0b9bc6022e9dc8",
-      "actual_sha256": "2045ab5fb71a85d7a3b7f6382eb18688bc826f3f9aec6a4d4d0b9bc6022e9dc8"
+      "expected_sha256": "0192dc9d9bef7718fc1d8944ce55b90278c46bbf0458decf1e8be6752c7bed9b",
+      "actual_sha256": "0192dc9d9bef7718fc1d8944ce55b90278c46bbf0458decf1e8be6752c7bed9b"
     },
     {
       "check_id": "SOURCE:PIER-XML",
@@ -104,9 +104,9 @@
       "source_ids": [
         "EB-REPORT"
       ],
-      "path": "project_current/cap_design/end_bents/End Bent 1 Cap Design 10-17.html",
-      "expected_sha256": "363d6ac30fd37e6fb05a218f812f892cace2724aa55adeaea9527c5233630fa8",
-      "actual_sha256": "363d6ac30fd37e6fb05a218f812f892cace2724aa55adeaea9527c5233630fa8"
+      "path": "project_current/cap_design/end_bents/End Bent 1 Cap Design 10-19.html",
+      "expected_sha256": "6a42c16b0595ac16070608abd5d129a6152803693cb06a870b3168685c52e7a1",
+      "actual_sha256": "6a42c16b0595ac16070608abd5d129a6152803693cb06a870b3168685c52e7a1"
     },
     {
       "check_id": "SOURCE:EB-CASE",
@@ -116,8 +116,8 @@
         "EB-CASE"
       ],
       "path": "project_current/cap_design/end_bents/selected_case.json",
-      "expected_sha256": "37a04b9c8ab1dc8d215850cecd539dedc49b07397be2e668ac7ef9809173cf78",
-      "actual_sha256": "37a04b9c8ab1dc8d215850cecd539dedc49b07397be2e668ac7ef9809173cf78"
+      "expected_sha256": "898b3e134b286b7a5a8f3eaf96f3c2996e1400e11206195dc0ea2448d750274f",
+      "actual_sha256": "898b3e134b286b7a5a8f3eaf96f3c2996e1400e11206195dc0ea2448d750274f"
     },
     {
       "check_id": "SOURCE:EB-XML",
@@ -269,9 +269,9 @@
       "source_ids": [
         "EB2-REPORT"
       ],
-      "path": "project_current/cap_design/end_bent_2/End Bent 2 Cap Design 10-17.html",
-      "expected_sha256": "c07a3b763aeb1f4ed9605b60e41aff9f938c1ac0c7f967e90c943e11d5b982e3",
-      "actual_sha256": "c07a3b763aeb1f4ed9605b60e41aff9f938c1ac0c7f967e90c943e11d5b982e3"
+      "path": "project_current/cap_design/end_bent_2/End Bent 2 Cap Design 10-19.html",
+      "expected_sha256": "3405297e0d4c410b28be90f86f4fbcee1f3ea7db065e2851377a9435a6425605",
+      "actual_sha256": "3405297e0d4c410b28be90f86f4fbcee1f3ea7db065e2851377a9435a6425605"
     },
     {
       "check_id": "SOURCE:EB2-CASE",
@@ -281,8 +281,8 @@
         "EB2-CASE"
       ],
       "path": "project_current/cap_design/end_bent_2/selected_case.json",
-      "expected_sha256": "c00bcca92a27318eb263ee79c8eba712598ac1518ab1af33c1da63a3bd7ca865",
-      "actual_sha256": "c00bcca92a27318eb263ee79c8eba712598ac1518ab1af33c1da63a3bd7ca865"
+      "expected_sha256": "4592c02435231cd9d9e4bb2c0682062a6613196e99c69d7fd046fda4d58372f5",
+      "actual_sha256": "4592c02435231cd9d9e4bb2c0682062a6613196e99c69d7fd046fda4d58372f5"
     },
     {
       "check_id": "SOURCE:EB2-XML",
@@ -421,8 +421,8 @@
     },
     {
       "check_id": "PIER:analysis-identity",
-      "status": "CHANGED",
-      "detail": "Raw XML does not match the case analysis fingerprint.",
+      "status": "MATCH",
+      "detail": "Raw XML matches the case analysis fingerprint.",
       "source_ids": [
         "PIER-CASE",
         "PIER-XML"
@@ -439,8 +439,8 @@
     },
     {
       "check_id": "EB:analysis-identity",
-      "status": "CHANGED",
-      "detail": "Raw XML does not match the case analysis fingerprint.",
+      "status": "MATCH",
+      "detail": "Raw XML matches the case analysis fingerprint.",
       "source_ids": [
         "EB-CASE",
         "EB-XML"

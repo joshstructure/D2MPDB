@@ -1,24 +1,21 @@
-# EB1 current cap design
+# End Bent 1 current cap design
 
-The [17 October 2026 report](End%20Bent%201%20Cap%20Design%2010-17.html) is the
-selected report (D-043). The supplied 14 October 2026 JSON case is selected under
-D-027. `selected_case.json` is byte-identical to `End Bent 1 Cap Design 10-14.json`.
-The earlier case is preserved under `archive/2026-10-12/`; earlier reports,
-including the supplied 14 October report, remain beside it as historical files.
+The [19 October report](End%20Bent%201%20Cap%20Design%2010-19.html) and
+[dated JSON](End%20Bent%201%20Cap%20Design%2010-19.json) are selected under D-051.
+`selected_case.json` is byte-identical to the dated JSON.
 
-The 10-17 report was regenerated from the unchanged `selected_case.json` with the
-current `pier_cap` package (`scripts/export_project_cap_reports.py --date 10-17`),
-to carry the corrected equation drop-down schematics (commit 5cce568). Inputs,
-the case and formula hashes, and all 248 check labels, statuses and D/C ratios equal
-the 10-14 report. See the [receipt](../../coherence/evidence/2026-10-17-cap-report-export/source_receipt.json).
+The portable cap notebook loaded the previously selected case, applied the latest
+`End Bent 1_Fixed.XML`, recalculated, and used its built-in report export.
+Geometry, reinforcement, covers and design factors are unchanged. Imported forces
+and analysis provenance are refreshed. The report's embedded case equals the saved
+JSON, and its analysis SHA-256 equals the registered XML.
 
-The 251 in design envelope includes the 235 in modeled cap and two 8 in cheek
-webs. Concrete geometry is unchanged. The model contains 62 native cap bars,
-including #6 transverse bars. Cheek steel coordination remains open in COH-024.
+Check statuses are unchanged from the prior case evaluated with the same package:
+6 FAIL entries (including the aggregate summary) and 47
+pending/conditional entries remain. See the report's complete check register;
+source selection does not close those findings.
 
-The report embedded case and supplied JSON are exactly equal when parsed as UTF-8.
-Original supplied file bytes are preserved.
-Required raw FBMP SHA-256: `23bb3afcb3627ba19c1e8660c05ceddfdc68e6815f23582cb84e2a5de0f16b04`. The fixed export supplied on 19 October is now registered under D-049, but it
-has a different fingerprint. This report/case remains unchanged pending
-reconciliation with the new run. See the [source receipt](../../coherence/evidence/2026-10-19-fbmp/source_receipt.json).
-Structural, anchorage and fabrication acceptance remain separate from modeling.
+The previous selected case is [archived](archive/2026-10-19-before-fbmp-rerun/selected_case.json).
+The [17 October report](End%20Bent%201%20Cap%20Design%2010-17.html) and earlier
+reports remain as historical snapshots. Calculation, source and preservation
+checks are in the [receipt](../../coherence/evidence/2026-10-19-cap-rerun/source_receipt.json).

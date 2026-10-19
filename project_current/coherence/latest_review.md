@@ -1,26 +1,40 @@
 # Latest project coherence review
 
-## 19 October FBMP source receipt
+## 19 October geometry report source receipt
 
-The three supplied fixed-run exports are registered under D-049. Their exact
-bytes are verified and the two prior fixed files are archived. All three differ
-from the analysis hashes in the selected cap reports/cases, including EB2 (checked
-separately in the receipt). Reports/cases, minimum-tip variants and workbook
-responses/statuses are unchanged. EB1 node Z matches the recorded 16 October
-target; Pier and EB2 remain about 0.08 in above their recorded cutoffs.
-COH-013 and COH-028 remain open. See the [source receipt](evidence/2026-10-19-fbmp/source_receipt.json).
-Existing project-wide findings below remain outside this source import's scope.
+The supplied interactive geometry report is registered as GEOMETRY-REPORT
+under D-052, with its original bytes preserved. It matches notebook model
+622e5ca1bf: 19,494 numeric values agree within 1e-9. All four registered
+input fingerprints match. See the [source receipt](evidence/2026-10-19-geometry-report/source_receipt.json).
+This bounded source addition leaves the tracker and the dated project-wide
+check below unchanged; it does not close existing engineering items.
+
+## 19 October cap notebook rerun
+
+D-051 selects three new cap reports and saved cases recalculated from the
+D-049 fixed XMLs. All three report/case/XML fingerprints match; EB2 is checked
+explicitly in the [receipt](evidence/2026-10-19-cap-rerun/source_receipt.json).
+Geometry and reinforcement are preserved. Check ratios are refreshed with no
+status changes or new failures: Pier retains 2 FAIL entries including its summary;
+each end bent retains 6. Pending and detailing reviews remain.
+
+COH-013's report/raw-source fingerprint gap is resolved. Its existing tracker
+status/responses are preserved for native-run documentation and disposition.
+COH-028 pile-head review remains: EB1 matches the recorded target at printed
+precision; Pier and EB2 remain about 0.08 in above the recorded cutoffs.
+The workbook below retains its existing findings and next actions as historical
+unamended entries. This update does not assert full-project engineering approval.
 
 ## Automatic check and existing tracker view
 
-Checked at 2026-10-19T14:28:59.650172+00:00. **15 outstanding items remain.**
+Checked at 2026-10-19T14:41:13.951970+00:00. **15 outstanding items remain.**
 
 The [workbook](Coherence_Tracker.xlsx) owns item status and responses. This report is a generated view.
 The initial findings were carried forward from the latest adopted pier/end-bent reviews plus source-inventory gaps.
 Previously resolved decisions were excluded. This run did not perform native calculations or a complete engineering review.
 
 Registered sources: 29. Tracker items: 28.
-Automatic results: 4 changed, 9 error, 42 match, 4 missing, 7 review.
+Automatic results: 2 changed, 9 error, 44 match, 4 missing, 7 review.
 
 ## Files and relationships needing attention
 
@@ -39,8 +53,6 @@ Automatic results: 4 changed, 9 error, 42 match, 4 missing, 7 review.
 | DEP:MCAD-S2:PSB-S2 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:CAD-MODEL:JOURNAL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:BACKWALL-TOOL:JOURNAL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
-| PIER:analysis-identity | CHANGED | Raw XML does not match the case analysis fingerprint. |
-| EB:analysis-identity | CHANGED | Raw XML does not match the case analysis fingerprint. |
 | TRACKER:10 | ERROR | Closed / not-applicable item requires resolution evidence. |
 | TRACKER:11 | ERROR | Closed / not-applicable item requires resolution evidence. |
 | TRACKER:15 | ERROR | Closed / not-applicable item requires resolution evidence. |

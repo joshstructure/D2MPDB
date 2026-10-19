@@ -16,10 +16,11 @@ design-completion status.
 | Native project journal | [D2 I-95 Project Journal](../journal/D2_I95_Project_Journal.bpad) with [References](../journal/References/) |
 | Current editable FreeCAD model and live quantities | [Open the bridge model](geometry/freecad/README.md) — square bridge edges, end-bent MSE copings, 2% closure slabs and seven schematic geotechnical straps per backwall (D-044/D-045), plus fitted standard cheek horizontal hooks (D-046); calculation/detailing reconciliation remains open |
 | Geometry notebook | [Bridge geometry](../Bridge_Geometry_2%20Beam_V2.ipynb) and [roadway XML](../Geometry%20Report.xml) — owns the end caps, backwalls, cheek webs and lugs (D-036) |
+| Geometry interactive report | [Selected station explorer](geometry/reports/Bridge_Geometry_Interactive_Report_physical_v2_622e5ca1bf.html) â€” 19 October export of notebook model 622e5ca1bf (D-052) |
 | Geometry CAD tables | [Selected workbook](geometry/tables/B4_Geometry_CAD_Tables.xlsx) — FDOT CAD tables, method tabs and live charts recalculated from the geometry notebook (D-041; [how to rebuild](../geometry_tables/README.md)) |
-| Pier cap | [Report](cap_design/pier/Pier%20Cap%20Design%2010-17.html), [saved case](cap_design/pier/selected_case.json), [FBMP export](fbmp/pier/Pier_Fixed.XML) — 17 October re-export of the 12 October case (D-043) |
-| End Bent 1 cap | [Report](cap_design/end_bents/End%20Bent%201%20Cap%20Design%2010-17.html), [saved case](cap_design/end_bents/selected_case.json) — 17 October re-export (D-043) |
-| End Bent 2 cap | [Report](cap_design/end_bent_2/End%20Bent%202%20Cap%20Design%2010-17.html), [saved case](cap_design/end_bent_2/selected_case.json) — 17 October re-export (D-043) |
+| Pier cap | [Report](cap_design/pier/Pier%20Cap%20Design%2010-19.html), [saved case](cap_design/pier/selected_case.json), [FBMP export](fbmp/pier/Pier_Fixed.XML) — 19 October rerun with the latest fixed XML (D-051) |
+| End Bent 1 cap | [Report](cap_design/end_bents/End%20Bent%201%20Cap%20Design%2010-19.html), [saved case](cap_design/end_bents/selected_case.json) — 19 October rerun with the latest fixed XML (D-051) |
+| End Bent 2 cap | [Report](cap_design/end_bent_2/End%20Bent%202%20Cap%20Design%2010-19.html), [saved case](cap_design/end_bent_2/selected_case.json) — 19 October rerun with the latest fixed XML (D-051) |
 | Selected backwall and cheekwall design | [16 October report](cap_design/backwall/Backwall%20Design%2010-16.html) and [saved case](cap_design/backwall/selected_case.json) — one centered #4 mat at 10 in each way; analysis and detailing prerequisites remain pending |
 | FBMP source variants | [Three current fixed exports and two minimum-tip variants](fbmp/README.md) |
 | Mathcad | [Span 1](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd), [Span 2](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd) — 12 October beam runs; [changes and downstream review](mathcad/README.md) |
@@ -274,3 +275,14 @@ target at printed precision; Pier and EB2 remain about 0.08 in above their targe
 Tracker statuses/responses and minimum-tip variants are preserved. See the
 [FBMP source overview](fbmp/README.md) and
 [receipt](coherence/evidence/2026-10-19-fbmp/source_receipt.json).
+
+## 19 October cap notebook rerun
+
+Under D-051, all three cap designs were recalculated with the D-049 fixed
+XMLs through the portable notebook's import, Recalc and built-in export workflow.
+The new 10-19 HTML reports and JSON cases are selected, with prior cases archived.
+All report/case/XML identities match. Geometry and reinforcement are preserved;
+64 pier, 42 EB1 and 44 EB2 check ratios changed, with no status changes or new
+failed checks. Existing detailing failures and pending reviews remain. Backwall,
+CAD, journal, minimum-tip sources and tracker responses are unchanged.
+See the [rerun receipt](coherence/evidence/2026-10-19-cap-rerun/source_receipt.json).
