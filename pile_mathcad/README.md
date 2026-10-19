@@ -70,6 +70,7 @@ A distilled Status of PASS covers the recomputed numerical checks only. It is no
 - Hollow piles (Index 455-030) are not distilled; the generator refuses them.
 - The sheet takes the governing records from the notebook. A different load case needs a rebuild.
 - Edits made inside Mathcad are lost on the next rebuild.
+- The Blockpad edition of these sheets is in `../pile_bpad/`. Blockpad has no vector variables, so it does not carry the 121-point sweeps as formulas (Figure 2 there is a picture; the check at `c_gov` is live).
 
 ## Rebuild
 

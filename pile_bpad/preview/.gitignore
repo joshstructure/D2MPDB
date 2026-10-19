@@ -1,0 +1,3 @@
+# Rendered previews are rebuilt with scripts/bpad_preview.py; only the canvas sidecars are tracked.
+*.html
+*.png

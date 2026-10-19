@@ -1132,8 +1132,9 @@ def _interaction_pipe(e, recs):
     plt = _plt()
     fig, ax = plt.subplots(figsize=(6.4, 4.6))
     Pr, Mr, Pt = e.value('P_r_comb', 'kip'), e.value('M_r', 'kip*ft'), e.value('P_r_t', 'kip')
-    ax.plot([0, 0.8 * 8 / 9 * Mr, Mr], [Pr, 0.2 * Pr, 0], color='#1f4e8c', lw=1.8, label='6.9.2.2.1 envelope, compression')
-    ax.plot([0, 0.8 * 8 / 9 * Mr, Mr], [-Pt, -0.2 * Pt, 0], color='#2c7fb8', lw=1.8, label='6.9.2.2.1 envelope, tension')
+    # Eqs. 6.9.2.2.1-1 and -2 meet at Pu/Pr = 0.2, where both give M/Mr = 0.9.
+    ax.plot([0, 0.9 * Mr, Mr], [Pr, 0.2 * Pr, 0], color='#1f4e8c', lw=1.8, label='6.9.2.2.1 envelope, compression')
+    ax.plot([0, 0.9 * Mr, Mr], [-Pt, -0.2 * Pt, 0], color='#2c7fb8', lw=1.8, label='6.9.2.2.1 envelope, tension')
     for key, marker, color, label in (('pipe_axial', 'o', '#6c3483', 'largest compression'), ('pipe_comb', 's', '#c0392b', 'combined record'),
                                        ('pipe_tension', 'v', '#117a65', 'uplift record')):
         rec = next((r_ for k, _, r_ in recs if k == key), None)

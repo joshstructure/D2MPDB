@@ -1,4 +1,4 @@
-"""Case, checks, report, Pile Data Table, Mathcad and bundle exports for the pile calculation."""
+"""Case, checks, report, Pile Data Table, Mathcad, Blockpad and bundle exports for the pile calculation."""
 import csv
 from datetime import datetime, timezone
 import importlib
@@ -13,12 +13,19 @@ CHECKS = 'pile_checks.csv'
 REPORT = 'pile_calculation_report.html'
 TABLE = 'pile_data_table.xlsx'
 MATHCAD = 'pile_design.xmcd'
+BPAD = 'pile_design.bpad'                    # internal key; the file on disk carries the support name ("End Bent 1 Pile Design.bpad")
 BUNDLE = 'pile_bundle.zip'
 MATHCAD_NOTE = 'pile_design_xmcd_unavailable.txt'
+BPAD_NOTE = 'pile_design_bpad_unavailable.txt'
+VERIFICATION = 'verification.json'
 
 
 class MathcadUnavailable(RuntimeError):
     """Raised when pile_design.mathcad (the distilled Mathcad generator) cannot be imported."""
+
+
+class BpadUnavailable(RuntimeError):
+    """Raised when pile_design.bpad (the distilled Blockpad generator) or what it needs cannot be imported."""
 
 
 def case_json(case):
@@ -161,12 +168,37 @@ def mathcad_xmcd(e):
     return out.encode('utf-8') if isinstance(out, str) else bytes(out)
 
 
+def bpad_outputs(e):
+    """Distilled Blockpad document of the current case with its verification record (pile_design.bpad.build_outputs)."""
+    try:
+        bpad = importlib.import_module(f'{__package__}.bpad')
+        bpad.require()
+    except ImportError as exc:
+        raise BpadUnavailable(f'Blockpad generator not available: pile_design.bpad could not be imported ({exc}).') from exc
+    if not callable(getattr(bpad, 'build_outputs', None)):
+        raise BpadUnavailable('Blockpad generator not available: pile_design.bpad has no build_outputs(e) function.')
+    return bpad.build_outputs(e)
+
+
+def bpad_files(e):
+    """{file name: bytes} of the Blockpad export: the .bpad named after the support, and its verification.json."""
+    out = bpad_outputs(e)
+    record = json.dumps(out['verification'], indent=1, ensure_ascii=False, sort_keys=True) + '\n'
+    return {out['filename']: bytes(out['document']), VERIFICATION: record.encode('utf-8')}, out['filename']
+
+
+def bpad_document(e):
+    files, name = bpad_files(e)
+    return files[name]
+
+
 WRITERS = {
     CASE: lambda e: case_json(e.case).encode('utf-8'),
     CHECKS: lambda e: checks_csv(e).encode('utf-8'),
     REPORT: _report,
     TABLE: data_table_xlsx,
     MATHCAD: mathcad_xmcd,
+    BPAD: bpad_document,
 }
 
 
@@ -187,6 +219,12 @@ def export_file(e, root, name):
         return export_bundle(e, root)[BUNDLE]
     if name not in WRITERS:
         raise ValueError(f'Unknown export {name!r}; choose {", ".join([*WRITERS, BUNDLE])}.')
+    if name == BPAD:
+        files, main = bpad_files(e)       # build first so a failed generator leaves no empty folder
+        folder = _folder(root)
+        for file_name, data in files.items():
+            (folder / file_name).write_bytes(data)
+        return folder / main
     data = WRITERS[name](e)               # build first so a failed generator leaves no empty folder
     path = _folder(root) / name
     path.write_bytes(data)
@@ -198,9 +236,14 @@ def export_bundle(e, root):
     files = {}
     for name, writer in WRITERS.items():
         try:
-            files[name] = writer(e)
+            if name == BPAD:
+                files.update(bpad_files(e)[0])
+            else:
+                files[name] = writer(e)
         except MathcadUnavailable as exc:
             files[MATHCAD_NOTE] = str(exc).encode('utf-8')
+        except BpadUnavailable as exc:
+            files[BPAD_NOTE] = str(exc).encode('utf-8')
     folder = _folder(root)
     for name, data in files.items():
         (folder / name).write_bytes(data)

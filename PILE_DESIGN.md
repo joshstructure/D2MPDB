@@ -276,9 +276,12 @@ The notebook writes each export to `exports/pile-YYYYMMDD-HHMMSS/`.
 - `pile_checks.csv`, the D/C register
 - `pile_data_table.xlsx`, the SDM 11.4 Pile Data Table with its Basis sheet
 - `pile_design.xmcd`, the distilled Mathcad worksheet for the current case
+- `End Bent 1 Pile Design.bpad` (named after the support: End Bent 1, End Bent 2, Pier), the distilled Blockpad document for the current case, with a `verification.json` of its comparison counts and hashes
 - `pile_bundle.zip`, the full set
 
 **Distilled Mathcad.** `scripts/build_pile_mathcad.py` writes two Mathcad 15 worksheets from the shared generator `pile_design/mathcad.py`: `pile_mathcad/End Bent 1 Pile Design.xmcd` (23 pages, 2,370 values) and `pile_mathcad/Pier Pile Design.xmcd` (10 pages, 84 values). The notebook's "Distilled Mathcad .xmcd" export uses the same generator. Each sheet is titled "End Bent 1 Pile Design" or "Pier Pile Design". The worksheet holds the basis, inputs, section properties, demands, resistances, the interaction sweep as live vectors, the service and shear checks, the closed-form pipe checks, the Eq. 3-1 bearing check and a summary of the D/C ratios. In the End Bent 1 worksheet, 2,370 values match the notebook to 1 part in 10⁹, and the solved neutral-axis comparison at c_gov is approximate (2%). The worksheet is generated, so edits made in Mathcad are lost at the next rebuild. The curve points are live vectors in the worksheet. A live X-Y plot needs a Mathcad-saved template that this build does not have, so the interaction diagram in the sheet is a static picture.
+
+**Distilled Blockpad.** `scripts/build_pile_bpad.py` writes three Blockpad documents (End Bent 1, End Bent 2, Pier) into `pile_bpad/` from `pile_design/bpad.py`, which walks the Mathcad block list; the notebook's "Export distilled Blockpad (.bpad)" button uses the same generator. Blockpad has no vector variables, so the records and the strands become numbered scalars and the 121-point interaction sweep is not written as formulas: Figure 2 is a picture of the notebook's curve, while the check at the solved neutral-axis depth c_gov, the demands, the 5.6.4.5 route and every ratio are live. The few values that need a search over the sweep are amber inputs read from the notebook. Every formula is read back and compared with the notebook and the Mathcad sheet before the file is written (see [pile_bpad/README.md](pile_bpad/README.md)). Nothing has been recalculated in Blockpad itself.
 
 ## Check register and results
 

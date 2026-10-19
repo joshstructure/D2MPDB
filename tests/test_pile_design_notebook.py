@@ -325,7 +325,7 @@ class WidgetsHeadless(unittest.TestCase):
         self.assertIn('Table 3.5.13-1', app.banner.value)
         self.assertIn('Downdrag used', app.banner.value)
         self.assertTrue(all(not b.disabled for b in app.export_buttons))
-        self.assertEqual(len(app.export_buttons), 6)
+        self.assertEqual(len(app.export_buttons), 7)
 
     def test_categorical_inputs_are_dropdowns_and_optional_inputs_are_text(self):
         W = self.W

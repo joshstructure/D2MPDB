@@ -2,7 +2,8 @@
 
 The setup cell embeds pile_design/ plus the shared pier_cap/ engine (formula evaluator,
 MathML, FBMP reader, widget and Plotly compatibility) and the Mathcad writer
-(scripts/mathcad_sheet.py, scripts/mathcad_plot.py and the plot template). Only the
+(scripts/mathcad_sheet.py, scripts/mathcad_plot.py and the plot template) and the Blockpad writer
+(scripts/bpad_sheet.py). Only the
 embedded package and its revision change on a refresh; edited cell text is preserved.
 """
 import base64
@@ -160,7 +161,7 @@ print("Output scrolling disabled for future cell executions.")
 def package_files(repo):
     files = [*repo.glob('pile_design/*.py'), *repo.glob('pile_design/data/*.json'), *repo.glob('pile_design/mathcad/*.png'),
              *repo.glob('pier_cap/*.py'), *repo.glob('pier_cap/data/*.json'),
-             repo / 'scripts' / 'mathcad_sheet.py', repo / 'scripts' / 'mathcad_plot.py',
+             repo / 'scripts' / 'mathcad_sheet.py', repo / 'scripts' / 'mathcad_plot.py', repo / 'scripts' / 'bpad_sheet.py',
              repo / 'cap_mathcad' / 'templates' / 'psbeam_check_summary_plot.bin', repo / 'cap_mathcad' / 'templates' / 'psbeam_check_summary_plot.json',
              repo / 'requirements-pier-cap-colab.txt']
     registered = registered_exports(repo)

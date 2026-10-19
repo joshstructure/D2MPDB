@@ -762,15 +762,18 @@ class PileNotebook:
         self.export_status = W.HTML()
         self.download_output = W.Output()
         specs = [('Case JSON', exports.CASE), ('Calculation report', exports.REPORT), ('Checks CSV', exports.CHECKS),
-                 ('Pile Data Table (xlsx)', exports.TABLE), ('Distilled Mathcad (.xmcd)', exports.MATHCAD), ('Full bundle ZIP', exports.BUNDLE)]
+                 ('Pile Data Table (xlsx)', exports.TABLE), ('Distilled Mathcad (.xmcd)', exports.MATHCAD),
+                 ('Export distilled Blockpad (.bpad)', exports.BPAD), ('Full bundle ZIP', exports.BUNDLE)]
         self.export_buttons = []
         for label, name in specs:
-            b = W.Button(description=label, icon='download', layout=W.Layout(width='230px'))
+            b = W.Button(description=label, icon='copy' if name == exports.BPAD else 'download', layout=W.Layout(width='230px'))
             b.on_click(partial(self._export, name))
             self.export_buttons.append(b)
         self.boxes['exports'].children = [
             W.HTML('<p>Exports use the last completed Recalc. Each click writes a timestamped folder under <code>exports/</code> and downloads the file. '
                    'The Mathcad worksheet is the distilled calculation of this support (the same generator that writes <code>pile_mathcad/</code>). '
+                   'The Blockpad export writes the matching distilled <code>.bpad</code> (the generator behind <code>pile_bpad/</code>) with its <code>verification.json</code>; '
+                   'it has not been recalculated in Blockpad. '
                    'In Colab, <code>/content</code> is temporary runtime storage; keep the downloaded copies.</p>'),
             W.HBox(self.export_buttons, layout=W.Layout(flex_flow='row wrap', grid_gap='6px')), self.export_status, self.download_output]
 
@@ -780,10 +783,11 @@ class PileNotebook:
         try:
             path = exports.export_file(self.e, self.export_root, name)
         except Exception as exc:
-            self.export_status.value = notice_html('EXPORT FAILED', html.escape(str(exc)), 'error')
+            self.export_status.value = notice_html('DISTILLED EXPORT STOPPED' if name == exports.BPAD else 'EXPORT FAILED', html.escape(str(exc)), 'error')
             return
         self.last_files[name] = path
-        self.export_status.value = notice_html('EXPORT WRITTEN', f'<code>{html.escape(str(path.resolve()))}</code>', 'success')
+        self.export_status.value = notice_html('DISTILLED BLOCKPAD READY' if name == exports.BPAD else 'EXPORT WRITTEN',
+                                               f'<code>{html.escape(str(path.resolve()))}</code>', 'success')
         with self.download_output:
             from IPython.display import clear_output, display, FileLink
             clear_output()
