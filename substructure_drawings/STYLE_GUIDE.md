@@ -175,7 +175,11 @@ symbol at page scale.
   (round 2): "Put these parallel leaders in the same plane. It should feel
   like the leaders only touch the text at one point", "Either put these
   leaders parallel or move the anno and spread these leaders out so they
-  are distinct. Don't do these kind of almost parallel leaders".
+  are distinct. Don't do these kind of almost parallel leaders".  The two
+  bars of a pair that a cut pile separates from the rest of their run (the
+  bottom bars of Section B-B) get one leader line through both with an
+  arrowhead at each and the count of the pair: "2~8A2 (EF)" (markup
+  2026-10-19 round 4: "Do a double arrow leader and say 2~9A2 (EF)").
 - **A19 Deterministic checks.**  Every rule above that can be measured is
   a check in `anno_check.py` (rule ids in the findings), run on every view
   by the build and written to the manifest; the tests fail on any finding.
@@ -190,6 +194,20 @@ symbol at page scale.
   "3~5C" over "(TYP.)") and placed in the nearer gap.  Markups 2026-10-19
   (round 3): "Overlapping put in 2 lines of text for fit", "Hard to see
   leader make 2 lines of text for fit".
+- **A21 The tips of different callouts stand apart.**  Two callouts never
+  point at the same spot: when two bars meet (the pedestal U-bar's top run
+  and the first end-on bar on it), one callout takes another part of its
+  bar (the run between the second and third dot), so the tips are at least
+  0.1" apart (checked).  Markup 2026-10-19 (round 4): "Adjust so the
+  leader ends are not so close to each other.  There are other parts of
+  the steel we can point to to spread the leaders out a bit for clarity".
+- **A22 A label that stands between two views goes under its view.**  The
+  pile description of Section B-B sits under the section in the row of the
+  centerline label, on the front side, its leader up to the pile face
+  above the break; the strap label of the sections sits beyond the
+  back-side dimension columns just under the strap's level, its leader to
+  the strap's free end passing under the series text of the first column.
+  Markups 2026-10-19 (round 4): "Move to a better spot" (both).
 
 ## B. Dimensions
 
@@ -344,12 +362,19 @@ symbol at page scale.
   line-start mismatch), and `draw_bar3` ignores segments under 0.001 ft, so
   no dot appears 1¾" off the leg dots.  Markup 2026-10-19 (round 3): "Where
   are these extra dots coming from?" (pedestal plan and elevation).
-- **C11 Cover is dimensioned to the outermost bar only.**  A cover
-  dimension runs from the concrete face to the bar nearest it (the leg of
-  the pedestal U-bar at the side, the hoop leg of a cap section); no cover
-  is given to an inner bar (the pedestal elevation carried a top cover down
-  to the second layer).  Markup 2026-10-19 (round 3): "Remove. Only detail
-  cover to the outermost bar".
+- **C11 Cover is dimensioned to the outermost bar only, where it
+  matters.**  A cover dimension runs from the concrete face to the bar
+  nearest it (the leg of the pedestal U-bar at the side, the hoop leg of a
+  cap section); no cover is given to an inner bar (the pedestal elevation
+  carried a top cover down to the second layer).  It is drawn inside the
+  element whose cover it is, at the face it is measured from: the
+  pedestal's side cover inside the pedestal, not in the cap below where the
+  leg is embedded.  No cover or clear value for a bar mat centred in a wall
+  (the cheek wall sections): the project's clear-spacing requirement
+  governs.  Markups 2026-10-19: "Remove. Only detail cover to the outermost
+  bar" (round 3); "Call out the cover where it matters", "Remove this clear
+  spacing anno since the project has a required clear spacing and these
+  bars are in a mat centered in the wall with plenty of space" (round 4).
 - **C10 Full-width bars are at their true positions.**  At double-line
   scales (C1) every bar is drawn exactly where the model has it; the C4
   daylight nudge is for single-line views only.  Bars the model has tangent
@@ -392,12 +417,16 @@ symbol at page scale.
   solid; checked), so the minor pattern plots 0.34" and the major 0.63".
   Markups: "Centerlines should have dashes not dots", 2026-10-19 (round 2)
   "All centerlines should be dashed".
-- **D12 Everything the view clips gets a break line.**  A stub cut by the
-  view window or by the extractor's clip (strap stubs, coping stubs, the
-  closure slab in front of the cap, the cap stub beside a cheek wall, a
-  pile) ends in a break line or a pile break at the cut (checked: a clipped
-  edge without a break within 0.12" is a finding).  Markup 2026-10-19
-  (round 2): "Add breaklines for elements that are broken".
+- **D12 Everything the view clips gets a break line, each stub its
+  own.**  A stub cut by the view window or by the extractor's clip (strap
+  stubs, coping stubs, the closure slab in front of the cap, the cap stub
+  beside a cheek wall, a pile) ends in a break line or a pile break at the
+  cut (checked: a clipped edge without a break within 0.12" is a finding).
+  Separate stubs along one clip get separate short break lines (one per
+  strap stub, 0.08" beyond its edges); only elements that overlap along
+  the clip (the closure slab and the front coping) share one.  Markups
+  2026-10-19: "Add breaklines for elements that are broken" (round 2), "Do
+  a bunch of small breaklines at the straps not one giant one" (round 4).
 - **D4 Context is minimal.**  Bent sections do not show the landing or
   approach slab ("we want to focus on the end bents").  The end bent
   sections end at a break line through the rain closure slab 1.2 ft beyond
@@ -507,13 +536,16 @@ symbol at page scale.
   reinforcement, then details; the bar list last.  Details that do not fit
   go to a further details sheet ("perhaps on the next sheet if there is
   more room"), never squeezed against the frame or over other views.  On
-  the (1 OF 3) sheets the sections' boxes overlap 0.25" (their linework
-  stays apart; at 0.35" B-B's dimension texts ran onto A-A's labels) and
-  the details column starts 0.3" beyond them, so the pile label of Section
-  B-B keeps clear of the legend (follow-up 2026-10-19: "Slide this down
-  and shift Section B-B over slightly to make room for the overlapping
-  annos between the details").  The notes block of those sheets runs to
-  the title block, so further notes go on the (2 OF 3) sheet.
+  the (1 OF 3) sheets the sections' boxes stand 0.15" apart, so the labels
+  of one section and the dimension columns of the other keep about 0.45"
+  between them, and the details column starts 0.3" beyond the sections and
+  takes the rest of the width (the details centred in it, the legend
+  wrapped to it).  Markups 2026-10-19: "Slide this down and shift Section
+  B-B over slightly to make room for the overlapping annos between the
+  details" (round 3), "Shift detail left to make room for the annos in
+  between the details", "Shift detail over to make room for annos in
+  between detail" (round 4).  The notes block of those sheets runs to the
+  title block, so further notes go on the (2 OF 3) sheet.
 - **E2 Tables** stay inside the drawing window with a margin to the frame;
   notes are a single numbered column with hanging indents.  Notes and other
   blocks at the lower right stop short of the BRIDGE NO. / bridge name
@@ -534,8 +566,11 @@ symbol at page scale.
 - **E6 A title stands clear of its view.**  The title is at least 0.3"
   below the lowest annotation of the view (the section flags and pile
   numbers under an elevation), so the drawing and its name do not read as
-  one block.  Markup 2026-10-19 (round 3): "Shift up a bit to create space
-  between drawing and title".
+  one block; the footnote legend under the elevation ("* DIMENSIONS
+  MEASURED ALONG FFBW") stands 0.3" under the flag row, clear of the
+  circled pile numbers.  Markups 2026-10-19: "Shift up a bit to create
+  space between drawing and title" (round 3), "Shift note down to make
+  space between it and the number" (round 4).
 
 ## F. Symbology
 
@@ -554,7 +589,8 @@ Render the previews (`--previews`) and look at every sheet at full size:
 1. `manifest.json` `layout_warnings` is empty (views inside their windows,
    no crossings between views, titles centred and aligned) and
    `annotation_overlaps` (the `anno_check` findings, rule ids A1, A2, A3,
-   A10, A11, A12, A13, A14, B9, B11, B12, D3, D12, D13, E5) is empty (A19).
+   A10, A11, A12, A13, A14, A21, B9, B11, B12, D3, D12, D13, E5) is empty
+   (A19).
 2. No leader parallel to or along the bar it points to (A3, checked); no
    leader under the stationing arrow (A7); no leader crossing another
    (A11, audit); no acute bend under a text (A10); fans leave the text
@@ -562,7 +598,8 @@ Render the previews (`--previews`) and look at every sheet at full size:
    outside the plan (A15), pile numbers below the pulled values (A16),
    labels beyond the stub breaks (A17), parallel leaders joined at one
    landing (A18); labels beside a column in two lines where one line would
-   reach a neighbour (A20).
+   reach a neighbour (A20); tips of different callouts apart (A21); labels
+   that would stand between two views under their view (A22).
 3. Every dimension text either sits in its space or has a line to it (B1);
    none crosses a line without a mask (B2); no stacked values; pulled-out
    values stand clear of their line (B9) and their pointer stops short of
@@ -702,3 +739,17 @@ Markups on the 2.4.0 sheets, 2026-10-19 round 3 (all general):
 | B4-9 Section B-B (follow-up) | Slide this down and shift Section B-B over slightly to make room for the overlapping annos between the details (18" SQUARE PRESTRESSED CONCRETE PILE) | E1 | label 0.1" lower in its band; sections overlap 0.25", details column 0.3" off |
 | B4-7 pedestal elev. (follow-up) | Don't call out 3/4 chamfers. This will go in the General Notes later | D11 | chamfer callout removed |
 | B4-6 Section A-A (follow-up) | Put the CL leader two arrows on the same line; splay out the leaders for the bars, too geometric makes it look like there's some construction on the drawing | A18 | one CL BEARING leader line with two arrowheads; stacked bar ends get a splayed fan |
+
+Markups on the 2.5.0 follow-up sheets, 2026-10-19 round 4 ("Look at the applicability of these comments to the rest of the drawings"):
+
+| Where | Comment (engineer's words) | Rule | Resolution |
+|---|---|---|---|
+| B4-4 pedestal elev. | Call out the cover where it matters | C11 | side cover dimensioned inside the pedestal (end bents and pier) |
+| B4-2 / B4-9 (1 OF 3) | Shift detail left / over to make room for the annos in between the details | E1 | sections 0.15" apart, details column narrower |
+| B4-1 elevation | Shift note down to make space between it and the number | E6 | footnote 0.3" under the flag row (end bents and pier) |
+| B4-1 plan | Do a bunch of small breaklines at the straps not one giant one | D12 | one short break line per strap and coping stub |
+| B4-6 Section B-B | Do a double arrow leader and say 2~9A2 (EF) | A18 | the pair on the near side of the cut pile: one leader line, two arrowheads, "2~…A2 (EF)" (pier and end bents) |
+| B4-9 Section B-B | Move to a better spot (pile description) | A22 | under the section in the centerline label's row |
+| B4-10 Section C-C | Move to a better spot (Δ REINF. STRAP) | A22 | beyond the back dimension columns under the strap level (A-A and C-C of both bents) |
+| B4-11 Section F-F | Remove this clear spacing anno; the project has a required clear spacing and these bars are in a mat centered in the wall | C11 | cover values removed from F-F and G-G |
+| B4-10 Section C-C | Adjust so the leader ends are not so close to each other (4F1 / 5~4F2) | A21 | the U-bar's tip on its top run between the second and third dot; tips-apart check |

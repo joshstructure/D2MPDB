@@ -356,10 +356,6 @@ def _cheek_bars(s, cheek):
     return [x for x in s.bars if x["family"] == "cheek" and x["group"].endswith(num + "Bars")], num
 
 
-def _cover_text(cov):
-    return "%s CL.\\P(TYP.)" % fdot.ft_in(cov, 0.25)
-
-
 # ============================================================== SECTION F-F
 def cheek_section_side(b, zone, cheek, letter, wwr_note=2):
     """SECTION F-F (THROUGH CHEEK WALL), the vertical cut y = y_cut (1 ft in
@@ -447,19 +443,12 @@ def cheek_section_side(b, zone, cheek, letter, wwr_note=2):
                 pts.append(feat.get(round(z, 4), (u_out, z)))
         _chain(v, pts, texts, x1, vertical=True)
     v.dim((u_out, z_bot), (u_out, z_top), u_out - x2, 90, step=0.125)
-    # top: clear cover to the outermost bar, wall thickness
-    edge_c = []
-    for bar, pts in shapes:
-        r = bar["dia_in"] / 24.0
-        q = max(pts, key=lambda p: p[1])
-        edge_c.append((q[0] - d * r, q[1]))
-    edge_c += list(feat.values())
+    # top: the wall thickness.  (No clear-cover value to the bar mat: markup
+    # 2026-10-19 round 4, "Remove this clear spacing anno since the project
+    # has a required clear spacing and these bars are in a mat centered in
+    # the wall with plenty of space"; C11)
     yt1 = z_top + 0.3 * k
-    yt2 = yt1 + 0.27 * k
-    if edge_c:
-        pc = min(edge_c, key=lambda p: d * (p[0] - u_out))
-        v.dim((u_out, z_top), pc, yt1 - z_top, 0, _cover_text(abs(pc[0] - u_out)), outside=-d)
-    v.dim((u_out, z_top), (u_in, z_top), yt2 - z_top, 0, step=0.125)
+    v.dim((u_out, z_top), (u_in, z_top), yt1 - z_top, 0, step=0.125)
     # bottom: lug thickness
     if lug_u is not None and abs(lug_u - u_out) > 0.05:
         lw = abs(lug_u - u_out)
@@ -634,21 +623,12 @@ def cheek_section_top(b, zone, cheek, letter, wwr_note=2):
     pts.sort(key=lambda p: p[1])
     _chain(v, pts, None, x1, vertical=True, step=0.125)
     v.dim((u_out, v_front), (u_out, v_back), u_out - x2, 90, step=0.125)
-    # B9: the two-line cover value pulled out beyond the first row's end
-    # (toward the outline) must clear the extension line of the vertical
-    # chain at v_front by half a text height, and the second row below
+    # the wall thickness beyond the front face.  (No clear-cover value to
+    # the bar mat: markup 2026-10-19 round 4, "Remove this clear spacing anno
+    # since the project has a required clear spacing and these bars are in
+    # a mat centered in the wall with plenty of space"; C11)
     yb1 = v_front + fs * 0.42 * k
-    yb2 = yb1 + fs * 0.4 * k
-    cand = [(p[0] - d * r, p[1]) for p, r, _ in cdots]
-    for bar, pp in cshape:
-        r = bar["dia_in"] / 24.0
-        q = min(pp, key=lambda p: d * (p[0] - u_out))
-        cand.append((q[0] - d * r, q[1]))
-    if cand:
-        best = min(d * (p[0] - u_out) for p in cand)
-        pc = min((p for p in cand if d * (p[0] - u_out) < best + 0.01), key=lambda p: fs * -p[1])
-        v.dim((u_out, v_front), pc, yb1 - v_front, 0, _cover_text(best), outside=-d)
-    v.dim((u_out, v_front), (u_in, v_front), yb2 - v_front, 0, step=0.125)
+    v.dim((u_out, v_front), (u_in, v_front), yb1 - v_front, 0, step=0.125)
     if lug_u is not None and abs(lug_u - u_out) > 0.05:
         lw = abs(lug_u - u_out)
         txt = fdot.ft_in(lw, 0.125)

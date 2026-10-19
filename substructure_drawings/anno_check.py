@@ -52,6 +52,10 @@ A14   leader over linework           an arrow piece (not the landing) of a      
                                      crosses more than 4 drawn objects of the
                                      concrete / bar levels (a double-line bar,
                                      a dot's ring or an outline counts once)
+A21   callout tips apart             a tip of one leader, fan or parallel        TIP_APART_K
+                                     leader lies under 0.1 k from a tip of
+                                     another callout (pointers of pulled
+                                     values are not callouts)
 B9    pulled value clearance         the box of a pulled-out dimension value     PULLED_CLEAR_TH
                                      is under 0.5 th from a Dimension segment
                                      other than its own pointer
@@ -113,6 +117,7 @@ ALONG_K = 0.05           # ... and closer than this (paper inches) it runs "alon
 ALONG_MIN_K = 0.2        # ... over a stretch longer than this (paper inches) (A3)
 JOIN_TOL = 0.005         # an outline end is met by a segment that ends or passes within this many feet (D13)
 OUTLINE_CLIP_TOL = 0.01  # an outline end this close (feet) to a recorded window cut is D12's, not D13's (D13)
+TIP_APART_K = 0.1        # tips of two different callouts are at least this far apart, paper inches (A21)
 
 # levels
 LINEWORK_SKIP = ("Patterning", "Symbols")         # hatch patterns; symbols drawn around their own letters
@@ -122,7 +127,8 @@ LEADER_LINE_EXACT = ("Rebar", "Rebar2", "BearingPadMisc")   # with the prefixes:
 CLIP_EXACT = ("Rebar2",)                                    # with the prefixes: the levels of D12
 OUTLINE_PREFIXES = ("SubStrConc", "PileConc", "PileSteel")  # the concrete outline levels of D13
 
-RULES = ("A1", "A2", "A3", "A10", "A11", "A12", "A13", "A14", "B9", "B11", "B12", "D3", "D12", "D13", "E5")
+RULES = ("A1", "A2", "A3", "A10", "A11", "A12", "A13", "A14", "A21", "B9", "B11", "B12", "D3", "D12", "D13",
+         "E5")
 
 
 # ------------------------------------------------------------------ geometry
@@ -688,6 +694,28 @@ def open_outlines(view):
     return out
 
 
+def tips_apart(view):
+    """A21: the tips of two different callouts (leaders, fans, parallel
+    leaders; not the pointers of pulled values, which point at dimension
+    lines) lie closer than 0.1 k to each other, so the reader cannot tell
+    which bar each names ("Adjust so the leader ends are not so close to
+    each other.  There are other parts of the steel we can point to").
+    The tips of one callout (a fan) are exempt."""
+    k = view.sf / 12.0
+    need = TIP_APART_K * k
+    recs = [r for r in view.leaders if r["kind"] != "pointer" and r["tips"]]
+    out = []
+    for i, a in enumerate(recs):
+        for b in recs[i + 1:]:
+            if a["call"] == b["call"]:
+                continue
+            d = min(math.dist(p, q) for p in a["tips"] for q in b["tips"])
+            if d < need * (1.0 - 1e-6):
+                out.append(("A21", "[A21] tips of '%s' and '%s' %.2f in apart"
+                            % (_name(a["text"]), _name(b["text"]), d / k)))
+    return out
+
+
 def title_centred(view):
     """E5: the title sits on the centre of its subject."""
     spec = view.title_spec
@@ -703,7 +731,7 @@ def title_centred(view):
 CHECKS = (text_over_linework, leader_through_symbol, text_clearance, acute_bends, fan_direction,
           leader_crossings, fan_spread, leader_over_linework, leader_along_line, pulled_clearance,
           pointer_gap, dimension_beside_line, short_centerlines, clipped_without_break, open_outlines,
-          title_centred)
+          tips_apart, title_centred)
 
 
 def check_view(view):

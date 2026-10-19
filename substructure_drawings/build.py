@@ -467,13 +467,14 @@ class Composer:
         va = b.section(z, "between_piles", "A", "(SECTION BETWEEN PILES)")
         vb = b.section(z, "at_pile", "B", "(SECTION AT PILES)")
         wd = 3.6      # the details column
-        # (markup 2026-10-19 round 3 follow-up, "shift Section B-B over slightly
-        # to make room for the overlapping annos between the details": the
-        # sections' boxes overlap 0.25 in (0.35 put B-B's dimension texts on
-        # A-A's labels), their linework stays apart, and the details column
-        # starts 0.3 in beyond the sections, so the legend ends 0.3 in before
-        # B-B's pile label)
-        gap = -0.25   # the sections' bounding boxes overlap; their linework stays apart
+        # (markup 2026-10-19 round 4, "Shift detail left to make room for the
+        # annos in between the details" / "Shift detail over to make room for
+        # annos in between detail": the sections' boxes stand 0.15 in apart
+        # (the labels of one section and the dimension columns of the other
+        # then keep 0.45 in between them); the details column starts 0.3 in
+        # beyond the sections and takes what is left of the width, the
+        # details centred in it and the legend wrapped to it, E1)
+        gap = 0.15    # between the sections' bounding boxes
         sep = 0.3     # the details column to the sections
         if key == "EB1":
             self.row(sh, [va, vb], DRAW[3] - 0.05, DRAW[0], DRAW[2] - wd - 0.2, gap=gap)

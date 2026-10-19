@@ -27,7 +27,12 @@ Its follow-ups draw the cut backwall top level at the cut (the model's tops
 slope along the bent only; MODEL CHECK note), drop the pedestal joint and
 chamfer callouts, put every joint tip on the keyway corner (C-C routed as
 sketched), give bar columns splayed fans and the pier bearing centerlines one
-two-arrow leader, and move Section B-B off the details column.
+two-arrow leader, and move Section B-B off the details column; the round-4
+markups dimension the pedestal side cover inside the pedestal, drop the
+cheek sections' cover values, give each strap stub its own break line, call
+out the bottom-bar pair beside a cut pile with one two-arrow leader
+("2~8A2 (EF)"), move the pile and strap labels out from between the views,
+space the (1 OF 3) sections apart, and add the tips-apart check A21.
 
 [`output/B4_Substructure_EndBents_Pier.dxf`](output/B4_Substructure_EndBents_Pier.dxf)
 is one DXF with plans, elevations (concrete and reinforcement together),
@@ -392,8 +397,9 @@ are not made again:
    overlapping (A2), a leader running along a drawn line (A3), acute leader
    bends and fans leaving toward their text (A10), leaders crossing leaders
    (A11), near-parallel fan arrows (A12), leaders through circled numbers or
-   flags (A13), leaders over many drawing lines (A14), pulled values too near
-   a dimension line (B9), a pointer touching its text (B11), a dimension line
+   flags (A13), leaders over many drawing lines (A14), tips of different
+   callouts too close (A21), pulled values too near a dimension line (B9), a
+   pointer touching its text (B11), a dimension line
    along a parallel drawn line (B12), centerlines too short to show dashes
    (D3), clipped edges without a break line (D12), an open concrete outline
    in a section (D13), titles off centre (E5). Both lists must be empty
