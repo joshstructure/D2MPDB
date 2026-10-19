@@ -191,8 +191,8 @@ class CapBpad(unittest.TestCase):
         for cap, b in self.each():
             key = f'report:{b["name"]}'
             self.assertEqual((b['name'], b['filename']), NAMES[cap['key']])
-            self.assertNotIn(b['name'], taken, 'the report name is already used in the journal')
-            self.assertNotIn(key, taken)
+            # The journal holds these names only once T012 is promoted; then the journal edition owns the comparison.
+            self.assertEqual(b['name'] in taken, key in taken)
             self.assertIsNone(CELL_ADDRESS.match(b['name']), 'a report name that looks like a cell address')
             for source, data in (('fresh build', b['data']), ('committed file', (OUT / b['filename']).read_bytes())):
                 with self.subTest(source=source):
@@ -277,6 +277,232 @@ class CapBpad(unittest.TestCase):
                 self.assertEqual((entry['width_in'], entry['height_in']), (width, height))
                 self.assertEqual(entry['title'], canvas.get('title'))
                 self.assertTrue(entry['items'], f'{canvas.get("name")} has no preview items')
+
+
+JOURNAL_OUT = OUT / 'journal'
+BG = 'BridgeGeometry_2Beam'
+EXPECTED_REFERENCES = {                       # Section 2 order: input, owner (the reference mapping of the journal edition)
+    'CapDesignEndBentOne': [('b', f'{BG}.EndBentCap_width'), ('h', f'{BG}.EndBentCap_depth'), ('C_t', f'{BG}.EndBent_coverTop'),
+                            ('C_b', f'{BG}.EndBent_coverBottom'), ('C_s', f'{BG}.EndBent_coverSide'), ('fc', 'FBMPEndBent.EBSteel_fc'),
+                            ('fy', 'FBMPEndBent.EBSteel_fy'), ('Es', 'FBMPEndBent.EBSteel_Es'), ('φ_f', 'CapDesignBasis.φ_f'),
+                            ('φ_v', 'CapDesignBasis.φ_v'), ('γ_e', 'CapDesignBasis.γ_e'), ('λ', 'CapDesignBasis.λ'),
+                            ('φ_a', 'CapDesignBasis.φ_a'), ('s_proj', 'CapDesignBasis.s_proj')],
+    'CapDesignPier': [('b', f'{BG}.PierCap_width'), ('h', f'{BG}.PierCap_ht'), ('C_t', 'PierCapDesign.C_t'), ('C_b', 'PierCapDesign.C_b'),
+                      ('C_s', 'PierCapDesign.C_s'), ('fc', 'PierCapDesign.fc'), ('fy', 'PierCapDesign.fy'), ('Es', 'PierCapDesign.Es'),
+                      ('φ_f', 'CapDesignBasis.φ_f'), ('φ_v', 'CapDesignBasis.φ_v'), ('γ_e', 'CapDesignBasis.γ_e'),
+                      ('λ', 'CapDesignBasis.λ'), ('φ_a', 'CapDesignBasis.φ_a'), ('L_cap', f'{BG}.PierCap_length'),
+                      ('s_proj', 'CapDesignBasis.s_proj')],
+}
+EXPECTED_REFERENCES['CapDesignEndBentTwo'] = EXPECTED_REFERENCES['CapDesignEndBentOne']
+ROW_KEYS = ['input', 'owner', 'journal_value', 'case_value', 'status', 'note']
+REVIEW = 'Cap Design - Journal Edition (review).bpad'
+BASIS_USES = re.compile(r'CapDesignBasis\.(\w+)')
+
+
+class CapBpadJournal(unittest.TestCase):
+    """The journal edition: shared inputs are live references, a coherence gate compares them with the cap case."""
+
+    @classmethod
+    def setUpClass(cls):
+        if not JOURNAL.is_file():
+            raise unittest.SkipTest('journal/D2_I95_Project_Journal.bpad is not in this checkout')
+        cls.links = bs.JournalLinks.load(JOURNAL)
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.addClassCleanup(cls.tmp.cleanup)
+        out, results, cls.built = Path(cls.tmp.name), [], {}
+        with mock.patch.object(bc, 'OUT_DIR', out):
+            for cap in bm.CAPS:
+                sheet, eng, meta, filename, ctx = bc.build_cap(cap, True, journal=cls.links)
+                results.append((sheet, eng, meta, filename, ctx, cap))
+                cls.built[cap['key']] = dict(name=sheet.name, sheet=sheet, meta=meta, ctx=ctx)
+            bc.write_journal_outputs(cls.links, results)
+        cls.fresh = out / 'journal'
+        cls.committed = JOURNAL_OUT
+
+    def reports(self):
+        for cap in bm.CAPS:
+            with self.subTest(cap=cap['key']):
+                yield cap, self.built[cap['key']]
+
+    @staticmethod
+    def formulas(rep):
+        return [el.get('formula') for el in rep.iter() if el.get('formula')]
+
+    @staticmethod
+    def definitions(rep):
+        out = {}
+        for dyn in rep.iter('dynexp'):
+            lhs, rhs = bs.split_definition(dyn.get('formula'))
+            out[lhs] = rhs
+        return out
+
+    def fragment(self, name, folder=None):
+        return ET.fromstring(((folder or self.committed) / f'{name}.xml').read_bytes())
+
+    def test_committed_journal_edition_equals_a_fresh_build(self):
+        names = sorted(p.relative_to(self.fresh).as_posix() for p in self.fresh.rglob('*') if p.is_file())
+        self.assertEqual(names, sorted(['CapDesignBasis.xml', 'CapDesignEndBentOne.xml', 'CapDesignEndBentTwo.xml', 'CapDesignPier.xml',
+                                        'coherence.json', 'verification.json', REVIEW, 'preview/CapDesignEndBentOne.canvases.json',
+                                        'preview/CapDesignEndBentTwo.canvases.json', 'preview/CapDesignPier.canvases.json']))
+        for name in names:
+            committed = self.committed / name
+            self.assertTrue(committed.is_file(), f'cap_bpad/journal/{name} is missing: {HOW} --journal')
+            self.assertEqual(unix(committed.read_bytes()), unix((self.fresh / name).read_bytes()), f'cap_bpad/journal/{name} is stale: {HOW} --journal')
+
+    def test_coherence_rows_are_exactly_the_reference_mapping(self):
+        coherence = json.loads((self.committed / 'coherence.json').read_text(encoding='utf-8'))
+        self.assertEqual(sorted(coherence), sorted(n for n, _ in NAMES.values()))
+        incoherent = []
+        for cap, b in self.reports():
+            rows = coherence[b['name']]
+            self.assertTrue(all(list(r) == ROW_KEYS for r in rows))
+            expected = EXPECTED_REFERENCES[b['name']]
+            by_input = {r['input']: r for r in rows}
+            references = [(r['input'], r['owner']) for r in rows if r['status'] == 'reference']
+            self.assertEqual(sorted(references), sorted(expected))
+            for r in rows:
+                if r['status'] == 'reference':
+                    self.assertAlmostEqual(r['journal_value'], r['case_value'], delta=1e-9 * abs(r['case_value']))
+                    self.assertTrue(r['note'].startswith('shared journal value'))
+                else:
+                    incoherent.append((b['name'], r['input']))
+                    self.assertEqual(r['status'], 'literal_incoherent_journal')
+                    self.assertEqual((r['owner'], r['journal_value'], r['case_value']), (f'{BG}.EndBentCap_length', 212.0, 251.0))
+                    self.assertIn('235 in cap + two 8 in cheeks', r['note'])
+                    self.assertIn('still holds 17 ft 8 in', r['note'])
+            if b['name'] == 'CapDesignPier':
+                self.assertEqual(by_input['L_cap']['status'], 'reference')
+                self.assertEqual((by_input['L_cap']['journal_value'], by_input['b']['journal_value']), (230.0, 48.0))
+            self.assertEqual(len(rows), len(expected) + (0 if b['name'] == 'CapDesignPier' else 1))
+        self.assertEqual(incoherent, [('CapDesignEndBentOne', 'L_cap'), ('CapDesignEndBentTwo', 'L_cap')])
+        for cap, b in self.reports():                                   # the rows the build computed are the rows written
+            self.assertEqual(b['meta']['journal']['rows'], coherence[b['name']])
+
+    def test_every_referenced_owner_exists_in_the_journal(self):
+        journal = Journal.load(JOURNAL)
+        for cap, b in self.reports():
+            for row in json.loads((self.committed / 'coherence.json').read_text(encoding='utf-8'))[b['name']]:
+                owner, _, name = row['owner'].partition('.')
+                if owner == 'CapDesignBasis':
+                    continue
+                report = journal.elements[f'report:{owner}']
+                found = [d for d in report.iter('dynexp') if re.match(rf'\s*{re.escape(name)}\s*=(?!=)', d.get('formula') or '')]
+                self.assertTrue(found, f'{row["owner"]} is not defined in the journal')
+                self.assertEqual(len(found), 1, f'{row["owner"]} is defined more than once')
+
+    def test_the_basis_report_defines_everything_the_caps_use(self):
+        basis = self.fragment('CapDesignBasis')
+        defined = {bs.split_definition(d.get('formula'))[0].split('(')[0] for d in basis.iter('dynexp')}
+        self.assertEqual(defined, {'φ_f', 'φ_v', 'φ_a', 'γ_e', 'λ', 's_proj', 'Ab', 'Db'})
+        used = set()
+        for cap, b in self.reports():
+            rep = self.fragment(b['name'])
+            for formula in self.formulas(rep):
+                used.update(BASIS_USES.findall(formula))
+        self.assertEqual(used, defined)
+        amber = [d.get('style') for d in basis.iter('dynexp') if '(' not in d.get('formula').split('=')[0]]
+        self.assertEqual(amber, ['Required Input'] * 6)
+        text = ' '.join(text_of(p) for p in basis.iter('paragraph'))
+        for word in ('CapDesignEndBentOne', 'CapDesignEndBentTwo', 'CapDesignPier', 'D-003', 'LRFD', 'FDOT Structures Design Guidelines'):
+            self.assertIn(word, text)
+        self.assertNotIn('Review copy', text)                          # the banner is in the review document only
+
+    def test_cap_reports_have_no_local_bar_tables_and_no_literals_for_references(self):
+        for cap, b in self.reports():
+            rep = self.fragment(b['name'])
+            defs = self.definitions(rep)
+            self.assertFalse([d for d in defs if d.split('(')[0] in ('Ab', 'Db')])
+            for formula in self.formulas(rep):
+                self.assertIsNone(re.search(r'(?<![\w.])(Ab|Db)\(', formula), f'unqualified bar table call in {formula!r}')
+            for name, owner in EXPECTED_REFERENCES[b['name']]:
+                self.assertRegex(defs[name], rf'^{re.escape(owner)}( to (in|ksi))?$', f'{name} is not a reference')
+                self.assertNotRegex(defs[name], r'^[\d.]+')
+            if b['name'] != 'CapDesignPier':
+                self.assertEqual(defs['L_cap'], '251 in')
+            for formula in self.formulas(rep):
+                self.check_formula(formula)
+            self.assertIn('Shared geometry, materials and factors are live references to the journal; the owner is named beside each.',
+                          [text_of(p) for p in rep.iter('paragraph')])
+
+    check_formula = CapBpad.check_formula
+
+    def test_a_journal_value_that_disagrees_stops_the_build(self):
+        links = bs.JournalLinks.load(JOURNAL)
+        links.override(f'{BG}.EndBentCap_width', bs.Q(43, (1., 0., 0.)))
+        with self.assertRaisesRegex(bc.BuildError, 'EndBentCap_width') as caught:
+            bc.build_cap(bm.CAPS[0], mathcad_compare=False, journal=links)
+        message = str(caught.exception)
+        self.assertIn('42', message)
+        self.assertIn('43', message)
+        self.assertIn('End Bent 1', message)
+        # the pier does not read that name
+        links = bs.JournalLinks.load(JOURNAL)
+        links.override('PierCapDesign.fc', bs.Q(6, (-2., 1., 0.)))
+        with self.assertRaisesRegex(bc.BuildError, 'PierCapDesign.fc'):
+            bc.build_cap(bm.CAPS[2], mathcad_compare=False, journal=links)
+
+    def test_a_kept_literal_that_now_agrees_must_become_a_reference(self):
+        links = bs.JournalLinks.load(JOURNAL)
+        links.override(f'{BG}.EndBentCap_length', bs.Q(251, (1., 0., 0.)))
+        with self.assertRaisesRegex(bc.BuildError, 'KEEP_LITERAL'):
+            bc.build_cap(bm.CAPS[0], mathcad_compare=False, journal=links)
+
+    def test_a_basis_factor_that_disagrees_with_the_case_stops_the_build(self):
+        links = bs.JournalLinks.load(JOURNAL)
+        changed = [(mc, 0.85 if mc == 'phi_f' else v, u, c) for mc, v, u, c in bc.BASIS_CONSTANTS]
+        with mock.patch.object(bc, 'BASIS_CONSTANTS', changed):
+            with self.assertRaisesRegex(bc.BuildError, 'φ_f'):
+                bc.build_cap(bm.CAPS[0], mathcad_compare=False, journal=links)
+
+    def test_tool_comparisons_equal_the_standalone_edition(self):
+        standalone = {e['report_name']: e for e in json.loads((OUT / 'verification.json').read_text(encoding='utf-8'))}
+        listed = json.loads((self.committed / 'verification.json').read_text(encoding='utf-8'))
+        self.assertEqual([e['report_name'] for e in listed['reports']], [n for n, _ in NAMES.values()])
+        for cap, b in self.reports():
+            mine, theirs = b['meta'], standalone[b['name']]
+            self.assertEqual((mine['comparisons'], mine['shown'], mine['coverage'], mine['coverage_real'], mine['coverage_synthetic'],
+                              mine['mathcad_values'], mine['status'], mine['branches']),
+                             (theirs['tool_comparisons'], theirs['sheet_comparisons'], theirs['coverage_comparisons'],
+                              theirs['coverage_rows_real'], theirs['coverage_rows_synthetic'], theirs['mathcad_values_compared'],
+                              theirs['status'], theirs['branches_reached']))
+            entry = next(e for e in listed['reports'] if e['report_name'] == b['name'])
+            for key in ('tool_comparisons', 'sheet_comparisons', 'coverage_comparisons', 'mathcad_values_compared', 'status', 'case_sha256'):
+                self.assertEqual(entry[key], theirs[key], key)
+            self.assertEqual(entry['functions'], 0)                    # the bar tables are read from CapDesignBasis
+        self.assertEqual(listed['basis']['functions'], ['Ab', 'Db'])
+        self.assertEqual(listed['basis']['read_by'], [n for n, _ in NAMES.values()])
+
+    def test_review_document_and_fragments_are_journal_compatible(self):
+        taken = journal_names()
+        data = (self.committed / REVIEW).read_bytes()
+        self.assertNotIn(b'<!--', data)
+        journal = Journal(data)
+        self.assertEqual([k for k in journal.order if k.startswith('report:')],
+                         ['report:CapDesignBasis'] + [f'report:{n}' for n, _ in NAMES.values()])
+        root = ET.fromstring(data)
+        basis_text = ' '.join(text_of(p) for p in root.find('report').iter('paragraph'))
+        self.assertIn('Review copy', basis_text)
+        self.assertIn('BridgeGeometry_2Beam, FBMPEndBent and PierCapDesign', basis_text)
+        for report in root.findall('report')[1:]:
+            self.assertNotIn('Review copy', ' '.join(text_of(p) for p in report.iter('paragraph')))
+        for name in ['CapDesignBasis'] + [n for n, _ in NAMES.values()]:
+            fragment = self.committed / f'{name}.xml'
+            part = ET.fromstring(Journal(data).part(f'report:{name}'))
+            fragment_tree = ET.fromstring(fragment.read_bytes())
+            self.assertEqual(fragment_tree.get('name'), name)
+            if name != 'CapDesignBasis':
+                self.assertEqual(shape(part), shape(fragment_tree), f'{fragment.name} differs from the review document')
+            self.assertNotIn(b'<!--', fragment.read_bytes())
+            if name in taken:                 # promoted (T012): the journal's report must be the committed fragment
+                journal_part = Journal.load(JOURNAL).part(f'report:{name}')
+                self.assertEqual(shape(ET.fromstring(journal_part)), shape(fragment_tree),
+                                 f'journal report {name} differs from {fragment.name}: rebuild and promote a new task')
+
+    def test_json_sidecars_match_the_canvases(self):
+        for cap, b in self.reports():
+            sidecar = json.loads((self.committed / 'preview' / f'{b["name"]}.canvases.json').read_text(encoding='utf-8'))
+            canvases = list(self.fragment(b['name']).iter('canvas'))
+            self.assertEqual(sorted(sidecar), sorted(c.get('name') for c in canvases))
 
 
 if __name__ == '__main__':

@@ -1,0 +1,36 @@
+{
+  "summary": "Four distilled cap-design reports (CapDesignBasis, CapDesignEndBentOne, CapDesignEndBentTwo, CapDesignPier; 19 October 2026 cases, decision D-051) are appended to the journal as registered modules and linked from the PedBridge index. In FBMPEndBent, block 2 of the current end-bent design record (longitudinal reinforcement) now reads CapDesignEndBentOne and CapDesignBasis instead of repeating typed counts and areas; EBLongitudinalSummary has no typed copies. All other components are byte identical.",
+  "published_outputs": [
+    "CapDesignBasis: phi_f, phi_v, phi_a, gamma_e, lambda, s_proj and the bar functions Ab(k), Db(k)",
+    "CapDesignEndBentOne and CapDesignEndBentTwo: Status (current distilled result: There are FAILURES, face bar spacing), 62 DC_* ratios each, and the reinforcement inputs n_N1, Bar_N1, n_P1, Bar_P, n_B1, Bar_B, n_skin, Bar_skin",
+    "CapDesignPier: Status (current distilled result: All Checks Pass), 62 DC_* ratios. Distilled numerical checks only, not design acceptance",
+    "FBMPEndBent: EBSteel_topCount, topAreaEach, bottomCount, bottomAreaEach, addedCount, addedAreaEach, skinEachSide, skinAreaEach are live references to CapDesignEndBentOne / CapDesignBasis.Ab(...) (units: counts dimensionless, areas in^2); EBSteel_AsTop, AsPile, AsSpan, AsSkinSide keep their formulas; EBSteel_fc, fy, Es unchanged and still literal"
+  ],
+  "assumptions_and_conventions": [
+    "Both end bents follow the End Bent 1 configuration (user direction in the 8 October record), so the repointed EBSteel_* read CapDesignEndBentOne; End Bent 2 has its own report that nothing else reads",
+    "L_cap = 251 in is kept as a literal in the End Bent 1 and End Bent 2 reports: BridgeGeometry_2Beam.EndBentCap_length is 17 ft 8 in (212 in, 8 October record, EndBent_endDetail = 4 in) while decisions D-026/D-027/D-036 give 235-in end caps and the cap cases use the 251-in cap plus cheek cage envelope (D-027: 235 in + two 8 in cheeks). Recorded as literal_incoherent_journal in cap_bpad/journal/coherence.json, not fixed here",
+    "PierCapDesign (C005) is read only for the pier covers and materials and stays unchanged under decision D-003; CapDesignPier duplicates its scope",
+    "Blocks 1 and 3 of the end-bent design record (8 October context, actual transverse schedule) are not refreshed; the transverse schedule remains the 8 October record and the new report holds the current station schedule",
+    "Added reports are bare fragments from cap_bpad/journal (LF line endings, 2-space indent) appended unchanged; the rest of the journal is CRLF"
+  ],
+  "downstream_impact": [
+    "EBSteel_AsTop, AsPile, AsSpan, AsSkinSide change from the 8 October record (1.76 / 1.58 / 2.2 / 1.4 in^2) to the current case (2.2 / 3.16 / 4.09 / 1.76 in^2); the counts and bars change from 4 #6, 2 #8, 2 #5 added, 7 #4 skin to 5 #6, 4 #8, 3 #5 added, 4 #6 skin",
+    "No other module reads EBSteel_* (searched the whole journal); check reports no detected downstream impact",
+    "FBMPEndBent and the cap reports now reference each other (EBSteel_fc/fy/Es into the cap reports; n_*/Bar_* into FBMPEndBent), with no variable-level cycle; native Blockpad has not evaluated this",
+    "The pier cap reads PierCapDesign covers and materials, so a change to C005 flows into CapDesignPier"
+  ],
+  "external_analysis": "FBMP models and results are unchanged and were not re-run. The end-bent steel in the FBMP analysis is not re-derived from the new longitudinal record; the 8 October analysis snapshot in FBMPEndBent stays as recorded. Currency of FBMP results against the 19 October reinforcement is not asserted.",
+  "checks_performed": [
+    "cap_bpad/journal/verification.json (builder): End Bent 1 891 and End Bent 2 891 and Pier 859 comparisons against the cap tool, 535 Mathcad sheet values compared per cap, 14/14/15 journal references verified, fragment SHA-256 matched by build_components.py before copying",
+    "tests/test_cap_bpad.py: 18 tests OK (run with the .venv interpreter)",
+    "tasks/T012/verify_task.py (independent-checks.json): 12 of 12 checks pass - component order, candidate differs from the current journal only in the six registered components, report.json changed set, no new structural issues or stored errors, every Report.name reference in the four new reports and the edited section resolves, new reports read only declared owners, 45 coherence.json owner values equal the candidate owner definitions, EBSteel_* caches equal count x area from the cap literals, PedBridge diff is exactly the four links, FBMPEndBent diff confined to the intro paragraph and block 2, fragments equal verification.json hashes",
+    "bpad_workflow check T012 and assemble T012 passed (structural_delta passed, 0 cached errors, no inherited or candidate structural issues)"
+  ],
+  "open_items": [
+    "Native Blockpad recalculation and visual review not performed (optional under workflow/promotion_policy.json). Open the candidate and check Ab(...) to in^2 unit handling, amber table-cell definitions, Unicode names with two underscores, canvases, and the two-way FBMPEndBent / cap report references",
+    "BridgeGeometry_2Beam.EndBentCap_length (212 in) remains incoherent with the 235-in end caps and the 251-in envelope the cap reports use; a geometry decision and task are needed to remove the L_cap literal",
+    "C005 PierCapDesign and CapDesignPier duplicate each other under D-003; retirement or reconciliation is a separate decision",
+    "Blocks 1 and 3 of the FBMPEndBent design record remain the 8 October record pending refresh",
+    "End Bent sheets read There are FAILURES (face bar spacing); this is a distilled numerical result, not design acceptance, and pending/failing tool checks listed in cap_bpad/README.md are not recomputed"
+  ]
+}

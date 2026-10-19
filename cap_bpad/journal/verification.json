@@ -1,0 +1,211 @@
+{
+ "basis": {
+  "constants": {
+   "s_proj": 12.0,
+   "γ_e": 1.0,
+   "λ": 1.0,
+   "φ_a": 0.9,
+   "φ_f": 0.9,
+   "φ_v": 0.9
+  },
+  "fragment": "cap_bpad/journal/CapDesignBasis.xml",
+  "fragment_sha256": "7017db909ba0c7680a40670e89c128743afefebf95b7b7551d44c1277d402a8b",
+  "functions": [
+   "Ab",
+   "Db"
+  ],
+  "read_by": [
+   "CapDesignEndBentOne",
+   "CapDesignEndBentTwo",
+   "CapDesignPier"
+  ],
+  "report_name": "CapDesignBasis"
+ },
+ "journal_file": "D2_I95_Project_Journal.bpad",
+ "reports": [
+  {
+   "branches_reached": [
+    "end-truncated window",
+    "flange cracked (ε doubled)",
+    "general method",
+    "moment floor V d_v",
+    "no minimum transverse steel",
+    "simplified (β = 2, θ = 45°)",
+    "strain beyond 0.006 (no resistance)",
+    "strain clamped at zero",
+    "torsion in the simplified method",
+    "torsion investigated"
+   ],
+   "cap": "End Bent 1",
+   "case_sha256": "0a29c474da90eb4062de01eeebde4a841d5ba9ab64f44ee57609ddd15c9d0657",
+   "cells_and_labels": 529,
+   "coverage_comparisons": 603,
+   "coverage_rows_real": 7,
+   "coverage_rows_synthetic": 12,
+   "definitions": 519,
+   "fbmp_file": "End Bent 1_Fixed.XML",
+   "fbmp_sha256": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
+   "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
+   "fragment": "cap_bpad/journal/CapDesignEndBentOne.xml",
+   "fragment_sha256": "0c3bc978caf2a68b7bcdbcf8b79a9d40c0d89285870c1882d56ac394bb351a5c",
+   "functions": 0,
+   "journal_references": 14,
+   "literals_kept": [
+    "L_cap"
+   ],
+   "mathcad_values_compared": 535,
+   "package_revision": "cfb3565da8c3",
+   "references": [
+    "BridgeGeometry_2Beam.EndBentCap_depth",
+    "BridgeGeometry_2Beam.EndBentCap_width",
+    "BridgeGeometry_2Beam.EndBent_coverBottom",
+    "BridgeGeometry_2Beam.EndBent_coverSide",
+    "BridgeGeometry_2Beam.EndBent_coverTop",
+    "CapDesignBasis.s_proj",
+    "CapDesignBasis.γ_e",
+    "CapDesignBasis.λ",
+    "CapDesignBasis.φ_a",
+    "CapDesignBasis.φ_f",
+    "CapDesignBasis.φ_v",
+    "FBMPEndBent.EBSteel_Es",
+    "FBMPEndBent.EBSteel_fc",
+    "FBMPEndBent.EBSteel_fy"
+   ],
+   "report_file": "End Bent 1 Cap Design 10-19.html",
+   "report_name": "CapDesignEndBentOne",
+   "sheet_comparisons": 288,
+   "stations": [
+    "R6-2 → R6-3",
+    "R8-2/R8-3 · C3 E38 · x=205.720924 in · top",
+    "R6-3/R6-4 · C1 E29 · x=160.720924 in · bottom",
+    "R7-2/R7-3 · C1 E32 · x=176.990000 in · bottom",
+    "R1-1/R1-2 · C1 E1 · x=6.220924 in · top"
+   ],
+   "status": "⊗ There are FAILURES",
+   "tool_comparisons": 891
+  },
+  {
+   "branches_reached": [
+    "end-truncated window",
+    "flange cracked (ε doubled)",
+    "general method",
+    "moment floor V d_v",
+    "no minimum transverse steel",
+    "simplified (β = 2, θ = 45°)",
+    "strain beyond 0.006 (no resistance)",
+    "strain clamped at zero",
+    "torsion in the simplified method",
+    "torsion investigated"
+   ],
+   "cap": "End Bent 2",
+   "case_sha256": "8a08d9d2856826806c8538616ba31da3e52848b102991a109f621a6abd60b144",
+   "cells_and_labels": 529,
+   "coverage_comparisons": 603,
+   "coverage_rows_real": 7,
+   "coverage_rows_synthetic": 12,
+   "definitions": 519,
+   "fbmp_file": "End Bent 2_Fixed.XML",
+   "fbmp_sha256": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
+   "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
+   "fragment": "cap_bpad/journal/CapDesignEndBentTwo.xml",
+   "fragment_sha256": "aef8b69b4fca2b9a33acfe027fda27b8e4ae886ff8b34cc2867ce687c60c4108",
+   "functions": 0,
+   "journal_references": 14,
+   "literals_kept": [
+    "L_cap"
+   ],
+   "mathcad_values_compared": 535,
+   "package_revision": "cfb3565da8c3",
+   "references": [
+    "BridgeGeometry_2Beam.EndBentCap_depth",
+    "BridgeGeometry_2Beam.EndBentCap_width",
+    "BridgeGeometry_2Beam.EndBent_coverBottom",
+    "BridgeGeometry_2Beam.EndBent_coverSide",
+    "BridgeGeometry_2Beam.EndBent_coverTop",
+    "CapDesignBasis.s_proj",
+    "CapDesignBasis.γ_e",
+    "CapDesignBasis.λ",
+    "CapDesignBasis.φ_a",
+    "CapDesignBasis.φ_f",
+    "CapDesignBasis.φ_v",
+    "FBMPEndBent.EBSteel_Es",
+    "FBMPEndBent.EBSteel_fc",
+    "FBMPEndBent.EBSteel_fy"
+   ],
+   "report_file": "End Bent 2 Cap Design 10-19.html",
+   "report_name": "CapDesignEndBentTwo",
+   "sheet_comparisons": 288,
+   "stations": [
+    "R6-2 → R6-3",
+    "R8-2/R8-3 · C3 E38 · x=205.720924 in · top",
+    "R6-3/R6-4 · C1 E29 · x=160.720924 in · bottom",
+    "R7-2/R7-3 · C1 E32 · x=176.990000 in · bottom",
+    "R1-1/R1-2 · C1 E1 · x=6.220924 in · top"
+   ],
+   "status": "⊗ There are FAILURES",
+   "tool_comparisons": 891
+  },
+  {
+   "branches_reached": [
+    "end-truncated window",
+    "flange cracked (ε doubled)",
+    "general method",
+    "moment floor V d_v",
+    "no minimum transverse steel",
+    "simplified (β = 2, θ = 45°)",
+    "strain beyond 0.006 (no resistance)",
+    "strain clamped at zero",
+    "torsion in the simplified method",
+    "torsion investigated"
+   ],
+   "cap": "Pier Cap",
+   "case_sha256": "868e96bca964cab589cbc4507dcc6cf18591f37ce0fd6e2bd934524769ddb7a5",
+   "cells_and_labels": 530,
+   "coverage_comparisons": 571,
+   "coverage_rows_real": 6,
+   "coverage_rows_synthetic": 12,
+   "definitions": 519,
+   "fbmp_file": "Pier_Fixed.XML",
+   "fbmp_sha256": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+   "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
+   "fragment": "cap_bpad/journal/CapDesignPier.xml",
+   "fragment_sha256": "4cba052198b82a14673f7b376504bb05d82b32918415aec6f4af16609f596dfe",
+   "functions": 0,
+   "journal_references": 15,
+   "literals_kept": [],
+   "mathcad_values_compared": 535,
+   "package_revision": "cfb3565da8c3",
+   "references": [
+    "BridgeGeometry_2Beam.PierCap_ht",
+    "BridgeGeometry_2Beam.PierCap_length",
+    "BridgeGeometry_2Beam.PierCap_width",
+    "CapDesignBasis.s_proj",
+    "CapDesignBasis.γ_e",
+    "CapDesignBasis.λ",
+    "CapDesignBasis.φ_a",
+    "CapDesignBasis.φ_f",
+    "CapDesignBasis.φ_v",
+    "PierCapDesign.C_b",
+    "PierCapDesign.C_s",
+    "PierCapDesign.C_t",
+    "PierCapDesign.Es",
+    "PierCapDesign.fc",
+    "PierCapDesign.fy"
+   ],
+   "report_file": "Pier Cap Design 10-19.html",
+   "report_name": "CapDesignPier",
+   "sheet_comparisons": 288,
+   "stations": [
+    "R4-1 → R4-2",
+    "R4-3/R4-4 · C1 E16 · x=84.745213 in · top",
+    "R6-4/R6-5 · C1 E29 · x=155.000000 in · bottom",
+    "R7-1/R7-2 · C1 E31 · x=161.499998 in · bottom",
+    "R7-5/R7-6 · C1 E35 · x=188.189893 in · bottom"
+   ],
+   "status": "✓ All Checks Pass",
+   "tool_comparisons": 859
+  }
+ ],
+ "review_document": "cap_bpad/journal/Cap Design - Journal Edition (review).bpad",
+ "review_sha256": "de19502b9888aeaa655e636cf681fea7ab7f888b89dd2231564b51edd118b4c6"
+}

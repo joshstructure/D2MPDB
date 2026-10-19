@@ -1,0 +1,30 @@
+{
+  "task": "T012",
+  "base_sha256": "7a0d47ab899b9eb91f9ead3b31a3c55c8bedfe5f5d05f4f26df093d79f4bd0f0",
+  "components": {
+    "report:PedBridge": {
+      "file": "000.xml",
+      "sha256": "69eba44d0487a397f05e8dac112ef8f537d6148e9e2c3b6bfb230500be16f3d6"
+    },
+    "report:FBMPEndBent": {
+      "file": "001.xml",
+      "sha256": "4091540ec6850c9e62173dcd5a9de6225442e1241b959b4e7a28a630575b4a47"
+    },
+    "report:CapDesignBasis": {
+      "file": "002.xml",
+      "sha256": "7017db909ba0c7680a40670e89c128743afefebf95b7b7551d44c1277d402a8b"
+    },
+    "report:CapDesignEndBentOne": {
+      "file": "003.xml",
+      "sha256": "0c3bc978caf2a68b7bcdbcf8b79a9d40c0d89285870c1882d56ac394bb351a5c"
+    },
+    "report:CapDesignEndBentTwo": {
+      "file": "004.xml",
+      "sha256": "aef8b69b4fca2b9a33acfe027fda27b8e4ae886ff8b34cc2867ce687c60c4108"
+    },
+    "report:CapDesignPier": {
+      "file": "005.xml",
+      "sha256": "4cba052198b82a14673f7b376504bb05d82b32918415aec6f4af16609f596dfe"
+    }
+  }
+}

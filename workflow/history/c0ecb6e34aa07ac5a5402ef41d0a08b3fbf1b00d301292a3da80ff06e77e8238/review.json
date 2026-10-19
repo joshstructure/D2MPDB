@@ -1,0 +1,17 @@
+{
+  "candidate_sha256": "c0ecb6e34aa07ac5a5402ef41d0a08b3fbf1b00d301292a3da80ff06e77e8238",
+  "reviewer": "Josh (repository owner), executed through the Claude Code session of 19 October 2026 on the user's instruction to update the journal; native Blockpad reviews not performed",
+  "native_recalculation": false,
+  "native_visual_review": false,
+  "engineering_review": false,
+  "design_outcome": "unreviewed",
+  "external_analysis_disposition": "FB-MultiPier results are unchanged by this task. The four added reports distil the 19 October 2026 cap cases (D-051, D-049 fixed XMLs); their actions are the registered case values, not re-derived here. The FBMPEndBent longitudinal-steel block now reads CapDesignEndBentOne; no other module consumes EBSteel_As*. Service III and fatigue remain pending in the cap tool.",
+  "external_analysis_status": "unreviewed",
+  "inherited_issues_disposition": "No inherited structural issues or stored errors (0 before, 0 after). Recorded and left open: BridgeGeometry_2Beam.EndBentCap_length (17 ft 8 in, 8 October record) disagrees with the 235-in end caps of D-026/D-027/D-036 and the 251-in cap+cheek cage envelope of the cap cases, so the end-bent reports keep L_cap = 251 in as a literal (coherence.json); PierCapDesign (C005) keeps its own stale trial inputs under D-003 and is read only for pier covers and materials; blocks 1 and 3 of the FBMPEndBent record remain the 8 October record.",
+  "evidence_files": [
+    {
+      "path": "independent-checks.json",
+      "sha256": "956a2776bb17213dda13bac3b4fa6c3cf41ecff574bb3cb61ce0a1091446e67b"
+    }
+  ]
+}

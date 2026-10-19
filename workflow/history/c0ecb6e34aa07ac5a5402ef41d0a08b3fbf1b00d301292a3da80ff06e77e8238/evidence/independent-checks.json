@@ -1,0 +1,285 @@
+{
+  "candidate": "C:\\github\\D2MPDB\\generated\\T012-cap-journal-01\\candidate.bpad",
+  "candidate_sha256": "c0ecb6e34aa07ac5a5402ef41d0a08b3fbf1b00d301292a3da80ff06e77e8238",
+  "all_passed": true,
+  "checks": {
+    "component_list_is_base_plus_four_added_in_order": {
+      "passed": true,
+      "detail": {
+        "base_components": 271,
+        "candidate_components": 275,
+        "appended": [
+          "report:CapDesignBasis",
+          "report:CapDesignEndBentOne",
+          "report:CapDesignEndBentTwo",
+          "report:CapDesignPier"
+        ]
+      }
+    },
+    "candidate_differs_from_current_only_in_six_registered": {
+      "passed": true,
+      "detail": {
+        "differing": [
+          "report:CapDesignBasis",
+          "report:CapDesignEndBentOne",
+          "report:CapDesignEndBentTwo",
+          "report:CapDesignPier",
+          "report:FBMPEndBent",
+          "report:PedBridge"
+        ],
+        "shell_identical": true,
+        "current_matches_task_base": true
+      }
+    },
+    "report_changed_components_exactly_the_six": {
+      "passed": true,
+      "detail": {
+        "changed_components": [
+          "report:PedBridge",
+          "report:FBMPEndBent",
+          "report:CapDesignBasis",
+          "report:CapDesignEndBentOne",
+          "report:CapDesignEndBentTwo",
+          "report:CapDesignPier"
+        ],
+        "candidate_sha256": "c0ecb6e34aa07ac5a5402ef41d0a08b3fbf1b00d301292a3da80ff06e77e8238",
+        "detected_downstream_impact": []
+      }
+    },
+    "no_new_structural_issues_or_stored_errors": {
+      "passed": true,
+      "detail": {
+        "new_structural_issues": {},
+        "new_stored_errors": {},
+        "candidate_cached_errors": 0
+      }
+    },
+    "every_report_name_reference_resolves": {
+      "passed": true,
+      "detail": {
+        "references_checked": {
+          "CapDesignBasis": 0,
+          "CapDesignEndBentOne": 191,
+          "CapDesignEndBentTwo": 191,
+          "CapDesignPier": 193,
+          "FBMPEndBent[EBCurrentDesignRecord]": 34
+        },
+        "unresolved": {}
+      }
+    },
+    "links_and_images_resolve": {
+      "passed": true,
+      "detail": {
+        "new_unresolved": {}
+      }
+    },
+    "new_reports_read_only_declared_owners": {
+      "passed": true,
+      "detail": {
+        "read": {
+          "CapDesignBasis": [],
+          "CapDesignEndBentOne": [
+            "BridgeGeometry_2Beam",
+            "CapDesignBasis",
+            "CapDesignEndBentOne",
+            "FBMPEndBent"
+          ],
+          "CapDesignEndBentTwo": [
+            "BridgeGeometry_2Beam",
+            "CapDesignBasis",
+            "CapDesignEndBentTwo",
+            "FBMPEndBent"
+          ],
+          "CapDesignPier": [
+            "BridgeGeometry_2Beam",
+            "CapDesignBasis",
+            "CapDesignPier",
+            "PierCapDesign"
+          ]
+        },
+        "undeclared": {}
+      }
+    },
+    "owner_values_equal_coherence_json": {
+      "passed": true,
+      "detail": {
+        "entries": 45,
+        "mismatches": [],
+        "recorded_incoherence": [
+          {
+            "report": "CapDesignEndBentOne",
+            "input": "L_cap",
+            "owner": "BridgeGeometry_2Beam.EndBentCap_length",
+            "owner_value": 212.0,
+            "journal_value": 212.0,
+            "report_value": 251.0,
+            "status": "literal_incoherent_journal",
+            "ok": true
+          },
+          {
+            "report": "CapDesignEndBentTwo",
+            "input": "L_cap",
+            "owner": "BridgeGeometry_2Beam.EndBentCap_length",
+            "owner_value": 212.0,
+            "journal_value": 212.0,
+            "report_value": 251.0,
+            "status": "literal_incoherent_journal",
+            "ok": true
+          }
+        ]
+      }
+    },
+    "EBSteel_caches_equal_count_times_area": {
+      "passed": true,
+      "detail": {
+        "cap_literals": {
+          "n_N1": 5.0,
+          "Bar_N1": 6.0,
+          "n_P1": 4.0,
+          "Bar_P": 8.0,
+          "n_B1": 3.0,
+          "Bar_B": 5.0,
+          "n_skin": 4.0,
+          "Bar_skin": 6.0
+        },
+        "expected": {
+          "EBSteel_topCount": 5.0,
+          "EBSteel_topAreaEach": 0.44,
+          "EBSteel_bottomCount": 4.0,
+          "EBSteel_bottomAreaEach": 0.79,
+          "EBSteel_addedCount": 3.0,
+          "EBSteel_addedAreaEach": 0.31,
+          "EBSteel_skinEachSide": 4.0,
+          "EBSteel_skinAreaEach": 0.44,
+          "EBSteel_AsTop": 2.2,
+          "EBSteel_AsPile": 3.16,
+          "EBSteel_AsSpan": 4.09,
+          "EBSteel_AsSkinSide": 1.76
+        },
+        "problems": [],
+        "found": {
+          "EBSteel_topCount": {
+            "formula": "EBSteel_topCount = CapDesignEndBentOne.n_N1",
+            "cache": " = 5"
+          },
+          "EBSteel_topAreaEach": {
+            "formula": "EBSteel_topAreaEach = CapDesignBasis.Ab(CapDesignEndBentOne.Bar_N1) to in^2",
+            "cache": " = 0.44 in^2"
+          },
+          "EBSteel_bottomCount": {
+            "formula": "EBSteel_bottomCount = CapDesignEndBentOne.n_P1",
+            "cache": " = 4"
+          },
+          "EBSteel_bottomAreaEach": {
+            "formula": "EBSteel_bottomAreaEach = CapDesignBasis.Ab(CapDesignEndBentOne.Bar_P) to in^2",
+            "cache": " = 0.79 in^2"
+          },
+          "EBSteel_addedCount": {
+            "formula": "EBSteel_addedCount = CapDesignEndBentOne.n_B1",
+            "cache": " = 3"
+          },
+          "EBSteel_addedAreaEach": {
+            "formula": "EBSteel_addedAreaEach = CapDesignBasis.Ab(CapDesignEndBentOne.Bar_B) to in^2",
+            "cache": " = 0.31 in^2"
+          },
+          "EBSteel_skinEachSide": {
+            "formula": "EBSteel_skinEachSide = CapDesignEndBentOne.n_skin",
+            "cache": " = 4"
+          },
+          "EBSteel_skinAreaEach": {
+            "formula": "EBSteel_skinAreaEach = CapDesignBasis.Ab(CapDesignEndBentOne.Bar_skin) to in^2",
+            "cache": " = 0.44 in^2"
+          },
+          "EBSteel_AsTop": {
+            "formula": "EBSteel_AsTop = EBSteel_topCount*EBSteel_topAreaEach to in^2",
+            "cache": " = 2.2 in^2"
+          },
+          "EBSteel_AsPile": {
+            "formula": "EBSteel_AsPile = EBSteel_bottomCount*EBSteel_bottomAreaEach to in^2",
+            "cache": " = 3.16 in^2"
+          },
+          "EBSteel_AsSpan": {
+            "formula": "EBSteel_AsSpan = EBSteel_AsPile+EBSteel_addedCount*EBSteel_addedAreaEach to in^2",
+            "cache": " = 4.09 in^2"
+          },
+          "EBSteel_AsSkinSide": {
+            "formula": "EBSteel_AsSkinSide = EBSteel_skinEachSide*EBSteel_skinAreaEach to in^2",
+            "cache": " = 1.76 in^2"
+          }
+        }
+      }
+    },
+    "pedbridge_four_links_once_each_and_nothing_else": {
+      "passed": true,
+      "detail": {
+        "link_counts": {
+          "CapDesignBasis": 1,
+          "CapDesignEndBentOne": 1,
+          "CapDesignEndBentTwo": 1,
+          "CapDesignPier": 1
+        },
+        "diff_ops": [
+          [
+            "insert",
+            0,
+            12
+          ]
+        ],
+        "in_order_after_C005": true
+      }
+    },
+    "fbmp_edits_confined_to_intro_and_block_2": {
+      "passed": true,
+      "detail": {
+        "changed_lines": 65,
+        "outside_ops": [],
+        "base_range_lines": [
+          2001,
+          2235
+        ],
+        "new_heading_follow": true
+      }
+    },
+    "new_reports_match_fragments_and_have_status": {
+      "passed": true,
+      "detail": {
+        "CapDesignBasis": {
+          "bytes": 8253,
+          "sha256": "7017db909ba0c7680a40670e89c128743afefebf95b7b7551d44c1277d402a8b",
+          "matches_verification_json": true,
+          "DC_names": 0,
+          "has_Status": false,
+          "Status_cache": null,
+          "stored_errors": 0
+        },
+        "CapDesignEndBentOne": {
+          "bytes": 350936,
+          "sha256": "0c3bc978caf2a68b7bcdbcf8b79a9d40c0d89285870c1882d56ac394bb351a5c",
+          "matches_verification_json": true,
+          "DC_names": 62,
+          "has_Status": true,
+          "Status_cache": "⊗ There are FAILURES",
+          "stored_errors": 0
+        },
+        "CapDesignEndBentTwo": {
+          "bytes": 350940,
+          "sha256": "aef8b69b4fca2b9a33acfe027fda27b8e4ae886ff8b34cc2867ce687c60c4108",
+          "matches_verification_json": true,
+          "DC_names": 62,
+          "has_Status": true,
+          "Status_cache": "⊗ There are FAILURES",
+          "stored_errors": 0
+        },
+        "CapDesignPier": {
+          "bytes": 350949,
+          "sha256": "4cba052198b82a14673f7b376504bb05d82b32918415aec6f4af16609f596dfe",
+          "matches_verification_json": true,
+          "DC_names": 62,
+          "has_Status": true,
+          "Status_cache": "✓ All Checks Pass",
+          "stored_errors": 0
+        }
+      }
+    }
+  }
+}

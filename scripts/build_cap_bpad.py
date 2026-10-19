@@ -12,7 +12,9 @@ verified Mathcad environment. The build stops on any mismatch.
 
     python scripts/build_cap_bpad.py                       # write cap_bpad/*.bpad, fragments/, preview/, verification.json
     python scripts/build_cap_bpad.py --skip-mathcad        # skip the (slow) comparison with the Mathcad environment
+    python scripts/build_cap_bpad.py --journal [path]      # journal edition into cap_bpad/journal/ (live references, coherence gate)
 """
+import copy
 import hashlib
 import json
 import math
@@ -23,10 +25,10 @@ from types import SimpleNamespace
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
+from pier_cap import figure_data as figs  # noqa: E402  (the numbers the figures need; no SVG renderer)
 from pier_cap.transverse import scheduled_bars  # noqa: E402
 from scripts import bpad_sheet as bs  # noqa: E402
 from scripts import build_cap_mathcad as bm  # noqa: E402
-from scripts import cap_mathcad_figures as figs  # noqa: E402
 from scripts.mathcad_sheet import U  # noqa: E402
 
 OUT_DIR = ROOT / 'cap_bpad'
@@ -93,6 +95,7 @@ def to_u(q):
 
 class Sheet:
     """One cap's report: walks the Mathcad blocks and writes the native elements."""
+    journal = None                                  # a JournalContext in the journal edition (live references), else None
 
     def __init__(self, cap, ctx, blocks, report_name, title):
         self.cap, self.ctx, self.blocks = cap, ctx, blocks
@@ -117,6 +120,7 @@ class Sheet:
         self.after_plot = False
         self.skin = bool(self.e.value('Skin_required'))
         self.hook = ctx.hook is not None
+        self.extra_provenance = EXTRA_PROVENANCE          # appended to the 'Distilled from' paragraph
 
     # -- scalar naming
     def register(self, name, family):
@@ -145,7 +149,10 @@ class Sheet:
         return self.sname(base, self.tags[fam][idx])
 
     def formula_of(self, tree):
-        return bs.bp_formula(tree, self.scal)
+        text = bs.bp_formula(tree, self.scal)
+        if self.journal is not None:
+            text = qualify_bar_calls(text)
+        return text
 
     # -- equations
     def eq(self, parent, formula, caption='', style=None, show_result=True, inline=False):
@@ -170,6 +177,8 @@ class Sheet:
         self.sec = int(blk.payload.split('.')[0])
         self.sub = ''
         bs.heading(self.rep, blk.payload, page_break=self.sec in PAGE_BREAK_BEFORE)
+        if self.journal is not None and self.sec == 2:
+            bs.para(self.rep, JOURNAL_SECTION2)
 
     def do_h2(self, blk):
         self.flush()
@@ -182,7 +191,7 @@ class Sheet:
             self.in_fig3_data = True
             return
         if text.startswith('Distilled from'):
-            text = text + ' ' + EXTRA_PROVENANCE
+            text = text + ' ' + self.extra_provenance
         elif text.startswith('Tool status:'):
             text = text.replace('Inputs are highlighted yellow; key results are boxed.',
                                 'Inputs are highlighted amber; distilled results are the green tables.')
@@ -238,8 +247,15 @@ class Sheet:
 
     def input_item(self, it):
         name = bs.bp_name(it.name)
+        if self.journal is not None and it.name in self.journal.refs:      # journal edition: a live reference, not a literal
+            owner, unit = self.journal.refs[it.name]
+            self.scalar_map[it.name] = name
+            self.eq(self.rep, f'{name} = {owner}' + (f' to {unit}' if unit else ''), f'{REFERENCE_CAPTION} {owner}')
+            return
         formula = f'{name} = {self.formula_of(it.tree)}'
         caption = it.caption
+        if self.journal is not None and it.name in self.journal.keep:
+            caption = self.journal.keep[it.name]['reason']
         self.scalar_map[it.name] = name
         self.eq(self.rep, formula, caption, style='Required Input', show_result=False, inline=bool(caption) and len(caption) <= 45)
 
@@ -298,13 +314,12 @@ class Sheet:
     def do_D(self, it):
         n = it.name
         if n in ('A_bar', 'd_bar'):
-            vals = vector_literal(it.tree)
-            unit = 'in^2' if n == 'A_bar' else 'in'
-            expr = f'0 {unit}'
-            for k in range(len(vals) - 1, 2, -1):
-                expr = f'If(k == {k}, {bs.bp_num(vals[k])} {unit}, {expr})'
-            fname = 'Ab' if n == 'A_bar' else 'Db'
-            self.eq(self.rep, f'{fname}(k) = {expr}', 'bar area by bar number' if n == 'A_bar' else 'bar diameter by bar number')
+            _, formula, caption = bar_function(it)
+            if self.journal is not None:                      # journal edition: the tables live in CapDesignBasis
+                if n == 'A_bar':
+                    bs.note(self.rep, BAR_TABLE_NOTE)
+                return
+            self.eq(self.rep, formula, caption)
         elif n in REGION_D:
             self.register(n, 'r')
         elif n in SKIPPED_D:
@@ -631,8 +646,9 @@ def adapter_env(sheet, eng):
         env[mc] = to_u(eng.get(bp))
     for mc, names in sheet.vector_map.items():
         env[mc] = [to_u(eng.get(n)) for n in names]
-    env['A_bar'] = [to_u(eng.evaluate(f'Ab({k})')) for k in range(12)]
-    env['d_bar'] = [to_u(eng.evaluate(f'Db({k})')) for k in range(12)]
+    fn = BASIS_NAME + '.' if getattr(sheet, 'journal', None) is not None else ''      # journal edition: CapDesignBasis.Ab(k)
+    env['A_bar'] = [to_u(eng.evaluate(f'{fn}Ab({k})')) for k in range(12)]
+    env['d_bar'] = [to_u(eng.evaluate(f'{fn}Db({k})')) for k in range(12)]
     return env
 
 
@@ -661,10 +677,12 @@ def compare_envs(mine, theirs):
 
 
 # ----------------------------------------------------------------------------- build
-def prepare(cap):
-    e = bm.evaluate_cap(cap)
-    rep = bm.report_link(cap, e)
-    rev = bm.notebook_revision()
+def prepare(cap, e=None, report=None, revision=None):
+    """The evaluated case, its report link and the block list; `e`, `report` and `revision` replace the files
+    (an in-memory notebook case, a report-link dict as bm.report_info returns, the package revision text)."""
+    e = bm.evaluate_cap(cap) if e is None else e
+    rep = bm.report_link(cap, e) if report is None else report
+    rev = bm.notebook_revision() if revision is None else revision
     rows = bm.governing_stations(e)
     bm.check_stations(e, rows)
     physical = scheduled_bars(e.case)
@@ -676,11 +694,23 @@ def prepare(cap):
     return ctx, blocks, values, physical, dv, l_cap
 
 
-def build_cap(cap, mathcad_compare=True):
-    ctx, blocks, values, physical, dv, l_cap = prepare(cap)
+def build_cap(cap, mathcad_compare=True, e=None, report=None, revision=None, names=None, extra_provenance=None, journal=None):
+    """Build and verify one cap's report: (sheet, engine, meta, filename, ctx).
+
+    `e`, `report` and `revision` take an in-memory case instead of the project files (see prepare); `names` is
+    (report name, title, filename) in place of SIDE_BY_KEY; `extra_provenance` replaces EXTRA_PROVENANCE.
+    `mathcad_compare` builds the Mathcad sheet of the same cap from the project files, so it is for file builds only.
+    `journal` is a bpad_sheet.JournalLinks: the journal edition, whose shared inputs are live references to the journal
+    and to CapDesignBasis. The coherence gate then runs first and stops the build when a journal value disagrees with
+    the cap case; meta['journal'] holds the coherence rows."""
+    ctx, blocks, values, physical, dv, l_cap = prepare(cap, e, report, revision)
     e = ctx.e
-    report_name, title, filename = SIDE_BY_KEY[cap['key']]
+    report_name, title, filename = names or SIDE_BY_KEY[cap['key']]
+    jctx = journal_context(journal, cap, ctx, blocks) if journal is not None else None
     sheet = Sheet(cap, ctx, blocks, report_name, title)
+    sheet.journal = jctx
+    if extra_provenance is not None:
+        sheet.extra_provenance = extra_provenance
     sheet.ctx_values = values
     for blk in blocks:
         getattr(sheet, 'do_' + blk.kind)(blk)
@@ -689,7 +719,7 @@ def build_cap(cap, mathcad_compare=True):
 
     rep = sheet.rep
     # ---- (a) syntax and names: the engine is built from the XML that will be written
-    eng = bs.BpEngine(report=report_name)
+    eng = new_engine(report_name, jctx)
     n_defs = n_funcs = 0
     for dyn in rep.iter('dynexp'):
         formula = dyn.get('formula')
@@ -731,6 +761,8 @@ def build_cap(cap, mathcad_compare=True):
         if not isinstance(el.tag, str):
             raise BuildError('XML comment in the report')
     check_formula_rules(rep)
+    if jctx is not None:
+        check_journal_edition(rep, jctx)
 
     # ---- (b) against the cap tool
     env = adapter_env(sheet, eng)
@@ -790,13 +822,15 @@ def build_cap(cap, mathcad_compare=True):
                 coverage_real=len(real), coverage_synthetic=len(synthetic), mathcad_values=n_mathcad, status=status,
                 stations=[r['id'] for r in ctx.rows], branches=sorted(bm.branches_reached(ctx.rows + cover_rows)),
                 comparisons=len(shown) + len(extra))
+    if jctx is not None:
+        meta['journal'] = jctx.summary()
     return sheet, eng, meta, filename, ctx
 
 
 def coverage_comparisons(sheet, eng, ctx, cover, cover_rows, cover_values):
     """Station equations for the branch-coverage rows, evaluated by a throwaway engine next to the head definitions."""
     n = len(cover_rows)
-    cov = bs.BpEngine(report=sheet.name)
+    cov = new_engine(sheet.name, sheet.journal)
     for dyn in sheet.rep.iter('dynexp'):
         formula = dyn.get('formula')
         lhs, _ = bs.split_definition(formula)
@@ -858,18 +892,21 @@ def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def write_outputs(sheet, eng, meta, filename, ctx, cap):
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
-    (OUT_DIR / 'fragments').mkdir(exist_ok=True)
-    (OUT_DIR / 'preview').mkdir(exist_ok=True)
+def write_outputs(sheet, eng, meta, filename, ctx, cap, out_dir=None):
+    """Write the document, fragment and preview sidecar into cap_bpad/ (or `out_dir`); returns the verification entry."""
+    out = OUT_DIR if out_dir is None else Path(out_dir)
+    out.mkdir(parents=True, exist_ok=True)
+    (out / 'fragments').mkdir(exist_ok=True)
+    (out / 'preview').mkdir(exist_ok=True)
     data = bs.serialize(sheet.doc)
-    (OUT_DIR / filename).write_bytes(data)
-    (OUT_DIR / 'fragments' / f'{sheet.name}.xml').write_bytes(bs.serialize(sheet.rep, declaration=False).rstrip())
+    (out / filename).write_bytes(data)
+    (out / 'fragments' / f'{sheet.name}.xml').write_bytes(bs.serialize(sheet.rep, declaration=False).rstrip())
     sidecar = {name: cv.sidecar() for name, cv in sheet.canvases.items()}
-    (OUT_DIR / 'preview' / f'{sheet.name}.canvases.json').write_text(json.dumps(sidecar, indent=1, ensure_ascii=False), encoding='utf-8', newline='\n')
+    (out / 'preview' / f'{sheet.name}.canvases.json').write_text(json.dumps(sidecar, indent=1, ensure_ascii=False), encoding='utf-8', newline='\n')
     xml = ctx.e.case['analysis']['xml_audit']
+    bpad_file = f'cap_bpad/{filename}' if out_dir is None else f'{out.name}/{filename}'
     return {
-        'cap': cap['label'], 'report_file': ctx.report['file'], 'bpad_file': f'cap_bpad/{filename}', 'report_name': sheet.name,
+        'cap': cap['label'], 'report_file': ctx.report['file'], 'bpad_file': bpad_file, 'report_name': sheet.name,
         'case_sha256': ctx.report['case_sha'], 'formula_sha256': ctx.report['formula_sha'], 'fbmp_file': xml['filename'],
         'fbmp_sha256': xml['sha256'], 'package_revision': ctx.revision, 'stations': meta['stations'],
         'definitions': meta['definitions'], 'functions': meta['functions'], 'cells_and_labels': meta['cells'],
@@ -880,9 +917,385 @@ def write_outputs(sheet, eng, meta, filename, ctx, cap):
     }
 
 
+# ----------------------------------------------------------------------------- journal edition (live references)
+BASIS_NAME = 'CapDesignBasis'
+BASIS_TITLE = 'Cap Design Basis - shared factors'
+JOURNAL_PATH = ROOT / 'journal' / 'D2_I95_Project_Journal.bpad'
+JOURNAL_SUBDIR = 'journal'                                         # cap_bpad/journal/
+REVIEW_FILE = 'Cap Design - Journal Edition (review).bpad'
+REFERENCE_CAPTION = 'shared journal value —'
+JOURNAL_SECTION2 = 'Shared geometry, materials and factors are live references to the journal; the owner is named beside each.'
+BAR_TABLE_NOTE = (f'Bar areas and diameters by bar number are the shared functions {BASIS_NAME}.Ab(k) and {BASIS_NAME}.Db(k) '
+                  f'({REFERENCE_CAPTION} {BASIS_NAME}); this report defines no bar table of its own.')
+REVIEW_BANNER = ('Review copy: the references to BridgeGeometry_2Beam, FBMPEndBent and PierCapDesign resolve only inside the project '
+                 'journal (D2_I95_Project_Journal.bpad). Opened on its own, this file shows them as undefined; the values stored in it '
+                 'are the journal values at the time of the build.')
+BG = 'BridgeGeometry_2Beam'
+# Section 2 inputs that become live references: Mathcad name -> (qualified owner in the journal, display unit)
+END_BENT_REFS = {
+    'b': (f'{BG}.EndBentCap_width', 'in'), 'h': (f'{BG}.EndBentCap_depth', 'in'),
+    'C_t': (f'{BG}.EndBent_coverTop', 'in'), 'C_b': (f'{BG}.EndBent_coverBottom', 'in'), 'C_s': (f'{BG}.EndBent_coverSide', 'in'),
+    'fc': ('FBMPEndBent.EBSteel_fc', 'ksi'), 'fy': ('FBMPEndBent.EBSteel_fy', 'ksi'), 'Es': ('FBMPEndBent.EBSteel_Es', 'ksi'),
+}
+PIER_REFS = {
+    'b': (f'{BG}.PierCap_width', 'in'), 'h': (f'{BG}.PierCap_ht', 'in'), 'L_cap': (f'{BG}.PierCap_length', 'in'),
+    'C_t': ('PierCapDesign.C_t', 'in'), 'C_b': ('PierCapDesign.C_b', 'in'), 'C_s': ('PierCapDesign.C_s', 'in'),
+    'fc': ('PierCapDesign.fc', 'ksi'), 'fy': ('PierCapDesign.fy', 'ksi'), 'Es': ('PierCapDesign.Es', 'ksi'),
+}
+# The cap design constants that no journal report owns: Mathcad name, value, display unit, caption with its code reference.
+BASIS_CONSTANTS = [
+    ('phi_f', 0.9, None, 'flexure resistance factor, tension-controlled sections, LRFD 5.5.4.2'),
+    ('phi_v', 0.9, None, 'shear and torsion resistance factor, normal-weight concrete, LRFD 5.5.4.2'),
+    ('phi_a', 0.9, None, 'axial resistance factor, LRFD 5.7.3.5'),
+    ('gamma_e', 1, None, 'crack-control exposure factor, Class 1, LRFD 5.6.7'),
+    ('lambda_c', 1, None, 'concrete density modification factor, normal weight, LRFD 5.4.2.8'),
+    ('s_proj', 12, 'in', 'project spacing limit for face steel, FDOT SDG 4.1.4A–C'),
+]
+BASIS_REFS = {mc: (f'{BASIS_NAME}.{bs.bp_name(mc)}', unit) for mc, _, unit, _ in BASIS_CONSTANTS}
+# Inputs that stay literals although the journal holds a similar quantity: (cap key, Mathcad name) -> why, and what to report.
+# 'owner' is the journal definition that is evaluated and reported (never compared) next to the case value.
+CAP_LENGTH_REASON = ('cap + cheek cage envelope (D-027: 235 in cap + two 8 in cheeks); '
+                     f'{BG}.EndBentCap_length still holds 17 ft 8 in')
+KEEP_LITERAL = {
+    (key, 'L_cap'): dict(status='literal_incoherent_journal', owner=f'{BG}.EndBentCap_length', unit='in', reason=CAP_LENGTH_REASON)
+    for key in ('end_bent_1', 'end_bent_2')
+}
+LITERAL_STATUSES = ('literal_owner_here', 'literal_incoherent_journal')
+INPUT_ORDER = [name for _, group in bm.INPUT_GROUPS for name, _, _ in group]
+
+
+def references_for(cap_key):
+    """{Mathcad name: (qualified owner, unit)} of a cap: its geometry and materials plus the shared basis."""
+    refs = dict(PIER_REFS if cap_key == 'pier' else END_BENT_REFS)
+    refs.update(BASIS_REFS)
+    return refs
+
+
+def literals_for(cap_key):
+    return {name: spec for (key, name), spec in KEEP_LITERAL.items() if key == cap_key}
+
+
+def qualify_bar_calls(text):
+    """Ab(...) / Db(...) -> CapDesignBasis.Ab(...) / CapDesignBasis.Db(...)."""
+    return re.sub(r'(?<![\w.])(Ab|Db)\(', BASIS_NAME + r'.\1(', text)
+
+
+def bar_function(it):
+    """(function name, Blockpad definition, caption) of the A_bar / d_bar bar table definition `it`."""
+    n = it.name
+    vals = vector_literal(it.tree)
+    unit = 'in^2' if n == 'A_bar' else 'in'
+    expr = f'0 {unit}'
+    for k in range(len(vals) - 1, 2, -1):
+        expr = f'If(k == {k}, {bs.bp_num(vals[k])} {unit}, {expr})'
+    fname = 'Ab' if n == 'A_bar' else 'Db'
+    return fname, f'{fname}(k) = {expr}', 'bar area by bar number' if n == 'A_bar' else 'bar diameter by bar number'
+
+
+def bar_functions(blocks):
+    """{'Ab': (definition, caption), 'Db': ...} from the bar tables of a cap's block list."""
+    out = {}
+    for blk in blocks:
+        if blk.kind == 'eqs':
+            for it in blk.payload:
+                if it.kind == 'def' and it.name in ('A_bar', 'd_bar'):
+                    fname, formula, caption = bar_function(it)
+                    out[fname] = (formula, caption)
+    if sorted(out) != ['Ab', 'Db']:
+        raise BuildError('the bar tables A_bar and d_bar were not found in the block list')
+    return out
+
+
+def in_unit(q, unit):
+    """The number of a quantity in a display unit (None: it must be a plain number)."""
+    if unit is None:
+        if q.d != bs.NODIM:
+            raise bs.BpError(f'{q!r} is not a plain number')
+        return q.v
+    u = bs.BpEngine().unit_q(unit)
+    q.same(u, f'unit {unit}')
+    return q.v / u.v
+
+
+def clean(v):
+    return float(f'{v:.12g}')
+
+
+def number_text(v):
+    return bs.bp_num(clean(v))
+
+
+class CapBasis:
+    """The shared report CapDesignBasis: factors, bar-table functions, discussion box; evaluated and read back."""
+
+    def __init__(self, bars):
+        self.bars = bars
+        self.doc, self.rep = build_basis_report(bars)
+        self.review_rep = build_basis_report(bars, banner=True)[1]
+        self.eng = bs.BpEngine(report=BASIS_NAME)
+        for dyn in self.rep.iter('dynexp'):
+            formula = dyn.get('formula')
+            body = dyn.find('expbody')
+            if body is None or body.text != formula:
+                raise BuildError(f'expbody differs from the formula: {formula!r}')
+            self.eng.add(formula)
+        if self.eng.unresolved_calls():
+            raise BuildError(f'{BASIS_NAME}: undefined functions {self.eng.unresolved_calls()}')
+        self.eng.all()
+        taken = set(self.eng.defs) | set(self.eng.functions)
+        for name in sorted(taken):
+            if re.fullmatch(r'[A-Za-z]{1,3}[0-9]+', name):
+                raise BuildError(f'{name} looks like a spreadsheet cell address')
+        for el in self.rep.iter('table', 'textcell', 'section'):
+            if el.get('name') in taken:
+                raise BuildError(f'{el.tag} name {el.get("name")} is also a definition')
+        check_formula_rules(self.rep)
+        self.fragment = bs.serialize(self.rep, declaration=False).rstrip()
+        written = bs.ET.fromstring(self.fragment)                    # what the written XML defines, read back
+        self.names = set()
+        for dyn in written.iter('dynexp'):
+            lhs, _ = bs.split_definition(dyn.get('formula'))
+            self.names.add(lhs.split('(')[0])
+        self.values = {bs.bp_name(mc): self.eng.get(bs.bp_name(mc)) for mc, _, _, _ in BASIS_CONSTANTS}
+        self.functions = {f'{BASIS_NAME}.{fname}': formula for fname, (formula, _) in bars.items()}
+
+    def value(self, qualified):
+        owner, _, name = qualified.partition('.')
+        if owner != BASIS_NAME or name not in self.values:
+            raise bs.JournalError(f'{qualified} is not a constant of {BASIS_NAME}')
+        return self.values[name]
+
+
+def build_basis_report(bars, banner=False):
+    """(document, report element) of CapDesignBasis; `banner` adds the review-copy notice at the top."""
+    doc = bs.new_document()
+    rep = bs.new_report(doc, BASIS_NAME, BASIS_TITLE)
+    if banner:
+        bs.para(rep, REVIEW_BANNER, fontsize='10', textcolor='#8A2B1F', background='#FBE9E5', spacingafter='8')
+    bs.para(rep, 'D2 I-95 PEDESTRIAN BRIDGE', fontsize=16, fontweight='bold', spacingafter=2)
+    bs.para(rep, BASIS_TITLE, fontsize=14, fontweight='bold', spacingafter=6)
+    bs.para(rep, 'Cap design constants that no other journal report owns, written once for the three distilled cap design reports. '
+                 'Written by scripts/build_cap_bpad.py --journal; edit the values there, not here.')
+    bs.heading(rep, '1. Shared factors and limits')
+    for mc, value, unit, caption in BASIS_CONSTANTS:
+        bs.equation(rep, f'{bs.bp_name(mc)} = {number_text(value)}' + (f' {unit}' if unit else ''), caption,
+                    style='Required Input', show_result=False)
+    bs.heading(rep, '2. Bar tables')
+    for fname in ('Ab', 'Db'):
+        bs.equation(rep, bars[fname][0], bars[fname][1])
+    bs.heading(rep, '3. Discussion')
+    bs.table(rep, 'BasisDiscussion', ['Discussion'], [
+        ['What this is. The factors, the project spacing limit and the bar tables shared by the distilled cap design reports. Geometry '
+         'and materials are not repeated here; each cap report reads them from the report that owns them.'],
+        ['Read by. CapDesignEndBentOne, CapDesignEndBentTwo and CapDesignPier, as CapDesignBasis.φ_f, CapDesignBasis.φ_v, '
+         'CapDesignBasis.φ_a, CapDesignBasis.γ_e, CapDesignBasis.λ, CapDesignBasis.s_proj, CapDesignBasis.Ab(k) and CapDesignBasis.Db(k).'],
+        ['Codes. AASHTO LRFD Bridge Design Specifications, 10th edition (2024); FDOT Structures Design Guidelines, January 2026; '
+         'article numbers are cited beside each factor.'],
+        ['C005. PierCapDesign keeps its own copies of φ_f, φ_v and γ_e under decision D-003 (preserve C005 unchanged). This report '
+         'neither reads nor changes them; the pier cap report reads PierCapDesign for its cover and materials and this report for the factors.'],
+    ], [620], 'discussion')
+    return doc, rep
+
+
+class JournalContext:
+    """What a journal-edition cap build needs: references, kept literals, externals, the basis and the coherence rows."""
+
+    def __init__(self, links, basis, cap_key, refs, keep, rows, externals, units):
+        self.links, self.basis, self.cap_key = links, basis, cap_key
+        self.refs, self.keep, self.rows, self.externals, self.units = refs, keep, rows, externals, units
+
+    def apply(self, eng):
+        for qualified, value in self.externals.items():
+            eng.add_external(qualified, value)
+        for qualified, formula in self.basis.functions.items():
+            eng.add_function_as(qualified, formula)
+
+    def summary(self):
+        kept = [r for r in self.rows if r['status'] != 'reference']
+        return dict(rows=self.rows, references=sum(r['status'] == 'reference' for r in self.rows), literals=kept, units=self.units)
+
+
+def new_engine(report_name, jctx=None):
+    eng = bs.BpEngine(report=report_name)
+    if jctx is not None:
+        jctx.apply(eng)
+    return eng
+
+
+def journal_basis(links, blocks):
+    """The CapDesignBasis edition for this journal, built from the first cap's bar tables and checked against the others."""
+    bars = bar_functions(blocks)
+    if links.basis is None:
+        links.basis = CapBasis(bars)
+    elif links.basis.bars != bars:
+        raise BuildError('the bar tables of this cap differ from the ones in CapDesignBasis')
+    return links.basis
+
+
+def journal_context(links, cap, ctx, blocks):
+    """The coherence gate: every referenced journal value must equal the cap-case input, else the build stops."""
+    basis = journal_basis(links, blocks)
+    key = cap['key']
+    refs, keep = references_for(key), literals_for(key)
+    for name in set(refs) & set(keep):
+        raise BuildError(f'{name} is both a reference and a kept literal')
+    unknown = [n for n in list(refs) + list(keep) if n not in INPUT_ORDER]
+    if unknown:
+        raise BuildError(f'not Section 2 inputs: {unknown}')
+    rows, bad, externals, units = [], [], {}, {}
+    for mc in INPUT_ORDER:
+        if mc not in refs and mc not in keep:
+            continue
+        case = float(ctx.values[mc])
+        unit = refs[mc][1] if mc in refs else keep[mc]['unit']
+        owner = refs[mc][0] if mc in refs else keep[mc]['owner']
+        shown = bs.bp_name(mc)
+        units[shown] = unit or ''
+        try:
+            q = basis.value(owner) if owner.startswith(BASIS_NAME + '.') else links.value(owner)
+            journal_value = in_unit(q, unit)
+        except bs.BpError as ex:
+            bad.append(f'  {shown}: {owner} cannot be evaluated: {ex}')
+            continue
+        agree = abs(journal_value - case) <= TOL * max(abs(case), 1e-12)
+        if mc in refs:
+            externals[owner] = q
+            if not agree:
+                bad.append(f'  {shown} ({cap["label"]}): the case holds {number_text(case)}{" " + unit if unit else ""} but the journal '
+                           f'owner {owner} holds {number_text(journal_value)}{" " + unit if unit else ""}')
+            rows.append(dict(input=shown, owner=owner, journal_value=clean(journal_value), case_value=clean(case), status='reference',
+                             note=f'{REFERENCE_CAPTION} {owner}' + (f' ({unit})' if unit else ' (no unit)')))
+        else:
+            spec = keep[mc]
+            if spec['status'] not in LITERAL_STATUSES:
+                raise BuildError(f'{mc}: unknown literal status {spec["status"]}')
+            if spec['status'] == 'literal_incoherent_journal' and agree:
+                bad.append(f'  {shown} is kept as a literal because {owner} disagreed, but they agree now '
+                           f'({number_text(case)} {unit}): make it a reference and remove it from KEEP_LITERAL')
+            rows.append(dict(input=shown, owner=owner, journal_value=clean(journal_value), case_value=clean(case), status=spec['status'],
+                             note=spec['reason']))
+    if bad:
+        raise BuildError(f'coherence gate, {cap["label"]}: the journal disagrees with the cap case\n' + '\n'.join(bad))
+    return JournalContext(links, basis, key, refs, keep, rows, externals, units)
+
+
+def check_journal_edition(rep, jctx):
+    """No Ab/Db definition and no literal for a referenced name remain, and every CapDesignBasis name is written in its report."""
+    defs = {}
+    for dyn in rep.iter('dynexp'):
+        lhs, rhs = bs.split_definition(dyn.get('formula'))
+        if lhs and lhs.split('(')[0] in ('Ab', 'Db'):
+            raise BuildError(f'{lhs}: the bar tables are read from {BASIS_NAME} in the journal edition')
+        defs[lhs] = rhs
+    for mc, (owner, unit) in jctx.refs.items():
+        name = bs.bp_name(mc)
+        want = owner + (f' to {unit}' if unit else '')
+        if defs.get(name) != want:
+            raise BuildError(f'{name} is {defs.get(name)!r} in the report; the reference {want!r} is required')
+    for el in rep.iter():
+        formula = el.get('formula')
+        if not formula:
+            continue
+        for ref in re.findall(re.escape(BASIS_NAME) + r'\.(\w+)', formula):
+            if ref not in jctx.basis.names:
+                raise BuildError(f'{BASIS_NAME}.{ref} is not defined in {BASIS_NAME}.xml ({formula!r})')
+
+
+def review_document(basis, sheets):
+    """One document holding Basis (with the review banner), then the cap reports."""
+    doc = bs.new_document()
+    doc.append(copy.deepcopy(basis.review_rep))
+    for sheet in sheets:
+        doc.append(copy.deepcopy(sheet.rep))
+    return bs.serialize(doc)
+
+
+def write_journal_outputs(links, results, out_dir=None):
+    """cap_bpad/journal/: fragments, sidecars, review document, coherence.json and verification.json. `results` are build tuples."""
+    base = (OUT_DIR if out_dir is None else Path(out_dir)) / JOURNAL_SUBDIR
+    (base / 'preview').mkdir(parents=True, exist_ok=True)
+    basis = links.basis
+    (base / f'{BASIS_NAME}.xml').write_bytes(basis.fragment)
+    shown_base = f'cap_bpad/{JOURNAL_SUBDIR}' if out_dir is None else f'{Path(out_dir).name}/{JOURNAL_SUBDIR}'
+    coherence, entries, sheets = {}, [], []
+    for sheet, eng, meta, filename, ctx, cap in results:
+        data = bs.serialize(sheet.rep, declaration=False).rstrip()
+        (base / f'{sheet.name}.xml').write_bytes(data)
+        sidecar = {name: cv.sidecar() for name, cv in sheet.canvases.items()}
+        (base / 'preview' / f'{sheet.name}.canvases.json').write_text(json.dumps(sidecar, indent=1, ensure_ascii=False),
+                                                                      encoding='utf-8', newline='\n')
+        summary = meta['journal']
+        coherence[sheet.name] = summary['rows']
+        xml = ctx.e.case['analysis']['xml_audit']
+        entries.append({
+            'cap': cap['label'], 'report_file': ctx.report['file'], 'fragment': f'{shown_base}/{sheet.name}.xml', 'report_name': sheet.name,
+            'case_sha256': ctx.report['case_sha'], 'formula_sha256': ctx.report['formula_sha'], 'fbmp_file': xml['filename'],
+            'fbmp_sha256': xml['sha256'], 'package_revision': ctx.revision, 'stations': meta['stations'],
+            'definitions': meta['definitions'], 'functions': meta['functions'], 'cells_and_labels': meta['cells'],
+            'tool_comparisons': meta['comparisons'], 'sheet_comparisons': meta['shown'], 'coverage_comparisons': meta['coverage'],
+            'coverage_rows_real': meta['coverage_real'], 'coverage_rows_synthetic': meta['coverage_synthetic'],
+            'mathcad_values_compared': meta['mathcad_values'], 'branches_reached': meta['branches'], 'status': meta['status'],
+            'journal_references': summary['references'], 'literals_kept': [r['input'] for r in summary['literals']],
+            'references': sorted({r['owner'] for r in summary['rows'] if r['status'] == 'reference'}),
+            'fragment_sha256': hashlib.sha256(data).hexdigest(),
+        })
+        sheets.append(sheet)
+    review = review_document(basis, sheets)
+    (base / REVIEW_FILE).write_bytes(review)
+    write_json(base / 'coherence.json', coherence, sort_keys=False)       # rows keep the field order of the specification
+    write_json(base / 'verification.json', {
+        'journal_file': links.source, 'basis': {
+            'report_name': BASIS_NAME, 'fragment': f'{shown_base}/{BASIS_NAME}.xml', 'fragment_sha256': hashlib.sha256(basis.fragment).hexdigest(),
+            'constants': {name: clean(q.v) for name, q in basis.values.items()}, 'functions': sorted(basis.bars),
+            'read_by': [e['report_name'] for e in entries]},
+        'review_document': f'{shown_base}/{REVIEW_FILE}', 'review_sha256': hashlib.sha256(review).hexdigest(), 'reports': entries})
+    return base
+
+
+def write_json(path, value, sort_keys=True):
+    Path(path).write_text(json.dumps(value, indent=1, ensure_ascii=False, sort_keys=sort_keys), encoding='utf-8', newline='\n')
+
+
+def journal_line(name, summary):
+    kept = summary['literals']
+    text = f'{name}: {summary["references"]} journal references verified, {len(kept)} literal{"" if len(kept) == 1 else "s"} kept'
+    if kept:
+        units = summary['units']
+        text += ' (' + '; '.join(f'{r["input"]}: journal {number_text(r["journal_value"])} {units[r["input"]]} vs '
+                                 f'case {number_text(r["case_value"])} {units[r["input"]]}'.replace('  ', ' ') for r in kept) + ')'
+    return text
+
+
+def journal_path_from(argv):
+    i = argv.index('--journal')
+    if i + 1 < len(argv) and not argv[i + 1].startswith('--'):
+        path = Path(argv[i + 1])
+        return path if path.is_absolute() or path.exists() else ROOT / path
+    return JOURNAL_PATH
+
+
+def main_journal(argv):
+    compare_mathcad = '--skip-mathcad' not in argv
+    links = bs.JournalLinks.load(journal_path_from(argv))
+    results = []
+    for cap in bm.CAPS:
+        sheet, eng, meta, filename, ctx = build_cap(cap, compare_mathcad, journal=links)
+        results.append((sheet, eng, meta, filename, ctx, cap))
+        mine = f'; {meta["mathcad_values"]} match the Mathcad sheet' if compare_mathcad else ''
+        print(f'{journal_line(sheet.name, meta["journal"])}; {meta["comparisons"]} values match the cap tool{mine}')
+    base = write_journal_outputs(links, results)
+    basis = links.basis
+    print(f'{BASIS_NAME}: {len(basis.values)} shared factors, {len(basis.bars)} bar functions; read by '
+          + ', '.join(r[0].name for r in results))
+    print(f'Wrote {len(results) + 1} reports, {REVIEW_FILE}, coherence.json and verification.json to cap_bpad/{JOURNAL_SUBDIR}/')
+    return 0
+
+
 def main(argv=None):
     sys.stdout.reconfigure(encoding='utf-8')
     argv = sys.argv[1:] if argv is None else argv
+    if '--journal' in argv:
+        return main_journal(argv)
     compare_mathcad = '--skip-mathcad' not in argv
     entries = []
     for cap in bm.CAPS:

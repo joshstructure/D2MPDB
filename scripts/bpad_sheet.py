@@ -16,6 +16,7 @@ Nothing here knows about caps; scripts/build_cap_bpad.py drives it.
 import math
 import re
 from decimal import Decimal
+from pathlib import Path
 
 from lxml import etree as ET
 
@@ -136,6 +137,7 @@ class _Scalars:
 
     def __init__(self, source):
         self.source = source
+        self.functions = set()                      # user-defined Blockpad functions a tree may call by name
 
     def __call__(self, base, index):
         if self.source is None:
@@ -147,9 +149,12 @@ class _Scalars:
         return self.source.get((base, index))
 
 
-def bp_formula(tree, scalars=None):
-    """Blockpad formula text of a Mathcad parse tree (see module docstring and scripts/mathcad_sheet.py)."""
+def bp_formula(tree, scalars=None, functions=()):
+    """Blockpad formula text of a Mathcad parse tree (see module docstring and scripts/mathcad_sheet.py).
+
+    `functions` names user-defined Blockpad functions the tree may call (emitted as `Name(args)`)."""
     S = scalars if isinstance(scalars, _Scalars) else _Scalars(scalars)
+    S.functions = S.functions | set(functions)
     text, _ = _emit(tree, S)
     return text
 
@@ -229,6 +234,8 @@ def _emit(t, S):
             raise EmitError(f'{f}() is handled by the builder, not the emitter')
         if f == 'IF':
             return 'If(' + ', '.join(_emit(a, S)[0] for a in args) + ')', 5
+        if f in S.functions:
+            return bp_name(f) + '(' + ', '.join(_emit(a, S)[0] for a in args) + ')', 5
         if f in ('max', 'min'):
             flat = []
 
@@ -391,8 +398,26 @@ class BpEngine:
         self.defs, self.functions, self.cache = {}, {}, {}
         self.units, self.order, self.stack = {}, [], []
         self.called = set()
+        self.externals = {}                      # qualified names of other reports (journal edition): name -> value
 
     # -- definitions
+    def add_external(self, name, value, unit=None):
+        """A value owned by another report, read by its qualified name (e.g. BridgeGeometry_2Beam.EndBentCap_width)."""
+        self.externals[name] = value
+        if unit:
+            self.units[name] = unit
+
+    def add_function_as(self, qualified, formula):
+        """A function owned by another report, called by its qualified name (CapDesignBasis.Ab(k))."""
+        lhs, rhs = split_definition(formula)
+        if lhs is None or '(' not in lhs:
+            raise BpError(f'not a function definition: {formula!r}')
+        expression, _ = split_to(rhs)
+        tree = parse(expression)
+        self._collect_calls(tree)
+        args = lhs.split('(', 1)[1]
+        self.functions[qualified] = ([a.strip() for a in args[:-1].split(',') if a.strip()], tree)
+
     def add(self, formula):
         lhs, rhs = split_definition(formula)
         if lhs is None:
@@ -444,6 +469,8 @@ class BpEngine:
         return name
 
     def get(self, name):
+        if name in self.externals:
+            return self.externals[name]
         name = self._strip(name)
         if name in self.cache:
             return self.cache[name]
@@ -634,6 +661,130 @@ class BpEngine:
     def display_formula(self, formula):
         value, unit = self.evaluate_unit(formula)
         return self.format_value(value, unit)
+
+
+# ----------------------------------------------------------------------------- live references into the project journal
+class JournalError(BpError):
+    pass
+
+
+def tree_names(tree, names=None, calls=None):
+    """(names, calls): the identifiers and the called function names of a parse tree from `parse`."""
+    names = set() if names is None else names
+    calls = set() if calls is None else calls
+    k = tree[0]
+    if k == 'name':
+        names.add(tree[1])
+    elif k == 'call':
+        calls.add(tree[1])
+        for a in tree[2]:
+            tree_names(a, names, calls)
+    elif k == 'bin':
+        tree_names(tree[2], names, calls)
+        tree_names(tree[3], names, calls)
+    elif k == 'unary':
+        tree_names(tree[2], names, calls)
+    return names, calls
+
+
+class JournalLinks:
+    """Read-only evaluator of journal definitions, for the live references of the journal edition.
+
+    The journal (32 MB) is parsed once. The definitions of an owner report are collected the first time one of its
+    names is asked for, and only the transitive closure of the asked-for name is handed to a `BpEngine` (the evaluator
+    that checks the cap sheets), so a long report costs nothing for the names that are not used. Journal formulas are
+    read as the journal writes them: `PierCap_width=4ft`, `36 in to ft in`, `3/4 in`. A reference to another report
+    inside a chain is resolved recursively. `override()` replaces an evaluated value (for tests of the coherence gate).
+    `basis` is a slot for the CapDesignBasis edition that scripts/build_cap_bpad.py fills."""
+    DEFINITION = re.compile(r'^\s*([^\s=()"<>!,]+)\s*=(?!=)\s*(.*?)\s*$', re.S)
+
+    def __init__(self, root, source=None):
+        self.root, self.source = root, source
+        self.reports = {}
+        for rep in root.iterfind('report'):
+            name = rep.get('name')
+            if name and name not in self.reports:
+                self.reports[name] = rep
+        self._definitions, self._engines, self.overrides = {}, {}, {}
+        self.basis = None
+
+    @classmethod
+    def load(cls, path):
+        parser = ET.XMLParser(huge_tree=True, resolve_entities=False, no_network=True)
+        return cls(ET.parse(str(path), parser).getroot(), Path(path).name)
+
+    def definitions(self, owner):
+        """{name: [right-hand sides]} of the `name = ...` dynexps of an owner report (functions are not collected)."""
+        if owner not in self._definitions:
+            rep = self.reports.get(owner)
+            if rep is None:
+                raise JournalError(f'report {owner} is not in the journal')
+            found = {}
+            for dyn in rep.iter('dynexp'):
+                formula = dyn.get('formula')
+                if formula is None:
+                    body = dyn.find('expbody')
+                    formula = body.text if body is not None else None
+                m = self.DEFINITION.match(formula) if formula else None
+                if m:
+                    options = found.setdefault(m.group(1), [])
+                    if m.group(2) not in options:
+                        options.append(m.group(2))
+            self._definitions[owner] = found
+        return self._definitions[owner]
+
+    def _engine(self, owner):
+        if owner not in self._engines:
+            self._engines[owner] = BpEngine(report=owner)
+        return self._engines[owner]
+
+    def _load(self, owner, name):
+        eng = self._engine(owner)
+        if name in eng.defs:
+            return
+        options = self.definitions(owner).get(name)
+        if not options:
+            raise JournalError(f'{owner}.{name} is not defined in the journal')
+        if len(options) > 1:
+            raise JournalError(f'{owner}.{name} has {len(options)} different definitions: {options}')
+        rhs = options[0]
+        try:
+            eng.add(f'{name} = {rhs}')
+            names, calls = tree_names(parse(split_to(rhs)[0]))
+        except BpError as e:
+            raise JournalError(f'{owner}.{name} = {rhs}: {e}') from None
+        for call in sorted(calls):
+            if call not in KNOWN_FUNCTIONS:
+                raise JournalError(f'{owner}.{name} calls {call}(), which the evaluator does not read')
+        for dep in sorted(names):
+            if dep in UNIT_Q or dep in ('true', 'false', 'null'):
+                continue
+            if '.' in dep:                                       # another report inside the chain
+                eng.add_external(dep, self.value(dep))
+            else:
+                self._load(owner, dep)
+
+    def value(self, qualified):
+        """The evaluated `Q` (inch, kip, radian base units) of a qualified journal name such as Owner.Name."""
+        if qualified in self.overrides:
+            return self.overrides[qualified]
+        owner, dot, name = qualified.partition('.')
+        if not dot or not name:
+            raise JournalError(f'{qualified!r} is not a qualified journal name')
+        self._load(owner, name)
+        try:
+            return self._engine(owner).get(name)
+        except BpError as e:
+            raise JournalError(f'{qualified}: {e}') from None
+
+    def formula(self, qualified):
+        """The journal's own text of a definition, 'name = ...'."""
+        owner, _, name = qualified.partition('.')
+        options = self.definitions(owner).get(name)
+        return f'{name} = {options[0]}' if options and len(options) == 1 else None
+
+    def override(self, qualified, quantity):
+        self.overrides[qualified] = quantity
 
 
 # ----------------------------------------------------------------------------- XML helpers
