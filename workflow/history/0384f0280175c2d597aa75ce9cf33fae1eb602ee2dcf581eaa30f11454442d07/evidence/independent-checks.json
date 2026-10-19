@@ -1,0 +1,34 @@
+{
+  "candidate": "C:\\github\\D2MPDB\\generated\\T013-cap-provenance-01\\candidate.bpad",
+  "candidate_sha256": "0384f0280175c2d597aa75ce9cf33fae1eb602ee2dcf581eaa30f11454442d07",
+  "base_sha256": "c0ecb6e34aa07ac5a5402ef41d0a08b3fbf1b00d301292a3da80ff06e77e8238",
+  "reports": {
+    "report:CapDesignBasis": {
+      "lines_removed": 0,
+      "lines_added": 0,
+      "only_provenance": true,
+      "unchanged": true
+    },
+    "report:CapDesignEndBentOne": {
+      "lines_removed": 1,
+      "lines_added": 1,
+      "only_provenance": true
+    },
+    "report:CapDesignEndBentTwo": {
+      "lines_removed": 1,
+      "lines_added": 1,
+      "only_provenance": true
+    },
+    "report:CapDesignPier": {
+      "lines_removed": 1,
+      "lines_added": 1,
+      "only_provenance": true
+    }
+  },
+  "changed_components": [
+    "report:CapDesignEndBentOne",
+    "report:CapDesignEndBentTwo",
+    "report:CapDesignPier"
+  ],
+  "passed": true
+}

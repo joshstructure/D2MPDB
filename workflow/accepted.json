@@ -1,22 +1,22 @@
 {
-  "task": "T012",
-  "journal_sha256": "c0ecb6e34aa07ac5a5402ef41d0a08b3fbf1b00d301292a3da80ff06e77e8238",
-  "previous_sha256": "7a0d47ab899b9eb91f9ead3b31a3c55c8bedfe5f5d05f4f26df093d79f4bd0f0",
-  "promoted": "2026-10-19T16:22:06.588633+00:00",
+  "task": "T013",
+  "journal_sha256": "0384f0280175c2d597aa75ce9cf33fae1eb602ee2dcf581eaa30f11454442d07",
+  "previous_sha256": "c0ecb6e34aa07ac5a5402ef41d0a08b3fbf1b00d301292a3da80ff06e77e8238",
+  "promoted": "2026-10-19T16:44:15.769368+00:00",
   "review": {
-    "candidate_sha256": "c0ecb6e34aa07ac5a5402ef41d0a08b3fbf1b00d301292a3da80ff06e77e8238",
-    "reviewer": "Josh (repository owner), executed through the Claude Code session of 19 October 2026 on the user's instruction to update the journal; native Blockpad reviews not performed",
+    "candidate_sha256": "0384f0280175c2d597aa75ce9cf33fae1eb602ee2dcf581eaa30f11454442d07",
+    "reviewer": "Josh (repository owner), executed through the Claude Code session of 19 October 2026; provenance-only text change, native Blockpad reviews not performed",
     "native_recalculation": false,
     "native_visual_review": false,
     "engineering_review": false,
     "design_outcome": "unreviewed",
-    "external_analysis_disposition": "FB-MultiPier results are unchanged by this task. The four added reports distil the 19 October 2026 cap cases (D-051, D-049 fixed XMLs); their actions are the registered case values, not re-derived here. The FBMPEndBent longitudinal-steel block now reads CapDesignEndBentOne; no other module consumes EBSteel_As*. Service III and fatigue remain pending in the cap tool.",
+    "external_analysis_disposition": "No engineering value changes: each of the three cap reports differs from the T012 journal in exactly one line, the 'Distilled from' provenance paragraph, which no longer names the cap notebook package revision (the case and formula SHA-256 and the report file remain). FB-MultiPier results unchanged.",
     "external_analysis_status": "unreviewed",
-    "inherited_issues_disposition": "No inherited structural issues or stored errors (0 before, 0 after). Recorded and left open: BridgeGeometry_2Beam.EndBentCap_length (17 ft 8 in, 8 October record) disagrees with the 235-in end caps of D-026/D-027/D-036 and the 251-in cap+cheek cage envelope of the cap cases, so the end-bent reports keep L_cap = 251 in as a literal (coherence.json); PierCapDesign (C005) keeps its own stale trial inputs under D-003 and is read only for pier covers and materials; blocks 1 and 3 of the FBMPEndBent record remain the 8 October record.",
+    "inherited_issues_disposition": "No structural issues or stored errors before or after. The open items recorded at T012 are unchanged: BridgeGeometry_2Beam.EndBentCap_length (17 ft 8 in) versus the 235-in caps and the 251-in cap+cheek envelope, C005 duplication under D-003, and blocks 1 and 3 of the FBMPEndBent record remaining the 8 October snapshot.",
     "evidence_files": [
       {
         "path": "independent-checks.json",
-        "sha256": "956a2776bb17213dda13bac3b4fa6c3cf41ecff574bb3cb61ce0a1091446e67b"
+        "sha256": "8c45ccc52118eb131508cc6120d70fd99127e60d5e284d7031c177c11a12539e"
       }
     ]
   },
@@ -25,5 +25,5 @@
     "effective_date": "2026-10-16",
     "basis": "User instructed that BPAD changes may proceed without mandatory native recalculation, appearance review or engineering review, until the user reinstates those requirements. Scope, dependency, exact-byte, reference-integrity and evidence checks remain mandatory."
   },
-  "history": "workflow/history/c0ecb6e34aa07ac5a5402ef41d0a08b3fbf1b00d301292a3da80ff06e77e8238"
+  "history": "workflow/history/0384f0280175c2d597aa75ce9cf33fae1eb602ee2dcf581eaa30f11454442d07"
 }

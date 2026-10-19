@@ -1,0 +1,29 @@
+{
+  "task": "T013",
+  "journal_sha256": "0384f0280175c2d597aa75ce9cf33fae1eb602ee2dcf581eaa30f11454442d07",
+  "previous_sha256": "c0ecb6e34aa07ac5a5402ef41d0a08b3fbf1b00d301292a3da80ff06e77e8238",
+  "promoted": "2026-10-19T16:44:15.769368+00:00",
+  "review": {
+    "candidate_sha256": "0384f0280175c2d597aa75ce9cf33fae1eb602ee2dcf581eaa30f11454442d07",
+    "reviewer": "Josh (repository owner), executed through the Claude Code session of 19 October 2026; provenance-only text change, native Blockpad reviews not performed",
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false,
+    "design_outcome": "unreviewed",
+    "external_analysis_disposition": "No engineering value changes: each of the three cap reports differs from the T012 journal in exactly one line, the 'Distilled from' provenance paragraph, which no longer names the cap notebook package revision (the case and formula SHA-256 and the report file remain). FB-MultiPier results unchanged.",
+    "external_analysis_status": "unreviewed",
+    "inherited_issues_disposition": "No structural issues or stored errors before or after. The open items recorded at T012 are unchanged: BridgeGeometry_2Beam.EndBentCap_length (17 ft 8 in) versus the 235-in caps and the 251-in cap+cheek envelope, C005 duplication under D-003, and blocks 1 and 3 of the FBMPEndBent record remaining the 8 October snapshot.",
+    "evidence_files": [
+      {
+        "path": "independent-checks.json",
+        "sha256": "8c45ccc52118eb131508cc6120d70fd99127e60d5e284d7031c177c11a12539e"
+      }
+    ]
+  },
+  "promotion_policy": {
+    "reviews_required": false,
+    "effective_date": "2026-10-16",
+    "basis": "User instructed that BPAD changes may proceed without mandatory native recalculation, appearance review or engineering review, until the user reinstates those requirements. Scope, dependency, exact-byte, reference-integrity and evidence checks remain mandatory."
+  },
+  "history": "workflow/history/0384f0280175c2d597aa75ce9cf33fae1eb602ee2dcf581eaa30f11454442d07"
+}
