@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-19",
+  "decision": "D-052",
+  "authorization": "User supplied the named HTML and requested: Add this latest bridge geometry report to the source.",
+  "source": {
+    "source_id": "GEOMETRY-REPORT",
+    "topic": "Bridge geometry interactive report",
+    "path": "project_current/geometry/reports/Bridge_Geometry_Interactive_Report_physical_v2_622e5ca1bf.html",
+    "status": "User-selected current - geometry snapshot",
+    "scope": "Offline station explorer with longitudinal geometry, cross-sections, support seats, walls and pile cutoffs",
+    "sha256": "23642af61597dd7444ca0634f0ef8e5c552fc633da23fd63d48165b065263022",
+    "registered_on": "2026-10-19",
+    "depends_on": "GEOMETRY;ROADWAY;MCAD-S1;MCAD-S2",
+    "origin": "User-supplied HTML report, received 19 October 2026",
+    "notes": "D-052. Exact supplied report generated 2026-10-19T14:35:33.200716+00:00 from model 622e5ca1bf. Embedded data agrees with the registered notebook within 1e-9; maximum numeric difference 8.88e-16. Notebook remains geometry owner under D-036. Partial roadway coverage and existing downstream reconciliation remain. See coherence/evidence/2026-10-19-geometry-report/source_receipt.json.",
+    "hash_basis": "exact_bytes",
+    "supplied_filename": "Bridge_Geometry_Interactive_Report_physical_v2_622e5ca1bf.html",
+    "bytes": 724407,
+    "generated_utc": "2026-10-19T14:35:33.200716+00:00",
+    "model_id": "622e5ca1bf",
+    "geometry_version": "physical-station-cuts-2"
+  },
+  "inputs": [
+    {
+      "source_id": "GEOMETRY",
+      "path": "Bridge_Geometry_2 Beam_V2.ipynb",
+      "sha256": "2d45fc34b606f2157e2d634beb4d9dd04319c0664d9e96e5bf53e8eca993dafd",
+      "hash_basis": "lf_text"
+    },
+    {
+      "source_id": "ROADWAY",
+      "path": "Geometry Report.xml",
+      "sha256": "9880ef7adeeac4228666146f5d5bb4dd17ef93f66ffeaf465a2c813eb69489e4",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "MCAD-S1",
+      "path": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd",
+      "sha256": "a6b0f967d271c193591d477e219ac66f98b72309d19958a04c6cd08e575a8dcd",
+      "hash_basis": "exact_bytes"
+    },
+    {
+      "source_id": "MCAD-S2",
+      "path": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd",
+      "sha256": "182e3471f169d3a379c437ad12f359d567813bd4631bcc0b82e78ad860fa91b8",
+      "hash_basis": "exact_bytes"
+    }
+  ],
+  "verification": {
+    "exact_copy": true,
+    "embedded_payload_comparison": "All keys, array lengths and nonnumeric values match; only generated_utc is excluded. All numeric leaves compared with zero relative tolerance and 1e-9 absolute tolerance.",
+    "numeric_values_compared": 19494,
+    "maximum_absolute_difference": 8.881784197001252e-16,
+    "model_id_match": true,
+    "external_script_stylesheet_image_dependencies": 0,
+    "source_checks": [
+      {
+        "check_id": "SOURCE:GEOMETRY-REPORT",
+        "status": "MATCH",
+        "detail": "Exact registered bytes are present.",
+        "source_ids": [
+          "GEOMETRY-REPORT"
+        ],
+        "path": "project_current/geometry/reports/Bridge_Geometry_Interactive_Report_physical_v2_622e5ca1bf.html",
+        "expected_sha256": "23642af61597dd7444ca0634f0ef8e5c552fc633da23fd63d48165b065263022",
+        "actual_sha256": "23642af61597dd7444ca0634f0ef8e5c552fc633da23fd63d48165b065263022"
+      }
+    ]
+  },
+  "tracker": {
+    "path": "project_current/coherence/Coherence_Tracker.xlsx",
+    "sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
+    "unchanged": true
+  },
+  "downstream": [
+    "The registered geometry notebook remains the geometry authority under D-036.",
+    "Re-export and record a new disposition after changes to the notebook or its inputs.",
+    "Existing COH-023 CAD/load/quantity reconciliation and COH-028 pile-head analysis reconciliation remain open. No native CAD or structural analysis rerun was performed.",
+    "The embedded CAD source_file/source_sha256 is inherited dimensional provenance, not a claim that this report matches the latest CAD file.",
+    "The dated full-project coherence check and lineage view are not regenerated during this bounded ingestion; concurrent unfinished source work is excluded."
+  ],
+  "review_scope": "Source selection and bounded notebook/report data comparison; not engineering acceptance or a browser visual review."
+}

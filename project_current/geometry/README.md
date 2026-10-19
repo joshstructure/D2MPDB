@@ -2,8 +2,22 @@
 
 The current notebook is [Bridge geometry](../../Bridge_Geometry_2%20Beam_V2.ipynb)
 and its input is [Geometry Report.xml](../../Geometry%20Report.xml).
-Keep their existing paths for local/Colab compatibility. Register a saved geometry
-report here when one is selected, together with the exact notebook/input revision.
+Keep their existing paths for local/Colab compatibility.
+
+## Selected interactive geometry report
+
+The [19 October station explorer](reports/Bridge_Geometry_Interactive_Report_physical_v2_622e5ca1bf.html)
+is selected as GEOMETRY-REPORT under D-052. Download and open the HTML in a
+browser; its plots and station controls work offline. The original supplied file
+is preserved byte-for-byte. It was exported on 19 October from model 622e5ca1bf.
+
+Its embedded geometry matches the current registered notebook: all 19,494
+numeric values agree within 1e-9 (largest difference 8.88e-16). The exact
+notebook, roadway XML and Mathcad fingerprints are recorded in the
+[source receipt](../coherence/evidence/2026-10-19-geometry-report/source_receipt.json).
+The notebook remains the geometry owner under D-036. This report is a saved
+output; future notebook changes require a new export and source disposition.
+Partial roadway coverage and existing CAD/analysis reconciliation remain open.
 
 ## Selected geometry tables
 
