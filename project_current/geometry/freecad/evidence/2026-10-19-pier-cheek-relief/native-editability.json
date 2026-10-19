@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "ordinary_recompute_updates_wall_and_bars": true,
+  "width_depth_chamfer_controls_verified": true,
+  "through_recess_rejected": true,
+  "bar_count_24_in_recess": 12,
+  "restored_bar_count": 12,
+  "unrelated_geometry_preserved": true,
+  "source_file_unchanged": true
+}

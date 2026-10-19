@@ -1,3 +1,13 @@
+D-059 — PIER CHEEK WALLS WITH SHALLOW RELIEF, 19 OCTOBER 2026
+
+Two solid 48 x 48 x 12 in pier cheek walls sit on the cap, with their outside faces inset 3 in from the cap ends. Each outward face has a centered 30 x 30 in panel recessed 3/4 in, with a 3/4 x 3/4 in 45-degree perimeter chamfer. The flat recess floor is 28.5 in square; solid thickness behind it is 11.25 in. Inside faces remain flat.
+
+Each cheek has six vertical and six horizontal #4 bars in one centered continuous mat, at 10 in maximum each way and 2 in minimum cover. Both walls total 31.2571614583332 ft3 concrete, 87 ft of bar and 58.116 lb steel. All 99 scoped physical checks pass, including solid geometry, cover, spacing, new concrete/steel intersections, quantities and continuous reinforcement. Ordinary native parameter edits, saved-file reopen and native rendering pass. All 2124 protected original objects are preserved; the existing reinforcement group only gains the new child groups.
+
+Model geometry adopted after user visual review. Pier cheek cap anchorage and structural design remain unconfigured; geometry-notebook, calculation, journal-quantity and drawing reconciliation remain downstream work. Existing unrelated findings and tracker statuses/responses are preserved.
+
+PREVIOUS UPDATES (historical)
+
 D-055 — BACKWALL VERTICAL COORDINATION, 19 OCTOBER 2026
 
 Removed four overlapping #5 verticals (one redundant bar per face on each backwall). Each backwall now has 44 verticals and 10 horizontals. One end vertical per face sits inside the cheekwall horizontal hooks at all four corners. Interior stations shift only as needed to clear the cap transverse steel and maintain 12-in maximum spacing.

@@ -563,3 +563,8 @@ backwalls carry `TopNotebookModelID` for the adopted notebook revision.
 ## Backwall vertical coordination (D-055)
 
 `backwall_extensions.configure_verticals(inputs, omitted, stations)` adds native `OmittedVerticalIDsJSON` and `VerticalStationOverridesJSON` controls. Station values require units and are local Y coordinates. Original analytic lengths, marks and grid basis remain. The controller rejects missing/nonvertical IDs and spacing violations; it preserves added-end mark links when a partner is omitted. Caller owns the transaction and must check nominal solid overlap, assembly cover and schedules after `cheek_hooks.refresh(inputs)`. The helper never saves.
+
+
+## Pier cheeks with shallow relief (D-059)
+
+`pier_cheeks.create(doc, settings)`, `refresh(doc)` and `validate(doc)` maintain two native parametric hosts and their centered continuous #4 mats. Host properties include `RecessWidth`, `RecessHeight`, `RecessBottom`, `RecessOffset`, `RecessDepth`, `RecessChamfer`, `WallWidth`, `Height`, `Thickness` and `CapEndInset`; all dimensions require units. Recesses are outward only and must leave solid wall thickness and required cover. Linked native reinforcement paths, quantities and schedules recompute from the host and inputs. Validation measures nominal BRep geometry, four 45-degree chamfer faces, remaining thickness, cover, spacing and new overlaps. Helpers never save. Structural design and cap anchorage are not configured.

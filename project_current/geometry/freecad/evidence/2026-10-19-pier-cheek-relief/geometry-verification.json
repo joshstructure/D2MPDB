@@ -1,0 +1,1108 @@
+{
+  "status": "PASS",
+  "transaction_id": "pier-cheeks-relief-20261019-v1",
+  "source": "C:\\github\\D2MPDB\\project_current\\geometry\\freecad\\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "source_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df",
+  "scope": "Editable file-only review; selected source unchanged",
+  "settings": {
+    "thickness": "12 in",
+    "width": "48 in",
+    "height": "48 in",
+    "inset": "3 in",
+    "recess_width": "30 in",
+    "recess_height": "30 in",
+    "recess_bottom": "9 in",
+    "recess_depth": "0.75 in",
+    "recess_chamfer": "0.75 in",
+    "source_detail": "Supplied pier detail 2026-10-19: 12 in thickness, 48 in width/height, 3 in cap-end inset; solid wall; shallow exterior recess with 3/4 in perimeter chamfer per user correction.",
+    "reference_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df"
+  },
+  "validation": {
+    "checks": [
+      {
+        "name": "BridgeCheekPier1_valid_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier1_outline_and_volume",
+        "status": "PASS",
+        "volume_ft3": 15.628580729166593
+      },
+      {
+        "name": "BridgeCheekPier1_solid_panel_thickness",
+        "status": "PASS",
+        "remaining_in": 11.249999999999982
+      },
+      {
+        "name": "BridgeCheekPier1_recess_floor",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier1_four_45_degree_chamfers",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier1_sits_on_cap",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier1_concrete_intersections",
+        "status": "PASS",
+        "conflicts": []
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV06_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV06_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH06_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH06_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1_live_totals",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV01_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999999714,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV02_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999986,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV03_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999986,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV04_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999986,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV05_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999986,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV06_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999998281,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH01_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999999714,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH02_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999771,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH03_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999771,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH04_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999771,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH05_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999771,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH06_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999999714,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "BridgeCheekPier1_vertical_max_spacing",
+        "status": "PASS",
+        "maximum_in": 10.0
+      },
+      {
+        "name": "BridgeCheekPier1_horizontal_max_spacing",
+        "status": "PASS",
+        "maximum_in": 10.0
+      },
+      {
+        "name": "BridgeCheekPier1_centered_tangent_mat",
+        "status": "PASS",
+        "face_cover_in": [
+          5.499999999999725,
+          5.50000000000028
+        ]
+      },
+      {
+        "name": "BridgeCheekPier1_schedule",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier1_continuous_mat",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier2_valid_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier2_outline_and_volume",
+        "status": "PASS",
+        "volume_ft3": 15.62858072916662
+      },
+      {
+        "name": "BridgeCheekPier2_solid_panel_thickness",
+        "status": "PASS",
+        "remaining_in": 11.25
+      },
+      {
+        "name": "BridgeCheekPier2_recess_floor",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier2_four_45_degree_chamfers",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier2_sits_on_cap",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier2_concrete_intersections",
+        "status": "PASS",
+        "conflicts": []
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV06_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV06_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH06_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH06_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2_live_totals",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV01_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999999714,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV02_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999986,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV03_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999986,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV04_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999986,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV05_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999986,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV06_cover",
+        "status": "PASS",
+        "cover_in": 2.0000000000001146,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH01_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999999714,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH02_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999771,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH03_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999771,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH04_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999771,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH05_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999771,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH06_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999999714,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "BridgeCheekPier2_vertical_max_spacing",
+        "status": "PASS",
+        "maximum_in": 10.0
+      },
+      {
+        "name": "BridgeCheekPier2_horizontal_max_spacing",
+        "status": "PASS",
+        "maximum_in": 10.0
+      },
+      {
+        "name": "BridgeCheekPier2_centered_tangent_mat",
+        "status": "PASS",
+        "face_cover_in": [
+          5.499999999999725,
+          5.5000000000002975
+        ]
+      },
+      {
+        "name": "BridgeCheekPier2_schedule",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier2_continuous_mat",
+        "status": "PASS"
+      },
+      {
+        "name": "new_pier_steel_intersections",
+        "status": "PASS",
+        "checked_pairs": 72,
+        "clashes": []
+      }
+    ],
+    "failures": [],
+    "measurements": [
+      {
+        "wall": "BridgeCheekPier1",
+        "bars": 12,
+        "concrete_ft3": 15.628580729166593,
+        "steel_length_ft": 43.49999999999995,
+        "steel_weight_lb": 29.05799999999996,
+        "minimum_cover_in": 1.9999999999998281,
+        "recess_in": [
+          30.0,
+          30.0,
+          0.7499999999999999
+        ],
+        "chamfer_in": 0.7499999999999999,
+        "remaining_panel_in": 11.249999999999982,
+        "borders_in": [
+          8.999999999999943,
+          9.000000000000014
+        ],
+        "top_elevation_ft": 47.764939909758915
+      },
+      {
+        "wall": "BridgeCheekPier2",
+        "bars": 12,
+        "concrete_ft3": 15.62858072916662,
+        "steel_length_ft": 43.49999999999995,
+        "steel_weight_lb": 29.05799999999996,
+        "minimum_cover_in": 1.9999999999999714,
+        "recess_in": [
+          30.0,
+          30.0,
+          0.7499999999999999
+        ],
+        "chamfer_in": 0.7499999999999999,
+        "remaining_panel_in": 11.25,
+        "borders_in": [
+          8.999999999999943,
+          9.000000000000014
+        ],
+        "top_elevation_ft": 47.764939909758915
+      }
+    ],
+    "limitations": "Continuous centered mat behind a shallow exterior recess. Cap anchorage and structural design NOT CONFIGURED."
+  },
+  "invalid_opening_rejected": true,
+  "native_edit_restore": true,
+  "protected_objects": 2124,
+  "archive": {
+    "status": "STAGED",
+    "source_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df",
+    "output_sha256": "2e09b81402b68fea0af0660071f2cdd5f6655451a5c04cdf37c81d29f4aa64d9",
+    "retained_objects": 2124,
+    "native_resources_copied": 3669,
+    "view_count": 2188,
+    "source_unchanged": true
+  },
+  "cold_reopen": true,
+  "cold_reopen_validation": {
+    "checks": [
+      {
+        "name": "BridgeCheekPier1_valid_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier1_outline_and_volume",
+        "status": "PASS",
+        "volume_ft3": 15.628580729166597
+      },
+      {
+        "name": "BridgeCheekPier1_solid_panel_thickness",
+        "status": "PASS",
+        "remaining_in": 11.249999999999982
+      },
+      {
+        "name": "BridgeCheekPier1_recess_floor",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier1_four_45_degree_chamfers",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier1_sits_on_cap",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier1_concrete_intersections",
+        "status": "PASS",
+        "conflicts": []
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV06_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV06_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH06_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH06_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1_live_totals",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV01_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999999714,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV02_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999986,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV03_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999986,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV04_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999986,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV05_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999986,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MV06_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999998281,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH01_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999999714,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH02_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999771,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH03_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999771,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH04_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999771,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH05_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999771,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier1MH06_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999999714,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "BridgeCheekPier1_vertical_max_spacing",
+        "status": "PASS",
+        "maximum_in": 10.0
+      },
+      {
+        "name": "BridgeCheekPier1_horizontal_max_spacing",
+        "status": "PASS",
+        "maximum_in": 10.0
+      },
+      {
+        "name": "BridgeCheekPier1_centered_tangent_mat",
+        "status": "PASS",
+        "face_cover_in": [
+          5.5000000000002975,
+          5.499999999999689
+        ]
+      },
+      {
+        "name": "BridgeCheekPier1_schedule",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier1_continuous_mat",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier2_valid_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier2_outline_and_volume",
+        "status": "PASS",
+        "volume_ft3": 15.62858072916662
+      },
+      {
+        "name": "BridgeCheekPier2_solid_panel_thickness",
+        "status": "PASS",
+        "remaining_in": 11.25
+      },
+      {
+        "name": "BridgeCheekPier2_recess_floor",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier2_four_45_degree_chamfers",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier2_sits_on_cap",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier2_concrete_intersections",
+        "status": "PASS",
+        "conflicts": []
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV06_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV06_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH01_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH01_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH02_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH02_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH03_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH03_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH04_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH04_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH05_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH05_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH06_physical_geometry",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH06_links_and_placement",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2_live_totals",
+        "status": "PASS"
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV01_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999999714,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV02_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999986,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV03_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999986,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV04_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999986,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV05_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999986,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MV06_cover",
+        "status": "PASS",
+        "cover_in": 2.0000000000001146,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH01_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999999714,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH02_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999771,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH03_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999771,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH04_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999771,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH05_cover",
+        "status": "PASS",
+        "cover_in": 2.249999999999771,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "SteelBridgeCheekPier2MH06_cover",
+        "status": "PASS",
+        "cover_in": 1.9999999999999714,
+        "required_in": 2.0,
+        "outside_mm3": 0.0
+      },
+      {
+        "name": "BridgeCheekPier2_vertical_max_spacing",
+        "status": "PASS",
+        "maximum_in": 10.0
+      },
+      {
+        "name": "BridgeCheekPier2_horizontal_max_spacing",
+        "status": "PASS",
+        "maximum_in": 10.0
+      },
+      {
+        "name": "BridgeCheekPier2_centered_tangent_mat",
+        "status": "PASS",
+        "face_cover_in": [
+          5.5000000000002975,
+          5.499999999999725
+        ]
+      },
+      {
+        "name": "BridgeCheekPier2_schedule",
+        "status": "PASS"
+      },
+      {
+        "name": "BridgeCheekPier2_continuous_mat",
+        "status": "PASS"
+      },
+      {
+        "name": "new_pier_steel_intersections",
+        "status": "PASS",
+        "checked_pairs": 72,
+        "clashes": []
+      }
+    ],
+    "failures": [],
+    "measurements": [
+      {
+        "wall": "BridgeCheekPier1",
+        "bars": 12,
+        "concrete_ft3": 15.628580729166597,
+        "steel_length_ft": 43.49999999999995,
+        "steel_weight_lb": 29.05799999999996,
+        "minimum_cover_in": 1.9999999999998281,
+        "recess_in": [
+          30.0,
+          30.0,
+          0.7499999999999999
+        ],
+        "chamfer_in": 0.7499999999999999,
+        "remaining_panel_in": 11.249999999999982,
+        "borders_in": [
+          8.999999999999943,
+          9.000000000000014
+        ],
+        "top_elevation_ft": 47.764939909758915
+      },
+      {
+        "wall": "BridgeCheekPier2",
+        "bars": 12,
+        "concrete_ft3": 15.62858072916662,
+        "steel_length_ft": 43.49999999999995,
+        "steel_weight_lb": 29.05799999999996,
+        "minimum_cover_in": 1.9999999999999714,
+        "recess_in": [
+          30.0,
+          30.0,
+          0.7499999999999999
+        ],
+        "chamfer_in": 0.7499999999999999,
+        "remaining_panel_in": 11.25,
+        "borders_in": [
+          8.999999999999943,
+          9.000000000000014
+        ],
+        "top_elevation_ft": 47.764939909758915
+      }
+    ],
+    "limitations": "Continuous centered mat behind a shallow exterior recess. Cap anchorage and structural design NOT CONFIGURED."
+  },
+  "candidate": "C:\\Users\\joshs\\Desktop\\CAD_AI\\output\\pier-cheeks-relief-20261019\\B4 - Pier cheek walls - Recessed panel review.FCStd",
+  "candidate_sha256": "14db08f0313de0566e984d58d36397830ee13e1dce91d75738e2d61d77c9db8c",
+  "source_unchanged": true
+}

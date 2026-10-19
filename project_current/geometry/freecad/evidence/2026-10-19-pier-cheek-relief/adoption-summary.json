@@ -1,0 +1,75 @@
+{
+  "status": "ADOPTED_EXACT_VERIFIED_CANDIDATE",
+  "decision": "D-059",
+  "date": "2026-10-19",
+  "model": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "model_sha256": "14db08f0313de0566e984d58d36397830ee13e1dce91d75738e2d61d77c9db8c",
+  "previous_model_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df",
+  "objects": 2188,
+  "protected_existing_objects": 2124,
+  "wall_count": 2,
+  "settings": {
+    "thickness": "12 in",
+    "width": "48 in",
+    "height": "48 in",
+    "inset": "3 in",
+    "recess_width": "30 in",
+    "recess_height": "30 in",
+    "recess_bottom": "9 in",
+    "recess_depth": "0.75 in",
+    "recess_chamfer": "0.75 in",
+    "source_detail": "Supplied pier detail 2026-10-19: 12 in thickness, 48 in width/height, 3 in cap-end inset; solid wall; shallow exterior recess with 3/4 in perimeter chamfer per user correction.",
+    "reference_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df"
+  },
+  "measurements": [
+    {
+      "wall": "BridgeCheekPier1",
+      "bars": 12,
+      "concrete_ft3": 15.628580729166597,
+      "steel_length_ft": 43.49999999999995,
+      "steel_weight_lb": 29.05799999999996,
+      "minimum_cover_in": 1.9999999999998281,
+      "recess_in": [
+        30.0,
+        30.0,
+        0.7499999999999999
+      ],
+      "chamfer_in": 0.7499999999999999,
+      "remaining_panel_in": 11.249999999999982,
+      "borders_in": [
+        8.999999999999943,
+        9.000000000000014
+      ],
+      "top_elevation_ft": 47.764939909758915
+    },
+    {
+      "wall": "BridgeCheekPier2",
+      "bars": 12,
+      "concrete_ft3": 15.62858072916662,
+      "steel_length_ft": 43.49999999999995,
+      "steel_weight_lb": 29.05799999999996,
+      "minimum_cover_in": 1.9999999999999714,
+      "recess_in": [
+        30.0,
+        30.0,
+        0.7499999999999999
+      ],
+      "chamfer_in": 0.7499999999999999,
+      "remaining_panel_in": 11.25,
+      "borders_in": [
+        8.999999999999943,
+        9.000000000000014
+      ],
+      "top_elevation_ft": 47.764939909758915
+    }
+  ],
+  "total_bars": 24,
+  "physical_checks_passed": 99,
+  "native_edit_restore": true,
+  "cold_reopen": true,
+  "scope_limits": "Model geometry adopted after user visual review. Pier cheek cap anchorage and structural design remain unconfigured; geometry-notebook, calculation, journal-quantity and drawing reconciliation remain downstream work. Existing unrelated findings and tracker statuses/responses are preserved.",
+  "backups": [
+    "archive/B4-before-pier-cheek-relief-20261019.FCStd",
+    "archive/B4-before-pier-cheek-relief-record-20261019.zip"
+  ]
+}

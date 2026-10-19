@@ -1,5 +1,9 @@
 # Current FreeCAD bridge model
 
+## D-059: pier cheek walls, 19 October 2026
+
+Two solid 4 ft x 4 ft x 12 in pier cheeks, inset 3 in from the cap ends, with centered 30 in square shallow exterior panels. Recess depth and perimeter chamfer are 3/4 in. Continuous centered #4 mats match the existing cheek bar size and 10 in maximum spacing; 24 bars total. The user approved the visual review and requested this model be pushed. All 99 scoped physical checks, native edits and cold reopen pass. See [adoption and dimensions](evidence/2026-10-19-pier-cheek-relief/adoption-summary.json) and [preview](evidence/2026-10-19-pier-cheek-relief/Pier%20cheek%20walls%20-%20Recessed%20panel.png). Cap anchorage and structural design remain unconfigured; downstream notebook/calculation/quantity/drawing reconciliation remains.
+
 ## D-055: backwall vertical coordination, 19 October 2026
 
 Four doubled #5 verticals removed; one end bar per face moved inside each cheekwall hook. Small station adjustments clear the cap stirrups with 12-in maximum spacing. Each backwall now has 44 verticals and 10 horizontals. All 88 verticals pass physical overlap and cover checks; native edits and cold reopen verified. See [saved-file verification](evidence/2026-10-19-backwall-vertical-coordination/adoption-summary.json). Existing unrelated findings and downstream calculation/drawing review remain.
