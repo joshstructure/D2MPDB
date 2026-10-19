@@ -1,0 +1,64 @@
+{
+ "End Bent 1": {
+  "family": "psc",
+  "psc": {
+   "index": "455-018",
+   "pattern": "12~0.6"
+  },
+  "xml": "EB-XML",
+  "cap_case": "EB-CASE",
+  "inputs": {
+   "DD_tons": 18.0,
+   "embed_cap": 12.0
+  },
+  "sources": {
+   "DD_tons": "Geotechnical engineer, 2026-10-19 (user): 18 tons per end-bent pile"
+  },
+  "name": "End Bent 1 piles: 18 in square prestressed concrete, FBMP fixed run"
+ },
+ "End Bent 2": {
+  "family": "psc",
+  "psc": {
+   "index": "455-018",
+   "pattern": "12~0.6"
+  },
+  "xml": "EB2-XML",
+  "cap_case": "EB2-CASE",
+  "inputs": {
+   "DD_tons": 18.0,
+   "embed_cap": 12.0,
+   "EL_cutoff": 41.2567,
+   "EL_ground": 23.59,
+   "L_unsupported": 17.6667,
+   "L_v": 17.6667
+  },
+  "sources": {
+   "DD_tons": "Geotechnical engineer, 2026-10-19 (user): 18 tons per end-bent pile"
+  },
+  "name": "End Bent 2 piles: 18 in square prestressed concrete, FBMP fixed run"
+ },
+ "Pier": {
+  "family": "pipe",
+  "psc": {
+   "index": "455-018",
+   "pattern": "12~0.6"
+  },
+  "xml": "PIER-XML",
+  "cap_case": "PIER-CASE",
+  "inputs": {
+   "DD_tons": 0.0,
+   "embed_cap": 12.0,
+   "D_pile": 20.0,
+   "D_out": 20.0,
+   "S_pile": 5.0,
+   "EL_cutoff": 41.7717,
+   "EL_ground": 26.05,
+   "L_unsupported": 15.7217,
+   "L_v": 15.7217
+  },
+  "sources": {
+   "DD_tons": "No downdrag at the pier (geotechnical engineer, 2026-10-19, user)"
+  },
+  "name": "Pier piles: 20 in steel pipe, FBMP fixed run"
+ }
+}

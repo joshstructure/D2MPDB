@@ -1,0 +1,276 @@
+{
+ "source": "FDOT Standard Plans Index 455-014, 455-018, 455-024, 455-030 (FY 2026-27, last revision 11/01/25), Index 455-001 notes",
+ "revision": "11/01/25",
+ "fpu_ksi": 270.0,
+ "fpy_ksi": 243.0,
+ "Ep_ksi": 28500.0,
+ "strand": "Grade 270 low-relaxation (LRS)",
+ "notes": [
+  "One strand at each corner, remaining strands equally spaced between corner strands; pattern concentric.",
+  "Concrete Class V (Class VI for the high-moment Index 455-031 pile); strength at transfer >= 4,000 psi; 3 in cover; chamfer 3/4 x 3 in.",
+  "Standard piles are designed for about 1000 psi uniform compression after losses."
+ ],
+ "strand_area_in2": {
+  "3/8": 0.085,
+  "7/16": 0.115,
+  "1/2": 0.153,
+  "1/2S": 0.167,
+  "0.6": 0.217
+ },
+ "strand_label": {
+  "3/8": "3/8\"",
+  "7/16": "7/16\"",
+  "1/2": "1/2\"",
+  "1/2S": "1/2\" (Special)",
+  "0.6": "0.6\""
+ },
+ "indexes": {
+  "455-014": {
+   "size_in": 14,
+   "void_in": 0.0,
+   "spiral_wire": "W3.4",
+   "spiral_area_in2": 0.034,
+   "spiral_pitch_in": 6.0,
+   "dowels": "4 ~ #10",
+   "spiral_note": "W3.4 at 6 in full length; ends 16 turns at 3 in + 5 turns at 1 in",
+   "options": [
+    {
+     "id": "8~0.6",
+     "count": 8,
+     "dia": "0.6",
+     "label": "8~0.6\"",
+     "strand_area_in2": 0.217,
+     "jacking_kip": 33
+    },
+    {
+     "id": "8~1/2S",
+     "count": 8,
+     "dia": "1/2S",
+     "label": "8~1/2\" (Special)",
+     "strand_area_in2": 0.167,
+     "jacking_kip": 31
+    },
+    {
+     "id": "8~1/2",
+     "count": 8,
+     "dia": "1/2",
+     "label": "8~1/2\"",
+     "strand_area_in2": 0.153,
+     "jacking_kip": 31
+    },
+    {
+     "id": "12~7/16",
+     "count": 12,
+     "dia": "7/16",
+     "label": "12~7/16\"",
+     "strand_area_in2": 0.115,
+     "jacking_kip": 21
+    },
+    {
+     "id": "16~3/8",
+     "count": 16,
+     "dia": "3/8",
+     "label": "16~3/8\"",
+     "strand_area_in2": 0.085,
+     "jacking_kip": 16
+    }
+   ],
+   "notes": [
+    "14 in square piles only for pedestrian bridges (SDG 3.5.13)."
+   ]
+  },
+  "455-018": {
+   "size_in": 18,
+   "void_in": 0.0,
+   "spiral_wire": "W3.4",
+   "spiral_area_in2": 0.034,
+   "spiral_pitch_in": 6.0,
+   "dowels": "8 ~ #10",
+   "spiral_note": "W3.4 at 6 in full length; ends 16 turns at 3 in + 5 turns at 1 in",
+   "options": [
+    {
+     "id": "12~0.6",
+     "count": 12,
+     "dia": "0.6",
+     "label": "12~0.6\"",
+     "strand_area_in2": 0.217,
+     "jacking_kip": 35
+    },
+    {
+     "id": "12~1/2S",
+     "count": 12,
+     "dia": "1/2S",
+     "label": "12~1/2\" (Special)",
+     "strand_area_in2": 0.167,
+     "jacking_kip": 34
+    },
+    {
+     "id": "16~1/2",
+     "count": 16,
+     "dia": "1/2",
+     "label": "16~1/2\"",
+     "strand_area_in2": 0.153,
+     "jacking_kip": 26
+    },
+    {
+     "id": "20~7/16",
+     "count": 20,
+     "dia": "7/16",
+     "label": "20~7/16\"",
+     "strand_area_in2": 0.115,
+     "jacking_kip": 21
+    },
+    {
+     "id": "24~3/8",
+     "count": 24,
+     "dia": "3/8",
+     "label": "24~3/8\"",
+     "strand_area_in2": 0.085,
+     "jacking_kip": 17
+    }
+   ],
+   "notes": []
+  },
+  "455-024": {
+   "size_in": 24,
+   "void_in": 0.0,
+   "spiral_wire": "W3.4",
+   "spiral_area_in2": 0.034,
+   "spiral_pitch_in": 6.0,
+   "dowels": "12 ~ #10",
+   "spiral_note": "W3.4 at 6 in full length; ends 16 turns at 3 in + 5 turns at 1 in",
+   "options": [
+    {
+     "id": "16~0.6",
+     "count": 16,
+     "dia": "0.6",
+     "label": "16~0.6\"",
+     "strand_area_in2": 0.217,
+     "jacking_kip": 44
+    },
+    {
+     "id": "20~1/2S",
+     "count": 20,
+     "dia": "1/2S",
+     "label": "20~1/2\" (Special)",
+     "strand_area_in2": 0.167,
+     "jacking_kip": 34
+    },
+    {
+     "id": "24~1/2",
+     "count": 24,
+     "dia": "1/2",
+     "label": "24~1/2\"",
+     "strand_area_in2": 0.153,
+     "jacking_kip": 31
+    }
+   ],
+   "notes": []
+  },
+  "455-030": {
+   "size_in": 30,
+   "void_in": 18.0,
+   "spiral_wire": "W4.0",
+   "spiral_area_in2": 0.04,
+   "spiral_pitch_in": 6.0,
+   "dowels": "12 ~ #10",
+   "spiral_note": "Section note: 6 in pitch full length; elevation shows 2 in pitch with 4 turns at 1 1/2 in at the ends - verify against the sheet",
+   "options": [
+    {
+     "id": "20~0.6",
+     "count": 20,
+     "dia": "0.6",
+     "label": "20~0.6\"",
+     "strand_area_in2": 0.217,
+     "jacking_kip": 41
+    },
+    {
+     "id": "24~1/2S",
+     "count": 24,
+     "dia": "1/2S",
+     "label": "24~1/2\" (Special)",
+     "strand_area_in2": 0.167,
+     "jacking_kip": 34
+    },
+    {
+     "id": "28~1/2",
+     "count": 28,
+     "dia": "1/2",
+     "label": "28~1/2\"",
+     "strand_area_in2": 0.153,
+     "jacking_kip": 29
+    }
+   ],
+   "notes": [
+    "18 in diameter void; 11 ft solid sections at head and tip.",
+    "Contractor may cast solid with a strand configuration giving 1000 psi net prestress after losses."
+   ]
+  }
+ },
+ "max_driving_resistance_tons": {
+  "14": 200,
+  "18": 300,
+  "24": 450,
+  "30": 600,
+  "54": 900,
+  "60": 1000
+ },
+ "splice_moment_kip_ft": {
+  "18": 245,
+  "24": 600,
+  "30": 950
+ },
+ "splice_source": "FDOT Specification 455-7.8, Table 455-2 (mechanical splice bending strength)",
+ "min_size_table_3_5_1_1": {
+  "pedestrian": 14,
+  "pedestrian_extremely_aggressive_carbon_steel": 18,
+  "vehicular": 18,
+  "vehicular_extremely_aggressive": 24
+ },
+ "resistance_factors_table_3_5_7_1": [
+  {
+   "id": "dyn100_pda",
+   "label": "100% dynamic testing (PDA signal matching)",
+   "phi": 0.75,
+   "phi_uplift": 0.6
+  },
+  {
+   "id": "dyn100_edc",
+   "label": "100% dynamic testing, EDC top and tip",
+   "phi": 0.8,
+   "phi_uplift": 0.65,
+   "note": "Footnote 7: Pile Data Tables use the default 0.75."
+  },
+  {
+   "id": "dyn100_static",
+   "label": "100% dynamic testing and static load testing",
+   "phi": 0.85,
+   "phi_uplift": 0.65
+  },
+  {
+   "id": "dyn100_statnamic",
+   "label": "100% dynamic testing and Statnamic load testing",
+   "phi": 0.8,
+   "phi_uplift": null
+  },
+  {
+   "id": "dyn5",
+   "label": ">= 5% dynamic testing",
+   "phi": 0.65,
+   "phi_uplift": 0.55
+  },
+  {
+   "id": "dyn5_static",
+   "label": ">= 5% dynamic testing and static load testing",
+   "phi": 0.75,
+   "phi_uplift": 0.6
+  },
+  {
+   "id": "dyn5_statnamic",
+   "label": ">= 5% dynamic testing and Statnamic load testing",
+   "phi": 0.7,
+   "phi_uplift": null
+  }
+ ],
+ "p_multipliers": "SDG Table 3.5.5-1: a single row of piles has P-multiplier 1.0 (INFO only)."
+}

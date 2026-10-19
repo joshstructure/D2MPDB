@@ -1,0 +1,532 @@
+[
+ {
+  "name": "D_pile",
+  "value": 18.0,
+  "unit": "in",
+  "group": "Pile and layout",
+  "caption": "Pile size (square side, or pipe outside diameter)",
+  "source": "FBMP XML (registered export, re-read on upload) pile section; Standard Plans Index 455-018",
+  "status": "project source",
+  "family": "both"
+ },
+ {
+  "name": "N_pile",
+  "value": 4,
+  "unit": null,
+  "group": "Pile and layout",
+  "caption": "Piles in the support",
+  "source": "FBMP XML (registered export, re-read on upload) PILE_GROUP piles",
+  "status": "project source",
+  "family": "both"
+ },
+ {
+  "name": "S_pile",
+  "value": 4.5,
+  "unit": "ft",
+  "group": "Pile and layout",
+  "caption": "Center-to-center pile spacing",
+  "source": "FBMP XML (registered export, re-read on upload) pile head coordinates",
+  "status": "project source",
+  "family": "both"
+ },
+ {
+  "name": "EL_cutoff",
+  "value": 41.2375,
+  "unit": "ft",
+  "group": "Pile and layout",
+  "caption": "Pile cutoff elevation (FBMP pile head)",
+  "source": "FBMP XML (registered export, re-read on upload): minus head Z / 12",
+  "status": "project source",
+  "family": "both"
+ },
+ {
+  "name": "EL_ground",
+  "value": 24.01,
+  "unit": "ft",
+  "group": "Pile and layout",
+  "caption": "Ground elevation (top of soil layer 1)",
+  "source": "FBMP XML (registered export, re-read on upload) SOIL_INPUT_DATA layer 1 top",
+  "status": "project source",
+  "family": "both"
+ },
+ {
+  "name": "L_unsupported",
+  "value": 17.2275,
+  "unit": "ft",
+  "group": "Pile and layout",
+  "caption": "Length above ground (cutoff - ground); editable",
+  "source": "Derived default EL_cutoff - EL_ground",
+  "status": "project source",
+  "family": "both"
+ },
+ {
+  "name": "embed_cap",
+  "value": 12.0,
+  "unit": "in",
+  "group": "Pile and layout",
+  "caption": "Pile embedment into the cap",
+  "source": "Cap cases inputs.Pile_embed (12 in); SDG 3.5.1.C needs 48 in for full bending",
+  "status": "project source",
+  "family": "both"
+ },
+ {
+  "name": "DD_tons",
+  "value": 18.0,
+  "unit": null,
+  "group": "Loads and geotechnical",
+  "caption": "Downdrag (drag load DR) per pile, short tons",
+  "source": "Geotechnical engineer, 2026-10-19 (user); pier 0",
+  "status": "pending confirmation",
+  "family": "both"
+ },
+ {
+  "name": "gamma_DR_str",
+  "value": 1.1,
+  "unit": null,
+  "group": "Loads and geotechnical",
+  "caption": "Drag-load factor, strength limit states (structural)",
+  "source": "LRFD Table 3.4.1-1",
+  "status": "code",
+  "family": "both"
+ },
+ {
+  "name": "gamma_DR_ser",
+  "value": 1.0,
+  "unit": null,
+  "group": "Loads and geotechnical",
+  "caption": "Drag-load factor, Service I",
+  "source": "LRFD Table 3.4.1-1",
+  "status": "code",
+  "family": "both"
+ },
+ {
+  "name": "phi_geo",
+  "value": 0.75,
+  "unit": null,
+  "group": "Loads and geotechnical",
+  "caption": "Geotechnical resistance factor (compression, Davisson)",
+  "source": "SDG Table 3.5.7-1; footnote 7: Pile Data Tables use 0.75",
+  "status": "code",
+  "family": "both",
+  "options": {
+   "0.75": "100% dynamic testing, signal matching (default for Pile Data Table)",
+   "0.80": "100% dynamic, EDC top and tip",
+   "0.85": "100% dynamic + static load test",
+   "0.65": ">=5% dynamic testing",
+   "0.70": ">=5% dynamic + Statnamic"
+  }
+ },
+ {
+  "name": "R_scour_net_tons",
+  "value": 0.0,
+  "unit": null,
+  "group": "Loads and geotechnical",
+  "caption": "Net scour resistance, short tons",
+  "source": "Scour not evaluated: geotechnical handoff",
+  "status": "pending confirmation",
+  "family": "both"
+ },
+ {
+  "name": "R_scour_total_tons",
+  "value": 0.0,
+  "unit": null,
+  "group": "Loads and geotechnical",
+  "caption": "Total scour resistance, short tons",
+  "source": "Scour not evaluated: geotechnical handoff",
+  "status": "pending confirmation",
+  "family": "both"
+ },
+ {
+  "name": "EL_scour_100",
+  "value": null,
+  "unit": "ft",
+  "group": "Loads and geotechnical",
+  "caption": "100-year scour elevation (blank = N/A)",
+  "source": "Geotechnical handoff",
+  "status": "pending confirmation",
+  "family": "both",
+  "optional": true
+ },
+ {
+  "name": "EL_scour_LT",
+  "value": null,
+  "unit": "ft",
+  "group": "Loads and geotechnical",
+  "caption": "Long-term scour elevation (blank = N/A)",
+  "source": "Geotechnical handoff",
+  "status": "pending confirmation",
+  "family": "both",
+  "optional": true
+ },
+ {
+  "name": "EL_min_tip",
+  "value": null,
+  "unit": "ft",
+  "group": "Loads and geotechnical",
+  "caption": "Minimum tip elevation (blank = N/A)",
+  "source": "Cap notebook geotech handoff (SDG 3.5.9)",
+  "status": "pending confirmation",
+  "family": "both",
+  "optional": true
+ },
+ {
+  "name": "L_test_pile",
+  "value": null,
+  "unit": "ft",
+  "group": "Loads and geotechnical",
+  "caption": "Test pile length (blank = N/A)",
+  "source": "Not established",
+  "status": "pending confirmation",
+  "family": "both",
+  "optional": true
+ },
+ {
+  "name": "K_eff",
+  "value": 1.0,
+  "unit": null,
+  "group": "Loads and geotechnical",
+  "caption": "Effective length factor K",
+  "source": "LRFD 10.7.3.13.4 pinned/fixed ends not established; FBMP P-delta preferred",
+  "status": "code",
+  "family": "both"
+ },
+ {
+  "name": "soil_type",
+  "value": 0,
+  "unit": null,
+  "group": "Loads and geotechnical",
+  "caption": "Soil for depth to fixity (0 sand, 1 clay)",
+  "source": "LRFD C10.7.3.13.4",
+  "status": "pending confirmation",
+  "family": "both",
+  "options": {
+   "0": "Sand (nh)",
+   "1": "Clay (Su)"
+  }
+ },
+ {
+  "name": "n_h",
+  "value": 0.556,
+  "unit": "ksi/ft",
+  "group": "Loads and geotechnical",
+  "caption": "Rate of increase of soil modulus, sand",
+  "source": "LRFD Table C10.4.6.3-2, medium sand, submerged",
+  "status": "code",
+  "family": "both"
+ },
+ {
+  "name": "S_u",
+  "value": 1.0,
+  "unit": "kip/ft^2",
+  "group": "Loads and geotechnical",
+  "caption": "Undrained shear strength, clay (used only for soil type 1)",
+  "source": "Placeholder: geotechnical report",
+  "status": "pending confirmation",
+  "family": "both"
+ },
+ {
+  "name": "environment",
+  "value": 2,
+  "unit": null,
+  "group": "Environment and policy",
+  "caption": "Environment classification",
+  "source": "SDG 1.4; same pending basis as the backwall notebook",
+  "status": "pending confirmation",
+  "family": "both",
+  "options": {
+   "1": "Slightly aggressive",
+   "2": "Moderately aggressive",
+   "3": "Extremely aggressive"
+  }
+ },
+ {
+  "name": "min_size_policy",
+  "value": 14.0,
+  "unit": "in",
+  "group": "Environment and policy",
+  "caption": "Minimum square pile size, pedestrian bridge",
+  "source": "SDG Table 3.5.1-1 (18 in with carbon-steel strand in Extremely Aggressive)",
+  "status": "code",
+  "family": "psc"
+ },
+ {
+  "name": "lambda_c",
+  "value": 1.0,
+  "unit": null,
+  "group": "Environment and policy",
+  "caption": "Concrete density modification factor",
+  "source": "LRFD 5.4.2.8 normal weight",
+  "status": "code",
+  "family": "psc"
+ },
+ {
+  "name": "fc",
+  "value": 6.5,
+  "unit": "ksi",
+  "group": "Prestressed concrete pile",
+  "caption": "Pile concrete strength f'c",
+  "source": "FBMP XML FPC 6.5 ksi = FDOT Class V (Spec 346, 6,500 psi); 6.0 may be entered",
+  "status": "project source",
+  "family": "psc"
+ },
+ {
+  "name": "w_c",
+  "value": 0.15,
+  "unit": "kip/ft^3",
+  "group": "Prestressed concrete pile",
+  "caption": "Concrete unit weight (for Ec)",
+  "source": "LRFD Table 3.5.1-1 normal weight",
+  "status": "code",
+  "family": "psc"
+ },
+ {
+  "name": "K_1",
+  "value": 1.0,
+  "unit": null,
+  "group": "Prestressed concrete pile",
+  "caption": "Aggregate correction factor for Ec",
+  "source": "LRFD 5.4.2.4",
+  "status": "code",
+  "family": "psc"
+ },
+ {
+  "name": "f_pu",
+  "value": 270.0,
+  "unit": "ksi",
+  "group": "Prestress and strand",
+  "caption": "Strand ultimate strength (Grade 270 LRS)",
+  "source": "Standard Plans Index 455-001",
+  "status": "code",
+  "family": "psc"
+ },
+ {
+  "name": "f_py",
+  "value": 243.0,
+  "unit": "ksi",
+  "group": "Prestress and strand",
+  "caption": "Strand yield strength 0.9 fpu",
+  "source": "LRFD Table 5.4.4.1-1 low-relaxation",
+  "status": "code",
+  "family": "psc"
+ },
+ {
+  "name": "E_p",
+  "value": 28500.0,
+  "unit": "ksi",
+  "group": "Prestress and strand",
+  "caption": "Strand modulus",
+  "source": "LRFD 5.4.4.2",
+  "status": "code",
+  "family": "psc"
+ },
+ {
+  "name": "loss_frac",
+  "value": 0.2,
+  "unit": null,
+  "group": "Prestress and strand",
+  "caption": "Prestress loss as a fraction of the jacking force",
+  "source": "Calibrated to the FBMP prestress 336 kip = 12 x 35 kip x 0.80",
+  "status": "project source",
+  "family": "psc"
+ },
+ {
+  "name": "d_edge",
+  "value": 3.5,
+  "unit": "in",
+  "group": "Prestress and strand",
+  "caption": "Strand center distance from the pile face",
+  "source": "Index 455-001 3 in cover; FBMP strand coordinates +-5.5 in on 18 in",
+  "status": "project source",
+  "family": "psc"
+ },
+ {
+  "name": "spiral_wire_area",
+  "value": 0.034,
+  "unit": "in^2",
+  "group": "Shear reinforcement",
+  "caption": "Spiral wire area (one leg)",
+  "source": "Index 455-014/-018/-024 W3.4 (W4.0 = 0.040 for Index 455-030)",
+  "status": "code",
+  "family": "psc"
+ },
+ {
+  "name": "spiral_pitch",
+  "value": 6.0,
+  "unit": "in",
+  "group": "Shear reinforcement",
+  "caption": "Spiral pitch",
+  "source": "Index 455 spiral 6 in (ends 3 in and 1 in turns not used)",
+  "status": "code",
+  "family": "psc"
+ },
+ {
+  "name": "f_y_spiral",
+  "value": 70.0,
+  "unit": "ksi",
+  "group": "Shear reinforcement",
+  "caption": "Spiral wire yield strength",
+  "source": "ASTM A1064 wire; LRFD 5.7.2.5 permits up to 100 ksi; 60 ksi if preferred",
+  "status": "pending confirmation",
+  "family": "psc"
+ },
+ {
+  "name": "a_g",
+  "value": 0.75,
+  "unit": "in",
+  "group": "Shear reinforcement",
+  "caption": "Maximum aggregate size",
+  "source": "Class V concrete #67 stone, LRFD 5.7.3.4.2",
+  "status": "code",
+  "family": "psc"
+ },
+ {
+  "name": "phi_v",
+  "value": 0.9,
+  "unit": null,
+  "group": "Shear reinforcement",
+  "caption": "Shear resistance factor, concrete",
+  "source": "LRFD 5.5.4.2",
+  "status": "code",
+  "family": "psc"
+ },
+ {
+  "name": "phi_c",
+  "value": 0.75,
+  "unit": null,
+  "group": "Prestressed concrete pile",
+  "caption": "Compression-controlled resistance factor",
+  "source": "LRFD 5.5.4.2",
+  "status": "code",
+  "family": "psc"
+ },
+ {
+  "name": "phi_t",
+  "value": 1.0,
+  "unit": null,
+  "group": "Prestressed concrete pile",
+  "caption": "Tension-controlled resistance factor, bonded prestressing",
+  "source": "LRFD 5.5.4.2",
+  "status": "code",
+  "family": "psc"
+ },
+ {
+  "name": "n_sweep",
+  "value": 121,
+  "unit": null,
+  "group": "Prestressed concrete pile",
+  "caption": "Neutral-axis sweep points for the interaction curve",
+  "source": "Numerical setting (INFO)",
+  "status": "code",
+  "family": "psc"
+ },
+ {
+  "name": "D_out",
+  "value": 20.0,
+  "unit": "in",
+  "group": "Steel pipe pile",
+  "caption": "Pipe outside diameter",
+  "source": "FBMP XML (registered export, re-read on upload) WIDTH",
+  "status": "project source",
+  "family": "pipe"
+ },
+ {
+  "name": "t_wall",
+  "value": 0.48,
+  "unit": "in",
+  "group": "Steel pipe pile",
+  "caption": "Pipe wall thickness (nominal)",
+  "source": "FBMP XML (registered export, re-read on upload) SHELL_THICK",
+  "status": "project source",
+  "family": "pipe"
+ },
+ {
+  "name": "t_corr",
+  "value": 0.0,
+  "unit": "in",
+  "group": "Steel pipe pile",
+  "caption": "Corrosion allowance deducted from the wall",
+  "source": "LRFD 10.7.5 / 5.12.9.5.2 (0.06 in): FDOT environment classification pending",
+  "status": "pending confirmation",
+  "family": "pipe"
+ },
+ {
+  "name": "Fy",
+  "value": 45.0,
+  "unit": "ksi",
+  "group": "Steel pipe pile",
+  "caption": "Steel yield strength",
+  "source": "Spec 962 Table 962-11, ASTM A252 Gr 3; FBMP model 60 ksi - reconcile",
+  "status": "pending confirmation",
+  "family": "pipe"
+ },
+ {
+  "name": "E_s",
+  "value": 29000.0,
+  "unit": "ksi",
+  "group": "Steel pipe pile",
+  "caption": "Steel modulus",
+  "source": "LRFD 6.4.1",
+  "status": "code",
+  "family": "pipe"
+ },
+ {
+  "name": "phi_c_axial",
+  "value": 0.7,
+  "unit": null,
+  "group": "Steel pipe pile",
+  "caption": "Axial compression resistance factor, pipe (good driving, no tip)",
+  "source": "LRFD 6.5.4.2",
+  "status": "code",
+  "family": "pipe"
+ },
+ {
+  "name": "phi_c_comb",
+  "value": 0.8,
+  "unit": null,
+  "group": "Steel pipe pile",
+  "caption": "Axial resistance factor, combined axial and flexure",
+  "source": "LRFD 6.5.4.2 undamaged piles",
+  "status": "code",
+  "family": "pipe"
+ },
+ {
+  "name": "phi_f",
+  "value": 1.0,
+  "unit": null,
+  "group": "Steel pipe pile",
+  "caption": "Flexure resistance factor",
+  "source": "LRFD 6.5.4.2",
+  "status": "code",
+  "family": "pipe"
+ },
+ {
+  "name": "phi_v_steel",
+  "value": 1.0,
+  "unit": null,
+  "group": "Steel pipe pile",
+  "caption": "Shear resistance factor, steel",
+  "source": "LRFD 6.5.4.2",
+  "status": "code",
+  "family": "pipe"
+ },
+ {
+  "name": "phi_y",
+  "value": 0.95,
+  "unit": null,
+  "group": "Steel pipe pile",
+  "caption": "Tension yielding resistance factor",
+  "source": "LRFD 6.5.4.2, Eq. 6.8.2.1-1",
+  "status": "code",
+  "family": "pipe"
+ },
+ {
+  "name": "L_v",
+  "value": 17.2275,
+  "unit": "ft",
+  "group": "Steel pipe pile",
+  "caption": "Shear span Lv (distance from maximum to zero shear)",
+  "source": "Default = length above ground; INFO basis",
+  "status": "pending confirmation",
+  "family": "pipe"
+ }
+]

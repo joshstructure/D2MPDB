@@ -1,0 +1,212 @@
+{
+ "drag_load": {
+  "code": "LRFD",
+  "article": "3.4.1 Table 3.4.1-1; 3.11.8; 10.7.1.6.2; 10.7.3.7",
+  "governs": "Drag load DR: gamma 1.10 strength (structural), 0.00 geotechnical, 1.00 Service I"
+ },
+ "psc_axial": {
+  "code": "LRFD",
+  "article": "5.6.4.4, Eqs. 5.6.4.4-1 and -2; 10.7.3.13.2",
+  "governs": "Factored axial resistance Pr = phi Pn, spiral-reinforced prestressed pile"
+ },
+ "phi_psc": {
+  "code": "LRFD",
+  "article": "5.5.4.2; 5.6.2.1",
+  "governs": "phi 0.75 compression-controlled to 1.00 tension-controlled (bonded prestressing)"
+ },
+ "stress_block": {
+  "code": "LRFD",
+  "article": "5.6.2.2",
+  "governs": "Rectangular stress block factor beta1"
+ },
+ "modulus": {
+  "code": "LRFD",
+  "article": "5.4.2.4, Eq. 5.4.2.4-1",
+  "governs": "Concrete modulus of elasticity"
+ },
+ "biaxial": {
+  "code": "LRFD",
+  "article": "5.6.4.5, Eqs. 5.6.4.5-1 to -3",
+  "governs": "Biaxial flexure with compression of noncircular members"
+ },
+ "strain_compat": {
+  "code": "LRFD",
+  "article": "5.6.4.5; C5.6.2.1; 10.7.3.13.2",
+  "governs": "Interaction by equilibrium and strain compatibility; net tensile strain"
+ },
+ "tension_psc": {
+  "code": "LRFD",
+  "article": "5.6.6.1; 5.8.2.4.1, Eq. 5.8.2.4.1-1",
+  "governs": "Tension resistance Pr = phi Aps (fpe + fy) <= phi Aps fpy, fy = 60 ksi without nonprestressed steel"
+ },
+ "shear_psc": {
+  "code": "LRFD",
+  "article": "5.7.3.3; 5.7.3.4.2, Eqs. 5.7.3.4.2-1 to -4 and -7",
+  "governs": "Nominal shear resistance, general procedure"
+ },
+ "shear_depth": {
+  "code": "LRFD",
+  "article": "5.7.2.8",
+  "governs": "Effective shear depth dv"
+ },
+ "av_min": {
+  "code": "LRFD",
+  "article": "5.7.2.5",
+  "governs": "Minimum transverse reinforcement"
+ },
+ "service_comp": {
+  "code": "LRFD",
+  "article": "5.9.2.3.2a, Table 5.9.2.3.2a-1",
+  "governs": "Compressive stress limit 0.60 phi_w f'c at the service limit state"
+ },
+ "service_tens": {
+  "code": "LRFD",
+  "article": "5.9.2.3.2b, Table 5.9.2.3.2b-1; SDG 3.5.1.A",
+  "governs": "Tensile stress limit; severe corrosive limit for Extremely Aggressive substructures"
+ },
+ "prestress_min": {
+  "code": "LRFD",
+  "article": "5.12.9.4",
+  "governs": "Driving strength >= 5.0 ksi; uniform compression >= 0.7 ksi after losses"
+ },
+ "prestress_fdot": {
+  "code": "FDOT Standard Plans",
+  "article": "Index 455-001",
+  "governs": "Standard piles designed for about 1000 psi uniform compression after losses"
+ },
+ "std_plans": {
+  "code": "FDOT Standard Plans",
+  "article": "Index 455-014, 455-018, 455-024, 455-030 (FY 2026-27)",
+  "governs": "Alternate strand patterns, jacking forces, spiral, dowels"
+ },
+ "min_pile_size": {
+  "code": "SDG",
+  "article": "3.5.1.F, Table 3.5.1-1",
+  "governs": "Minimum square pile size: pedestrian bridges 14 in (18 in with carbon-steel strand in Extremely Aggressive)"
+ },
+ "pile_spacing": {
+  "code": "SDG",
+  "article": "3.5.4",
+  "governs": "Center-to-center spacing >= 3.0 pile diameters at and below design ground"
+ },
+ "p_multiplier": {
+  "code": "SDG",
+  "article": "3.5.5, Table 3.5.5-1",
+  "governs": "P-multipliers for pile groups (single row 1.0)"
+ },
+ "head_connection": {
+  "code": "SDG",
+  "article": "3.5.1.C; SDM 11.6",
+  "governs": "48 in embedment develops the full pile bending; solid pile >= 8 ft; tension pile details"
+ },
+ "splice": {
+  "code": "FDOT Specifications",
+  "article": "455-7.8, Table 455-2",
+  "governs": "Mechanical splice bending strength (a splice must develop the pile)"
+ },
+ "lateral_fbmp": {
+  "code": "SDG",
+  "article": "3.4; LRFD 10.7.3.12",
+  "governs": "Lateral analysis by FB-MultiPier, resistance factor 1.0"
+ },
+ "pipe_axial": {
+  "code": "LRFD",
+  "article": "6.9.4.1.1 and 6.9.4.1.2; 10.7.3.13.1",
+  "governs": "Axial compression resistance of noncomposite pipe: Pn = 0.658^(Po/Pe) Po or 0.877 Pe"
+ },
+ "pipe_local": {
+  "code": "LRFD",
+  "article": "6.9.4.2.1, Table 6.9.4.2.1-1; 6.9.4.2.2c",
+  "governs": "Circular-tube slenderness 0.11 E/Fy and effective area"
+ },
+ "slenderness": {
+  "code": "LRFD",
+  "article": "6.9.3",
+  "governs": "KL/r <= 120 for main compression members"
+ },
+ "fixity": {
+  "code": "LRFD",
+  "article": "10.7.3.13.4; C10.7.3.13.4-1 and -2; Table C10.4.6.3-2",
+  "governs": "Effective length = unsupported length + depth to fixity"
+ },
+ "pipe_flexure": {
+  "code": "LRFD",
+  "article": "6.12.2.2.3",
+  "governs": "Flexural resistance of circular tubes: compact, noncompact and slender"
+ },
+ "pipe_interaction": {
+  "code": "LRFD",
+  "article": "6.9.2.2.1, Eqs. 6.9.2.2.1-1 and -2",
+  "governs": "Combined axial compression and flexure"
+ },
+ "pipe_shear": {
+  "code": "LRFD",
+  "article": "6.12.1.2.3b, Eqs. 6.12.1.2.3b-1 to -3",
+  "governs": "Flexural shear resistance of round tubes"
+ },
+ "pipe_tension": {
+  "code": "LRFD",
+  "article": "6.8.2.1, Eq. 6.8.2.1-1; 6.5.4.2",
+  "governs": "Tension: yielding on the gross section, phi_y = 0.95"
+ },
+ "pipe_phi": {
+  "code": "LRFD",
+  "article": "6.5.4.2",
+  "governs": "Resistance factors for steel piles"
+ },
+ "steel_grade": {
+  "code": "FDOT Specifications",
+  "article": "455-8.2; 962 Table 962-11",
+  "governs": "Steel pipe piling ASTM A252 Grade 3 (Fy 45 ksi) or API 5L"
+ },
+ "corrosion": {
+  "code": "LRFD",
+  "article": "10.7.5; 5.12.9.5.2; SDG 1.4",
+  "governs": "Corrosion and section loss allowance; environment classification"
+ },
+ "exposure": {
+  "code": "SDG",
+  "article": "1.4",
+  "governs": "Environment classification governs covers and materials"
+ },
+ "nbr": {
+  "code": "SDG",
+  "article": "3.5.13.A, Eq. 3-1",
+  "governs": "Required nominal bearing resistance Rn >= (FDL + net scour resistance + downdrag)/phi"
+ },
+ "driving_max": {
+  "code": "SDG",
+  "article": "3.5.13.B, Table 3.5.13-1",
+  "governs": "Maximum pile driving resistance for prestressed concrete piles"
+ },
+ "phi_geo": {
+  "code": "SDG",
+  "article": "3.5.7, Table 3.5.7-1",
+  "governs": "Geotechnical resistance factors for driven piles (replaces LRFD Table 10.5.5.2.3-1)"
+ },
+ "downdrag_plans": {
+  "code": "SDG",
+  "article": "3.5.6; 3.5.1.H",
+  "governs": "Show downdrag on the plans; neglect pile self-weight in the nominal bearing resistance"
+ },
+ "data_table": {
+  "code": "SDG / SDM",
+  "article": "SDG 3.5.15; SDM 11.4",
+  "governs": "Pile Data Table columns A to Q and rounding"
+ },
+ "min_tip": {
+  "code": "SDG",
+  "article": "3.5.9; LRFD 10.7.6",
+  "governs": "Minimum tip elevation for uplift and lateral stability"
+ },
+ "drivability": {
+  "code": "LRFD",
+  "article": "10.7.8; FDOT Specifications 455",
+  "governs": "Drivability and driving stresses (not evaluated)"
+ },
+ "fbmp_model": {
+  "code": "FB-MultiPier",
+  "article": "v6.1.0 XML export; project_current/fbmp",
+  "governs": "Pile forces from the nonlinear FBMP analysis"
+ }
+}

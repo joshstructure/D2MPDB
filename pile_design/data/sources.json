@@ -1,0 +1,52 @@
+{
+ "note": "Hashes copied from project_current/source_register.csv (D-049, 2026-10-19). Never hard-code another value; rerun the generator after a re-registration.",
+ "sources": {
+  "EB-XML": {
+   "label": "End Bent 1 FBMP fixed results",
+   "path": "project_current/fbmp/end_bents/End Bent 1_Fixed.XML",
+   "sha256": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d"
+  },
+  "EB2-XML": {
+   "label": "End Bent 2 FBMP fixed results",
+   "path": "project_current/fbmp/end_bents/End Bent 2_Fixed.XML",
+   "sha256": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e"
+  },
+  "PIER-XML": {
+   "label": "Pier FBMP fixed results",
+   "path": "project_current/fbmp/pier/Pier_Fixed.XML",
+   "sha256": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7"
+  },
+  "EB-MINTIP-XML": {
+   "label": "End Bent 1 FBMP minimum-tip results",
+   "path": "project_current/fbmp/end_bents/End Bent 1_Min_tip.XML",
+   "sha256": "739f44c1d542464cfd536493ce1ed6cb240f98a75ed3e1188c6f6812742d6fe2"
+  },
+  "PIER-MINTIP-XML": {
+   "label": "Pier FBMP minimum-tip results",
+   "path": "project_current/fbmp/pier/Pier_MinTip.XML",
+   "sha256": "a3210e99418f8b56d7b6a475a9db6edab152cceb77f0300f6f7245d27dee93cb"
+  },
+  "EB-CASE": {
+   "label": "End-bent 1 saved cap case",
+   "path": "project_current/cap_design/end_bents/selected_case.json",
+   "sha256": "898b3e134b286b7a5a8f3eaf96f3c2996e1400e11206195dc0ea2448d750274f"
+  },
+  "EB2-CASE": {
+   "label": "End Bent 2 saved cap case",
+   "path": "project_current/cap_design/end_bent_2/selected_case.json",
+   "sha256": "4592c02435231cd9d9e4bb2c0682062a6613196e99c69d7fd046fda4d58372f5"
+  },
+  "PIER-CASE": {
+   "label": "Pier saved cap case",
+   "path": "project_current/cap_design/pier/selected_case.json",
+   "sha256": "0192dc9d9bef7718fc1d8944ce55b90278c46bbf0458decf1e8be6752c7bed9b"
+  }
+ },
+ "decisions": [
+  "D-004",
+  "D-005",
+  "D-012",
+  "D-049"
+ ],
+ "editions": "AASHTO LRFD Bridge Design Specifications, 10th edition (2024); FDOT Structures Manual January 2026 (SDG Volume 1, SDM Volume 2); FDOT Standard Plans FY 2026-27 Index 455; FDOT Standard Specifications Sections 455 and 962; FB-MultiPier 6.1.0"
+}

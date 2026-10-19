@@ -108,6 +108,18 @@ Refresh the embedded package after code changes with `python scripts/build_backw
 
 A Mathcad 15 edition with the same equations is in **[End_Bent_Backwall_Design.xmcd](End_Bent_Backwall_Design.xmcd)**. Rebuild it with `python scripts/build_backwall_mathcad.py`; see [its notes](BACKWALL_DESIGN.md#mathcad-edition).
 
+## Pile design notebook
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Pile_Design.ipynb)
+
+[Pile_Design.ipynb](Pile_Design.ipynb) analyzes and designs the piles of the D2 I-95 pedestrian bridge: square prestressed concrete piles at the end bents and noncomposite steel pipe piles at the pier. It follows AASHTO LRFD BDS 10th edition (2024) with the FDOT Structures Design Guidelines and Structures Detailing Manual (January 2026). It reads the FB-MultiPier 6.1.0 XML exports, adds the 18-ton per pile downdrag at the end bents as drag load DR, and checks structural strength and service limits, the nominal bearing resistance and the Pile Data Table (SDM 11.4). The calculation package is `pile_design/`.
+
+Run all cells in Colab. **Cell 1 · Project sources and assumptions** reads the registered or uploaded FBMP XML and cap case, records confirmations and loads a saved case. **Cell 2 · Pile analysis and design** holds the family, strand and input choices, the demand tables, interaction diagrams, the D/C register and the exports. An updated XML uploaded in Cell 1 replaces the registered export for that run.
+
+Exports are written to `exports/pile-YYYYMMDD-HHMMSS/`: `pile_case.json`, `pile_calculation_report.html`, `pile_checks.csv`, `pile_data_table.xlsx` (Pile Data Table with a Basis sheet), `pile_design.xmcd` (the distilled Mathcad 15 sheet for the current case) and `pile_bundle.zip`. Downdrag, the minimum tip, scour, the steel grade and the pile-head elevations remain pending, so a completed run is not engineering acceptance.
+
+After changing `pile_design/`, rebuild the notebook with `.venv\Scripts\python.exe scripts\build_pile_notebook.py` and the Mathcad worksheets with `.venv\Scripts\python.exe scripts\build_pile_mathcad.py`. Validate with `python -m unittest tests.test_pile_design tests.test_pile_design_notebook tests.test_pile_mathcad -v`. The scope, calculation basis, out-of-scope items and pending confirmations are in [PILE_DESIGN.md](PILE_DESIGN.md).
+
 ## Cap and pile design notebook
 
 **Cap end cover:** Continuous top, bottom and side bars terminate at the entered sides/end cover planes. Actual stirrup centers must be at least that cover plus half the bar diameter from each cap end; rotated U hooks also stay inside those planes. Run edits that introduce or worsen an end-cover violation are rejected with the permissible station range. Imported runs and geometry edits retain saved stations, show any cover failures immediately on their cards, and report a separate clear-cover check per run after Recalc. Correct the highlighted run or rebuild the starting layout. Amber end bands in plan/elevation show the cover zones. The separate FDOT cover checks still verify whether the entered cover meets the selected exposure requirements.
