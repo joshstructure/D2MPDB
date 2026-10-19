@@ -4,7 +4,7 @@
 
 ## Quick links — open in Colab
 
-- [Ring-supported pier wall STM study](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Ring_Supported_Wall_STM.ipynb)
+- [Wall minimum steel and annular pile rings](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Ring_Supported_Wall_STM.ipynb)
 - [Bridge geometry](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Bridge_Geometry_2%20Beam_V2.ipynb)
 - [End-bent backwall, cheek walls and tie-back straps](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/End_Bent_Backwall_Design.ipynb)
 - [Pile analysis and design (prestressed and pipe piles)](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Pile_Design.ipynb)
@@ -19,15 +19,15 @@ both end bents and the pier. It is drawn from the current FreeCAD model, uses FD
 CADD levels, and assigns SDM 4.3 bar marks. A review PDF is included. Rebuild
 with `.venv\Scripts\python.exe scripts\build_substructure_dxf.py --extract --previews`.
 
-## Ring-supported pier wall — new STM study
+## Wall minimum steel and annular pile rings
 
-[Open Ring_Supported_Wall_STM in Colab](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Ring_Supported_Wall_STM.ipynb) and choose **Runtime → Run all**. The cap-style workbench opens with live plots and output tables: edit the amber input cards, inspect **Live layout**, and click **Recalc** to refresh **Ring forces**, **Struts & ties**, **Reinforcement**, **D/C checks**, and **Ring spacing**. Edits clear stale calculated outputs and block new exports until Recalc. Green **Calc done** means the results match the inputs, not that the design passes.
+[Open the notebook in Colab](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Ring_Supported_Wall_STM.ipynb) and choose **Runtime → Run all**. The earlier filename is retained for the existing link. The calculation now checks minimum wall steel and detailing, then concrete bearing, ring plate bending/shear, continuous top/bottom fillet welds and adjacent base metal. Gross concrete self-weight is assigned to rings using tributary boundaries midway between piles and ring rows, clipped at wall edges. Nominal tributary eccentricity and radial pile tolerance are included; no strut-and-tie analysis is performed.
 
-**Report and exports** is optional. **Generate calculation report** downloads a standalone HTML report; **Export case + checks ZIP** saves the inputs, results, report, CSV tables and spacing study. Running all cells does not export files. Saved-download buttons retain the previous successful export. Reload `ring_wall_case.json` with **Load saved case**. The calculation package is embedded; Colab setup installs the cap notebook's widget/chart versions automatically, with no repository clone, Drive mount or token.
+The cap-style workbench has amber input cards, manual **Recalc**, live dimensioned plan/elevation, a rotatable **3D reinforcement** cage, a ring/weld section and bearing-pressure plot, tributary reaction heatmap, wall-steel table, equation/value disclosures and ring-spacing comparison. Edits clear stale results and disable new exports. Green **Calc done** means results match the inputs; individual checks retain their own status.
 
-**Cone transfer:** the new starting case projects an ACI-style breakout envelope from each ring to the two broad wall faces using 1.5 H:1 V (approximately 35°). The live 3-D view shows the clipped envelope, face intersections and trial ring-to-face links; tables report transfer elevations, compression and additional transverse-tie demands. First contact is 4.333 in above the default ring. This raises the trial node region and reveals additional arch-fit failures in rows 1–4. It creates no extra reaction or span reduction; ring breakout resistance, finite interior nodes and transverse-tie routing/anchorage remain open. **Original ring level** remains available for comparison, and older saved cases retain that setting.
+**Report and exports** provides an offline interactive HTML report, case JSON, checks and ring-load CSVs, formula-based **Mathcad `.xmcd`** and **Blockpad `.bpad`**, calculation source ZIP, and a full bundle including formula verification and file hashes. Run all creates no exports. Saved downloads survive edits; reload a case with **Load saved case**. Legacy cases migrate with a visible notice when they have no added gravity. The package is embedded, with no clone, Drive mount or token required.
 
-The initial case uses five ring rows at 3 ft spacing and selects **#5 at 5 in each way each face**, with matching end U-bars. The **23-in OD ring trial fails end-cover and face-grid fit at the current 3-in pile tolerance**. Three-dimensional concrete nodes/breakout, compatibility, anchorage, welds and pipe-shell checks remain open; this is a preliminary gravity study. See [scope, equations and validation](RING_WALL_STM.md) and the [example report](ring_wall/examples/ring_wall_report.html).
+The initial case has five ring rows at 3 ft spacing and selects **#5 at 11 in each way each face**, with matching end U-bars. The **23-in OD ring trial still fails end-cover and face-grid clearance**, and the end-pile tributaries fail full annular compression contact at the 3-in tolerance. Those rings' local strength checks are **PENDING** until contact is resolved. Wall strength load paths, splitting/breakout, ring engagement and pipe-shell behavior remain outside this limited calculation. See [scope and equations](RING_WALL_STM.md), [validation](ring_wall/VALIDATION.md), and the [example report](ring_wall/examples/ring_wall_report.html).
 
 **Current project record:** start at [project_current](project_current/README.md)
 for the source register, journal, cap reports, Mathcad sheets, analysis files and

@@ -1,0 +1,16 @@
+{
+  "case_sha256": "21a9880de0baec002a4a38c44e2cbec06af2b8fdf1050e8b2ff7e16fac0e3f1b",
+  "source_sha256": "462d2f4ba953424d2bd1d566990d4e720d53738379eb547373cc43994240193e",
+  "files": {
+    "ring_wall_case.json": "726e496156d0cc1379b0a44137c6358e61d6e1ef269f28b7caf52ba656964882",
+    "ring_wall_results.json": "b500d53770202874d82826637892c6144795020ee587a5512ee1c907e52bc219",
+    "ring_wall_checks.csv": "cf3ebb3432cdedd97fdfad824bea51914ea373fb8afa9ffc1695c78d775c0a82",
+    "ring_wall_ring_forces.csv": "9efe573e07d0ed07fcc81158945f1dae82259416f49d5f1137fa4dce1e39e41d",
+    "ring_wall_report.html": "aef746ab4006b1434d7d85b9ee1f0ee4bb2fa9b71d0a8c819b9b3a7351819cae",
+    "ring_spacing_study.json": "560781f39104df98db0a950b909848645c86d123e538920f04dfb73342811d9b",
+    "ring_wall_design.xmcd": "27158d48472f64253df5f17a07a266df22b84f7962d947961105b7e77e401f06",
+    "Ring Supported Wall Design.bpad": "8a964a90e644f82a113f80e0b0a0c9a1753115eed6c64f3dd7a3a1e65500ee2e",
+    "ring_wall_sheet_verification.json": "19cb16744d221e8eeb6d168409faacea77259d575aa615b092de7f9565e46770",
+    "ring_wall_source.zip": "5dedabbc9c0a9d890b4d35e551ba2360ed4afd4961b0bfac64c0ec011652cf47"
+  }
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "spacing_in": 24.0,
+    "ring_count": 7,
+    "grid_spacing_in": 11.0,
+    "max_ring_kip": 8.056640625,
+    "max_t_in": 0.375,
+    "max_weld_in": 0.3125,
+    "max_weld_dc": 0.0636445021168663,
+    "contact_failures": 14,
+    "status": "16 FAILED CHECKS · LIMITED SCOPE"
+  },
+  {
+    "spacing_in": 30.0,
+    "ring_count": 6,
+    "grid_spacing_in": 11.0,
+    "max_ring_kip": 7.353515625,
+    "max_t_in": 0.375,
+    "max_weld_in": 0.3125,
+    "max_weld_dc": 0.058090072841212495,
+    "contact_failures": 12,
+    "status": "14 FAILED CHECKS · LIMITED SCOPE"
+  },
+  {
+    "spacing_in": 36.0,
+    "ring_count": 5,
+    "grid_spacing_in": 11.0,
+    "max_ring_kip": 9.462890625,
+    "max_t_in": 0.375,
+    "max_weld_in": 0.3125,
+    "max_weld_dc": 0.07475336066817387,
+    "contact_failures": 10,
+    "status": "12 FAILED CHECKS · LIMITED SCOPE"
+  },
+  {
+    "spacing_in": 42.0,
+    "ring_count": 4,
+    "grid_spacing_in": 11.0,
+    "max_ring_kip": 14.384765625,
+    "max_t_in": 0.375,
+    "max_weld_in": 0.3125,
+    "max_weld_dc": 0.11363436559775038,
+    "contact_failures": 8,
+    "status": "10 FAILED CHECKS · LIMITED SCOPE"
+  },
+  {
+    "spacing_in": 48.0,
+    "ring_count": 4,
+    "grid_spacing_in": 11.0,
+    "max_ring_kip": 11.25,
+    "max_t_in": 0.375,
+    "max_weld_in": 0.3125,
+    "max_weld_dc": 0.08887086841046057,
+    "contact_failures": 8,
+    "status": "10 FAILED CHECKS · LIMITED SCOPE"
+  }
+]

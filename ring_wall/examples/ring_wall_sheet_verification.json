@@ -1,0 +1,12 @@
+{
+  "case_sha256": "21a9880de0baec002a4a38c44e2cbec06af2b8fdf1050e8b2ff7e16fac0e3f1b",
+  "source_sha256": "462d2f4ba953424d2bd1d566990d4e720d53738379eb547373cc43994240193e",
+  "numeric_values": 572,
+  "check_statuses": 178,
+  "tolerance": 1e-09,
+  "mathcad_sha256": "27158d48472f64253df5f17a07a266df22b84f7962d947961105b7e77e401f06",
+  "bpad_sha256": "8a964a90e644f82a113f80e0b0a0c9a1753115eed6c64f3dd7a3a1e65500ee2e",
+  "native_application_recalculation": false,
+  "units": "Fixed scalar units, labeled; not dimensionally evaluated",
+  "status": "FORMULA PARITY VERIFIED"
+}

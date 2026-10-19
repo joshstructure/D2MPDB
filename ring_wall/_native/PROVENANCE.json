@@ -1,0 +1,8 @@
+{
+  "source_commit": "0082ddff0972c0619fedbe78b08b9f54b7ee4534",
+  "source_paths": [
+    "scripts/mathcad_sheet.py",
+    "scripts/bpad_sheet.py"
+  ],
+  "purpose": "Isolated native worksheet helpers; excludes concurrent unfinished shared-helper changes."
+}

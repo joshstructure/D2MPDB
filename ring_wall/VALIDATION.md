@@ -1,80 +1,41 @@
-# Verification record — 2026-10-12
+# Verification record — 19 October 2026
 
-The completed gravity calculation was retained and extended with a live notebook
-workbench and the broad-face cone-transfer trial. Cap and end-wall engines were
-not changed.
+The former ring-wall STM engine has been replaced by minimum wall steel/detailing and local annular-ring bearing, plate and double-fillet weld checks. Other notebook engines were not changed.
 
-- **27 targeted tests passed** with Python 3.12.14 on Windows, using
-  `python -m unittest discover -s tests -p "test_ring_wall*.py" -v`.
-- Both notebook code cells executed in order. Tests verify no exports on startup,
-  exact embedded-source bytes, current-result export gates, case preservation on
-  rerun, separate export folders and preservation of earlier saved downloads.
-- Embedded package SHA-256:
-  `be7454769dc518a04912f38fe71ff25706fcb351f09a6d85ae974676c82c190b`.
-- The same 27 tests also passed with the Colab-pinned ipywidgets 7.7.1 and Plotly
-  5.24.1 packages. Navigation regressions click every input/result panel button,
-  verify that the selected content is the sole mounted page, and check that
-  switching pages preserves calculations and stale-result/export gates.
-- Following a report that Colab stayed on Live layout after tab clicks, the
-  workbench now uses ordinary button callbacks and a single visible VBox page.
-  It no longer depends on TabModel/TabView selection. Only the selected chart is
-  resized, and its current data is prepared before mounting the view.
-- Local JupyterLab browser verification with the pinned 7.7.1 / 5.24.1 packages
-  and matching widget-7 renderer clicked all seven result buttons and confirmed
-  their distinct plots/tables. Switching back to Live layout, Cone transfer and
-  Ring forces also worked. This tests the browser callback/content path, not just
-  Python selection values. The Google-hosted runtime remains unverified.
-- The initial live-workbench build also executed in a local JupyterLab browser with
-  ipywidgets 8.1.9 and Plotly 6.9.0. Live geometry, the reaction heatmap and table,
-  and the 3-D cone rendered. Browser interactions verified row filtering, a typed
-  cone-slope edit, stale-result clearing, Recalc, and the optional report button.
-  New exports were disabled after edits while the saved-report button remained
-  enabled. A report was generated from the current default case. The displayed
-  face rise changed from 4.333 in to 4.062 in at 1.6 H:1 V (unrounded: 4.0625 in).
-- Google-hosted Colab UI/download behavior was not directly exercised. Its setup
-  follows the cap notebook's pinned ipywidgets 7.7.1 / Plotly 5.24.1 runtime and
-  custom-widget-manager registration. Local browser checks do not substitute
-  for a hosted Colab check.
-- Default gravity: 114.737109375 kip service; 143.421386719 kip factored.
-  Ring reaction sum: 143.421386719 kip. Global force and moment residuals and
-  arch-joint residuals were zero to the displayed precision.
-- Default cage: #5 at 5 in each way each broad face, matching end U-bars.
-  Required 0.648 in²/ft per face; provided 0.744. Governing spacing limit 5.171875 in.
-- Manual #6 at 8 in passes minimum area but fails the assigned-band spacing
-  limit; this boundary was tested.
-- The default has **six failed checks**: RING-END (2-in available end cover
-  against 3 in), RING-GRID (−0.75-in clearance at pile tolerance), and R1-FIT
-  through R4-FIT (raised arches exceed their assigned bands). **Nine design items
-  remain open**, including the added cone-transfer connection check.
-- Independent tests covered funicular force equivalence to beam moments, 30
-  randomized whole-wall layouts, load and bearing-area scaling, numerical
-  integration of the radial plate strip, invalid inputs and stale export rejection.
-- Widget tests cover live plot data, changed row/pile counts, filters, case
-  loading and failed-calculation handling.
-- Every numerical check now has a shared notebook/report derivation containing
-  governing formulas, substituted values, intermediate results, units and D/C.
-  Regression tests independently evaluate the displayed scalar arithmetic for
-  all checks in default, edited/manual-grid and original-ring-level cases and
-  compare it with the calculation results. Tests also verify refreshed values,
-  identical notebook/report disclosures, negative available dimensions and the
-  strict angle threshold. Calculation-engine results are unchanged.
-- The current notebook also ran in the local JupyterLab browser with the pinned
-  7.7.1 / 5.24.1 packages. Expanding GRID-A and R1-T in D/C checks visibly showed
-  formulas, substituted values and results, including 0.648 in²/ft required grid
-  area and 4.21875 kip bay-tie demand against 33.48 kip resistance. The current
-  default result object exactly matches the previously published result JSON.
-- Cone tests check the 1.5 H:1 V face intersection, tolerance reaches, wall-end
-  truncation, unchanged gravity/reactions/span, shifted arch-fit elevations,
-  symmetric transfer-link equilibrium and additional transverse-tie demand.
-  Saved cases without cone fields retain the original ring-level model.
-- Default first face contact is 4.333333 in above the ring; near/far reaches at
-  ±3-in transverse pile tolerance are 2.333333 / 6.333333 in. The outer-pile
-  envelope reaches the wall end first, at 3.333333 in above the ring.
+## Automated verification
 
-The 1.5 H:1 V envelope is adapted from the ACI CCD breakout sketch. Its use at an
-annular ring is an explicit geometric extrapolation, not verified breakout
-resistance or a compression-spread provision. Free-surface intersection creates
-no external support or span reduction. The trial face references need finite
-interior nodes with cover, and the transverse ties need routing and anchorage
-around the hollow pipe. These tests do not validate that connection, row
-compatibility, wall-end topology, anchorage, or complete project code compliance.
+`python -m unittest discover -s tests -p 'test_ring_wall*.py' -q` passes **24 tests** in both environments:
+
+- Local ipywidgets **8.1.9**, Plotly **6.9.0**: 24 tests, 23.870 s.
+- Colab-pinned ipywidgets **7.7.1**, Plotly **5.24.1**: 24 tests, 24.756 s.
+
+Coverage includes midpoint tributaries and global force/moment equilibrium, 30 randomized geometries, single-pile and single-row boundaries, load-factor/density scaling, minimum steel independent of ring pitch, detailing failures, minimum weld table boundaries, invalid input rejection, and legacy-case migration without silently removing added gravity.
+
+Independent numerical radial-strip integration checks plate shear and moment; weld force is checked against its separate force/couple calculation. Tests check bearing area, eccentricity/tolerance effects, failed-contact gating, a geometry with all numeric checks passing while scope items stay open, and report disclosures with escaped user text.
+
+Both notebook code cells execute in order from the embedded source, with no startup exports. Exact embedded bytes, package checksum, case retention on rerun and saved-download preservation are checked. Widget tests navigate every panel, reuse figure objects after topology edits, clear stale results, block stale exports, exercise filters and atomically reject invalid saved cases.
+
+The full export ZIP is checked against its SHA-256 manifest. HTML includes interactive Plotly code inline and has no external script dependency. Mathcad and Blockpad expressions are independently evaluated against every calculation value and status for default, edited, full-contact and single-pile cases. XML, expression order and worksheet width checks also pass. The default has **572 scalar values and 178 check statuses** in each native sheet. Status tolerances are shared with the Python checks.
+
+Embedded package SHA-256:
+
+`fe47000355c30e18149400e46010e34a5a80f35af1223cd91156bd3ef181d5b4`
+
+## Browser and review limits
+
+Local JupyterLab browser review rendered the workbench and clicked all seven result panels. The 3D cage, annular-ring section, pressure plot, tables and navigation rendered. A typed radial-tolerance edit cleared calculated results; manual Recalc was exercised. Standalone report, cage view buttons and ring connection drawing were also visually reviewed.
+
+The Google-hosted Colab runtime and downloads were not directly exercised. Its pinned Python widget/chart versions passed the same automated suite. Native Mathcad/Blockpad application recalculation and native page appearance were not performed. Formula parity, XML parsing and cached values do not establish native execution or engineering acceptance. Native sheets use fixed scalar units with labels and the exported topology, as described in the guide.
+
+## Starting-case results
+
+- Service concrete self-weight: **114.737109375 kip**.
+- Factored concrete self-weight: **143.42138671875 kip**.
+- Maximum ring reaction: **9.462890625 kip**.
+- Global force and nominal moment residuals are zero to displayed precision.
+- Selected grid: **#5 at 11 in each way each face**, providing **0.338181818 in²/ft** against **0.333614458 in²/ft** required.
+- **12 failed checks:** RING-END, RING-GRID and ten end-pile full-contact checks. Their 70 local strength checks are pending. Four scope items remain open.
+
+Defaults remain the earlier study geometry. Minimum steel and local connections do not establish wall strength, concrete splitting/breakout, row engagement or local pipe-shell behavior. See [the full basis](../RING_WALL_STM.md) and regenerated [example report](examples/ring_wall_report.html).
+
+Reproduce with `scripts/build_ring_wall_notebook.py` and `scripts/build_ring_wall_examples.py`. Exact source/case/output hashes are in the example export manifest and worksheet verification JSON. Vendored worksheet helper provenance is recorded in `_native/PROVENANCE.json`.
