@@ -85,6 +85,39 @@ symbol at page scale.
   FDOT font (`cad.text_extent`, `_ADV`), so texts with quotes, parentheses
   and points are not sized a quarter too wide; the audit boxes (A1) and the
   fit tests of the dimension rows use the same estimate.
+- **A10 Leader bends are square or obtuse, and leaders leave a text toward
+  what they point at.**  The angled piece of a leader never runs back under
+  its text (an acute angle at the knee): where the tip lies on the text side
+  of the knee, the knee moves over the tip and the piece is vertical
+  (`View.leader`).  A fan of arrows leaves the text on the side of the bars
+  it points to (`View.leader_fan` flips the text side when the tips are on
+  the text side).  Markups 2026-10-19: "Make leaders either 90 degree bends
+  or obtuse interior angles, don't cut under the text with an acute interior
+  angle unless absolutely necessary", "Leaders extend from the right side of
+  text when objects are on the left side".
+- **A11 Leaders do not cross leaders.**  Two leaders (or a pulled value's
+  pointer and a leader) never cross; the audit lists every crossing
+  ("LEADER CROSSES LEADER") and the list is worked to nothing.  A callout
+  whose leader would have to cross another moves to a different side, or its
+  tip to a different point of the bar (the hoop callout tip sits above the
+  side-bar fan, the pier's end U-bar callout under the cap end with its two
+  tips well apart).  Markups 2026-10-19: "Leaders unnecessarily cross other
+  leaders", "The leaders here have too much overlap with drawing items and
+  it's hard to see what they point to ... have wider distances between the
+  separate leaders", "There's no need for these annotations to cross".
+- **A12 Several lines called out by one label get parallel leaders**, one
+  arrowhead per line, the leaders crossing any other centerline through a
+  gap in it (the cap centerline is broken either side of each leader), the
+  text once at the end of the leaders (pier sections, "CL BEARING (TYP.)").
+  Markup 2026-10-19: "Do a set of parallel leaders where you have an arrow
+  per line and make sure the leaders cross the other centerline in a dash
+  area so it's clear they are distinct".
+- **A13 A centerline label points at the centerline**, extended clear of the
+  dimension rows if need be, never at a point beside a dimension text (pier
+  View D-D).  Markup 2026-10-19: "Extend the centerline and point to it
+  because this looks like we are pointing to the dim text".  Leaders keep
+  0.3" from the circled pile numbers (A8): "No need for the annotation
+  leaders to be so close to the circled number".
 
 ## B. Dimensions
 
@@ -151,6 +184,18 @@ symbol at page scale.
   two-line series text sits between them; the back-face strap dimension
   sits 0.15" off the face inside the first column.  Follow-up markup:
   "overlap here" (Section A-A back side).
+- **B9 Pulled-out values stand clear of their line.**  A value pulled out
+  of its space keeps a clear gap between its text box and its own dimension
+  line (or that line's extension): 1.2 text heights in a vertical column,
+  one text height on the far side of a horizontal row, a quarter beyond the
+  end of a horizontal row; the pointer's landing never lies over another
+  line.  A two-line in-place dimension text is placed explicitly beside its
+  line (ezdxf would put its second line on the line).  Markups 2026-10-19:
+  "Dim text sits on dim lines", "Shift dims like these slightly to the left
+  so they don't look like they are sitting on the other dim line and it's
+  clear they are a pop out because they didn't fit", "Text is overlapping
+  with the dim line because the pop out isn't far enough away. Also do not
+  make the break in the leader overlap another line".
 - **B6 Precision and format** (SDM 2.11.3): concrete to 1/8", bar spacing and
   partial bar lengths to 1/4", overall bar lengths to 1", elevations to
   0.001 ft, stations to 0.01 ft; feet-inch-fraction text with the FDOT font
@@ -190,6 +235,23 @@ symbol at page scale.
   component, numbers from 1 without gaps, no I, O or Q); the FreeCAD rebar
   Mark properties carry the same marks (D-042), so marks are re-applied to
   the model after any cage change (`freecad_marks.py`).
+- **C8 Bar ends are round and end-on legs are dots.**  A double-line bar
+  (C1) ends in a semicircle, not a square cap; a leg or hook seen end-on in
+  a view (the projected length under 0.35 of the true length) is drawn as
+  an end-on dot (C2) at its position, never as a notched stub of the
+  projected bend (`views.draw_bar3`: pedestal plan and elevation, cheek
+  views).  Markups 2026-10-19 on the pedestal plan: "The bar ends at the
+  bends here have odd shapes instead of smooth semi-circles", "appears to
+  show multiple clashing bars that don't occur in the model" (the 4F2 legs
+  stand under the first 4F1 bar: end-on dots on its line, not stubs).
+- **C9 Bars that nearly touch in the model are drawn as modelled and
+  reported.**  Section G-G of End Bent 2 shows the backwall end verticals
+  5D1 inside the cheek wall 1.1" from the cheek verticals 4E1: that is the
+  model (SteelBridgeBackwallEB2F1VEL/F2VEL beside SteelBridgeCheekEB21MV04/
+  MV05; End Bent 1 interleaves its bars 3.4" apart).  The sheet carries a
+  MODEL CHECK note (`Builder.cage_clash_note`) until the cage is reconciled.
+  Markup 2026-10-19: "There appear to be multiple clashing bars here that
+  don't exist in the model".
 
 ## D. Linework and context
 
@@ -209,17 +271,27 @@ symbol at page scale.
   sheet via `LTSCALE_PER_SF`).  Markup: "Centerlines should have dashes not
   dots".
 - **D4 Context is minimal.**  Bent sections do not show the landing or
-  approach slab ("we want to focus on the end bents").  The MSE wall front
-  face is shown only where there is room; otherwise it is omitted with the
-  note "MSE WALLS NOT SHOWN FOR CLARITY." and shown in a separate detail
-  without reinforcing (sample B1-34 style).
+  approach slab ("we want to focus on the end bents").  The end bent
+  sections end at a break line through the rain closure slab 1.2 ft beyond
+  the cap face: no coping and no MSE wall stub with its own break ("weird
+  cutoffs").  Markup 2026-10-19: "Make these details smaller to fit the MSE
+  walls in the details without the weird cutoffs or do a breakline at the
+  4" closure slab and leave the details the same size".  A member that
+  continues beyond the view (the pier wall under the cap in the pier
+  sections) ends in a break line, with the dimension rows clear of its
+  edges (markup 2026-10-19: "We need a breakline at 1 for the pier wall and
+  we need to shift the dims down at 2 because they are too close to the pier
+  wall edges").
 - **D5 Construction joints are shown and named, with their shape.**  The
   cap/backwall joint is labelled "CONST. JOINT (SEE DETAIL "A")" in the
-  sections, drawn there with the key of DETAIL "A" in the joint line (the
-  straight joint piece is cut out and the keyway profile drawn in its
-  place), and detailed as a keyed joint (DETAIL "A", sample B1-17); the
+  sections, drawn there with the key of DETAIL "A" in the joint line: the
+  straight joint piece is cut out across the key and the keyway profile is
+  drawn dashed (hidden level) in its place, so it reads as a shear key; the
+  joint is detailed as a keyed joint (DETAIL "A", sample B1-17); the
   cap/pedestal joint is labelled "CONST. JOINT" in the pedestal elevation.
-  Follow-up markup: "Show the shape of the construction joint at the joint".
+  Follow-up markups: "Show the shape of the construction joint at the
+  joint", 2026-10-19 "construction joint shape should be dashed and the
+  horizontal line be removed to indicate a shear key".
 - **D6 Reinforcing straps** (MSE soil reinforcement attached to the backwall)
   are shown in the sections as a line out of the back face at the strap
   elevation with a representative 6" embedment into the backwall, labelled
@@ -228,7 +300,9 @@ symbol at page scale.
   4" stubs out of the back face with one callout giving count and spacing
   ("7~Δ REINF. STRAPS @ 2'-9⁹⁄₁₆"").  They come from the model's schematic
   strap references (D-045).  Follow-up markup: "Show a representative embed
-  into the wall for the strap".
+  into the wall for the strap".  The embedded end carries a small circle,
+  the anchorage in the concrete (markup 2026-10-19: "Add a circle to
+  indicate strap anchorage within the concrete").
 - **D10 Monolithic pours have no joint line.**  The cheek wall and the
   backwall are one pour: no line is drawn on the cheek's inner face within
   the backwall thickness (SECTION G-G).  Follow-up markup: "Remove the joint
@@ -289,13 +363,15 @@ Render the previews (`--previews`) and look at every sheet at full size:
    no crossings between views) and `annotation_overlaps` is empty or every
    entry is a justified exception (A1).
 2. No leader parallel to the bar it points to (A3); no leader under the
-   stationing arrow (A7).
+   stationing arrow (A7); no leader crossing another (A11, audit); no acute
+   bend under a text (A10); fans leave the text toward the bars (A10).
 3. Every dimension text either sits in its space or has a line to it (B1);
-   none crosses a line without a mask (B2); no stacked values.
+   none crosses a line without a mask (B2); no stacked values; pulled-out
+   values stand clear of their line (B9).
 4. Centerlines show as long-short dashes (D3); no stray break symbols (D2);
    no dashed line over a solid line (D1).
-5. Sections at 1/2" and larger draw bars as double lines (C1); overlapping
-   bars show daylight (C4).
+5. Sections at 1/2" and larger draw bars as double lines (C1) with round
+   ends and end-on legs as dots (C8); overlapping bars show daylight (C4).
 6. Plan shows the PT. labels (A4) and the stationing arrow (A5); the
    pedestal plan shows the stationing arrow.
 7. No landing slab in the sections (D4); construction joint, embedment and
@@ -354,3 +430,25 @@ Follow-up comments on the rebuilt sheets, 2026-10-17/18 (all general):
 | Section A-A | Show a representative embed into the wall for the strap | D6 | 6" embed drawn |
 | Section G-G | Remove the joint here and show it monolithic | D10 | cheek/backwall interface line dropped |
 | all | In general double check that we are minimizing overlapping annotation with linework | A1 | annotation audit in the build and manifest, worked down to no entries: pulled values placed in row order (B7), the end bent pile embedment value in the band above the stirrup row (B7), end bent pile numbers off the flag letters (A8), pier bottom flags below the pile breaks, per-glyph text widths (A9), notes clear of the BRIDGE NO. block (E2) |
+
+Markups on the 2.2.1 sheets, 2026-10-19 (all general):
+
+| Where | Comment (engineer's words) | Rule | Resolution |
+|---|---|---|---|
+| B4-8 sections | Leaders unnecessarily cross other leaders; dim text sits on dim lines; leaders extend from the right side of text when objects are on the left side | A10, A11, B9 | leader-crossing audit; hoop callout tip above the side-bar fan; pulled values clear of their line, two-line in-place text placed beside its line; fans leave the text toward the bars |
+| Section A-A | Add a circle to indicate strap anchorage within the concrete | D6 | circle at the embedded strap end |
+| Section A-A | Construction joint shape should be dashed and the horizontal line be removed to indicate a shear key | D5 | keyway dashed, joint line cut across the key |
+| B4-2 | Make these details smaller to fit the MSE walls without the weird cutoffs, or do a breakline at the 4" closure slab and leave the details the same size | D4 | break line through the closure slab; no coping or MSE stub in the sections |
+| B4-3 | Shift dims like these slightly to the left so they don't look like they are sitting on the other dim line and it's clear they are a pop out | B9 | 1.2 text heights clear in vertical columns |
+| View D-D | Minimize the leaders crossing line work if you can just shift the annotations a bit | A1 | WWR label with a horizontal leader into the hatch edge |
+| pedestal elev. | Make leaders either 90 degree bends or obtuse interior angles | A10 | vertical angled piece when the tip is on the text side |
+| pedestal elev. | Make better fit so these don't overlap or are so near each other; give each annotation some buffer | A2 | 4F2 label above the pedestal, the embedment column clear of the break line |
+| pedestal elev. | Text is overlapping with the dim line because the pop out isn't far enough away; do not make the break in the leader overlap another line | B9 | cover value above the pedestal top with a square pointer |
+| pier View D-D | Extend the centerline and point to it because this looks like we are pointing to the dim text | A13 | centerline extended above the dimension row |
+| pier elevation | No need for the annotation leaders to be so close to the circled number | A13 | pile description and PT. leaders 0.3" off the circles |
+| pier elevation | The leaders have too much overlap with drawing items; reposition and widen the distance between the separate leaders | A11 | end U-bar callout under the cap end |
+| pier sections | Do a set of parallel leaders with an arrow per line crossing the other centerline in a dash area; put the text at the end | A12 | two parallel bearing leaders, cap centerline gapped |
+| pier sections | Breakline for the pier wall; shift the dims down, too close to the pier wall edges | D4 | wall break line, bottom row lowered |
+| pier sections | No need for these annotations to cross: text up, cover dim down | A11 | cover value above its pointer path |
+| B4-10 G-G | Multiple clashing bars here that don't exist in the model | C9 | they are modelled (EB2 backwall end verticals inside the cheek); MODEL CHECK note |
+| pedestal plan | Bar ends at the bends have odd shapes instead of smooth semi-circles; appears to show clashing bars that don't occur in the model | C8 | round bar ends, end-on legs as dots |

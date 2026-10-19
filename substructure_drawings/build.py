@@ -15,7 +15,7 @@ from .sheets import DRAW, TITLE_TOP, Sheet
 from .support import STATION_FFBW_EB1, Support
 from .views import DELTA, Builder, z_on_edges
 
-GENERATOR_VERSION = "2.2.1"
+GENERATOR_VERSION = "2.3.0"
 DXF_NAME = "B4_Substructure_EndBents_Pier.dxf"
 
 INFO = {
@@ -326,17 +326,21 @@ class Composer:
                 zs = [z for _, z in sorted(row["lines"], key=lambda t: t[0])]
                 body.append(("1-%d / 2-%d" % (p["line"], p["line"]),) + tuple(fdot.elev(z) for z in zs[:4]))
             corners = ("A", "E", "F", "B")
-            note = "A AT SPAN 1 EDGE, B AT SPAN 2 EDGE, E AND F AT THE PAD-END BREAKS."
+            # two lines: one would run past the table width (E2)
+            note = "A AT SPAN 1 EDGE, B AT SPAN 2 EDGE,\\PE AND F AT THE PAD-END BREAKS."
         hdr = [(("BEAM NO.", 1, 2), ("ELEVATION (FEET)", 4)), (None,) + corners]
         y = sh.table(x, y_top, "TOP OF PEDESTAL ELEVATIONS", hdr, body, PED_COLS)
-        sh.ptext((x, y - 0.08), note, None, "TOP_LEFT", "TextStructures", style=fdot.SMALL_STYLE)
-        return y - 0.2
+        lines = note.split("\\P")
+        for i, line in enumerate(lines):
+            sh.ptext((x, y - 0.08 - 0.11 * i), line, None, "TOP_LEFT", "TextStructures", style=fdot.SMALL_STYLE)
+        return y - 0.2 - 0.11 * (len(lines) - 1)
 
     @staticmethod
     def _ped_table_height(s):
         """Height of the TOP OF PEDESTAL ELEVATIONS table with its note (title
-        box, two header rows, one row per pedestal line, note line)."""
-        return fdot.TABLE_TITLE_IN * (1.45 + 0.6) + 0.15 * (2 + len(s.pedestal_table())) + 0.2
+        box, two header rows, one row per pedestal line, note lines)."""
+        return (fdot.TABLE_TITLE_IN * (1.45 + 0.6) + 0.15 * (2 + len(s.pedestal_table())) + 0.2
+                + (0.11 if s.kind == "PIER" else 0.0))
 
     def legend_notes(self, sh, b, x, y_top, x_end, items, min_w=NOTES_W, gap=0.3):
         """NOTES: (left) and beside it, ``gap`` to its right and up to
@@ -520,6 +524,11 @@ class Composer:
             b.pedestal_marks_note(s.pedestals[0]),
             "PEDESTALS ARE CAST ON THE CAP; THE CAP TOP IS A CONSTRUCTION JOINT.",
             self.bar_list_ref()]
+        # C9: backwall verticals standing inside a cheek wall next to its
+        # verticals are drawn as modelled and reported for reconciliation
+        clash = b.cage_clash_note()
+        if clash:
+            items.insert(-1, clash)
         bottom = sh.notes_bottom(y, items, w)
         sh.notes(xg, y, "NOTES:", items, width_in=w)
         self.check_block(sh, "notes", (xg, bottom, xg + w, y))

@@ -202,6 +202,23 @@ class SubstructureDxfTests(unittest.TestCase):
         finally:
             fdot.FDOT_FONT_GLYPHS = True
 
+    def test_source_glyphs_are_not_mojibake(self):
+        """The generator sources carry non-ASCII literals (Δ, °, Ø, fractions,
+        the ¡ centerline glyph) as UTF-8.  A rewrite in another encoding
+        turns them into two-character sequences (Î” for Δ, Â° for °) that
+        reach the DXF; this happened once (2026-10-19) and is caught here,
+        in the sources and in the drawing text."""
+        bad = re.compile("[ÂÃÎ][\u0080-¿–-›˜]")
+        for path in sorted(PKG.glob("*.py")):
+            text = path.read_text(encoding="utf-8")
+            self.assertIsNone(bad.search(text), "%s holds mojibake" % path.name)
+        texts = [e.dxf.text for e in self.doc.modelspace().query("TEXT")]
+        texts += [e.text for e in self.doc.modelspace().query("MTEXT")]
+        joined = "\n".join(texts)
+        for glyph in ("Δ", "°", "Ø"):
+            self.assertIn(glyph, joined, glyph)
+        self.assertIsNone(bad.search(joined))
+
     def test_sheet_set_follows_the_fdot_sample(self):
         """Plan and elevation with the reinforcement for each support (no
         separate reinforcement sheets), its details (STYLE_GUIDE E1: three

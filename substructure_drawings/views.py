@@ -53,6 +53,73 @@ def draw_bar(v, pts, dia_in):
     return v.bar(pts, dia_in) if hasattr(v, "bar") else v.pl(pts, "Rebar")
 
 
+def draw_bar3(v, bar, fn):
+    """A bar of the model projected through ``fn`` (3-D point -> view 2-D point)
+    with its legs and hooks seen end-on drawn as dots (B13; markups "The bar
+    ends at the bends here have odd shapes instead of smooth semi-circles" and
+    "appears to show multiple clashing bars that don't occur in the model").
+    Projecting the whole polyline draws a leg or hook that runs along the
+    viewing direction as a short notched stub, over the bars behind it.  Here
+    a segment is end-on when its projected length is less than 0.35 of its
+    true length; consecutive in-plane segments form a run drawn by
+    ``draw_bar`` (runs shorter than the bar diameter are dropped), and each
+    maximal end-on run is one filled dot of the true bar size (SDM 4.3.7.D,
+    C2) at its projected mean point."""
+    pts = bar["pts"]
+    dia = bar["dia_in"]
+    runs, cur, end_on = [], None, []
+    flat = None   # the end-on run being collected
+    for p, q in zip(pts, pts[1:]):
+        L3 = math.dist(p, q)
+        if L3 < 1e-9:
+            continue
+        a, b = fn(p), fn(q)
+        if math.dist(a, b) < 0.35 * L3:
+            if cur is not None:
+                runs.append(cur)
+                cur = None
+            if flat is None:
+                flat = [a]
+                end_on.append(flat)
+            flat.append(b)
+            continue
+        flat = None
+        if cur is None:
+            cur = [a]
+        cur.append(b)
+    if cur is not None:
+        runs.append(cur)
+    for run in runs:
+        if sum(math.dist(a, b) for a, b in zip(run, run[1:])) >= dia / 12.0:
+            draw_bar(v, run, dia)
+    for run in end_on:
+        v.dot((sum(p[0] for p in run) / len(run), sum(p[1] for p in run) / len(run)), dia / 24.0)
+
+
+def _seg_dist(p, a, b):
+    """Distance from point p to the segment ab."""
+    dx, dy = b[0] - a[0], b[1] - a[1]
+    L2 = dx * dx + dy * dy
+    t = 0.0 if L2 < 1e-12 else max(0.0, min(1.0, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / L2))
+    return math.hypot(p[0] - (a[0] + t * dx), p[1] - (a[1] + t * dy))
+
+
+def _seg_seg_dist(p1, p2, p3, p4):
+    """Distance between the segments p1p2 and p3p4 (0 where they cross)."""
+    if _segs_cross(p1, p2, p3, p4):
+        return 0.0
+    return min(_seg_dist(p1, p3, p4), _seg_dist(p2, p3, p4), _seg_dist(p3, p1, p2), _seg_dist(p4, p1, p2))
+
+
+def _segs_cross(p1, p2, p3, p4):
+    """True when the segments p1p2 and p3p4 cross (touching ends do not)."""
+    def side(a, b, c):
+        return (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0])
+    d1, d2 = side(p3, p4, p1), side(p3, p4, p2)
+    d3, d4 = side(p1, p2, p3), side(p1, p2, p4)
+    return d1 * d2 < 0 and d3 * d4 < 0
+
+
 def _covered(a, b, segs, tol):
     """True when the segment ab lies along the union of ``segs``: both of its
     end points within ``tol`` of each covering segment's line and the
@@ -108,20 +175,43 @@ def drop_coincident_hidden(edges, tol=0.004):
 def cut_out(edges, z, x0, x1, tol=0.004):
     """Edge records with the horizontal pieces at level ``z`` between x0 and
     x1 removed: the keyway of a construction joint is drawn there instead
-    (STYLE_GUIDE D5)."""
+    (STYLE_GUIDE D5, markup "the horizontal line be removed to indicate a
+    shear key").  The snapshot stores the cap top and the foot of the backwall
+    as "P" (polyline) records as well as "L" (line) records, so both are cut:
+    a record whose segment at ``z`` crosses the key is split around it (each
+    run of kept segments is one record again)."""
     out = []
     for rec in edges:
-        if rec["t"] == "L" and abs(rec["p"][0][1] - z) < tol and abs(rec["p"][1][1] - z) < tol:
-            a, b = sorted((rec["p"][0][0], rec["p"][1][0]))
-            if b <= x0 + tol or a >= x1 - tol:
-                out.append(rec)
-                continue
-            if a < x0 - tol:
-                out.append(dict(rec, p=[[a, rec["p"][0][1]], [x0, rec["p"][0][1]]]))
-            if b > x1 + tol:
-                out.append(dict(rec, p=[[x1, rec["p"][0][1]], [b, rec["p"][0][1]]]))
+        if rec["t"] not in ("L", "P"):
+            out.append(rec)
             continue
-        out.append(rec)
+        pts = [tuple(p) for p in rec["p"]]
+        pieces, cut = [], False   # kept segments (a, b), in drawing order
+        for a, b in zip(pts, pts[1:]):
+            lo, hi = sorted((a[0], b[0]))
+            if not (abs(a[1] - z) < tol and abs(b[1] - z) < tol) or hi <= x0 + tol or lo >= x1 - tol:
+                pieces.append((a, b))
+                continue
+            cut = True
+            keep = []
+            if lo < x0 - tol:
+                keep.append(((lo, a[1]), (x0, a[1])))
+            if hi > x1 + tol:
+                keep.append(((x1, a[1]), (hi, a[1])))
+            pieces += keep if a[0] <= b[0] else [(q, p) for p, q in reversed(keep)]
+        if not cut:
+            out.append(rec)
+            continue
+        run = []
+        for a, b in pieces:
+            if run and math.dist(run[-1], a) < 1e-9:
+                run.append(b)
+                continue
+            if len(run) > 1:
+                out.append(dict(rec, t="L" if len(run) == 2 else "P", p=[list(q) for q in run]))
+            run = [a, b]
+        if len(run) > 1:
+            out.append(dict(rec, t="L" if len(run) == 2 else "P", p=[list(q) for q in run]))
     return out
 
 
@@ -781,12 +871,14 @@ class Builder:
         zp = T((0, z_pile))[1]
         keep, v.xform = v.xform, None
         # piles: curved break, centerline through, circled number beside the bottom
+        circles = []   # centres of the circled pile numbers beside the pile bottoms (pier), for B8
         for p in s.piles:
             w = p["width"]
             v.pile_break(p["u"], zp, w, p["shape"], "PileSteel" if p["shape"] == "pipe" else "PileConc")
             v.line((p["u"], s.cap_bot + 0.6), (p["u"], zp - 0.12 * k), "CL_Minor")
             if z_break:   # pier: beside the pile bottom (the end bent numbers go under the stirrup row)
-                v.circled_number((p["u"] + w / 2 + 0.16 * k, zp + 0.1 * k), p["no"])
+                circles.append((p["u"] + w / 2 + 0.16 * k, zp + 0.1 * k))
+                v.circled_number(circles[-1], p["no"])
         v.xform = keep
         if z_break:
             self._break_lines(v, z_break, s.wall_u[0] - 0.5, s.wall_u[1] + 0.5)
@@ -828,6 +920,11 @@ class Builder:
             if side > 0 and not inward and z >= s.cap_bot - 1.0:
                 self._right_pts.append(([q], "PT. " + letter, q[1] + dz))
                 continue
+            # B8 (markup "No need for the annotation leaders to be so close to
+            # the circled number. There's plenty of space."): a label whose knee
+            # would fall within 0.3 k of a circled pile number moves up and out
+            if any(math.dist((q[0] + side * dx, q[1] + dz), c) < 0.3 * k for c in circles):
+                dx, dz = 0.35 * k, 0.25 * k
             v.leader([q, (q[0] + side * dx, q[1] + dz)], "PT. " + letter, al)
         # vertical dimensions on the left
         x1 = uL - 0.85 * k
@@ -852,9 +949,25 @@ class Builder:
         xe = p["u"] + p["width"] / 2
         desc = ("18\" SQUARE PRESTRESSED\\PCONCRETE PILE (TYP.)" if p["shape"] == "square"
                 else "20\" %s STEEL PIPE PILE (TYP.)" % "Ø")
-        zd = zp + 0.3 * k   # above the circled pile number
+        # B8: the tip on the last pile's right face just above the pile bottom,
+        # the knee 0.55 k beyond the cap end and 0.35 k under the pile bottom,
+        # the text to the right; the tip drops until the leader clears every
+        # circled pile number by 0.15 k
+        if circles:
+            knee = (uR + 0.55 * k, zp - 0.35 * k)
+            zd = zp + 0.12 * k
+            while zd > zp - 0.2 * k and any(_seg_dist(c, (xe, zd), knee) < 0.15 * k for c in circles):
+                zd -= 0.02 * k
+        else:
+            # end bent: no circled numbers beside the piles.  The tip stands on
+            # the pile's outer face 0.35 ft above the cap bottom, above the place
+            # where the pointer of the embedment value leaves the pile (the
+            # value's pointer then never crosses this leader, which runs on
+            # above the value's text; B7, "leaders cross leaders")
+            zd = s.cap_bot + 0.35
+            knee = (uR + 0.3 * k, zp - 0.12 * k)
         keep, v.xform = v.xform, None
-        v.leader([(xe, zd), (uR + 0.3 * k, zp - 0.12 * k)], desc, "left")
+        v.leader([(xe, zd), knee], desc, "left")
         v.xform = keep
         # reinforcement, dimensioned with one string per bar run
         z_row, z_up = self._elev_steel(v, T, zp)
@@ -1020,15 +1133,28 @@ class Builder:
             tip = (min(q[0] for q in pts) + 0.12, lowz)
             below.append(([tip], "%d~%s (TYP.)" % (per, b["mark"])))
         ends_b = s.bars_of(family="cap_end")
+        end_call = None   # the cap end U-bar callout, drawn after the PT. column (B9)
         if ends_b:
             marks = list(OrderedDict.fromkeys(b["mark"] for b in ends_b))
             txt = " & ".join("%d~%s" % (len([b for b in ends_b if b["mark"] == m]) // 2, m) for m in marks)
-            tips = []
+            # B9 (markup "The leaders here have too much overlap with drawing
+            # items and it's hard to see what they point to. Reposition the
+            # annotation to minimize overlap and have wider distances between
+            # the separate leaders"): the callout under the cap's right end,
+            # its knee 0.3 k beyond the end and 0.55 k under the cap bottom
+            # (below the "PT. D" row), one tip per mark on the lower leg of the
+            # U-bar nearest the end, tips apart and no leader crossing the
+            # "PT. D" leader
+            legs = []
             for m in marks:
-                b = max((b for b in ends_b if b["mark"] == m), key=lambda x: sum(s.u(p[0]) for p in x["pts"]))
+                cand = [b for b in ends_b if b["mark"] == m]
+                b = max(cand, key=lambda x: (round(sum(s.u(p[0]) for p in x["pts"]) / len(x["pts"]), 1),
+                                             -min(p[2] for p in x["pts"])))
                 pts = proj(b, fn)
-                tips.append(max(pts, key=lambda q: (round(q[0], 2), -q[1])) if m == marks[0] else pts[len(pts) // 2])
-            below.append((tips, txt + " (EA. END)"))
+                zmin = min(q[1] for q in pts)
+                xl = [q[0] for q in pts if q[1] < zmin + 0.02]
+                legs.append((min(xl), max(xl), zmin))
+            end_call = (legs, txt + " (EA. END)")
         # backwall: front-face verticals (first, last) and horizontals
         if s.kind == "EB":
             vert = s.bars_of(family="backwall", subtype="vert")
@@ -1052,6 +1178,41 @@ class Builder:
         # one column right of the right end: the bar callouts with leaders
         # meeting the bars at an angle (A3) and the PT. labels of that end
         callouts(v, right + getattr(self, "_right_pts", []), ends[1] + 0.2 * k, 1, slide=True)
+        if end_call:
+            # (drawn now that the callout column is: the arrangement is tested
+            # against every leader already drawn, "PT. D" and the side-bar fan
+            # included: no crossing and 0.06 k of daylight)
+            legs, txt = end_call
+            ptr = getattr(v, "_pointer_calls", ())
+            leaders = [(sg[0], sg[1]) for sg in v.segs if sg[2] == "Leader" or (len(sg) > 3 and sg[3] in ptr)]
+            best = None
+            # the specified knee first (0.3 k beyond the cap end, 0.55 k under
+            # the cap bottom), then knees nearer the end and lower, which
+            # steepen the leaders where "PT. D" and the side-bar fan leave
+            # no other way through
+            for depth in (0.55, 0.7, 0.85, 1.0):
+                for off in (0.3, 0.25, 0.2, 0.15, 0.1):
+                    knee = (ends[1] + off * k, s.cap_bot - depth * k)
+                    chosen = []
+                    for x_lo, x_hi, zl in legs:
+                        n = int((x_hi - x_lo - 0.05) / 0.02)
+                        for x in [x_hi - 0.1 - 0.02 * i for i in range(max(n, 0) + 1)]:
+                            tip = (x, zl)
+                            if x < x_lo + 0.01:
+                                break
+                            if (all(not _segs_cross(tip, knee, a, b_) and _seg_seg_dist(tip, knee, a, b_) > 0.05 * k
+                                    for a, b_ in leaders)
+                                    and all(abs(x - c[0]) >= 0.15 * k or abs(zl - c[1]) >= 0.15 * k for c in chosen)):
+                                chosen.append(tip)
+                                break
+                    if len(chosen) == len(legs):
+                        best = (chosen, knee)
+                        break
+                if best:
+                    break
+            if best is None:   # no clear arrangement: the nearest tips, the knee as specified
+                best = ([(x_hi - 0.15, zl) for _, x_hi, zl in legs], (ends[1] + 0.3 * k, s.cap_bot - 0.55 * k))
+            v.leader_fan(best[0], best[1], txt, "left")
         if below:
             # just below the cap, above the pile numbers (A8); each text in a
             # gap between the extension lines of the stirrup row (A1)
@@ -1093,13 +1254,21 @@ class Builder:
         z_lo = s.cap_bot - pile_show
         # context: the MSE wall in front; no landing or approach slab (D4);
         # the soil reinforcing strap is drawn on its own below (D6)
+        # B3 (markup "make these details smaller to fit the MSE walls ... without
+        # the weird cutoffs or do a breakline at the 4" closure slab and leave
+        # the details the same size"): the end bent sections show the cap, the
+        # backwall and the start of the closure slab only, with a break line
+        # through the slab 1.2 ft beyond the cap face; no coping, no MSE wall
+        # (D4).  The pier sections are unchanged.
+        slab_len = 1.2                      # closure slab drawn beyond the cap face
         if s.key == "EB1":
-            xr = (cs[0] - 0.15, cs[1] + 2.4)   # the closure slab and the start of the coping (sheet room)
+            xr = (cs[0] - 0.15, cs[1] + slab_len + 0.1)
         elif s.key == "EB2":
-            xr = (cs[0] - 2.4, cs[1] + 0.15)
+            xr = (cs[0] - slab_len - 0.1, cs[1] + 0.15)
         else:
             xr = (cs[0] - 0.35, cs[1] + 0.35)
-        edges = [r for r in sec["edges"] if r["role"] not in ("landing", "strap")]
+        skip_roles = ("landing", "strap") + (("coping", "mse") if eb else ())
+        edges = [r for r in sec["edges"] if r["role"] not in skip_roles]
         straps = [r for r in sec["edges"] if r["role"] == "strap" and r["vis"]] if eb else []
         # back (backwall or left) side and front side fs (+1 right, -1 left)
         fs = -1 if s.key == "EB2" else 1
@@ -1115,40 +1284,44 @@ class Builder:
                    (k1 - fs * 0.5 * IN, s.cap_top - 1.5 * IN), (k1, s.cap_top)]
         # the room above the backwall stays as with the slab stub (not drawn),
         # so the sections keep their place beside the pedestal details
-        tops = [p[1] for r in sec["edges"] if r["vis"] and r["role"] != "strap"
+        tops = [p[1] for r in sec["edges"] if r["vis"] and r["role"] not in ("strap",) + (("coping", "mse") if eb else ())
                 for p in edge_points(r) if xr[0] <= p[0] <= xr[1]]
         z_hi = max(tops) + 0.05
-        # bearing labels: EB within the backwall height; pier just above the
-        # cap or pedestals, under the dimensions
-        z_bl = (max(t[1] for t in s.backwall_top) - 0.6) if eb else max(s.cap_top + 0.45, max(tops) + 0.1)
-        if not eb:
-            # pier: the bearing label above the two dimension rows over the
-            # cap, the bearing lines ending under it (A1)
-            z_bl = z_hi + 0.35 * k + 0.3 * k + 0.3 * k
+        # first dimension row above the section and the second (the pier's
+        # bearing leaders run between the section and the first row, B10)
+        yt1 = z_hi + 0.35 * k
+        yt2 = yt1 + 0.3 * k
+        # bearing labels: EB within the backwall height; the pier's leaders
+        # are set where the centerlines are drawn (B10)
+        z_bl = (max(t[1] for t in s.backwall_top) - 0.6) if eb else None
         box = (xr[0], z_lo, xr[1], z_hi)
-        draw_edges(v, edges, box=box, hidden=False)
+        # B3: the closure slab is clipped 1.2 ft beyond the cap face
+        dbox = box
+        if eb:
+            x_slab = x_front + fs * slab_len
+            dbox = (xr[0], z_lo, x_slab, z_hi) if fs > 0 else (x_slab, z_lo, xr[1], z_hi)
+        draw_edges(v, edges, box=dbox, hidden=False)
         if key:
-            v.pl(key, "SubStrConc")
+            # B2 (markup "construction joint shape should be dashed"): the
+            # keyway profile is the dashed construction joint, not a solid line
+            v.pl(key, "SubStrConc_h")
         al_f = "left" if fs > 0 else "right"     # texts on the front side
         # the end bent weather closure (D-044): the rain closure slab between
-        # the front coping and the cap face, and the coping on the MSE wall
+        # the cap face and the break
         clos = [r for r in edges if r["role"] == "closure" and r["vis"]]
         if clos:
             ce = extents(clos)
-            # label above the slab, in the open space between the cap face and
-            # the coping top (A1)
-            tip = (x_front + fs * 1.6, ce[3])   # near the coping end of the slab, clear of the bar callouts
+            # label above the slab 0.6 ft beyond the cap face, in the open
+            # space above it (A1)
+            # (two lines, hanging from the landing: the one-line label would
+            # run into the neighbouring section's dimension column, and the
+            # side-bar callout row above it is lifted clear, below)
+            tip = (x_front + fs * 0.6, ce[3])
             knee = (tip[0] - fs * 0.1 * k, ce[3] + 0.3 * k)
-            v.leader([tip, knee, (knee[0] + fs * 0.12 * k, knee[1])], "4\" CLOSURE SLAB", al_f)
-        cop = [r for r in edges if r["role"] == "coping" and r["vis"]]
-        if cop:
-            pe_c = extents(cop)
-            xi = pe_c[0] if fs > 0 else pe_c[2]    # the coping's inner face, under the slab
-            # the label in the gap under the slab (no width added, clear of the
-            # slab label above; A1)
-            tip = (xi, pe_c[3] - 0.6)
-            knee = (tip[0] - fs * 0.2 * k, tip[1] + 0.05 * k)
-            v.leader([tip, knee, (knee[0] - fs * 0.12 * k, knee[1])], "COPING", "right" if fs > 0 else "left")
+            v.leader([tip, knee, (knee[0] + fs * 0.12 * k, knee[1])], "4\" CLOSURE\\PSLAB", al_f)
+            # B3: the break line through the slab (markup "do a breakline at
+            # the 4" closure slab")
+            v.break_line((x_slab, ce[1] - 0.06 * k), (x_slab, ce[3] + 0.06 * k))
         # piles: a break only where a pile body is cut by the window bottom
         # (D2): visible pile edges in the window spanning its bottom
         piles = [r for r in edges if r["role"] in ("pile_conc", "pile_steel") and r["vis"]
@@ -1161,31 +1334,64 @@ class Builder:
             kind = "pipe" if piles[0]["role"] == "pile_steel" else "square"
             v.pile_break((pe[0] + pe[2]) / 2, z_lo, pe[2] - pe[0], kind,
                          "PileSteel" if kind == "pipe" else "PileConc")
-        mse = [r for r in edges if r["role"] == "mse" and r["vis"]]
-        if mse:
-            me = extents(mse)
-            v.break_line((me[0] - 0.08 * k, z_lo), (me[2] + 0.08 * k, z_lo))
+        # B11 (markup "we need a breakline at 1 for the pier wall"): the pier
+        # wall stub cut by the window bottom gets a break line across it where
+        # no pile is cut there (D2: a break only where something is broken)
+        if not eb and not piles:
+            wall = [p for r in edges if r["role"] == "pier_wall" and r["vis"] for p in edge_points(r)]
+            if wall:
+                wl = max(min(p[0] for p in wall), box[0])
+                wr = min(max(p[0] for p in wall), box[2])
+                v.break_line((wl - 0.08 * k, z_lo), (wr + 0.08 * k, z_lo))
         # centerlines
         z_ccl = s.cap_top + 0.5          # top of the drawn cap centerline
-        z_bct = z_bl + 0.15 if eb else z_bl - 0.2   # top of the drawn bearing centerlines
+        if eb:
+            z_bct = z_bl + 0.15          # top of the drawn bearing centerline
+        else:
+            # B10: the bearing centerlines run up to just over the upper of
+            # the two parallel bearing leaders (y_a), under the first row
+            y_a = yt1 - 0.15 * k
+            y_b = y_a - 0.12 * k
+            z_bct = y_a + 0.1 * k
         # the bottom bar row (below the pile where one is cut) and the
         # centerline label under it, clear of the values pulled out below the row
-        yb1 = (z_lo - 0.25 * k) if piles else (s.cap_bot - 0.45 * k)
-        z_cll = (z_lo - 0.52 * k) if piles else min(z_lo - 0.3 * k, yb1 - 0.45 * k)
+        if piles:
+            yb1, z_cll = z_lo - 0.25 * k, z_lo - 0.52 * k
+        elif eb:
+            yb1 = s.cap_bot - 0.45 * k
+            z_cll = min(z_lo - 0.3 * k, yb1 - 0.45 * k)
+        else:
+            # B11 (markup "shift the dims down ... too close to the pier wall
+            # edges"): the pier's bottom bar row sits well under the break
+            yb1 = z_lo - 0.3 * k
+            z_cll = yb1 - 0.45 * k
         # the cap centerline, broken through the bottom row's text band (the
-        # middle value straddles the centerline; A1)
-        v.line((ccl, yb1 + 0.35 * k), (ccl, z_ccl), "CL_Major")
+        # middle value straddles the centerline; A1) and, on the pier, through
+        # each bearing leader that crosses it (B10: "cross the other
+        # centerline in a dash area so it's clear they are distinct")
+        gaps = []
+        if not eb:
+            # the leaders come from the right of the section: one crosses the
+            # cap centerline when its bearing lies left of it
+            gaps = [(y - 0.06 * k, y + 0.06 * k)
+                    for y, b in zip((y_a, y_b), sorted(s.bearings, key=lambda b: -b["s"])) if b["s"] < ccl - 1e-6]
+        z0 = yb1 + 0.35 * k
+        for g0, g1 in sorted(gaps):
+            if g1 > z0 and g0 < z_ccl:
+                if g0 > z0:
+                    v.line((ccl, z0), (ccl, g0), "CL_Major")
+                z0 = max(z0, g1)
+        if z0 < z_ccl:
+            v.line((ccl, z0), (ccl, z_ccl), "CL_Major")
         v.line((ccl, z_cll - 0.12 * k), (ccl, yb1 - 0.03 * k), "CL_Major")
         v.leader([(ccl, z_cll), (ccl + fs * 0.3 * k, z_cll)], self.cl_name(), al_f, cl=True)
-        for i, b in enumerate(s.bearings):
-            v.line((b["s"], s.cap_top - 0.2), (b["s"], z_bct), "CL_Minor")
         if eb:
+            for b in s.bearings:
+                v.line((b["s"], s.cap_top - 0.2), (b["s"], z_bct), "CL_Minor")
             b = s.bearings[0]
             v.leader([(b["s"], z_bl), (b["s"] + fs * 0.3 * k, z_bl)], "BEARING", al_f, cl=True)
         else:
-            # pier: one fan from both bearing lines above the dimension rows,
-            # the text inside the cap width (A1, sheet room)
-            v.leader_fan([(b["s"], z_bct) for b in s.bearings], (ccl + 0.15 * k, z_bl), CL + " BEARING (TYP.)", "left")
+            self._pier_bearing_leaders(v, s.bearings, cs[1] + 0.3 * k, y_a, y_b, z_bct, ccl)
         # reinforcement; in-plane bars on one line get daylight (C4)
         dots, shapes = self._section_bars(xc, depth)
         shapes = self._daylight(v, shapes, ccl)
@@ -1203,7 +1409,15 @@ class Builder:
                 near = sorted(ps, key=lambda p: -fs * p[0])
                 if e["subtype"] == "side":
                     col = [p for p in ps if abs(p[0] - near[0][0]) < 0.02]
-                    items.append((sorted(col, key=lambda p: p[1]), "%d~%s (EF)" % (len(col), mark)))
+                    col = sorted(col, key=lambda p: p[1])
+                    if clos:
+                        # the closure slab label stands on the slab right under
+                        # this row, so the row sits 0.55 k above the slab top
+                        # (A1: the label's leader must not cross its text)
+                        items.append((col, "%d~%s (EF)" % (len(col), mark),
+                                      max(sum(p[1] for p in col) / len(col), extents(clos)[3] + 0.55 * k)))
+                    else:
+                        items.append((col, "%d~%s (EF)" % (len(col), mark)))
                 elif e["subtype"] == "bottom":
                     grp = [p for p in ps if fs * (p[0] - ccl) > 0]
                     items.append((grp, "%d~%s" % (len(ps), mark)))
@@ -1211,20 +1425,38 @@ class Builder:
                     items.append(([near[0]], "%d~%s" % (len(ps), mark)))
             elif e["family"] == "cap_added":   # inside the cap, fanned up to a knee beside the group
                 tips = sorted(ps, key=lambda p: -fs * p[0])
-                far = tips[-1]
-                # the knee above the dots near the back face, the text running
-                # toward the centerline through the open interior (A1)
-                knee = (x_back + fs * 0.45, far[1] + 0.35 * k)
+                # the knee beyond the frontmost dot (A10: every arrow leaves
+                # the text away from it), the text running toward the front
+                # face at a height midway between the two lowest side bars of
+                # that face, so it ends clear of their dots and of the
+                # side-bar fan (A2, A11)
+                front_side = sorted(p[1] for m2, ps2 in cap_dots.items()
+                                    if s.table[m2]["family"] == "cap_long" and s.table[m2]["subtype"] == "side"
+                                    for p in ps2 if fs * (p[0] - ccl) > 0)
+                zk = ((front_side[0] + front_side[1]) / 2 if len(front_side) >= 2
+                      else max(p[1] for p in tips) + 0.4 * k)
+                knee = (tips[0][0] + fs * 0.08 * k, zk)
                 v.leader_fan(tips, knee, "%d~%s" % (len(ps), mark), "left" if fs > 0 else "right")
             elif e["family"] == "pedestal":
                 near = max(ps, key=lambda p: fs * p[0])
                 items.append(([near], "%d~%s" % (len(ps), mark)))
         hoop = None
+        # highest side-bar dot on the front face (the "4~6A3 (EF)" fan)
+        side_z = None
+        for m, ps in cap_dots.items():
+            if s.table[m]["family"] == "cap_long" and s.table[m]["subtype"] == "side":
+                xn = max(ps, key=lambda p: fs * p[0])[0]
+                side_z = max([p[1] for p in ps if abs(p[0] - xn) < 0.02] + ([side_z] if side_z is not None else []))
         for rb, pts in shapes:
             fam = rb["family"]
             if fam == "cap_trans":
                 hoop = (rb, pts)
+                # B4 (markup "Leaders unnecessarily cross other leaders"): the
+                # hoop callout's tip on the outer leg above the top side bar,
+                # so its leader does not cross the side-bar fan below it
                 zm = s.cap_bot + 0.62 * (s.cap_top - s.cap_bot)
+                if side_z is not None:
+                    zm = min(side_z + 0.25, max(q[1] for q in pts) - 0.25)
                 tip = (max((q[0] for q in pts), key=lambda x: fs * x), zm)
                 items.append(([tip], rb["mark"]))
             elif fam == "pedestal":
@@ -1277,14 +1509,8 @@ class Builder:
                     xt = ccl + fs * (0.1 * k + text_w(v, txt) / 2)
                     v.dim((xd, s.cap_top), (end[0], end[1]), 0.0, 90, txt, horizontal=True,
                           loc=(xt, s.cap_top - max(0.8, emb * 0.6)))
-            # the wall face label only where the wall shows below the coping;
-            # the text toward the cap, under the closure slab (no width added)
-            cop_bot = min(extents(cop)[1], extents(cop)[3]) if cop else z_hi
-            if mse and cop_bot > z_lo + 0.2:
-                face = me[0] if fs > 0 else me[2]
-                zf = (z_lo + cop_bot) / 2
-                v.leader([(face, zf), (face - fs * 0.3 * k, zf)], "FRONT FACE OF\\PMSE WALL",
-                         "right" if fs > 0 else "left")
+            # (B3: no coping and no MSE wall in the end bent sections, so no
+            # "FRONT FACE OF MSE WALL" label)
             # D6: the soil reinforcing strap (model reference D-045) out of the
             # back face, kept inside the first back dimension row, with its
             # height above the cap top; the label (and the Δ legend) once per
@@ -1296,8 +1522,13 @@ class Builder:
                 Ls = min(1.5, 0.29 * k, abs(se[2] - se[0]))
                 # the strap out of the back face plus a representative 6"
                 # embedment into the backwall (the connection is the wall
-                # provider's; the model carries the strap only outside)
-                v.line((x0s + fs * 0.5, zst), (x0s - fs * Ls, zst), "Rebar2")
+                # provider's; the model carries the strap only outside); B1
+                # (markup "Add a circle to indicate strap anchorage within
+                # the concrete"): a circle of radius 0.03 k at the embedded
+                # end, the strap line stopping at its near edge
+                r_an = 0.03 * k
+                v.line((x0s - fs * Ls, zst), (x0s + fs * (0.5 - r_an), zst), "Rebar2")
+                v.circle((x0s + fs * 0.5, zst), r_an, "Rebar2")
                 xsd = x_back - fs * 0.15 * k
                 v.dim((x_back, s.cap_top), (xsd, zst), fs * 0.15 * k, 90, fdot.ft_in(zst - s.cap_top, 0.25))
                 if tag != "at_pile":
@@ -1345,9 +1576,7 @@ class Builder:
         # top), the centerlines at the top of their drawn lines
         zt0 = (max(p[1] for r in edges if r["vis"] and r["role"] == "backwall" for p in edge_points(r))
                if eb else max(tops))
-        yt1 = z_hi + 0.35 * k
-        yt2 = yt1 + 0.3 * k
-        feat = {round(cs[0], 6): s.cap_top, round(cs[1], 6): s.cap_top}
+        feat ={round(cs[0], 6): s.cap_top, round(cs[1], 6): s.cap_top}
         if eb:
             feat[round(x_back, 6)] = zt0
             feat[round(s.ffbw_s, 6)] = zt0
@@ -1393,16 +1622,57 @@ class Builder:
             rb, pts = hoop
             r = rb["dia_in"] / 24.0
             leg = max((p[0] for p in pts), key=lambda x: fs * x) + fs * r
-            zc = s.cap_bot + 0.3 * (s.cap_top - s.cap_bot)
             cov = abs(x_front - leg)
-            # B7: the value beyond the cap face at the cap bottom (under the
-            # closure slab, below the bottom-bar callout), two-piece pointer
+            # B7: the value beyond the cap face, two-piece pointer.  B12
+            # (markup "There's no need for these annotations to cross;
+            # reposition by bringing the text up and the dim down slightly on
+            # the cover anno"): the dimension and its value sit above the
+            # bottom-bar callout (4~9A2 / 4~8A2) at one height, so the pointer
+            # runs along the dimension and never crosses that leader; the
+            # dimension stays clear of the bar dots on the face.
+            h_cap = s.cap_top - s.cap_bot
+            levels = sorted({p[1] for ps in cap_dots.values() for p in ps})
+            z_row = levels[0]                                  # the bottom bars, called out below it
+            zc = s.cap_bot + (0.3 if eb else 0.22) * h_cap
+            if eb and clos and extents(clos)[1] > z_row + 0.4:
+                # between the closure slab (above) and the bottom-bar row
+                zc = (extents(clos)[1] + z_row) / 2
+            above = [z for z in levels if z > zc]
+            below = [z for z in levels if z <= zc]
+            if below and above and min(zc - below[-1], above[0] - zc) < 0.12 and above[0] - below[-1] > 0.3:
+                zc = (below[-1] + above[0]) / 2                # mid-gap of two bar levels
             txt = "%s COVER\\P(TYP., U.N.O.)" % fdot.ft_in(cov, 0.25)
-            loc = (x_front + fs * (0.25 * k + text_w(v, txt) / 2), s.cap_bot + 0.05)
-            v.dim((leg, zc), (x_front, zc), 0.0, 0.0, txt, loc=loc)
+            if eb and clos:
+                txt = txt.replace("\\P", " ")                  # one line in the narrow band under the slab
+            tw = text_w(v, txt)
+            v.dim((leg, zc), (x_front, zc), 0.0, 0.0, txt, loc=(x_front + fs * (0.25 * k + tw / 2), zc))
         yt = min(yb1 - 0.3 * k, z_cll - 0.08 * k)
         v.title(((box[0] + box[2]) / 2, yt - 0.3 * k), "SECTION %s-%s" % (letter, letter), subtitle)
         return v
+
+    def _pier_bearing_leaders(self, v, bearings, xe, y_a, y_b, z_bct, ccl):
+        """B10 (markup "This is ugly. Do a set of parallel leaders where you
+        have an arrow per line and make sure the leaders cross the other
+        centerline in a dash area so it's clear they are distinct. Then put
+        the text at 1."): the pier sections' bearing centerlines and their two
+        parallel horizontal leaders from the right of the section, the nearer
+        bearing (larger s) on the upper line y_a, the farther on y_b, an
+        arrowhead on each bearing centerline, the text once at the upper
+        leader.  The nearer bearing's centerline is broken 0.06 k either side
+        of the lower leader that crosses it (the cap centerline is broken by
+        the caller)."""
+        s = self.s
+        k = IN * v.sf
+        near, far = max(bearings, key=lambda b: b["s"]), min(bearings, key=lambda b: b["s"])
+        z_lo = s.cap_top - 0.2
+        v.line((far["s"], z_lo), (far["s"], z_bct), "CL_Minor")
+        if near is not far:
+            v.line((near["s"], z_lo), (near["s"], y_b - 0.06 * k), "CL_Minor")
+            v.line((near["s"], y_b + 0.06 * k), (near["s"], z_bct), "CL_Minor")
+        v.leader([(near["s"], y_a), (xe, y_a)], CL + " BEARING\\P(TYP.)", "left")   # two lines: sheet room
+        if near is not far:
+            v.arrowhead((far["s"], y_b), (xe, y_b), "Leader")
+            v.line((far["s"], y_b), (xe, y_b), "Leader")
 
     def _daylight(self, v, shapes, ccl):
         """C4: an in-plane bar drawn along another (a backwall vertical over a
@@ -1524,7 +1794,7 @@ class Builder:
             v.hatch_poly(ring, scale=0.1 * k / 0.125)
             v.pl(ring, "Rebar2", closed=True)
         for b in (verts[0], verts[-1], hors[0], hors[-1]):
-            draw_bar(v, proj(b, fn), b["dia_in"])
+            draw_bar3(v, b, fn)   # B13: hooks and legs seen end-on are dots, not notched stubs
         mv, mh = verts[0]["mark"], hors[0]["mark"]
         # bottom: vertical bar series, overall width
         yb = z0 - 0.4 * k
@@ -1556,9 +1826,18 @@ class Builder:
         d_in = -sgn
         al_in = "left" if d_in > 0 else "right"
         x_edge = inner + d_in * 0.5 * k
-        v.leader([((band[0] + band[1]) / 2, zm - 0.6), (x_edge, zm - 0.6 - 0.25 * k)],
-                 "SHADED AREA\\PSHOWS LIMITS\\POF WWR\\P(SEE NOTE %d)" % wwr_note, al_in)
-        v.leader([(inner - d_in * 0.15, s.cap_bot + 0.6), (x_edge, s.cap_bot + 0.6 + 0.15 * k)], "END BENT CAP", al_in)
+        # B5 (markup "Minimize the leaders crossing line work if you can just
+        # shift the annotations a bit"): the WWR leader is one horizontal piece
+        # from the band's edge nearest the label (tip 0.1 k inside the hatch)
+        # out to the label column, so it crosses nothing but the wall face
+        z_sh = zm - 0.6
+        x_tip = band[1] - 0.1 * k if d_in > 0 else band[0] + 0.1 * k
+        txt_sh = "SHADED AREA\\PSHOWS LIMITS\\POF WWR\\P(SEE NOTE %d)" % wwr_note
+        v.leader([(x_tip, z_sh), (x_edge, z_sh)], txt_sh, al_in)
+        # END BENT CAP at least 2.5 text heights clear of the four-line text above
+        z_cap = s.cap_bot + 0.6 + 0.15 * k
+        z_cap = min(z_cap, z_sh + 0.5 * th - (1 + 3 * fdot.LINE_PITCH) * th - 3.0 * th)
+        v.leader([(inner - d_in * 0.15, s.cap_bot + 0.6), (x_edge, z_cap)], "END BENT CAP", al_in)
         um = xs_v[0] if right else xs_v[-1]          # a drawn (first or last) vertical bar
         v.leader([(um, zm + 0.9), (um + d * 0.2 * k, zm + 0.9 + 0.15 * k)], mv, al)
         hz = zs_h[-1]                                 # the top (drawn) horizontal bar
@@ -1607,7 +1886,7 @@ class Builder:
             v.break_line((xv, box[1] - 0.06 * k), (xv, box[3] + 0.06 * k))
         pbars = self._ped_bars(ped)
         for x in pbars:
-            draw_bar(v, proj(x, s.P_plan), x["dia_in"])
+            draw_bar3(v, x, s.P_plan)   # B13: legs seen end-on are dots, in-plane runs smooth bars
         # centerlines by leaders
         v.line((ped["u"], box[1] - 0.2 * k), (ped["u"], box[3] + 0.1 * k), "CL_Minor")
         v.leader([(ped["u"], box[1] - 0.12 * k), (ped["u"] + 0.3 * k, box[1] - 0.12 * k)], "BEAM", "left", cl=True)
@@ -1688,6 +1967,38 @@ class Builder:
             return "PEDESTALS AT THE OTHER BEAM LINES ARE SIMILAR."
         return "PEDESTALS AT THE OTHER BEAM LINES ARE SIMILAR: %s." % "; ".join(parts)
 
+    def cage_clash_note(self):
+        """Model finding (markup B4-10 Section G-G, "multiple clashing bars that
+        don't occur in the model"; C9): backwall end verticals that stand inside
+        a cheek wall beside its verticals.  For each cheek wall the backwall
+        verticals (family "backwall", subtype "vert") whose x lies within the
+        cheek's x-range are compared in plan with the cheek's verticals
+        (family "cheek", subtype "vert"); when any pair is closer than 2.5" c/c
+        the note of the closest pair is returned (a MODEL CHECK item of the
+        sheet notes), else None."""
+        s = self.s
+        if s.kind != "EB":
+            return None
+        bw = s.bars_of(family="backwall", subtype="vert")
+        best = None
+        for c in s.cheeks:
+            lo, hi = sorted((s.S["concrete"][c["name"]]["bb_ft"][0], s.S["concrete"][c["name"]]["bb_ft"][3]))
+            num = c["name"][-2:]
+            ch = [b for b in s.bars_of(family="cheek", subtype="vert") if b["group"].endswith(num + "Bars")]
+            for b in bw:
+                if not lo <= b["pts"][0][0] <= hi or not ch:
+                    continue
+                for cb in ch:
+                    d = math.dist(b["pts"][0][:2], cb["pts"][0][:2])
+                    if best is None or d < best[0]:
+                        best = (d, b, cb)
+        if best is None or best[0] * 12.0 >= 2.5:
+            return None
+        d, b, cb = best
+        return ("MODEL CHECK (REMOVE BEFORE ISSUE): BACKWALL END VERTICALS %s LIE WITHIN THE CHEEK WALL %s FROM THE "
+                "%s VERTICALS (%s, %s); RECONCILE THE CAGES."
+                % (b["mark"], fdot.ft_in(d, 0.125), cb["mark"], b["name"].upper(), cb["name"].upper()))
+
     def pedestal_elevation(self, zone, ped):
         """Pedestal elevation: U-bars into the cap, construction joint, top of
         pedestal, chamfer, covers and embedment (FDOT sheets)."""
@@ -1702,21 +2013,25 @@ class Builder:
         hi = max(p[2] for x in pbars for p in x["pts"])
         v = View(self.doc, zone, "%s PEDESTAL ELEVATION %d" % (s.key, ped["line"]))
         th, k = v.th, IN * v.sf
-        box = (uu[0] - 0.7, lo - 0.15, uu[1] + 0.7, ztop + 0.5)   # the break lines beyond the dimension columns (A1)
+        # (B6: the cap stub is wider on the left, so the break line is clear of
+        # the dimension column texts)
+        box = (uu[0] - 1.1, lo - 0.15, uu[1] + 0.7, ztop + 0.5)   # the break lines beyond the dimension columns (A1)
         for rec in S["elev"]:
             if rec["role"] in ("pedestal", "cap") and rec["vis"]:
                 layer, lt = layer_for(rec)
                 v.record(rec, layer, lt, box)
         for x in pbars:
-            draw_bar(v, proj(x, s.P_elev), x["dia_in"])
+            draw_bar3(v, x, s.P_elev)   # B13: the bars seen end-on are dots, in-plane legs smooth bars
         v.break_line((box[0], box[1]), (box[2], box[1]))
         for xv in (box[0], box[2]):
             v.break_line((xv, box[1]), (xv, s.cap_top + 0.04 * k))
         # construction joint at the cap top (pedestal cast on the cap): the cap
         # top line itself, named by the leader (D5); no hidden line over it (D1)
+        # B6 (markup "Make leaders either 90 degree bends or obtuse interior
+        # angles"): the knee directly above the tip, so the leader is vertical
         W = uu[1] - uu[0]
-        v.leader([(uu[0] + 0.62 * W, s.cap_top), (uu[0] + 0.55 * W, ztop + 0.78 * k)], "CONST. JOINT", "left")
-        v.leader([(uu[0] + 0.8 * W, ztop), (uu[0] + 0.72 * W, ztop + 0.52 * k)],
+        v.leader([(uu[0] + 0.62 * W, s.cap_top), (uu[0] + 0.62 * W, ztop + 0.78 * k)], "CONST. JOINT", "left")
+        v.leader([(uu[0] + 0.8 * W, ztop), (uu[0] + 0.8 * W, ztop + 0.52 * k)],
                  "TOP OF PEDESTAL\\P(SEE TABLE FOR\\PELEVATIONS)", "left")
         # chamfer callout only when the model's pedestal top is chamfered
         # (D-044 omitted the nominal 3/4" chamfers: 4 top corners, no callout)
@@ -1727,10 +2042,14 @@ class Builder:
         xb = [x for x in pbars if x["subtype"] == "x"]
         yb = [x for x in pbars if x["subtype"] == "y"]
         if yb:
+            # B6: the tip on the top-left bend of the bar (its highest point), the
+            # knee above the pedestal's left top corner, the text to the right,
+            # clear of "COVER" (at um) and "TOP OF PEDESTAL" by a text height
             pts = proj(yb[0], s.P_elev)
-            top = max(pts, key=lambda p: (p[1], -p[0]))
-            v.leader([(uu[0] + 0.3, top[1]), (uu[0] - 0.25 * k, top[1] + 0.3 * k)],
-                     mark_list(sorted({x["mark"] for x in yb})), "right")
+            z_max = max(p[1] for p in pts)
+            top = min((p for p in pts if p[1] > z_max - 0.01), key=lambda p: p[0])
+            v.leader([(top[0], top[1] + yb[0]["dia_in"] / 24.0), (uu[0] + 0.1 * k, ztop + 0.45 * k)],
+                     mark_list(sorted({x["mark"] for x in yb})), "left")
         if xb:
             x = max(xb, key=lambda x: s.u(x["pts"][0][0]))
             uq = s.u(x["pts"][0][0])
@@ -1743,7 +2062,11 @@ class Builder:
         r = pbars[0]["dia_in"] / 24.0
         um = uu[0] + 0.45 * (uu[1] - uu[0])
         zt_here = ztop
-        v.dim((um, hi + r), (um, zt_here), 0.0, 90, "%s\\PCOVER" % fdot.ft_in(zt_here - hi - r, 0.25), outside=1)
+        # B6 (markup "Text is overlapping with the dim line because the pop out
+        # isn't far enough away"): the two-line value horizontal, wholly above
+        # the pedestal top outline, its pointer dropping square to the dimension
+        v.dim((um, hi + r), (um, zt_here), 0.0, 90, "%s\\PCOVER" % fdot.ft_in(zt_here - hi - r, 0.25),
+              horizontal=True, loc=(um, ztop + 0.45 * k))
         outer = max(max(s.u(p[0]) for p in x["pts"]) for x in pbars) + r
         zc = s.cap_top - 0.35
         # B7: the value in open space beyond the cap break, with a two-piece pointer
@@ -1780,10 +2103,13 @@ class Builder:
             v.line((ccl, y_wd + 0.32 * k), (ccl, y_cw - 0.03 * k), "CL_Major")
         else:
             v.line((ccl, zcd - 0.2 * k), (ccl, y_cw - 0.03 * k), "CL_Major")
-        v.line((ccl, y_cw + 0.32 * k), (ccl, s.cap_top + 2.0), "CL_Major")
+        # B7 (markup "Extend the centerline and point to it because this looks
+        # like we are pointing to the dim text"): one continuous piece 0.45 k
+        # above the cap-width dimension row, the leader's tip at its top end
+        z_cl_top = y_cw + 0.77 * k
+        v.line((ccl, y_cw + 0.32 * k), (ccl, z_cl_top), "CL_Major")
         v.xform = keep
-        v.leader([(ccl, s.cap_top + 1.85), (ccl + 0.3 * k, s.cap_top + 1.85 + 0.15 * k)], self.cl_name(), "left",
-                 cl=True)
+        v.leader([(ccl, z_cl_top), (ccl + 0.3 * k, z_cl_top + 0.15 * k)], self.cl_name(), "left", cl=True)
         v.dim((cs[0], s.cap_top), (cs[1], s.cap_top), 0.35 * k + 0.6, step=0.125)
         if s.kind == "PIER":
             ws = (-s.wall_bb[4], -s.wall_bb[1])

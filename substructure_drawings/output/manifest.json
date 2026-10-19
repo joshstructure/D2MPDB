@@ -1,8 +1,8 @@
 {
  "generator": "substructure_drawings.build",
- "version": "2.2.1",
+ "version": "2.3.0",
  "dxf": "B4_Substructure_EndBents_Pier.dxf",
- "dxf_sha256": "2bd2fec643037db12c577a1c9445704e626d7e8ad273070d7bed6634ac88b331",
+ "dxf_sha256": "bdc17eb769ac34dfc462ffc7b92deedb8d00713f67acf0bc0851c2fbb4c8624f",
  "snapshot_sha256": "7f20610129171b50b3fb9c9baec87028938acac79401a31ddeb6ad241b93060e",
  "model_sha256": "aee8160a242a00be1c4259e711d8ef5fb5805ad3750485beee947aa44eb62407",
  "units": "international feet ($INSUNITS=2); model space 1:1",
@@ -108,25 +108,25 @@
  "levels_used": {
   "BaseLineSurveyPGL": 6,
   "BearingPadMisc": 181,
-  "CL_Major": 27,
-  "CL_Minor": 57,
+  "CL_Major": 29,
+  "CL_Minor": 60,
   "Dimension": 613,
-  "Leader": 735,
+  "Leader": 720,
   "Patterning": 1008,
   "PileConc": 48,
   "PileConc_h": 160,
   "PileSteel": 35,
   "PileSteel_h": 175,
-  "Rebar": 1399,
-  "Rebar2": 96,
-  "SubStrConc": 316,
-  "SubStrConc2": 361,
+  "Rebar": 2007,
+  "Rebar2": 102,
+  "SubStrConc": 320,
+  "SubStrConc2": 357,
   "SubStrConc2_h": 28,
-  "SubStrConc_h": 166,
-  "Symbols": 135,
-  "TextStructures": 437,
-  "WallConc": 40,
-  "WallMSEPanel": 8
+  "SubStrConc_h": 172,
+  "Symbols": 137,
+  "TextStructures": 431,
+  "WallConc": 16,
+  "WallMSEPanel": 2
  },
  "level_source": {
   "source": "FDOT CADD Standard Level Table, 10-25-2023, worksheet 'Level Definition Details'",
@@ -141,7 +141,7 @@
   "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
  },
  "symbology_audit": {
-  "entities": 11307,
+  "entities": 11881,
   "not_on_fdot_level": [],
   "not_by_level": [],
   "documented_overrides": {

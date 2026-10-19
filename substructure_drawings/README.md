@@ -1,15 +1,16 @@
 # End bent and pier DXF (FDOT format)
 
-**Generator 2.2.1 (18 October 2026)** rebuilds this DXF from the model with
+**Generator 2.3.0 (19 October 2026)** rebuilds this DXF from the model with
 revision D-048 (D-044 weather closure and copings, D-045 strap references,
 D-046 cheek hooks, D-047 pedestal edge bars, D-048 backwall extensions) and
-applies the engineer's review markups of 2026-10-17 and the follow-up
-comments on the rebuilt sheets, which are distilled into
-[`STYLE_GUIDE.md`](STYLE_GUIDE.md) (every drawing rule has an id there).
-The build's annotation audit (text over linework or over other text) reports
-nothing on any sheet. 2.2.1 moves the MSE copings to the WallConc level and
-tags an edge shared by two objects (a pile socket in a cap) with the smaller
-object, so hidden pile outlines are on the pile levels.
+applies the engineer's review markups of 2026-10-17, 18 and 19, which are
+distilled into [`STYLE_GUIDE.md`](STYLE_GUIDE.md) (every drawing rule has an
+id there). The build's annotation audit (text over linework, text over text,
+leaders crossing leaders) reports nothing on any sheet. 2.3.0 (the third
+markup round) squares leader bends, keeps leaders from crossing, draws
+parallel bearing leaders, moves pulled-out values clear of their lines, ends
+the end bent sections at a break through the closure slab, dashes the keyway,
+marks the strap anchorage, rounds bar ends and draws end-on legs as dots.
 
 [`output/B4_Substructure_EndBents_Pier.dxf`](output/B4_Substructure_EndBents_Pier.dxf)
 is one DXF with plans, elevations (concrete and reinforcement together),
@@ -83,9 +84,9 @@ It has no clock time, so rebuilds stay byte-identical.
   pile cutoff table at the upper right, notes below them, the footnote legend
   (`* DIMENSIONS MEASURED ALONG FFBW`) at the lower left. There are no
   separate reinforcement elevation sheets. The details follow the sample's
-  End Bent Details sheets: sections A-A and B-B (3/4", with the modelled
-  closure slab and coping) beside a column with the construction joint and
-  geotextile details A and B (sample B1-17); section C-C with the cheek
+  End Bent Details sheets: sections A-A and B-B (3/4", with the start of the
+  modelled closure slab ending in a break line) beside a column with the
+  construction joint and geotextile details A and B (sample B1-17); section C-C with the cheek
   wall views (3/8", so the views and their callouts fit); and a third sheet
   with the cheek wall sections F-F and G-G (sample B1-19 sections J-J and
   H-H) and the pedestal plan, elevation and TOP OF PEDESTAL ELEVATIONS
@@ -354,6 +355,28 @@ at their level weights. The DXF itself is not changed. If the PDF is open in a v
 paper-inch windows of the layouts with the same settings, and `clipcheck.py`
 there lists model-space text that a viewport clips (measured with the FDOT
 fonts).
+
+## Working on the generator
+
+The review loop that each markup round has followed, so the same mistakes
+are not made again:
+
+1. Write the rule into [`STYLE_GUIDE.md`](STYLE_GUIDE.md) first (a new id, or
+   an amendment, plus a row in the markup log M quoting the engineer), then
+   change the generator.
+2. Rebuild with `--previews`. The build prints `WARNING` (a view outside its
+   window, views drawing over each other, a block in the BRIDGE NO. area) and
+   `NOTE (annotation over linework)` lines (text over linework, text over
+   text, leaders crossing leaders). Both lists must be empty before delivery;
+   they are also in `manifest.json` (`layout_warnings`, `annotation_overlaps`)
+   and the tests fail on warnings.
+3. Look at every sheet at full size and crop the places you changed (the
+   PDF at 5x to 12x); the checklist is STYLE_GUIDE section G.
+4. Run `tests\test_substructure_dxf.py` and `tests\test_model_plan_dxf.py`.
+5. Source files hold non-ASCII literals (Δ, °, Ø, ¼ ½ ¾, the ¡ centerline
+   glyph) and are UTF-8. An editor or agent that rewrites them in another
+   encoding turns them into mojibake in the DXF; the test
+   `test_fdot_font_characters` and the glyph test guard this.
 
 ## Open items carried on the drawings
 
