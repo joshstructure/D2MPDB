@@ -201,8 +201,12 @@ class PileBpad(unittest.TestCase):
         for support, e, b in self.each():
             name = b['report_name']
             key = f'report:{name}'
-            self.assertNotIn(name, taken, 'the report name is already used in the journal')
-            self.assertNotIn(key, taken)
+            # The journal holds these names only once T015 is promoted; then the journal edition owns the comparison.
+            self.assertEqual(name in taken, key in taken)
+            if key in taken:
+                fragment = ET.fromstring((OUT / 'fragments' / f'{name}.xml').read_bytes())
+                self.assertEqual(shape(ET.fromstring(Journal.load(JOURNAL).part(key))), shape(fragment),
+                                 f'journal report {name} differs from its fragment: rebuild and promote a new task')
             self.assertIsNone(CELL_ADDRESS.match(name), 'a report name that looks like a cell address')
             for source, data in (('fresh build', b['document']), ('committed file', (OUT / NAMES[support][1]).read_bytes())):
                 with self.subTest(source=source):

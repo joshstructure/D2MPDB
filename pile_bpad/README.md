@@ -108,6 +108,10 @@ Then:
 
 The fragment is the report element only. The document-level `PASS` and `FAIL` colour rules, the `All Checks Pass` and `There are FAILURES` colour rules, and the `Result only` style already exist in the journal. The report names are not used in the journal (the test checks this against the stable journal). The workflow rules in `workflow/README.md` and `AGENTS.md` apply, including the promotion policy.
 
+## Journal
+
+The three reports were added to the journal under task T015 on 19 October 2026 (decision D-054) and promoted without native Blockpad or engineering review, as the promotion policy allows. The promoted journal has SHA-256 `033bf8ff64ca83f0cb9dd38aa5f43bb0c427852b8e2111623cb2123b8fa0f49d` (previous `119261e3e7cc86d67bdde67052ca2953cdb81c24d559e468032f32d072c1e01b`, T014). `PedBridge` links them under "Specific calculations and foundations", after the cap design links: `#PileDesignEndBentOne`, `#PileDesignEndBentTwo` and `#PileDesignPier`. The fragments were copied byte for byte (`tasks/T015/build_components.py`) and checked by `tasks/T015/verify_task.py`. The journal holds the version of these reports built at package revision `32d46a79afd4...`: rebuild the sheets and add a new task if the package or an FBMP export changes. The source reports and cases are in `project_current/pile_design/`.
+
 ## Points to confirm natively in Blockpad
 
 Open a document, recalculate, and look at these first:

@@ -1,0 +1,32 @@
+{
+  "summary": "Three distilled pile-design reports (PileDesignEndBentOne, PileDesignEndBentTwo, PileDesignPier; 19 October 2026 cases, decision D-054) are appended to the journal as registered modules and linked from the PedBridge index under Specific calculations and foundations. The reports read no other journal module: every input is a literal from the notebook case, with its source. All other components are byte identical.",
+  "published_outputs": [
+    "PileDesignEndBentOne and PileDesignEndBentTwo (18 in square prestressed concrete piles, Standard Plans Index 455-018, 12 x 0.6 in strands, 18 tons of downdrag per pile as a drag load): Status (current distilled result: All Checks Pass), the DC_* demand/capacity ratios with their Chk_* result strings, DC_max and DC_ymax. Structural D/C 0.550 (End Bent 1) and 0.557 (End Bent 2)",
+    "PileDesignPier (20 in x 0.48 in steel pipe piles, noncomposite, no downdrag): Status (current distilled result: All Checks Pass), the DC_* ratios with their Chk_* strings. Structural D/C 0.457",
+    "Distilled numerical checks only, not design acceptance. Each report lists its pending items: downdrag source documentation, pile-to-cap connection, pipe steel grade and corrosion allowance (Pier), minimum tip elevation, scour, drivability, environment classification and FBMP export currency"
+  ],
+  "assumptions_and_conventions": [
+    "The reports are the Blockpad edition of the notebook cases of decision D-054, built by scripts/build_pile_bpad.py from pile_design/bpad.py; the source reports and cases are in project_current/pile_design/ (10-19). The FBMP demands are the D-049 fixed-run exports (End Bent 1_Fixed.XML, End Bent 2_Fixed.XML, Pier_Fixed.XML), read by the notebook, not live in Blockpad",
+    "Blockpad has no vector variables: record and strand vectors become scalars ending _1 ... _6 (_4 for the pier) and _1 ... _12. Each equation is shown once for record 1 and strand 1; the other records are in collapsed sections and green tables. See pile_bpad/README.md",
+    "The two 121-point interaction sweeps are not formulas: Figure 2 is a native canvas drawn from the notebook's resolved curve points and does not move when an input changes. M_r_P0, P_r_rs and M_r_rs (values the Mathcad sheet finds by a search over the sweep) are amber inputs read from the notebook; the equations that use them are live",
+    "Status = If(DC_max <= 1, ...). The pile spacing check is exactly 1.0 (3 diameters) for these piles, so DC_max <= 1 holds only because the quotient is exactly 1 in floating point; rebuild after any change there",
+    "Added reports are bare fragments from pile_bpad/fragments (LF line endings, 2-space indent) appended unchanged; the rest of the journal is CRLF. PedBridge keeps its CRLF line endings"
+  ],
+  "downstream_impact": [
+    "No existing component reads the new names; check reports no detected downstream impact",
+    "The existing pile records (PileProperties, FBMPEndBent, FBMPPier, FoundationModeling) are not changed or reconciled with the new reports",
+    "The reports use the journal's existing document-level PASS and FAIL rules, the All Checks Pass / There are FAILURES colour rules and the Result only style; no style, resource or include was added"
+  ],
+  "external_analysis": "FB-MultiPier models and results (D-049 fixed-run exports) were read by the notebook and not re-run. The pile heads, loads and soil records are those of the exports; their currency against the final design (COH-013, COH-028) is not asserted and is listed as a pending prerequisite in each report. LRFD and SDG checks were recomputed by the notebook's own evaluator.",
+  "checks_performed": [
+    "pile_bpad/verification.json (builder): 223 comparisons with the notebook and 419 values compared with the Mathcad sheet for each end bent, 119 and 116 for the pier; package revision equal to pile_design.mathcad.package_revision(); tests.test_pile_bpad (19 tests) OK before the task",
+    "tasks/T015/build_components.py: package revision, status, .bpad document hashes and fragment structure checked against verification.json before copying; PedBridge anchor found exactly once",
+    "tasks/T015/verify_task.py (independent-checks.json): component order, candidate differs from the current journal only in the four registered components, report.json changed set, no new structural issues or stored errors, every PileDesign* name reference resolves within its own report, no reference to any other journal module, PedBridge diff is exactly the three links, fragment hashes equal the committed sheets, Status strings equal the notebook",
+    "bpad_workflow check T015 and assemble T015 passed (structural_delta passed, 0 cached errors, no inherited or candidate structural issues)"
+  ],
+  "open_items": [
+    "Native Blockpad recalculation and visual review not performed (optional under workflow/promotion_policy.json). Open the candidate with its References folder and confirm the points listed in pile_bpad/README.md (amber inputs in table cells, names with a trailing digit group, compound-unit literals, Tan and Sin of degrees, fractional powers of dimensioned quantities, dashed lines and PlotLines with formula coordinates, null in PlotLines, long Max(...) lists)",
+    "Pending items of the notebook stay open: downdrag source documentation, pile-to-cap connection, steel grade and corrosion (Pier), minimum tip, scour, drivability, environment classification, FBMP export currency; the Pile Data Table columns that wait for the geotechnical handoff",
+    "The existing PileProperties, FBMPEndBent and FBMPPier records, and the Pier steel grade (Fy 45 ksi in the notebook against 60 ksi in the FBMP model, D-050), are not reconciled with the new reports"
+  ]
+}

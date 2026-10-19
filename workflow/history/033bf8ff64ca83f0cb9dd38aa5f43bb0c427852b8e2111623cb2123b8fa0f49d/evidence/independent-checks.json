@@ -1,0 +1,172 @@
+{
+  "candidate": "C:\\github\\D2MPDB\\generated\\T015-review-01\\candidate.bpad",
+  "candidate_sha256": "033bf8ff64ca83f0cb9dd38aa5f43bb0c427852b8e2111623cb2123b8fa0f49d",
+  "all_passed": true,
+  "checks": {
+    "component_list_is_base_plus_three_added_in_order": {
+      "passed": true,
+      "detail": {
+        "base_components": 275,
+        "candidate_components": 278,
+        "appended": [
+          "report:PileDesignEndBentOne",
+          "report:PileDesignEndBentTwo",
+          "report:PileDesignPier"
+        ]
+      }
+    },
+    "candidate_differs_from_current_only_in_four_registered": {
+      "passed": true,
+      "detail": {
+        "differing": [
+          "report:PedBridge",
+          "report:PileDesignEndBentOne",
+          "report:PileDesignEndBentTwo",
+          "report:PileDesignPier"
+        ],
+        "shell_identical": true,
+        "current_matches_task_base": true
+      }
+    },
+    "report_changed_components_exactly_the_four": {
+      "passed": true,
+      "detail": {
+        "changed_components": [
+          "report:PedBridge",
+          "report:PileDesignEndBentOne",
+          "report:PileDesignEndBentTwo",
+          "report:PileDesignPier"
+        ],
+        "candidate_sha256": "033bf8ff64ca83f0cb9dd38aa5f43bb0c427852b8e2111623cb2123b8fa0f49d",
+        "detected_downstream_impact": []
+      }
+    },
+    "no_new_structural_issues_or_stored_errors": {
+      "passed": true,
+      "detail": {
+        "new_structural_issues": {},
+        "new_stored_errors": {},
+        "candidate_cached_errors": 0
+      }
+    },
+    "every_report_name_reference_resolves": {
+      "passed": true,
+      "detail": {
+        "references_checked": {
+          "PileDesignEndBentOne": 112,
+          "PileDesignEndBentTwo": 112,
+          "PileDesignPier": 85
+        },
+        "unresolved": {}
+      }
+    },
+    "links_and_images_resolve": {
+      "passed": true,
+      "detail": {
+        "new_unresolved": {}
+      }
+    },
+    "new_reports_read_no_other_module_and_no_module_reads_them": {
+      "passed": true,
+      "detail": {
+        "foreign_reads": {
+          "PileDesignEndBentOne": [],
+          "PileDesignEndBentTwo": [],
+          "PileDesignPier": []
+        },
+        "existing_modules_reading_new_reports": {}
+      }
+    },
+    "pedbridge_three_links_once_each_and_nothing_else": {
+      "passed": true,
+      "detail": {
+        "link_counts": {
+          "PileDesignEndBentOne": 1,
+          "PileDesignEndBentTwo": 1,
+          "PileDesignPier": 1
+        },
+        "diff_ops": [
+          [
+            "insert",
+            0,
+            9
+          ]
+        ],
+        "in_order_after_CapDesignPier": true
+      }
+    },
+    "new_reports_match_fragments_sheets_and_verification_json": {
+      "passed": true,
+      "detail": {
+        "PileDesignEndBentOne": {
+          "bytes": 292163,
+          "sha256": "5b730af32c72da3d4df444ca0c85451164db16b136bdb9514bc7e877abb91277",
+          "equals_fragment_file": true,
+          "document_sha256_equals_verification_json": true,
+          "same_structure_as_report_in_committed_sheet": true,
+          "verification_package_revision_is_current": true,
+          "stored_errors": 0,
+          "definitions": 473,
+          "DC_names": 17,
+          "Chk_names": 12
+        },
+        "PileDesignEndBentTwo": {
+          "bytes": 292200,
+          "sha256": "d30cb08dbe4e93f575401c617ead380600b20b637f00a3ccc464fff8afbe5d67",
+          "equals_fragment_file": true,
+          "document_sha256_equals_verification_json": true,
+          "same_structure_as_report_in_committed_sheet": true,
+          "verification_package_revision_is_current": true,
+          "stored_errors": 0,
+          "definitions": 473,
+          "DC_names": 17,
+          "Chk_names": 12
+        },
+        "PileDesignPier": {
+          "bytes": 97262,
+          "sha256": "663e8819bf1302d7084cb9984cf617213fbf25ea090fe350dd9d36c267c60c66",
+          "equals_fragment_file": true,
+          "document_sha256_equals_verification_json": true,
+          "same_structure_as_report_in_committed_sheet": true,
+          "verification_package_revision_is_current": true,
+          "stored_errors": 0,
+          "definitions": 155,
+          "DC_names": 9,
+          "Chk_names": 7
+        }
+      }
+    },
+    "status_strings_equal_the_notebook": {
+      "passed": true,
+      "detail": {
+        "PileDesignEndBentOne": {
+          "notebook": "✓ All Checks Pass",
+          "report_cache": "✓ All Checks Pass",
+          "verification_json": "✓ All Checks Pass",
+          "formula": "Status = If(DC_max <= 1, \"✓ All Checks Pass\", \"⊗ There are FAILURES\")",
+          "notebook_max_ratio": 1.0,
+          "notebook_strength_dc": 0.550301,
+          "notebook_failed_checks": 0
+        },
+        "PileDesignEndBentTwo": {
+          "notebook": "✓ All Checks Pass",
+          "report_cache": "✓ All Checks Pass",
+          "verification_json": "✓ All Checks Pass",
+          "formula": "Status = If(DC_max <= 1, \"✓ All Checks Pass\", \"⊗ There are FAILURES\")",
+          "notebook_max_ratio": 1.0,
+          "notebook_strength_dc": 0.556838,
+          "notebook_failed_checks": 0
+        },
+        "PileDesignPier": {
+          "notebook": "✓ All Checks Pass",
+          "report_cache": "✓ All Checks Pass",
+          "verification_json": "✓ All Checks Pass",
+          "formula": "Status = If(DC_max <= 1, \"✓ All Checks Pass\", \"⊗ There are FAILURES\")",
+          "notebook_max_ratio": 1.0,
+          "notebook_strength_dc": 0.457239,
+          "notebook_failed_checks": 0
+        }
+      }
+    }
+  }
+}

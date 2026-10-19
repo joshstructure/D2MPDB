@@ -1,0 +1,17 @@
+{
+  "candidate_sha256": "033bf8ff64ca83f0cb9dd38aa5f43bb0c427852b8e2111623cb2123b8fa0f49d",
+  "reviewer": "Josh (repository owner), executed through the Claude Code session of 19 October 2026 on the user's instruction (run the pile design analysis, save the reports to the source, add the Blockpad distillations to the journal); native Blockpad reviews not performed",
+  "native_recalculation": false,
+  "native_visual_review": false,
+  "engineering_review": false,
+  "design_outcome": "unreviewed",
+  "external_analysis_disposition": "FB-MultiPier models and results were not re-run. The three added reports distil the 19 October 2026 pile design cases (decision D-054) from the D-049 fixed-run exports (End Bent 1, End Bent 2, Pier) and the D-050 downdrag (18 tons per end-bent pile): the exports were read, not re-run, and the LRFD and SDG checks were recomputed by the notebook's own evaluator (223 and 119 comparisons with the notebook to 1 part in 1e9; Mathcad sheet values compared). They read no journal module and no existing component reads them; FBMPEndBent, FBMPPier, PileProperties and FoundationModeling are unchanged. Pending items are listed in each report and stay open: downdrag source documentation, pile-to-cap connection, pipe steel grade and corrosion allowance (Pier; notebook Fy 45 ksi against 60 ksi in the FBMP model), minimum tip elevation, scour, drivability, environment classification and FBMP export currency. Status reads All Checks Pass in all three reports; that covers only the recomputed numerical checks and is not design acceptance.",
+  "external_analysis_status": "unreviewed",
+  "inherited_issues_disposition": "No inherited structural issues or stored errors (0 before, 0 after); no new ones. Recorded and left open: the existing pile records (PileProperties, FBMPEndBent, FBMPPier, FoundationModeling) are not reconciled with the new reports; the interaction curves in Figure 2 are native canvases drawn from the notebook's resolved points and do not move with an input; M_r_P0, P_r_rs and M_r_rs are amber inputs read from the notebook; the pile spacing check is exactly 1.0 so Status holds only through an exact floating-point quotient (pile_bpad/README.md); native Blockpad recalculation and visual review were not performed.",
+  "evidence_files": [
+    {
+      "path": "independent-checks.json",
+      "sha256": "c9b82897525f2e2760456e722a6774453fa0908e4ead2d4af1e54a2762f53698"
+    }
+  ]
+}

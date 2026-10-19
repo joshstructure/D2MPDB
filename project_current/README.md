@@ -21,10 +21,14 @@ design-completion status.
 | Pier cap | [Report](cap_design/pier/Pier%20Cap%20Design%2010-19.html), [saved case](cap_design/pier/selected_case.json), [FBMP export](fbmp/pier/Pier_Fixed.XML) — 19 October rerun with the latest fixed XML (D-051) |
 | End Bent 1 cap | [Report](cap_design/end_bents/End%20Bent%201%20Cap%20Design%2010-19.html), [saved case](cap_design/end_bents/selected_case.json) — 19 October rerun with the latest fixed XML (D-051) |
 | End Bent 2 cap | [Report](cap_design/end_bent_2/End%20Bent%202%20Cap%20Design%2010-19.html), [saved case](cap_design/end_bent_2/selected_case.json) — 19 October rerun with the latest fixed XML (D-051) |
+| End Bent 1 piles | [Report](pile_design/end_bent_1/End%20Bent%201%20Pile%20Design%2010-19.html), [saved case](pile_design/end_bent_1/selected_case.json), [Pile Data Table](pile_design/end_bent_1/End%20Bent%201%20Pile%20Data%20Table%2010-19.xlsx) — 18 in prestressed pile, 18-ton downdrag, 19 October run (D-054); Blockpad edition in the journal (T015) |
+| End Bent 2 piles | [Report](pile_design/end_bent_2/End%20Bent%202%20Pile%20Design%2010-19.html), [saved case](pile_design/end_bent_2/selected_case.json), [Pile Data Table](pile_design/end_bent_2/End%20Bent%202%20Pile%20Data%20Table%2010-19.xlsx) — 19 October run (D-054) |
+| Pier piles | [Report](pile_design/pier/Pier%20Pile%20Design%2010-19.html), [saved case](pile_design/pier/selected_case.json), [Pile Data Table](pile_design/pier/Pier%20Pile%20Data%20Table%2010-19.xlsx) — 20 in steel pipe pile, 19 October run (D-054); Fy 45 vs FBMP 60 ksi reconciliation pending |
 | Selected backwall and cheekwall design | [16 October report](cap_design/backwall/Backwall%20Design%2010-16.html) and [saved case](cap_design/backwall/selected_case.json) — one centered #4 mat at 10 in each way; analysis and detailing prerequisites remain pending |
 | FBMP source variants | [Three current fixed exports and two minimum-tip variants](fbmp/README.md) |
 | Mathcad | [Span 1](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd), [Span 2](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd) — 12 October beam runs; [changes and downstream review](mathcad/README.md) |
 | Calculation tool | [Cap and pile notebook](../Cap_and_Pile_Design.ipynb) |
+| Pile analysis and design | [Pile notebook](../Pile_Design.ipynb) and [calculation basis](../PILE_DESIGN.md); decisions D-050, D-054; Mathcad and Blockpad editions in `pile_mathcad/` and `pile_bpad/` |
 | End-bent backwall, cheek walls and tie-back straps | [Backwall notebook](../End_Bent_Backwall_Design.ipynb) and [calculation basis](../BACKWALL_DESIGN.md); decisions D-014 to D-019 |
 | PSBeam packages | [Awaiting source files](psbeam/README.md) |
 

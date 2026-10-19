@@ -1,22 +1,22 @@
 {
-  "task": "T014",
-  "journal_sha256": "119261e3e7cc86d67bdde67052ca2953cdb81c24d559e468032f32d072c1e01b",
-  "previous_sha256": "0384f0280175c2d597aa75ce9cf33fae1eb602ee2dcf581eaa30f11454442d07",
-  "promoted": "2026-10-19T17:31:58.340266+00:00",
+  "task": "T015",
+  "journal_sha256": "033bf8ff64ca83f0cb9dd38aa5f43bb0c427852b8e2111623cb2123b8fa0f49d",
+  "previous_sha256": "119261e3e7cc86d67bdde67052ca2953cdb81c24d559e468032f32d072c1e01b",
+  "promoted": "2026-10-19T21:00:10.327213+00:00",
   "review": {
-    "candidate_sha256": "119261e3e7cc86d67bdde67052ca2953cdb81c24d559e468032f32d072c1e01b",
-    "reviewer": "Josh (repository owner), executed through the Claude Code session of 19 October 2026 on the user's instruction (align Bridge Geometry with the CAD model and geometry notebook, remove C005, add the project stamp); native Blockpad reviews not performed",
+    "candidate_sha256": "033bf8ff64ca83f0cb9dd38aa5f43bb0c427852b8e2111623cb2123b8fa0f49d",
+    "reviewer": "Josh (repository owner), executed through the Claude Code session of 19 October 2026 on the user's instruction (run the pile design analysis, save the reports to the source, add the Blockpad distillations to the journal); native Blockpad reviews not performed",
     "native_recalculation": false,
     "native_visual_review": false,
     "engineering_review": false,
     "design_outcome": "unreviewed",
-    "external_analysis_disposition": "FB-MultiPier models and results were not re-run. Bridge Geometry now carries the geometry notebook build e9b41b8eaf (D-036): 27.5-in end-bent pile end clearance (235-in cap body, 251-in cage envelope with 8-in cheek webs, D-026/D-027), the Mathcad net cambers (0.1246 / 0.5672 in) in place of 1-in placeholders, and the support-drop formula now reproduces the notebook's 3.7148 ft. Derived caches changed: end-bent cap length, volumes and self-weight (27.825 to 30.844 kip), pile stations, haunch averages and volumes, beam soffit and cap elevations (+0.036 ft) and the wind heights (+0.43 in, K_Z about +0.023%). The wind chain (PedBridgeWind, C001, C002, C004, FBMP wind rows), BearingDesign pedestal values, MSEWallExclusion and the weight and quantity spreadsheets hold caches computed from the previous geometry until recalculated natively; their formulas are unchanged. C005 (PierCapDesign) is deleted by user direction superseding D-003; its consumers now read Materials and Bridge Geometry, and CapDesignPier is the pier cap record.",
+    "external_analysis_disposition": "FB-MultiPier models and results were not re-run. The three added reports distil the 19 October 2026 pile design cases (decision D-054) from the D-049 fixed-run exports (End Bent 1, End Bent 2, Pier) and the D-050 downdrag (18 tons per end-bent pile): the exports were read, not re-run, and the LRFD and SDG checks were recomputed by the notebook's own evaluator (223 and 119 comparisons with the notebook to 1 part in 1e9; Mathcad sheet values compared). They read no journal module and no existing component reads them; FBMPEndBent, FBMPPier, PileProperties and FoundationModeling are unchanged. Pending items are listed in each report and stay open: downdrag source documentation, pile-to-cap connection, pipe steel grade and corrosion allowance (Pier; notebook Fy 45 ksi against 60 ksi in the FBMP model), minimum tip elevation, scour, drivability, environment classification and FBMP export currency. Status reads All Checks Pass in all three reports; that covers only the recomputed numerical checks and is not design acceptance.",
     "external_analysis_status": "unreviewed",
-    "inherited_issues_disposition": "No structural issues or stored errors before or after; the deleted-module consumer check is clean. Recorded and left open: Check_notebook_quantity in Bridge Geometry now reads INPUTS CHANGED - RECONCILE NOTEBOOK because the haunch total no longer equals the 29 September snapshot (retire or update that check); blocks 1 and 3 of the FBMPEndBent record and the 8 October '+25 in' station notes still describe the 212-in cap; the project_current/decisions.md entry for the C005 removal is left to the coherence process; the pier_cap/io.py C005 review-copy exporter is obsolete; spreadsheets, references, archives and logs carry no project stamp.",
+    "inherited_issues_disposition": "No inherited structural issues or stored errors (0 before, 0 after); no new ones. Recorded and left open: the existing pile records (PileProperties, FBMPEndBent, FBMPPier, FoundationModeling) are not reconciled with the new reports; the interaction curves in Figure 2 are native canvases drawn from the notebook's resolved points and do not move with an input; M_r_P0, P_r_rs and M_r_rs are amber inputs read from the notebook; the pile spacing check is exactly 1.0 so Status holds only through an exact floating-point quotient (pile_bpad/README.md); native Blockpad recalculation and visual review were not performed.",
     "evidence_files": [
       {
         "path": "independent-checks.json",
-        "sha256": "39c5cec1c50522811656c8c29e21ff0df458ba6bfd1abe23cee576bf65797ce4"
+        "sha256": "c9b82897525f2e2760456e722a6774453fa0908e4ead2d4af1e54a2762f53698"
       }
     ]
   },
@@ -25,5 +25,5 @@
     "effective_date": "2026-10-16",
     "basis": "User instructed that BPAD changes may proceed without mandatory native recalculation, appearance review or engineering review, until the user reinstates those requirements. Scope, dependency, exact-byte, reference-integrity and evidence checks remain mandatory."
   },
-  "history": "workflow/history/119261e3e7cc86d67bdde67052ca2953cdb81c24d559e468032f32d072c1e01b"
+  "history": "workflow/history/033bf8ff64ca83f0cb9dd38aa5f43bb0c427852b8e2111623cb2123b8fa0f49d"
 }
