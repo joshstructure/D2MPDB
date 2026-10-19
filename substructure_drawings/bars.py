@@ -306,31 +306,26 @@ def assign_marks(kind, bars):
 
 
 # FDOT Standard Plans Index 415-001 (FY 2026-27), Bar Bending Details (Steel):
-# hook dimension "A or G", out-to-out, in inches, by bar size.
+# hook dimension "A or G", out-to-out, in inches, by bar size (reference: the
+# 135 degree stirrup hooks of the closed hoops are style 5; the other 90
+# degree legs of this model are dimensioned legs, Types 10 and 11, not hooks).
 STD_HOOK_90 = {3: 6.0, 4: 8.0, 5: 10.0, 6: 12.0, 7: 14.0, 8: 16.0, 9: 19.0, 10: 22.0, 11: 24.0}
 STIRRUP_HOOK_90 = {3: 4.0, 4: 4.5, 5: 6.0, 6: 12.0, 7: 14.0, 8: 16.0}
 STIRRUP_HOOK_135 = {3: 4.0, 4: 4.5, 5: 5.5, 6: 8.0, 7: 9.0, 8: 10.5}
-HOOK_TOL_IN = 0.5
-
-
-def _is_std_hook(entry, i):
-    """True if the end leg i (0 or -1) of the bar is a standard 90 degree
-    hook: its out-to-out bending dimension equals the Index 415-001 hook size
-    of the bar within HOOK_TOL_IN."""
-    std = STD_HOOK_90.get(entry["size"])
-    return std is not None and abs(entry["bend_dims"][i]["len_in"] - std) <= HOOK_TOL_IN
 
 
 def shape_name(entry):
     """Shape of a bar for the bar list (Standard Plans Index 415-001 types).
 
-    STRAIGHT is Type 1.  HOOKED and HOOKED BOTH are straight bars with a
-    standard 90 degree hook (style 3) at one or both ends, Types 17 and 18:
-    legs [L, 90, L] or [L, 90, L, 90, L] whose end legs are the hook size
-    (``STD_HOOK_90``, out-to-out); a bar with longer end legs is a U-BAR
-    (Type 11).  A 135 degree bend is a CLOSED HOOP (Type 4); four 90 degree
-    bends make an OPEN STIRRUP (a U-bar with 90 degree stirrup hooks, style
-    4); anything else is BENT."""
+    STRAIGHT is Type 1.  One 90 degree bend makes an L-BAR (Type 10: B the
+    long leg, C the short), two on the same side a U-BAR (Type 11: B the
+    base, C and D the legs), whatever the legs' lengths: a 90 degree end
+    leg is a dimensioned leg, not a hook (engineer's bar-list review
+    2026-10-19: "C should be an 11", "E1 and E4 are type 10s", "E3 is type
+    11"; Types 17 and 18 are for hooked straight bars and this model has
+    none).  A 135 degree bend is a CLOSED HOOP (Type 4); four 90 degree
+    bends make an OPEN STIRRUP (Type 5: closed top, legs, feet turned in at
+    the open end); anything else is BENT."""
     L = entry["legs"]
     if len(L) == 1:
         return "STRAIGHT"
@@ -341,11 +336,7 @@ def shape_name(entry):
         return "OPEN STIRRUP"
     kinds = [x[0] for x in L]
     if angles == [90] and kinds == ["L", "A", "L"]:
-        if _is_std_hook(entry, 0) or _is_std_hook(entry, -1):
-            return "HOOKED"
-    if angles == [90, 90] and kinds == ["L", "A", "L", "A", "L"]:
-        if _is_std_hook(entry, 0) and _is_std_hook(entry, -1):
-            return "HOOKED BOTH"
+        return "L-BAR"
     if len(angles) == 2:
         return "U-BAR"
     return "BENT"

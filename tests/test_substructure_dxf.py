@@ -515,20 +515,34 @@ class SubstructureDxfTests(unittest.TestCase):
         self.assertEqual(views.mark_list(["5E26", "5E27"]), "5E26/5E27")
 
     def test_bar_list_types_follow_index_415_001(self):
-        """Straight bars are Type 1, bars with one standard 90 degree hook
-        Type 17 and with two Type 18 (style 3), U-bars Type 11, closed stirrups
-        Type 4 with style 5 (135 degree) hooks; open stirrups are Type 11
-        U-bars with style 4 (90 degree stirrup) hooks.  Every bar has a type."""
+        """Straight bars are Type 1, bars with one 90 degree leg Type 10 (B
+        the long leg, C the short), U-bars Type 11 (B base, C and D legs)
+        whatever the legs' lengths, closed stirrups Type 4 with style 5 (135
+        degree) hooks; open stirrups are Type 5 (closed top C, legs B, feet D
+        and E turned in, no hooks).  No bar carries a 90 degree hook style
+        (engineer's review 2026-10-19).  Every bar has a type."""
         comp = build.Composer(self.snap)
-        expected = {"STRAIGHT": ("1", "", ""), "HOOKED": ("17", "3", ""), "HOOKED BOTH": ("18", "3", "3"),
-                    "U-BAR": ("11", "", ""), "CLOSED HOOP": ("4", "5", "5"), "OPEN STIRRUP": ("11", "4", "4")}
+        expected = {"STRAIGHT": ("1", "", ""), "L-BAR": ("10", "", ""),
+                    "U-BAR": ("11", "", ""), "CLOSED HOOP": ("4", "5", "5"), "OPEN STIRRUP": ("5", "", "")}
+        letters = {"1": {"B"}, "10": {"B", "C"}, "11": {"B", "C", "D"}, "4": {"B", "C"},
+                   "5": {"B", "C", "D", "E"}}
         for s in comp.sup.values():
             for mark, e in s.table.items():
                 bar = next(b for b in s.bars if b["name"] == e["members"][0])
                 typ, a, g, dims = build.Composer.bar_fields(e, bar)
                 self.assertEqual((typ, a, g), expected[bars.shape_name(e)], "%s %s" % (s.title, mark))
                 self.assertNotEqual(typ, "", "%s %s has no bar type" % (s.title, mark))
-                self.assertIn("B", dims)
+                self.assertEqual(set(dims), letters[typ], "%s %s bend letters" % (s.title, mark))
+                if typ == "5":   # the open stirrup's two feet are alike and shorter than its legs
+                    self.assertEqual(dims["D"], dims["E"], "%s %s" % (s.title, mark))
+        # the engineer's assignments, mark by mark
+        for key, want in (("EB1", {"5C": "11", "4E3": "11", "4E4": "10", "6B2": "5", "6B1": "4", "4F1": "11"}),
+                          ("PIER", {"5C": "11", "5D1": "11", "5D2": "11", "5B2": "5", "5B1": "4", "4E1": "11"})):
+            s = comp.sup[key]
+            for mark, typ in want.items():
+                e = s.table[mark]
+                bar = next(b for b in s.bars if b["name"] == e["members"][0])
+                self.assertEqual(build.Composer.bar_fields(e, bar)[0], typ, "%s %s" % (key, mark))
 
 
 if __name__ == "__main__":

@@ -170,12 +170,14 @@ It has no clock time, so rebuilds stay byte-identical.
   TYP BAR, STY A/G, B to K, N and Ø, with FT-IN values without unit marks
   (`20-5`, `18-8¾`). Each support has a heading row between blank rows.
   Bar types follow Standard Plans Index 415-001 (FY 2026-27), and every bar
-  has one. Straight bars are Type 1 (B = length). Hooked cheek wall bars are
-  Type 17 (one standard 90° hook, style 3 at A) or Type 18 (hooks at both ends,
-  style 3 at A and G), B = out-to-out length. U-bars are Type 11 (B = base, C
-  and D = legs). Closed stirrups are Type 4 (B = height, C = width), with hook
-  style 5 (135°) at A and G. The open stirrups at the piles are Type 11 with
-  hook style 4 (90° stirrup hooks) at A and G: the hooks are field bent to
+  has one. Straight bars are Type 1 (B = length). A bar with one 90° leg is
+  Type 10 (B = the long leg, C = the short) and one with two legs on one side
+  Type 11 (B = base, C and D = legs), whatever the legs' lengths (the cheek
+  horizontals 4E3/4E4, the pile-head U-bars 5C, the pier cap-end bars 5D1/5D2
+  and the pedestal U-bars); no bar carries a 90° hook style. Closed stirrups
+  are Type 4 (B = height, C = width), with hook style 5 (135°) at A and G. The open stirrups at the piles are Type 5 (an
+  inverted U: B = height, C = width, D and E = the feet turned in at the
+  open end): the feet are field bent to
   clear the pile heads, as the bar list note says, so the list carries no
   custom bending diagram.
 - **Levels.** Every element is on an FDOT CADD Standard Level (table dated
@@ -435,9 +437,10 @@ are not made again:
   sections draw the cut top level (D14).
 - The pier wall is provisional and has no modeled reinforcement.
 - The SDM 12.3.F soil-reinforcement legend carries the tie-back loads of the
-  selected backwall case (3.09 kip/ft service, 3.75 kip/ft factored, Strength
-  I), which the backwall design calls provisional pending the current
-  analysis loads.
+  selected backwall case (3.09 kip/ft service, 3.74 kip/ft factored, Strength
+  I, from the 19 October evening case), which the backwall design calls
+  provisional pending the current analysis loads. The test fails when the
+  case changes; rerun `scripts/export_strap_loads.py` and rebuild.
 - Resolved 2026-10-19 with model decision D-055 (backwall vertical
   coordination): the four doubled 5D1 verticals are gone, one end bar per
   face sits inside each cheek hook, and each backwall has 44 verticals
@@ -448,8 +451,12 @@ are not made again:
   legs against the cap top bars 6A1 and hoops 6B2 (zero clear), and the 4F2
   legs on the line of the first 4F1 bar. The sections draw them where the
   model has them (C10), so they appear touching.
-- The open stirrups at the piles are listed as Type 11 with style 4 hooks and
-  field bent to clear the pile heads (the end legs are not dimensioned). Check
+- The open stirrups at the piles are listed as Type 5 (feet D and E
+  dimensioned, no hook style) and field bent to clear the pile heads. Check
   the type and hook style assignments with the FDOT Rebar program before issue.
+- The backwall verticals 5D1 and the cheek wall verticals 4E1 are to be Type
+  10 L-bars with a leg into the cap (engineer's bar-list review 2026-10-19),
+  but the model carries them as straight schematic dowels, so the list shows
+  Type 1 and carries a "MODEL CHECK" note until the model has the legs.
 - Existing coordination findings in the model remain open, as the FreeCAD
   README records (COH-024/025). The drawings show the model as it is.

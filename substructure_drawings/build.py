@@ -716,14 +716,26 @@ class Composer:
         xr = cols[1][0]
         y = bottoms[xr] - 0.35
         notes = ["TYP BAR AND STY ARE THE BAR TYPE AND HOOK STYLE OF STANDARD PLANS INDEX 415-001 (FY 2026-27): "
-                 "TYPE 1 STRAIGHT (B = LENGTH); TYPES 17 AND 18 STRAIGHT BARS WITH A STANDARD 90° HOOK (STYLE 3) AT "
-                 "ONE OR BOTH ENDS (B = LENGTH OUT-TO-OUT); TYPE 11 U-BAR (B = BASE, C AND D = LEGS); TYPE 4 CLOSED "
-                 "STIRRUP (B = HEIGHT, C = WIDTH); STYLES 4 AND 5 = 90° AND 135° STIRRUP HOOKS.",
+                 "TYPE 1 STRAIGHT (B = LENGTH); TYPE 10 L-BAR (B = LONG LEG, C = SHORT LEG); TYPE 11 U-BAR (B = BASE, "
+                 "C AND D = LEGS); TYPE 5 OPEN STIRRUP (B = HEIGHT, C = WIDTH, D AND E = FEET); TYPE 4 CLOSED STIRRUP "
+                 "(B = HEIGHT, C = WIDTH); STYLE 5 = 135° STIRRUP HOOKS.",
                  "FIELD BEND OPEN STIRRUP HOOKS AS REQUIRED TO CLEAR PILE HEAD LOCATION.",
                  "LENGTHS ARE THE MODEL CENTERLINE LENGTHS ROUNDED TO THE NEAREST INCH; BEND DIMENSIONS ARE "
                  "OUT-TO-OUT (SDM 4.3.10.C).",
                  ("VARYING LENGTHS: " + " ".join(foot)) if foot else "",
                  "PILES AND THE CHEEK LUG WELDED WIRE REINFORCEMENT ARE NOT INCLUDED IN THIS LIST."]
+        # engineer's review 2026-10-19 ("D should be a 10", "E1 and E4 are
+        # type 10s"): the backwall verticals and the cheek wall verticals are
+        # L-bars with a leg into the cap, but the CAD model carries them as
+        # straight schematic dowels, so the list follows the model (Type 1) and
+        # says so until the model has the legs (D11: no invented geometry)
+        dowels = sorted({"%s %s" % (s.title, mark) for s in self.sup.values() for mark, e in s.table.items()
+                         if e["family"] in ("backwall", "cheek") and e["subtype"] == "vert"
+                         and barlib.shape_name(e) == "STRAIGHT"})
+        if dowels:
+            notes.insert(3, "MODEL CHECK (REMOVE BEFORE ISSUE): %s ARE STRAIGHT SCHEMATIC DOWELS IN THE CAD MODEL AND "
+                            "ARE LISTED AS TYPE 1; THEY ARE TO BE TYPE 10 WITH A LEG INTO THE CAP. ADD THE LEGS TO THE "
+                            "MODEL." % ", ".join(dowels))
         sh.notes(xr, y, "NOTES:", [n for n in notes if n], width_in=7.3)
         self.finish(sh)
 
@@ -731,27 +743,33 @@ class Composer:
     def bar_fields(e, bar):
         """(TYP BAR, STY A, STY G, {letter: FT-IN}) per Standard Plans Index
         415-001 (FY 2026-27), rule C6: every bar has a standard type.
-        Type 1 straight, B = length; Type 17 straight bar with one standard
-        90 degree hook (style 3 at A), B = out-to-out length of the long leg;
-        Type 18 hooks at both ends (style 3 at A and G), B = out-to-out
-        length between the hooks' legs; Type 11 U-bar, B = base, C and D =
-        legs; Type 4 closed stirrup, B = height, C = width, hooks A and G
-        style 5 (135 degrees).  An open stirrup is a Type 11 U-bar (B = top
-        leg, C and D = the vertical legs) whose feet are standard 90 degree
-        stirrup hooks (style 4 at A and G) field bent in plan to clear the
-        pile; the feet are not dimensioned."""
+        Type 1 straight, B = length; Type 10 L-bar, B = the long leg, C = the
+        short, out-to-out; Type 11 U-bar, B = base, C and D = legs; Type 4
+        closed stirrup, B = height, C = width, hooks A and G style 5 (135
+        degrees); Type 5 open stirrup (an inverted U: C = the top, B = the
+        legs, D and E = the feet turned in at the open end, out-to-out), its
+        feet field bent in plan to clear the pile.  A 90 degree end leg is a
+        dimensioned leg, never a hook style (engineer's review 2026-10-19)."""
         d = e["bend_dims"]
         name = barlib.shape_name(e)
         f = lambda x: fdot.ft_in_list(x, 0.25)  # noqa: E731
         if name == "STRAIGHT":
             return "1", "", "", {"B": fdot.ft_in_list(d[0]["len_in"], 1)}
-        if name == "HOOKED":
-            long_leg = d[1] if barlib._is_std_hook(e, 0) else d[0]
-            return "17", "3", "", {"B": f(long_leg["len_in"])}
-        if name == "HOOKED BOTH":
-            return "18", "3", "3", {"B": f(d[1]["len_in"])}
+        if name == "L-BAR":
+            # Type 10 (bar-list review 2026-10-19, "E1 and E4 are type 10s"):
+            # B the long leg, C the short, both out-to-out
+            long_leg, short_leg = sorted(d, key=lambda x: -x["len_in"])
+            return "10", "", "", {"B": f(long_leg["len_in"]), "C": f(short_leg["len_in"])}
         if name == "OPEN STIRRUP":
-            return "11", "4", "4", {"B": f(d[2]["len_in"]), "C": f(d[1]["len_in"]), "D": f(d[3]["len_in"])}
+            # Type 5 (markup 2026-10-19: "Should Bar B2 be a type 5 not a type
+            # 11"): the model's open stirrup is an inverted U closed at the top
+            # (C, the width), its legs B down the cap, and its feet turned in
+            # at the open end (D and E, out-to-out); the feet are dimensioned
+            # legs, not hooks, so no hook style (the 10" feet of the pier's #5
+            # matched no stirrup hook size); the note says they are field bent
+            # in plan around the pile heads
+            return "5", "", "", {"B": f(d[1]["len_in"]), "C": f(d[2]["len_in"]), "D": f(d[0]["len_in"]),
+                                 "E": f(d[4]["len_in"])}
         if name == "U-BAR":
             return "11", "", "", {"B": f(d[1]["len_in"]), "C": f(d[0]["len_in"]), "D": f(d[2]["len_in"])}
         if name == "CLOSED HOOP":

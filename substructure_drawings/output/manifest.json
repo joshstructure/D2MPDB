@@ -2,7 +2,7 @@
  "generator": "substructure_drawings.build",
  "version": "2.5.0",
  "dxf": "B4_Substructure_EndBents_Pier.dxf",
- "dxf_sha256": "285751e8ba5e0f135d4c3fae1478499c2acb1b08f09fcb257da0ba82d2afc5af",
+ "dxf_sha256": "c7ff2a571a5f58788d26ad9121aef90ae7d88de44dbfbddfe81de3dadbf9de69",
  "snapshot_sha256": "3c9602f2917d3e93114489f07ed55255cf4d77c8651f7a3d86517ad8a6ebd941",
  "model_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df",
  "units": "international feet ($INSUNITS=2); model space 1:1",
@@ -149,7 +149,7 @@
   "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
  },
  "symbology_audit": {
-  "entities": 11546,
+  "entities": 11543,
   "not_on_fdot_level": [],
   "not_by_level": [],
   "documented_overrides": {
@@ -686,10 +686,10 @@
  ],
  "strap_loads": {
   "source": "end_bent_walls.model.evaluate on project_current/cap_design/backwall/selected_case.json",
-  "case_sha256": "ac075073306e06f252404d0c26e73b975cad2ee18373e011ef0946ae1c20d0e1",
+  "case_sha256": "01e76c5a263af986e0d7e154039cec4c351bea29403dd9bfd2cbee7b16bab597",
   "case_name": "End Bent 1 backwall, cheek walls and tie-back straps (common end-bent design, D-004)",
-  "service_kip_ft": 3.094,
-  "factored_kip_ft": 3.746,
+  "service_kip_ft": 3.089,
+  "factored_kip_ft": 3.737,
   "governing": "Strength I",
   "note": "Tie-back load per foot of backwall, perpendicular to the backwall (SDM 12.3.F plan note)."
  }

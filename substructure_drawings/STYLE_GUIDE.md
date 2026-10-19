@@ -343,11 +343,27 @@ symbol at page scale.
 - **C5 Callouts** sit beside the bars with leaders per A3; one callout per
   series with count, mark and spacing (B6); "(EF)" for each-face bars;
   "x THRU y" for three or more consecutive marks.
-- **C6 Open stirrups are standard bars with field-bent hooks.**  No custom
+- **C6 Open stirrups are standard bars with field-bent feet.**  No custom
   bending diagram on the bar list; bars are listed by their Standard Plans
   Index 415-001 type and the sheet note reads "FIELD BEND OPEN STIRRUP HOOKS
-  AS REQUIRED TO CLEAR PILE HEAD LOCATION."  Markups on B4-9: "Remove this,
-  they can refer to the Standard Plans"; note 2 wording.
+  AS REQUIRED TO CLEAR PILE HEAD LOCATION."  The open stirrup is Type 5 (an
+  inverted U closed at the top: C the width, B the legs, D and E the feet
+  turned in at the open end, out-to-out), not a Type 11 U-bar with hook
+  styles: the feet are dimensioned legs, which also spares the question
+  whether a 10" foot is a style 3 or a style 4 hook (markup 2026-10-19,
+  round 5: "Should Bar B2 be a type 5 not a type 11").  The same holds for
+  every 90 degree end leg of this model: one leg makes a Type 10 L-bar (B
+  the long leg, C the short), two legs on one side a Type 11 U-bar (B the
+  base, C and D the legs), whatever the legs' lengths; a leg that happens
+  to equal the index's standard-hook size is still a leg, so no bar
+  carries a 90 degree hook style and Types 17 and 18 (hooked straight
+  bars) are not used (bar-list review 2026-10-19: "C should be an 11", "E3
+  is type 11", "E1 and E4 are type 10s", "D should be a 10").  The backwall
+  verticals 5D1 and the cheek verticals 4E1 are to be Type 10 with a leg
+  into the cap; the model carries them as straight schematic dowels, so
+  the list follows the model and a MODEL CHECK note says so until the
+  model has the legs (D11).  Markups on B4-9: "Remove this, they can refer
+  to the Standard Plans"; note 2 wording.
 - **C7 Bar marks** per SDM 4.3 (size + designation, unique within a
   component, numbers from 1 without gaps, no I, O or Q); the FreeCAD rebar
   Mark properties carry the same marks (D-042), so marks are re-applied to
@@ -730,7 +746,7 @@ Markups on the 2.3.0 sheets, 2026-10-19 round 2 (all general; "for every comment
 | B4-1 elevation | Shift to add more space (PT. K) | A2 | PT. K/H rows apart |
 | B4-1 elevation | All these leaders are overlapping the text (pulled values, pile numbers) | A16 | pile numbers and flags in their own bands below the pulled values |
 | B4-1 notes | Take out this note and only have it once per bent, on the next sheet | D6 | legend on the (1 OF 3) sheet only; cross-references elsewhere |
-| B4-2 legend | Update from backwall design calc | D6 | 3.09 / 3.75 kip/ft (Strength I) from `strap_loads.json` |
+| B4-2 legend | Update from backwall design calc | D6 | the selected case's loads from `strap_loads.json` (3.09 / 3.74 kip/ft, Strength I, as of the 19 October evening case; the test fails when the case changes) |
 | B4-2/B4-8 sections | Overlap (3" COVER text on the bottom-bar leader) | B10 | cover value at its dimension height, clear of the rows |
 | B4-2 sections | I don't think these bars are actually here in the model; when we show full width we have to show the actual locations | C10 | no daylight nudge at double-line scales; tangency reported |
 | B4-2 sections | Spread these annos out vertically with more equal space distribution; more row and column like | A14 | backwall labels in one evenly spread column |
@@ -788,3 +804,5 @@ Markups on the round-4 sheets, 2026-10-19 round 5:
 | B4-11 Section G-G | I'm seeing doubled bars here. Do they exist in the model? | C9 | yes: V20 and V21 of each face stand 3/8" apart (the run at 1'-0" from one end lands 3/8" short of the other end bar); drawn as modelled, MODEL CHECK note on the (3 OF 3) sheets; resolved by model D-055 |
 | B4-1 / B4-8 plan | Breaklines should be at broken elements (the break lines across the cheek wall corners) | D12, D15 | the coping behind each cheek begins beyond the clip, so nothing of it is drawn; cuts are read from the drawn edges, and a break-breaks-nothing check (D15) guards it |
 | B4-1 elevation | Move 1 (the 1'-0" (MIN.) embedment value) to make room for the other anno and adjust the leaders | B7, A2 | embedment dimension in the pile nearest the PGL, value in the run space at the PGL; the pile description's leader keeps the outboard spaces |
+| B4-12 bar list | Should Bar B2 be a type 5 not a type 11 | C6 | yes: the open stirrups 6B2/5B2 are Type 5 (B = height, C = width, D = E = feet), no hook style |
+| B4-12 bar list | Check the other types closely, there are other wrong ones: C should be an 11, D should be a 10, E1 and E4 are type 10s, E3 is type 11 | C6 | 90° end legs are legs, not hooks: 5C, 4E3, pier 5D1/5D2 Type 11; 4E4 Type 10; 5D1 and 4E1 straight in the model → MODEL CHECK note on the bar list (Type 10 intended) |

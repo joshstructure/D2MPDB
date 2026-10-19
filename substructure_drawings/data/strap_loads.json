@@ -1,9 +1,9 @@
 {
  "source": "end_bent_walls.model.evaluate on project_current/cap_design/backwall/selected_case.json",
- "case_sha256": "ac075073306e06f252404d0c26e73b975cad2ee18373e011ef0946ae1c20d0e1",
+ "case_sha256": "01e76c5a263af986e0d7e154039cec4c351bea29403dd9bfd2cbee7b16bab597",
  "case_name": "End Bent 1 backwall, cheek walls and tie-back straps (common end-bent design, D-004)",
- "service_kip_ft": 3.094,
- "factored_kip_ft": 3.746,
+ "service_kip_ft": 3.089,
+ "factored_kip_ft": 3.737,
  "governing": "Strength I",
  "note": "Tie-back load per foot of backwall, perpendicular to the backwall (SDM 12.3.F plan note)."
 }
