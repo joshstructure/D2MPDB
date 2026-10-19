@@ -134,7 +134,7 @@ class RingWallTests(unittest.TestCase):
                     self.assertIn('ring_wall/_native/bpad_sheet.py',src.namelist())
 
     def test_portable_notebook_executes_and_embeds_exact_source(self):
-        nb=json.loads((ROOT/'Ring_Supported_Wall_STM.ipynb').read_text(encoding='utf-8'));ns={};oldpath=sys.path[:]
+        nb=json.loads((ROOT/'Pier_Wall_Design.ipynb').read_text(encoding='utf-8'));ns={};oldpath=sys.path[:]
         oldmods={k:v for k,v in sys.modules.items() if k=='ring_wall' or k.startswith('ring_wall.')}
         try:
             with tempfile.TemporaryDirectory(dir=ROOT,prefix='.ring-wall-test-') as folder,chdir(folder),patch('IPython.display.display'):

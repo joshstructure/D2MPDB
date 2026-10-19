@@ -23,9 +23,9 @@ def cell(kind,source):
     return item
 
 
-INTRO='''<a href="https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Ring_Supported_Wall_STM.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+INTRO='''<a href="https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Pier_Wall_Design.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
-# Wall steel and annular pile rings
+# Pier Wall Design
 
 Choose **Runtime → Run all**. Edit the amber input cards, inspect **Live layout** and **3D reinforcement**, then click **Recalc**. Review **Tributary loads**, **Ring & weld detail**, **Wall steel**, **D/C checks** and **Ring spacing**. Edits clear calculated results and block new exports until Recalc. Green **Calc done** means current results; each check has its own status.
 
@@ -37,7 +37,7 @@ Native sheets use labeled fixed scalar units and the exported layout. Re-export 
 
 The starting geometry has clearance and full-contact failures. A failed contact check makes its bearing/plate/weld strength checks **PENDING**. Minimum steel and local connection checks do not establish wall strength load paths, splitting/breakout, row engagement or pipe-shell adequacy. These open items remain in the check register.
 
-The earlier filename is retained to preserve the Colab link. The package and native-sheet helpers are embedded; no clone, token or Drive mount is required. Rerunning the workbench retains the active case.
+The package and native-sheet helpers are embedded; no clone, token or Drive mount is required. Rerunning the workbench retains the active case.
 '''
 SETUP='''# @title 0 · Start the portable workbench
 from pathlib import Path
@@ -101,7 +101,7 @@ Background: [FHWA concrete bearing](https://www.fhwa.dot.gov/engineering/geotech
 Maintained source: `ring_wall/`; builder: `scripts/build_ring_wall_notebook.py`; verification: `tests/test_ring_wall*.py`.
 '''
 notebook=dict(cells=[cell('markdown',INTRO),cell('code',SETUP),cell('code',WORK),cell('markdown',BASIS)],
-    metadata=dict(colab=dict(name='Ring_Supported_Wall_STM.ipynb',provenance=[]),kernelspec=dict(display_name='Python 3',language='python',name='python3'),language_info=dict(name='python',version='3.11')),nbformat=4,nbformat_minor=0)
-path=ROOT/'Ring_Supported_Wall_STM.ipynb'
+    metadata=dict(colab=dict(name='Pier_Wall_Design.ipynb',provenance=[]),kernelspec=dict(display_name='Python 3',language='python',name='python3'),language_info=dict(name='python',version='3.11')),nbformat=4,nbformat_minor=0)
+path=ROOT/'Pier_Wall_Design.ipynb'
 path.write_text(json.dumps(notebook,indent=1,ensure_ascii=False)+'\n',encoding='utf-8',newline='\n')
 print(path);print('Embedded source SHA-256:',digest)

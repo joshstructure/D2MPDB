@@ -4,7 +4,7 @@
 
 ## Quick links — open in Colab
 
-- [Wall minimum steel and annular pile rings](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Ring_Supported_Wall_STM.ipynb)
+- [Pier Wall Design](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Pier_Wall_Design.ipynb)
 - [Bridge geometry](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Bridge_Geometry_2%20Beam_V2.ipynb)
 - [End-bent backwall, cheek walls and tie-back straps](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/End_Bent_Backwall_Design.ipynb)
 - [Pile analysis and design (prestressed and pipe piles)](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Pile_Design.ipynb)
@@ -19,9 +19,9 @@ both end bents and the pier. It is drawn from the current FreeCAD model, uses FD
 CADD levels, and assigns SDM 4.3 bar marks. A review PDF is included. Rebuild
 with `.venv\Scripts\python.exe scripts\build_substructure_dxf.py --extract --previews`.
 
-## Wall minimum steel and annular pile rings
+## Pier Wall Design
 
-[Open the notebook in Colab](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Ring_Supported_Wall_STM.ipynb) and choose **Runtime → Run all**. The earlier filename is retained for the existing link. The calculation now checks minimum wall steel and detailing, then concrete bearing, ring plate bending/shear, continuous top/bottom fillet welds and adjacent base metal. Gross concrete self-weight is assigned to rings using tributary boundaries midway between piles and ring rows, clipped at wall edges. Nominal tributary eccentricity and radial pile tolerance are included; no strut-and-tie analysis is performed.
+[Open the notebook in Colab](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Pier_Wall_Design.ipynb) and choose **Runtime → Run all**. The calculation now checks minimum wall steel and detailing, then concrete bearing, ring plate bending/shear, continuous top/bottom fillet welds and adjacent base metal. Gross concrete self-weight is assigned to rings using tributary boundaries midway between piles and ring rows, clipped at wall edges. Nominal tributary eccentricity and radial pile tolerance are included; no strut-and-tie analysis is performed.
 
 The cap-style workbench has amber input cards, manual **Recalc**, live dimensioned plan/elevation, a rotatable **3D reinforcement** cage, a ring/weld section and bearing-pressure plot, tributary reaction heatmap, wall-steel table, equation/value disclosures and ring-spacing comparison. Edits clear stale results and disable new exports. Green **Calc done** means results match the inputs; individual checks retain their own status.
 

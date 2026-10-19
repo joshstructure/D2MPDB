@@ -62,7 +62,7 @@ class RingWallNotebook:
         self.export_panel=Accordion(children=[export_box]);self.export_panel.set_title(0,'Report and exports');self.export_panel.selected_index=None
         self.upload=W.FileUpload(accept='.json',multiple=False,description='Load saved case');self.upload.observe(self._uploaded,names='value')
         dock=W.Box([self.recalc_button],layout=W.Layout(width='100%'));dock.add_class('ring-dock')
-        self.ui=W.VBox([W.HTML(V.CSS),dock,W.HTML('<h2 style="padding-right:165px">Wall steel and annular pile rings</h2><p>Edit inputs, inspect the drawings, then click <b>Recalc</b>. Green means current results; each check has its own status.</p>'),
+        self.ui=W.VBox([W.HTML(V.CSS),dock,W.HTML('<h2 style="padding-right:165px">Pier Wall Design</h2><p>Edit inputs, inspect the drawings, then click <b>Recalc</b>. Green means current results; each check has its own status.</p>'),
             self.title,self.upload,self.load_status,self.input_panel,self.status,self.metrics,self.plot_tabs,self.export_panel],layout=W.Layout(width='100%',min_width='0',max_height='950px',overflow='auto'))
         self.ui.add_class('ring-workbench');self._refresh_inputs();self.recalculate()
         if self.migration:self.load_status.value=V.note(esc(' '.join(self.migration)),True)

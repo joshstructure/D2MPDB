@@ -13,7 +13,7 @@ project_current/** -text
 project_current/geometry/details/*.dxf binary
 "Geometry Report.xml" -text
 # Preserve the delivered notebook and its exact embedded-source fingerprints.
-Ring_Supported_Wall_STM.ipynb -text
+Pier_Wall_Design.ipynb -text
 ring_wall/** -text
 # Preserve CAD exports and the exact byte hashes in their verification record.
 mse_strap_check/dxf/** -text

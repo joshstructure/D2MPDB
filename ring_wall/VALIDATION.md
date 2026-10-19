@@ -9,6 +9,8 @@ The former ring-wall STM engine has been replaced by minimum wall steel/detailin
 - Local ipywidgets **8.1.9**, Plotly **6.9.0**: 28 tests, 26.041 s.
 - Colab-pinned ipywidgets **7.7.1**, Plotly **5.24.1**: 28 tests, 26.781 s.
 
+After renaming the notebook to `Pier_Wall_Design.ipynb` and its visible title to **Pier Wall Design**, the same 28 tests passed locally in 19.993 s. The builder, Colab links and portable-notebook test use the new filename; export source records were regenerated. The pinned environment was not rerun for this name-only change.
+
 Coverage includes midpoint tributaries and global force/moment equilibrium, 30 randomized geometries, single-pile and single-row boundaries, load-factor/density scaling, minimum steel independent of ring pitch, detailing failures, minimum weld table boundaries, invalid input rejection, and legacy-case migration without silently removing added gravity.
 
 Independent numerical radial-strip integration checks plate shear and moment; weld force is checked against its separate force/couple calculation. Tests check bearing area, eccentricity/tolerance effects, failed-contact gating, a geometry with all numeric checks passing while scope items stay open, and report disclosures with escaped user text.
@@ -19,7 +21,7 @@ The full export ZIP is checked against its SHA-256 manifest. HTML includes inter
 
 Embedded package SHA-256:
 
-`65ef112544a6daed3d78013e216542a834f4961cad01c015407b88b71be95b45`
+`b7e2888b4e5e86d88a5fb72ee0ee1c8c40ecc86efed699734712264f3d54169a`
 
 The rebuilt HTML exporter has **15 method sections, 96 equation explanations and 178 check-result rows**. Tests verify that every check appears exactly once with its original status for default, single-ring and full-contact cases; new unassigned check types fail closed. Each equation has native MathML, a schematic and current operands. Both conditional branches and mathematical grouping are preserved; rendered expressions come directly from the current ledger. Reports retain pending/trial warnings and escape case/check text without mutating results.
 
