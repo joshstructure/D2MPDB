@@ -7,6 +7,9 @@ from pathlib import Path
 import re
 import zipfile
 
+# The distilled Blockpad export (pier_cap/bpad_distill.py) imports these scripts from the extracted package.
+EMBEDDED_SCRIPTS = ('__init__.py', 'bpad_sheet.py', 'mathcad_sheet.py', 'mathcad_plot.py', 'build_cap_mathcad.py', 'build_cap_bpad.py')
+
 
 def build(repo, *, preserve_outputs=False):
     path = repo / 'Cap_and_Pile_Design.ipynb'
@@ -14,6 +17,7 @@ def build(repo, *, preserve_outputs=False):
     notebook = json.loads(original_text)
     buffer = io.BytesIO()
     files = sorted([*repo.glob('pier_cap/*.py'), *repo.glob('pier_cap/data/*.json'),
+                    *(repo/'scripts'/name for name in EMBEDDED_SCRIPTS if (repo/'scripts'/name).is_file()),
                     repo/'requirements-pier-cap-colab.txt'])
     with zipfile.ZipFile(buffer, 'w', zipfile.ZIP_DEFLATED) as package:
         for file in files:

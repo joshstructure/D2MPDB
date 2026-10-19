@@ -455,14 +455,19 @@ class BackwallNotebook:
         self.export_status = W.HTML(); self.download_output = W.Output()
         specs = [('Case JSON', 'backwall_case.json'), ('Calculation report', 'backwall_calculation_report.html'),
                  ('Checks CSV', 'backwall_checks.csv'), ('MSE strap handoff (xlsx)', 'backwall_strap_handoff.xlsx'),
-                 ('Full bundle ZIP', 'backwall_bundle.zip')]
+                 ('Export distilled Blockpad (.bpad)', exports.DISTILLED_BPAD), ('Full bundle ZIP', 'backwall_bundle.zip')]
         self.export_buttons = []
         for label, name in specs:
-            b = W.Button(description=label, icon='download', layout=W.Layout(width='230px'))
+            b = W.Button(description=label, icon='copy' if name == exports.DISTILLED_BPAD else 'download',
+                         layout=W.Layout(width='270px' if name == exports.DISTILLED_BPAD else '230px'))
             b.on_click(partial(self._export, name)); self.export_buttons.append(b)
         self.boxes['exports'].children = [
             W.HTML('<p>Exports use the last completed Recalc. Each click writes a timestamped folder under <code>exports/</code> and downloads the file. '
-                   'In Colab, <code>/content</code> is temporary runtime storage; keep the downloaded copies.</p>'),
+                   'In Colab, <code>/content</code> is temporary runtime storage; keep the downloaded copies.</p>'
+                   '<p><b>Export distilled Blockpad (.bpad)</b> writes a standalone Blockpad document of the current case (the same distilled '
+                   'sheet as <code>end_bent_walls/End Bent Backwall Design.bpad</code>: equations shown once, collapsed sections, live figures), '
+                   'verified against this notebook before it is written; its verification record is saved beside it and in the bundle. '
+                   'Open and recalculate the sheet in Blockpad. It distils the numerical checks only; it is not design acceptance.</p>'),
             W.HBox(self.export_buttons, layout=W.Layout(flex_flow='row wrap', grid_gap='6px')), self.export_status, self.download_output]
 
     def _export(self, name, _=None):
@@ -474,7 +479,12 @@ class BackwallNotebook:
             self.export_status.value = notice_html('EXPORT FAILED', html.escape(str(exc)), 'error')
             return
         self.last_files[name] = path
-        self.export_status.value = notice_html('EXPORT WRITTEN', f'<code>{html.escape(str(path.resolve()))}</code>', 'success')
+        detail = f'<code>{html.escape(str(path.resolve()))}</code>'
+        if name == exports.DISTILLED_BPAD:
+            verification = path.parent / exports.BPAD_VERIFICATION
+            detail = (html.escape(exports.bpad_summary(verification.read_bytes())) + '<br>' + detail +
+                      f'<br>Verification record: <code>{html.escape(str(verification.resolve()))}</code>')
+        self.export_status.value = notice_html('DISTILLED BLOCKPAD READY' if name == exports.DISTILLED_BPAD else 'EXPORT WRITTEN', detail, 'success')
         with self.download_output:
             from IPython.display import clear_output, display, FileLink
             clear_output()

@@ -75,7 +75,7 @@ if IN_COLAB:
     colab_output.enable_custom_widget_manager()
     os.chdir(ROOT)
     for module_name in list(sys.modules):
-        if module_name.split(".")[0] in ("pier_cap", "end_bent_walls"):
+        if module_name.split(".")[0] in ("pier_cap", "end_bent_walls", "scripts"):
             del sys.modules[module_name]
     importlib.invalidate_caches()
 if str(ROOT) in sys.path:
@@ -155,9 +155,14 @@ print("Output scrolling disabled for future cell executions.")
         'nbformat': 4, 'nbformat_minor': 5}
 
 
+EMBEDDED_SCRIPTS = ('__init__.py', 'bpad_sheet.py', 'mathcad_sheet.py', 'build_backwall_mathcad.py', 'build_backwall_bpad.py')
+
+
 def package_files(repo):
+    """The package: end_bent_walls, the shared pier_cap engine, and the scripts the distilled Blockpad export imports."""
     return sorted([*repo.glob('end_bent_walls/*.py'), *repo.glob('end_bent_walls/data/*.json'),
-                   *repo.glob('pier_cap/*.py'), *repo.glob('pier_cap/data/*.json'), repo / 'requirements-pier-cap-colab.txt'])
+                   *repo.glob('pier_cap/*.py'), *repo.glob('pier_cap/data/*.json'), repo / 'requirements-pier-cap-colab.txt',
+                   *[repo / 'scripts' / name for name in EMBEDDED_SCRIPTS if (repo / 'scripts' / name).is_file()]])
 
 
 def build(repo):

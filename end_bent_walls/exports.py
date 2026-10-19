@@ -102,11 +102,40 @@ def _report(e):
     return build_report(e).encode('utf-8')
 
 
+DISTILLED_BPAD = 'End Bent Backwall Design.bpad'
+BPAD_VERIFICATION = 'backwall_bpad_verification.json'
+_distilled = []                      # [(evaluation, (bpad bytes, verification bytes))]: the last distillation, reused by the bundle
+
+
+def distilled_bpad(e):
+    """(Blockpad document bytes, verification JSON bytes) of the evaluated case, built and verified in memory.
+
+    The sheet is the distilled Blockpad edition of this calculation (scripts/build_backwall_bpad.py): every definition
+    is evaluated independently and compared with this model to 1 part in 10⁹ before the bytes are returned."""
+    if _distilled and _distilled[0][0] is e:
+        return _distilled[0][1]
+    from pier_cap.bpad_export import package_revision
+    from scripts.build_backwall_bpad import distill
+    revision = package_revision(Path(__file__).resolve().parent, prefixes=('backwall-tool-',), notebooks=('End_Bent_Backwall_Design.ipynb',))
+    result = distill(e, revision=revision)
+    _distilled[:] = [(e, result)]
+    return result
+
+
+def bpad_summary(verification):
+    """One sentence for the export notice, from the verification JSON bytes."""
+    entry = json.loads(bytes(verification).decode('utf-8'))[0]
+    return (f'{entry["tool_comparisons"]} values match the notebook to 1 part in 10⁹; distilled status {entry["status"]}; '
+            f'case {entry["case_sha256"][:12]}; package {entry["package_revision"]}.')
+
+
 WRITERS = {
     'backwall_case.json': lambda e: case_json(e.case).encode('utf-8'),
     'backwall_checks.csv': lambda e: checks_csv(e).encode('utf-8'),
     'backwall_calculation_report.html': _report,
     'backwall_strap_handoff.xlsx': handoff_xlsx,
+    DISTILLED_BPAD: lambda e: distilled_bpad(e)[0],
+    BPAD_VERIFICATION: lambda e: distilled_bpad(e)[1],
 }
 
 
@@ -122,6 +151,8 @@ def export_file(e, root, name):
         return export_bundle(e, root)['backwall_bundle.zip']
     path = _folder(root) / name
     path.write_bytes(WRITERS[name](e))
+    if name == DISTILLED_BPAD:                   # the verification record travels with the sheet
+        (path.parent / BPAD_VERIFICATION).write_bytes(WRITERS[BPAD_VERIFICATION](e))
     return path
 
 

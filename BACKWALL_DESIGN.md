@@ -93,3 +93,16 @@ python -m unittest tests.test_end_bent_walls
 ```
 
 Add `--render-figures` to redraw `end_bent_walls/mathcad/*.png` (requires Microsoft Edge). The tests fail when the committed worksheet is out of date. The worksheet is generated, so edits made in Mathcad are lost on the next rebuild. Change the equation list instead, or treat an edited copy as a separate calculation.
+
+## Blockpad edition
+
+[end_bent_walls/End Bent Backwall Design.bpad](end_bent_walls/End%20Bent%20Backwall%20Design.bpad) is a Blockpad 1.9 document with one report, `EndBentBackwallDesign`, distilled from the same equation list as the Mathcad worksheet. `scripts/build_backwall_bpad.py` translates each equation with the emitter and evaluator of `scripts/bpad_sheet.py` (the ones the cap sheets in `cap_bpad/` use) and follows the same scalarisation: Blockpad has no vector variables, so the five combinations become scalars ending in `_SERI`, `_STRI`, `_STRIII1`, `_STRIII2`, `_STRIV`, the three strips in `_FF`, `_SF`, `_CK`, and the torsion stations in `_0` to `_7`. Each equation is shown once (Service I, the fill face, station 0); the others sit in collapsed sections with the values side by side in green tables. Inputs are amber definitions. The two figures are native canvases with live dimensions, Section 12 ends with a live stem chart of the D/C ratios, and the results use the journal's `✓ PASS` / `⊗ FAIL` strings. The sidecars (`end_bent_walls/bpad/`: the report fragment for a journal task, the canvas geometry for `scripts/bpad_preview.py`, and `verification.json`) are written with it.
+
+Before writing, the generator reads every formula back out of the XML, evaluates it with the independent Blockpad-syntax evaluator, checks every amber input against the notebook input, compares more than 240 results with the notebook to 1 part in 10⁹, and (for the committed build) compares the values it shares with the Mathcad worksheet. `tests/test_backwall_bpad.py` fails when the committed document is out of date. Rebuild it after the notebook or the generator changes:
+
+```
+python scripts/build_backwall_bpad.py
+python -m unittest tests.test_backwall_bpad tests.test_backwall_bpad_export
+```
+
+The notebook's **Export distilled Blockpad (.bpad)** button (Exports tab) writes the same sheet for the current case, built and verified in memory by the same generator (`end_bent_walls/exports.py`, `distilled_bpad`), into a timestamped `exports/` folder together with `backwall_bpad_verification.json`; the full bundle ZIP holds both. The portable notebook embeds the scripts it needs (`scripts/build_backwall_notebook.py`, `EMBEDDED_SCRIPTS`). Nothing here is a Blockpad recalculation: open the document in Blockpad and recalculate it. A distilled result of ✓ covers the recomputed numerical checks only and is not design acceptance.

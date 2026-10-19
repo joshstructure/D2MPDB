@@ -87,6 +87,24 @@ def notebook_revision():
     raise ValueError('Cap_and_Pile_Design.ipynb has no package revision')
 
 
+def report_info(path, e, name=None):
+    """Report-link dict (file, stamp, case_sha, formula_sha) of one report file; it must print the hashes of `e`.
+
+    `name` is the file name recorded in the sheet (default: the file's own name)."""
+    path = Path(path)
+    case_sha, formula_sha = case_sha256(e), formula_sha256()
+    text = path.read_bytes().decode('utf-8', errors='replace')
+    c = re.search(r'Case SHA-256 \(canonical JSON\):\s*([0-9a-f]{64})', text)
+    f = re.search(r'Formula definition SHA-256:\s*([0-9a-f]{64})', text)
+    if not (c and f):
+        raise ValueError(f'{path.name} prints no case and formula hashes')
+    if c.group(1) != case_sha or f.group(1) != formula_sha:
+        raise ValueError(f'{path.name} was generated from a different case ({c.group(1)[:12]}) or formula set '
+                         f'({f.group(1)[:12]}) than the one evaluated ({case_sha[:12]}, {formula_sha[:12]})')
+    g = re.search(r'Generated:\s*([0-9T:+\-.Z]+)', text)
+    return dict(file=name or path.name, stamp=g.group(1) if g else 'unstamped', case_sha=case_sha, formula_sha=formula_sha)
+
+
 def report_link(cap, e):
     """Newest report of the cap folder whose printed case and formula hashes both match the evaluated case."""
     case_sha, formula_sha = case_sha256(e), formula_sha256()

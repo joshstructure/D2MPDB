@@ -5,7 +5,7 @@
 <generator>Mathcad Professional 14.1</generator>
 <userData>
 <title>End Bent 1 Backwall, Cheek Walls and Tie-Back Straps</title>
-<description>Written by scripts/build_backwall_mathcad.py from the D2MPDB end_bent_walls notebook (package 8e681afef630).</description>
+<description>Written by scripts/build_backwall_mathcad.py from the D2MPDB end_bent_walls notebook (package 47a8b1e614b1).</description>
 <author>D2MPDB</author>
 <company/>
 <keywords/>
@@ -13,8 +13,8 @@
 </userData>
 <identityInfo>
 <revision>1</revision>
-<documentID>00000000-0000-4000-8000-8E681AFEF630</documentID>
-<versionID>00000000-0000-4000-8000-8E681AFEF631</versionID>
+<documentID>00000000-0000-4000-8000-47A8B1E614B1</documentID>
+<versionID>00000000-0000-4000-8000-47A8B1E614B2</versionID>
 <parentVersionID>00000000-0000-0000-0000-000000000000</parentVersionID>
 <branchID>00000000-0000-0000-0000-000000000000</branchID>
 </identityInfo>
@@ -93,7 +93,7 @@
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Normal" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Project: D2 I-95 Pedestrian Bridge · common end-bent design (D-004).</p></text>
 </region>
 <region region-id="3" left="18.00" top="75.00" width="572.00" height="43.00" align-x="18.00" align-y="85.00" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
-<text use-page-width="false" push-down="false" lock-width="true"><p style="Normal" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Mathcad edition of End_Bent_Backwall_Design.ipynb (calculation package 8e681afef630). Same inputs, equations and load combinations as the notebook; results should match its exported report (Section 12 lists the notebook values).</p></text>
+<text use-page-width="false" push-down="false" lock-width="true"><p style="Normal" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Mathcad edition of End_Bent_Backwall_Design.ipynb (calculation package 47a8b1e614b1). Same inputs, equations and load combinations as the notebook; results should match its exported report (Section 12 lists the notebook values).</p></text>
 </region>
 <region region-id="4" left="18.00" top="124.00" width="572.00" height="30.00" align-x="18.00" align-y="134.00" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Normal" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Codes: AASHTO LRFD Bridge Design Specifications, 10th edition (2024); FDOT Structures Design Guidelines (SDG) and Structures Detailing Manual (SDM), January 2026.</p></text>

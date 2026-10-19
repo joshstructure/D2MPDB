@@ -1,0 +1,15 @@
+[
+ {
+  "bpad_file": "end_bent_walls/End Bent Backwall Design.bpad",
+  "bpad_sha256": "2f5ef7dd6d11693185cc31b983b9aaa9e4d555277c6477e275263fb923855be8",
+  "case_sha256": "f2b01204e04a09fc575593a119ff854b8ad57b29d4f8fc70b1a995665d4dbed2",
+  "cells_and_labels": 735,
+  "definitions": 584,
+  "functions": 10,
+  "mathcad_values_compared": 585,
+  "package_revision": "47a8b1e614b1",
+  "report_name": "EndBentBackwallDesign",
+  "status": "✓ All Checks Pass",
+  "tool_comparisons": 245
+ }
+]

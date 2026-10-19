@@ -1,7 +1,7 @@
 [
  {
   "bpad_file": "cap_bpad/End Bent 1 Cap Design.bpad",
-  "bpad_sha256": "465d70504e3bccde49b69c62c30d170b0f51eb40b88130c4b8a541ee5c5bb7c6",
+  "bpad_sha256": "9e4eec7c4b7825840fd6492fd37a7a16c1bdf80394b41e42f78749337de26496",
   "branches_reached": [
    "end-truncated window",
    "flange cracked (ε doubled)",
@@ -26,7 +26,7 @@
   "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
   "functions": 2,
   "mathcad_values_compared": 535,
-  "package_revision": "cfb3565da8c3",
+  "package_revision": "22cddbd9999a",
   "report_file": "End Bent 1 Cap Design 10-19.html",
   "report_name": "CapDesignEndBentOne",
   "sheet_comparisons": 288,
@@ -42,7 +42,7 @@
  },
  {
   "bpad_file": "cap_bpad/End Bent 2 Cap Design.bpad",
-  "bpad_sha256": "d05880cd59ede64da8b393f61d20bc53ef88f3c89f7332c4051cde38dc5be8dd",
+  "bpad_sha256": "8afab681855d3b9502ca0c909b057a9ac7f0c0a1900b7d7a042012410d332d1b",
   "branches_reached": [
    "end-truncated window",
    "flange cracked (ε doubled)",
@@ -67,7 +67,7 @@
   "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
   "functions": 2,
   "mathcad_values_compared": 535,
-  "package_revision": "cfb3565da8c3",
+  "package_revision": "22cddbd9999a",
   "report_file": "End Bent 2 Cap Design 10-19.html",
   "report_name": "CapDesignEndBentTwo",
   "sheet_comparisons": 288,
@@ -83,7 +83,7 @@
  },
  {
   "bpad_file": "cap_bpad/Pier Cap Design.bpad",
-  "bpad_sha256": "b4aa4c92fde22f7739bbc4f90dc2de42d8f59578c69e7f0257ee17dd1c1a926f",
+  "bpad_sha256": "0c139d1572c681826fb8aff2a3dc191dd48c18c19bb56c8aad20b29b535568cc",
   "branches_reached": [
    "end-truncated window",
    "flange cracked (ε doubled)",
@@ -108,7 +108,7 @@
   "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
   "functions": 2,
   "mathcad_values_compared": 535,
-  "package_revision": "cfb3565da8c3",
+  "package_revision": "22cddbd9999a",
   "report_file": "Pier Cap Design 10-19.html",
   "report_name": "CapDesignPier",
   "sheet_comparisons": 288,

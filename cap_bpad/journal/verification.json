@@ -47,14 +47,14 @@
    "fbmp_sha256": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
    "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
    "fragment": "cap_bpad/journal/CapDesignEndBentOne.xml",
-   "fragment_sha256": "0c3bc978caf2a68b7bcdbcf8b79a9d40c0d89285870c1882d56ac394bb351a5c",
+   "fragment_sha256": "b51a551e26d3d695dfcdc8783ea3d58f988e69bd38a156848ba681eb79fe5af6",
    "functions": 0,
    "journal_references": 14,
    "literals_kept": [
     "L_cap"
    ],
    "mathcad_values_compared": 535,
-   "package_revision": "cfb3565da8c3",
+   "package_revision": "22cddbd9999a",
    "references": [
     "BridgeGeometry_2Beam.EndBentCap_depth",
     "BridgeGeometry_2Beam.EndBentCap_width",
@@ -108,14 +108,14 @@
    "fbmp_sha256": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
    "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
    "fragment": "cap_bpad/journal/CapDesignEndBentTwo.xml",
-   "fragment_sha256": "aef8b69b4fca2b9a33acfe027fda27b8e4ae886ff8b34cc2867ce687c60c4108",
+   "fragment_sha256": "5ab002dd4fb0b77e1834fbe981fea06e7816297399a964aafc32334b3404ca74",
    "functions": 0,
    "journal_references": 14,
    "literals_kept": [
     "L_cap"
    ],
    "mathcad_values_compared": 535,
-   "package_revision": "cfb3565da8c3",
+   "package_revision": "22cddbd9999a",
    "references": [
     "BridgeGeometry_2Beam.EndBentCap_depth",
     "BridgeGeometry_2Beam.EndBentCap_width",
@@ -169,12 +169,12 @@
    "fbmp_sha256": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
    "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
    "fragment": "cap_bpad/journal/CapDesignPier.xml",
-   "fragment_sha256": "4cba052198b82a14673f7b376504bb05d82b32918415aec6f4af16609f596dfe",
+   "fragment_sha256": "f3fb8fbd63ab45c7aee10aa076a132b82c262c41f17f168ebfac56ec0b1765bf",
    "functions": 0,
    "journal_references": 15,
    "literals_kept": [],
    "mathcad_values_compared": 535,
-   "package_revision": "cfb3565da8c3",
+   "package_revision": "22cddbd9999a",
    "references": [
     "BridgeGeometry_2Beam.PierCap_ht",
     "BridgeGeometry_2Beam.PierCap_length",
@@ -207,5 +207,5 @@
   }
  ],
  "review_document": "cap_bpad/journal/Cap Design - Journal Edition (review).bpad",
- "review_sha256": "de19502b9888aeaa655e636cf681fea7ab7f888b89dd2231564b51edd118b4c6"
+ "review_sha256": "64fa6395eb19976681b7c584f11cfd15433bf2e9b6235885e8af47abf323cf40"
 }

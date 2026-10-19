@@ -15,6 +15,8 @@ from .fbmp_widgets import XMLImportPanel
 from .pile_widgets import PileReviewPanel
 from .case_widgets import CaseImportPanel
 from .blockpad_widgets import BlockpadExportPanel
+from .bpad_export import DistilledBpadPanel
+from .bpad_distill import distill_cap,readiness
 from .widget_compat import Tab, Accordion
 from .source_status import source_html,import_receipt,receipt_html,notice_html
 from .force_audit import force_basis,FORCE_LABELS
@@ -608,6 +610,12 @@ class CapNotebook:
 
     def _export_panel(self):
         self.blockpad_export=BlockpadExportPanel(self)
+        self.distilled_export=DistilledBpadPanel(self,
+            lambda app:distill_cap(app.case,app.export_root,search_result=app.search_result,search_filter=app._search_filter()),
+            hint=('Writes a standalone Blockpad document of the current case: the same distilled sheet as cap_bpad/ (equations shown once, '
+                  'collapsed sections, live figures), verified against this notebook before it is written. The export first saves the case bundle; '
+                  'the sheet and its verification record go in that folder under blockpad/.'),
+            ready=lambda app:('RECALC NEEDED','Click Recalc to update the cap checks before exporting.') if (app.dirty or app.calculating) else (('CASE NOT READY',readiness(app.case)) if readiness(app.case) else None))
         self.bpad_path=self.blockpad_export.path
         self.case_export_folder=None
         self.case_download_files=self.blockpad_export.colab_files
@@ -642,7 +650,7 @@ class CapNotebook:
             '<p>Download buttons use the <b>most recent successful export</b>. Export again after changing inputs.</p>'),
             W.HBox([self.case_export_button,self.case_json_button,self.case_zip_button],layout=W.Layout(flex_flow='row wrap')),
             W.HBox([self.case_report_button,self.case_html_button],layout=W.Layout(flex_flow='row wrap')),
-            self.case_export_status,self.case_download_output,self.blockpad_export.ui])
+            self.case_export_status,self.case_download_output,self.blockpad_export.ui,self.distilled_export.ui])
 
     def _case_export_notice(self,title,detail,kind='info'):
         self.case_export_status.value=notice_html(title,detail,kind)
