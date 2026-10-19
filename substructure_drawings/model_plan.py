@@ -9,6 +9,7 @@ levels and lettering follow the substructure sheets (STYLE_GUIDE.md, F).
 """
 import hashlib
 import json
+import math
 from collections import OrderedDict
 from pathlib import Path
 
@@ -73,6 +74,39 @@ def dedupe(edges):
     return list(best.values())
 
 
+def chain_lines(recs, tol=1e-3):
+    """Chain line records that share endpoints into point lists (polylines),
+    in the order they connect; each record is used once."""
+    segs = [(tuple(r["p"][0]), tuple(r["p"][1])) for r in recs]
+    used = [False] * len(segs)
+    out = []
+    for i in range(len(segs)):
+        if used[i]:
+            continue
+        used[i] = True
+        chain = [segs[i][0], segs[i][1]]
+        grew = True
+        while grew:
+            grew = False
+            for j, (a, b) in enumerate(segs):
+                if used[j]:
+                    continue
+                if math.dist(chain[-1], a) < tol:
+                    chain.append(b)
+                elif math.dist(chain[-1], b) < tol:
+                    chain.append(a)
+                elif math.dist(chain[0], b) < tol:
+                    chain.insert(0, a)
+                elif math.dist(chain[0], a) < tol:
+                    chain.insert(0, b)
+                else:
+                    continue
+                used[j] = True
+                grew = True
+        out.append(chain)
+    return out
+
+
 def drop_coincident_hidden_fast(edges, tol=0.004, cell=4.0):
     """``views.drop_coincident_hidden`` (D1) with a grid index over the
     visible segments, for the thousands of edges of the whole plan."""
@@ -129,7 +163,19 @@ class PlanComposer:
         v = cad.View(self.doc, zone, "MODEL PLAN")
         th, k = v.th, v.sf / 12.0   # k: one paper inch in feet
         edges = drop_coincident_hidden_fast(dedupe(snap["edges"]))
-        for rec in edges:
+        # the model's PGL comes as a chain of short line edges; drawn as
+        # single lines each would restart the dash pattern (D3): chain them
+        # into polylines first
+        # (the model's PGL object also holds short transverse datum lines at
+        # the supports and bearings; the plan draws its own FFBW and pier
+        # centerlines, so only the pieces running along the bridge are kept)
+        pgl = [r for r in edges if r["role"] == "pgl" and r["t"] in ("L", "P")
+               and abs(r["p"][-1][0] - r["p"][0][0]) > abs(r["p"][-1][1] - r["p"][0][1])]
+        rest = [r for r in edges if r["role"] != "pgl"]
+        lines = [{"p": [r["p"][i], r["p"][i + 1]]} for r in pgl for i in range(len(r["p"]) - 1)]
+        for chain in chain_lines(lines):
+            v.pl(chain, layer_for(pgl[0])[0])
+        for rec in rest:
             layer, lt = layer_for(rec)
             v.record(rec, layer, lt)
         ex = extents(edges)
@@ -146,7 +192,8 @@ class PlanComposer:
             y = s.get("ffbw_y_ft", s.get("cl_y_ft"))
             cb = s["cap_bb_ft"]
             u = self.u(y)
-            v0, v1 = cb[0] - 10.0, cb[3] + 10.0
+            # 20 ft beyond the cap each way: two dash patterns at 1" = 40' (D3)
+            v0, v1 = cb[0] - 20.0, cb[3] + 20.0
             v.line((u, v0), (u, v1), "CL_Major")
             sta = fdot.station(STATION_FFBW_EB1 + (ffbw1 - y))
             name = ("FFBW " + s["title"]) if key != "PIER" else (cad.CL_CHAR + " " + s["title"])
@@ -164,10 +211,13 @@ class PlanComposer:
             if any(o["role"] == "deck" for o in snap["objects"].values()) else x + 10.0
         v.leader([(um, x), (um + 0.1 * k, deck_top + 0.2 * k), (um + 0.22 * k, deck_top + 0.2 * k)], "PGL", "left")
         # direction of stationing, title and ramp names in the open space
-        # below the bridge (the ramps run away from it on the other side)
+        # below the bridge (the ramps run away from it on the other side),
+        # under the station labels (A2)
         cap_lo = min(sup[k2]["cap_bb_ft"][0] for k2 in sup)
-        v.stationing_arrow((um - 0.6 * k, cap_lo - 0.95 * k), (1.0, 0.0))
-        v.title((um + 0.6 * k, cap_lo - 1.6 * k), "PLAN", "(SCALE %s)" % fdot.scale_label(SHEET_SCALE))
+        y_lab = cap_lo - 20.0 - 0.12 * k - (1 + fdot.LINE_PITCH) * th   # bottom of the two-line labels
+        v.stationing_arrow((um - 0.6 * k, y_lab - 0.45 * k), (1.0, 0.0))
+        v.title((um + 0.6 * k, y_lab - 1.1 * k), "PLAN", "(SCALE %s)" % fdot.scale_label(SHEET_SCALE),
+                subject_cx=um + 0.6 * k)
         for ramp, letter in (("A", "A"), ("B", "B")):
             walls = [o["bb_ft"] for n, o in snap["objects"].items() if o["role"] == "mse" and n.startswith("Wall" + letter)]
             if not walls:

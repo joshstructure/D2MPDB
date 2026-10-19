@@ -320,10 +320,12 @@ def _earth(v, x0, x1, base, height, cell_in=0.032, layer="Patterning"):
 
 
 def _title_below(v, x, title, sub=None, gap_in=0.18):
-    """View title centred at x, its top gap_in (paper) below everything drawn."""
+    """View title centred at x (the centre of the thing the view shows,
+    recorded as the title's ``subject_cx`` for the E5 layout check), its top
+    gap_in (paper) below everything drawn."""
     h = v.style_h(fdot.TITLE_STYLE)
     y = v.local_bbox[1] - gap_in * IN * v.sf - h
-    v.title((x, y), title, sub)
+    v.title((x, y), title, sub, subject_cx=x)
 
 
 def _inner_reach(edges, u_in, d, want):
@@ -527,7 +529,8 @@ def cheek_section_side(b, zone, cheek, letter, wwr_note=2):
         knee = (um + d * 0.32 * k, s.cap_bot - 0.35 * k)
         v.leader([tip, knee, (knee[0] + d * 0.12 * k, knee[1])], "WWR (SEE NOTE %d)" % wwr_note, al_in)
         break
-    _title_below(v, (u_out + X(reach)) / 2, "SECTION %s-%s" % (letter, letter), "(THROUGH CHEEK WALL)")
+    # centred on the cheek wall, the thing the section is named for (E5)
+    _title_below(v, (u_out + u_in) / 2, "SECTION %s-%s" % (letter, letter), "(THROUGH CHEEK WALL)")
     return v
 
 
@@ -615,8 +618,11 @@ def cheek_section_top(b, zone, cheek, letter, wwr_note=2):
     pts.sort(key=lambda p: p[1])
     _chain(v, pts, None, x1, vertical=True, step=0.125)
     v.dim((u_out, v_front), (u_out, v_back), u_out - x2, 90, step=0.125)
-    yb1 = v_front + fs * 0.3 * k
-    yb2 = yb1 + fs * 0.27 * k
+    # B9: the two-line cover value pulled out beyond the first row's end
+    # (toward the outline) must clear the extension line of the vertical
+    # chain at v_front by half a text height, and the second row below
+    yb1 = v_front + fs * 0.42 * k
+    yb2 = yb1 + fs * 0.4 * k
     cand = [(p[0] - d * r, p[1]) for p, r, _ in cdots]
     for bar, pp in cshape:
         r = bar["dia_in"] / 24.0
@@ -691,7 +697,7 @@ def cheek_section_top(b, zone, cheek, letter, wwr_note=2):
             tip = (c[0] + (knee[0] - c[0]) / L * 1.3 * xe, c[1] + (knee[1] - c[1]) / L * 1.3 * xe)
         v.leader([tip, knee, (knee[0] + d * 0.12 * k, knee[1])], "WWR (SEE NOTE %d)" % wwr_note, al_in)
         break
-    _title_below(v, (u_out + X(reach)) / 2, "SECTION %s-%s" % (letter, letter), "(THROUGH CHEEK WALL AND BACKWALL)")
+    _title_below(v, (u_out + u_in) / 2, "SECTION %s-%s" % (letter, letter), "(THROUGH CHEEK WALL AND BACKWALL)")
     return v
 
 

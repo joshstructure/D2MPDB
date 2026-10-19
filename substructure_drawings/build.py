@@ -10,12 +10,19 @@ import math
 from pathlib import Path
 
 from . import bars as barlib
-from . import cad, details, fdot
+from . import cad, details, fdot, strap_loads
 from .sheets import DRAW, TITLE_TOP, Sheet
 from .support import STATION_FFBW_EB1, Support
 from .views import DELTA, Builder, z_on_edges
 
-GENERATOR_VERSION = "2.3.0"
+try:
+    from . import anno_check
+except ModuleNotFoundError as err:   # the annotation checker module is new; build without it if absent
+    if err.name != __package__ + ".anno_check":
+        raise
+    anno_check = None
+
+GENERATOR_VERSION = "2.4.0"
 DXF_NAME = "B4_Substructure_EndBents_Pier.dxf"
 
 INFO = {
@@ -35,8 +42,11 @@ INFO = {
 WORKBOOK_CHECKS = {
     "station_pier": 1700.57, "station_ffbw_eb2": 1805.47,
     "cap_top_eb1": 43.23769223221814, "cap_top_eb2": 43.24969214402966, "cap_top_pier": 43.76493990975892,
-    "backwall_end_eb1": 47.13183333333333, "backwall_pgl_eb1": 47.327666666666666,
-    "backwall_end_eb2": 47.14383333333333, "backwall_pgl_eb2": 47.339666666666666,
+    # D-053 (2026-10-19): both backwall tops are two straight 2% slopes,
+    # 4-1/4 in below the FFBW deck-top lines (B4_Geometry_CAD_Tables.xlsx,
+    # Substructure, section F)
+    "backwall_end_eb1": 47.111000000000004, "backwall_pgl_eb1": 47.30683333333334,
+    "backwall_end_eb2": 47.123000000000005, "backwall_pgl_eb2": 47.31883333333334,
 }
 
 RIGHT_COL = 12.3      # paper x where the table/notes column starts on plan sheets
@@ -46,7 +56,7 @@ MAIN = (DRAW[0], DRAW[1], 12.15, DRAW[3])
 # the pedestal details, (2 OF 3) section C-C and the cheek views D-D and E-E,
 # (3 OF 3) the cheek wall sections F-F and G-G and details "A" and "B"; pier:
 # sections with the pedestal details), then the bar list.
-SHEETS = (("EB1", 4), ("PIER", 2), ("EB2", 4), ("BARS", 1))
+SHEETS = (("EB1", 4), ("PIER", 3), ("EB2", 4), ("BARS", 1))
 # TOP OF PEDESTAL ELEVATIONS table: column widths (BEAM NO., corners A-D), in
 PED_COLS = [0.85, 0.7, 0.7, 0.7, 0.7]
 NOTES_W = 5.0     # NOTES column beside a LEGEND column (sample B1-17), in
@@ -183,10 +193,24 @@ class Composer:
             if n:
                 self.warnings.append("%s / %s draws over %s (%d crossings)" % (sheet.number, view.name, other.name, n))
         placed.append((view, mine))
-        # annotation over linework inside the view (STYLE_GUIDE A1, B7)
-        for label, count in view.audit():
+        # E5: a title is centred on the thing it names (the view's
+        # ``title_spec`` records the title position and, where the title has
+        # a subject, the subject's centre, both in local feet)
+        spec = getattr(view, "title_spec", None)
+        if spec and spec.get("subject_cx") is not None:
+            tol = 0.05 * view.sf / 12.0       # 0.05 in on paper
+            off = spec["x"] - spec["subject_cx"]
+            if abs(off) > tol:
+                self.warnings.append("%s / %s: title off centre by %.2f in" %
+                                     (sheet.number, view.name, abs(off) * 12.0 / view.sf))
+        # annotation checks inside the view (STYLE_GUIDE A1, A2, A10, A11, B7,
+        # B9, ...): every finding carries its rule id in brackets
+        for message, count in view.audit():
+            text = message.replace("\\P", " / ")
+            if count > 1:
+                text += " (%d)" % count
             self.__dict__.setdefault("annotation_overlaps", []).append(
-                "%s / %s: %r crossed by %d line(s)" % (sheet.number, view.name, label.replace("\\P", " / "), count))
+                "%s / %s: %s" % (sheet.number, view.name, text))
 
     def _placed(self, sheet):
         return self.__dict__.setdefault("placed", {}).setdefault(sheet.number, [])
@@ -222,15 +246,46 @@ class Composer:
             y_top -= step
         return y_top
 
-    def row(self, sheet, views, y_top, x0, x1, gap=0.3):
+    def row(self, sheet, views, y_top, x0, x1, gap=0.3, align=True):
+        """Place ``views`` side by side by their top-left corners, centred in
+        x0..x1, and line their titles up on the lowest title baseline of the
+        row (``align_titles``; ``align`` False leaves the titles where they
+        are).  Returns the bottom y of the row."""
         widths = [self.paper_size(v)[0] for v in views]
         total = sum(widths) + gap * (len(views) - 1)
         x = x0 + max(0.0, (x1 - x0 - total) / 2)
         for v, w in zip(views, widths):
             self.place_tl(v, x, y_top)
             x += w + gap
+        if align:
+            self.align_titles(views)
+        for v in views:
             self.check(sheet, v)
         return y_top - max(self.paper_size(v)[1] for v in views)
+
+    @staticmethod
+    def title_baseline(view):
+        """Paper y (inches) of the baseline of a placed view's title, or None
+        for a view without a title: the title's local y moved to the sheet
+        (``View.title_spec``; same mapping as ``paper_bbox``)."""
+        spec = getattr(view, "title_spec", None)
+        if not spec:
+            return None
+        return (spec["y"] + view.oy - view.sheet.model_origin[1]) * 12.0 / view.sf
+
+    def align_titles(self, views):
+        """Line the titles of a row of views up vertically (markup
+        2026-10-19, "Center the title on the drawing and line titles up
+        vertically"; STYLE_GUIDE E5): every title goes down to the lowest
+        title baseline of the row."""
+        ys = [(v, self.title_baseline(v)) for v in views]
+        ys = [(v, y) for v, y in ys if y is not None]
+        if len(ys) < 2:
+            return
+        lowest = min(y for _, y in ys)
+        for v, y in ys:
+            if y - lowest > 1e-6:
+                v.move_title((lowest - y) / 12.0 * v.sf)
 
     def finish(self, sheet):
         sheet.border()
@@ -289,13 +344,14 @@ class Composer:
             notes.append("FOR SECTIONS A-A AND B-B AND DETAILS \"A\" AND \"B\", SEE SHEET %s. FOR SECTION C-C AND "
                          "VIEWS D-D AND E-E, SEE SHEET %s. FOR SECTIONS F-F AND G-G AND PEDESTAL DETAILS, SEE "
                          "SHEET %s." % (nums[1], nums[2], nums[3]))
-            notes.append("THE SOIL REINFORCEMENT ATTACHED TO THE BACKWALL SHALL BE DESIGNED BY A SPECIALTY ENGINEER "
-                         "FOR A SERVICE LOAD OF ___ K/FT AND A FACTORED LOAD OF ___ K/FT USING THE DESIGN CRITERIA FOR "
-                         "PERMANENT MSE WALLS. COST OF FURNISHING AND INSTALLING THE SOIL REINFORCEMENT IS CONSIDERED "
-                         "INCIDENTAL TO THE COST OF THE END BENT.")
+            # the strap design paragraph is the LEGEND of the (1 OF 3) sheet,
+            # once per bent (markup 2026-10-19: "Take out this note and only
+            # have it once in the drawings per bent and in this case on the
+            # next sheet"); here only the reference to it
+            notes.append("FOR THE SOIL REINFORCEMENT (%s) LEGEND, SEE SHEET %s." % (DELTA, nums[1]))
         else:
-            notes.append("FOR SECTIONS A-A, B-B AND C-C AND PEDESTAL DETAILS, SEE SHEET %s. FOR LOCATION OF "
-                         "VIEW D-D, SEE PLAN." % nums[1])
+            notes.append("FOR SECTIONS A-A, B-B AND C-C, SEE SHEET %s. FOR PEDESTAL DETAILS, SEE SHEET %s. FOR "
+                         "LOCATION OF VIEW D-D, SEE PLAN." % (nums[1], nums[2]))
             notes.append("PIER WALL IS PROVISIONAL (3'-0\" THICK); ITS REINFORCEMENT IS NOT SHOWN.")
         notes.append(self.bar_list_ref())
         notes.append("PILE OFFSETS ARE FROM THE PGL, + TO THE RIGHT LOOKING UP-STATION. CUTOFF ELEVATIONS ARE TO THE "
@@ -342,17 +398,18 @@ class Composer:
         return (fdot.TABLE_TITLE_IN * (1.45 + 0.6) + 0.15 * (2 + len(s.pedestal_table())) + 0.2
                 + (0.11 if s.kind == "PIER" else 0.0))
 
-    def legend_notes(self, sh, b, x, y_top, x_end, items, min_w=NOTES_W, gap=0.3):
+    def legend_notes(self, sh, b, x, y_top, x_end, items, min_w=NOTES_W, gap=0.3, legend=True):
         """NOTES: (left) and beside it, ``gap`` to its right and up to
         ``x_end``, the LEGEND: block of the Δ strap paragraph the views set in
         ``b.legend`` (D6; sample B1-17 has the legend beside the notes).  The
         width x..x_end is split where the taller block is shortest (the notes
         are at least ``min_w`` wide, the legend at least 3 in); without a
-        strap legend the notes take the full width.  The blocks may use the
-        band down to 0.1 in above the title block.  Returns the estimated
-        bottom y."""
+        strap legend, or with ``legend`` False (the legend is drawn once per
+        bent, on its (1 OF 3) sheet), the notes take the full width.  The
+        blocks may use the band down to 0.1 in above the title block.
+        Returns the estimated bottom y."""
         area = (DRAW[0], TITLE_TOP + 0.1, DRAW[2], DRAW[3])
-        leg = [DELTA + "  " + b.legend[DELTA]] if DELTA in b.legend else []
+        leg = [DELTA + "  " + b.legend[DELTA]] if legend and DELTA in b.legend else []
         w = x_end - x
         if leg:
             total = x_end - x - gap
@@ -476,13 +533,16 @@ class Composer:
         vd = b.cheek_view(z2, s.cheeks[0], "D", wwr_note=2, cuts=details.cheek_cut_marks(b, s.cheeks[0]))
         ve = b.cheek_view(z2, s.cheeks[-1], "E", wwr_note=2)
         bottom = self.row(sh, [vd, ve], DRAW[3] - 0.05, xs + 0.1, DRAW[2], gap=0.5)
+        # the Δ strap LEGEND is drawn once per bent, on the (1 OF 3) sheet
+        # (markup 2026-10-19); here a note refers to it
         self.legend_notes(sh, b, xs + 0.2, bottom - 0.25, DRAW[2] - 0.1, [
             "FOR LOCATION OF SECTION C-C AND VIEWS D-D AND E-E, SEE SHEET %s." % nums[0],
             "WELDED WIRE REINFORCEMENT (WWR) 4x4-W1.4xW1.4 IN THE CHEEK LUGS SHALL BE TIED TO THE "
             "END BENT REINFORCING STEEL.",
             "FOR CHEEK TOP ELEVATIONS, SEE THE TABLE OF ELEVATIONS, SHEET %s." % nums[0],
             "SECTIONS F-F AND G-G ARE LOCATED IN VIEW D-D; FOR SECTIONS F-F AND G-G, SEE SHEET %s." % nums[3],
-            self.bar_list_ref()])
+            "FOR THE %s REINFORCING STRAP LEGEND, SEE SHEET %s." % (DELTA, nums[1]),
+            self.bar_list_ref()], legend=False)
         self.finish(sh)
 
     def _eb_cheek_sections(self, s, nums, b):
@@ -535,33 +595,60 @@ class Composer:
         self.finish(sh)
 
     def pier_details(self):
-        """Sections A-A, B-B and C-C in a row; pedestal plan, pedestal
-        elevation, the pedestal table and the notes below."""
+        """(1 OF 2): sections A-A, B-B and C-C in one row with their titles
+        on one baseline (E5) and the notes below; (2 OF 2): the pedestal plan
+        and elevation with the pedestal table (E1: the three sections with
+        the common dimension rows of V18 fill the sheet height, so the
+        pedestal details go to a further sheet instead of being squeezed)."""
         s = self.sup["PIER"]
         nums = self.numbers["PIER"]
         b = Builder(s, self.doc)
-        sh = self.new_sheet(nums[1], "PIER DETAILS")
+        sh = self.new_sheet(nums[1], "PIER DETAILS (1 OF 2)")
         z = sh.zone(DRAW, "3/4")
         va = b.section(z, "between_piles", "A", "(SECTION BETWEEN PILES)")
         vb = b.section(z, "at_pile", "B", "(SECTION AT PILES)")
         vc = b.section(z, "at_beam", "C", "(SECTION AT CENTERLINE OF BEAMS)")
-        self.row(sh, [va, vb, vc], DRAW[3] - 0.05, DRAW[0], DRAW[2], gap=0.15)
-        pp = b.pedestal_plan(z, s.pedestals[0])
-        pe = b.pedestal_elevation(z, s.pedestals[0])
-        top = min(self.paper_bbox(va)[1], self.paper_bbox(vb)[1]) - 0.05
-        self.place_tl(pp, DRAW[0] + 0.1, top)
-        self.place_tl(pe, self.paper_bbox(pp)[2] + 0.35, top - 0.15)
-        for v in (pp, pe):
-            self.check(sh, v)
-        xt = max(self.paper_bbox(pe)[2] + 0.35, self.paper_bbox(vc)[0])
-        y = self._ped_table(sh, s, xt, self.paper_bbox(vc)[1] - 0.15)
-        sh.notes(xt, y - 0.2, "NOTES:", [
+        bottom = self.row(sh, [va, vb, vc], DRAW[3] - 0.05, DRAW[0], DRAW[2], gap=0.15)
+        items = [
             "FOR LOCATION OF SECTIONS, SEE SHEET %s." % nums[0],
             "ALL BARS ARE SHOWN IN SECTIONS; BARS IN THE SECTION PLANE ARE THE NEAREST BAR OF THEIR SERIES "
             "WITHIN 1'-3\" BEYOND THE CUT.",
-            b.pedestal_marks_note(s.pedestals[0]),
+            "FOR PEDESTAL DETAILS, SEE SHEET %s." % nums[2],
             "PIER WALL IS PROVISIONAL; ITS REINFORCEMENT IS NOT SHOWN.",
-            self.bar_list_ref()], width_in=DRAW[2] - xt - 0.05)
+            self.bar_list_ref()]
+        x_n = DRAW[0] + 0.1
+        w_n = sh.bridge_block[0] - 0.2 - x_n
+        y = bottom - 0.3
+        nb = sh.notes_bottom(y, items, w_n)
+        sh.notes(x_n, y, "NOTES:", items, width_in=w_n)
+        self.check_block(sh, "notes", (x_n, nb, x_n + w_n, y))
+        self.finish(sh)
+        # (2 OF 2): pedestal plan at the left, elevation beside it, the table
+        # right of the elevation, the notes under the table
+        sh = self.new_sheet(nums[2], "PIER DETAILS (2 OF 2)")
+        z = sh.zone(DRAW, "3/4")
+        pp = b.pedestal_plan(z, s.pedestals[0])
+        pe = b.pedestal_elevation(z, s.pedestals[0])
+        top = DRAW[3] - 0.1
+        self.place_tl(pp, DRAW[0] + 0.1, top)
+        self.place_tl(pe, self.paper_bbox(pp)[2] + 0.5, top - 0.15)
+        for v in (pp, pe):
+            self.check(sh, v)
+        # the table under the pedestal elevation, the notes under the table
+        wt = sum(PED_COLS)
+        xt = self.paper_bbox(pe)[0]
+        y_t = self.paper_bbox(pe)[1] - 0.35
+        y = self._ped_table(sh, s, xt, y_t)
+        items = [
+            "FOR LOCATION OF THE PEDESTALS, SEE SHEET %s; FOR SECTIONS A-A, B-B AND C-C, SEE SHEET %s." % (nums[0], nums[1]),
+            b.pedestal_marks_note(s.pedestals[0]),
+            "PEDESTALS ARE CAST ON THE CAP; THE CAP TOP IS A CONSTRUCTION JOINT.",
+            self.bar_list_ref()]
+        w_n = min(7.0, DRAW[2] - xt - 0.05)
+        nb = sh.notes_bottom(y - 0.25, items, w_n)
+        sh.notes(xt, y - 0.25, "NOTES:", items, width_in=w_n)
+        self.check_block(sh, "pedestal table", (xt, y, xt + wt, y_t), margin=0.2)
+        self.check_block(sh, "notes", (xt, nb, xt + w_n, y - 0.25))
         self.finish(sh)
 
     # -------------------------------------------------------------- bar list
@@ -743,7 +830,12 @@ def _write_outputs(snapshot_path, out_dir):
                             for m, e in s.table.items()} for s in comp.sup.values()},
         "qc": comp.qc(),
         "layout_warnings": comp.warnings,
+        # annotation findings, each "<sheet> / <view>: [rule id] message"; the
+        # scripts print them as "NOTE (annotation check): ..." (STYLE_GUIDE A1)
         "annotation_overlaps": comp.__dict__.get("annotation_overlaps", []),
+        "anno_rules_checked": list(anno_check.RULES) if anno_check is not None else [],
+        # the loads in the Δ legend (data/strap_loads.json, from the selected backwall case)
+        "strap_loads": strap_loads.load(),
     }
     (out_dir / "manifest.json").write_text(json.dumps(manifest, indent=1) + "\n", encoding="utf-8")
     return dxf_path, manifest

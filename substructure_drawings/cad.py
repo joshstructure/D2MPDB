@@ -15,6 +15,9 @@ from . import fdot
 
 APPID = "D2MPDB_SUBDWG"
 
+# levels whose line segments are recorded in ``View.centerlines``
+CENTERLINE_LAYERS = ("CL_Major", "CL_Minor", "BaseLineSurveyPGL")
+
 
 def new_document():
     doc = ezdxf.new("R2010", setup=False)
@@ -329,6 +332,31 @@ class View:
         self._ncall = 0
         self._call = None            # id of the leader / fan / pointer being drawn, else None
         self._pointer_calls = set()  # call ids of dimension pointers (leaders on the Dimension layer)
+        # Structured facts for the deterministic annotation checks
+        # (``anno_check``), all in the same local frame as ``texts`` / ``segs``
+        # (the view's ``xform`` applied):
+        #   leaders: one dict per leader / fan / pointer / parallel-leader call:
+        #     {"kind": "leader"|"fan"|"pointer"|"parallel", "call": call id,
+        #      "pts": main piece polyline (tip first; a pointer text side
+        #      first; a fan [knee, end]), "tips": [(x, y), ...],
+        #      "knee": (x, y), "end": (x, y) landing end, "text": str,
+        #      "align": "left"|"right", "box": text box (x0, y0, x1, y1)}
+        #   dims: one dict per ``dim()`` call: {"p1", "p2", "f1", "f2" (the
+        #     dimension line's ends), "mid", "text", "box", "pulled": bool,
+        #     "angle", "ptr_call": call id of its pointer or None}
+        #   breaks: (p, q) segments of break lines and pile break lobes
+        #   clips: (x, y, layer) ends where ``_clipped`` cut a segment
+        #   centerlines: (p, q, layer) segments on the centerline levels
+        #   symbols: (box, label) of circled numbers ("circle N") and section
+        #     flags ("flag X") that annotations keep clear of
+        #   title_spec: set by ``title()`` (see there)
+        self.leaders = []
+        self.dims = []
+        self.breaks = []
+        self.clips = []
+        self.centerlines = []
+        self.symbols = []
+        self.title_spec = None
 
     def style_h(self, style):
         """Model-space text height of an FDOT text style at the view scale."""
@@ -382,60 +410,43 @@ class View:
             p, q = self.xform(p), self.xform(q)
         self.segs.append((p, q, layer, call if call is not None else self._call_id()))
 
+    def _X(self, p):
+        """A local point in the view's recorded frame (``xform`` applied), the
+        frame of ``segs``, ``texts`` and the annotation records."""
+        p = self.xform(p) if self.xform is not None else p
+        return (p[0], p[1])
+
+    def _note_centerline(self, a, b, layer, length=None):
+        """Record a centerline piece for the D3 check: ``length`` is the
+        plotted length the dash pattern runs along (a polyline with linetype
+        generation on carries its pattern across its vertices, so the whole
+        polyline is one piece)."""
+        if layer in CENTERLINE_LAYERS:
+            pa, pb = self._X(a), self._X(b)
+            self.centerlines.append((pa, pb, layer, math.dist(pa, pb) if length is None else length))
+
+    def _note_break(self, pts):
+        """Record the segments of a break line / break lobe polyline."""
+        q = [self._X(p) for p in pts]
+        self.breaks.extend(zip(q, q[1:]))
+
+    def _note_leader(self, kind, call, pts, tips, knee, end, align, tail=None):
+        """Record a leader-like call whose text was just drawn (the last entry
+        of ``texts``) in ``self.leaders``; points are in local frame."""
+        box, label = self.texts[-1] if tail is None else tail
+        rec = {"kind": kind, "call": call, "pts": [self._X(p) for p in pts], "tips": [self._X(t) for t in tips],
+               "knee": self._X(knee), "end": self._X(end), "text": label, "align": align, "box": box}
+        self.leaders.append(rec)
+        return rec
+
     def audit(self):
-        """Annotation over linework (STYLE_GUIDE A1, B7): for every text of the
-        view, the number of linework segments (concrete, bars, centerlines,
-        dimension and leader lines; not hatch patterns) that run through its
-        box or end inside it.  The box is inset by 0.15 text heights, so a
-        leader landing or a pointer that stops at the text's edge does not
-        count, and a piece shorter than 0.3 text heights inside the box is
-        ignored.  Also lists each place where two leaders (the Leader layer
-        and the dimension pointers, not pieces of one leader call) properly
-        cross, as ("LEADER CROSSES LEADER near (x, y)", 1) with the point in
-        local feet.  Returns [(text, crossings)] for the entries found."""
-        m, short = 0.15 * self.th, 0.3 * self.th
-        out = []
-        for (x0, y0, x1, y1), label in self.texts:
-            box = (x0 + m, y0 + m, x1 - m, y1 - m)
-            if box[2] <= box[0] or box[3] <= box[1]:
-                continue
-            n = 0
-            for p, q, layer, _call in self.segs:
-                if layer in ("Patterning", "Symbols"):   # hatch patterns; symbols drawn around their own letters
-                    continue
-                ip = box[0] < p[0] < box[2] and box[1] < p[1] < box[3]
-                iq = box[0] < q[0] < box[2] and box[1] < q[1] < box[3]
-                if ip or iq:
-                    n += 1
-                    continue
-                seg = clip_segment(p, q, box)
-                if seg is not None and math.dist(seg[0], seg[1]) > short:
-                    n += 1
-            if n:
-                out.append((label, n))
-        # texts over texts (A2): overlapping inset boxes, each pair once
-        for i, ((x0, y0, x1, y1), label) in enumerate(self.texts):
-            for (u0, v0, u1, v1), other in self.texts[i + 1:]:
-                if x0 + m < u1 - m and u0 + m < x1 - m and y0 + m < v1 - m and v0 + m < y1 - m:
-                    out.append(("%s / over text %s" % (label, other), 1))
-        # leaders over leaders (A6): the Leader layer and the dimension
-        # pointers; the pieces of one leader (or fan, or pointer) meet at
-        # their knees and are not compared with each other
-        lead = [(p, q, call) for p, q, layer, call in self.segs
-                if layer == "Leader" or call in self._pointer_calls]
-        seen = set()   # overlapping pieces of one fan cross another leader at one place: report it once
-        for i, (p, q, call) in enumerate(lead):
-            for r, s, other in lead[i + 1:]:
-                if call == other:
-                    continue
-                x = segments_cross(p, q, r, s)
-                if x is None:
-                    continue
-                key = (min(call, other), max(call, other), round(x[0], 2), round(x[1], 2))
-                if key not in seen:
-                    seen.add(key)
-                    out.append(("LEADER CROSSES LEADER near (%.2f, %.2f)" % x, 1))
-        return out
+        """Annotation checks of the view (STYLE_GUIDE A1, A2, A10-A14, B9, D3,
+        D12, E5): a thin wrapper around ``anno_check.check_view``, which holds
+        every rule and threshold.  Returns [(message, 1)], each message
+        starting with its rule id in brackets, e.g. "[A10] acute bend at knee
+        (12.31, 43.80) of '4F2'"."""
+        from . import anno_check   # (imported here: anno_check imports this module)
+        return [(message, 1) for _rule, message in anno_check.check_view(self)]
 
     def paper_boxes(self):
         """Paper-inch boxes of the view's primitives and texts (large area
@@ -464,6 +475,7 @@ class View:
     def line(self, p, q, layer, ltype=None):
         self._track([p, q])
         self._seg(p, q, layer, self._call_id())
+        self._note_centerline(p, q, layer)
         return self._add(self.msp.add_line(self.T(p), self.T(q)), layer, ltype)
 
     def pl(self, pts, layer, bulges=None, closed=False, ltype=None, width=None):
@@ -474,6 +486,10 @@ class View:
         call = self._call_id()
         for a, b in zip(pts, pts[1:] + ([pts[0]] if closed else [])):
             self._seg(a, b, layer, call)
+        if layer in CENTERLINE_LAYERS:
+            # one piece: the dash pattern runs along the whole polyline (D3)
+            self._note_centerline(pts[0], pts[-1], layer,
+                                  sum(math.dist(self._X(a), self._X(b)) for a, b in zip(pts, pts[1:])))
         if self.xform is not None and bulges and any(abs(b) > 1e-9 for b in bulges):
             pts = discretize_pl(pts, bulges)
             bulges = None
@@ -485,6 +501,11 @@ class View:
         e = self.msp.add_lwpolyline(data, format="xyseb", close=closed)
         if width:
             e.dxf.const_width = width
+        if layer in CENTERLINE_LAYERS:
+            # linetype generation across the vertices (a dashed polyline
+            # otherwise restarts its pattern at every vertex and short pieces
+            # plot solid, D3)
+            e.dxf.flags |= 128
         return self._add(e, layer, ltype)
 
     def bar(self, pts, dia_in, layer="Rebar"):
@@ -506,14 +527,21 @@ class View:
         left, right = offset_polyline(pts, r), offset_polyline(pts, -r)
         if len(left) < 2:
             return []
-        out = [self.pl(left, layer), self.pl(right, layer)]
-        # direction leaving the bar at each end (the first / last offset piece
-        # runs parallel to the bar's first / last piece): backward from the
-        # first point, forward past the last
-        ends = ((left[0], right[0], (left[0][0] - left[1][0], left[0][1] - left[1][1])),
-                (left[-1], right[-1], (left[-1][0] - left[-2][0], left[-1][1] - left[-2][1])))
-        for a, b, away in ends:
-            out.append(self._cap(a, b, away, layer))
+        # one drawing call for the whole bar (both outlines and the caps), so
+        # the checks count a bar crossed by a leader once (A14)
+        self._ncall += 1
+        keep, self._call = self._call, self._ncall
+        try:
+            out = [self.pl(left, layer), self.pl(right, layer)]
+            # direction leaving the bar at each end (the first / last offset
+            # piece runs parallel to the bar's first / last piece): backward
+            # from the first point, forward past the last
+            ends = ((left[0], right[0], (left[0][0] - left[1][0], left[0][1] - left[1][1])),
+                    (left[-1], right[-1], (left[-1][0] - left[-2][0], left[-1][1] - left[-2][1])))
+            for a, b, away in ends:
+                out.append(self._cap(a, b, away, layer))
+        finally:
+            self._call = keep
         return out
 
     def _cap(self, a, b, outward, layer):
@@ -585,6 +613,8 @@ class View:
                 run = []
                 continue
             a, b = seg
+            if box:
+                self._note_clips(pts[i], pts[i + 1], a, b, layer)
             if run and math.dist(run[-1], a) < 1e-9:
                 run.append(b)
             else:
@@ -593,6 +623,18 @@ class View:
                 run = [a, b]
         if len(run) > 1:
             self.pl(run, layer, ltype=ltype)
+
+    def _note_clips(self, p, q, a, b, layer):
+        """Record in ``clips`` the ends of the clipped segment ab where the
+        original segment pq was CUT at the box (the segment went on beyond
+        it); an end that is the original end, even one lying on the box
+        edge, is no clip, and neither is a mere touch of the edge."""
+        if math.dist(a, b) < 1e-9:
+            return
+        for cut, orig in ((a, p), (b, q)):
+            if math.dist(cut, orig) > 1e-9:
+                x, y = self._X(cut)
+                self.clips.append((x, y, layer))
 
     # annotation --------------------------------------------------------
     def _track_box(self, p, w, hgt, ax, ay, rot=0.0, label=None):
@@ -708,7 +750,7 @@ class View:
                 lo, hi = sorted((t1, t2))
                 end = hi if outside > 0 else lo
                 along = end - (t1 + t2) / 2 + outside * (arrow + tw / 2)
-                gap = (1.2 if vertical else 0.25) * self.th
+                gap = (1.2 if vertical else 0.5) * self.th   # B9: never under half a text height from the line
                 lift = side * (gap + th_box / 2)
             else:
                 # B7: pulled out on the side AWAY from the object (never between
@@ -750,11 +792,13 @@ class View:
         else:
             self._track_box(mid, tw, th_box, 0.5, 0.0 if side > 0 else 1.0, angle, label=text)
         self._track([p1, p2, base])
+        text_box = self.texts[-1][0]   # the value's box, whichever branch placed it (inset 0)
         d = self.msp.add_linear_dim(base=self.T(base), p1=self.T(p1), p2=self.T(p2), angle=angle,
                                     dimstyle=fdot.DIM_STYLE, text=text, override=override,
                                     dxfattribs={"layer": layer}, **kw)
         d.render()
         self.ents.append(d.dimension)
+        ptr_call = None
         if pulled is not None:
             # B1: a two-piece pointer (no arrowhead) from the pulled-out text to
             # the dimension line midpoint: a short landing along the text's
@@ -763,8 +807,17 @@ class View:
             pts = self.pointer(mid, pulled, tw + 0.4 * self.th, th_box, rot)
             if pts is not None:
                 self._begin_call(pointer=True)   # one call id: the audit counts it as a leader (A6)
+                ptr_call = self._call
                 self.pl(pts, layer)   # tracks its points, ByLayer, into self.ents
                 self._end_call()
+                # record: text side first; the knee is the bend (the end of
+                # the landing), "end" the point at the text edge
+                cx = (text_box[0] + text_box[2]) / 2.0
+                self._note_leader("pointer", ptr_call, pts, [mid], pts[1] if len(pts) > 2 else pts[0], pts[0],
+                                  "left" if cx >= self._X(pts[0])[0] else "right", tail=(text_box, text))
+        self.dims.append({"p1": self._X(p1), "p2": self._X(p2), "f1": self._X(f1), "f2": self._X(f2),
+                          "mid": self._X(mid), "text": text, "box": text_box, "pulled": pulled is not None,
+                          "angle": angle, "ptr_call": ptr_call})
         return meas
 
     def pointer(self, mid, c, w, h, rot_deg):
@@ -844,10 +897,13 @@ class View:
         pts, align = self._landing(pts, align)   # includes the bend rule
         self._track(pts)
         self._begin_call()
+        call = self._call
         self.arrowhead(pts[0], pts[1], layer)
         self.pl(pts, layer)
         self._end_call()
-        return self._leader_text(pts[-1], text, align, h, cl)
+        e = self._leader_text(pts[-1], text, align, h, cl)
+        self._note_leader("leader", call, pts, [pts[0]], pts[-2], pts[-1], align)
+        return e
 
     def leader_fan(self, tips, knee, text, align=None, h=None, layer="Leader"):
         """One callout for several bars: an arrow from each tip to a common
@@ -873,13 +929,50 @@ class View:
         land = 0.16 / 12 * self.sf
         end = (knee[0] + (land if align == "left" else -land), knee[1])
         self._begin_call()
+        call = self._call
         for t in tips:
             self.arrowhead(t, knee, layer)
             self.line(t, knee, layer)
         self.line(knee, end, layer)
         self._end_call()
         self._track(list(tips) + [knee, end])
-        return self._leader_text(end, text, align, h)
+        e = self._leader_text(end, text, align, h)
+        self._note_leader("fan", call, [knee, end], list(tips), knee, end, align)
+        return e
+
+    def parallel_leaders(self, tips, x_join, y_text, text, align="left", layer="Leader"):
+        """Several lines called out by one label (STYLE_GUIDE A12): from each
+        tip ``(x_i, y_i)`` a horizontal piece to ``(x_join, y_i)`` with an
+        arrowhead at the tip, one vertical connector at ``x_join`` from the
+        lowest to the highest ``y_i`` (and to ``y_text`` when that lies
+        outside), one landing of 0.16" from ``(x_join, y_text)`` toward the
+        text, and the text after it.  The leaders lie in one plane and touch
+        the text at one point only (markup 2026-10-19).  ``align`` "left"
+        puts the text to the right of the landing.  All pieces carry one call
+        id; recorded as kind "parallel" (its ``pts`` run from the first tip
+        over the connector to the landing end).  Returns the text entity."""
+        h = self.th
+        tips = list(tips)
+        land = 0.16 / 12.0 * self.sf
+        end = (x_join + (land if align == "left" else -land), y_text)
+        ys = [t[1] for t in tips] + [y_text]
+        lo, hi = min(ys), max(ys)
+        self._begin_call()
+        call = self._call
+        for t in tips:
+            if abs(x_join - t[0]) > 1e-9:
+                self.arrowhead(t, (x_join, t[1]), layer)
+                self.line(t, (x_join, t[1]), layer)
+        if hi - lo > 1e-9:
+            self.line((x_join, lo), (x_join, hi), layer)
+        self.line((x_join, y_text), end, layer)
+        self._end_call()
+        self._track(tips + [(x_join, lo), (x_join, hi), end])
+        e = self._leader_text(end, text, align, h)
+        pts = [tips[0], (x_join, tips[0][1]), (x_join, y_text), end]
+        pts = [p for i, p in enumerate(pts) if i == 0 or math.dist(p, pts[i - 1]) > 1e-9]
+        self._note_leader("parallel", call, pts, tips, (x_join, y_text), end, align)
+        return e
 
     def arrowhead(self, tip, toward, layer="Leader", size_in=None):
         size = (size_in or fdot.ARROW_IN) / 12.0 * self.sf
@@ -893,15 +986,52 @@ class View:
         s = self.msp.add_solid([self.T(pts[0]), self.T(pts[1]), self.T(pts[2]), self.T(pts[2])])
         return self._add(s, layer)
 
-    def title(self, p, title, sub=None):
+    def title(self, p, title, sub=None, subject_cx=None):
         """View title centered at p in FDOT Bold (Large), underlined, with the
-        subtitle in parentheses below at the normal text size (FDOT sheets)."""
+        subtitle in parentheses below at the normal text size (FDOT sheets).
+        ``subject_cx`` is the x (local feet) the title should be centred on
+        (the centre of the thing it names, STYLE_GUIDE E5).  Sets
+        ``self.title_spec``: {"x", "y" (the title's anchor p), "title", "sub",
+        "subject_cx", "ents" (the entities drawn), "text_idx" (their indices in
+        ``texts``)} plus the index ranges "seg_idx" / "box_idx" of the ``segs``
+        / ``boxes`` entries ``move_title`` shifts."""
+        n_ent, n_txt, n_seg, n_box = len(self.ents), len(self.texts), len(self.segs), len(self.boxes)
         h = self.style_h(fdot.TITLE_STYLE)
         self.text(p, title, None, "BOTTOM_CENTER", style=fdot.TITLE_STYLE)
         w = text_extent(title, h) * 1.07   # the bold face runs about 7 % wider
         self.line((p[0] - w / 2, p[1] - 0.22 * h), (p[0] + w / 2, p[1] - 0.22 * h), "TextStructures")
         if sub:
             self.text((p[0], p[1] - 0.4 * h - 1.45 * self.th), sub, None, "BOTTOM_CENTER")
+        self.title_spec = {"x": p[0], "y": p[1], "title": title, "sub": sub, "subject_cx": subject_cx,
+                           "ents": self.ents[n_ent:], "text_idx": list(range(n_txt, len(self.texts))),
+                           "seg_idx": list(range(n_seg, len(self.segs))),
+                           "box_idx": list(range(n_box, len(self.boxes)))}
+
+    def move_title(self, dy):
+        """Move the title (``title_spec``) by ``dy`` local feet: its entities
+        (already placed or not: model units equal local feet), the title
+        entries of ``texts`` and ``segs``, ``title_spec["y"]``, and the view's
+        extent (the moved boxes are appended to ``boxes``, the old ones stay)."""
+        spec = self.title_spec
+        if not spec or not dy:
+            return
+        for e in spec["ents"]:
+            e.translate(0, dy, 0)
+        for i in spec["text_idx"]:
+            (x0, y0, x1, y1), label = self.texts[i]
+            self.texts[i] = ((x0, y0 + dy, x1, y1 + dy), label)
+        for i in spec["seg_idx"]:
+            p, q, layer, call = self.segs[i]
+            self.segs[i] = ((p[0], p[1] + dy), (q[0], q[1] + dy), layer, call)
+        spec["y"] += dy
+        spec["dy"] = spec.get("dy", 0.0) + dy    # total shift: the boxes of the first drawing stay in ``boxes``
+        b = self.local_bbox
+        for i in spec["box_idx"]:
+            x0, y0, x1, y1 = self.boxes[i]
+            y0, y1 = y0 + spec["dy"], y1 + spec["dy"]
+            self.boxes.append((x0, y0, x1, y1))
+            b[0], b[1] = min(b[0], x0), min(b[1], y0)
+            b[2], b[3] = max(b[2], x1), max(b[3], y1)
 
     def section_cut(self, p_from, p_to, label, look):
         """FDOT section cut symbol (the "L" flag, STYLE_GUIDE A6) at both ends
@@ -933,6 +1063,12 @@ class View:
             c = (p[0] + inward[0] * (thick + 0.55 * h) + look[0] * 0.55 * flag,
                  p[1] + inward[1] * (thick + 0.55 * h) + look[1] * 0.55 * flag)
             self.text(c, label, None, "MIDDLE_CENTER", style=fdot.LETTER_STYLE)
+            # the flag as a keep-clear box: the L, its wedge and its letter
+            qs = [self._X(x) for x in [q, p, b] + tri]
+            lx0, ly0, lx1, ly1 = self.texts[-1][0]
+            self.symbols.append(((min([x[0] for x in qs] + [lx0]), min([x[1] for x in qs] + [ly0]),
+                                  max([x[0] for x in qs] + [lx1]), max([x[1] for x in qs] + [ly1])),
+                                 "flag %s" % label))
 
     def pile_break(self, u, z, width, kind, layer):
         """Curved break at the cut bottom of a pile in elevation: the round
@@ -943,15 +1079,22 @@ class View:
         lobe = lambda c, a0, a1: [(c + r * math.cos(math.radians(a)), z + e * math.sin(math.radians(a)))  # noqa: E731
                                   for a in range(a0, a1 + 1, 10)]
         if kind == "pipe":
-            self.pl(lobe(u - r, 0, 360), layer)
-            self.pl(lobe(u + r, 180, 360), layer)
+            lobes = [lobe(u - r, 0, 360), lobe(u + r, 180, 360)]
         else:
-            self.pl(lobe(u - r, 180, 360)[::-1] + lobe(u + r, 0, 180)[::-1], layer)
+            lobes = [lobe(u - r, 180, 360)[::-1] + lobe(u + r, 0, 180)[::-1]]
+        for pts in lobes:
+            self.pl(pts, layer)
+            self._note_break(pts)
 
     def circled_number(self, c, n):
-        """Circled pile/column number (FDOT sheets)."""
-        self.circle(c, 0.085 / 12 * self.sf, "Symbols")
+        """Circled pile/column number (FDOT sheets); the circle is also
+        recorded in ``symbols`` ("circle N") for the clearance checks."""
+        r = 0.085 / 12 * self.sf
+        self.circle(c, r, "Symbols")
         self.text(c, str(n), None, "MIDDLE_CENTER")
+        qs = [self._X(p) for p in ((c[0] - r, c[1] - r), (c[0] + r, c[1] + r), (c[0] - r, c[1] + r), (c[0] + r, c[1] - r))]
+        self.symbols.append(((min(q[0] for q in qs), min(q[1] for q in qs),
+                              max(q[0] for q in qs), max(q[1] for q in qs)), "circle %s" % n))
 
     def row_label(self, x_end, y, label):
         """Label at the left end of a dimension row, underlined at the
@@ -980,6 +1123,7 @@ class View:
         pts = [p, (m[0] - ux * z, m[1] - uy * z), (m[0] - ux * z / 2 + nx * z, m[1] - uy * z / 2 + ny * z),
                (m[0] + ux * z / 2 - nx * z, m[1] + uy * z / 2 - ny * z), (m[0] + ux * z, m[1] + uy * z), q]
         self.pl(pts, layer)
+        self._note_break(pts)
 
     def elev_callout(self, p, text, side=1, rise=None):
         """SDM Fig 2.11.1-2 style elevation callout: tick + leader + EL. text."""
@@ -988,9 +1132,14 @@ class View:
         tip = p
         knee = (p[0] + side * 0.6 * rise, p[1] + rise)
         end = (knee[0] + side * 1.5 * h, knee[1])
+        self._begin_call()
+        call = self._call
         self.arrowhead(tip, knee, "Leader")
         self.pl([tip, knee, end], "Leader")
-        return self.text((end[0] + side * 0.4 * h, end[1]), text, h, "MIDDLE_LEFT" if side > 0 else "MIDDLE_RIGHT")
+        self._end_call()
+        e = self.text((end[0] + side * 0.4 * h, end[1]), text, h, "MIDDLE_LEFT" if side > 0 else "MIDDLE_RIGHT")
+        self._note_leader("leader", call, [tip, knee, end], [tip], knee, end, "left" if side > 0 else "right")
+        return e
 
     def stationing_arrow(self, p, direction, length_in=1.7):
         """DIRECTION OF STATIONING: a long thin line ending in a slender solid

@@ -8,6 +8,7 @@ After a generator change only:
 import csv
 import hashlib
 import json
+import os
 import re
 import sys
 import tempfile
@@ -25,8 +26,12 @@ from substructure_drawings import bars, build, cad, fdot, views  # noqa: E402
 
 PKG = ROOT / "substructure_drawings"
 SNAPSHOT = PKG / "data" / "model_snapshot.json"
-OUT = PKG / "output"
+# the committed outputs; SUBDWG_OUT_DIR points the tests at a scratch build
+# (scripts/build_substructure_dxf.py writes the committed folder)
+OUT = Path(os.environ.get("SUBDWG_OUT_DIR", PKG / "output"))
 DXF = OUT / build.DXF_NAME
+STRAP_LOADS = PKG / "data" / "strap_loads.json"
+BACKWALL_CASE = ROOT / "project_current" / "cap_design" / "backwall" / "selected_case.json"
 MODEL = (ROOT / "project_current" / "geometry" / "freecad" /
          "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd")
 REBUILD = r"Rebuild with: .venv\Scripts\python.exe scripts\build_substructure_dxf.py"
@@ -158,9 +163,12 @@ class SubstructureDxfTests(unittest.TestCase):
         self.assertEqual(self.manifest["layout_warnings"], [])
 
     def test_model_checks_against_cad_tables(self):
+        """Every cross-check of the model against the selected CAD tables
+        passes (D-053 rebuilt both backwall tops in the model and the
+        workbook: the End Bent 1 seat no longer differs)."""
         status = {q["check"]: q["status"] for q in self.manifest["qc"]}
-        # Known open item: the CAD EB1 backwall seat is to be rebuilt from the notebook.
-        self.assertEqual([k for k, v in status.items() if v != "PASS"], ["Backwall top at cap end END BENT 1"])
+        self.assertEqual([k for k, v in status.items() if v != "PASS"], [])
+        self.assertEqual(len(status), 9)
 
     def test_dimension_text_format(self):
         self.assertEqual(fdot.ft_in(4 + 0.5 / 12, mtext=False), "4'-0 1/2\"")
@@ -224,11 +232,11 @@ class SubstructureDxfTests(unittest.TestCase):
         separate reinforcement sheets), its details (STYLE_GUIDE E1: three
         details sheets per end bent), then the bar list."""
         sheets = self.manifest["sheets"]
-        self.assertEqual([s["number"] for s in sheets], ["B4-%d" % i for i in range(1, 12)])
+        self.assertEqual([s["number"] for s in sheets], ["B4-%d" % i for i in range(1, 13)])
         self.assertEqual([s["title"] for s in sheets], [
             "END BENT 1", "END BENT 1 DETAILS (1 OF 3)", "END BENT 1 DETAILS (2 OF 3)",
             "END BENT 1 DETAILS (3 OF 3)",
-            "PIER", "PIER DETAILS",
+            "PIER", "PIER DETAILS (1 OF 2)", "PIER DETAILS (2 OF 2)",
             "END BENT 2", "END BENT 2 DETAILS (1 OF 3)", "END BENT 2 DETAILS (2 OF 3)",
             "END BENT 2 DETAILS (3 OF 3)",
             "REINFORCING BAR LIST"])
@@ -237,29 +245,110 @@ class SubstructureDxfTests(unittest.TestCase):
         self.assertEqual(sheets[1]["scales"], ["3/4\" = 1'-0\"", "1\" = 1'-0\"", "1-1/2\" = 1'-0\""])
         # the cheek wall sections at 3/4", detail "B" at 1", detail "A" at 1 1/2"
         self.assertEqual(sheets[3]["scales"], ["3/4\" = 1'-0\""])
-        self.assertEqual(sheets[3]["scales"], sheets[9]["scales"])
-        self.assertEqual(sheets[1]["scales"], sheets[7]["scales"])
+        self.assertEqual(sheets[3]["scales"], sheets[10]["scales"])
+        self.assertEqual(sheets[1]["scales"], sheets[8]["scales"])
+        self.assertEqual(sheets[5]["scales"], ["3/4\" = 1'-0\""])
+        self.assertEqual(sheets[6]["scales"], ["3/4\" = 1'-0\""])
 
     def test_cross_references_name_the_sheets_that_carry_the_views(self):
         """Plan-sheet note 3 and the details notes point at the right sheets
         (the note used to say the pedestal details are on the (2 OF 2) sheet);
-        the strap legend (D6) is on every sheet that draws the strap symbol
-        (the (1 OF 3) and (2 OF 3) sheets)."""
+        the strap legend (D6) is given once per bent, on its (1 OF 3) sheet
+        (markup 2026-10-19), and the plan sheet and the (2 OF 3) sheet, which
+        also draw the strap symbol, refer to it."""
         texts = {}
         for lay in self.doc.layouts:
             if lay.name != "Model":
                 texts[lay.name.split(" ")[0]] = [e.dxf.text if e.dxftype() == "TEXT" else e.text
                                                  for e in lay.query("TEXT MTEXT")]
-        for first, nums in (("B4-1", ("B4-2", "B4-3", "B4-4")), ("B4-7", ("B4-8", "B4-9", "B4-10"))):
+        for first, nums in (("B4-1", ("B4-2", "B4-3", "B4-4")), ("B4-8", ("B4-9", "B4-10", "B4-11"))):
             self.assertTrue(any(
                 "FOR SECTIONS A-A AND B-B AND DETAILS \"A\" AND \"B\", SEE SHEET %s. FOR SECTION C-C AND VIEWS D-D "
                 "AND E-E, SEE SHEET %s. FOR SECTIONS F-F AND G-G AND PEDESTAL DETAILS, SEE SHEET %s." % nums in t
                 for t in texts[first]), first)
         self.assertTrue(any("SEE VIEW D-D, SHEET B4-3" in t for t in texts["B4-4"]))
-        self.assertTrue(any("SEE VIEW D-D, SHEET B4-9" in t for t in texts["B4-10"]))
-        for number in ("B4-2", "B4-3", "B4-8", "B4-9"):
+        self.assertTrue(any("SEE VIEW D-D, SHEET B4-10" in t for t in texts["B4-11"]))
+        # the pier: sections on (1 OF 2), pedestal details on (2 OF 2)
+        self.assertTrue(any("FOR SECTIONS A-A, B-B AND C-C, SEE SHEET B4-6. FOR PEDESTAL DETAILS, SEE SHEET B4-7." in t
+                            for t in texts["B4-5"]))
+        self.assertTrue(any("FOR PEDESTAL DETAILS, SEE SHEET B4-7." in t for t in texts["B4-6"]))
+        self.assertTrue(any("SEE SHEET B4-6." in t for t in texts["B4-7"]))
+        # the LEGEND is on B4-2 and B4-9 only, once per bent
+        for number in ("B4-2", "B4-9"):
             self.assertIn("LEGEND:", texts[number], number)
             self.assertTrue(any("PROPRIETARY WALL PROVIDER" in t for t in texts[number]), number)
+        for number in sorted(texts):
+            if number not in ("B4-2", "B4-9"):
+                self.assertNotIn("LEGEND:", texts[number], number)
+                self.assertFalse(any("PROPRIETARY WALL PROVIDER" in t for t in texts[number]), number)
+                self.assertFalse(any("SPECIALTY ENGINEER" in t for t in texts[number]), number)
+        # the other sheets that show the strap refer to the legend sheet
+        for number, legend_sheet, wording in (
+                ("B4-1", "B4-2", "FOR THE SOIL REINFORCEMENT (Δ) LEGEND, SEE SHEET %s."),
+                ("B4-8", "B4-9", "FOR THE SOIL REINFORCEMENT (Δ) LEGEND, SEE SHEET %s."),
+                ("B4-3", "B4-2", "FOR THE Δ REINFORCING STRAP LEGEND, SEE SHEET %s."),
+                ("B4-10", "B4-9", "FOR THE Δ REINFORCING STRAP LEGEND, SEE SHEET %s.")):
+            self.assertTrue(any(wording % legend_sheet in t for t in texts[number]), number)
+
+    def test_strap_legend_is_current_with_the_backwall_case(self):
+        """C1/D6: the Δ legend carries the strap loads of the selected
+        backwall case (scripts/export_strap_loads.py evaluates the case and
+        writes data/strap_loads.json); the loads are in the manifest and the
+        drawing."""
+        rebuild = r"Rebuild with: scripts\export_strap_loads.py then scripts\build_substructure_dxf.py"
+        loads = json.loads(STRAP_LOADS.read_text(encoding="utf-8"))
+        self.assertEqual(loads["case_sha256"], sha(BACKWALL_CASE), rebuild)
+        self.assertEqual(self.manifest["strap_loads"], loads, rebuild)
+        texts = [e.dxf.text for e in self.doc.modelspace().query("TEXT")]
+        texts += [e.text for e in self.doc.modelspace().query("MTEXT")]
+        for lay in self.doc.layouts:
+            if lay.name != "Model":
+                texts += [e.dxf.text if e.dxftype() == "TEXT" else e.text for e in lay.query("TEXT MTEXT")]
+        service = "SERVICE LOAD OF %.2f K/FT" % loads["service_kip_ft"]
+        factored = "FACTORED LOAD OF %.2f K/FT (%s)" % (loads["factored_kip_ft"], loads["governing"].upper())
+        self.assertTrue(any(service in t for t in texts), service + ". " + rebuild)
+        self.assertTrue(any(factored in t for t in texts), factored + ". " + rebuild)
+        self.assertFalse(any("___ K/FT" in t for t in texts), "a blank load is left in the legend")
+        from substructure_drawings import strap_loads
+        self.assertEqual(strap_loads.load(), loads)
+        self.assertIn(service + " AND A " + factored + " PERPENDICULAR TO THE END BENT BACKWALL.",
+                      strap_loads.legend_text())
+
+    def test_titles_of_a_row_go_down_to_the_lowest_baseline(self):
+        """E5 (markup 2026-10-19, "line titles up vertically"): the titles of
+        the views of a row share the lowest title baseline; the move is in
+        local feet (paper inches x scale factor / 12)."""
+        class Zone:
+            model_origin = (100.0, 200.0)
+
+        class FakeView:
+            def __init__(self, y, oy, sf=16.0):
+                self.sheet, self.sf, self.oy, self.moved = Zone(), sf, oy, 0.0
+                self.title_spec = {"x": 0.0, "y": y, "title": "T", "sub": None, "subject_cx": 0.0}
+
+            def move_title(self, dy):
+                self.moved += dy
+        comp = build.Composer.__new__(build.Composer)
+        high, low, none = FakeView(-3.0, 210.0), FakeView(-5.0, 210.0), FakeView(0.0, 0.0)
+        del none.title_spec
+        self.assertAlmostEqual(comp.title_baseline(high), 5.25)      # (-3 + 210 - 200) ft x 12 / 16
+        self.assertAlmostEqual(comp.title_baseline(low), 3.75)
+        self.assertIsNone(comp.title_baseline(none))
+        comp.align_titles([high, low, none])
+        self.assertAlmostEqual(high.moved, -2.0)                     # 1.5 in down = 2 ft local
+        self.assertEqual(low.moved, 0.0)
+        self.assertEqual(none.__dict__.get("moved"), 0.0)
+
+    def test_annotation_checks_are_clean(self):
+        """A1: the annotation checks (rules A1, A2, A10, A11, A12, A14, B9,
+        D3, D12, E5 of STYLE_GUIDE.md; ``anno_check.RULES``) run on every
+        view and find nothing; E5 (a title centred on its subject) is a
+        layout check."""
+        self.assertEqual(self.manifest["annotation_overlaps"], [])
+        self.assertEqual(self.manifest["layout_warnings"], [])
+        rules = self.manifest["anno_rules_checked"]
+        for rule in ("A1", "A2", "A10", "A11", "A12", "A14", "B9", "D3", "D12", "E5"):
+            self.assertIn(rule, rules, rule)
 
     def test_dimension_blocks_have_no_zero_length_lines_and_masked_text(self):
         """Rules F and B2: ezdxf's zero-length lines in the dimension blocks
@@ -279,7 +368,9 @@ class SubstructureDxfTests(unittest.TestCase):
 
     def test_centerline_linetypes_are_dashes_not_dots(self):
         """Rule D3: DGN4 and DGN7 are long dash, short dash with no element
-        shorter than 0.005 ft (a dot), plotted at 0.5 x the scale factor."""
+        shorter than 0.005 ft (a dot), plotted at 0.25 (minor) and 0.35
+        (major) x the scale factor so a short centerline still shows its
+        dashes (one pattern 0.34 in and 0.63 in on paper)."""
         for style in (4, 7):
             pattern = fdot.LINETYPE_PATTERNS[style]       # total length, then the elements
             self.assertFalse([v for v in pattern if 0 < abs(v) < 0.005], pattern)
@@ -288,7 +379,9 @@ class SubstructureDxfTests(unittest.TestCase):
             self.assertGreater(dashes[0], dashes[1])
             self.assertAlmostEqual(pattern[0], sum(abs(v) for v in pattern[1:]), places=9)
             self.assertIn("DGN%d" % style, self.doc.linetypes)
-        self.assertEqual(fdot.LTSCALE_PER_SF["DGN4"], 0.5)
+        self.assertEqual(fdot.LTSCALE_PER_SF["DGN4"], 0.25)
+        self.assertEqual(fdot.LTSCALE_PER_SF["DGN7"], 0.35)
+        self.assertAlmostEqual(fdot.pattern_length("DGN4", 32.0) / 32.0 * 12.0, 0.1125 * 0.25 * 12, places=9)
 
     def test_offset_polyline_mitres_corners_to_the_left_and_right(self):
         """C4/B3: ``cad.offset_polyline`` offsets to the left for a positive

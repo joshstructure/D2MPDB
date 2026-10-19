@@ -80,7 +80,7 @@ def main():
     for w in manifest["layout_warnings"]:
         print("WARNING:", w)
     for w in manifest["annotation_overlaps"]:
-        print("NOTE (annotation over linework):", w)
+        print("NOTE (annotation check):", w)
     audit = manifest["symbology_audit"]
     for w in audit["not_on_fdot_level"] + audit["not_by_level"]:
         print("WARNING (symbology):", w)

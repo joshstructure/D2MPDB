@@ -1,16 +1,20 @@
 # End bent and pier DXF (FDOT format)
 
-**Generator 2.3.0 (19 October 2026)** rebuilds this DXF from the model with
+**Generator 2.4.0 (19 October 2026)** rebuilds this DXF from the model with
 revision D-048 (D-044 weather closure and copings, D-045 strap references,
 D-046 cheek hooks, D-047 pedestal edge bars, D-048 backwall extensions) and
-applies the engineer's review markups of 2026-10-17, 18 and 19, which are
-distilled into [`STYLE_GUIDE.md`](STYLE_GUIDE.md) (every drawing rule has an
-id there). The build's annotation audit (text over linework, text over text,
-leaders crossing leaders) reports nothing on any sheet. 2.3.0 (the third
-markup round) squares leader bends, keeps leaders from crossing, draws
-parallel bearing leaders, moves pulled-out values clear of their lines, ends
-the end bent sections at a break through the closure slab, dashes the keyway,
-marks the strap anchorage, rounds bar ends and draws end-on legs as dots.
+applies the engineer's review markups of 2026-10-17, 18 and 19 (two rounds),
+which are distilled into [`STYLE_GUIDE.md`](STYLE_GUIDE.md) (every drawing
+rule has an id there). The measurable rules are deterministic checks in
+[`anno_check.py`](anno_check.py), run on every view by the build; the
+findings list is empty on every sheet and the tests fail otherwise. 2.4.0
+(the fourth round) adds those checks, puts end labels outside the plan in one
+column, spreads label columns evenly, keeps pile numbers under the pulled
+values, breaks every clipped stub, shortens the centerline dashes so short
+centerlines still read dashed, puts cover values at their dimensions, joins
+parallel leaders at one landing, draws full-width bars at their true
+positions, ends U-bar runs at their leg dots, centres and aligns titles, and
+fills the strap legend from the backwall design calc (once per bent).
 
 [`output/B4_Substructure_EndBents_Pier.dxf`](output/B4_Substructure_EndBents_Pier.dxf)
 is one DXF with plans, elevations (concrete and reinforcement together),
@@ -35,9 +39,10 @@ represent engineering acceptance.
 | B4-3 | End Bent 1 details (2 of 3): section C-C (at CL beam); views D-D and E-E (cheek walls, WWR limits; D-D carries the flags of sections F-F and G-G); notes and the strap legend | 3/4", 3/8" |
 | B4-4 | End Bent 1 details (3 of 3): section F-F (vertical, through the cheek wall) and section G-G (horizontal, through the cheek wall and backwall, monolithic); pedestal plan and elevation; top of pedestal elevations; notes | 3/4" |
 | B4-5 | Pier plan; broken elevation (looking ahead station) with the reinforcement; end view D-D; tables, notes | 3/8" |
-| B4-6 | Pier details: sections A-A, B-B, C-C; pedestal plan and elevation; top of pedestal elevations | 3/4" |
-| B4-7 to B4-10 | End Bent 2, as End Bent 1 (looking ahead station; B4-8 is laid out as the mirror image of B4-2) | |
-| B4-11 | Reinforcing bar list on the FDOT bar list form | |
+| B4-6 | Pier details (1 of 2): sections A-A, B-B, C-C on one row with a common top; notes | 3/4" |
+| B4-7 | Pier details (2 of 2): pedestal plan and elevation; top of pedestal elevations under the elevation; notes | 3/4" |
+| B4-8 to B4-11 | End Bent 2, as End Bent 1 (looking ahead station; B4-9 and B4-10 are laid out as the mirror images of B4-2 and B4-3) | |
+| B4-12 | Reinforcing bar list on the FDOT bar list form | |
 
 Model space holds every view at full size (1:1, international feet,
 `$INSUNITS = 2`), with annotation sized for the sheet scale. Each paper-space
@@ -298,7 +303,9 @@ snapshot or the generator output no longer match.
 | `support.py` | Derived geometry of one support (cap, backwall, cheek walls, pedestals, piles, elevations) |
 | `bars.py` | Bar geometry, SDM marks and Standard Plans Index 415-001 bar shapes and types |
 | `fdot.py` | FDOT CADD levels, line styles, text styles, symbols and number formats |
-| `cad.py` | DXF document setup and drawing primitives (views, dimensions, flags, polyline offsets) |
+| `cad.py` | DXF document setup and drawing primitives (views, dimensions, flags, polyline offsets); each view records its texts, leaders, dimensions, break lines, clips and centerlines for the checks |
+| `anno_check.py` | Deterministic annotation layout checks (STYLE_GUIDE A19): one function per measurable rule, findings carry the rule id |
+| `strap_loads.py` | The Δ legend text with the tie-back loads from `data/strap_loads.json` (`scripts/export_strap_loads.py`, backwall design calc) |
 | `views.py` | Plan, elevation, sections A-A to C-C, cheek wall views, pedestal views, end view |
 | `details.py` | Cheek wall sections F-F and G-G, section flags, detail "A" (construction joint) and detail "B" (geotextile) |
 | `sheets.py` | Paper-space border, title block, tables and notes |
@@ -363,13 +370,20 @@ are not made again:
 
 1. Write the rule into [`STYLE_GUIDE.md`](STYLE_GUIDE.md) first (a new id, or
    an amendment, plus a row in the markup log M quoting the engineer), then
-   change the generator.
+   add a check for it to [`anno_check.py`](anno_check.py) if it can be
+   measured, then change the generator.
 2. Rebuild with `--previews`. The build prints `WARNING` (a view outside its
-   window, views drawing over each other, a block in the BRIDGE NO. area) and
-   `NOTE (annotation over linework)` lines (text over linework, text over
-   text, leaders crossing leaders). Both lists must be empty before delivery;
-   they are also in `manifest.json` (`layout_warnings`, `annotation_overlaps`)
-   and the tests fail on warnings.
+   window, views drawing over each other, a block in the BRIDGE NO. area, a
+   title off its subject) and `NOTE (annotation check)` lines, each with the
+   STYLE_GUIDE rule id it fails: text over linework (A1), texts too close or
+   overlapping (A2), acute leader bends and fans leaving toward their text
+   (A10), leaders crossing leaders (A11), near-parallel fan arrows (A12),
+   leaders through circled numbers or flags (A13), leaders over many drawing
+   lines (A14), pulled values too near a dimension line (B9), centerlines too
+   short to show dashes (D3), clipped edges without a break line (D12),
+   titles off centre (E5). Both lists must be empty before delivery; they are
+   in `manifest.json` (`layout_warnings`, `annotation_overlaps`,
+   `anno_rules_checked`) and the tests fail on either.
 3. Look at every sheet at full size and crop the places you changed (the
    PDF at 5x to 12x); the checklist is STYLE_GUIDE section G.
 4. Run `tests\test_substructure_dxf.py` and `tests\test_model_plan_dxf.py`.
@@ -380,10 +394,10 @@ are not made again:
 
 ## Open items carried on the drawings
 
-- The model top of the End Bent 1 backwall at the cap ends is 47.192. The
-  selected geometry CAD tables give 47.132 (the crown matches). The CAD EB1
-  backwall seat is still to be rebuilt from the notebook. Sheet B4-1 carries a
-  "MODEL CHECK" note until this is resolved.
+- Resolved 2026-10-19 with model decision D-053 (simplified backwall tops):
+  the End Bent 1 backwall tops at the cap ends and at the PGL now match the
+  selected geometry CAD tables (all nine `WORKBOOK_CHECKS` pass), and sheet
+  B4-1 no longer carries a "MODEL CHECK" note for them.
 - Backwall verticals are labelled as schematic dowels in the model. Their
   embedment into the cap is dimensioned from the construction joint but not
   otherwise detailed.
@@ -391,8 +405,15 @@ are not made again:
   the (3 OF 3) sheets are schematic: the joint key and the V-groove locations
   are not in the CAD model, and those sheets carry a "MODEL CHECK" note.
 - The pier wall is provisional and has no modeled reinforcement.
-- The SDM 12.3.F soil-reinforcement note is included with blank service and
-  factored loads.
+- The SDM 12.3.F soil-reinforcement legend carries the tie-back loads of the
+  selected backwall case (3.09 kip/ft service, 3.75 kip/ft factored, Strength
+  I), which the backwall design calls provisional pending the current
+  analysis loads.
+- The model has bars tangent to each other: the backwall verticals 5D1
+  against the horizontals 4D2 (0.55" centre to centre), the pedestal U-bar
+  legs against the cap top bars 6A1 and hoops 6B2 (zero clear), and the 4F2
+  legs on the line of the first 4F1 bar. The sections draw them where the
+  model has them (C10), so they appear touching.
 - The open stirrups at the piles are listed as Type 11 with style 4 hooks and
   field bent to clear the pile heads (the end legs are not dimensioned). Check
   the type and hook style assignments with the FDOT Rebar program before issue.

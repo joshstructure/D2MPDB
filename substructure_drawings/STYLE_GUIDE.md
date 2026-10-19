@@ -37,7 +37,10 @@ symbol at page scale.
   (`View.audit`, manifest `annotation_overlaps`, printed by the build as
   "NOTE (annotation over linework)") lists every text inside a view that a
   line runs through or ends in; the list is worked down to nothing but
-  justified cases before delivery.  Follow-up markup 2026-10-17: "in
+  justified cases before delivery.  Break lines and pile break lobes count
+  as linework (they are drawn on the Symbols level, which the check
+  otherwise skips): a note inside a broken element goes in one of the
+  drawn bands, never on the break (the pier wall note, 2026-10-19).  Follow-up markup 2026-10-17: "in
   general please double check that we are minimizing overlapping annotation
   with linework".  Markups: "Fit annotations to minimize overlap
   with linework", "Prevent overlap of annotations as much as possible",
@@ -117,7 +120,56 @@ symbol at page scale.
   View D-D).  Markup 2026-10-19: "Extend the centerline and point to it
   because this looks like we are pointing to the dim text".  Leaders keep
   0.3" from the circled pile numbers (A8): "No need for the annotation
-  leaders to be so close to the circled number".
+  leaders to be so close to the circled number".  No leader or pointer runs
+  through a circled number or a section flag (checked).
+- **A14 Labels of one side form a column with even rows.**  The labels on
+  one side of a view share one text column and one landing length, and
+  their rows are spread evenly over the band they occupy (`callouts(...,
+  spread=)`); a label never sits on a dimension row or a dimension line.
+  Markups 2026-10-19 (round 2): "There is plenty of space here to spread
+  these annos out vertically with more of an equal space distribution. Get
+  better at organizing annos so they are more row and column like with more
+  equal space distribution", "Move this slightly so it doesn't look like
+  it's an anno about the dim line".  A leader crosses as little drawing
+  linework as the placement allows (checked: more than four concrete or bar
+  lines under one leader is a finding).  Markup: "Minimize the leaders
+  crossing line work if you can just shift the annotations a bit".
+- **A15 Labels at the ends of a plan go outside the drawing.**  The point
+  labels, centerline labels and context labels at an end of the plan form
+  one column beyond the cheek wall (clear of the section flags), with
+  horizontal landings; nothing is squeezed between the cheek and the cap
+  end.  Markups 2026-10-19 (round 2): "Pull these out into space and
+  minimize leader line overlaps with drawings", "Plenty of space to move
+  these off to the right outside the drawing", "Too close to other stuff,
+  there is plenty of space".
+- **A16 Pulled-out values and pile numbers have their own rows.**  Under a
+  stirrup row the pulled-out values take the first band and the circled
+  pile numbers the band below it, the section flags below those; no pointer
+  passes a circle.  Markup 2026-10-19 (round 2): "All these leaders are
+  overlapping the text".
+- **A17 Labels stay outside the concrete when the view has open space
+  beside it**, and the leader's bend and landing never lie over the
+  drawing: the break line of a stub is moved out so the labels sit beyond
+  it (pedestal elevation).  Markup 2026-10-19 (round 2): "No need to
+  overlap the drawings so much, there is plenty of drawing space. Move the
+  break line if needed and shift these annos out into the space. I don't
+  like the text overlapping drawing lines and I don't like the leader break
+  line overlapping drawings".
+- **A18 Parallel leaders meet the text at one point.**  Several lines
+  called out by one label (A12) get horizontal leaders joined by one
+  vertical connector and one landing to the text (`View.parallel_leaders`);
+  the arrows of a fan are at least 12 degrees apart, otherwise the callout
+  points at one bar or uses parallel leaders.  Markups 2026-10-19 (round
+  2): "Put these parallel leaders in the same plane. It should feel like
+  the leaders only touch the text at one point", "Either put these leaders
+  parallel or move the anno and spread these leaders out so they are
+  distinct. Don't do these kind of almost parallel leaders".
+- **A19 Deterministic checks.**  Every rule above that can be measured is
+  a check in `anno_check.py` (rule ids in the findings), run on every view
+  by the build and written to the manifest; the tests fail on any finding.
+  The checks are the first thing to extend when a markup names a new kind
+  of fault.  Request 2026-10-19: "Perhaps there should be deterministic
+  helpers to help check the anno layouts".
 
 ## B. Dimensions
 
@@ -196,6 +248,13 @@ symbol at page scale.
   clear they are a pop out because they didn't fit", "Text is overlapping
   with the dim line because the pop out isn't far enough away. Also do not
   make the break in the leader overlap another line".
+- **B10 A cover value sits beside its dimension.**  The pulled-out cover
+  value is at the height of its dimension line, just outside the concrete,
+  with a straight horizontal pointer, never at the far end of a long
+  pointer that crosses other leaders (pedestal plan, sections).  Markups
+  2026-10-19 (round 2): "Why all the way up here for the text and not here?
+  Look at how drawing items get crossed", "Overlap" (the cover text on the
+  bottom-bar leader).
 - **B6 Precision and format** (SDM 2.11.3): concrete to 1/8", bar spacing and
   partial bar lengths to 1/4", overall bar lengths to 1", elevations to
   0.001 ft, stations to 0.01 ft; feet-inch-fraction text with the FDOT font
@@ -217,12 +276,14 @@ symbol at page scale.
   last bar of each run (SDM 4.3.B/C), with the note saying so; sections show
   every bar in the cut plane plus the nearest in-plane bar of each series
   within 1'-3" beyond the cut.
-- **C4 Overlapping bars get daylight.**  When two in-plane bars would draw on
-  the same line (a backwall vertical over a hoop leg), the shorter bar is
-  offset by about 0.03" on paper away from the nearest face, so each bar
-  end stays visible.  Markup: "When bars overlap bump the representational
-  line ever so slightly away from each other so there's a little daylight
-  and we can see where the bars end".
+- **C4 Overlapping bars get daylight (single-line views only).**  When two
+  single-line bars would draw on the same line (a backwall vertical over a
+  hoop leg in the 3/8" elevation), the shorter bar is offset by about 0.03"
+  on paper away from the nearest face, so each bar end stays visible.  At
+  double-line scales bars stay where the model has them (C10).  Markup:
+  "When bars overlap bump the representational line ever so slightly away
+  from each other so there's a little daylight and we can see where the
+  bars end".
 - **C5 Callouts** sit beside the bars with leaders per A3; one callout per
   series with count, mark and spacing (B6); "(EF)" for each-face bars;
   "x THRU y" for three or more consecutive marks.
@@ -244,6 +305,19 @@ symbol at page scale.
   bends here have odd shapes instead of smooth semi-circles", "appears to
   show multiple clashing bars that don't occur in the model" (the 4F2 legs
   stand under the first 4F1 bar: end-on dots on its line, not stubs).
+- **C10 Full-width bars are at their true positions.**  At double-line
+  scales (C1) every bar is drawn exactly where the model has it; the C4
+  daylight nudge is for single-line views only.  Bars the model has tangent
+  (the backwall verticals 5D1 against the horizontals 4D2 at 0.55" centre to
+  centre, the pedestal legs against the cap top bars, the 4F2 legs on the
+  line of the first 4F1 bar) are drawn touching; what looks like a clash is
+  the model's layout and is reported (C9), not hidden.  A run of a U-bar
+  seen from above ends at its leg's dot, never beside it.  Markups
+  2026-10-19 (round 2): "When we show full width we have to show the actual
+  locations", "These appear to show clashes but I don't believe there are
+  clashes in the model", "Are these the actual locations of the bars since
+  we are showing full width?", "What are these circles, the pedestal bars
+  don't have two legs on one end?".
 - **C9 Bars that nearly touch in the model are drawn as modelled and
   reported.**  Section G-G of End Bent 2 shows the backwall end verticals
   5D1 inside the cheek wall 1.1" from the cheek verticals 4E1: that is the
@@ -268,8 +342,17 @@ symbol at page scale.
   Section C-C: "Remove break line if there is nothing to break".
 - **D3 Centerlines are long dash, short dash**, never dash-dot with dots
   (`fdot.LINETYPE_PATTERNS` DGN4 and DGN7, dashes of plotted size on every
-  sheet via `LTSCALE_PER_SF`).  Markup: "Centerlines should have dashes not
-  dots".
+  sheet via `LTSCALE_PER_SF`), and every centerline is long enough to show
+  its dashes: at least 1.5 patterns (a line shorter than its pattern plots
+  solid; checked), so the minor pattern plots 0.34" and the major 0.63".
+  Markups: "Centerlines should have dashes not dots", 2026-10-19 (round 2)
+  "All centerlines should be dashed".
+- **D12 Everything the view clips gets a break line.**  A stub cut by the
+  view window or by the extractor's clip (strap stubs, coping stubs, the
+  closure slab in front of the cap, the cap stub beside a cheek wall, a
+  pile) ends in a break line or a pile break at the cut (checked: a clipped
+  edge without a break within 0.12" is a finding).  Markup 2026-10-19
+  (round 2): "Add breaklines for elements that are broken".
 - **D4 Context is minimal.**  Bent sections do not show the landing or
   approach slab ("we want to focus on the end bents").  The end bent
   sections end at a break line through the rain closure slab 1.2 ft beyond
@@ -296,7 +379,13 @@ symbol at page scale.
   are shown in the sections as a line out of the back face at the strap
   elevation with a representative 6" embedment into the backwall, labelled
   "Δ REINF. STRAP" and dimensioned from the cap top, with the Δ legend giving
-  the design responsibility and loads (sample B1-17); the plan shows them as
+  the design responsibility and the loads from the backwall design calc
+  (`data/strap_loads.json`, written by `scripts/export_strap_loads.py` from
+  the selected backwall case; the test fails when the case changes), once
+  per bent on the (1 OF 3) sheet, the other sheets referring to it (markups
+  2026-10-19 round 2: "Update from backwall design calc", "Take out this
+  note and only have it once in the drawings per bent and in this case on
+  the next sheet"); the plan shows them as
   4" stubs out of the back face with one callout giving count and spacing
   ("7~Δ REINF. STRAPS @ 2'-9⁹⁄₁₆"").  They come from the model's schematic
   strap references (D-045).  Follow-up markup: "Show a representative embed
@@ -344,6 +433,13 @@ symbol at page scale.
   issue).
 - **E4 Status** stays "PRELIMINARY - NOT FOR CONSTRUCTION" until the EOR
   fields are filled.
+- **E5 Titles are centred on their subject and aligned in a row.**  A view
+  title is centred on the concrete outline it names (the cap centre of a
+  section, the pedestal, the cheek wall), not on the box with its dimension
+  columns, and the titles of views placed in one row share one baseline
+  (`Composer.row` moves the higher ones down; checked).  Markup 2026-10-19
+  (round 2): "Center the title on the drawing and line titles up
+  vertically".
 
 ## F. Symbology
 
@@ -360,18 +456,24 @@ markers; this was the source of the "circles" questioned on B4-5).
 Render the previews (`--previews`) and look at every sheet at full size:
 
 1. `manifest.json` `layout_warnings` is empty (views inside their windows,
-   no crossings between views) and `annotation_overlaps` is empty or every
-   entry is a justified exception (A1).
+   no crossings between views, titles centred and aligned) and
+   `annotation_overlaps` (the `anno_check` findings, rule ids A1, A2, A10,
+   A11, A12, A13, A14, B9, D3, D12, E5) is empty (A19).
 2. No leader parallel to the bar it points to (A3); no leader under the
    stationing arrow (A7); no leader crossing another (A11, audit); no acute
-   bend under a text (A10); fans leave the text toward the bars (A10).
+   bend under a text (A10); fans leave the text toward the bars (A10);
+   label columns with even rows (A14), end labels outside the plan (A15),
+   pile numbers below the pulled values (A16), labels beyond the stub
+   breaks (A17), parallel leaders joined at one landing (A18).
 3. Every dimension text either sits in its space or has a line to it (B1);
    none crosses a line without a mask (B2); no stacked values; pulled-out
    values stand clear of their line (B9).
-4. Centerlines show as long-short dashes (D3); no stray break symbols (D2);
-   no dashed line over a solid line (D1).
+4. Centerlines show as long-short dashes on every line, short ones included
+   (D3); no stray break symbols (D2) and a break on everything clipped
+   (D12); no dashed line over a solid line (D1).
 5. Sections at 1/2" and larger draw bars as double lines (C1) with round
-   ends and end-on legs as dots (C8); overlapping bars show daylight (C4).
+   ends and end-on legs as dots (C8) at their true positions (C10);
+   single-line views give overlapping bars daylight (C4).
 6. Plan shows the PT. labels (A4) and the stationing arrow (A5); the
    pedestal plan shows the stationing arrow.
 7. No landing slab in the sections (D4); construction joint, embedment and
@@ -452,3 +554,28 @@ Markups on the 2.2.1 sheets, 2026-10-19 (all general):
 | pier sections | No need for these annotations to cross: text up, cover dim down | A11 | cover value above its pointer path |
 | B4-10 G-G | Multiple clashing bars here that don't exist in the model | C9 | they are modelled (EB2 backwall end verticals inside the cheek); MODEL CHECK note |
 | pedestal plan | Bar ends at the bends have odd shapes instead of smooth semi-circles; appears to show clashing bars that don't occur in the model | C8 | round bar ends, end-on legs as dots |
+
+Markups on the 2.3.0 sheets, 2026-10-19 round 2 (all general; "for every comment check the rest of the drawings for similar problems"):
+
+| Where | Comment (engineer's words) | Rule | Resolution |
+|---|---|---|---|
+| B4-1 plan | Add breaklines for elements that are broken | D12 | break lines on the strap and coping stubs and the closure slab; clipped-edge check |
+| B4-1/B4-7 plan | Pull these out into space and minimize leader line overlaps; plenty of space to move these off to the right outside the drawing; too close to other stuff | A15 | one label column beyond the right cheek |
+| B4-1 plan | All centerlines should be dashed | D3 | shorter dash patterns, centerlines lengthened, short-centerline check |
+| B4-1 elevation | Shift to add more space (PT. K) | A2 | PT. K/H rows apart |
+| B4-1 elevation | All these leaders are overlapping the text (pulled values, pile numbers) | A16 | pile numbers and flags in their own bands below the pulled values |
+| B4-1 notes | Take out this note and only have it once per bent, on the next sheet | D6 | legend on the (1 OF 3) sheet only; cross-references elsewhere |
+| B4-2 legend | Update from backwall design calc | D6 | 3.09 / 3.75 kip/ft (Strength I) from `strap_loads.json` |
+| B4-2/B4-8 sections | Overlap (3" COVER text on the bottom-bar leader) | B10 | cover value at its dimension height, clear of the rows |
+| B4-2 sections | I don't think these bars are actually here in the model; when we show full width we have to show the actual locations | C10 | no daylight nudge at double-line scales; tangency reported |
+| B4-2 sections | Spread these annos out vertically with more equal space distribution; more row and column like | A14 | backwall labels in one evenly spread column |
+| B4-3 Section C-C | These appear to show clashes but I don't believe there are clashes in the model | C10 | model has the pedestal legs tangent to the cap bars; drawn as modelled |
+| B4-3 Section C-C | Either put these leaders parallel or move the anno and spread these leaders out; don't do almost parallel leaders | A18 | one tip for the bottom-bar callout; near-parallel check |
+| B4-4 pedestal elev. | No need to overlap the drawings so much; move the break line and shift these annos out; no text over drawing lines, no leader break over drawings | A17 | cap stub break moved out, labels beyond it |
+| B4-6 pier sections | Put these parallel leaders in the same plane; leaders only touch the text at one point | A18 | `parallel_leaders` with one connector and one landing |
+| B4-6 pedestal plan | Why all the way up here for the text and not here? Look at how drawing items get crossed | B10 | cover value at its dimension height |
+| B4-6 pedestal plan | What are these circles, the pedestal bars don't have two legs on one end? | C10 | U-bar runs end at the leg dot |
+| B4-6 Section C-C | Are these the actual locations of the bars since we are showing full width? | C10 | yes: true positions, no nudge |
+| B4-7 plan | Move this slightly so it doesn't look like it's an anno about the dim line (strap callout) | A14 | strap callout in its own row |
+| B4-8 | Center the title on the drawing and line titles up vertically | E5 | titles on the subject centre, rows aligned |
+| all | Perhaps there should be deterministic helpers to help check the anno layouts | A19 | `anno_check.py` with rule-id findings, run by the build and the tests |

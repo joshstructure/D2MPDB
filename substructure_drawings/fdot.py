@@ -91,9 +91,13 @@ LINETYPE_NAME = "DGN%d"
 # same scale).  Styles 4 and 7 are the two centerline styles and are long
 # dash, short dash (never dash-dot with a dot; STYLE_GUIDE D3, markup
 # "Centerlines should have dashes not dots"): each pattern is the long dash,
-# a gap, the short dash (a tenth of the long dash) and a gap, so that with
-# LTSCALE_PER_SF = 0.5 the long dash plots about 0.45 in (style 4) and 0.6 in
-# (style 7) on paper.
+# a gap, the short dash (a tenth of the long dash) and a gap.  With
+# LTSCALE_PER_SF = 0.25 (style 4) and 0.35 (style 7) one pattern plots 0.34 in
+# long with a 0.225 in long dash (style 4, CL_Minor) and 0.63 in long with a
+# 0.42 in long dash (style 7, CL_Major) on paper, so that the short beam
+# centerlines of the plan (about an inch) still show their dashes: a line
+# shorter than one pattern plots solid (markup 2026-10-19, "All centerlines
+# should be dashed"; ``pattern_length``, STYLE_GUIDE D3).
 LINETYPE_PATTERNS = {
     2: [0.895099, 0.53706, -0.35804],
     4: [0.1125, 0.075, -0.015, 0.0075, -0.015],
@@ -106,9 +110,21 @@ LINETYPES = {LINETYPE_NAME % n: ("DGN line code %d" % n, p) for n, p in LINETYPE
 HIDDEN_LINETYPE = STYLE_TO_LINETYPE[2]
 # Per-entity linetype scale per unit of drawing scale factor (so patterns plot
 # at a consistent size in every view): hidden dash ~0.12 in, centerline long
-# dash ~0.45 in (style 4) and ~0.6 in (style 7) with a short dash a tenth as
-# long between them.
-LTSCALE_PER_SF = {LINETYPE_NAME % n: s for n, s in {2: 0.0186, 4: 0.5, 6: 0.25, 7: 0.5}.items()}
+# dash 0.225 in (style 4) and 0.42 in (style 7) with a short dash a tenth as
+# long between them (whole pattern 0.34 in and 0.63 in).
+LTSCALE_PER_SF = {LINETYPE_NAME % n: s for n, s in {2: 0.0186, 4: 0.25, 6: 0.25, 7: 0.35}.items()}
+
+
+def pattern_length(linetype_name, sf):
+    """Plotted length, feet of model space, of one pattern repeat of a
+    linetype (``"DGN4"``) at drawing scale factor ``sf``: the pattern's total
+    length (the first element of each ``LINETYPE_PATTERNS`` entry, which is
+    the sum of the absolute values of its dash and gap elements) times the
+    per-entity linetype scale ``LTSCALE_PER_SF * sf``.  0.0 for a linetype
+    without a pattern (Continuous).  A line shorter than this plots solid."""
+    if linetype_name not in LINETYPES or linetype_name not in LTSCALE_PER_SF:
+        return 0.0
+    return abs(LINETYPES[linetype_name][1][0]) * LTSCALE_PER_SF[linetype_name] * sf
 
 # FDOT TrueType fonts (5.12, PDF p. 52): name -> (file, family, bold).  The
 # family and bold flag go into the text style's extended font data, from

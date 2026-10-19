@@ -1,10 +1,10 @@
 {
  "generator": "substructure_drawings.build",
- "version": "2.3.0",
+ "version": "2.4.0",
  "dxf": "B4_Substructure_EndBents_Pier.dxf",
- "dxf_sha256": "bdc17eb769ac34dfc462ffc7b92deedb8d00713f67acf0bc0851c2fbb4c8624f",
- "snapshot_sha256": "7f20610129171b50b3fb9c9baec87028938acac79401a31ddeb6ad241b93060e",
- "model_sha256": "aee8160a242a00be1c4259e711d8ef5fb5805ad3750485beee947aa44eb62407",
+ "dxf_sha256": "10c8be63a4f4b83830529560aed5e60595903b6f4c3a7b6f78a70d0e0dc9dd87",
+ "snapshot_sha256": "a4ab0c7e7baf2ea4f976b7867fae43b747b16f2b0dab1145133aa296f6822063",
+ "model_sha256": "a831dec89084195338e78bef19bf014cd71421c9138e5ba0471479a5f6d6ed27",
  "units": "international feet ($INSUNITS=2); model space 1:1",
  "station_reference": {
   "FFBW End Bent 1": 1593.22
@@ -55,24 +55,32 @@
   },
   {
    "number": "B4-6",
-   "title": "PIER DETAILS",
-   "layout": "B4-6 PIER DETAILS",
+   "title": "PIER DETAILS (1 OF 2)",
+   "layout": "B4-6 PIER DETAILS (1 OF 2)",
    "scales": [
     "3/4\" = 1'-0\""
    ]
   },
   {
    "number": "B4-7",
+   "title": "PIER DETAILS (2 OF 2)",
+   "layout": "B4-7 PIER DETAILS (2 OF 2)",
+   "scales": [
+    "3/4\" = 1'-0\""
+   ]
+  },
+  {
+   "number": "B4-8",
    "title": "END BENT 2",
-   "layout": "B4-7 END BENT 2",
+   "layout": "B4-8 END BENT 2",
    "scales": [
     "3/8\" = 1'-0\""
    ]
   },
   {
-   "number": "B4-8",
+   "number": "B4-9",
    "title": "END BENT 2 DETAILS (1 OF 3)",
-   "layout": "B4-8 END BENT 2 DETAILS (1 OF 3)",
+   "layout": "B4-9 END BENT 2 DETAILS (1 OF 3)",
    "scales": [
     "3/4\" = 1'-0\"",
     "1\" = 1'-0\"",
@@ -80,26 +88,26 @@
    ]
   },
   {
-   "number": "B4-9",
+   "number": "B4-10",
    "title": "END BENT 2 DETAILS (2 OF 3)",
-   "layout": "B4-9 END BENT 2 DETAILS (2 OF 3)",
+   "layout": "B4-10 END BENT 2 DETAILS (2 OF 3)",
    "scales": [
     "3/8\" = 1'-0\"",
     "3/4\" = 1'-0\""
    ]
   },
   {
-   "number": "B4-10",
+   "number": "B4-11",
    "title": "END BENT 2 DETAILS (3 OF 3)",
-   "layout": "B4-10 END BENT 2 DETAILS (3 OF 3)",
+   "layout": "B4-11 END BENT 2 DETAILS (3 OF 3)",
    "scales": [
     "3/4\" = 1'-0\""
    ]
   },
   {
-   "number": "B4-11",
+   "number": "B4-12",
    "title": "REINFORCING BAR LIST",
-   "layout": "B4-11 REINFORCING BAR LIST",
+   "layout": "B4-12 REINFORCING BAR LIST",
    "scales": [
     "3/4\" = 1'-0\""
    ]
@@ -108,22 +116,22 @@
  "levels_used": {
   "BaseLineSurveyPGL": 6,
   "BearingPadMisc": 181,
-  "CL_Major": 29,
-  "CL_Minor": 60,
+  "CL_Major": 26,
+  "CL_Minor": 57,
   "Dimension": 613,
-  "Leader": 720,
+  "Leader": 708,
   "Patterning": 1008,
   "PileConc": 48,
   "PileConc_h": 160,
-  "PileSteel": 35,
+  "PileSteel": 37,
   "PileSteel_h": 175,
-  "Rebar": 2007,
+  "Rebar": 1983,
   "Rebar2": 102,
-  "SubStrConc": 320,
-  "SubStrConc2": 357,
+  "SubStrConc": 327,
+  "SubStrConc2": 358,
   "SubStrConc2_h": 28,
-  "SubStrConc_h": 172,
-  "Symbols": 137,
+  "SubStrConc_h": 175,
+  "Symbols": 143,
   "TextStructures": 431,
   "WallConc": 16,
   "WallMSEPanel": 2
@@ -141,7 +149,7 @@
   "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
  },
  "symbology_audit": {
-  "entities": 11881,
+  "entities": 11919,
   "not_on_fdot_level": [],
   "not_by_level": [],
   "documented_overrides": {
@@ -624,37 +632,59 @@
   },
   {
    "check": "Backwall top at cap end END BENT 1",
-   "model": 47.1918,
-   "reference": 47.13183333333333,
-   "difference": 0.06,
+   "model": 47.111,
+   "reference": 47.111000000000004,
+   "difference": -0.0,
    "tolerance": 0.001,
-   "status": "DIFFERS"
+   "status": "PASS"
   },
   {
    "check": "Backwall top at PGL END BENT 1",
-   "model": 47.3277,
-   "reference": 47.327666666666666,
-   "difference": 0.0,
+   "model": 47.3068,
+   "reference": 47.30683333333334,
+   "difference": -0.0,
    "tolerance": 0.001,
    "status": "PASS"
   },
   {
    "check": "Backwall top at cap end END BENT 2",
-   "model": 47.1438,
-   "reference": 47.14383333333333,
+   "model": 47.123,
+   "reference": 47.123000000000005,
    "difference": -0.0,
    "tolerance": 0.001,
    "status": "PASS"
   },
   {
    "check": "Backwall top at PGL END BENT 2",
-   "model": 47.3397,
-   "reference": 47.339666666666666,
-   "difference": 0.0,
+   "model": 47.3188,
+   "reference": 47.31883333333334,
+   "difference": -0.0,
    "tolerance": 0.001,
    "status": "PASS"
   }
  ],
  "layout_warnings": [],
- "annotation_overlaps": []
+ "annotation_overlaps": [],
+ "anno_rules_checked": [
+  "A1",
+  "A2",
+  "A10",
+  "A11",
+  "A12",
+  "A13",
+  "A14",
+  "B9",
+  "D3",
+  "D12",
+  "E5"
+ ],
+ "strap_loads": {
+  "source": "end_bent_walls.model.evaluate on project_current/cap_design/backwall/selected_case.json",
+  "case_sha256": "ac075073306e06f252404d0c26e73b975cad2ee18373e011ef0946ae1c20d0e1",
+  "case_name": "End Bent 1 backwall, cheek walls and tie-back straps (common end-bent design, D-004)",
+  "service_kip_ft": 3.094,
+  "factored_kip_ft": 3.746,
+  "governing": "Strength I",
+  "note": "Tie-back load per foot of backwall, perpendicular to the backwall (SDM 12.3.F plan note)."
+ }
 }
