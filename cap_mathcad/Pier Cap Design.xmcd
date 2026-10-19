@@ -5,7 +5,7 @@
 <generator>Mathcad Professional 14.1</generator>
 <userData>
 <title>Pier Cap Cap Design (distilled)</title>
-<description>Written by scripts/build_cap_mathcad.py from Pier Cap Design 10-17.html (case c1966ae092fc)</description>
+<description>Written by scripts/build_cap_mathcad.py from Pier Cap Design 10-19.html (case 868e96bca964)</description>
 <author>D2MPDB</author>
 <company/>
 <keywords/>
@@ -13,8 +13,8 @@
 </userData>
 <identityInfo>
 <revision>1</revision>
-<documentID>00000000-0000-4000-8000-C1966AE092FC</documentID>
-<versionID>00000000-0000-4000-8000-C1966AE092FD</versionID>
+<documentID>00000000-0000-4000-8000-868E96BCA964</documentID>
+<versionID>00000000-0000-4000-8000-868E96BCA965</versionID>
 <parentVersionID>00000000-0000-0000-0000-000000000000</parentVersionID>
 <branchID>00000000-0000-0000-0000-000000000000</branchID>
 </identityInfo>
@@ -93,7 +93,7 @@
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Normal" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Project: D2 I-95 Pedestrian Bridge.</p></text>
 </region>
 <region region-id="3" left="18.00" top="75.00" width="572.00" height="43.00" align-x="18.00" align-y="85.00" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
-<text use-page-width="false" push-down="false" lock-width="true"><p style="Normal" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Distilled from Pier Cap Design 10-17.html (generated 2026-10-17T18:16:57+00:00); same case (canonical SHA-256 c1966ae092fc) and C005 formula set (327838126d06) as the report; FBMP Pier_Fixed.XML (c8420fadbeba); cap notebook package cfb3565da8c3.</p></text>
+<text use-page-width="false" push-down="false" lock-width="true"><p style="Normal" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Distilled from Pier Cap Design 10-19.html (generated 2026-10-19T14:36:18+00:00); same case (canonical SHA-256 868e96bca964) and C005 formula set (327838126d06) as the report; FBMP Pier_Fixed.XML (bb73e6ada6cf); cap notebook package cfb3565da8c3.</p></text>
 </region>
 <region region-id="4" left="18.00" top="124.00" width="572.00" height="30.00" align-x="18.00" align-y="134.00" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Normal" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Codes: AASHTO LRFD Bridge Design Specifications, 10th edition (2024); FDOT Structures Design Guidelines, January 2026, 4.1.4A–C; inherited C005 sectional relations.</p></text>
@@ -207,37 +207,37 @@
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Heading 2" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Actions (C005 inputs from the analysis envelope)</p></text>
 </region>
 <region region-id="41" left="18.00" top="619.00" width="136.64" height="17.00" align-x="18.00" align-y="630.00" show-border="false" show-highlight="true" is-protected="true" z-order="0" background-color="#ffff80" tag="">
-<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="N">Mu</ml:id><ml:apply><ml:mult/><ml:real>26.72</ml:real><ml:apply><ml:mult/><ml:id xml:space="preserve">kip</ml:id><ml:id xml:space="preserve">ft</ml:id></ml:apply></ml:apply></ml:define></math>
+<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="N">Mu</ml:id><ml:apply><ml:mult/><ml:real>39.12</ml:real><ml:apply><ml:mult/><ml:id xml:space="preserve">kip</ml:id><ml:id xml:space="preserve">ft</ml:id></ml:apply></ml:apply></ml:define></math>
 </region>
 <region region-id="42" left="160.64" top="621.00" width="139.36" height="15.00" align-x="160.64" align-y="629.00" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Note" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Strength moment, N</p></text>
 </region>
 <region region-id="43" left="304.00" top="619.00" width="136.64" height="17.00" align-x="304.00" align-y="630.00" show-border="false" show-highlight="true" is-protected="true" z-order="0" background-color="#ffff80" tag="">
-<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="N">MI</ml:id><ml:apply><ml:mult/><ml:real>21.75</ml:real><ml:apply><ml:mult/><ml:id xml:space="preserve">kip</ml:id><ml:id xml:space="preserve">ft</ml:id></ml:apply></ml:apply></ml:define></math>
+<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="N">MI</ml:id><ml:apply><ml:mult/><ml:real>21.91</ml:real><ml:apply><ml:mult/><ml:id xml:space="preserve">kip</ml:id><ml:id xml:space="preserve">ft</ml:id></ml:apply></ml:apply></ml:define></math>
 </region>
 <region region-id="44" left="446.64" top="621.00" width="139.36" height="15.00" align-x="446.64" align-y="629.00" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Note" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Service I moment, N</p></text>
 </region>
-<region region-id="45" left="18.00" top="640.00" width="136.64" height="17.00" align-x="18.00" align-y="651.00" show-border="false" show-highlight="true" is-protected="true" z-order="0" background-color="#ffff80" tag="">
-<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="P">Mu</ml:id><ml:apply><ml:mult/><ml:real>159.4</ml:real><ml:apply><ml:mult/><ml:id xml:space="preserve">kip</ml:id><ml:id xml:space="preserve">ft</ml:id></ml:apply></ml:apply></ml:define></math>
+<region region-id="45" left="18.00" top="640.00" width="142.79" height="17.00" align-x="18.00" align-y="651.00" show-border="false" show-highlight="true" is-protected="true" z-order="0" background-color="#ffff80" tag="">
+<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="P">Mu</ml:id><ml:apply><ml:mult/><ml:real>158.98</ml:real><ml:apply><ml:mult/><ml:id xml:space="preserve">kip</ml:id><ml:id xml:space="preserve">ft</ml:id></ml:apply></ml:apply></ml:define></math>
 </region>
-<region region-id="46" left="160.64" top="642.00" width="139.36" height="15.00" align-x="160.64" align-y="650.00" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
+<region region-id="46" left="166.79" top="642.00" width="133.21" height="15.00" align-x="166.79" align-y="650.00" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Note" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Strength moment, P</p></text>
 </region>
 <region region-id="47" left="304.00" top="640.00" width="142.79" height="17.00" align-x="304.00" align-y="651.00" show-border="false" show-highlight="true" is-protected="true" z-order="0" background-color="#ffff80" tag="">
-<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="P">MI</ml:id><ml:apply><ml:mult/><ml:real>126.44</ml:real><ml:apply><ml:mult/><ml:id xml:space="preserve">kip</ml:id><ml:id xml:space="preserve">ft</ml:id></ml:apply></ml:apply></ml:define></math>
+<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="P">MI</ml:id><ml:apply><ml:mult/><ml:real>121.97</ml:real><ml:apply><ml:mult/><ml:id xml:space="preserve">kip</ml:id><ml:id xml:space="preserve">ft</ml:id></ml:apply></ml:apply></ml:define></math>
 </region>
 <region region-id="48" left="452.79" top="642.00" width="133.21" height="15.00" align-x="452.79" align-y="650.00" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Note" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Service I moment, P</p></text>
 </region>
 <region region-id="49" left="18.00" top="661.00" width="142.79" height="17.00" align-x="18.00" align-y="672.00" show-border="false" show-highlight="true" is-protected="true" z-order="0" background-color="#ffff80" tag="">
-<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="B">Mu</ml:id><ml:apply><ml:mult/><ml:real>366.16</ml:real><ml:apply><ml:mult/><ml:id xml:space="preserve">kip</ml:id><ml:id xml:space="preserve">ft</ml:id></ml:apply></ml:apply></ml:define></math>
+<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="B">Mu</ml:id><ml:apply><ml:mult/><ml:real>365.84</ml:real><ml:apply><ml:mult/><ml:id xml:space="preserve">kip</ml:id><ml:id xml:space="preserve">ft</ml:id></ml:apply></ml:apply></ml:define></math>
 </region>
 <region region-id="50" left="166.79" top="663.00" width="133.21" height="15.00" align-x="166.79" align-y="671.00" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Note" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Strength moment, B</p></text>
 </region>
 <region region-id="51" left="304.00" top="661.00" width="142.79" height="17.00" align-x="304.00" align-y="672.00" show-border="false" show-highlight="true" is-protected="true" z-order="0" background-color="#ffff80" tag="">
-<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="B">MI</ml:id><ml:apply><ml:mult/><ml:real>315.67</ml:real><ml:apply><ml:mult/><ml:id xml:space="preserve">kip</ml:id><ml:id xml:space="preserve">ft</ml:id></ml:apply></ml:apply></ml:define></math>
+<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="B">MI</ml:id><ml:apply><ml:mult/><ml:real>312.22</ml:real><ml:apply><ml:mult/><ml:id xml:space="preserve">kip</ml:id><ml:id xml:space="preserve">ft</ml:id></ml:apply></ml:apply></ml:define></math>
 </region>
 <region region-id="52" left="452.79" top="663.00" width="133.21" height="15.00" align-x="452.79" align-y="671.00" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Note" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">Service I moment, B</p></text>
@@ -821,20 +821,20 @@
 <region region-id="245" left="464.29" top="4237.36" width="125.71" height="26.00" align-x="464.29" align-y="4245.36" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Note" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">station from the left cap end</p></text>
 </region>
-<region region-id="246" left="18.00" top="4269.36" width="529.61" height="23.00" align-x="18.00" align-y="4284.36" show-border="false" show-highlight="true" is-protected="true" z-order="0" background-color="#ffff80" tag="">
-<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="st">M</ml:id><ml:apply><ml:mult/><ml:apply><ml:mult/><ml:apply><ml:transpose/><ml:matrix rows="1" cols="5"><ml:real>163.2046675</ml:real><ml:apply><ml:neg/><ml:real>18.42788146</ml:real></ml:apply><ml:real>159.3988958</ml:real><ml:real>276.6664054</ml:real><ml:real>149.0381449</ml:real></ml:matrix></ml:apply><ml:id xml:space="preserve">kip</ml:id></ml:apply><ml:id xml:space="preserve">ft</ml:id></ml:apply></ml:define></math>
+<region region-id="246" left="18.00" top="4269.36" width="523.45" height="23.00" align-x="18.00" align-y="4284.36" show-border="false" show-highlight="true" is-protected="true" z-order="0" background-color="#ffff80" tag="">
+<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="st">M</ml:id><ml:apply><ml:mult/><ml:apply><ml:mult/><ml:apply><ml:transpose/><ml:matrix rows="1" cols="5"><ml:real>163.3049078</ml:real><ml:apply><ml:neg/><ml:real>18.32788146</ml:real></ml:apply><ml:real>158.9705625</ml:real><ml:real>276.2977699</ml:real><ml:real>148.903851</ml:real></ml:matrix></ml:apply><ml:id xml:space="preserve">kip</ml:id></ml:apply><ml:id xml:space="preserve">ft</ml:id></ml:apply></ml:define></math>
 </region>
 <region region-id="247" left="42.00" top="4293.36" width="548.00" height="15.00" align-x="42.00" align-y="4301.36" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Note" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">moment, signed (negative: top in tension)</p></text>
 </region>
 <region region-id="248" left="18.00" top="4314.36" width="467.07" height="23.00" align-x="18.00" align-y="4329.36" show-border="false" show-highlight="true" is-protected="true" z-order="0" background-color="#ffff80" tag="">
-<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="st">V</ml:id><ml:apply><ml:mult/><ml:apply><ml:transpose/><ml:matrix rows="1" cols="5"><ml:real>217.0424024</ml:real><ml:real>218.9123151</ml:real><ml:real>216.98</ml:real><ml:real>215.7638015</ml:real><ml:real>122.1350898</ml:real></ml:matrix></ml:apply><ml:id xml:space="preserve">kip</ml:id></ml:apply></ml:define></math>
+<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="st">V</ml:id><ml:apply><ml:mult/><ml:apply><ml:transpose/><ml:matrix rows="1" cols="5"><ml:real>217.0236025</ml:real><ml:real>218.9023151</ml:real><ml:real>217.09</ml:real><ml:real>215.8638015</ml:real><ml:real>122.0259142</ml:real></ml:matrix></ml:apply><ml:id xml:space="preserve">kip</ml:id></ml:apply></ml:define></math>
 </region>
 <region region-id="249" left="42.00" top="4338.36" width="548.00" height="15.00" align-x="42.00" align-y="4346.36" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Note" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">shear</p></text>
 </region>
 <region region-id="250" left="18.00" top="4359.36" width="361.77" height="23.00" align-x="18.00" align-y="4374.36" show-border="false" show-highlight="true" is-protected="true" z-order="0" background-color="#ffff80" tag="">
-<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="st">N</ml:id><ml:apply><ml:mult/><ml:apply><ml:transpose/><ml:matrix rows="1" cols="5"><ml:apply><ml:neg/><ml:real>10.07</ml:real></ml:apply><ml:apply><ml:neg/><ml:real>10.07</ml:real></ml:apply><ml:apply><ml:neg/><ml:real>10.07</ml:real></ml:apply><ml:apply><ml:neg/><ml:real>10.07</ml:real></ml:apply><ml:apply><ml:neg/><ml:real>10.07</ml:real></ml:apply></ml:matrix></ml:apply><ml:id xml:space="preserve">kip</ml:id></ml:apply></ml:define></math>
+<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="st">N</ml:id><ml:apply><ml:mult/><ml:apply><ml:transpose/><ml:matrix rows="1" cols="5"><ml:apply><ml:neg/><ml:real>10.05</ml:real></ml:apply><ml:apply><ml:neg/><ml:real>10.05</ml:real></ml:apply><ml:apply><ml:neg/><ml:real>10.05</ml:real></ml:apply><ml:apply><ml:neg/><ml:real>10.05</ml:real></ml:apply><ml:apply><ml:neg/><ml:real>10.05</ml:real></ml:apply></ml:matrix></ml:apply><ml:id xml:space="preserve">kip</ml:id></ml:apply></ml:define></math>
 </region>
 <region region-id="251" left="389.77" top="4361.36" width="200.23" height="15.00" align-x="389.77" align-y="4369.36" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Note" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">axial force (positive: tension)</p></text>
@@ -879,7 +879,7 @@
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Note" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">hoop steel in the window d_v cot θ</p></text>
 </region>
 <region region-id="265" left="18.00" top="4608.96" width="491.70" height="23.00" align-x="18.00" align-y="4623.96" show-border="false" show-highlight="true" is-protected="true" z-order="0" background-color="#ffff80" tag="">
-<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="wg">L</ml:id><ml:apply><ml:mult/><ml:apply><ml:transpose/><ml:matrix rows="1" cols="5"><ml:real>39.86490788</ml:real><ml:real>34.34844352</ml:real><ml:real>39.86865879</ml:real><ml:real>39.94185018</ml:real><ml:real>45.80458439</ml:real></ml:matrix></ml:apply><ml:id xml:space="preserve">in</ml:id></ml:apply></ml:define></math>
+<math optimize="false" disable-calc="false"><ml:define xmlns:ml="http://schemas.mathsoft.com/math30"><ml:id xml:space="preserve" subscript="wg">L</ml:id><ml:apply><ml:mult/><ml:apply><ml:transpose/><ml:matrix rows="1" cols="5"><ml:real>39.86573733</ml:real><ml:real>34.34881071</ml:real><ml:real>39.86174666</ml:real><ml:real>39.93552465</ml:real><ml:real>45.81237996</ml:real></ml:matrix></ml:apply><ml:id xml:space="preserve">in</ml:id></ml:apply></ml:define></math>
 </region>
 <region region-id="266" left="42.00" top="4632.96" width="548.00" height="15.00" align-x="42.00" align-y="4640.96" show-border="false" show-highlight="false" is-protected="true" z-order="0" background-color="inherit" tag="">
 <text use-page-width="false" push-down="false" lock-width="true"><p style="Note" margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit">that window inside the cap</p></text>
