@@ -1,0 +1,26 @@
+{
+  "task": "T017",
+  "base_sha256": "855e2cecf27db3de141d037a33dfce060014cc00b6f4c180326172b0e4acf1db",
+  "components": {
+    "report:PedBridge": {
+      "file": "000.xml",
+      "sha256": "dc13b5d034e21169a019e07a50d7b476bc76657f53eaba632d529384c2f5d9d2"
+    },
+    "report:BridgeGeometry_2Beam": {
+      "file": "001.xml",
+      "sha256": "00585a51ee8932abd00f54a78cc4bfdd88a7888180ad5d58519a34ef8a348960"
+    },
+    "report:FoundationModeling": {
+      "file": "002.xml",
+      "sha256": "d7fe6c05059cb23ce950d5976378a840c312bb9db9c41ddfe579bde7f26a27c6"
+    },
+    "report:DecisionLog": {
+      "file": "003.xml",
+      "sha256": "386147a6f935099ae1d2f6769b3c8abfe341c2f7f680d5c9f726a49e7f30bf0c"
+    },
+    "report:EndBentBackwallDesign": {
+      "file": "004.xml",
+      "sha256": "a98be68890f698a2f1a1b1a2cc6d35450f31d0d4f67b3a0d806aa42d2512b847"
+    }
+  }
+}

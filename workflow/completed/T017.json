@@ -1,0 +1,29 @@
+{
+  "task": "T017",
+  "journal_sha256": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50",
+  "previous_sha256": "855e2cecf27db3de141d037a33dfce060014cc00b6f4c180326172b0e4acf1db",
+  "promoted": "2026-10-19T22:07:42.332919+00:00",
+  "review": {
+    "candidate_sha256": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50",
+    "reviewer": "Josh (repository owner), executed through the Claude Code side session of 19 October 2026 on the user's instruction relayed by the journal-coherence session (bring the end-bent backwall calculation up to the current sources and add its Blockpad edition to the project journal); native Blockpad reviews not performed",
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false,
+    "design_outcome": "unreviewed",
+    "external_analysis_disposition": "FB-MultiPier was not re-run. The bearing actions in EndBentBackwallDesign are the D-049 fixed-run End Bent 1 export (End Bent 1_Fixed.XML c1a4afa1…), read by the backwall notebook and written as literals; they equal the 16 October values, and End Bent 2_Fixed.XML (3543df29…) reads the same bearing actions. The geometry the report measures (backwall tops, volumes, cheek centroid) is the saved D-055 FreeCAD model read natively by scripts/measure_backwall_cad.py (no FreeCAD document opened or saved) and agrees with the D-053 record. Currency of the FBMP models against the current loads and the common end-bent envelope is not asserted; it is the pending analysis prerequisite listed in Section 12 of the report (COH-013/COH-028).",
+    "external_analysis_status": "unreviewed",
+    "inherited_issues_disposition": "No inherited structural issues or stored errors (0 before, 0 after); no new ones. Recorded and left open: the six pending prerequisites of the backwall notebook (settlement, strap elevation, exposure, shrinkage, analysis confirmation, cheek anchorage); the bearing spacing literal 102.99 in against the journal beam spacing of 103 in (reported in end_bent_walls/bpad/journal/coherence.json); the stale caches left by T014 in the wind chain, BearingDesign, PierWallFins, the FBMP wind rows and the quantity sheets (native recalculation); the pipe-pile grade and corrosion allowance. The new report's stored results come from the generator's evaluator, not from Blockpad; recalculate after opening.",
+    "evidence_files": [
+      {
+        "path": "independent-checks.json",
+        "sha256": "0000cd39a84a4dd53cc154fbb51c1d3ead60389b6ffcd521c81c612e5defb966"
+      }
+    ]
+  },
+  "promotion_policy": {
+    "reviews_required": false,
+    "effective_date": "2026-10-16",
+    "basis": "User instructed that BPAD changes may proceed without mandatory native recalculation, appearance review or engineering review, until the user reinstates those requirements. Scope, dependency, exact-byte, reference-integrity and evidence checks remain mandatory."
+  },
+  "history": "workflow/history/d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50"
+}

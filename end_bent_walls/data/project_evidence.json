@@ -1,11 +1,11 @@
 {
-  "date": "2026-10-16",
-  "scope": "Notebook update from registered project sources and current journal; no journal or CAD mutation and no engineering acceptance of pending prerequisites.",
+  "date": "2026-10-19",
+  "scope": "Notebook update from the registered 19 October 2026 project sources (D-049 export, D-051 case, D-053/D-055 CAD model, T016 journal); no journal or CAD mutation and no engineering acceptance of pending prerequisites.",
   "confirmations": {
     "geometry": {
       "confirmed": true,
-      "note": "D-026/D-033 adopt the modeled wall geometry. Native saved-solid measurements verify 235 in cap/backwall, 251 in overall width, revised crowns, edges and lugged cheek volumes. This confirms calculation geometry only; COH-023 connection/detail review remains open.",
-      "date": "2026-10-16",
+      "note": "D-036/D-053 (notebook build e9b41b8eaf) and D-055 adopt the modeled wall geometry. Native saved-solid measurements of the D-055 model verify 235 in cap/backwall, 251 in overall width, the two planar 2% backwall tops 4.25 in below the deck-top line (crown 4.0691 ft, edges 3.8733 ft above the cap top), the backwall volume and the lugged cheek volumes. This confirms calculation geometry only; COH-023 connection/detail review remains open.",
+      "date": "2026-10-19",
       "inputs": {
         "L_cap": 235.0,
         "L_bw": 235.0,
@@ -13,15 +13,15 @@
         "b_cap": 42.0,
         "h_cap": 36.0,
         "t_bw": 12.0,
-        "H_bw": 4.089974522637,
-        "H_bw_edge": 3.8941411893036744,
+        "H_bw": 4.069141189303664,
+        "H_bw_edge": 3.873307767781874,
         "t_ck": 8.0,
         "w_ck": 42.0,
         "H_ck": 5.031352523880976,
         "V_cap": 196.6250000000004,
-        "V_bw": 78.17779967941874,
+        "V_bw": 77.76981184128364,
         "V_ck": 42.982400997403786,
-        "dx_ck": -2.182752659952977
+        "dx_ck": -2.182752662611373
       }
     },
     "wind_kz": {
@@ -39,10 +39,10 @@
     },
     "landing": {
       "confirmed": true,
-      "note": "D-017 confirms 4 in slab bearing and 50% gravity share. D-034 verifies slab volumes A 111.481111676 and B 88.556269251 ft3. Use maximum volume / (4/12 ft) / (235/12 ft) as equivalent tributary length. Irregular plan extent is not a rectangular span; no stabilizing slab credit.",
-      "date": "2026-10-16",
+      "note": "D-017 confirms 4 in slab bearing and 50% gravity share. D-053 verifies slab volumes A 111.987035 and B 89.038401 ft3 (the landings thicken locally to the lowered backwall tops; walking faces preserved). Use maximum volume / (4/12 ft) / (235/12 ft) as equivalent tributary length. Irregular plan extent is not a rectangular span; no stabilizing slab credit.",
+      "date": "2026-10-19",
       "inputs": {
-        "L_slab": 17.07795753331303,
+        "L_slab": 17.155460752596376,
         "t_slab": 4.0,
         "L_bw": 235.0,
         "share_slab": 0.5
@@ -51,43 +51,43 @@
     "settlement": {
       "confirmed": false,
       "note": "D-014 retains the required geotechnical confirmation of no more than 2 in settlement above cap bottom; no confirming report was found.",
-      "date": "2026-10-16",
+      "date": "2026-10-19",
       "inputs": {}
     },
     "strap_level": {
       "confirmed": false,
       "note": "D-019 sets a trial elevation of 1.5 ft above cap; no vendor reinforcement-level acceptance was found. Current journal MSEWallExclusion explicitly excludes elevation routing, side reinforcement and connection/development.",
-      "date": "2026-10-16",
+      "date": "2026-10-19",
       "inputs": {}
     },
     "exposure": {
       "confirmed": false,
       "note": "Materials module confirms concrete classes, but does not establish the environmental aggressivity classification for these covers. Existing code/exposure review remains open.",
-      "date": "2026-10-16",
+      "date": "2026-10-19",
       "inputs": {}
     },
     "shrinkage": {
       "confirmed": false,
       "note": "BridgeMovement explicitly covers thermal movement only. MCAD-S1/2 companion data are missing; no verified post-seating shrinkage strain was found. The 7.3e-5 template input remains provisional.",
-      "date": "2026-10-16",
+      "date": "2026-10-19",
       "inputs": {}
     },
     "analysis": {
       "confirmed": false,
-      "note": "Current EB-CASE requires raw XML 23bb3afc..., while available EB-XML is 8414fbed... and contains a 3 kip DC load at pile-head node 4. EB2 matching XML is missing. Retained bearing actions are provisional; common EB1 design is not proven to bound EB2.",
-      "date": "2026-10-16",
+      "note": "D-049/D-051: the registered End Bent 1 export (c1a4afa1...) is the analysis the selected cap case records, and the End Bent 2 export (3543df29...) reads the same bearing actions (DC 92.07, PL 28.98 kip per bearing; WS1/WS2/WS3 unchanged); both carry a 3 kip DC load at pile-head node 4. The bearing actions used here are therefore current to the 19 October exports. The prerequisite stays pending until the user confirms the common end-bent envelope and the FBMP model currency (COH-013/COH-028); not closed by this update.",
+      "date": "2026-10-19",
       "inputs": {}
     },
     "cheek_connection": {
       "confirmed": false,
-      "note": "D-026/D-033 adopt geometry, not anchorage/load-path acceptance. Centered bars in CAD have no designed dowel embedment. Lug WWR, bar development, cap interaction and strap interfaces remain COH-023; numerical interface capacity assumes developed bars.",
-      "date": "2026-10-16",
+      "note": "D-036/D-053/D-055 adopt geometry, not anchorage/load-path acceptance. The CAD cheek mats follow the 10 in spacing (D-039) with standard hooks where cover allows (D-046); development, lug WWR, cap interaction and strap interfaces remain COH-023; numerical interface capacity assumes developed bars.",
+      "date": "2026-10-19",
       "inputs": {}
     }
   },
   "native_geometry": {
-    "source_sha256": "517d08ddd6c0b01c0bb279919d3648835a8a77cbc7727a42ba4312013b701a20",
-    "method": "Native saved BReps read with OpenCascade, transformed to BridgePGL.Frame. No document open, recompute or save.",
+    "source_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df",
+    "method": "Native saved BReps read with OpenCascade (FreeCAD 1.1 Python, scripts/measure_backwall_cad.py), transformed to BridgePGL.Frame. No document open, recompute or save. NetVolume properties read from Document.xml.",
     "objects": {
       "BridgeCapEB1": {
         "bounds_ft": [
@@ -129,69 +129,59 @@
       },
       "BridgeBackwallEB1": {
         "bounds_ft": [
-          -11.31821586512211,
-          7.543461569101494e-15,
-          -9.875020637762661,
-          9.875233574057694,
-          40.990782509853275,
-          47.32766666666666
+          -1.0000000000000075,
+          7.646260411066695e-15,
+          -9.791666666666666,
+          9.791666666666668,
+          43.23769223221813,
+          47.30683333333332
         ],
         "centroid_ft": [
-          -0.4997405364706108,
-          -0.0012328639175828075,
-          45.23622786639466
+          -0.49999999999999983,
+          5.17183544302091e-16,
+          45.223706830528684
         ],
-        "volume_ft3": 78.29469258168693,
+        "volume_ft3": 77.76981184128364,
         "valid": true,
         "shape_file": "BridgeBackwallEB1.Shape.brp",
         "top_vertices_ft": [
           [
-            4.475859752819529e-15,
-            -9.791666666666666,
-            47.19183333333333
+            -0.9999999999999923,
+            9.791666666666668,
+            47.111
           ],
           [
-            4.475859752819529e-15,
+            7.646260411066695e-15,
             9.791666666666666,
-            47.19183333333333
+            47.111
           ],
           [
-            4.475859752819529e-15,
-            9.791666666666666,
-            43.23769223221813
+            -1.0,
+            7.771561172376095e-16,
+            47.30683333333332
           ],
           [
-            3.729883127349607e-15,
+            0.0,
+            0.0,
+            47.30683333333332
+          ],
+          [
+            -1.0000000000000075,
+            -9.791666666666664,
+            47.111
+          ],
+          [
+            -7.646260411066695e-15,
             -9.791666666666666,
-            43.23769223221813
-          ],
-          [
-            -0.9999999999999953,
-            -9.791666666666666,
-            47.18605408839913
-          ],
-          [
-            -0.9999999999999953,
-            9.791666666666679,
-            47.18173762250235
-          ],
-          [
-            -0.9999999999999987,
-            9.791666666666655,
-            43.237692232218144
-          ],
-          [
-            -0.9999999999999927,
-            -9.79166666666668,
-            43.237692232218144
+            47.111
           ]
         ],
         "sampled_top_range_ft": [
-          47.18173762250235,
-          47.326832916754476
+          47.111,
+          47.30683333333332
         ],
-        "edge_top_min_ft": 47.18173762250235,
-        "net_volume_ft3": 78.29469258168699
+        "edge_top_min_ft": 47.111,
+        "net_volume_ft3": 77.76981184128364
       },
       "BridgeCheekEB11": {
         "bounds_ft": [
@@ -238,54 +228,54 @@
           -9.791666666666618,
           9.791666666666714,
           43.24969214402966,
-          47.33966666666666
+          47.31883333333332
         ],
         "centroid_ft": [
           212.74999999999997,
-          4.775463513059337e-14,
-          45.24612135318798
+          4.746702048914688e-14,
+          45.235706786425524
         ],
-        "volume_ft3": 78.1777996794193,
+        "volume_ft3": 77.76981356830815,
         "valid": true,
         "shape_file": "BridgeBackwallEB2.Shape.brp",
         "top_vertices_ft": [
           [
             212.25,
             9.791666666666714,
-            47.14383333333333
+            47.123
           ],
           [
             213.25,
             9.791666666666714,
-            47.14383333333333
+            47.123
           ],
           [
             212.25,
             4.7128967395337895e-14,
-            47.33966666666666
+            47.31883333333332
           ],
           [
             213.25,
             4.7351012000262926e-14,
-            47.33966666666666
+            47.31883333333332
           ],
           [
             212.25,
             -9.791666666666618,
-            47.14383333333333
+            47.123
           ],
           [
             213.25,
             -9.791666666666618,
-            47.14383333333333
+            47.123
           ]
         ],
         "sampled_top_range_ft": [
-          47.14383333333333,
-          47.338833333333326
+          47.123,
+          47.31883333333332
         ],
-        "edge_top_min_ft": 47.14383333333333,
-        "net_volume_ft3": 78.17779967941874
+        "edge_top_min_ft": 47.123,
+        "net_volume_ft3": 77.76981356830761
       },
       "BridgeCheekEB21": {
         "bounds_ft": [
@@ -328,21 +318,21 @@
       "A_BridgeLandingAtReturns": {
         "bounds_ft": [
           -17.568208116347595,
-          5.22183637828945e-15,
+          1.0989357994790708e-14,
           -10.833333333413206,
           10.833566907044972,
           46.826151252176984,
           47.660999999999994
         ],
         "centroid_ft": [
-          -8.766522252068393,
-          -0.011699259826447069,
-          47.22550100164134
+          -8.733340693476459,
+          -0.012268855588507214,
+          47.225275457327356
         ],
-        "volume_ft3": 110.59568615400968,
+        "volume_ft3": 111.05261668527386,
         "valid": true,
         "shape_file": "A_BridgeLandingAtReturns.Shape.brp",
-        "net_volume_ft3": 111.48111167579339
+        "net_volume_ft3": 111.98703546833744
       },
       "B_BridgeLandingAtReturns": {
         "bounds_ft": [
@@ -354,16 +344,61 @@
           48.25980287775539
         ],
         "centroid_ft": [
-          219.21212638802,
-          0.0004757177092036717,
-          47.247276178244874
+          219.18064015709504,
+          -0.0008250939827049715,
+          47.247040111157254
         ],
-        "volume_ft3": 88.16240631183685,
+        "volume_ft3": 88.59430599388416,
         "valid": true,
         "shape_file": "B_BridgeLandingAtReturns.Shape.brp",
-        "net_volume_ft3": 88.5562692507639
+        "net_volume_ft3": 89.03840085322877
       }
-    }
+    },
+    "per_bent": {
+      "cap_top_ft": {
+        "EB1": 43.23769223221812,
+        "EB2": 43.24969214402966
+      },
+      "H_bw_ft": {
+        "EB1": 4.0691411011152,
+        "EB2": 4.069141189303664
+      },
+      "H_bw_edge_ft": {
+        "EB1": 3.873307767781874,
+        "EB2": 3.8733078559703387
+      },
+      "H_ck_ft": {
+        "EB1": 5.031352523880976,
+        "EB2": 5.027350551686936
+      },
+      "V_ck_ft3": {
+        "EB1": 42.982400997403786,
+        "EB2": 42.92932787720362
+      },
+      "dx_ck_in": {
+        "EB1": -2.182752662611373,
+        "EB2": -2.182797713375294
+      },
+      "top_drop_in": {
+        "EB1": 4.25,
+        "EB2": 4.25
+      },
+      "backwall_top_elevations_ft": {
+        "EB1": [
+          47.111,
+          47.30683333333332
+        ],
+        "EB2": [
+          47.123,
+          47.31883333333332
+        ]
+      }
+    },
+    "landing_net_volume_ft3": {
+      "A_BridgeLandingAtReturns": 111.98703546833744,
+      "B_BridgeLandingAtReturns": 89.03840085322877
+    },
+    "L_slab_ft": 17.155460752596376
   },
   "cad_updates": {
     "L_cap": 235.0,
@@ -372,31 +407,31 @@
     "b_cap": 42.0,
     "h_cap": 36.0,
     "t_bw": 12.0,
-    "H_bw": 4.089974522637,
-    "H_bw_edge": 3.8941411893036744,
+    "H_bw": 4.069141189303664,
+    "H_bw_edge": 3.873307767781874,
     "t_ck": 8.0,
     "w_ck": 42.0,
     "H_ck": 5.031352523880976,
     "V_cap": 196.6250000000004,
-    "V_bw": 78.17779967941874,
+    "V_bw": 77.76981184128364,
     "V_ck": 42.982400997403786,
-    "dx_ck": -2.182752659952977,
+    "dx_ck": -2.182752662611373,
     "t_slab": 4.0
   },
   "journal": {
     "path": "journal/D2_I95_Project_Journal.bpad",
-    "sha256": "4b1770533d7b91cfb1efbcd96b0eb2c3a73328b90f88b2b50bca15388f07cd82",
-    "registered_sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351",
-    "status": "Current journal matches accepted T009. The source register still carries T006; preserved rather than silently refreshing its acceptance record.",
-    "accepted_receipt": "workflow/accepted.json (T009), exact SHA-256 match"
+    "sha256": "855e2cecf27db3de141d037a33dfce060014cc00b6f4c180326172b0e4acf1db",
+    "registered_sha256": "855e2cecf27db3de141d037a33dfce060014cc00b6f4c180326172b0e4acf1db",
+    "status": "Current journal is the registered T016 revision (D-056); the source register JOURNAL row matches.",
+    "accepted_receipt": "workflow/accepted.json (T016), exact SHA-256 match"
   },
   "current_analysis_sha256": {
-    "EB1": "23bb3afcb3627ba19c1e8660c05ceddfdc68e6815f23582cb84e2a5de0f16b04",
-    "EB2": "56f78267b769a237ca0d0abfdb78464f6839c3a09033d27230c06c0a384b6a47"
+    "EB1": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
+    "EB2": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e"
   },
   "current_cad_spacing": {
-    "vertical_max_in": 12,
-    "horizontal_max_in": 12.375,
-    "status": "COH-024 remains open. Notebook spacing is a proposed revision; CAD unchanged."
+    "vertical_max_in": 10,
+    "horizontal_max_in": 10,
+    "status": "CAD cheek mats follow the calculation spacing since D-039 (five vertical and eleven horizontal #4 per cheek); COH-023/024 remain open for anchorage and detailing."
   }
 }

@@ -1,0 +1,415 @@
+{
+  "candidate": "C:\\github\\D2MPDB\\generated\\T017-backwall-02\\candidate.bpad",
+  "candidate_sha256": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50",
+  "all_passed": true,
+  "checks": {
+    "component_list_is_base_plus_added_report": {
+      "passed": true,
+      "detail": {
+        "base_components": 278,
+        "candidate_components": 279,
+        "appended": [
+          "report:EndBentBackwallDesign"
+        ]
+      }
+    },
+    "candidate_differs_from_current_only_in_five_registered": {
+      "passed": true,
+      "detail": {
+        "differing": [
+          "report:BridgeGeometry_2Beam",
+          "report:DecisionLog",
+          "report:EndBentBackwallDesign",
+          "report:FoundationModeling",
+          "report:PedBridge"
+        ],
+        "shell_identical": true,
+        "current_matches_task_base": true
+      }
+    },
+    "report_changed_components_exactly_the_five": {
+      "passed": true,
+      "detail": {
+        "changed_components": [
+          "report:PedBridge",
+          "report:BridgeGeometry_2Beam",
+          "report:FoundationModeling",
+          "report:DecisionLog",
+          "report:EndBentBackwallDesign"
+        ],
+        "candidate_sha256": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50",
+        "detected_downstream_impact": [
+          "report:AccessGeometry",
+          "report:BearingDesign",
+          "report:BridgeMovement",
+          "report:C001WindLoadOnPedBridgeSuperstructure",
+          "report:CapDesignEndBentOne",
+          "report:CapDesignEndBentTwo",
+          "report:CapDesignPier",
+          "report:FBMPEndBent",
+          "report:FBMPPier",
+          "report:FenceWind",
+          "report:MSEWallExclusion",
+          "report:Notes",
+          "report:PedBridgeWind",
+          "report:PierWallFins",
+          "report:PileProperties",
+          "report:SuperstructureUplift",
+          "spreadsheet:PedBridgeWeights_2Beams",
+          "spreadsheet:QauntitiesBridge"
+        ]
+      }
+    },
+    "no_new_structural_issues_or_stored_errors": {
+      "passed": true,
+      "detail": {
+        "new_structural_issues": {},
+        "new_stored_errors": {},
+        "candidate_cached_errors": 0
+      }
+    },
+    "every_reference_of_the_new_report_resolves": {
+      "passed": true,
+      "detail": {
+        "references_checked": 233,
+        "owners": [
+          "BridgeGeometry_2Beam",
+          "EndBentBackwallDesign",
+          "Materials",
+          "ProjectInfo"
+        ],
+        "unresolved": [],
+        "foreign_names": [
+          "BridgeGeometry_2Beam.Backwall_thickness_shown",
+          "BridgeGeometry_2Beam.Bearing_pad_G",
+          "BridgeGeometry_2Beam.Bearing_pad_cover",
+          "BridgeGeometry_2Beam.Bearing_pad_internalLayers",
+          "BridgeGeometry_2Beam.Bearing_pad_internalThickness",
+          "BridgeGeometry_2Beam.Bearing_pad_length",
+          "BridgeGeometry_2Beam.Bearing_pad_thickness",
+          "BridgeGeometry_2Beam.Bearing_pad_width",
+          "BridgeGeometry_2Beam.EndBentCage_envelope",
+          "BridgeGeometry_2Beam.EndBentCap_depth",
+          "BridgeGeometry_2Beam.EndBentCap_length",
+          "BridgeGeometry_2Beam.EndBentCap_width",
+          "BridgeGeometry_2Beam.EndBentPedestal_ht",
+          "BridgeGeometry_2Beam.EndBentPedestal_width",
+          "BridgeGeometry_2Beam.EndBent_backwallDrop",
+          "BridgeGeometry_2Beam.EndBent_bearingOffset",
+          "BridgeGeometry_2Beam.EndBent_cheekThickness",
+          "BridgeGeometry_2Beam.EndBent_pileEmbed",
+          "BridgeGeometry_2Beam.EndBent_pileTolerance",
+          "BridgeGeometry_2Beam.Span_1",
+          "Materials.Rebar_Es",
+          "Materials.Rebar_fy",
+          "Materials.Substructure_fc",
+          "ProjectInfo.Address",
+          "ProjectInfo.CheckDate",
+          "ProjectInfo.CheckedBy",
+          "ProjectInfo.DesignDate",
+          "ProjectInfo.DesignedBy",
+          "ProjectInfo.Firm",
+          "ProjectInfo.JobNo",
+          "ProjectInfo.Project"
+        ]
+      }
+    },
+    "links_and_images_resolve": {
+      "passed": true,
+      "detail": {
+        "new_unresolved": {}
+      }
+    },
+    "coherence_rows_match_the_candidate_and_the_selected_case": {
+      "passed": true,
+      "detail": {
+        "rows": 25,
+        "references": 23,
+        "mismatch": [],
+        "checks": [
+          {
+            "input": "b_cap",
+            "owner": "BridgeGeometry_2Beam.EndBentCap_width",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 42.0,
+            "case_value": 42.0
+          },
+          {
+            "input": "h_cap",
+            "owner": "BridgeGeometry_2Beam.EndBentCap_depth",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 36.0,
+            "case_value": 36.0
+          },
+          {
+            "input": "L_cap",
+            "owner": "BridgeGeometry_2Beam.EndBentCap_length",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 235.0,
+            "case_value": 235.0
+          },
+          {
+            "input": "embed_pile",
+            "owner": "BridgeGeometry_2Beam.EndBent_pileEmbed",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 12.0,
+            "case_value": 12.0
+          },
+          {
+            "input": "tol_pile",
+            "owner": "BridgeGeometry_2Beam.EndBent_pileTolerance",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 3.0,
+            "case_value": 3.0
+          },
+          {
+            "input": "t_bw",
+            "owner": "BridgeGeometry_2Beam.Backwall_thickness_shown",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 12.0,
+            "case_value": 12.0
+          },
+          {
+            "input": "L_bw",
+            "owner": "BridgeGeometry_2Beam.EndBentCap_length",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 235.0,
+            "case_value": 235.0
+          },
+          {
+            "input": "e_brg",
+            "owner": "BridgeGeometry_2Beam.EndBent_bearingOffset",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 3.0,
+            "case_value": 3.0
+          },
+          {
+            "input": "s_brg",
+            "owner": "BridgeGeometry_2Beam.Beam_spacing",
+            "status": "literal_incoherent_journal",
+            "defined_in_candidate": true,
+            "journal_value": 103.0,
+            "case_value": 102.99
+          },
+          {
+            "input": "h_ped",
+            "owner": "BridgeGeometry_2Beam.EndBentPedestal_ht",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 6.0,
+            "case_value": 6.0
+          },
+          {
+            "input": "B_ped",
+            "owner": "BridgeGeometry_2Beam.EndBentPedestal_width",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 42.0,
+            "case_value": 42.0
+          },
+          {
+            "input": "t_pad",
+            "owner": "BridgeGeometry_2Beam.Bearing_pad_thickness",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 2.5625,
+            "case_value": 2.5625
+          },
+          {
+            "input": "t_ck",
+            "owner": "BridgeGeometry_2Beam.EndBent_cheekThickness",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 8.0,
+            "case_value": 8.0
+          },
+          {
+            "input": "G_pad",
+            "owner": "BridgeGeometry_2Beam.Bearing_pad_G",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 0.11,
+            "case_value": 0.11
+          },
+          {
+            "input": "L_pad",
+            "owner": "BridgeGeometry_2Beam.Bearing_pad_length",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 10.0,
+            "case_value": 10.0
+          },
+          {
+            "input": "W_pad",
+            "owner": "BridgeGeometry_2Beam.Bearing_pad_width",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 32.0,
+            "case_value": 32.0
+          },
+          {
+            "input": "n_int",
+            "owner": "BridgeGeometry_2Beam.Bearing_pad_internalLayers",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 3.0,
+            "case_value": 3.0
+          },
+          {
+            "input": "t_int",
+            "owner": "BridgeGeometry_2Beam.Bearing_pad_internalThickness",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 0.5,
+            "case_value": 0.5
+          },
+          {
+            "input": "t_cov",
+            "owner": "BridgeGeometry_2Beam.Bearing_pad_cover",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 0.25,
+            "case_value": 0.25
+          },
+          {
+            "input": "L_exp",
+            "owner": "BridgeGeometry_2Beam.Span_1",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 107.35,
+            "case_value": 107.35
+          },
+          {
+            "input": "fc",
+            "owner": "Materials.Substructure_fc",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 5.5,
+            "case_value": 5.5
+          },
+          {
+            "input": "fy",
+            "owner": "Materials.Rebar_fy",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 60.0,
+            "case_value": 60.0
+          },
+          {
+            "input": "Es",
+            "owner": "Materials.Rebar_Es",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 29000.0,
+            "case_value": 29000.0
+          },
+          {
+            "input": "L_load",
+            "owner": "BridgeGeometry_2Beam.EndBentCage_envelope",
+            "status": "reference",
+            "defined_in_candidate": true,
+            "journal_value": 251.0,
+            "case_value": 251.0
+          },
+          {
+            "input": "drop_bw",
+            "owner": "BridgeGeometry_2Beam.EndBent_backwallDrop",
+            "status": "reference_context",
+            "defined_in_candidate": true,
+            "journal_value": 4.25,
+            "case_value": 4.25
+          }
+        ]
+      }
+    },
+    "pedbridge_one_link_after_pile_pier_and_two_paragraph_edits": {
+      "passed": true,
+      "detail": {
+        "link_count": 1,
+        "diff_ops": [
+          [
+            "replace",
+            1,
+            1
+          ],
+          [
+            "insert",
+            0,
+            3
+          ],
+          [
+            "insert",
+            0,
+            1
+          ]
+        ]
+      }
+    },
+    "geometry_foundation_and_decisionlog_name_the_report": {
+      "passed": true,
+      "detail": {
+        "geometry_mentions": 1,
+        "foundation_mentions": 1,
+        "decisionlog_entry": 1
+      }
+    },
+    "no_sentence_says_the_backwall_report_is_outside_the_journal": {
+      "passed": true,
+      "detail": {
+        "PedBridge": [],
+        "BridgeGeometry_2Beam": [],
+        "FoundationModeling": []
+      }
+    },
+    "new_report_matches_fragment_and_verification_json": {
+      "passed": true,
+      "detail": {
+        "bytes": 411987,
+        "sha256": "a98be68890f698a2f1a1b1a2cc6d35450f31d0d4f67b3a0d806aa42d2512b847",
+        "equals_fragment_file": true,
+        "fragment_sha256_equals_verification_json": true,
+        "verification_package_revision_is_current": true,
+        "stored_errors": 0,
+        "definitions": 678,
+        "DC_names": 31,
+        "Chk_names": 27,
+        "journal_references": 23,
+        "literals_kept": [
+          "s_brg"
+        ],
+        "context_references": [
+          "drop_bw"
+        ]
+      }
+    },
+    "status_equals_the_notebook_and_the_stamp_is_live": {
+      "passed": true,
+      "detail": {
+        "notebook": "✓ All Checks Pass",
+        "report_cache": "✓ All Checks Pass",
+        "verification_json": "✓ All Checks Pass",
+        "formula": "Status = If(DC_max <= 1, \"✓ All Checks Pass\", \"⊗ There are FAILURES\")",
+        "stamp_cells": [
+          "ProjectInfo.Firm",
+          "ProjectInfo.Project",
+          "ProjectInfo.Address",
+          "ProjectInfo.JobNo",
+          "ProjectInfo.DesignedBy",
+          "ProjectInfo.DesignDate",
+          "ProjectInfo.CheckedBy",
+          "ProjectInfo.CheckDate"
+        ],
+        "notebook_failed_checks": 0,
+        "notebook_pending_checks": 9
+      }
+    }
+  }
+}

@@ -198,6 +198,7 @@ DECISION_SOURCES = {
     "D-042": ["CAD-MODEL"],
     "D-044": ["CAD-MODEL", "BACKWALL-CASE"],
     "D-045": ["CAD-MODEL", "BACKWALL-REPORT"],
+    "D-057": ["BACKWALL-TOOL", "BACKWALL-CASE", "BACKWALL-REPORT", "EB-XML", "EB-CASE", "CAD-MODEL", "JOURNAL"],
 }
 # D-054 (pile reports and cases) and D-055 (backwall vertical coordination) name their
 # register IDs in the decision text, so find_refs attaches them without a hand map.

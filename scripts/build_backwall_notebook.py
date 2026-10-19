@@ -123,6 +123,8 @@ Portable Colab edition for the **D2 I-95 pedestrian bridge** end bents (common E
 Decisions D-014 to D-019 (tie-back straps, pedestrian-only loading, MSE fill parameters, landing slab on the backwall, cheek walls for wind only, maximum backwall height) are recorded in `project_current/decisions.md`. See `BACKWALL_DESIGN.md` for the calculation basis and limits.
 
 **16 October 2026 update.** Geometry follows D-026/D-033/D-034. Cheeks use one centered #4 mat at 10 in each way. Dated evidence supports the three checked confirmations; six prerequisites remain pending.
+
+**19 October 2026 update.** Sources reconciled with the register: the D-049 fixed-run End Bent 1 export and the D-051 case built on it (bearing actions unchanged), the D-053/D-055 CAD model measured natively (two planar 2% backwall tops 4.25 in below the deck-top line: crown 4.0691 ft and edges 3.8733 ft above the cap top, backwall volume 77.770 ft3, landing tributary length 17.155 ft) and the T016 journal. Decisions D-014 to D-019 and the six pending prerequisites are unchanged.
 '''
 
 

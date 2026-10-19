@@ -1,25 +1,25 @@
 {
-  "note": "Reviewed 16 October 2026: D-026 through D-034 CAD and D-027 case incorporated. JOURNAL retains its registered hash; current bytes differ and are explicitly recorded in project_evidence.json. EB-XML is the available older analysis; it does not match the current selected cap case.",
+  "note": "Reviewed 19 October 2026: the D-049 fixed-run End Bent 1 export, the D-051 end-bent case built on it, the D-053/D-055 CAD model (notebook build e9b41b8eaf) and the T016 journal (D-056) are the registered sources. EB-XML now matches the analysis the selected cap case records; End Bent 2_Fixed.XML (3543df29...) reads the same bearing actions.",
   "sources": {
     "EB-CASE": {
       "label": "End-bent saved cap case",
       "path": "project_current/cap_design/end_bents/selected_case.json",
-      "sha256": "37a04b9c8ab1dc8d215850cecd539dedc49b07397be2e668ac7ef9809173cf78"
+      "sha256": "898b3e134b286b7a5a8f3eaf96f3c2996e1400e11206195dc0ea2448d750274f"
     },
     "EB-XML": {
       "label": "End Bent 1 FBMP fixed results",
       "path": "project_current/fbmp/end_bents/End Bent 1_Fixed.XML",
-      "sha256": "8414fbedfbf1270fbd65b2cf940f2dc2050818c282cc6f66db2d20b2f3ff17ee"
+      "sha256": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d"
     },
     "CAD-MODEL": {
-      "label": "Current FreeCAD bridge model",
+      "label": "Current FreeCAD bridge model (D-053 backwall tops, D-055 verticals)",
       "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-      "sha256": "517d08ddd6c0b01c0bb279919d3648835a8a77cbc7727a42ba4312013b701a20"
+      "sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df"
     },
     "JOURNAL": {
-      "label": "Project journal (bearing pad, temperature, span, wind basis)",
+      "label": "Project journal (bearing pad, temperature, span, wind basis; T016 revision)",
       "path": "journal/D2_I95_Project_Journal.bpad",
-      "sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351"
+      "sha256": "855e2cecf27db3de141d037a33dfce060014cc00b6f4c180326172b0e4acf1db"
     },
     "MCAD-S1": {
       "label": "Span 1 Mathcad (pedestrian load q_PL)",
@@ -45,7 +45,13 @@
     "D-029",
     "D-030",
     "D-033",
-    "D-034"
+    "D-034",
+    "D-036",
+    "D-049",
+    "D-051",
+    "D-053",
+    "D-055",
+    "D-056"
   ],
   "editions": "AASHTO LRFD Bridge Design Specifications, 10th edition (2024); AASHTO LRFD Guide Specifications for the Design of Pedestrian Bridges; FDOT Structures Manual January 2026 (SDG Volume 1, SDM Volume 2)"
 }

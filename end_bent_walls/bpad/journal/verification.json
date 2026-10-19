@@ -1,0 +1,61 @@
+[
+ {
+  "case_sha256": "0ff135b29eacfd445c6c4a9983cf1e6c471c17fee747e0aab41f357bacd235d2",
+  "cells_and_labels": 767,
+  "context_references": [
+   "drop_bw"
+  ],
+  "definitions": 585,
+  "fragment": "end_bent_walls/bpad/journal/EndBentBackwallDesign.xml",
+  "fragment_sha256": "a98be68890f698a2f1a1b1a2cc6d35450f31d0d4f67b3a0d806aa42d2512b847",
+  "functions": 10,
+  "journal_file": "journal/D2_I95_Project_Journal.bpad",
+  "journal_references": 23,
+  "literals_kept": [
+   "s_brg"
+  ],
+  "mathcad_values_compared": 585,
+  "package_revision": "16ee4d414858",
+  "project_stamp": {
+   "Address": "1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301",
+   "CheckDate": "",
+   "CheckedBy": "MIK",
+   "DesignDate": "10/17/2026",
+   "DesignedBy": "JAT",
+   "Firm": "Parsons Transportation Group Inc",
+   "JobNo": "",
+   "Project": "I-95 Capacity Improvements from South of SR 152 to South of SR 126",
+   "owner": "ProjectInfo"
+  },
+  "references": [
+   "BridgeGeometry_2Beam.Backwall_thickness_shown",
+   "BridgeGeometry_2Beam.Bearing_pad_G",
+   "BridgeGeometry_2Beam.Bearing_pad_cover",
+   "BridgeGeometry_2Beam.Bearing_pad_internalLayers",
+   "BridgeGeometry_2Beam.Bearing_pad_internalThickness",
+   "BridgeGeometry_2Beam.Bearing_pad_length",
+   "BridgeGeometry_2Beam.Bearing_pad_thickness",
+   "BridgeGeometry_2Beam.Bearing_pad_width",
+   "BridgeGeometry_2Beam.EndBentCage_envelope",
+   "BridgeGeometry_2Beam.EndBentCap_depth",
+   "BridgeGeometry_2Beam.EndBentCap_length",
+   "BridgeGeometry_2Beam.EndBentCap_width",
+   "BridgeGeometry_2Beam.EndBentPedestal_ht",
+   "BridgeGeometry_2Beam.EndBentPedestal_width",
+   "BridgeGeometry_2Beam.EndBent_backwallDrop",
+   "BridgeGeometry_2Beam.EndBent_bearingOffset",
+   "BridgeGeometry_2Beam.EndBent_cheekThickness",
+   "BridgeGeometry_2Beam.EndBent_pileEmbed",
+   "BridgeGeometry_2Beam.EndBent_pileTolerance",
+   "BridgeGeometry_2Beam.Span_1",
+   "Materials.Rebar_Es",
+   "Materials.Rebar_fy",
+   "Materials.Substructure_fc"
+  ],
+  "report_name": "EndBentBackwallDesign",
+  "review_document": "end_bent_walls/bpad/journal/End Bent Backwall Design - Journal Edition (review).bpad",
+  "review_sha256": "12aa4421fe48041d81e3ecbe8d4a10980647398962ab21eb719c903f72f8eaf3",
+  "status": "✓ All Checks Pass",
+  "tool_comparisons": 245
+ }
+]

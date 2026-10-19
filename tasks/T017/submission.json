@@ -1,0 +1,32 @@
+{
+  "summary": "The distilled end-bent backwall, cheek-wall and tie-back strap report (EndBentBackwallDesign; 19 October 2026 notebook case, decision D-057) is appended to the journal as a registered module with live references to BridgeGeometry_2Beam (end-bent cap, backwall thickness, cheek thickness, pedestal, bearing pad, Span 1, backwall drop), Materials (strengths) and ProjectInfo (stamp), linked from the PedBridge index under Specific calculations and foundations. PedBridge, BridgeGeometry_2Beam and FoundationModeling no longer record the backwall report as outside the journal; DecisionLog gains the entry. All other components are byte identical.",
+  "published_outputs": [
+    "EndBentBackwallDesign: Status (current distilled result: All Checks Pass), the 27 DC_* demand/capacity ratios with their Chk_* result strings, DC_max and DC_ymax; the plan loads f_str_s = 3.089 kip/ft (service) and f_str_u = 3.737 kip/ft (factored, Strength I governing); drop_bw = BridgeGeometry_2Beam.EndBent_backwallDrop",
+    "Distilled numerical checks only, not design acceptance. Section 12 lists the pending prerequisites of the notebook: geotechnical settlement confirmation (SDG 3.13.2.N.3), strap elevation at an MSE reinforcement level, environmental classification for the covers, post-seating shrinkage strain, user confirmation of the bearing actions and common end-bent envelope, cheek mat development and cap/lug load path"
+  ],
+  "assumptions_and_conventions": [
+    "The report is the Blockpad journal edition of the 19 October 2026 notebook case (project_current/cap_design/backwall/Backwall Design 10-19.html and selected_case.json, D-057), built by scripts/build_backwall_bpad.py --journal; the notebook package was reconciled with the register (End Bent 1_Fixed.XML of D-049, the D-051 case, the D-053/D-055 CAD model measured natively, the T016 journal) and rerun before the export",
+    "Live references: b_cap, h_cap, L_cap, L_bw, L_load, embed_pile, tol_pile, t_bw, e_brg, h_ped, B_ped, t_pad, t_ck, G_pad, L_pad, W_pad, n_int, t_int, t_cov, L_exp read BridgeGeometry_2Beam; fc, fy, Es read Materials; the ProjectStamp cells read ProjectInfo. A coherence gate compared each journal value with the case input to 1 part in 10^9 before the build (23 references). s_brg stays the literal 102.99 in from the export's bearing stations; the journal beam spacing is 8 ft 7 in (103 in); recorded in end_bent_walls/bpad/journal/coherence.json",
+    "drop_bw references EndBent_backwallDrop (4.25 in) beside the backwall heights H_bw and H_bw_edge, which are literals measured from the D-055 model built with that drop; the gate compared the journal drop with the model's TopDrop",
+    "Blockpad has no vector variables: the five load combinations, the three members and the eight torsion stations are scalars; each equation is shown once and the others sit in collapsed sections with green tables (see end_bent_walls/bpad and cap_bpad/README.md)",
+    "Pass/fail strings, styles and table colour rules follow standards/BPAD_Ref_V5.txt; the document-level PASS and FAIL rules and the Result only style already exist in the journal. Units kip, ft, in, ksi as the notebook",
+    "The added report is a bare fragment (LF line endings, 2-space indent) appended unchanged, as in T012 and T015; the edited modules keep their CRLF line endings"
+  ],
+  "downstream_impact": [
+    "No existing component reads the new report's names; check reports the usual all-component impact hints only",
+    "The report reads BridgeGeometry_2Beam, Materials and ProjectInfo; a change to a referenced value changes the report's results on recalculation (and the standalone sheet end_bent_walls/End Bent Backwall Design.bpad, which holds literals, would then need a rebuild from a new case)",
+    "The FBMP, cap and pile records are not changed"
+  ],
+  "external_analysis": "FB-MultiPier was not re-run. The bearing actions of the report are the D-049 fixed-run End Bent 1 export (End Bent 1_Fixed.XML c1a4afa1...), read by the notebook, not live in Blockpad; the End Bent 2 export reads the same bearing actions. Their currency against the final design (COH-013, COH-028) and the common end-bent envelope are not asserted; they are the pending analysis prerequisite listed in Section 12. LRFD and SDG checks were recomputed by the notebook's own evaluator and by the generator's independent Blockpad-syntax evaluator.",
+  "checks_performed": [
+    "end_bent_walls/bpad/journal/verification.json (builder): 23 journal references compared with the case; 245 values compared with the notebook and 585 with the Mathcad edition to 1 part in 10^9; package revision 16ee4d414858 equal to the notebook's; tests.test_end_bent_walls, tests.test_backwall_bpad (including the journal-edition class) and tests.test_backwall_bpad_export pass",
+    "tasks/T017/build_components.py: package revision, status, fragment hash and the coherence rows checked against verification.json and the base journal (every referenced owner defined exactly once) before copying; every anchor found exactly once",
+    "tasks/T017/verify_task.py (independent-checks.json): component order, candidate differs from the current journal only in the five registered components, report.json changed set, no new structural issues or stored errors, every qualified reference resolves in BridgeGeometry_2Beam, Materials, ProjectInfo or the report itself, coherence rows against the candidate and the registered case, the PedBridge diff, the text edits, the fragment identity, the Status string against the notebook and the live stamp",
+    "bpad_workflow check T017 and assemble T017 passed"
+  ],
+  "open_items": [
+    "Native Blockpad recalculation and visual review not performed (optional under workflow/promotion_policy.json). Open the candidate with its References folder, recalculate EndBentBackwallDesign and confirm the points listed in cap_bpad/README.md (amber inputs, Unicode Greek names, compound-unit literals, null in PlotLines, live lineardim labels, long Max(...) lists), the live drop_bw reference and the ProjectStamp cells",
+    "Pending prerequisites of the notebook stay open (settlement, strap level, exposure, shrinkage, analysis confirmation, cheek connection); COH-013/023/024/028 remain open",
+    "The bearing spacing (102.99 in from the export) and the journal beam spacing (103 in) differ; the report keeps the analysis value as a literal"
+  ]
+}

@@ -10,8 +10,8 @@
   "tol_pile": 3.0,
   "t_bw": 12.0,
   "L_bw": 235.0,
-  "H_bw": 4.089974522637,
-  "H_bw_edge": 3.8941411893036744,
+  "H_bw": 4.069141189303664,
+  "H_bw_edge": 3.873307767781874,
   "e_brg": 3.0,
   "s_brg": 102.99,
   "N_pile": 4,
@@ -31,7 +31,7 @@
   "gamma_s": 0.115,
   "q_PL": 0.09,
   "t_slab": 4.0,
-  "L_slab": 17.07795753331303,
+  "L_slab": 17.155460752596376,
   "share_slab": 0.5,
   "N_brg": 2,
   "P_DC": 92.07,
@@ -93,9 +93,9 @@
   "single_ck": 1,
   "L_load": 251.0,
   "V_cap": 196.6250000000004,
-  "V_bw": 78.17779967941874,
+  "V_bw": 77.76981184128364,
   "V_ck": 42.982400997403786,
-  "dx_ck": -2.182752659952977
+  "dx_ck": -2.182752662611373
  },
  "units": {
   "b_cap": "in",
@@ -202,7 +202,7 @@
    "status": "project source"
   },
   "L_cap": {
-   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "source": "CAD-MODEL D-053/D-055 (notebook build e9b41b8eaf); native measurement in project_evidence.json",
    "status": "project source"
   },
   "embed_pile": {
@@ -214,19 +214,19 @@
    "status": "project source"
   },
   "t_bw": {
-   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "source": "CAD-MODEL D-053/D-055 (notebook build e9b41b8eaf); native measurement in project_evidence.json",
    "status": "project source"
   },
   "L_bw": {
-   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "source": "CAD-MODEL D-053/D-055 (notebook build e9b41b8eaf); native measurement in project_evidence.json",
    "status": "project source"
   },
   "H_bw": {
-   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "source": "CAD-MODEL D-053/D-055 (notebook build e9b41b8eaf); native measurement in project_evidence.json",
    "status": "project source"
   },
   "H_bw_edge": {
-   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "source": "CAD-MODEL D-053/D-055 (notebook build e9b41b8eaf); native measurement in project_evidence.json",
    "status": "project source"
   },
   "e_brg": {
@@ -266,15 +266,15 @@
    "status": "project source"
   },
   "t_ck": {
-   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "source": "CAD-MODEL D-053/D-055 (notebook build e9b41b8eaf); native measurement in project_evidence.json",
    "status": "project source"
   },
   "w_ck": {
-   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "source": "CAD-MODEL D-053/D-055 (notebook build e9b41b8eaf); native measurement in project_evidence.json",
    "status": "project source"
   },
   "H_ck": {
-   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "source": "CAD-MODEL D-053/D-055 (notebook build e9b41b8eaf); native measurement in project_evidence.json",
    "status": "project source"
   },
   "phi_soil": {
@@ -302,11 +302,11 @@
    "status": "decision"
   },
   "t_slab": {
-   "source": "CAD-MODEL MSEInputs.SlabThickness (D-017)",
+   "source": "CAD-MODEL MSEInputs.SlabThickness (D-017); the D-053 landings thicken locally to the backwall top",
    "status": "project source"
   },
   "L_slab": {
-   "source": "D-017 bearing + D-034 verified maximum landing volume / thickness / backwall length",
+   "source": "D-017 bearing + D-053 verified maximum landing volume / thickness / backwall length",
    "status": "project source"
   },
   "share_slab": {
@@ -318,7 +318,7 @@
    "status": "project source"
   },
   "P_DC": {
-   "source": "EB-XML load case 1 (DC) at bearing nodes 15/34",
+   "source": "EB-XML load case 1 (DC) at bearing nodes 15/34 (D-049 fixed run; End Bent 2 export identical)",
    "status": "project source"
   },
   "P_PL": {
@@ -546,23 +546,23 @@
    "status": "design selection"
   },
   "L_load": {
-   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "source": "CAD-MODEL D-053/D-055 (notebook build e9b41b8eaf); native measurement in project_evidence.json",
    "status": "project source"
   },
   "V_cap": {
-   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "source": "CAD-MODEL D-053/D-055 (notebook build e9b41b8eaf); native measurement in project_evidence.json",
    "status": "project source"
   },
   "V_bw": {
-   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "source": "CAD-MODEL D-053/D-055 (notebook build e9b41b8eaf); native measurement in project_evidence.json",
    "status": "project source"
   },
   "V_ck": {
-   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "source": "CAD-MODEL D-053/D-055 (notebook build e9b41b8eaf); native measurement in project_evidence.json",
    "status": "project source"
   },
   "dx_ck": {
-   "source": "CAD-MODEL D-026/D-033/D-034; native measurement in project_evidence.json",
+   "source": "CAD-MODEL D-053/D-055 (notebook build e9b41b8eaf); native measurement in project_evidence.json",
    "status": "project source"
   }
  },
@@ -580,8 +580,8 @@
  "confirmation_evidence": {
   "geometry": {
    "confirmed": true,
-   "note": "D-026/D-033 adopt the modeled wall geometry. Native saved-solid measurements verify 235 in cap/backwall, 251 in overall width, revised crowns, edges and lugged cheek volumes. This confirms calculation geometry only; COH-023 connection/detail review remains open.",
-   "date": "2026-10-16",
+   "note": "D-036/D-053 (notebook build e9b41b8eaf) and D-055 adopt the modeled wall geometry. Native saved-solid measurements of the D-055 model verify 235 in cap/backwall, 251 in overall width, the two planar 2% backwall tops 4.25 in below the deck-top line (crown 4.0691 ft, edges 3.8733 ft above the cap top), the backwall volume and the lugged cheek volumes. This confirms calculation geometry only; COH-023 connection/detail review remains open.",
+   "date": "2026-10-19",
    "inputs": {
     "L_cap": 235.0,
     "L_bw": 235.0,
@@ -589,15 +589,15 @@
     "b_cap": 42.0,
     "h_cap": 36.0,
     "t_bw": 12.0,
-    "H_bw": 4.089974522637,
-    "H_bw_edge": 3.8941411893036744,
+    "H_bw": 4.069141189303664,
+    "H_bw_edge": 3.873307767781874,
     "t_ck": 8.0,
     "w_ck": 42.0,
     "H_ck": 5.031352523880976,
     "V_cap": 196.6250000000004,
-    "V_bw": 78.17779967941874,
+    "V_bw": 77.76981184128364,
     "V_ck": 42.982400997403786,
-    "dx_ck": -2.182752659952977
+    "dx_ck": -2.182752662611373
    }
   },
   "wind_kz": {
@@ -615,10 +615,10 @@
   },
   "landing": {
    "confirmed": true,
-   "note": "D-017 confirms 4 in slab bearing and 50% gravity share. D-034 verifies slab volumes A 111.481111676 and B 88.556269251 ft3. Use maximum volume / (4/12 ft) / (235/12 ft) as equivalent tributary length. Irregular plan extent is not a rectangular span; no stabilizing slab credit.",
-   "date": "2026-10-16",
+   "note": "D-017 confirms 4 in slab bearing and 50% gravity share. D-053 verifies slab volumes A 111.987035 and B 89.038401 ft3 (the landings thicken locally to the lowered backwall tops; walking faces preserved). Use maximum volume / (4/12 ft) / (235/12 ft) as equivalent tributary length. Irregular plan extent is not a rectangular span; no stabilizing slab credit.",
+   "date": "2026-10-19",
    "inputs": {
-    "L_slab": 17.07795753331303,
+    "L_slab": 17.155460752596376,
     "t_slab": 4.0,
     "L_bw": 235.0,
     "share_slab": 0.5
@@ -627,37 +627,37 @@
   "settlement": {
    "confirmed": false,
    "note": "D-014 retains the required geotechnical confirmation of no more than 2 in settlement above cap bottom; no confirming report was found.",
-   "date": "2026-10-16",
+   "date": "2026-10-19",
    "inputs": {}
   },
   "strap_level": {
    "confirmed": false,
    "note": "D-019 sets a trial elevation of 1.5 ft above cap; no vendor reinforcement-level acceptance was found. Current journal MSEWallExclusion explicitly excludes elevation routing, side reinforcement and connection/development.",
-   "date": "2026-10-16",
+   "date": "2026-10-19",
    "inputs": {}
   },
   "exposure": {
    "confirmed": false,
    "note": "Materials module confirms concrete classes, but does not establish the environmental aggressivity classification for these covers. Existing code/exposure review remains open.",
-   "date": "2026-10-16",
+   "date": "2026-10-19",
    "inputs": {}
   },
   "shrinkage": {
    "confirmed": false,
    "note": "BridgeMovement explicitly covers thermal movement only. MCAD-S1/2 companion data are missing; no verified post-seating shrinkage strain was found. The 7.3e-5 template input remains provisional.",
-   "date": "2026-10-16",
+   "date": "2026-10-19",
    "inputs": {}
   },
   "analysis": {
    "confirmed": false,
-   "note": "Current EB-CASE requires raw XML 23bb3afc..., while available EB-XML is 8414fbed... and contains a 3 kip DC load at pile-head node 4. EB2 matching XML is missing. Retained bearing actions are provisional; common EB1 design is not proven to bound EB2.",
-   "date": "2026-10-16",
+   "note": "D-049/D-051: the registered End Bent 1 export (c1a4afa1...) is the analysis the selected cap case records, and the End Bent 2 export (3543df29...) reads the same bearing actions (DC 92.07, PL 28.98 kip per bearing; WS1/WS2/WS3 unchanged); both carry a 3 kip DC load at pile-head node 4. The bearing actions used here are therefore current to the 19 October exports. The prerequisite stays pending until the user confirms the common end-bent envelope and the FBMP model currency (COH-013/COH-028); not closed by this update.",
+   "date": "2026-10-19",
    "inputs": {}
   },
   "cheek_connection": {
    "confirmed": false,
-   "note": "D-026/D-033 adopt geometry, not anchorage/load-path acceptance. Centered bars in CAD have no designed dowel embedment. Lug WWR, bar development, cap interaction and strap interfaces remain COH-023; numerical interface capacity assumes developed bars.",
-   "date": "2026-10-16",
+   "note": "D-036/D-053/D-055 adopt geometry, not anchorage/load-path acceptance. The CAD cheek mats follow the 10 in spacing (D-039) with standard hooks where cover allows (D-046); development, lug WWR, cap interaction and strap interfaces remain COH-023; numerical interface capacity assumes developed bars.",
+   "date": "2026-10-19",
    "inputs": {}
   }
  },

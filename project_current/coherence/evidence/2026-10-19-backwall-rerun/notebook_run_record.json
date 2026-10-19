@@ -1,0 +1,347 @@
+{
+  "executed_utc": "2026-10-19T22:00:13.713256+00:00",
+  "notebook": "C:\\github\\D2MPDB\\End_Bent_Backwall_Design.ipynb",
+  "cwd": "C:\\Users\\joshs\\AppData\\Local\\Temp\\backwall-run-rcr5yxik",
+  "notebook_sha256_lf_text": "e63bcc5990f435615f1216aa861ce2a148dba7e6a3d065174531e0b5fec85809",
+  "cells": [
+    {
+      "id": "a7b8c9d0",
+      "execution_count": 1,
+      "error": null
+    },
+    {
+      "id": "e3b0a7c1",
+      "execution_count": 2,
+      "error": null
+    },
+    {
+      "id": "f1a2b3c4",
+      "execution_count": 3,
+      "error": null
+    },
+    {
+      "id": "f5a6b7c8",
+      "execution_count": 4,
+      "error": null
+    }
+  ],
+  "all_cells_ok": true,
+  "package_dir": "C:\\Users\\joshs\\AppData\\Local\\Temp\\backwall-run-rcr5yxik\\backwall-tool-16ee4d414858\\end_bent_walls",
+  "package_revision": "16ee4d414858ddab361fad38394f2050742a38831f9d9174355520b22bdaaf65",
+  "embedded_root": "C:\\Users\\joshs\\AppData\\Local\\Temp\\backwall-run-rcr5yxik\\backwall-tool-16ee4d414858",
+  "exports": {
+    "backwall_case.json": "C:\\Users\\joshs\\AppData\\Local\\Temp\\backwall-run-rcr5yxik\\backwall-tool-16ee4d414858\\exports\\backwall-20261019-220020\\backwall_case.json",
+    "backwall_checks.csv": "C:\\Users\\joshs\\AppData\\Local\\Temp\\backwall-run-rcr5yxik\\backwall-tool-16ee4d414858\\exports\\backwall-20261019-220020\\backwall_checks.csv",
+    "backwall_calculation_report.html": "C:\\Users\\joshs\\AppData\\Local\\Temp\\backwall-run-rcr5yxik\\backwall-tool-16ee4d414858\\exports\\backwall-20261019-220020\\backwall_calculation_report.html",
+    "backwall_strap_handoff.xlsx": "C:\\Users\\joshs\\AppData\\Local\\Temp\\backwall-run-rcr5yxik\\backwall-tool-16ee4d414858\\exports\\backwall-20261019-220020\\backwall_strap_handoff.xlsx",
+    "End Bent Backwall Design.bpad": "C:\\Users\\joshs\\AppData\\Local\\Temp\\backwall-run-rcr5yxik\\backwall-tool-16ee4d414858\\exports\\backwall-20261019-220020\\End Bent Backwall Design.bpad",
+    "backwall_bpad_verification.json": "C:\\Users\\joshs\\AppData\\Local\\Temp\\backwall-run-rcr5yxik\\backwall-tool-16ee4d414858\\exports\\backwall-20261019-220020\\backwall_bpad_verification.json",
+    "backwall_bundle.zip": "C:\\Users\\joshs\\AppData\\Local\\Temp\\backwall-run-rcr5yxik\\backwall-tool-16ee4d414858\\exports\\backwall-20261019-220020\\backwall_bundle.zip"
+  },
+  "case_round_trip": {
+    "checks": 39,
+    "all_equal": true,
+    "inputs_equal": true
+  },
+  "values": {
+    "strap_service_kip_per_ft": 3.0891525800867834,
+    "strap_factored_kip_per_ft": 3.7368182294181413,
+    "M_u_FF_kipft_per_ft": 1.28731021917276,
+    "M_u_SF_kipft_per_ft": 4.317917124954452,
+    "V_u_bw_kip": 2.9454198742155873,
+    "T_u_kipft": 51.44335024245848,
+    "DC_max": 1.0,
+    "H_bw_ft": 4.069141189303664,
+    "W_bw_kip": 11.665471776192545
+  },
+  "checks": [
+    {
+      "key": "flex_FF",
+      "label": "Flexure · fill face (strap slack)",
+      "status": "PASS",
+      "ratio": 0.10828829467364134
+    },
+    {
+      "key": "min_FF",
+      "label": "Minimum flexural steel · fill face",
+      "status": "PASS",
+      "ratio": 0.144023431915943
+    },
+    {
+      "key": "strain_FF",
+      "label": "Tension-controlled section · fill face",
+      "status": "PASS",
+      "ratio": 0.08632433671886594
+    },
+    {
+      "key": "crack_FF",
+      "label": "Crack control · fill face",
+      "status": "PASS",
+      "ratio": 0.10861108377950403
+    },
+    {
+      "key": "spacing_FF",
+      "label": "Maximum bar spacing · fill face",
+      "status": "PASS",
+      "ratio": 0.6666666666666666
+    },
+    {
+      "key": "flex_SF",
+      "label": "Flexure · span face (strap engaged)",
+      "status": "PASS",
+      "ratio": 0.36322238030853354
+    },
+    {
+      "key": "min_SF",
+      "label": "Minimum flexural steel · span face",
+      "status": "PASS",
+      "ratio": 0.4830857658103496
+    },
+    {
+      "key": "strain_SF",
+      "label": "Tension-controlled section · span face",
+      "status": "PASS",
+      "ratio": 0.08632433671886594
+    },
+    {
+      "key": "crack_SF",
+      "label": "Crack control · span face",
+      "status": "PASS",
+      "ratio": 0.6508829285299449
+    },
+    {
+      "key": "spacing_SF",
+      "label": "Maximum bar spacing · span face",
+      "status": "PASS",
+      "ratio": 0.6666666666666666
+    },
+    {
+      "key": "ts_vert",
+      "label": "Shrinkage & temperature · vertical, each face",
+      "status": "PASS",
+      "ratio": 0.6666666666666666
+    },
+    {
+      "key": "ts_horiz",
+      "label": "Shrinkage & temperature · horizontal, each face",
+      "status": "PASS",
+      "ratio": 0.6666666666666666
+    },
+    {
+      "key": "shear_bw",
+      "label": "Shear at the construction joint (both strap states)",
+      "status": "PASS",
+      "ratio": 0.21296649919760652
+    },
+    {
+      "key": "interface_bw",
+      "label": "Interface shear at the backwall construction joint",
+      "status": "PASS",
+      "ratio": 0.1728289368994735
+    },
+    {
+      "key": "interface_min_bw",
+      "label": "Minimum interface reinforcement",
+      "status": "PASS",
+      "ratio": 0.2787096774193549
+    },
+    {
+      "key": "cover_bw",
+      "label": "Concrete cover · backwall",
+      "status": "PASS · PENDING INPUT",
+      "ratio": 1.0
+    },
+    {
+      "key": "thickness_bw",
+      "label": "Backwall thickness (SDM 12.6.B)",
+      "status": "PASS",
+      "ratio": 1.0
+    },
+    {
+      "key": "flex_CK",
+      "label": "Flexure · wind (either face)",
+      "status": "PASS",
+      "ratio": 0.1942111172175046
+    },
+    {
+      "key": "min_CK",
+      "label": "Minimum flexural steel",
+      "status": "PASS",
+      "ratio": 0.2583007858992811
+    },
+    {
+      "key": "strain_CK",
+      "label": "Tension-controlled section",
+      "status": "PASS",
+      "ratio": 0.16146326080100923
+    },
+    {
+      "key": "crack_CK",
+      "label": "Crack control",
+      "status": "PASS",
+      "ratio": 0.12955822190481114
+    },
+    {
+      "key": "spacing_CK",
+      "label": "Maximum bar spacing",
+      "status": "PASS",
+      "ratio": 0.8333333333333334
+    },
+    {
+      "key": "ts_CK",
+      "label": "Shrinkage & temperature · both directions",
+      "status": "PASS",
+      "ratio": 0.9166666666666666
+    },
+    {
+      "key": "shear_CK",
+      "label": "Shear at the base",
+      "status": "PASS",
+      "ratio": 0.03274958760313316
+    },
+    {
+      "key": "interface_CK",
+      "label": "Interface shear at the cheek-wall joint",
+      "status": "PASS",
+      "ratio": 0.024270250727789704
+    },
+    {
+      "key": "cover_CK",
+      "label": "Concrete cover · cheek walls",
+      "status": "PASS · PENDING INPUT",
+      "ratio": 0.5714285714285714
+    },
+    {
+      "key": "interface_min_CK",
+      "label": "Minimum interface reinforcement",
+      "status": "PASS · PENDING INPUT",
+      "ratio": 0.23999999999999996
+    },
+    {
+      "key": "thickness_CK",
+      "label": "Cheek wall thickness (SDM 12.6.B)",
+      "status": "PASS",
+      "ratio": 1.0
+    },
+    {
+      "key": "strap_load",
+      "label": "Tie-back loads for the plans (per foot of backwall)",
+      "status": "INFO",
+      "ratio": null
+    },
+    {
+      "key": "strap_height",
+      "label": "Strap within the retained backwall height",
+      "status": "PASS · PENDING INPUT",
+      "ratio": 0.38726589518059507
+    },
+    {
+      "key": "strap_pile",
+      "label": "Pile-head force implied by the strap location",
+      "status": "INFO",
+      "ratio": null
+    },
+    {
+      "key": "prereq_settlement",
+      "label": "Soil reinforcement may be attached (≤ 2 in settlement above the cap bottom)",
+      "status": "PENDING",
+      "ratio": null
+    },
+    {
+      "key": "prereq_strap_level",
+      "label": "Strap elevation coordinated with an MSE reinforcement level",
+      "status": "PENDING",
+      "ratio": null
+    },
+    {
+      "key": "prereq_geometry",
+      "label": "Adopted CAD geometry incorporated",
+      "status": "CONFIRMED",
+      "ratio": null
+    },
+    {
+      "key": "prereq_shrinkage",
+      "label": "Shrinkage strain confirmed",
+      "status": "PENDING",
+      "ratio": null
+    },
+    {
+      "key": "prereq_landing",
+      "label": "Landing slab bearing and tributary length confirmed",
+      "status": "CONFIRMED",
+      "ratio": null
+    },
+    {
+      "key": "prereq_analysis",
+      "label": "Current bearing actions and common-end-bent envelope",
+      "status": "PENDING",
+      "ratio": null
+    },
+    {
+      "key": "prereq_cheek_connection",
+      "label": "Cheek mat anchorage and cap/lug load path",
+      "status": "PENDING",
+      "ratio": null
+    },
+    {
+      "key": "cap_torsion",
+      "label": "Cap torsion from walls, bearings and straps (screen)",
+      "status": "PASS",
+      "ratio": 0.6335736375095761
+    }
+  ],
+  "numerical_failures": [],
+  "pending_check_entries": [
+    "cover_bw",
+    "cover_CK",
+    "interface_min_CK",
+    "strap_height",
+    "prereq_settlement",
+    "prereq_strap_level",
+    "prereq_shrinkage",
+    "prereq_analysis",
+    "prereq_cheek_connection"
+  ],
+  "confirmations": {
+    "settlement": false,
+    "strap_level": false,
+    "exposure": false,
+    "geometry": true,
+    "shrinkage": false,
+    "wind_kz": true,
+    "landing": true,
+    "analysis": false,
+    "cheek_connection": false
+  },
+  "receipts": {},
+  "output_sha256": {
+    "backwall_case.json": {
+      "sha256": "01e76c5a263af986e0d7e154039cec4c351bea29403dd9bfd2cbee7b16bab597",
+      "bytes": 17722
+    },
+    "backwall_checks.csv": {
+      "sha256": "1d1195c8e3a6a18ca6b2957b451c7c61408338ebb1f5b649e5c26ed0a4a52078",
+      "bytes": 6441
+    },
+    "backwall_calculation_report.html": {
+      "sha256": "6ed9ebb7bd2d2b536cddd289b04bbfcb1e8b566858239e40d88a2a7fb9d74768",
+      "bytes": 7958675
+    },
+    "backwall_strap_handoff.xlsx": {
+      "sha256": "d42ec37639d9724d76c61a190b546e123386777818252576a249668459fd2892",
+      "bytes": 15824
+    },
+    "End Bent Backwall Design.bpad": {
+      "sha256": "8e47cbe31ca21e3013ae804e9107007482d6a149fd74d97f27d3ed93f2bb25c7",
+      "bytes": 415679
+    },
+    "backwall_bpad_verification.json": {
+      "sha256": "6922b2c759fca1bd6a571f765c03df5bdbe50890a88a7f0dc97e0bee4f169408",
+      "bytes": 423
+    },
+    "backwall_bundle.zip": {
+      "sha256": "992c64452820ed95e3ec91a7741297a55f1d4d5f0981363268fdc48bb2bf79a3",
+      "bytes": 1737053
+    }
+  }
+}

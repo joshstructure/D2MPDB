@@ -13,7 +13,16 @@ Mathcad environment. The build stops on any mismatch.
 
     python scripts/build_backwall_bpad.py                  # write end_bent_walls/End Bent Backwall Design.bpad + bpad/
     python scripts/build_backwall_bpad.py --skip-mathcad   # skip the comparison with the Mathcad environment
+    python scripts/build_backwall_bpad.py --journal [path] # journal edition into end_bent_walls/bpad/journal/ (live references)
+
+The journal edition writes the same report with the inputs the journal owns (end-bent cap, backwall and cheek dimensions, bearing
+pad data and the Span 1 expansion length from BridgeGeometry_2Beam; the material strengths from Materials) as live references,
+the project stamp as live ProjectInfo cells, and a reference to BridgeGeometry_2Beam.EndBent_backwallDrop beside the measured
+backwall heights. A coherence gate compares every referenced journal value with the notebook input before anything is built
+(JOURNAL_REFS, KEEP_LITERAL and `journal_context` below; see cap_bpad/README.md, "Journal edition"). The strap loads, the
+bearing actions and everything else stay as the case holds them.
 """
+import copy
 import hashlib
 import json
 import math
@@ -230,6 +239,7 @@ class Sheet:
         self.chart_names = []
         self.input_names = []
         self.gamma_done = False
+        self.journal = None                                  # JournalContext in the journal edition
         # pre-scan: the S(tr(NAME)) display items, and the literal factor vectors
         self.shows = {}
         self.literals = []
@@ -332,12 +342,16 @@ class Sheet:
 
     # -- plain blocks
     def do_title(self, blk):
+        if self.journal is not None:                         # the journal edition opens with the live project stamp
+            bs.project_stamp_table(self.rep, self.journal.stamp, live=True)
         bs.para(self.rep, 'D2 I-95 PEDESTRIAN BRIDGE', fontsize=16, fontweight='bold', spacingafter=2)
         bs.para(self.rep, blk.payload, fontsize=14, fontweight='bold', spacingafter=6)
 
     def do_h1(self, blk):
         self.sec = int(blk.payload.split('.')[0])
         bs.heading(self.rep, blk.payload, page_break=self.sec in PAGE_BREAK_BEFORE)
+        if self.journal is not None and self.sec == 2:
+            bs.note(self.rep, JOURNAL_SECTION2)
 
     def do_h2(self, blk):
         bs.subheading(self.rep, blk.payload)
@@ -382,16 +396,25 @@ class Sheet:
         bs.para(self.rep, blk.opts['title'], fontweight='bold', spacingbefore='4', spacingafter='3', keepwithnext='True')
         for it in blk.payload:
             self.input_item(it)
+        if self.journal is not None and blk.opts['title'].startswith('Geometry'):
+            owner, unit = self.journal.drop
+            self.eq(self.rep, f'{DROP_NAME} = {owner} to {unit}', self.journal.drop_caption)
 
     def input_item(self, it):
         spec = INPUT_SPEC[it.name]
         unit = None if spec['unit'] in (None, 'bar') else bs.bp_unit(spec['unit'])
         value = self.e.case['inputs'][it.name]
         name = bs.bp_name(it.name)
-        formula = f'{name} = {bs.bp_num(value)}' + (f' {unit}' if unit else '')
         self.scalar_map[it.name] = name
         self.input_names.append(it.name)
+        if self.journal is not None and it.name in self.journal.refs:      # journal edition: a live reference, not a literal
+            owner, ref_unit = self.journal.refs[it.name]
+            self.eq(self.rep, f'{name} = {owner}' + (f' to {ref_unit}' if ref_unit else ''), f'{REFERENCE_CAPTION} {owner}')
+            return
+        formula = f'{name} = {bs.bp_num(value)}' + (f' {unit}' if unit else '')
         caption = it.caption
+        if self.journal is not None and it.name in self.journal.keep:
+            caption = self.journal.keep[it.name]['reason']
         self.eq(self.rep, formula, caption, style='Required Input', show_result=False, inline=bool(caption) and len(caption) <= 45)
 
     # -- equations
@@ -870,14 +893,248 @@ def in_unit(q, unit):
     return q.v / u.v
 
 
+# ----------------------------------------------------------------------------- journal edition (live references)
+BG = 'BridgeGeometry_2Beam'
+MATERIALS = 'Materials'
+JOURNAL_PATH = ROOT / 'journal' / 'D2_I95_Project_Journal.bpad'
+JOURNAL_SUBDIR = 'journal'                                            # end_bent_walls/bpad/journal/
+REVIEW_FILE = 'End Bent Backwall Design - Journal Edition (review).bpad'
+REFERENCE_CAPTION = 'shared journal value —'
+JOURNAL_SECTION2 = ('Shared end-bent geometry, bearing pad data, the Span 1 expansion length and the material strengths are live references '
+                    'to the journal; the owner is named beside each. The bearing actions, the strap loads and the other inputs are the '
+                    'notebook case values.')
+JOURNAL_PROVENANCE = ('Journal edition written by scripts/build_backwall_bpad.py --journal from the same case: the inputs the journal owns are '
+                      'live references (a coherence gate compared each journal value with the notebook input before the build), and every '
+                      'definition was evaluated independently and compared with the notebook to 1 part in 10⁹.')
+REVIEW_BANNER = ('Review copy: the references to BridgeGeometry_2Beam, Materials and ProjectInfo resolve only inside the project journal '
+                 '(D2_I95_Project_Journal.bpad). Opened on its own, this file shows them as undefined; the values stored in it are the '
+                 'journal values at the time of the build.')
+DROP_NAME = 'drop_bw'
+DROP_REF = (f'{BG}.EndBent_backwallDrop', 'in')
+#: notebook input -> (qualified journal owner, display unit): Section 2 inputs that become live references in the journal edition
+JOURNAL_REFS = {
+    'b_cap': (f'{BG}.EndBentCap_width', 'in'), 'h_cap': (f'{BG}.EndBentCap_depth', 'in'),
+    'L_cap': (f'{BG}.EndBentCap_length', 'in'), 'L_bw': (f'{BG}.EndBentCap_length', 'in'),
+    'L_load': (f'{BG}.EndBentCage_envelope', 'in'),
+    'embed_pile': (f'{BG}.EndBent_pileEmbed', 'in'), 'tol_pile': (f'{BG}.EndBent_pileTolerance', 'in'),
+    't_bw': (f'{BG}.Backwall_thickness_shown', 'in'), 'e_brg': (f'{BG}.EndBent_bearingOffset', 'in'),
+    'h_ped': (f'{BG}.EndBentPedestal_ht', 'in'), 'B_ped': (f'{BG}.EndBentPedestal_width', 'in'),
+    't_pad': (f'{BG}.Bearing_pad_thickness', 'in'), 't_ck': (f'{BG}.EndBent_cheekThickness', 'in'),
+    'G_pad': (f'{BG}.Bearing_pad_G', 'ksi'), 'L_pad': (f'{BG}.Bearing_pad_length', 'in'), 'W_pad': (f'{BG}.Bearing_pad_width', 'in'),
+    'n_int': (f'{BG}.Bearing_pad_internalLayers', None), 't_int': (f'{BG}.Bearing_pad_internalThickness', 'in'),
+    't_cov': (f'{BG}.Bearing_pad_cover', 'in'), 'L_exp': (f'{BG}.Span_1', 'ft'),
+    'fc': (f'{MATERIALS}.Substructure_fc', 'ksi'), 'fy': (f'{MATERIALS}.Rebar_fy', 'ksi'), 'Es': (f'{MATERIALS}.Rebar_Es', 'ksi'),
+}
+#: inputs that stay literals although the journal holds a similar quantity: name -> status, owner (reported, never compared), unit, reason
+KEEP_LITERAL = {
+    's_brg': dict(status='literal_incoherent_journal', owner=f'{BG}.Beam_spacing', unit='in',
+                  reason='bearing spacing from the EB-XML bearing stations 29.50 / 132.49 in (102.99 in); the journal beam spacing '
+                         'BridgeGeometry_2Beam.Beam_spacing is 8 ft 7 in (103 in) — the analysis value is kept'),
+}
+LITERAL_STATUSES = ('literal_owner_here', 'literal_incoherent_journal')
+FT_IN = re.compile(r'^\s*(\d+(?:\.\d+)?)\s*ft\s+(\d+(?:\.\d+)?)\s*in\s*$')
+
+
+class JournalContext:
+    """What the journal edition needs: the references, the kept literals, the externals, the stamp and the coherence rows."""
+
+    def __init__(self, links, stamp, refs, keep, rows, externals, drop_caption):
+        self.links, self.stamp, self.refs, self.keep, self.rows, self.externals = links, stamp, refs, keep, rows, externals
+        self.drop, self.drop_caption = DROP_REF, drop_caption
+
+    def apply(self, eng):
+        for qualified, value in self.externals.items():
+            eng.add_external(qualified, value)
+
+    def summary(self):
+        kept = [r for r in self.rows if r['status'] not in ('reference', 'reference_context')]
+        return dict(rows=self.rows, references=sum(r['status'] == 'reference' for r in self.rows), literals=kept,
+                    context=[r['input'] for r in self.rows if r['status'] == 'reference_context'])
+
+
+def journal_number(links, owner, unit):
+    """The journal value of `owner` in `unit`; a `N ft M in` literal the evaluator does not read is parsed here."""
+    try:
+        return in_unit(links.value(owner), unit)
+    except bs.BpError:
+        text = links.formula(owner)
+        m = FT_IN.match(text.partition('=')[2]) if text else None
+        if m and unit == 'in':
+            return float(m.group(1)) * 12 + float(m.group(2))
+        raise
+
+
+def journal_context(links, e):
+    """The coherence gate: every referenced journal value must equal the notebook input, else the build stops."""
+    from scripts.build_cap_bpad import check_project_info
+    stamp = check_project_info(links)                                  # {ProjectInfo.<Key>: text}, or a BuildError
+    from scripts.build_cap_bpad import PROJECT_STAMP
+    for name in set(JOURNAL_REFS) & set(KEEP_LITERAL):
+        raise BuildError(f'{name} is both a reference and a kept literal')
+    unknown = [n for n in list(JOURNAL_REFS) + list(KEEP_LITERAL) if n not in INPUT_SPEC]
+    if unknown:
+        raise BuildError(f'not notebook inputs: {unknown}')
+    case = e.case['inputs']
+    rows, bad, externals = [], [], dict(stamp)
+    for mc in INPUT_SPEC:                                                # notebook input order
+        if mc not in JOURNAL_REFS and mc not in KEEP_LITERAL:
+            continue
+        value = float(case[mc])
+        shown = bs.bp_name(mc)
+        if mc in JOURNAL_REFS:
+            owner, unit = JOURNAL_REFS[mc]
+            try:
+                q = links.value(owner)
+                journal_value = in_unit(q, unit)
+            except bs.BpError as ex:
+                bad.append(f'  {shown}: {owner} cannot be evaluated: {ex}')
+                continue
+            externals[owner] = q
+            if not abs(journal_value - value) <= TOL * max(abs(value), 1e-12):
+                bad.append(f'  {shown}: the case holds {bs.bp_num(clean(value))}{" " + unit if unit else ""} but the journal owner {owner} '
+                           f'holds {bs.bp_num(clean(journal_value))}{" " + unit if unit else ""}')
+            rows.append(dict(input=shown, owner=owner, journal_value=clean(journal_value), case_value=clean(value), status='reference',
+                             note=f'{REFERENCE_CAPTION} {owner}' + (f' ({unit})' if unit else ' (no unit)')))
+        else:
+            spec = KEEP_LITERAL[mc]
+            if spec['status'] not in LITERAL_STATUSES:
+                raise BuildError(f'{mc}: unknown literal status {spec["status"]}')
+            try:
+                journal_value = journal_number(links, spec['owner'], spec['unit'])
+            except bs.BpError as ex:
+                bad.append(f'  {shown}: {spec["owner"]} cannot be evaluated: {ex}')
+                continue
+            agree = abs(journal_value - value) <= TOL * max(abs(value), 1e-12)
+            if spec['status'] == 'literal_incoherent_journal' and agree:
+                bad.append(f'  {shown} is kept as a literal because {spec["owner"]} disagreed, but they agree now '
+                           f'({bs.bp_num(clean(value))} {spec["unit"]}): make it a reference and remove it from KEEP_LITERAL')
+            rows.append(dict(input=shown, owner=spec['owner'], journal_value=clean(journal_value), case_value=clean(value),
+                             status=spec['status'], note=spec['reason']))
+    # the backwall top drop: the journal input the measured heights were built with (CAD TopDrop), shown as context
+    from end_bent_walls.model import PROJECT_EVIDENCE
+    owner, unit = DROP_REF
+    drops = PROJECT_EVIDENCE['native_geometry'].get('per_bent', {}).get('top_drop_in', {})
+    try:
+        q = links.value(owner)
+        journal_drop = in_unit(q, unit)
+    except bs.BpError as ex:
+        bad.append(f'  {DROP_NAME}: {owner} cannot be evaluated: {ex}')
+        journal_drop = None
+    if journal_drop is not None:
+        externals[owner] = q
+        for bent, drop in sorted(drops.items()):
+            if not abs(drop - journal_drop) <= TOL * max(abs(drop), 1e-12):
+                bad.append(f'  {DROP_NAME}: the journal {owner} holds {bs.bp_num(clean(journal_drop))} in but the measured CAD model '
+                           f'({bent} TopDrop) holds {bs.bp_num(clean(drop))} in')
+        cad_drop = clean(max(drops.values())) if drops else None
+        rows.append(dict(input=DROP_NAME, owner=owner, journal_value=clean(journal_drop), case_value=cad_drop, status='reference_context',
+                         note=f'{REFERENCE_CAPTION} {owner} (in); not a notebook input: the CAD backwall tops that H_bw, H_bw_edge and V_bw '
+                              'are measured from were built with this drop (D-053/D-055)'))
+    if bad:
+        raise BuildError('coherence gate: the journal disagrees with the backwall case\n' + '\n'.join(bad))
+    drop_caption = (f'{REFERENCE_CAPTION} {owner}; backwall top below the deck-top line at the front face (D-053). The CAD model measured '
+                    f'for H_bw, H_bw_edge and V_bw was built with this drop (TopDrop {bs.bp_num(clean(journal_drop))} in at both end bents).')
+    stamp_values = {k.partition('.')[2]: v for k, v in stamp.items()}
+    if stamp_values != PROJECT_STAMP:
+        raise BuildError('the ProjectInfo strings differ from PROJECT_STAMP')
+    return JournalContext(links, stamp_values, dict(JOURNAL_REFS), dict(KEEP_LITERAL), rows, externals, drop_caption)
+
+
+def check_journal_edition(rep, jctx):
+    """Every referenced name is written as its reference and no literal remains for it; the drop reference is present once."""
+    defs = {}
+    for dyn in rep.iter('dynexp'):
+        lhs, rhs = bs.split_definition(dyn.get('formula'))
+        if lhs in defs and lhs == DROP_NAME:
+            raise BuildError(f'{DROP_NAME} is defined twice')
+        defs[lhs] = rhs
+    for mc, (owner, unit) in jctx.refs.items():
+        name = bs.bp_name(mc)
+        want = owner + (f' to {unit}' if unit else '')
+        if defs.get(name) != want:
+            raise BuildError(f'{name} is {defs.get(name)!r} in the report; the reference {want!r} is required')
+    owner, unit = jctx.drop
+    if defs.get(DROP_NAME) != f'{owner} to {unit}':
+        raise BuildError(f'{DROP_NAME} is {defs.get(DROP_NAME)!r}; the reference to {owner} is required')
+    tables = [t for t in rep.iter('table') if t.get('name') == 'ProjectStamp']
+    if len(tables) != 1:
+        raise BuildError(f'the report holds {len(tables)} ProjectStamp tables, not 1')
+    first = next(el for el in rep if el.tag not in ('include', 'stylerule'))
+    if first.tag != 'embed' or first.find('table') is not tables[0]:
+        raise BuildError('the ProjectStamp table is not the first thing after the report stylerules')
+    cells = [c for c in tables[0].iter('c') if c.get('formula')]
+    if [c.get('formula') for c in cells] != [f'{bs.PROJECT_INFO}.{k}' for k in bs.STAMP_KEYS]:
+        raise BuildError('the ProjectStamp cells are not live ProjectInfo references')
+
+
+def review_document(sheet):
+    """The report alone, with the review banner after the stamp (the references do not resolve outside the journal)."""
+    doc = bs.new_document()
+    rep = copy.deepcopy(sheet.rep)
+    stamp = next(i for i, el in enumerate(rep) if el.tag == 'embed')
+    banner = bs.para(rep, REVIEW_BANNER, fontsize='10', textcolor='#8A2B1F', background='#FBE9E5', spacingafter='8')
+    rep.remove(banner)
+    rep.insert(stamp + 1, banner)
+    doc.append(rep)
+    return bs.serialize(doc)
+
+
+def write_journal_outputs(links, sheet, eng, meta, out_dir=None):
+    """end_bent_walls/bpad/journal/ (or `out_dir`): the fragment, the preview sidecar, the review document, coherence.json and
+    verification.json; returns the verification entry."""
+    base = (SIDE_DIR if out_dir is None else Path(out_dir)) / JOURNAL_SUBDIR
+    (base / 'preview').mkdir(parents=True, exist_ok=True)
+    shown_base = f'end_bent_walls/bpad/{JOURNAL_SUBDIR}' if out_dir is None else f'{Path(out_dir).name}/{JOURNAL_SUBDIR}'
+    data = bs.serialize(sheet.rep, declaration=False).rstrip()
+    (base / f'{sheet.name}.xml').write_bytes(data)
+    sidecar = {name: cv.sidecar() for name, cv in sheet.canvases.items()}
+    (base / 'preview' / f'{sheet.name}.canvases.json').write_text(json.dumps(sidecar, indent=1, ensure_ascii=False), encoding='utf-8',
+                                                                  newline='\n')
+    review = review_document(sheet)
+    (base / REVIEW_FILE).write_bytes(review)
+    summary = meta['journal']
+    entry = entry_of(sheet, meta, data)
+    entry.pop('bpad_sha256')
+    entry.update({
+        'fragment': f'{shown_base}/{sheet.name}.xml', 'fragment_sha256': hashlib.sha256(data).hexdigest(),
+        'journal_file': links.source, 'project_stamp': {'owner': bs.PROJECT_INFO, **sheet.journal.stamp},
+        'journal_references': summary['references'], 'literals_kept': [r['input'] for r in summary['literals']],
+        'context_references': summary['context'],
+        'references': sorted({r['owner'] for r in summary['rows'] if r['status'] in ('reference', 'reference_context')}),
+        'review_document': f'{shown_base}/{REVIEW_FILE}', 'review_sha256': hashlib.sha256(review).hexdigest(),
+    })
+    (base / 'coherence.json').write_text(json.dumps({sheet.name: summary['rows']}, indent=1, ensure_ascii=False), encoding='utf-8', newline='\n')
+    (base / 'verification.json').write_bytes(json_bytes([entry]))
+    return entry
+
+
+def journal_line(summary):
+    kept = summary['literals']
+    text = f'{REPORT_NAME}: {summary["references"]} journal references verified, {len(kept)} literal{"" if len(kept) == 1 else "s"} kept'
+    if kept:
+        text += ' (' + '; '.join(f'{r["input"]}: journal {bs.bp_num(r["journal_value"])} vs case {bs.bp_num(r["case_value"])}' for r in kept) + ')'
+    return text + f'; context references: {", ".join(summary["context"])}'
+
+
+def journal_path_from(argv):
+    i = argv.index('--journal')
+    if i + 1 < len(argv) and not argv[i + 1].startswith('--'):
+        path = Path(argv[i + 1])
+        return path if path.is_absolute() or path.exists() else ROOT / path
+    return JOURNAL_PATH
+
+
 # ----------------------------------------------------------------------------- build
-def build(e=None, revision=None, mathcad_compare=True, extra_provenance=None):
+def build(e=None, revision=None, mathcad_compare=True, extra_provenance=None, journal=None):
     """Build and verify the report: (sheet, engine, meta). `e` is an evaluated case (default: the registered one); `revision` the
-    package revision text; `mathcad_compare` also builds the Mathcad worksheet of the registered case and compares both."""
+    package revision text; `mathcad_compare` also builds the Mathcad worksheet of the registered case and compares both;
+    `journal` (a bs.JournalLinks) builds the journal edition with live references after the coherence gate."""
     e = evaluate() if e is None else e
     rev = bm.notebook_revision() if revision is None else revision
     blocks = bm.sheet(rev)
-    sheet = Sheet(e, blocks, rev, extra_provenance or EXTRA_PROVENANCE)
+    jctx = journal_context(journal, e) if journal is not None else None
+    sheet = Sheet(e, blocks, rev, extra_provenance or (JOURNAL_PROVENANCE if jctx is not None else EXTRA_PROVENANCE))
+    sheet.journal = jctx
     for blk in blocks:
         if blk.kind != 'row':
             sheet.flush()
@@ -888,6 +1145,8 @@ def build(e=None, revision=None, mathcad_compare=True, extra_provenance=None):
     rep = sheet.rep
     # ---- (a) syntax and names: the engine is built from the XML that will be written
     eng = bs.BpEngine(report=REPORT_NAME)
+    if jctx is not None:
+        jctx.apply(eng)
     n_defs = n_funcs = 0
     for dyn in rep.iter('dynexp'):
         formula = dyn.get('formula')
@@ -940,6 +1199,11 @@ def build(e=None, revision=None, mathcad_compare=True, extra_provenance=None):
     missing = set(INPUT_SPEC) - set(sheet.input_names) - {'N_pile', 'S_pile', 'D_pile'}
     if missing:
         raise BuildError(f'notebook inputs missing from the worksheet: {sorted(missing)}')
+    if jctx is not None:
+        check_journal_edition(rep, jctx)
+        drop_owner, drop_unit = jctx.drop
+        if abs(in_unit(eng.get(DROP_NAME), drop_unit) - in_unit(eng.get(drop_owner), drop_unit)) > INPUT_TOL:
+            raise BuildError(f'{DROP_NAME} does not evaluate to {drop_owner}')
 
     # ---- (c) against the notebook model
     env = adapter_env(sheet, eng)
@@ -990,6 +1254,8 @@ def build(e=None, revision=None, mathcad_compare=True, extra_provenance=None):
 
     meta = dict(definitions=n_defs, functions=n_funcs, cells=n_cells, comparisons=len(shown), mathcad_values=n_mathcad, status=status,
                 case_sha256=sheet.case_sha, revision=rev)
+    if jctx is not None:
+        meta['journal'] = jctx.summary()
     return sheet, eng, meta
 
 
@@ -1033,9 +1299,22 @@ def distill(e, revision='working copy'):
     return data, json_bytes([entry_of(sheet, meta, data)])
 
 
+def main_journal(argv):
+    compare_mathcad = '--skip-mathcad' not in argv
+    links = bs.JournalLinks.load(journal_path_from(argv))
+    sheet, eng, meta = build(mathcad_compare=compare_mathcad, journal=links)
+    entry = write_journal_outputs(links, sheet, eng, meta)
+    mine = f'; {meta["mathcad_values"]} match the Mathcad sheet' if compare_mathcad else ''
+    print(f'{journal_line(meta["journal"])}; {meta["comparisons"]} values match the notebook{mine}; Status {meta["status"]}')
+    print(f'Wrote {entry["fragment"]}, {REVIEW_FILE}, coherence.json and verification.json to end_bent_walls/bpad/{JOURNAL_SUBDIR}/')
+    return 0
+
+
 def main(argv=None):
     sys.stdout.reconfigure(encoding='utf-8')
     argv = sys.argv[1:] if argv is None else argv
+    if '--journal' in argv:
+        return main_journal(argv)
     compare_mathcad = '--skip-mathcad' not in argv
     sheet, eng, meta = build(mathcad_compare=compare_mathcad)
     write_outputs(sheet, eng, meta)

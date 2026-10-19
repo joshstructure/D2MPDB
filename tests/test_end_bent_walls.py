@@ -72,10 +72,11 @@ class ProjectCalculation(unittest.TestCase):
     def test_service_overturning_hand_sum(self):
         e = self.e
         self.assertAlmostEqual(e.value('k_a'), 1 / 3, places=12)
-        self.assertAlmostEqual(e.value('F_EH'), 0.5 / 3 * 0.115 * 7.089974522637 ** 2 * 251 / 12, places=6)
+        # D-053 crown 4.069141189303664 ft above the 3-ft cap; D-055 cheek centroid 2.182752662611373 in behind the pile line
+        self.assertAlmostEqual(e.value('F_EH'), 0.5 / 3 * 0.115 * 7.069141189303664 ** 2 * 251 / 12, places=6)
         hand = (e.value('F_EH') * e.value('y_EH', 'ft') + (e.value('F_ES') + e.value('F_LS')) * e.value('y_LS', 'ft')
                 + (e.value('F_TU') + e.value('F_SH') + 2 * 1.63) * e.value('y_brg', 'ft')
-                + 2 * (92.07 + 28.98) * 0.5 + e.value('W_cap') * 0.25 + e.value('W_ped') * 0.75 + e.value('W_ck') * (3 - 2.182752659952977)/12 - e.value('W_bw') * 1.0)
+                + 2 * (92.07 + 28.98) * 0.5 + e.value('W_cap') * 0.25 + e.value('W_ped') * 0.75 + e.value('W_ck') * (3 - 2.182752662611373)/12 - e.value('W_bw') * 1.0)
         self.assertAlmostEqual(e.value('M_SERI'), hand, places=6)
 
     def test_combination_totals_equal_their_tables(self):
@@ -139,6 +140,7 @@ class SourcesAndExports(unittest.TestCase):
         updates, _, receipt = read_end_bent_case(path.read_bytes(), path.name)
         self.assertTrue(receipt['matches_register'])
         self.assertEqual((updates['b_cap'], updates['h_cap'], updates['embed_pile']), (42.0, 36.0, 12.0))
+        self.assertFalse(any('does not match' in note for note in receipt['notes']), 'the D-051 case records the registered D-049 export')
         path = CURRENT / 'fbmp/end_bents/End Bent 1_Fixed.XML'
         updates, _, receipt = read_fbmp_xml(path.read_bytes(), path.name)
         self.assertTrue(receipt['matches_register'])
@@ -147,7 +149,9 @@ class SourcesAndExports(unittest.TestCase):
         path = next((CURRENT / 'geometry/freecad').glob('*.FCStd'))
         updates, _, receipt = read_freecad(path.read_bytes(), path.name)
         self.assertTrue(receipt['matches_register'])
-        self.assertAlmostEqual(updates['H_bw'], 4.089974522637, places=6)
+        self.assertAlmostEqual(updates['H_bw'], 4.069141189303664, places=6)          # D-053: 4.25 in below the deck-top line
+        self.assertAlmostEqual(updates['H_bw_edge'], 3.873307767781874, places=6)
+        self.assertAlmostEqual(updates['V_bw'], 77.76981184128364, places=6)
         self.assertEqual((updates['L_bw'], updates['t_slab']), (235.0, 4.0))
         self.assertEqual((updates['t_ck'], updates['w_ck'], updates['L_load']), (8.0, 42.0, 251.0))
         with self.assertRaisesRegex(ValueError, 'no reviewed native measurement'):

@@ -113,9 +113,10 @@ def read_freecad(content, filename='bridge.FCStd'):
     if digest != evidence['source_sha256']:
         raise ValueError('This CAD revision has no reviewed native measurement snapshot. Measure the saved solids in the BridgePGL frame and review the dimensions before importing; no inputs changed.')
     updates = dict(PROJECT_EVIDENCE['cad_updates'])
-    sources = {key: f'CAD-MODEL {filename}; native saved-solid measurements, D-026/D-033/D-034' for key in updates}
+    sources = {key: f'CAD-MODEL {filename}; native saved-solid measurements, D-053/D-055 (notebook build e9b41b8eaf)' for key in updates}
     notes = ['235 in core cap and backwall; 251 in overall cap/cheek envelope.',
-             'Maximum heights and minimum backwall edge/weight envelope both ends. Cheek weight includes rear/bottom lugs.',
+             'Two planar 2% backwall tops 4.25 in below the deck-top line (D-053). Maximum heights and minimum backwall edge/weight '
+             'envelope both ends. Cheek weight includes rear/bottom lugs.',
              'Geometry adoption is separate from pending connection and fabrication acceptance.']
     return updates, sources, _receipt('CAD-MODEL', filename, bytes(content), notes)
 

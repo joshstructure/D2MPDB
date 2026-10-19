@@ -159,8 +159,13 @@ class BackwallBpad(unittest.TestCase):
     def test_xml_is_native_and_journal_compatible(self):
         taken = journal_names()
         key = f'report:{NAME}'
-        self.assertNotIn(NAME, taken, 'the report name is already used in the journal')
-        self.assertNotIn(key, taken)
+        # The journal holds this name only once T017 is promoted; then the journal edition (not the standalone sheet) owns it.
+        self.assertEqual(NAME in taken, key in taken)
+        if key in taken:
+            journal = Journal.load(JOURNAL)
+            edition = ET.fromstring((SIDE / 'journal' / f'{NAME}.xml').read_bytes())
+            self.assertEqual(shape(ET.fromstring(journal.part(key))), shape(edition),
+                             'the journal holds a different EndBentBackwallDesign than end_bent_walls/bpad/journal/: prepare a journal task')
         self.assertIsNone(CELL_ADDRESS.match(NAME), 'a report name that looks like a cell address')
         for source, data in (('fresh build', self.data), ('committed file', (OUT / FILENAME).read_bytes())):
             with self.subTest(source=source):
@@ -338,6 +343,135 @@ class BackwallBpad(unittest.TestCase):
         # the distilled bytes are the same for the same case, and the file system is untouched by distill
         again, _ = bb.distill(changed)
         self.assertEqual(again, data)
+
+
+BG = 'BridgeGeometry_2Beam'
+JOURNAL_OUT = SIDE / 'journal'
+ROW_KEYS = ['input', 'owner', 'journal_value', 'case_value', 'status', 'note']
+EXPECTED_REFERENCES = sorted((bs.bp_name(mc), owner) for mc, (owner, _) in bb.JOURNAL_REFS.items())
+
+
+class BackwallBpadJournal(unittest.TestCase):
+    """The journal edition: the inputs the journal owns are live references, a coherence gate compares them with the case."""
+
+    @classmethod
+    def setUpClass(cls):
+        if not JOURNAL.is_file():
+            raise unittest.SkipTest('journal/D2_I95_Project_Journal.bpad is not in this checkout')
+        cls.links = bs.JournalLinks.load(JOURNAL)
+        try:                                      # the owners arrive with journal tasks T014 (Materials, ProjectInfo) and T016 (the drop)
+            cls.links.value(f'{BG}.EndBent_backwallDrop')
+        except bs.BpError as ex:
+            raise unittest.SkipTest(f'journal task T016 (BridgeGeometry_2Beam.EndBent_backwallDrop) is not promoted yet: {ex}') from None
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.addClassCleanup(cls.tmp.cleanup)
+        out = Path(cls.tmp.name)
+        cls.sheet, cls.eng, cls.meta = bb.build(journal=cls.links)
+        cls.entry = bb.write_journal_outputs(cls.links, cls.sheet, cls.eng, cls.meta, out_dir=out)
+        cls.fresh = out / 'journal'
+        cls.e = evaluate()
+
+    def test_committed_journal_edition_equals_a_fresh_build(self):
+        names = sorted(p.relative_to(self.fresh).as_posix() for p in self.fresh.rglob('*') if p.is_file())
+        self.assertEqual(names, sorted([f'{NAME}.xml', 'coherence.json', 'verification.json', bb.REVIEW_FILE, f'preview/{NAME}.canvases.json']))
+        for name in names:
+            committed = JOURNAL_OUT / name
+            self.assertTrue(committed.is_file(), f'end_bent_walls/bpad/journal/{name} is missing: {HOW} --journal')
+            if name == 'verification.json':
+                mine = json.loads((self.fresh / name).read_text(encoding='utf-8'))
+                theirs = json.loads(committed.read_text(encoding='utf-8'))
+                self.assertEqual(theirs[0]['fragment'], f'end_bent_walls/bpad/journal/{NAME}.xml')
+                self.assertEqual(theirs[0]['review_document'], f'end_bent_walls/bpad/journal/{bb.REVIEW_FILE}')
+                for entry in mine + theirs:                 # the paths depend on where the build was written
+                    for key in ('journal_file', 'fragment', 'review_document'):
+                        entry.pop(key, None)
+                self.assertEqual(theirs, mine, f'end_bent_walls/bpad/journal/{name} is stale: {HOW} --journal')
+                continue
+            self.assertEqual(unix(committed.read_bytes()), unix((self.fresh / name).read_bytes()),
+                             f'end_bent_walls/bpad/journal/{name} is stale: {HOW} --journal')
+
+    def test_coherence_rows_are_the_reference_mapping_plus_the_kept_literal_and_the_drop(self):
+        coherence = json.loads((JOURNAL_OUT / 'coherence.json').read_text(encoding='utf-8'))
+        self.assertEqual(list(coherence), [NAME])
+        rows = coherence[NAME]
+        self.assertTrue(all(list(r) == ROW_KEYS for r in rows))
+        self.assertEqual(rows, self.meta['journal']['rows'])
+        references = sorted((r['input'], r['owner']) for r in rows if r['status'] == 'reference')
+        self.assertEqual(references, EXPECTED_REFERENCES)
+        self.assertGreaterEqual(len(references), 20)
+        for r in rows:
+            if r['status'] in ('reference', 'reference_context'):
+                self.assertAlmostEqual(r['journal_value'], r['case_value'], delta=1e-9 * max(abs(r['case_value']), 1e-12), msg=r['input'])
+                self.assertTrue(r['note'].startswith('shared journal value'))
+        kept = [r for r in rows if r['status'] == 'literal_incoherent_journal']
+        self.assertEqual([(r['input'], r['owner'], r['journal_value'], r['case_value']) for r in kept],
+                         [('s_brg', f'{BG}.Beam_spacing', 103.0, 102.99)])
+        drop = [r for r in rows if r['status'] == 'reference_context']
+        self.assertEqual([(r['input'], r['owner'], r['journal_value'], r['case_value']) for r in drop],
+                         [(bb.DROP_NAME, f'{BG}.EndBent_backwallDrop', 4.25, 4.25)])
+        by_input = {r['input']: r for r in rows}
+        self.assertEqual((by_input['L_load']['journal_value'], by_input['L_cap']['journal_value'], by_input['fc']['journal_value']), (251.0, 235.0, 5.5))
+        self.assertAlmostEqual(by_input['L_exp']['journal_value'], 107.35, places=9)
+
+    def test_every_referenced_owner_is_defined_once_in_the_journal(self):
+        journal = Journal.load(JOURNAL)
+        for row in json.loads((JOURNAL_OUT / 'coherence.json').read_text(encoding='utf-8'))[NAME]:
+            owner, _, name = row['owner'].partition('.')
+            report = journal.elements[f'report:{owner}']
+            found = [d for d in report.iter('dynexp') if re.match(rf'\s*{re.escape(name)}\s*=(?!=)', d.get('formula') or '')]
+            self.assertEqual(len(found), 1, f'{row["owner"]} is not defined exactly once in the journal')
+
+    def test_fragment_holds_live_references_and_the_stamp_and_no_literal_for_them(self):
+        rep = ET.fromstring((JOURNAL_OUT / f'{NAME}.xml').read_bytes())
+        self.assertEqual((rep.tag, rep.get('name')), ('report', NAME))
+        defs = {}
+        for dyn in rep.iter('dynexp'):
+            lhs, rhs = bs.split_definition(dyn.get('formula'))
+            defs[lhs] = (rhs, dyn.get('style'))
+        for mc, (owner, unit) in bb.JOURNAL_REFS.items():
+            name = bs.bp_name(mc)
+            self.assertEqual(defs[name], (owner + (f' to {unit}' if unit else ''), None), name)
+        self.assertEqual(defs[bb.DROP_NAME], (f'{BG}.EndBent_backwallDrop to in', None))
+        self.assertEqual(defs['s_brg'], ('102.99 in', 'Required Input'))
+        amber = {n for n, (_, style) in defs.items() if style == 'Required Input'}
+        self.assertFalse(amber & {bs.bp_name(mc) for mc in bb.JOURNAL_REFS})
+        first = next(el for el in rep if el.tag not in ('include', 'stylerule'))
+        table = first.find('table')
+        self.assertEqual((first.tag, table.get('name')), ('embed', 'ProjectStamp'))
+        self.assertEqual([c.get('formula') for c in table.iter('c') if c.get('formula')], [f'{bs.PROJECT_INFO}.{k}' for k in bs.STAMP_KEYS])
+        # every qualified reference names one of the three journal owners and resolves in the journal
+        owners = {m.group(1) for el in rep.iter() for m in re.finditer(r'(?<![\w.])([A-Za-z_]\w*)\.[A-Za-z_]\w*', el.get('formula') or '')}
+        self.assertEqual(owners, {BG, 'Materials', bs.PROJECT_INFO, NAME})
+        for el in rep.iter():
+            for owner, name in re.findall(r'(?<![\w.])(BridgeGeometry_2Beam|Materials|ProjectInfo)\.([A-Za-z_]\w*)', el.get('formula') or ''):
+                self.links.value(f'{owner}.{name}')
+        # the standalone sheet is not touched by the journal edition: it still holds the literals
+        standalone = ET.fromstring((SIDE / 'fragments' / f'{NAME}.xml').read_bytes())
+        literal = {bs.split_definition(d.get('formula'))[0]: d.get('style') for d in standalone.iter('dynexp')}
+        self.assertEqual(literal.get('b_cap'), 'Required Input')
+        self.assertNotIn(bb.DROP_NAME, literal)
+
+    def test_the_gate_stops_on_a_journal_value_that_differs_from_the_case(self):
+        links = bs.JournalLinks.load(JOURNAL)
+        links.override(f'{BG}.EndBentCap_width', bs.BpEngine().evaluate('43 in'))
+        with self.assertRaisesRegex(bb.BuildError, r'b_cap: the case holds 42 in but the journal owner BridgeGeometry_2Beam\.EndBentCap_width holds 43 in'):
+            bb.build(mathcad_compare=False, journal=links)
+        links = bs.JournalLinks.load(JOURNAL)
+        links.override(f'{BG}.EndBent_backwallDrop', bs.BpEngine().evaluate('4 in'))
+        with self.assertRaisesRegex(bb.BuildError, r'drop_bw: the journal .* holds 4 in but the measured CAD model'):
+            bb.build(mathcad_compare=False, journal=links)
+
+    def test_journal_values_are_live_in_the_evaluation(self):
+        self.assertAlmostEqual(self.eng.get('b_cap').v, 42.0, places=12)                   # inches, from the journal external
+        self.assertAlmostEqual(self.eng.get('L_exp').v, 107.35 * 12, places=6)
+        self.assertAlmostEqual(self.eng.get(bb.DROP_NAME).v, 4.25, places=12)
+        self.assertEqual(self.entry['status'], self.eng.get('Status'))
+        self.assertEqual(self.entry['journal_references'], len(bb.JOURNAL_REFS))
+        self.assertEqual(self.entry['literals_kept'], ['s_brg'])
+        self.assertEqual(self.entry['context_references'], [bb.DROP_NAME])
+        self.assertGreaterEqual(self.entry['tool_comparisons'], 240)
+        self.assertGreaterEqual(self.entry['mathcad_values_compared'], 200)
+        self.assertEqual(self.entry['project_stamp']['owner'], bs.PROJECT_INFO)
 
 
 if __name__ == '__main__':

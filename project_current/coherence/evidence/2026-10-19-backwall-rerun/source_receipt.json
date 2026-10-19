@@ -1,0 +1,254 @@
+{
+  "date": "2026-10-19",
+  "decision": "D-057",
+  "authorization": "User request relayed by the journal-coherence session of 19 October 2026: bring the end-bent backwall calculation up to the current sources and add its Blockpad edition to the project journal.",
+  "scope": "Backwall notebook package reconciled with the registered 19 October sources, rerun, and its report and case exported and selected as current. Decisions D-014 to D-019 and the six pending prerequisites are unchanged; no CAD, FBMP, tracker or engineering disposition changed. The Blockpad journal edition goes to the journal under task T017.",
+  "executed_utc": "2026-10-19T22:00:13.713256+00:00",
+  "notebook": {
+    "path": "End_Bent_Backwall_Design.ipynb",
+    "sha256_lf_text": "e63bcc5990f435615f1216aa861ce2a148dba7e6a3d065174531e0b5fec85809",
+    "package_sha256": "16ee4d414858ddab361fad38394f2050742a38831f9d9174355520b22bdaaf65",
+    "previous_sha256_lf_text": "54a13c9bcf4e749508485858a846cd54503f7df8fbf43502cadb02e87cefafcd",
+    "previous_package_sha256": "883c9aa21a3380363eed6a0dcaded3872bc9c47e0cdcc7737a0d5d1dec1858cd",
+    "mode": "Actual four notebook code cells executed in a fresh in-process IPython session from a temporary working folder (the embedded package, not the checkout, was imported), followed by notebook recalculate and the built-in export bundle (end_bent_walls.exports.export_bundle). Colab/browser frontend was not exercised.",
+    "cells": [
+      {
+        "id": "a7b8c9d0",
+        "execution_count": 1,
+        "error": null
+      },
+      {
+        "id": "e3b0a7c1",
+        "execution_count": 2,
+        "error": null
+      },
+      {
+        "id": "f1a2b3c4",
+        "execution_count": 3,
+        "error": null
+      },
+      {
+        "id": "f5a6b7c8",
+        "execution_count": 4,
+        "error": null
+      }
+    ]
+  },
+  "sources_reconciled": {
+    "EB-CASE": {
+      "label": "End-bent saved cap case",
+      "path": "project_current/cap_design/end_bents/selected_case.json",
+      "sha256": "898b3e134b286b7a5a8f3eaf96f3c2996e1400e11206195dc0ea2448d750274f",
+      "previous_sha256": "37a04b9c8ab1dc8d215850cecd539dedc49b07397be2e668ac7ef9809173cf78"
+    },
+    "EB-XML": {
+      "label": "End Bent 1 FBMP fixed results",
+      "path": "project_current/fbmp/end_bents/End Bent 1_Fixed.XML",
+      "sha256": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
+      "previous_sha256": "8414fbedfbf1270fbd65b2cf940f2dc2050818c282cc6f66db2d20b2f3ff17ee"
+    },
+    "CAD-MODEL": {
+      "label": "Current FreeCAD bridge model (D-053 backwall tops, D-055 verticals)",
+      "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+      "sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df",
+      "previous_sha256": "517d08ddd6c0b01c0bb279919d3648835a8a77cbc7727a42ba4312013b701a20"
+    },
+    "JOURNAL": {
+      "label": "Project journal (bearing pad, temperature, span, wind basis; T016 revision)",
+      "path": "journal/D2_I95_Project_Journal.bpad",
+      "sha256": "855e2cecf27db3de141d037a33dfce060014cc00b6f4c180326172b0e4acf1db",
+      "previous_sha256": "8902a6a2faa284f371518ec5f99b9979b480a2f940de007318a643f724d43351"
+    },
+    "MCAD-S1": {
+      "label": "Span 1 Mathcad (pedestrian load q_PL)",
+      "path": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd",
+      "sha256": "a6b0f967d271c193591d477e219ac66f98b72309d19958a04c6cd08e575a8dcd",
+      "previous_sha256": "a6b0f967d271c193591d477e219ac66f98b72309d19958a04c6cd08e575a8dcd"
+    }
+  },
+  "cad_measurement": {
+    "script": "scripts/measure_backwall_cad.py",
+    "interpreter": "FreeCAD 1.1 Python (C:\\Program Files\\FreeCAD 1.1\\bin\\python.exe)",
+    "method": "Native saved BReps read with OpenCascade (FreeCAD 1.1 Python, scripts/measure_backwall_cad.py), transformed to BridgePGL.Frame. No document open, recompute or save. NetVolume properties read from Document.xml.",
+    "model_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df",
+    "per_bent": {
+      "cap_top_ft": {
+        "EB1": 43.23769223221812,
+        "EB2": 43.24969214402966
+      },
+      "H_bw_ft": {
+        "EB1": 4.0691411011152,
+        "EB2": 4.069141189303664
+      },
+      "H_bw_edge_ft": {
+        "EB1": 3.873307767781874,
+        "EB2": 3.8733078559703387
+      },
+      "H_ck_ft": {
+        "EB1": 5.031352523880976,
+        "EB2": 5.027350551686936
+      },
+      "V_ck_ft3": {
+        "EB1": 42.982400997403786,
+        "EB2": 42.92932787720362
+      },
+      "dx_ck_in": {
+        "EB1": -2.182752662611373,
+        "EB2": -2.182797713375294
+      },
+      "top_drop_in": {
+        "EB1": 4.25,
+        "EB2": 4.25
+      },
+      "backwall_top_elevations_ft": {
+        "EB1": [
+          47.111,
+          47.30683333333332
+        ],
+        "EB2": [
+          47.123,
+          47.31883333333332
+        ]
+      }
+    },
+    "landing_net_volume_ft3": {
+      "A_BridgeLandingAtReturns": 111.98703546833744,
+      "B_BridgeLandingAtReturns": 89.03840085322877
+    },
+    "cad_updates": {
+      "L_cap": 235.0,
+      "L_bw": 235.0,
+      "L_load": 251.0,
+      "b_cap": 42.0,
+      "h_cap": 36.0,
+      "t_bw": 12.0,
+      "H_bw": 4.069141189303664,
+      "H_bw_edge": 3.873307767781874,
+      "t_ck": 8.0,
+      "w_ck": 42.0,
+      "H_ck": 5.031352523880976,
+      "V_cap": 196.6250000000004,
+      "V_bw": 77.76981184128364,
+      "V_ck": 42.982400997403786,
+      "dx_ck": -2.182752662611373,
+      "t_slab": 4.0
+    },
+    "cross_check": "Backwall top elevations 47.111 / 47.306833 (EB1) and 47.123 / 47.318833 ft (EB2), wall volumes 77.7698 ft3 and landing net volumes 111.987035 / 89.038401 ft3 equal the D-053 record (project_current/geometry/freecad/README.md; coherence/evidence/2026-10-19-simple-backwall-tops)."
+  },
+  "input_changes_vs_16_october": {
+    "H_bw": {
+      "16 October": 4.089974522637,
+      "19 October": 4.069141189303664
+    },
+    "H_bw_edge": {
+      "16 October": 3.8941411893036744,
+      "19 October": 3.873307767781874
+    },
+    "V_bw": {
+      "16 October": 78.17779967941874,
+      "19 October": 77.76981184128364
+    },
+    "dx_ck": {
+      "16 October": -2.182752659952977,
+      "19 October": -2.182752662611373
+    },
+    "L_slab": {
+      "16 October": 17.07795753331303,
+      "19 October": 17.155460752596376
+    }
+  },
+  "inputs_unchanged": "Bearing actions from the D-049 export equal the 16 October values (DC 92.07, PL 28.98 kip per bearing; WS1 3.29 / -36.98, WS2 0 / -14.58, WS3 1.63 / 0 kip); cap, backwall thickness and length, cheek webs, pedestal, pad, soil, wind, cover, reinforcement and material inputs unchanged; strap trial level 1.5 ft (D-019) unchanged.",
+  "outputs": {
+    "BACKWALL-REPORT": {
+      "path": "project_current/cap_design/backwall/Backwall Design 10-19.html",
+      "sha256": "6ed9ebb7bd2d2b536cddd289b04bbfcb1e8b566858239e40d88a2a7fb9d74768",
+      "bytes": 7958675,
+      "hash_basis": "exact_bytes"
+    },
+    "BACKWALL-CASE": {
+      "path": "project_current/cap_design/backwall/selected_case.json",
+      "sha256": "01e76c5a263af986e0d7e154039cec4c351bea29403dd9bfd2cbee7b16bab597",
+      "bytes": 17722,
+      "hash_basis": "exact_bytes"
+    }
+  },
+  "verification": {
+    "case_round_trip": "Export reload is exactly equal to the evaluated notebook case; every check status and ratio matches on recalculation (39 checks).",
+    "report": "Generated by the same evaluated notebook instance; self-contained HTML with inline charts, collapsible sections and dated source/confirmation notes.",
+    "numerical_failures": [],
+    "pending_check_entries": [
+      "cover_bw",
+      "cover_CK",
+      "interface_min_CK",
+      "strap_height",
+      "prereq_settlement",
+      "prereq_strap_level",
+      "prereq_shrinkage",
+      "prereq_analysis",
+      "prereq_cheek_connection"
+    ],
+    "confirmed": [
+      "geometry",
+      "wind_kz",
+      "landing"
+    ],
+    "unconfirmed": [
+      "settlement",
+      "strap_level",
+      "exposure",
+      "shrinkage",
+      "analysis",
+      "cheek_connection"
+    ],
+    "values": {
+      "strap_service_kip_per_ft": 3.0891525800867834,
+      "strap_factored_kip_per_ft": 3.7368182294181413,
+      "M_u_FF_kipft_per_ft": 1.28731021917276,
+      "M_u_SF_kipft_per_ft": 4.317917124954452,
+      "V_u_bw_kip": 2.9454198742155873,
+      "T_u_kipft": 51.44335024245848,
+      "DC_max": 1.0,
+      "cheek_spacing_in": 10,
+      "cheek_steel": "One centered mat of #4 each way"
+    },
+    "values_16_october": {
+      "strap_service_kip_per_ft": 3.094445498144781,
+      "strap_factored_kip_per_ft": 3.745583210785458
+    },
+    "tests": "python -X utf8 -m unittest tests.test_end_bent_walls tests.test_backwall_bpad_export tests.test_backwall_bpad: all pass on the new hashes.",
+    "editions": {
+      "mathcad": "End_Bent_Backwall_Design.xmcd rebuilt (scripts/build_backwall_mathcad.py); every expression matches the notebook.",
+      "blockpad_standalone": {
+        "file": "end_bent_walls/End Bent Backwall Design.bpad",
+        "sha256": "101d3f584f3749829eec0d515aba5613ca2c6bc19bb7b1fd0910e0c809b6a004",
+        "status": "✓ All Checks Pass",
+        "tool_comparisons": 245,
+        "mathcad_values_compared": 585
+      },
+      "blockpad_journal": {
+        "fragment": "end_bent_walls/bpad/journal/EndBentBackwallDesign.xml",
+        "fragment_sha256": "a98be68890f698a2f1a1b1a2cc6d35450f31d0d4f67b3a0d806aa42d2512b847",
+        "journal_references": 23,
+        "literals_kept": [
+          "s_brg"
+        ],
+        "context_references": [
+          "drop_bw"
+        ],
+        "status": "✓ All Checks Pass"
+      }
+    }
+  },
+  "downstream_review": [
+    "This selects the rerun outputs; it does not accept the six unconfirmed prerequisites (settlement, strap level, exposure, shrinkage, analysis, cheek connection).",
+    "The analysis prerequisite note now records that EB-XML (D-049) is the analysis the D-051 case holds and that End Bent 2_Fixed.XML reads the same bearing actions; the confirmation stays with the user (COH-013/COH-028).",
+    "COH-023 (anchorage, lug steel, strap interfaces) and COH-024 (detailing) remain open; the CAD cheek mats follow the 10 in spacing (D-039).",
+    "The journal edition (end_bent_walls/bpad/journal/) is added to the journal under task T017; the standalone sheet keeps every input as a literal."
+  ],
+  "preservation": {
+    "prior_report_path": "project_current/cap_design/backwall/Backwall Design 10-16.html",
+    "prior_report_sha256": "a02563223df9e8039b8771978d755cefd038e4c0335401d37bb9244fdd28e5bb",
+    "prior_case_sha256": "ac075073306e06f252404d0c26e73b975cad2ee18373e011ef0946ae1c20d0e1",
+    "note": "Prior reports retained; native CAD, journal, analysis files and tracker workbook remain byte-identical."
+  }
+}

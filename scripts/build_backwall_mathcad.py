@@ -51,8 +51,8 @@ def sheet(rev):
           'load combinations as the notebook; results should match its exported report (Section 12 lists the notebook values).'),
         P('Codes: AASHTO LRFD Bridge Design Specifications, 10th edition (2024); FDOT Structures Design Guidelines (SDG) and '
           'Structures Detailing Manual (SDM), January 2026.'),
-        P('Status: adopted CAD geometry reconciled 16 October; single centered #4 cheek mat at 10 in each way. Prerequisites remain pending (Section 12). Inputs are '
-          'highlighted yellow; values for the plans are boxed.'),
+        P('Status: adopted CAD geometry reconciled 19 October 2026 (D-053 backwall tops, D-055 model; D-049 analysis export); single centered #4 cheek '
+          'mat at 10 in each way. Prerequisites remain pending (Section 12). Inputs are highlighted yellow; values for the plans are boxed.'),
 
         H1('1. Design basis'),
         BUL(['Tie-back straps in the backwall extend into the MSE fill and resist the end-bent horizontal load and overturning '
@@ -72,7 +72,7 @@ def sheet(rev):
         H1('2. Inputs'),
         INPUTS('Adopted CAD geometry and centered cheek mat', [
             *[I(n, '', '') for n in ('single_ck', 'L_load', 'V_cap', 'V_bw', 'V_ck', 'dx_ck')]]),
-        INPUTS('Geometry (D-026/D-033 native CAD snapshot)', [
+        INPUTS('Geometry (D-053/D-055 native CAD snapshot)', [
             I('b_cap', '42*in', 'cap width, along the bridge'), I('h_cap', '36*in', 'cap depth'),
             I('L_cap', '212*in', 'cap length'), I('embed_pile', '12*in', 'pile embedment (pile top above soffit)'),
             I('tol_pile', '3*in', 'pile placement tolerance, toward fill'), I('t_bw', '12*in', 'backwall thickness'),
@@ -88,7 +88,7 @@ def sheet(rev):
             I('gamma_s', '0.115*kip/ft**3', 'backfill unit weight'), I('q_PL', '0.090*ksf', 'pedestrian live load'),
             I('t_slab', '4*in', 'landing slab thickness'), I('L_slab', '17.33*ft', 'landing slab length'),
             I('share_slab', '0.5', 'slab share on the backwall')]),
-        INPUTS('Bearings and superstructure (EB-XML End Bent 1_Fixed; journal pad data)', [
+        INPUTS('Bearings and superstructure (EB-XML End Bent 1_Fixed, D-049; journal pad data)', [
             I('N_brg', '2', 'bearings'), I('P_DC', '92.07*kip', 'DC reaction per bearing'),
             I('P_PL', '28.98*kip', 'pedestrian reaction per bearing'), I('FY_WS1', '3.29*kip', 'long. wind per bearing, WS1'),
             I('FZ_WS1', '-36.98*kip', 'vertical wind, both bearings, WS1'), I('FY_WS2', '0*kip', 'long. wind per bearing, WS2'),
