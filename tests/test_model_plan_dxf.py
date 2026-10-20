@@ -46,9 +46,24 @@ class ModelPlanDxfTests(unittest.TestCase):
     def test_outputs_are_current_with_snapshot_and_generator(self):
         self.assertEqual(self.manifest["snapshot_sha256"], sha(SNAPSHOT), REBUILD)
         self.assertEqual(self.manifest["dxf_sha256"], sha(DXF), REBUILD)
+        flat = DXF.parent / self.manifest["dxf_flat"]
+        self.assertEqual(self.manifest["dxf_flat_sha256"], sha(flat), REBUILD)
         with tempfile.TemporaryDirectory() as tmp:
             dxf, manifest = model_plan.write_outputs(SNAPSHOT, tmp)
             self.assertEqual(sha(dxf), sha(DXF), "Generator output differs from the committed DXF. " + REBUILD)
+            self.assertEqual(sha(Path(tmp) / manifest["dxf_flat"]), sha(flat), "The flat DXF differs. " + REBUILD)
+
+    def test_flat_dxf_has_no_dimension_entities(self):
+        """B13: the flat variant for the DGN import carries the dimensions as
+        lines, arrowheads and masked text on FDOT levels, ByLevel."""
+        from substructure_drawings import build
+        flat = ezdxf.readfile(DXF.parent / self.manifest["dxf_flat"])
+        self.assertEqual(len(flat.modelspace().query("DIMENSION")), 0)
+        self.assertEqual(len(self.doc.modelspace().query("DIMENSION")), self.manifest["dimensions_flattened"])
+        audit = build.symbology_audit(flat)
+        self.assertEqual(audit["not_on_fdot_level"], [])
+        self.assertEqual(audit["not_by_level"], [])
+        self.assertEqual(flat.header["$INSUNITS"], 21)
 
     def test_frame_runs_from_end_bent_1_to_end_bent_2(self):
         """Sheet right is the direction of stationing (End Bent 1 at the left),

@@ -74,6 +74,61 @@ def sha256(path):
 LINETYPE_OVERRIDES = {("BearingPadMisc", fdot.HIDDEN_LINETYPE)}
 
 
+def flat_name(dxf_name):
+    """The flat variant's file name: <name>_flat.dxf."""
+    return dxf_name[:-4] + "_flat.dxf" if dxf_name.lower().endswith(".dxf") else dxf_name + "_flat.dxf"
+
+
+def flatten_dimensions(doc):
+    """Explode every DIMENSION of model space into the lines, arrowheads
+    (SOLIDs) and masked texts of its rendered block, on the dimension's
+    level, ByLevel, and drop the then unused dimension and arrowhead blocks
+    (STYLE_GUIDE B13, 2026-10-20).  A DGN import rebuilds DIMENSION entities
+    from their definition points with its own dimension-line offsets, so
+    chained rows came in off their row twice over; the flat DXF carries no
+    DIMENSION entity, only what the sheets show, and imports as drawn.
+    Returns the number of dimensions exploded."""
+    msp = doc.modelspace()
+    n = 0
+    for dim in list(msp.query("DIMENSION")):
+        layer = dim.dxf.layer
+        for e in list(dim.explode()):
+            if e.dxftype() == "POINT":
+                e.destroy()
+                continue
+            e.dxf.layer = layer
+            if e.dxftype() == "INSERT":
+                for s in e.explode():
+                    s.dxf.layer = layer
+                    s.dxf.color = 256
+                    s.dxf.lineweight = -1
+                    s.dxf.linetype = "BYLAYER"
+        n += 1
+    # the dimension blocks first (they hold the arrowhead INSERTs), then the
+    # arrowhead blocks nothing inserts any more
+    for prefix in ("*D", "_"):
+        used = {e.dxf.name for blk in doc.blocks for e in blk.query("INSERT")}
+        used |= {e.dxf.name for lay in doc.layouts for e in lay.query("INSERT")}
+        for blk in list(doc.blocks):
+            if blk.name.startswith(prefix) and blk.name not in used:
+                doc.blocks.delete_block(blk.name, safe=False)
+    return n
+
+
+def write_flat(doc_path, flat_path):
+    """Write the flat variant of a saved DXF (``flatten_dimensions`` on a
+    fresh copy read from disk, so the intelligent file stays as it is);
+    returns the number of dimensions exploded."""
+    import ezdxf
+    from collections import OrderedDict
+    flat = ezdxf.readfile(doc_path)
+    n = flatten_dimensions(flat)
+    flat.classes.add_required_classes(flat.dxfversion)
+    flat.classes.classes = OrderedDict(sorted(flat.classes.classes.items()))
+    flat.saveas(flat_path)
+    return n
+
+
 def dimension_blocks_by_level(doc):
     """ezdxf draws a dimension's lines, arrows and text into its block on
     layer 0 and adds definition points on Defpoints.  FDOT does not allow
@@ -930,6 +985,8 @@ def _write_outputs(snapshot_path, out_dir):
     doc.classes.add_required_classes(doc.dxfversion)
     doc.classes.classes = OrderedDict(sorted(doc.classes.classes.items()))
     doc.saveas(dxf_path)
+    flat_path = out_dir / flat_name(DXF_NAME)
+    n_flat = write_flat(dxf_path, flat_path)
     reg = out_dir / "bar_mark_register.csv"
     with reg.open("w", newline="", encoding="utf-8") as f:
         w = csv.writer(f, lineterminator="\n")
@@ -945,6 +1002,9 @@ def _write_outputs(snapshot_path, out_dir):
     manifest = {
         "generator": "substructure_drawings.build", "version": GENERATOR_VERSION,
         "dxf": DXF_NAME, "dxf_sha256": sha256(dxf_path),
+        # the flat variant for the DGN import: every dimension exploded into
+        # lines, arrowheads and masked text as drawn (B13)
+        "dxf_flat": flat_name(DXF_NAME), "dxf_flat_sha256": sha256(flat_path), "dimensions_flattened": n_flat,
         "snapshot_sha256": sha256(snapshot_path), "model_sha256": snap["model_sha256"],
         "units": "US survey feet ($INSUNITS=21; the model's feet, for the DGN import); model space 1:1, "
                  "one labelled group per sheet %.0f ft apart" % MODEL_PITCH_FT,

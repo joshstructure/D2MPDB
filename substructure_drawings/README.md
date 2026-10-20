@@ -28,7 +28,12 @@ how it's actually cut and also it's easier to dim to"). After the first
 import, the dimensions chained in a row came in off the row where their
 value was pulled out: the DGN importer follows a DIMENSION's moved-text
 location, so the style now has DIMTMOVE 0 and every displaced value is a
-separate masked MTEXT with the dimension's own text suppressed (B13).
+separate masked MTEXT with the dimension's own text suppressed (B13). The
+import still rebuilt the dimensions with its own offsets, so each build also
+writes a flat variant, `output/B4_Substructure_EndBents_Pier_flat.dxf` (and
+`B4_Model_Plan_flat.dxf`), with every dimension exploded into lines,
+arrowheads and masked text as drawn: import the flat file into the DGN; the
+intelligent DXF stays for editing.
 
 **Generator 2.6.0 (19 October 2026)** rebuilt this DXF from the model with
 revision D-061 (D-044 weather closure and copings, D-045 strap references,

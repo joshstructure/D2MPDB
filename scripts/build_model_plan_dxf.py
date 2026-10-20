@@ -77,6 +77,8 @@ def main():
         extract()
     dxf, manifest = model_plan.write_outputs(SNAPSHOT, OUT)
     print("dxf:", dxf)
+    print("flat dxf (for the DGN import, %d dimensions exploded):" % manifest["dimensions_flattened"],
+          OUT / manifest["dxf_flat"])
     for w in manifest["layout_warnings"]:
         print("WARNING:", w)
     for w in manifest["annotation_overlaps"]:

@@ -208,6 +208,8 @@ def main():
         extract()
     dxf, manifest = build.write_outputs(SNAPSHOT, OUT)
     print("dxf:", dxf)
+    print("flat dxf (for the DGN import, %d dimensions exploded):" % manifest["dimensions_flattened"],
+          OUT / manifest["dxf_flat"])
     for w in manifest["layout_warnings"]:
         print("WARNING:", w)
     for w in manifest.get("annotation_overlaps", []):

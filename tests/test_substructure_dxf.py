@@ -58,11 +58,42 @@ class SubstructureDxfTests(unittest.TestCase):
         """A rebuild in a temporary folder is byte-identical to the committed DXF."""
         self.assertEqual(self.manifest["snapshot_sha256"], sha(SNAPSHOT), REBUILD)
         self.assertEqual(self.manifest["dxf_sha256"], sha(DXF), REBUILD)
+        flat = OUT / self.manifest["dxf_flat"]
+        self.assertEqual(self.manifest["dxf_flat_sha256"], sha(flat), REBUILD)
         with tempfile.TemporaryDirectory() as tmp:
             dxf, manifest = build.write_outputs(SNAPSHOT, tmp)
             self.assertEqual(sha(dxf), sha(DXF), "Generator output differs from the committed DXF. " + REBUILD)
+            self.assertEqual(sha(Path(tmp) / manifest["dxf_flat"]), sha(flat), "The flat DXF differs. " + REBUILD)
             self.assertEqual((Path(tmp) / "bar_mark_register.csv").read_bytes(),
                              (OUT / "bar_mark_register.csv").read_bytes(), REBUILD)
+
+    def test_flat_dxf_has_no_dimension_entities_and_the_same_drawing(self):
+        """B13: the flat variant (for the DGN import) carries every dimension
+        as lines, SOLID arrowheads and masked MTEXT on the Dimension level,
+        ByLevel, on FDOT levels; no DIMENSION, no POINT, no dimension or
+        arrowhead block; the same sheets, viewports, groups and units."""
+        flat = ezdxf.readfile(OUT / self.manifest["dxf_flat"])
+        msp = flat.modelspace()
+        self.assertEqual(len(msp.query("DIMENSION")), 0)
+        self.assertEqual(len(msp.query("POINT")), 0)
+        self.assertGreater(self.manifest["dimensions_flattened"], 400)
+        self.assertEqual(len(self.doc.modelspace().query("DIMENSION")), self.manifest["dimensions_flattened"])
+        self.assertGreater(len(msp.query("SOLID[layer=='Dimension']")), 2 * 400)
+        texts = msp.query("MTEXT[layer=='Dimension']")
+        self.assertGreater(len(texts), 400)
+        for e in texts:
+            self.assertEqual(e.dxf.get("bg_fill", 0), 3)
+        self.assertFalse([b.name for b in flat.blocks if b.name.startswith("*D") or b.name.startswith("_")])
+        audit = build.symbology_audit(flat)
+        self.assertEqual(audit["not_on_fdot_level"], [])
+        self.assertEqual(audit["not_by_level"], [])
+        self.assertEqual(flat.header["$INSUNITS"], 21)
+        self.assertEqual([lay.name for lay in flat.layouts], [lay.name for lay in self.doc.layouts])
+        for lay in flat.layouts:
+            if lay.name != "Model":
+                self.assertEqual(len(list(lay.viewports())), len(list(self.doc.layouts.get(lay.name).viewports())))
+        labels = {e.dxf.text for e in msp.query("TEXT[layer=='Border']")}
+        self.assertEqual(labels, {e.dxf.text for e in self.doc.modelspace().query("TEXT[layer=='Border']")})
 
     def test_every_snapshot_bar_has_an_sdm_mark(self):
         for key, S in self.snap["structures"].items():

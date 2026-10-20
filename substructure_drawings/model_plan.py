@@ -299,12 +299,15 @@ def _write_outputs(snapshot_path, out_dir):
     doc.classes.add_required_classes(doc.dxfversion)
     doc.classes.classes = OrderedDict(sorted(doc.classes.classes.items()))
     doc.saveas(dxf_path)
+    flat_path = out_dir / build.flat_name(DXF_NAME)
+    n_flat = build.write_flat(dxf_path, flat_path)
     layers = {}
     for e in doc.modelspace():
         layers[e.dxf.layer] = layers.get(e.dxf.layer, 0) + 1
     manifest = {
         "generator": "substructure_drawings.model_plan", "version": GENERATOR_VERSION,
         "dxf": DXF_NAME, "dxf_sha256": sha256(dxf_path),
+        "dxf_flat": build.flat_name(DXF_NAME), "dxf_flat_sha256": sha256(flat_path), "dimensions_flattened": n_flat,
         "snapshot_sha256": sha256(snapshot_path), "model_sha256": snap["model_sha256"],
         "units": "US survey feet ($INSUNITS=21; the model's feet, for the DGN import); model space 1:1 in the plan frame",
         "frame": snap["frame"],
