@@ -22,7 +22,7 @@ except ModuleNotFoundError as err:   # the annotation checker module is new; bui
         raise
     anno_check = None
 
-GENERATOR_VERSION = "2.6.0"
+GENERATOR_VERSION = "2.7.0"
 DXF_NAME = "B4_Substructure_EndBents_Pier.dxf"
 
 INFO = {
@@ -389,40 +389,54 @@ class Composer:
                                      (sh.number, ev.name, top_ev, nb))
 
     # -------------------------------------------------------------- details
-    def _ped_table(self, sh, s, x, y_top):
-        """TOP OF PEDESTAL ELEVATIONS in the sample's title/header style; our
-        pedestal tops slope, so the corner elevations are listed."""
-        body = []
-        if s.kind == "EB":
-            for row in s.pedestal_table():
-                p = row["pedestal"]
-                back = max(row["lines"], key=lambda t: t[0])
-                front = min(row["lines"], key=lambda t: t[0])
-                bid = s.beam_id(s.bearings[0]["span"], p["line"])
-                body.append((bid, fdot.elev(back[1]), fdot.elev(front[1]), fdot.elev(back[1]), fdot.elev(front[1])))
-            corners = ("A", "B", "C", "D")
-            note = "A, C AT FFBW EDGE; B, D AT SPAN EDGE (LEVEL TRANSVERSELY)."
-        else:
-            for row in s.pedestal_table():
-                p = row["pedestal"]
-                zs = [z for _, z in sorted(row["lines"], key=lambda t: t[0])]
-                body.append(("1-%d / 2-%d" % (p["line"], p["line"]),) + tuple(fdot.elev(z) for z in zs[:4]))
-            corners = ("A", "E", "F", "B")
-            # two lines: one would run past the table width (E2)
-            note = "A AT SPAN 1 EDGE, B AT SPAN 2 EDGE,\\PE AND F AT THE PAD-END BREAKS."
-        hdr = [(("BEAM NO.", 1, 2), ("ELEVATION (FEET)", 4)), (None,) + corners]
-        y = sh.table(x, y_top, "TOP OF PEDESTAL ELEVATIONS", hdr, body, PED_COLS)
-        lines = note.split("\\P")
-        for i, line in enumerate(lines):
-            sh.ptext((x, y - 0.08 - 0.11 * i), line, None, "TOP_LEFT", "TextStructures", style=fdot.SMALL_STYLE)
-        return y - 0.2 - 0.11 * (len(lines) - 1)
-
     @staticmethod
-    def _ped_table_height(s):
-        """Height of the TOP OF PEDESTAL ELEVATIONS table with its note (title
-        box, two header rows, one row per pedestal line, note lines)."""
-        return (fdot.TABLE_TITLE_IN * (1.45 + 0.6) + 0.15 * (2 + len(s.pedestal_table())) + 0.2
-                + (0.11 if s.kind == "PIER" else 0.0))
+    def ped_lines(s):
+        """The pedestal top lines of the TOP OF PEDESTAL ELEVATIONS table:
+        {"level": bool, "rows": [(beam id, [(v, z), ...] back to front)],
+        "letters": "A", "B", ... per line}.  D-065 (2026-10-20): the as-cast
+        pedestal tops are level, so the table lists one elevation per
+        pedestal; while a top sloped (two planes across the pads, before),
+        each distinct line across the pedestal gets a lettered column and
+        the letters are drawn at the lines in the pedestal plan (markup
+        2026-10-20 on the old corner footnote: "Label in the Pedestal
+        Plan")."""
+        rows = []
+        for row in s.pedestal_table():
+            p = row["pedestal"]
+            bid = (s.beam_id(s.bearings[0]["span"], p["line"]) if s.kind == "EB"
+                   else "1-%d / 2-%d" % (p["line"], p["line"]))
+            rows.append((bid, sorted(row["lines"], key=lambda t: -t[0])))
+        zs = [z for _, lines in rows for _, z in lines]
+        level = (max(zs) - min(zs) < 5e-4) if zs else True
+        n = 1 if level else max(len(lines) for _, lines in rows)
+        return {"level": level, "rows": rows, "letters": "ABCDEFGHJK"[:n]}
+
+    def _ped_table(self, sh, s, x, y_top):
+        """TOP OF PEDESTAL ELEVATIONS in the sample's title/header style: one
+        elevation per pedestal (level tops, D-065), or one column per lettered
+        top line with the letters in the pedestal plan (``ped_lines``)."""
+        pl = self.ped_lines(s)
+        if pl["level"]:
+            hdr = [("BEAM NO.", "ELEVATION (FEET)")]
+            body = [(bid, fdot.elev(lines[0][1])) for bid, lines in pl["rows"]]
+            cols = [PED_COLS[0], sum(PED_COLS[1:])]
+        else:
+            n = len(pl["letters"])
+            hdr = [(("BEAM NO.", 1, 2), ("ELEVATION (FEET)", n)), (None,) + tuple(pl["letters"])]
+            body = [(bid,) + tuple(fdot.elev(z) for _, z in lines) + ("",) * (n - len(lines))
+                    for bid, lines in pl["rows"]]
+            cols = [PED_COLS[0]] + [PED_COLS[1]] * n
+        y = sh.table(x, y_top, "TOP OF PEDESTAL ELEVATIONS", hdr, body, cols)
+        return y - 0.1
+
+    def _ped_table_height(self, s):
+        """Height of the TOP OF PEDESTAL ELEVATIONS table (title box, header
+        rows, one row per pedestal) with 0.1 in under it."""
+        pl = self.ped_lines(s)
+        return fdot.TABLE_TITLE_IN * (1.45 + 0.6) + 0.15 * ((1 if pl["level"] else 2) + len(pl["rows"])) + 0.1
+
+    def ped_table_width(self, s):
+        return sum(PED_COLS) if self.ped_lines(s)["level"] else PED_COLS[0] + PED_COLS[1] * len(self.ped_lines(s)["letters"])
 
     def legend_notes(self, sh, b, x, y_top, x_end, items, min_w=NOTES_W, gap=0.3, legend=True):
         """NOTES: (left) and beside it, ``gap`` to its right and up to
@@ -599,7 +613,7 @@ class Composer:
         z = sh.zone(DRAW, "3/4")
         vf = details.cheek_section_side(b, z, s.cheeks[0], "F", wwr_note=2)
         vg = details.cheek_section_top(b, z, s.cheeks[0], "G", wwr_note=2)
-        pp = b.pedestal_plan(z, s.pedestals[0])
+        pp = b.pedestal_plan(z, s.pedestals[0], top_lines=self.ped_lines(s))
         pe = b.pedestal_elevation(z, s.pedestals[0])
         self.place_tl(vf, DRAW[0] + 0.1, top)
         xg = self.paper_bbox(vf)[2] + 0.4
@@ -609,7 +623,7 @@ class Composer:
         self.place_tl(pe, xg, self.paper_bbox(vg)[1] - 0.3)
         for v in (vf, vg, pp, pe):
             self.check(sh, v)
-        wt = sum(PED_COLS)
+        wt = self.ped_table_width(s)
         x_t = max(xp, self.paper_bbox(pe)[2] + 0.3)
         h = self._ped_table_height(s)
         y_t = self.slide_down(sh, x_t, x_t + wt, self.paper_bbox(pp)[1] - 0.2, h, margin=0.2)
@@ -677,7 +691,7 @@ class Composer:
         # right of the elevation, the notes under the table
         sh = self.new_sheet(nums[2], "PIER DETAILS " + of % 2)
         z = sh.zone(DRAW, "3/4")
-        pp = b.pedestal_plan(z, s.pedestals[0])
+        pp = b.pedestal_plan(z, s.pedestals[0], top_lines=self.ped_lines(s))
         pe = b.pedestal_elevation(z, s.pedestals[0])
         top = DRAW[3] - 0.1
         self.place_tl(pp, DRAW[0] + 0.1, top)
@@ -685,7 +699,7 @@ class Composer:
         for v in (pp, pe):
             self.check(sh, v)
         # the table under the pedestal elevation, the notes under the table
-        wt = sum(PED_COLS)
+        wt = self.ped_table_width(s)
         xt = self.paper_bbox(pe)[0]
         y_t = self.paper_bbox(pe)[1] - 0.35
         y = self._ped_table(sh, s, xt, y_t)

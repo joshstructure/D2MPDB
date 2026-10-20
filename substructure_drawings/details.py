@@ -823,12 +823,16 @@ def pier_cheek_section(b, zone, cheek, letter, which):
         dx = abs(x_col - d * land - tip[0])
         items.append(([tip], bar["mark"], yt + dx * math.tan(math.radians(30))))
         break
-    if side:
-        # the cap named from under its stub (its text would sit on the drawn
-        # cap beside the column, A1); the tip under the wall, so the leader
-        # runs at about 50 degrees to the column, not straight down (A3)
-        items.append(([(u_in - d * 0.3, s.cap_top - 0.3)], "PIER CAP", z_cap - 0.35 * k))
     _column(v, items, x_col, d)
+    if side and cap:
+        # A27 (markup 2026-10-20, the PIER CAP callout clouded: its leader
+        # rose from under the stub through the break line to an arrowhead
+        # inside the cap): the cap is named at its END FACE beyond the wall's
+        # outer face, the tip on that edge at mid height of the stub, the
+        # leader level from the outer side, where nothing is drawn below the
+        # dimension columns
+        zm = (s.cap_top + z_cap) / 2
+        v.leader([(x_end, zm), (x_end - d * 0.3 * k, zm)], "PIER CAP", "right" if d > 0 else "left")
     _title_below(v, (u_out + u_in) / 2, "SECTION %s-%s" % (letter, letter), "(THROUGH CHEEK WALL)")
     return v
 

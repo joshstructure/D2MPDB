@@ -2,9 +2,9 @@
  "generator": "substructure_drawings.model_plan",
  "version": "1.0.0",
  "dxf": "B4_Model_Plan.dxf",
- "dxf_sha256": "2c95102fcc1e52db31b7c74a6d734c0f60d4647caa9dcbb26a981143045ee08d",
- "snapshot_sha256": "54f5f21d96edb6f66f92edf93ac562cf40cd7b69fe5f3df904e6a9018d793acd",
- "model_sha256": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43",
+ "dxf_sha256": "848c906de6bd3bf8b3ca7ea293303cdc94b4bec95ae82fc2148e688f010fa314",
+ "snapshot_sha256": "58a075551af06e5506d6f433f50aaa3f9d735083cbe29ba98450449eb511fc1c",
+ "model_sha256": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
  "units": "international feet ($INSUNITS=2); model space 1:1 in the plan frame",
  "frame": {
   "e1": [
@@ -268,7 +268,7 @@
   "BaseLineSurveyPGL": 2,
   "BeamConc": 1,
   "BeamConc_h": 80,
-  "BearingPadMisc": 36,
+  "BearingPadMisc": 32,
   "CL_Major": 3,
   "Leader": 2,
   "PileConc": 10,
@@ -277,7 +277,7 @@
   "Rebar_h": 55,
   "SubStrConc": 18,
   "SubStrConc2": 34,
-  "SubStrConc2_h": 81,
+  "SubStrConc2_h": 67,
   "SubStrConc_h": 19,
   "SupstrConc": 14,
   "SupstrConc3_h": 21,
@@ -303,11 +303,11 @@
   "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
  },
  "symbology_audit": {
-  "entities": 1386,
+  "entities": 1368,
   "not_on_fdot_level": [],
   "not_by_level": [],
   "documented_overrides": {
-   "BearingPadMisc linetype DGN2 (hidden pad edges; no FDOT hidden level)": 36
+   "BearingPadMisc linetype DGN2 (hidden pad edges; no FDOT hidden level)": 32
   },
   "layers": [
    "0",
@@ -355,7 +355,7 @@
   "CopingB7AtCheek has no valid shape; CopingB7BentJoint is drawn in its place",
   "BarrierB7AtCheek has no valid shape; BarrierB7BentJoint is drawn in its place",
   "138 objects chosen, 28 skipped",
-  "projection 65 s (4048 edges)",
-  "total 72 s"
+  "projection 57 s (4028 edges)",
+  "total 64 s"
  ]
 }

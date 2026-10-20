@@ -99,6 +99,24 @@ D13   open concrete outline          in a section, an end of a visible          
                                      finding
 E5    title centred                  the title anchor is more than 0.05 k from   TITLE_TOL_K
                                      the centre of its subject
+A25   free label centred             a label given its own open space            FREE_CENTRE_K
+                                     (``free_labels``) has its text centre more
+                                     than 0.08 k from the space's centre, or
+                                     its box outside the space
+A26   leader length                  the angled piece of a leader or fan (tip     LEADER_MAX_K
+                                     to knee) is longer than 2.0 k: the label
+                                     stands far from what it names
+A27   tip on nothing                 a tip of a leader or fan (not a pointer,     TIP_ON_K
+                                     not the parallel leaders' centerline
+                                     tips) lies more than 0.03 k from every
+                                     drawn line (concrete, bar, pad,
+                                     centerline levels, dots and break
+                                     lobes excluded): it points into an area
+E8    subtitle layout                a parenthesised text stands within 3 th      SUB_NEAR_TH
+                                     under a title's underline without being
+                                     the subtitle ``title()`` placed, or the
+                                     placed subtitle's capital line is not
+                                     SUB_GAP_TH under the underline
 ====  =============================  ==========================================  ===============
 
 A finding is a candidate, not a verdict: the lead reads the list, fixes what
@@ -135,6 +153,10 @@ OUTLINE_CLIP_TOL = 0.01  # an outline end this close (feet) to a recorded window
 TIP_APART_K = 0.1        # tips of two different callouts are at least this far apart, paper inches (A21)
 BREAK_CLIP_K = 0.12      # an edge running on this far (paper inches) past a break line on both sides is drawn whole (D15)
 TIP_BREAK_K = 0.12       # a leader tip keeps this far (paper inches) from a break line (A24; the strap stubs are 0.35 ft)
+FREE_CENTRE_K = 0.08     # a free label's text centre lies within this (paper inches) of its space's centre (A25)
+LEADER_MAX_K = 2.5       # the angled piece of a leader is at most this long (paper inches) (A26; the level backwall-column leaders are 2.2")
+TIP_ON_K = 0.03          # a leader tip lies within this (paper inches) of a drawn line (A27)
+SUB_NEAR_TH = 3.0        # a parenthesised text this close (text heights) under a title's underline is its subtitle (E8)
 
 # levels
 LINEWORK_SKIP = ("Patterning", "Symbols")         # hatch patterns; symbols drawn around their own letters
@@ -144,8 +166,9 @@ LEADER_LINE_EXACT = ("Rebar", "Rebar2", "BearingPadMisc")   # with the prefixes:
 CLIP_EXACT = ("Rebar2",)                                    # with the prefixes: the levels of D12
 OUTLINE_PREFIXES = ("SubStrConc", "PileConc", "PileSteel")  # the concrete outline levels of D13
 
-RULES = ("A1", "A2", "A3", "A10", "A11", "A12", "A13", "A14", "A21", "A23", "A24", "B9", "B11", "B12", "D3",
-         "D12", "D13", "D15", "E5")
+RULES = ("A1", "A2", "A3", "A10", "A11", "A12", "A13", "A14", "A21", "A23", "A24", "A25", "A26", "A27", "B9",
+         "B11", "B12", "D3", "D12", "D13", "D15", "E5", "E8")
+TIP_ON_PREFIXES = CONCRETE_PREFIXES + ("BearingPadMisc",)   # the levels a tip may stand on (A27), with the bar levels
 
 
 # ------------------------------------------------------------------ geometry
@@ -849,10 +872,119 @@ def title_centred(view):
     return []
 
 
+def free_label_centred(view):
+    """A25: a label given its own open space (``View.free_label``: the PT. K
+    label in the band between the vertical dimension column and the cheek
+    lug) stands at the centre of that space, so it is equidistant from its
+    neighbours ("move the anno more toward the cg of the box ... give
+    annotations as much space as possible so they are equidistant from each
+    other", 2026-10-20).  The text box also lies inside the space."""
+    k = view.sf / 12.0
+    out = []
+    for space, tbox in getattr(view, "free_labels", []):
+        label = next((lab for b, lab in view.texts if b == tbox), "?")
+        dx = (tbox[0] + tbox[2]) / 2 - (space[0] + space[2]) / 2
+        dy = (tbox[1] + tbox[3]) / 2 - (space[1] + space[3]) / 2
+        if max(abs(dx), abs(dy)) > FREE_CENTRE_K * k * (1.0 + 1e-6):
+            out.append(("A25", "[A25] free label '%s' %.2f in off the centre of its space" % (_name(label), max(abs(dx), abs(dy)) / k)))
+        if not _inside(tbox, space, 1e-6):
+            out.append(("A25", "[A25] free label '%s' outside its space" % _name(label)))
+    return out
+
+
+def leader_length(view):
+    """A26: a label stands near what it names: the angled piece of a leader
+    or fan (from a tip to the knee) is at most 2.0 k long (the pier
+    elevation's pile description once stood 3.7 in from its pile, clouded
+    2026-10-20)."""
+    k = view.sf / 12.0
+    out = []
+    for r in view.leaders:
+        if r["kind"] in ("pointer", "parallel") or not r["tips"]:
+            continue
+        L = max(math.dist(t, r["knee"]) for t in r["tips"])
+        if L > LEADER_MAX_K * k * (1.0 + 1e-6):
+            out.append(("A26", "[A26] leader of '%s' %.2f in long" % (_name(r["text"]), L / k)))
+    return out
+
+
+def tip_on_nothing(view):
+    """A27: a tip points at a drawn line.  A tip of a leader or fan (not a
+    pointer; the parallel leaders of the centerlines have their own rule)
+    lies within 0.03 k of a segment of the concrete, pad, bar or centerline
+    levels, of a dot (inside its ring) or of a break lobe; otherwise it
+    points into an area (the PIER CAP arrowheads of View E-E and Section
+    F-F once stood inside the cap, clouded 2026-10-20).  Members named as
+    areas take the arrowless area leader (``details._area_leader``), which
+    is no leader record."""
+    k = view.sf / 12.0
+    need = TIP_ON_K * k
+    lines = [(p, q) for p, q, layer, _c in view.segs
+             if (layer.startswith(TIP_ON_PREFIXES) or layer in LEADER_LINE_EXACT or layer in cad.CENTERLINE_LAYERS)]
+    lines += list(view.breaks)
+    dots = getattr(view, "dots", [])
+    arcs = getattr(view, "arcs", [])
+
+    def on_arc(t):
+        for c, rad, a0, a1, _layer in arcs:
+            if abs(math.dist(t, c) - rad) > need:
+                continue
+            a = math.degrees(math.atan2(t[1] - c[1], t[0] - c[0])) % 360.0
+            lo, span = a0 % 360.0, (a1 - a0) % 360.0 or 360.0
+            if (a - lo) % 360.0 <= span + 1e-6:
+                return True
+        return False
+    out = []
+    for r in view.leaders:
+        # (an area leader ends inside its area by design; a PT. label names a
+        # point of the table of elevations, which stands on a surface in plan)
+        if r["kind"] in ("pointer", "parallel", "area") or not r["tips"] or r["text"].startswith("PT. "):
+            continue
+        for t in r["tips"]:
+            if any(math.dist(t, c) <= rad + need for c, rad in dots):
+                continue
+            if any(point_seg_dist(t, a, b) <= need for a, b in lines) or on_arc(t):
+                continue
+            out.append(("A27", "[A27] tip of '%s' at %s on no drawn line" % (_name(r["text"]), _pt(t))))
+            break
+    return out
+
+
+def subtitle_layout(view):
+    """E8: one layout for a title and its note: the subtitle is the one
+    ``title()`` placed (its capital line SUB_GAP_TH under the underline); a
+    parenthesised text standing within 3 th under the underline that is not
+    that subtitle was placed by hand (the pedestal plans' subtitle once sat
+    0.5 th under the underline: "More space between title underline and
+    notes.  Create a consistent layout to be used for all titles and notes",
+    2026-10-20)."""
+    spec = view.title_spec
+    if not spec or spec.get("underline_y") is None:
+        return []
+    th = view.th
+    y_ul = spec["underline_y"]
+    sub_box = spec.get("sub_box")
+    out = []
+    if sub_box:
+        want = y_ul - cad.SUB_GAP_TH * th
+        top = sub_box[1] + cad.CAP_TH * th      # the capital line of the (bottom-anchored) subtitle
+        if abs(top - want) > 0.02 * th:
+            out.append(("E8", "[E8] subtitle '%s' capital line %.2f th under the underline (wanted %.2f)"
+                        % (_name(spec["sub"]), (y_ul - top) / th, cad.SUB_GAP_TH)))
+    x_t = spec["x"]
+    for box, label in view.texts:
+        if box == sub_box or not label.startswith("("):
+            continue
+        if box[0] <= x_t <= box[2] and y_ul - SUB_NEAR_TH * th <= box[3] <= y_ul:
+            out.append(("E8", "[E8] text '%s' placed by hand under the title '%s'" % (_name(label), _name(spec["title"]))))
+    return out
+
+
 CHECKS = (text_over_linework, leader_through_symbol, leader_through_text, text_clearance, acute_bends, fan_direction,
           leader_crossings, fan_spread, leader_over_linework, leader_along_line, pulled_clearance,
           pointer_gap, dimension_beside_line, short_centerlines, clipped_without_break, break_without_clip,
-          open_outlines, tips_apart, tip_near_break, title_centred)
+          open_outlines, tips_apart, tip_near_break, title_centred, free_label_centred, leader_length,
+          tip_on_nothing, subtitle_layout)
 
 
 def check_view(view):

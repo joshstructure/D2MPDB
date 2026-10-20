@@ -238,6 +238,40 @@ symbol at page scale.
   (round 6, B4-12 pedestal plan): "Extend these centerlines a bit and so the
   leader arrows of the anno are so close to the breakline so that it's more
   clear".
+- **A25 A label given its own open space stands at the space's centre.**
+  Where a label has a box of free space to itself (the PT. K label of the
+  end bent elevations: the band left of the cheek lug between the vertical
+  dimension column and the lug's outer face, from the stirrup row's text
+  band up to the lug bottom), its text is centred in that box
+  (`View.free_label`), so it is equidistant from its neighbours, and the
+  leader runs from the text's landing to the tip.  Checked: the text centre
+  within 0.08" of the space's centre and the box inside the space.  Markup
+  2026-10-20: "If the red box here represents the available space move the
+  anno more toward the cg of the box.  That way everything is more clear.
+  Its a general principle that we want to give annotations as much space as
+  possible so they are equidistant from each other whilst also trying to
+  maintain a kind of row column order".
+- **A26 A label stands near what it names.**  The angled piece of a leader
+  (tip to knee) is at most 2.5" long: the pier elevation's pile description
+  stands beside the last pile (knee 0.3" right of its face, 0.25" under the
+  pile bottom), not at the sheet's right edge 3.7" away under the PT. F
+  leader.  Checked (the level column leaders of the end bent sections are
+  2.2").  Markup 2026-10-20 (the pile description clouded).
+- **A27 An arrowhead points at a drawn line; an area is named with the
+  area leader.**  A leader with an arrowhead ends on an edge, a bar, a
+  centerline, a dot or a break lobe (the skew angle's tip on its arc), never
+  inside the member it names: the PIER CAP of View E-E points at the cap
+  stub's side edge, level from its column, and that of Section F-F at the
+  cap's end face beyond the wall, level from the outer side (both had stood
+  inside the cap, the F-F leader rising through the stub's break line); the
+  END BENT CAP of the end bent cheek views points at the cap's face edge.
+  A member seen as an area (the closure slab and coping of the plan, the
+  WWR hatch of the cheek views, DETAIL "B"'s END BENT BACKWALL) takes the
+  arrowless area leader with the small tilde at its end (FDOT sample B1-17;
+  `View.leader(area=True)`).  Checked: a tip of an arrowhead leader or fan
+  more than 0.03" from every drawn line (the PT. labels, which name points
+  of the table of elevations on a surface, are exempt).  Markups
+  2026-10-20: PIER CAP clouded in View E-E and Section F-F.
 
 ## B. Dimensions
 
@@ -565,7 +599,13 @@ symbol at page scale.
   of a visible concrete outline segment in a section that no other outline,
   hidden edge or break line meets, and that is not a window clip, is a
   finding.  Markup 2026-10-19 (round 3): "Where are the tops of the
-  backwalls?" (Sections A-A, B-B, C-C).
+  backwalls?" (Sections A-A, B-B, C-C).  Second case (D-065, 2026-10-20):
+  with the level pedestal tops the pad bottoms lie in the pedestal top
+  plane and the extractor hands the whole collinear pedestal top edge to
+  the smaller pad, so the sections' pedestal outlines came back open at the
+  top (the top drawn on BearingPadMisc); `views.fix_pad_roles` gives an
+  edge tagged "pad" with a point outside every pad's box back to the
+  pedestal (sections and elevations), and the check caught it.
 - **D14 A section draws the cut outline, not the silhouette beyond the
   cut.**  Concrete within the bar depth beyond the cut (1'-3") is not
   drawn: the backwall top rises toward the crown beyond the cut and its
@@ -653,6 +693,16 @@ symbol at page scale.
   dimensioned at the break), the sheet notes say where the walls are shown
   whole, and the (3 OF 3) sheet carries view E-E and sections F-F and G-G.
   The layout check warns when the end view runs within 0.2" of the notes.
+- **E8 One layout for a title and its note.**  A view's subtitle (the note
+  in parentheses under the title) is placed by `View.title(sub=...)` in
+  every view: its capital line stands `cad.SUB_GAP_TH` (1.0) text heights
+  under the title's underline, centred on the title.  No subtitle is placed
+  by hand (the pedestal plans' long note sat 0.5 th under the underline,
+  touching it on the pier sheet).  Checked: the placed subtitle's gap, and
+  any parenthesised text within 3 th under a title's underline that is not
+  the placed subtitle.  Markups 2026-10-20: "More space between title
+  underline and notes.  Create a consistent layout to be used for all
+  titles and notes" (B4-4), "Spacing" (B4-7).
 
 ## F. Symbology
 
@@ -671,8 +721,8 @@ Render the previews (`--previews`) and look at every sheet at full size:
 1. `manifest.json` `layout_warnings` is empty (views inside their windows,
    no crossings between views, titles centred and aligned) and
    `annotation_overlaps` (the `anno_check` findings, rule ids A1, A2, A3,
-   A10, A11, A12, A13, A14, A21, B9, B11, B12, D3, D12, D13, D15, E5) is
-   empty (A19).
+   A10, A11, A12, A13, A14, A21, A23, A24, A25, A26, A27, B9, B11, B12, D3,
+   D12, D13, D15, E5, E8) is empty (A19).
 2. No leader parallel to or along the bar it points to (A3, checked); no
    leader under the stationing arrow (A7); no leader crossing another
    (A11, audit); no acute bend under a text (A10); fans leave the text
@@ -853,3 +903,22 @@ Markups on the 2.6.0 sheets (pier cheek walls, D-059 to D-061), 2026-10-19 round
 |---|---|---|---|
 | B4-8 Section F-F | Did you run an anno overlap minimizer helper? We need something because I see a huge anno overlap | A23 | the PIER CAP leader ran through the 1'-0" embedment value: value moved to the cap-end side of the bar; new check A23 (no leader, pointer or dimension line through another annotation's text) in every build |
 | B4-12 pedestal plan | Extend these centerlines a bit and so the leader arrows of the anno are so close to the breakline so that it's more clear | A24 | CL CAP / CL PIER and CL BEARING run 0.35" past the break line, tips 0.05" short of their ends (all three pedestal plans); new check A24 (no tip within 0.12" of a break line), which also moved the coping and pile tips off their breaks (the strap tips go to the stubs' roots) |
+
+Markups on the 2.6.0 sheets ("Reinforcing Sheets.pdf"), 2026-10-20 round 7, with the model's level as-cast bearing seats (D-065: six pedestal tops level at each pedestal's maximum, eight uniform 2 9/16" pads; generator 2.7.0):
+
+| Where | Comment (engineer's words) | Rule | Resolution |
+|---|---|---|---|
+| (model) D-065 level pedestal tops | — | D13, E2 | both snapshots re-extracted; the TOP OF PEDESTAL ELEVATIONS tables list one elevation per pedestal (EB1 43.746, pier 44.267, EB2 43.760) with no corner footnote; a sloped top would get one lettered column per top line with the letters in the pedestal plan; the pedestal top edge the extractor handed to the level pad goes back to the pedestal (`fix_pad_roles`, the D13 check had flagged Section C-C open at the pedestal top) |
+| B4-1 elevation, PT. K | If the red box here represents the available space move the anno more toward the cg of the box. That way everything is more clear. Its a general principle that we want to give annotations as much space as possible so they are equidistant from each other whilst also trying to maintain a kind of row column order | A25 | the label centred in its space (between the dimension column, the lug face, the stirrup row's text band and the lug bottom), tip on the lug bottom 0.15 ft in from the corner; new check A25 |
+| B4-1 elevation, 3~5C (TYP.) | Adjust so it point more to the bar which is in the middle and not so close to the stirrups | A3, A1 | the tip at the middle of the U-bar's bottom run (slid toward the text only as far as the bay needs, never within 0.5 ft of the stirrups), the text in the run's own bay with a vertical piece; the pier's 5~5C the same in the bay between its piles |
+| B4-1 elevation, 4~8A2 | Adjust leader to minimize overlap | A11, A21 | the bottom bar's row stands above the bar and its leader descends at 45° to the bar end, crossing the cap end face only (from below it ran into the last stirrup's dots and grazed the cap bottom corner where PT. J points); `callouts` items take options (`above`, `deg`) and the even spreading keeps fans apart (A12) |
+| B4-2 Sections A-A, B-B, CONST. JOINT | (clouded) | A14, A11 | the joint leader routed as Section C-C's in every section: level from its text to 0.1 ft before the FFBW face, then down to the key corner (it ran one long diagonal across the bearing centerline and the backwall bars) |
+| B4-2 Section B-B, 18" SQUARE PRESTRESSED CONCRETE PILE | (clouded) | A23, A1 | the tip height search keeps the piece 0.12" from the row's arrowheads and from the foot of every extension line, so it crosses the extension lines in the open and the row between its arrows (it crossed at the 3" value's arrow along its extension line) |
+| B4-4 / B4-7 / B4-12 PEDESTAL PLAN | More space between title underline and notes. Create a consistent layout to be used for all titles and notes; Spacing | E8 | every subtitle placed by `View.title`, capital line 1.0 th under the underline; new check E8 |
+| B4-4 pedestal table footnote | Label in the Pedestal Plan | E2 | the corner footnote is gone: level tops list one elevation; while a top slopes, its lettered lines are marked in the pedestal plan |
+| B4-5 plan, right-end labels | (clouded: CL BEARING / PT. B / CL PIER & CL PILES / CL BEARING) | A21, A13 | PT. B and PT. A stand above the cap at the back corners of the cap ends (PT. B had joined the column from the centerline tip beside CL PIER's, 0.12" apart) |
+| B4-5 plan, pad ends | (clouded, four places) | D11 | the clouded lines were the seam faces of the old sloped pedestal top at the pad ends; gone with the level tops of D-065 |
+| B4-5 elevation, PIER WALL (PROVISIONAL) | (struck through) | — | "(PROVISIONAL)" removed from the label; the sheet notes still say the wall's reinforcement is not shown |
+| B4-5 elevation, 20" Ø STEEL PIPE PILE (TYP.) | (clouded) | A26 | the label beside pile 4 under the PT. F row (it stood 3.7" away at the sheet's right); new check A26 |
+| B4-5 View D-D | (clouded, under the cheek wall) | D4 | the pedestals and pads behind the cheek wall face are not drawn (the clouded lines were the old pedestal top's seam faces; the hidden pads would have stood there next) |
+| B4-8 View E-E and Section F-F, PIER CAP | (clouded, both) | A27 | tips on the cap's drawn edges (E-E: the stub's side edge, level from the column; F-F: the end face beyond the wall, level from the outer side); the plan's slab and coping and the cheek views' WWR hatch take the arrowless area leader; the end bent cheek views' END BENT CAP tip moved to the cap face; new check A27 |

@@ -22,6 +22,11 @@ CENTERLINE_LAYERS = ("CL_Major", "CL_Minor", "BaseLineSurveyPGL")
 # text heights off the text box, so it never touches a glyph (the stacked
 # fractions of the FDOT font rise above the capital line)
 POINTER_GAP_TH = 0.35
+# STYLE_GUIDE E8: a view's subtitle (its note in parentheses) stands with its
+# capital line this many text heights under the title's underline, in every
+# view (the FDOT capital letters are CAP_TH text heights tall)
+SUB_GAP_TH = 1.0
+CAP_TH = 0.95
 
 
 def new_document():
@@ -355,6 +360,11 @@ class View:
         #   symbols: (box, label) of circled numbers ("circle N") and section
         #     flags ("flag X") that annotations keep clear of
         #   title_spec: set by ``title()`` (see there)
+        #   free_labels: (space box, text box) of a label centred in the open
+        #     space given to it (``free_label``; STYLE_GUIDE A25)
+        #   dots: (centre, radius) of the end-on bar dots (``dot``), lines a
+        #     tip may stand on (A27); arcs: (centre, r, a0, a1, layer) of
+        #     ``arc`` (the skew angle's arc carries a tip)
         self.leaders = []
         self.dims = []
         self.breaks = []
@@ -363,6 +373,9 @@ class View:
         self.centerlines = []
         self.symbols = []
         self.title_spec = None
+        self.free_labels = []
+        self.dots = []
+        self.arcs = []
 
     def style_h(self, style):
         """Model-space text height of an FDOT text style at the view scale."""
@@ -573,10 +586,12 @@ class View:
 
     def arc(self, c, r, a0, a1, layer, ltype=None):
         self._track([(c[0] - r, c[1] - r), (c[0] + r, c[1] + r)])
+        self.arcs.append((self._X(c), r, a0, a1, layer))
         return self._add(self.msp.add_arc(self.T(c), r, a0, a1), layer, ltype)
 
     def dot(self, c, r, layer="Rebar"):
         """Filled circle: CIRCLE boundary plus a solid HATCH (SDM 4.3.7.D)."""
+        self.dots.append((self._X(c), r))
         self.circle(c, r, layer)
         h = self.msp.add_hatch(color=256)
         h.set_solid_fill(color=256)
@@ -907,20 +922,53 @@ class View:
             return self.mtext((x, end[1] + 0.5 * h), text, h, attach=1 if align == "left" else 3)
         return self.text((x, end[1]), text, h, "MIDDLE_LEFT" if align == "left" else "MIDDLE_RIGHT")
 
-    def leader(self, pts, text, align=None, h=None, layer="Leader", cl=False):
+    def leader(self, pts, text, align=None, h=None, layer="Leader", cl=False, area=False):
         """Leader (SDM 2.16.E, FDOT sheets): filled arrowhead at pts[0], thin
-        line through pts, a short horizontal landing, then the text."""
+        line through pts, a short horizontal landing, then the text.
+        ``area`` (STYLE_GUIDE A27): a leader naming an AREA (the closure slab
+        and coping of the plan, the WWR hatch of the cheek views) ends inside
+        it with a small tilde instead of an arrowhead, as the FDOT sample's
+        "END BENT BACKWALL" (B1-17); an arrowhead always points at a drawn
+        line."""
         h = h or self.th
         pts, align = self._landing(pts, align)   # includes the bend rule
         self._track(pts)
         self._begin_call()
         call = self._call
-        self.arrowhead(pts[0], pts[1], layer)
+        if area:
+            s = 0.035 / 12 * self.sf
+            tip = pts[0]
+            self.pl([(tip[0] - s + 2 * s * i / 12.0, tip[1] + 0.45 * s * math.sin(2 * math.pi * i / 12.0))
+                     for i in range(13)], layer)
+        else:
+            self.arrowhead(pts[0], pts[1], layer)
         self.pl(pts, layer)
         self._end_call()
         e = self._leader_text(pts[-1], text, align, h, cl)
-        self._note_leader("leader", call, pts, [pts[0]], pts[-2], pts[-1], align)
+        self._note_leader("area" if area else "leader", call, pts, [pts[0]], pts[-2], pts[-1], align)
         return e
+
+    def free_label(self, box, tip, text, h=None, layer="Leader"):
+        """A label centred in the open space ``box`` (local frame, (x0, y0,
+        x1, y1)) that is its own, with a two-piece leader to ``tip``
+        (STYLE_GUIDE A25, markup 2026-10-20: "If the red box here represents
+        the available space move the anno more toward the cg of the box.
+        That way everything is more clear ... give annotations as much space
+        as possible so they are equidistant from each other whilst also trying
+        to maintain a kind of row column order").  The text's centre is the
+        box's centre; the landing leaves the text on the tip's side and the
+        angled piece runs from the landing end to the tip.  Records (box,
+        text box) in ``free_labels`` for the check."""
+        h = h or self.th
+        cx, cy = (box[0] + box[2]) / 2, (box[1] + box[3]) / 2
+        w = text_extent(fdot.font_text(text), h)
+        side = 1.0 if tip[0] >= cx else -1.0           # the tip's side of the text
+        land = 0.12 / 12 * self.sf
+        end = (cx + side * (w / 2 + 0.4 * h), cy)      # landing end at the text
+        knee = (end[0] + side * land, cy)
+        align = "right" if side > 0 else "left"
+        self.leader([tip, knee, end], text, align, h, layer)
+        self.free_labels.append((tuple(box), self.texts[-1][0]))
 
     def leader_fan(self, tips, knee, text, align=None, h=None, layer="Leader"):
         """One callout for several bars: an arrow from each tip to a common
@@ -1006,20 +1054,31 @@ class View:
     def title(self, p, title, sub=None, subject_cx=None):
         """View title centered at p in FDOT Bold (Large), underlined, with the
         subtitle in parentheses below at the normal text size (FDOT sheets).
+        The subtitle is the ONE layout of a view's title and its note
+        (STYLE_GUIDE E8, markup 2026-10-20 "More space between title underline
+        and notes.  Create a consistent layout to be used for all titles and
+        notes"): its capital line stands ``SUB_GAP_TH`` text heights under the
+        underline, whatever the view; a subtitle is never placed by hand.
         ``subject_cx`` is the x (local feet) the title should be centred on
         (the centre of the thing it names, STYLE_GUIDE E5).  Sets
         ``self.title_spec``: {"x", "y" (the title's anchor p), "title", "sub",
-        "subject_cx", "ents" (the entities drawn), "text_idx" (their indices in
-        ``texts``)} plus the index ranges "seg_idx" / "box_idx" of the ``segs``
-        / ``boxes`` entries ``move_title`` shifts."""
+        "subject_cx", "underline_y", "sub_box" (the subtitle's text box, local
+        frame, or None), "ents" (the entities drawn), "text_idx" (their
+        indices in ``texts``)} plus the index ranges "seg_idx" / "box_idx" of
+        the ``segs`` / ``boxes`` entries ``move_title`` shifts."""
         n_ent, n_txt, n_seg, n_box = len(self.ents), len(self.texts), len(self.segs), len(self.boxes)
         h = self.style_h(fdot.TITLE_STYLE)
         self.text(p, title, None, "BOTTOM_CENTER", style=fdot.TITLE_STYLE)
         w = text_extent(title, h) * 1.07   # the bold face runs about 7 % wider
-        self.line((p[0] - w / 2, p[1] - 0.22 * h), (p[0] + w / 2, p[1] - 0.22 * h), "TextStructures")
+        y_ul = p[1] - 0.22 * h
+        self.line((p[0] - w / 2, y_ul), (p[0] + w / 2, y_ul), "TextStructures")
+        sub_box = None
         if sub:
-            self.text((p[0], p[1] - 0.4 * h - 1.45 * self.th), sub, None, "BOTTOM_CENTER")
+            # the subtitle's capital line (0.95 th tall) SUB_GAP_TH under the underline
+            self.text((p[0], y_ul - (SUB_GAP_TH + CAP_TH) * self.th), sub, None, "BOTTOM_CENTER")
+            sub_box = self.texts[-1][0]
         self.title_spec = {"x": p[0], "y": p[1], "title": title, "sub": sub, "subject_cx": subject_cx,
+                           "underline_y": y_ul, "sub_box": sub_box,
                            "ents": self.ents[n_ent:], "text_idx": list(range(n_txt, len(self.texts))),
                            "seg_idx": list(range(n_seg, len(self.segs))),
                            "box_idx": list(range(n_box, len(self.boxes)))}
@@ -1041,6 +1100,10 @@ class View:
             p, q, layer, call = self.segs[i]
             self.segs[i] = ((p[0], p[1] + dy), (q[0], q[1] + dy), layer, call)
         spec["y"] += dy
+        spec["underline_y"] += dy
+        if spec.get("sub_box"):
+            x0, y0, x1, y1 = spec["sub_box"]
+            spec["sub_box"] = (x0, y0 + dy, x1, y1 + dy)
         spec["dy"] = spec.get("dy", 0.0) + dy    # total shift: the boxes of the first drawing stay in ``boxes``
         b = self.local_bbox
         for i in spec["box_idx"]:

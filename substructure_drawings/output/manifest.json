@@ -1,10 +1,10 @@
 {
  "generator": "substructure_drawings.build",
- "version": "2.6.0",
+ "version": "2.7.0",
  "dxf": "B4_Substructure_EndBents_Pier.dxf",
- "dxf_sha256": "e38572838994e991b41597bc7a7f82479ffabb4d226871c3d0bcea5f804af6b2",
- "snapshot_sha256": "7fb6b21ea2aecc20159a02c03cb6c2b945d3a96b6205e340d512ba4724b547ce",
- "model_sha256": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43",
+ "dxf_sha256": "15c820ff44ad6b8a85a5a35e192154f8be570a17897f3ed7631138a2814e16eb",
+ "snapshot_sha256": "81238eed17856fb2a3ec3db7c5a5d37b694c62422ba19daa72e73ee69b5f3d53",
+ "model_sha256": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
  "units": "international feet ($INSUNITS=2); model space 1:1",
  "station_reference": {
   "FFBW End Bent 1": 1593.22
@@ -124,7 +124,7 @@
  ],
  "levels_used": {
   "BaseLineSurveyPGL": 6,
-  "BearingPadMisc": 180,
+  "BearingPadMisc": 106,
   "CL_Major": 26,
   "CL_Minor": 55,
   "Dimension": 633,
@@ -137,9 +137,9 @@
   "Rebar": 1719,
   "Rebar2": 102,
   "SubStrConc": 340,
-  "SubStrConc2": 438,
-  "SubStrConc2_h": 68,
-  "SubStrConc_h": 167,
+  "SubStrConc2": 372,
+  "SubStrConc2_h": 44,
+  "SubStrConc_h": 168,
   "Symbols": 173,
   "TextStructures": 454,
   "WallConc": 16,
@@ -158,12 +158,10 @@
   "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
  },
  "symbology_audit": {
-  "entities": 12040,
+  "entities": 11813,
   "not_on_fdot_level": [],
   "not_by_level": [],
-  "documented_overrides": {
-   "BearingPadMisc linetype DGN2 (hidden pad edges; no FDOT hidden level)": 68
-  },
+  "documented_overrides": {},
   "layers": [
    "0",
    "AppSlabConc",
@@ -706,6 +704,9 @@
   "A21",
   "A23",
   "A24",
+  "A25",
+  "A26",
+  "A27",
   "B9",
   "B11",
   "B12",
@@ -713,7 +714,8 @@
   "D12",
   "D13",
   "D15",
-  "E5"
+  "E5",
+  "E8"
  ],
  "strap_loads": {
   "source": "end_bent_walls.model.evaluate on project_current/cap_design/backwall/selected_case.json",

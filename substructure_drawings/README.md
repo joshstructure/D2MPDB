@@ -1,6 +1,25 @@
 # End bent and pier DXF (FDOT format)
 
-**Generator 2.6.0 (19 October 2026)** rebuilds this DXF from the model with
+**Generator 2.7.0 (20 October 2026)** rebuilds both DXFs from the model with
+revision D-065 (level as-cast bearing seats: the six pedestal tops level at
+each pedestal's maximum, eight uniform 2 9/16" pads) and applies the
+engineer's seventh markup round ("Reinforcing Sheets.pdf", 2026-10-20, logged
+in `STYLE_GUIDE.md` section M): the TOP OF PEDESTAL ELEVATIONS tables list one
+elevation per pedestal (a sloped top would get lettered columns with the
+letters in the pedestal plan), the pedestal top edge the extractor hands to
+the level pad goes back to the pedestal (D13), PT. K is centred in its free
+space (new rule and check A25), the 5C callouts point at the middle of their
+U-bar runs, the bottom-bar callouts come from above the bar, every
+construction-joint leader is routed as Section C-C's, the pile label of
+Section B-B threads the dimension row between its arrows, every subtitle is
+placed by `View.title` at one gap (E8), the pier's PT. A/PT. B stand above the
+cap ends, "(PROVISIONAL)" leaves the pier wall label, the pier pile
+description stands beside its pile (A26), the pedestals and pads behind the
+pier cheek wall are not drawn in View D-D, and arrowheads point only at drawn
+lines while areas take the arrowless area leader (A27; the PIER CAP, END
+BENT CAP, closure slab, coping and WWR callouts).
+
+**Generator 2.6.0 (19 October 2026)** rebuilt this DXF from the model with
 revision D-061 (D-044 weather closure and copings, D-045 strap references,
 D-046 cheek hooks, D-047 pedestal edge bars, D-048 backwall extensions, D-053
 simplified backwall tops, D-055 backwall vertical coordination, D-059 pier

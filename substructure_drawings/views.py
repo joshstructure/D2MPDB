@@ -313,6 +313,26 @@ def draw_edges(view, edges, box=None, hidden=True, roles=None, skip_roles=()):
         view.record(rec, layer, lt, box)
 
 
+def fix_pad_roles(edges, pad_boxes, tol=0.02):
+    """Give the pedestal back the edges the extractor tagged "pad" because a
+    pad shares them (STYLE_GUIDE D13): with the level pedestal tops of D-065
+    the pad bottoms lie in the pedestal top plane and ``fc_hlr`` hands the
+    whole collinear pedestal top edge to the (smaller) pad, so the pedestal
+    outline was open at its top in the sections (the top drawn on
+    BearingPadMisc).  An edge of role "pad" with a point outside every pad's
+    box (2D view frame, ``tol`` feet) is the pedestal's; returns new records
+    (the input is not changed)."""
+    out = []
+    for r in edges:
+        if r["role"] == "pad" and pad_boxes:
+            pts = edge_points(r)
+            if any(not any(b[0] - tol <= p[0] <= b[2] + tol and b[1] - tol <= p[1] <= b[3] + tol for b in pad_boxes)
+                   for p in pts):
+                r = dict(r, role="pedestal")
+        out.append(r)
+    return out
+
+
 def horiz_end(pts, side, inset=0.05):
     """Point on the longest horizontal run of a bar (local 2D points),
     ``inset`` inside its end toward ``side`` (+1: the right end)."""
@@ -656,15 +676,23 @@ def callouts(v, items, x_col, side, gap=None, slide=False, spread=None, avoid=No
     rows = []
     for it in items:
         tips, txt = list(it[0]), it[1]
-        fixed = len(it) > 2
+        # a fourth element holds options of a sliding row: "deg" (the least
+        # angle of its leader to the bar, 30 by default) and "above" (the
+        # lowest bar row is reached from ABOVE its bar instead of below;
+        # markup 2026-10-20 "Adjust leader to minimize overlap": the bottom
+        # bar's leader from below ran into the stirrup dots at the bar end
+        # and grazed the cap's bottom corner, where PT. J points)
+        opts = it[3] if len(it) > 3 else {}
+        fixed = len(it) > 2 and it[2] is not None
         want = it[2] if fixed else sum(t[1] for t in tips) / len(tips)
+        tan_a = math.tan(math.radians(opts.get("deg", 30.0)))
         need = []
         if slide and not fixed:
             for t in tips:
                 reach = max(dx_min, side * (xk - t[0]))
-                need.append(max(0.8 * th, reach * TAN30))
-        rows.append({"tips": tips, "txt": txt, "want": want, "need": need,
-                     "h": (1 + txt.count("\\P") * fdot.LINE_PITCH) * th})
+                need.append(max(0.8 * th, reach * tan_a))
+        rows.append({"tips": tips, "txt": txt, "want": want, "need": need, "above": bool(opts.get("above")),
+                     "area": bool(opts.get("area")), "h": (1 + txt.count("\\P") * fdot.LINE_PITCH) * th})
     rows.sort(key=lambda r: r["want"])
 
     def pitch(a, b):
@@ -721,6 +749,21 @@ def callouts(v, items, x_col, side, gap=None, slide=False, spread=None, avoid=No
                     n += 1
         return n
 
+    def narrow_fans(ys_):
+        """Number of fan rows whose consecutive arrows leave the knee within
+        the A12 spread (5 degrees) at these row heights (markup 2026-10-20
+        follow-up: the even spreading lifted the side-bar fan to where its
+        arrows to the stacked bar ends converged)."""
+        from . import anno_check
+        n = 0
+        for r, y in zip(rows, ys_):
+            tips, knee = layout(r, y)
+            if len(tips) < 2:
+                continue
+            angs = sorted(math.degrees(math.atan2(t[1] - knee[1], t[0] - knee[0])) for t in tips)
+            n += any(b - a < anno_check.FAN_SPREAD_DEG for a, b in zip(angs, angs[1:]))
+        return n
+
     def long_leaders(ys_):
         """Number of leaders (rows) that cross more than four segments of the
         concrete and bar levels (the A14 check) at these row heights."""
@@ -735,9 +778,9 @@ def callouts(v, items, x_col, side, gap=None, slide=False, spread=None, avoid=No
 
     def settle(i, r, y):
         """The row's height given a wanted y: the lowest bar row is reached
-        from below (never above its bar), the others are lifted to their
-        steepness."""
-        if i == first_bar:
+        from below (never above its bar) unless it asks to be reached from
+        above, the others are lifted to their steepness."""
+        if i == first_bar and not r["above"]:
             return min(y, min(t[1] - n for t, n in zip(r["tips"], r["need"])))
         return lift(r, y)
 
@@ -745,7 +788,7 @@ def callouts(v, items, x_col, side, gap=None, slide=False, spread=None, avoid=No
     first_bar = next((i for i, r in enumerate(rows) if r["need"]), None) if slide else None
     if slide:
         for i, r in enumerate(rows):
-            if i == first_bar:
+            if i == first_bar and not r["above"]:
                 # the lowest bar row (the bottom bars) is reached from BELOW:
                 # its row sits under the bar by the steepness it needs, so its
                 # leader descends and never crosses the leaders of the rows
@@ -774,7 +817,9 @@ def callouts(v, items, x_col, side, gap=None, slide=False, spread=None, avoid=No
                     for i in range(1, len(cand)):
                         cand[i] = max(cand[i], cand[i - 1] + pitch(rows[i - 1], rows[i]))
                     if (crossings(cand) <= base_x and long_leaders(cand) <= long_leaders(ys)
-                            and (first_bar is None or cand[first_bar] <= ys[first_bar] + 1e-9)):
+                            and narrow_fans(cand) <= narrow_fans(ys)
+                            and (first_bar is None or rows[first_bar]["above"]
+                                 or cand[first_bar] <= ys[first_bar] + 1e-9)):
                         ys = cand
                         break
     else:
@@ -799,7 +844,7 @@ def callouts(v, items, x_col, side, gap=None, slide=False, spread=None, avoid=No
     for r, y in zip(rows, ys):
         tips, knee = layout(r, y)
         if len(tips) == 1:
-            v.leader([tips[0], knee, (x_col, y)], r["txt"], al)
+            v.leader([tips[0], knee, (x_col, y)], r["txt"], al, area=r["area"])
         else:
             # several bars (a column of side-bar ends included): a fan with
             # splayed arrows (A18 follow-up; A12 keeps them 5 degrees apart)
@@ -823,6 +868,20 @@ class Builder:
             crown = z_on_edges(sup.S["elev"], "backwall", 0.0)
             self.elev_points = [(l, d, (0.0 if "PGL" in d else u), (crown if "PGL" in d and crown else z))
                                 for l, d, u, z in self.elev_points]
+        # D13 (D-065 level pedestal tops): a pedestal top edge the extractor
+        # handed to the pad sharing it goes back to the pedestal (elevation
+        # frame: u, z); the sections do the same in their own frame
+        sup.S["elev"] = fix_pad_roles(sup.S["elev"], self.pad_boxes(sup.P_elev))
+
+    def pad_boxes(self, fn):
+        """The bearing pads' boxes (x0, z0, x1, z1) in the 2D frame ``fn``
+        gives (``Support.P_elev`` / ``P_sec``) for ``fix_pad_roles``."""
+        out = []
+        for p in self.s.pads:
+            b = p["bb"]
+            q0, q1 = fn((b[0], b[1], b[2])), fn((b[3], b[4], b[5]))
+            out.append((min(q0[0], q1[0]), min(q0[1], q1[1]), max(q0[0], q1[0]), max(q0[1], q1[1])))
+        return out
 
     def span_side(self, bearing):
         """Unit plan direction (v) from the cap toward the span of a bearing."""
@@ -856,7 +915,13 @@ class Builder:
             elif desc.startswith("TOP OF BACKWALL AT END"):
                 out.append((letter, desc, (u, s.ffbw_v)))
             elif desc.startswith("TOP OF CAP AT END"):
-                out.append((letter, desc, (u, v_cl)))
+                # the pier's cap-top points stand at the back corners of the
+                # cap ends (markup 2026-10-20, the right-end label cluster:
+                # PT. B and CL PIER & CL PILES both pointed at the cap end on
+                # the centerline, 0.12" apart, and their leaders met there;
+                # A21): the end bents' stay on the cap centerline, their PT.
+                # leaders leave the ends downward, away from the centerline row
+                out.append((letter, desc, (u, v_cl if s.kind == "EB" else s.cap_v[1])))
         return out
 
     def plan(self, zone):
@@ -998,10 +1063,13 @@ class Builder:
                 # (A24: the coping tip at 0.3 of the strip, 0.12" or more
                 # off the strip's break line at its front end and still under
                 # the slab's tip, so the two leaders do not cross, A11)
+                # (A27: the slab and the coping are named as AREAS, with the
+                # arrowless area leader ending inside them)
                 if o["role"] == "closure":
-                    right.append(([(u1 - 0.8, hi - 0.3 * (hi - lo))], "4\" CLOSURE SLAB", lo))
+                    right.append(([(u1 - 0.8, hi - 0.3 * (hi - lo))], "4\" CLOSURE SLAB", lo, {"area": True}))
                 elif o["role"] == "coping" and ou[0] > 0:
-                    right.append(([((max(ou[0], 0.0) + min(ou[1], uR)) / 2, lo + 0.3 * (hi - lo))], "COPING", lo - 0.6))
+                    right.append(([((max(ou[0], 0.0) + min(ou[1], uR)) / 2, lo + 0.3 * (hi - lo))], "COPING", lo - 0.6,
+                                  {"area": True}))
         # -------------------------------------------- centerlines and beams
         v.line((uL - ext, v_cl), (uR + ext, v_cl), "CL_Major")
         pile_h = 0.45   # V3 / D3 (markup "All centerlines should be dashed"): pile centerlines 0.45 ft past the pile
@@ -1080,7 +1148,7 @@ class Builder:
         y_pgl = y_r1 + block.count("\\P") * fdot.LINE_PITCH * th + 0.5 * th   # top of the block
         for letter, desc, q in self.plan_points():
             g = 1 if q[0] < 0 else -1          # inward, toward the PGL
-            if q[0] > 1e-6 and "AT PGL" not in desc:
+            if eb and q[0] > 1e-6 and "AT PGL" not in desc:
                 # V2: the right end's labels join the column (the leader
                 # tips stay where they were: the cheek top on the cheek, the
                 # backwall end on the FFBW, the cap end on the cap
@@ -1091,8 +1159,6 @@ class Builder:
                     want = top + 0.6
                 elif "BACKWALL AT END" in desc:
                     want = top + 1.3
-                elif not eb:   # pier: between the pier centerline row and the upper bearing row
-                    want = sorted(cl_wants)[len(cl_wants) // 2] + 0.7
                 else:       # cap end on the cap centerline: the row under the centerline rows, so its
                     want = min(cl_wants) - 0.6   # leader leaves the line at an angle, not along it
                 right.append(([q], "PT. " + letter, want))
@@ -1110,7 +1176,12 @@ class Builder:
                 knee = ((u0 if g > 0 else u1) + g * 0.12 * k, y_r2 + 0.17 * k)
             elif eb:                           # cap top at the ends: below the cap
                 knee = (q[0] + g * 0.2 * k, vf - row_a)
-            else:                              # pier: above the cap
+            else:
+                # pier: both cap-top points at the back corners of the cap
+                # ends, labelled above the cap toward the PGL (markup
+                # 2026-10-20: PT. B had joined the right-end column from the
+                # centerline tip beside CL PIER's; from the corner its leader
+                # to the column ran through the D flag, A13)
                 knee = (q[0] + g * 0.2 * k, vb + row_a)
             v.leader([q, knee, (knee[0] + g * 0.12 * k, knee[1])], "PT. " + letter, "left" if g > 0 else "right")
         # the soil reinforcing straps (D-045): count and spacing from the model
@@ -1212,10 +1283,10 @@ class Builder:
             # the slab and coping labels under the lowest flag: their leaders
             # run down and out, below the flag's wedge (A13)
             under = min(bx[1] for bx in flags) - 0.9
-            right = [(t, tx, (under if tx.startswith("4\"") else under - 0.6 if tx == "COPING" else w))
-                     for t, tx, w in right]
+            right = [(it[0], it[1], (under if it[1].startswith("4\"") else under - 0.6 if it[1] == "COPING" else it[2]))
+                     + tuple(it[3:]) for it in right]
         callouts(v, right, x_col, 1, avoid=avoid)
-        x_lab = x_col + 0.4 * th + max(text_extent(t[1], th) for t in right)   # right end of the column's texts
+        x_lab = x_col + 0.4 * th + max(text_extent(it[1], th) for it in right)   # right end of the column's texts
         # direction of stationing (stations increase toward -Y), right of the
         # column of labels and vertically centred on the plan (A5, A7); its
         # text stands left of the arrow line
@@ -1336,15 +1407,26 @@ class Builder:
                 dx, dz = 0.25 * k, 0.25 * k
             elif z < s.cap_bot - 0.01:   # cheek lug bottom: nearly level, clear of the pile labels
                 dx, dz = 0.25 * k, -0.15 * k
-                if s.kind == "EB" and s.cheeks:
-                    # V5 (markup "Shift to add more space": PT. K touched the
-                    # cheek lug and PT. H): the knee 0.35 k out from the lug's
-                    # bottom corner and 0.15 k below the lug bottom, so the
-                    # label stands clear of the lug outline and the leader
-                    # leaves the lug bottom at an angle, not along it
+                if s.kind == "EB" and s.cheeks and side < 0:
+                    # A25 (markup 2026-10-20, PT. K: "If the red box here
+                    # represents the available space move the anno more
+                    # toward the cg of the box ... give annotations as much
+                    # space as possible so they are equidistant from each
+                    # other whilst also trying to maintain a kind of row
+                    # column order"): the label's space is the band left of
+                    # the lug, between the vertical dimension column x1 and
+                    # the lug's outer face, from the top of the stirrup row's
+                    # text band (0.4 th over it) up to the lug bottom, where
+                    # the extension line runs; the text stands at its centre
+                    # (``free_label``), the tip on the lug bottom 0.15 ft in
+                    # from the corner.  (V5 before: the knee 0.35 k out from
+                    # the lug corner put the text against the column.)
                     c = min(s.cheeks, key=lambda c: abs(c["u"] - u))
-                    kx = (c["u_lo"] - 0.35 * k) if side < 0 else (c["u_hi"] + 0.35 * k)
-                    dx = max(0.25 * k, side * (kx - q[0]))
+                    z_row_eb = zp - 0.57 * k                         # the stirrup row (``_elev_steel``)
+                    band_top = z_row_eb + 0.2 * th + (1.4 + 1.67) * th   # top of its two-line run texts
+                    space = (uL - 0.85 * k, band_top + 0.4 * th, c["u_lo"], q[1] - 0.03 * k)
+                    v.free_label(space, (c["u_lo"] + 0.15, q[1]), "PT. " + letter)
+                    continue
             else:
                 # cap bottom: a short run, so an inward label stops before the
                 # hidden pile lines (A1)
@@ -1380,18 +1462,24 @@ class Builder:
                 # band (wall top to the upper break line), in drawn position;
                 # centred on the whole drawn wall it sat on the break line
                 keep, v.xform = v.xform, None
-                v.mtext((pm, (s.wall_top + z_break[0]) / 2), "PIER WALL\\P3'-0\" THICK\\P(PROVISIONAL)", attach=5)
+                # (markup 2026-10-20: "(PROVISIONAL)" struck from the label;
+                # the sheet note still says the wall's steel is not shown)
+                v.mtext((pm, (s.wall_top + z_break[0]) / 2), "PIER WALL\\P3'-0\" THICK", attach=5)
                 v.xform = keep
         p = max(s.piles, key=lambda q: q["u"])
         xe = p["u"] + p["width"] / 2
         desc = ("18\" SQUARE PRESTRESSED\\PCONCRETE PILE (TYP.)" if p["shape"] == "square"
                 else "20\" %s STEEL PIPE PILE (TYP.)" % "Ø")
-        # B8: the tip on the last pile's right face just above the pile bottom,
-        # the knee 0.55 k beyond the cap end and 0.35 k under the pile bottom,
-        # the text to the right; the tip drops until the leader clears every
-        # circled pile number by 0.15 k
+        # B8: the tip on the last pile's right face just above the pile
+        # bottom, the text to the right.  A26 (markup 2026-10-20, the pier's
+        # "20" Ø STEEL PIPE PILE (TYP.)" stood 3.7" from its pile at the sheet's
+        # right, its leader running under PT. F): the label stands beside the
+        # pile it names, the knee 0.3 k right of the pile face and 0.25 k
+        # under the pile bottom (under the PT. F row, which sits 0.15 k under
+        # the wall bottom), so the piece is short and steep; the tip drops
+        # until the leader clears every circled pile number by 0.15 k
         if circles:
-            knee = (uR + 0.55 * k, zp - 0.35 * k)
+            knee = (xe + 0.3 * k, zp - 0.25 * k)
             zd = zp + 0.3 * k   # (A24: 0.3 k above the pile break lobe)
             while zd > zp + 0.12 * k and any(_seg_dist(c, (xe, zd), knee) < 0.15 * k for c in circles):
                 zd -= 0.02 * k
@@ -1592,7 +1680,16 @@ class Builder:
             else:
                 txt = "%d~%s" % (len(bs), mark)
                 tips = [ends_at[0]]
-            right.append((tips, txt))
+            if sub == "bottom":
+                # markup 2026-10-20 ("Adjust leader to minimize overlap",
+                # 4~8A2): reached from below, the bottom bar's leader arrived
+                # along the last stirrup's leg dots and grazed the cap bottom
+                # corner, where PT. J points; its row now stands ABOVE the bar
+                # and the leader descends at 45 degrees to the bar end,
+                # crossing the cap end face only (A11, A21)
+                right.append((tips, txt, None, {"above": True, "deg": 45.0}))
+            else:
+                right.append((tips, txt))
         # stirrups: first and last bar of each run (line + end dots)
         groups = s.transverse_groups()
         for g in groups:
@@ -1643,12 +1740,17 @@ class Builder:
         if uadd:
             locs = sorted({round(s.u(min(p[0] for p in b["pts"])), 2) for b in uadd})
             per = len(uadd) // max(len(locs), 1)
-            # the bay right of the PGL: tip on the bottom leg near its left end
+            # the bay right of the PGL: tip at the MIDDLE of the bottom run
+            # (markup 2026-10-20, "3~5C (TYP.)": "Adjust so it point more to
+            # the bar which is in the middle and not so close to the
+            # stirrups"; the tip near the run's left end stood beside the
+            # stirrup legs' dots)
             b = min(uadd, key=lambda x: abs(s.u(sum(p[0] for p in x["pts"]) / len(x["pts"])) - 0.6 * u1))
             pts = proj(b, fn)
             lowz = min(q[1] for q in pts)
-            tip = (min(q[0] for q in pts) + 0.12, lowz)
-            below.append(([tip], "%d~%s\\P(TYP.)" % (per, b["mark"])))   # V5: two lines
+            run = [q[0] for q in pts if q[1] < lowz + 0.02] or [q[0] for q in pts]
+            tip = ((min(run) + max(run)) / 2, lowz)
+            below.append(([tip], "%d~%s\\P(TYP.)" % (per, b["mark"]), (min(run), max(run))))   # V5: two lines
         ends_b = s.bars_of(family="cap_end")
         end_call = None   # the cap end U-bar callout, drawn after the PT. column (B9)
         if ends_b:
@@ -1727,26 +1829,70 @@ class Builder:
             run_top = (z_row + 0.2 * th + (1.4 + 1.67) * th) if z_row is not None else None
             if z_row is not None and zc - hb < run_top + 0.4 * th:
                 zc = s.cap_bot - 0.26 * k     # V5: no room under the cap for the first choice
-            for tips, txt in below:
+            # Markup 2026-10-20 ("Adjust so it point more to the bar which is
+            # in the middle and not so close to the stirrups", 3~5C): the tip
+            # starts at the MIDDLE of the U-bar's bottom run (the item's third
+            # element is the run's extent) and the text stands in the run's
+            # own bay (the gap between the stirrup extension lines that holds
+            # the tip), to the right of the tip; the piece leaves the tip
+            # between vertical (the run is horizontal, A3, and the stirrup
+            # legs are 0.5 ft or more off) and 60 degrees from the vertical.
+            # Where the bay is too narrow for the text beside a centred tip
+            # (End Bents: 2.1 ft bays, a 0.82 ft text) the tip slides toward
+            # the run's left end only as far as the text needs, never within
+            # 0.5 ft of the run's end (the stirrup legs).  A gap over a pile
+            # would put the text on the pile's outline and the stirrup legs
+            # around it (A1): such gaps are passed over, and the first fitting
+            # gap right of the tip is the fallback (its piece at 30 to 60
+            # degrees, as before).
+            pile_u = sorted((p["u"] - p["width"] / 2 - 0.1, p["u"] + p["width"] / 2 + 0.1) for p in s.piles)
+            gaps = list(zip(ext_below, ext_below[1:]))
+            if not gaps:
+                # the pier (its stirrup row stands above the cap): the bays are
+                # the spaces between the piles' outlines inside the wall
+                gaps = [(pb, pa) for (_a, pb), (pa, _b) in zip(pile_u, pile_u[1:])]
+            for item in below:
+                tips, txt = item[0], item[1]
+                run = item[2] if len(item) > 2 else None
                 tw = text_w(v, txt)
                 land = (0.1 if len(tips) == 1 else 0.16) * k
                 zb = zc + 0.5 * (1.0 + fdot.LINE_PITCH * txt.count("\\P")) * th - 0.5 * th   # landing level: first line's middle
                 tip = max(tips, key=lambda t: t[0])
                 dz = tip[1] - zb
-                # the knee at 30 to 60 degrees from the vertical off the (last) tip, 0.2 k right of it at least
-                kx_lo = tip[0] + max(0.2 * k, dz * TAN30)
-                kx_hi = tip[0] + max(0.2 * k, dz * math.tan(math.radians(60.0)))
-                pref = kx_lo + land + 0.4 * th    # text start for the shallowest knee
+                off = land + 0.4 * th             # text start beyond the knee
+                tan60 = math.tan(math.radians(60.0))
+
+                def clear(x0):
+                    return not any(x0 < pb and x0 + tw > pa for pa, pb in pile_u)
                 x_txt = None
-                for a, b in zip(ext_below, ext_below[1:]):
-                    lo = max(a + 0.02 * k + land + 0.4 * th, pref)
-                    hi = min(b - 0.02 * k - tw, kx_hi + land + 0.4 * th)
-                    if hi >= lo:
+                own = next(((a, b) for a, b in gaps if a <= tip[0] <= b), None)
+                if run is not None and own is not None:
+                    a, b = own
+                    hi = b - 0.02 * k - tw                       # last text start in the bay
+                    lo = max(a + 0.02 * k + off, tip[0] + off)   # first: a vertical piece off the tip
+                    if hi >= lo and clear(lo):
                         x_txt = lo
-                        break
-                if x_txt is None:   # no gap holds it (pier: no stirrup row below): beside the tip
-                    x_txt = pref
-                tx = x_txt - 0.4 * th - land
+                    else:
+                        # slide the tip left for the text to end at the bay's edge
+                        t_new = hi - off
+                        if t_new >= run[0] + 0.5 and hi >= a + 0.02 * k + off and clear(hi):
+                            tip = (t_new, tip[1])
+                            tips = [tip]
+                            x_txt = hi
+                if x_txt is None:
+                    # the knee at 30 to 60 degrees from the vertical off the (last) tip, 0.2 k right of it at least
+                    kx_lo = tip[0] + max(0.2 * k, dz * TAN30)
+                    kx_hi = tip[0] + max(0.2 * k, dz * tan60)
+                    pref = kx_lo + off                # text start for the shallowest knee
+                    for a, b in gaps:
+                        lo = max(a + 0.02 * k + off, pref)
+                        hi = min(b - 0.02 * k - tw, kx_hi + off)
+                        if hi >= lo and clear(lo):
+                            x_txt = lo
+                            break
+                    if x_txt is None:   # no gap holds it (pier: no stirrup row below): beside the tip
+                        x_txt = pref
+                tx = x_txt - off
                 knee = (tx, zb)
                 self._below_boxes.append((x_txt, zc - hb, x_txt + tw, zc + hb))
                 if len(tips) == 1:
@@ -1790,7 +1936,9 @@ class Builder:
         # back (backwall or left) side and front side fs (+1 right, -1 left)
         fs = -1 if s.key == "EB2" else 1
         x_front, x_back = (cs[1], cs[0]) if fs > 0 else (cs[0], cs[1])
-        edges = [r for r in sec["edges"] if r["role"] not in skip_roles]
+        # (D13: the pedestal top edge comes back tagged "pad" where the level
+        # pad of D-065 shares it; it is the pedestal's)
+        edges = [r for r in fix_pad_roles(sec["edges"], self.pad_boxes(s.P_sec)) if r["role"] not in skip_roles]
         # V2 (markup "Where are the tops of the backwalls?", Sections A-A, B-B
         # and C-C of End Bent 1, C-C of End Bent 2; rules D4, D13, D14): the
         # extractor tags the backwall's top edge "landing" where the landing
@@ -2153,8 +2301,6 @@ class Builder:
             # is drawn by hand below between the 5D1 and FFBW rows
             x_key = x_back + fs * 8 * IN
             cj_txt = "CONST. JOINT\\P(SEE DETAIL \"A\")"
-            if not ped_here:
-                col_items.append(([(x_key, s.cap_top)], cj_txt, 0.0))
             # (deviation from the 0.4 k beyond the bearing centerline: there the
             # texts run across the extension lines of the dimension rows at the
             # cap front face, A1; the column stands on the cap callouts' column,
@@ -2185,25 +2331,28 @@ class Builder:
                     break
                 z_lo_row = max(hit) + 0.081 * k
             x_col = x_front + fs * 0.25 * k
-            if ped_here:
-                # Section C-C: four rows at equal pitch, FFBW, CONST. JOINT,
-                # 5D1, CL BEARING from the bottom; the joint's leader runs
-                # level from its text to 0.1 ft before the FFBW face and then
-                # down to the key corner, so the angled piece lies within the
-                # backwall (it crosses the FFBW line and the face bar only,
-                # never the pedestal, A14) and stays above the FFBW leader
-                # (A11; the engineer's sketch)
-                n_rows = len(col_items) + 1
-                pitch_rows = (z_hi_row - z_lo_row) / (n_rows - 1)
-                fixed = []
-                for i, it in enumerate(sorted(col_items, key=lambda it: it[2])):
-                    fixed.append((it[0], it[1], z_lo_row + pitch_rows * (i if i == 0 else i + 1)))
-                callouts(v, fixed, x_col, fs)
-                y_cj = z_lo_row + pitch_rows
-                v.leader([(x_key, s.cap_top), (s.ffbw_s + fs * 0.1, y_cj), (x_col, y_cj)], cj_txt,
-                         "left" if fs > 0 else "right")
-            else:
-                callouts(v, col_items, x_col, fs, spread=(z_lo_row, z_hi_row))
+            # Four rows at equal pitch between z_lo_row and z_hi_row; the
+            # joint's leader runs level from its text to 0.1 ft before the
+            # FFBW face and then down to the key corner, so the angled piece
+            # lies within the backwall (it crosses the FFBW line and the
+            # face bar only, never the pedestal, A14; the engineer's sketch
+            # for Section C-C).  Markup 2026-10-20 (the CONST. JOINT
+            # callouts of Sections A-A and B-B clouded): the same route in
+            # every section; before, A-A and B-B ran one long diagonal from
+            # the column across the bearing centerline and the backwall
+            # bars to the key.  With a pedestal in the cut (C-C) the joint
+            # row is the second from the bottom, above the FFBW row (A11),
+            # else the bottom row.
+            n_rows = len(col_items) + 1
+            pitch_rows = (z_hi_row - z_lo_row) / (n_rows - 1)
+            cj_i = 1 if ped_here else 0
+            fixed = []
+            for i, it in enumerate(sorted(col_items, key=lambda it: it[2])):
+                fixed.append((it[0], it[1], z_lo_row + pitch_rows * (i if i < cj_i else i + 1)))
+            callouts(v, fixed, x_col, fs)
+            y_cj = z_lo_row + pitch_rows * cj_i
+            v.leader([(x_key, s.cap_top), (s.ffbw_s + fs * 0.1, y_cj), (x_col, y_cj)], cj_txt,
+                     "left" if fs > 0 else "right")
             # B5: embedment of the backwall verticals below the joint, beside
             # the FFBW on the bridge side, from the cap top to the bar end
             if bw:
@@ -2333,6 +2482,25 @@ class Builder:
             lab_end = (x_front + fs * 0.2 * k, z_cll)
             lead_calls = anno_check._leader_calls(v)
             lead_segs = [(p, q) for p, q, layer, call in v.segs if layer == "Leader" or call in lead_calls]
+            # markup 2026-10-20 (End Bent 1's Section B-B, the pile label
+            # clouded): the piece crossed the bottom row at the "3"" value's
+            # arrow, along its extension line.  The row itself must be
+            # crossed (the pile stands above it, the label below), but the
+            # crossing keeps 0.12 k from the row's arrowheads (the ends of
+            # its dimension lines) and from the foot of every extension line
+            # (its last 0.15 k above the row, plus the overshoot below): the
+            # piece then crosses the extension lines well above the row, in
+            # the open, and the row between its arrows
+            for p, q, layer, _call in v.segs:
+                if layer != "Dimension":
+                    continue
+                if abs(q[1] - p[1]) > abs(q[0] - p[0]):      # an extension line: its foot
+                    lo, hi = sorted((p, q), key=lambda t: t[1])
+                    L = math.dist(lo, hi)
+                    f = min(1.0, (0.15 * k + 0.05 * k) / L) if L > 1e-9 else 1.0
+                    lead_segs.append((lo, (lo[0] + f * (hi[0] - lo[0]), lo[1] + f * (hi[1] - lo[1]))))
+                else:                                          # a dimension line: its arrowheads
+                    lead_segs += [(p, p), (q, q)]
             # (A23: the piece keeps out of every text box too, inset as the check insets them)
             boxes = [anno_check._inset(box, anno_check.INSET_TH * th) for box, _lab in v.texts]
 
@@ -2693,11 +2861,13 @@ class Builder:
             z_sh = zm - 0.6
             x_tip = band[1] - 0.1 * k if d_in > 0 else band[0] + 0.1 * k
             txt_sh = "SHADED AREA\\PSHOWS LIMITS\\POF WWR\\P(SEE NOTE %d)" % wwr_note
-            v.leader([(x_tip, z_sh), (x_edge, z_sh)], txt_sh, al_in)
+            v.leader([(x_tip, z_sh), (x_edge, z_sh)], txt_sh, al_in, area=True)   # (A27: an area, arrowless)
             # END BENT CAP at least 2.5 text heights clear of the four-line text above
+            # (A27, 2026-10-20: the tip ON the cap's drawn face edge under the
+            # cheek, as the pier's PIER CAP; it stood 0.15 ft inside the cap)
             z_cap = s.cap_bot + 0.6 + 0.15 * k
             z_cap = min(z_cap, z_sh + 0.5 * th - (1 + 3 * fdot.LINE_PITCH) * th - 3.0 * th)
-            v.leader([(inner - d_in * 0.15, s.cap_bot + 0.6), (x_edge, z_cap)], "END BENT CAP", al_in)
+            v.leader([(inner, s.cap_bot + 0.6), (x_edge, z_cap)], "END BENT CAP", al_in)
             um = xs_v[0] if right else xs_v[-1]          # a drawn (first or last) vertical bar
             v.leader([(um, zm + 0.9), (um + d * 0.2 * k, zm + 0.9 + 0.15 * k)], mv, al)
             hz = zs_h[-1]                                 # the top (drawn) horizontal bar
@@ -2722,8 +2892,12 @@ class Builder:
                 zr = rec[1] + 0.35
                 items.append(([(xr, zr)], "%s\" RECESSED PANEL\\P(SEE SECTIONS F-F AND G-G)" % fdot.ft_in(0.75 / 12.0)
                               .rstrip("\""), zr - 0.2 * k))
+            # A27 (markup 2026-10-20, the PIER CAP callout clouded): the tip
+            # ON the cap stub's side edge below the wall, the leader level
+            # from the column (before: 0.15 ft inside the cap, beside the
+            # first bar's extension line, pointing at nothing)
             z_cap = s.cap_top - 0.6
-            items.append(([(inner - d_in * 0.15, z_cap)], "PIER CAP", z_cap - 0.1 * k))
+            items.append(([(inner, z_cap)], "PIER CAP", z_cap))
             avoid = [(cuts["top"]["z"] - 0.3 * k, cuts["top"]["z"] + 0.3 * k)] if cuts and cuts.get("top") else []
             callouts(v, items, x_edge, d_in, avoid=avoid)
         # D8: flags of the cheek wall sections (vertical cut F-F at the top and
@@ -2764,10 +2938,15 @@ class Builder:
         num = ped["name"][-2:]
         return [x for x in self.s.bars if x["family"] == "pedestal" and x["group"].endswith(num + "Bars")]
 
-    def pedestal_plan(self, zone, ped):
+    def pedestal_plan(self, zone, ped, top_lines=None):
         """Pedestal plan: cap edges and pedestal outline (no bearing pad),
         bars as lines, spacing strings from the bar centroids, covers and
-        centerlines by leaders (FDOT sheets)."""
+        centerlines by leaders (FDOT sheets).  ``top_lines``
+        (``Composer.ped_lines``): while the pedestal tops are not level, the
+        lettered top lines of the elevation table are marked at the
+        pedestal's right end, beyond the break line (markup 2026-10-20 on the
+        table's corner footnote: "Label in the Pedestal Plan"); with the level
+        tops of D-065 there is nothing to letter."""
         s = self.s
         S = s.S
         b = ped["bb"]
@@ -2809,6 +2988,10 @@ class Builder:
                 cl_items.append(([(lab_x - 0.05 * k, br["v"])], CL + " BEARING", br["v"] - 0.18 * k))
         cl_rows = callouts(v, cl_items, lab_x + 0.29 * k, 1)
         x_lab = lab_x + 0.29 * k + 0.4 * th + max(text_extent(it[1], th) for it in cl_items)   # right end of the labels
+        if top_lines and not top_lines["level"]:
+            row = next((lines for bid, lines in top_lines["rows"] if lines), [])
+            for letter, (v_line, _z) in zip(top_lines["letters"], row):
+                v.text((box[2] + 0.08 * k, v_line), letter, None, "MIDDLE_LEFT")
         # direction of stationing beyond the centerline labels, vertically
         # centred on the view (A5, sample B1-17); its text left of the line
         sd = -s.up
@@ -2889,10 +3072,13 @@ class Builder:
             v.dim((lastu + r, zq), (uu[1], zq), 0.0, 0.0, txt,
                   loc=(box[2] + 0.15 * k + text_w(v, txt) / 2, zq))
         yt = box[1] - 0.42 * k
-        v.title(((uu[0] + uu[1]) / 2, yt), "PEDESTAL PLAN", subject_cx=(uu[0] + uu[1]) / 2)
-        lines = ["(BEAM LINE %d SHOWN; BAR SPACING MAY BE ADJUSTED TO CLEAR THE CAP REINFORCEMENT)" % ped["line"]]
-        for i, d in enumerate(lines):
-            v.text(((box[0] + box[2]) / 2, yt - (1.85 + 1.6 * i) * th), d, None, "BOTTOM_CENTER")
+        # E8 (markup 2026-10-20: "More space between title underline and
+        # notes.  Create a consistent layout to be used for all titles and
+        # notes"): the note is the title's subtitle, placed by ``title`` as
+        # every view's (before: by hand, 0.5 th under the underline)
+        v.title(((uu[0] + uu[1]) / 2, yt), "PEDESTAL PLAN",
+                "(BEAM LINE %d SHOWN; BAR SPACING MAY BE ADJUSTED TO CLEAR THE CAP REINFORCEMENT)" % ped["line"],
+                subject_cx=(uu[0] + uu[1]) / 2)
         return v
 
     def pedestal_marks_note(self, ped):
@@ -3085,7 +3271,13 @@ class Builder:
             ex = extents(S["end_view"]["edges"])
             self._break_lines(v, z_break, ex[0] - 0.4, ex[2] + 0.4)
         elif z_clip is not None:
-            draw_edges(v, S["end_view"]["edges"], box=(-1e4, z_clip, 1e4, 1e4))
+            # D-059 / D4: the near cheek wall's face covers the pedestals and
+            # pads; their hidden edges behind it (and the pedestal's edges
+            # lying on the wall's own outline) are clutter, not the subject
+            # (markup 2026-10-20, View D-D: the short lines under the wall
+            # clouded; they were the old sloped pedestal top's seam faces,
+            # gone with D-065, and the hidden pads would stand there next)
+            draw_edges(v, S["end_view"]["edges"], box=(-1e4, z_clip, 1e4, 1e4), skip_roles=("pad", "pedestal"))
             ws = sorted((-s.wall_bb[4], -s.wall_bb[1]))
             v.break_line((ws[0] - 0.06 * k, z_clip), (ws[1] + 0.06 * k, z_clip))
         else:

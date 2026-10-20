@@ -123,8 +123,10 @@ class SubstructureDxfTests(unittest.TestCase):
         audit = build.symbology_audit(self.doc)
         self.assertEqual(audit["not_on_fdot_level"], [])
         self.assertEqual(audit["not_by_level"], [])
-        self.assertEqual(set(audit["documented_overrides"]),
-                         {"BearingPadMisc linetype DGN2 (hidden pad edges; no FDOT hidden level)"})
+        # (2.7.0: no hidden pad edge is drawn any more, the pier end view
+        # drops the pads behind the cheek wall; the override stays documented)
+        self.assertTrue(set(audit["documented_overrides"]) <=
+                        {"BearingPadMisc linetype DGN2 (hidden pad edges; no FDOT hidden level)"})
         self.assertEqual(self.manifest["symbology_audit"]["not_by_level"], [])
         self.assertEqual(self.manifest["symbology_audit"]["not_on_fdot_level"], [])
         self.assertNotIn("FDOT_CL_SYMBOL", self.doc.blocks)
@@ -357,8 +359,8 @@ class SubstructureDxfTests(unittest.TestCase):
         self.assertEqual(self.manifest["annotation_overlaps"], [])
         self.assertEqual(self.manifest["layout_warnings"], [])
         rules = self.manifest["anno_rules_checked"]
-        for rule in ("A1", "A2", "A3", "A10", "A11", "A12", "A13", "A14", "A21", "A23", "A24", "B9", "B11",
-                     "B12", "D3", "D12", "D13", "D15", "E5"):
+        for rule in ("A1", "A2", "A3", "A10", "A11", "A12", "A13", "A14", "A21", "A23", "A24", "A25", "A26",
+                     "A27", "B9", "B11", "B12", "D3", "D12", "D13", "D15", "E5", "E8"):
             self.assertIn(rule, rules, rule)
 
     def test_leader_through_text_check(self):
@@ -405,6 +407,76 @@ class SubstructureDxfTests(unittest.TestCase):
         self.assertEqual([r for r, _ in found], ["A24"])
         self.assertIn("CL CAP", found[0][1])
         self.assertIn("A24", anno_check.RULES)
+
+    def test_free_label_leader_length_and_tip_checks(self):
+        """A25: a free label off the centre of its space is a finding; A26: a
+        leader longer than 2.5 in; A27: an arrowhead on no drawn line (an
+        area leader, a PT. label and a tip on a dot, an arc or a line are
+        not)."""
+        from substructure_drawings import anno_check
+
+        class FakeView:
+            sf = 32.0      # 3/8" = 1'-0": one paper inch is 2.667 ft
+            th = 0.2
+            texts = [((1.0, 1.0, 2.0, 1.2), "PT. K"), ((0.0, 0.0, 0.5, 0.2), "PT. M")]
+            free_labels = [((0.0, 0.0, 3.0, 2.2), (1.0, 1.0, 2.0, 1.2)), ((0.0, 0.0, 3.0, 3.0), (0.0, 0.0, 0.5, 0.2))]
+            segs = [((0.0, 5.0), (10.0, 5.0), "SubStrConc", 1)]
+            breaks = []
+            dots = [((4.0, 7.0), 0.05)]
+            arcs = [((0.0, 0.0), 1.0, 0.0, 90.0, "Dimension")]
+            leaders = [{"kind": "leader", "tips": [(3.0, 5.0)], "knee": (3.5, 5.5), "text": "ON LINE", "call": 1},
+                       {"kind": "leader", "tips": [(3.0, 6.0)], "knee": (3.5, 6.5), "text": "OFF LINE", "call": 2},
+                       {"kind": "area", "tips": [(3.0, 6.0)], "knee": (3.5, 6.5), "text": "COPING", "call": 3},
+                       {"kind": "leader", "tips": [(3.0, 6.0)], "knee": (3.5, 6.5), "text": "PT. A", "call": 4},
+                       {"kind": "leader", "tips": [(4.0, 7.02)], "knee": (3.5, 6.5), "text": "ON DOT", "call": 5},
+                       {"kind": "leader", "tips": [(0.707, 0.707)], "knee": (1.5, 1.5), "text": "ON ARC", "call": 6},
+                       {"kind": "leader", "tips": [(0.0, 5.0)], "knee": (8.0, 5.5), "text": "LONG", "call": 7}]
+        v = FakeView()
+        self.assertEqual([m for r, m in anno_check.free_label_centred(v) if "PT. M" in m].__len__(), 1)
+        self.assertEqual([m for r, m in anno_check.free_label_centred(v) if "PT. K" in m], [])
+        self.assertEqual([m.split("'")[1] for r, m in anno_check.tip_on_nothing(v)], ["OFF LINE"])
+        self.assertEqual([m.split("'")[1] for r, m in anno_check.leader_length(v)], ["LONG"])
+        for rule in ("A25", "A26", "A27", "E8"):
+            self.assertIn(rule, anno_check.RULES)
+
+    def test_subtitle_layout_check(self):
+        """E8: a parenthesised text under a title that ``title()`` did not place
+        is a finding; the placed subtitle at the standard gap is not."""
+        from substructure_drawings import anno_check
+
+        class FakeView:
+            th = 0.2
+            sf = 16.0
+            title_spec = {"x": 5.0, "underline_y": 10.0, "title": "PLAN", "sub": "(NOTE)",
+                          "sub_box": (4.0, 10.0 - (cad.SUB_GAP_TH + cad.CAP_TH) * 0.2, 6.0, 10.0 - cad.SUB_GAP_TH * 0.2 + 0.01)}
+            texts = [title_spec["sub_box"] and (title_spec["sub_box"], "(NOTE)"), ((4.5, 9.3, 5.5, 9.5), "(BY HAND)")]
+        found = anno_check.subtitle_layout(FakeView())
+        self.assertEqual(len(found), 1, found)
+        self.assertIn("BY HAND", found[0][1])
+
+    def test_pad_edges_beyond_the_pads_are_the_pedestals(self):
+        """D13 (D-065): an edge tagged "pad" with a point outside every pad box
+        is given the pedestal role; one inside keeps the pad's."""
+        edges = [{"role": "pad", "t": "L", "p": [[0.0, 1.0], [3.0, 1.0]], "vis": 1},
+                 {"role": "pad", "t": "L", "p": [[1.0, 1.0], [2.0, 1.0]], "vis": 1},
+                 {"role": "cap", "t": "L", "p": [[0.0, 0.0], [3.0, 0.0]], "vis": 1}]
+        out = views.fix_pad_roles(edges, [(1.0, 1.0, 2.0, 1.2)])
+        self.assertEqual([r["role"] for r in out], ["pedestal", "pad", "cap"])
+        self.assertEqual(edges[0]["role"], "pad")   # the input is not changed
+        self.assertEqual(self.manifest["symbology_audit"]["not_by_level"], [])
+
+    def test_pedestal_table_lists_one_elevation_per_level_pedestal(self):
+        """D-065: the pedestal tops are level, so the table has one ELEVATION
+        column per pedestal and no corner footnote."""
+        comp = build.Composer(self.snap)
+        for key in ("EB1", "PIER", "EB2"):
+            pl = comp.ped_lines(comp.sup[key])
+            self.assertTrue(pl["level"], key)
+            self.assertEqual(pl["letters"], "A")
+            self.assertEqual(len(pl["rows"]), 2)
+        texts = [e.dxf.text for e in self.doc.modelspace().query("TEXT")]
+        self.assertFalse(any("LEVEL TRANSVERSELY" in t or "PAD-END BREAKS" in t for t in texts))
+        self.assertFalse(any("(PROVISIONAL)" in e.text for e in self.doc.modelspace().query("MTEXT")))
 
     def test_dimension_blocks_have_no_zero_length_lines_and_masked_text(self):
         """Rules F and B2: ezdxf's zero-length lines in the dimension blocks
