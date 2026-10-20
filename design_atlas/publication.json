@@ -1,6 +1,6 @@
 {
   "inputs": {
-    "digest": "5402de6a27503033cea520384c02f0255c4aa7a65c239b9768b72eeb35357fe0",
+    "digest": "cb123ce0e5d227989eb79103cdd73d84cd23cd06f564f71bfb7e03a6bf110ad6",
     "files": {
       "Bridge_Geometry_2 Beam_V2.ipynb": "349d464afddc653dfe52808be44faea951f874ac6199026ea771f176f3e02751",
       "Cap_and_Pile_Design.ipynb": "bc8c9e9ec7eda5103e8f967cbb4344f9c3c69a7145a9e2296dc325ec1560cc98",
@@ -8,18 +8,19 @@
       "Geometry Report.xml": "9880ef7adeeac4228666146f5d5bb4dd17ef93f66ffeaf465a2c813eb69489e4",
       "Pile_Design.ipynb": "7d41e15dc825300e4c874a3470fabbedad36e2ee9fcbf4aaf96bf884b85efcf9",
       "design_atlas/__init__.py": "bde743c1d1acd6ea30b1e7487cf46722bcb3850af6cdbc547b54043a719208eb",
-      "design_atlas/build.py": "d3aafb07c34b1e2db604ffcf8b9e7926564f810ecb616bf08fa0df549175ec3a",
+      "design_atlas/assumptions.py": "55617f29a812966f81737ebe65125eac852b140d7947c3c5be09e5c8d43842c7",
+      "design_atlas/build.py": "e5b60d2b71665b917c7b6d9d850106357277899fcde8d028989857f5b1dde40b",
       "design_atlas/end_bent.py": "b9ea8a279b60b88a6995c5d6e619f2d23189e95edf923c1c5aa6bb232dc649fa",
       "design_atlas/journal.py": "b95704315f8b616e5fc0934bd2fd040c1b6f13d46fa7e77b3a46f55de61a90b5",
       "design_atlas/journal_calcs.py": "156a5e50c12c13273d5e4b62d8caf2a22276011a8780936404a517458db5aa8b",
       "design_atlas/manual_links.json": "b47f95ee07e4912ea16383e95be4de3cda3e6e79ead6371e2a83b713c9c9e6f5",
       "design_atlas/origins.py": "11f67d0837e756200c64d7cc37b586f49ebec3f521f0a0b68724149d1c71f58a",
-      "design_atlas/refresh.py": "79c79409b2703c344a12f2720e7c72d27fe8416f2e8cb0c4a3c4d88a21edcb19",
+      "design_atlas/refresh.py": "bb6a4883b96c24fee4e52e767102fcdfb9e6b55ffcf0137e9fce14bf38ff9e35",
       "design_atlas/site.json": "844b69a6cd0f711f036ddf5d21668ead82e581bbb431b8f5a813f7e9bde91c66",
-      "design_atlas/web/atlas.css": "9944bd1b1096f86cad47622b35d949dce8b6f706a7af5afaf2d8380134f7b2ab",
-      "design_atlas/web/atlas.js": "3d131813917adac2c22da8bc343919fd6a68b5f914f5c4250fa5ffad551bb26a",
-      "design_atlas/web/index.html": "b698b56d9803ad9cce7fe8f29abb9ccc780f551730bd0da593b52832c5a0da7d",
-      "design_atlas/web/layouts.js": "84d8fa034ce54e3beea8fc3237d814166cc8a8fc289689b1779c6c496e02a07b",
+      "design_atlas/web/atlas.css": "ccfbb88e033c5d8169b2229f685c38087034aab9c7cd6ebac97f75a9d5b3b800",
+      "design_atlas/web/atlas.js": "1a79217804c8930b2cda7e6f84abd1b9a43776e57bb28f7a937f42a495d2d6f7",
+      "design_atlas/web/index.html": "339d93b8e6ddd3ec03ace5e26859f8e06dc811c17bc1afd23b5cdfff855c5cda",
+      "design_atlas/web/layouts.js": "96c48408d9fa1526a1a83f7c45f06c1b24ad52e58e808f733f9f95f72c973dc4",
       "exports/cap-mathcad-20261017/Pier Cap - Cap Design.xmcd": "ca3326deef56c0abe058e3959389cf417fece3b2be95752c1ca0fcd0134f35e6",
       "exports/cap-mathcad-20261017/Pier Cap - Input Mapping.csv": "3ee0e5d94eb39021130ac71fbc1ad13bb264a6c9e3c5293e8c2d08b9389acef2",
       "exports/cap-mathcad-20261017/Source and verification record.json": "79d468fdcde2debc4f4a2017b41f089113a05ce8627cdf59042ea6657d122633",
@@ -33,6 +34,7 @@
       "project_current/cap_design/pier/Pier Cap Design 10-19.html": "e49d579c0186e7c2617828d236cb982adb92122345493a097e7c352df2f3a701",
       "project_current/cap_design/pier/selected_case.json": "0192dc9d9bef7718fc1d8944ce55b90278c46bbf0458decf1e8be6752c7bed9b",
       "project_current/coherence/Coherence_Tracker.xlsx": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
+      "project_current/coherence/assumptions.json": "2d7ed24138b1dc2a73581745984cc6f29ce0f59c6aea7fc7bffbbc7ed0b52130",
       "project_current/fbmp/end_bents/End Bent 1_Fixed.XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
       "project_current/fbmp/end_bents/End Bent 1_Min_tip.XML": "739f44c1d542464cfd536493ce1ed6cb240f98a75ed3e1188c6f6812742d6fe2",
       "project_current/fbmp/end_bents/End Bent 2_Fixed.XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
@@ -55,16 +57,16 @@
       "project_current/pile_design/pier/Pier Pile Design 10-19.html": "e3880f74db02b4bc997a4efc92688d6b8439360f3cf116c830a8cb0de1701a59",
       "project_current/pile_design/pier/selected_case.json": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c",
       "project_current/source_register.csv": "4bb7eb23b216166b00328146a09309559398f906cdc8e1d8ec496283e1e24a0d",
-      "tools/project_coherence.py": "cc89b50676a4f0e6f8386991f53ac16045445bd7218bcea9f7363b6ef651a683"
+      "tools/project_coherence.py": "6b4dbafcd1597f3917cc224b609030668ca19d872a482fda74f482e439911e06"
     }
   },
   "artifacts": {
-    "index.html": "b698b56d9803ad9cce7fe8f29abb9ccc780f551730bd0da593b52832c5a0da7d",
-    "atlas.css": "9944bd1b1096f86cad47622b35d949dce8b6f706a7af5afaf2d8380134f7b2ab",
-    "atlas.js": "3d131813917adac2c22da8bc343919fd6a68b5f914f5c4250fa5ffad551bb26a",
-    "layouts.js": "84d8fa034ce54e3beea8fc3237d814166cc8a8fc289689b1779c6c496e02a07b",
-    "dataset.js": "98b15684d9452e991b924df757def0bd80bfbcaa3f3ab9c91e1c7e7977cda28c",
-    "atlas-data.json": "77bf8de9283a0fffb4a2a815b444e0f96f1ff75b4062c333eedacde1f5f899d9"
+    "index.html": "339d93b8e6ddd3ec03ace5e26859f8e06dc811c17bc1afd23b5cdfff855c5cda",
+    "atlas.css": "ccfbb88e033c5d8169b2229f685c38087034aab9c7cd6ebac97f75a9d5b3b800",
+    "atlas.js": "1a79217804c8930b2cda7e6f84abd1b9a43776e57bb28f7a937f42a495d2d6f7",
+    "layouts.js": "96c48408d9fa1526a1a83f7c45f06c1b24ad52e58e808f733f9f95f72c973dc4",
+    "dataset.js": "b73a928952f03933e27485be8b62035552d8d15ba6fdb333f7c61e5fd07bc308",
+    "atlas-data.json": "24728e6dad117b2d93d1f483b2fe8db73bc8a849e2324f43c69353b17bfa67cf"
   },
   "counts": {
     "nodes": 71,
@@ -82,12 +84,18 @@
       "not applicable": 5372
     },
     "end_bent_report_case_equal": true,
-    "end_bent_required_xml_present": true
+    "end_bent_required_xml_present": true,
+    "assumptions": {
+      "total": 11,
+      "open": 3,
+      "stale": 0,
+      "flagged": 3
+    }
   },
-  "commit_sha": "6eafd46ab318a268d0d7d11e19ec95c1fee2948e",
+  "commit_sha": "b7be7faa9add0fb18ee37e86f81d2d0f76ea6f66",
   "project_id": "appgprj_6ad3a58e2f6481918bbe0d09bd7007f5",
-  "deployment_id": "appgdep_6ad6c19796988191897a69e17fe14271",
-  "version_id": "appgprj_6ad3a58e2f6481918bbe0d09bd7007f5~appgver_c1b74f72b9f48191a5a028cb5f563240",
-  "published_at": "2026-10-20T01:20:19.604859+00:00",
+  "deployment_id": "appgdep_6ad6d256fea481918ee838e042c5513b",
+  "version_id": "appgprj_6ad3a58e2f6481918bbe0d09bd7007f5~appgver_8f5677a26c948191862bb3c5559bef5b",
+  "published_at": "2026-10-20T02:31:42.339874+00:00",
   "url": "https://d2-pier-cap-design-atlas.ochrebee15.chatgpt.site"
 }
