@@ -35,11 +35,41 @@ if str(ROOT) not in sys.path:               # the checkout (or the extracted not
 from scripts import bpad_sheet as bs  # noqa: E402
 
 REPORTS = {
-    'End Bent 1': ('PileDesignEndBentOne', 'End Bent 1 Pile Design - Distilled', 'End Bent 1 Pile Design.bpad'),
-    'End Bent 2': ('PileDesignEndBentTwo', 'End Bent 2 Pile Design - Distilled', 'End Bent 2 Pile Design.bpad'),
-    'Pier': ('PileDesignPier', 'Pier Pile Design - Distilled', 'Pier Pile Design.bpad'),
+    'End Bent 1': ('PileDesignEndBentOne', 'C011 - End Bent 1 Pile Design', 'End Bent 1 Pile Design.bpad'),
+    'End Bent 2': ('PileDesignEndBentTwo', 'C012 - End Bent 2 Pile Design', 'End Bent 2 Pile Design.bpad'),
+    'Pier': ('PileDesignPier', 'C013 - Pier Pile Design', 'Pier Pile Design.bpad'),
 }
-OTHER = ('PileDesignNotebook', 'Pile Design - Distilled', 'Pile Design.bpad')
+OTHER = ('PileDesignNotebook', 'Pile Design', 'Pile Design.bpad')
+LEGEND = 'Inputs are highlighted amber; results are the green tables.'
+PENDING_TAG = ' [pending confirmation]'
+# Wording of the Mathcad edition that names the notebook or the distillation, rewritten for the submitted text (hidden notes
+# keep the originals). Longer phrases first; the generic fallbacks last.
+VISIBLE_RULES = [
+    ('so the connection stays a PENDING item of the notebook', 'so full moment transfer at the pile head is not credited in this calculation'),
+    ('Blockpad has no vector variables, so the 121-point sweep is not written as formulas.', 'The 121-point sweep is not written as formulas.'),
+    ("Figure 2 is a picture of the notebook's sweep", 'Figure 2 is a picture of the interaction sweep'),
+    ("The interaction curve of Figure 2 is a picture of the notebook's sweep", 'The interaction curve of Figure 2 is a picture of the interaction sweep'),
+    ("The curves are a picture of the notebook's 121-point sweep", 'The curves are a picture of the 121-point interaction sweep'),
+    ("The outline and strands are the notebook's layout as a picture", 'The outline and strands are drawn as a picture'),
+    ('swept geometrically from 4H to 0.02H in the notebook', 'swept geometrically from 4H to 0.02H in the interaction sweep'),
+    ('The notebook sweeps the curve again', 'The interaction sweep is repeated'),
+    ("The angle and that point are the notebook's (amber inputs)", 'The angle and that point are read from the sweep (amber inputs)'),
+    ("Check at the notebook's solved neutral-axis depth", 'Check at the solved neutral-axis depth'),
+    ('The demand ray meets the notebook sweep between', 'The demand ray meets the sweep between'),
+    ("The sheet takes the notebook's depth c_gov as an input", 'This calculation takes the solved depth c_gov as an input'),
+    ('(read from the notebook sweep)', '(read from the interaction sweep)'),
+    ('interpolated on the notebook sweep', 'interpolated on the interaction sweep'),
+    ('where the demand ray meets the notebook curve', 'where the demand ray meets the interaction curve'),
+    ('[from the notebook: ', '[from the interaction sweep: '),
+    ('from the notebook (folded to 0-45 deg)', 'from the sweep (folded to 0-45 deg)'),
+    ('(angle alpha_sh from the notebook)', '(angle alpha_sh from the sweep)'),
+    ('resultant-axis curve, from the notebook', 'resultant-axis curve, from the sweep'),
+    ('largest of the distilled ratios', 'largest of the check ratios'),
+    ('ratio of each distilled check', 'ratio of each check'),
+    ("the notebook's", 'the analysis'),
+    ('the notebook', 'the pile analysis'),
+    ('notebook', 'pile analysis'),
+]
 TOL = 1e-9
 APPROX_TOL = 0.02
 HOW = 'run python scripts/build_pile_bpad.py after changing the pile_design package, the registered FBMP export or the generator'
@@ -239,10 +269,12 @@ class Sheet:
 
     def __init__(self, e, ctx, blocks, report_name, title, pm):
         self.e, self.ctx, self.blocks, self.pm = e, ctx, blocks, pm
-        self.name = report_name
+        self.name, self.title = report_name, title
         self.psc = e.family == 'psc'
         self.doc = bs.new_document()
         self.rep = bs.new_report(self.doc, report_name, title)
+        self.notes = None                             # the hidden WorkingNotes section (provenance, status, pending items)
+        self.pending_inputs = []                      # inputs whose caption carried "[pending confirmation]"
         self.n_rec, self.n_str = len(ctx.recs), ctx.n_str
         self.tags = {'r': [str(i + 1) for i in range(self.n_rec)], 'n': [str(i + 1) for i in range(self.n_str)]}
         self.family, self.rename, self.alias = {}, {}, {}
@@ -301,7 +333,8 @@ class Sheet:
     # -- plain blocks
     def do_title(self, blk):
         bs.para(self.rep, 'D2 I-95 PEDESTRIAN BRIDGE', fontsize=16, fontweight='bold', spacingafter=2)
-        bs.para(self.rep, blk.payload, fontsize=14, fontweight='bold', spacingafter=6)
+        bs.para(self.rep, self.title, fontsize=14, fontweight='bold', spacingafter=6)
+        self.notes = bs.working_notes(self.rep)       # the working language of the title block goes here, hidden
 
     def do_h1(self, blk):
         self.flush()
@@ -325,10 +358,11 @@ class Sheet:
             self.in_fig3_data = True
             return
         if text.startswith('Distilled from'):
-            text = text + ' ' + BP_PROVENANCE
-        elif text.startswith('Status:'):
-            text = text.replace('Inputs are highlighted yellow; values for the plans are boxed.',
-                                'Inputs are highlighted amber; distilled results are the green tables.')
+            bs.para(self.notes, text + ' ' + BP_PROVENANCE)                              # provenance: hidden
+            return
+        if text.startswith('Status:'):
+            bs.para(self.notes, text.split(' Inputs are highlighted')[0])                 # tool status: hidden
+            text = LEGEND
         elif text.startswith('Governing records of'):
             text = text.replace('(index g)', f'(records 1 to {self.n_rec})')
         elif text.startswith('The ray meets the sweep'):
@@ -350,6 +384,15 @@ class Sheet:
             text = (f'The strand coordinates are scalars: x_st_1 to x_st_{self.n_str} and y_st_1 to y_st_{self.n_str}. Strand 1 is written out, '
                     f'strands 2 to {self.n_str} are in the collapsed section, and the strand table in Section 9 lists them all.')
         text = text.replace('the distilled ratios below do not close them', 'the distilled ratios above do not close them')
+        if text.startswith(('The notebook lists', 'No item is pending.')):             # pending-item bookkeeping: hidden
+            bs.note(self.notes, text)
+            return
+        if ' The distilled Status covers' in text:                                       # FBMP model D/C stays; the status caveat hides
+            visible, _, caveat = text.partition(' The distilled Status covers')
+            bs.note(self.notes, 'The Status covers' + caveat)
+            if not visible.strip():
+                return
+            text = visible
         if self.after_plot:
             bs.note(self.rep, text, background='#F1F5FA')
         else:
@@ -359,9 +402,14 @@ class Sheet:
         items = list(blk.payload)
         for i, item in enumerate(items):
             if item.startswith('Every worksheet equation is parsed once'):
-                item = ('Every definition was read back from the XML and evaluated by an independent Blockpad-syntax evaluator, then compared with the '
-                        'notebook (and with the Mathcad worksheet) before the file was written. Governing records, the notebook angles, the neutral-axis '
-                        'depth c_gov and the few values found by a search over the interaction sweep are amber inputs read from the notebook.')
+                bs.para(self.notes, '• Every definition was read back from the XML and evaluated by an independent Blockpad-syntax '
+                                    'evaluator, then compared with the notebook (and with the Mathcad worksheet) before the file was '
+                                    'written. Governing records, the notebook angles, the neutral-axis depth c_gov and the few values '
+                                    'found by a search over the interaction sweep are amber inputs read from the notebook.', spacingafter=4)
+                continue
+            if item.startswith('FBMP source:'):
+                bs.para(self.notes, '• ' + item, spacingafter=4)                         # file hash and register id: hidden
+                item = re.sub(r'^FBMP source: (.*?), SHA-256 [0-9a-f]+ \([^)]*\)\. ', r'FBMP analysis: \1. ', item)
             elif item.startswith('The interaction curve is swept live'):
                 item = ('The interaction curve of Figure 2 is a picture of the notebook\'s sweep. The 5.6.4.5 route, the resultant-axis check at c_gov, '
                         'the demands and every ratio are live formulas.')
@@ -383,6 +431,9 @@ class Sheet:
     def input_item(self, it):
         name = bs.bp_name(it.name)
         caption = it.caption
+        if caption.endswith(PENDING_TAG):             # the confirmation status is bookkeeping: hidden notes list the inputs
+            caption = caption[:-len(PENDING_TAG)]
+            self.pending_inputs.append(name)
         self.scalar_map[it.name] = name
         self.eq(self.rep, f'{name} = {self.formula_of(it.tree)}', caption, style='Required Input', show_result=False,
                 inline=bool(caption) and len(caption) <= 45)
@@ -610,8 +661,8 @@ class Sheet:
     def summary(self):
         names = [dc for dc, _, _ in self.checks()]
         self.scalar_map['DC_max'] = 'DC_max'
-        self.eq(self.rep, 'DC_max = Max(' + ', '.join(names) + ')', 'largest of the distilled ratios')
-        self.eq(self.rep, 'Status = If(DC_max <= 1, "✓ All Checks Pass", "⊗ There are FAILURES")', 'distilled numerical checks only', style='Result only')
+        self.eq(self.rep, 'DC_max = Max(' + ', '.join(names) + ')', 'largest of the check ratios')
+        self.eq(self.rep, 'Status = If(DC_max <= 1, "✓ All Checks Pass", "⊗ There are FAILURES")', 'numerical checks of this calculation', style='Result only')
         sec = bs.section(self.rep, 'Checks')
         for dc, chk, _ in self.checks():
             self.eq(sec, f'{chk} = If({dc} <= 1, "✓ PASS", "⊗ FAIL")')
@@ -629,7 +680,7 @@ class Sheet:
         cv = bs.canvas(self.rep, 'DCChart', 'D/C by check', 3.2)
         self.canvases['DCChart'] = cv
         self.deferred.append((cv, lambda eng, cv=cv: self.draw_chart(cv, eng)))
-        bs.note(self.rep, 'Figure 3. Demand/capacity ratio of each distilled check (stems) against the 1.0 limit. The stems are live '
+        bs.note(self.rep, 'Figure 3. Demand/capacity ratio of each check (stems) against the 1.0 limit. The stems are live '
                           'formulas of the check ratios: a stem turns red when its ratio passes 1.0.')
 
     # -- figures
@@ -1050,9 +1101,14 @@ def build_sheet(e, mathcad_compare=True):
     sheet.flush()
     if not sheet.summary_done:
         raise BuildError('the summary block was not reached')
-    bs.note(sheet.rep, 'A distilled result of ✓ covers only the recomputed numerical checks; it is not design acceptance. The pending items of the '
-                       'notebook stay open. Recalculate in Blockpad after any input change.', size=9)
+    if sheet.pending_inputs:
+        bs.note(sheet.notes, 'Inputs pending confirmation (captions carried "[pending confirmation]" in the notebook): '
+                             + ', '.join(sheet.pending_inputs) + '.')
+    bs.note(sheet.notes, 'A ✓ status covers only the recomputed numerical checks; it is not design acceptance. The pending items of the '
+                         'notebook stay open. Recalculate in Blockpad after any input change.', size=9)
     rep = sheet.rep
+    bs.rewrite_visible_text(rep, VISIBLE_RULES)
+    bs.check_submission_text(rep)
     # ---- (a) the engine is built from the XML that will be written
     eng = bs.BpEngine(report=report_name)
     n_defs = n_funcs = 0

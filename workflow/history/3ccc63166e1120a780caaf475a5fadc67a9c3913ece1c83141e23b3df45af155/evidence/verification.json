@@ -1,0 +1,22 @@
+{
+  "task": "T023",
+  "base_sha256": "7ee97c048e78fc813502757ddbf0b84b3cb8d19ae807da5f8e60356d5743b85a",
+  "package_revision": "34f40710f89e",
+  "fragment_sha256": "732b76ccd8674a1cdd7d97ff01340d1bac1a1f048a6dec34db0f0fdf762e3211",
+  "definitions": 603,
+  "journal_references": 23,
+  "changed_paragraphs": {
+    "removed": [
+      "Blockpad edition of End_Bent_Backwall_Design.ipynb (calculation package 3302ec990b5e; case SHA-256 0ff135b29eacfd445c6c4a9983cf1e6c471c17fee747e0aab41f357bacd235d2). Same inputs, equations and load combinations as the notebook; every result below was recomputed and compared with the notebook. Journal edition written by scripts/build_backwall_bpad.py --journal from the same case: the inputs the journal owns are live references (a coherence gate compared each journal value with the notebook input before the build), and every definition was evaluated independently and compared with the notebook to 1 part in 10⁹."
+    ],
+    "added": [
+      "Blockpad edition of End_Bent_Backwall_Design.ipynb (case SHA-256 0ff135b29eacfd445c6c4a9983cf1e6c471c17fee747e0aab41f357bacd235d2). Same inputs, equations and load combinations as the notebook; every result below was recomputed and compared with the notebook. Journal edition written by scripts/build_backwall_bpad.py --journal from the same case: the inputs the journal owns are live references (a coherence gate compared each journal value with the notebook input before the build), and every definition was evaluated independently and compared with the notebook to 1 part in 10⁹."
+    ]
+  },
+  "status": "PASS",
+  "reviews": {
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false
+  }
+}

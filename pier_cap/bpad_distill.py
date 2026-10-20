@@ -8,7 +8,7 @@ from .model import evaluate
 NOTEBOOK_PROVENANCE = ('Blockpad edition exported from the cap notebook (scripts/build_cap_bpad.py in memory) for this case; '
                        'every definition was evaluated independently and compared with the cap tool to 1 part in 10⁹.')
 LABELS = {'end_bent_1': 'End Bent 1', 'end_bent_2': 'End Bent 2', 'pier': 'Pier Cap', 'notebook': 'Cap'}
-GENERIC_NAMES = ('CapDesignNotebook', 'Cap Design - Distilled', 'Cap Design.bpad')
+GENERIC_NAMES = ('CapDesignNotebook', 'Cap Design', 'Cap Design.bpad')
 
 
 def cap_key(case):

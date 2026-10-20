@@ -402,7 +402,7 @@ class BackwallBpadJournal(unittest.TestCase):
         for r in rows:
             if r['status'] in ('reference', 'reference_context'):
                 self.assertAlmostEqual(r['journal_value'], r['case_value'], delta=1e-9 * max(abs(r['case_value']), 1e-12), msg=r['input'])
-                self.assertTrue(r['note'].startswith('shared journal value'))
+                self.assertTrue(r['note'].startswith(bb.REFERENCE_CAPTION))
         kept = [r for r in rows if r['status'] == 'literal_incoherent_journal']
         self.assertEqual([(r['input'], r['owner'], r['journal_value'], r['case_value']) for r in kept],
                          [('s_brg', f'{BG}.Beam_spacing', 103.0, 102.99)])
@@ -438,7 +438,10 @@ class BackwallBpadJournal(unittest.TestCase):
         first = next(el for el in rep if el.tag not in ('include', 'stylerule'))
         table = first.find('table')
         self.assertEqual((first.tag, table.get('name')), ('embed', 'ProjectStamp'))
-        self.assertEqual([c.get('formula') for c in table.iter('c') if c.get('formula')], [f'{bs.PROJECT_INFO}.{k}' for k in bs.STAMP_KEYS])
+        self.assertEqual([owner for _, _, owner in bs.stamp_cells(table)], [f'{bs.PROJECT_INFO}.{k}' for k in bs.STAMP_KEYS])
+        self.assertEqual([d.get('formula') for d in table.iter('dynexp')], [f'{bs.STAMP_PREFIX}{k} = {bs.PROJECT_INFO}.{k}' for k in bs.STAMP_KEYS])
+        self.assertEqual({c.tag for row in table.findall('row') for c in row}, {'textcell'})
+        self.assertFalse(bs.SUBMISSION_FORBIDDEN.search(' '.join(t for _, t in bs.visible_text_elements(rep))), 'working language in the visible text')
         # every qualified reference names one of the three journal owners and resolves in the journal
         owners = {m.group(1) for el in rep.iter() for m in re.finditer(r'(?<![\w.])([A-Za-z_]\w*)\.[A-Za-z_]\w*', el.get('formula') or '')}
         self.assertEqual(owners, {BG, 'Materials', bs.PROJECT_INFO, NAME})

@@ -1,0 +1,10 @@
+{
+  "task": "T023",
+  "base_sha256": "7ee97c048e78fc813502757ddbf0b84b3cb8d19ae807da5f8e60356d5743b85a",
+  "components": {
+    "report:EndBentBackwallDesign": {
+      "file": "000.xml",
+      "sha256": "732b76ccd8674a1cdd7d97ff01340d1bac1a1f048a6dec34db0f0fdf762e3211"
+    }
+  }
+}

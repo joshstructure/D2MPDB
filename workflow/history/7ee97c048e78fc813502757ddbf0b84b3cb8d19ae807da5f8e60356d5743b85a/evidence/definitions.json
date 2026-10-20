@@ -1,0 +1,57 @@
+{
+  "edited_formulas": [],
+  "derived_cache_refreshes": {},
+  "added_definitions": {
+    "CapDesignBasis": [
+      "Stamp_Firm = ProjectInfo.Firm",
+      "Stamp_Project = ProjectInfo.Project",
+      "Stamp_Address = ProjectInfo.Address",
+      "Stamp_JobNo = ProjectInfo.JobNo",
+      "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+      "Stamp_DesignDate = ProjectInfo.DesignDate",
+      "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+      "Stamp_CheckDate = ProjectInfo.CheckDate"
+    ],
+    "CapDesignEndBentOne": [
+      "Stamp_Firm = ProjectInfo.Firm",
+      "Stamp_Project = ProjectInfo.Project",
+      "Stamp_Address = ProjectInfo.Address",
+      "Stamp_JobNo = ProjectInfo.JobNo",
+      "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+      "Stamp_DesignDate = ProjectInfo.DesignDate",
+      "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+      "Stamp_CheckDate = ProjectInfo.CheckDate"
+    ],
+    "CapDesignEndBentTwo": [
+      "Stamp_Firm = ProjectInfo.Firm",
+      "Stamp_Project = ProjectInfo.Project",
+      "Stamp_Address = ProjectInfo.Address",
+      "Stamp_JobNo = ProjectInfo.JobNo",
+      "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+      "Stamp_DesignDate = ProjectInfo.DesignDate",
+      "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+      "Stamp_CheckDate = ProjectInfo.CheckDate"
+    ],
+    "CapDesignPier": [
+      "Stamp_Firm = ProjectInfo.Firm",
+      "Stamp_Project = ProjectInfo.Project",
+      "Stamp_Address = ProjectInfo.Address",
+      "Stamp_JobNo = ProjectInfo.JobNo",
+      "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+      "Stamp_DesignDate = ProjectInfo.DesignDate",
+      "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+      "Stamp_CheckDate = ProjectInfo.CheckDate"
+    ],
+    "EndBentBackwallDesign": [
+      "Stamp_Firm = ProjectInfo.Firm",
+      "Stamp_Project = ProjectInfo.Project",
+      "Stamp_Address = ProjectInfo.Address",
+      "Stamp_JobNo = ProjectInfo.JobNo",
+      "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+      "Stamp_DesignDate = ProjectInfo.DesignDate",
+      "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+      "Stamp_CheckDate = ProjectInfo.CheckDate"
+    ]
+  },
+  "note": "Presentation only: titles, prose, hidden sections, table cell kinds and the live stamp as result-only definitions; every existing formula string and cache value is unchanged (result-only caches drop the \"= \" prefix)."
+}

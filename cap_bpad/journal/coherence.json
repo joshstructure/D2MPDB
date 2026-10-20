@@ -6,7 +6,7 @@
    "journal_value": 42.0,
    "case_value": 42.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBentCap_width (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBentCap_width (in)"
   },
   {
    "input": "h",
@@ -14,7 +14,7 @@
    "journal_value": 36.0,
    "case_value": 36.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBentCap_depth (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBentCap_depth (in)"
   },
   {
    "input": "C_t",
@@ -22,7 +22,7 @@
    "journal_value": 3.0,
    "case_value": 3.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBent_coverTop (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBent_coverTop (in)"
   },
   {
    "input": "C_b",
@@ -30,7 +30,7 @@
    "journal_value": 3.0,
    "case_value": 3.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBent_coverBottom (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBent_coverBottom (in)"
   },
   {
    "input": "C_s",
@@ -38,7 +38,7 @@
    "journal_value": 3.0,
    "case_value": 3.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBent_coverSide (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBent_coverSide (in)"
   },
   {
    "input": "fc",
@@ -46,7 +46,7 @@
    "journal_value": 5.5,
    "case_value": 5.5,
    "status": "reference",
-   "note": "shared journal value — Materials.Substructure_fc (ksi)"
+   "note": "shared value — Materials.Substructure_fc (ksi)"
   },
   {
    "input": "fy",
@@ -54,7 +54,7 @@
    "journal_value": 60.0,
    "case_value": 60.0,
    "status": "reference",
-   "note": "shared journal value — Materials.Rebar_fy (ksi)"
+   "note": "shared value — Materials.Rebar_fy (ksi)"
   },
   {
    "input": "Es",
@@ -62,7 +62,7 @@
    "journal_value": 29000.0,
    "case_value": 29000.0,
    "status": "reference",
-   "note": "shared journal value — Materials.Rebar_Es (ksi)"
+   "note": "shared value — Materials.Rebar_Es (ksi)"
   },
   {
    "input": "φ_f",
@@ -70,7 +70,7 @@
    "journal_value": 0.9,
    "case_value": 0.9,
    "status": "reference",
-   "note": "shared journal value — CapDesignBasis.φ_f (no unit)"
+   "note": "shared value — CapDesignBasis.φ_f (no unit)"
   },
   {
    "input": "φ_v",
@@ -78,7 +78,7 @@
    "journal_value": 0.9,
    "case_value": 0.9,
    "status": "reference",
-   "note": "shared journal value — CapDesignBasis.φ_v (no unit)"
+   "note": "shared value — CapDesignBasis.φ_v (no unit)"
   },
   {
    "input": "γ_e",
@@ -86,7 +86,7 @@
    "journal_value": 1.0,
    "case_value": 1.0,
    "status": "reference",
-   "note": "shared journal value — CapDesignBasis.γ_e (no unit)"
+   "note": "shared value — CapDesignBasis.γ_e (no unit)"
   },
   {
    "input": "λ",
@@ -94,7 +94,7 @@
    "journal_value": 1.0,
    "case_value": 1.0,
    "status": "reference",
-   "note": "shared journal value — CapDesignBasis.λ (no unit)"
+   "note": "shared value — CapDesignBasis.λ (no unit)"
   },
   {
    "input": "φ_a",
@@ -102,7 +102,7 @@
    "journal_value": 0.9,
    "case_value": 0.9,
    "status": "reference",
-   "note": "shared journal value — CapDesignBasis.φ_a (no unit)"
+   "note": "shared value — CapDesignBasis.φ_a (no unit)"
   },
   {
    "input": "L_cap",
@@ -110,7 +110,7 @@
    "journal_value": 251.0,
    "case_value": 251.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBentCage_envelope (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBentCage_envelope (in)"
   },
   {
    "input": "s_proj",
@@ -118,7 +118,7 @@
    "journal_value": 12.0,
    "case_value": 12.0,
    "status": "reference",
-   "note": "shared journal value — CapDesignBasis.s_proj (in)"
+   "note": "shared value — CapDesignBasis.s_proj (in)"
   }
  ],
  "CapDesignEndBentTwo": [
@@ -128,7 +128,7 @@
    "journal_value": 42.0,
    "case_value": 42.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBentCap_width (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBentCap_width (in)"
   },
   {
    "input": "h",
@@ -136,7 +136,7 @@
    "journal_value": 36.0,
    "case_value": 36.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBentCap_depth (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBentCap_depth (in)"
   },
   {
    "input": "C_t",
@@ -144,7 +144,7 @@
    "journal_value": 3.0,
    "case_value": 3.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBent_coverTop (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBent_coverTop (in)"
   },
   {
    "input": "C_b",
@@ -152,7 +152,7 @@
    "journal_value": 3.0,
    "case_value": 3.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBent_coverBottom (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBent_coverBottom (in)"
   },
   {
    "input": "C_s",
@@ -160,7 +160,7 @@
    "journal_value": 3.0,
    "case_value": 3.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBent_coverSide (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBent_coverSide (in)"
   },
   {
    "input": "fc",
@@ -168,7 +168,7 @@
    "journal_value": 5.5,
    "case_value": 5.5,
    "status": "reference",
-   "note": "shared journal value — Materials.Substructure_fc (ksi)"
+   "note": "shared value — Materials.Substructure_fc (ksi)"
   },
   {
    "input": "fy",
@@ -176,7 +176,7 @@
    "journal_value": 60.0,
    "case_value": 60.0,
    "status": "reference",
-   "note": "shared journal value — Materials.Rebar_fy (ksi)"
+   "note": "shared value — Materials.Rebar_fy (ksi)"
   },
   {
    "input": "Es",
@@ -184,7 +184,7 @@
    "journal_value": 29000.0,
    "case_value": 29000.0,
    "status": "reference",
-   "note": "shared journal value — Materials.Rebar_Es (ksi)"
+   "note": "shared value — Materials.Rebar_Es (ksi)"
   },
   {
    "input": "φ_f",
@@ -192,7 +192,7 @@
    "journal_value": 0.9,
    "case_value": 0.9,
    "status": "reference",
-   "note": "shared journal value — CapDesignBasis.φ_f (no unit)"
+   "note": "shared value — CapDesignBasis.φ_f (no unit)"
   },
   {
    "input": "φ_v",
@@ -200,7 +200,7 @@
    "journal_value": 0.9,
    "case_value": 0.9,
    "status": "reference",
-   "note": "shared journal value — CapDesignBasis.φ_v (no unit)"
+   "note": "shared value — CapDesignBasis.φ_v (no unit)"
   },
   {
    "input": "γ_e",
@@ -208,7 +208,7 @@
    "journal_value": 1.0,
    "case_value": 1.0,
    "status": "reference",
-   "note": "shared journal value — CapDesignBasis.γ_e (no unit)"
+   "note": "shared value — CapDesignBasis.γ_e (no unit)"
   },
   {
    "input": "λ",
@@ -216,7 +216,7 @@
    "journal_value": 1.0,
    "case_value": 1.0,
    "status": "reference",
-   "note": "shared journal value — CapDesignBasis.λ (no unit)"
+   "note": "shared value — CapDesignBasis.λ (no unit)"
   },
   {
    "input": "φ_a",
@@ -224,7 +224,7 @@
    "journal_value": 0.9,
    "case_value": 0.9,
    "status": "reference",
-   "note": "shared journal value — CapDesignBasis.φ_a (no unit)"
+   "note": "shared value — CapDesignBasis.φ_a (no unit)"
   },
   {
    "input": "L_cap",
@@ -232,7 +232,7 @@
    "journal_value": 251.0,
    "case_value": 251.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBentCage_envelope (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBentCage_envelope (in)"
   },
   {
    "input": "s_proj",
@@ -240,7 +240,7 @@
    "journal_value": 12.0,
    "case_value": 12.0,
    "status": "reference",
-   "note": "shared journal value — CapDesignBasis.s_proj (in)"
+   "note": "shared value — CapDesignBasis.s_proj (in)"
   }
  ],
  "CapDesignPier": [
@@ -250,7 +250,7 @@
    "journal_value": 48.0,
    "case_value": 48.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.PierCap_width (in)"
+   "note": "shared value — BridgeGeometry_2Beam.PierCap_width (in)"
   },
   {
    "input": "h",
@@ -258,7 +258,7 @@
    "journal_value": 36.0,
    "case_value": 36.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.PierCap_ht (in)"
+   "note": "shared value — BridgeGeometry_2Beam.PierCap_ht (in)"
   },
   {
    "input": "C_t",
@@ -266,7 +266,7 @@
    "journal_value": 3.0,
    "case_value": 3.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.PierCap_coverTop (in)"
+   "note": "shared value — BridgeGeometry_2Beam.PierCap_coverTop (in)"
   },
   {
    "input": "C_b",
@@ -274,7 +274,7 @@
    "journal_value": 3.0,
    "case_value": 3.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.PierCap_coverBottom (in)"
+   "note": "shared value — BridgeGeometry_2Beam.PierCap_coverBottom (in)"
   },
   {
    "input": "C_s",
@@ -282,7 +282,7 @@
    "journal_value": 3.0,
    "case_value": 3.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.PierCap_coverSide (in)"
+   "note": "shared value — BridgeGeometry_2Beam.PierCap_coverSide (in)"
   },
   {
    "input": "fc",
@@ -290,7 +290,7 @@
    "journal_value": 5.5,
    "case_value": 5.5,
    "status": "reference",
-   "note": "shared journal value — Materials.Substructure_fc (ksi)"
+   "note": "shared value — Materials.Substructure_fc (ksi)"
   },
   {
    "input": "fy",
@@ -298,7 +298,7 @@
    "journal_value": 60.0,
    "case_value": 60.0,
    "status": "reference",
-   "note": "shared journal value — Materials.Rebar_fy (ksi)"
+   "note": "shared value — Materials.Rebar_fy (ksi)"
   },
   {
    "input": "Es",
@@ -306,7 +306,7 @@
    "journal_value": 29000.0,
    "case_value": 29000.0,
    "status": "reference",
-   "note": "shared journal value — Materials.Rebar_Es (ksi)"
+   "note": "shared value — Materials.Rebar_Es (ksi)"
   },
   {
    "input": "φ_f",
@@ -314,7 +314,7 @@
    "journal_value": 0.9,
    "case_value": 0.9,
    "status": "reference",
-   "note": "shared journal value — CapDesignBasis.φ_f (no unit)"
+   "note": "shared value — CapDesignBasis.φ_f (no unit)"
   },
   {
    "input": "φ_v",
@@ -322,7 +322,7 @@
    "journal_value": 0.9,
    "case_value": 0.9,
    "status": "reference",
-   "note": "shared journal value — CapDesignBasis.φ_v (no unit)"
+   "note": "shared value — CapDesignBasis.φ_v (no unit)"
   },
   {
    "input": "γ_e",
@@ -330,7 +330,7 @@
    "journal_value": 1.0,
    "case_value": 1.0,
    "status": "reference",
-   "note": "shared journal value — CapDesignBasis.γ_e (no unit)"
+   "note": "shared value — CapDesignBasis.γ_e (no unit)"
   },
   {
    "input": "λ",
@@ -338,7 +338,7 @@
    "journal_value": 1.0,
    "case_value": 1.0,
    "status": "reference",
-   "note": "shared journal value — CapDesignBasis.λ (no unit)"
+   "note": "shared value — CapDesignBasis.λ (no unit)"
   },
   {
    "input": "φ_a",
@@ -346,7 +346,7 @@
    "journal_value": 0.9,
    "case_value": 0.9,
    "status": "reference",
-   "note": "shared journal value — CapDesignBasis.φ_a (no unit)"
+   "note": "shared value — CapDesignBasis.φ_a (no unit)"
   },
   {
    "input": "L_cap",
@@ -354,7 +354,7 @@
    "journal_value": 230.0,
    "case_value": 230.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.PierCap_length (in)"
+   "note": "shared value — BridgeGeometry_2Beam.PierCap_length (in)"
   },
   {
    "input": "s_proj",
@@ -362,7 +362,7 @@
    "journal_value": 12.0,
    "case_value": 12.0,
    "status": "reference",
-   "note": "shared journal value — CapDesignBasis.s_proj (in)"
+   "note": "shared value — CapDesignBasis.s_proj (in)"
   }
  ]
 }

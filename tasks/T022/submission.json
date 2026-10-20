@@ -1,0 +1,31 @@
+{
+  "summary": "Submission formatting of the design and analysis calculations (user request, 20 October 2026): calculation modules numbered C007-C016 in the existing C-series (C005 stays retired); the working language of every calculation (provenance, package and file hashes, tool status, pending-item bookkeeping, decision and task identifiers, superseded history) moved into hidden sections; static table text in multiline cells; 'distilled' removed from titles and visible text. Presentation only: every formula string and cache value is unchanged.",
+  "published_outputs": [
+    "Titles: CapDesignBasis 'C007 - Cap Design Basis (shared factors)', CapDesignEndBentOne 'C008 - End Bent 1 Cap Design', CapDesignEndBentTwo 'C009 - End Bent 2 Cap Design', CapDesignPier 'C010 - Pier Cap Design', PileDesignEndBentOne 'C011 - End Bent 1 Pile Design', PileDesignEndBentTwo 'C012 - End Bent 2 Pile Design', PileDesignPier 'C013 - Pier Pile Design', EndBentBackwallDesign 'C014 - End Bent 1 Backwall, Cheek Walls and Tie-Back Straps', MSEWallExclusion 'C015 - MSE Wall Exclusion - Both End Bents', BearingDesign 'C016 - Bearings and Support Details'",
+    "New definitions (live project stamp, result-only): Stamp_Firm, Stamp_Address, Stamp_Project, Stamp_JobNo, Stamp_DesignedBy, Stamp_DesignDate, Stamp_CheckedBy, Stamp_CheckDate in CapDesignBasis, CapDesignEndBentOne, CapDesignEndBentTwo, CapDesignPier and EndBentBackwallDesign (each = ProjectInfo.<Key>); they replace the eight value-cell references of each stamp table",
+    "All existing published names, scopes, units and values unchanged; BearingDesign.BP_all_seat_* and BP_pier_seat_* definitions kept (moved into hidden subsections)"
+  ],
+  "assumptions_and_conventions": [
+    "Numbering continues the existing C001-C004, C006 series in index order; C005 is not reused (deleted live pier cap module whose formula set the repository still names).",
+    "Hidden sections (capture=False, hide=true) carry the working language; the WorkingNotes section is the first element after the title block of each generated calculation.",
+    "Static text cells are <textcell> with one paragraph (table stylerule font size; bold header text centred); formula cells stay <c> so numbers and the PASS/FAIL colour rules are unchanged.",
+    "Result-only caches are written without the '= ' prefix, as Blockpad caches them natively (BearingDesign Check_PedN, the T018 recalculated Status cells)."
+  ],
+  "downstream_impact": [
+    "Generated editions rebuilt by their generators: cap_bpad/ (standalone + journal), cap_mathcad/, Cap_and_Pile_Design.ipynb (package 51bd9c45c61f); end_bent_walls/ (standalone + journal), End_Bent_Backwall_Design.xmcd, End_Bent_Backwall_Design.ipynb (package 3302ec990b5e); pile_bpad/, pile_mathcad/, Pile_Design.ipynb (package 5dc128ff4419).",
+    "Modules linking by title text (PedBridge index) updated; FoundationModeling, BridgeGeometry_2Beam and DecisionLog history entries keep their earlier wording.",
+    "Design atlas: titles of the journal calculation nodes change; refresh required."
+  ],
+  "external_analysis": "Not affected: no input, formula or cache value changed; FBMP not rerun; the T018 native recalculation caches of the cap, pile and backwall reports are replaced by the generator caches of the same values (result-only cells without the '= ' prefix).",
+  "checks_performed": [
+    "tasks/T022/build_components.py: generated fragments tied to their verification records (backwall fragment SHA-256, pile and backwall package revisions); definitions and value-cell formulas preserved (only the eight Stamp_* definitions added per stamped report); no static value cells; visible-text rule over the 15 calculation modules",
+    "tools/bpad_workflow.py check and assemble: scope, dependency, structural delta, no new stored errors",
+    "tasks/T022/verify_task.py on the candidate: protected components byte-identical, formula multisets, titles, cells, visible text, index links, DecisionLog entry",
+    "Generator verification unchanged: cap 891/891/859 tool comparisons and 535 Mathcad values per cap; backwall 245 notebook and 585 Mathcad values; piles 223/223/119 notebook values; coherence gates (15 cap references, 23 backwall references) all equal"
+  ],
+  "open_items": [
+    "Native Blockpad recalculation, appearance review and engineering review not performed (optional under the promotion policy); the multiline cells and the result-only stamp definitions have not been opened natively.",
+    "Design atlas publication after promotion.",
+    "The T018 native caches of the generated reports are superseded by generator caches of the same values."
+  ]
+}

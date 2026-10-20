@@ -9,7 +9,7 @@
    "φ_v": 0.9
   },
   "fragment": "cap_bpad/journal/CapDesignBasis.xml",
-  "fragment_sha256": "21f50373dde0105cb508acb3a89f6ab0fdef47e264118b033ef762f034096ae6",
+  "fragment_sha256": "93f0ed7c796f132a37c4bd7a178e3daaa4c4dc444488ac6dfb69c6150f44c397",
   "functions": [
    "Ab",
    "Db"
@@ -53,17 +53,17 @@
    "coverage_comparisons": 603,
    "coverage_rows_real": 7,
    "coverage_rows_synthetic": 12,
-   "definitions": 519,
+   "definitions": 527,
    "fbmp_file": "End Bent 1_Fixed.XML",
    "fbmp_sha256": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
    "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
    "fragment": "cap_bpad/journal/CapDesignEndBentOne.xml",
-   "fragment_sha256": "c560d3fafa1e4576c87c33c38e7f30bc1921d9e6947b8d04f94668da4b008701",
+   "fragment_sha256": "521a31f6fc369604c2363d6f4dd53ceafb07fcd82debfc6ee3f33b099c4a9ece",
    "functions": 0,
    "journal_references": 15,
    "literals_kept": [],
    "mathcad_values_compared": 535,
-   "package_revision": "22cddbd9999a",
+   "package_revision": "75696adb93b5",
    "references": [
     "BridgeGeometry_2Beam.EndBentCage_envelope",
     "BridgeGeometry_2Beam.EndBentCap_depth",
@@ -113,17 +113,17 @@
    "coverage_comparisons": 603,
    "coverage_rows_real": 7,
    "coverage_rows_synthetic": 12,
-   "definitions": 519,
+   "definitions": 527,
    "fbmp_file": "End Bent 2_Fixed.XML",
    "fbmp_sha256": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
    "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
    "fragment": "cap_bpad/journal/CapDesignEndBentTwo.xml",
-   "fragment_sha256": "2dc8a777ab571caa7f04912f591f2ff5421db6596e2666b2aa844732c589f99c",
+   "fragment_sha256": "500ed3ed616c0216872e70c0f7019733b1cf0e8e3eddf88f10108112ae65e18b",
    "functions": 0,
    "journal_references": 15,
    "literals_kept": [],
    "mathcad_values_compared": 535,
-   "package_revision": "22cddbd9999a",
+   "package_revision": "75696adb93b5",
    "references": [
     "BridgeGeometry_2Beam.EndBentCage_envelope",
     "BridgeGeometry_2Beam.EndBentCap_depth",
@@ -173,17 +173,17 @@
    "coverage_comparisons": 571,
    "coverage_rows_real": 6,
    "coverage_rows_synthetic": 12,
-   "definitions": 519,
+   "definitions": 527,
    "fbmp_file": "Pier_Fixed.XML",
    "fbmp_sha256": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
    "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
    "fragment": "cap_bpad/journal/CapDesignPier.xml",
-   "fragment_sha256": "987eb9804a9278c3f04300dca28950f99cbb2a66865b8f6e5284492db0d8604e",
+   "fragment_sha256": "f07f09d5350a77eebaf1c2d1bb216f345fddea0bebabd71de4cb80c4505412bb",
    "functions": 0,
    "journal_references": 15,
    "literals_kept": [],
    "mathcad_values_compared": 535,
-   "package_revision": "22cddbd9999a",
+   "package_revision": "75696adb93b5",
    "references": [
     "BridgeGeometry_2Beam.PierCap_coverBottom",
     "BridgeGeometry_2Beam.PierCap_coverSide",
@@ -216,5 +216,5 @@
   }
  ],
  "review_document": "cap_bpad/journal/Cap Design - Journal Edition (review).bpad",
- "review_sha256": "7bae544f9faed0d60d70fbd55edd55b5a509b59b31be83c5eb1811b189668fbb"
+ "review_sha256": "41e1ed26a886954c5207c6381cdc434df147a0dc06e347f6239a3aea60422158"
 }

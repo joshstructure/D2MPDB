@@ -1,0 +1,911 @@
+<report title="C001 - Wind Load on Ped Bridge Superstructure" name="C001WindLoadOnPedBridgeSuperstructure" unit="in" pagesize="816, 1056" margin="48,48,48,48">
+        <embed spacingbefore="5" spacingafter="8">
+            <table name="ProjectStamp" capture="False" colwidths="1:95, 2:165, 3:95, 4:165">
+                <stylerule range="A1:D4" fontfamily="Times New Roman" fontsize="9" vertalign="Center" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);" />
+                <row>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">Firm</paragraph></textcell>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.Firm"><textvalue>Parsons Transportation Group Inc</textvalue></c>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">Project</paragraph></textcell>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.Project"><textvalue>I-95 Capacity Improvements from South of SR 152 to South of SR 126</textvalue></c>
+                </row>
+                <row>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">Address</paragraph></textcell>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.Address"><textvalue>1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301</textvalue></c>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">Job no.</paragraph></textcell>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.JobNo"><textvalue></textvalue></c>
+                </row>
+                <row>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">Designed by</paragraph></textcell>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.DesignedBy"><textvalue>JAT</textvalue></c>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">Date</paragraph></textcell>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.DesignDate"><textvalue>10/17/2026</textvalue></c>
+                </row>
+                <row>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">Checked by</paragraph></textcell>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.CheckedBy"><textvalue>MIK</textvalue></c>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">Date</paragraph></textcell>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.CheckDate"><textvalue></textvalue></c>
+                </row>
+            </table>
+        </embed>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="7">
+            <link address="#CodeReferencesGeneral;paragraphreferenceindex">Code references and calculation backlinks</link>
+        </paragraph>
+        <paragraph fontweight="bold" textdecoration="underline" spacingafter="4">PROJECT INFORMATION:</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4">
+            <span fontweight="bold">Project Name</span>
+            : D2 MPDB
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" background="#FFF8E9" fontweight="bold">GEOMETRY BASIS — Cap and wind datums derive from the selected Type F pad, 6-in pedestal and 36-in cap. Individual seat grades, separate plates, the retained wind envelope, terrain reference and gross pier-face width require final-detail confirmation.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4">
+            <span fontweight="bold">Project Number:</span>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4">
+            <span fontweight="bold">Designed By:</span>
+             JAT
+            <break type="tab" />
+            <span fontweight="bold">Date:</span>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4">
+            <span fontweight="bold">Checked By:</span>
+            <break type="tab" />
+            <span fontweight="bold">Date:</span>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4" />
+        <heading>
+            <paragraphlabel numbergroup="heading">1.</paragraphlabel>
+            INPUTS
+        </heading>
+        <heading level="1" spacingafter="4" id="paragraphrefreturn0004">
+            <paragraphlabel numbergroup="heading">1.1.</paragraphlabel>
+            Bridge Geometry
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="z_clear = BridgeGeometry_2Beam.Wind_clearHeight" showsteps="False" seplines="False">
+                <expbody>z_clear = BridgeGeometry_2Beam.Wind_clearHeight</expbody>
+                <expresult> = 18 ft 11.478 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Vertical distance from low ground to the bottom of the concrete superstructure.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_001_z_clear" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Reference the low-ground-to-soffit clearance in Bridge Geometry_2 Beam. The previous 19 ft assumption is centralized there and requires confirmation from a complete pier section.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp formula="Z = BridgeGeometry_2Beam.Wind_exposureHeight" showsteps="False" mathlayout="on">
+                <expbody>Z = BridgeGeometry_2Beam.Wind_exposureHeight</expbody>
+                <expresult> = 35 ft 8 51/64 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Height of the fence crown above low ground, used as the common wind exposure height.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_002_Z" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Reference the common crown exposure height in Bridge Geometry_2 Beam. The existing exposure-height model and code equations are retained.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">
+            Reference: 
+            <link address="#CodeReferencesC001.CodePage08;paragraphprojectcoderef08C001">LRFD Art. 3.8.1.2.1</link>
+            ; 
+            <link address="#CodeReferencesC001.CodePage08;paragraphprojectcoderef08C001">Art. 3.8.1.2.1</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp formula="Z_calc = Max(Z, 33 ft)" showsteps="False" seplines="False" mathlayout="on">
+                <expbody>Z_calc = Max(Z, 33 ft)</expbody>
+                <expresult> = 35 ft 8 51/64 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Height actually inserted into the exposure equations.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_003_Z_calc" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Max compares 
+                <dynexp formula="Z" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Z</expbody>
+                </dynexp>
+                , the adopted physical wind exposure height, with 33 ft and keeps the larger. Thus a shorter structure is treated as 33 ft high for these equations, while a taller structure keeps its adopted height. This changes the pressure calculation, not the actual geometry or force application point.
+            </paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">
+            Reference: 
+            <link address="#CodeReferencesC001.CodePage09;paragraphprojectcoderef09C001">LRFD Art. 3.8.1.2.1</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp formula="d_super=BridgeGeometry_2Beam.Depth_SuperStr" showsteps="False" mathlayout="on">
+                <expbody>d_super=BridgeGeometry_2Beam.Depth_SuperStr</expbody>
+                <expresult> = 7 ft 1 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Vertical depth of concrete bridge surface exposed to horizontal wind.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_004_d_super" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Copy 
+                <dynexp formula="BridgeGeometry_2Beam.Depth_SuperStr" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>BridgeGeometry_2Beam.Depth_SuperStr</expbody>
+                </dynexp>
+                 from the Ped Bridge module. This is the side-view height of the concrete superstructure included in the wind model. Pressure times this depth gives horizontal force for each foot of bridge length; the fence is handled separately.
+            </paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp formula="L_span=Max(BridgeGeometry_2Beam.Span_1, BridgeGeometry_2Beam.Span_2)" showsteps="False" mathlayout="on">
+                <expbody>L_span=Max(BridgeGeometry_2Beam.Span_1, BridgeGeometry_2Beam.Span_2)</expbody>
+                <expresult> = 107.35 ft</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Longer of the two individual bridge spans.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_005_L_span" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                Max compares 
+                <dynexp formula="BridgeGeometry_2Beam.Span_1" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>BridgeGeometry_2Beam.Span_1</expbody>
+                </dynexp>
+                 and 
+                <dynexp formula="BridgeGeometry_2Beam.Span_2" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>BridgeGeometry_2Beam.Span_2</expbody>
+                </dynexp>
+                 and keeps the larger span length. This is used when considering provisions based on an individual span and in the repair-frame force expression.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">It is not the sum of the two spans or the intermediate pier’s tributary length; those are separate quantities.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">
+            Reference: 
+            <link address="#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001">LRFD Art. 3.8.1.2.3a</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp formula="w_deck=BridgeGeometry_2Beam.Deck_out2out" showsteps="False" mathlayout="on">
+                <expbody>w_deck=BridgeGeometry_2Beam.Deck_out2out</expbody>
+                <expresult> = 13 ft 7 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Full outside-to-outside width of the concrete deck.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_006_w_deck" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Copy 
+                <dynexp formula="BridgeGeometry_2Beam.Deck_out2out" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>BridgeGeometry_2Beam.Deck_out2out</expbody>
+                </dynexp>
+                , which includes the clear space, parapets, and the deck projections outside them. This width represents the deck area exposed to vertical wind for each foot of bridge length when that separate vertical-wind calculation is used.
+            </paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">
+            Reference: 
+            <link address="#CodeReferencesC001.CodePage11;paragraphprojectcoderef11C001">LRFD Art. 3.8.2</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="12">
+            Skew angle of wind attack (measured from perpendicular to longitudinal axis of bridge): 
+            <valuefield valuedef="FromOptionsOrValue(null, [&quot;0&quot;, &quot;15&quot;, &quot;30&quot;, &quot;45&quot;, &quot;60&quot;])" name="Skew_deg_str"><textvalue>0</textvalue></valuefield>
+             degrees (
+            <link address="#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001">LRFD Table 3.8.1.2.3a-1</link>
+            )
+        </paragraph>
+        <heading level="1" id="paragraphrefreturn0005">
+            <paragraphlabel numbergroup="heading">1.2.</paragraphlabel>
+            Wind Speed and Exposure
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp formula="V_III = 130" showsteps="False" mathlayout="on">
+                <expbody>V_III = 130</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">
+            Design gust wind speed entered for Strength III (
+            <link address="#CodeReferencesC001.CodePage04;paragraphprojectcoderef04C001">FDOT SDG Table 2.4.1-1</link>
+            ).
+        </paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_007_V_III" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">Read this numerical input as miles per hour. The pressure formula squares the number, then uses its conversion constant to produce pressure in kips per square foot. This is the speed assigned to the stated limit state, not a factor applied to an already calculated pressure.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp formula="V_V = 80" showsteps="False" mathlayout="on">
+                <expbody>V_V = 80</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Design gust wind speed entered for Strength V.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_008_V_V" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">Read this numerical input as miles per hour. The pressure formula squares the number, then uses its conversion constant to produce pressure in kips per square foot. This is the speed assigned to the stated limit state, not a factor applied to an already calculated pressure.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">
+            Reference: 
+            <link address="#CodeReferencesC001.CodePage06;paragraphprojectcoderef06C001">LRFD Table 3.8.1.1.2-1</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp formula="V_SI = 70" showsteps="False" mathlayout="on">
+                <expbody>V_SI = 70</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Design gust wind speed entered for Service I.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_009_V_SI" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">Read this numerical input as miles per hour. The pressure formula squares the number, then uses its conversion constant to produce pressure in kips per square foot. This is the speed assigned to the stated limit state, not a factor applied to an already calculated pressure.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">
+            Reference: 
+            <link address="#CodeReferencesC001.CodePage06;paragraphprojectcoderef06C001">LRFD Table 3.8.1.1.2-1</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="12">
+            Wind exposure category: 
+            <valuefield valuedef="FromOptionsOrValue(null, [&quot;C&quot;, &quot;D&quot;])" name="Exp_Cat"><textvalue>C</textvalue></valuefield>
+            (
+            <link address="#CodeReferencesC001.CodePage05;paragraphprojectcoderef05C001">FDOT SDG 2.4.1.B</link>
+            : Category C unless D applies.)
+        </paragraph>
+        <heading level="1" id="paragraphrefreturn0006">
+            <paragraphlabel numbergroup="heading">1.3.</paragraphlabel>
+            Structure Type and Coefficients
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4">
+            Structure type: 
+            <valuefield valuedef="FromOptionsOrValue(null, [&quot;I-Girder or Box-Girder Superstructure&quot;, &quot;Bridge Substructure&quot;, &quot;Truss/Column/Arch - Sharp-Edged&quot;, &quot;Truss/Column/Arch - Round&quot;, &quot;Sound Barrier&quot;])" name="Struct_Type" width="240"><textvalue>I-Girder or Box-Girder Superstructure</textvalue></valuefield>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4">
+            Structure type for drag coefficient selection (
+            <link address="#CodeReferencesC001.CodePage09;paragraphprojectcoderef09C001">LRFD Table 3.8.1.2.1-2</link>
+            )
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp formula="C_D = If(Struct_Type==&quot;I-Girder or Box-Girder Superstructure&quot;, 1.3, If(Struct_Type==&quot;Bridge Substructure&quot;, 1.6, If(Struct_Type==&quot;Truss/Column/Arch - Sharp-Edged&quot;, 2, If(Struct_Type==&quot;Truss/Column/Arch - Round&quot;, 1, 1.2))))" showresult="True" showidentifier="True" showformula="False" mathlayout="on" showsteps="False">
+                <expbody>C_D</expbody>
+                <expresult> = 1.3</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Shape-dependent wind drag multiplier selected from the structure type.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_011_C_D" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                <dynexp formula="Struct_Type" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Struct_Type</expbody>
+                </dynexp>
+                 is the selected structure description. The nested If expressions check it in order: girder superstructure gives 1.3; bridge substructure gives 1.6; sharp-edged truss, column, or arch gives 2; the round-member option gives 1. The final fallback branch gives 1.2.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">The selected number has no units and multiplies the wind-pressure term. It represents the shape’s drag in the stated model; it is not the structure’s area or a load-combination factor.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">
+            Reference: 
+            <link address="#CodeReferencesC001.CodePage09;paragraphprojectcoderef09C001">LRFD Table 3.8.1.2.1-2</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp formula="G_fac = 0.85" showresult="True" showidentifier="True" showformula="True" mathlayout="on" showsteps="False">
+                <expbody>G_fac = 0.85</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Gust-effect multiplier entered for the wind calculation.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_012_G_fac" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This dimensionless input adjusts the pressure term for the adopted gust-effect treatment. It affects only expressions that actually contain this variable. Reading a value here does not automatically apply it to other equations that use a fixed multiplier instead.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">
+            Reference:
+            <link address="#CodeReferencesC001.CodePage05;paragraphprojectcoderef05C001">FDOT SDG 2.4.1.C</link>
+        </paragraph>
+        <heading id="paragraphrefreturn0007">
+            <paragraphlabel numbergroup="heading">2.</paragraphlabel>
+            WIND SPEED BY LOAD COMBINATION (
+            <link address="#CodeReferencesC001.CodePage06;paragraphprojectcoderef06C001">LRFD Art. 3.8.1.1.2</link>
+            )
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="8">
+            Per
+            <link address="#CodeReferencesC001.CodePage06;paragraphprojectcoderef06C001">LRFD Table 3.8.1.1.2-1</link>
+            , the design 3-second gust wind speed for each load combination is as follows:
+        </paragraph>
+        <embed spacingafter="12">
+            <table title="Design Wind Speed by Load Combination" name="WindSpeedTable" capture="False" colwidths="1:220, 2:300">
+                <stylerule range="A1:B4" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#000000&quot;);                   Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 1, &quot;#000000&quot;);                   Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 1, &quot;#000000&quot;);" />
+                <stylerule range="A1:B1" horzalign="Center" vertalign="Center" fontweight="bold" background="#D4D4D4" />
+                <stylerule range="A2:B4" horzalign="Center" vertalign="Center" />
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Load Combination</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Design 3-Second Gust Wind Speed, V (mph)</paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strength III</paragraph></textcell>
+                    <c capture="False" formula="V_III"><num>130</num></c>
+                </row>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strength V</paragraph></textcell>
+                    <c capture="False" formula="V_V"><num>80</num></c>
+                </row>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Service I</paragraph></textcell>
+                    <c capture="False" formula="V_SI"><num>70</num></c>
+                </row>
+            </table>
+        </embed>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="12">
+            Reference:
+            <link address="#CodeReferencesC001.CodePage06;paragraphprojectcoderef06C001">LRFD Table 3.8.1.1.2-1</link>
+        </paragraph>
+        <heading id="paragraphrefreturn0008">
+            <paragraphlabel numbergroup="heading">3.</paragraphlabel>
+            PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z (
+            <link address="#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001">LRFD Art. 3.8.1.2.1</link>
+            )
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="8">
+            K_Z is determined for Strength III using logarithmic wind profile equations in the active pier load sets. For Strength V and Service I, K_Z = 1.0. The structure height Z used shall not be taken less than 33.0 ft (
+            <link address="#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001">LRFD Art. 3.8.1.2.1</link>
+            ).
+        </paragraph>
+        <heading level="1" id="paragraphrefreturn0009">
+            <paragraphlabel numbergroup="heading">3.1.</paragraphlabel>
+            K_Z for Wind Exposure Category B (
+            <link address="#CodeReferencesC001.CodePage08;paragraphprojectcoderef08C001">LRFD Eq. 3.8.1.2.1-2</link>
+            )
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="K_Z_B = (2.5*Ln(Z_calc/(0.9834 ft)) + 6.87)^2/345.6" showsteps="False" seplines="True">
+                <expbody>K_Z_B = (2.5*Ln(Z_calc/(0.9834 ft)) + 6.87)^2/345.6</expbody>
+                <expresult> = 0.727</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Pressure multiplier for height and Exposure Category B.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_013_K_Z_B" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                Divide 
+                <dynexp formula="Z_calc" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Z_calc</expbody>
+                </dynexp>
+                , the effective height, by 0.9834 ft. The feet cancel so the quantity inside Ln has no units. Ln is the natural logarithm; in this expression it describes how the wind profile changes with height.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">Multiply that logarithm by 2.5, then add 6.87. Square the whole quantity in parentheses and divide by 345.6. These constants define the Category B profile used in the displayed equation.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">The result is a dimensionless multiplier on pressure. This equation calculates the value for one category; the category-selection equation decides which value is used downstream.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">
+            Reference: 
+            <link address="#CodeReferencesC001.CodePage08;paragraphprojectcoderef08C001">LRFD Eq. 3.8.1.2.1-2</link>
+        </paragraph>
+        <heading level="1" id="paragraphrefreturn0010">
+            <paragraphlabel numbergroup="heading">3.2.</paragraphlabel>
+            K_Z for Wind Exposure Category C (
+            <link address="#CodeReferencesC001.CodePage08;paragraphprojectcoderef08C001">LRFD Eq. 3.8.1.2.1-3</link>
+            )
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="K_Z_C = (2.5*Ln(Z_calc/(0.0984 ft)) + 7.35)^2/478.4" showsteps="False" seplines="True">
+                <expbody>K_Z_C = (2.5*Ln(Z_calc/(0.0984 ft)) + 7.35)^2/478.4</expbody>
+                <expresult> = 1.020</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Pressure multiplier for height and Exposure Category C.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_014_K_Z_C" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                Divide 
+                <dynexp formula="Z_calc" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Z_calc</expbody>
+                </dynexp>
+                , the effective height, by 0.0984 ft. The feet cancel so the quantity inside Ln has no units. Ln is the natural logarithm; in this expression it describes how the wind profile changes with height.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">Multiply that logarithm by 2.5, then add 7.35. Square the whole quantity in parentheses and divide by 478.4. These constants define the Category C profile used in the displayed equation.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">The result is a dimensionless multiplier on pressure. This equation calculates the value for one category; the category-selection equation decides which value is used downstream.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">
+            Reference: 
+            <link address="#CodeReferencesC001.CodePage08;paragraphprojectcoderef08C001">LRFD Eq. 3.8.1.2.1-3</link>
+        </paragraph>
+        <heading level="1" id="paragraphrefreturn0011">
+            <paragraphlabel numbergroup="heading">3.3.</paragraphlabel>
+            K_Z for Wind Exposure Category D (
+            <link address="#CodeReferencesC001.CodePage08;paragraphprojectcoderef08C001">LRFD Eq. 3.8.1.2.1-4</link>
+            )
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="K_Z_D = (2.5*Ln(Z_calc/(0.0164 ft)) + 7.65)^2/616.1" showsteps="False" seplines="True">
+                <expbody>K_Z_D = (2.5*Ln(Z_calc/(0.0164 ft)) + 7.65)^2/616.1</expbody>
+                <expresult> = 1.172</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Pressure multiplier for height and Exposure Category D.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_015_K_Z_D" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                Divide 
+                <dynexp formula="Z_calc" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Z_calc</expbody>
+                </dynexp>
+                , the effective height, by 0.0164 ft. The feet cancel so the quantity inside Ln has no units. Ln is the natural logarithm; in this expression it describes how the wind profile changes with height.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">Multiply that logarithm by 2.5, then add 7.65. Square the whole quantity in parentheses and divide by 616.1. These constants define the Category D profile used in the displayed equation.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">The result is a dimensionless multiplier on pressure. This equation calculates the value for one category; the category-selection equation decides which value is used downstream.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">
+            Reference: 
+            <link address="#CodeReferencesC001.CodePage08;paragraphprojectcoderef08C001">LRFD Eq. 3.8.1.2.1-4</link>
+        </paragraph>
+        <heading level="1" id="paragraphrefreturn0012">
+            <paragraphlabel numbergroup="heading">3.4.</paragraphlabel>
+            Governing K_Z — Selected by Exposure Category
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp formula="K_Z_gov = If(Exp_Cat==&quot;D&quot;, K_Z_D, K_Z_C)" showsteps="False" seplines="False" mathlayout="on">
+                <expbody>K_Z_gov = If(Exp_Cat=="D", K_Z_D, K_Z_C)</expbody>
+                <expresult> = 1.020</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Exposure multiplier selected by this module’s actual category switch.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_016_K_Z_gov" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                If the selected exposure 
+                <dynexp formula="Exp_Cat" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Exp_Cat</expbody>
+                </dynexp>
+                 is D, return 
+                <dynexp formula="K_Z_D" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>K_Z_D</expbody>
+                </dynexp>
+                . For every other selection, return 
+                <dynexp formula="K_Z_C" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>K_Z_C</expbody>
+                </dynexp>
+                . The switch therefore uses only Category C or D in this module; the separately displayed Category B equation is not a branch of this selection.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">The selected result is used for Strength III pressure in the active pier load sets. The word “governing” in the variable name means the selected category here; this formula does not take the largest of all category values.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">
+            Reference: 
+            <link address="#CodeReferencesC001.CodePage08;paragraphprojectcoderef08C001">LRFD Art. 3.8.1.2.1</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="12" />
+        <heading id="paragraphrefreturn0013">
+            <paragraphlabel numbergroup="heading">4.</paragraphlabel>
+            DESIGN WIND PRESSURE ON STRUCTURES: WS (
+            <link address="#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001">LRFD Art. 3.8.1.2.1</link>
+            )
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="8">
+            The wind pressure is determined by
+            <link address="#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001">LRFD Eq. 3.8.1.2.1-1</link>
+            :
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4">
+            P_Z = 2.56 × 10⁻⁶ × V² × K_Z × G × C_D   (
+            <link address="#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001">LRFD Eq. 3.8.1.2.1-1</link>
+            )
+        </paragraph>
+        <heading level="1" id="paragraphrefreturn0014">
+            <paragraphlabel numbergroup="heading">4.1.</paragraphlabel>
+            Strength III Wind Pressure
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="P_Z_III = 2.56E-06*V_III^2*K_Z_gov*G_fac*C_D*1 ksf" showsteps="False" seplines="True">
+                <expbody>P_Z_III = 2.56E-06*V_III^2*K_Z_gov*G_fac*C_D*1 ksf</expbody>
+                <expresult> = 0.0487 ksf</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Strength III horizontal wind pressure on the selected structure type.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_017_P_Z_III" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                Square 
+                <dynexp formula="V_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>V_III</expbody>
+                </dynexp>
+                , the wind speed number in miles per hour. Multiply by 2.56E-06, the conversion constant used with mph and kips per square foot.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                Multiply by 
+                <dynexp formula="K_Z_gov" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>K_Z_gov</expbody>
+                </dynexp>
+                , the selected exposure-and-height multiplier, then by 
+                <dynexp formula="G_fac" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>G_fac</expbody>
+                </dynexp>
+                , the entered gust-effect multiplier, and by 
+                <dynexp formula="C_D" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>C_D</expbody>
+                </dynexp>
+                , the shape-dependent drag multiplier. The final “1 ksf” attaches pressure units to the result.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This is force on one square foot of projected structure area. Multiply it by the appropriate exposed area, or by exposed height for a force per foot, in the next load calculation.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">
+            Reference: 
+            <link address="#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001">LRFD Eq. 3.8.1.2.1-1</link>
+        </paragraph>
+        <heading level="1" id="paragraphrefreturn0015">
+            <paragraphlabel numbergroup="heading">4.2.</paragraphlabel>
+            Strength V Wind Pressure
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="8">
+            For Service I and Strength V, K_Z = 1.0 (
+            <link address="#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001">LRFD 3.8.1.2.1</link>
+            ) and G = 0.85 (
+            <link address="#CodeReferencesC001.CodePage05;paragraphprojectcoderef05C001">FDOT SDG 2.4.1.C</link>
+            ).
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="P_Z_V = 2.56E-06*V_V^2*1*G_fac*C_D*1 ksf" showsteps="False" seplines="True">
+                <expbody>P_Z_V = 2.56E-06*V_V^2*1*G_fac*C_D*1 ksf</expbody>
+                <expresult> = 0.0181 ksf</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Strength V horizontal wind pressure on the selected structure type.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_018_P_Z_V" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                Square 
+                <dynexp formula="V_V" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>V_V</expbody>
+                </dynexp>
+                , the wind speed number in miles per hour. Multiply by 2.56E-06, the conversion constant used with mph and kips per square foot.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                Multiply by the fixed exposure multiplier 1, which leaves the pressure unchanged for exposure and height in this case, then by 
+                <dynexp formula="G_fac" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>G_fac</expbody>
+                </dynexp>
+                , the entered gust-effect multiplier, and by 
+                <dynexp formula="C_D" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>C_D</expbody>
+                </dynexp>
+                , the shape-dependent drag multiplier. The final “1 ksf” attaches pressure units to the result.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This is force on one square foot of projected structure area. Multiply it by the appropriate exposed area, or by exposed height for a force per foot, in the next load calculation.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">
+            Reference: 
+            <link address="#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001">LRFD 3.8.1.2.1</link>
+            ; 
+            <link address="#CodeReferencesC001.CodePage05;paragraphprojectcoderef05C001">FDOT SDG 2.4.1.C</link>
+        </paragraph>
+        <heading level="1" id="paragraphrefreturn0016">
+            <paragraphlabel numbergroup="heading">4.3.</paragraphlabel>
+            Service I Wind Pressure
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="8">
+            For Service I and Strength V, K_Z = 1.0 (
+            <link address="#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001">LRFD 3.8.1.2.1</link>
+            ) and G = 0.85 (
+            <link address="#CodeReferencesC001.CodePage05;paragraphprojectcoderef05C001">FDOT SDG 2.4.1.C</link>
+            ).
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="P_Z_SI = 2.56E-06*V_SI^2*1*G_fac*C_D*1 ksf" showsteps="False" seplines="True">
+                <expbody>P_Z_SI = 2.56E-06*V_SI^2*1*G_fac*C_D*1 ksf</expbody>
+                <expresult> = 0.0139 ksf</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Service I horizontal wind pressure on the selected structure type.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_019_P_Z_SI" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                Square 
+                <dynexp formula="V_SI" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>V_SI</expbody>
+                </dynexp>
+                , the wind speed number in miles per hour. Multiply by 2.56E-06, the conversion constant used with mph and kips per square foot.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                Multiply by the fixed exposure multiplier 1, which leaves the pressure unchanged for exposure and height in this case, then by 
+                <dynexp formula="G_fac" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>G_fac</expbody>
+                </dynexp>
+                , the entered gust-effect multiplier, and by 
+                <dynexp formula="C_D" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>C_D</expbody>
+                </dynexp>
+                , the shape-dependent drag multiplier. The final “1 ksf” attaches pressure units to the result.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This is force on one square foot of projected structure area. Multiply it by the appropriate exposed area, or by exposed height for a force per foot, in the next load calculation.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">
+            Reference: 
+            <link address="#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001">LRFD 3.8.1.2.1</link>
+            ; 
+            <link address="#CodeReferencesC001.CodePage05;paragraphprojectcoderef05C001">FDOT SDG 2.4.1.C</link>
+        </paragraph>
+        <heading level="1" id="paragraphrefreturn0017">
+            <paragraphlabel numbergroup="heading">4.4.</paragraphlabel>
+            Service IV applicability — not used
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" leftindent="0" background="#F1F5FA">Service IV is not used in the current nonprestressed pier / steel-pile load set. No Service IV pressure, uplift, or FBMP entry case is produced. Strength III deck uplift remains included.</paragraph>
+        <heading id="paragraphrefreturn0018">
+            <paragraphlabel numbergroup="heading">5.</paragraphlabel>
+            WIND LOADS ON SUPERSTRUCTURE (
+            <link address="#CodeReferencesC001.CodePage09;paragraphprojectcoderef09C001">LRFD Art. 3.8.1.2.2</link>
+            AND
+            <link address="#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001">3.8.1.2.3a</link>
+            )
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="8">
+            For girder bridges, wind load components on the substructure are determined as the product of skew coefficients (
+            <link address="#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001">LRFD Table 3.8.1.2.3a-1</link>
+            ), the wind pressure from
+            <link address="#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001">Eq. 3.8.1.2.1-1</link>
+            , and the depth of the bridge as seen in elevation perpendicular to the longitudinal axis. Both transverse and longitudinal components are applied simultaneously at mid-depth of the superstructure (
+            <link address="#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001">LRFD Art. 3.8.1.2.3a</link>
+            ).
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="8">
+            For usual girder and slab bridges with individual span length not more than 150 ft and maximum height not more than 33.0 ft above low ground or water level, simplified wind load components may be used per
+            <link address="#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001">LRFD Art. 3.8.1.2.3a</link>
+            : Transverse = 100% of perpendicular load; Longitudinal = 25% of transverse load.
+        </paragraph>
+        <heading level="1" id="paragraphrefreturn0019">
+            <paragraphlabel numbergroup="heading">5.1.</paragraphlabel>
+            Skew Coefficients — Girders (
+            <link address="#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001">LRFD Table 3.8.1.2.3a-1</link>
+            )
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4">
+            Transverse skew coefficient for girders — from
+            <link address="#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001">LRFD Table 3.8.1.2.3a-1</link>
+            based on selected skew angle:
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp formula="C_T_gir = If(Skew_deg_str==&quot;0&quot;, 1, If(Skew_deg_str==&quot;15&quot;, 0.88, If(Skew_deg_str==&quot;30&quot;, 0.82, If(Skew_deg_str==&quot;45&quot;, 0.66, 0.34))))" showresult="True" showidentifier="True" showformula="False" seplines="False" mathlayout="on" showsteps="False">
+                <expbody>C_T_gir</expbody>
+                <expresult> = 1</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Girder wind-angle multiplier for the force component across the bridge.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_021_C_T_gir" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                <dynexp formula="Skew_deg_str" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Skew_deg_str</expbody>
+                </dynexp>
+                 is the wind angle selected in plan, measured from straight across the bridge. The nested If expressions select the entered coefficients for 0°, 15°, 30°, and 45°; the last branch supplies the 60° value. In that order, the numbers are 1, 0.88, 0.82, 0.66, and 0.34.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">The chosen number scales the perpendicular-wind load into its component across the bridge. Use the across-bridge and along-bridge coefficients for the same angle together; they are not independent load cases.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">
+            Reference: 
+            <link address="#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001">LRFD Table 3.8.1.2.3a-1</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp formula="C_L_gir = If(Skew_deg_str==&quot;0&quot;, 0, If(Skew_deg_str==&quot;15&quot;, 0.12, If(Skew_deg_str==&quot;30&quot;, 0.24, If(Skew_deg_str==&quot;45&quot;, 0.32, 0.38))))" showresult="True" showidentifier="True" showformula="False" mathlayout="on" showsteps="False">
+                <expbody>C_L_gir</expbody>
+                <expresult> = 0</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Girder wind-angle multiplier for the force component along the bridge.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_022_C_L_gir" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                <dynexp formula="Skew_deg_str" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Skew_deg_str</expbody>
+                </dynexp>
+                 is the wind angle selected in plan, measured from straight across the bridge. The nested If expressions select the entered coefficients for 0°, 15°, 30°, and 45°; the last branch supplies the 60° value. In that order, the numbers are 0, 0.12, 0.24, 0.32, and 0.38.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">The chosen number scales the perpendicular-wind load into its component along the bridge. Use the across-bridge and along-bridge coefficients for the same angle together; they are not independent load cases.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">
+            Reference: 
+            <link address="#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001">LRFD Table 3.8.1.2.3a-1</link>
+        </paragraph>
+        <heading level="1" id="paragraphrefreturn0020">
+            <paragraphlabel numbergroup="heading">5.2.</paragraphlabel>
+            Strength III — Superstructure Wind Line Loads
+        </heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="w_T_III = P_Z_III*C_T_gir*d_super" showsteps="False" seplines="True">
+                <expbody>w_T_III = P_Z_III*C_T_gir*d_super</expbody>
+                <expresult> = 0.345 ksf*ft</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Strength III wind force across the bridge for each foot of bridge length.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_023_w_T_III" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                <dynexp formula="P_Z_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>P_Z_III</expbody>
+                </dynexp>
+                 is force per square foot of projected structure area. Multiply by 
+                <dynexp formula="d_super" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>d_super</expbody>
+                </dynexp>
+                , the exposed concrete height, to obtain the perpendicular-wind force per foot of bridge.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Multiply by 
+                <dynexp formula="C_T_gir" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>C_T_gir</expbody>
+                </dynexp>
+                , the selected girder angle multiplier, to obtain the component across the bridge. The result is a line load, not yet a complete support reaction.
+            </paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">
+            Reference: 
+            <link address="#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001">LRFD Art. 3.8.1.2.3a</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="2" spacingbefore="6">
+            <dynexp mathlayout="on" formula="w_L_III = P_Z_III*C_L_gir*d_super" showsteps="False" seplines="True">
+                <expbody>w_L_III = P_Z_III*C_L_gir*d_super</expbody>
+                <expresult> = 0 ksf*ft</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Strength III wind force along the bridge for each foot of bridge length.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_024_w_L_III" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                <dynexp formula="P_Z_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>P_Z_III</expbody>
+                </dynexp>
+                 is force per square foot of projected structure area. Multiply by 
+                <dynexp formula="d_super" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>d_super</expbody>
+                </dynexp>
+                , the exposed concrete height, to obtain the perpendicular-wind force per foot of bridge.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">
+                Multiply by 
+                <dynexp formula="C_L_gir" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>C_L_gir</expbody>
+                </dynexp>
+                , the selected girder angle multiplier, to obtain the component along the bridge. The result is a line load, not yet a complete support reaction.
+            </paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">
+            Reference: 
+            <link address="#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001">LRFD Art. 3.8.1.2.3a</link>
+        </paragraph>
+        <heading level="1" />
+        <heading spacingafter="4">
+            <paragraphlabel numbergroup="heading">6.</paragraphlabel>
+            SUMMARY OF WIND LOAD RESULTS
+        </heading>
+        <embed spacingafter="12">
+            <table title="Wind Load Summary" name="WindSummaryTable" capture="False" colwidths="1: 363.33333333333326, 2: 80">
+                <stylerule range="A1:B5" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#000000&quot;);                   Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 1, &quot;#000000&quot;);                   Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 1, &quot;#000000&quot;);" />
+                <stylerule range="A1:B1" horzalign="Center" vertalign="Center" fontweight="bold" background="#D4D4D4" />
+                <stylerule range="B2:B5" horzalign="Center" vertalign="Center" />
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Wind Load Parameter</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strength III</paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Design Wind Speed V (mph)</paragraph></textcell>
+                    <c capture="False" formula="V_III"><num>130</num></c>
+                </row>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">K_Z (Strength III uses K_Z_gov; other retained speeds use 1.0)</paragraph></textcell>
+                    <c capture="False" formula="K_Z_gov"><num>1.01971744991174</num></c>
+                </row>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">P_Z — Design Wind Pressure (ksf) [Eq. 3.8.1.2.1-1]</paragraph></textcell>
+                    <c capture="False" formula="P_Z_III"><num>0.04874934660704459 ksf</num></c>
+                </row>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Transverse Wind Line Load on Superstructure (klf)</paragraph></textcell>
+                    <c capture="False" formula="w_T_III"><num>0.34530787179989914 ksf*ft</num></c>
+                </row>
+            </table>
+        </embed>
+        <heading spacingafter="4">
+            <paragraphlabel numbergroup="heading">7.</paragraphlabel>
+            WIND APPLIED TO REPAIR FRAME
+        </heading>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="W_Frame = w_T_III*L_span/2/BridgeGeometry_2Beam.Beam_count" mathlayout="on" showsteps="False">
+                <expbody>W_Frame = w_T_III*L_span/2/BridgeGeometry_2Beam.Beam_count</expbody>
+                <expresult> = 9.267 kip</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Wind force allocated to one bearing in the repair-frame load split.</paragraph>
+        <section name="EqNotes_WindLoadonPedBridgeSuperstructure_025_W_Frame" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">For the retained equal bearing-load allocation, take half the maximum-span line load and divide by the beam count from Bridge Geometry_2 Beam. This is the existing load-distribution assumption.</paragraph>
+        </section>
+        <paragraph spacingafter="12" />
+        <heading id="headingC001WindLoadOnPedBridgeSuperstructure8" style="Uplift Heading 1" pagebreakbefore="Break">
+            <paragraphlabel numbergroup="heading">8.</paragraphlabel>
+             VERTICAL WIND AND PERPENDICULAR COMPANION LOADS —
+            <link address="#CodeReferencesC001.CodePage11;paragraphprojectcoderef11C001">LRFD 3.8.2</link>
+        </heading>
+        <embed spacingbefore="8" spacingafter="12">
+            <table name="C001VerticalScope" capture="False" colwidths="1:520">
+                <stylerule range="A1:A3" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);" />
+                <stylerule range="A1:A1" background="#DCE7F3" fontweight="bold" horzalign="Center" />
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">VERTICAL WIND LOAD GENERATION</paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False" name="C001VerticalScope2" background="#F1F5FA">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• Generate the upward line loads and windward eccentricity from the current outside deck width; C004 performs the bearing and stability checks.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False" name="C001VerticalScope3" background="#F1F5FA">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• These cases use wind perpendicular to the bridge. Both transverse signs are evaluated with the matching horizontal load. The selected skew-angle cases elsewhere in C001 remain separate.</paragraph>
+                    </textcell>
+                </row>
+            </table>
+        </embed>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">
+            Reference:
+            <link address="#CodeReferencesC001.CodePage11;paragraphprojectcoderef11C001">LRFD 3.8.2; 10th Edition (2024)</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="6">
+            <dynexp formula="p_V_III = 0.020 ksf" mathlayout="on" showsteps="False" showformula="True" showidentifier="True" showresult="True" seplines="False" style="Required Input" valueformat="RoundedNumber(3, 3, {PriorityUnits: [ksf]})">
+                <expbody>p_V_III = 0.020 ksf</expbody>
+            </dynexp>
+        </paragraph>
+        <section name="EqNotes_009_C001WindLoadOnPedBridgeSuperstructure" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">
+                Prescribed Strength III vertical wind pressure;
+                <link address="#CodeReferencesC001.CodePage11;paragraphprojectcoderef11C001">LRFD 3.8.2</link>
+                .
+            </paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="6">
+            <dynexp formula="α_V = 1/4" mathlayout="on" showsteps="False" showformula="True" showidentifier="True" showresult="True" seplines="False">
+                <expbody>α_V = 1/4</expbody>
+            </dynexp>
+        </paragraph>
+        <section name="EqNotes_011_C001WindLoadOnPedBridgeSuperstructure" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">
+                Windward quarter-point distance from deck centerline for the symmetric section;
+                <link address="#CodeReferencesC001.CodePage11;paragraphprojectcoderef11C001">LRFD 3.8.2</link>
+                .
+            </paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="6">
+            <dynexp formula="e_V = α_V*w_deck" mathlayout="on" showsteps="False" showformula="True" showidentifier="True" showresult="True" seplines="False" valueformat="RoundedNumber(3, 3, {PriorityUnits: [ft]})">
+                <expbody>e_V = α_V*w_deck</expbody>
+                <expresult> = 3 25/64 ft</expresult>
+            </dynexp>
+        </paragraph>
+        <section name="EqNotes_012_C001WindLoadOnPedBridgeSuperstructure" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Magnitude of the transverse eccentricity from deck centerline. The windward side changes with wind sign.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="6">
+            <dynexp formula="w_V_III = p_V_III*w_deck" mathlayout="on" showsteps="False" showformula="True" showidentifier="True" showresult="True" seplines="False" valueformat="RoundedNumber(3, 3, {PriorityUnits: [kip/ft]})">
+                <expbody>w_V_III = p_V_III*w_deck</expbody>
+                <expresult> = 0.272 ksf*ft</expresult>
+            </dynexp>
+        </paragraph>
+        <section name="EqNotes_013_C001WindLoadOnPedBridgeSuperstructure" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Strength III upward force per bridge length. No horizontal pressure coefficient or speed ratio is applied to this prescribed pressure.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="6">
+            <dynexp formula="m_V_III = w_V_III*e_V" mathlayout="on" showsteps="False" showformula="True" showidentifier="True" showresult="True" seplines="False" valueformat="RoundedNumber(3, 3, {PriorityUnits: [kip]})">
+                <expbody>m_V_III = w_V_III*e_V</expbody>
+                <expresult> = 0.923 kip</expresult>
+            </dynexp>
+        </paragraph>
+        <section name="EqNotes_015_C001WindLoadOnPedBridgeSuperstructure" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Strength III overturning moment per bridge length from vertical wind; derived equilibrium.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="6">
+            <dynexp formula="w_T0_III = P_Z_III*d_super" mathlayout="on" showsteps="False" showformula="True" showidentifier="True" showresult="True" seplines="False" valueformat="RoundedNumber(3, 3, {PriorityUnits: [kip/ft]})">
+                <expbody>w_T0_III = P_Z_III*d_super</expbody>
+                <expresult> = 0.345 ksf*ft</expresult>
+            </dynexp>
+        </paragraph>
+        <section name="EqNotes_017_C001WindLoadOnPedBridgeSuperstructure" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Concurrent perpendicular concrete wind. Fence wind remains sourced from C002.</paragraph>
+        </section>
+        <embed spacingbefore="8" spacingafter="12">
+            <table name="C001VerticalResults" capture="False" colwidths="1:120, 2:130, 3:120, 4:150">
+                <stylerule range="A1:D2" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#6A9075&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#6A9075&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.4, &quot;#6A9075&quot;);" />
+                <stylerule range="A1:D1" background="#DCECE0" fontweight="bold" horzalign="Center" />
+                <stylerule range="B2:D2" horzalign="Center" vertalign="Center" />
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Limit state</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Upward line load</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Eccentricity</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Concrete horizontal</paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strength III</paragraph></textcell>
+                    <c capture="False" formula="w_V_III" background="#EFF7F1"><num>0.27166666666666667 ksf*ft</num></c>
+                    <c capture="False" formula="e_V" background="#EFF7F1"><num>3 25/64 ft</num></c>
+                    <c capture="False" formula="w_T0_III" background="#EFF7F1"><num>0.34530787179989914 ksf*ft</num></c>
+                </row>
+            </table>
+        </embed>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">The load-generation table precedes combination factors. Apply the matching factors once in C004. Vertical wind is excluded from other limit states and from skew-wind cases.</paragraph>
+        <section name="VerticalReferenceSummary" capture="True" hide="false">
+            <paragraph id="paragraphc001ref12" spacingbefore="0" spacingafter="0" horzalign="Center" pagebreakbefore="Break" fontsize="16" fontweight="bold">
+                <link address="#CodeReferencesC001.CodePage11;paragraphprojectcoderef11C001">LRFD 3.8.2</link>
+                — Vertical Wind Load
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">
+                Reference:
+                <link address="#CodeReferencesC001.CodePage11;paragraphprojectcoderef11C001">Primary code excerpt: LRFD 3.8.2, 10th Edition (2024)</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">C001 generates the vertical line loads and windward eccentricity. C004 combines them with gravity and perpendicular horizontal wind for the bearing-contact and overturning checks.</paragraph>
+            <embed spacingbefore="8" spacingafter="12">
+                <table name="C001VerticalReferenceLive" capture="False" colwidths="1:170, 2:175, 3:175">
+                    <stylerule range="A1:C2" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#6A9075&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#6A9075&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.4, &quot;#6A9075&quot;);" />
+                    <stylerule range="A1:C1" background="#DCECE0" fontweight="bold" horzalign="Center" />
+                    <stylerule range="B2:C2" horzalign="Center" vertalign="Center" />
+                    <row>
+                        <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Limit state</paragraph></textcell>
+                        <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Upward line load</paragraph></textcell>
+                        <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Windward eccentricity</paragraph></textcell>
+                    </row>
+                    <row>
+                        <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strength III</paragraph></textcell>
+                        <c capture="False" formula="C001WindLoadOnPedBridgeSuperstructure.w_V_III" background="#EFF7F1"><num>0.27166666666666667 ksf*ft</num></c>
+                        <c capture="False" formula="C001WindLoadOnPedBridgeSuperstructure.e_V" background="#EFF7F1"><num>3 25/64 ft</num></c>
+                    </row>
+                </table>
+            </embed>
+        </section>
+    </report>

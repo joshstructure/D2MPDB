@@ -6,7 +6,7 @@
    "journal_value": 42.0,
    "case_value": 42.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBentCap_width (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBentCap_width (in)"
   },
   {
    "input": "h_cap",
@@ -14,7 +14,7 @@
    "journal_value": 36.0,
    "case_value": 36.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBentCap_depth (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBentCap_depth (in)"
   },
   {
    "input": "L_cap",
@@ -22,7 +22,7 @@
    "journal_value": 235.0,
    "case_value": 235.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBentCap_length (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBentCap_length (in)"
   },
   {
    "input": "embed_pile",
@@ -30,7 +30,7 @@
    "journal_value": 12.0,
    "case_value": 12.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBent_pileEmbed (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBent_pileEmbed (in)"
   },
   {
    "input": "tol_pile",
@@ -38,7 +38,7 @@
    "journal_value": 3.0,
    "case_value": 3.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBent_pileTolerance (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBent_pileTolerance (in)"
   },
   {
    "input": "t_bw",
@@ -46,7 +46,7 @@
    "journal_value": 12.0,
    "case_value": 12.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.Backwall_thickness_shown (in)"
+   "note": "shared value — BridgeGeometry_2Beam.Backwall_thickness_shown (in)"
   },
   {
    "input": "L_bw",
@@ -54,7 +54,7 @@
    "journal_value": 235.0,
    "case_value": 235.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBentCap_length (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBentCap_length (in)"
   },
   {
    "input": "e_brg",
@@ -62,7 +62,7 @@
    "journal_value": 3.0,
    "case_value": 3.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBent_bearingOffset (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBent_bearingOffset (in)"
   },
   {
    "input": "s_brg",
@@ -70,7 +70,7 @@
    "journal_value": 103.0,
    "case_value": 102.99,
    "status": "literal_incoherent_journal",
-   "note": "bearing spacing from the EB-XML bearing stations 29.50 / 132.49 in (102.99 in); the journal beam spacing BridgeGeometry_2Beam.Beam_spacing is 8 ft 7 in (103 in) — the analysis value is kept"
+   "note": "bearing spacing from the FBMP bearing stations 29.50 / 132.49 in (102.99 in); the nominal beam spacing BridgeGeometry_2Beam.Beam_spacing is 8 ft 7 in (103 in) — the analysis value is used"
   },
   {
    "input": "h_ped",
@@ -78,7 +78,7 @@
    "journal_value": 6.0,
    "case_value": 6.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBentPedestal_ht (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBentPedestal_ht (in)"
   },
   {
    "input": "B_ped",
@@ -86,7 +86,7 @@
    "journal_value": 42.0,
    "case_value": 42.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBentPedestal_width (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBentPedestal_width (in)"
   },
   {
    "input": "t_pad",
@@ -94,7 +94,7 @@
    "journal_value": 2.5625,
    "case_value": 2.5625,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.Bearing_pad_thickness (in)"
+   "note": "shared value — BridgeGeometry_2Beam.Bearing_pad_thickness (in)"
   },
   {
    "input": "t_ck",
@@ -102,7 +102,7 @@
    "journal_value": 8.0,
    "case_value": 8.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBent_cheekThickness (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBent_cheekThickness (in)"
   },
   {
    "input": "G_pad",
@@ -110,7 +110,7 @@
    "journal_value": 0.11,
    "case_value": 0.11,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.Bearing_pad_G (ksi)"
+   "note": "shared value — BridgeGeometry_2Beam.Bearing_pad_G (ksi)"
   },
   {
    "input": "L_pad",
@@ -118,7 +118,7 @@
    "journal_value": 10.0,
    "case_value": 10.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.Bearing_pad_length (in)"
+   "note": "shared value — BridgeGeometry_2Beam.Bearing_pad_length (in)"
   },
   {
    "input": "W_pad",
@@ -126,7 +126,7 @@
    "journal_value": 32.0,
    "case_value": 32.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.Bearing_pad_width (in)"
+   "note": "shared value — BridgeGeometry_2Beam.Bearing_pad_width (in)"
   },
   {
    "input": "n_int",
@@ -134,7 +134,7 @@
    "journal_value": 3.0,
    "case_value": 3.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.Bearing_pad_internalLayers (no unit)"
+   "note": "shared value — BridgeGeometry_2Beam.Bearing_pad_internalLayers (no unit)"
   },
   {
    "input": "t_int",
@@ -142,7 +142,7 @@
    "journal_value": 0.5,
    "case_value": 0.5,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.Bearing_pad_internalThickness (in)"
+   "note": "shared value — BridgeGeometry_2Beam.Bearing_pad_internalThickness (in)"
   },
   {
    "input": "t_cov",
@@ -150,7 +150,7 @@
    "journal_value": 0.25,
    "case_value": 0.25,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.Bearing_pad_cover (in)"
+   "note": "shared value — BridgeGeometry_2Beam.Bearing_pad_cover (in)"
   },
   {
    "input": "L_exp",
@@ -158,7 +158,7 @@
    "journal_value": 107.35,
    "case_value": 107.35,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.Span_1 (ft)"
+   "note": "shared value — BridgeGeometry_2Beam.Span_1 (ft)"
   },
   {
    "input": "fc",
@@ -166,7 +166,7 @@
    "journal_value": 5.5,
    "case_value": 5.5,
    "status": "reference",
-   "note": "shared journal value — Materials.Substructure_fc (ksi)"
+   "note": "shared value — Materials.Substructure_fc (ksi)"
   },
   {
    "input": "fy",
@@ -174,7 +174,7 @@
    "journal_value": 60.0,
    "case_value": 60.0,
    "status": "reference",
-   "note": "shared journal value — Materials.Rebar_fy (ksi)"
+   "note": "shared value — Materials.Rebar_fy (ksi)"
   },
   {
    "input": "Es",
@@ -182,7 +182,7 @@
    "journal_value": 29000.0,
    "case_value": 29000.0,
    "status": "reference",
-   "note": "shared journal value — Materials.Rebar_Es (ksi)"
+   "note": "shared value — Materials.Rebar_Es (ksi)"
   },
   {
    "input": "L_load",
@@ -190,7 +190,7 @@
    "journal_value": 251.0,
    "case_value": 251.0,
    "status": "reference",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBentCage_envelope (in)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBentCage_envelope (in)"
   },
   {
    "input": "drop_bw",
@@ -198,7 +198,7 @@
    "journal_value": 4.25,
    "case_value": 4.25,
    "status": "reference_context",
-   "note": "shared journal value — BridgeGeometry_2Beam.EndBent_backwallDrop (in); not a notebook input: the CAD backwall tops that H_bw, H_bw_edge and V_bw are measured from were built with this drop (D-053/D-055)"
+   "note": "shared value — BridgeGeometry_2Beam.EndBent_backwallDrop (in); not a notebook input: the CAD backwall tops that H_bw, H_bw_edge and V_bw are measured from were built with this drop (D-053/D-055)"
   }
  ]
 }

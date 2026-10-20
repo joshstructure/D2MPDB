@@ -1,0 +1,17 @@
+{
+  "candidate_sha256": "3ccc63166e1120a780caaf475a5fadc67a9c3913ece1c83141e23b3df45af155",
+  "reviewer": "Claude (Fable 5.1) — bounded file-integrity verification only (tasks/T023/build_components.py)",
+  "native_recalculation": false,
+  "native_visual_review": false,
+  "engineering_review": false,
+  "design_outcome": "unreviewed",
+  "external_analysis_disposition": "Presentation only (one hidden provenance paragraph); no value changed; FBMP not rerun.",
+  "external_analysis_status": "unreviewed",
+  "inherited_issues_disposition": "All T022 content of the report preserved (definitions, value cells, caches, canvases); other components untouched.",
+  "evidence_files": [
+    {
+      "path": "verification.json",
+      "sha256": "673f3710e4345dd4ba43ccb34643a6b6ae68409b368ec2b05ebb1e1bb6273393"
+    }
+  ]
+}

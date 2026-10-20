@@ -5,9 +5,9 @@
   "context_references": [
    "drop_bw"
   ],
-  "definitions": 585,
+  "definitions": 593,
   "fragment": "end_bent_walls/bpad/journal/EndBentBackwallDesign.xml",
-  "fragment_sha256": "a98be68890f698a2f1a1b1a2cc6d35450f31d0d4f67b3a0d806aa42d2512b847",
+  "fragment_sha256": "732b76ccd8674a1cdd7d97ff01340d1bac1a1f048a6dec34db0f0fdf762e3211",
   "functions": 10,
   "journal_file": "journal/D2_I95_Project_Journal.bpad",
   "journal_references": 23,
@@ -15,7 +15,7 @@
    "s_brg"
   ],
   "mathcad_values_compared": 585,
-  "package_revision": "16ee4d414858",
+  "package_revision": "34f40710f89e",
   "project_stamp": {
    "Address": "1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301",
    "CheckDate": "",
@@ -54,7 +54,7 @@
   ],
   "report_name": "EndBentBackwallDesign",
   "review_document": "end_bent_walls/bpad/journal/End Bent Backwall Design - Journal Edition (review).bpad",
-  "review_sha256": "12aa4421fe48041d81e3ecbe8d4a10980647398962ab21eb719c903f72f8eaf3",
+  "review_sha256": "2463c7a694a7c4a72165a5e356392f88e6fec03210fd8d43ea26d28d240a1126",
   "status": "✓ All Checks Pass",
   "tool_comparisons": 245
  }

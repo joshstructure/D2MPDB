@@ -1,0 +1,118 @@
+{
+  "task": "T022",
+  "base_sha256": "39674378a62fa24184f43176914b2cca538cb64de015345cb29d911fc80747ce",
+  "components": {
+    "CapDesignBasis": {
+      "source": "cap_bpad/journal/CapDesignBasis.xml",
+      "definitions": 16,
+      "stamp_definitions": 8,
+      "title": "C007 - Cap Design Basis (shared factors)"
+    },
+    "CapDesignEndBentOne": {
+      "source": "cap_bpad/journal/CapDesignEndBentOne.xml",
+      "definitions": 527,
+      "stamp_definitions": 8,
+      "title": "C008 - End Bent 1 Cap Design"
+    },
+    "CapDesignEndBentTwo": {
+      "source": "cap_bpad/journal/CapDesignEndBentTwo.xml",
+      "definitions": 527,
+      "stamp_definitions": 8,
+      "title": "C009 - End Bent 2 Cap Design"
+    },
+    "CapDesignPier": {
+      "source": "cap_bpad/journal/CapDesignPier.xml",
+      "definitions": 527,
+      "stamp_definitions": 8,
+      "title": "C010 - Pier Cap Design"
+    },
+    "PileDesignEndBentOne": {
+      "source": "pile_bpad/fragments/PileDesignEndBentOne.xml",
+      "definitions": 426,
+      "stamp_definitions": 0,
+      "title": "C011 - End Bent 1 Pile Design"
+    },
+    "PileDesignEndBentTwo": {
+      "source": "pile_bpad/fragments/PileDesignEndBentTwo.xml",
+      "definitions": 426,
+      "stamp_definitions": 0,
+      "title": "C012 - End Bent 2 Pile Design"
+    },
+    "PileDesignPier": {
+      "source": "pile_bpad/fragments/PileDesignPier.xml",
+      "definitions": 125,
+      "stamp_definitions": 0,
+      "title": "C013 - Pier Pile Design"
+    },
+    "EndBentBackwallDesign": {
+      "source": "end_bent_walls/bpad/journal/EndBentBackwallDesign.xml",
+      "definitions": 603,
+      "stamp_definitions": 8,
+      "title": "C014 - End Bent 1 Backwall, Cheek Walls and Tie-Back Straps"
+    },
+    "MSEWallExclusion": {
+      "source": "base.bpad + submission_format.transform",
+      "cells_converted": 56,
+      "definitions": 175,
+      "title": "C015 - MSE Wall Exclusion - Both End Bents"
+    },
+    "BearingDesign": {
+      "source": "base.bpad + submission_format.transform",
+      "cells_converted": 105,
+      "definitions": 113,
+      "title": "C016 - Bearings and Support Details"
+    },
+    "C001WindLoadOnPedBridgeSuperstructure": {
+      "source": "base.bpad + submission_format.transform",
+      "cells_converted": 29,
+      "definitions": 59,
+      "title": "C001 - Wind Load on Ped Bridge Superstructure"
+    },
+    "FenceWind": {
+      "source": "base.bpad + submission_format.transform",
+      "cells_converted": 115,
+      "definitions": 94,
+      "title": "C002 - Fence Wind and Pier Node Loads"
+    },
+    "BridgeMovement": {
+      "source": "base.bpad + submission_format.transform",
+      "cells_converted": 21,
+      "definitions": 20,
+      "title": "C003 - Bridge Temperature Movement"
+    },
+    "SuperstructureUplift": {
+      "source": "base.bpad + submission_format.transform",
+      "cells_converted": 133,
+      "definitions": 94,
+      "title": "C004 - Superstructure Uplift and Bearing Reactions"
+    },
+    "PierWallFins": {
+      "source": "base.bpad + submission_format.transform",
+      "cells_converted": 152,
+      "definitions": 269,
+      "title": "C006 - Pier Wall, Hairpins and Fin Plates"
+    },
+    "PedBridge": {
+      "source": "base.bpad + submission_format.transform",
+      "cells_converted": 0,
+      "definitions": 0,
+      "title": "Project Index"
+    },
+    "DecisionLog": {
+      "source": "base.bpad + submission_format.transform",
+      "cells_converted": 0,
+      "definitions": 0,
+      "title": "Decision Log"
+    }
+  },
+  "visible_text_leftovers": {},
+  "rule": "distill|notebook|\\btools?\\b|journal|\\bD-\\d{3}\\b|\\bT0\\d{2}\\b|\\.py\\b|\\.ipynb|SHA-256|sha256|pending|Codex|\\btask\\b|not design acceptance|working copy",
+  "accepted_wording": {
+    "FenceWind": [
+      "Task Work Order"
+    ],
+    "SuperstructureUplift": [
+      "Task Work Order"
+    ]
+  }
+}

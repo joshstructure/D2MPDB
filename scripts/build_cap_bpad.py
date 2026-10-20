@@ -33,9 +33,9 @@ from scripts.mathcad_sheet import U  # noqa: E402
 
 OUT_DIR = ROOT / 'cap_bpad'
 SIDE_BY_KEY = {
-    'end_bent_1': ('CapDesignEndBentOne', 'End Bent 1 Cap Design - Distilled', 'End Bent 1 Cap Design.bpad'),
-    'end_bent_2': ('CapDesignEndBentTwo', 'End Bent 2 Cap Design - Distilled', 'End Bent 2 Cap Design.bpad'),
-    'pier': ('CapDesignPier', 'Pier Cap Design - Distilled', 'Pier Cap Design.bpad'),
+    'end_bent_1': ('CapDesignEndBentOne', 'C008 - End Bent 1 Cap Design', 'End Bent 1 Cap Design.bpad'),
+    'end_bent_2': ('CapDesignEndBentTwo', 'C009 - End Bent 2 Cap Design', 'End Bent 2 Cap Design.bpad'),
+    'pier': ('CapDesignPier', 'C010 - Pier Cap Design', 'Pier Cap Design.bpad'),
 }
 TOL = bm.TOL
 #: The project stamp at the top of every cap report. The standalone sheets carry it as static text; in the journal edition
@@ -112,9 +112,10 @@ class Sheet:
     def __init__(self, cap, ctx, blocks, report_name, title):
         self.cap, self.ctx, self.blocks = cap, ctx, blocks
         self.e = ctx.e
-        self.name = report_name
+        self.name, self.title = report_name, title
         self.doc = bs.new_document()
         self.rep = bs.new_report(self.doc, report_name, title)
+        self.notes = None                           # the hidden WorkingNotes section (provenance, tool status, pending items)
         self.n_faces = len(ctx.faces['rows'])
         self.family = {}
         self.tags = {'r': REGION_TAGS, 'k': STATION_TAGS, 'f': [str(i + 1) for i in range(self.n_faces)]}
@@ -184,7 +185,8 @@ class Sheet:
         # the project stamp comes first (right after the report-level stylerule): static text here, live ProjectInfo.* in the journal
         bs.project_stamp_table(self.rep, PROJECT_STAMP, live=self.journal is not None)
         bs.para(self.rep, 'D2 I-95 PEDESTRIAN BRIDGE', fontsize=16, fontweight='bold', spacingafter=2)
-        bs.para(self.rep, blk.payload, fontsize=14, fontweight='bold', spacingafter=6)
+        bs.para(self.rep, self.title, fontsize=14, fontweight='bold', spacingafter=6)
+        self.notes = bs.working_notes(self.rep)      # the working language of the title block goes here, hidden
 
     def do_h1(self, blk):
         self.flush()
@@ -209,11 +211,19 @@ class Sheet:
                 # The journal edition is tied to its report by the case and formula hashes alone: the notebook package
                 # revision changes with every pier_cap edit and would force a journal task each time.
                 text = re.sub(r';\s*cap notebook package [0-9a-f]+', '', text)
-            text = text + ' ' + self.extra_provenance
-        elif text.startswith('Tool status:'):
-            text = text.replace('Inputs are highlighted yellow; key results are boxed.',
-                                'Inputs are highlighted amber; distilled results are the green tables.')
-        elif text.startswith('Regions r:'):
+            bs.para(self.notes, text + ' ' + self.extra_provenance)                     # provenance: hidden
+            return
+        if text.startswith('Codes:'):
+            visible, _, inherited = text.rstrip('.').partition('; inherited')
+            bs.para(self.rep, visible + '.')
+            if inherited:
+                bs.para(self.notes, 'Codes note: inherited' + inherited + '.')          # reword() names the formula set
+            return
+        if text.startswith('Tool status:'):
+            bs.para(self.notes, text.split('. Inputs are highlighted')[0] + '.')      # tool status: hidden
+            bs.para(self.rep, LEGEND)
+            return
+        if text.startswith('Regions r:'):
             text = REGION_NOTE
         elif text.startswith('Faces and directions'):
             text = text.replace('; index f.', '. Faces are numbered 1 to %d in the tables below.' % self.n_faces)
@@ -227,6 +237,9 @@ class Sheet:
             self.key_text = text
             bs.note(self.rep, text)
             return
+        if text.startswith(HIDDEN_NOTES):            # the tool's check register bookkeeping: hidden
+            bs.note(self.notes, text)
+            return
         if self.after_plot:
             bs.note(self.rep, text, background='#F1F5FA')
         else:
@@ -234,6 +247,9 @@ class Sheet:
 
     def do_bullets(self, blk):
         for item in blk.payload:
+            if item.startswith('Service III (D-007)'):
+                bs.para(self.notes, '• ' + item, spacingafter=4)
+                item = SERVICE_III_SCOPE
             bs.para(self.rep, '• ' + item, spacingafter=4)
 
     def do_fig(self, blk):
@@ -254,7 +270,7 @@ class Sheet:
         cv = bs.canvas(self.rep, 'DCChart', 'D/C by check', 3.2)
         self.canvases['DCChart'] = cv
         self.deferred.append((cv, lambda eng, cv=cv: self.draw_chart(cv, eng)))
-        bs.note(self.rep, 'Figure 3. Demand/capacity ratio of each distilled check (stems) against the 1.0 limit. The stems are live '
+        bs.note(self.rep, 'Figure 3. Demand/capacity ratio of each check (stems) against the 1.0 limit. The stems are live '
                           'formulas of the check ratios: a stem turns red when its ratio passes 1.0.')
 
     # -- inputs
@@ -455,7 +471,7 @@ class Sheet:
         return out
 
     def summary_extras(self):
-        self.eq(self.rep, 'Status = If(DC_dist <= 1, "✓ All Checks Pass", "⊗ There are FAILURES")', 'distilled numerical checks only',
+        self.eq(self.rep, 'Status = If(DC_dist <= 1, "✓ All Checks Pass", "⊗ There are FAILURES")', 'numerical checks of this calculation',
                 style='Result only')
         checks = self.expanded_checks()
         sec = bs.section(self.rep, 'Checks')
@@ -733,11 +749,13 @@ def build_cap(cap, mathcad_compare=True, e=None, report=None, revision=None, nam
     for blk in blocks:
         getattr(sheet, 'do_' + blk.kind)(blk)
     sheet.flush()
-    bs.note(sheet.rep, 'A distilled result of ✓ covers only the recomputed numerical checks; it is not design acceptance. Recalculate in Blockpad after any input change.', size=9)
+    bs.note(sheet.notes, 'A ✓ status covers only the recomputed numerical checks; it is not design acceptance. Recalculate in Blockpad after any input change.', size=9)
 
     rep = sheet.rep
     reword(rep, ctx.report['formula_sha'])
+    bs.rewrite_visible_text(rep, VISIBLE_RULES)
     check_no_retired_names(rep)
+    bs.check_submission_text(rep)
     # ---- (a) syntax and names: the engine is built from the XML that will be written
     eng = new_engine(report_name, jctx)
     n_defs = n_funcs = 0
@@ -890,20 +908,36 @@ def check_stamp(rep, live):
     first = next(el for el in rep if el.tag not in ('include', 'stylerule'))
     if table.getparent().getparent() is not rep or first is not table.getparent():
         raise BuildError('the ProjectStamp table is not the first thing after the report stylerules')
-    cells = [c for c in table.iter('c')]
-    values = [''.join(c.find('textvalue').itertext()) for c in cells]
-    formulas = [c.get('formula') for c in cells]
+    cells = bs.stamp_cells(table)
     wanted = []
     for _, left, _, right in bs.STAMP_ROWS:
         wanted += [left, right]
-    if values[1::2] != [PROJECT_STAMP[k] for k in wanted]:
+    if [v for _, v, _ in cells] != [PROJECT_STAMP[k] for k in wanted]:
         raise BuildError('the ProjectStamp values differ from PROJECT_STAMP')
     expect = [f'{PROJECT_INFO}.{k}' if live else None for k in wanted]
-    if formulas[1::2] != expect or any(f is not None for f in formulas[0::2]):
+    if [f for _, _, f in cells] != expect:
         raise BuildError('the ProjectStamp cells are ' + ('not live ProjectInfo references' if live else 'not static text'))
+    if any(cell.tag != 'textcell' for row in table.findall('row') for cell in row):
+        raise BuildError('the ProjectStamp cells are not multiline cells')
 
 
 RETIRED_NAMES = ('PierCapDesign',)                  # the C005 report is deleted from the journal (T014): nothing may mention it
+LEGEND = 'Inputs are highlighted amber; results are the green tables.'
+SERVICE_III_SCOPE = 'Service III is not applicable to this cap; fatigue is not evaluated in this calculation.'
+# Notes of the tool's check register (failing checks it does not recompute, pending counts, flag counts): hidden working notes
+HIDDEN_NOTES = ('Failing checks not recomputed here', 'No tool check outside', 'The tool reports', 'Detailing and geometry flags')
+# Wording of the Mathcad edition that names the tool, the decisions or the distillation, rewritten for the submitted text
+VISIBLE_RULES = [
+    ('Service III is not applicable (D-007); fatigue is pending (no confirmed fatigue loads).', SERVICE_III_SCOPE),
+    ("found by the tool's station search", 'found by the station search of the cap analysis'),
+    ('Taken from the tool and not recomputed:', 'Taken from the cap analysis and not recomputed here:'),
+    ('(cap tool inputs from the analysis envelope)', '(from the analysis envelope)'),
+    ('Faces and directions that the tool checks', 'Faces and directions checked'),
+    ('(from the tool)', '(from the cap analysis)'),
+    ('(cap tool)', '(cap analysis)'),
+    ('largest of the distilled ratios', 'largest of the check ratios'),
+    ('ratio of each distilled check', 'ratio of each check'),
+]
 
 
 def reword(rep, formula_sha):
@@ -993,12 +1027,12 @@ def write_outputs(sheet, eng, meta, filename, ctx, cap, out_dir=None):
 
 # ----------------------------------------------------------------------------- journal edition (live references)
 BASIS_NAME = 'CapDesignBasis'
-BASIS_TITLE = 'Cap Design Basis - shared factors'
+BASIS_TITLE = 'C007 - Cap Design Basis (shared factors)'
 JOURNAL_PATH = ROOT / 'journal' / 'D2_I95_Project_Journal.bpad'
 JOURNAL_SUBDIR = 'journal'                                         # cap_bpad/journal/
 REVIEW_FILE = 'Cap Design - Journal Edition (review).bpad'
-REFERENCE_CAPTION = 'shared journal value —'
-JOURNAL_SECTION2 = 'Shared geometry, materials and factors are live references to the journal; the owner is named beside each.'
+REFERENCE_CAPTION = 'shared value —'                               # caption of a live reference: the owner is named after it
+JOURNAL_SECTION2 = 'Shared geometry, materials and factors are read from the modules that own them; the owner is named beside each.'
 BAR_TABLE_NOTE = (f'Bar areas and diameters by bar number are the shared functions {BASIS_NAME}.Ab(k) and {BASIS_NAME}.Db(k) '
                   f'({REFERENCE_CAPTION} {BASIS_NAME}); this report defines no bar table of its own.')
 REVIEW_BANNER = ('Review copy: the references to BridgeGeometry_2Beam, Materials and ProjectInfo resolve only inside the project '
@@ -1107,6 +1141,8 @@ class CapBasis:
         self.doc, self.rep = build_basis_report(bars)
         self.review_rep = build_basis_report(bars, banner=True)[1]
         self.eng = bs.BpEngine(report=BASIS_NAME)
+        for key, text in PROJECT_STAMP.items():                     # the live stamp reads ProjectInfo.<Key>
+            self.eng.add_external(f'{PROJECT_INFO}.{key}', text)
         for dyn in self.rep.iter('dynexp'):
             formula = dyn.get('formula')
             body = dyn.find('expbody')
@@ -1116,6 +1152,8 @@ class CapBasis:
         if self.eng.unresolved_calls():
             raise BuildError(f'{BASIS_NAME}: undefined functions {self.eng.unresolved_calls()}')
         self.eng.all()
+        bs.write_caches(self.rep, self.eng, BASIS_NAME)              # the stamp texts (the inputs show no result)
+        bs.write_caches(self.review_rep, self.eng, BASIS_NAME)
         taken = set(self.eng.defs) | set(self.eng.functions)
         for name in sorted(taken):
             if re.fullmatch(r'[A-Za-z]{1,3}[0-9]+', name):
@@ -1153,8 +1191,11 @@ def build_basis_report(bars, banner=False):
         bs.para(rep, REVIEW_BANNER, fontsize='10', textcolor='#8A2B1F', background='#FBE9E5', spacingafter='8')
     bs.para(rep, 'D2 I-95 PEDESTRIAN BRIDGE', fontsize=16, fontweight='bold', spacingafter=2)
     bs.para(rep, BASIS_TITLE, fontsize=14, fontweight='bold', spacingafter=6)
-    bs.para(rep, 'Cap design constants that no other journal report owns, written once for the three distilled cap design reports. '
-                 'Written by scripts/build_cap_bpad.py --journal; edit the values there, not here.')
+    notes = bs.working_notes(rep)
+    bs.para(notes, 'Cap design constants that no other journal report owns, written once for the three cap design reports. '
+                   'Written by scripts/build_cap_bpad.py --journal; edit the values there, not here.')
+    bs.para(rep, 'Cap design constants shared by the three cap design calculations: C008 (End Bent 1), C009 (End Bent 2) and '
+                 'C010 (Pier Cap).')
     bs.heading(rep, '1. Shared factors and limits')
     for mc, value, unit, caption in BASIS_CONSTANTS:
         bs.equation(rep, f'{bs.bp_name(mc)} = {number_text(value)}' + (f' {unit}' if unit else ''), caption,
@@ -1164,7 +1205,7 @@ def build_basis_report(bars, banner=False):
         bs.equation(rep, bars[fname][0], bars[fname][1])
     bs.heading(rep, '3. Discussion')
     bs.table(rep, 'BasisDiscussion', ['Discussion'], [
-        ['What this is. The factors, the project spacing limit and the bar tables shared by the distilled cap design reports. Geometry '
+        ['What this is. The factors, the project spacing limit and the bar tables shared by the cap design calculations. Geometry '
          'and materials are not repeated here; each cap report reads them from the report that owns them.'],
         ['Read by. CapDesignEndBentOne, CapDesignEndBentTwo and CapDesignPier, as CapDesignBasis.φ_f, CapDesignBasis.φ_v, '
          'CapDesignBasis.φ_a, CapDesignBasis.γ_e, CapDesignBasis.λ, CapDesignBasis.s_proj, CapDesignBasis.Ab(k) and CapDesignBasis.Db(k).'],
@@ -1173,6 +1214,8 @@ def build_basis_report(bars, banner=False):
         ['Sources. Material properties come from Materials; geometry and covers come from BridgeGeometry_2Beam; the project stamp '
          'comes from ProjectInfo. The cap design reports read each of them from the report that owns it.'],
     ], [620], 'discussion')
+    if not banner:
+        bs.check_submission_text(rep)
     return doc, rep
 
 

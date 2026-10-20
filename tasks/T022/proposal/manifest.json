@@ -1,0 +1,74 @@
+{
+  "task": "T022",
+  "base_sha256": "39674378a62fa24184f43176914b2cca538cb64de015345cb29d911fc80747ce",
+  "components": {
+    "report:PedBridge": {
+      "file": "000.xml",
+      "sha256": "1dd45c896f63d300a61a2c75f95cd8c17845a75f92375fcc236c93dd04d47c68"
+    },
+    "report:BearingDesign": {
+      "file": "001.xml",
+      "sha256": "852e5a8a7a2e5723922756b9fc3410e7319186364d8ea9c34ab6f03ff29049bd"
+    },
+    "report:C001WindLoadOnPedBridgeSuperstructure": {
+      "file": "002.xml",
+      "sha256": "17a066f5e692a7463183bec7d14a7ccacab5e67d3fbaaa34a4bc72c3da9bd7fa"
+    },
+    "report:FenceWind": {
+      "file": "003.xml",
+      "sha256": "b9eb4952b351fcf191903bb5cff36260802fd6041c41bc1591c5001566ce1977"
+    },
+    "report:BridgeMovement": {
+      "file": "004.xml",
+      "sha256": "751d43912a6913d48a326d4d6318d537c798e08bf485e3d42623f1a932f61dd4"
+    },
+    "report:SuperstructureUplift": {
+      "file": "005.xml",
+      "sha256": "1ef9d767832030c2e5ad489b5d2f08d2fea8f407c785f68144ddd98d604eca17"
+    },
+    "report:PierWallFins": {
+      "file": "006.xml",
+      "sha256": "82a340e35c80d9e9abac82ba3de5811dd55317944f8e69f74073a7c9f2770ca7"
+    },
+    "report:DecisionLog": {
+      "file": "007.xml",
+      "sha256": "e3e94f5ead51aca303737aa8f726fb2ca8f750a7fdede0b298ea4a5a76f424a1"
+    },
+    "report:MSEWallExclusion": {
+      "file": "008.xml",
+      "sha256": "fd74a82e2aa391d7ea6df800b5832e6547129fc9d1b0e35cdb6154e2fc086084"
+    },
+    "report:CapDesignBasis": {
+      "file": "009.xml",
+      "sha256": "93f0ed7c796f132a37c4bd7a178e3daaa4c4dc444488ac6dfb69c6150f44c397"
+    },
+    "report:CapDesignEndBentOne": {
+      "file": "010.xml",
+      "sha256": "521a31f6fc369604c2363d6f4dd53ceafb07fcd82debfc6ee3f33b099c4a9ece"
+    },
+    "report:CapDesignEndBentTwo": {
+      "file": "011.xml",
+      "sha256": "500ed3ed616c0216872e70c0f7019733b1cf0e8e3eddf88f10108112ae65e18b"
+    },
+    "report:CapDesignPier": {
+      "file": "012.xml",
+      "sha256": "f07f09d5350a77eebaf1c2d1bb216f345fddea0bebabd71de4cb80c4505412bb"
+    },
+    "report:PileDesignEndBentOne": {
+      "file": "013.xml",
+      "sha256": "f3c74aab86f0235b00dbea0c94e48ccbf85db2fef24134486a40a9403cdf2a31"
+    },
+    "report:PileDesignEndBentTwo": {
+      "file": "014.xml",
+      "sha256": "ca379c4e81c913b3dbc2400ebf967ec5237d562aa89cb158e532fc88ea04831e"
+    },
+    "report:PileDesignPier": {
+      "file": "015.xml",
+      "sha256": "8ecf7ba86c227219cd1b6a115ea615ef001a4f380a23d3ea8cf2786bf5c4fc51"
+    },
+    "report:EndBentBackwallDesign": {
+      "file": "016.xml",
+      "sha256": "fdaae004b43e37748dc409bd7d58764421f2fa4886c9a3901e0d8a6879e2b9d8"
+    }
+  }
+}

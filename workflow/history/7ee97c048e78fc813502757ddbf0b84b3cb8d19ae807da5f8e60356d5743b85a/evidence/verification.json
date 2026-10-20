@@ -1,0 +1,185 @@
+{
+  "task": "T022",
+  "base_sha256": "39674378a62fa24184f43176914b2cca538cb64de015345cb29d911fc80747ce",
+  "candidate_sha256": "7ee97c048e78fc813502757ddbf0b84b3cb8d19ae807da5f8e60356d5743b85a",
+  "candidate": "C:\\github\\D2MPDB\\generated\\T022-submission-02\\candidate.bpad",
+  "protected_components": 262,
+  "changed": {
+    "BearingDesign": {
+      "title": "C016 - Bearings and Support Details",
+      "static_cells_converted": 105,
+      "hidden_sections": 15,
+      "hidden_sections_before": 12,
+      "definitions": 113,
+      "sha256_before": "d797031c228d3ba44e55f46dcf2b6a09dca2d7574095b3ce0dd9cbe962523110",
+      "sha256_after": "852e5a8a7a2e5723922756b9fc3410e7319186364d8ea9c34ab6f03ff29049bd"
+    },
+    "BridgeMovement": {
+      "title": "C003 - Bridge Temperature Movement",
+      "static_cells_converted": 21,
+      "hidden_sections": 17,
+      "hidden_sections_before": 17,
+      "definitions": 20,
+      "sha256_before": "e9bd6a60f2d266630a5e463f1ca3e6509b53ee1865a9e8a394517c8de709f5ee",
+      "sha256_after": "751d43912a6913d48a326d4d6318d537c798e08bf485e3d42623f1a932f61dd4"
+    },
+    "C001WindLoadOnPedBridgeSuperstructure": {
+      "title": "C001 - Wind Load on Ped Bridge Superstructure",
+      "static_cells_converted": 29,
+      "hidden_sections": 29,
+      "hidden_sections_before": 29,
+      "definitions": 59,
+      "sha256_before": "7636b68f5add53a0d47770e7793f7d6eba968364ab7c39e2a76ac04e12ffc550",
+      "sha256_after": "17a066f5e692a7463183bec7d14a7ccacab5e67d3fbaaa34a4bc72c3da9bd7fa"
+    },
+    "CapDesignBasis": {
+      "title": "C007 - Cap Design Basis (shared factors)",
+      "static_cells_converted": 9,
+      "hidden_sections": 1,
+      "hidden_sections_before": 0,
+      "definitions": 16,
+      "sha256_before": "e3bb05e793134781b8ea626d6e7c7ea35febd78ac3241cdc2803b82cd1b722b7",
+      "sha256_after": "93f0ed7c796f132a37c4bd7a178e3daaa4c4dc444488ac6dfb69c6150f44c397"
+    },
+    "CapDesignEndBentOne": {
+      "title": "C008 - End Bent 1 Cap Design",
+      "static_cells_converted": 173,
+      "hidden_sections": 9,
+      "hidden_sections_before": 8,
+      "definitions": 527,
+      "sha256_before": "5f63027930ba85c2a145658166f7e142f39ffaf56b392344796532d95e6d7866",
+      "sha256_after": "521a31f6fc369604c2363d6f4dd53ceafb07fcd82debfc6ee3f33b099c4a9ece"
+    },
+    "CapDesignEndBentTwo": {
+      "title": "C009 - End Bent 2 Cap Design",
+      "static_cells_converted": 173,
+      "hidden_sections": 9,
+      "hidden_sections_before": 8,
+      "definitions": 527,
+      "sha256_before": "724ee26edb33f1a08eaacebea48fd0defbd38db3cb27926c7096c5ef29a44c33",
+      "sha256_after": "500ed3ed616c0216872e70c0f7019733b1cf0e8e3eddf88f10108112ae65e18b"
+    },
+    "CapDesignPier": {
+      "title": "C010 - Pier Cap Design",
+      "static_cells_converted": 173,
+      "hidden_sections": 9,
+      "hidden_sections_before": 8,
+      "definitions": 527,
+      "sha256_before": "b32831f1c3974c12ed8db18b77220c51f20c57aeb0e1dd6d1e88f820274484d2",
+      "sha256_after": "f07f09d5350a77eebaf1c2d1bb216f345fddea0bebabd71de4cb80c4505412bb"
+    },
+    "DecisionLog": {
+      "title": "Decision Log",
+      "definitions": 0,
+      "sha256_before": "91ff1385d377e6cd24d8f4a65b2ff4d36d8406a023428f1abb3726f8085a3e58",
+      "sha256_after": "e3e94f5ead51aca303737aa8f726fb2ca8f750a7fdede0b298ea4a5a76f424a1"
+    },
+    "EndBentBackwallDesign": {
+      "title": "C014 - End Bent 1 Backwall, Cheek Walls and Tie-Back Straps",
+      "static_cells_converted": 196,
+      "hidden_sections": 12,
+      "hidden_sections_before": 11,
+      "definitions": 603,
+      "sha256_before": "d949784eb4365992026222c25448c1423eeecc4b0cf088d943673222a4d4db25",
+      "sha256_after": "fdaae004b43e37748dc409bd7d58764421f2fa4886c9a3901e0d8a6879e2b9d8"
+    },
+    "FenceWind": {
+      "title": "C002 - Fence Wind and Pier Node Loads",
+      "static_cells_converted": 115,
+      "hidden_sections": 47,
+      "hidden_sections_before": 47,
+      "definitions": 94,
+      "sha256_before": "969304b0fa2f80cb5f6eed319be8cdcd8a74d1b79130f361de27857dea440ba9",
+      "sha256_after": "b9eb4952b351fcf191903bb5cff36260802fd6041c41bc1591c5001566ce1977"
+    },
+    "MSEWallExclusion": {
+      "title": "C015 - MSE Wall Exclusion - Both End Bents",
+      "static_cells_converted": 56,
+      "hidden_sections": 3,
+      "hidden_sections_before": 1,
+      "definitions": 175,
+      "sha256_before": "c18ec8322d78aad3d2cabc7aaefc30c2c47a45c763df7bf5b7345d5a5c1759e6",
+      "sha256_after": "fd74a82e2aa391d7ea6df800b5832e6547129fc9d1b0e35cdb6154e2fc086084"
+    },
+    "PedBridge": {
+      "title": "Project Index",
+      "definitions": 0,
+      "sha256_before": "dc13b5d034e21169a019e07a50d7b476bc76657f53eaba632d529384c2f5d9d2",
+      "sha256_after": "1dd45c896f63d300a61a2c75f95cd8c17845a75f92375fcc236c93dd04d47c68"
+    },
+    "PierWallFins": {
+      "title": "C006 - Pier Wall, Hairpins and Fin Plates",
+      "static_cells_converted": 152,
+      "hidden_sections": 17,
+      "hidden_sections_before": 17,
+      "definitions": 269,
+      "sha256_before": "965538e7ab398e292166435559ef5dd2fb2391b7fdd349a15044999c6d7efbfd",
+      "sha256_after": "82a340e35c80d9e9abac82ba3de5811dd55317944f8e69f74073a7c9f2770ca7"
+    },
+    "PileDesignEndBentOne": {
+      "title": "C011 - End Bent 1 Pile Design",
+      "static_cells_converted": 74,
+      "hidden_sections": 8,
+      "hidden_sections_before": 7,
+      "definitions": 426,
+      "sha256_before": "a21b16d8aba6cb7b8b0c0aef1ff366295c9dd11cd253cf655cd732dc95bad145",
+      "sha256_after": "f3c74aab86f0235b00dbea0c94e48ccbf85db2fef24134486a40a9403cdf2a31"
+    },
+    "PileDesignEndBentTwo": {
+      "title": "C012 - End Bent 2 Pile Design",
+      "static_cells_converted": 74,
+      "hidden_sections": 8,
+      "hidden_sections_before": 7,
+      "definitions": 426,
+      "sha256_before": "757e36ba7af754649e5e46f02c307245e8ba65708ccfc12547cc715d8e42ec0c",
+      "sha256_after": "ca379c4e81c913b3dbc2400ebf967ec5237d562aa89cb158e532fc88ea04831e"
+    },
+    "PileDesignPier": {
+      "title": "C013 - Pier Pile Design",
+      "static_cells_converted": 30,
+      "hidden_sections": 3,
+      "hidden_sections_before": 2,
+      "definitions": 125,
+      "sha256_before": "05df6c39a19251a76fc7e795124b193ac50693ff1bcf32d22f23082cc6960b17",
+      "sha256_after": "8ecf7ba86c227219cd1b6a115ea615ef001a4f380a23d3ea8cf2786bf5c4fc51"
+    },
+    "SuperstructureUplift": {
+      "title": "C004 - Superstructure Uplift and Bearing Reactions",
+      "static_cells_converted": 133,
+      "hidden_sections": 39,
+      "hidden_sections_before": 39,
+      "definitions": 94,
+      "sha256_before": "8ae564d6d0e93c1fd20b12102c586e797ac243aaa9908e4c5789c7188be6d219",
+      "sha256_after": "1ef9d767832030c2e5ad489b5d2f08d2fea8f407c785f68144ddd98d604eca17"
+    }
+  },
+  "problems": [],
+  "titles": {
+    "CapDesignBasis": "C007 - Cap Design Basis (shared factors)",
+    "CapDesignEndBentOne": "C008 - End Bent 1 Cap Design",
+    "CapDesignEndBentTwo": "C009 - End Bent 2 Cap Design",
+    "CapDesignPier": "C010 - Pier Cap Design",
+    "PileDesignEndBentOne": "C011 - End Bent 1 Pile Design",
+    "PileDesignEndBentTwo": "C012 - End Bent 2 Pile Design",
+    "PileDesignPier": "C013 - Pier Pile Design",
+    "EndBentBackwallDesign": "C014 - End Bent 1 Backwall, Cheek Walls and Tie-Back Straps",
+    "MSEWallExclusion": "C015 - MSE Wall Exclusion - Both End Bents",
+    "BearingDesign": "C016 - Bearings and Support Details",
+    "C001WindLoadOnPedBridgeSuperstructure": "C001 - Wind Load on Ped Bridge Superstructure",
+    "FenceWind": "C002 - Fence Wind and Pier Node Loads",
+    "BridgeMovement": "C003 - Bridge Temperature Movement",
+    "SuperstructureUplift": "C004 - Superstructure Uplift and Bearing Reactions",
+    "PierWallFins": "C006 - Pier Wall, Hairpins and Fin Plates"
+  },
+  "status": "PASS",
+  "reviews": {
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false
+  },
+  "protected_files_sha256": {
+    "cap_bpad/journal/verification.json": "284ef1c6ebef33575bd9f38cda1ab62ca912d8c3f7c4721006ee6af3bed7c39d",
+    "end_bent_walls/bpad/journal/verification.json": "08b940aeb33f7d71e036286a69c38bb02ff7e9f537949fab7211c71b167894ce",
+    "pile_bpad/verification.json": "0a67a741f4eefe2da25a607d8006ad5553bb25d533ccd5b539aeb3225e19eb30"
+  }
+}

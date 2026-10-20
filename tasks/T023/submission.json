@@ -1,0 +1,9 @@
+{
+  "summary": "EndBentBackwallDesign (C014) re-promoted with the final generator edition after T022: the hidden provenance paragraph no longer names the notebook package revision (the cap rule of T013), so edits of the embedded scripts stop forcing journal tasks. Every definition, value-cell formula, cache and canvas is unchanged.",
+  "published_outputs": ["EndBentBackwallDesign: all existing published names unchanged"],
+  "assumptions_and_conventions": ["Journal edition tied to the case by its SHA-256 alone; the package revision is recorded in end_bent_walls/bpad/journal/verification.json."],
+  "downstream_impact": ["End_Bent_Backwall_Design.ipynb, End_Bent_Backwall_Design.xmcd and end_bent_walls/ editions rebuilt (final package in tasks/T023/verification.json)."],
+  "external_analysis": "Not affected: no value changed; FBMP not rerun.",
+  "checks_performed": ["tasks/T023/build_components.py: fragment tied to its verification record; definitions, value-cell formulas, caches and visible-text rule unchanged; exactly one hidden paragraph differs (package revision removed)", "tools/bpad_workflow.py check and assemble"],
+  "open_items": ["Native recalculation, appearance and engineering reviews not performed."]
+}

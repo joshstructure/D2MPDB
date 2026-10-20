@@ -14,21 +14,30 @@
   <stylerule applytoall="True" type="AnyTableCell" condition="&quot;✓ All Checks Pass&quot;" background="#ABDB92"/>
   <stylerule applytoall="True" type="AnyTableCell" condition="&quot;⊗ There are FAILURES&quot;" background="#EF3429"/>
   <stylerule name="Result only" type="dynexp" showformula="False" showidentifier="False" showresult="True" showsteps="false" mathlayout="off"/>
-  <report name="PileDesignEndBentTwo" title="End Bent 2 Pile Design - Distilled" unit="in" pagesize="816,1056" margin="48,48,48,48" bordermargin="0,0,0,0" collapsemargins="False">
+  <report name="PileDesignEndBentTwo" title="C012 - End Bent 2 Pile Design" unit="in" pagesize="816,1056" margin="48,48,48,48" bordermargin="0,0,0,0" collapsemargins="False">
     <include target="Library.Geometry"/>
     <stylerule type="AnyEquation" name="Required Input" texthighlight="#F7E6B9"/>
     <paragraph fontfamily="Times New Roman" fontsize="16" spacingafter="2" fontweight="bold">D2 I-95 PEDESTRIAN BRIDGE</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold">End Bent 2 Pile Design</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold">C012 - End Bent 2 Pile Design</paragraph>
+    <section name="WorkingNotes" capture="False" hide="true">
+      <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="4" fontweight="bold" textcolor="#43505C">Working notes (hidden; not part of the submitted calculation): how this edition was produced, its tool status and the open bookkeeping items.</paragraph>
+      <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Distilled from the pile design notebook (package 921ea3c656dc), case "End Bent 2 piles: 18 in square prestressed concrete, FBMP fixed run". Same inputs, equations and load combinations as the notebook; results should match its exported report. Blockpad edition written by pile_design/bpad.py (scripts/build_pile_bpad.py) from the same case; every definition was evaluated independently and compared with the notebook to 1 part in 10⁹.</paragraph>
+      <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Status: All numerical checks pass (largest ratio 1.00) · 15 pending item(s) remain.</paragraph>
+      <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• FBMP source: End Bent 2_Fixed.XML, SHA-256 3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e (registered export EB2-XML). 4 piles at 4.5 ft; cutoff elevation 41.2567 ft, ground 23.59 ft.</paragraph>
+      <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Every definition was read back from the XML and evaluated by an independent Blockpad-syntax evaluator, then compared with the notebook (and with the Mathcad worksheet) before the file was written. Governing records, the notebook angles, the neutral-axis depth c_gov and the few values found by a search over the interaction sweep are amber inputs read from the notebook.</paragraph>
+      <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">The notebook lists 15 PENDING items; the distilled ratios above do not close them: Axial compression · maximum Pu / φPn,max; Axial + biaxial flexure · LRFD Eq. 5.6.4.5-3; Axial + flexure · resultant bending axis (strain compatibility); Shear · general procedure; Service I concrete tension; Minimum square pile size (Table 3.5.1-1); Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4); Environment classification; Pile-to-cap connection (12 in embedment); Downdrag source documented; FBMP export current; Minimum tip elevation; Scour resistance and elevations; Drivability.</paragraph>
+      <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">The Status covers the recomputed numerical checks only; it is not design acceptance.</paragraph>
+      <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Inputs pending confirmation (captions carried "[pending confirmation]" in the notebook): DD_tons, R_scour_net_tons, R_scour_total_tons, soil_type, S_u, environment, f_y_spiral.</paragraph>
+      <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="5" textcolor="#43505C">A ✓ status covers only the recomputed numerical checks; it is not design acceptance. The pending items of the notebook stay open. Recalculate in Blockpad after any input change.</paragraph>
+    </section>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Project: D2 I-95 Pedestrian Bridge.</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Distilled from the pile design notebook (package 32d46a79afd4), case "End Bent 2 piles: 18 in square prestressed concrete, FBMP fixed run". Same inputs, equations and load combinations as the notebook; results should match its exported report. Blockpad edition written by pile_design/bpad.py (scripts/build_pile_bpad.py) from the same case; every definition was evaluated independently and compared with the notebook to 1 part in 10⁹.</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Codes: AASHTO LRFD Bridge Design Specifications, 10th edition (2024): 5.6.4.4, 5.6.4.5, 5.6.6.1, 5.7.3.3, 5.7.3.4.2, 5.9.2.3.2, 5.12.9.4; FDOT Structures Design Guidelines (SDG) 3.5 and Structures Detailing Manual (SDM) 11.4, January 2026; Standard Plans Index 455.</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Status: All numerical checks pass (largest ratio 1.00) · 15 pending item(s) remain. Inputs are highlighted amber; distilled results are the green tables.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Inputs are highlighted amber; results are the green tables.</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">1. Design basis</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• FBMP source: End Bent 2_Fixed.XML, SHA-256 3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e (registered export EB2-XML). 4 piles at 4.5 ft; cutoff elevation 41.2567 ft, ground 23.59 ft.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• FBMP analysis: End Bent 2_Fixed.XML. 4 piles at 4.5 ft; cutoff elevation 41.2567 ft, ground 23.59 ft.</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Pile: Standard Plans Index 455-018 (18 in square), strand pattern 12~0.6, spiral 0.034 in² wire at 6 in.</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Downdrag 18 tons per pile is a drag load DR: gamma_DR = 1.1 (strength) and 1 (Service I) in the structural demands (LRFD Table 3.4.1-1, 10.7.3.7); it is excluded from the Factored Design Load and added nominally to the required bearing resistance (SDG Eq. 3-1, phi = 0.75).</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Every definition was read back from the XML and evaluated by an independent Blockpad-syntax evaluator, then compared with the notebook (and with the Mathcad worksheet) before the file was written. Governing records, the notebook angles, the neutral-axis depth c_gov and the few values found by a search over the interaction sweep are amber inputs read from the notebook.</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• The interaction curve of Figure 2 is a picture of the notebook's sweep. The 5.6.4.5 route, the resultant-axis check at c_gov, the demands and every ratio are live formulas.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• The interaction curve of Figure 2 is a picture of the interaction sweep. The 5.6.4.5 route, the resultant-axis check at c_gov, the demands and every ratio are live formulas.</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">2. Inputs</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Pile and layout</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -49,12 +58,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Length above ground (cutoff - ground); editable</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="embed_cap = 12 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>embed_cap = 12 in</expbody></dynexp><break type="tab"/>Pile embedment into the cap</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Loads and geotechnical</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-      <dynexp formula="DD_tons = 18" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-        <expbody>DD_tons = 18</expbody>
-      </dynexp>
-    </paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Downdrag (drag load DR) per pile, short tons [pending confirmation]</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="DD_tons = 18" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>DD_tons = 18</expbody></dynexp><break type="tab"/>Downdrag (drag load DR) per pile, short tons</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="gamma_DR_str = 1.1" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
         <expbody>gamma_DR_str = 1.1</expbody>
@@ -68,39 +72,19 @@
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Geotechnical resistance factor (compression, Davisson)</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-      <dynexp formula="R_scour_net_tons = 0" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-        <expbody>R_scour_net_tons = 0</expbody>
-      </dynexp>
-    </paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Net scour resistance, short tons [pending confirmation]</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-      <dynexp formula="R_scour_total_tons = 0" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-        <expbody>R_scour_total_tons = 0</expbody>
-      </dynexp>
-    </paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Total scour resistance, short tons [pending confirmation]</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="R_scour_net_tons = 0" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>R_scour_net_tons = 0</expbody></dynexp><break type="tab"/>Net scour resistance, short tons</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="R_scour_total_tons = 0" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>R_scour_total_tons = 0</expbody></dynexp><break type="tab"/>Total scour resistance, short tons</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="K_eff = 1" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>K_eff = 1</expbody></dynexp><break type="tab"/>Effective length factor K</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-      <dynexp formula="soil_type = 0" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-        <expbody>soil_type = 0</expbody>
-      </dynexp>
-    </paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Soil for depth to fixity (0 sand, 1 clay) [pending confirmation]</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="soil_type = 0" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>soil_type = 0</expbody></dynexp><break type="tab"/>Soil for depth to fixity (0 sand, 1 clay)</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="n_h = 0.556 ksi/ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>n_h = 0.556 ksi/ft</expbody></dynexp><break type="tab"/>Rate of increase of soil modulus, sand</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="S_u = 1 kip/ft^2" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
         <expbody>S_u = 1 kip/ft^2</expbody>
       </dynexp>
     </paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Undrained shear strength, clay (used only for soil type 1) [pending confirmation]</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Undrained shear strength, clay (used only for soil type 1)</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Environment and policy</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-      <dynexp formula="environment = 2" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-        <expbody>environment = 2</expbody>
-      </dynexp>
-    </paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Environment classification [pending confirmation]</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="environment = 2" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>environment = 2</expbody></dynexp><break type="tab"/>Environment classification</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="min_size_policy = 14 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>min_size_policy = 14 in</expbody></dynexp><break type="tab"/>Minimum square pile size, pedestrian bridge</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="λ = 1" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>λ = 1</expbody></dynexp><break type="tab"/>Concrete density modification factor</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Prestressed concrete pile</paragraph>
@@ -134,12 +118,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Shear reinforcement</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="spiral_wire_area = 0.034 in^2" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>spiral_wire_area = 0.034 in^2</expbody></dynexp><break type="tab"/>Spiral wire area (one leg)</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="spiral_pitch = 6 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>spiral_pitch = 6 in</expbody></dynexp><break type="tab"/>Spiral pitch</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-      <dynexp formula="f_y_spiral = 70 ksi" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-        <expbody>f_y_spiral = 70 ksi</expbody>
-      </dynexp>
-    </paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Spiral wire yield strength [pending confirmation]</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="f_y_spiral = 70 ksi" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>f_y_spiral = 70 ksi</expbody></dynexp><break type="tab"/>Spiral wire yield strength</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="a_g = 0.75 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>a_g = 0.75 in</expbody></dynexp><break type="tab"/>Maximum aggregate size</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="φ_v = 0.9" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>φ_v = 0.9</expbody></dynexp><break type="tab"/>Shear resistance factor, concrete</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Standard Plans Index 455-018, strand pattern 12~0.6</paragraph>
@@ -174,29 +153,29 @@
         <stylerule range="A1:F1" horzalign="Center" vertalign="Center"/>
         <stylerule range="B2:F7" horzalign="Center" vertalign="Center"/>
         <row>
-          <c capture="False" background="#F7E6B9" fontweight="bold">
-            <textvalue>Record</textvalue>
-          </c>
-          <c capture="False" background="#F7E6B9" fontweight="bold">
-            <textvalue>P_fbmp (kip)</textvalue>
-          </c>
-          <c capture="False" background="#F7E6B9" fontweight="bold">
-            <textvalue>M_2 (kip*ft)</textvalue>
-          </c>
-          <c capture="False" background="#F7E6B9" fontweight="bold">
-            <textvalue>M_3 (kip*ft)</textvalue>
-          </c>
-          <c capture="False" background="#F7E6B9" fontweight="bold">
-            <textvalue>M_res (kip*ft)</textvalue>
-          </c>
-          <c capture="False" background="#F7E6B9" fontweight="bold">
-            <textvalue>V_res (kip)</textvalue>
-          </c>
+          <textcell name="DemandInputsR0C0" capture="False" background="#F7E6B9">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">Record</paragraph>
+          </textcell>
+          <textcell name="DemandInputsR0C1" capture="False" background="#F7E6B9">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">P_fbmp (kip)</paragraph>
+          </textcell>
+          <textcell name="DemandInputsR0C2" capture="False" background="#F7E6B9">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">M_2 (kip*ft)</paragraph>
+          </textcell>
+          <textcell name="DemandInputsR0C3" capture="False" background="#F7E6B9">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">M_3 (kip*ft)</paragraph>
+          </textcell>
+          <textcell name="DemandInputsR0C4" capture="False" background="#F7E6B9">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">M_res (kip*ft)</paragraph>
+          </textcell>
+          <textcell name="DemandInputsR0C5" capture="False" background="#F7E6B9">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">V_res (kip)</paragraph>
+          </textcell>
         </row>
         <row>
-          <c capture="False" background="#FFF8E9">
-            <textvalue>1. Axial</textvalue>
-          </c>
+          <textcell name="DemandInputsR1C0" capture="False" background="#FFF8E9">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">1. Axial</paragraph>
+          </textcell>
           <textcell name="DemandInputsR1C1" capture="False" background="#FFF8E9">
             <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
               <dynexp formula="P_fbmp_1 = 105.34 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
@@ -234,9 +213,9 @@
           </textcell>
         </row>
         <row>
-          <c capture="False" background="#FFF8E9">
-            <textvalue>2. 5.6.4.5</textvalue>
-          </c>
+          <textcell name="DemandInputsR2C0" capture="False" background="#FFF8E9">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">2. 5.6.4.5</paragraph>
+          </textcell>
           <textcell name="DemandInputsR2C1" capture="False" background="#FFF8E9">
             <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
               <dynexp formula="P_fbmp_2 = 84.02 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
@@ -274,9 +253,9 @@
           </textcell>
         </row>
         <row>
-          <c capture="False" background="#FFF8E9">
-            <textvalue>3. Resultant</textvalue>
-          </c>
+          <textcell name="DemandInputsR3C0" capture="False" background="#FFF8E9">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">3. Resultant</paragraph>
+          </textcell>
           <textcell name="DemandInputsR3C1" capture="False" background="#FFF8E9">
             <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
               <dynexp formula="P_fbmp_3 = 80.6 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
@@ -314,9 +293,9 @@
           </textcell>
         </row>
         <row>
-          <c capture="False" background="#FFF8E9">
-            <textvalue>4. Shear</textvalue>
-          </c>
+          <textcell name="DemandInputsR4C0" capture="False" background="#FFF8E9">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">4. Shear</paragraph>
+          </textcell>
           <textcell name="DemandInputsR4C1" capture="False" background="#FFF8E9">
             <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
               <dynexp formula="P_fbmp_4 = 92.33 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
@@ -354,9 +333,9 @@
           </textcell>
         </row>
         <row>
-          <c capture="False" background="#FFF8E9">
-            <textvalue>5. Svc comp.</textvalue>
-          </c>
+          <textcell name="DemandInputsR5C0" capture="False" background="#FFF8E9">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">5. Svc comp.</paragraph>
+          </textcell>
           <textcell name="DemandInputsR5C1" capture="False" background="#FFF8E9">
             <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
               <dynexp formula="P_fbmp_5 = 90.54 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
@@ -394,9 +373,9 @@
           </textcell>
         </row>
         <row>
-          <c capture="False" background="#FFF8E9">
-            <textvalue>6. Svc tens.</textvalue>
-          </c>
+          <textcell name="DemandInputsR6C0" capture="False" background="#FFF8E9">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">6. Svc tens.</paragraph>
+          </textcell>
           <textcell name="DemandInputsR6C1" capture="False" background="#FFF8E9">
             <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
               <dynexp formula="P_fbmp_6 = 50.02 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
@@ -555,26 +534,26 @@
         <stylerule range="A1:E1" horzalign="Center" vertalign="Center"/>
         <stylerule range="B2:E7" horzalign="Center" vertalign="Center"/>
         <row>
-          <c capture="False" background="#DCECE0" fontweight="bold">
-            <textvalue>Record</textvalue>
-          </c>
-          <c capture="False" background="#DCECE0" fontweight="bold">
-            <textvalue>P_fbmp (kip)</textvalue>
-          </c>
-          <c capture="False" background="#DCECE0" fontweight="bold">
-            <textvalue>P_u incl. DR (kip)</textvalue>
-          </c>
-          <c capture="False" background="#DCECE0" fontweight="bold">
-            <textvalue>M_res (kip-ft)</textvalue>
-          </c>
-          <c capture="False" background="#DCECE0" fontweight="bold">
-            <textvalue>V_res (kip)</textvalue>
-          </c>
+          <textcell name="DemandResultsR0C0" capture="False" background="#DCECE0">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Record</paragraph>
+          </textcell>
+          <textcell name="DemandResultsR0C1" capture="False" background="#DCECE0">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">P_fbmp (kip)</paragraph>
+          </textcell>
+          <textcell name="DemandResultsR0C2" capture="False" background="#DCECE0">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">P_u incl. DR (kip)</paragraph>
+          </textcell>
+          <textcell name="DemandResultsR0C3" capture="False" background="#DCECE0">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">M_res (kip-ft)</paragraph>
+          </textcell>
+          <textcell name="DemandResultsR0C4" capture="False" background="#DCECE0">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">V_res (kip)</paragraph>
+          </textcell>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>1. Axial</textvalue>
-          </c>
+          <textcell name="DemandResultsR1C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">1. Axial</paragraph>
+          </textcell>
           <c formula="P_fbmp_1 to kip" capture="False" background="#EFF7F1">
             <num>105.340 kip</num>
           </c>
@@ -589,9 +568,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>2. 5.6.4.5</textvalue>
-          </c>
+          <textcell name="DemandResultsR2C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">2. 5.6.4.5</paragraph>
+          </textcell>
           <c formula="P_fbmp_2 to kip" capture="False" background="#EFF7F1">
             <num>84.020 kip</num>
           </c>
@@ -606,9 +585,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>3. Resultant</textvalue>
-          </c>
+          <textcell name="DemandResultsR3C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">3. Resultant</paragraph>
+          </textcell>
           <c formula="P_fbmp_3 to kip" capture="False" background="#EFF7F1">
             <num>80.600 kip</num>
           </c>
@@ -623,9 +602,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>4. Shear</textvalue>
-          </c>
+          <textcell name="DemandResultsR4C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">4. Shear</paragraph>
+          </textcell>
           <c formula="P_fbmp_4 to kip" capture="False" background="#EFF7F1">
             <num>92.330 kip</num>
           </c>
@@ -640,9 +619,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>5. Svc comp.</textvalue>
-          </c>
+          <textcell name="DemandResultsR5C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">5. Svc comp.</paragraph>
+          </textcell>
           <c formula="P_fbmp_5 to kip" capture="False" background="#EFF7F1">
             <num>90.540 kip</num>
           </c>
@@ -657,9 +636,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>6. Svc tens.</textvalue>
-          </c>
+          <textcell name="DemandResultsR6C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">6. Svc tens.</paragraph>
+          </textcell>
           <c formula="P_fbmp_6 to kip" capture="False" background="#EFF7F1">
             <num>50.020 kip</num>
           </c>
@@ -756,7 +735,7 @@
         </planecontainer>
       </canvas>
     </embed>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Figure 1. Pile cross-section: strand pattern of the Standard Plans option and the bending axes of the governing resultant and shear records. The outline and strands are the notebook's layout as a picture; the dimensions and the bending-axis angles are live.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Figure 1. Pile cross-section: strand pattern of the Standard Plans option and the bending axes of the governing resultant and shear records. The outline and strands are drawn as a picture; the dimensions and the bending-axis angles are live.</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="A_ps = N_str*A_str to in^2" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>A_ps = N_str*A_str to in^2</expbody>
@@ -1227,10 +1206,10 @@
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">axial compression D/C, largest Pu / phi Pn,max</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True" pagebreakbefore="break">7. Interaction by strain compatibility (LRFD 5.6.4.5, C5.6.2.1, 5.5.4.2)</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Strain is linear with the extreme compression fiber at eps_cu = 0.003 and a neutral-axis depth c swept geometrically from 4H to 0.02H in the notebook (H = depth of the section normal to the bending axis). Strand strain = eps_pe + eps_ce + eps_cu (d - c)/c.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Strain is linear with the extreme compression fiber at eps_cu = 0.003 and a neutral-axis depth c swept geometrically from 4H to 0.02H in the interaction sweep (H = depth of the section normal to the bending axis). Strand strain = eps_pe + eps_ce + eps_cu (d - c)/c.</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Strand stress: PCI power formula for Grade 270 low-relaxation strand in tension, Ep eps in compression (no correction for displaced concrete). Concrete: rectangular block a = beta1 c on the compressed part of the square (chamfers ignored).</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Pn is held between -Aps fpy and Pn,max; phi runs from 0.75 to 1.00 as the net tensile strain goes from 0.002 to 0.005. The pure-compression and pure-tension points are scalars below.</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Blockpad has no vector variables, so the 121-point sweep is not written as formulas. Figure 2 is a picture of the notebook's sweep. Section 9 evaluates the same equations (strain, power-formula stress, block geometry, Pn, Mn, phi, Pr, Mr) at the single neutral-axis depth c_gov, strand by strand.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• The 121-point sweep is not written as formulas. Figure 2 is a picture of the interaction sweep. Section 9 evaluates the same equations (strain, power-formula stress, block geometry, Pn, Mn, phi, Pr, Mr) at the single neutral-axis depth c_gov, strand by strand.</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="12" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="6" keepwithnext="True">End points of the curve</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="P_r_pc = phi_c*P_n_max to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
@@ -1457,13 +1436,13 @@
       </paragraph>
       <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">strand depth from the extreme compression fiber</paragraph>
     </section>
-    <paragraph fontfamily="Times New Roman" fontsize="12" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="6" keepwithnext="True">Moment resistance at zero axial load (read from the notebook sweep)</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="12" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="6" keepwithnext="True">Moment resistance at zero axial load (read from the interaction sweep)</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="M_r_P0 = 282.67716171801567 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
         <expbody>M_r_P0 = 282.67716171801567 kip*ft</expbody>
       </dynexp>
     </paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">factored moment resistance at zero axial load (splice comparison; Eq. 5.6.4.5-3) [from the notebook: interpolated on the notebook sweep at P = 0]</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">factored moment resistance at zero axial load (splice comparison; Eq. 5.6.4.5-3) [from the interaction sweep: interpolated on the interaction sweep at P = 0]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="DC_splice = M_splice/M_r_P0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>DC_splice = M_splice/M_r_P0</expbody>
@@ -1516,7 +1495,7 @@
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">D/C, Eq. 5.6.4.5-3</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True" pagebreakbefore="break">9. Resultant bending axis (strain compatibility at the demand angle)</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">The demand moment is resisted about the axis of the resultant moment. The notebook sweeps the curve again with the section rotated by the folded angle alpha (0 to 45 degrees, the square being symmetric); the demand ray from the origin meets the phi-curve at (Pr, Mr) and D/C = Mu / Mr along the ray. The angle and that point are the notebook's (amber inputs); tan(alpha) = M_min / M_max proves the angle, and the check at c_gov below recomputes the section.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">The demand moment is resisted about the axis of the resultant moment. The interaction sweep is repeated with the section rotated by the folded angle alpha (0 to 45 degrees, the square being symmetric); the demand ray from the origin meets the phi-curve at (Pr, Mr) and D/C = Mu / Mr along the ray. The angle and that point are read from the sweep (amber inputs); tan(alpha) = M_min / M_max proves the angle, and the check at c_gov below recomputes the section.</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="P_u_rs = P_u_3 to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>P_u_rs = P_u_3 to kip</expbody>
@@ -1536,7 +1515,7 @@
         <expbody>alpha_rs = 21.100544254726284 deg</expbody>
       </dynexp>
     </paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">bending-axis angle of the resultant moment, from the notebook (folded to 0-45 deg)</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">bending-axis angle of the resultant moment, from the sweep (folded to 0-45 deg)</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="tan_rs = Tan(alpha_rs)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>tan_rs = Tan(alpha_rs)</expbody>
@@ -1759,13 +1738,13 @@
         <expbody>P_r_rs = 270.5142288782417 kip</expbody>
       </dynexp>
     </paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">axial resistance where the ray meets the curve [from the notebook: where the demand ray meets the notebook curve]</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">axial resistance where the ray meets the curve [from the interaction sweep: where the demand ray meets the interaction curve]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="M_r_rs = 255.5566532131824 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
         <expbody>M_r_rs = 255.5566532131824 kip*ft</expbody>
       </dynexp>
     </paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">moment resistance where the ray meets the curve [from the notebook: where the demand ray meets the notebook curve]</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">moment resistance where the ray meets the curve [from the interaction sweep: where the demand ray meets the interaction curve]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="lam_rs = (P_u_rs*P_r_rs/(1 kip^2) + M_u_rs*M_r_rs/(1 kip^2*ft^2))/((P_u_rs/(1 kip))^2 + (M_u_rs/(1 kip*ft))^2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>lam_rs = (P_u_rs*P_r_rs/(1 kip^2) + M_u_rs*M_r_rs/(1 kip^2*ft^2))/((P_u_rs/(1 kip))^2 + (M_u_rs/(1 kip*ft))^2)</expbody>
@@ -1787,14 +1766,14 @@
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">D/C, resultant bending axis</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="12" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="6" keepwithnext="True">Check at the notebook's solved neutral-axis depth</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">The demand ray meets the notebook sweep between two neighbouring points; the neutral-axis depth there is interpolated. The sheet takes the notebook's depth c_gov as an input and evaluates the section exactly at c_gov (no interpolation between sweep points). The 121-point sweep itself is not written as formulas (see Section 7).</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="12" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="6" keepwithnext="True">Check at the solved neutral-axis depth</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">The demand ray meets the sweep between two neighbouring points; the neutral-axis depth there is interpolated. This calculation takes the solved depth c_gov as an input and evaluates the section exactly at c_gov (no interpolation between sweep points). The 121-point sweep itself is not written as formulas (see Section 7).</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="c_gov = 13.316264227199731 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
         <expbody>c_gov = 13.316264227199731 in</expbody>
       </dynexp>
     </paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">neutral-axis depth where the demand ray meets the resultant-axis curve, from the notebook</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">neutral-axis depth where the demand ray meets the resultant-axis curve, from the sweep</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="a_cg = Min(β_1*c_gov, H_r) to in" mathlayout="on" showformula="True" showresult="False" showsteps="False">
         <expbody>a_cg = Min(β_1*c_gov, H_r) to in</expbody>
@@ -2143,32 +2122,32 @@
         <stylerule range="A1:G1" horzalign="Center" vertalign="Center"/>
         <stylerule range="B2:G13" horzalign="Center" vertalign="Center"/>
         <row>
-          <c capture="False" background="#DCECE0" fontweight="bold">
-            <textvalue>Strand</textvalue>
-          </c>
-          <c capture="False" background="#DCECE0" fontweight="bold">
-            <textvalue>x (in)</textvalue>
-          </c>
-          <c capture="False" background="#DCECE0" fontweight="bold">
-            <textvalue>y (in)</textvalue>
-          </c>
-          <c capture="False" background="#DCECE0" fontweight="bold">
-            <textvalue>s (in)</textvalue>
-          </c>
-          <c capture="False" background="#DCECE0" fontweight="bold">
-            <textvalue>d (in)</textvalue>
-          </c>
-          <c capture="False" background="#DCECE0" fontweight="bold">
-            <textvalue>strain</textvalue>
-          </c>
-          <c capture="False" background="#DCECE0" fontweight="bold">
-            <textvalue>stress (ksi)</textvalue>
-          </c>
+          <textcell name="StrandTableR0C0" capture="False" background="#DCECE0">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strand</paragraph>
+          </textcell>
+          <textcell name="StrandTableR0C1" capture="False" background="#DCECE0">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">x (in)</paragraph>
+          </textcell>
+          <textcell name="StrandTableR0C2" capture="False" background="#DCECE0">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">y (in)</paragraph>
+          </textcell>
+          <textcell name="StrandTableR0C3" capture="False" background="#DCECE0">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">s (in)</paragraph>
+          </textcell>
+          <textcell name="StrandTableR0C4" capture="False" background="#DCECE0">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">d (in)</paragraph>
+          </textcell>
+          <textcell name="StrandTableR0C5" capture="False" background="#DCECE0">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">strain</paragraph>
+          </textcell>
+          <textcell name="StrandTableR0C6" capture="False" background="#DCECE0">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">stress (ksi)</paragraph>
+          </textcell>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 1</textvalue>
-          </c>
+          <textcell name="StrandTableR1C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 1</paragraph>
+          </textcell>
           <c formula="x_st_1 to in" capture="False" background="#EFF7F1">
             <num>-5.500 in</num>
           </c>
@@ -2189,9 +2168,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 2</textvalue>
-          </c>
+          <textcell name="StrandTableR2C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 2</paragraph>
+          </textcell>
           <c formula="x_st_2 to in" capture="False" background="#EFF7F1">
             <num>-1.833 in</num>
           </c>
@@ -2212,9 +2191,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 3</textvalue>
-          </c>
+          <textcell name="StrandTableR3C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 3</paragraph>
+          </textcell>
           <c formula="x_st_3 to in" capture="False" background="#EFF7F1">
             <num>1.833 in</num>
           </c>
@@ -2235,9 +2214,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 4</textvalue>
-          </c>
+          <textcell name="StrandTableR4C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 4</paragraph>
+          </textcell>
           <c formula="x_st_4 to in" capture="False" background="#EFF7F1">
             <num>5.500 in</num>
           </c>
@@ -2258,9 +2237,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 5</textvalue>
-          </c>
+          <textcell name="StrandTableR5C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 5</paragraph>
+          </textcell>
           <c formula="x_st_5 to in" capture="False" background="#EFF7F1">
             <num>-5.500 in</num>
           </c>
@@ -2281,9 +2260,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 6</textvalue>
-          </c>
+          <textcell name="StrandTableR6C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 6</paragraph>
+          </textcell>
           <c formula="x_st_6 to in" capture="False" background="#EFF7F1">
             <num>-1.833 in</num>
           </c>
@@ -2304,9 +2283,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 7</textvalue>
-          </c>
+          <textcell name="StrandTableR7C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 7</paragraph>
+          </textcell>
           <c formula="x_st_7 to in" capture="False" background="#EFF7F1">
             <num>1.833 in</num>
           </c>
@@ -2327,9 +2306,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 8</textvalue>
-          </c>
+          <textcell name="StrandTableR8C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 8</paragraph>
+          </textcell>
           <c formula="x_st_8 to in" capture="False" background="#EFF7F1">
             <num>5.500 in</num>
           </c>
@@ -2350,9 +2329,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 9</textvalue>
-          </c>
+          <textcell name="StrandTableR9C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 9</paragraph>
+          </textcell>
           <c formula="x_st_9 to in" capture="False" background="#EFF7F1">
             <num>-5.500 in</num>
           </c>
@@ -2373,9 +2352,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 10</textvalue>
-          </c>
+          <textcell name="StrandTableR10C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 10</paragraph>
+          </textcell>
           <c formula="x_st_10 to in" capture="False" background="#EFF7F1">
             <num>-5.500 in</num>
           </c>
@@ -2396,9 +2375,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 11</textvalue>
-          </c>
+          <textcell name="StrandTableR11C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 11</paragraph>
+          </textcell>
           <c formula="x_st_11 to in" capture="False" background="#EFF7F1">
             <num>5.500 in</num>
           </c>
@@ -2419,9 +2398,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 12</textvalue>
-          </c>
+          <textcell name="StrandTableR12C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 12</paragraph>
+          </textcell>
           <c formula="x_st_12 to in" capture="False" background="#EFF7F1">
             <num>5.500 in</num>
           </c>
@@ -2587,7 +2566,7 @@
         </planecontainer>
       </canvas>
     </embed>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Figure 2. Interaction diagram: factored curves for bending parallel to a face and about the governing resultant axis, the nominal curve (dashed) and the governing demand points. The curves are a picture of the notebook's 121-point sweep and do not move when an input changes; the check at c_gov (Section 9), the demands, the phi Pn,max line and the demand points are live.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Figure 2. Interaction diagram: factored curves for bending parallel to a face and about the governing resultant axis, the nominal curve (dashed) and the governing demand points. The curves are a picture of the 121-point interaction sweep and do not move when an input changes; the check at c_gov (Section 9), the demands, the phi Pn,max line and the demand points are live.</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">10. Tension (LRFD 5.6.6.1, 5.8.2.4.1-1)</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="P_n_t = A_ps*Min(f_py, f_pe + (60 ksi)) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
@@ -2611,7 +2590,7 @@
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">tension D/C, maximum strength uplift</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True" pagebreakbefore="break">11. Shear: general procedure (LRFD 5.7.3.3, 5.7.3.4.2)</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Governing shear record (record 4). Aps and de are those of the half depth on the flexural tension side of the resultant bending axis (angle alpha_sh from the notebook). Spiral legs crossing the shear plane: two.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Governing shear record (record 4). Aps and de are those of the half depth on the flexural tension side of the resultant bending axis (angle alpha_sh from the sweep). Spiral legs crossing the shear plane: two.</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="V_u_sh = V_res_4 to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>V_u_sh = V_res_4 to kip</expbody>
@@ -2638,7 +2617,7 @@
         <expbody>alpha_sh = 1.712079533854103 deg</expbody>
       </dynexp>
     </paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">bending-axis angle of the shear record, from the notebook (folded to 0-45 deg)</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">bending-axis angle of the shear record, from the sweep (folded to 0-45 deg)</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="tan_sh = Tan(alpha_sh)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>tan_sh = Tan(alpha_sh)</expbody>
@@ -2937,23 +2916,23 @@
         <stylerule range="A1:D1" horzalign="Center" vertalign="Center"/>
         <stylerule range="B2:D13" horzalign="Center" vertalign="Center"/>
         <row>
-          <c capture="False" background="#DCECE0" fontweight="bold">
-            <textvalue>Strand</textvalue>
-          </c>
-          <c capture="False" background="#DCECE0" fontweight="bold">
-            <textvalue>s (in)</textvalue>
-          </c>
-          <c capture="False" background="#DCECE0" fontweight="bold">
-            <textvalue>on tension half (1)</textvalue>
-          </c>
-          <c capture="False" background="#DCECE0" fontweight="bold">
-            <textvalue>w (in)</textvalue>
-          </c>
+          <textcell name="ShearStrandTableR0C0" capture="False" background="#DCECE0">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strand</paragraph>
+          </textcell>
+          <textcell name="ShearStrandTableR0C1" capture="False" background="#DCECE0">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">s (in)</paragraph>
+          </textcell>
+          <textcell name="ShearStrandTableR0C2" capture="False" background="#DCECE0">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">on tension half (1)</paragraph>
+          </textcell>
+          <textcell name="ShearStrandTableR0C3" capture="False" background="#DCECE0">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">w (in)</paragraph>
+          </textcell>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 1</textvalue>
-          </c>
+          <textcell name="ShearStrandTableR1C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 1</paragraph>
+          </textcell>
           <c formula="s_sh_1 to in" capture="False" background="#EFF7F1">
             <num>-5.333 in</num>
           </c>
@@ -2965,9 +2944,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 2</textvalue>
-          </c>
+          <textcell name="ShearStrandTableR2C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 2</paragraph>
+          </textcell>
           <c formula="s_sh_2 to in" capture="False" background="#EFF7F1">
             <num>-5.443 in</num>
           </c>
@@ -2979,9 +2958,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 3</textvalue>
-          </c>
+          <textcell name="ShearStrandTableR3C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 3</paragraph>
+          </textcell>
           <c formula="s_sh_3 to in" capture="False" background="#EFF7F1">
             <num>-5.552 in</num>
           </c>
@@ -2993,9 +2972,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 4</textvalue>
-          </c>
+          <textcell name="ShearStrandTableR4C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 4</paragraph>
+          </textcell>
           <c formula="s_sh_4 to in" capture="False" background="#EFF7F1">
             <num>-5.662 in</num>
           </c>
@@ -3007,9 +2986,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 5</textvalue>
-          </c>
+          <textcell name="ShearStrandTableR5C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 5</paragraph>
+          </textcell>
           <c formula="s_sh_5 to in" capture="False" background="#EFF7F1">
             <num>5.662 in</num>
           </c>
@@ -3021,9 +3000,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 6</textvalue>
-          </c>
+          <textcell name="ShearStrandTableR6C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 6</paragraph>
+          </textcell>
           <c formula="s_sh_6 to in" capture="False" background="#EFF7F1">
             <num>5.552 in</num>
           </c>
@@ -3035,9 +3014,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 7</textvalue>
-          </c>
+          <textcell name="ShearStrandTableR7C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 7</paragraph>
+          </textcell>
           <c formula="s_sh_7 to in" capture="False" background="#EFF7F1">
             <num>5.443 in</num>
           </c>
@@ -3049,9 +3028,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 8</textvalue>
-          </c>
+          <textcell name="ShearStrandTableR8C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 8</paragraph>
+          </textcell>
           <c formula="s_sh_8 to in" capture="False" background="#EFF7F1">
             <num>5.333 in</num>
           </c>
@@ -3063,9 +3042,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 9</textvalue>
-          </c>
+          <textcell name="ShearStrandTableR9C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 9</paragraph>
+          </textcell>
           <c formula="s_sh_9 to in" capture="False" background="#EFF7F1">
             <num>-1.668 in</num>
           </c>
@@ -3077,9 +3056,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 10</textvalue>
-          </c>
+          <textcell name="ShearStrandTableR10C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 10</paragraph>
+          </textcell>
           <c formula="s_sh_10 to in" capture="False" background="#EFF7F1">
             <num>1.997 in</num>
           </c>
@@ -3091,9 +3070,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 11</textvalue>
-          </c>
+          <textcell name="ShearStrandTableR11C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 11</paragraph>
+          </textcell>
           <c formula="s_sh_11 to in" capture="False" background="#EFF7F1">
             <num>-1.997 in</num>
           </c>
@@ -3105,9 +3084,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>Strand 12</textvalue>
-          </c>
+          <textcell name="ShearStrandTableR12C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strand 12</paragraph>
+          </textcell>
           <c formula="s_sh_12 to in" capture="False" background="#EFF7F1">
             <num>1.668 in</num>
           </c>
@@ -3423,7 +3402,7 @@
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">minimum size D/C</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Pile-to-cap moment transfer (SDG 3.5.1.C) needs 48 in of embedment for the full bending capacity; the embedment here is 12 in, so the connection stays a PENDING item of the notebook.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Pile-to-cap moment transfer (SDG 3.5.1.C) needs 48 in of embedment for the full bending capacity; the embedment here is 12 in, so full moment transfer at the pile head is not credited in this calculation.</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">14. Geotechnical resistance (SDG 3.5.13)</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">SDG Eq. 3-1: Rn &gt;= (Factored Design Load + Net Scour Resistance + Downdrag) / phi. The downdrag enters nominally; the minimum tip elevation, scour and test-pile length of the Pile Data Table come from the geotechnical handoff.</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
@@ -3475,14 +3454,14 @@
         <expresult> = 1.000</expresult>
       </dynexp>
     </paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">largest of the distilled ratios</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">largest of the check ratios</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="Status = If(DC_max &lt;= 1, &quot;✓ All Checks Pass&quot;, &quot;⊗ There are FAILURES&quot;)" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False">
         <expbody>Status = If(DC_max &lt;= 1, "✓ All Checks Pass", "⊗ There are FAILURES")</expbody>
-        <expresult> = ✓ All Checks Pass</expresult>
+        <expresult>✓ All Checks Pass</expresult>
       </dynexp>
     </paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">distilled numerical checks only</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">numerical checks of this calculation</paragraph>
     <section name="Checks" capture="False" hide="true">
       <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
         <dynexp formula="Chk_axial = If(DC_axial &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
@@ -3563,20 +3542,20 @@
         <stylerule range="A1:C1" horzalign="Center" vertalign="Center"/>
         <stylerule range="B2:C14" horzalign="Center" vertalign="Center"/>
         <row>
-          <c capture="False" background="#DCECE0" fontweight="bold">
-            <textvalue>Check</textvalue>
-          </c>
-          <c capture="False" background="#DCECE0" fontweight="bold">
-            <textvalue>D/C</textvalue>
-          </c>
-          <c capture="False" background="#DCECE0" fontweight="bold">
-            <textvalue>Result</textvalue>
-          </c>
+          <textcell name="SummaryR0C0" capture="False" background="#DCECE0">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Check</paragraph>
+          </textcell>
+          <textcell name="SummaryR0C1" capture="False" background="#DCECE0">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">D/C</paragraph>
+          </textcell>
+          <textcell name="SummaryR0C2" capture="False" background="#DCECE0">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Result</paragraph>
+          </textcell>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>1. axial compression</textvalue>
-          </c>
+          <textcell name="SummaryR1C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">1. axial compression</paragraph>
+          </textcell>
           <c formula="DC_axial" capture="False" background="#EFF7F1">
             <num>0.137</num>
           </c>
@@ -3585,9 +3564,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>2. axial + biaxial flexure, 5.6.4.5</textvalue>
-          </c>
+          <textcell name="SummaryR2C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">2. axial + biaxial flexure, 5.6.4.5</paragraph>
+          </textcell>
           <c formula="DC_bi" capture="False" background="#EFF7F1">
             <num>0.519</num>
           </c>
@@ -3596,9 +3575,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>3. axial + flexure, resultant axis</textvalue>
-          </c>
+          <textcell name="SummaryR3C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">3. axial + flexure, resultant axis</paragraph>
+          </textcell>
           <c formula="DC_rs" capture="False" background="#EFF7F1">
             <num>0.444</num>
           </c>
@@ -3607,9 +3586,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>4. shear</textvalue>
-          </c>
+          <textcell name="SummaryR4C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">4. shear</paragraph>
+          </textcell>
           <c formula="DC_shear" capture="False" background="#EFF7F1">
             <num>0.079</num>
           </c>
@@ -3618,9 +3597,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>5. tension</textvalue>
-          </c>
+          <textcell name="SummaryR5C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">5. tension</paragraph>
+          </textcell>
           <c formula="DC_t" capture="False" background="#EFF7F1">
             <num>0.000</num>
           </c>
@@ -3629,9 +3608,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>6. Service I compression</textvalue>
-          </c>
+          <textcell name="SummaryR6C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">6. Service I compression</paragraph>
+          </textcell>
           <c formula="DC_svc_c" capture="False" background="#EFF7F1">
             <num>0.557</num>
           </c>
@@ -3640,9 +3619,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>7. Service I tension</textvalue>
-          </c>
+          <textcell name="SummaryR7C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">7. Service I tension</paragraph>
+          </textcell>
           <c formula="DC_svc_t" capture="False" background="#EFF7F1">
             <num>0.000</num>
           </c>
@@ -3651,9 +3630,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>8. effective prestress</textvalue>
-          </c>
+          <textcell name="SummaryR8C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">8. effective prestress</paragraph>
+          </textcell>
           <c formula="DC_pre" capture="False" background="#EFF7F1">
             <num>0.675</num>
           </c>
@@ -3662,9 +3641,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>9. driving strength</textvalue>
-          </c>
+          <textcell name="SummaryR9C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">9. driving strength</paragraph>
+          </textcell>
           <c formula="DC_fc" capture="False" background="#EFF7F1">
             <num>0.769</num>
           </c>
@@ -3673,9 +3652,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>10. minimum size</textvalue>
-          </c>
+          <textcell name="SummaryR10C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">10. minimum size</paragraph>
+          </textcell>
           <c formula="DC_size" capture="False" background="#EFF7F1">
             <num>0.778</num>
           </c>
@@ -3684,9 +3663,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>11. pile spacing</textvalue>
-          </c>
+          <textcell name="SummaryR11C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">11. pile spacing</paragraph>
+          </textcell>
           <c formula="DC_sp" capture="False" background="#EFF7F1">
             <num>1.000</num>
           </c>
@@ -3695,9 +3674,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>12. bearing resistance vs Table 3.5.13-1</textvalue>
-          </c>
+          <textcell name="SummaryR12C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">12. bearing resistance vs Table 3.5.13-1</paragraph>
+          </textcell>
           <c formula="DC_nbr" capture="False" background="#EFF7F1">
             <num>0.299</num>
           </c>
@@ -3706,9 +3685,9 @@
           </c>
         </row>
         <row>
-          <c capture="False" background="#EFF7F1">
-            <textvalue>OVERALL</textvalue>
-          </c>
+          <textcell name="SummaryR13C0" capture="False" background="#EFF7F1">
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">OVERALL</paragraph>
+          </textcell>
           <c formula="DC_max" capture="False" background="#EFF7F1">
             <num>1.000</num>
           </c>
@@ -3805,10 +3784,8 @@
         </planecontainer>
       </canvas>
     </embed>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Figure 3. Demand/capacity ratio of each distilled check (stems) against the 1.0 limit. The stems are live formulas of the check ratios: a stem turns red when its ratio passes 1.0.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Figure 3. Demand/capacity ratio of each check (stems) against the 1.0 limit. The stems are live formulas of the check ratios: a stem turns red when its ratio passes 1.0.</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C" background="#F1F5FA">Check numbers: 1 axial compression; 2 axial + biaxial flexure, 5.6.4.5; 3 axial + flexure, resultant axis; 4 shear; 5 tension; 6 Service I compression; 7 Service I tension; 8 effective prestress; 9 driving strength; 10 minimum size; 11 pile spacing; 12 bearing resistance vs Table 3.5.13-1.</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C" background="#F1F5FA">The notebook lists 15 PENDING items; the distilled ratios above do not close them: Axial compression · maximum Pu / φPn,max; Axial + biaxial flexure · LRFD Eq. 5.6.4.5-3; Axial + flexure · resultant bending axis (strain compatibility); Shear · general procedure; Service I concrete tension; Minimum square pile size (Table 3.5.1-1); Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4); Environment classification; Pile-to-cap connection (12 in embedment); Downdrag source documented; FBMP export current; Minimum tip elevation; Scour resistance and elevations; Drivability.</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C" background="#F1F5FA">FB-MultiPier reports a largest model D/C of 0.50 at combo 2 STRENGTH-III · pile 4 · element 12J · EL 18.23 ft. The distilled Status covers the recomputed numerical checks only; it is not design acceptance.</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="5" textcolor="#43505C">A distilled result of ✓ covers only the recomputed numerical checks; it is not design acceptance. The pending items of the notebook stay open. Recalculate in Blockpad after any input change.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C" background="#F1F5FA">FB-MultiPier reports a largest model D/C of 0.50 at combo 2 STRENGTH-III · pile 4 · element 12J · EL 18.23 ft.</paragraph>
   </report>
 </document>

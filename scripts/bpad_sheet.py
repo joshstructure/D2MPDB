@@ -864,7 +864,9 @@ def is_function_definition(formula):
 def equation(parent, formula, caption='', style=None, show_result=True, inline=False):
     """One definition as a native dynexp paragraph, with its caption (after a tab when `inline`, else below)."""
     func = is_function_definition(formula)
-    if inline and caption:
+    if parent.tag == 'paragraph':
+        p = parent                                   # the caller's paragraph (a table cell)
+    elif inline and caption:
         p = para(parent, level='1', spacingafter='4')
     else:
         p = para(parent, spacingbefore='4', spacingafter='1', keepwithnext='True')
@@ -889,6 +891,74 @@ def section(parent, name, hide=True):
     return ET.SubElement(parent, 'section', name=name, capture='False', hide='true' if hide else 'false')
 
 
+WORKING_NOTES = 'WorkingNotes'
+WORKING_NOTES_INTRO = ('Working notes (hidden; not part of the submitted calculation): how this edition was produced, its '
+                       'tool status and the open bookkeeping items.')
+
+
+def working_notes(parent, name=WORKING_NOTES):
+    """The hidden section that keeps the working language (provenance, status, pending items) out of the submitted text."""
+    sec = section(parent, name, hide=True)
+    para(sec, WORKING_NOTES_INTRO, fontsize='10', fontweight='bold', textcolor=NOTE_COLOR, spacingafter='4')
+    return sec
+
+
+def is_hidden(el):
+    return el.tag == 'section' and (el.get('hide') or '').lower() == 'true'
+
+
+def visible_text_elements(report):
+    """Every paragraph, heading and table cell outside hidden sections, with its visible text."""
+    def walk(node, hidden):
+        if node.tag == 'section':
+            hidden = hidden or is_hidden(node)
+        if node.tag in ('paragraph', 'heading', 'c', 'textcell'):
+            if not hidden:
+                text = ' '.join(''.join(node.itertext()).split())
+                if text:
+                    yield node, text
+            if node.tag != 'textcell':
+                return
+        for child in node:
+            yield from walk(child, hidden)
+    for child in report:
+        yield from walk(child, False)
+
+
+def rewrite_visible_text(report, rules):
+    """Apply (old, new) text replacements to the prose outside hidden sections (text and tails; formulas untouched)."""
+    def walk(node, hidden):
+        if node.tag == 'section':
+            hidden = hidden or is_hidden(node)
+        if not hidden and node.tag not in ('dynexp', 'expbody', 'expresult'):
+            for attr in ('text', 'tail'):
+                text = getattr(node, attr)
+                if text:
+                    for old, new in rules:
+                        text = text.replace(old, new)
+                    setattr(node, attr, text)
+        for child in node:
+            walk(child, hidden)
+    for child in report:
+        walk(child, False)
+
+
+# Working language that must not reach the visible text of a submitted calculation.
+SUBMISSION_FORBIDDEN = re.compile(r'distill|notebook|\btools?\b|journal|\bD-\d{3}\b|\bT0\d{2}\b|\.py\b|\.ipynb|SHA-256|sha256'
+                                  r'|pending|Codex|\btask\b|not design acceptance|working copy', re.I)
+
+
+def check_submission_text(report, forbidden=SUBMISSION_FORBIDDEN):
+    """Stop when the visible prose of a report still carries working language (see SUBMISSION_FORBIDDEN)."""
+    bad = []
+    for el, text in visible_text_elements(report):
+        m = forbidden.search(text)
+        if m:
+            bad.append(f'  {el.tag} ({m.group(0)!r}): {text[:120]}')
+    if bad:
+        raise ValueError(f'working language in the visible text of {report.get("name")}:\n' + '\n'.join(bad))
+
+
 def link(parent, text, address):
     p = para(parent, fontsize='9')
     ET.SubElement(p, 'link', address=address).text = text
@@ -899,8 +969,25 @@ def column_letter(i):
     return chr(ord('A') + i)
 
 
+def text_cell(parent, text, font, bold=False, center=False, name=None, **attrs):
+    """A multiline (textcell) table cell holding one paragraph of static text: text never clips as it does in a value cell.
+
+    Bold goes on the paragraph (the native pattern); the background stays on the cell."""
+    cell = ET.SubElement(parent, 'textcell', **({'name': name} if name else {}), **attrs)
+    extra = {}
+    if bold:
+        extra['fontweight'] = 'bold'
+    if center:
+        extra['horzalign'] = 'Center'
+    para(cell, text, fontsize=font, spacingafter='0', **extra)
+    return cell
+
+
 def table(parent, name, headers, rows, widths, palette='output', font='10'):
-    """A native table. A cell is a string, ('formula', text) or ('define', formula, style)."""
+    """A native table. A cell is a string, ('formula', text) or ('define', formula, style).
+
+    Text cells are multiline cells (`textcell`), so long labels wrap instead of clipping; formula cells are value cells
+    (`c`), which carry the numbers and the PASS/FAIL strings the conditional colour rules act on."""
     body, head, border = PALETTE[palette]
     embed = ET.SubElement(parent, 'embed', spacingbefore='5', spacingafter='8')
     t = ET.SubElement(embed, 'table', name=name, capture='False', colwidths=', '.join(f'{i + 1}:{w}' for i, w in enumerate(widths)))
@@ -918,8 +1005,6 @@ def table(parent, name, headers, rows, widths, palette='output', font='10'):
         tr = ET.SubElement(t, 'row')
         for j, v in enumerate(row):
             attrs = {'capture': 'False', 'background': head if i == 0 else body}
-            if i == 0:
-                attrs['fontweight'] = 'bold'
             if isinstance(v, tuple) and v[0] == 'define':
                 cell = ET.SubElement(tr, 'textcell', name=f'{name}R{i}C{j}', **attrs)
                 p = para(cell, fontsize=font, spacingafter='2')
@@ -927,13 +1012,11 @@ def table(parent, name, headers, rows, widths, palette='output', font='10'):
                                     showsteps='False', **({'style': v[2]} if v[2] else {}))
                 ET.SubElement(dyn, 'expbody').text = v[1]
             elif isinstance(v, tuple) and v[0] == 'formula':
+                if i == 0:
+                    attrs['fontweight'] = 'bold'
                 cell = ET.SubElement(tr, 'c', formula=v[1], **attrs)
-            elif isinstance(v, str) and len(v) > widths[j] / 4.5:
-                cell = ET.SubElement(tr, 'textcell', name=f'{name}R{i}C{j}', **attrs)
-                para(cell, v, fontsize=font, spacingafter='2')
             else:
-                cell = ET.SubElement(tr, 'c', **attrs)
-                ET.SubElement(cell, 'textvalue').text = str(v)
+                text_cell(tr, str(v), font, bold=(i == 0), center=(i == 0 or j > 0), name=f'{name}R{i}C{j}', **attrs)
     return t
 
 
@@ -949,8 +1032,9 @@ def project_stamp_table(parent, values, live=True, name='ProjectStamp'):
     """The project stamp: a 4-column discussion-palette table (Firm | value | Project | value, ...), appended to `parent`.
 
     `values` maps the ProjectInfo names (Firm, Address, Project, JobNo, DesignedBy, DesignDate, CheckedBy, CheckDate) to
-    text. With `live` each value cell is a live reference (`formula="ProjectInfo.<Key>"`) that caches the text; without it
-    the cell is static text. The same inputs always give the same XML."""
+    text. Every cell is a multiline cell, so the long project name wraps instead of clipping. With `live` each value cell
+    holds a result-only reference (`dynexp formula="ProjectInfo.<Key>"`) whose cached result is the text; without it the
+    cell is static text. The same inputs always give the same XML."""
     missing = [k for k in STAMP_KEYS if k not in values]
     if missing:
         raise ValueError(f'project stamp values missing: {missing}')
@@ -960,15 +1044,39 @@ def project_stamp_table(parent, values, live=True, name='ProjectStamp'):
                       colwidths=', '.join(f'{i + 1}:{w}' for i, w in enumerate(STAMP_COLWIDTHS)))
     ET.SubElement(t, 'stylerule', range=f'A1:D{len(STAMP_ROWS)}', fontfamily=TNR, fontsize='9', vertalign='Center',
                   border=f'Border("AllSides", "Solid", 0.6, "{border}"); Border("BetweenRows", "Solid", 0.4, "{border}");')
-    for left_label, left_key, right_label, right_key in STAMP_ROWS:
+    for i, (left_label, left_key, right_label, right_key) in enumerate(STAMP_ROWS):
         tr = ET.SubElement(t, 'row')
-        for label, key in ((left_label, left_key), (right_label, right_key)):
-            cell = ET.SubElement(tr, 'c', capture='False', background=body, fontweight='bold')
-            ET.SubElement(cell, 'textvalue').text = label
-            attrs = {'formula': f'{PROJECT_INFO}.{key}'} if live else {}
-            cell = ET.SubElement(tr, 'c', capture='False', background=body, **attrs)
-            ET.SubElement(cell, 'textvalue').text = str(values[key])
+        for j, (label, key) in enumerate(((left_label, left_key), (right_label, right_key))):
+            text_cell(tr, label, '9', bold=True, name=f'{name}R{i}C{2 * j}', capture='False', background=body)
+            cell_name = f'{name}R{i}C{2 * j + 1}'
+            if live:
+                # a result-only definition (Stamp_Firm = ProjectInfo.Firm): the text of the owner, wrapped by the multiline cell
+                cell = ET.SubElement(tr, 'textcell', name=cell_name, capture='False', background=body)
+                p = para(cell, fontsize='9', spacingafter='0')
+                equation(p, f'{STAMP_PREFIX}{key} = {PROJECT_INFO}.{key}', style='Result only', inline=True)
+            else:
+                text_cell(tr, str(values[key]), '9', name=cell_name, capture='False', background=body)
     return t
+
+
+STAMP_PREFIX = 'Stamp_'                      # the live stamp definitions: Stamp_Firm = ProjectInfo.Firm, ...
+
+
+def stamp_cells(table_el):
+    """(label, cached value text, referenced owner or None) of the eight value cells of a project stamp table, row by row."""
+    out = []
+    for row in table_el.findall('row'):
+        cells = list(row)
+        for label, value in zip(cells[0::2], cells[1::2]):
+            dyn = value.find('.//dynexp')
+            if dyn is not None:
+                cache = dyn.find('expresult')
+                text = ((cache.text if cache is not None else '') or '').strip()
+                owner = dyn.get('formula').partition('=')[2].strip()
+            else:
+                text, owner = ''.join(value.itertext()).strip(), value.get('formula')
+            out.append((''.join(label.itertext()).strip(), text, owner))
+    return out
 
 
 class Canvas:
@@ -1059,7 +1167,9 @@ def write_caches(report, engine, qualified_prefix=None):
         _strip_cache(el)
         if lhs is not None:
             engine.get(lhs)
-            ET.SubElement(el, 'expresult').text = ' = ' + engine.display(lhs)
+            # a result-only definition shows the value alone (Blockpad caches it without the "= ", as the journal shows)
+            prefix = '' if el.get('style') == 'Result only' else ' = '
+            ET.SubElement(el, 'expresult').text = prefix + engine.display(lhs)
         else:
             ET.SubElement(el, 'expresult').text = engine.display_formula(formula)
         count += 1

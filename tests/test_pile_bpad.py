@@ -27,8 +27,8 @@ HOW = 'run python scripts/build_pile_bpad.py after changing the pile_design pack
 NAMES = {'End Bent 1': ('PileDesignEndBentOne', 'End Bent 1 Pile Design.bpad'),
          'End Bent 2': ('PileDesignEndBentTwo', 'End Bent 2 Pile Design.bpad'),
          'Pier': ('PileDesignPier', 'Pier Pile Design.bpad')}
-TITLES = {'End Bent 1': 'End Bent 1 Pile Design - Distilled', 'End Bent 2': 'End Bent 2 Pile Design - Distilled',
-          'Pier': 'Pier Pile Design - Distilled'}
+TITLES = {'End Bent 1': 'C011 - End Bent 1 Pile Design', 'End Bent 2': 'C012 - End Bent 2 Pile Design',
+          'Pier': 'C013 - Pier Pile Design'}
 PASS, FAIL = '✓ PASS', '⊗ FAIL'
 ALL_PASS, FAILURES = '✓ All Checks Pass', '⊗ There are FAILURES'
 ALLOWED_FUNCTIONS = {'If', 'And', 'Or', 'Not', 'Min', 'Max', 'Sqrt', 'Abs', 'Round', 'Floor', 'Tan', 'Sin', 'Cos', 'Atan', 'Asin', 'PlotLines'}

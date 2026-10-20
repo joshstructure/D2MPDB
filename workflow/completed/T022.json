@@ -1,0 +1,37 @@
+{
+  "task": "T022",
+  "journal_sha256": "7ee97c048e78fc813502757ddbf0b84b3cb8d19ae807da5f8e60356d5743b85a",
+  "previous_sha256": "39674378a62fa24184f43176914b2cca538cb64de015345cb29d911fc80747ce",
+  "promoted": "2026-10-20T16:16:55.870743+00:00",
+  "review": {
+    "candidate_sha256": "7ee97c048e78fc813502757ddbf0b84b3cb8d19ae807da5f8e60356d5743b85a",
+    "reviewer": "Claude (Fable 5.1) — bounded file-integrity verification only (tasks/T022/verify_task.py)",
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false,
+    "design_outcome": "unreviewed",
+    "external_analysis_disposition": "Presentation only: no input, formula or cache value changed; FBMP not rerun. Existing analysis limitations and open items of every calculation remain as recorded in their hidden working notes.",
+    "external_analysis_status": "unreviewed",
+    "inherited_issues_disposition": "Every existing definition, value-cell formula, canvas and resource preserved (multiset checks); the T018 native caches of the generated reports are superseded by generator caches of the same values (result-only cells without the \"= \" prefix). The multiline cells and the Stamp_* result-only definitions have not been opened natively.",
+    "evidence_files": [
+      {
+        "path": "verification.json",
+        "sha256": "995762dcbcb78f009985f295cb82291f3643c4526a213bd410dca008e53f2c8b"
+      },
+      {
+        "path": "independent-checks.json",
+        "sha256": "29c3ce238b03329c34e5de00d9c52636c94b049e5ed9b0bafc472990431e2b88"
+      },
+      {
+        "path": "definitions.json",
+        "sha256": "465da569a775a15ea1406661b2302d51ed4357022c85ae78562770b50670144a"
+      }
+    ]
+  },
+  "promotion_policy": {
+    "reviews_required": false,
+    "effective_date": "2026-10-16",
+    "basis": "User instructed that BPAD changes may proceed without mandatory native recalculation, appearance review or engineering review, until the user reinstates those requirements. Scope, dependency, exact-byte, reference-integrity and evidence checks remain mandatory."
+  },
+  "history": "workflow/history/7ee97c048e78fc813502757ddbf0b84b3cb8d19ae807da5f8e60356d5743b85a"
+}

@@ -1,19 +1,25 @@
-<report name="EndBentBackwallDesign" title="End Bent 1 Backwall, Cheek Walls and Tie-Back Straps - Distilled" unit="in" pagesize="816,1056" margin="48,48,48,48" bordermargin="0,0,0,0" collapsemargins="False">
+<report name="EndBentBackwallDesign" title="C014 - End Bent 1 Backwall, Cheek Walls and Tie-Back Straps" unit="in" pagesize="816,1056" margin="48,48,48,48" bordermargin="0,0,0,0" collapsemargins="False">
   <include target="Library.Geometry"/>
   <stylerule type="AnyEquation" name="Required Input" texthighlight="#F7E6B9"/>
   <paragraph fontfamily="Times New Roman" fontsize="16" spacingafter="2" fontweight="bold">D2 I-95 PEDESTRIAN BRIDGE</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold">End Bent 1 — Backwall, Cheek Walls and Tie-Back Straps</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Project: D2 I-95 Pedestrian Bridge · common end-bent design (D-004).</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Blockpad edition of End_Bent_Backwall_Design.ipynb (calculation package 16ee4d414858; case SHA-256 0ff135b29eacfd445c6c4a9983cf1e6c471c17fee747e0aab41f357bacd235d2). Same inputs, equations and load combinations as the notebook; every result below was recomputed and compared with the notebook. Blockpad edition written by scripts/build_backwall_bpad.py from the same case; every definition was evaluated independently and compared with the notebook to 1 part in 10⁹.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold">C014 - End Bent 1 Backwall, Cheek Walls and Tie-Back Straps</paragraph>
+  <section name="WorkingNotes" capture="False" hide="true">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="4" fontweight="bold" textcolor="#43505C">Working notes (hidden; not part of the submitted calculation): how this edition was produced, its tool status and the open bookkeeping items.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Blockpad edition of End_Bent_Backwall_Design.ipynb (calculation package 34f40710f89e; case SHA-256 0ff135b29eacfd445c6c4a9983cf1e6c471c17fee747e0aab41f357bacd235d2). Same inputs, equations and load combinations as the notebook; every result below was recomputed and compared with the notebook. Blockpad edition written by scripts/build_backwall_bpad.py from the same case; every definition was evaluated independently and compared with the notebook to 1 part in 10⁹.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Status: adopted CAD geometry reconciled 19 October 2026 (D-053 backwall tops, D-055 model; D-049 analysis export); single centered #4 cheek mat at 10 in each way. Prerequisites remain pending (Section 12).</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Pending before final design: geotechnical confirmation of 2 in maximum settlement above the cap bottom (SDG 3.13.2.N.3); strap elevation at an MSE reinforcement level; beam shrinkage strain; environment for the covers; matching current bearing-load analyses; cheek mat development and cap/lug load path. Geometry, journal Kz and landing basis are reconciled. The pile-head force V_pile is not in the FBMP model; raise the strap toward e_res or confirm the piles carry it.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="5" textcolor="#43505C">A ✓ status covers only the recomputed numerical checks; it is not design acceptance. Recalculate in Blockpad after any input change.</paragraph>
+  </section>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Project: D2 I-95 Pedestrian Bridge · common end-bent design.</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Codes: AASHTO LRFD Bridge Design Specifications, 10th edition (2024); FDOT Structures Design Guidelines (SDG) and Structures Detailing Manual (SDM), January 2026.</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Status: adopted CAD geometry reconciled 19 October 2026 (D-053 backwall tops, D-055 model; D-049 analysis export); single centered #4 cheek mat at 10 in each way. Prerequisites remain pending (Section 12). Inputs are highlighted amber; distilled results are the green tables.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Inputs are highlighted amber; results are the green tables.</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">1. Design basis</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Tie-back straps in the backwall extend into the MSE fill and resist the end-bent horizontal load and overturning (D-014). Attachment requires total settlement of the soil above the cap bottom of 2 in or less (SDG 3.13.2.N.3).</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Tie-back straps in the backwall extend into the MSE fill and resist the end-bent horizontal load and overturning. Attachment requires total settlement of the soil above the cap bottom of 2 in or less (SDG 3.13.2.N.3).</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• The single pile row is effectively pinned (FBMP fixity 0.10), so moments are taken about the pile top O. The strap force is F = max(H, M / y_strap); the piles supply M / y_strap − H at O.</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Vertical-load arms are measured from the pile line shifted 3 in toward the fill (placement tolerance, SDG 3.13.2.N.3). Permanent loads take the maximum factor on an overturning arm and the minimum on a stabilizing arm; live load and wind uplift take no stabilizing credit.</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Pedestrian load only (D-015): 90 psf live-load surcharge. Backfill φ = 30°, δ = 0, γ = 115 pcf, active Coulomb pressure (D-016).</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• The landing slab bears on the backwall (D-017): 50 % of its load goes to gravity design with no stabilizing credit; its weight on the fill acts as an earth surcharge ES.</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• The cheek walls retain no fill: wind only (D-018). The backwall is designed at the crown height with the strap 1.5 ft above the cap top (D-019).</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Pedestrian load only: 90 psf live-load surcharge. Backfill φ = 30°, δ = 0, γ = 115 pcf, active Coulomb pressure.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• The landing slab bears on the backwall: 50 % of its load goes to gravity design with no stabilizing credit; its weight on the fill acts as an earth surcharge ES.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• The cheek walls retain no fill: wind only. The backwall is designed at the crown height with the strap 1.5 ft above the cap top.</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Backwall states: strap slack, soil causes fill-face tension; strap engaged, the strap pull causes span-face tension. Both are designed.</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">2. Inputs</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Adopted CAD geometry and centered cheek mat</paragraph>
@@ -53,7 +59,7 @@
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Cheek centroid offset toward span from nominal pile line</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Geometry (D-053/D-055 native CAD snapshot)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Geometry (CAD model)</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="b_cap = 42 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>b_cap = 42 in</expbody></dynexp><break type="tab"/>Cap width along the bridge</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="h_cap = 36 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>h_cap = 36 in</expbody></dynexp><break type="tab"/>Cap depth</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="L_cap = 235 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>L_cap = 235 in</expbody></dynexp><break type="tab"/>Cap length transverse to the bridge</paragraph>
@@ -97,7 +103,7 @@
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="t_ck = 8 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>t_ck = 8 in</expbody></dynexp><break type="tab"/>Cheek wall thickness</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="w_ck = 42 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>w_ck = 42 in</expbody></dynexp><break type="tab"/>Cheek wall length along the bridge</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="H_ck = 5.031352523880976 ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>H_ck = 5.031352523880976 ft</expbody></dynexp><break type="tab"/>Cheek wall height above the cap top</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Soil and surcharge (D-015, D-016, D-017)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Soil and surcharge</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="phi_soil = 30 deg" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>phi_soil = 30 deg</expbody></dynexp><break type="tab"/>Backfill internal friction angle</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="delta_w = 0 deg" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>delta_w = 0 deg</expbody></dynexp><break type="tab"/>Wall friction angle (neglected)</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="theta_w = 90 deg" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>theta_w = 90 deg</expbody></dynexp><break type="tab"/>Back face angle from horizontal</paragraph>
@@ -127,7 +133,7 @@
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Share of landing slab load carried by the backwall (gravity design only)</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Bearings and superstructure (EB-XML End Bent 1_Fixed, D-049; journal pad data)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Bearings and superstructure (FBMP End Bent 1_Fixed; shared pad data)</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="N_brg = 2" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>N_brg = 2</expbody></dynexp><break type="tab"/>Bearings at the end bent</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="P_DC = 92.07 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>P_DC = 92.07 kip</expbody></dynexp><break type="tab"/>DC reaction per bearing</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="P_PL = 28.98 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>P_PL = 28.98 kip</expbody></dynexp><break type="tab"/>Pedestrian live load reaction per bearing</paragraph>
@@ -726,7 +732,7 @@
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">slab PL on the backwall (gravity only)</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">5. Overturning about the pile top and tie-back force</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Each quantity below is written for the five combinations in this order: Service I, Strength I, Strength III wind 1, Strength III wind 2, Strength IV (LRFD Tables 3.4.1-1 and 3.4.1-2). TU and SH share one factor. Wind takes γWS = 1.0 where it applies; vertical wind counts only when it increases overturning. Blockpad has no vector variables: the equations are shown for Service I, the other combinations repeat them in the collapsed sections, and the values of all five appear side by side in the green tables.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Each quantity below is written for the five combinations in this order: Service I, Strength I, Strength III wind 1, Strength III wind 2, Strength IV (LRFD Tables 3.4.1-1 and 3.4.1-2). TU and SH share one factor. Wind takes γWS = 1.0 where it applies; vertical wind counts only when it increases overturning. The equations are shown for Service I, the other combinations repeat them in the collapsed sections, and the values of all five appear side by side in the green tables.</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Load factors γ for the five combinations</paragraph>
   <embed spacingbefore="5" spacingafter="8">
     <table name="GammaFactors" capture="False" colwidths="1:110, 2:100, 3:100, 4:100, 5:100, 6:100">
@@ -734,29 +740,29 @@
       <stylerule range="A1:F1" horzalign="Center" vertalign="Center"/>
       <stylerule range="B2:F8" horzalign="Center" vertalign="Center"/>
       <row>
-        <c capture="False" background="#F7E6B9" fontweight="bold">
-          <textvalue>Factor</textvalue>
-        </c>
-        <c capture="False" background="#F7E6B9" fontweight="bold">
-          <textvalue>Service I</textvalue>
-        </c>
-        <c capture="False" background="#F7E6B9" fontweight="bold">
-          <textvalue>Strength I</textvalue>
-        </c>
-        <c capture="False" background="#F7E6B9" fontweight="bold">
-          <textvalue>Strength III · wind 1</textvalue>
-        </c>
-        <c capture="False" background="#F7E6B9" fontweight="bold">
-          <textvalue>Strength III · wind 2</textvalue>
-        </c>
-        <c capture="False" background="#F7E6B9" fontweight="bold">
-          <textvalue>Strength IV</textvalue>
-        </c>
+        <textcell name="GammaFactorsR0C0" capture="False" background="#F7E6B9">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Factor</paragraph>
+        </textcell>
+        <textcell name="GammaFactorsR0C1" capture="False" background="#F7E6B9">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Service I</paragraph>
+        </textcell>
+        <textcell name="GammaFactorsR0C2" capture="False" background="#F7E6B9">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength I</paragraph>
+        </textcell>
+        <textcell name="GammaFactorsR0C3" capture="False" background="#F7E6B9">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength III · wind 1</paragraph>
+        </textcell>
+        <textcell name="GammaFactorsR0C4" capture="False" background="#F7E6B9">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength III · wind 2</paragraph>
+        </textcell>
+        <textcell name="GammaFactorsR0C5" capture="False" background="#F7E6B9">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength IV</paragraph>
+        </textcell>
       </row>
       <row>
-        <c capture="False" background="#FFF8E9">
-          <textvalue>γ_EH</textvalue>
-        </c>
+        <textcell name="GammaFactorsR1C0" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">γ_EH</paragraph>
+        </textcell>
         <textcell name="GammaFactorsR1C1" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">
             <dynexp formula="γ_EH_SERI = 1" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
@@ -794,9 +800,9 @@
         </textcell>
       </row>
       <row>
-        <c capture="False" background="#FFF8E9">
-          <textvalue>γ_ES</textvalue>
-        </c>
+        <textcell name="GammaFactorsR2C0" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">γ_ES</paragraph>
+        </textcell>
         <textcell name="GammaFactorsR2C1" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">
             <dynexp formula="γ_ES_SERI = 1" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
@@ -834,9 +840,9 @@
         </textcell>
       </row>
       <row>
-        <c capture="False" background="#FFF8E9">
-          <textvalue>γ_LS</textvalue>
-        </c>
+        <textcell name="GammaFactorsR3C0" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">γ_LS</paragraph>
+        </textcell>
         <textcell name="GammaFactorsR3C1" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">
             <dynexp formula="γ_LS_SERI = 1" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
@@ -874,9 +880,9 @@
         </textcell>
       </row>
       <row>
-        <c capture="False" background="#FFF8E9">
-          <textvalue>γ_TU</textvalue>
-        </c>
+        <textcell name="GammaFactorsR4C0" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">γ_TU</paragraph>
+        </textcell>
         <textcell name="GammaFactorsR4C1" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">
             <dynexp formula="γ_TU_SERI = 1" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
@@ -914,9 +920,9 @@
         </textcell>
       </row>
       <row>
-        <c capture="False" background="#FFF8E9">
-          <textvalue>γ_DCmax</textvalue>
-        </c>
+        <textcell name="GammaFactorsR5C0" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">γ_DCmax</paragraph>
+        </textcell>
         <textcell name="GammaFactorsR5C1" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">
             <dynexp formula="γ_DCmax_SERI = 1" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
@@ -954,9 +960,9 @@
         </textcell>
       </row>
       <row>
-        <c capture="False" background="#FFF8E9">
-          <textvalue>γ_DCmin</textvalue>
-        </c>
+        <textcell name="GammaFactorsR6C0" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">γ_DCmin</paragraph>
+        </textcell>
         <textcell name="GammaFactorsR6C1" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">
             <dynexp formula="γ_DCmin_SERI = 1" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
@@ -994,9 +1000,9 @@
         </textcell>
       </row>
       <row>
-        <c capture="False" background="#FFF8E9">
-          <textvalue>γ_PL</textvalue>
-        </c>
+        <textcell name="GammaFactorsR7C0" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">γ_PL</paragraph>
+        </textcell>
         <textcell name="GammaFactorsR7C1" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">
             <dynexp formula="γ_PL_SERI = 1" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
@@ -1096,29 +1102,29 @@
       <stylerule range="A1:F1" horzalign="Center" vertalign="Center"/>
       <stylerule range="B2:F3" horzalign="Center" vertalign="Center"/>
       <row>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Quantity</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Service I</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Strength I</textvalue>
-        </c>
-        <textcell name="Table_Combos_1R0C3" capture="False" background="#DCECE0" fontweight="bold">
-          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">Strength III · wind 1</paragraph>
+        <textcell name="Table_Combos_1R0C0" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Quantity</paragraph>
         </textcell>
-        <textcell name="Table_Combos_1R0C4" capture="False" background="#DCECE0" fontweight="bold">
-          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">Strength III · wind 2</paragraph>
+        <textcell name="Table_Combos_1R0C1" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Service I</paragraph>
         </textcell>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Strength IV</textvalue>
-        </c>
+        <textcell name="Table_Combos_1R0C2" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength I</paragraph>
+        </textcell>
+        <textcell name="Table_Combos_1R0C3" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength III · wind 1</paragraph>
+        </textcell>
+        <textcell name="Table_Combos_1R0C4" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength III · wind 2</paragraph>
+        </textcell>
+        <textcell name="Table_Combos_1R0C5" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength IV</paragraph>
+        </textcell>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>H_W: longitudinal wind in each combination (kip)</textvalue>
-        </c>
+        <textcell name="Table_Combos_1R1C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">H_W: longitudinal wind in each combination (kip)</paragraph>
+        </textcell>
         <c formula="H_W_SERI to kip" capture="False" background="#EFF7F1">
           <num>3.260 kip</num>
         </c>
@@ -1137,7 +1143,7 @@
       </row>
       <row>
         <textcell name="Table_Combos_1R2C0" capture="False" background="#EFF7F1">
-          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">FZ_W: vertical wind in each combination (+ down) (kip)</paragraph>
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">FZ_W: vertical wind in each combination (+ down) (kip)</paragraph>
         </textcell>
         <c formula="FZ_W_SERI to kip" capture="False" background="#EFF7F1">
           <num>0.000 kip</num>
@@ -1317,29 +1323,29 @@
       <stylerule range="A1:F1" horzalign="Center" vertalign="Center"/>
       <stylerule range="B2:F7" horzalign="Center" vertalign="Center"/>
       <row>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Quantity</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Service I</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Strength I</textvalue>
-        </c>
-        <textcell name="Table_Combos_2R0C3" capture="False" background="#DCECE0" fontweight="bold">
-          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">Strength III · wind 1</paragraph>
+        <textcell name="Table_Combos_2R0C0" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Quantity</paragraph>
         </textcell>
-        <textcell name="Table_Combos_2R0C4" capture="False" background="#DCECE0" fontweight="bold">
-          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">Strength III · wind 2</paragraph>
+        <textcell name="Table_Combos_2R0C1" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Service I</paragraph>
         </textcell>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Strength IV</textvalue>
-        </c>
+        <textcell name="Table_Combos_2R0C2" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength I</paragraph>
+        </textcell>
+        <textcell name="Table_Combos_2R0C3" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength III · wind 1</paragraph>
+        </textcell>
+        <textcell name="Table_Combos_2R0C4" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength III · wind 2</paragraph>
+        </textcell>
+        <textcell name="Table_Combos_2R0C5" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength IV</paragraph>
+        </textcell>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>γ_brg</textvalue>
-        </c>
+        <textcell name="Table_Combos_2R1C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">γ_brg</paragraph>
+        </textcell>
         <c formula="γ_brg_SERI" capture="False" background="#EFF7F1">
           <num>1.000</num>
         </c>
@@ -1357,9 +1363,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>γ_cap</textvalue>
-        </c>
+        <textcell name="Table_Combos_2R2C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">γ_cap</paragraph>
+        </textcell>
         <c formula="γ_cap_SERI" capture="False" background="#EFF7F1">
           <num>1.000</num>
         </c>
@@ -1377,9 +1383,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>γ_ped</textvalue>
-        </c>
+        <textcell name="Table_Combos_2R3C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">γ_ped</paragraph>
+        </textcell>
         <c formula="γ_ped_SERI" capture="False" background="#EFF7F1">
           <num>1.000</num>
         </c>
@@ -1397,9 +1403,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>γ_ck</textvalue>
-        </c>
+        <textcell name="Table_Combos_2R4C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">γ_ck</paragraph>
+        </textcell>
         <c formula="γ_ck_SERI" capture="False" background="#EFF7F1">
           <num>1.000</num>
         </c>
@@ -1417,9 +1423,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>γ_bw</textvalue>
-        </c>
+        <textcell name="Table_Combos_2R5C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">γ_bw</paragraph>
+        </textcell>
         <c formula="γ_bw_SERI" capture="False" background="#EFF7F1">
           <num>1.000</num>
         </c>
@@ -1437,9 +1443,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>γ_PLb</textvalue>
-        </c>
+        <textcell name="Table_Combos_2R6C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">γ_PLb</paragraph>
+        </textcell>
         <c formula="γ_PLb_SERI" capture="False" background="#EFF7F1">
           <num>1.000</num>
         </c>
@@ -1808,29 +1814,29 @@
       <stylerule range="A1:F1" horzalign="Center" vertalign="Center"/>
       <stylerule range="B2:F12" horzalign="Center" vertalign="Center"/>
       <row>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Quantity</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Service I</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Strength I</textvalue>
-        </c>
-        <textcell name="Table_Combos_3R0C3" capture="False" background="#DCECE0" fontweight="bold">
-          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">Strength III · wind 1</paragraph>
+        <textcell name="Table_Combos_3R0C0" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Quantity</paragraph>
         </textcell>
-        <textcell name="Table_Combos_3R0C4" capture="False" background="#DCECE0" fontweight="bold">
-          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">Strength III · wind 2</paragraph>
+        <textcell name="Table_Combos_3R0C1" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Service I</paragraph>
         </textcell>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Strength IV</textvalue>
-        </c>
+        <textcell name="Table_Combos_3R0C2" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength I</paragraph>
+        </textcell>
+        <textcell name="Table_Combos_3R0C3" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength III · wind 1</paragraph>
+        </textcell>
+        <textcell name="Table_Combos_3R0C4" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength III · wind 2</paragraph>
+        </textcell>
+        <textcell name="Table_Combos_3R0C5" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength IV</paragraph>
+        </textcell>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>M_WV: vertical wind, overturning only (kip*ft)</textvalue>
-        </c>
+        <textcell name="Table_Combos_3R1C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">M_WV: vertical wind, overturning only (kip*ft)</paragraph>
+        </textcell>
         <c formula="M_WV_SERI to kip*ft" capture="False" background="#EFF7F1">
           <num>0.000 kip*ft</num>
         </c>
@@ -1848,9 +1854,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>H_T: horizontal force toward the span (kip)</textvalue>
-        </c>
+        <textcell name="Table_Combos_3R2C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">H_T: horizontal force toward the span (kip)</paragraph>
+        </textcell>
         <c formula="H_T_SERI to kip" capture="False" background="#EFF7F1">
           <num>44.952 kip</num>
         </c>
@@ -1869,7 +1875,7 @@
       </row>
       <row>
         <textcell name="Table_Combos_3R3C0" capture="False" background="#EFF7F1">
-          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">M_H: moment of the horizontal loads about O (kip*ft)</paragraph>
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">M_H: moment of the horizontal loads about O (kip*ft)</paragraph>
         </textcell>
         <c formula="M_H_SERI to kip*ft" capture="False" background="#EFF7F1">
           <num>93.554 kip*ft</num>
@@ -1888,9 +1894,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>M_Vb: superstructure and pedestals (kip*ft)</textvalue>
-        </c>
+        <textcell name="Table_Combos_3R4C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">M_Vb: superstructure and pedestals (kip*ft)</paragraph>
+        </textcell>
         <c formula="M_Vb_SERI to kip*ft" capture="False" background="#EFF7F1">
           <num>122.034 kip*ft</num>
         </c>
@@ -1908,9 +1914,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>M_Vs: cap, cheek walls and backwall (kip*ft)</textvalue>
-        </c>
+        <textcell name="Table_Combos_3R5C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">M_Vs: cap, cheek walls and backwall (kip*ft)</paragraph>
+        </textcell>
         <c formula="M_Vs_SERI to kip*ft" capture="False" background="#EFF7F1">
           <num>-3.853 kip*ft</num>
         </c>
@@ -1928,9 +1934,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>M_OT: overturning moment about O (kip*ft)</textvalue>
-        </c>
+        <textcell name="Table_Combos_3R6C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">M_OT: overturning moment about O (kip*ft)</paragraph>
+        </textcell>
         <c formula="M_OT_SERI to kip*ft" capture="False" background="#EFF7F1">
           <num>211.736 kip*ft</num>
         </c>
@@ -1948,9 +1954,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>e_res: resultant height above O (ft)</textvalue>
-        </c>
+        <textcell name="Table_Combos_3R7C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">e_res: resultant height above O (ft)</paragraph>
+        </textcell>
         <c formula="e_res_SERI to ft" capture="False" background="#EFF7F1">
           <num>4.710 ft</num>
         </c>
@@ -1968,9 +1974,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>F_eq: strap force for moment equilibrium (kip)</textvalue>
-        </c>
+        <textcell name="Table_Combos_3R8C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">F_eq: strap force for moment equilibrium (kip)</paragraph>
+        </textcell>
         <c formula="F_eq_SERI to kip" capture="False" background="#EFF7F1">
           <num>60.496 kip</num>
         </c>
@@ -1988,9 +1994,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>F_str: design strap force (kip)</textvalue>
-        </c>
+        <textcell name="Table_Combos_3R9C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">F_str: design strap force (kip)</paragraph>
+        </textcell>
         <c formula="F_str_SERI to kip" capture="False" background="#EFF7F1">
           <num>60.496 kip</num>
         </c>
@@ -2008,9 +2014,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>f_str: strap load per foot of backwall (klf)</textvalue>
-        </c>
+        <textcell name="Table_Combos_3R10C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">f_str: strap load per foot of backwall (klf)</paragraph>
+        </textcell>
         <c formula="f_str_SERI to klf" capture="False" background="#EFF7F1">
           <num>3.089 klf</num>
         </c>
@@ -2028,9 +2034,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>V_pile: pile-head force at O (+ toward span) (kip)</textvalue>
-        </c>
+        <textcell name="Table_Combos_3R11C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">V_pile: pile-head force at O (+ toward span) (kip)</paragraph>
+        </textcell>
         <c formula="V_pile_SERI to kip" capture="False" background="#EFF7F1">
           <num>15.544 kip</num>
         </c>
@@ -2338,28 +2344,28 @@
       <stylerule range="A1:F1" horzalign="Center" vertalign="Center"/>
       <stylerule range="B2:F5" horzalign="Center" vertalign="Center"/>
       <row>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Quantity</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Service I</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Strength I</textvalue>
-        </c>
-        <textcell name="Table_Combos_4R0C3" capture="False" background="#DCECE0" fontweight="bold">
-          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">Strength III · wind 1</paragraph>
+        <textcell name="Table_Combos_4R0C0" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Quantity</paragraph>
         </textcell>
-        <textcell name="Table_Combos_4R0C4" capture="False" background="#DCECE0" fontweight="bold">
-          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">Strength III · wind 2</paragraph>
+        <textcell name="Table_Combos_4R0C1" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Service I</paragraph>
         </textcell>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Strength IV</textvalue>
-        </c>
+        <textcell name="Table_Combos_4R0C2" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength I</paragraph>
+        </textcell>
+        <textcell name="Table_Combos_4R0C3" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength III · wind 1</paragraph>
+        </textcell>
+        <textcell name="Table_Combos_4R0C4" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength III · wind 2</paragraph>
+        </textcell>
+        <textcell name="Table_Combos_4R0C5" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength IV</paragraph>
+        </textcell>
       </row>
       <row>
         <textcell name="Table_Combos_4R1C0" capture="False" background="#EFF7F1">
-          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">M_sl: strap slack: moment, fill-face tension (kip*ft)</paragraph>
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">M_sl: strap slack: moment, fill-face tension (kip*ft)</paragraph>
         </textcell>
         <c formula="M_sl_SERI to kip*ft" capture="False" background="#EFF7F1">
           <num>0.817 kip*ft</num>
@@ -2378,9 +2384,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>V_sl: strap slack: joint shear (kip)</textvalue>
-        </c>
+        <textcell name="Table_Combos_4R2C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">V_sl: strap slack: joint shear (kip)</paragraph>
+        </textcell>
         <c formula="V_sl_SERI to kip" capture="False" background="#EFF7F1">
           <num>0.507 kip</num>
         </c>
@@ -2399,7 +2405,7 @@
       </row>
       <row>
         <textcell name="Table_Combos_4R3C0" capture="False" background="#EFF7F1">
-          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">M_en: strap engaged: moment, span-face tension (kip*ft)</paragraph>
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">M_en: strap engaged: moment, span-face tension (kip*ft)</paragraph>
         </textcell>
         <c formula="M_en_SERI to kip*ft" capture="False" background="#EFF7F1">
           <num>3.817 kip*ft</num>
@@ -2418,9 +2424,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>V_en: strap engaged: joint shear (kip)</textvalue>
-        </c>
+        <textcell name="Table_Combos_4R4C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">V_en: strap engaged: joint shear (kip)</paragraph>
+        </textcell>
         <c formula="V_en_SERI to kip" capture="False" background="#EFF7F1">
           <num>2.582 kip</num>
         </c>
@@ -2474,7 +2480,7 @@
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">factored joint shear, both states</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">7. Cheek walls: wind only (D-018; LRFD 3.8.1.2.1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">7. Cheek walls: wind only (LRFD 3.8.1.2.1)</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="P_Z_III = 2.56*0.000001*V_III^2*K_Z_III*G_w*C_D*(1 ksf) to psf" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>P_Z_III = 2.56*0.000001*V_III^2*K_Z_III*G_w*C_D*(1 ksf) to psf</expbody>
@@ -2617,23 +2623,23 @@
       <stylerule range="A1:D1" horzalign="Center" vertalign="Center"/>
       <stylerule range="B2:D5" horzalign="Center" vertalign="Center"/>
       <row>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Quantity</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Backwall fill face</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Backwall span face</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Cheek wall</textvalue>
-        </c>
+        <textcell name="Table_Members_5R0C0" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Quantity</paragraph>
+        </textcell>
+        <textcell name="Table_Members_5R0C1" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Backwall fill face</paragraph>
+        </textcell>
+        <textcell name="Table_Members_5R0C2" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Backwall span face</paragraph>
+        </textcell>
+        <textcell name="Table_Members_5R0C3" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Cheek wall</paragraph>
+        </textcell>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>h_w (in)</textvalue>
-        </c>
+        <textcell name="Table_Members_5R1C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">h_w (in)</paragraph>
+        </textcell>
         <c formula="h_w_FF to in" capture="False" background="#EFF7F1">
           <num>12.000 in</num>
         </c>
@@ -2645,9 +2651,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>c_v (in)</textvalue>
-        </c>
+        <textcell name="Table_Members_5R2C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">c_v (in)</paragraph>
+        </textcell>
         <c formula="c_v_FF to in" capture="False" background="#EFF7F1">
           <num>3.000 in</num>
         </c>
@@ -2659,9 +2665,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>n_b</textvalue>
-        </c>
+        <textcell name="Table_Members_5R3C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">n_b</paragraph>
+        </textcell>
         <c formula="n_b_FF" capture="False" background="#EFF7F1">
           <num>5.000</num>
         </c>
@@ -2673,9 +2679,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>s_w (in)</textvalue>
-        </c>
+        <textcell name="Table_Members_5R4C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">s_w (in)</paragraph>
+        </textcell>
         <c formula="s_w_FF to in" capture="False" background="#EFF7F1">
           <num>12.000 in</num>
         </c>
@@ -3172,23 +3178,23 @@
       <stylerule range="A1:D1" horzalign="Center" vertalign="Center"/>
       <stylerule range="B2:D26" horzalign="Center" vertalign="Center"/>
       <row>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Quantity</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Backwall fill face</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Backwall span face</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Cheek wall</textvalue>
-        </c>
+        <textcell name="Table_Members_6R0C0" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Quantity</paragraph>
+        </textcell>
+        <textcell name="Table_Members_6R0C1" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Backwall fill face</paragraph>
+        </textcell>
+        <textcell name="Table_Members_6R0C2" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Backwall span face</paragraph>
+        </textcell>
+        <textcell name="Table_Members_6R0C3" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Cheek wall</paragraph>
+        </textcell>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>A_b: bar area (in^2)</textvalue>
-        </c>
+        <textcell name="Table_Members_6R1C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">A_b: bar area (in^2)</paragraph>
+        </textcell>
         <c formula="A_b_FF to in^2" capture="False" background="#EFF7F1">
           <num>0.310 in^2</num>
         </c>
@@ -3200,9 +3206,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>d_b: bar diameter (in)</textvalue>
-        </c>
+        <textcell name="Table_Members_6R2C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">d_b: bar diameter (in)</paragraph>
+        </textcell>
         <c formula="d_b_FF to in" capture="False" background="#EFF7F1">
           <num>0.625 in</num>
         </c>
@@ -3214,9 +3220,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>d: effective depth (in)</textvalue>
-        </c>
+        <textcell name="Table_Members_6R3C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">d: effective depth (in)</paragraph>
+        </textcell>
         <c formula="d_FF to in" capture="False" background="#EFF7F1">
           <num>8.688 in</num>
         </c>
@@ -3228,9 +3234,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>A_s: steel in the strip (in^2)</textvalue>
-        </c>
+        <textcell name="Table_Members_6R4C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">A_s: steel in the strip (in^2)</paragraph>
+        </textcell>
         <c formula="A_s_FF to in^2" capture="False" background="#EFF7F1">
           <num>0.310 in^2</num>
         </c>
@@ -3242,9 +3248,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>a: stress block depth (in)</textvalue>
-        </c>
+        <textcell name="Table_Members_6R5C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">a: stress block depth (in)</paragraph>
+        </textcell>
         <c formula="a_FF to in" capture="False" background="#EFF7F1">
           <num>0.332 in</num>
         </c>
@@ -3256,9 +3262,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>c: neutral axis depth (in)</textvalue>
-        </c>
+        <textcell name="Table_Members_6R6C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">c: neutral axis depth (in)</paragraph>
+        </textcell>
         <c formula="c_FF to in" capture="False" background="#EFF7F1">
           <num>0.428 in</num>
         </c>
@@ -3270,9 +3276,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>ε_t: net tensile strain</textvalue>
-        </c>
+        <textcell name="Table_Members_6R7C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">ε_t: net tensile strain</paragraph>
+        </textcell>
         <c formula="ε_t_FF" capture="False" background="#EFF7F1">
           <num>0.058</num>
         </c>
@@ -3284,9 +3290,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>φ: flexure φ (LRFD 5.5.4.2)</textvalue>
-        </c>
+        <textcell name="Table_Members_6R8C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">φ: flexure φ (LRFD 5.5.4.2)</paragraph>
+        </textcell>
         <c formula="φ_FF" capture="False" background="#EFF7F1">
           <num>0.900</num>
         </c>
@@ -3298,9 +3304,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>M_n: nominal moment (kip*ft)</textvalue>
-        </c>
+        <textcell name="Table_Members_6R9C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">M_n: nominal moment (kip*ft)</paragraph>
+        </textcell>
         <c formula="M_n_FF to kip*ft" capture="False" background="#EFF7F1">
           <num>13.209 kip*ft</num>
         </c>
@@ -3312,9 +3318,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>M_r: factored resistance (kip*ft)</textvalue>
-        </c>
+        <textcell name="Table_Members_6R10C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">M_r: factored resistance (kip*ft)</paragraph>
+        </textcell>
         <c formula="M_r_FF to kip*ft" capture="False" background="#EFF7F1">
           <num>11.888 kip*ft</num>
         </c>
@@ -3326,9 +3332,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>A_req: steel required for Mu (in^2)</textvalue>
-        </c>
+        <textcell name="Table_Members_6R11C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">A_req: steel required for Mu (in^2)</paragraph>
+        </textcell>
         <c formula="A_req_FF to in^2" capture="False" background="#EFF7F1">
           <num>0.033 in^2</num>
         </c>
@@ -3340,9 +3346,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>S_c: section modulus (in^3)</textvalue>
-        </c>
+        <textcell name="Table_Members_6R12C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">S_c: section modulus (in^3)</paragraph>
+        </textcell>
         <c formula="S_c_FF to in^3" capture="False" background="#EFF7F1">
           <num>288.000 in^3</num>
         </c>
@@ -3354,9 +3360,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>M_cr: cracking moment (LRFD 5.6.3.3) (kip*ft)</textvalue>
-        </c>
+        <textcell name="Table_Members_6R13C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">M_cr: cracking moment (LRFD 5.6.3.3) (kip*ft)</paragraph>
+        </textcell>
         <c formula="M_cr_FF to kip*ft" capture="False" background="#EFF7F1">
           <num>14.481 kip*ft</num>
         </c>
@@ -3368,9 +3374,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>M_min: minimum flexural resistance (kip*ft)</textvalue>
-        </c>
+        <textcell name="Table_Members_6R14C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">M_min: minimum flexural resistance (kip*ft)</paragraph>
+        </textcell>
         <c formula="M_min_FF to kip*ft" capture="False" background="#EFF7F1">
           <num>1.712 kip*ft</num>
         </c>
@@ -3382,9 +3388,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>ρ: reinforcement ratio</textvalue>
-        </c>
+        <textcell name="Table_Members_6R15C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">ρ: reinforcement ratio</paragraph>
+        </textcell>
         <c formula="ρ_FF" capture="False" background="#EFF7F1">
           <num>0.003</num>
         </c>
@@ -3396,9 +3402,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>k_cr: cracked neutral axis ratio</textvalue>
-        </c>
+        <textcell name="Table_Members_6R16C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">k_cr: cracked neutral axis ratio</paragraph>
+        </textcell>
         <c formula="k_cr_FF" capture="False" background="#EFF7F1">
           <num>0.178</num>
         </c>
@@ -3410,9 +3416,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>j_cr: lever arm ratio</textvalue>
-        </c>
+        <textcell name="Table_Members_6R17C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">j_cr: lever arm ratio</paragraph>
+        </textcell>
         <c formula="j_cr_FF" capture="False" background="#EFF7F1">
           <num>0.941</num>
         </c>
@@ -3424,9 +3430,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>f_ss: service steel stress (ksi)</textvalue>
-        </c>
+        <textcell name="Table_Members_6R18C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">f_ss: service steel stress (ksi)</paragraph>
+        </textcell>
         <c formula="f_ss_FF to ksi" capture="False" background="#EFF7F1">
           <num>3.869 ksi</num>
         </c>
@@ -3438,9 +3444,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>d_c: cover to bar center (in)</textvalue>
-        </c>
+        <textcell name="Table_Members_6R19C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">d_c: cover to bar center (in)</paragraph>
+        </textcell>
         <c formula="d_c_FF to in" capture="False" background="#EFF7F1">
           <num>3.312 in</num>
         </c>
@@ -3452,9 +3458,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>β_s: strain ratio</textvalue>
-        </c>
+        <textcell name="Table_Members_6R20C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">β_s: strain ratio</paragraph>
+        </textcell>
         <c formula="β_s_FF" capture="False" background="#EFF7F1">
           <num>1.545</num>
         </c>
@@ -3466,9 +3472,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>s_cr: crack-control spacing (LRFD 5.6.7) (in)</textvalue>
-        </c>
+        <textcell name="Table_Members_6R21C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">s_cr: crack-control spacing (LRFD 5.6.7) (in)</paragraph>
+        </textcell>
         <c formula="s_cr_FF to in" capture="False" background="#EFF7F1">
           <num>110.486 in</num>
         </c>
@@ -3480,9 +3486,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>d_v: shear depth (in)</textvalue>
-        </c>
+        <textcell name="Table_Members_6R22C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">d_v: shear depth (in)</paragraph>
+        </textcell>
         <c formula="d_v_FF to in" capture="False" background="#EFF7F1">
           <num>8.640 in</num>
         </c>
@@ -3494,9 +3500,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>V_c: concrete shear (kip)</textvalue>
-        </c>
+        <textcell name="Table_Members_6R23C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">V_c: concrete shear (kip)</paragraph>
+        </textcell>
         <c formula="V_c_FF to kip" capture="False" background="#EFF7F1">
           <num>15.367 kip</num>
         </c>
@@ -3508,9 +3514,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>V_n: nominal shear (kip)</textvalue>
-        </c>
+        <textcell name="Table_Members_6R24C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">V_n: nominal shear (kip)</paragraph>
+        </textcell>
         <c formula="V_n_FF to kip" capture="False" background="#EFF7F1">
           <num>15.367 kip</num>
         </c>
@@ -3522,9 +3528,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>V_r: factored shear resistance (kip)</textvalue>
-        </c>
+        <textcell name="Table_Members_6R25C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">V_r: factored shear resistance (kip)</paragraph>
+        </textcell>
         <c formula="V_r_FF to kip" capture="False" background="#EFF7F1">
           <num>13.830 kip</num>
         </c>
@@ -3875,29 +3881,29 @@
       <stylerule range="A1:F1" horzalign="Center" vertalign="Center"/>
       <stylerule range="B2:F6" horzalign="Center" vertalign="Center"/>
       <row>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Quantity</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Service I</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Strength I</textvalue>
-        </c>
-        <textcell name="Table_Combos_7R0C3" capture="False" background="#DCECE0" fontweight="bold">
-          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">Strength III · wind 1</paragraph>
+        <textcell name="Table_Combos_7R0C0" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Quantity</paragraph>
         </textcell>
-        <textcell name="Table_Combos_7R0C4" capture="False" background="#DCECE0" fontweight="bold">
-          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">Strength III · wind 2</paragraph>
+        <textcell name="Table_Combos_7R0C1" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Service I</paragraph>
         </textcell>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Strength IV</textvalue>
-        </c>
+        <textcell name="Table_Combos_7R0C2" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength I</paragraph>
+        </textcell>
+        <textcell name="Table_Combos_7R0C3" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength III · wind 1</paragraph>
+        </textcell>
+        <textcell name="Table_Combos_7R0C4" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength III · wind 2</paragraph>
+        </textcell>
+        <textcell name="Table_Combos_7R0C5" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength IV</paragraph>
+        </textcell>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>t_u: uniform torque, whole cap (kip*ft/ft)</textvalue>
-        </c>
+        <textcell name="Table_Combos_7R1C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">t_u: uniform torque, whole cap (kip*ft/ft)</paragraph>
+        </textcell>
         <c formula="t_u_SERI to kip*ft/ft" capture="False" background="#EFF7F1">
           <num>2.135 kip*ft/ft</num>
         </c>
@@ -3916,7 +3922,7 @@
       </row>
       <row>
         <textcell name="Table_Combos_7R2C0" capture="False" background="#EFF7F1">
-          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">t_cap: uniform torque over the core cap only (kip*ft/ft)</paragraph>
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">t_cap: uniform torque over the core cap only (kip*ft/ft)</paragraph>
         </textcell>
         <c formula="t_cap_SERI to kip*ft/ft" capture="False" background="#EFF7F1">
           <num>0.377 kip*ft/ft</num>
@@ -3936,7 +3942,7 @@
       </row>
       <row>
         <textcell name="Table_Combos_7R3C0" capture="False" background="#EFF7F1">
-          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">t_b: uniform torque over the backwall, with the strap (kip*ft/ft)</paragraph>
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">t_b: uniform torque over the backwall, with the strap (kip*ft/ft)</paragraph>
         </textcell>
         <c formula="t_b_SERI to kip*ft/ft" capture="False" background="#EFF7F1">
           <num>-11.408 kip*ft/ft</num>
@@ -3955,9 +3961,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>P_b: torque at each bearing (kip*ft)</textvalue>
-        </c>
+        <textcell name="Table_Combos_7R4C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">P_b: torque at each bearing (kip*ft)</paragraph>
+        </textcell>
         <c formula="P_b_SERI to kip*ft" capture="False" background="#EFF7F1">
           <num>85.463 kip*ft</num>
         </c>
@@ -3975,9 +3981,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>P_c: torque at each cheek wall (kip*ft)</textvalue>
-        </c>
+        <textcell name="Table_Combos_7R5C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">P_c: torque at each cheek wall (kip*ft)</paragraph>
+        </textcell>
         <c formula="P_c_SERI to kip*ft" capture="False" background="#EFF7F1">
           <num>0.220 kip*ft</num>
         </c>
@@ -4115,37 +4121,37 @@
       <stylerule range="A1:I1" horzalign="Center" vertalign="Center"/>
       <stylerule range="B2:I2" horzalign="Center" vertalign="Center"/>
       <row>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Quantity</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>k = 0</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>k = 1</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>k = 2</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>k = 3</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>k = 4</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>k = 5</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>k = 6</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>k = 7</textvalue>
-        </c>
+        <textcell name="Table_Stations_8R0C0" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">Quantity</paragraph>
+        </textcell>
+        <textcell name="Table_Stations_8R0C1" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">k = 0</paragraph>
+        </textcell>
+        <textcell name="Table_Stations_8R0C2" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">k = 1</paragraph>
+        </textcell>
+        <textcell name="Table_Stations_8R0C3" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">k = 2</paragraph>
+        </textcell>
+        <textcell name="Table_Stations_8R0C4" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">k = 3</paragraph>
+        </textcell>
+        <textcell name="Table_Stations_8R0C5" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">k = 4</paragraph>
+        </textcell>
+        <textcell name="Table_Stations_8R0C6" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">k = 5</paragraph>
+        </textcell>
+        <textcell name="Table_Stations_8R0C7" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">k = 6</paragraph>
+        </textcell>
+        <textcell name="Table_Stations_8R0C8" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">k = 7</paragraph>
+        </textcell>
       </row>
       <row>
         <textcell name="Table_Stations_8R1C0" capture="False" background="#EFF7F1">
-          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">X_T: stations where the torque changes slope or jumps (ft)</paragraph>
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">X_T: stations where the torque changes slope or jumps (ft)</paragraph>
         </textcell>
         <c formula="X_T_0 to ft" capture="False" background="#EFF7F1">
           <num>0.000 ft</num>
@@ -4571,29 +4577,29 @@
       <stylerule range="A1:F1" horzalign="Center" vertalign="Center"/>
       <stylerule range="B2:F9" horzalign="Center" vertalign="Center"/>
       <row>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Station</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>X_T (ft)</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Strength I</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Strength III · wind 1</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Strength III · wind 2</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Strength IV</textvalue>
-        </c>
+        <textcell name="Table_Torque_9R0C0" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Station</paragraph>
+        </textcell>
+        <textcell name="Table_Torque_9R0C1" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">X_T (ft)</paragraph>
+        </textcell>
+        <textcell name="Table_Torque_9R0C2" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength I</paragraph>
+        </textcell>
+        <textcell name="Table_Torque_9R0C3" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength III · wind 1</paragraph>
+        </textcell>
+        <textcell name="Table_Torque_9R0C4" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength III · wind 2</paragraph>
+        </textcell>
+        <textcell name="Table_Torque_9R0C5" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength IV</paragraph>
+        </textcell>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>k = 0</textvalue>
-        </c>
+        <textcell name="Table_Torque_9R1C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">k = 0</paragraph>
+        </textcell>
         <c formula="X_T_0 to ft" capture="False" background="#EFF7F1">
           <num>0.000 ft</num>
         </c>
@@ -4611,9 +4617,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>k = 1</textvalue>
-        </c>
+        <textcell name="Table_Torque_9R2C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">k = 1</paragraph>
+        </textcell>
         <c formula="X_T_1 to ft" capture="False" background="#EFF7F1">
           <num>0.333 ft</num>
         </c>
@@ -4631,9 +4637,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>k = 2</textvalue>
-        </c>
+        <textcell name="Table_Torque_9R3C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">k = 2</paragraph>
+        </textcell>
         <c formula="X_T_2 to ft" capture="False" background="#EFF7F1">
           <num>0.667 ft</num>
         </c>
@@ -4651,9 +4657,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>k = 3</textvalue>
-        </c>
+        <textcell name="Table_Torque_9R4C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">k = 3</paragraph>
+        </textcell>
         <c formula="X_T_3 to ft" capture="False" background="#EFF7F1">
           <num>6.167 ft</num>
         </c>
@@ -4671,9 +4677,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>k = 4</textvalue>
-        </c>
+        <textcell name="Table_Torque_9R5C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">k = 4</paragraph>
+        </textcell>
         <c formula="X_T_4 to ft" capture="False" background="#EFF7F1">
           <num>14.750 ft</num>
         </c>
@@ -4691,9 +4697,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>k = 5</textvalue>
-        </c>
+        <textcell name="Table_Torque_9R6C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">k = 5</paragraph>
+        </textcell>
         <c formula="X_T_5 to ft" capture="False" background="#EFF7F1">
           <num>20.250 ft</num>
         </c>
@@ -4711,9 +4717,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>k = 6</textvalue>
-        </c>
+        <textcell name="Table_Torque_9R7C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">k = 6</paragraph>
+        </textcell>
         <c formula="X_T_6 to ft" capture="False" background="#EFF7F1">
           <num>20.583 ft</num>
         </c>
@@ -4731,9 +4737,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>k = 7</textvalue>
-        </c>
+        <textcell name="Table_Torque_9R8C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">k = 7</paragraph>
+        </textcell>
         <c formula="X_T_7 to ft" capture="False" background="#EFF7F1">
           <num>20.917 ft</num>
         </c>
@@ -4881,23 +4887,23 @@
       <stylerule range="A1:D1" horzalign="Center" vertalign="Center"/>
       <stylerule range="B2:D7" horzalign="Center" vertalign="Center"/>
       <row>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Quantity</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Backwall fill face</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Backwall span face</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Cheek wall</textvalue>
-        </c>
+        <textcell name="Table_Members_10R0C0" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Quantity</paragraph>
+        </textcell>
+        <textcell name="Table_Members_10R0C1" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Backwall fill face</paragraph>
+        </textcell>
+        <textcell name="Table_Members_10R0C2" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Backwall span face</paragraph>
+        </textcell>
+        <textcell name="Table_Members_10R0C3" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Cheek wall</paragraph>
+        </textcell>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>s_max: maximum spacing for each strip (in)</textvalue>
-        </c>
+        <textcell name="Table_Members_10R1C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">s_max: maximum spacing for each strip (in)</paragraph>
+        </textcell>
         <c formula="s_max_FF to in" capture="False" background="#EFF7F1">
           <num>18.000 in</num>
         </c>
@@ -4909,9 +4915,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>DC_flex: flexure, Mu / φMn</textvalue>
-        </c>
+        <textcell name="Table_Members_10R2C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">DC_flex: flexure, Mu / φMn</paragraph>
+        </textcell>
         <c formula="DC_flex_FF" capture="False" background="#EFF7F1">
           <num>0.108</num>
         </c>
@@ -4923,9 +4929,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>DC_min: minimum steel, min(Mcr, 1.33Mu) / φMn</textvalue>
-        </c>
+        <textcell name="Table_Members_10R3C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">DC_min: minimum steel, min(Mcr, 1.33Mu) / φMn</paragraph>
+        </textcell>
         <c formula="DC_min_FF" capture="False" background="#EFF7F1">
           <num>0.144</num>
         </c>
@@ -4937,9 +4943,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>DC_eps: tension-controlled, 0.005 / εt</textvalue>
-        </c>
+        <textcell name="Table_Members_10R4C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">DC_eps: tension-controlled, 0.005 / εt</paragraph>
+        </textcell>
         <c formula="DC_eps_FF" capture="False" background="#EFF7F1">
           <num>0.086</num>
         </c>
@@ -4951,9 +4957,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>DC_crk: crack control, max(fss / 0.8fy, s / s_cr)</textvalue>
-        </c>
+        <textcell name="Table_Members_10R5C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">DC_crk: crack control, max(fss / 0.8fy, s / s_cr)</paragraph>
+        </textcell>
         <c formula="DC_crk_FF" capture="False" background="#EFF7F1">
           <num>0.109</num>
         </c>
@@ -4965,9 +4971,9 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>DC_sp: maximum bar spacing</textvalue>
-        </c>
+        <textcell name="Table_Members_10R6C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">DC_sp: maximum bar spacing</paragraph>
+        </textcell>
         <c formula="DC_sp_FF" capture="False" background="#EFF7F1">
           <num>0.667</num>
         </c>
@@ -5088,7 +5094,7 @@
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="Status = If(DC_max &lt;= 1, &quot;✓ All Checks Pass&quot;, &quot;⊗ There are FAILURES&quot;)" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False">
       <expbody>Status = If(DC_max &lt;= 1, "✓ All Checks Pass", "⊗ There are FAILURES")</expbody>
-      <expresult> = ✓ All Checks Pass</expresult>
+      <expresult>✓ All Checks Pass</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">all numerical checks</paragraph>
@@ -5262,26 +5268,26 @@
       <stylerule range="A1:D1" horzalign="Center" vertalign="Center"/>
       <stylerule range="B2:D29" horzalign="Center" vertalign="Center"/>
       <row>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Check</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Member / scope</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>D/C</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Result</textvalue>
-        </c>
+        <textcell name="SummaryR0C0" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Check</paragraph>
+        </textcell>
+        <textcell name="SummaryR0C1" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Member / scope</paragraph>
+        </textcell>
+        <textcell name="SummaryR0C2" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">D/C</paragraph>
+        </textcell>
+        <textcell name="SummaryR0C3" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Result</paragraph>
+        </textcell>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>1. flexure, Mu / φMn</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Backwall fill face</textvalue>
-        </c>
+        <textcell name="SummaryR1C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">1. flexure, Mu / φMn</paragraph>
+        </textcell>
+        <textcell name="SummaryR1C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Backwall fill face</paragraph>
+        </textcell>
         <c formula="DC_flex_FF" capture="False" background="#EFF7F1">
           <num>0.108</num>
         </c>
@@ -5290,12 +5296,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>2. flexure, Mu / φMn</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Backwall span face</textvalue>
-        </c>
+        <textcell name="SummaryR2C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">2. flexure, Mu / φMn</paragraph>
+        </textcell>
+        <textcell name="SummaryR2C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Backwall span face</paragraph>
+        </textcell>
         <c formula="DC_flex_SF" capture="False" background="#EFF7F1">
           <num>0.363</num>
         </c>
@@ -5304,12 +5310,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>3. flexure, Mu / φMn</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Cheek wall</textvalue>
-        </c>
+        <textcell name="SummaryR3C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">3. flexure, Mu / φMn</paragraph>
+        </textcell>
+        <textcell name="SummaryR3C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Cheek wall</paragraph>
+        </textcell>
         <c formula="DC_flex_CK" capture="False" background="#EFF7F1">
           <num>0.194</num>
         </c>
@@ -5318,12 +5324,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>4. minimum steel, min(Mcr, 1.33Mu) / φMn</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Backwall fill face</textvalue>
-        </c>
+        <textcell name="SummaryR4C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">4. minimum steel, min(Mcr, 1.33Mu) / φMn</paragraph>
+        </textcell>
+        <textcell name="SummaryR4C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Backwall fill face</paragraph>
+        </textcell>
         <c formula="DC_min_FF" capture="False" background="#EFF7F1">
           <num>0.144</num>
         </c>
@@ -5332,12 +5338,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>5. minimum steel, min(Mcr, 1.33Mu) / φMn</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Backwall span face</textvalue>
-        </c>
+        <textcell name="SummaryR5C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">5. minimum steel, min(Mcr, 1.33Mu) / φMn</paragraph>
+        </textcell>
+        <textcell name="SummaryR5C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Backwall span face</paragraph>
+        </textcell>
         <c formula="DC_min_SF" capture="False" background="#EFF7F1">
           <num>0.483</num>
         </c>
@@ -5346,12 +5352,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>6. minimum steel, min(Mcr, 1.33Mu) / φMn</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Cheek wall</textvalue>
-        </c>
+        <textcell name="SummaryR6C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">6. minimum steel, min(Mcr, 1.33Mu) / φMn</paragraph>
+        </textcell>
+        <textcell name="SummaryR6C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Cheek wall</paragraph>
+        </textcell>
         <c formula="DC_min_CK" capture="False" background="#EFF7F1">
           <num>0.258</num>
         </c>
@@ -5360,12 +5366,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>7. tension-controlled, 0.005 / εt</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Backwall fill face</textvalue>
-        </c>
+        <textcell name="SummaryR7C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">7. tension-controlled, 0.005 / εt</paragraph>
+        </textcell>
+        <textcell name="SummaryR7C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Backwall fill face</paragraph>
+        </textcell>
         <c formula="DC_eps_FF" capture="False" background="#EFF7F1">
           <num>0.086</num>
         </c>
@@ -5374,12 +5380,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>8. tension-controlled, 0.005 / εt</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Backwall span face</textvalue>
-        </c>
+        <textcell name="SummaryR8C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">8. tension-controlled, 0.005 / εt</paragraph>
+        </textcell>
+        <textcell name="SummaryR8C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Backwall span face</paragraph>
+        </textcell>
         <c formula="DC_eps_SF" capture="False" background="#EFF7F1">
           <num>0.086</num>
         </c>
@@ -5388,12 +5394,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>9. tension-controlled, 0.005 / εt</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Cheek wall</textvalue>
-        </c>
+        <textcell name="SummaryR9C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">9. tension-controlled, 0.005 / εt</paragraph>
+        </textcell>
+        <textcell name="SummaryR9C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Cheek wall</paragraph>
+        </textcell>
         <c formula="DC_eps_CK" capture="False" background="#EFF7F1">
           <num>0.161</num>
         </c>
@@ -5402,12 +5408,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>10. crack control, max(fss / 0.8fy, s / s_cr)</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Backwall fill face</textvalue>
-        </c>
+        <textcell name="SummaryR10C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">10. crack control, max(fss / 0.8fy, s / s_cr)</paragraph>
+        </textcell>
+        <textcell name="SummaryR10C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Backwall fill face</paragraph>
+        </textcell>
         <c formula="DC_crk_FF" capture="False" background="#EFF7F1">
           <num>0.109</num>
         </c>
@@ -5416,12 +5422,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>11. crack control, max(fss / 0.8fy, s / s_cr)</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Backwall span face</textvalue>
-        </c>
+        <textcell name="SummaryR11C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">11. crack control, max(fss / 0.8fy, s / s_cr)</paragraph>
+        </textcell>
+        <textcell name="SummaryR11C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Backwall span face</paragraph>
+        </textcell>
         <c formula="DC_crk_SF" capture="False" background="#EFF7F1">
           <num>0.651</num>
         </c>
@@ -5430,12 +5436,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>12. crack control, max(fss / 0.8fy, s / s_cr)</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Cheek wall</textvalue>
-        </c>
+        <textcell name="SummaryR12C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">12. crack control, max(fss / 0.8fy, s / s_cr)</paragraph>
+        </textcell>
+        <textcell name="SummaryR12C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Cheek wall</paragraph>
+        </textcell>
         <c formula="DC_crk_CK" capture="False" background="#EFF7F1">
           <num>0.130</num>
         </c>
@@ -5444,12 +5450,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>13. maximum bar spacing</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Backwall fill face</textvalue>
-        </c>
+        <textcell name="SummaryR13C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">13. maximum bar spacing</paragraph>
+        </textcell>
+        <textcell name="SummaryR13C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Backwall fill face</paragraph>
+        </textcell>
         <c formula="DC_sp_FF" capture="False" background="#EFF7F1">
           <num>0.667</num>
         </c>
@@ -5458,12 +5464,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>14. maximum bar spacing</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Backwall span face</textvalue>
-        </c>
+        <textcell name="SummaryR14C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">14. maximum bar spacing</paragraph>
+        </textcell>
+        <textcell name="SummaryR14C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Backwall span face</paragraph>
+        </textcell>
         <c formula="DC_sp_SF" capture="False" background="#EFF7F1">
           <num>0.667</num>
         </c>
@@ -5472,12 +5478,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>15. maximum bar spacing</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Cheek wall</textvalue>
-        </c>
+        <textcell name="SummaryR15C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">15. maximum bar spacing</paragraph>
+        </textcell>
+        <textcell name="SummaryR15C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Cheek wall</paragraph>
+        </textcell>
         <c formula="DC_sp_CK" capture="False" background="#EFF7F1">
           <num>0.833</num>
         </c>
@@ -5486,12 +5492,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>16. backwall shear</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Backwall</textvalue>
-        </c>
+        <textcell name="SummaryR16C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">16. backwall shear</paragraph>
+        </textcell>
+        <textcell name="SummaryR16C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Backwall</paragraph>
+        </textcell>
         <c formula="DC_V_bw" capture="False" background="#EFF7F1">
           <num>0.213</num>
         </c>
@@ -5500,12 +5506,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>17. backwall interface shear (SDG 1.15)</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Backwall</textvalue>
-        </c>
+        <textcell name="SummaryR17C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">17. backwall interface shear (SDG 1.15)</paragraph>
+        </textcell>
+        <textcell name="SummaryR17C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Backwall</paragraph>
+        </textcell>
         <c formula="DC_Vi_bw" capture="False" background="#EFF7F1">
           <num>0.173</num>
         </c>
@@ -5514,12 +5520,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>18. minimum interface steel</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Backwall</textvalue>
-        </c>
+        <textcell name="SummaryR18C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">18. minimum interface steel</paragraph>
+        </textcell>
+        <textcell name="SummaryR18C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Backwall</paragraph>
+        </textcell>
         <c formula="DC_Avf" capture="False" background="#EFF7F1">
           <num>0.279</num>
         </c>
@@ -5528,12 +5534,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>19. backwall S&amp;T, vertical</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Backwall</textvalue>
-        </c>
+        <textcell name="SummaryR19C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">19. backwall S&amp;T, vertical</paragraph>
+        </textcell>
+        <textcell name="SummaryR19C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Backwall</paragraph>
+        </textcell>
         <c formula="DC_ts_v" capture="False" background="#EFF7F1">
           <num>0.667</num>
         </c>
@@ -5542,12 +5548,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>20. backwall S&amp;T, horizontal</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Backwall</textvalue>
-        </c>
+        <textcell name="SummaryR20C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">20. backwall S&amp;T, horizontal</paragraph>
+        </textcell>
+        <textcell name="SummaryR20C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Backwall</paragraph>
+        </textcell>
         <c formula="DC_ts_h" capture="False" background="#EFF7F1">
           <num>0.667</num>
         </c>
@@ -5556,12 +5562,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>21. cheek wall shear</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Cheek wall</textvalue>
-        </c>
+        <textcell name="SummaryR21C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">21. cheek wall shear</paragraph>
+        </textcell>
+        <textcell name="SummaryR21C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Cheek wall</paragraph>
+        </textcell>
         <c formula="DC_V_ck" capture="False" background="#EFF7F1">
           <num>0.033</num>
         </c>
@@ -5570,12 +5576,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>22. cheek wall interface shear</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Cheek wall</textvalue>
-        </c>
+        <textcell name="SummaryR22C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">22. cheek wall interface shear</paragraph>
+        </textcell>
+        <textcell name="SummaryR22C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Cheek wall</paragraph>
+        </textcell>
         <c formula="DC_Vi_ck" capture="False" background="#EFF7F1">
           <num>0.024</num>
         </c>
@@ -5584,12 +5590,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>23. cheek wall S&amp;T</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Cheek wall</textvalue>
-        </c>
+        <textcell name="SummaryR23C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">23. cheek wall S&amp;T</paragraph>
+        </textcell>
+        <textcell name="SummaryR23C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Cheek wall</paragraph>
+        </textcell>
         <c formula="DC_ts_ck" capture="False" background="#EFF7F1">
           <num>0.917</num>
         </c>
@@ -5599,11 +5605,11 @@
       </row>
       <row>
         <textcell name="SummaryR24C0" capture="False" background="#EFF7F1">
-          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="2">24. cover, 3 in backwall and specified cheek requirement (legacy minimum 2 in)</paragraph>
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">24. cover, 3 in backwall and specified cheek requirement (legacy minimum 2 in)</paragraph>
         </textcell>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Backwall and cheek wall</textvalue>
-        </c>
+        <textcell name="SummaryR24C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Backwall and cheek wall</paragraph>
+        </textcell>
         <c formula="DC_cov" capture="False" background="#EFF7F1">
           <num>1.000</num>
         </c>
@@ -5612,12 +5618,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>25. thickness, SDM 12.6.B</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Backwall and cheek wall</textvalue>
-        </c>
+        <textcell name="SummaryR25C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">25. thickness, SDM 12.6.B</paragraph>
+        </textcell>
+        <textcell name="SummaryR25C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Backwall and cheek wall</paragraph>
+        </textcell>
         <c formula="DC_thk" capture="False" background="#EFF7F1">
           <num>1.000</num>
         </c>
@@ -5626,12 +5632,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>26. strap within the backwall height</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Backwall</textvalue>
-        </c>
+        <textcell name="SummaryR26C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">26. strap within the backwall height</paragraph>
+        </textcell>
+        <textcell name="SummaryR26C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Backwall</paragraph>
+        </textcell>
         <c formula="DC_strap" capture="False" background="#EFF7F1">
           <num>0.387</num>
         </c>
@@ -5640,12 +5646,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>27. cap torsion screen</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>Cap</textvalue>
-        </c>
+        <textcell name="SummaryR27C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">27. cap torsion screen</paragraph>
+        </textcell>
+        <textcell name="SummaryR27C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">Cap</paragraph>
+        </textcell>
         <c formula="DC_T" capture="False" background="#EFF7F1">
           <num>0.634</num>
         </c>
@@ -5654,12 +5660,12 @@
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>OVERALL</textvalue>
-        </c>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>all checks</textvalue>
-        </c>
+        <textcell name="SummaryR28C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">OVERALL</paragraph>
+        </textcell>
+        <textcell name="SummaryR28C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">all checks</paragraph>
+        </textcell>
         <c formula="DC_max" capture="False" background="#EFF7F1">
           <num>1.000</num>
         </c>
@@ -5831,7 +5837,7 @@
       </planecontainer>
     </canvas>
   </embed>
-  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Figure 3. Demand/capacity ratio of each distilled check (stems, numbered as in the Summary table) against the 1.0 limit. The stems are live formulas of the check ratios: a stem turns red when its ratio passes 1.0.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Figure 3. Demand/capacity ratio of each check (stems, numbered as in the Summary table) against the 1.0 limit. The stems are live formulas of the check ratios: a stem turns red when its ratio passes 1.0.</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="12" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="6" keepwithnext="True">Tie-back loads for the plans (SDM 12.3.F)</paragraph>
   <embed spacingbefore="5" spacingafter="8">
     <table name="PlanLoads" capture="False" colwidths="1:420, 2:120">
@@ -5839,25 +5845,25 @@
       <stylerule range="A1:B1" horzalign="Center" vertalign="Center"/>
       <stylerule range="B2:B3" horzalign="Center" vertalign="Center"/>
       <row>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Tie-back load</textvalue>
-        </c>
-        <c capture="False" background="#DCECE0" fontweight="bold">
-          <textvalue>Value</textvalue>
-        </c>
+        <textcell name="PlanLoadsR0C0" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Tie-back load</paragraph>
+        </textcell>
+        <textcell name="PlanLoadsR0C1" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Value</paragraph>
+        </textcell>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>service load per foot of backwall, f_str_s (klf)</textvalue>
-        </c>
+        <textcell name="PlanLoadsR1C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">service load per foot of backwall, f_str_s (klf)</paragraph>
+        </textcell>
         <c formula="f_str_s to klf" capture="False" background="#EFF7F1">
           <num>3.089 klf</num>
         </c>
       </row>
       <row>
-        <c capture="False" background="#EFF7F1">
-          <textvalue>factored load per foot of backwall, f_str_u (klf)</textvalue>
-        </c>
+        <textcell name="PlanLoadsR2C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">factored load per foot of backwall, f_str_u (klf)</paragraph>
+        </textcell>
         <c formula="f_str_u to klf" capture="False" background="#EFF7F1">
           <num>3.737 klf</num>
         </c>
@@ -5865,6 +5871,4 @@
     </table>
   </embed>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Plan note (SDM 12.3.F): "The soil reinforcement attached to the backwall shall be designed by a Specialty Engineer for the service and factored loads as shown using the design criteria for permanent MSE walls. Cost of furnishing and installing the soil reinforcement is considered incidental to the cost of the end bent." Also add the SDG 1.15 note requiring the construction joints to be intentionally roughened to a 1/4 in amplitude.</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Pending before final design: geotechnical confirmation of 2 in maximum settlement above the cap bottom (SDG 3.13.2.N.3); strap elevation at an MSE reinforcement level; beam shrinkage strain; environment for the covers; matching current bearing-load analyses; cheek mat development and cap/lug load path. Geometry, journal Kz and landing basis are reconciled. The pile-head force V_pile is not in the FBMP model; raise the strap toward e_res or confirm the piles carry it.</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="5" textcolor="#43505C">A distilled result of ✓ covers only the recomputed numerical checks; it is not design acceptance. Recalculate in Blockpad after any input change.</paragraph>
 </report>

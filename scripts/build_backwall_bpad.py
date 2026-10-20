@@ -39,7 +39,21 @@ from scripts import mathcad_sheet as ms  # noqa: E402
 from scripts.mathcad_sheet import U  # noqa: E402
 
 REPORT_NAME = 'EndBentBackwallDesign'
-TITLE = 'End Bent 1 Backwall, Cheek Walls and Tie-Back Straps - Distilled'
+TITLE = 'C014 - End Bent 1 Backwall, Cheek Walls and Tie-Back Straps'
+LEGEND = 'Inputs are highlighted amber; results are the green tables.'
+# Wording of the Mathcad edition that names decisions, the notebook or the distillation, rewritten for the submitted text
+# (the hidden working notes keep the originals where they matter).
+VISIBLE_RULES = [
+    ('Project: D2 I-95 Pedestrian Bridge · common end-bent design (D-004).', 'Project: D2 I-95 Pedestrian Bridge · common end-bent design.'),
+    ('Geometry (D-053/D-055 native CAD snapshot)', 'Geometry (CAD model)'),
+    ('Soil and surcharge (D-015, D-016, D-017)', 'Soil and surcharge'),
+    ('Bearings and superstructure (EB-XML End Bent 1_Fixed, D-049; journal pad data)', 'Bearings and superstructure (FBMP End Bent 1_Fixed; shared pad data)'),
+    ('7. Cheek walls: wind only (D-018; LRFD 3.8.1.2.1)', '7. Cheek walls: wind only (LRFD 3.8.1.2.1)'),
+    ('at the front face (D-053).', 'at the front face.'),
+    ('largest of the distilled ratios', 'largest of the check ratios'),
+    ('ratio of each distilled check', 'ratio of each check'),
+    (' (D-014)', ''), (' (D-015)', ''), (' (D-016)', ''), (' (D-017)', ''), (' (D-018)', ''), (' (D-019)', ''),
+]
 FILENAME = 'End Bent Backwall Design.bpad'
 OUT_DIR = ROOT / 'end_bent_walls'
 SIDE_DIR = OUT_DIR / 'bpad'
@@ -47,7 +61,7 @@ EXTRA_PROVENANCE = ('Blockpad edition written by scripts/build_backwall_bpad.py 
                     'evaluated independently and compared with the notebook to 1 part in 10⁹.')
 NOTEBOOK_PROVENANCE = ('Blockpad edition exported from the backwall notebook (scripts/build_backwall_bpad.py in memory) for this '
                        'case; every definition was evaluated independently and compared with the notebook to 1 part in 10⁹.')
-CLOSING_NOTE = ('A distilled result of ✓ covers only the recomputed numerical checks; it is not design acceptance. '
+CLOSING_NOTE = ('A ✓ status covers only the recomputed numerical checks; it is not design acceptance. '
                 'Recalculate in Blockpad after any input change.')
 TOL = 1e-9                                           # comparison with the notebook and the Mathcad environment
 INPUT_TOL = 1e-12
@@ -88,9 +102,9 @@ FAMILY_NAME = {'i': 'Combos', 'j': 'Members', 'k': 'Stations'}
 PLAIN_TEXT = {
     'Vectors hold': ('Each quantity below is written for the five combinations in this order: Service I, Strength I, Strength III '
                      'wind 1, Strength III wind 2, Strength IV (LRFD Tables 3.4.1-1 and 3.4.1-2). TU and SH share one factor. Wind '
-                     'takes γWS = 1.0 where it applies; vertical wind counts only when it increases overturning. Blockpad has no '
-                     'vector variables: the equations are shown for Service I, the other combinations repeat them in the '
-                     'collapsed sections, and the values of all five appear side by side in the green tables.'),
+                     'takes γWS = 1.0 where it applies; vertical wind counts only when it increases overturning. The equations are '
+                     'shown for Service I, the other combinations repeat them in the collapsed sections, and the values of all '
+                     'five appear side by side in the green tables.'),
     'Index j:': ('Members: FF = backwall fill face (strap slack), SF = backwall span face (strap engaged), CK = cheek wall (either '
                  'face). The equations are shown for the fill face; the span face and the cheek wall repeat them in the collapsed '
                  'sections and the green tables.'),
@@ -228,6 +242,7 @@ class Sheet:
         self.name = REPORT_NAME
         self.doc = bs.new_document()
         self.rep = bs.new_report(self.doc, REPORT_NAME, TITLE)
+        self.notes = None                                    # the hidden WorkingNotes section (provenance, status, pending items)
         self.case_sha = hashlib.sha256(json.dumps(e.case, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
         self.family, self.vector_map, self.scalar_map = {}, {}, {}
         self.cur = {'i': KEYS[0], 'j': MEMBERS[0], 'k': STATIONS[0], 'r': R_KEYS[0]}
@@ -345,7 +360,8 @@ class Sheet:
         if self.journal is not None:                         # the journal edition opens with the live project stamp
             bs.project_stamp_table(self.rep, self.journal.stamp, live=True)
         bs.para(self.rep, 'D2 I-95 PEDESTRIAN BRIDGE', fontsize=16, fontweight='bold', spacingafter=2)
-        bs.para(self.rep, blk.payload, fontsize=14, fontweight='bold', spacingafter=6)
+        bs.para(self.rep, TITLE, fontsize=14, fontweight='bold', spacingafter=6)
+        self.notes = bs.working_notes(self.rep)              # the working language of the title block goes here, hidden
 
     def do_h1(self, blk):
         self.sec = int(blk.payload.split('.')[0])
@@ -359,12 +375,16 @@ class Sheet:
     def do_p(self, blk):
         text = blk.payload
         if text.startswith('Mathcad edition of'):
-            text = (f'Blockpad edition of End_Bent_Backwall_Design.ipynb (calculation package {self.revision}; case SHA-256 '
-                    f'{self.case_sha}). Same inputs, equations and load combinations as the notebook; every result below was '
-                    f'recomputed and compared with the notebook. ' + self.extra_provenance)
-        elif text.startswith('Status:'):
-            text = text.replace('Inputs are highlighted yellow; values for the plans are boxed.',
-                                'Inputs are highlighted amber; distilled results are the green tables.')
+            # The journal edition is tied to its case by the case hash alone: the package revision changes with every edit of
+            # the embedded scripts and would force a journal task each time (the same rule as the cap edition, T013).
+            package = '' if self.journal is not None else f'calculation package {self.revision}; '
+            bs.para(self.notes, f'Blockpad edition of End_Bent_Backwall_Design.ipynb ({package}case SHA-256 '
+                                f'{self.case_sha}). Same inputs, equations and load combinations as the notebook; every result below was '
+                                f'recomputed and compared with the notebook. ' + self.extra_provenance)      # provenance: hidden
+            return
+        if text.startswith('Status:'):
+            bs.para(self.notes, text.split(' Inputs are highlighted')[0])                                    # status: hidden
+            text = LEGEND
         elif text.startswith('Demand / capacity ratios'):
             text = text.replace('Rows j as in Section 9.', 'Members FF, SF and CK as in Section 9.')
         else:
@@ -375,6 +395,9 @@ class Sheet:
         bs.para(self.rep, text)
 
     def do_note(self, blk):
+        if blk.payload.startswith('Pending before final design'):                       # prerequisite bookkeeping: hidden
+            bs.note(self.notes, blk.payload)
+            return
         bs.note(self.rep, blk.payload)
 
     def do_bullets(self, blk):
@@ -629,7 +652,7 @@ class Sheet:
         cv = bs.canvas(self.rep, 'DCChart', 'D/C by check', 3.2)
         self.canvases['DCChart'] = cv
         self.deferred.append((cv, lambda eng, cv=cv: self.draw_chart(cv, eng)))
-        bs.note(self.rep, 'Figure 3. Demand/capacity ratio of each distilled check (stems, numbered as in the Summary table) against '
+        bs.note(self.rep, 'Figure 3. Demand/capacity ratio of each check (stems, numbered as in the Summary table) against '
                           'the 1.0 limit. The stems are live formulas of the check ratios: a stem turns red when its ratio passes 1.0.')
 
     # -- figures
@@ -899,10 +922,10 @@ MATERIALS = 'Materials'
 JOURNAL_PATH = ROOT / 'journal' / 'D2_I95_Project_Journal.bpad'
 JOURNAL_SUBDIR = 'journal'                                            # end_bent_walls/bpad/journal/
 REVIEW_FILE = 'End Bent Backwall Design - Journal Edition (review).bpad'
-REFERENCE_CAPTION = 'shared journal value —'
-JOURNAL_SECTION2 = ('Shared end-bent geometry, bearing pad data, the Span 1 expansion length and the material strengths are live references '
-                    'to the journal; the owner is named beside each. The bearing actions, the strap loads and the other inputs are the '
-                    'notebook case values.')
+REFERENCE_CAPTION = 'shared value —'                                   # caption of a live reference: the owner is named after it
+JOURNAL_SECTION2 = ('Shared end-bent geometry, bearing pad data, the Span 1 expansion length and the material strengths are read from '
+                    'the modules that own them; the owner is named beside each. The bearing actions, the strap loads and the other '
+                    'inputs are the design-case values.')
 JOURNAL_PROVENANCE = ('Journal edition written by scripts/build_backwall_bpad.py --journal from the same case: the inputs the journal owns are '
                       'live references (a coherence gate compared each journal value with the notebook input before the build), and every '
                       'definition was evaluated independently and compared with the notebook to 1 part in 10⁹.')
@@ -928,8 +951,8 @@ JOURNAL_REFS = {
 #: inputs that stay literals although the journal holds a similar quantity: name -> status, owner (reported, never compared), unit, reason
 KEEP_LITERAL = {
     's_brg': dict(status='literal_incoherent_journal', owner=f'{BG}.Beam_spacing', unit='in',
-                  reason='bearing spacing from the EB-XML bearing stations 29.50 / 132.49 in (102.99 in); the journal beam spacing '
-                         'BridgeGeometry_2Beam.Beam_spacing is 8 ft 7 in (103 in) — the analysis value is kept'),
+                  reason='bearing spacing from the FBMP bearing stations 29.50 / 132.49 in (102.99 in); the nominal beam spacing '
+                         'BridgeGeometry_2Beam.Beam_spacing is 8 ft 7 in (103 in) — the analysis value is used'),
 }
 LITERAL_STATUSES = ('literal_owner_here', 'literal_incoherent_journal')
 FT_IN = re.compile(r'^\s*(\d+(?:\.\d+)?)\s*ft\s+(\d+(?:\.\d+)?)\s*in\s*$')
@@ -1032,7 +1055,7 @@ def journal_context(links, e):
                               'are measured from were built with this drop (D-053/D-055)'))
     if bad:
         raise BuildError('coherence gate: the journal disagrees with the backwall case\n' + '\n'.join(bad))
-    drop_caption = (f'{REFERENCE_CAPTION} {owner}; backwall top below the deck-top line at the front face (D-053). The CAD model measured '
+    drop_caption = (f'{REFERENCE_CAPTION} {owner}; backwall top below the deck-top line at the front face. The CAD model measured '
                     f'for H_bw, H_bw_edge and V_bw was built with this drop (TopDrop {bs.bp_num(clean(journal_drop))} in at both end bents).')
     stamp_values = {k.partition('.')[2]: v for k, v in stamp.items()}
     if stamp_values != PROJECT_STAMP:
@@ -1062,9 +1085,13 @@ def check_journal_edition(rep, jctx):
     first = next(el for el in rep if el.tag not in ('include', 'stylerule'))
     if first.tag != 'embed' or first.find('table') is not tables[0]:
         raise BuildError('the ProjectStamp table is not the first thing after the report stylerules')
-    cells = [c for c in tables[0].iter('c') if c.get('formula')]
-    if [c.get('formula') for c in cells] != [f'{bs.PROJECT_INFO}.{k}' for k in bs.STAMP_KEYS]:
+    cells = bs.stamp_cells(tables[0])
+    if [owner for _, _, owner in cells] != [f'{bs.PROJECT_INFO}.{k}' for k in bs.STAMP_KEYS]:
         raise BuildError('the ProjectStamp cells are not live ProjectInfo references')
+    if [text for _, text, _ in cells] != [jctx.stamp[k] for k in bs.STAMP_KEYS]:
+        raise BuildError('the ProjectStamp caches differ from the ProjectInfo strings')
+    if any(cell.tag != 'textcell' for row in tables[0].findall('row') for cell in row):
+        raise BuildError('the ProjectStamp cells are not multiline cells')
 
 
 def review_document(sheet):
@@ -1140,9 +1167,11 @@ def build(e=None, revision=None, mathcad_compare=True, extra_provenance=None, jo
             sheet.flush()
         getattr(sheet, 'do_' + blk.kind)(blk)
     sheet.flush()
-    bs.note(sheet.rep, CLOSING_NOTE, size=9)
+    bs.note(sheet.notes, CLOSING_NOTE, size=9)
 
     rep = sheet.rep
+    bs.rewrite_visible_text(rep, VISIBLE_RULES)
+    bs.check_submission_text(rep)
     # ---- (a) syntax and names: the engine is built from the XML that will be written
     eng = bs.BpEngine(report=REPORT_NAME)
     if jctx is not None:

@@ -78,14 +78,21 @@ def check_stamp(test, rep, live):
     rows = table.findall('row')
     test.assertEqual(len(rows), 4)
     test.assertEqual(len([t for t in rep.iter('table') if t.get('name') == 'ProjectStamp']), 1)
-    for row, (label_a, key_a, label_b, key_b) in zip(rows, STAMP_LAYOUT):
-        cells = row.findall('c')
-        test.assertEqual(len(cells), 4)
-        test.assertEqual([c.find('textvalue').text or '' for c in cells], [label_a, STAMP[key_a], label_b, STAMP[key_b]])
-        test.assertEqual([c.get('fontweight') for c in cells], ['bold', None, 'bold', None])
+    for row in rows:                                 # multiline cells: the long project name wraps instead of clipping
+        cells = list(row)
+        test.assertEqual([c.tag for c in cells], ['textcell'] * 4)
         test.assertEqual({c.get('background') for c in cells}, {'#F1F5FA'})
-        test.assertEqual([c.get('formula') for c in cells],
-                         [None, f'ProjectInfo.{key_a}' if live else None, None, f'ProjectInfo.{key_b}' if live else None])
+        test.assertEqual([c.find('paragraph').get('fontweight') for c in cells], ['bold', None, 'bold', None])
+    stamp = bs.stamp_cells(table)
+    expected = [(label, key) for row in STAMP_LAYOUT for label, key in ((row[0], row[1]), (row[2], row[3]))]
+    test.assertEqual([(label, text) for label, text, _ in stamp], [(label, STAMP[key]) for label, key in expected])
+    test.assertEqual([owner for _, _, owner in stamp], [f'ProjectInfo.{key}' if live else None for _, key in expected])
+    if live:                                         # a result-only definition per value cell: Stamp_Firm = ProjectInfo.Firm
+        dyns = [d for d in table.iter('dynexp')]
+        test.assertEqual([d.get('formula') for d in dyns], [f'Stamp_{key} = ProjectInfo.{key}' for _, key in expected])
+        test.assertEqual({d.get('style') for d in dyns}, {'Result only'})
+    else:
+        test.assertFalse(list(table.iter('dynexp')))
 
 
 class CapBpad(unittest.TestCase):
@@ -311,7 +318,7 @@ class CapBpad(unittest.TestCase):
         self.assertEqual(make(True), make(True))
         self.assertEqual(make(False), make(False))
         self.assertNotEqual(make(True), make(False))
-        self.assertIn(b'formula="ProjectInfo.Firm"', make(True))
+        self.assertIn(b'formula="Stamp_Firm = ProjectInfo.Firm"', make(True))
         self.assertNotIn(b'formula=', make(False))
         self.assertIn(b'name="Other"', make(True, name='Other'))
         with self.assertRaises(ValueError):
@@ -326,12 +333,17 @@ class CapBpad(unittest.TestCase):
                     self.assertTrue(text[m.start():].startswith('C005 formula set'), f'C005 wording left: {text[m.start() - 40:m.start() + 40]!r}')
             paragraphs = [text_of(p) for p in self.report_of(b['data']).iter('paragraph')]
             sha = b['entry']['formula_sha256'][:12]
-            self.assertTrue(any(t.endswith(f'4.1.4A–C; inherited sectional relations of the cap tool (C005 formula set {sha}).')
-                                for t in paragraphs), 'the Codes paragraph does not carry the new wording')
-            for wanted in ('4. Steel areas and effective depths (cap tool)', 'Actions (cap tool inputs from the analysis envelope)',
-                           'concrete modulus (cap tool)', 'effective shear depth (cap tool)'):
+            # the formula-set hash sits in the hidden working notes; the visible Codes paragraph ends with the FDOT article
+            self.assertTrue(any(t == f'Codes note: inherited sectional relations of the cap tool (C005 formula set {sha}).'
+                                for t in paragraphs), 'the Codes note does not carry the new wording')
+            self.assertTrue(any(t.endswith('FDOT Structures Design Guidelines, January 2026, 4.1.4A–C.') for t in paragraphs))
+            for wanted in ('4. Steel areas and effective depths (cap analysis)', 'Actions (from the analysis envelope)',
+                           'concrete modulus (cap analysis)', 'effective shear depth (cap analysis)'):
                 self.assertTrue(any(wanted in t for t in paragraphs), f'{wanted!r} is missing')
-            self.assertFalse([t for t in paragraphs if 'inherited C005' in t])
+            self.assertFalse([t for t in paragraphs if 'inherited C005' in t or '(cap tool)' in t])
+            rep = self.report_of(b['data'])
+            self.assertFalse(bs.SUBMISSION_FORBIDDEN.search(' '.join(t for _, t in bs.visible_text_elements(rep))),
+                             'working language in the visible text')
 
     def test_preview_sidecar_matches_the_canvases(self):
         for cap, b in self.each():
@@ -438,7 +450,7 @@ class CapBpadJournal(unittest.TestCase):
                              'no literal_incoherent_journal or literal_owner_here row is expected any more')
             for r in rows:
                 self.assertAlmostEqual(r['journal_value'], r['case_value'], delta=1e-9 * abs(r['case_value']))
-                self.assertTrue(r['note'].startswith('shared journal value'))
+                self.assertTrue(r['note'].startswith(bc.REFERENCE_CAPTION))
             if b['name'] == 'CapDesignPier':
                 self.assertEqual((by_input['L_cap']['journal_value'], by_input['b']['journal_value']), (230.0, 48.0))
             else:
@@ -464,6 +476,7 @@ class CapBpadJournal(unittest.TestCase):
     def test_the_basis_report_defines_everything_the_caps_use(self):
         basis = self.fragment('CapDesignBasis')
         defined = {bs.split_definition(d.get('formula'))[0].split('(')[0] for d in basis.iter('dynexp')}
+        defined -= {n for n in defined if n.startswith(bs.STAMP_PREFIX)}          # the live project stamp
         self.assertEqual(defined, {'φ_f', 'φ_v', 'φ_a', 'γ_e', 'λ', 's_proj', 'Ab', 'Db'})
         used = set()
         for cap, b in self.reports():
@@ -471,7 +484,8 @@ class CapBpadJournal(unittest.TestCase):
             for formula in self.formulas(rep):
                 used.update(BASIS_USES.findall(formula))
         self.assertEqual(used, defined)
-        amber = [d.get('style') for d in basis.iter('dynexp') if '(' not in d.get('formula').split('=')[0]]
+        amber = [d.get('style') for d in basis.iter('dynexp')
+                 if '(' not in d.get('formula').split('=')[0] and not d.get('formula').startswith(bs.STAMP_PREFIX)]
         self.assertEqual(amber, ['Required Input'] * 6)
         text = ' '.join(text_of(p) for p in basis.iter('paragraph'))
         for word in ('CapDesignEndBentOne', 'CapDesignEndBentTwo', 'CapDesignPier', 'LRFD', 'FDOT Structures Design Guidelines',
@@ -500,8 +514,9 @@ class CapBpadJournal(unittest.TestCase):
             self.assertNotIn(b'FBMPEndBent', raw)
             for m in re.finditer(b'C005', raw):
                 self.assertTrue(raw[m.start():].startswith(b'C005 formula set'))
-            self.assertIn('Shared geometry, materials and factors are live references to the journal; the owner is named beside each.',
-                          [text_of(p) for p in rep.iter('paragraph')])
+            self.assertIn(bc.JOURNAL_SECTION2, [text_of(p) for p in rep.iter('paragraph')])
+            self.assertFalse(bs.SUBMISSION_FORBIDDEN.search(' '.join(t for _, t in bs.visible_text_elements(rep))),
+                             'working language in the visible text')
 
     check_formula = CapBpad.check_formula
 
