@@ -267,9 +267,9 @@ def dashed(cv, points, color, width):
 class Sheet:
     """One pile's report: walks the Mathcad blocks and writes the native elements."""
 
-    def __init__(self, e, ctx, blocks, report_name, title, pm):
+    def __init__(self, e, ctx, blocks, report_name, title, pm, stamp='static'):
         self.e, self.ctx, self.blocks, self.pm = e, ctx, blocks, pm
-        self.name, self.title = report_name, title
+        self.name, self.title, self.stamp = report_name, title, stamp
         self.psc = e.family == 'psc'
         self.doc = bs.new_document()
         self.rep = bs.new_report(self.doc, report_name, title)
@@ -332,6 +332,8 @@ class Sheet:
 
     # -- plain blocks
     def do_title(self, blk):
+        if self.stamp:                                # the project stamp first: static text, or live ProjectInfo.* references
+            bs.project_stamp_table(self.rep, bs.PROJECT_STAMP, live=self.stamp == 'live')
         bs.para(self.rep, 'D2 I-95 PEDESTRIAN BRIDGE', fontsize=16, fontweight='bold', spacingafter=2)
         bs.para(self.rep, self.title, fontsize=14, fontweight='bold', spacingafter=6)
         self.notes = bs.working_notes(self.rep)       # the working language of the title block goes here, hidden
@@ -358,6 +360,8 @@ class Sheet:
             self.in_fig3_data = True
             return
         if text.startswith('Distilled from'):
+            if self.stamp == 'live':                  # the journal edition is tied to its case alone, not to the package revision
+                text = re.sub(r' \(package [0-9a-f]+\)', '', text)
             bs.para(self.notes, text + ' ' + BP_PROVENANCE)                              # provenance: hidden
             return
         if text.startswith('Status:'):
@@ -1089,13 +1093,34 @@ def sha(data):
 
 
 # ----------------------------------------------------------------------------- build
-def build_sheet(e, mathcad_compare=True):
+def check_stamp(rep, live):
+    """The first element after the stylerules is the ProjectStamp table (multiline cells; live ProjectInfo references or static text)."""
+    tables = [t for t in rep.iter('table') if t.get('name') == 'ProjectStamp']
+    if len(tables) != 1:
+        raise BuildError(f'the report holds {len(tables)} ProjectStamp tables, not 1')
+    first = next(el for el in rep if el.tag not in ('include', 'stylerule'))
+    if first.tag != 'embed' or first.find('table') is not tables[0]:
+        raise BuildError('the ProjectStamp table is not the first thing after the report stylerules')
+    cells = bs.stamp_cells(tables[0])
+    if [v for _, v, _ in cells] != [bs.PROJECT_STAMP[k] for k in bs.STAMP_KEYS]:
+        raise BuildError('the ProjectStamp values differ from PROJECT_STAMP')
+    if [owner for _, _, owner in cells] != [f'{bs.PROJECT_INFO}.{k}' if live else None for k in bs.STAMP_KEYS]:
+        raise BuildError('the ProjectStamp cells are ' + ('not live ProjectInfo references' if live else 'not static text'))
+    if any(cell.tag != 'textcell' for row in tables[0].findall('row') for cell in row):
+        raise BuildError('the ProjectStamp cells are not multiline cells')
+
+
+def build_sheet(e, mathcad_compare=True, stamp='static'):
+    """`stamp`: 'static' (the standalone sheet: the stamp as text), 'live' (the journal edition: Stamp_<Key> = ProjectInfo.<Key>)
+    or None (no stamp)."""
+    if stamp not in ('static', 'live', None):
+        raise ValueError(f'stamp must be static, live or None, not {stamp!r}')
     pm = _mathcad()
     rev = pm.package_revision()
     ctx = pm.context(e, rev, None)
     blocks = pm.sheet(e, rev, None)
     report_name, title, filename = report_info(e)
-    sheet = Sheet(e, ctx, blocks, report_name, title, pm)
+    sheet = Sheet(e, ctx, blocks, report_name, title, pm, stamp)
     for blk in blocks:
         getattr(sheet, 'do_' + blk.kind)(blk)
     sheet.flush()
@@ -1111,6 +1136,9 @@ def build_sheet(e, mathcad_compare=True):
     bs.check_submission_text(rep)
     # ---- (a) the engine is built from the XML that will be written
     eng = bs.BpEngine(report=report_name)
+    if stamp == 'live':                           # the journal edition reads the ProjectInfo strings
+        for key, text in bs.PROJECT_STAMP.items():
+            eng.add_external(f'{bs.PROJECT_INFO}.{key}', text)
     n_defs = n_funcs = 0
     for dyn in rep.iter('dynexp'):
         formula = dyn.get('formula')
@@ -1146,6 +1174,8 @@ def build_sheet(e, mathcad_compare=True):
             if v is not bs.NULL and (not isinstance(v, bs.Q) or v.d != bs.NODIM):
                 raise BuildError(f'plot coordinate {item!r} is not a plain number')
     n_cells = bs.write_caches(rep, eng, report_name)
+    if stamp:
+        check_stamp(rep, live=stamp == 'live')
     for el in rep.iter('c', 'planecontainer', 'lineardim'):
         if el.get('formula'):
             eng.evaluate(el.get('formula'))
@@ -1205,9 +1235,12 @@ def build_sheet(e, mathcad_compare=True):
     return sheet, eng, meta, filename
 
 
-def build_outputs(e, mathcad_compare=True):
-    """dict(document, fragment, sidecar, verification, report_name, filename) for an Evaluation."""
-    sheet, eng, meta, filename = build_sheet(e, mathcad_compare)
+def build_outputs(e, mathcad_compare=True, stamp='static'):
+    """dict(document, fragment, sidecar, verification, report_name, filename) for an Evaluation.
+
+    `stamp='static'` is the standalone sheet (the project stamp as text); `stamp='live'` is the journal edition, whose stamp
+    reads ProjectInfo (Stamp_<Key> = ProjectInfo.<Key>) and resolves only inside the project journal."""
+    sheet, eng, meta, filename = build_sheet(e, mathcad_compare, stamp)
     document = bs.serialize(sheet.doc)
     fragment = bs.serialize(sheet.rep, declaration=False).rstrip()
     sidecar = {name: cv.sidecar() for name, cv in sheet.canvases.items()}
@@ -1218,7 +1251,7 @@ def build_outputs(e, mathcad_compare=True):
         'definitions': meta['definitions'], 'functions': meta['functions'], 'cells_and_labels': meta['cells'],
         'tool_comparisons': meta['comparisons'], 'data_table_comparisons': meta['data_table'], 'approximate_comparisons': meta['approximations'],
         'mathcad_values_compared': meta['mathcad_values'], 'values_from_notebook': meta['from_notebook'], 'status': meta['status'],
-        'bpad_sha256': sha(document)}
+        'stamp': stamp, 'bpad_sha256': sha(document), 'fragment_sha256': sha(fragment)}
     return dict(document=document, fragment=fragment, sidecar=sidecar, verification=verification, report_name=sheet.name, filename=filename)
 
 

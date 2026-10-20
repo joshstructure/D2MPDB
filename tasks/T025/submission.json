@@ -1,0 +1,9 @@
+{
+  "summary": "The project stamp tables of the hand-authored calculations C001, C002, C003, C004, C006, C015 and C016 hold their values in multiline result-only cells (Stamp_<Key> = ProjectInfo.<Key>, cached text unchanged), the form of the generated calculations, so the project name no longer clips. Eight definitions added per report; nothing else changes.",
+  "published_outputs": ["Stamp_Firm, Stamp_Address, Stamp_Project, Stamp_JobNo, Stamp_DesignedBy, Stamp_DesignDate, Stamp_CheckedBy, Stamp_CheckDate in each of the seven reports; all existing published names unchanged"],
+  "assumptions_and_conventions": ["Result-only caches hold the text without the '= ' prefix, as Blockpad writes them natively."],
+  "downstream_impact": ["None beyond the stamp cells; design atlas refresh required (journal hash)."],
+  "external_analysis": "Not affected: no value changed; FBMP not rerun.",
+  "checks_performed": ["tasks/T025/build_components.py: exactly eight value cells per report replaced; the report minus those cells byte-identical; definitions and value-cell formulas otherwise unchanged; stamp text equals the ProjectInfo strings", "tools/bpad_workflow.py check and assemble"],
+  "open_items": ["Native Blockpad recalculation, appearance review and engineering review not performed."]
+}

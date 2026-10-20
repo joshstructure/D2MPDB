@@ -17,11 +17,72 @@
   <report name="PileDesignPier" title="C013 - Pier Pile Design" unit="in" pagesize="816,1056" margin="48,48,48,48" bordermargin="0,0,0,0" collapsemargins="False">
     <include target="Library.Geometry"/>
     <stylerule type="AnyEquation" name="Required Input" texthighlight="#F7E6B9"/>
+    <embed spacingbefore="5" spacingafter="8">
+      <table name="ProjectStamp" capture="False" colwidths="1:95, 2:165, 3:95, 4:165">
+        <stylerule range="A1:D4" fontfamily="Times New Roman" fontsize="9" vertalign="Center" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);"/>
+        <row>
+          <textcell name="ProjectStampR0C0" capture="False" background="#F1F5FA">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Firm</paragraph>
+          </textcell>
+          <textcell name="ProjectStampR0C1" capture="False" background="#F1F5FA">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">Parsons Transportation Group Inc</paragraph>
+          </textcell>
+          <textcell name="ProjectStampR0C2" capture="False" background="#F1F5FA">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Project</paragraph>
+          </textcell>
+          <textcell name="ProjectStampR0C3" capture="False" background="#F1F5FA">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">I-95 Capacity Improvements from South of SR 152 to South of SR 126</paragraph>
+          </textcell>
+        </row>
+        <row>
+          <textcell name="ProjectStampR1C0" capture="False" background="#F1F5FA">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Address</paragraph>
+          </textcell>
+          <textcell name="ProjectStampR1C1" capture="False" background="#F1F5FA">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301</paragraph>
+          </textcell>
+          <textcell name="ProjectStampR1C2" capture="False" background="#F1F5FA">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Job no.</paragraph>
+          </textcell>
+          <textcell name="ProjectStampR1C3" capture="False" background="#F1F5FA">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0"/>
+          </textcell>
+        </row>
+        <row>
+          <textcell name="ProjectStampR2C0" capture="False" background="#F1F5FA">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Designed by</paragraph>
+          </textcell>
+          <textcell name="ProjectStampR2C1" capture="False" background="#F1F5FA">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">JAT</paragraph>
+          </textcell>
+          <textcell name="ProjectStampR2C2" capture="False" background="#F1F5FA">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Date</paragraph>
+          </textcell>
+          <textcell name="ProjectStampR2C3" capture="False" background="#F1F5FA">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">10/17/2026</paragraph>
+          </textcell>
+        </row>
+        <row>
+          <textcell name="ProjectStampR3C0" capture="False" background="#F1F5FA">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Checked by</paragraph>
+          </textcell>
+          <textcell name="ProjectStampR3C1" capture="False" background="#F1F5FA">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">MIK</paragraph>
+          </textcell>
+          <textcell name="ProjectStampR3C2" capture="False" background="#F1F5FA">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Date</paragraph>
+          </textcell>
+          <textcell name="ProjectStampR3C3" capture="False" background="#F1F5FA">
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0"/>
+          </textcell>
+        </row>
+      </table>
+    </embed>
     <paragraph fontfamily="Times New Roman" fontsize="16" spacingafter="2" fontweight="bold">D2 I-95 PEDESTRIAN BRIDGE</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold">C013 - Pier Pile Design</paragraph>
     <section name="WorkingNotes" capture="False" hide="true">
       <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="4" fontweight="bold" textcolor="#43505C">Working notes (hidden; not part of the submitted calculation): how this edition was produced, its tool status and the open bookkeeping items.</paragraph>
-      <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Distilled from the pile design notebook (package 921ea3c656dc), case "Pier piles: 20 in steel pipe, FBMP fixed run". Same inputs, equations and load combinations as the notebook; results should match its exported report. Blockpad edition written by pile_design/bpad.py (scripts/build_pile_bpad.py) from the same case; every definition was evaluated independently and compared with the notebook to 1 part in 10⁹.</paragraph>
+      <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Distilled from the pile design notebook (package 8db9964e721f), case "Pier piles: 20 in steel pipe, FBMP fixed run". Same inputs, equations and load combinations as the notebook; results should match its exported report. Blockpad edition written by pile_design/bpad.py (scripts/build_pile_bpad.py) from the same case; every definition was evaluated independently and compared with the notebook to 1 part in 10⁹.</paragraph>
       <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Status: All numerical checks pass (largest ratio 1.00) · 16 pending item(s) remain.</paragraph>
       <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• FBMP source: Pier_Fixed.XML, SHA-256 bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7 (registered export PIER-XML). 4 piles at 5 ft; cutoff elevation 41.7717 ft, ground 26.05 ft.</paragraph>
       <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Every definition was read back from the XML and evaluated by an independent Blockpad-syntax evaluator, then compared with the notebook (and with the Mathcad worksheet) before the file was written. Governing records, the notebook angles, the neutral-axis depth c_gov and the few values found by a search over the interaction sweep are amber inputs read from the notebook.</paragraph>

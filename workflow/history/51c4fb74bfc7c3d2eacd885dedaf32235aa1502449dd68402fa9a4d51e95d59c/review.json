@@ -1,0 +1,21 @@
+{
+  "candidate_sha256": "51c4fb74bfc7c3d2eacd885dedaf32235aa1502449dd68402fa9a4d51e95d59c",
+  "reviewer": "Claude (Fable 5.1) — bounded file-integrity verification only (tasks/T025/build_components.py)",
+  "native_recalculation": false,
+  "native_visual_review": false,
+  "engineering_review": false,
+  "design_outcome": "unreviewed",
+  "external_analysis_disposition": "Presentation only (stamp cells); no value changed; FBMP not rerun.",
+  "external_analysis_status": "unreviewed",
+  "inherited_issues_disposition": "Each report minus its eight stamp cells is byte-identical; other components untouched. Nothing opened natively.",
+  "evidence_files": [
+    {
+      "path": "verification.json",
+      "sha256": "902721fb3e2e59319c101f9f12768c9669723f20e9e54a05eedecce96efea870"
+    },
+    {
+      "path": "definitions.json",
+      "sha256": "fc4c71dceeee8f60bb6a998cda609dc4c420bb0a880aefec19aa97a0a97b6c80"
+    }
+  ]
+}

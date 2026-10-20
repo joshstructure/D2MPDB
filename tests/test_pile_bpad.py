@@ -203,10 +203,10 @@ class PileBpad(unittest.TestCase):
             key = f'report:{name}'
             # The journal holds these names only once T015 is promoted; then the journal edition owns the comparison.
             self.assertEqual(name in taken, key in taken)
-            if key in taken:
-                fragment = ET.fromstring((OUT / 'fragments' / f'{name}.xml').read_bytes())
+            if key in taken:                      # the journal holds the journal edition (live project stamp), T024 onwards
+                fragment = ET.fromstring((OUT / 'journal' / f'{name}.xml').read_bytes())
                 self.assertEqual(shape(ET.fromstring(Journal.load(JOURNAL).part(key))), shape(fragment),
-                                 f'journal report {name} differs from its fragment: rebuild and promote a new task')
+                                 f'journal report {name} differs from pile_bpad/journal/{name}.xml: rebuild and promote a new task')
             self.assertIsNone(CELL_ADDRESS.match(name), 'a report name that looks like a cell address')
             for source, data in (('fresh build', b['document']), ('committed file', (OUT / NAMES[support][1]).read_bytes())):
                 with self.subTest(source=source):
@@ -289,6 +289,24 @@ class PileBpad(unittest.TestCase):
             status = self.check_summary(e, b['document'], b['report_name'])
             self.assertEqual(status, b['verification']['status'])
             self.assertEqual(status, ALL_PASS)
+
+    def test_project_stamp_static_in_the_sheet_and_live_in_the_journal_edition(self):
+        for support, e, b in self.each():
+            rep = ET.fromstring(b['document']).find('report')
+            bpad.check_stamp(rep, live=False)                     # the standalone sheet: the stamp as text
+            self.assertEqual(b['verification']['stamp'], 'static')
+            self.assertFalse([d for d in rep.iter('dynexp') if d.get('formula').startswith(bs.STAMP_PREFIX)])
+            journal = bpad.build_outputs(e, mathcad_compare=False, stamp='live')
+            jrep = ET.fromstring(journal['fragment'])
+            bpad.check_stamp(jrep, live=True)                     # the journal edition: Stamp_<Key> = ProjectInfo.<Key>
+            self.assertEqual([d.get('formula') for d in jrep.iter('dynexp') if d.get('formula').startswith(bs.STAMP_PREFIX)],
+                             [f'{bs.STAMP_PREFIX}{k} = {bs.PROJECT_INFO}.{k}' for k in bs.STAMP_KEYS])
+            self.assertEqual(journal['verification']['definitions'], b['verification']['definitions'] + len(bs.STAMP_KEYS))
+            committed = OUT / 'journal' / f'{b["report_name"]}.xml'
+            self.assertEqual(unix(committed.read_bytes()), unix(journal['fragment']), f'{committed.name} is stale: {HOW}')
+            listed = {v['report_name']: v for v in json.loads((OUT / 'journal' / 'verification.json').read_text(encoding='utf-8'))}
+            self.assertEqual(listed[b['report_name']]['fragment_sha256'], journal['verification']['fragment_sha256'])
+            self.assertFalse(bs.SUBMISSION_FORBIDDEN.search(' '.join(t for _, t in bs.visible_text_elements(jrep))))
 
     def test_a_failing_pile_reads_failures_and_the_failing_checks_are_red(self):
         case = default_case('End Bent 1')

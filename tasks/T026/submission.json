@@ -1,0 +1,9 @@
+{
+  "summary": "The journal edition of the pile calculations C011-C013 no longer names the pile package revision in its hidden provenance paragraph (tied to the case alone, as the cap edition since T013 and the backwall edition since T023), so edits of the pile package stop forcing journal tasks. Every definition, value cell, cache and canvas is unchanged.",
+  "published_outputs": ["PileDesignEndBentOne, PileDesignEndBentTwo, PileDesignPier: all published names unchanged"],
+  "assumptions_and_conventions": ["The package revision is recorded in pile_bpad/journal/verification.json."],
+  "downstream_impact": ["pile_bpad/ rebuilt from the current working-tree package."],
+  "external_analysis": "Not affected: no value changed; FBMP not rerun.",
+  "checks_performed": ["tasks/T026/build_components.py: fragments tied to their verification records; definitions, value cells, caches unchanged; exactly one hidden paragraph differs per report", "tools/bpad_workflow.py check and assemble"],
+  "open_items": ["Native Blockpad recalculation, appearance review and engineering review not performed."]
+}

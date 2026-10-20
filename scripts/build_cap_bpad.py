@@ -38,18 +38,10 @@ SIDE_BY_KEY = {
     'pier': ('CapDesignPier', 'C010 - Pier Cap Design', 'Pier Cap Design.bpad'),
 }
 TOL = bm.TOL
-#: The project stamp at the top of every cap report. The standalone sheets carry it as static text; in the journal edition
-#: the cells read the ProjectInfo report, whose strings must equal these (the coherence gate stops the build otherwise).
-PROJECT_STAMP = {
-    'Firm': 'Parsons Transportation Group Inc',
-    'Address': '1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301',
-    'Project': 'I-95 Capacity Improvements from South of SR 152 to South of SR 126',
-    'JobNo': '',
-    'DesignedBy': 'JAT',
-    'DesignDate': '10/17/2026',
-    'CheckedBy': 'MIK',
-    'CheckDate': '',
-}
+#: The project stamp at the top of every cap report (shared with the pile and backwall editions): static text in the standalone
+#: sheets; in the journal edition the cells read the ProjectInfo report, whose strings must equal these (the coherence gate
+#: stops the build otherwise).
+PROJECT_STAMP = bs.PROJECT_STAMP
 REGION_TAGS = list(bm.REGIONS)                   # N P B
 STATION_TAGS = list(bm.TAGS)                     # S N P B M
 REGION_D = {'A_s': 'As', 'd_c': 'dc', 'M_u': 'Mu', 'M_I': 'MI', 'S_p': 'SP'}      # region vectors that map onto existing names

@@ -7,7 +7,11 @@ evaluated by the independent Blockpad-syntax evaluator (BpEngine) and compared w
 Mathcad environment; the build stops on any mismatch.
 
     python scripts/build_pile_bpad.py                       # write pile_bpad/*.bpad, fragments/, preview/, verification.json
+                                                            # and the journal edition pile_bpad/journal/ (live project stamp)
     python scripts/build_pile_bpad.py --skip-mathcad        # skip the comparison with the Mathcad environment
+
+The standalone documents carry the project stamp as static text; the journal edition (`pile_bpad/journal/<Report>.xml`, its
+`verification.json`) carries it as result-only references to the journal's ProjectInfo report and is what a journal task copies.
 """
 import json
 import sys
@@ -27,9 +31,19 @@ def evaluation(support):
     return evaluate(default_case(support))
 
 
-def build_support(support, mathcad_compare=True):
+def build_support(support, mathcad_compare=True, stamp='static'):
     """The outputs of one support's preset case (report name, document, fragment, sidecar, verification)."""
-    return bpad.build_outputs(evaluation(support), mathcad_compare=mathcad_compare)
+    return bpad.build_outputs(evaluation(support), mathcad_compare=mathcad_compare, stamp=stamp)
+
+
+JOURNAL_SUBDIR = 'journal'
+
+
+def write_journal_outputs(out, folder=OUT_DIR):
+    """pile_bpad/journal/<Report>.xml: the fragment of the journal edition (live stamp)."""
+    base = Path(folder) / JOURNAL_SUBDIR
+    base.mkdir(parents=True, exist_ok=True)
+    (base / f'{out["report_name"]}.xml').write_bytes(out['fragment'])
 
 
 def sidecar_text(sidecar):
@@ -53,7 +67,7 @@ def main(argv=None):
     sys.stdout.reconfigure(encoding='utf-8')
     argv = sys.argv[1:] if argv is None else argv
     compare_mathcad = '--skip-mathcad' not in argv
-    entries = []
+    entries, journal_entries = [], []
     for support in SUPPORTS:
         out = build_support(support, compare_mathcad)
         write_outputs(out)
@@ -62,10 +76,15 @@ def main(argv=None):
         mine = f'; {v["mathcad_values_compared"]} values match the Mathcad sheet' if compare_mathcad else ''
         print(f'Wrote pile_bpad/{out["filename"]}: {v["definitions"]} definitions; {v["tool_comparisons"]} values match the notebook{mine}; '
               f'report {out["report_name"]}; {v["status"]}')
+        journal = build_support(support, compare_mathcad, stamp='live')
+        write_journal_outputs(journal)
+        journal_entries.append(dict(journal['verification'], fragment=f'pile_bpad/{JOURNAL_SUBDIR}/{journal["report_name"]}.xml'))
+        print(f'Wrote pile_bpad/{JOURNAL_SUBDIR}/{journal["report_name"]}.xml (live project stamp)')
     ignore = ROOT / 'cap_bpad' / 'preview' / '.gitignore'
     if ignore.is_file():
         (OUT_DIR / 'preview' / '.gitignore').write_bytes(ignore.read_bytes())
     (OUT_DIR / 'verification.json').write_text(verification_text(entries), encoding='utf-8', newline='\n')
+    (OUT_DIR / JOURNAL_SUBDIR / 'verification.json').write_text(verification_text(journal_entries), encoding='utf-8', newline='\n')
     return 0
 
 

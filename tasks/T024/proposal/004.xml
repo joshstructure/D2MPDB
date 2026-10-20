@@ -1,0 +1,1343 @@
+<report name="PileDesignPier" title="C013 - Pier Pile Design" unit="in" pagesize="816,1056" margin="48,48,48,48" bordermargin="0,0,0,0" collapsemargins="False">
+  <include target="Library.Geometry"/>
+  <stylerule type="AnyEquation" name="Required Input" texthighlight="#F7E6B9"/>
+  <embed spacingbefore="5" spacingafter="8">
+    <table name="ProjectStamp" capture="False" colwidths="1:95, 2:165, 3:95, 4:165">
+      <stylerule range="A1:D4" fontfamily="Times New Roman" fontsize="9" vertalign="Center" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);"/>
+      <row>
+        <textcell name="ProjectStampR0C0" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Firm</paragraph>
+        </textcell>
+        <textcell name="ProjectStampR0C1" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">
+            <dynexp formula="Stamp_Firm = ProjectInfo.Firm" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False">
+              <expbody>Stamp_Firm = ProjectInfo.Firm</expbody>
+              <expresult>Parsons Transportation Group Inc</expresult>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="ProjectStampR0C2" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Project</paragraph>
+        </textcell>
+        <textcell name="ProjectStampR0C3" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">
+            <dynexp formula="Stamp_Project = ProjectInfo.Project" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False">
+              <expbody>Stamp_Project = ProjectInfo.Project</expbody>
+              <expresult>I-95 Capacity Improvements from South of SR 152 to South of SR 126</expresult>
+            </dynexp>
+          </paragraph>
+        </textcell>
+      </row>
+      <row>
+        <textcell name="ProjectStampR1C0" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Address</paragraph>
+        </textcell>
+        <textcell name="ProjectStampR1C1" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">
+            <dynexp formula="Stamp_Address = ProjectInfo.Address" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False">
+              <expbody>Stamp_Address = ProjectInfo.Address</expbody>
+              <expresult>1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301</expresult>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="ProjectStampR1C2" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Job no.</paragraph>
+        </textcell>
+        <textcell name="ProjectStampR1C3" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">
+            <dynexp formula="Stamp_JobNo = ProjectInfo.JobNo" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False">
+              <expbody>Stamp_JobNo = ProjectInfo.JobNo</expbody>
+              <expresult></expresult>
+            </dynexp>
+          </paragraph>
+        </textcell>
+      </row>
+      <row>
+        <textcell name="ProjectStampR2C0" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Designed by</paragraph>
+        </textcell>
+        <textcell name="ProjectStampR2C1" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">
+            <dynexp formula="Stamp_DesignedBy = ProjectInfo.DesignedBy" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False">
+              <expbody>Stamp_DesignedBy = ProjectInfo.DesignedBy</expbody>
+              <expresult>JAT</expresult>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="ProjectStampR2C2" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Date</paragraph>
+        </textcell>
+        <textcell name="ProjectStampR2C3" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">
+            <dynexp formula="Stamp_DesignDate = ProjectInfo.DesignDate" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False">
+              <expbody>Stamp_DesignDate = ProjectInfo.DesignDate</expbody>
+              <expresult>10/17/2026</expresult>
+            </dynexp>
+          </paragraph>
+        </textcell>
+      </row>
+      <row>
+        <textcell name="ProjectStampR3C0" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Checked by</paragraph>
+        </textcell>
+        <textcell name="ProjectStampR3C1" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">
+            <dynexp formula="Stamp_CheckedBy = ProjectInfo.CheckedBy" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False">
+              <expbody>Stamp_CheckedBy = ProjectInfo.CheckedBy</expbody>
+              <expresult>MIK</expresult>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="ProjectStampR3C2" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Date</paragraph>
+        </textcell>
+        <textcell name="ProjectStampR3C3" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">
+            <dynexp formula="Stamp_CheckDate = ProjectInfo.CheckDate" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False">
+              <expbody>Stamp_CheckDate = ProjectInfo.CheckDate</expbody>
+              <expresult></expresult>
+            </dynexp>
+          </paragraph>
+        </textcell>
+      </row>
+    </table>
+  </embed>
+  <paragraph fontfamily="Times New Roman" fontsize="16" spacingafter="2" fontweight="bold">D2 I-95 PEDESTRIAN BRIDGE</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold">C013 - Pier Pile Design</paragraph>
+  <section name="WorkingNotes" capture="False" hide="true">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="4" fontweight="bold" textcolor="#43505C">Working notes (hidden; not part of the submitted calculation): how this edition was produced, its tool status and the open bookkeeping items.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Distilled from the pile design notebook (package 5effa7c1b4af), case "Pier piles: 20 in steel pipe, FBMP fixed run". Same inputs, equations and load combinations as the notebook; results should match its exported report. Blockpad edition written by pile_design/bpad.py (scripts/build_pile_bpad.py) from the same case; every definition was evaluated independently and compared with the notebook to 1 part in 10⁹.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Status: All numerical checks pass (largest ratio 1.00) · 16 pending item(s) remain.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• FBMP source: Pier_Fixed.XML, SHA-256 bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7 (registered export PIER-XML). 4 piles at 5 ft; cutoff elevation 41.7717 ft, ground 26.05 ft.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Every definition was read back from the XML and evaluated by an independent Blockpad-syntax evaluator, then compared with the notebook (and with the Mathcad worksheet) before the file was written. Governing records, the notebook angles, the neutral-axis depth c_gov and the few values found by a search over the interaction sweep are amber inputs read from the notebook.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">The notebook lists 16 PENDING items; the distilled ratios above do not close them: Local buckling class · nonslender (D/t vs 0.11 E/Fy); Slenderness KL/r ≤ 120; Axial compression · maximum Pu / φc Pn; Combined axial load and flexure · Eq. 6.9.2.2.1 (-1); Shear · round tube; Tension · maximum strength uplift; Pile Data Table completeness (SDM 11.4); Steel grade and Fy reconciled; Corrosion allowance; Environment classification; Pile-to-cap connection (12 in embedment); Downdrag source documented; FBMP export current; Minimum tip elevation; Scour resistance and elevations; Drivability.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">The Status covers the recomputed numerical checks only; it is not design acceptance.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Inputs pending confirmation (captions carried "[pending confirmation]" in the notebook): DD_tons, R_scour_net_tons, R_scour_total_tons, soil_type, S_u, environment, t_corr, Fy, L_v.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="5" textcolor="#43505C">A ✓ status covers only the recomputed numerical checks; it is not design acceptance. The pending items of the notebook stay open. Recalculate in Blockpad after any input change.</paragraph>
+  </section>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Project: D2 I-95 Pedestrian Bridge.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Codes: AASHTO LRFD Bridge Design Specifications, 10th edition (2024): 6.5.4.2, 6.8.2.1, 6.9.2.2.1, 6.9.4.1, 6.12.1.2.3b, 6.12.2.2.3, 10.7.3.13; FDOT Structures Design Guidelines (SDG) 3.5 and Structures Detailing Manual (SDM) 11.4, January 2026; Specification 455-8.2 (Table 962-11).</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Inputs are highlighted amber; results are the green tables.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">1. Design basis</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• FBMP analysis: Pier_Fixed.XML. 4 piles at 5 ft; cutoff elevation 41.7717 ft, ground 26.05 ft.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Pile: ASTM A252 / API 5L pipe 20 in x 0.48 in wall, Fy = 45 ksi (noncomposite).</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Downdrag 0 tons per pile is a drag load DR: gamma_DR = 1.1 (strength) and 1 (Service I) in the structural demands (LRFD Table 3.4.1-1, 10.7.3.7); it is excluded from the Factored Design Load and added nominally to the required bearing resistance (SDG Eq. 3-1, phi = 0.75).</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Second-order effects come from the FBMP P-delta analysis; the LRFD column check here uses K(Lu + Lf). Composite (filled) pipe is out of scope.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">2. Inputs</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Pile and layout</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="D_pile = 20 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+      <expbody>D_pile = 20 in</expbody>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Pile size (square side, or pipe outside diameter)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="N_pile = 4" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>N_pile = 4</expbody></dynexp><break type="tab"/>Piles in the support</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="S_pile = 5 ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>S_pile = 5 ft</expbody></dynexp><break type="tab"/>Center-to-center pile spacing</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="EL_cutoff = 41.771667 ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>EL_cutoff = 41.771667 ft</expbody></dynexp><break type="tab"/>Pile cutoff elevation (FBMP pile head)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="EL_ground = 26.05 ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>EL_ground = 26.05 ft</expbody></dynexp><break type="tab"/>Ground elevation (top of soil layer 1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="L_unsupported = 15.721667 ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+      <expbody>L_unsupported = 15.721667 ft</expbody>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Length above ground (cutoff - ground); editable</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="embed_cap = 12 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>embed_cap = 12 in</expbody></dynexp><break type="tab"/>Pile embedment into the cap</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Loads and geotechnical</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="DD_tons = 0" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>DD_tons = 0</expbody></dynexp><break type="tab"/>Downdrag (drag load DR) per pile, short tons</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="gamma_DR_str = 1.1" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+      <expbody>gamma_DR_str = 1.1</expbody>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Drag-load factor, strength limit states (structural)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="gamma_DR_ser = 1" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>gamma_DR_ser = 1</expbody></dynexp><break type="tab"/>Drag-load factor, Service I</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="phi_geo = 0.75" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+      <expbody>phi_geo = 0.75</expbody>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Geotechnical resistance factor (compression, Davisson)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="R_scour_net_tons = 0" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>R_scour_net_tons = 0</expbody></dynexp><break type="tab"/>Net scour resistance, short tons</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="R_scour_total_tons = 0" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>R_scour_total_tons = 0</expbody></dynexp><break type="tab"/>Total scour resistance, short tons</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="K_eff = 1" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>K_eff = 1</expbody></dynexp><break type="tab"/>Effective length factor K</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="soil_type = 0" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>soil_type = 0</expbody></dynexp><break type="tab"/>Soil for depth to fixity (0 sand, 1 clay)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="n_h = 0.556 ksi/ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>n_h = 0.556 ksi/ft</expbody></dynexp><break type="tab"/>Rate of increase of soil modulus, sand</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="S_u = 1 kip/ft^2" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+      <expbody>S_u = 1 kip/ft^2</expbody>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Undrained shear strength, clay (used only for soil type 1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Environment and policy</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="environment = 2" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>environment = 2</expbody></dynexp><break type="tab"/>Environment classification</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Steel pipe pile</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="D_out = 20 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>D_out = 20 in</expbody></dynexp><break type="tab"/>Pipe outside diameter</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="t_wall = 0.48 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>t_wall = 0.48 in</expbody></dynexp><break type="tab"/>Pipe wall thickness (nominal)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="t_corr = 0 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>t_corr = 0 in</expbody></dynexp><break type="tab"/>Corrosion allowance deducted from the wall</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="Fy = 45 ksi" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>Fy = 45 ksi</expbody></dynexp><break type="tab"/>Steel yield strength</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="E_s = 29000 ksi" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>E_s = 29000 ksi</expbody></dynexp><break type="tab"/>Steel modulus</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="phi_c_axial = 0.7" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+      <expbody>phi_c_axial = 0.7</expbody>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Axial compression resistance factor, pipe (good driving, no tip)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="phi_c_comb = 0.8" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+      <expbody>phi_c_comb = 0.8</expbody>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Axial resistance factor, combined axial and flexure</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="φ_f = 1" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>φ_f = 1</expbody></dynexp><break type="tab"/>Flexure resistance factor</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="phi_v_steel = 1" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>phi_v_steel = 1</expbody></dynexp><break type="tab"/>Shear resistance factor, steel</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="phi_y = 0.95" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>phi_y = 0.95</expbody></dynexp><break type="tab"/>Tension yielding resistance factor</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="L_v = 15.721667 ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+      <expbody>L_v = 15.721667 ft</expbody>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Shear span Lv (distance from maximum to zero shear)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">3. Demands from the FBMP export</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Governing records of Pier_Fixed.XML for each check (records 1 to 4). FBMP axial force is converted to compression positive. The drag load DR = DD is added to the axial force at every station (LRFD Table 3.4.1-1, 10.7.3.7): gamma_DR for the limit state of the record. Downdrag is not in the Factored Design Load.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Axial: combo 2 STRENGTH-III · pile 4 · element 13J · EL 16.55 ft.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Combined: combo 2 STRENGTH-III · pile 4 · element 13J · EL 16.55 ft.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Shear: combo 2 STRENGTH-III · pile 4 · element 1I · EL 41.77 ft (+1 tied).</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Tension: combo 3 STRENGTH-III · pile 1 · element 12I · EL 22.88 ft.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Governing FBMP records, one row per check (inputs read from the export)</paragraph>
+  <embed spacingbefore="5" spacingafter="8">
+    <table name="DemandInputs" capture="False" colwidths="1:120, 2:88, 3:88, 4:88, 5:88, 6:88">
+      <stylerule range="A1:F5" fontfamily="Times New Roman" fontsize="9" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#A78638&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#A78638&quot;);"/>
+      <stylerule range="A1:F1" horzalign="Center" vertalign="Center"/>
+      <stylerule range="B2:F5" horzalign="Center" vertalign="Center"/>
+      <row>
+        <textcell name="DemandInputsR0C0" capture="False" background="#F7E6B9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">Record</paragraph>
+        </textcell>
+        <textcell name="DemandInputsR0C1" capture="False" background="#F7E6B9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">P_fbmp (kip)</paragraph>
+        </textcell>
+        <textcell name="DemandInputsR0C2" capture="False" background="#F7E6B9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">M_2 (kip*ft)</paragraph>
+        </textcell>
+        <textcell name="DemandInputsR0C3" capture="False" background="#F7E6B9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">M_3 (kip*ft)</paragraph>
+        </textcell>
+        <textcell name="DemandInputsR0C4" capture="False" background="#F7E6B9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">M_res (kip*ft)</paragraph>
+        </textcell>
+        <textcell name="DemandInputsR0C5" capture="False" background="#F7E6B9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">V_res (kip)</paragraph>
+        </textcell>
+      </row>
+      <row>
+        <textcell name="DemandInputsR1C0" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">1. Axial</paragraph>
+        </textcell>
+        <textcell name="DemandInputsR1C1" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
+            <dynexp formula="P_fbmp_1 = 265.58 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>P_fbmp_1 = 265.58 kip</expbody>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="DemandInputsR1C2" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
+            <dynexp formula="M_2_1 = -128.88 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>M_2_1 = -128.88 kip*ft</expbody>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="DemandInputsR1C3" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
+            <dynexp formula="M_3_1 = -36.63 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>M_3_1 = -36.63 kip*ft</expbody>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="DemandInputsR1C4" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
+            <dynexp formula="M_res_1 = 133.98437 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>M_res_1 = 133.98437 kip*ft</expbody>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="DemandInputsR1C5" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
+            <dynexp formula="V_res_1 = 12.895026 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>V_res_1 = 12.895026 kip</expbody>
+            </dynexp>
+          </paragraph>
+        </textcell>
+      </row>
+      <row>
+        <textcell name="DemandInputsR2C0" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">2. Combined</paragraph>
+        </textcell>
+        <textcell name="DemandInputsR2C1" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
+            <dynexp formula="P_fbmp_2 = 265.58 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>P_fbmp_2 = 265.58 kip</expbody>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="DemandInputsR2C2" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
+            <dynexp formula="M_2_2 = -128.88 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>M_2_2 = -128.88 kip*ft</expbody>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="DemandInputsR2C3" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
+            <dynexp formula="M_3_2 = -36.63 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>M_3_2 = -36.63 kip*ft</expbody>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="DemandInputsR2C4" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
+            <dynexp formula="M_res_2 = 133.98437 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>M_res_2 = 133.98437 kip*ft</expbody>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="DemandInputsR2C5" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
+            <dynexp formula="V_res_2 = 12.895026 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>V_res_2 = 12.895026 kip</expbody>
+            </dynexp>
+          </paragraph>
+        </textcell>
+      </row>
+      <row>
+        <textcell name="DemandInputsR3C0" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">3. Shear</paragraph>
+        </textcell>
+        <textcell name="DemandInputsR3C1" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
+            <dynexp formula="P_fbmp_3 = 120.41 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>P_fbmp_3 = 120.41 kip</expbody>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="DemandInputsR3C2" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
+            <dynexp formula="M_2_3 = 25.6 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>M_2_3 = 25.6 kip*ft</expbody>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="DemandInputsR3C3" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
+            <dynexp formula="M_3_3 = -13.82 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>M_3_3 = -13.82 kip*ft</expbody>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="DemandInputsR3C4" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
+            <dynexp formula="M_res_3 = 29.092136 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>M_res_3 = 29.092136 kip*ft</expbody>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="DemandInputsR3C5" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
+            <dynexp formula="V_res_3 = 18.699703 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>V_res_3 = 18.699703 kip</expbody>
+            </dynexp>
+          </paragraph>
+        </textcell>
+      </row>
+      <row>
+        <textcell name="DemandInputsR4C0" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">4. Tension</paragraph>
+        </textcell>
+        <textcell name="DemandInputsR4C1" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
+            <dynexp formula="P_fbmp_4 = -11.81 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>P_fbmp_4 = -11.81 kip</expbody>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="DemandInputsR4C2" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
+            <dynexp formula="M_2_4 = -0.08 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>M_2_4 = -0.08 kip*ft</expbody>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="DemandInputsR4C3" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
+            <dynexp formula="M_3_4 = -4.66 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>M_3_4 = -4.66 kip*ft</expbody>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="DemandInputsR4C4" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
+            <dynexp formula="M_res_4 = 4.660687 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>M_res_4 = 4.660687 kip*ft</expbody>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="DemandInputsR4C5" capture="False" background="#FFF8E9">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
+            <dynexp formula="V_res_4 = 2.900276 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>V_res_4 = 2.900276 kip</expbody>
+            </dynexp>
+          </paragraph>
+        </textcell>
+      </row>
+    </table>
+  </embed>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="FDL_fbmp = 224.63 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+      <expbody>FDL_fbmp = 224.63 kip</expbody>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Factored Design Load: maximum strength head compression, FBMP (no downdrag)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="T_u = 11.81 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+      <expbody>T_u = 11.81 kip</expbody>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">maximum strength uplift anywhere along the pile, FBMP</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DD = DD_tons*2*(1 kip) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DD = DD_tons*2*(1 kip) to kip</expbody>
+      <expresult> = 0.000 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">downdrag (drag load DR) per pile, nominal</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DR_str = gamma_DR_str*DD to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DR_str = gamma_DR_str*DD to kip</expbody>
+      <expresult> = 0.000 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">drag load, strength limit states</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DR_ser = gamma_DR_ser*DD to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DR_ser = gamma_DR_ser*DD to kip</expbody>
+      <expresult> = 0.000 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">drag load, Service I</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="gamma_g_1 = gamma_DR_str" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>gamma_g_1 = gamma_DR_str</expbody>
+      <expresult> = 1.100</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">drag-load factor of each record</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="P_u_1 = P_fbmp_1 + gamma_g_1*DD to kip" mathlayout="on" showformula="True" showresult="False" showsteps="False">
+      <expbody>P_u_1 = P_fbmp_1 + gamma_g_1*DD to kip</expbody>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">factored axial load incl. drag load</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Records 2 to 4: the same equations, collapsed.</paragraph>
+  <section name="Records2toN_1" capture="False" hide="true">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+      <dynexp formula="gamma_g_2 = gamma_DR_str" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+        <expbody>gamma_g_2 = gamma_DR_str</expbody>
+        <expresult> = 1.100</expresult>
+      </dynexp>
+    </paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">drag-load factor of each record</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+      <dynexp formula="P_u_2 = P_fbmp_2 + gamma_g_2*DD to kip" mathlayout="on" showformula="True" showresult="False" showsteps="False">
+        <expbody>P_u_2 = P_fbmp_2 + gamma_g_2*DD to kip</expbody>
+      </dynexp>
+    </paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">factored axial load incl. drag load</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+      <dynexp formula="gamma_g_3 = gamma_DR_str" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+        <expbody>gamma_g_3 = gamma_DR_str</expbody>
+        <expresult> = 1.100</expresult>
+      </dynexp>
+    </paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">drag-load factor of each record</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+      <dynexp formula="P_u_3 = P_fbmp_3 + gamma_g_3*DD to kip" mathlayout="on" showformula="True" showresult="False" showsteps="False">
+        <expbody>P_u_3 = P_fbmp_3 + gamma_g_3*DD to kip</expbody>
+      </dynexp>
+    </paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">factored axial load incl. drag load</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+      <dynexp formula="gamma_g_4 = gamma_DR_str" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+        <expbody>gamma_g_4 = gamma_DR_str</expbody>
+        <expresult> = 1.100</expresult>
+      </dynexp>
+    </paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">drag-load factor of each record</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+      <dynexp formula="P_u_4 = P_fbmp_4 + gamma_g_4*DD to kip" mathlayout="on" showformula="True" showresult="False" showsteps="False">
+        <expbody>P_u_4 = P_fbmp_4 + gamma_g_4*DD to kip</expbody>
+      </dynexp>
+    </paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">factored axial load incl. drag load</paragraph>
+  </section>
+  <embed spacingbefore="5" spacingafter="8">
+    <table name="DemandResults" capture="False" colwidths="1:150, 2:90, 3:100, 4:90, 5:90">
+      <stylerule range="A1:E5" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#6A9075&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#6A9075&quot;);"/>
+      <stylerule range="A1:E1" horzalign="Center" vertalign="Center"/>
+      <stylerule range="B2:E5" horzalign="Center" vertalign="Center"/>
+      <row>
+        <textcell name="DemandResultsR0C0" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Record</paragraph>
+        </textcell>
+        <textcell name="DemandResultsR0C1" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">P_fbmp (kip)</paragraph>
+        </textcell>
+        <textcell name="DemandResultsR0C2" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">P_u incl. DR (kip)</paragraph>
+        </textcell>
+        <textcell name="DemandResultsR0C3" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">M_res (kip-ft)</paragraph>
+        </textcell>
+        <textcell name="DemandResultsR0C4" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">V_res (kip)</paragraph>
+        </textcell>
+      </row>
+      <row>
+        <textcell name="DemandResultsR1C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">1. Axial</paragraph>
+        </textcell>
+        <c formula="P_fbmp_1 to kip" capture="False" background="#EFF7F1">
+          <num>265.580 kip</num>
+        </c>
+        <c formula="P_u_1 to kip" capture="False" background="#EFF7F1">
+          <num>265.580 kip</num>
+        </c>
+        <c formula="M_res_1 to kip*ft" capture="False" background="#EFF7F1">
+          <num>133.984 kip*ft</num>
+        </c>
+        <c formula="V_res_1 to kip" capture="False" background="#EFF7F1">
+          <num>12.895 kip</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="DemandResultsR2C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">2. Combined</paragraph>
+        </textcell>
+        <c formula="P_fbmp_2 to kip" capture="False" background="#EFF7F1">
+          <num>265.580 kip</num>
+        </c>
+        <c formula="P_u_2 to kip" capture="False" background="#EFF7F1">
+          <num>265.580 kip</num>
+        </c>
+        <c formula="M_res_2 to kip*ft" capture="False" background="#EFF7F1">
+          <num>133.984 kip*ft</num>
+        </c>
+        <c formula="V_res_2 to kip" capture="False" background="#EFF7F1">
+          <num>12.895 kip</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="DemandResultsR3C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">3. Shear</paragraph>
+        </textcell>
+        <c formula="P_fbmp_3 to kip" capture="False" background="#EFF7F1">
+          <num>120.410 kip</num>
+        </c>
+        <c formula="P_u_3 to kip" capture="False" background="#EFF7F1">
+          <num>120.410 kip</num>
+        </c>
+        <c formula="M_res_3 to kip*ft" capture="False" background="#EFF7F1">
+          <num>29.092 kip*ft</num>
+        </c>
+        <c formula="V_res_3 to kip" capture="False" background="#EFF7F1">
+          <num>18.700 kip</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="DemandResultsR4C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">4. Tension</paragraph>
+        </textcell>
+        <c formula="P_fbmp_4 to kip" capture="False" background="#EFF7F1">
+          <num>-11.810 kip</num>
+        </c>
+        <c formula="P_u_4 to kip" capture="False" background="#EFF7F1">
+          <num>-11.810 kip</num>
+        </c>
+        <c formula="M_res_4 to kip*ft" capture="False" background="#EFF7F1">
+          <num>4.661 kip*ft</num>
+        </c>
+        <c formula="V_res_4 to kip" capture="False" background="#EFF7F1">
+          <num>2.900 kip</num>
+        </c>
+      </row>
+    </table>
+  </embed>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">4. Pile spacing</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="S_min = 3*D_pile to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>S_min = 3*D_pile to in</expbody>
+      <expresult> = 60.000 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">minimum center-to-center spacing, 3.0 diameters (SDG 3.5.4)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="s_over_D = S_pile/D_pile" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>s_over_D = S_pile/D_pile</expbody>
+      <expresult> = 3.000</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">provided spacing in pile diameters</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_sp = S_min/S_pile" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_sp = S_min/S_pile</expbody>
+      <expresult> = 1.000</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">spacing D/C</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True" pagebreakbefore="break">5. Pipe section</paragraph>
+  <embed spacingbefore="4" spacingafter="5">
+    <canvas name="Figure1Section" title="Pile section" unit="in" size="6.5 in; 4.2 in; scaletofit">
+      <include target="Library.Geometry"/>
+      <planecontainer origin="0.15,4.05,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D">
+        <textvalue>PIPE SECTION — 20 in x 0.48 in wall, Fy = 45 ksi</textvalue>
+      </planecontainer>
+      <circle center="3, 2.2, 0" normal="0, 0, 1" radius="1.35" linethickness="1.6" linecolor="#29333D" fillcolor="#C9D3DC"/>
+      <circle center="3, 2.2, 0" normal="0, 0, 1" radius="1.285" linethickness="1" linecolor="#29333D" fillcolor="#FFFFFF"/>
+      <lineardim startpoint="1.65, 0.75, 0" endpoint="4.35, 0.75, 0" pointondimline="3, 0.35, 0" formula="PileDesignPier.D_out" linecolor="#5D6F80" textcolor="#5D6F80" linethickness="0.7" fontsize="9">
+        <num>20.000 in</num>
+      </lineardim>
+      <planecontainer origin="4.55,2.4,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#B35012">
+        <textvalue>design wall t =</textvalue>
+      </planecontainer>
+      <planecontainer origin="5.531,2.4,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#B35012" formula="PileDesignPier.t_des/(1 in)">
+        <num>0.480</num>
+      </planecontainer>
+      <planecontainer origin="5.902,2.4,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#B35012">
+        <textvalue>in</textvalue>
+      </planecontainer>
+      <planecontainer origin="4.55,2.2,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#7B8993">
+        <textvalue>after the corrosion allowance</textvalue>
+      </planecontainer>
+    </canvas>
+  </embed>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Figure 1. Pipe cross-section: outside diameter and design wall thickness after the corrosion allowance. The ring is a picture; the outside diameter and the design wall thickness are live.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="t_des = t_wall - t_corr to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>t_des = t_wall - t_corr to in</expbody>
+      <expresult> = 0.480 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">design wall thickness after corrosion allowance</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="D_i = D_out - 2*t_des to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>D_i = D_out - 2*t_des to in</expbody>
+      <expresult> = 19.040 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">inside diameter</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="A_g = 0.785398163397448*(D_out^2 - D_i^2) to in^2" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>A_g = 0.785398163397448*(D_out^2 - D_i^2) to in^2</expbody>
+      <expresult> = 29.435 in^2</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">gross area</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="I_g = 0.0490873852123405*(D_out^4 - D_i^4) to in^4" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>I_g = 0.0490873852123405*(D_out^4 - D_i^4) to in^4</expbody>
+      <expresult> = 1402.824 in^4</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">moment of inertia</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="S_g = I_g/(D_out/2) to in^3" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>S_g = I_g/(D_out/2) to in^3</expbody>
+      <expresult> = 140.282 in^3</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">elastic section modulus</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="Z_p = (D_out^3 - D_i^3)/6 to in^3" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>Z_p = (D_out^3 - D_i^3)/6 to in^3</expbody>
+      <expresult> = 182.931 in^3</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">plastic section modulus</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="r_g = Sqrt(I_g/A_g) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>r_g = Sqrt(I_g/A_g) to in</expbody>
+      <expresult> = 6.903 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">radius of gyration</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="D_t = D_out/t_des" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>D_t = D_out/t_des</expbody>
+      <expresult> = 41.667</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">diameter-to-thickness ratio</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">6. Axial compression (LRFD 6.9.4.1, 6.9.4.2.2c, 10.7.3.13.4)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Fully embedded piles take no buckling reduction beyond the effective length K (Lu + Lf), Lf the depth to fixity (C10.7.3.13.4). The FBMP P-delta analysis is the preferred second-order check; this is the LRFD column check.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="lam_r = 0.11*E_s/Fy" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>lam_r = 0.11*E_s/Fy</expbody>
+      <expresult> = 70.889</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">nonslender limit 0.11 E/Fy</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="A_eff = If(D_t &lt;= lam_r, A_g, (0.038*E_s/(Fy*D_t) + 2/3)*A_g) to in^2" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>A_eff = If(D_t &lt;= lam_r, A_g, (0.038*E_s/(Fy*D_t) + 2/3)*A_g) to in^2</expbody>
+      <expresult> = 29.435 in^2</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">effective area</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="P_o = Fy*A_eff to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>P_o = Fy*A_eff to kip</expbody>
+      <expresult> = 1324.596 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">squash load</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="E_soil = 0.465*(S_u/(1 kip/ft^2))*(1 ksi) to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>E_soil = 0.465*(S_u/(1 kip/ft^2))*(1 ksi) to ksi</expbody>
+      <expresult> = 0.465 ksi</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">clay soil modulus 0.465 Su (used for clay only)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="L_fix = If(soil_type == 1, 1.4*(E_s*I_g/E_soil)^0.25, 1.8*(E_s*I_g/n_h)^0.2) to ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>L_fix = If(soil_type == 1, 1.4*(E_s*I_g/E_soil)^0.25, 1.8*(E_s*I_g/n_h)^0.2) to ft</expbody>
+      <expresult> = 9.221 ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">depth to fixity below ground</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="KL = K_eff*(L_unsupported + L_fix) to ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>KL = K_eff*(L_unsupported + L_fix) to ft</expbody>
+      <expresult> = 24.943 ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">effective length</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="KL_r = KL/r_g" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>KL_r = KL/r_g</expbody>
+      <expresult> = 43.357</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">slenderness ratio</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="P_e = 9.869604401089358*E_s*A_g/KL_r^2 to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>P_e = 9.869604401089358*E_s*A_g/KL_r^2 to kip</expbody>
+      <expresult> = 4481.688 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">elastic buckling load</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="Pe_Po = P_e/P_o" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>Pe_Po = P_e/P_o</expbody>
+      <expresult> = 3.383</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Pe / Po</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="P_n = If(Pe_Po &gt;= 0.44, 0.658^(P_o/P_e)*P_o, 0.877*P_e) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>P_n = If(Pe_Po &gt;= 0.44, 0.658^(P_o/P_e)*P_o, 0.877*P_e) to kip</expbody>
+      <expresult> = 1170.466 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">nominal axial resistance, 6.9.4.1.1</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="P_r_axial = phi_c_axial*P_n to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>P_r_axial = phi_c_axial*P_n to kip</expbody>
+      <expresult> = 819.326 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">factored axial resistance</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="P_r_comb = phi_c_comb*P_n to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>P_r_comb = phi_c_comb*P_n to kip</expbody>
+      <expresult> = 936.373 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">factored axial resistance, combined loading</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="P_u_axial = P_u_1 to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>P_u_axial = P_u_1 to kip</expbody>
+      <expresult> = 265.580 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">largest factored compression incl. drag load</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_slender = D_t/(0.45*E_s/Fy)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_slender = D_t/(0.45*E_s/Fy)</expbody>
+      <expresult> = 0.144</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">D/t against the 0.45 E/Fy limit</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_klr = KL_r/120" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_klr = KL_r/120</expbody>
+      <expresult> = 0.361</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">KL/r against 120, 6.9.3</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_axial = P_u_axial/P_r_axial" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_axial = P_u_axial/P_r_axial</expbody>
+      <expresult> = 0.324</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">axial compression D/C</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">7. Flexure (LRFD 6.12.2.2.3)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="lam_p = 0.07*E_s/Fy" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>lam_p = 0.07*E_s/Fy</expbody>
+      <expresult> = 45.111</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">compact limit 0.07 E/Fy</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="lam_nc = 0.31*E_s/Fy" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>lam_nc = 0.31*E_s/Fy</expbody>
+      <expresult> = 199.778</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">noncompact limit 0.31 E/Fy</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="M_p = Fy*Z_p to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>M_p = Fy*Z_p to kip*ft</expbody>
+      <expresult> = 685.993 kip*ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">plastic moment</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="M_nc = (0.021*E_s/D_t + Fy)*S_g" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>M_nc = (0.021*E_s/D_t + Fy)*S_g</expbody>
+      <expresult> = 8363.074 kip*in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">noncompact: (0.021 E/(D/t) + Fy) S</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="M_sl = 0.33*E_s/D_t*S_g" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>M_sl = 0.33*E_s/D_t*S_g</expbody>
+      <expresult> = 32220.055 kip*in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">slender: 0.33 E/(D/t) S</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="M_n = If(D_t &lt;= lam_p, M_p, Min(M_p, If(D_t &lt;= lam_nc, M_nc, M_sl))) to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>M_n = If(D_t &lt;= lam_p, M_p, Min(M_p, If(D_t &lt;= lam_nc, M_nc, M_sl))) to kip*ft</expbody>
+      <expresult> = 685.993 kip*ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">nominal flexural resistance</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="M_r = φ_f*M_n to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>M_r = φ_f*M_n to kip*ft</expbody>
+      <expresult> = 685.993 kip*ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">factored flexural resistance</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True" pagebreakbefore="break">8. Combined axial load and flexure (LRFD 6.9.2.2.1) and tension (6.8.2.1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Governing combined record (record 2). The resultant moment is checked against Mr (axisymmetric section). A net uplift uses the tension resistance in place of the compression resistance.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="P_u_comb = P_u_2 to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>P_u_comb = P_u_2 to kip</expbody>
+      <expresult> = 265.580 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">factored axial load, compression positive</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="M_u_comb = M_res_2 to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>M_u_comb = M_res_2 to kip*ft</expbody>
+      <expresult> = 133.984 kip*ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">resultant moment</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="P_r_t = phi_y*Fy*A_g to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>P_r_t = phi_y*Fy*A_g to kip</expbody>
+      <expresult> = 1258.366 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">factored tension resistance, yielding of the gross section</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_t = T_u/P_r_t" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_t = T_u/P_r_t</expbody>
+      <expresult> = 0.009</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">tension D/C, maximum strength uplift</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="P_abs = Abs(P_u_comb) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>P_abs = Abs(P_u_comb) to kip</expbody>
+      <expresult> = 265.580 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">magnitude of the axial force</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="P_rc = If(P_u_comb &gt;= 0 kip, P_r_comb, P_r_t) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>P_rc = If(P_u_comb &gt;= 0 kip, P_r_comb, P_r_t) to kip</expbody>
+      <expresult> = 936.373 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">matching axial resistance</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="Pu_Pr = P_abs/P_rc" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>Pu_Pr = P_abs/P_rc</expbody>
+      <expresult> = 0.284</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Pu / Pr</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_comb = If(Pu_Pr &gt;= 0.2, Pu_Pr + 8/9*M_u_comb/M_r, Pu_Pr/2 + M_u_comb/M_r)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_comb = If(Pu_Pr &gt;= 0.2, Pu_Pr + 8/9*M_u_comb/M_r, Pu_Pr/2 + M_u_comb/M_r)</expbody>
+      <expresult> = 0.457</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">interaction, Eq. 6.9.2.2.1-1 (Pu/Pr &gt;= 0.2) or -2</paragraph>
+  <embed spacingbefore="4" spacingafter="5">
+    <canvas name="Figure2Interaction" title="Combined axial load and flexure" unit="in" size="6.5 in; 5.1 in; scaletofit">
+      <include target="Library.Geometry"/>
+      <planecontainer origin="0.15,4.92,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D">
+        <textvalue>COMBINED AXIAL LOAD AND FLEXURE — LRFD 6.9.2.2.1 envelope, live corner values</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([0.95,6.3,6.3,0.95,0.95],[1.55,1.55,4.5,4.5,1.55])" linecolor="#29333D" linethickness="1"/>
+      <plot formula="PlotLines([0.95,0.95],[1.55,4.5])" linecolor="#E3E8EC" linethickness="0.5"/>
+      <planecontainer origin="0.91,1.38,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>0</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([2.287,2.287],[1.55,4.5])" linecolor="#E3E8EC" linethickness="0.5"/>
+      <planecontainer origin="2.167,1.38,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>200</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([3.625,3.625],[1.55,4.5])" linecolor="#E3E8EC" linethickness="0.5"/>
+      <planecontainer origin="3.505,1.38,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>400</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([4.963,4.963],[1.55,4.5])" linecolor="#E3E8EC" linethickness="0.5"/>
+      <planecontainer origin="4.843,1.38,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>600</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([6.3,6.3],[1.55,4.5])" linecolor="#E3E8EC" linethickness="0.5"/>
+      <planecontainer origin="6.18,1.38,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>800</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([0.95,6.3],[1.55,1.55])" linecolor="#E3E8EC" linethickness="0.5"/>
+      <planecontainer origin="0.475,1.51,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>-1500</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([0.95,6.3],[2.042,2.042])" linecolor="#E3E8EC" linethickness="0.5"/>
+      <planecontainer origin="0.475,2.002,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>-1000</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([0.95,6.3],[2.533,2.533])" linecolor="#E3E8EC" linethickness="0.5"/>
+      <planecontainer origin="0.55,2.493,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>-500</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([0.95,6.3],[3.025,3.025])" linecolor="#E3E8EC" linethickness="0.5"/>
+      <planecontainer origin="0.775,2.985,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>0</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([0.95,6.3],[3.517,3.517])" linecolor="#E3E8EC" linethickness="0.5"/>
+      <planecontainer origin="0.625,3.477,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>500</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([0.95,6.3],[4.008,4.008])" linecolor="#E3E8EC" linethickness="0.5"/>
+      <planecontainer origin="0.55,3.968,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>1000</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([0.95,6.3],[4.5,4.5])" linecolor="#E3E8EC" linethickness="0.5"/>
+      <planecontainer origin="0.55,4.46,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>1500</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([0.95,6.3],[3.025,3.025])" linecolor="#29333D" linethickness="0.8"/>
+      <planecontainer origin="2.55,1.19,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>Moment, kip-ft</textvalue>
+      </planecontainer>
+      <planecontainer origin="0.15,4.6,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>Axial load, kip (compression +)</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([0.95+(0)*0.006687,0.95+(0.9*PileDesignPier.M_r/(1 kip*ft))*0.006687,0.95+(PileDesignPier.M_r/(1 kip*ft))*0.006687],[3.025+(PileDesignPier.P_r_comb/(1 kip))*0.000983,3.025+(0.2*PileDesignPier.P_r_comb/(1 kip))*0.000983,3.025+(0)*0.000983])" linecolor="#1766A0" linethickness="1.8"/>
+      <plot formula="PlotLines([0.95+(0)*0.006687,0.95+(0.9*PileDesignPier.M_r/(1 kip*ft))*0.006687,0.95+(PileDesignPier.M_r/(1 kip*ft))*0.006687],[3.025+(-PileDesignPier.P_r_t/(1 kip))*0.000983,3.025+(-0.2*PileDesignPier.P_r_t/(1 kip))*0.000983,3.025+(0)*0.000983])" linecolor="#2C7FB8" linethickness="1.8"/>
+      <plot formula="PlotLines([0.95+(PileDesignPier.M_res_1/(1 kip*ft))*0.006687-0.07,0.95+(PileDesignPier.M_res_1/(1 kip*ft))*0.006687+0.07],[3.025+(PileDesignPier.P_u_1/(1 kip))*0.000983,3.025+(PileDesignPier.P_u_1/(1 kip))*0.000983])" linecolor="#6C3483" linethickness="1.8"/>
+      <plot formula="PlotLines([0.95+(PileDesignPier.M_res_1/(1 kip*ft))*0.006687,0.95+(PileDesignPier.M_res_1/(1 kip*ft))*0.006687],[3.025+(PileDesignPier.P_u_1/(1 kip))*0.000983-0.07,3.025+(PileDesignPier.P_u_1/(1 kip))*0.000983+0.07])" linecolor="#6C3483" linethickness="1.8"/>
+      <plot formula="PlotLines([0.95+(PileDesignPier.M_res_2/(1 kip*ft))*0.006687-0.07,0.95+(PileDesignPier.M_res_2/(1 kip*ft))*0.006687+0.07],[3.025+(PileDesignPier.P_u_2/(1 kip))*0.000983,3.025+(PileDesignPier.P_u_2/(1 kip))*0.000983])" linecolor="#C8372D" linethickness="1.8"/>
+      <plot formula="PlotLines([0.95+(PileDesignPier.M_res_2/(1 kip*ft))*0.006687,0.95+(PileDesignPier.M_res_2/(1 kip*ft))*0.006687],[3.025+(PileDesignPier.P_u_2/(1 kip))*0.000983-0.07,3.025+(PileDesignPier.P_u_2/(1 kip))*0.000983+0.07])" linecolor="#C8372D" linethickness="1.8"/>
+      <plot formula="PlotLines([0.95+(PileDesignPier.M_res_4/(1 kip*ft))*0.006687-0.07,0.95+(PileDesignPier.M_res_4/(1 kip*ft))*0.006687+0.07],[3.025+(PileDesignPier.P_u_4/(1 kip))*0.000983,3.025+(PileDesignPier.P_u_4/(1 kip))*0.000983])" linecolor="#117A65" linethickness="1.8"/>
+      <plot formula="PlotLines([0.95+(PileDesignPier.M_res_4/(1 kip*ft))*0.006687,0.95+(PileDesignPier.M_res_4/(1 kip*ft))*0.006687],[3.025+(PileDesignPier.P_u_4/(1 kip))*0.000983-0.07,3.025+(PileDesignPier.P_u_4/(1 kip))*0.000983+0.07])" linecolor="#117A65" linethickness="1.8"/>
+      <plot formula="PlotLines([0.5,0.9],[1.03,1.03])" linecolor="#1766A0" linethickness="1.8"/>
+      <planecontainer origin="1,1,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>compression: Pr</textvalue>
+      </planecontainer>
+      <planecontainer origin="1.878,1,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D" formula="PileDesignPier.P_r_comb/(1 kip)">
+        <num>936.373</num>
+      </planecontainer>
+      <planecontainer origin="2.324,1,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>kip, Mr</textvalue>
+      </planecontainer>
+      <planecontainer origin="2.761,1,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D" formula="PileDesignPier.M_r/(1 kip*ft)">
+        <num>685.993</num>
+      </planecontainer>
+      <planecontainer origin="3.207,1,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>kip-ft</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([0.5,0.9],[0.83,0.83])" linecolor="#2C7FB8" linethickness="1.8"/>
+      <planecontainer origin="1,0.8,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>tension: Pr,t</textvalue>
+      </planecontainer>
+      <planecontainer origin="1.768,0.8,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D" formula="PileDesignPier.P_r_t/(1 kip)">
+        <num>1258.366</num>
+      </planecontainer>
+      <planecontainer origin="2.269,0.8,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>kip</textvalue>
+      </planecontainer>
+      <planecontainer origin="0.5,0.6,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#7B8993">
+        <textvalue>envelope corner at 0.9 Mr and 0.2 Pr (Eqs. 6.9.2.2.1-1 and -2 agree there)</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([4.1,4.45],[1.03,1.03])" linecolor="#6C3483" linethickness="1.8"/>
+      <planecontainer origin="4.55,1,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>axial: Pu</textvalue>
+      </planecontainer>
+      <planecontainer origin="5.097,1,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D" formula="PileDesignPier.P_u_1/(1 kip)">
+        <num>265.580</num>
+      </planecontainer>
+      <planecontainer origin="5.543,1,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>kip</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([4.1,4.45],[0.83,0.83])" linecolor="#C8372D" linethickness="1.8"/>
+      <planecontainer origin="4.55,0.8,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>combined: Pu</textvalue>
+      </planecontainer>
+      <planecontainer origin="5.262,0.8,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D" formula="PileDesignPier.P_u_2/(1 kip)">
+        <num>265.580</num>
+      </planecontainer>
+      <planecontainer origin="5.709,0.8,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>kip</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([4.1,4.45],[0.63,0.63])" linecolor="#117A65" linethickness="1.8"/>
+      <planecontainer origin="4.55,0.6,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>uplift: Pu</textvalue>
+      </planecontainer>
+      <planecontainer origin="5.152,0.6,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D" formula="PileDesignPier.P_u_4/(1 kip)">
+        <num>-11.810</num>
+      </planecontainer>
+      <planecontainer origin="5.598,0.6,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>kip</textvalue>
+      </planecontainer>
+    </canvas>
+  </embed>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Figure 2. Combined axial load and flexure: the bilinear envelope of LRFD 6.9.2.2.1 (compression and tension) from the live corner values, with the governing records as live points.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">9. Shear (LRFD 6.12.1.2.3b)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="V_u_sh = V_res_3 to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>V_u_sh = V_res_3 to kip</expbody>
+      <expresult> = 18.700 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">resultant shear of the governing record</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="F_cr1 = 1.6*E_s/(Sqrt(L_v/D_out)*D_t^1.25) to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>F_cr1 = 1.6*E_s/(Sqrt(L_v/D_out)*D_t^1.25) to ksi</expbody>
+      <expresult> = 142.711 ksi</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shear buckling stress, Eq. 6.12.1.2.3b-2</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="F_cr2 = 0.78*E_s/D_t^1.5 to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>F_cr2 = 0.78*E_s/D_t^1.5 to ksi</expbody>
+      <expresult> = 84.103 ksi</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shear buckling stress, Eq. 6.12.1.2.3b-3</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="F_cr = Min(Max(F_cr1, F_cr2), 0.58*Fy) to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>F_cr = Min(Max(F_cr1, F_cr2), 0.58*Fy) to ksi</expbody>
+      <expresult> = 26.100 ksi</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">flexural shear buckling resistance</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="V_n = 0.5*F_cr*A_g to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>V_n = 0.5*F_cr*A_g to kip</expbody>
+      <expresult> = 384.133 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">nominal shear resistance</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="V_r = phi_v_steel*V_n to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>V_r = phi_v_steel*V_n to kip</expbody>
+      <expresult> = 384.133 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">factored shear resistance</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_shear = V_u_sh/V_r" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_shear = V_u_sh/V_r</expbody>
+      <expresult> = 0.049</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shear D/C</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">10. Geotechnical resistance (SDG 3.5.13)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">SDG Eq. 3-1: Rn &gt;= (Factored Design Load + Net Scour Resistance + Downdrag) / phi. The downdrag enters nominally; the minimum tip elevation, scour and test-pile length of the Pile Data Table come from the geotechnical handoff.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="FDL_tons = FDL_fbmp/(2 kip)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>FDL_tons = FDL_fbmp/(2 kip)</expbody>
+      <expresult> = 112.315</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Factored Design Load, tons (strength head compression, without downdrag)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="R_scour_net = R_scour_net_tons*2*(1 kip) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>R_scour_net = R_scour_net_tons*2*(1 kip) to kip</expbody>
+      <expresult> = 0.000 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">net scour resistance</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="R_n_req = (FDL_fbmp + R_scour_net + DD)/phi_geo to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>R_n_req = (FDL_fbmp + R_scour_net + DD)/phi_geo to kip</expbody>
+      <expresult> = 299.507 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">required nominal bearing resistance, SDG Eq. 3-1</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="NBR_tons = R_n_req/(2 kip)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>NBR_tons = R_n_req/(2 kip)</expbody>
+      <expresult> = 149.753</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">required nominal bearing resistance, tons (Pile Data Table column C)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True" pagebreakbefore="break">11. Summary of checks</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_max = Max(DC_slender, DC_klr, DC_axial, DC_comb, DC_shear, DC_t, DC_sp)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_max = Max(DC_slender, DC_klr, DC_axial, DC_comb, DC_shear, DC_t, DC_sp)</expbody>
+      <expresult> = 1.000</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">largest of the check ratios</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="Status = If(DC_max &lt;= 1, &quot;✓ All Checks Pass&quot;, &quot;⊗ There are FAILURES&quot;)" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False">
+      <expbody>Status = If(DC_max &lt;= 1, "✓ All Checks Pass", "⊗ There are FAILURES")</expbody>
+      <expresult>✓ All Checks Pass</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">numerical checks of this calculation</paragraph>
+  <section name="Checks" capture="False" hide="true">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+      <dynexp formula="Chk_slender = If(DC_slender &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+        <expbody>Chk_slender = If(DC_slender &lt;= 1, "✓ PASS", "⊗ FAIL")</expbody>
+        <expresult> = ✓ PASS</expresult>
+      </dynexp>
+    </paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+      <dynexp formula="Chk_klr = If(DC_klr &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+        <expbody>Chk_klr = If(DC_klr &lt;= 1, "✓ PASS", "⊗ FAIL")</expbody>
+        <expresult> = ✓ PASS</expresult>
+      </dynexp>
+    </paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+      <dynexp formula="Chk_axial = If(DC_axial &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+        <expbody>Chk_axial = If(DC_axial &lt;= 1, "✓ PASS", "⊗ FAIL")</expbody>
+        <expresult> = ✓ PASS</expresult>
+      </dynexp>
+    </paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+      <dynexp formula="Chk_comb = If(DC_comb &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+        <expbody>Chk_comb = If(DC_comb &lt;= 1, "✓ PASS", "⊗ FAIL")</expbody>
+        <expresult> = ✓ PASS</expresult>
+      </dynexp>
+    </paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+      <dynexp formula="Chk_shear = If(DC_shear &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+        <expbody>Chk_shear = If(DC_shear &lt;= 1, "✓ PASS", "⊗ FAIL")</expbody>
+        <expresult> = ✓ PASS</expresult>
+      </dynexp>
+    </paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+      <dynexp formula="Chk_t = If(DC_t &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+        <expbody>Chk_t = If(DC_t &lt;= 1, "✓ PASS", "⊗ FAIL")</expbody>
+        <expresult> = ✓ PASS</expresult>
+      </dynexp>
+    </paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+      <dynexp formula="Chk_sp = If(DC_sp &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+        <expbody>Chk_sp = If(DC_sp &lt;= 1, "✓ PASS", "⊗ FAIL")</expbody>
+        <expresult> = ✓ PASS</expresult>
+      </dynexp>
+    </paragraph>
+  </section>
+  <embed spacingbefore="5" spacingafter="8">
+    <table name="Summary" capture="False" colwidths="1:300, 2:90, 3:130">
+      <stylerule range="A1:C9" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#6A9075&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#6A9075&quot;);"/>
+      <stylerule range="A1:C1" horzalign="Center" vertalign="Center"/>
+      <stylerule range="B2:C9" horzalign="Center" vertalign="Center"/>
+      <row>
+        <textcell name="SummaryR0C0" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Check</paragraph>
+        </textcell>
+        <textcell name="SummaryR0C1" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">D/C</paragraph>
+        </textcell>
+        <textcell name="SummaryR0C2" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Result</paragraph>
+        </textcell>
+      </row>
+      <row>
+        <textcell name="SummaryR1C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">1. local buckling D/t</paragraph>
+        </textcell>
+        <c formula="DC_slender" capture="False" background="#EFF7F1">
+          <num>0.144</num>
+        </c>
+        <c formula="Chk_slender" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="SummaryR2C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">2. KL/r</paragraph>
+        </textcell>
+        <c formula="DC_klr" capture="False" background="#EFF7F1">
+          <num>0.361</num>
+        </c>
+        <c formula="Chk_klr" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="SummaryR3C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">3. axial compression</paragraph>
+        </textcell>
+        <c formula="DC_axial" capture="False" background="#EFF7F1">
+          <num>0.324</num>
+        </c>
+        <c formula="Chk_axial" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="SummaryR4C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">4. axial + flexure, 6.9.2.2.1</paragraph>
+        </textcell>
+        <c formula="DC_comb" capture="False" background="#EFF7F1">
+          <num>0.457</num>
+        </c>
+        <c formula="Chk_comb" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="SummaryR5C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">5. shear</paragraph>
+        </textcell>
+        <c formula="DC_shear" capture="False" background="#EFF7F1">
+          <num>0.049</num>
+        </c>
+        <c formula="Chk_shear" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="SummaryR6C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">6. tension</paragraph>
+        </textcell>
+        <c formula="DC_t" capture="False" background="#EFF7F1">
+          <num>0.009</num>
+        </c>
+        <c formula="Chk_t" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="SummaryR7C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">7. pile spacing</paragraph>
+        </textcell>
+        <c formula="DC_sp" capture="False" background="#EFF7F1">
+          <num>1.000</num>
+        </c>
+        <c formula="Chk_sp" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="SummaryR8C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">OVERALL</paragraph>
+        </textcell>
+        <c formula="DC_max" capture="False" background="#EFF7F1">
+          <num>1.000</num>
+        </c>
+        <c formula="Status" capture="False" background="#EFF7F1">
+          <textvalue>✓ All Checks Pass</textvalue>
+        </c>
+      </row>
+    </table>
+  </embed>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_ymax = Max(1.2, 1.1*Max(DC_slender, DC_klr, DC_axial, DC_comb, DC_shear, DC_t, DC_sp))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_ymax = Max(1.2, 1.1*Max(DC_slender, DC_klr, DC_axial, DC_comb, DC_shear, DC_t, DC_sp))</expbody>
+      <expresult> = 1.200</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">vertical scale of Figure 3</paragraph>
+  <embed spacingbefore="4" spacingafter="5">
+    <canvas name="DCChart" title="D/C by check" unit="in" size="6.5 in; 3.2 in; scaletofit">
+      <include target="Library.Geometry"/>
+      <planecontainer origin="0.6,3.05,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D">
+        <textvalue>D/C by check — blue within 1.0, red over 1.0</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([0.6,6.3],[0.5,0.5])" linecolor="#29333D" linethickness="1.2"/>
+      <plot formula="PlotLines([0.6,0.6],[0.5,2.9])" linecolor="#29333D" linethickness="1.2"/>
+      <plot formula="PlotLines([0.6,6.3],[0.5+2.4/PileDesignPier.DC_ymax,0.5+2.4/PileDesignPier.DC_ymax])" linecolor="#7B8993" linethickness="0.9"/>
+      <planecontainer origin="0.68,2.54,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#7B8993">
+        <textvalue>1.0 limit</textvalue>
+      </planecontainer>
+      <planecontainer origin="0.38,0.44,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D">
+        <textvalue>0</textvalue>
+      </planecontainer>
+      <planecontainer origin="0.12,2.84,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D" formula="PileDesignPier.DC_ymax">
+        <num>1.200</num>
+      </planecontainer>
+      <plot formula="PlotLines([1.312,1.312],[0.5,0.5+2.4*If(PileDesignPier.DC_slender &lt;= 1, PileDesignPier.DC_slender, null)/PileDesignPier.DC_ymax])" linecolor="#1766A0" linethickness="2.2"/>
+      <plot formula="PlotLines([1.312,1.312],[0.5,0.5+2.4*If(PileDesignPier.DC_slender &gt; 1, PileDesignPier.DC_slender, null)/PileDesignPier.DC_ymax])" linecolor="#C8372D" linethickness="2.2"/>
+      <planecontainer origin="1.278,0.3,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="7" textcolor="#29333D">
+        <textvalue>1</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([2.025,2.025],[0.5,0.5+2.4*If(PileDesignPier.DC_klr &lt;= 1, PileDesignPier.DC_klr, null)/PileDesignPier.DC_ymax])" linecolor="#1766A0" linethickness="2.2"/>
+      <plot formula="PlotLines([2.025,2.025],[0.5,0.5+2.4*If(PileDesignPier.DC_klr &gt; 1, PileDesignPier.DC_klr, null)/PileDesignPier.DC_ymax])" linecolor="#C8372D" linethickness="2.2"/>
+      <planecontainer origin="1.99,0.3,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="7" textcolor="#29333D">
+        <textvalue>2</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([2.738,2.738],[0.5,0.5+2.4*If(PileDesignPier.DC_axial &lt;= 1, PileDesignPier.DC_axial, null)/PileDesignPier.DC_ymax])" linecolor="#1766A0" linethickness="2.2"/>
+      <plot formula="PlotLines([2.738,2.738],[0.5,0.5+2.4*If(PileDesignPier.DC_axial &gt; 1, PileDesignPier.DC_axial, null)/PileDesignPier.DC_ymax])" linecolor="#C8372D" linethickness="2.2"/>
+      <planecontainer origin="2.703,0.3,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="7" textcolor="#29333D">
+        <textvalue>3</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([3.45,3.45],[0.5,0.5+2.4*If(PileDesignPier.DC_comb &lt;= 1, PileDesignPier.DC_comb, null)/PileDesignPier.DC_ymax])" linecolor="#1766A0" linethickness="2.2"/>
+      <plot formula="PlotLines([3.45,3.45],[0.5,0.5+2.4*If(PileDesignPier.DC_comb &gt; 1, PileDesignPier.DC_comb, null)/PileDesignPier.DC_ymax])" linecolor="#C8372D" linethickness="2.2"/>
+      <planecontainer origin="3.415,0.3,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="7" textcolor="#29333D">
+        <textvalue>4</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([4.162,4.162],[0.5,0.5+2.4*If(PileDesignPier.DC_shear &lt;= 1, PileDesignPier.DC_shear, null)/PileDesignPier.DC_ymax])" linecolor="#1766A0" linethickness="2.2"/>
+      <plot formula="PlotLines([4.162,4.162],[0.5,0.5+2.4*If(PileDesignPier.DC_shear &gt; 1, PileDesignPier.DC_shear, null)/PileDesignPier.DC_ymax])" linecolor="#C8372D" linethickness="2.2"/>
+      <planecontainer origin="4.127,0.3,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="7" textcolor="#29333D">
+        <textvalue>5</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([4.875,4.875],[0.5,0.5+2.4*If(PileDesignPier.DC_t &lt;= 1, PileDesignPier.DC_t, null)/PileDesignPier.DC_ymax])" linecolor="#1766A0" linethickness="2.2"/>
+      <plot formula="PlotLines([4.875,4.875],[0.5,0.5+2.4*If(PileDesignPier.DC_t &gt; 1, PileDesignPier.DC_t, null)/PileDesignPier.DC_ymax])" linecolor="#C8372D" linethickness="2.2"/>
+      <planecontainer origin="4.84,0.3,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="7" textcolor="#29333D">
+        <textvalue>6</textvalue>
+      </planecontainer>
+      <plot formula="PlotLines([5.587,5.587],[0.5,0.5+2.4*If(PileDesignPier.DC_sp &lt;= 1, PileDesignPier.DC_sp, null)/PileDesignPier.DC_ymax])" linecolor="#1766A0" linethickness="2.2"/>
+      <plot formula="PlotLines([5.587,5.587],[0.5,0.5+2.4*If(PileDesignPier.DC_sp &gt; 1, PileDesignPier.DC_sp, null)/PileDesignPier.DC_ymax])" linecolor="#C8372D" linethickness="2.2"/>
+      <planecontainer origin="5.552,0.3,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="7" textcolor="#29333D">
+        <textvalue>7</textvalue>
+      </planecontainer>
+    </canvas>
+  </embed>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Figure 3. Demand/capacity ratio of each check (stems) against the 1.0 limit. The stems are live formulas of the check ratios: a stem turns red when its ratio passes 1.0.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C" background="#F1F5FA">Check numbers: 1 local buckling D/t; 2 KL/r; 3 axial compression; 4 axial + flexure, 6.9.2.2.1; 5 shear; 6 tension; 7 pile spacing.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C" background="#F1F5FA">FB-MultiPier reports a largest model D/C of 0.29 at combo 2 STRENGTH-III · pile 4 · element 13J · EL 16.55 ft.</paragraph>
+</report>

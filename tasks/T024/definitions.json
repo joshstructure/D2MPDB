@@ -1,0 +1,36 @@
+{
+  "edited_formulas": [],
+  "derived_cache_refreshes": {},
+  "added_definitions": {
+    "PileDesignEndBentOne": [
+      "Stamp_Firm = ProjectInfo.Firm",
+      "Stamp_Project = ProjectInfo.Project",
+      "Stamp_Address = ProjectInfo.Address",
+      "Stamp_JobNo = ProjectInfo.JobNo",
+      "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+      "Stamp_DesignDate = ProjectInfo.DesignDate",
+      "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+      "Stamp_CheckDate = ProjectInfo.CheckDate"
+    ],
+    "PileDesignEndBentTwo": [
+      "Stamp_Firm = ProjectInfo.Firm",
+      "Stamp_Project = ProjectInfo.Project",
+      "Stamp_Address = ProjectInfo.Address",
+      "Stamp_JobNo = ProjectInfo.JobNo",
+      "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+      "Stamp_DesignDate = ProjectInfo.DesignDate",
+      "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+      "Stamp_CheckDate = ProjectInfo.CheckDate"
+    ],
+    "PileDesignPier": [
+      "Stamp_Firm = ProjectInfo.Firm",
+      "Stamp_Project = ProjectInfo.Project",
+      "Stamp_Address = ProjectInfo.Address",
+      "Stamp_JobNo = ProjectInfo.JobNo",
+      "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+      "Stamp_DesignDate = ProjectInfo.DesignDate",
+      "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+      "Stamp_CheckDate = ProjectInfo.CheckDate"
+    ]
+  }
+}

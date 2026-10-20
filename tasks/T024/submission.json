@@ -1,0 +1,24 @@
+{
+  "summary": "Every calculation opens with the project information table (the pile designs C011-C013 now carry the live stamp like the cap and backwall editions) and the modules are ordered with the calculations together in numerical order C001-C016 (registered component order; references, styles, includes and resources keep their slots). Presentation only: every formula and cache value unchanged.",
+  "published_outputs": [
+    "PileDesignEndBentOne, PileDesignEndBentTwo, PileDesignPier: eight new result-only definitions each (Stamp_Firm ... Stamp_CheckDate = ProjectInfo.<Key>); all existing published names unchanged",
+    "Component order: index, ProjectInfo, Materials, BridgeGeometry_2Beam, AccessGeometry, PileProperties, PedBridgeWeights_2Beams, GeneralLoads, PedBridgeWind, LoadCombinations, FBMPPier, FBMPEndBent, FoundationModeling, C001 + references, C002 + references, C003 + references, C004 + references, C006, C007-C016, quantities, DecisionLog, Notes, CodeReferencesGeneral, archives"
+  ],
+  "assumptions_and_conventions": [
+    "The registered order (tools/bpad_workflow.py prepare --order) permutes modules among module slots only; the document shell and every component's bytes are preserved.",
+    "The index groups the calculations C001 to C016 in the same order, each reference packet after its calculation."
+  ],
+  "downstream_impact": [
+    "pile_bpad/ rebuilt (standalone sheets with the static stamp; pile_bpad/journal/ with the live stamp); Pile_Design.ipynb rebuilt (embeds pile_design/bpad.py and scripts/bpad_sheet.py); PILE-TOOL re-registered.",
+    "Design atlas: journal node order/titles unchanged except the three pile stamps; refresh required."
+  ],
+  "external_analysis": "Not affected: no value changed; FBMP not rerun.",
+  "checks_performed": [
+    "tasks/T024/build_components.py: pile fragments tied to their verification records (package revision, fragment SHA-256); definitions and value-cell formulas preserved with only the Stamp_* additions; stamp table first; visible-text rule; index links in order; DecisionLog entry",
+    "tools/bpad_workflow.py check and assemble with the registered order (reordering changes no bytes outside the write scope)",
+    "tests/test_bpad_workflow.py: registered-order tests (permutation, module slots, restore)"
+  ],
+  "open_items": [
+    "Native Blockpad recalculation, appearance review and engineering review not performed."
+  ]
+}

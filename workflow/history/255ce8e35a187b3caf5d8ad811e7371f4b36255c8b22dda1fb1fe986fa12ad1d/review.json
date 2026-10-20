@@ -1,0 +1,25 @@
+{
+  "candidate_sha256": "255ce8e35a187b3caf5d8ad811e7371f4b36255c8b22dda1fb1fe986fa12ad1d",
+  "reviewer": "Claude (Fable 5.1) — bounded file-integrity verification only (tasks/T024/verify_task.py)",
+  "native_recalculation": false,
+  "native_visual_review": false,
+  "engineering_review": false,
+  "design_outcome": "unreviewed",
+  "external_analysis_disposition": "Presentation only: project stamp on the pile calculations and a registered module order; no input, formula or cache value changed; FBMP not rerun.",
+  "external_analysis_status": "unreviewed",
+  "inherited_issues_disposition": "Every component outside the write scope byte-identical; the pile reports keep every definition and value cell (eight Stamp_* definitions added each). Nothing opened natively in Blockpad.",
+  "evidence_files": [
+    {
+      "path": "verification.json",
+      "sha256": "2d1bfd91b872a4c0d407c111e6c5660f03d07972f0d654edbb695b1dcacb6502"
+    },
+    {
+      "path": "independent-checks.json",
+      "sha256": "8726d54e941bca3aea1cff591c348a2c0941c282a3d512fa36a7ba36ee3772aa"
+    },
+    {
+      "path": "definitions.json",
+      "sha256": "85be5f6d78f4c64ab5a2d4cb1f47ad780f7dc8519ef382bfb0f4e3e9e1c78ed1"
+    }
+  ]
+}

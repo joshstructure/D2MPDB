@@ -1,0 +1,40 @@
+{
+  "task": "T026",
+  "base_sha256": "51c4fb74bfc7c3d2eacd885dedaf32235aa1502449dd68402fa9a4d51e95d59c",
+  "package_revision": "8db9964e721fcf72737cdb8cf0524a5bb9fe811ab0bf064eb7d1f70e5160a33b",
+  "components": {
+    "PileDesignEndBentOne": {
+      "fragment_sha256": "4013fa16cfa7aecd5f28517afe945fd14cb057b345ac0ab94c76ef0378d30d91",
+      "removed": [
+        "Distilled from the pile design notebook (package 5effa7c1b4af), case \"End Bent 1 piles: 18 in square prestressed concrete, FBMP fixed run\". Same inputs, equations and load combinations as the notebook; results should match its exported report. Blockpad edition written by pile_design/bpad.py (scripts/build_pile_bpad.py) from the same case; every definition was evaluated independently and compared with the notebook to 1 part in 10⁹."
+      ],
+      "added": [
+        "Distilled from the pile design notebook, case \"End Bent 1 piles: 18 in square prestressed concrete, FBMP fixed run\". Same inputs, equations and load combinations as the notebook; results should match its exported report. Blockpad edition written by pile_design/bpad.py (scripts/build_pile_bpad.py) from the same case; every definition was evaluated independently and compared with the notebook to 1 part in 10⁹."
+      ]
+    },
+    "PileDesignEndBentTwo": {
+      "fragment_sha256": "d1eb0664f2c8f17ecd1d856ead7b03e767554dec93c594b5aefa6e0cc1548309",
+      "removed": [
+        "Distilled from the pile design notebook (package 5effa7c1b4af), case \"End Bent 2 piles: 18 in square prestressed concrete, FBMP fixed run\". Same inputs, equations and load combinations as the notebook; results should match its exported report. Blockpad edition written by pile_design/bpad.py (scripts/build_pile_bpad.py) from the same case; every definition was evaluated independently and compared with the notebook to 1 part in 10⁹."
+      ],
+      "added": [
+        "Distilled from the pile design notebook, case \"End Bent 2 piles: 18 in square prestressed concrete, FBMP fixed run\". Same inputs, equations and load combinations as the notebook; results should match its exported report. Blockpad edition written by pile_design/bpad.py (scripts/build_pile_bpad.py) from the same case; every definition was evaluated independently and compared with the notebook to 1 part in 10⁹."
+      ]
+    },
+    "PileDesignPier": {
+      "fragment_sha256": "5bc851283a4fdd8bb833286ae5c736c3c8c3a7c6f1c85bb1f1e7ad8ec8260f15",
+      "removed": [
+        "Distilled from the pile design notebook (package 5effa7c1b4af), case \"Pier piles: 20 in steel pipe, FBMP fixed run\". Same inputs, equations and load combinations as the notebook; results should match its exported report. Blockpad edition written by pile_design/bpad.py (scripts/build_pile_bpad.py) from the same case; every definition was evaluated independently and compared with the notebook to 1 part in 10⁹."
+      ],
+      "added": [
+        "Distilled from the pile design notebook, case \"Pier piles: 20 in steel pipe, FBMP fixed run\". Same inputs, equations and load combinations as the notebook; results should match its exported report. Blockpad edition written by pile_design/bpad.py (scripts/build_pile_bpad.py) from the same case; every definition was evaluated independently and compared with the notebook to 1 part in 10⁹."
+      ]
+    }
+  },
+  "status": "PASS",
+  "reviews": {
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false
+  }
+}

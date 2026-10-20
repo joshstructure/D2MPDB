@@ -209,6 +209,43 @@ class WorkflowTests(unittest.TestCase):
         with self.assertRaisesRegex(w.WorkflowError, "addition/removal"):
             w.check(self.root, "T008", moved)
 
+    def test_registered_order_permutes_modules_without_changing_bytes(self):
+        order = ["stylerule:style", "report:Notes", "report:Geometry", "report:Loads", "resource:R"]
+        w.prepare(self.root, "T009", "Group the calculations", ["Notes"], order_names=order)
+        self.edit("T009", b"Original notes", b"Revised notes")
+        candidate, report = w.check(self.root, "T009")
+        base = w.Journal(SAMPLE)
+        self.assertEqual(candidate.order, order)
+        self.assertTrue(report["reordered"])
+        self.assertEqual(candidate.shell, base.shell)
+        for key in base.order:
+            if key != "report:Notes":
+                self.assertEqual(base.part(key), candidate.part(key))
+        self.assertIn(b"Revised notes", candidate.part("report:Notes"))
+        self.assertEqual(report["changed_components"], ["report:Notes"])
+        w.assemble(self.root, "T009", self.root / "generated/reorder")
+        restored = w.Journal(candidate.data)
+        self.assertEqual(restored.reorder(base.order), SAMPLE.replace(b"Original notes", b"Revised notes"))
+        # an order-only task is allowed; an unregistered reordering of the working copy is still rejected
+        w.prepare(self.root, "T010", "Order only", [], order_names=order)
+        candidate, report = w.check(self.root, "T010")
+        self.assertEqual((candidate.order, report["changed_components"]), (order, []))
+        self.prepare("T011")
+        moved = w.Journal(SAMPLE).reorder(order)
+        with self.assertRaisesRegex(w.WorkflowError, "unregistered reordering"):
+            w.check(self.root, "T011", moved)
+
+    def test_registered_order_rejects_invalid_permutations(self):
+        with self.assertRaisesRegex(w.WorkflowError, "permutation"):
+            w.prepare(self.root, "T009", "Bad", ["Notes"], order_names=["report:Notes", "report:Geometry", "report:Loads", "resource:R"])
+        with self.assertRaisesRegex(w.WorkflowError, "module slots"):
+            w.prepare(self.root, "T009", "Bad", ["Notes"], order_names=["report:Notes", "stylerule:style", "report:Geometry", "report:Loads", "resource:R"])
+        with self.assertRaisesRegex(w.WorkflowError, "equals the current order"):
+            w.prepare(self.root, "T009", "Bad", ["Notes"], order_names=w.Journal(SAMPLE).order)
+        with self.assertRaisesRegex(w.WorkflowError, "cannot be combined"):
+            w.prepare(self.root, "T009", "Bad", [], add_names=["report:New"],
+                      order_names=["stylerule:style", "report:Notes", "report:Geometry", "report:Loads", "resource:R"])
+
     def test_added_module_errors_and_broken_links_are_rejected(self):
         w.prepare(self.root, "T008", "Append", [], add_names=["report:WallCheck"])
         base = w.Journal(SAMPLE)

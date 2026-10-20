@@ -1,0 +1,1387 @@
+<report name="MSEWallExclusion" title="C015 - MSE Wall Exclusion - Both End Bents" unit="in" pagesize="816,1056" margin="48,48,48,48" bordermargin="0,0,0,0" collapsemargins="False">
+        <include target="Library.Geometry" />
+        <stylerule type="AnyEquation" name="Required Input" texthighlight="#F7E6B9" />
+        <embed spacingbefore="5" spacingafter="8">
+            <table name="ProjectStamp" capture="False" colwidths="1:95, 2:165, 3:95, 4:165">
+                <stylerule range="A1:D4" fontfamily="Times New Roman" fontsize="9" vertalign="Center" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);" />
+                <row>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">Firm</paragraph></textcell>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0"><dynexp formula="Stamp_Firm = ProjectInfo.Firm" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False"><expbody>Stamp_Firm = ProjectInfo.Firm</expbody><expresult>Parsons Transportation Group Inc</expresult></dynexp></paragraph></textcell>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">Project</paragraph></textcell>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0"><dynexp formula="Stamp_Project = ProjectInfo.Project" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False"><expbody>Stamp_Project = ProjectInfo.Project</expbody><expresult>I-95 Capacity Improvements from South of SR 152 to South of SR 126</expresult></dynexp></paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">Address</paragraph></textcell>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0"><dynexp formula="Stamp_Address = ProjectInfo.Address" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False"><expbody>Stamp_Address = ProjectInfo.Address</expbody><expresult>1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301</expresult></dynexp></paragraph></textcell>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">Job no.</paragraph></textcell>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0"><dynexp formula="Stamp_JobNo = ProjectInfo.JobNo" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False"><expbody>Stamp_JobNo = ProjectInfo.JobNo</expbody><expresult></expresult></dynexp></paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">Designed by</paragraph></textcell>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0"><dynexp formula="Stamp_DesignedBy = ProjectInfo.DesignedBy" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False"><expbody>Stamp_DesignedBy = ProjectInfo.DesignedBy</expbody><expresult>JAT</expresult></dynexp></paragraph></textcell>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">Date</paragraph></textcell>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0"><dynexp formula="Stamp_DesignDate = ProjectInfo.DesignDate" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False"><expbody>Stamp_DesignDate = ProjectInfo.DesignDate</expbody><expresult>10/17/2026</expresult></dynexp></paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">Checked by</paragraph></textcell>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0"><dynexp formula="Stamp_CheckedBy = ProjectInfo.CheckedBy" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False"><expbody>Stamp_CheckedBy = ProjectInfo.CheckedBy</expbody><expresult>MIK</expresult></dynexp></paragraph></textcell>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold" horzalign="Center">Date</paragraph></textcell>
+                    <textcell capture="False" background="#F1F5FA"><paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0"><dynexp formula="Stamp_CheckDate = ProjectInfo.CheckDate" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False"><expbody>Stamp_CheckDate = ProjectInfo.CheckDate</expbody><expresult></expresult></dynexp></paragraph></textcell>
+                </row>
+            </table>
+        </embed>
+        <paragraph fontfamily="Times New Roman" fontsize="16" spacingafter="6" fontweight="bold">D2 I-95 PEDESTRIAN BRIDGE</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="16" spacingafter="6" fontweight="bold">MSE WALL CLEARANCE — FRONT AND SIDES</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Both end bents | 19 October 2026 (first issued 13 October 2026) | Front strap check; specified side offsets</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" background="#F1F5FA">Evaluate a straight strap from the FRONT wall on the normal through a nominal pile center. Use the selected alpha in either skew direction. The SIDE walls use a separate specified 24-inch minimum; their strap routing is not evaluated.</paragraph>
+        <embed spacingbefore="5" spacingafter="8">
+            <table name="ResultSummary" capture="False" colwidths="1:370, 2:160">
+                <stylerule range="A1:B7" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#A7B9C6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CBD5DD&quot;);" />
+                <row>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Geometry output</paragraph></textcell>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Live value</paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Front wall: calculated minimum pile-face clear</paragraph></textcell>
+                    <c capture="False" background="#EFF7F1" formula="MinClear to in"><num>37.452160573276174 in</num></c>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Front wall: adopted clear, rounded UP</paragraph></textcell>
+                    <c capture="False" background="#EFF7F1" formula="LayoutClear to in"><num>37.5 in</num></c>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Side walls: specified minimum pile-face clear</paragraph></textcell>
+                    <c capture="False" background="#EFF7F1" formula="SideClear to in"><num>24 in</num></c>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Selected front strap skew</paragraph></textcell>
+                    <c capture="False" background="#EFF7F1" formula="α to deg"><num>15 deg</num></c>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Trial strap width</paragraph></textcell>
+                    <c capture="False" background="#EFF7F1" formula="Width to in"><num>2 in</num></c>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Geometry input validity</paragraph></textcell>
+                    <c capture="False" formula="InputStatus"><textvalue>VALID</textvalue></c>
+                </row>
+            </table>
+        </embed>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6">Measure to the BACK OF FACING. Pile placement tolerance is excluded by the selected nominal-geometry basis. Reversing skew is permitted for this screen; actual pile locations and the complete strap route require separate coordination.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">1. TYPICAL PILE — FRONT AND SIDE LIMITS</paragraph>
+        <embed spacingbefore="4" spacingafter="5">
+            <canvas name="TypicalBox" unit="in" size="6.5 in; 3.3 in; scaletofit">
+                <include target="Library.Geometry" />
+                <plot formula="PlotLines([3.1+(-MSEWallExclusion.SideExtent)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(-MSEWallExclusion.SideExtent)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(MSEWallExclusion.SideExtent)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(MSEWallExclusion.SideExtent)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(MSEWallExclusion.DrawTop)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(-MSEWallExclusion.FrontExtent)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(-MSEWallExclusion.FrontExtent)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(MSEWallExclusion.DrawTop)/(1 ft)*(MSEWallExclusion.TypicalScale)])" linecolor="#B44840" linethickness="2" />
+                <plot formula="PlotLines([3.1+(-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale)])" linecolor="#246B7B" linethickness="2" />
+                <plot formula="PlotLines([3.1+(-1*MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(-1*MSEWallExclusion.SideExtent)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(0 ft)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(0 ft)/(1 ft)*(MSEWallExclusion.TypicalScale)])" linecolor="#1766A0" linethickness="1" />
+                <plot formula="PlotLines([3.1+(-1*MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(-1*MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(-0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale)])" linecolor="#1766A0" linethickness="1" />
+                <plot formula="PlotLines([3.1+(-1*MSEWallExclusion.SideExtent)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(-1*MSEWallExclusion.SideExtent)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(-0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale)])" linecolor="#1766A0" linethickness="1" />
+                <plot formula="PlotLines([3.1+(1*MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(1*MSEWallExclusion.SideExtent)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(0 ft)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(0 ft)/(1 ft)*(MSEWallExclusion.TypicalScale)])" linecolor="#1766A0" linethickness="1" />
+                <plot formula="PlotLines([3.1+(1*MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(1*MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(-0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale)])" linecolor="#1766A0" linethickness="1" />
+                <plot formula="PlotLines([3.1+(1*MSEWallExclusion.SideExtent)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(1*MSEWallExclusion.SideExtent)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(-0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale)])" linecolor="#1766A0" linethickness="1" />
+                <plot formula="PlotLines([3.1+(0 ft)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(0 ft)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(-MSEWallExclusion.FrontExtent)/(1 ft)*(MSEWallExclusion.TypicalScale)])" linecolor="#1766A0" linethickness="1" />
+                <plot formula="PlotLines([3.1+(-0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale)])" linecolor="#1766A0" linethickness="1" />
+                <plot formula="PlotLines([3.1+(-0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(-MSEWallExclusion.FrontExtent)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(-MSEWallExclusion.FrontExtent)/(1 ft)*(MSEWallExclusion.TypicalScale)])" linecolor="#1766A0" linethickness="1" />
+                <planecontainer origin="0.15,3.06,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="10" textcolor="#9F332B"><textvalue>RED: MINIMUM BACK-OF-FACING LIMITS</textvalue></planecontainer>
+                <planecontainer origin="1.86,2.19,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#1766A0" formula="MSEWallExclusion.SideClear to in"><num>24 in</num></planecontainer>
+                <planecontainer origin="3.63,2.19,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#1766A0" formula="MSEWallExclusion.SideClear to in"><num>24 in</num></planecontainer>
+                <planecontainer origin="3.23,1.02,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#1766A0" formula="MSEWallExclusion.LayoutClear to in"><num>37.5 in</num></planecontainer>
+                <planecontainer origin="2.87,2.06,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#246B7B"><textvalue>PILE</textvalue></planecontainer>
+                <planecontainer origin="1.92,2.79,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#263F49"><textvalue>OPEN — no rear-wall criterion</textvalue></planecontainer>
+                <planecontainer origin="0.15,0.16,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#263F49"><textvalue>FRONT: calculated | SIDES: specified | pile tolerance excluded</textvalue></planecontainer>
+            </canvas>
+        </embed>
+        <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True" pagebreakbefore="break">2. INPUTS AND FRONT-WALL MINIMUM</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" background="#FFF8E9">Shared pile size, spacing and cap dimensions are read from Bridge Geometry (235-in cap). Use nominal pile width only, without a placement envelope. Wall positions are the wall lines of the CAD model of 19 October 2026; the 8-in cheek webs outside the cap ends are not part of this screen. In that model the side walls stand 114 in from the pile row, at the 24-in criterion within 0.0002 in: the side-wall rows below read MEETS CLEAR or SHORTFALL only by the last digits of the model coordinates.</paragraph>
+        <section name="WorkingNotesInputs" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" background="#FFF8E9">Shared pile size, spacing and cap dimensions are live journal references (235-in cap since 19 October 2026, D-036). Use nominal pile width only, without a placement envelope. Wall positions are the saved CAD snapshot of 19 October 2026 (D-055 model); the 8-in cheek webs outside the cap ends are not part of this screen. In that model the side walls stand 114 in from the pile row, at the 24-in criterion within 0.0002 in: the side-wall rows below read MEETS CLEAR or SHORTFALL only by the last digits of the saved coordinates.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="PileSize = BridgeGeometry_2Beam.EndBent_pileWidth" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                <expbody>PileSize = BridgeGeometry_2Beam.EndBent_pileWidth</expbody>
+                <expresult> = 18 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Nominal square pile width.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="PileSpacing = BridgeGeometry_2Beam.EndBent_pileSpacing" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                <expbody>PileSpacing = BridgeGeometry_2Beam.EndBent_pileSpacing</expbody>
+                <expresult> = 54 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Pile spacing along the row.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="Width = 2 in" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input">
+                <expbody>Width = 2 in</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Trial front-wall strap width; use vendor dimension.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="Clear = 0 in" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input">
+                <expbody>Clear = 0 in</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Additional strap-edge gap; zero is tangency.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="α = 15 deg" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input">
+                <expbody>α = 15 deg</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Selected front-wall plan skew, to either side of the wall normal.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="SideClear = 24 in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                <expbody>SideClear = 24 in</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Specified side pile-face to back-of-facing minimum; no side strap check.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="RoundStep = 0.25 in" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input">
+                <expbody>RoundStep = 0.25 in</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Round the computed front setback upward by this increment.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="Half = PileSize/2" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                <expbody>Half = PileSize/2</expbody>
+                <expresult> = 9 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Nominal pile half-width; no placement allowance.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="MinClear = (Half*Cos(α)+Width/2+Clear)/Sin(α) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                <expbody>MinClear = (Half*Cos(α)+Width/2+Clear)/Sin(α) to in</expbody>
+                <expresult> = 37.452 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Front wall: minimum clear from nominal pile face to back of facing.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="LayoutClear = -Floor(-MinClear/Max(RoundStep,0.001 in),1)*Max(RoundStep,0.001 in) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                <expbody>LayoutClear = -Floor(-MinClear/Max(RoundStep,0.001 in),1)*Max(RoundStep,0.001 in) to in</expbody>
+                <expresult> = 37.5 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Front wall: adopted clear rounded UP.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="FrontExtent = Half+LayoutClear" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                <expbody>FrontExtent = Half+LayoutClear</expbody>
+                <expresult> = 46.5 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Pile center to front-wall limit.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+            <dynexp formula="SideExtent = Half+SideClear" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                <expbody>SideExtent = Half+SideClear</expbody>
+                <expresult> = 33 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Pile center to either side-wall limit.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" background="#F1F5FA">DERIVATION: S sin alpha - h cos alpha = w/2 + c. Solve for S using h = nominal pile width / 2. The centered nominal geometry is symmetric for positive or negative skew. No pile placement term enters this expression.</paragraph>
+        <section name="GeometryAndChecks" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="FrameAngle = -89.9988175443184 deg" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>FrameAngle = -89.9988175443184 deg</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="PileCount = BridgeGeometry_2Beam.EndBent_pileCount" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>PileCount = BridgeGeometry_2Beam.EndBent_pileCount</expbody>
+                    <expresult> = 4</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="CapLength = BridgeGeometry_2Beam.EndBentCap_length" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>CapLength = BridgeGeometry_2Beam.EndBentCap_length</expbody>
+                    <expresult> = 19 ft 7 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="CapWidth = BridgeGeometry_2Beam.EndBentCap_width" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>CapWidth = BridgeGeometry_2Beam.EndBentCap_width</expbody>
+                    <expresult> = 42 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="CapX = (CapLength*Abs(Sin(FrameAngle))+CapWidth*Abs(Cos(FrameAngle)))/2" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>CapX = (CapLength*Abs(Sin(FrameAngle))+CapWidth*Abs(Cos(FrameAngle)))/2</expbody>
+                    <expresult> = 9 ft 9.5 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="CapY = (CapWidth*Abs(Sin(FrameAngle))+CapLength*Abs(Cos(FrameAngle)))/2" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>CapY = (CapWidth*Abs(Sin(FrameAngle))+CapLength*Abs(Cos(FrameAngle)))/2</expbody>
+                    <expresult> = 1 ft 9.002 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="InputsValid = And(PileSize &gt; 0 in,PileSpacing &gt; PileSize,PileCount == 4,Width &gt;= 0 in,Clear &gt;= 0 in,α &gt; 0 deg,α &lt; 90 deg,SideClear &gt;= 24 in,RoundStep &gt; 0 in)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>InputsValid = And(PileSize &gt; 0 in,PileSpacing &gt; PileSize,PileCount == 4,Width &gt;= 0 in,Clear &gt;= 0 in,α &gt; 0 deg,α &lt; 90 deg,SideClear &gt;= 24 in,RoundStep &gt; 0 in)</expbody>
+                    <expresult> = True</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="InputStatus = If(InputsValid,&quot;VALID&quot;,&quot;INVALID - DO NOT USE&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>InputStatus = If(InputsValid,"VALID","INVALID - DO NOT USE")</expbody>
+                    <expresult> = VALID</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="SkewStatus = If(And(α &gt; 0 deg,α &lt;= 15 deg),&quot;Within ordinary 15 deg limit&quot;,&quot;Above ordinary 15 deg limit&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>SkewStatus = If(And(α &gt; 0 deg,α &lt;= 15 deg),"Within ordinary 15 deg limit","Above ordinary 15 deg limit")</expbody>
+                    <expresult> = Within ordinary 15 deg limit</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="DrawTop = Half+1 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>DrawTop = Half+1 ft</expbody>
+                    <expresult> = 1 ft 9 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="TypicalScale = 2.25/((DrawTop+FrontExtent)/(1 ft))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>TypicalScale = 2.25/((DrawTop+FrontExtent)/(1 ft))</expbody>
+                    <expresult> = 0.4</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="PlotScale = Min(6/((3*PileSpacing+2*SideExtent)/(1 ft)),2.5/((FrontExtent+DrawTop+2 ft)/(1 ft)))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>PlotScale = Min(6/((3*PileSpacing+2*SideExtent)/(1 ft)),2.5/((FrontExtent+DrawTop+2 ft)/(1 ft)))</expbody>
+                    <expresult> = 0.316</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="PanelThickness = 0.458333333333333 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>PanelThickness = 0.458333333333333 ft</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1P1x = -1.5*PileSpacing*Abs(Sin(FrameAngle))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1P1x = -1.5*PileSpacing*Abs(Sin(FrameAngle))</expbody>
+                    <expresult> = -81.000 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1P1y = -1.5*PileSpacing*Cos(FrameAngle)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1P1y = -1.5*PileSpacing*Cos(FrameAngle)</expbody>
+                    <expresult> = -0.00167 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1P2x = -0.5*PileSpacing*Abs(Sin(FrameAngle))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1P2x = -0.5*PileSpacing*Abs(Sin(FrameAngle))</expbody>
+                    <expresult> = -27.000 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1P2y = -0.5*PileSpacing*Cos(FrameAngle)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1P2y = -0.5*PileSpacing*Cos(FrameAngle)</expbody>
+                    <expresult> = -0.000557 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1P3x = 0.5*PileSpacing*Abs(Sin(FrameAngle))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1P3x = 0.5*PileSpacing*Abs(Sin(FrameAngle))</expbody>
+                    <expresult> = 27.000 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1P3y = 0.5*PileSpacing*Cos(FrameAngle)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1P3y = 0.5*PileSpacing*Cos(FrameAngle)</expbody>
+                    <expresult> = 0.000557 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1P4x = 1.5*PileSpacing*Abs(Sin(FrameAngle))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1P4x = 1.5*PileSpacing*Abs(Sin(FrameAngle))</expbody>
+                    <expresult> = 81.000 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1P4y = 1.5*PileSpacing*Cos(FrameAngle)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1P4y = 1.5*PileSpacing*Cos(FrameAngle)</expbody>
+                    <expresult> = 0.00167 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Left = Bent1P1x-SideExtent" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Left = Bent1P1x-SideExtent</expbody>
+                    <expresult> = -114.000 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Right = Bent1P4x+SideExtent" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Right = Bent1P4x+SideExtent</expbody>
+                    <expresult> = 114.000 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Bottom = Min(Bent1P1y,Bent1P4y)-FrontExtent" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Bottom = Min(Bent1P1y,Bent1P4y)-FrontExtent</expbody>
+                    <expresult> = -46.502 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Top = Max(Bent1P1y,Bent1P4y)+DrawTop" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Top = Max(Bent1P1y,Bent1P4y)+DrawTop</expbody>
+                    <expresult> = 1 ft 9.002 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1TotalX = Bent1Right-Bent1Left" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1TotalX = Bent1Right-Bent1Left</expbody>
+                    <expresult> = 228.000 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W1x = -9.95834880941483 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W1x = -9.95834880941483 ft</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W1y = -3.87515478292704 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W1y = -3.87515478292704 ft</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W1len = 19.9166666622123 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W1len = 19.9166666622123 ft</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W1tx = 1.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W1tx = 1.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W1ty = 0.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W1ty = 0.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W1nx = -0.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W1nx = -0.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W1ny = 1.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W1ny = 1.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W1xend = Bent1W1x+Bent1W1tx*Bent1W1len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W1xend = Bent1W1x+Bent1W1tx*Bent1W1len</expbody>
+                    <expresult> = 9.958 ft</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W1yend = Bent1W1y+Bent1W1ty*Bent1W1len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W1yend = Bent1W1y+Bent1W1ty*Bent1W1len</expbody>
+                    <expresult> = -3.875 ft</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall1Pile1Face = (Bent1P1x-Bent1W1x)*Bent1W1nx+(Bent1P1y-Bent1W1y)*Bent1W1ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall1Pile1Face = (Bent1P1x-Bent1W1x)*Bent1W1nx+(Bent1P1y-Bent1W1y)*Bent1W1ny-Half</expbody>
+                    <expresult> = 3 ft 1.5 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall1Pile1Extra = Max(0 in,LayoutClear-Bent1Wall1Pile1Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall1Pile1Extra = Max(0 in,LayoutClear-Bent1Wall1Pile1Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall1Pile2Face = (Bent1P2x-Bent1W1x)*Bent1W1nx+(Bent1P2y-Bent1W1y)*Bent1W1ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall1Pile2Face = (Bent1P2x-Bent1W1x)*Bent1W1nx+(Bent1P2y-Bent1W1y)*Bent1W1ny-Half</expbody>
+                    <expresult> = 3 ft 1.501 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall1Pile2Extra = Max(0 in,LayoutClear-Bent1Wall1Pile2Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall1Pile2Extra = Max(0 in,LayoutClear-Bent1Wall1Pile2Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall1Pile3Face = (Bent1P3x-Bent1W1x)*Bent1W1nx+(Bent1P3y-Bent1W1y)*Bent1W1ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall1Pile3Face = (Bent1P3x-Bent1W1x)*Bent1W1nx+(Bent1P3y-Bent1W1y)*Bent1W1ny-Half</expbody>
+                    <expresult> = 3 ft 1.502 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall1Pile3Extra = Max(0 in,LayoutClear-Bent1Wall1Pile3Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall1Pile3Extra = Max(0 in,LayoutClear-Bent1Wall1Pile3Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall1Pile4Face = (Bent1P4x-Bent1W1x)*Bent1W1nx+(Bent1P4y-Bent1W1y)*Bent1W1ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall1Pile4Face = (Bent1P4x-Bent1W1x)*Bent1W1nx+(Bent1P4y-Bent1W1y)*Bent1W1ny-Half</expbody>
+                    <expresult> = 3 ft 1.504 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall1Pile4Extra = Max(0 in,LayoutClear-Bent1Wall1Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall1Pile4Extra = Max(0 in,LayoutClear-Bent1Wall1Pile4Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W1Gap = Min(Bent1Wall1Pile1Face,Bent1Wall1Pile2Face,Bent1Wall1Pile3Face,Bent1Wall1Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W1Gap = Min(Bent1Wall1Pile1Face,Bent1Wall1Pile2Face,Bent1Wall1Pile3Face,Bent1Wall1Pile4Face)</expbody>
+                    <expresult> = 3 ft 1.5 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W1Extra = Max(0 in,LayoutClear-Bent1W1Gap)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W1Extra = Max(0 in,LayoutClear-Bent1W1Gap)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W1Status = If(InputsValid,If(Bent1W1Extra &lt;= 0 in,&quot;MEETS CLEAR&quot;,&quot;SHORTFALL&quot;),&quot;INVALID&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W1Status = If(InputsValid,If(Bent1W1Extra &lt;= 0 in,"MEETS CLEAR","SHORTFALL"),"INVALID")</expbody>
+                    <expresult> = MEETS CLEAR</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W2x = -9.5000154760815 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W2x = -9.5000154760815 ft</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W2y = -4.33348811626037 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W2y = -4.33348811626037 ft</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W2len = 23.1098329385179 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W2len = 23.1098329385179 ft</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W2tx = 0.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W2tx = 0.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W2ty = 1.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W2ty = 1.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W2nx = 1.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W2nx = 1.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W2ny = -0.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W2ny = -0.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W2xend = Bent1W2x+Bent1W2tx*Bent1W2len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W2xend = Bent1W2x+Bent1W2tx*Bent1W2len</expbody>
+                    <expresult> = -9.500 ft</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W2yend = Bent1W2y+Bent1W2ty*Bent1W2len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W2yend = Bent1W2y+Bent1W2ty*Bent1W2len</expbody>
+                    <expresult> = 18.776 ft</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall2Pile1Face = (Bent1P1x-Bent1W2x)*Bent1W2nx+(Bent1P1y-Bent1W2y)*Bent1W2ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall2Pile1Face = (Bent1P1x-Bent1W2x)*Bent1W2nx+(Bent1P1y-Bent1W2y)*Bent1W2ny-Half</expbody>
+                    <expresult> = 2 ft 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall2Pile1Extra = Max(0 in,SideClear-Bent1Wall2Pile1Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall2Pile1Extra = Max(0 in,SideClear-Bent1Wall2Pile1Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall2Pile2Face = (Bent1P2x-Bent1W2x)*Bent1W2nx+(Bent1P2y-Bent1W2y)*Bent1W2ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall2Pile2Face = (Bent1P2x-Bent1W2x)*Bent1W2nx+(Bent1P2y-Bent1W2y)*Bent1W2ny-Half</expbody>
+                    <expresult> = 6 ft 6 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall2Pile2Extra = Max(0 in,SideClear-Bent1Wall2Pile2Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall2Pile2Extra = Max(0 in,SideClear-Bent1Wall2Pile2Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall2Pile3Face = (Bent1P3x-Bent1W2x)*Bent1W2nx+(Bent1P3y-Bent1W2y)*Bent1W2ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall2Pile3Face = (Bent1P3x-Bent1W2x)*Bent1W2nx+(Bent1P3y-Bent1W2y)*Bent1W2ny-Half</expbody>
+                    <expresult> = 11 ft 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall2Pile3Extra = Max(0 in,SideClear-Bent1Wall2Pile3Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall2Pile3Extra = Max(0 in,SideClear-Bent1Wall2Pile3Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall2Pile4Face = (Bent1P4x-Bent1W2x)*Bent1W2nx+(Bent1P4y-Bent1W2y)*Bent1W2ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall2Pile4Face = (Bent1P4x-Bent1W2x)*Bent1W2nx+(Bent1P4y-Bent1W2y)*Bent1W2ny-Half</expbody>
+                    <expresult> = 15 ft 6 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall2Pile4Extra = Max(0 in,SideClear-Bent1Wall2Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall2Pile4Extra = Max(0 in,SideClear-Bent1Wall2Pile4Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W2Gap = Min(Bent1Wall2Pile1Face,Bent1Wall2Pile2Face,Bent1Wall2Pile3Face,Bent1Wall2Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W2Gap = Min(Bent1Wall2Pile1Face,Bent1Wall2Pile2Face,Bent1Wall2Pile3Face,Bent1Wall2Pile4Face)</expbody>
+                    <expresult> = 2 ft 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W2Extra = Max(0 in,SideClear-Bent1W2Gap)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W2Extra = Max(0 in,SideClear-Bent1W2Gap)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W2Status = If(InputsValid,If(Bent1W2Extra &lt;= 0 in,&quot;MEETS CLEAR&quot;,&quot;SHORTFALL&quot;),&quot;INVALID&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W2Status = If(InputsValid,If(Bent1W2Extra &lt;= 0 in,"MEETS CLEAR","SHORTFALL"),"INVALID")</expbody>
+                    <expresult> = MEETS CLEAR</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W3x = 9.49998451946412 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W3x = 9.49998451946412 ft</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W3y = -4.33348811626037 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W3y = -4.33348811626037 ft</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W3len = 10.1515001933395 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W3len = 10.1515001933395 ft</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W3tx = 0.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W3tx = 0.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W3ty = 1.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W3ty = 1.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W3nx = -1.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W3nx = -1.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W3ny = -0.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W3ny = -0.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W3xend = Bent1W3x+Bent1W3tx*Bent1W3len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W3xend = Bent1W3x+Bent1W3tx*Bent1W3len</expbody>
+                    <expresult> = 9.500 ft</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W3yend = Bent1W3y+Bent1W3ty*Bent1W3len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W3yend = Bent1W3y+Bent1W3ty*Bent1W3len</expbody>
+                    <expresult> = 5.818 ft</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall3Pile1Face = (Bent1P1x-Bent1W3x)*Bent1W3nx+(Bent1P1y-Bent1W3y)*Bent1W3ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall3Pile1Face = (Bent1P1x-Bent1W3x)*Bent1W3nx+(Bent1P1y-Bent1W3y)*Bent1W3ny-Half</expbody>
+                    <expresult> = 15 ft 6 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall3Pile1Extra = Max(0 in,SideClear-Bent1Wall3Pile1Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall3Pile1Extra = Max(0 in,SideClear-Bent1Wall3Pile1Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall3Pile2Face = (Bent1P2x-Bent1W3x)*Bent1W3nx+(Bent1P2y-Bent1W3y)*Bent1W3ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall3Pile2Face = (Bent1P2x-Bent1W3x)*Bent1W3nx+(Bent1P2y-Bent1W3y)*Bent1W3ny-Half</expbody>
+                    <expresult> = 11 ft 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall3Pile2Extra = Max(0 in,SideClear-Bent1Wall3Pile2Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall3Pile2Extra = Max(0 in,SideClear-Bent1Wall3Pile2Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall3Pile3Face = (Bent1P3x-Bent1W3x)*Bent1W3nx+(Bent1P3y-Bent1W3y)*Bent1W3ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall3Pile3Face = (Bent1P3x-Bent1W3x)*Bent1W3nx+(Bent1P3y-Bent1W3y)*Bent1W3ny-Half</expbody>
+                    <expresult> = 6 ft 6 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall3Pile3Extra = Max(0 in,SideClear-Bent1Wall3Pile3Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall3Pile3Extra = Max(0 in,SideClear-Bent1Wall3Pile3Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall3Pile4Face = (Bent1P4x-Bent1W3x)*Bent1W3nx+(Bent1P4y-Bent1W3y)*Bent1W3ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall3Pile4Face = (Bent1P4x-Bent1W3x)*Bent1W3nx+(Bent1P4y-Bent1W3y)*Bent1W3ny-Half</expbody>
+                    <expresult> = 2 ft 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1Wall3Pile4Extra = Max(0 in,SideClear-Bent1Wall3Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1Wall3Pile4Extra = Max(0 in,SideClear-Bent1Wall3Pile4Face)</expbody>
+                    <expresult> = 0 ft 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W3Gap = Min(Bent1Wall3Pile1Face,Bent1Wall3Pile2Face,Bent1Wall3Pile3Face,Bent1Wall3Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W3Gap = Min(Bent1Wall3Pile1Face,Bent1Wall3Pile2Face,Bent1Wall3Pile3Face,Bent1Wall3Pile4Face)</expbody>
+                    <expresult> = 2 ft 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W3Extra = Max(0 in,SideClear-Bent1W3Gap)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W3Extra = Max(0 in,SideClear-Bent1W3Gap)</expbody>
+                    <expresult> = 0 ft 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1W3Status = If(InputsValid,If(Bent1W3Extra &lt;= 0 in,&quot;MEETS CLEAR&quot;,&quot;SHORTFALL&quot;),&quot;INVALID&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1W3Status = If(InputsValid,If(Bent1W3Extra &lt;= 0 in,"MEETS CLEAR","SHORTFALL"),"INVALID")</expbody>
+                    <expresult> = SHORTFALL</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1CapGap = -Bent1W1x*Bent1W1nx-Bent1W1y*Bent1W1ny-CapX*Abs(Bent1W1nx)-CapY*Abs(Bent1W1ny)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1CapGap = -Bent1W1x*Bent1W1nx-Bent1W1y*Bent1W1ny-CapX*Abs(Bent1W1nx)-CapY*Abs(Bent1W1ny)</expbody>
+                    <expresult> = 2 ft 1.499 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent1CapStatus = If(Bent1CapGap &gt;= 24 in,&quot;✓ PASS&quot;,&quot;⊗ FAIL&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent1CapStatus = If(Bent1CapGap &gt;= 24 in,"✓ PASS","⊗ FAIL")</expbody>
+                    <expresult> = ✓ PASS</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2P1x = -1.5*PileSpacing*Abs(Sin(FrameAngle))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2P1x = -1.5*PileSpacing*Abs(Sin(FrameAngle))</expbody>
+                    <expresult> = -81.000 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2P1y = 1.5*PileSpacing*Cos(FrameAngle)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2P1y = 1.5*PileSpacing*Cos(FrameAngle)</expbody>
+                    <expresult> = 0.00167 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2P2x = -0.5*PileSpacing*Abs(Sin(FrameAngle))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2P2x = -0.5*PileSpacing*Abs(Sin(FrameAngle))</expbody>
+                    <expresult> = -27.000 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2P2y = 0.5*PileSpacing*Cos(FrameAngle)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2P2y = 0.5*PileSpacing*Cos(FrameAngle)</expbody>
+                    <expresult> = 0.000557 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2P3x = 0.5*PileSpacing*Abs(Sin(FrameAngle))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2P3x = 0.5*PileSpacing*Abs(Sin(FrameAngle))</expbody>
+                    <expresult> = 27.000 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2P3y = -0.5*PileSpacing*Cos(FrameAngle)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2P3y = -0.5*PileSpacing*Cos(FrameAngle)</expbody>
+                    <expresult> = -0.000557 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2P4x = 1.5*PileSpacing*Abs(Sin(FrameAngle))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2P4x = 1.5*PileSpacing*Abs(Sin(FrameAngle))</expbody>
+                    <expresult> = 81.000 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2P4y = -1.5*PileSpacing*Cos(FrameAngle)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2P4y = -1.5*PileSpacing*Cos(FrameAngle)</expbody>
+                    <expresult> = -0.00167 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Left = Bent2P1x-SideExtent" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Left = Bent2P1x-SideExtent</expbody>
+                    <expresult> = -114.000 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Right = Bent2P4x+SideExtent" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Right = Bent2P4x+SideExtent</expbody>
+                    <expresult> = 114.000 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Bottom = Min(Bent2P1y,Bent2P4y)-FrontExtent" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Bottom = Min(Bent2P1y,Bent2P4y)-FrontExtent</expbody>
+                    <expresult> = -46.502 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Top = Max(Bent2P1y,Bent2P4y)+DrawTop" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Top = Max(Bent2P1y,Bent2P4y)+DrawTop</expbody>
+                    <expresult> = 1 ft 9.002 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2TotalX = Bent2Right-Bent2Left" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2TotalX = Bent2Right-Bent2Left</expbody>
+                    <expresult> = 228.000 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W1x = -9.95831785279752 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W1x = -9.95831785279752 ft</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W1y = -3.87515478292698 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W1y = -3.87515478292698 ft</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W1len = 19.9166666622123 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W1len = 19.9166666622123 ft</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W1tx = 1.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W1tx = 1.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W1ty = -0.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W1ty = -0.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W1nx = -0.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W1nx = -0.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W1ny = 1.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W1ny = 1.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W1xend = Bent2W1x+Bent2W1tx*Bent2W1len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W1xend = Bent2W1x+Bent2W1tx*Bent2W1len</expbody>
+                    <expresult> = 9.958 ft</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W1yend = Bent2W1y+Bent2W1ty*Bent2W1len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W1yend = Bent2W1y+Bent2W1ty*Bent2W1len</expbody>
+                    <expresult> = -3.875 ft</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall1Pile1Face = (Bent2P1x-Bent2W1x)*Bent2W1nx+(Bent2P1y-Bent2W1y)*Bent2W1ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall1Pile1Face = (Bent2P1x-Bent2W1x)*Bent2W1nx+(Bent2P1y-Bent2W1y)*Bent2W1ny-Half</expbody>
+                    <expresult> = 3 ft 1.504 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall1Pile1Extra = Max(0 in,LayoutClear-Bent2Wall1Pile1Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall1Pile1Extra = Max(0 in,LayoutClear-Bent2Wall1Pile1Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall1Pile2Face = (Bent2P2x-Bent2W1x)*Bent2W1nx+(Bent2P2y-Bent2W1y)*Bent2W1ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall1Pile2Face = (Bent2P2x-Bent2W1x)*Bent2W1nx+(Bent2P2y-Bent2W1y)*Bent2W1ny-Half</expbody>
+                    <expresult> = 3 ft 1.502 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall1Pile2Extra = Max(0 in,LayoutClear-Bent2Wall1Pile2Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall1Pile2Extra = Max(0 in,LayoutClear-Bent2Wall1Pile2Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall1Pile3Face = (Bent2P3x-Bent2W1x)*Bent2W1nx+(Bent2P3y-Bent2W1y)*Bent2W1ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall1Pile3Face = (Bent2P3x-Bent2W1x)*Bent2W1nx+(Bent2P3y-Bent2W1y)*Bent2W1ny-Half</expbody>
+                    <expresult> = 3 ft 1.501 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall1Pile3Extra = Max(0 in,LayoutClear-Bent2Wall1Pile3Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall1Pile3Extra = Max(0 in,LayoutClear-Bent2Wall1Pile3Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall1Pile4Face = (Bent2P4x-Bent2W1x)*Bent2W1nx+(Bent2P4y-Bent2W1y)*Bent2W1ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall1Pile4Face = (Bent2P4x-Bent2W1x)*Bent2W1nx+(Bent2P4y-Bent2W1y)*Bent2W1ny-Half</expbody>
+                    <expresult> = 3 ft 1.5 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall1Pile4Extra = Max(0 in,LayoutClear-Bent2Wall1Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall1Pile4Extra = Max(0 in,LayoutClear-Bent2Wall1Pile4Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W1Gap = Min(Bent2Wall1Pile1Face,Bent2Wall1Pile2Face,Bent2Wall1Pile3Face,Bent2Wall1Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W1Gap = Min(Bent2Wall1Pile1Face,Bent2Wall1Pile2Face,Bent2Wall1Pile3Face,Bent2Wall1Pile4Face)</expbody>
+                    <expresult> = 3 ft 1.5 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W1Extra = Max(0 in,LayoutClear-Bent2W1Gap)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W1Extra = Max(0 in,LayoutClear-Bent2W1Gap)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W1Status = If(InputsValid,If(Bent2W1Extra &lt;= 0 in,&quot;MEETS CLEAR&quot;,&quot;SHORTFALL&quot;),&quot;INVALID&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W1Status = If(InputsValid,If(Bent2W1Extra &lt;= 0 in,"MEETS CLEAR","SHORTFALL"),"INVALID")</expbody>
+                    <expresult> = MEETS CLEAR</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W2x = -9.49998451946418 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W2x = -9.49998451946418 ft</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W2y = 41.0730339531239 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W2y = 41.0730339531239 ft</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W2len = 45.4065220693842 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W2len = 45.4065220693842 ft</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W2tx = 0.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W2tx = 0.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W2ty = -1.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W2ty = -1.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W2nx = 1.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W2nx = 1.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W2ny = 0.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W2ny = 0.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W2xend = Bent2W2x+Bent2W2tx*Bent2W2len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W2xend = Bent2W2x+Bent2W2tx*Bent2W2len</expbody>
+                    <expresult> = -9.500 ft</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W2yend = Bent2W2y+Bent2W2ty*Bent2W2len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W2yend = Bent2W2y+Bent2W2ty*Bent2W2len</expbody>
+                    <expresult> = -4.333 ft</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall2Pile1Face = (Bent2P1x-Bent2W2x)*Bent2W2nx+(Bent2P1y-Bent2W2y)*Bent2W2ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall2Pile1Face = (Bent2P1x-Bent2W2x)*Bent2W2nx+(Bent2P1y-Bent2W2y)*Bent2W2ny-Half</expbody>
+                    <expresult> = 2 ft 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall2Pile1Extra = Max(0 in,SideClear-Bent2Wall2Pile1Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall2Pile1Extra = Max(0 in,SideClear-Bent2Wall2Pile1Face)</expbody>
+                    <expresult> = 0 ft 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall2Pile2Face = (Bent2P2x-Bent2W2x)*Bent2W2nx+(Bent2P2y-Bent2W2y)*Bent2W2ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall2Pile2Face = (Bent2P2x-Bent2W2x)*Bent2W2nx+(Bent2P2y-Bent2W2y)*Bent2W2ny-Half</expbody>
+                    <expresult> = 6 ft 6 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall2Pile2Extra = Max(0 in,SideClear-Bent2Wall2Pile2Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall2Pile2Extra = Max(0 in,SideClear-Bent2Wall2Pile2Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall2Pile3Face = (Bent2P3x-Bent2W2x)*Bent2W2nx+(Bent2P3y-Bent2W2y)*Bent2W2ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall2Pile3Face = (Bent2P3x-Bent2W2x)*Bent2W2nx+(Bent2P3y-Bent2W2y)*Bent2W2ny-Half</expbody>
+                    <expresult> = 11 ft 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall2Pile3Extra = Max(0 in,SideClear-Bent2Wall2Pile3Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall2Pile3Extra = Max(0 in,SideClear-Bent2Wall2Pile3Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall2Pile4Face = (Bent2P4x-Bent2W2x)*Bent2W2nx+(Bent2P4y-Bent2W2y)*Bent2W2ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall2Pile4Face = (Bent2P4x-Bent2W2x)*Bent2W2nx+(Bent2P4y-Bent2W2y)*Bent2W2ny-Half</expbody>
+                    <expresult> = 15 ft 6 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall2Pile4Extra = Max(0 in,SideClear-Bent2Wall2Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall2Pile4Extra = Max(0 in,SideClear-Bent2Wall2Pile4Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W2Gap = Min(Bent2Wall2Pile1Face,Bent2Wall2Pile2Face,Bent2Wall2Pile3Face,Bent2Wall2Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W2Gap = Min(Bent2Wall2Pile1Face,Bent2Wall2Pile2Face,Bent2Wall2Pile3Face,Bent2Wall2Pile4Face)</expbody>
+                    <expresult> = 2 ft 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W2Extra = Max(0 in,SideClear-Bent2W2Gap)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W2Extra = Max(0 in,SideClear-Bent2W2Gap)</expbody>
+                    <expresult> = 0 ft 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W2Status = If(InputsValid,If(Bent2W2Extra &lt;= 0 in,&quot;MEETS CLEAR&quot;,&quot;SHORTFALL&quot;),&quot;INVALID&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W2Status = If(InputsValid,If(Bent2W2Extra &lt;= 0 in,"MEETS CLEAR","SHORTFALL"),"INVALID")</expbody>
+                    <expresult> = SHORTFALL</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W3x = 9.50001547608143 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W3x = 9.50001547608143 ft</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W3y = 2.19841103276201 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W3y = 2.19841103276201 ft</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W3len = 6.53189914902233 ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W3len = 6.53189914902233 ft</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W3tx = 0.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W3tx = 0.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W3ty = -1.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W3ty = -1.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W3nx = -1.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W3nx = -1.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W3ny = 0.0" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W3ny = 0.0</expbody>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W3xend = Bent2W3x+Bent2W3tx*Bent2W3len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W3xend = Bent2W3x+Bent2W3tx*Bent2W3len</expbody>
+                    <expresult> = 9.500 ft</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W3yend = Bent2W3y+Bent2W3ty*Bent2W3len" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W3yend = Bent2W3y+Bent2W3ty*Bent2W3len</expbody>
+                    <expresult> = -4.333 ft</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall3Pile1Face = (Bent2P1x-Bent2W3x)*Bent2W3nx+(Bent2P1y-Bent2W3y)*Bent2W3ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall3Pile1Face = (Bent2P1x-Bent2W3x)*Bent2W3nx+(Bent2P1y-Bent2W3y)*Bent2W3ny-Half</expbody>
+                    <expresult> = 15 ft 6 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall3Pile1Extra = Max(0 in,SideClear-Bent2Wall3Pile1Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall3Pile1Extra = Max(0 in,SideClear-Bent2Wall3Pile1Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall3Pile2Face = (Bent2P2x-Bent2W3x)*Bent2W3nx+(Bent2P2y-Bent2W3y)*Bent2W3ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall3Pile2Face = (Bent2P2x-Bent2W3x)*Bent2W3nx+(Bent2P2y-Bent2W3y)*Bent2W3ny-Half</expbody>
+                    <expresult> = 11 ft 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall3Pile2Extra = Max(0 in,SideClear-Bent2Wall3Pile2Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall3Pile2Extra = Max(0 in,SideClear-Bent2Wall3Pile2Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall3Pile3Face = (Bent2P3x-Bent2W3x)*Bent2W3nx+(Bent2P3y-Bent2W3y)*Bent2W3ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall3Pile3Face = (Bent2P3x-Bent2W3x)*Bent2W3nx+(Bent2P3y-Bent2W3y)*Bent2W3ny-Half</expbody>
+                    <expresult> = 6 ft 6 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall3Pile3Extra = Max(0 in,SideClear-Bent2Wall3Pile3Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall3Pile3Extra = Max(0 in,SideClear-Bent2Wall3Pile3Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall3Pile4Face = (Bent2P4x-Bent2W3x)*Bent2W3nx+(Bent2P4y-Bent2W3y)*Bent2W3ny-Half" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall3Pile4Face = (Bent2P4x-Bent2W3x)*Bent2W3nx+(Bent2P4y-Bent2W3y)*Bent2W3ny-Half</expbody>
+                    <expresult> = 2 ft 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2Wall3Pile4Extra = Max(0 in,SideClear-Bent2Wall3Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2Wall3Pile4Extra = Max(0 in,SideClear-Bent2Wall3Pile4Face)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W3Gap = Min(Bent2Wall3Pile1Face,Bent2Wall3Pile2Face,Bent2Wall3Pile3Face,Bent2Wall3Pile4Face)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W3Gap = Min(Bent2Wall3Pile1Face,Bent2Wall3Pile2Face,Bent2Wall3Pile3Face,Bent2Wall3Pile4Face)</expbody>
+                    <expresult> = 2 ft 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W3Extra = Max(0 in,SideClear-Bent2W3Gap)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W3Extra = Max(0 in,SideClear-Bent2W3Gap)</expbody>
+                    <expresult> = 0 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2W3Status = If(InputsValid,If(Bent2W3Extra &lt;= 0 in,&quot;MEETS CLEAR&quot;,&quot;SHORTFALL&quot;),&quot;INVALID&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2W3Status = If(InputsValid,If(Bent2W3Extra &lt;= 0 in,"MEETS CLEAR","SHORTFALL"),"INVALID")</expbody>
+                    <expresult> = MEETS CLEAR</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2CapGap = -Bent2W1x*Bent2W1nx-Bent2W1y*Bent2W1ny-CapX*Abs(Bent2W1nx)-CapY*Abs(Bent2W1ny)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2CapGap = -Bent2W1x*Bent2W1nx-Bent2W1y*Bent2W1ny-CapX*Abs(Bent2W1nx)-CapY*Abs(Bent2W1ny)</expbody>
+                    <expresult> = 2 ft 1.499 in</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+                <dynexp formula="Bent2CapStatus = If(Bent2CapGap &gt;= 24 in,&quot;✓ PASS&quot;,&quot;⊗ FAIL&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+                    <expbody>Bent2CapStatus = If(Bent2CapGap &gt;= 24 in,"✓ PASS","⊗ FAIL")</expbody>
+                    <expresult> = ✓ PASS</expresult>
+                </dynexp>
+            </paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True" pagebreakbefore="break">3. END BENT 1 — FRONT AND SIDE PLAN</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6">Red open boundary shows computed front and specified side offsets. There is no rear-wall criterion. Gray is the cap; black is the current back of facing. Local x runs across the piles and +y into the approach.</paragraph>
+        <embed spacingbefore="4" spacingafter="5">
+            <canvas name="Bent1Plan" unit="in" size="6.5 in; 4.0 in; scaletofit">
+                <include target="Library.Geometry" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent1Left)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1Left)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1Right)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1Right)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1Top)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1Bottom)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1Bottom)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1Top)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#B44840" linethickness="2.2" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent1P1x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P1x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P1x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P1x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P1x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P1y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P1y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P1y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P1y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P1y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#246B7B" linethickness="1.7" />
+                <planecontainer origin="1.745,1.82,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#263F49"><textvalue>P1</textvalue></planecontainer>
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent1P1x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+((1.8250000000000002-3.25)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P1y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+((1.98-2.23)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#246B7B" linethickness="0.65" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent1P2x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P2x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P2x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P2x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P2x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P2y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P2y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P2y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P2y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P2y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#246B7B" linethickness="1.7" />
+                <planecontainer origin="2.695,1.82,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#263F49"><textvalue>P2</textvalue></planecontainer>
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent1P2x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+((2.775-3.25)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P2y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+((1.98-2.23)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#246B7B" linethickness="0.65" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent1P3x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P3x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P3x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P3x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P3x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P3y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P3y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P3y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P3y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P3y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#246B7B" linethickness="1.7" />
+                <planecontainer origin="3.645,1.82,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#263F49"><textvalue>P3</textvalue></planecontainer>
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent1P3x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+((3.725-3.25)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P3y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+((1.98-2.23)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#246B7B" linethickness="0.65" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent1P4x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P4x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P4x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P4x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P4x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P4y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P4y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P4y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P4y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P4y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#246B7B" linethickness="1.7" />
+                <planecontainer origin="4.595,1.82,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#263F49"><textvalue>P4</textvalue></planecontainer>
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent1P4x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+((4.675-3.25)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P4y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+((1.98-2.23)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#246B7B" linethickness="0.65" />
+                <plot formula="PlotLines([3.25+(-MSEWallExclusion.CapX)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.CapX)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.CapX)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(-MSEWallExclusion.CapX)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(-MSEWallExclusion.CapX)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(-MSEWallExclusion.CapY)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(-MSEWallExclusion.CapY)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.CapY)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.CapY)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(-MSEWallExclusion.CapY)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#87949C" linethickness="1" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent1W1x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1W1xend)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(Min(MSEWallExclusion.Bent1Top+0.5 ft,Max(MSEWallExclusion.Bent1Bottom-0.5 ft,MSEWallExclusion.Bent1W1y)))/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(Min(MSEWallExclusion.Bent1Top+0.5 ft,Max(MSEWallExclusion.Bent1Bottom-0.5 ft,MSEWallExclusion.Bent1W1yend)))/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#263F49" linethickness="1.7" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent1W2x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1W2xend)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(Min(MSEWallExclusion.Bent1Top+0.5 ft,Max(MSEWallExclusion.Bent1Bottom-0.5 ft,MSEWallExclusion.Bent1W2y)))/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(Min(MSEWallExclusion.Bent1Top+0.5 ft,Max(MSEWallExclusion.Bent1Bottom-0.5 ft,MSEWallExclusion.Bent1W2yend)))/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#263F49" linethickness="1.7" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent1W3x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1W3xend)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(Min(MSEWallExclusion.Bent1Top+0.5 ft,Max(MSEWallExclusion.Bent1Bottom-0.5 ft,MSEWallExclusion.Bent1W3y)))/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(Min(MSEWallExclusion.Bent1Top+0.5 ft,Max(MSEWallExclusion.Bent1Bottom-0.5 ft,MSEWallExclusion.Bent1W3yend)))/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#263F49" linethickness="1.7" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent1Left)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1Right)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1Bottom-0.8 ft)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1Bottom-0.8 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#1766A0" linethickness="1" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent1Left)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1Left)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1Bottom)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1Bottom-1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#1766A0" linethickness="0.7" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent1Right)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1Right)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1Bottom)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1Bottom-1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#1766A0" linethickness="0.7" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent1P1x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1Left)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P1y)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P1y)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#1766A0" linethickness="1" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent1P4x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1Right)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P4y)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P4y)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#1766A0" linethickness="1" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent1P2x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P2x)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P2y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P2y-MSEWallExclusion.FrontExtent)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#1766A0" linethickness="1" />
+                <planecontainer origin="0.12,3.69,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="10" textcolor="#9F332B"><textvalue>FRONT: STRAP CHECK | SIDES: SPECIFIED MINIMUM</textvalue></planecontainer>
+                <planecontainer origin="0.12,3.41,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#263F49"><textvalue>Front clear:</textvalue></planecontainer>
+                <planecontainer origin="1.04,3.41,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#1766A0" formula="MSEWallExclusion.LayoutClear to in"><num>37.5 in</num></planecontainer>
+                <planecontainer origin="3.4,3.41,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#263F49"><textvalue>Side clear:</textvalue></planecontainer>
+                <planecontainer origin="4.35,3.41,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#1766A0" formula="MSEWallExclusion.SideClear to in"><num>24 in</num></planecontainer>
+                <planecontainer origin="2.76,0.39,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#1766A0" formula="MSEWallExclusion.Bent1TotalX to in"><num>227.99999996550076 in</num></planecontainer>
+                <planecontainer origin="1.97,1.23,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#1766A0" formula="MSEWallExclusion.LayoutClear to in"><num>37.5 in</num></planecontainer>
+                <planecontainer origin="0.43,2.35,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#1766A0" formula="MSEWallExclusion.SideClear to in"><num>24 in</num></planecontainer>
+                <planecontainer origin="5.3,2.35,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#1766A0" formula="MSEWallExclusion.SideClear to in"><num>24 in</num></planecontainer>
+                <planecontainer origin="0.13,0.09,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#263F49"><textvalue>No rear limit | current walls are not relocated | tolerance excluded</textvalue></planecontainer>
+                <planecontainer origin="0.22,2.95,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#263F49"><textvalue>A6 / left</textvalue></planecontainer>
+                <planecontainer origin="4.87,2.95,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#263F49"><textvalue>A7 / right</textvalue></planecontainer>
+                <planecontainer origin="2.72,0.8,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#263F49"><textvalue>A5 / front</textvalue></planecontainer>
+            </canvas>
+        </embed>
+        <embed spacingbefore="5" spacingafter="8">
+            <table name="Bent1Offsets" capture="False" colwidths="1:55, 2:155, 3:155, 4:165">
+                <stylerule range="A1:D5" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#A7B9C6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CBD5DD&quot;);" />
+                <row>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Pile</paragraph></textcell>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Front face gap</paragraph></textcell>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Front required</paragraph></textcell>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Front shortfall</paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">P1</paragraph></textcell>
+                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile1Face to in"><num>37.50018573778746 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="LayoutClear to in"><num>37.5 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile1Extra to in"><num>0 in</num></c>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">P2</paragraph></textcell>
+                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile2Face to in"><num>37.50130017601214 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="LayoutClear to in"><num>37.5 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile2Extra to in"><num>0 in</num></c>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">P3</paragraph></textcell>
+                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile3Face to in"><num>37.50241461423681 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="LayoutClear to in"><num>37.5 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile3Extra to in"><num>0 in</num></c>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">P4</paragraph></textcell>
+                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile4Face to in"><num>37.50352905246149 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="LayoutClear to in"><num>37.5 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1Wall1Pile4Extra to in"><num>0 in</num></c>
+                </row>
+            </table>
+        </embed>
+        <embed spacingbefore="5" spacingafter="8">
+            <table name="Bent1Walls" capture="False" colwidths="1:130, 2:85, 3:100, 4:100, 5:115">
+                <stylerule range="A1:E4" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#A7B9C6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CBD5DD&quot;);" />
+                <row>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Wall / basis</paragraph></textcell>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Required</paragraph></textcell>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Current gap</paragraph></textcell>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Extra setback</paragraph></textcell>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Result</paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Front / strap</paragraph></textcell>
+                    <c capture="False" background="#EFF7F1" formula="LayoutClear to in"><num>37.5 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1W1Gap to in"><num>37.50018573778746 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1W1Extra to in"><num>0 in</num></c>
+                    <c capture="False" formula="Bent1W1Status"><textvalue>MEETS CLEAR</textvalue></c>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Left / specified</paragraph></textcell>
+                    <c capture="False" background="#EFF7F1" formula="SideClear to in"><num>24 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1W2Gap to in"><num>24.000185730227628 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1W2Extra to in"><num>0 in</num></c>
+                    <c capture="False" formula="Bent1W2Status"><textvalue>MEETS CLEAR</textvalue></c>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Right / specified</paragraph></textcell>
+                    <c capture="False" background="#EFF7F1" formula="SideClear to in"><num>24 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1W3Gap to in"><num>23.999814250819043 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent1W3Extra to in"><num>0.00018574918095737303 in</num></c>
+                    <c capture="False" formula="Bent1W3Status"><textvalue>SHORTFALL</textvalue></c>
+                </row>
+            </table>
+        </embed>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6">Positive extra setback is the outward parallel-move shortfall. Side rows compare only the specified 24-inch clearance; they are not strap feasibility results.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True" pagebreakbefore="break">4. END BENT 2 — FRONT AND SIDE PLAN</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6">Red open boundary shows computed front and specified side offsets. There is no rear-wall criterion. Gray is the cap; black is the current back of facing. Local x runs across the piles and +y into the approach.</paragraph>
+        <embed spacingbefore="4" spacingafter="5">
+            <canvas name="Bent2Plan" unit="in" size="6.5 in; 4.0 in; scaletofit">
+                <include target="Library.Geometry" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent2Left)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2Left)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2Right)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2Right)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2Top)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2Bottom)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2Bottom)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2Top)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#B44840" linethickness="2.2" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent2P1x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P1x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P1x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P1x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P1x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P1y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P1y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P1y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P1y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P1y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#246B7B" linethickness="1.7" />
+                <planecontainer origin="1.745,1.82,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#263F49"><textvalue>P1</textvalue></planecontainer>
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent2P1x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+((1.8250000000000002-3.25)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P1y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+((1.98-2.23)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#246B7B" linethickness="0.65" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent2P2x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P2x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P2x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P2x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P2x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P2y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P2y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P2y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P2y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P2y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#246B7B" linethickness="1.7" />
+                <planecontainer origin="2.695,1.82,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#263F49"><textvalue>P2</textvalue></planecontainer>
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent2P2x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+((2.775-3.25)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P2y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+((1.98-2.23)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#246B7B" linethickness="0.65" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent2P3x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P3x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P3x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P3x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P3x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P3y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P3y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P3y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P3y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P3y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#246B7B" linethickness="1.7" />
+                <planecontainer origin="3.645,1.82,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#263F49"><textvalue>P3</textvalue></planecontainer>
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent2P3x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+((3.725-3.25)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P3y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+((1.98-2.23)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#246B7B" linethickness="0.65" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent2P4x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P4x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P4x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P4x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P4x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P4y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P4y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P4y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P4y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P4y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#246B7B" linethickness="1.7" />
+                <planecontainer origin="4.595,1.82,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#263F49"><textvalue>P4</textvalue></planecontainer>
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent2P4x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+((4.675-3.25)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P4y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+((1.98-2.23)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#246B7B" linethickness="0.65" />
+                <plot formula="PlotLines([3.25+(-MSEWallExclusion.CapX)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.CapX)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.CapX)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(-MSEWallExclusion.CapX)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(-MSEWallExclusion.CapX)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(-MSEWallExclusion.CapY)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(-MSEWallExclusion.CapY)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.CapY)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.CapY)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(-MSEWallExclusion.CapY)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#87949C" linethickness="1" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent2W1x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2W1xend)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(Min(MSEWallExclusion.Bent2Top+0.5 ft,Max(MSEWallExclusion.Bent2Bottom-0.5 ft,MSEWallExclusion.Bent2W1y)))/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(Min(MSEWallExclusion.Bent2Top+0.5 ft,Max(MSEWallExclusion.Bent2Bottom-0.5 ft,MSEWallExclusion.Bent2W1yend)))/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#263F49" linethickness="1.7" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent2W2x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2W2xend)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(Min(MSEWallExclusion.Bent2Top+0.5 ft,Max(MSEWallExclusion.Bent2Bottom-0.5 ft,MSEWallExclusion.Bent2W2y)))/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(Min(MSEWallExclusion.Bent2Top+0.5 ft,Max(MSEWallExclusion.Bent2Bottom-0.5 ft,MSEWallExclusion.Bent2W2yend)))/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#263F49" linethickness="1.7" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent2W3x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2W3xend)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(Min(MSEWallExclusion.Bent2Top+0.5 ft,Max(MSEWallExclusion.Bent2Bottom-0.5 ft,MSEWallExclusion.Bent2W3y)))/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(Min(MSEWallExclusion.Bent2Top+0.5 ft,Max(MSEWallExclusion.Bent2Bottom-0.5 ft,MSEWallExclusion.Bent2W3yend)))/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#263F49" linethickness="1.7" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent2Left)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2Right)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2Bottom-0.8 ft)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2Bottom-0.8 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#1766A0" linethickness="1" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent2Left)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2Left)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2Bottom)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2Bottom-1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#1766A0" linethickness="0.7" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent2Right)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2Right)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2Bottom)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2Bottom-1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#1766A0" linethickness="0.7" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent2P1x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2Left)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P1y)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P1y)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#1766A0" linethickness="1" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent2P4x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2Right)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P4y)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P4y)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#1766A0" linethickness="1" />
+                <plot formula="PlotLines([3.25+(MSEWallExclusion.Bent2P2x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P2x)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P2y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P2y-MSEWallExclusion.FrontExtent)/(1 ft)*(MSEWallExclusion.PlotScale)])" linecolor="#1766A0" linethickness="1" />
+                <planecontainer origin="0.12,3.69,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="10" textcolor="#9F332B"><textvalue>FRONT: STRAP CHECK | SIDES: SPECIFIED MINIMUM</textvalue></planecontainer>
+                <planecontainer origin="0.12,3.41,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#263F49"><textvalue>Front clear:</textvalue></planecontainer>
+                <planecontainer origin="1.04,3.41,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#1766A0" formula="MSEWallExclusion.LayoutClear to in"><num>37.5 in</num></planecontainer>
+                <planecontainer origin="3.4,3.41,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#263F49"><textvalue>Side clear:</textvalue></planecontainer>
+                <planecontainer origin="4.35,3.41,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#1766A0" formula="MSEWallExclusion.SideClear to in"><num>24 in</num></planecontainer>
+                <planecontainer origin="2.76,0.39,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#1766A0" formula="MSEWallExclusion.Bent2TotalX to in"><num>227.99999996550076 in</num></planecontainer>
+                <planecontainer origin="1.97,1.23,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#1766A0" formula="MSEWallExclusion.LayoutClear to in"><num>37.5 in</num></planecontainer>
+                <planecontainer origin="0.43,2.35,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#1766A0" formula="MSEWallExclusion.SideClear to in"><num>24 in</num></planecontainer>
+                <planecontainer origin="5.3,2.35,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#1766A0" formula="MSEWallExclusion.SideClear to in"><num>24 in</num></planecontainer>
+                <planecontainer origin="0.13,0.09,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#263F49"><textvalue>No rear limit | current walls are not relocated | tolerance excluded</textvalue></planecontainer>
+                <planecontainer origin="0.22,2.95,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#263F49"><textvalue>B6 / left</textvalue></planecontainer>
+                <planecontainer origin="4.87,2.95,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#263F49"><textvalue>B7 / right</textvalue></planecontainer>
+                <planecontainer origin="2.72,0.8,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#263F49"><textvalue>B1 / front</textvalue></planecontainer>
+            </canvas>
+        </embed>
+        <embed spacingbefore="5" spacingafter="8">
+            <table name="Bent2Offsets" capture="False" colwidths="1:55, 2:155, 3:155, 4:165">
+                <stylerule range="A1:D5" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#A7B9C6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CBD5DD&quot;);" />
+                <row>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Pile</paragraph></textcell>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Front face gap</paragraph></textcell>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Front required</paragraph></textcell>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Front shortfall</paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">P1</paragraph></textcell>
+                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile1Face to in"><num>37.50352905246077 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="LayoutClear to in"><num>37.5 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile1Extra to in"><num>0 in</num></c>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">P2</paragraph></textcell>
+                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile2Face to in"><num>37.502414614236095 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="LayoutClear to in"><num>37.5 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile2Extra to in"><num>0 in</num></c>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">P3</paragraph></textcell>
+                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile3Face to in"><num>37.50130017601142 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="LayoutClear to in"><num>37.5 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile3Extra to in"><num>0 in</num></c>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">P4</paragraph></textcell>
+                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile4Face to in"><num>37.500185737786744 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="LayoutClear to in"><num>37.5 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2Wall1Pile4Extra to in"><num>0 in</num></c>
+                </row>
+            </table>
+        </embed>
+        <embed spacingbefore="5" spacingafter="8">
+            <table name="Bent2Walls" capture="False" colwidths="1:130, 2:85, 3:100, 4:100, 5:115">
+                <stylerule range="A1:E4" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#A7B9C6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CBD5DD&quot;);" />
+                <row>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Wall / basis</paragraph></textcell>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Required</paragraph></textcell>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Current gap</paragraph></textcell>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Extra setback</paragraph></textcell>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Result</paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Front / strap</paragraph></textcell>
+                    <c capture="False" background="#EFF7F1" formula="LayoutClear to in"><num>37.5 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2W1Gap to in"><num>37.500185737786744 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2W1Extra to in"><num>0 in</num></c>
+                    <c capture="False" formula="Bent2W1Status"><textvalue>MEETS CLEAR</textvalue></c>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Left / specified</paragraph></textcell>
+                    <c capture="False" background="#EFF7F1" formula="SideClear to in"><num>24 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2W2Gap to in"><num>23.99981425081978 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2W2Extra to in"><num>0.00018574918021840858 in</num></c>
+                    <c capture="False" formula="Bent2W2Status"><textvalue>SHORTFALL</textvalue></c>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Right / specified</paragraph></textcell>
+                    <c capture="False" background="#EFF7F1" formula="SideClear to in"><num>24 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2W3Gap to in"><num>24.000185730226775 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2W3Extra to in"><num>0 in</num></c>
+                    <c capture="False" formula="Bent2W3Status"><textvalue>MEETS CLEAR</textvalue></c>
+                </row>
+            </table>
+        </embed>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6">Positive extra setback is the outward parallel-move shortfall. Side rows compare only the specified 24-inch clearance; they are not strap feasibility results.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True" pagebreakbefore="break">5. SEPARATE REQUIREMENTS AND USE</paragraph>
+        <embed spacingbefore="5" spacingafter="8">
+            <table name="CapSetback" capture="False" colwidths="1:290, 2:120, 3:120">
+                <stylerule range="A1:C3" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#A7B9C6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CBD5DD&quot;);" />
+                <row>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Separate front-cap check</paragraph></textcell>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">End Bent 1</paragraph></textcell>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">End Bent 2</paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Front cap face to back of front facing</paragraph></textcell>
+                    <c capture="False" background="#EFF7F1" formula="Bent1CapGap to in"><num>25.499432464570685 in</num></c>
+                    <c capture="False" background="#EFF7F1" formula="Bent2CapGap to in"><num>25.499432464569967 in</num></c>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">SDG 3.13.2.N.2.i: 24 in minimum</paragraph></textcell>
+                    <c capture="False" formula="Bent1CapStatus"><textvalue>✓ PASS</textvalue></c>
+                    <c capture="False" formula="Bent2CapStatus"><textvalue>✓ PASS</textvalue></c>
+                </row>
+            </table>
+        </embed>
+        <embed spacingbefore="5" spacingafter="8">
+            <table name="SkewBasis" capture="False" colwidths="1:290, 2:240">
+                <stylerule range="A1:B2" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#A7B9C6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CBD5DD&quot;);" />
+                <row>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Front skew basis</paragraph></textcell>
+                    <textcell capture="False" background="#DCE7F3"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Live result</paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False" background="#EFF7F1"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">SDG 3.13.2.K.8 ordinary plan skew</paragraph></textcell>
+                    <c capture="False" formula="SkewStatus"><textvalue>Within ordinary 15 deg limit</textvalue></c>
+                </row>
+            </table>
+        </embed>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Front strap clearance and cap-to-facing clearance are separate measurements. Keep the front face of the cap at least 24 inches from the back of facing. The cap is shown in plan for coordination; no elevation strap/cap clearance is solved here.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">The side-wall 24-inch pile-face offset is the specified layout criterion for this check. SDG 3.13.2.N.2.i applies 24 inches to cap/front-facing clearance; N.2.ii applies it to battered pile/leveling-pad clearance. Those provisions are not a side-wall strap-clearance calculation.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Pile placement tolerance is excluded as requested. Skew may be reversed around the nominal pile, but this does not demonstrate clearance for all possible as-built positions or the full reinforcement route. Coordinate actual pile positions and adjacent obstructions separately.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Only the front wall is checked for nominal centered-strap geometry. Side reinforcement, rear walls, elevation routing, reinforcement length, connection/development and wall stability are outside this module. No side or overall wall-design pass is implied.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">The plan assumes wall faces parallel to these axes. Nominal pile width defines the clearance; the tiny saved frame rotation is retained for pile centers and the cap outline. The open boundary has no rear edge or rear-wall requirement.</paragraph>
+        <section name="WorkingNotesSources" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" fontweight="bold">SOURCE AND PROVENANCE</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6">Shared pile and cap dimensions: BridgeGeometry_2Beam. Current MSE wall back-face lines: saved FreeCAD model, project_current\geometry\freecad\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd. Facing thickness projects outward from the profile.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="6">Saved model SHA-256: d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df (19 October 2026, D-055). Wall lines re-extracted from the saved WallProfile properties on 19 October 2026 (journal task T016, tasks/T016/mse_layout_20261019.json); the 13 October 2026 lines came from model 7368774487c1456238df13c80e33ddf3871907982ff91938e1ae1b4eebf52676 and were superseded when the walls moved with the 235-in caps and cheek webs (D-026/D-036).</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6">
+            <link address="https://www.fdot.gov/Structures/StructuresManual/CurrentRelease">FDOT Structures Manual, January 2026 — SDG 3.13.2.K.8 and N.2.</link>
+        </paragraph>
+    </report>

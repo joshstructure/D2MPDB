@@ -1,0 +1,76 @@
+{
+  "edited_formulas": [],
+  "derived_cache_refreshes": {},
+  "added_definitions": {
+    "C001WindLoadOnPedBridgeSuperstructure": [
+      "Stamp_Firm = ProjectInfo.Firm",
+      "Stamp_Project = ProjectInfo.Project",
+      "Stamp_Address = ProjectInfo.Address",
+      "Stamp_JobNo = ProjectInfo.JobNo",
+      "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+      "Stamp_DesignDate = ProjectInfo.DesignDate",
+      "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+      "Stamp_CheckDate = ProjectInfo.CheckDate"
+    ],
+    "FenceWind": [
+      "Stamp_Firm = ProjectInfo.Firm",
+      "Stamp_Project = ProjectInfo.Project",
+      "Stamp_Address = ProjectInfo.Address",
+      "Stamp_JobNo = ProjectInfo.JobNo",
+      "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+      "Stamp_DesignDate = ProjectInfo.DesignDate",
+      "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+      "Stamp_CheckDate = ProjectInfo.CheckDate"
+    ],
+    "BridgeMovement": [
+      "Stamp_Firm = ProjectInfo.Firm",
+      "Stamp_Project = ProjectInfo.Project",
+      "Stamp_Address = ProjectInfo.Address",
+      "Stamp_JobNo = ProjectInfo.JobNo",
+      "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+      "Stamp_DesignDate = ProjectInfo.DesignDate",
+      "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+      "Stamp_CheckDate = ProjectInfo.CheckDate"
+    ],
+    "SuperstructureUplift": [
+      "Stamp_Firm = ProjectInfo.Firm",
+      "Stamp_Project = ProjectInfo.Project",
+      "Stamp_Address = ProjectInfo.Address",
+      "Stamp_JobNo = ProjectInfo.JobNo",
+      "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+      "Stamp_DesignDate = ProjectInfo.DesignDate",
+      "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+      "Stamp_CheckDate = ProjectInfo.CheckDate"
+    ],
+    "PierWallFins": [
+      "Stamp_Firm = ProjectInfo.Firm",
+      "Stamp_Project = ProjectInfo.Project",
+      "Stamp_Address = ProjectInfo.Address",
+      "Stamp_JobNo = ProjectInfo.JobNo",
+      "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+      "Stamp_DesignDate = ProjectInfo.DesignDate",
+      "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+      "Stamp_CheckDate = ProjectInfo.CheckDate"
+    ],
+    "MSEWallExclusion": [
+      "Stamp_Firm = ProjectInfo.Firm",
+      "Stamp_Project = ProjectInfo.Project",
+      "Stamp_Address = ProjectInfo.Address",
+      "Stamp_JobNo = ProjectInfo.JobNo",
+      "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+      "Stamp_DesignDate = ProjectInfo.DesignDate",
+      "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+      "Stamp_CheckDate = ProjectInfo.CheckDate"
+    ],
+    "BearingDesign": [
+      "Stamp_Firm = ProjectInfo.Firm",
+      "Stamp_Project = ProjectInfo.Project",
+      "Stamp_Address = ProjectInfo.Address",
+      "Stamp_JobNo = ProjectInfo.JobNo",
+      "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+      "Stamp_DesignDate = ProjectInfo.DesignDate",
+      "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+      "Stamp_CheckDate = ProjectInfo.CheckDate"
+    ]
+  }
+}

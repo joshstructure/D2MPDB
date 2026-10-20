@@ -1,0 +1,117 @@
+{
+  "task": "T025",
+  "base_sha256": "255ce8e35a187b3caf5d8ad811e7371f4b36255c8b22dda1fb1fe986fa12ad1d",
+  "components": {
+    "C001WindLoadOnPedBridgeSuperstructure": {
+      "cells_converted": 8,
+      "definitions_added": [
+        "Stamp_Firm = ProjectInfo.Firm",
+        "Stamp_Project = ProjectInfo.Project",
+        "Stamp_Address = ProjectInfo.Address",
+        "Stamp_JobNo = ProjectInfo.JobNo",
+        "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+        "Stamp_DesignDate = ProjectInfo.DesignDate",
+        "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+        "Stamp_CheckDate = ProjectInfo.CheckDate"
+      ],
+      "sha256_before": "17a066f5e692a7463183bec7d14a7ccacab5e67d3fbaaa34a4bc72c3da9bd7fa",
+      "sha256_after": "7a85960b6af5e114add4d3e6c1eec695fc2f779af9aab96850b893ad3e79daa4"
+    },
+    "FenceWind": {
+      "cells_converted": 8,
+      "definitions_added": [
+        "Stamp_Firm = ProjectInfo.Firm",
+        "Stamp_Project = ProjectInfo.Project",
+        "Stamp_Address = ProjectInfo.Address",
+        "Stamp_JobNo = ProjectInfo.JobNo",
+        "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+        "Stamp_DesignDate = ProjectInfo.DesignDate",
+        "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+        "Stamp_CheckDate = ProjectInfo.CheckDate"
+      ],
+      "sha256_before": "b9eb4952b351fcf191903bb5cff36260802fd6041c41bc1591c5001566ce1977",
+      "sha256_after": "2b9959d6d6f6fe4e3c124b6131ae1b497b3d9f0efe88dc5522a4eaefa396efd1"
+    },
+    "BridgeMovement": {
+      "cells_converted": 8,
+      "definitions_added": [
+        "Stamp_Firm = ProjectInfo.Firm",
+        "Stamp_Project = ProjectInfo.Project",
+        "Stamp_Address = ProjectInfo.Address",
+        "Stamp_JobNo = ProjectInfo.JobNo",
+        "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+        "Stamp_DesignDate = ProjectInfo.DesignDate",
+        "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+        "Stamp_CheckDate = ProjectInfo.CheckDate"
+      ],
+      "sha256_before": "751d43912a6913d48a326d4d6318d537c798e08bf485e3d42623f1a932f61dd4",
+      "sha256_after": "396c165b9ee018fbb10c4853305c39bcf028d2117da3ef90e3a70f1525869383"
+    },
+    "SuperstructureUplift": {
+      "cells_converted": 8,
+      "definitions_added": [
+        "Stamp_Firm = ProjectInfo.Firm",
+        "Stamp_Project = ProjectInfo.Project",
+        "Stamp_Address = ProjectInfo.Address",
+        "Stamp_JobNo = ProjectInfo.JobNo",
+        "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+        "Stamp_DesignDate = ProjectInfo.DesignDate",
+        "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+        "Stamp_CheckDate = ProjectInfo.CheckDate"
+      ],
+      "sha256_before": "1ef9d767832030c2e5ad489b5d2f08d2fea8f407c785f68144ddd98d604eca17",
+      "sha256_after": "f14025de00b6cf8635acf1cae4b9e4d2ce15178f99c30971a58168903a076dca"
+    },
+    "PierWallFins": {
+      "cells_converted": 8,
+      "definitions_added": [
+        "Stamp_Firm = ProjectInfo.Firm",
+        "Stamp_Project = ProjectInfo.Project",
+        "Stamp_Address = ProjectInfo.Address",
+        "Stamp_JobNo = ProjectInfo.JobNo",
+        "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+        "Stamp_DesignDate = ProjectInfo.DesignDate",
+        "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+        "Stamp_CheckDate = ProjectInfo.CheckDate"
+      ],
+      "sha256_before": "82a340e35c80d9e9abac82ba3de5811dd55317944f8e69f74073a7c9f2770ca7",
+      "sha256_after": "2f011567d877ce0195281b56f39c9504920e9e44cd339bc653d7d9f7a28b9ab4"
+    },
+    "MSEWallExclusion": {
+      "cells_converted": 8,
+      "definitions_added": [
+        "Stamp_Firm = ProjectInfo.Firm",
+        "Stamp_Project = ProjectInfo.Project",
+        "Stamp_Address = ProjectInfo.Address",
+        "Stamp_JobNo = ProjectInfo.JobNo",
+        "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+        "Stamp_DesignDate = ProjectInfo.DesignDate",
+        "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+        "Stamp_CheckDate = ProjectInfo.CheckDate"
+      ],
+      "sha256_before": "fd74a82e2aa391d7ea6df800b5832e6547129fc9d1b0e35cdb6154e2fc086084",
+      "sha256_after": "0a67b08f1cd60b4d089cf3ae7fe11288d7ff532a85986879bb0adecdc91a23c6"
+    },
+    "BearingDesign": {
+      "cells_converted": 8,
+      "definitions_added": [
+        "Stamp_Firm = ProjectInfo.Firm",
+        "Stamp_Project = ProjectInfo.Project",
+        "Stamp_Address = ProjectInfo.Address",
+        "Stamp_JobNo = ProjectInfo.JobNo",
+        "Stamp_DesignedBy = ProjectInfo.DesignedBy",
+        "Stamp_DesignDate = ProjectInfo.DesignDate",
+        "Stamp_CheckedBy = ProjectInfo.CheckedBy",
+        "Stamp_CheckDate = ProjectInfo.CheckDate"
+      ],
+      "sha256_before": "852e5a8a7a2e5723922756b9fc3410e7319186364d8ea9c34ab6f03ff29049bd",
+      "sha256_after": "e94774cb26f11b56d0ae9db32c6048bb77930a8a2d270eebd3c3872eb8e1416b"
+    }
+  },
+  "status": "PASS",
+  "reviews": {
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false
+  }
+}

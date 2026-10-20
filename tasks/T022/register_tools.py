@@ -11,8 +11,11 @@ import io
 import json
 import re
 
+import sys
+
 ROOT = Path(__file__).resolve().parents[2]
 TASK = Path(__file__).resolve().parent
+TASK_ID = sys.argv[1] if len(sys.argv) > 1 else 'T022'          # a later task may re-register the notebooks the same way
 TOOLS = {'CAP-TOOL': 'Cap_and_Pile_Design.ipynb', 'BACKWALL-TOOL': 'End_Bent_Backwall_Design.ipynb', 'PILE-TOOL': 'Pile_Design.ipynb'}
 
 
@@ -41,7 +44,7 @@ for i, line in enumerate(lines[1:], 1):
     if row['sha256'] == new:
         done[sid] = 'already registered'
         continue
-    note = (f'T022 (20 October 2026): notebook rebuilt for the submission formatting of its Blockpad export (package {package_of(path)}): '
+    note = (f'{TASK_ID} (20 October 2026): notebook rebuilt for the submission formatting of its Blockpad export (package {package_of(path)}): '
             f'the embedded generator scripts changed (numbered titles, hidden WorkingNotes, multiline table cells, no "distilled" wording); '
             f'no calculation code or input changed and the registered reports and cases remain the design records. Previous revision '
             f'{row["sha256"][:12]}. Historical basis: ')

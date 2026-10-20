@@ -5,22 +5,5 @@
   "journal_sha256": "7ee97c048e78fc813502757ddbf0b84b3cb8d19ae807da5f8e60356d5743b85a",
   "previous_sha256": "39674378a62fa24184f43176914b2cca538cb64de015345cb29d911fc80747ce",
   "source_register_before_sha256": "bf8b96fe0de7ddbb83eccb160b2eb5c859f88439957ee39d9d3c985125450b1b",
-  "source_register_after_sha256": "891800ea004d80b95d3b903b3ebd96575829cf19f4e5ea55210fcc2f42f71dbc",
-  "tools": {
-    "CAP-TOOL": {
-      "path": "Cap_and_Pile_Design.ipynb",
-      "sha256_lf_text": "aca411909e0723aa4a2b89875f214df5519e381074a25d6d897c20f75fca6256",
-      "package": "75696adb93b5"
-    },
-    "BACKWALL-TOOL": {
-      "path": "End_Bent_Backwall_Design.ipynb",
-      "sha256_lf_text": "73b2079c1bfa7423e929b3961d0d01ee0c4b90b3d5497d3e0851844538e7a1bc",
-      "package": "34f40710f89e"
-    },
-    "PILE-TOOL": {
-      "path": "Pile_Design.ipynb",
-      "sha256_lf_text": "6da5c091378abfdf05952938dfec5f4cee550d9bf0204427c925b15f22164e38",
-      "package": "3c4eb34ab46e"
-    }
-  }
+  "source_register_after_sha256": "891800ea004d80b95d3b903b3ebd96575829cf19f4e5ea55210fcc2f42f71dbc"
 }

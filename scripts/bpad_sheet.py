@@ -1020,6 +1020,18 @@ def table(parent, name, headers, rows, widths, palette='output', font='10'):
     return t
 
 
+#: The project stamp at the top of every calculation report. The standalone sheets carry it as static text; in the journal
+#: edition the cells read the ProjectInfo report, whose strings must equal these (the coherence gates stop the builds otherwise).
+PROJECT_STAMP = {
+    'Firm': 'Parsons Transportation Group Inc',
+    'Address': '1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301',
+    'Project': 'I-95 Capacity Improvements from South of SR 152 to South of SR 126',
+    'JobNo': '',
+    'DesignedBy': 'JAT',
+    'DesignDate': '10/17/2026',
+    'CheckedBy': 'MIK',
+    'CheckDate': '',
+}
 STAMP_COLWIDTHS = (95, 165, 95, 165)
 # (left label, left key, right label, right key) of the four rows of the project stamp; the keys are ProjectInfo names
 STAMP_ROWS = (('Firm', 'Firm', 'Project', 'Project'), ('Address', 'Address', 'Job no.', 'JobNo'),

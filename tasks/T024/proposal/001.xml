@@ -1,0 +1,144 @@
+<report name="DecisionLog" title="Decision Log" unit="in" pagesize="816, 1056" margin="48,48,48,48">
+        <paragraph level="1">
+            2026-07-30
+            <paragraphlabel numbergroup="paragraph">1.</paragraphlabel>
+        </paragraph>
+        <paragraph level="2">
+            We will not provide handrails on the bridge as the 0.005 or 0.5% slope does not require them per ADA. Per Matt Kosar.
+            <paragraphlabel numbergroup="paragraph">1.1.</paragraphlabel>
+        </paragraph>
+        <paragraph level="1">
+            2026-07-31
+            <paragraphlabel numbergroup="paragraph">2.</paragraphlabel>
+        </paragraph>
+        <paragraph level="2">
+            Brought up the issue that conduit probably wont fit in the railing. Agreed to put 2 runs of conduit in each rail for quantities and to check with Erik Spillmann and hope the issue gets worked out later. --Per Matt Kosar
+            <paragraphlabel numbergroup="paragraph">2.1.</paragraphlabel>
+        </paragraph>
+        <paragraph level="1">
+            2026-08-17
+            <paragraphlabel numbergroup="paragraph">3.</paragraphlabel>
+        </paragraph>
+        <paragraph level="2">
+            Use 6 - 24" x5/8" Piles in the pier wall in liue of the 20" Pipe or HP's to give us more favorable FDLs and some room for conservatism -- Per Matt Kosar
+            <paragraphlabel numbergroup="paragraph">3.1.</paragraphlabel>
+        </paragraph>
+        <paragraph level="2">
+            Keep the 5 - HP 14x89's for the same reason -- Per Matt Kosar
+            <paragraphlabel numbergroup="paragraph">3.2.</paragraphlabel>
+        </paragraph>
+        <paragraph level="1">
+            <paragraphlabel numbergroup="paragraph">4.</paragraphlabel>
+            2026-08-18
+        </paragraph>
+        <paragraph level="2">
+            Do not increase the pier wall thickness due to the larger 24" Pipe piles as this will effect Roadway, TCP, etc. Contractor will have to be told to be dead on
+            <paragraphlabel numbergroup="paragraph">4.1.</paragraphlabel>
+        </paragraph>
+        <paragraph level="2">
+            <image source="Resource164" width="428.8696364647243" height="255.76225592805372" />
+        </paragraph>
+        <paragraph level="2" />
+        <paragraph level="1">
+            2026/9/18
+            <paragraphlabel numbergroup="paragraph">5.</paragraphlabel>
+        </paragraph>
+        <paragraph level="2">
+            Contractor has decided to go with a 12ft ped bridge clear width with only 2 FIB36 beams --Per Matt
+            <paragraphlabel numbergroup="paragraph">5.1.</paragraphlabel>
+        </paragraph>
+        <paragraph level="2">
+            We will use one size bearing pad for all bridges on the project --Per Matt
+            <paragraphlabel numbergroup="paragraph">5.2.</paragraphlabel>
+        </paragraph>
+        <paragraph level="1">
+            2026/9/24
+            <paragraphlabel numbergroup="paragraph">6.</paragraphlabel>
+        </paragraph>
+        <paragraph level="2">
+            Moving to a Type F bearing and pedestals at 6" to facilitate 2" off leeway for camber. -- Per Matt
+            <paragraphlabel numbergroup="paragraph">6.1.</paragraphlabel>
+        </paragraph>
+        <paragraph level="2" />
+        <paragraph level="2" />
+        <paragraph />
+        <heading>2026-09-29 — coordinated geometry update</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">User direction: Type F bearings, 6-in pedestals, 36-in cap depth, four 20-in piles at 6D center spacing, and 15 in from each end pile face to the cap end. Cap length is 34 ft 2 in. Use Bridge_Geo_2_Beam_Reorganized for the selected profile, slab-only area and separately counted haunch volume. This current direction supersedes the earlier pile/cap configuration; historical entries remain unchanged.</paragraph>
+        <heading>2026-09-29 — pile spacing corrected to 3D</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">The user corrected pile spacing from 6D to 3D. Four 20-in piles now have three 5-ft center spaces. With 15 in from each outside pile face to the cap end, the cap length is 19 ft 2 in (3 × 60 in + 20 in + 2 × 15 in = 230 in). Cap width remains 4 ft and depth remains 36 in; cap concrete is 230 ft³ and self-weight is 34.5 kip at 150 pcf. This correction supersedes the 6D / 34-ft-2-in entry above. The pile-layout comparison now matches the retained source layout, but the changed cap section and deck dead load still require updated analysis forces.</paragraph>
+        <heading level="0" keepwithnext="True">2026-09-30 - Topic modules and end-bent entry</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" leftindent="0">Moved the former Ped Bridge sections into topic modules and updated their formula references and navigation links. Added End Bent 1 entry for the larger adjacent span: Span 1 = 107.35 ft versus Span 2 = 104.90 ft. User supplied node 12 for the bearing closer to global origin, node 19 for the other bearing, unchanged bearing spacing and a 36-in × 36-in cap. Existing pier entry load cases and calculations retain their source values.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" leftindent="0">End-bent transfer starts with centered bearing row and cap-centroid application nodes, with editable offsets. The legacy 4-ft end-bent pedestal quantity remains provisional because it exceeds the 3-ft cap width; reconcile the footprint before using its below-pad dead weight. Local deck-end concrete, direct end-bent wind and other end-bent actions remain separate as documented in the entry module.</paragraph>
+        <heading>2026-09-30 - Live axis and wind schematics</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Added independent physical-wind and coordinate-axis controls to both FBMP entry modules. Node identity and physical load state remain fixed under an axis-view change. The vertical axis is derived from the two horizontal choices to retain right-handed coordinates. All three force and moment components, node coordinates and gravity entry signs follow the view. Formula-driven arrows and a selected-case table give a visual model comparison.</paragraph>
+        <heading>2026-09-30 — Centered pile, eccentric bearings and upright elevations</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6">Replaced the zero end-bent bearing offset with the Bridge Geometry dimension chain. Added explicit rear-face placement and adopted beam-end clearance, separated bearing and application-node lines, and included force-transfer moments in DC, PL, DW and W1–W3. Rebuilt both Type F elevations with the beam above the pad, pedestal and cap. Retained the live right-handed model-axis controls and all unrelated modules.</paragraph>
+        <section name="EndBentUpdate20261008" capture="False" hide="false">
+            <heading level="0" keepwithnext="True">2026-10-08 — current end-bent geometry and steel</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">User confirmed this configuration applies to both end bents. The 8 October End Bent 1 report supersedes the earlier 36-in-wide end-bent cap: 42-in width, 36-in depth and 17-ft-8-in length; four 18-in square piles at 54-in centers, with 25-in end-to-center distances. Pier geometry and historical decisions remain distinct.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Current entered cage: 4 #6 top, 2 #8 continuous bottom, 2 additional #5 hooked span bars, 7 #4 skin bars per side, and 19 closed #4 hoops plus 16 open-bottom #4 U-bars in the nine-run schedule. R2/R4/R6/R8 pile conflicts and source pending checks remain unresolved. This records the current arrangement; it is not an approved final cage.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Shared live cap quantities replace the obsolete combined end-bent cap/backwall allowance. Backwalls remain unresolved; the retained 48-in pedestal footprint also requires a revised detail. The live bearing offset changes with cap width. Source analysis is End Bent 1 only; the exact XML fingerprint, legacy node mapping and End Bent 2 demands require reconciliation.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#FBMPEndBent.EBCurrentDesignRecord">Current design record and open items</link>
+            </paragraph>
+        </section>
+        <section name="EndBentResponses20261008" capture="False" hide="false">
+            <heading level="0" keepwithnext="True" pagebreakbefore="break">2026-10-08 — coherence responses applied</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">This entry supersedes the open pedestal, node-number and model-currency statements in the earlier 8 October entry. Source: the user-completed End_Bent_Coherence_Review_Responses.xlsx, items 01–09; exact workbook and hash retained with T004.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">01 — End-bent pedestal: 30 in along the beam, starting at the front of the 12-in backwall on a 42-in cap. Separate end-bent section inputs retain 6-in height, 42-in transverse width and 3/4-in chamfers. Quantities and local dead weights update live. Pier pedestal remains 48 in.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">02 — Backwall and cheek-wall final quantities deferred by the user.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">03–04 — The report contains the latest FBMP model per user. Loaded node numbers change from 12/19 to 15/34 following additional model nodes. The physical near/far identities, axes and load-transfer conventions remain the same. The different Downloads XML is not substituted.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">05 — Station explanation: cap-end station = report audit station + 25 in. Bearing stations 29.50/132.49 become 54.50/157.49 in; 102.99-in spacing agrees with 103 in to displayed precision. This changes the measurement origin, not the geometry.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">06 — U-bar hooks at potential pile interference may be field bent to provide clearance per user direction. Original as-drawn clash results are retained as source evidence; revised hook geometry and anchorage have not been checked in this update.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">07 — Service III is not applicable to the current nonprestressed, non-post-tensioned substructure per user. Strength III, Service I and fatigue remain distinct. Original 48 pending/conditional source checks are historical, not a new recalculated count.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">D-region discussion: concentrated bearing loads and pile reactions disturb ordinary beam stress distributions. The cap depth is 36 in, pile spacing is 54 in and the bearing-to-nearest-pile distance is about 24.5 in. Local load-path, nodal-zone and tie anchorage checks are separate from ordinary section moment/shear checks; this issue does not depend on prestressing. No strut-and-tie design is performed here.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">08 — Both end bents follow the controlling End Bent 1 design, since their principal difference is the modest adjacent-span length difference. End Bent 1 is beside the 107.35-ft span versus 104.90 ft at the other end. No independent End Bent 2 forces are created.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">09 — Removed unused FBMP Min Tip, Feet and Inches, Metric to Inches, Scratch and CAD modules and their navigation links. Their 110 stored errors are removed with those modules. Three inherited LoadCombinations reference links remain open; no numerical consumer of a removed module remains.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="https://www.fhwa.dot.gov/bridge/concrete/nhi17071.pdf">FHWA strut-and-tie modeling reference — D-regions, Chapter 2</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#FBMPEndBent.EBCurrentDesignRecord">Current design and coherence register</link>
+            </paragraph>
+        </section>
+        <section name="PierDecision20261009" capture="False" hide="false">
+            <heading level="1" keepwithnext="True">2026-10-09 — current pier cap source record</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">User direction: do not update calc C005; keep steel separate; geometry and source references only in BPAD. Retain the 48 × 36 × 230-in cap, four 20-in pipes at 60-in centers, 15-in face extension and 48-in pedestals. Record the 12-in physical embedment, 25-in cap-end/pile-center datum shift and 3-in end-detail allowance from the new report. C005 remains completely unchanged; its retained 3.44-in allowance and earlier inputs are not silently reconciled. Historical 6D/34-ft-2-in directions remain chronological history and are superseded for current shared geometry.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Exact matching model identity is verified. The +10.14 versus +10.50-in right-row offset and independent wind/wall geometry await Excel responses. Full journal/model load currency and final structural adequacy are not claimed. Reinforcement details, source checks and steel findings remain only in the separate report and Excel review; no new steel record is inserted into BPAD.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#BridgeGeometry_2Beam.PierCurrentGeometry">Current pier cap geometry</link>
+            </paragraph>
+        </section>
+        <section name="PierResponses20261009" capture="False" hide="false">
+            <heading level="1" keepwithnext="True">2026-10-09 — pier coherence responses applied</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">This entry supersedes the initial 9 October source and wind-width assumptions above. Use the replacement Pier_Fixed report as current; keep C005 entirely unchanged and steel separate. Use the report’s 230-in cap length as the shared direct-pier wind width. The native projected area and dependent wind-force bounds follow that live width. Cap volume remains 230 ft³; pier pedestals remain 48 in. Separate wall/fin quantities are retained because the cap report does not establish their geometry.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Repair the three inherited load-combination links using the existing embedded guide excerpt and general reference page. Retain old quantity-sheet cap sketches as historical. Matching raw Pier_Fixed.XML is still needed to verify the reported model correction and full input currency. Other user dispositions are preserved in the separate response record; no reinforcement detail is added here.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#FBMPPier.PierSourceModelRecord">Current pier report and model identity</link>
+            </paragraph>
+        </section>
+        <section name="RampSlabBackwallDecision20261016" capture="False" hide="false">
+            <heading level="1" keepwithnext="True">2026-10-16 - Ramp slab-to-backwall connection</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Per Matt, the ramp slab will not be tied to the backwall with dowels, due to concern about transferring bridge deflections to the MSE wall ramps.</paragraph>
+        </section>
+        <section name="CoherenceDecision20261019" capture="False" hide="false">
+            <heading level="1" keepwithnext="True">2026-10-19 - C005 removed; geometry aligned with the notebook; project stamp</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">C005 (PierCapDesign) removed from the journal by user direction; CapDesignPier is the pier cap record. Material properties moved to Materials; pier cap covers to Bridge Geometry. End-bent cap geometry aligned with the geometry notebook (D-026/D-036: 27.5-in pile end clearance, 235-in cap, 251-in cage envelope with 8-in cheek webs); beam cambers and the support drop taken from the notebook build e9b41b8eaf. ProjectInfo added and a live project stamp placed on every calculation report. Journal task T014.</paragraph>
+        </section>
+        <section name="CoherenceDecision20261019b" capture="False" hide="false">
+            <heading level="1" keepwithnext="True">2026-10-19 - Journal aligned with the 19 October calculations and CAD model (T016)</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Journal aligned with the 19 October 2026 calculations and CAD model (task T016). The D-049 fixed-run FB-MultiPier exports (End Bent 1, End Bent 2, Pier) are recorded as the current model sources in Foundation Modeling and both FBMP entry modules, with the D-051 cap reports and the D-054 pile reports as the current design records. The end-bent design record is refreshed to the 19 October case (forces, status, report and XML identities; the 8 October transverse schedule kept as history). The pier source record names the 10-19 report and the D-049 XML, whose bearing rows are ±10.50 in. Pile Section Properties notes the pile design reports and the pipe reconciliation (FBMP 0.48-in shell at 60 ksi; PileDesignPier 0.48 in at 45 ksi, grade and corrosion pending). The notebook reconciliation check is retargeted to build e9b41b8eaf and the D-053 backwall top drop (4.25 in) is recorded. The MSE exclusion wall lines are re-extracted from the D-055 model: at both end bents the front wall back of facing is 46.5 in from the pile row (37.5-in strap clearance met; cap face 25.5 in from the facing) and the side walls are 114 in from the pile row, at the 24-in criterion within 0.0002 in, so one side-wall row at each end bent reads MEETS CLEAR and the other SHORTFALL by the last digits; the cap caches follow the 235-in cap. The 16 October backwall report (D-037) predates the D-049 exports and the D-053 geometry and is not in the journal. Native recalculation not performed; FBMP not rerun.</paragraph>
+        </section>
+        <section name="CoherenceDecision20261019c" capture="False" hide="false">
+            <heading level="1" keepwithnext="True">2026-10-19 - End-bent backwall report rerun and added to the journal (T017)</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">End-bent backwall, cheek-wall and tie-back strap calculation added to the journal (task T017) as EndBentBackwallDesign, the Blockpad edition of the 19 October 2026 notebook case (D-057: report Backwall Design 10-19.html, SHA-256 6ed9ebb7bd2d…; case SHA-256 01e76c5a263a…). The notebook package was reconciled with the register (End Bent 1_Fixed.XML of D-049 with the D-051 case that records it; the D-053/D-055 CAD model measured natively: two planar 2% backwall tops 4.25 in below the deck-top line, crown 4.0691 ft and edges 3.8733 ft above the cap top, backwall volume 77.770 ft3, landing tributary length 17.155 ft; the T016 journal) and rerun: bearing actions unchanged, strap loads 3.089 kip/ft service and 3.737 kip/ft factored (16 October: 3.094 / 3.746), all numerical checks pass, nine check entries pending across the six unconfirmed prerequisites (settlement, strap elevation, exposure, shrinkage, analysis confirmation, cheek anchorage); decisions D-014 to D-019 unchanged. In the journal edition the end-bent cap, backwall thickness, cheek thickness, pedestal, bearing pad and Span 1 values are live references to Bridge Geometry, the material strengths to Materials and the project stamp to ProjectInfo (23 references, each equal to the case; the bearing spacing stays the 102.99-in analysis value against the 103-in journal beam spacing); drop_bw references EndBent_backwallDrop beside the measured heights. Indexed in PedBridge; Bridge Geometry and Foundation Modeling name the report. Distilled numerical checks only, not design acceptance; native recalculation not performed; FBMP not rerun.</paragraph>
+        </section>
+        <section name="SubmissionFormatting20261020" capture="False" hide="false">
+            <heading level="1" keepwithnext="True">2026-10-20 - Calculation numbering C007 to C016 and submission formatting (T022)</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">User direction of 20 October 2026: the design and analysis calculations are to be submitted as a finished product. The calculation modules are numbered in the existing C-series (C001 to C004 and C006 unchanged; C005 stays retired as the deleted live pier cap module whose formula set the repository still names): C007 CapDesignBasis, C008 CapDesignEndBentOne, C009 CapDesignEndBentTwo, C010 CapDesignPier, C011 PileDesignEndBentOne, C012 PileDesignEndBentTwo, C013 PileDesignPier, C014 EndBentBackwallDesign, C015 MSEWallExclusion, C016 BearingDesign. In every calculation module the working language (how the edition was produced, package and file hashes, tool status, pending-item bookkeeping, decision and task identifiers, superseded history) is moved into hidden sections (WorkingNotes and the hidden subsections of C015 and C016) and the visible text no longer says "distilled", "notebook", "tool" or "journal"; static table text is written in multiline cells so it wraps instead of clipping, while formula cells stay value cells for the PASS/FAIL colour rules; the live project stamp becomes result-only definitions (Stamp_Firm = ProjectInfo.Firm and the other seven) in multiline cells. The generated editions (cap, pile and backwall Blockpad sheets, their Mathcad sheets and the three notebooks) are rebuilt by their generators, which now enforce the visible-text rule at build time; every formula and cache value is unchanged (result-only caches drop the "= " prefix, as Blockpad writes them natively). Native recalculation, appearance and engineering reviews not performed; FBMP not rerun; no engineering value changed.</paragraph>
+        </section>
+        <section name="SubmissionFormatting20261020b" capture="False" hide="false">
+            <heading level="1" keepwithnext="True">2026-10-20 - Project stamp on the pile calculations and module order C001 to C016 (T024)</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">User direction of 20 October 2026: every calculation carries the project information table at the top and the modules are organised with all calculations together in numerical order. The three pile design reports (C011 to C013) are replaced by the journal edition of their generator (scripts/build_pile_bpad.py, pile_bpad/journal/), which opens with the live project stamp (Stamp_&lt;Key&gt; = ProjectInfo.&lt;Key&gt; in multiline cells, as the cap and backwall editions); every other definition, value cell, cache and canvas is unchanged; the standalone pile sheets carry the stamp as static text. The component order is a registered permutation (tools/bpad_workflow.py prepare --order, new): basis modules (index, project information, materials, geometry, access, pile section properties, loads, FBMP entries, foundation modeling), then C001 to C004 each followed by its reference packet, C006, C007 to C016, then quantities, decision log, notes, the general reference index and the archives; references, styles, includes and resources keep their slots and every component keeps its bytes. The index lists the calculations in one group in the same order. Native recalculation, appearance and engineering reviews not performed; FBMP not rerun; no engineering value changed.</paragraph>
+        </section>
+    </report>

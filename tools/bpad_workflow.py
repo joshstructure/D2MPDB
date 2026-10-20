@@ -191,12 +191,32 @@ class Journal:
         require(len(matches) == 1, f"Use an exact component key for {name!r}; found {matches}")
         return matches[0]
 
-    def changes(self, other, allowed_deletions=(), allowed_additions=()):
+    def reorder(self, order):
+        """The same bytes with the components placed in `order` (a registered permutation): every inter-component gap, the
+        document wrapper and every component's bytes are kept; only which component sits in which slot changes."""
+        require(sorted(order) == sorted(self.order), "A registered order must be a permutation of the current components.")
+        is_module = lambda key: key.split(":", 1)[0] in MODULE_TAGS
+        require(all(is_module(a) == is_module(b) for a, b in zip(self.order, order)),
+                "A registered order may only permute modules among module slots; resources, styles, includes and references keep their slots.")
+        gaps, cursor = [], 0
+        for key in self.order:
+            begin, end = self.spans[key]
+            gaps.append(self.data[cursor:begin])
+            cursor = end
+        parts = []
+        for gap, key in zip(gaps, order):
+            parts.extend((gap, self.part(key)))
+        parts.append(self.data[cursor:])
+        return b"".join(parts)
+
+    def changes(self, other, allowed_deletions=(), allowed_additions=(), order=None):
         removed = set(self.order) - set(other.order)
         added = set(other.order) - set(self.order)
+        sequence = list(order) if order else self.order
         require(removed <= set(allowed_deletions) and added <= set(allowed_additions) and
-                other.order == [key for key in self.order if key not in removed] + [key for key in allowed_additions if key in added],
-                "Component addition/removal/reordering requires a registered deletion or appended module addition; reordering is unsupported.")
+                other.order == [key for key in sequence if key not in removed] + [key for key in allowed_additions if key in added],
+                "Component addition/removal/reordering requires a registered deletion, appended module addition or registered order; "
+                "unregistered reordering is unsupported.")
         require(all(other.elements[k].tag in MODULE_TAGS for k in added), "Only registered modules may be added.")
         require(self.shell == other.shell, "Document wrapper or inter-component whitespace changed outside scope.")
         return [k for k in self.order if k in removed or self.hashes[k] != other.hashes[k]] + [k for k in allowed_additions if k in added]
@@ -375,7 +395,7 @@ def task_dependencies(root, j, writes):
     return sorted(reads - set(writes)), modes
 
 
-def prepare(root, task_id, objective, write_names, prerequisites=(), delete_names=(), add_names=()):
+def prepare(root, task_id, objective, write_names, prerequisites=(), delete_names=(), add_names=(), order_names=None):
     require(re.fullmatch(r"T[0-9]{3,}[A-Za-z0-9_-]*", task_id), "Use a task ID such as T001.")
     with writer_lock(root):
         package = root / "tasks" / task_id
@@ -384,6 +404,12 @@ def prepare(root, task_id, objective, write_names, prerequisites=(), delete_name
         require((not package.exists() or plan_only) and not registry.exists(), "Task already exists; use a new task ID.")
         j = Journal.load(root / JOURNAL)
         adds = sorted(set(add_names))
+        order = None
+        if order_names is not None:
+            require(not adds and not delete_names, "A registered order cannot be combined with module additions or deletions.")
+            order = [j.resolve(x) for x in order_names]
+            require(order != j.order, "The registered order equals the current order.")
+            j.reorder(order)                        # validates the permutation and the module slots
         existing_names = {el.get("name") for el in j.root if el.get("name")}
         for key in adds:
             match = re.fullmatch(r"(report|spreadsheet|drawing):([A-Za-z_][A-Za-z0-9_]*)", key)
@@ -394,7 +420,7 @@ def prepare(root, task_id, objective, write_names, prerequisites=(), delete_name
         require(all(j.elements[k].tag in MODULE_TAGS for k in deletes),
                 "Only explicitly named report, spreadsheet or drawing modules may be deleted; resources and styles remain protected.")
         writes = sorted({j.resolve(x) for x in write_names} | set(deletes) | set(adds))
-        require(writes, "A task needs an explicit write scope.")
+        require(writes or order, "A task needs an explicit write scope.")
         if adds:
             reads, modes = sorted(set(j.order) - set(writes)), {key: "all components: registered topology addition" for key in writes}
         else:
@@ -404,7 +430,7 @@ def prepare(root, task_id, objective, write_names, prerequisites=(), delete_name
             require((root / "workflow/registry" / f"{prerequisite}.json").is_file(), f"Unknown prerequisite: {prerequisite}")
         record = {"schema": 1, "id": task_id, "created": stamp(), "objective": objective,
                   "base_journal_sha256": j.sha256, "writes": writes, "deletes": deletes, "adds": adds, "reads": reads,
-                  "dependency_modes": modes, "prerequisites": list(prerequisites),
+                  "order": order, "dependency_modes": modes, "prerequisites": list(prerequisites),
                   "component_hashes": j.hashes, "source_files": snapshot_files(root),
                   "exclusions": ["No unassigned components or document wrapper changes; topology changes limited to registered appended modules and deletions", "No automatic engineering approval"],
                   "output_contract": "Retain existing published names and scopes; describe units, signs, cases and any interface change in submission.json.",
@@ -427,7 +453,8 @@ def prepare(root, task_id, objective, write_names, prerequisites=(), delete_name
         write_json(package / "submission.json", {"summary": "", "published_outputs": [], "assumptions_and_conventions": [],
                                                     "downstream_impact": [], "external_analysis": "not assessed", "checks_performed": [], "open_items": []})
         write_json(registry, record)
-        return {"task": task_id, "writes": writes, "deletes": deletes, "adds": adds, "reads": len(reads), "package": str(package)}
+        return {"task": task_id, "writes": writes, "deletes": deletes, "adds": adds, "reordered": bool(order), "reads": len(reads),
+                "package": str(package)}
 
 
 def load_task(root, task_id):
@@ -462,6 +489,12 @@ def check(root, task_id, proposed_data=None):
     for prerequisite in record["prerequisites"]:
         require((root / "workflow/completed" / f"{prerequisite}.json").exists(), f"Prerequisite has not been promoted: {prerequisite}")
     candidate = Journal(current.replace({key: proposed.part(key) if key not in deleted else b"" for key in changed}, adds))
+    order = record.get("order")
+    if order:                                        # a registered permutation of the modules, applied at assembly
+        require(sorted(order) == sorted(current.order), "The registered order no longer matches the current components; create a new task.")
+        candidate = Journal(candidate.reorder(order))
+        require(current.shell == candidate.shell and all(current.part(k) == candidate.part(k) for k in current.order if k not in changed),
+                "Reordering changed bytes outside the registered scope.")
     for key in deleted:
         owner = current.elements[key].get("name")
         if not owner:
@@ -513,6 +546,7 @@ def check(root, task_id, proposed_data=None):
     report = {"task": task_id, "base_sha256": base.sha256, "current_sha256": current.sha256,
               "candidate_sha256": candidate.sha256, "changed_components": changed, "deleted_components": deleted,
               "added_components": [k for k in adds if k in candidate.elements],
+              "reordered": bool(order), "component_order": candidate.order if order else None,
               "detected_downstream_impact": sorted(affected - set(changed)),
               "impact_coverage": "partial; all external results require review if any component changed",
               "inherited_structural_issues": dict(structural_issues(current)),
@@ -707,6 +741,7 @@ def main(argv=None):
     p.add_argument("--add", action="append", default=[], help="Register a new module key (for example report:NewCalc) to append; protects all existing components")
     p.add_argument("--delete", action="append", default=[], help="Explicitly authorize removal of an existing module; include affected link/consumer modules in --write")
     p.add_argument("--prerequisite", action="append", default=[])
+    p.add_argument("--order", type=Path, help="JSON list of every component key in the registered new order (modules permuted among module slots; applied at assembly)")
     p = commands.add_parser("import-references", help="Copy verified reference filenames without modifying PDFs or journal")
     p.add_argument("source", type=Path)
     p = commands.add_parser("import-components", help="Assemble edited native component fragments into a fresh task working copy")
@@ -734,7 +769,8 @@ def main(argv=None):
         elif args.command == "roundtrip":
             result = roundtrip(args.journal or root / JOURNAL, args.output)
         elif args.command == "prepare":
-            result = prepare(root, args.id, args.objective, args.write, args.prerequisite, args.delete, args.add)
+            order = read_json(args.order) if args.order else None
+            result = prepare(root, args.id, args.objective, args.write, args.prerequisite, args.delete, args.add, order)
         elif args.command == "import-references":
             result = import_references(root, args.source)
         elif args.command == "import-components":

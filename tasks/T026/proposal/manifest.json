@@ -1,0 +1,18 @@
+{
+  "task": "T026",
+  "base_sha256": "51c4fb74bfc7c3d2eacd885dedaf32235aa1502449dd68402fa9a4d51e95d59c",
+  "components": {
+    "report:PileDesignEndBentOne": {
+      "file": "000.xml",
+      "sha256": "4013fa16cfa7aecd5f28517afe945fd14cb057b345ac0ab94c76ef0378d30d91"
+    },
+    "report:PileDesignEndBentTwo": {
+      "file": "001.xml",
+      "sha256": "d1eb0664f2c8f17ecd1d856ead7b03e767554dec93c594b5aefa6e0cc1548309"
+    },
+    "report:PileDesignPier": {
+      "file": "002.xml",
+      "sha256": "5bc851283a4fdd8bb833286ae5c736c3c8c3a7c6f1c85bb1f1e7ad8ec8260f15"
+    }
+  }
+}
