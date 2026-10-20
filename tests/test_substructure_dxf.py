@@ -548,6 +548,34 @@ class SubstructureDxfTests(unittest.TestCase):
                     texts += 1
                     self.assertEqual(e.dxf.get("bg_fill", 0), 3, dim.dxf.geometry)
         self.assertGreater(texts, 100)
+        # B13: the displaced values are masked MTEXT of their own on the Dimension level
+        loose = [e for e in self.doc.modelspace().query("MTEXT[layer=='Dimension']")]
+        self.assertGreater(len(loose), 20)
+        for e in loose:
+            self.assertEqual(e.dxf.get("bg_fill", 0), 3)
+
+    def test_dimension_text_stays_in_its_default_place(self):
+        """B13 (2026-10-20, the DGN import): the dimension style has DIMTMOVE
+        0, no DIMENSION entity overrides it or carries a text location away
+        from its dimension line (a pulled-out or two-line value is a separate
+        MTEXT and the dimension's own text is suppressed), so an importer that
+        rebuilds the dimension from its definition points keeps every
+        dimension line on its row."""
+        self.assertEqual(self.doc.dimstyles.get(fdot.DIM_STYLE).dxf.dimtmove, 0)
+        far = []
+        for dim in self.doc.modelspace().query("DIMENSION"):
+            ov = dim.override()
+            self.assertNotIn("dimtmove", ov.dimstyle_attribs if hasattr(ov, "dimstyle_attribs") else {}, dim.dxf.geometry)
+            tm = dim.dxf.get("text_midpoint")
+            if tm is None or dim.dxf.text == " ":
+                continue
+            a = math.radians(dim.dxf.get("angle", 0.0))
+            ux, uy = math.cos(a), math.sin(a)
+            dp = dim.dxf.defpoint
+            d = abs((tm.x - dp.x) * uy - (tm.y - dp.y) * ux)   # text midpoint off the dimension line
+            if d > 3.0 * fdot.TEXT_STYLES[fdot.DIM_TEXT_STYLE][1] * fdot.SCALES["3/8"]:
+                far.append((dim.dxf.text, round(d, 3)))
+        self.assertEqual(far, [])
 
     def test_centerline_linetypes_are_dashes_not_dots(self):
         """Rule D3: DGN4 and DGN7 are long dash, short dash with no element
@@ -667,7 +695,7 @@ class SubstructureDxfTests(unittest.TestCase):
         expected = {"dimtxsty": "FDOT Structures Annotation", "dimtxt": 0.0063, "dimasz": 0.006508,
                     "dimexo": 0.00315, "dimexe": 0.00315, "dimgap": 0.00315, "dimlunit": 4, "dimlfac": 12.0,
                     "dimzin": 15, "dimfrac": 1, "dimtad": 1, "dimtih": 0, "dimtoh": 0, "dimtfac": 0.7,
-                    "dimtmove": 1, "dimatfit": 1, "dimlwd": -1, "dimlwe": -1,
+                    "dimtmove": 0, "dimatfit": 1, "dimlwd": -1, "dimlwe": -1,   # (dimtmove 0 since B13; the workspace has 1)
                     "dimclrd": 256, "dimclre": 256, "dimclrt": 256}
         for k, v in expected.items():
             if isinstance(v, float):

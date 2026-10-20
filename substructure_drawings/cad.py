@@ -80,7 +80,13 @@ def new_document():
     ds.dxf.dimlfac = 12.0    # feet drawing -> inch based architectural text
     ds.dxf.dimzin = 15       # 6" and 4'-0"
     ds.dxf.dimfrac = 1       # diagonal
-    ds.dxf.dimtmove = 1
+    # DIMTMOVE 0 (2026-10-20): the text keeps its default place on every
+    # DIMENSION entity, and a value that stands elsewhere (pulled out, or a
+    # two-line text beside its line) is a separate masked MTEXT with its
+    # pointer (``View.dim``).  With DIMTMOVE 1 and an explicit text location
+    # the DGN import put those dimension lines at the text, off the chain
+    # ("chained end to end in the review sheets ... come in not chained").
+    ds.dxf.dimtmove = 0
     ds.dxf.dimatfit = 1
     ds.dxf.dimdec = 3
     ds.dxf.dimtofl = 1
@@ -748,7 +754,14 @@ class View:
         if abs(angle - 90.0) < 1e-9 and sgn < 0:
             override["dimtad"] = 4
             side = -1.0
-        kw = {}
+        # STYLE_GUIDE B13 (2026-10-20): a value that does not sit in the
+        # dimension's default text place (pulled out, or a two-line text set
+        # beside its line) is drawn as a separate masked MTEXT at ``text_loc``
+        # and the DIMENSION's own text is suppressed (" "), so the entity
+        # carries no moved-text location: the DGN import then keeps the
+        # dimension line at its definition point, chained with its row
+        # (with DIMTMOVE 1 and a text location it followed the text).
+        text_loc = None
         pulled = None   # text location when the value is pulled out of its space (B1)
         rot = 0.0 if horizontal else angle
         # audit: the extension lines and the dimension line as linework
@@ -758,8 +771,7 @@ class View:
         self._seg(p2, f2, layer)
         self._seg(f1, f2, layer)
         if loc is not None:
-            kw["location"] = self.T(loc)
-            override["dimtmove"] = 1
+            text_loc = loc
             self._track_box(loc, tw, th_box, 0.5, 0.5, rot, label=text)
             pulled = loc
         elif outside is not None:
@@ -794,8 +806,7 @@ class View:
                 # keep its gap (a vertical column is always on the same side)
                 lift = sgn * ((max(beyond, clear) if same_side else clear) + 1.6 * level * self.th)
             loc = (mid[0] + ux * along + nx * lift, mid[1] + uy * along + ny * lift)
-            kw["location"] = self.T(loc)
-            override["dimtmove"] = 1
+            text_loc = loc
             self._track_box(loc, tw, th_box, 0.5, 0.5, angle, label=text)
             pulled = loc
         elif len(lines) > 1:
@@ -811,18 +822,32 @@ class View:
             ca, sa = abs(math.cos(math.radians(rot - angle))), abs(math.sin(math.radians(rot - angle)))
             off = side * (0.2 * self.th + (th_box * ca + tw * sa) / 2)
             loc = (mid[0] + nx * off, mid[1] + ny * off)
-            kw["location"] = self.T(loc)
-            override["dimtmove"] = 1
+            text_loc = loc
             self._track_box(loc, tw, th_box, 0.5, 0.5, rot, label=text)
         else:
             self._track_box(mid, tw, th_box, 0.5, 0.0 if side > 0 else 1.0, angle, label=text)
         self._track([p1, p2, base])
         text_box = self.texts[-1][0]   # the value's box, whichever branch placed it (inset 0)
         d = self.msp.add_linear_dim(base=self.T(base), p1=self.T(p1), p2=self.T(p2), angle=angle,
-                                    dimstyle=fdot.DIM_STYLE, text=text, override=override,
-                                    dxfattribs={"layer": layer}, **kw)
+                                    dimstyle=fdot.DIM_STYLE, text=" " if text_loc is not None else text,
+                                    override=override, dxfattribs={"layer": layer})
         d.render()
+        if d.dimension.dxf.get("text_midpoint") is None:
+            # (a suppressed text leaves no midpoint and ezdxf's translate
+            # then fails; the midpoint goes on the dimension line, where
+            # DIMTMOVE 0 expects it)
+            d.dimension.dxf.text_midpoint = self.T(mid)
         self.ents.append(d.dimension)
+        if text_loc is not None:
+            # the value itself: the dimension text style at the view's text
+            # height, centred on ``text_loc``, masked like the dimension texts
+            # (MTEXT bg_fill 3, B2), on the Dimension level with its dimension
+            e = self.msp.add_mtext(text, dxfattribs={
+                "layer": layer, "style": fdot.DIM_TEXT_STYLE, "char_height": self.th, "attachment_point": 5,
+                "rotation": rot, "line_spacing_factor": fdot.MTEXT_LINE_SPACING})
+            e.dxf.insert = self.T(text_loc)
+            e.set_bg_color("canvas", scale=1.1)
+            self.ents.append(e)
         ptr_call = None
         if pulled is not None:
             # B1: a two-piece pointer (no arrowhead) from the pulled-out text to

@@ -2,7 +2,7 @@
  "generator": "substructure_drawings.model_plan",
  "version": "1.0.0",
  "dxf": "B4_Model_Plan.dxf",
- "dxf_sha256": "86bee8cafffe2d11d67401d038adacebed37907fece6e8148ab26132c6fa065f",
+ "dxf_sha256": "f1f22c0455bfcfe0faa65f756c3bd252726340c70119bbeb435ab37454d07fa0",
  "snapshot_sha256": "58a075551af06e5506d6f433f50aaa3f9d735083cbe29ba98450449eb511fc1c",
  "model_sha256": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
  "units": "US survey feet ($INSUNITS=21; the model's feet, for the DGN import); model space 1:1 in the plan frame",

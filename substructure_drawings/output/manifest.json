@@ -2,7 +2,7 @@
  "generator": "substructure_drawings.build",
  "version": "2.7.0",
  "dxf": "B4_Substructure_EndBents_Pier.dxf",
- "dxf_sha256": "5ca776f3bffdc5dbb4f6c381b9c5af9e333647b2fa625f287197f30f5bac905c",
+ "dxf_sha256": "7f3b8c0ff154fab586eb429fe76af3125d7600761d5904d135dc0c3420b167d0",
  "snapshot_sha256": "81238eed17856fb2a3ec3db7c5a5d37b694c62422ba19daa72e73ee69b5f3d53",
  "model_sha256": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
  "units": "US survey feet ($INSUNITS=21; the model's feet, for the DGN import); model space 1:1, one labelled group per sheet 60 ft apart",
@@ -201,7 +201,7 @@
   "Border": 43,
   "CL_Major": 26,
   "CL_Minor": 55,
-  "Dimension": 633,
+  "Dimension": 845,
   "Leader": 709,
   "Patterning": 1008,
   "PileConc": 48,
@@ -232,7 +232,7 @@
   "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
  },
  "symbology_audit": {
-  "entities": 11856,
+  "entities": 11865,
   "not_on_fdot_level": [],
   "not_by_level": [],
   "documented_overrides": {},

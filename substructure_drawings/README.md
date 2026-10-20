@@ -24,7 +24,11 @@ one labelled group per sheet ("SHEET B4-2  END BENT 1 DETAILS (1 OF 3)",
 a box on the Border level, the sheet's zones side by side with their
 intended scales noted, the groups 60 ft apart) instead of zones 600 ft
 apart (E9); and every double-line bar ends square, not round (C8: "that's
-how it's actually cut and also it's easier to dim to").
+how it's actually cut and also it's easier to dim to"). After the first
+import, the dimensions chained in a row came in off the row where their
+value was pulled out: the DGN importer follows a DIMENSION's moved-text
+location, so the style now has DIMTMOVE 0 and every displaced value is a
+separate masked MTEXT with the dimension's own text suppressed (B13).
 
 **Generator 2.6.0 (19 October 2026)** rebuilt this DXF from the model with
 revision D-061 (D-044 weather closure and copings, D-045 strap references,

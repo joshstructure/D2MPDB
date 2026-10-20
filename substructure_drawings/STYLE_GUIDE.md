@@ -381,6 +381,20 @@ symbol at page scale.
   fraction glyphs (`fdot.ft_in`).  Bar runs read "n~MARK @ s = total",
   equal spaces "n EQUAL SPA @ s = total", a value that varies "@ s MAX.".
 
+- **B13 A dimension's text stays in its default place on the entity; a
+  displaced value is a text of its own.**  The dimension style has DIMTMOVE
+  0 and no DIMENSION entity carries a moved-text location: a pulled-out
+  value (B1, B7) or a two-line value set beside its line (B9) is a separate
+  MTEXT on the Dimension level, masked like the dimension texts (B2), with
+  its pointer, and the dimension's own text is suppressed.  A DGN import
+  rebuilds each dimension from its definition points; with DIMTMOVE 1 and a
+  text location it set those dimension lines at the text, so the values
+  pulled out of a chained row came in off the row (2026-10-20: "some of the
+  dimension lines which are chained end to end in the review sheets come in
+  not chained ... they lose their alignment with the other dim lines").
+  Checked (tests): DIMTMOVE 0, no override, every dimension text midpoint
+  within three text heights of its line, the displaced MTEXT masked.
+
 ## C. Reinforcing (SDM 4.3)
 
 - **C1 Single or double lines by scale (SDM 4.3.7.B).**  Bars not seen end-on
@@ -943,3 +957,4 @@ Markups on the 2.6.0 sheets ("Reinforcing Sheets.pdf"), 2026-10-20 round 7, with
 | B4-8 View E-E and Section F-F, PIER CAP | (clouded, both) | A27 | tips on the cap's drawn edges (E-E: the stub's side edge, level from the column; F-F: the end face beyond the wall, level from the outer side); the plan's slab and coping and the cheek views' WWR hatch take the arrowless area leader; the end bent cheek views' END BENT CAP tip moved to the cap face; new check A27 |
 | (DXF for the DGN) | For the dxfs I will be importing to a dgn whose master units are survey feet. I need the drawings to import at the correct scale. Also lets group the details together but drawn at scale and put a box around them with a label to show what sheet they correspond to as in the review set. Right now they are all spread out and its hard to tell which go where. I still want everything drawn 1 to 1. | E9 | $INSUNITS 21 (US survey feet) in both DXFs; one labelled group per sheet in model space, zones side by side with their scales noted, groups 60 ft apart; the paper-space sheets unchanged (their viewports follow the moved zones) |
 | (all double-line bars) | I want real width rebar to end in a squared off end not a round end. That's how it's actually cut and also it's easier to dim to | C8 | straight square caps on every double-line bar (`View._cap`), rule C8 reworded |
+| (DGN import, dimension rows) | Some of the dimension lines which are chained end to end in the review sheets come in not chained. They dimension the stuff correctly but they lose their alignment with the other dim lines | B13 | the importer follows a DIMENSION's moved-text location: DIMTMOVE 0 in the style, no text location on any entity, every pulled-out or two-line value drawn as a separate masked MTEXT with the dimension's own text suppressed |
