@@ -27,8 +27,13 @@ The existing site is
 
 ## Explore
 
-- Search for **Cap Design** to open the journal's Pier, End Bent 1, End Bent 2,
-  and shared-factor modules. Current named calculation reports and numeric or
+- The numbered calculations of the journal (**C001** to **C016**: wind, fence
+  wind, temperature movement, uplift, pier wall and fins, cap design basis and
+  the three cap designs, the three pile designs, the end-bent backwall, the MSE
+  wall exclusion and the bearings) are the **Design** column of the default
+  layout, each carrying its number; they are the calculations that will be
+  issued as separate review documents. Search for a number such as **C011**
+  to open one. Current named calculation reports and numeric or
   formula spreadsheet cells are discovered inside the registered journal.
   Geometry, materials, wind, movement, uplift and other calculations appear on
   the same map. Archived modules are excluded.

@@ -264,10 +264,13 @@ def build_data(root=ROOT):
         if existing:
             existing['detail']+=' Native definitions and their explicit formula references are also indexed.'
             continue
-        node(module['id'],module['title'],journal_path,'recorded',
-             'Calculation module inside the registered journal. Literal definitions and saved results are inspected without native recalculation.',
+        detail='Calculation module inside the registered journal. Literal definitions and saved results are inspected without native recalculation.'
+        if module.get('calc_number'):
+            detail=f'Design calculation {module["calc_number"]} of the project journal, to be issued as a separate review document. '+detail
+        node(module['id'],module['title'],journal_path,'recorded',detail,
              stage_name=module['stage'],module=module['module'],short_title=module['short_title'],
-             component=module['component'],evidence=[module['evidence']])
+             component=module['component'],evidence=[module['evidence']],
+             **({'calc_number':module['calc_number']} if module.get('calc_number') else {}))
         edge('JOURNAL',module['id'],'recorded','Journal contains calculation module',
              'Containment in the source document; this does not establish a calculation dependency.',[module['evidence']],kind='context')
     for (source,target),link in calculation_links.items():
