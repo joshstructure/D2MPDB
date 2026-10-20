@@ -61,6 +61,10 @@ def layout(inp):
     topfaces=[f for f in ped.Faces if f.normalAt(0,0).z>.9]
     if not topfaces:raise ValueError('Pedestal top faces unavailable')
     ztop=min(v.Point.z for f in topfaces for v in f.Vertexes)-(cover+r)/min(f.normalAt(0,0).z for f in topfaces)
+    if getattr(inp,'UsePreGrindingReference',False):
+        # D-065 keeps the native cage at its prior elevation beneath level
+        # as-cast stock, retaining cover allowance for the final grinding plane.
+        ztop=inp.PreGrindingReferenceElevation.Value-(cover+r)
     rad=(inp.InsideBendDiameter.Value+d)/2
     lower=ztop-d-inp.LayerClearance.Value
     if lower-rad<pb.ZMin-TOL:raise ValueError('Lower bend intrudes into cap development region')

@@ -1,3 +1,15 @@
+D-065 - LEVEL AS-CAST BEARING SEATS, 20 OCTOBER 2026
+
+All six pedestal tops level at their own previous maximum elevations; eight uniform 2.5625-in pads level on the tops. D-065 supersedes D-064.
+
+Top elevations, existing model datum: EB1 43.74578111249233 ft; Pier 44.26686320063029 ft; EB2 43.75994652287092 ft. Both pedestals at each support share that value. Each pedestal is one solid with a single horizontal top face. Pads are level, 10 x 32 x 2.5625 in. All 84 pedestal bars and their adopted marks stay at prior elevations, with a native pre-grinding reference for regeneration.
+
+62 physical geometry checks pass; native elevation edit/restore, cage regeneration and cold reopen verified. 2166 unrelated native objects are preserved. All beam, deck, cap and other existing geometry is unchanged. Maximum sampled rigid fit differences: EB1 0.1240295 in, Pier 0.0460508 in, EB2 0.1572338 in. These are not prescribed grinding depths or elastic pad response.
+
+As-cast stock only: all eight pads intersect the unchanged beams in undeformed geometry; final bearing fit FAIL. Final seat/grinding elevations, cover, contact, construction stages and bearing acceptance remain open. Notebook, B4 geometry table and drawings pending reconciliation. T019 is a conditional pier check, not end-bent approval; all prior analysis/combined-load limitations and D-047 steel disposition remain.
+
+PREVIOUS UPDATES (historical)
+
 D-061 - PIER CHEEK VERTICAL DEVELOPMENT, 19 OCTOBER 2026
 
 Develop all twelve #4 pier cheek verticals straight 12 in into the cap; coordinate mat stations with existing cap reinforcement. Each 4E1 bar is now 57.75 in long. Required straight tension development is 12 in, governed by the code minimum; selected materials are 5.5-ksi normalweight concrete and uncoated Grade 60 steel. The existing verified LRFD calculator is reused with zero Ktr, clamping and excess-steel credit.

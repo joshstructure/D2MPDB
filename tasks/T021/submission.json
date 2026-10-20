@@ -1,0 +1,37 @@
+{
+  "summary": "D-065: all six level as-cast pedestal tops at their previous maxima and eight level uniform pads. CAD implemented; final bearing fit remains open.",
+  "published_outputs": [
+    "BearingDesign.BP_all_seat_override",
+    "BearingDesign.BP_all_seat_scope",
+    "BearingDesign.BP_all_seat_longitudinal_slope",
+    "BearingDesign.BP_all_seat_transverse_slope",
+    "BearingDesign.BP_EB1_level_seat_elevation",
+    "BearingDesign.BP_pier_level_seat_elevation",
+    "BearingDesign.BP_EB2_level_seat_elevation",
+    "BearingDesign.BP_all_seat_pad_thickness",
+    "BearingDesign.BP_all_seat_CAD_status",
+    "BearingDesign.BP_all_seat_final_fit_status",
+    "BearingDesign.BP_all_seat_downstream_status"
+  ],
+  "assumptions_and_conventions": [
+    "As-cast elevations use source model datum and each individual pedestal maximum.",
+    "Preserve reinforcement heights and all beam/cap/profile geometry.",
+    "Supersede D-064; T019 remains a conditional pier calculation."
+  ],
+  "downstream_impact": [
+    "Notebook, B4 geometry table and drawings need reconciliation."
+  ],
+  "external_analysis": "No rerun or final analysis currency claim; prior T019 limitations remain.",
+  "checks_performed": [
+    "Bounded journal byte preservation",
+    "Native CAD single-solid/level/quantity/contact checks",
+    "Native edit/restore, cage regeneration and cold reopen",
+    "Actual beam/pad interference retained as FAIL"
+  ],
+  "open_items": [
+    "Final seat/ground surface, cover and contact",
+    "Construction stages and final bearing adequacy",
+    "T019 combined shear/uplift and source/load reconciliation",
+    "Native journal appearance and engineering review not performed"
+  ]
+}

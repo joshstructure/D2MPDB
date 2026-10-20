@@ -3,9 +3,9 @@
   "authority": "Current editable FreeCAD geometry and modeled quantities; engineering acceptance remains separate",
   "model": {
     "path": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-    "sha256": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43",
-    "bytes": 7190683,
-    "objects": 2188
+    "sha256": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
+    "bytes": 7336742,
+    "objects": 2189
   },
   "source_revision": "01a1fcc34d6345ceacf96245bcf0c931d118a1ab",
   "tracker_used_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
@@ -32,10 +32,11 @@
     "D-053: backwall_top native two-plane top and local landing thickening controllers, preserved walking faces; native level adjustments retain all hooks and bar counts.",
     "D-055: native optional vertical omissions and unit-bearing station overrides; guarded spacing, physical clearance, cover and cold-reopen verification.",
     "D-059: native pier_cheeks parametric solid walls, shallow outward beveled relief, continuous centered mats, live quantities and strict physical checks.",
-    "D-061: native straight vertical development with selected LRFD inputs, signed mat offsets, coordinated stations, live quantities and BRep anchorage/cover/clash checks."
+    "D-061: native straight vertical development with selected LRFD inputs, signed mat offsets, coordinated stations, live quantities and BRep anchorage/cover/clash checks.",
+    "D-065: native level_seats host/pad dependencies and fixed pre-grinding cage elevation reference; independent rigid-fit failures remain visible."
   ],
   "runtime_files": {
-    "runtime/API.md": "145dbc077a3f6592aaf69d49917901cdc516d8d47d1fbc7ee2f11ee4e890a5d3",
+    "runtime/API.md": "be21d85df8d1923ef041a65ffb431d6dfb5880b41f5eb46ae7adca078f61511a",
     "runtime/freecad_tools/__init__.py": "54fc72e62296f90ef30d4395023d10589142c7979df962a5fa1669cf01886a32",
     "runtime/freecad_tools/adopt_drainage.py": "df2e4d293383aa5de9e425a8af75b7640524d07e71eebd541d42d2e81342eb07",
     "runtime/freecad_tools/api.py": "4f5d129384cf8b68bf10564f59141a31bd83921d47e8e477754ad2ea3ade71ca",
@@ -147,7 +148,7 @@
     "runtime/freecad_tools/native_archive.py": "35df1d59be632d3f337eeac3da1f9d8ffe879129f9afc092ba7b7e96667cb3e2",
     "runtime/freecad_tools/file_install.py": "f00c34f8ef44f66800ef656832ba772e8422001ed4b289cbfb214ec48a0fdbd6",
     "runtime/freecad_tools/notebook_update.py": "3ccc61a21e20201c35e1db5065beef7e0f9b79f0bdb78c9a056252dc4b5157a1",
-    "runtime/freecad_tools/pedestal_ubars.py": "84f4b5cc418900037a883e3aba6fc99ee98993818e1c48eb75f4c8ce73143d3d",
+    "runtime/freecad_tools/pedestal_ubars.py": "d77d012ac2c0e9beeb47d86997e2737023c813be163c06ff6db6f6cfddc6f7dd",
     "runtime/freecad_tools/cheek_steel.py": "d61782a75fdb1c92925108ad4e1713524fb9a80acf384555fb1a4a5f0b0d5f48",
     "runtime/freecad_tools/mse_corrections.py": "c134a1c06b72980b59695d13682a150782f76bb25f0d0f564839d113957d1c38",
     "runtime/freecad_tools/mse_revision.py": "6c0494b2328997e01784eb40f00b83905f62a1c0ee1066ac24261f0278bf7fe4",
@@ -168,9 +169,10 @@
     "runtime/freecad_tools/pedestal_contact.py": "9fbd1143f866b1c402821d669d7b7064e66ec826e2ce5630530646369e74f94d",
     "runtime/freecad_tools/backwall_extensions.py": "c40d3ce61a6fa05297943168b8349230a46ad95880fa98d8022c95587e6cc424",
     "runtime/freecad_tools/backwall_top.py": "8361bb753d77de4623af10712eefed70e3ec7caba2911afd2e6eda9d80bd4092",
-    "runtime/freecad_tools/pier_cheeks.py": "d7f97999105514680eadd464626e0c6162a457016ebe554826bd52ed375e5047"
+    "runtime/freecad_tools/pier_cheeks.py": "d7f97999105514680eadd464626e0c6162a457016ebe554826bd52ed375e5047",
+    "runtime/freecad_tools/level_seats.py": "ca210151902c8144cc407b3258a1c405614aefb464ee97cd990c210295214e61"
   },
-  "opener_sha256": "9c0ac6061eb8c995c287a317cc275c1a964b4f50c8bb71d1fe970d0b03850b71",
+  "opener_sha256": "d8137d9757cd832af839165ee544c26f9fc2c1accccd4bd788f131ed61697914",
   "evidence_files": {
     "evidence/bridge-current-cages-20261010-v1.json": "5daf358f8b140a1b5c8db4b1d33df5ab565d4299e9c1fb90d0aa15cd679ce1ee",
     "evidence/bridge-current-proxies-20261010-v1.json": "bc8d1595534050f961bece023cae100958064388e1b2e7d45ddd424666c834ba",
@@ -179,7 +181,7 @@
     "evidence/delivery-helper-fingerprints.json": "2eda36676cc40916485c708e385818c6e99ead3be41e5754a55bc5e772e58c62",
     "evidence/final-reopen-verification.json": "fde89e9b9c8bb47433a964e3d0b3faedcb00c201b8ada10b348c086e4bfaeec9",
     "evidence/final-save.json": "7767f925bccdf426225cf1d4269ce59919cdcf71267f7c56c7484547f758e946",
-    "evidence/Model-update-report.txt": "e545523540cc70a55b4e5684ac8f8fce375d94bcae5dbbb50241260814ada17a",
+    "evidence/Model-update-report.txt": "f4899b16c22c832bcfbf5d3d6ce9d31e17e9a3f9ad4de840af4ec6bb4a86fc1c",
     "evidence/opener-verification.json": "7cfd370f32a419bd160ce2f914df4e861372addcab97d9e64896fb6135d40fdf",
     "evidence/portable-verification.json": "5daa7dfc49c7f7b11c641a51d2e425ce853dc08ee134356c02746d93d028ec36",
     "evidence/session-checkpoint.json": "c22fc947838b3ed99425beeab12c10e80b62b12be04d01444f2a0677135096c5",
@@ -429,18 +431,23 @@
     "evidence/2026-10-19-pier-cheek-development/adoption-summary.json": "da8d48adde09f5b05afeec28f0f53a158a7bc50f9e8add94a28dad556b02a1cf",
     "evidence/2026-10-19-pier-cheek-development/development-calculation.json": "dd3323c43336a1647b81f671519d8213b410ddf629403f1ad381abd78fb3d0d1",
     "evidence/2026-10-19-pier-cheek-development/geometry-verification.json": "2c5d2560b12d3db354fb530191027a666f986a1a1d520c18390631db7bc504e8",
-    "evidence/2026-10-19-pier-cheek-development/installed-verification.json": "4422f6712336c65ad425d0f9242e29734e760fe96220bb9f518db72e8f1d1ce9"
+    "evidence/2026-10-19-pier-cheek-development/installed-verification.json": "4422f6712336c65ad425d0f9242e29734e760fe96220bb9f518db72e8f1d1ce9",
+    "evidence/2026-10-20-level-bearing-seats/adoption-summary.json": "fe015618018cbfa35b2f674c13172eefbf2d5cf2d0cbd9178327ca4e657b8937",
+    "evidence/2026-10-20-level-bearing-seats/adopt_candidate.py": "d1cbe455c116e20d16008ac09d248f19f7e4bd992e0982d0425b5156df506c56",
+    "evidence/2026-10-20-level-bearing-seats/build_candidate.py": "bbc351a67605555efd3a263d204e8779bd259b4b7d89ee60adda24db8ba464f2",
+    "evidence/2026-10-20-level-bearing-seats/geometry-verification.json": "542e86c200d85137daf4a84be5446f15b24f9ff7f75948d3e41c76d436bfc2f3",
+    "evidence/2026-10-20-level-bearing-seats/source-elevations.json": "1b4ed42fd7add78f09b87c7eeb115b9411175896c0be77ff4855d56a27cb83d5"
   },
-  "known_review_status": "0 new WWR overlaps; 14 existing U-bar/hoop pairs Deferred in COH-025. Four cheek spacing findings Open in COH-024; 29 cap/backwall and 4 backwall internal overlaps and other existing findings retained.",
+  "known_review_status": "D-065: level as-cast geometry PASS; final pad/beam fit FAIL at all eight pads. As-cast stock only: all eight pads intersect the unchanged beams in undeformed geometry; final bearing fit FAIL. Final seat/grinding elevations, cover, contact, construction stages and bearing acceptance remain open. Notebook, B4 geometry table and drawings pending reconciliation. T019 is a conditional pier check, not end-bent approval; all prior analysis/combined-load limitations and D-047 steel disposition remain. Prior recorded review status: 0 new WWR overlaps; 14 existing U-bar/hoop pairs Deferred in COH-025. Four cheek spacing findings Open in COH-024; 29 cap/backwall and 4 backwall internal overlaps and other existing findings retained.",
   "portability_verification": "Cold native reopen and live dependency test PASS; 172 accepted-trial solid matches; all 1677 prior native object/view records exact. Previous standalone GUI loader limitation retained.",
-  "updated_on": "2026-10-17",
+  "updated_on": "2026-10-20",
   "current_update": {
-    "date": "2026-10-19",
-    "decision": "D-061",
-    "scope": "Develop all twelve #4 pier cheek verticals straight 12 in into the cap; coordinate mat stations with existing cap reinforcement.",
-    "summary": "evidence/2026-10-19-pier-cheek-development/adoption-summary.json",
-    "previous_model_sha256": "4f85c1fe05f8715462856ba1874e38de52b6a30dcdef4536f8aaf184abfb8725",
-    "follow_up": "Straight tension development checked for the selected 5.5-ksi concrete and uncoated Grade 60 bars. Joint transfer and wall capacity are separate checks. Notebook, calculation, journal-quantity and drawing reconciliation remain downstream; tracker responses and unrelated sources are unchanged. The proposed Type 10 hook for pier 4E1 in the D-060 drawing schedule is superseded by this straight model detail; other supports are unchanged."
+    "date": "2026-10-20",
+    "decision": "D-065",
+    "scope": "All six pedestal tops level at their own previous maximum elevations; eight uniform 2.5625-in pads level on the tops. D-065 supersedes D-064.",
+    "summary": "evidence/2026-10-20-level-bearing-seats/adoption-summary.json",
+    "previous_model_sha256": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43",
+    "follow_up": "As-cast stock only: all eight pads intersect the unchanged beams in undeformed geometry; final bearing fit FAIL. Final seat/grinding elevations, cover, contact, construction stages and bearing acceptance remain open. Notebook, B4 geometry table and drawings pending reconciliation. T019 is a conditional pier check, not end-bent approval; all prior analysis/combined-load limitations and D-047 steel disposition remain."
   },
   "archive_files": {
     "archive/B4-before-pedestal-ubars-20261012.FCStd": "e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118",
@@ -488,15 +495,17 @@
     "archive/B4-before-sdm-bar-marks-pier-cheeks-20261019.FCStd": "14db08f0313de0566e984d58d36397830ee13e1dce91d75738e2d61d77c9db8c",
     "archive/B4-before-sdm-bar-marks-pier-cheeks-record-20261019.zip": "c80eebaa610f0be64f6aae8faeb8b45cf6c6a78d2ec251f0c478288dc474fcc0",
     "archive/B4-before-pier-cheek-development-20261019.FCStd": "4f85c1fe05f8715462856ba1874e38de52b6a30dcdef4536f8aaf184abfb8725",
-    "archive/B4-before-pier-cheek-development-record-20261019.zip": "9c2df45a959670cef89be92808f3b1f2f6cb5ffd4e0de69c8f51dff31872add2"
+    "archive/B4-before-pier-cheek-development-record-20261019.zip": "9c2df45a959670cef89be92808f3b1f2f6cb5ffd4e0de69c8f51dff31872add2",
+    "archive/B4-before-level-bearing-seats-20261020.FCStd": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43",
+    "archive/B4-before-level-bearing-seats-record-20261020.zip": "715850dbb0d99903effe5065dcc73a8a46dec5941386d5d85f1343dcd040c86a"
   },
   "previous_update": {
     "date": "2026-10-19",
-    "decision": "D-060",
-    "scope": "Write the SDM 4.3 bar marks of the D-059 pier cheek wall mats into the Mark property of their 24 native rebars (review marks PC1-/PC2- to 4E1 verticals and 4E2 horizontals) and re-letter the 32 pier pedestal bars from 4E1/4E2 to 4F1/4F2, so the pier uses E for cheek walls and F for pedestals as the end bents do.",
-    "summary": "evidence/2026-10-19-sdm-bar-marks-pier-cheeks/update-summary.json",
-    "previous_model_sha256": "14db08f0313de0566e984d58d36397830ee13e1dce91d75738e2d61d77c9db8c",
-    "follow_up": "Naming only; the D-059 follow-ups (cheek wall cap anchorage, structural design, notebook/calculation/quantity reconciliation) remain. Rerun freecad_marks after a bar regeneration."
+    "decision": "D-061",
+    "scope": "Develop all twelve #4 pier cheek verticals straight 12 in into the cap; coordinate mat stations with existing cap reinforcement.",
+    "summary": "evidence/2026-10-19-pier-cheek-development/adoption-summary.json",
+    "previous_model_sha256": "4f85c1fe05f8715462856ba1874e38de52b6a30dcdef4536f8aaf184abfb8725",
+    "follow_up": "Straight tension development checked for the selected 5.5-ksi concrete and uncoated Grade 60 bars. Joint transfer and wall capacity are separate checks. Notebook, calculation, journal-quantity and drawing reconciliation remain downstream; tracker responses and unrelated sources are unchanged. The proposed Type 10 hook for pier 4E1 in the D-060 drawing schedule is superseded by this straight model detail; other supports are unchanged."
   },
   "extra_macros": {
     "Show_Elevations.FCMacro": "f27415eb7d8fe05a5ff8d05a01a5298b36ac1d3cf987ec8738ed541d085a3fc4",

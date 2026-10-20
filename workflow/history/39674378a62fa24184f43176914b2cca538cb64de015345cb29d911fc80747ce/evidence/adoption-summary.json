@@ -1,0 +1,369 @@
+{
+  "status": "ADOPTED_AS_CAST_GEOMETRY_FINAL_FIT_OPEN",
+  "decision": "D-065",
+  "date": "2026-10-20",
+  "model": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "model_sha256": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
+  "previous_model_sha256": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43",
+  "objects": 2189,
+  "protected_existing_objects": 2166,
+  "scope": "All six pedestal tops level at their own previous maximum elevations; eight uniform 2.5625-in pads level on the tops. D-065 supersedes D-064.",
+  "pedestals": [
+    {
+      "name": "BridgePedestalEB1B1",
+      "support": "EB1",
+      "beam": 1,
+      "as_cast_top_ft": 43.74578111249232,
+      "source_max_top_ft": 43.74578111249233,
+      "source_min_top_ft": 43.73229964536866,
+      "maximum_added_stock_in": 0.1617776054839006,
+      "volume_ft3": 4.445777702399143,
+      "faces": 6
+    },
+    {
+      "name": "BridgePedestalEB1B2",
+      "support": "EB1",
+      "beam": 2,
+      "as_cast_top_ft": 43.74578111249232,
+      "source_max_top_ft": 43.74578111249233,
+      "source_min_top_ft": 43.73229964536866,
+      "maximum_added_stock_in": 0.1617776054839006,
+      "volume_ft3": 4.445777702399143,
+      "faces": 6
+    },
+    {
+      "name": "BridgePedestalPierB1",
+      "support": "Pier",
+      "beam": 1,
+      "as_cast_top_ft": 44.266863200630276,
+      "source_max_top_ft": 44.26686320063029,
+      "source_min_top_ft": 44.25976369563759,
+      "maximum_added_stock_in": 0.08519405991230417,
+      "volume_ft3": 7.026926072199082,
+      "faces": 6
+    },
+    {
+      "name": "BridgePedestalPierB2",
+      "support": "Pier",
+      "beam": 2,
+      "as_cast_top_ft": 44.266863200630276,
+      "source_max_top_ft": 44.26686320063029,
+      "source_min_top_ft": 44.25976369563759,
+      "maximum_added_stock_in": 0.08519405991230417,
+      "volume_ft3": 7.026926072199082,
+      "faces": 6
+    },
+    {
+      "name": "BridgePedestalEB2B1",
+      "support": "EB2",
+      "beam": 1,
+      "as_cast_top_ft": 43.75994652287091,
+      "source_max_top_ft": 43.75994652287092,
+      "source_min_top_ft": 43.742855891468814,
+      "maximum_added_stock_in": 0.20508757682514767,
+      "volume_ft3": 4.464725814860928,
+      "faces": 6
+    },
+    {
+      "name": "BridgePedestalEB2B2",
+      "support": "EB2",
+      "beam": 2,
+      "as_cast_top_ft": 43.75994652287091,
+      "source_max_top_ft": 43.75994652287092,
+      "source_min_top_ft": 43.742855891468814,
+      "maximum_added_stock_in": 0.20508757682514767,
+      "volume_ft3": 4.464725814860929,
+      "faces": 6
+    }
+  ],
+  "pads": [
+    {
+      "name": "BridgePadEB1S1B1",
+      "host": "BridgePedestalEB1B1",
+      "bottom_ft": 43.74578111249232,
+      "top_ft": 43.95932277915899,
+      "thickness_in": 2.562499999999986
+    },
+    {
+      "name": "BridgePadEB1S1B2",
+      "host": "BridgePedestalEB1B2",
+      "bottom_ft": 43.74578111249232,
+      "top_ft": 43.95932277915899,
+      "thickness_in": 2.562499999999986
+    },
+    {
+      "name": "BridgePadPierS1B1",
+      "host": "BridgePedestalPierB1",
+      "bottom_ft": 44.266863200630276,
+      "top_ft": 44.48040486729695,
+      "thickness_in": 2.562499999999986
+    },
+    {
+      "name": "BridgePadPierS2B1",
+      "host": "BridgePedestalPierB1",
+      "bottom_ft": 44.266863200630276,
+      "top_ft": 44.48040486729695,
+      "thickness_in": 2.562499999999986
+    },
+    {
+      "name": "BridgePadPierS1B2",
+      "host": "BridgePedestalPierB2",
+      "bottom_ft": 44.266863200630276,
+      "top_ft": 44.48040486729695,
+      "thickness_in": 2.562499999999986
+    },
+    {
+      "name": "BridgePadPierS2B2",
+      "host": "BridgePedestalPierB2",
+      "bottom_ft": 44.266863200630276,
+      "top_ft": 44.48040486729695,
+      "thickness_in": 2.562499999999986
+    },
+    {
+      "name": "BridgePadEB2S2B1",
+      "host": "BridgePedestalEB2B1",
+      "bottom_ft": 43.75994652287091,
+      "top_ft": 43.973488189537576,
+      "thickness_in": 2.562499999999986
+    },
+    {
+      "name": "BridgePadEB2S2B2",
+      "host": "BridgePedestalEB2B2",
+      "bottom_ft": 43.75994652287091,
+      "top_ft": 43.973488189537576,
+      "thickness_in": 2.562499999999986
+    }
+  ],
+  "physical_geometry_checks_passed": 62,
+  "bearing_fit_checks": [
+    {
+      "name": "BridgePadEB1S1B1_final_beam_fit",
+      "status": "FAIL",
+      "common_volume_in3": 31.059641086623007,
+      "required_lowering_at_pad_start_center_end_in": [
+        0.12402949753749003,
+        0.09705878594842056,
+        0.07010362904304747
+      ],
+      "disposition": "AS-CAST STOCK: final grinding/seat setting and bearing contact unresolved"
+    },
+    {
+      "name": "BridgePadEB1S1B2_final_beam_fit",
+      "status": "FAIL",
+      "common_volume_in3": 31.059641086623017,
+      "required_lowering_at_pad_start_center_end_in": [
+        0.12402949753749003,
+        0.09705878594842056,
+        0.07010362904304747
+      ],
+      "disposition": "AS-CAST STOCK: final grinding/seat setting and bearing contact unresolved"
+    },
+    {
+      "name": "BridgePadPierS1B1_final_beam_fit",
+      "status": "FAIL",
+      "common_volume_in3": 7.3664757450423135,
+      "required_lowering_at_pad_start_center_end_in": [
+        0.0460508431955188,
+        0.023017644255696367,
+        -4.296825362706748e-13
+      ],
+      "disposition": "AS-CAST STOCK: final grinding/seat setting and bearing contact unresolved"
+    },
+    {
+      "name": "BridgePadPierS2B1_final_beam_fit",
+      "status": "FAIL",
+      "common_volume_in3": 7.377520589383999,
+      "required_lowering_at_pad_start_center_end_in": [
+        0.007248837149759991,
+        0.023042382534500992,
+        0.03891014322544211
+      ],
+      "disposition": "AS-CAST STOCK: final grinding/seat setting and bearing contact unresolved"
+    },
+    {
+      "name": "BridgePadPierS1B2_final_beam_fit",
+      "status": "FAIL",
+      "common_volume_in3": 7.366475745042315,
+      "required_lowering_at_pad_start_center_end_in": [
+        0.0460508431955188,
+        0.023017644255696367,
+        -4.296825362706748e-13
+      ],
+      "disposition": "AS-CAST STOCK: final grinding/seat setting and bearing contact unresolved"
+    },
+    {
+      "name": "BridgePadPierS2B2_final_beam_fit",
+      "status": "FAIL",
+      "common_volume_in3": 7.377520589383999,
+      "required_lowering_at_pad_start_center_end_in": [
+        0.007248837149759991,
+        0.023042382534500992,
+        0.03891014322544211
+      ],
+      "disposition": "AS-CAST STOCK: final grinding/seat setting and bearing contact unresolved"
+    },
+    {
+      "name": "BridgePadEB2S2B1_final_beam_fit",
+      "status": "FAIL",
+      "common_volume_in3": 39.36889839376996,
+      "required_lowering_at_pad_start_center_end_in": [
+        0.08887128329066815,
+        0.1230154381732794,
+        0.15723380889948038
+      ],
+      "disposition": "AS-CAST STOCK: final grinding/seat setting and bearing contact unresolved"
+    },
+    {
+      "name": "BridgePadEB2S2B2_final_beam_fit",
+      "status": "FAIL",
+      "common_volume_in3": 39.36889839376999,
+      "required_lowering_at_pad_start_center_end_in": [
+        0.08887128329066815,
+        0.1230154381732794,
+        0.15723380889948038
+      ],
+      "disposition": "AS-CAST STOCK: final grinding/seat setting and bearing contact unresolved"
+    }
+  ],
+  "final_bearing_fit_status": "FAIL",
+  "native_edit_restore": true,
+  "cold_reopen": true,
+  "steel_bars_preserved": 84,
+  "regenerated_steel_geometry_preserved": true,
+  "adopted_marks_preserved": true,
+  "inherited_development_findings": [
+    {
+      "name": "PedSteelEB1B1X01_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 12.00000000393701,
+      "required_in": 19.211867410671836,
+      "shortfall_in": 7.211867406734826
+    },
+    {
+      "name": "PedSteelEB1B1X08_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 12.00000000393701,
+      "required_in": 18.472670572305866,
+      "shortfall_in": 6.472670568368855
+    },
+    {
+      "name": "PedSteelEB1B1Y01_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 12.00000000393701,
+      "required_in": 19.211867410671836,
+      "shortfall_in": 7.211867406734826
+    },
+    {
+      "name": "PedSteelEB1B1Y05_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 12.00000000393701,
+      "required_in": 19.211867410671815,
+      "shortfall_in": 7.211867406734804
+    },
+    {
+      "name": "PedSteelEB1B2X01_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 12.00000000393701,
+      "required_in": 19.211867410671864,
+      "shortfall_in": 7.211867406734854
+    },
+    {
+      "name": "PedSteelEB1B2X08_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 12.00000000393701,
+      "required_in": 19.211867410671864,
+      "shortfall_in": 7.211867406734854
+    },
+    {
+      "name": "PedSteelEB1B2Y01_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 12.00000000393701,
+      "required_in": 19.211867410671836,
+      "shortfall_in": 7.211867406734826
+    },
+    {
+      "name": "PedSteelEB1B2Y05_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 12.00000000393701,
+      "required_in": 19.211867410671864,
+      "shortfall_in": 7.211867406734854
+    },
+    {
+      "name": "PedSteelEB2B1X01_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 12.00000000393701,
+      "required_in": 19.211867410673094,
+      "shortfall_in": 7.211867406736085
+    },
+    {
+      "name": "PedSteelEB2B1X08_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 12.00000000393701,
+      "required_in": 19.211867410673094,
+      "shortfall_in": 7.211867406736085
+    },
+    {
+      "name": "PedSteelEB2B1Y01_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 12.00000000393701,
+      "required_in": 19.21186741066995,
+      "shortfall_in": 7.21186740673294
+    },
+    {
+      "name": "PedSteelEB2B1Y05_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 12.00000000393701,
+      "required_in": 19.211867410673094,
+      "shortfall_in": 7.211867406736085
+    },
+    {
+      "name": "PedSteelEB2B2X01_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 12.00000000393701,
+      "required_in": 19.211867410673094,
+      "shortfall_in": 7.211867406736085
+    },
+    {
+      "name": "PedSteelEB2B2X08_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 12.00000000393701,
+      "required_in": 19.211867410673094,
+      "shortfall_in": 7.211867406736085
+    },
+    {
+      "name": "PedSteelEB2B2Y01_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 12.00000000393701,
+      "required_in": 19.21186741066995,
+      "shortfall_in": 7.21186740673294
+    },
+    {
+      "name": "PedSteelEB2B2Y05_development_adequacy",
+      "status": "FAIL",
+      "category": "development",
+      "provided_in": 12.00000000393701,
+      "required_in": 19.211867410673094,
+      "shortfall_in": 7.211867406736085
+    }
+  ],
+  "scope_limits": "As-cast stock only: all eight pads intersect the unchanged beams in undeformed geometry; final bearing fit FAIL. Final seat/grinding elevations, cover, contact, construction stages and bearing acceptance remain open. Notebook, B4 geometry table and drawings pending reconciliation. T019 is a conditional pier check, not end-bent approval; all prior analysis/combined-load limitations and D-047 steel disposition remain.",
+  "backups": [
+    "archive/B4-before-level-bearing-seats-20261020.FCStd",
+    "archive/B4-before-level-bearing-seats-record-20261020.zip"
+  ]
+}

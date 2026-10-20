@@ -1,0 +1,15 @@
+{
+  "decision": "D-065",
+  "task": "T021",
+  "date": "2026-10-20",
+  "journal_sha256": "39674378a62fa24184f43176914b2cca538cb64de015345cb29d911fc80747ce",
+  "CAD_model_sha256": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
+  "source_register_before_sha256": "90883a674a3d8d914116e964f391d091ceaba06d092c909643121e96a47ebd36",
+  "source_register_after_sha256": "bf8b96fe0de7ddbb83eccb160b2eb5c859f88439957ee39d9d3c985125450b1b",
+  "protected_files_sha256": {
+    "Bridge_Geometry_2 Beam_V2.ipynb": "349d464afddc653dfe52808be44faea951f874ac6199026ea771f176f3e02751",
+    "project_current/geometry/tables/B4_Geometry_CAD_Tables.xlsx": "7ae68ec09a308fe6eda6df52d28eb402e61dec18033c219b411c551a51f14977",
+    "project_current/coherence/Coherence_Tracker.xlsx": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad"
+  },
+  "status": "IMPLEMENTED_AS_CAST_FINAL_FIT_OPEN"
+}

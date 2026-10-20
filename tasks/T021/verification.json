@@ -1,0 +1,41 @@
+{
+  "task": "T021",
+  "decision": "D-065",
+  "date": "2026-10-20",
+  "base_sha256": "1a890d58c67ffba2edd60b3ab6ea14bbf7c7ad49c6e427451f2c32b97ebc262c",
+  "candidate_sha256": "39674378a62fa24184f43176914b2cca538cb64de015345cb29d911fc80747ce",
+  "changed_component": "report:BearingDesign",
+  "protected_components_byte_exact": 278,
+  "existing_calculations_and_caches_byte_exact": true,
+  "historical_D064_disposition": "Marked superseded; literal status strings updated, original direction retained as history",
+  "new_literal_definitions": {
+    "BP_all_seat_override": "\"D-065: LEVEL AS-CAST TOPS AT PRIOR MAXIMUM ELEVATIONS\"",
+    "BP_all_seat_scope": "\"Six pedestals and eight pads: both end bents and the pier\"",
+    "BP_all_seat_longitudinal_slope": "0",
+    "BP_all_seat_transverse_slope": "0",
+    "BP_EB1_level_seat_elevation": "43.74578111249233 ft",
+    "BP_pier_level_seat_elevation": "44.26686320063029 ft",
+    "BP_EB2_level_seat_elevation": "43.75994652287092 ft",
+    "BP_all_seat_pad_thickness": "2.5625 in",
+    "BP_all_seat_CAD_status": "\"IMPLEMENTED: native editable level pedestals and linked level pads; steel elevations preserved\"",
+    "BP_all_seat_final_fit_status": "\"FAIL IN UNDEFORMED MODEL: as-cast stock overlaps unchanged beams; final setting and grinding remain open\"",
+    "BP_all_seat_downstream_status": "\"Notebook, B4 geometry table and drawings pending reconciliation to D-065\""
+  },
+  "stored_errors": 0,
+  "native_recalculation": false,
+  "native_visual_review": false,
+  "engineering_review": false,
+  "CAD_verification_sha256": "542e86c200d85137daf4a84be5446f15b24f9ff7f75948d3e41c76d436bfc2f3",
+  "CAD_candidate_sha256": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
+  "protected_files_sha256": {
+    "Bridge_Geometry_2 Beam_V2.ipynb": "349d464afddc653dfe52808be44faea951f874ac6199026ea771f176f3e02751",
+    "project_current/geometry/tables/B4_Geometry_CAD_Tables.xlsx": "7ae68ec09a308fe6eda6df52d28eb402e61dec18033c219b411c551a51f14977",
+    "project_current/coherence/Coherence_Tracker.xlsx": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad"
+  },
+  "final_bearing_fit": "FAIL - as-cast stock",
+  "maximum_sampled_fit_difference_in": {
+    "EB1": 0.12402949753749003,
+    "Pier": 0.0460508431955188,
+    "EB2": 0.15723380889948038
+  }
+}
