@@ -1,0 +1,37 @@
+{
+  "task": "T019",
+  "journal_sha256": "515256c187b7cac03afb47c6f92153441fdbb441ac6ef55799104ea85405de05",
+  "previous_sha256": "542fba20a8efa3fe75c6210901d77b0a4e9bcfc8f075ef934c6e8a0add6ceff5",
+  "promoted": "2026-10-20T14:10:45.895302+00:00",
+  "review": {
+    "candidate_sha256": "515256c187b7cac03afb47c6f92153441fdbb441ac6ef55799104ea85405de05",
+    "reviewer": "Codex, executing the authorized bearing-seat check on 20 October 2026",
+    "native_recalculation": true,
+    "native_visual_review": false,
+    "engineering_review": false,
+    "design_outcome": "unreviewed",
+    "external_analysis_disposition": "Selected Mathcad saved end rotations and shortening results are explicitly cited and compared arithmetically, but Mathcad/PSBeam/FBMP were not rerun. Current load reconciliation, combined lateral shear and uplift/contact remain outside acceptance.",
+    "external_analysis_status": "unreviewed",
+    "inherited_issues_disposition": "Original formulas, cached engineering failures and all 278 other components retained byte exactly. Conditional level-seat screen passes; it is not final bearing or project engineering acceptance. Full native appearance review not performed.",
+    "evidence_files": [
+      {
+        "path": "native-verification.json",
+        "sha256": "a46ce8acf455e6376477133dfdefc3ac1cd9823c21b04a3b94e6b176dc41360e"
+      },
+      {
+        "path": "independent-check.json",
+        "sha256": "7aad84c82d27bd9ad7dc948dc9b47d7fea2a55d9805958632b3ffd53470f182f"
+      },
+      {
+        "path": "source-results.json",
+        "sha256": "7d9891c8043c69d44be8ba879b2efe4efc8678f58d188a65dd7f89a0a961f6c5"
+      }
+    ]
+  },
+  "promotion_policy": {
+    "reviews_required": false,
+    "effective_date": "2026-10-16",
+    "basis": "User instructed that BPAD changes may proceed without mandatory native recalculation, appearance review or engineering review, until the user reinstates those requirements. Scope, dependency, exact-byte, reference-integrity and evidence checks remain mandatory."
+  },
+  "history": "workflow/history/515256c187b7cac03afb47c6f92153441fdbb441ac6ef55799104ea85405de05"
+}

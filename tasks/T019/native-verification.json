@@ -1,0 +1,79 @@
+{
+  "base_sha256": "542fba20a8efa3fe75c6210901d77b0a4e9bcfc8f075ef934c6e8a0add6ceff5",
+  "authored_sha256": "22883881e70086bf4791b9e6276a1723a9b66a5fb9c0c05c4e995cba6ab3b739",
+  "native_save_sha256": "d0add9eea7f53322996215b435f77b90bf68d154afa83bf4bef9f80dce3928cc",
+  "candidate_sha256": "515256c187b7cac03afb47c6f92153441fdbb441ac6ef55799104ea85405de05",
+  "native_actions": "Blockpad Formulas > Update All, File > Save, 20 October 2026.",
+  "native_recalculation": true,
+  "native_visual_review": false,
+  "new_section_matches_native_save_exactly": true,
+  "authored_content_preserved": true,
+  "original_formulas_and_caches_preserved": true,
+  "protected_components_byte_exact": 278,
+  "stored_errors": 0,
+  "rotation_comparisons": [
+    {
+      "quantity": "BP_bare120_1",
+      "native_rad": -0.008188857382303093,
+      "independent_rad": -0.008188857382303093
+    },
+    {
+      "quantity": "BP_nc120_1",
+      "native_rad": -0.0019363076297129285,
+      "independent_rad": -0.0019363076297129285
+    },
+    {
+      "quantity": "BP_full120_1",
+      "native_rad": -1.547273698146879e-05,
+      "independent_rad": -1.547273698146879e-05
+    },
+    {
+      "quantity": "BP_full240_1",
+      "native_rad": -0.000984656103459016,
+      "independent_rad": -0.000984656103459016
+    },
+    {
+      "quantity": "BP_static_max_1",
+      "native_rad": 0.009158040748780641,
+      "independent_rad": 0.009158040748780641
+    },
+    {
+      "quantity": "BP_live_pier_1",
+      "native_rad": 0.002470058157388417,
+      "independent_rad": 0.002470058157388417
+    },
+    {
+      "quantity": "BP_bare120_2",
+      "native_rad": 0.008629907128919399,
+      "independent_rad": 0.008629907128919399
+    },
+    {
+      "quantity": "BP_nc120_2",
+      "native_rad": 0.0028027742017715466,
+      "independent_rad": 0.0028027742017715466
+    },
+    {
+      "quantity": "BP_full120_2",
+      "native_rad": 0.0010126304164221854,
+      "independent_rad": 0.0010126304164221854
+    },
+    {
+      "quantity": "BP_full240_2",
+      "native_rad": 0.002006814401221333,
+      "independent_rad": 0.002006814401221333
+    },
+    {
+      "quantity": "BP_static_max_2",
+      "native_rad": 0.009624091113718546,
+      "independent_rad": 0.009624091113718546
+    },
+    {
+      "quantity": "BP_live_pier_2",
+      "native_rad": -0.0023019123788334335,
+      "independent_rad": -0.0023019123788334335
+    }
+  ],
+  "movement_native_in": 0.9836206717330463,
+  "independent_movement_in": 0.9836206717330463,
+  "engineering_acceptance": "Not performed; conditional screen and all inherited findings retained."
+}

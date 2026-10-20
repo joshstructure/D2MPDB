@@ -1,0 +1,44 @@
+[
+  {
+    "path": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd",
+    "sha256": "a6b0f967d271c193591d477e219ac66f98b72309d19958a04c6cd08e575a8dcd",
+    "matrix_region": "202056",
+    "matrix_storage": "column-major",
+    "native_recalculation": false,
+    "values": {
+      "release_deg": 0.3279121170659189,
+      "day30_deg": 0.5763836419879558,
+      "day60_deg": 0.6744241943616327,
+      "day90_deg": 0.724863358094495,
+      "day120_deg": 0.755596762893407,
+      "day240_deg": 0.8111268793668515,
+      "nc_deg": -0.35824471201898345,
+      "comp_deg": -0.11005573249497685,
+      "live_deg": -0.14152390757021716,
+      "bottom120_in": -1.9565713011520618,
+      "bottom240_in": -2.1015875014676375,
+      "net_camber_in": 0.12459274400657395
+    }
+  },
+  {
+    "path": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd",
+    "sha256": "182e3471f169d3a379c437ad12f359d567813bd4631bcc0b82e78ad860fa91b8",
+    "matrix_region": "202056",
+    "matrix_storage": "column-major",
+    "native_recalculation": false,
+    "values": {
+      "release_deg": 0.3422850322913779,
+      "day30_deg": 0.5971660169433504,
+      "day60_deg": 0.6977355793214406,
+      "day90_deg": 0.7494758490416344,
+      "day120_deg": 0.7810020389312495,
+      "day240_deg": 0.837964585319739,
+      "nc_deg": -0.3338701233872854,
+      "comp_deg": -0.1025676836220916,
+      "live_deg": -0.13188986411607523,
+      "bottom120_in": -1.9366045184525982,
+      "bottom240_in": -2.0798779898700688,
+      "net_camber_in": 0.5671714630550072
+    }
+  }
+]

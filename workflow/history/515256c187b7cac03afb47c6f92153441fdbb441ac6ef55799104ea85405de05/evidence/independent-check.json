@@ -1,0 +1,78 @@
+{
+  "base_sha256": "542fba20a8efa3fe75c6210901d77b0a4e9bcfc8f075ef934c6e8a0add6ceff5",
+  "sources": [
+    {
+      "path": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd",
+      "sha256": "a6b0f967d271c193591d477e219ac66f98b72309d19958a04c6cd08e575a8dcd",
+      "matrix_region": "202056",
+      "matrix_storage": "column-major",
+      "native_recalculation": false,
+      "values": {
+        "release_deg": 0.3279121170659189,
+        "day30_deg": 0.5763836419879558,
+        "day60_deg": 0.6744241943616327,
+        "day90_deg": 0.724863358094495,
+        "day120_deg": 0.755596762893407,
+        "day240_deg": 0.8111268793668515,
+        "nc_deg": -0.35824471201898345,
+        "comp_deg": -0.11005573249497685,
+        "live_deg": -0.14152390757021716,
+        "bottom120_in": -1.9565713011520618,
+        "bottom240_in": -2.1015875014676375,
+        "net_camber_in": 0.12459274400657395
+      }
+    },
+    {
+      "path": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd",
+      "sha256": "182e3471f169d3a379c437ad12f359d567813bd4631bcc0b82e78ad860fa91b8",
+      "matrix_region": "202056",
+      "matrix_storage": "column-major",
+      "native_recalculation": false,
+      "values": {
+        "release_deg": 0.3422850322913779,
+        "day30_deg": 0.5971660169433504,
+        "day60_deg": 0.6977355793214406,
+        "day90_deg": 0.7494758490416344,
+        "day120_deg": 0.7810020389312495,
+        "day240_deg": 0.837964585319739,
+        "nc_deg": -0.3338701233872854,
+        "comp_deg": -0.1025676836220916,
+        "live_deg": -0.13188986411607523,
+        "bottom120_in": -1.9366045184525982,
+        "bottom240_in": -2.0798779898700688,
+        "net_camber_in": 0.5671714630550072
+      }
+    }
+  ],
+  "spans": [
+    {
+      "span": 1,
+      "grade": 0.004998835584536575,
+      "bare120_rad": -0.008188857382303093,
+      "nc120_rad": -0.0019363076297129285,
+      "full120_rad": -1.547273698146879e-05,
+      "full240_rad": -0.000984656103459016,
+      "static_max_rad": 0.009158040748780641,
+      "live_rad": 0.002470058157388417,
+      "opposite": true
+    },
+    {
+      "span": 2,
+      "grade": -0.00500119161105815,
+      "bare120_rad": 0.008629907128919399,
+      "nc120_rad": 0.0028027742017715466,
+      "full120_rad": 0.0010126304164221854,
+      "full240_rad": 0.002006814401221333,
+      "static_max_rad": 0.009624091113718546,
+      "live_rad": -0.0023019123788334335,
+      "opposite": true
+    }
+  ],
+  "static_limit_rad": 0.0125,
+  "cyclic_limit_rad": 0.004,
+  "thermal_in": 0.695331,
+  "creep_in": 0.2882896717330463,
+  "movement_in": 0.9836206717330463,
+  "new_definition_count": 54,
+  "limits": "Saved Mathcad results, not rerun. Transverse zero-tilt assumption. No combined lateral bearing approval or end-bent approval."
+}

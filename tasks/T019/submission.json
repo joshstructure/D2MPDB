@@ -1,0 +1,34 @@
+{
+  "summary": "Add a natively recalculated conditional pier level-seat rotation/movement check within Bearing Pads; correct the existing SPI link.",
+  "published_outputs": [
+    "BearingDesign.BP_level_seat_result",
+    "BP_static_max",
+    "BP_cyclic_max",
+    "BP_movement"
+  ],
+  "assumptions_and_conventions": [
+    "Saved selected Mathcad end slopes, not a new beam solver run; exact source hashes recorded.",
+    "Positive slope rises with station; Span 1 pier is the right end, Span 2 pier is the left end.",
+    "Zero transverse beam tilt; full-unit thermal movement and both full bottom shortenings form a conservative bound."
+  ],
+  "downstream_impact": [
+    "Supports level pier seat detailing subject to stated conditions; geometry and end-bent approval unchanged."
+  ],
+  "external_analysis": "Mathcad and FBMP were not rerun. Beam source currency/load reconciliation, combined lateral shear and uplift/contact remain outside the accepted check.",
+  "checks_performed": [
+    "FDOT primary-source verification",
+    "Exact external input extraction and provenance",
+    "Independent rotation/movement arithmetic",
+    "Native Blockpad recalculation",
+    "Native numeric cache comparison",
+    "Original formulas/caches and protected bytes preserved",
+    "Scope/dependency/reference checks"
+  ],
+  "open_items": [
+    "Final combined bearing actions and support/plate details",
+    "External beam-analysis currency and load reconciliation",
+    "Transverse zero-tilt detailing assumption",
+    "Separate end-bent seat checks",
+    "Native pagination/appearance not fully reviewed"
+  ]
+}

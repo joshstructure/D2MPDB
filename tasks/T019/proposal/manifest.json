@@ -1,0 +1,10 @@
+{
+  "task": "T019",
+  "base_sha256": "542fba20a8efa3fe75c6210901d77b0a4e9bcfc8f075ef934c6e8a0add6ceff5",
+  "components": {
+    "report:BearingDesign": {
+      "file": "000.xml",
+      "sha256": "238ad161b5077e8d8d856c2dfc7feeec57780c4644cc0e1065c2d1a75f01005c"
+    }
+  }
+}

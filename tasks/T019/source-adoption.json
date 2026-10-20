@@ -1,0 +1,19 @@
+{
+  "decision": "D-063",
+  "date": "2026-10-20",
+  "task": "T019",
+  "previous_registered_journal_sha256": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50",
+  "immediate_base_journal_sha256": "542fba20a8efa3fe75c6210901d77b0a4e9bcfc8f075ef934c6e8a0add6ceff5",
+  "current_journal_sha256": "515256c187b7cac03afb47c6f92153441fdbb441ac6ef55799104ea85405de05",
+  "register_before_sha256": "4bb7eb23b216166b00328146a09309559398f906cdc8e1d8ec496283e1e24a0d",
+  "register_after_sha256": "479ac2d9624b491c01725cdfd464da7c5e48f34c8e133bfc0754639d88024078",
+  "tracker_sha256_unchanged": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
+  "tracker_dispositions_read": {
+    "COH-015": "Closed / Added",
+    "COH-016": "Closed / Added",
+    "COH-017": "Open; review L_Beam assumptions",
+    "COH-018": "Open"
+  },
+  "other_source_records_unchanged": true,
+  "adoption_scope": "D-063. T019 adds the conditional level pier bearing-seat check under BearingDesign / Bearing Pads. Native Blockpad recalculation and independent arithmetic agree: static 0.009624091 rad <= 0.0125 rad, cyclic 0.002470058 rad <= 0.004 rad, conservative longitudinal thermal/creep movement 0.983620672 in <= 1 in. Uses selected MCAD-S1/S2 saved end slopes and shortenings, live profile/pad/thermal inputs; source solver currency/load reconciliation, combined lateral shear, uplift/contact and final details remain open. No pedestal geometry or end-bent approval. COH-017/018 and all workbook statuses/responses are preserved. Inherits accepted T018 native full-journal recalculation (542fba20): it exposed FBMPPier.NB_checkUplift and FBMPEndBent.EB_CheckGravity failures; those and all other existing results remain byte exact. T018 is a native cache refresh, not external-analysis rerun or engineering acceptance. Exact T019 evidence: tasks/T019/native-verification.json, independent-check.json and workflow/completed/T019.json. Prior selected revision T017 and its source/authority history: D-058, workflow/completed/T017.json. Only BearingDesign changes from T018; prior journal resources and all other components are preserved."
+}

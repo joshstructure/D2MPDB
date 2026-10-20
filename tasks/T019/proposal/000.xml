@@ -1,0 +1,1158 @@
+<report name="BearingDesign" title="Bearings and Support Details" unit="in" pagesize="816, 1056" margin="48,48,48,48" collapsemargins="False">
+        <stylerule applytoall="True" type="Any" leftindent="0.25 in" spacingafter="4" />
+        <stylerule type="AnyEquation" name="Required Input" texthighlight="#F7E6B9" />
+        <embed spacingbefore="5" spacingafter="8">
+            <table name="ProjectStamp" capture="False" colwidths="1:95, 2:165, 3:95, 4:165">
+                <stylerule range="A1:D4" fontfamily="Times New Roman" fontsize="9" vertalign="Center" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);" />
+                <row>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Firm</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.Firm"><textvalue>Parsons Transportation Group Inc</textvalue></c>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Project</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.Project"><textvalue>I-95 Capacity Improvements from South of SR 152 to South of SR 126</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Address</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.Address"><textvalue>1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301</textvalue></c>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Job no.</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.JobNo"><textvalue></textvalue></c>
+                </row>
+                <row>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Designed by</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.DesignedBy"><textvalue>JAT</textvalue></c>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Date</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.DesignDate"><textvalue>10/17/2026</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Checked by</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.CheckedBy"><textvalue>MIK</textvalue></c>
+                    <c capture="False" background="#F1F5FA" fontweight="bold"><textvalue>Date</textvalue></c>
+                    <c capture="False" background="#F1F5FA" formula="ProjectInfo.CheckDate"><textvalue></textvalue></c>
+                </row>
+            </table>
+        </embed>
+        <heading>Bearings and Support Details</heading>
+        <heading level="1" keepwithnext="True">Cover</heading>
+        <paragraph id="paragraph69xuejqa">
+            <image source="Resource26" width="402.16771124246145" height="574.6988743736679" />
+             Link
+        </paragraph>
+        <paragraph level="1" />
+        <paragraph level="1">
+            <image source="Resource27" width="533.6781966346201" height="62.664149540322796" />
+        </paragraph>
+        <paragraph level="1" />
+        <heading level="1">Cap</heading>
+        <paragraph level="1">Pipe piles </paragraph>
+        <embed level="2">
+            <canvas title="Canvas 1" name="Canvas1" unit="in" size="6.5 in; 2 in; scaletofit">
+                <include target="Library.Geometry" />
+                <circle center="3.53, 1.44, 0" normal="0, 0, 1" radius="0.61" fillcolor="#FFFFFF" linethickness="4" linecolor="#B35012" />
+                <lineardim startpoint="2.920182863569142, 1.4423235019483092, 0" endpoint="4.139817136430858, 1.4423235019483092, 0" pointondimline="3.53, 0.63, 0" name="DimLabel2" linecolor="#034AC8"><num>24 in</num></lineardim>
+                <lineardim startpoint="4.139817136430858, 1.4376764980516925, 0" endpoint="4.65, 1.4423235019483092, 0" pointondimline="4.139817136430858, 0.63, 0" linecolor="#034AC8"><num>3 in</num></lineardim>
+                <lines pts="5.19, 2.17, 0; 5.19, 0.3899999999999997, 0" linepattern="Dashes" />
+                <lines pts="5.63, 2.14, 0; 5.63, 0.3599999999999999, 0" />
+                <lineardim startpoint="4.65, 1.38, 0" endpoint="5.19, 1.38, 0" pointondimline="4.92, 0.63, 0" linecolor="#034AC8"><num>1 in</num></lineardim>
+                <lineardim startpoint="5.19, 1.38, 0" endpoint="5.63, 1.38, 0" pointondimline="5.68, 0.63, 0" linecolor="#034AC8"><num>3 in</num></lineardim>
+                <lineardim startpoint="3.53, 1.44, 0" endpoint="5.63, 1.44, 0" pointondimline="4.53, 1.78, 0" formula="(DimLabel2/2)+3 in+1 in+3 in" name="DimLabel1" linecolor="#034AC8"><num>19 in</num></lineardim>
+                <arrowlines pts="4.39116782311555, 0.16, 0; 4.39116782311555, 0.56, 0" endarrow="6; 3" pointsize="2" linecolor="#EF3429" />
+                <arrowlines pts="4.9611678231155505, 0.24, 0; 4.9611678231155505, 0.5499202366602238, 0" endarrow="6; 3" pointsize="2" linecolor="#EF3429" />
+                <arrowlines pts="5.89, 0.89, 0; 5.41, 0.73, 0" endarrow="6; 3" pointsize="2" linecolor="#EF3429" />
+                <lines pts="1.41, 2.12, 0; 1.41, 0.3900000000000001, 0" />
+                <lines pts="4.66, 2.16, 0; 4.66, 0.3799999999999999, 0" linepattern="Dashes" />
+                <lineardim startpoint="5.63, 1.44, 0" endpoint="1.41, 1.44, 0" pointondimline="3.52, 2.21, 0" formula="DimLabel1*2 to ft" linecolor="#034AC8"><num>3.1666666666666665 ft</num></lineardim>
+                <arrowlines pts="6.04, 1.31, 0; 5.63, 1.31, 0" endarrow="6; 3" pointsize="2" linecolor="#EF3429" />
+                <arrowlines pts="3.9608727477963965, 1.8717300538050397, 0; 4.138788695249119, 2.05, 0" endarrow="1; 6" linecolor="#B35012" />
+                <arrowlines pts="3.099127252203603, 1.00826994619496, 0; 2.9417519010098285, 0.8505814658119276, 0" endarrow="1; 6" linecolor="#B35012" />
+                <arrowlines pts="3.099127252203603, 1.8717300538050399, 0; 2.9212113047508814, 2.05, 0" endarrow="1; 6" linecolor="#B35012" />
+                <arrowlines pts="3.960872747796397, 1.00826994619496, 0; 4.138788695249119, 0.8300000000000001, 0" endarrow="1; 6" linecolor="#B35012" />
+                <planecontainer origin="3.52, 0.23, 0" dir="0.6300000000000003, 0, 0" normal="0, 0, 0.3968999999999971" textcolor="#EF3429"><textvalue>Pile Tolerance</textvalue></planecontainer>
+                <planecontainer origin="5.91, 0.97, 0" dir="0.6299999999999999, 0, 0" normal="0, 0, 0.3968999999999971" textcolor="#EF3429"><textvalue>Cover</textvalue></planecontainer>
+                <planecontainer origin="4.94, 0.23, 0" dir="0.6299999999999999, 0, 0" normal="0, 0, 0.3968999999999971" textcolor="#EF3429"><textvalue>Pile out of tolerance</textvalue></planecontainer>
+                <planecontainer origin="6.05, 1.41, 0" dir="0.6299999999999999, 0, 0" normal="0, 0, 0.3968999999999971" textcolor="#EF3429"><textvalue>Pier Wall Face</textvalue></planecontainer>
+            </canvas>
+        </embed>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="(24/2)+3+1+3">
+                <expbody>(24/2)+3+1+3</expbody>
+                <expresult> = 19</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">One-sided dimension sum in the pipe-pile cap sizing sketch.</paragraph>
+        <section name="EqNotes_PedBridge_001_24_2_3_1_3" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">Divide the entered 24 by 2, then add the three entered allowances of 3, 1, and 3. The arithmetic forms a half-size plus edge allowances. The expression itself stores these as unitless numbers, so its physical units and the individual allowance meanings must come from the associated sketch.</paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="3.167ft to ft in">
+                <expbody>3.167ft to ft in</expbody>
+                <expresult> = 3 ft 2.004 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Entered length displayed in feet and inches.</paragraph>
+        <section name="EqNotes_PedBridge_002_3_167ft_to_ft_in" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">Display the entered length as whole feet plus the remaining inches. This is a unit-display conversion, not a change to the physical length.</paragraph>
+        </section>
+        <paragraph />
+        <paragraph>
+            <image source="Resource43" width="613.6752319514766" height="483.0217954714826" />
+        </paragraph>
+        <paragraph>
+            <image source="Resource46" width="399.2070654890851" height="78.79086818863561" />
+        </paragraph>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="BearingPad_length = BridgeGeometry_2Beam.Bearing_pad_length to in">
+                <expbody>BearingPad_length = BridgeGeometry_2Beam.Bearing_pad_length to in</expbody>
+                <expresult> = 10 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Bearing-pad dimension along the cap-width dimension chain.</paragraph>
+        <section name="EqNotes_PedBridge_003_BearingPad_length" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This is dimension C in the embedded Figure 12.5-1. Measure the pad in the direction of the illustrated cap-width calculation. It occupies the part of the chain where the beam bears on the pad.</paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Cap_cover=3 in">
+                <expbody>Cap_cover=3 in</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Concrete cover between the cap face and the outermost reinforcing steel.</paragraph>
+        <section name="EqNotes_PedBridge_004_Cap_cover" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This is dimension A in the embedded cap-width figure. It reserves concrete between the exposed cap edge and the reinforcement. The separate B dimension then moves the bearing pad farther inside the reinforcement.</paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Fig_12_5_1_DimB=1 in">
+                <expbody>Fig_12_5_1_DimB=1 in</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Extra inset from the outermost cap reinforcement to the bearing-pad edge.</paragraph>
+        <section name="EqNotes_PedBridge_005_Fig_12_5_1_DimB" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This is dimension B in the embedded Figure 12.5-1. It moves the pad inward beyond the steel location, after the concrete cover has already been counted. It is not additional pad length.</paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Fig_12_5_1_DimD=4 in">
+                <expbody>Fig_12_5_1_DimD=4 in</expbody>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Distance from the inside bearing-pad edge toward the beam-end detail.</paragraph>
+        <section name="EqNotes_PedBridge_006_Fig_12_5_1_DimD" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">This is dimension D in the embedded Figure 12.5-1. The entered value follows the figure’s no-diaphragm option. This distance is added after the bearing-pad length to reserve the shown space near the beam end.</paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Fig_12_5_1_DimF=3 in/2">
+                <expbody>Fig_12_5_1_DimF=3 in/2</expbody>
+                <expresult> = 1.5 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">Half of the shown no-diaphragm separation used in this end-bent dimension chain.</paragraph>
+        <section name="EqNotes_PedBridge_007_Fig_12_5_1_DimF" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">The displayed expression divides the 3 in separation by 2. It therefore contributes half that separation to this one-sided calculation. In the embedded double-bearing figure, F labels the separation between the opposing end details; the journal uses a half-share here for the stated end-bent adaptation.</paragraph>
+        </section>
+        <paragraph spacingafter="2" spacingbefore="6">
+            <dynexp formula="Cap_width_min=Cap_cover+Fig_12_5_1_DimB+BearingPad_length+Fig_12_5_1_DimD+Fig_12_5_1_DimF">
+                <expbody>Cap_width_min=Cap_cover+Fig_12_5_1_DimB+BearingPad_length+Fig_12_5_1_DimD+Fig_12_5_1_DimF</expbody>
+                <expresult> = 19.5 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1" fontweight="bold">One-sided cap dimension assembled from the entered bearing and edge distances.</paragraph>
+        <section name="EqNotes_PedBridge_008_Cap_width_min" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" level="1">
+                Start with 
+                <dynexp formula="Cap_cover" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Cap_cover</expbody>
+                </dynexp>
+                , the concrete cover. Add 
+                <dynexp formula="Fig_12_5_1_DimB" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Fig_12_5_1_DimB</expbody>
+                </dynexp>
+                , the inset from the outside reinforcement to the pad, and 
+                <dynexp formula="BearingPad_length" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>BearingPad_length</expbody>
+                </dynexp>
+                , the pad length. Then add 
+                <dynexp formula="Fig_12_5_1_DimD" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Fig_12_5_1_DimD</expbody>
+                </dynexp>
+                , the space toward the beam end, and 
+                <dynexp formula="Fig_12_5_1_DimF" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                    <expbody>Fig_12_5_1_DimF</expbody>
+                </dynexp>
+                , the entered half-share of the end separation.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="10" level="1">The result is the sum of this one-sided chain for the end-bent adaptation noted above. The displayed expression does not double the chain or include the diaphragm-extension dimension E from the embedded double-bearing figure; it should not be read as that figure’s full two-bearing formula.</paragraph>
+        </section>
+        <paragraph />
+        <heading level="1">Pedestal</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">
+            Pier pedestal geometry is referenced live from
+            <span fontweight="bold">Bridge Geometry_2 Beam</span>
+            ; no duplicate pedestal inputs are introduced here.
+        </paragraph>
+        <embed spacingbefore="8" spacingafter="12">
+            <table name="PedestalGeometrySummary" title="Pedestal Geometry Summary" capture="False" colwidths="1:210, 2:130, 3:180">
+                <stylerule range="A1:C8" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.7, &quot;#A78638&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.35, &quot;#D8C896&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.35, &quot;#D8C896&quot;);" />
+                <stylerule range="A1:C1" background="#F7E6B9" fontweight="bold" horzalign="Center" vertalign="Center" />
+                <stylerule range="A2:C8" background="#FFF8E9" />
+                <stylerule range="B2:B8" horzalign="Center" />
+                <row>
+                    <c capture="False"><textvalue>Parameter</textvalue></c>
+                    <c capture="False"><textvalue>Current Value</textvalue></c>
+                    <c capture="False"><textvalue>Use in N Check</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False"><textvalue>Pedestal height</textvalue></c>
+                    <c capture="False" formula="BridgeGeometry_2Beam.Pedestal_ht"><num>6 in</num></c>
+                    <c capture="False"><textvalue>Included in pier height H</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False"><textvalue>Pedestal transverse width</textvalue></c>
+                    <c capture="False" formula="BridgeGeometry_2Beam.Pedestal_width"><num>42 in</num></c>
+                    <c capture="False"><textvalue>Shown for pedestal footprint; does not control longitudinal N</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False"><textvalue>Pedestal longitudinal length</textvalue></c>
+                    <c capture="False" formula="BridgeGeometry_2Beam.Pedestal_length_pier"><num>4 ft</num></c>
+                    <c capture="False"><textvalue>Defines the available longitudinal seat length</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False"><textvalue>Pedestal chamfer</textvalue></c>
+                    <c capture="False" formula="BridgeGeometry_2Beam.Pedestal_chamfer"><num>3/4 in</num></c>
+                    <c capture="False"><textvalue>Footprint/detailing parameter</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False"><textvalue>Type F bearing pad length</textvalue></c>
+                    <c capture="False" formula="BridgeGeometry_2Beam.Bearing_pad_length"><num>10 in</num></c>
+                    <c capture="False"><textvalue>Longitudinal pad dimension</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False"><textvalue>Pier beam-end gap</textvalue></c>
+                    <c capture="False" formula="BridgeGeometry_2Beam.Pier_beamEndGap"><num>3 in</num></c>
+                    <c capture="False"><textvalue>Locates each beam end 1/2 gap from pier centerline</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False"><textvalue>Support skew</textvalue></c>
+                    <c capture="False" formula="BridgeGeometry_2Beam.Bearing_pad_skew"><num>0 deg</num></c>
+                    <c capture="False"><textvalue>LRFD Eq. 4.7.4.4-1 variable S</textvalue></c>
+                </row>
+            </table>
+        </embed>
+        <paragraph>
+            <image source="Resource43" width="347.5505474964902" height="431.44205896115636" />
+        </paragraph>
+        <heading level="2">Minimum Support Length (N)</heading>
+        <embed spacingbefore="8" spacingafter="12">
+            <table name="PedestalNContext" capture="False" colwidths="1:90, 2:430">
+                <stylerule range="A1:B3" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CCD9E5&quot;);" />
+                <stylerule range="A1:A3" fontweight="bold" />
+                <stylerule range="A1:B1" background="#F1F5FA" />
+                <stylerule range="A2:B2" background="#FFF8E9" />
+                <stylerule range="A3:B3" background="#EFF7F1" />
+                <row>
+                    <c capture="False"><textvalue>Objective</textvalue></c>
+                    <c capture="False"><textvalue>Verify the longitudinal support length available at each side of the pier pedestal against LRFD 4.7.4.4.</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False"><textvalue>Inputs</textvalue></c>
+                    <c capture="False"><textvalue>Adjacent span lengths, pier height H, support skew S, beam-end gap, and current pedestal length.</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False"><textvalue>Output</textvalue></c>
+                    <c capture="False"><textvalue>Required empirical support length N, provided overlap, margin, and live PASS/FAIL check.</textvalue></c>
+                </row>
+            </table>
+        </embed>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">FDOT SDG 2.3.1 exempts simple or continuous span superstructures supported entirely on elastomeric bearings from full seismic design, but still requires the minimum bearing support dimensions of LRFD 4.7.4.4. This check uses the full empirical N, consistent with the FDOT prestressed-beam design example.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8">
+            <link address="https://www.fdot.gov/structures/StructuresManual/CurrentRelease/PrecastBeamExample.pdf">FDOT Prestressed Beam Example — Composite Neoprene Bearing Pad, Minimum Support Length</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0">
+            <dynexp formula="PedN_H = BridgeGeometry_2Beam.CapTop_aboveTerrain+BridgeGeometry_2Beam.Pedestal_ht to ft" mathlayout="on" showsteps="False">
+                <expbody>PedN_H = BridgeGeometry_2Beam.CapTop_aboveTerrain+BridgeGeometry_2Beam.Pedestal_ht to ft</expbody>
+                <expresult> = 18.743 ft</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Pier height H for the N equation, taken from the current terrain datum to the top of pedestal.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">The journal does not contain a separate top-of-footing datum for this pile-supported pier. If a different structural base datum is established for LRFD H, revise this live definition.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0">
+            <dynexp formula="PedN_L1 = BridgeGeometry_2Beam.Span_1 to ft" mathlayout="on" showsteps="False">
+                <expbody>PedN_L1 = BridgeGeometry_2Beam.Span_1 to ft</expbody>
+                <expresult> = 107.35 ft</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" fontweight="bold">Span 1 deck length to the adjacent end of bridge.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0">
+            <dynexp formula="PedN_L2 = BridgeGeometry_2Beam.Span_2 to ft" mathlayout="on" showsteps="False">
+                <expbody>PedN_L2 = BridgeGeometry_2Beam.Span_2 to ft</expbody>
+                <expresult> = 104.9 ft</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" fontweight="bold">Span 2 deck length to the adjacent end of bridge.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0">
+            <dynexp formula="PedN_S = BridgeGeometry_2Beam.Bearing_pad_skew to deg" mathlayout="on" showsteps="False">
+                <expbody>PedN_S = BridgeGeometry_2Beam.Bearing_pad_skew to deg</expbody>
+                <expresult> = 0 deg</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="8" fontweight="bold">Support skew measured from a line normal to the span.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0">
+            <dynexp formula="PedN_N1 = (8+0.02*(PedN_L1/(1 ft))+0.08*(PedN_H/(1 ft)))*(1+0.000125*(PedN_S/(1 deg))^2)*(1 in)" mathlayout="on" showsteps="True" seplines="True">
+                <expbody>PedN_N1 = (8+0.02*(PedN_L1/(1 ft))+0.08*(PedN_H/(1 ft)))*(1+0.000125*(PedN_S/(1 deg))^2)*(1 in)</expbody>
+                <expstep> = (8+0.02*(107.35 ft/(1 ft))+0.08*(18.743 ft/(1 ft)))*(1+0.000125*(0 deg/(1 deg))^2)*(1 in)</expstep>
+                <expresult> = 11.646 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" fontweight="bold">Span 1 empirical minimum support length (LRFD Eq. 4.7.4.4-1).</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0">
+            <dynexp formula="PedN_N2 = (8+0.02*(PedN_L2/(1 ft))+0.08*(PedN_H/(1 ft)))*(1+0.000125*(PedN_S/(1 deg))^2)*(1 in)" mathlayout="on" showsteps="True" seplines="True">
+                <expbody>PedN_N2 = (8+0.02*(PedN_L2/(1 ft))+0.08*(PedN_H/(1 ft)))*(1+0.000125*(PedN_S/(1 deg))^2)*(1 in)</expbody>
+                <expstep> = (8+0.02*(104.9 ft/(1 ft))+0.08*(18.743 ft/(1 ft)))*(1+0.000125*(0 deg/(1 deg))^2)*(1 in)</expstep>
+                <expresult> = 11.597 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" fontweight="bold">Span 2 empirical minimum support length (LRFD Eq. 4.7.4.4-1).</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0">
+            <dynexp formula="PedN_Nreq = Max(PedN_N1,PedN_N2) to in" mathlayout="on" showsteps="False">
+                <expbody>PedN_Nreq = Max(PedN_N1,PedN_N2) to in</expbody>
+                <expresult> = 11.646 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="8" fontweight="bold">Governing full empirical N used for the pier pedestal check.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0">
+            <dynexp formula="PedN_Nprov = BridgeGeometry_2Beam.Pedestal_length_pier/2-BridgeGeometry_2Beam.PierCL_beamEnd to in" mathlayout="on" showsteps="True" seplines="True">
+                <expbody>PedN_Nprov = BridgeGeometry_2Beam.Pedestal_length_pier/2-BridgeGeometry_2Beam.PierCL_beamEnd to in</expbody>
+                <expstep> = 4 ft/2-1.5 in to in</expstep>
+                <expresult> = 22.5 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Support length provided from each beam end to the outside edge of the full-length pedestal.</paragraph>
+        <section name="PedestalNProvidedNote" capture="False" hide="true">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="8">The pier pedestal is modeled as extending the full 4-ft cap width. The two beam ends are separated by the 3-in pier gap, so each beam end is 1.5 in from pier centerline. The provided overlap is therefore one-half the pedestal length minus the beam-end offset.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0">
+            <dynexp formula="PedN_margin = PedN_Nprov-PedN_Nreq to in" mathlayout="on" showsteps="False">
+                <expbody>PedN_margin = PedN_Nprov-PedN_Nreq to in</expbody>
+                <expresult> = 10.854 in</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Available support-length margin.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="8">
+            <dynexp formula="Check_PedN = If(PedN_Nprov &gt;= PedN_Nreq, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" style="Result only" showresult="True" showidentifier="False" showformula="False">
+                <expresult>✓ PASS</expresult>
+            </dynexp>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" fontweight="bold">Minimum support length check.</paragraph>
+        <embed spacingbefore="8" spacingafter="12">
+            <table name="PedestalNSummary" title="Pedestal Minimum Support Length Summary" capture="False" colwidths="1:180, 2:110, 3:110, 4:120">
+                <stylerule range="A1:D6" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.7, &quot;#6A9075&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.35, &quot;#CCD6D0&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.35, &quot;#CCD6D0&quot;);" />
+                <stylerule range="A1:D1" background="#DCECE0" fontweight="bold" horzalign="Center" vertalign="Center" />
+                <stylerule range="A2:C6" background="#EFF7F1" />
+                <stylerule range="B2:D6" horzalign="Center" vertalign="Center" />
+                <row>
+                    <c capture="False"><textvalue>Item</textvalue></c>
+                    <c capture="False"><textvalue>Span 1 / Value</textvalue></c>
+                    <c capture="False"><textvalue>Span 2 / Requirement</textvalue></c>
+                    <c capture="False"><textvalue>Result</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False"><textvalue>Deck length L</textvalue></c>
+                    <c capture="False" formula="PedN_L1"><num>107.34999999999991 ft</num></c>
+                    <c capture="False" formula="PedN_L2"><num>104.90000000000009 ft</num></c>
+                    <c capture="False"><textvalue>—</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False"><textvalue>Empirical N</textvalue></c>
+                    <c capture="False" formula="PedN_N1"><num>11.646433523579633 in</num></c>
+                    <c capture="False" formula="PedN_N2"><num>11.597433523579637 in</num></c>
+                    <c capture="False"><textvalue>Span 1 governs</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False"><textvalue>Governing required N</textvalue></c>
+                    <c capture="False" formula="PedN_Nreq"><num>11.646433523579633 in</num></c>
+                    <c capture="False"><textvalue>Full empirical N</textvalue></c>
+                    <c capture="False"><textvalue>—</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False"><textvalue>Provided support length</textvalue></c>
+                    <c capture="False" formula="PedN_Nprov"><num>22.5 in</num></c>
+                    <c capture="False" formula="PedN_margin"><num>10.853566476420367 in</num></c>
+                    <c capture="False" formula="Check_PedN"><textvalue>✓ PASS</textvalue></c>
+                </row>
+                <row>
+                    <c capture="False"><textvalue>Pier height / skew</textvalue></c>
+                    <c capture="False" formula="PedN_H"><num>18.742919044745424 ft</num></c>
+                    <c capture="False" formula="PedN_S"><num>0 deg</num></c>
+                    <c capture="False"><textvalue>—</textvalue></c>
+                </row>
+            </table>
+        </embed>
+        <paragraph />
+        <heading level="1">Bearing Pads</heading>
+        <paragraph>
+            Standard Plan
+            <link address="https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/design/standardplans/2027/idx/400-510.pdf"> 400-510 </link>
+        </paragraph>
+        <section name="TypeFPadDesign" capture="False" hide="false">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Selected bearing pad: FDOT Type F for all eight beam ends. Geometry and material properties reference Bridge Geometry_2 Beam. The following checks address the standard service-gravity limits at the four pier bearings.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">
+                <link address="https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/design/standardplans/2027/spi/spi-400-510.pdf">FDOT SPI 400-510 — limiting parameters and design assumptions (FY 2026–27)</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="5" keepwithnext="True" id="paragraphrefreturn0036">
+                <dynexp formula="LL_atBearing = Max(PedBridgeWeights_2Beams.PL_B1,PedBridgeWeights_2Beams.PL_B2,PedBridgeWeights_2Beams.PL_B3,PedBridgeWeights_2Beams.PL_B4)" mathlayout="on" showsteps="False">
+                    <expbody>LL_atBearing = Max(PedBridgeWeights_2Beams.PL_B1,PedBridgeWeights_2Beams.PL_B2,PedBridgeWeights_2Beams.PL_B3,PedBridgeWeights_2Beams.PL_B4)</expbody>
+                    <expresult> = 28.984 kip</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Maximum individual service pedestrian reaction at the pier.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="5" keepwithnext="True">
+                <dynexp formula="DL_BearingPad = Max(PedBridgeWeights_2Beams.DC_super_B1+PedBridgeWeights_2Beams.DW_B1,PedBridgeWeights_2Beams.DC_super_B2+PedBridgeWeights_2Beams.DW_B2,PedBridgeWeights_2Beams.DC_super_B3+PedBridgeWeights_2Beams.DW_B3,PedBridgeWeights_2Beams.DC_super_B4+PedBridgeWeights_2Beams.DW_B4)" mathlayout="on" showsteps="False">
+                    <expbody>DL_BearingPad = Max(PedBridgeWeights_2Beams.DC_super_B1+PedBridgeWeights_2Beams.DW_B1,PedBridgeWeights_2Beams.DC_super_B2+PedBridgeWeights_2Beams.DW_B2,PedBridgeWeights_2Beams.DC_super_B3+PedBridgeWeights_2Beams.DW_B3,PedBridgeWeights_2Beams.DC_super_B4+PedBridgeWeights_2Beams.DW_B4)</expbody>
+                    <expresult> = 92.473 kip</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Maximum individual service dead reaction at the pad.</paragraph>
+            <section name="TypeFNote_DL_BearingPad" capture="False" hide="true">
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Includes above-pad DC and entered DW. Excludes pedestal, cheek-wall, cap and pier-wall weight. End-bent reactions and any additional load pattern require their corresponding bearing checks.</paragraph>
+            </section>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="5" keepwithnext="True">
+                <dynexp formula="Type_F_LL_max = If(Abs(BridgeGeometry_2Beam.Bearing_pad_skew) &lt;= 5 deg, 150 kip, If(Abs(BridgeGeometry_2Beam.Bearing_pad_skew) &lt;= 30 deg, 120 kip, 0 kip))" mathlayout="on" showsteps="False">
+                    <expbody>Type_F_LL_max = If(Abs(BridgeGeometry_2Beam.Bearing_pad_skew) &lt;= 5 deg, 150 kip, If(Abs(BridgeGeometry_2Beam.Bearing_pad_skew) &lt;= 30 deg, 120 kip, 0 kip))</expbody>
+                    <expresult> = 150 kip</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Type F service live-load limit for the adopted skew.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="5" keepwithnext="True">
+                <dynexp formula="Type_F_DL_base = If(Abs(BridgeGeometry_2Beam.Bearing_pad_skew) &lt;= 5 deg, 290 kip, If(Abs(BridgeGeometry_2Beam.Bearing_pad_skew) &lt;= 30 deg, 139 kip, 0 kip))" mathlayout="on" showsteps="False">
+                    <expbody>Type_F_DL_base = If(Abs(BridgeGeometry_2Beam.Bearing_pad_skew) &lt;= 5 deg, 290 kip, If(Abs(BridgeGeometry_2Beam.Bearing_pad_skew) &lt;= 30 deg, 139 kip, 0 kip))</expbody>
+                    <expresult> = 290 kip</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Type F base service dead-load limit for the adopted skew.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="5" keepwithnext="True">
+                <dynexp formula="Type_F_Max = Type_F_DL_base+1.75*(Type_F_LL_max-LL_atBearing) to kip" mathlayout="on" showsteps="False">
+                    <expbody>Type_F_Max = Type_F_DL_base+1.75*(Type_F_LL_max-LL_atBearing) to kip</expbody>
+                    <expresult> = 501.777 kip</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Service dead-load allowance using the maximum pier live reaction.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="5" keepwithnext="True">
+                <dynexp formula="Check_TypeF_skew = If(Abs(BridgeGeometry_2Beam.Bearing_pad_skew) &lt;= 30 deg, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" mathlayout="on" showsteps="False">
+                    <expbody>Check_TypeF_skew = If(Abs(BridgeGeometry_2Beam.Bearing_pad_skew) &lt;= 30 deg, "✓ PASS", "⊗ FAIL")</expbody>
+                    <expresult> = ✓ PASS</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Check the standard Type F bearing-skew range.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="5" keepwithnext="True">
+                <dynexp formula="Type_F_DL_B1 = PedBridgeWeights_2Beams.DC_super_B1+PedBridgeWeights_2Beams.DW_B1 to kip" mathlayout="on" showsteps="False">
+                    <expbody>Type_F_DL_B1 = PedBridgeWeights_2Beams.DC_super_B1+PedBridgeWeights_2Beams.DW_B1 to kip</expbody>
+                    <expresult> = 92.473 kip</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Bearing B1 service dead load at the pad.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="5" keepwithnext="True">
+                <dynexp formula="Type_F_DLallow_B1 = Type_F_DL_base+1.75*(Type_F_LL_max-PedBridgeWeights_2Beams.PL_B1) to kip" mathlayout="on" showsteps="False">
+                    <expbody>Type_F_DLallow_B1 = Type_F_DL_base+1.75*(Type_F_LL_max-PedBridgeWeights_2Beams.PL_B1) to kip</expbody>
+                    <expresult> = 501.777 kip</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Bearing B1 service dead-load allowance.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="5" keepwithnext="True">
+                <dynexp formula="Check_TypeF_B1 = If(And(Check_TypeF_skew == &quot;✓ PASS&quot;, PedBridgeWeights_2Beams.PL_B1 &lt;= Type_F_LL_max, Type_F_DL_B1 &lt;= Type_F_DLallow_B1), &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" mathlayout="on" showsteps="False">
+                    <expbody>Check_TypeF_B1 = If(And(Check_TypeF_skew == "✓ PASS", PedBridgeWeights_2Beams.PL_B1 &lt;= Type_F_LL_max, Type_F_DL_B1 &lt;= Type_F_DLallow_B1), "✓ PASS", "⊗ FAIL")</expbody>
+                    <expresult> = ✓ PASS</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Bearing B1 standard service-gravity screening.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="5" keepwithnext="True">
+                <dynexp formula="Type_F_DL_B2 = PedBridgeWeights_2Beams.DC_super_B2+PedBridgeWeights_2Beams.DW_B2 to kip" mathlayout="on" showsteps="False">
+                    <expbody>Type_F_DL_B2 = PedBridgeWeights_2Beams.DC_super_B2+PedBridgeWeights_2Beams.DW_B2 to kip</expbody>
+                    <expresult> = 92.473 kip</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Bearing B2 service dead load at the pad.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="5" keepwithnext="True">
+                <dynexp formula="Type_F_DLallow_B2 = Type_F_DL_base+1.75*(Type_F_LL_max-PedBridgeWeights_2Beams.PL_B2) to kip" mathlayout="on" showsteps="False">
+                    <expbody>Type_F_DLallow_B2 = Type_F_DL_base+1.75*(Type_F_LL_max-PedBridgeWeights_2Beams.PL_B2) to kip</expbody>
+                    <expresult> = 501.777 kip</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Bearing B2 service dead-load allowance.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="5" keepwithnext="True">
+                <dynexp formula="Check_TypeF_B2 = If(And(Check_TypeF_skew == &quot;✓ PASS&quot;, PedBridgeWeights_2Beams.PL_B2 &lt;= Type_F_LL_max, Type_F_DL_B2 &lt;= Type_F_DLallow_B2), &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" mathlayout="on" showsteps="False">
+                    <expbody>Check_TypeF_B2 = If(And(Check_TypeF_skew == "✓ PASS", PedBridgeWeights_2Beams.PL_B2 &lt;= Type_F_LL_max, Type_F_DL_B2 &lt;= Type_F_DLallow_B2), "✓ PASS", "⊗ FAIL")</expbody>
+                    <expresult> = ✓ PASS</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Bearing B2 standard service-gravity screening.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="5" keepwithnext="True">
+                <dynexp formula="Type_F_DL_B3 = PedBridgeWeights_2Beams.DC_super_B3+PedBridgeWeights_2Beams.DW_B3 to kip" mathlayout="on" showsteps="False">
+                    <expbody>Type_F_DL_B3 = PedBridgeWeights_2Beams.DC_super_B3+PedBridgeWeights_2Beams.DW_B3 to kip</expbody>
+                    <expresult> = 89.589 kip</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Bearing B3 service dead load at the pad.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="5" keepwithnext="True">
+                <dynexp formula="Type_F_DLallow_B3 = Type_F_DL_base+1.75*(Type_F_LL_max-PedBridgeWeights_2Beams.PL_B3) to kip" mathlayout="on" showsteps="False">
+                    <expbody>Type_F_DLallow_B3 = Type_F_DL_base+1.75*(Type_F_LL_max-PedBridgeWeights_2Beams.PL_B3) to kip</expbody>
+                    <expresult> = 502.935 kip</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Bearing B3 service dead-load allowance.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="5" keepwithnext="True">
+                <dynexp formula="Check_TypeF_B3 = If(And(Check_TypeF_skew == &quot;✓ PASS&quot;, PedBridgeWeights_2Beams.PL_B3 &lt;= Type_F_LL_max, Type_F_DL_B3 &lt;= Type_F_DLallow_B3), &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" mathlayout="on" showsteps="False">
+                    <expbody>Check_TypeF_B3 = If(And(Check_TypeF_skew == "✓ PASS", PedBridgeWeights_2Beams.PL_B3 &lt;= Type_F_LL_max, Type_F_DL_B3 &lt;= Type_F_DLallow_B3), "✓ PASS", "⊗ FAIL")</expbody>
+                    <expresult> = ✓ PASS</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Bearing B3 standard service-gravity screening.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="5" keepwithnext="True">
+                <dynexp formula="Type_F_DL_B4 = PedBridgeWeights_2Beams.DC_super_B4+PedBridgeWeights_2Beams.DW_B4 to kip" mathlayout="on" showsteps="False">
+                    <expbody>Type_F_DL_B4 = PedBridgeWeights_2Beams.DC_super_B4+PedBridgeWeights_2Beams.DW_B4 to kip</expbody>
+                    <expresult> = 89.589 kip</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Bearing B4 service dead load at the pad.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="5" keepwithnext="True">
+                <dynexp formula="Type_F_DLallow_B4 = Type_F_DL_base+1.75*(Type_F_LL_max-PedBridgeWeights_2Beams.PL_B4) to kip" mathlayout="on" showsteps="False">
+                    <expbody>Type_F_DLallow_B4 = Type_F_DL_base+1.75*(Type_F_LL_max-PedBridgeWeights_2Beams.PL_B4) to kip</expbody>
+                    <expresult> = 502.935 kip</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Bearing B4 service dead-load allowance.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="5" keepwithnext="True">
+                <dynexp formula="Check_TypeF_B4 = If(And(Check_TypeF_skew == &quot;✓ PASS&quot;, PedBridgeWeights_2Beams.PL_B4 &lt;= Type_F_LL_max, Type_F_DL_B4 &lt;= Type_F_DLallow_B4), &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" mathlayout="on" showsteps="False">
+                    <expbody>Check_TypeF_B4 = If(And(Check_TypeF_skew == "✓ PASS", PedBridgeWeights_2Beams.PL_B4 &lt;= Type_F_LL_max, Type_F_DL_B4 &lt;= Type_F_DLallow_B4), "✓ PASS", "⊗ FAIL")</expbody>
+                    <expresult> = ✓ PASS</expresult>
+                </dynexp>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Bearing B4 standard service-gravity screening.</paragraph>
+            <embed spacingafter="10">
+                <table name="TypeFServiceReactions" capture="False" colwidths="1:55, 2:105, 3:105, 4:135, 5:120">
+                    <stylerule range="A1:E5" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#6A9075&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.3, &quot;#BCD0C1&quot;);" />
+                    <stylerule range="A1:E1" fontweight="bold" background="#DCECE0" />
+                    <row>
+                        <c capture="False"><textvalue>Bearing</textvalue></c>
+                        <c capture="False"><textvalue>Service PL (kip)</textvalue></c>
+                        <c capture="False"><textvalue>Service DL (kip)</textvalue></c>
+                        <c capture="False"><textvalue>DL limit (kip)</textvalue></c>
+                        <c capture="False"><textvalue>Gravity check</textvalue></c>
+                    </row>
+                    <row>
+                        <c capture="False"><textvalue>B1</textvalue></c>
+                        <c capture="False" formula="PedBridgeWeights_2Beams.PL_B1"><num>28.984499999999976 kip</num></c>
+                        <c capture="False" formula="Type_F_DL_B1"><num>92.47319447948871 kip</num></c>
+                        <c capture="False" formula="Type_F_DLallow_B1"><num>501.77712500000007 kip</num></c>
+                        <c capture="False" formula="Check_TypeF_B1"><textvalue>✓ PASS</textvalue></c>
+                    </row>
+                    <row>
+                        <c capture="False"><textvalue>B2</textvalue></c>
+                        <c capture="False" formula="PedBridgeWeights_2Beams.PL_B2"><num>28.984499999999976 kip</num></c>
+                        <c capture="False" formula="Type_F_DL_B2"><num>92.47319447948871 kip</num></c>
+                        <c capture="False" formula="Type_F_DLallow_B2"><num>501.77712500000007 kip</num></c>
+                        <c capture="False" formula="Check_TypeF_B2"><textvalue>✓ PASS</textvalue></c>
+                    </row>
+                    <row>
+                        <c capture="False"><textvalue>B3</textvalue></c>
+                        <c capture="False" formula="PedBridgeWeights_2Beams.PL_B3"><num>28.323000000000025 kip</num></c>
+                        <c capture="False" formula="Type_F_DL_B3"><num>89.58894588728732 kip</num></c>
+                        <c capture="False" formula="Type_F_DLallow_B3"><num>502.93474999999995 kip</num></c>
+                        <c capture="False" formula="Check_TypeF_B3"><textvalue>✓ PASS</textvalue></c>
+                    </row>
+                    <row>
+                        <c capture="False"><textvalue>B4</textvalue></c>
+                        <c capture="False" formula="PedBridgeWeights_2Beams.PL_B4"><num>28.323000000000025 kip</num></c>
+                        <c capture="False" formula="Type_F_DL_B4"><num>89.58894588728732 kip</num></c>
+                        <c capture="False" formula="Type_F_DLallow_B4"><num>502.93474999999995 kip</num></c>
+                        <c capture="False" formula="Check_TypeF_B4"><textvalue>✓ PASS</textvalue></c>
+                    </row>
+                </table>
+            </embed>
+            <embed spacingafter="10">
+                <table name="TypeFPropertySummary" capture="False" colwidths="1:290, 2:230">
+                    <stylerule range="A1:B10" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#6A9075&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.3, &quot;#BCD0C1&quot;);" />
+                    <stylerule range="A1:B1" fontweight="bold" background="#DCECE0" />
+                    <row>
+                        <c capture="False"><textvalue>Property</textvalue></c>
+                        <c capture="False"><textvalue>Selected value</textvalue></c>
+                    </row>
+                    <row>
+                        <c capture="False"><textvalue>Pad type</textvalue></c>
+                        <c capture="False" formula="BridgeGeometry_2Beam.Bearing_pad_type"><textvalue>F</textvalue></c>
+                    </row>
+                    <row>
+                        <c capture="False"><textvalue>Length along beam</textvalue></c>
+                        <c capture="False" formula="BridgeGeometry_2Beam.Bearing_pad_length to in"><num>10 in</num></c>
+                    </row>
+                    <row>
+                        <c capture="False"><textvalue>Width transverse</textvalue></c>
+                        <c capture="False" formula="BridgeGeometry_2Beam.Bearing_pad_width to in"><num>32 in</num></c>
+                    </row>
+                    <row>
+                        <c capture="False"><textvalue>Overall thickness</textvalue></c>
+                        <c capture="False" formula="BridgeGeometry_2Beam.Bearing_pad_thickness to in"><num>2.5625 in</num></c>
+                    </row>
+                    <row>
+                        <c capture="False"><textvalue>Shear modulus</textvalue></c>
+                        <c capture="False" formula="BridgeGeometry_2Beam.Bearing_pad_G to psi"><num>110 psi</num></c>
+                    </row>
+                    <row>
+                        <c capture="False"><textvalue>Maximum shear deflection</textvalue></c>
+                        <c capture="False" formula="BridgeGeometry_2Beam.Bearing_pad_shearLimit to in"><num>1 in</num></c>
+                    </row>
+                    <row>
+                        <c capture="False"><textvalue>Required non-pad buildup</textvalue></c>
+                        <c capture="False" formula="BridgeGeometry_2Beam.Bearing_supportBuildup to in"><num>6 in</num></c>
+                    </row>
+                    <row>
+                        <c capture="False"><textvalue>Project pad count</textvalue></c>
+                        <c capture="False" formula="BridgeGeometry_2Beam.Bearing_pad_count"><num>8</num></c>
+                    </row>
+                    <row>
+                        <c capture="False"><textvalue>Gross composite volume (ft³)</textvalue></c>
+                        <c capture="False" formula="BridgeGeometry_2Beam.Bearing_pad_totalVolume"><num>3.7962962962962963 ft^3</num></c>
+                    </row>
+                </table>
+            </embed>
+        <section name="PierLevelSeatCheck" capture="False" hide="false">
+                <heading level="2">Level pier bearing seats — rotation check</heading>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Evaluate level tops at the four pier bearings, B1/B2 for Span 1 and B3/B4 for Span 2. This check uses the selected Type F pads and the saved beam-end rotations. It does not change pedestal geometry or approve the end-bent seats.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">
+                    <link address="https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/design/standardplans/2027/spi/spi-400-510.pdf">FDOT SPI 400-510, FY 2026–27, pp. 1–2 — Type F limits and level-seat allowance</link>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">
+                    <link address="https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/structures/structuresmanual/currentrelease/2026/2026-fdot-structures-manual.pdf">FDOT Structures Design Guidelines, January 2026, §6.5.1.D — bearing seats and rotations</link>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">SDG's general detailing rule uses level seats below 0.5% grade and seats parallel to the beam from 0.5% to 2%. SPI 400-510 additionally permits level seats where the combined grade, camber and dead-load rotation remains within its static limit. The specific combined-rotation allowance is evaluated here. No beveled plate is required by the longitudinal grade alone; the standard embedded beam plate remains part of the beam detail.</paragraph>
+                <embed spacingbefore="8" spacingafter="10">
+                    <table name="BPContext" capture="False" colwidths="1:85, 2:435">
+                        <stylerule range="A1:B4" fontfamily="Times New Roman" fontsize="11" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;);" />
+                        <stylerule range="A1:B1" fontweight="bold" background="#DCE7F3" />
+                        <row>
+                            <c capture="False"><textvalue>Item</textvalue></c>
+                            <c capture="False"><textvalue>Basis</textvalue></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Objective</textvalue></c>
+                            <c capture="False"><textvalue>Determine whether the selected pads can accommodate level pier seats.</textvalue></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Inputs</textvalue></c>
+                            <c capture="False"><textvalue>Live profile/pad/thermal inputs and selected Mathcad saved end rotations.</textvalue></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Output</textvalue></c>
+                            <c capture="False"><textvalue>Pier rotation, direction and longitudinal movement screens; explicit remaining checks.</textvalue></c>
+                        </row>
+                    </table>
+                </embed>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Positive beam slope rises with increasing station. Saved Mathcad camber slopes are positive at the left end; downward DL/LL slopes are negative. Reverse their signs at the right end of Span 1 (pier); retain them at the left end of Span 2 (pier). Beam self-weight is already included in the camber result. The 2% deck crossfall is taken in the haunch; transverse beam tilt is assumed zero and must be maintained in detailing.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">The selected 12 October 2026 Span 1/Span 2 Mathcad worksheets supply Slope&amp;Defl, region 202056, in degrees and inches. These are saved external analysis results, not a new native Mathcad run. Exact fingerprints and independent arithmetic are retained with task T019. Refresh these source inputs if either beam analysis changes. Direct end rotations govern; 4 × net midspan camber / span would discard the actual curvature distribution.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Span 1: PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd; SHA-256 a6b0f967d271c193591d477e219ac66f98b72309d19958a04c6cd08e575a8dcd.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Span 2: PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd; SHA-256 182e3471f169d3a379c437ad12f359d567813bd4631bcc0b82e78ad860fa91b8.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold" textcolor="#1766A0" keepwithnext="True">1. Source inputs and limits</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_static_limit = 0.0125 rad" mathlayout="on" showsteps="False">
+                        <expbody>BP_static_limit = 0.0125 rad</expbody>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">SPI maximum static rotation for the standard pad.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_cyclic_limit = 0.004 rad" mathlayout="on" showsteps="False">
+                        <expbody>BP_cyclic_limit = 0.004 rad</expbody>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">SPI maximum cyclic rotation, opposite the static rotation.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_transverse_slope = 0" mathlayout="on" showsteps="False">
+                        <expbody>BP_transverse_slope = 0</expbody>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Detailing assumption: level beam bottom across the pad width.</paragraph>
+                <section name="BPSourceInputs" capture="False" hide="true">
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_release_1 = 0.32791211706591888 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_release_1 = 0.32791211706591888 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: Bare-beam release end slope, including beam self-weight; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_day120_1 = 0.75559676289340705 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_day120_1 = 0.75559676289340705 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: Bare-beam 120-day end slope, including beam self-weight; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_day240_1 = 0.81112687936685146 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_day240_1 = 0.81112687936685146 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: Bare-beam 240-day end slope, including beam self-weight; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_nc_1 = -0.35824471201898345 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_nc_1 = -0.35824471201898345 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: Superimposed noncomposite dead-load end rotation; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_comp_1 = -0.11005573249497685 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_comp_1 = -0.11005573249497685 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: Composite dead-load end rotation; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_live_1 = -0.14152390757021716 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_live_1 = -0.14152390757021716 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: Full-span pedestrian live-load end rotation; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_bottom120_1 = -1.9565713011520618 in" mathlayout="on" showsteps="False">
+                            <expbody>BP_bottom120_1 = -1.9565713011520618 in</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: Bottom-fiber shortening at 120 days; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_bottom240_1 = -2.1015875014676375 in" mathlayout="on" showsteps="False">
+                            <expbody>BP_bottom240_1 = -2.1015875014676375 in</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: Bottom-fiber shortening at 240 days; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_release_2 = 0.34228503229137791 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_release_2 = 0.34228503229137791 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: Bare-beam release end slope, including beam self-weight; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_day120_2 = 0.78100203893124953 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_day120_2 = 0.78100203893124953 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: Bare-beam 120-day end slope, including beam self-weight; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_day240_2 = 0.83796458531973905 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_day240_2 = 0.83796458531973905 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: Bare-beam 240-day end slope, including beam self-weight; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_nc_2 = -0.33387012338728539 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_nc_2 = -0.33387012338728539 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: Superimposed noncomposite dead-load end rotation; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_comp_2 = -0.10256768362209159 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_comp_2 = -0.10256768362209159 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: Composite dead-load end rotation; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_live_2 = -0.13188986411607523 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_live_2 = -0.13188986411607523 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: Full-span pedestrian live-load end rotation; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_bottom120_2 = -1.9366045184525982 in" mathlayout="on" showsteps="False">
+                            <expbody>BP_bottom120_2 = -1.9366045184525982 in</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: Bottom-fiber shortening at 120 days; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_bottom240_2 = -2.0798779898700688 in" mathlayout="on" showsteps="False">
+                            <expbody>BP_bottom240_2 = -2.0798779898700688 in</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: Bottom-fiber shortening at 240 days; saved Mathcad result.</paragraph>
+                </section>
+                <embed spacingbefore="8" spacingafter="10">
+                    <table name="BPSavedInputs" capture="False" colwidths="1:260, 2:130, 3:130">
+                        <stylerule range="A1:C7" fontfamily="Times New Roman" fontsize="11" valueformat="RoundedNumber(6, 6, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;);" />
+                        <stylerule range="A1:C1" fontweight="bold" background="#DCE7F3" />
+                        <row>
+                            <c capture="False"><textvalue>Saved beam result</textvalue></c>
+                            <c capture="False"><textvalue>Span 1</textvalue></c>
+                            <c capture="False"><textvalue>Span 2</textvalue></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Release camber slope (deg)</textvalue></c>
+                            <c capture="False" formula="BP_release_1 to deg"><num>0.3279121170659189 deg</num></c>
+                            <c capture="False" formula="BP_release_2 to deg"><num>0.3422850322913779 deg</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>120-day camber slope (deg)</textvalue></c>
+                            <c capture="False" formula="BP_day120_1 to deg"><num>0.755596762893407 deg</num></c>
+                            <c capture="False" formula="BP_day120_2 to deg"><num>0.7810020389312495 deg</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>240-day camber slope (deg)</textvalue></c>
+                            <c capture="False" formula="BP_day240_1 to deg"><num>0.8111268793668515 deg</num></c>
+                            <c capture="False" formula="BP_day240_2 to deg"><num>0.837964585319739 deg</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Noncomposite DL rotation (deg)</textvalue></c>
+                            <c capture="False" formula="BP_nc_1 to deg"><num>-0.35824471201898345 deg</num></c>
+                            <c capture="False" formula="BP_nc_2 to deg"><num>-0.3338701233872854 deg</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Composite DL rotation (deg)</textvalue></c>
+                            <c capture="False" formula="BP_comp_1 to deg"><num>-0.11005573249497685 deg</num></c>
+                            <c capture="False" formula="BP_comp_2 to deg"><num>-0.1025676836220916 deg</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Pedestrian LL rotation (deg)</textvalue></c>
+                            <c capture="False" formula="BP_live_1 to deg"><num>-0.14152390757021716 deg</num></c>
+                            <c capture="False" formula="BP_live_2 to deg"><num>-0.13188986411607523 deg</num></c>
+                        </row>
+                    </table>
+                </embed>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold" textcolor="#1766A0" keepwithnext="True">2. Signed pier rotations and stage envelope</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_grade_1 = (BridgeGeometry_2Beam.PGL_pier_elev-BridgeGeometry_2Beam.PGL_start_elev)/BridgeGeometry_2Beam.Span_1" mathlayout="on" showsteps="False">
+                        <expbody>BP_grade_1 = (BridgeGeometry_2Beam.PGL_pier_elev-BridgeGeometry_2Beam.PGL_start_elev)/BridgeGeometry_2Beam.Span_1</expbody>
+                        <expresult> = 0.00500</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1 profile grade, using the shared profile elevations and station span.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_grade_2 = (BridgeGeometry_2Beam.PGL_end_elev-BridgeGeometry_2Beam.PGL_pier_elev)/BridgeGeometry_2Beam.Span_2" mathlayout="on" showsteps="False">
+                        <expbody>BP_grade_2 = (BridgeGeometry_2Beam.PGL_end_elev-BridgeGeometry_2Beam.PGL_pier_elev)/BridgeGeometry_2Beam.Span_2</expbody>
+                        <expresult> = -0.00500</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2 profile grade; negative toward End Bent 2.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_angle_1 = Atan(BP_grade_1) to rad" mathlayout="on" showsteps="False">
+                        <expbody>BP_angle_1 = Atan(BP_grade_1) to rad</expbody>
+                        <expresult> = 0.00500 rad</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1 profile angle at a level seat.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_angle_2 = Atan(BP_grade_2) to rad" mathlayout="on" showsteps="False">
+                        <expbody>BP_angle_2 = Atan(BP_grade_2) to rad</expbody>
+                        <expresult> = -0.00500 rad</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2 profile angle at a level seat.</paragraph>
+                <section name="BPStageEquations" capture="False" hide="true">
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_bare120_1 = BP_angle_1-(BP_day120_1) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_bare120_1 = BP_angle_1-(BP_day120_1) to rad</expbody>
+                            <expresult> = -0.00819 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1 at pier: 120-day bare beam.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_nc120_1 = BP_angle_1-(BP_day120_1+BP_nc_1) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_nc120_1 = BP_angle_1-(BP_day120_1+BP_nc_1) to rad</expbody>
+                            <expresult> = -0.00194 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1 at pier: 120-day beam with noncomposite DL.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_full120_1 = BP_angle_1-(BP_day120_1+BP_nc_1+BP_comp_1) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_full120_1 = BP_angle_1-(BP_day120_1+BP_nc_1+BP_comp_1) to rad</expbody>
+                            <expresult> = -0.0000155 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1 at pier: 120-day full static service state.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_full240_1 = BP_angle_1-(BP_day240_1+BP_nc_1+BP_comp_1) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_full240_1 = BP_angle_1-(BP_day240_1+BP_nc_1+BP_comp_1) to rad</expbody>
+                            <expresult> = -0.000985 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1 at pier: 240-day full static service state.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_bare240_1 = BP_angle_1-(BP_day240_1) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_bare240_1 = BP_angle_1-(BP_day240_1) to rad</expbody>
+                            <expresult> = -0.00916 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1 at pier: 240-day bare beam bounding case.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_release_full_1 = BP_angle_1-(BP_release_1+BP_nc_1+BP_comp_1) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_release_full_1 = BP_angle_1-(BP_release_1+BP_nc_1+BP_comp_1) to rad</expbody>
+                            <expresult> = 0.00745 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1 at pier: Release camber with full DL bounding case.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_static_max_1 = Max(Abs(BP_bare240_1),Abs(BP_release_full_1)) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_static_max_1 = Max(Abs(BP_bare240_1),Abs(BP_release_full_1)) to rad</expbody>
+                            <expresult> = 0.00916 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: conservative envelope over release–240-day camber and zero–full superimposed DL.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_live_pier_1 = -BP_live_1 to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_live_pier_1 = -BP_live_1 to rad</expbody>
+                            <expresult> = 0.00247 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: signed cyclic rotation at the pier.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_opposite_1 = If(And(BP_full120_1*BP_live_pier_1 &lt;= 0 rad^2,BP_full240_1*BP_live_pier_1 &lt;= 0 rad^2),&quot;PASS&quot;,&quot;REVIEW DIRECTION&quot;)" mathlayout="on" showsteps="False">
+                            <expbody>BP_opposite_1 = If(And(BP_full120_1*BP_live_pier_1 &lt;= 0 rad^2,BP_full240_1*BP_live_pier_1 &lt;= 0 rad^2),"PASS","REVIEW DIRECTION")</expbody>
+                            <expresult> = PASS</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: check live load opposes both 120-day and 240-day full-static rotations.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_bare120_2 = BP_angle_2+(BP_day120_2) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_bare120_2 = BP_angle_2+(BP_day120_2) to rad</expbody>
+                            <expresult> = 0.00863 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2 at pier: 120-day bare beam.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_nc120_2 = BP_angle_2+(BP_day120_2+BP_nc_2) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_nc120_2 = BP_angle_2+(BP_day120_2+BP_nc_2) to rad</expbody>
+                            <expresult> = 0.00280 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2 at pier: 120-day beam with noncomposite DL.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_full120_2 = BP_angle_2+(BP_day120_2+BP_nc_2+BP_comp_2) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_full120_2 = BP_angle_2+(BP_day120_2+BP_nc_2+BP_comp_2) to rad</expbody>
+                            <expresult> = 0.00101 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2 at pier: 120-day full static service state.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_full240_2 = BP_angle_2+(BP_day240_2+BP_nc_2+BP_comp_2) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_full240_2 = BP_angle_2+(BP_day240_2+BP_nc_2+BP_comp_2) to rad</expbody>
+                            <expresult> = 0.00201 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2 at pier: 240-day full static service state.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_bare240_2 = BP_angle_2+(BP_day240_2) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_bare240_2 = BP_angle_2+(BP_day240_2) to rad</expbody>
+                            <expresult> = 0.00962 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2 at pier: 240-day bare beam bounding case.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_release_full_2 = BP_angle_2+(BP_release_2+BP_nc_2+BP_comp_2) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_release_full_2 = BP_angle_2+(BP_release_2+BP_nc_2+BP_comp_2) to rad</expbody>
+                            <expresult> = -0.00664 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2 at pier: Release camber with full DL bounding case.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_static_max_2 = Max(Abs(BP_bare240_2),Abs(BP_release_full_2)) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_static_max_2 = Max(Abs(BP_bare240_2),Abs(BP_release_full_2)) to rad</expbody>
+                            <expresult> = 0.00962 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: conservative envelope over release–240-day camber and zero–full superimposed DL.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_live_pier_2 = BP_live_2 to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_live_pier_2 = BP_live_2 to rad</expbody>
+                            <expresult> = -0.00230 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: signed cyclic rotation at the pier.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_opposite_2 = If(And(BP_full120_2*BP_live_pier_2 &lt;= 0 rad^2,BP_full240_2*BP_live_pier_2 &lt;= 0 rad^2),&quot;PASS&quot;,&quot;REVIEW DIRECTION&quot;)" mathlayout="on" showsteps="False">
+                            <expbody>BP_opposite_2 = If(And(BP_full120_2*BP_live_pier_2 &lt;= 0 rad^2,BP_full240_2*BP_live_pier_2 &lt;= 0 rad^2),"PASS","REVIEW DIRECTION")</expbody>
+                            <expresult> = PASS</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: check live load opposes both 120-day and 240-day full-static rotations.</paragraph>
+                </section>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Bare camber increases monotonically in the saved release, 30, 60, 90, 120 and 240-day results. The envelope includes the most adverse corners of that camber range and zero–full superimposed DL, even where the paired stages are not simultaneous construction cases. Service direction checks use the actual full-static combinations at 120 and 240 days.</paragraph>
+                <embed spacingbefore="8" spacingafter="10">
+                    <table name="BPStageResults" capture="False" colwidths="1:260, 2:130, 3:130">
+                        <stylerule range="A1:C7" fontfamily="Times New Roman" fontsize="11" valueformat="RoundedNumber(6, 6, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;);" />
+                        <stylerule range="A1:C1" fontweight="bold" background="#DCE7F3" />
+                        <row>
+                            <c capture="False"><textvalue>Signed rotation (rad)</textvalue></c>
+                            <c capture="False"><textvalue>Span 1 at pier</textvalue></c>
+                            <c capture="False"><textvalue>Span 2 at pier</textvalue></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>120-day bare beam</textvalue></c>
+                            <c capture="False" formula="BP_bare120_1 to rad"><num>-0.008188857382303093 rad</num></c>
+                            <c capture="False" formula="BP_bare120_2 to rad"><num>0.008629907128919399 rad</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>120-day + noncomposite DL</textvalue></c>
+                            <c capture="False" formula="BP_nc120_1 to rad"><num>-0.0019363076297129285 rad</num></c>
+                            <c capture="False" formula="BP_nc120_2 to rad"><num>0.0028027742017715466 rad</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>120-day + all static DL</textvalue></c>
+                            <c capture="False" formula="BP_full120_1 to rad"><num>-1.547273698146879E-05 rad</num></c>
+                            <c capture="False" formula="BP_full120_2 to rad"><num>0.0010126304164221854 rad</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>240-day + all static DL</textvalue></c>
+                            <c capture="False" formula="BP_full240_1 to rad"><num>-0.000984656103459016 rad</num></c>
+                            <c capture="False" formula="BP_full240_2 to rad"><num>0.002006814401221333 rad</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Absolute static envelope</textvalue></c>
+                            <c capture="False" formula="BP_static_max_1 to rad"><num>0.009158040748780641 rad</num></c>
+                            <c capture="False" formula="BP_static_max_2 to rad"><num>0.009624091113718546 rad</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Cyclic pedestrian LL</textvalue></c>
+                            <c capture="False" formula="BP_live_pier_1 to rad"><num>0.002470058157388417 rad</num></c>
+                            <c capture="False" formula="BP_live_pier_2 to rad"><num>-0.0023019123788334335 rad</num></c>
+                        </row>
+                    </table>
+                </embed>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_static_max = Max(BP_static_max_1,BP_static_max_2) to rad" mathlayout="on" showsteps="False">
+                        <expbody>BP_static_max = Max(BP_static_max_1,BP_static_max_2) to rad</expbody>
+                        <expresult> = 0.00962 rad</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Governing static rotation at the four pier bearings.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_cyclic_max = Max(Abs(BP_live_pier_1),Abs(BP_live_pier_2)) to rad" mathlayout="on" showsteps="False">
+                        <expbody>BP_cyclic_max = Max(Abs(BP_live_pier_1),Abs(BP_live_pier_2)) to rad</expbody>
+                        <expresult> = 0.00247 rad</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Governing cyclic rotation magnitude.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_static_ratio = BP_static_max/BP_static_limit" mathlayout="on" showsteps="False">
+                        <expbody>BP_static_ratio = BP_static_max/BP_static_limit</expbody>
+                        <expresult> = 0.770</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Static rotation demand / limit.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_cyclic_ratio = BP_cyclic_max/BP_cyclic_limit" mathlayout="on" showsteps="False">
+                        <expbody>BP_cyclic_ratio = BP_cyclic_max/BP_cyclic_limit</expbody>
+                        <expresult> = 0.618</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Cyclic rotation demand / limit.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_transverse_difference = Abs(BP_transverse_slope)*BridgeGeometry_2Beam.Bearing_pad_width to in" mathlayout="on" showsteps="False">
+                        <expbody>BP_transverse_difference = Abs(BP_transverse_slope)*BridgeGeometry_2Beam.Bearing_pad_width to in</expbody>
+                        <expresult> = 0 in</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Transverse height difference across the pad; SDG detailing trigger is 1/8 in.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_rotation_check = If(And(BP_static_ratio &lt;= 1,BP_cyclic_ratio &lt;= 1,BP_opposite_1 == &quot;PASS&quot;,BP_opposite_2 == &quot;PASS&quot;,BP_transverse_difference &lt; 1/8 in),&quot;PASS&quot;,&quot;REVIEW&quot;)" mathlayout="on" showsteps="False">
+                        <expbody>BP_rotation_check = If(And(BP_static_ratio &lt;= 1,BP_cyclic_ratio &lt;= 1,BP_opposite_1 == "PASS",BP_opposite_2 == "PASS",BP_transverse_difference &lt; 1/8 in),"PASS","REVIEW")</expbody>
+                        <expresult> = PASS</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Pier level-seat rotation screen, including the standard's cyclic-direction assumption.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold" textcolor="#1766A0" keepwithnext="True">3. Longitudinal movement screen and disposition</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_thermal = BridgeMovement.α_T*0.65*(BridgeMovement.T_high-BridgeMovement.T_low)*BridgeGeometry_2Beam.TotalSpan to in" mathlayout="on" showsteps="False">
+                        <expbody>BP_thermal = BridgeMovement.α_T*0.65*(BridgeMovement.T_high-BridgeMovement.T_low)*BridgeGeometry_2Beam.TotalSpan to in</expbody>
+                        <expresult> = 0.695 in</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">SPI thermal movement using the entire bridge length at one pad as a conservative bound; no 1.20 TU factor.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_creep = Abs(BP_bottom240_1-BP_bottom120_1)+Abs(BP_bottom240_2-BP_bottom120_2) to in" mathlayout="on" showsteps="False">
+                        <expbody>BP_creep = Abs(BP_bottom240_1-BP_bottom120_1)+Abs(BP_bottom240_2-BP_bottom120_2) to in</expbody>
+                        <expresult> = 0.288 in</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Conservative sum of both full bottom-fiber creep/shrinkage shortenings from 120 to 240 days.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_movement = BP_thermal+BP_creep to in" mathlayout="on" showsteps="False">
+                        <expbody>BP_movement = BP_thermal+BP_creep to in</expbody>
+                        <expresult> = 0.984 in</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Longitudinal thermal plus creep/shrinkage movement bound.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_movement_ratio = BP_movement/BridgeGeometry_2Beam.Bearing_pad_shearLimit" mathlayout="on" showsteps="False">
+                        <expbody>BP_movement_ratio = BP_movement/BridgeGeometry_2Beam.Bearing_pad_shearLimit</expbody>
+                        <expresult> = 0.984</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Longitudinal movement demand / selected Type F shear-deflection limit.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_movement_check = If(BP_movement_ratio &lt;= 1,&quot;PASS&quot;,&quot;FAIL&quot;)" mathlayout="on" showsteps="False">
+                        <expbody>BP_movement_check = If(BP_movement_ratio &lt;= 1,"PASS","FAIL")</expbody>
+                        <expresult> = PASS</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Thermal/creep movement screen; wind-induced or other lateral shear is additional.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_type_check = If(And(BridgeGeometry_2Beam.Bearing_pad_type == &quot;F&quot;,BridgeGeometry_2Beam.Bearing_pad_G == 110 psi,BridgeGeometry_2Beam.Bearing_pad_length == 10 in,BridgeGeometry_2Beam.Bearing_pad_width == 32 in,BridgeGeometry_2Beam.Bearing_pad_thickness == 2.5625 in,BridgeGeometry_2Beam.Bearing_pad_skew == 0 deg),&quot;PASS&quot;,&quot;REVIEW PAD&quot;)" mathlayout="on" showsteps="False">
+                        <expbody>BP_type_check = If(And(BridgeGeometry_2Beam.Bearing_pad_type == "F",BridgeGeometry_2Beam.Bearing_pad_G == 110 psi,BridgeGeometry_2Beam.Bearing_pad_length == 10 in,BridgeGeometry_2Beam.Bearing_pad_width == 32 in,BridgeGeometry_2Beam.Bearing_pad_thickness == 2.5625 in,BridgeGeometry_2Beam.Bearing_pad_skew == 0 deg),"PASS","REVIEW PAD")</expbody>
+                        <expresult> = PASS</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Confirm the pad selection and orientation used by this check.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_level_seat_result = If(And(BP_type_check == &quot;PASS&quot;,BP_rotation_check == &quot;PASS&quot;,BP_movement_check == &quot;PASS&quot;,Check_TypeF_B1 == &quot;✓ PASS&quot;,Check_TypeF_B2 == &quot;✓ PASS&quot;,Check_TypeF_B3 == &quot;✓ PASS&quot;,Check_TypeF_B4 == &quot;✓ PASS&quot;),&quot;LEVEL PIER SEATS - SCREEN PASSES&quot;,&quot;LEVEL PIER SEATS - REVIEW REQUIRED&quot;)" mathlayout="on" showsteps="False">
+                        <expbody>BP_level_seat_result = If(And(BP_type_check == "PASS",BP_rotation_check == "PASS",BP_movement_check == "PASS",Check_TypeF_B1 == "✓ PASS",Check_TypeF_B2 == "✓ PASS",Check_TypeF_B3 == "✓ PASS",Check_TypeF_B4 == "✓ PASS"),"LEVEL PIER SEATS - SCREEN PASSES","LEVEL PIER SEATS - REVIEW REQUIRED")</expbody>
+                        <expresult> = LEVEL PIER SEATS - SCREEN PASSES</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Conditional seat-slope disposition for the selected saved beam results and stated transverse assumption.</paragraph>
+                <embed spacingbefore="8" spacingafter="10">
+                    <table name="BPCheckSummary" capture="False" colwidths="1:180, 2:220, 3:120">
+                        <stylerule range="A1:C8" fontfamily="Times New Roman" fontsize="11" valueformat="RoundedNumber(6, 6, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;);" />
+                        <stylerule range="A1:C1" fontweight="bold" background="#DCE7F3" />
+                        <row>
+                            <c capture="False"><textvalue>Check</textvalue></c>
+                            <c capture="False"><textvalue>Demand</textvalue></c>
+                            <c capture="False"><textvalue>Limit / result</textvalue></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Static rotation (rad)</textvalue></c>
+                            <c capture="False" formula="BP_static_max to rad"><num>0.009624091113718546 rad</num></c>
+                            <c capture="False" formula="BP_static_limit to rad"><num>0.0125 rad</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Cyclic rotation (rad)</textvalue></c>
+                            <c capture="False" formula="BP_cyclic_max to rad"><num>0.002470058157388417 rad</num></c>
+                            <c capture="False" formula="BP_cyclic_limit to rad"><num>0.004 rad</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Span 1 cyclic direction</textvalue></c>
+                            <c capture="False" formula="BP_opposite_1"><textvalue>PASS</textvalue></c>
+                            <c capture="False"><textvalue>Opposite static</textvalue></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Span 2 cyclic direction</textvalue></c>
+                            <c capture="False" formula="BP_opposite_2"><textvalue>PASS</textvalue></c>
+                            <c capture="False"><textvalue>Opposite static</textvalue></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Thermal + creep (in)</textvalue></c>
+                            <c capture="False" formula="BP_movement to in"><num>0.9836206717330463 in</num></c>
+                            <c capture="False" formula="BridgeGeometry_2Beam.Bearing_pad_shearLimit to in"><num>1 in</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Pier seat rotation</textvalue></c>
+                            <c capture="False" formula="BP_rotation_check"><textvalue>PASS</textvalue></c>
+                            <c capture="False"><textvalue>SPI 400-510</textvalue></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Disposition</textvalue></c>
+                            <c capture="False" formula="BP_level_seat_result"><textvalue>LEVEL PIER SEATS - SCREEN PASSES</textvalue></c>
+                            <c capture="False"><textvalue>Conditional screen</textvalue></c>
+                        </row>
+                    </table>
+                </embed>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Level longitudinal pier seats satisfy the checks when the live disposition above passes. This is conditional on the selected saved beam-design results, level transverse beam bottoms and the existing standard pad construction. Span 1's 120-day static slope is close to zero; confirm the rotation sign after any grade or beam-analysis revision. Native beam-analysis currency and current load reconciliation remain open. Complete combined wind/lateral shear, uplift/contact and final support/plate detailing before final bearing acceptance. The movement screen alone does not establish combined shear adequacy.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">The same conclusion is not extended to the end bents: the beam grade adds to upward camber there, whereas it partially cancels camber at this pier. Retain separate end-bent checks.</paragraph>
+            </section>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Design scope: the Type F gravity screening does not establish combined wind, shear, movement or rotation adequacy. SPI limits include 0.0125-radian static and 0.004-radian cyclic rotation. Check the adopted seat/plate slope and required movement, including creep and shrinkage and applicable lateral actions. The Bridge Movement module remains a thermal-movement calculation, not a complete bearing shear-deflection check.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Seat detailing: the 6-in pedestal and Type F pad place the cap top 8-9/16 in below the adopted beam soffit when no separate plate is present. Cap elevations reference the fixed low-beam soffit. Resolve individual seat grades and any separate plates in the final detail.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">
+                <image source="TypeFStandardSection" width="520" height="223.62297496318115" />
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">
+                <image source="TypeFLimitingParameters" width="520" height="672.9054842473746" />
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">
+                <link address="https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/design/standardplans/2027/idx/400-510.pdf">FDOT Index 400-510 — Type F construction detail</link>
+            </paragraph>
+        </section>
+    </report>

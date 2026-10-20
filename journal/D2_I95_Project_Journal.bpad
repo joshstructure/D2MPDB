@@ -3488,7 +3488,7 @@
         <section name="TypeFPadDesign" capture="False" hide="false">
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Selected bearing pad: FDOT Type F for all eight beam ends. Geometry and material properties reference Bridge Geometry_2 Beam. The following checks address the standard service-gravity limits at the four pier bearings.</paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">
-                <link address="https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/design/standardplans/2027/idx/400-510.pdf">FDOT SPI 400-510 — limiting parameters and design assumptions (FY 2026–27)</link>
+                <link address="https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/design/standardplans/2027/spi/spi-400-510.pdf">FDOT SPI 400-510 — limiting parameters and design assumptions (FY 2026–27)</link>
             </paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0" spacingbefore="5" keepwithnext="True" id="paragraphrefreturn0036">
                 <dynexp formula="LL_atBearing = Max(PedBridgeWeights_2Beams.PL_B1,PedBridgeWeights_2Beams.PL_B2,PedBridgeWeights_2Beams.PL_B3,PedBridgeWeights_2Beams.PL_B4)" mathlayout="on" showsteps="False">
@@ -3706,6 +3706,540 @@
                     </row>
                 </table>
             </embed>
+        <section name="PierLevelSeatCheck" capture="False" hide="false">
+                <heading level="2">Level pier bearing seats — rotation check</heading>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Evaluate level tops at the four pier bearings, B1/B2 for Span 1 and B3/B4 for Span 2. This check uses the selected Type F pads and the saved beam-end rotations. It does not change pedestal geometry or approve the end-bent seats.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">
+                    <link address="https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/design/standardplans/2027/spi/spi-400-510.pdf">FDOT SPI 400-510, FY 2026–27, pp. 1–2 — Type F limits and level-seat allowance</link>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">
+                    <link address="https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/structures/structuresmanual/currentrelease/2026/2026-fdot-structures-manual.pdf">FDOT Structures Design Guidelines, January 2026, §6.5.1.D — bearing seats and rotations</link>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">SDG's general detailing rule uses level seats below 0.5% grade and seats parallel to the beam from 0.5% to 2%. SPI 400-510 additionally permits level seats where the combined grade, camber and dead-load rotation remains within its static limit. The specific combined-rotation allowance is evaluated here. No beveled plate is required by the longitudinal grade alone; the standard embedded beam plate remains part of the beam detail.</paragraph>
+                <embed spacingbefore="8" spacingafter="10">
+                    <table name="BPContext" capture="False" colwidths="1:85, 2:435">
+                        <stylerule range="A1:B4" fontfamily="Times New Roman" fontsize="11" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;);" />
+                        <stylerule range="A1:B1" fontweight="bold" background="#DCE7F3" />
+                        <row>
+                            <c capture="False"><textvalue>Item</textvalue></c>
+                            <c capture="False"><textvalue>Basis</textvalue></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Objective</textvalue></c>
+                            <c capture="False"><textvalue>Determine whether the selected pads can accommodate level pier seats.</textvalue></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Inputs</textvalue></c>
+                            <c capture="False"><textvalue>Live profile/pad/thermal inputs and selected Mathcad saved end rotations.</textvalue></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Output</textvalue></c>
+                            <c capture="False"><textvalue>Pier rotation, direction and longitudinal movement screens; explicit remaining checks.</textvalue></c>
+                        </row>
+                    </table>
+                </embed>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Positive beam slope rises with increasing station. Saved Mathcad camber slopes are positive at the left end; downward DL/LL slopes are negative. Reverse their signs at the right end of Span 1 (pier); retain them at the left end of Span 2 (pier). Beam self-weight is already included in the camber result. The 2% deck crossfall is taken in the haunch; transverse beam tilt is assumed zero and must be maintained in detailing.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">The selected 12 October 2026 Span 1/Span 2 Mathcad worksheets supply Slope&amp;Defl, region 202056, in degrees and inches. These are saved external analysis results, not a new native Mathcad run. Exact fingerprints and independent arithmetic are retained with task T019. Refresh these source inputs if either beam analysis changes. Direct end rotations govern; 4 × net midspan camber / span would discard the actual curvature distribution.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Span 1: PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd; SHA-256 a6b0f967d271c193591d477e219ac66f98b72309d19958a04c6cd08e575a8dcd.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Span 2: PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd; SHA-256 182e3471f169d3a379c437ad12f359d567813bd4631bcc0b82e78ad860fa91b8.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold" textcolor="#1766A0" keepwithnext="True">1. Source inputs and limits</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_static_limit = 0.0125 rad" mathlayout="on" showsteps="False">
+                        <expbody>BP_static_limit = 0.0125 rad</expbody>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">SPI maximum static rotation for the standard pad.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_cyclic_limit = 0.004 rad" mathlayout="on" showsteps="False">
+                        <expbody>BP_cyclic_limit = 0.004 rad</expbody>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">SPI maximum cyclic rotation, opposite the static rotation.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_transverse_slope = 0" mathlayout="on" showsteps="False">
+                        <expbody>BP_transverse_slope = 0</expbody>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Detailing assumption: level beam bottom across the pad width.</paragraph>
+                <section name="BPSourceInputs" capture="False" hide="true">
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_release_1 = 0.32791211706591888 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_release_1 = 0.32791211706591888 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: Bare-beam release end slope, including beam self-weight; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_day120_1 = 0.75559676289340705 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_day120_1 = 0.75559676289340705 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: Bare-beam 120-day end slope, including beam self-weight; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_day240_1 = 0.81112687936685146 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_day240_1 = 0.81112687936685146 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: Bare-beam 240-day end slope, including beam self-weight; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_nc_1 = -0.35824471201898345 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_nc_1 = -0.35824471201898345 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: Superimposed noncomposite dead-load end rotation; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_comp_1 = -0.11005573249497685 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_comp_1 = -0.11005573249497685 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: Composite dead-load end rotation; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_live_1 = -0.14152390757021716 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_live_1 = -0.14152390757021716 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: Full-span pedestrian live-load end rotation; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_bottom120_1 = -1.9565713011520618 in" mathlayout="on" showsteps="False">
+                            <expbody>BP_bottom120_1 = -1.9565713011520618 in</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: Bottom-fiber shortening at 120 days; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_bottom240_1 = -2.1015875014676375 in" mathlayout="on" showsteps="False">
+                            <expbody>BP_bottom240_1 = -2.1015875014676375 in</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: Bottom-fiber shortening at 240 days; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_release_2 = 0.34228503229137791 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_release_2 = 0.34228503229137791 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: Bare-beam release end slope, including beam self-weight; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_day120_2 = 0.78100203893124953 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_day120_2 = 0.78100203893124953 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: Bare-beam 120-day end slope, including beam self-weight; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_day240_2 = 0.83796458531973905 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_day240_2 = 0.83796458531973905 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: Bare-beam 240-day end slope, including beam self-weight; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_nc_2 = -0.33387012338728539 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_nc_2 = -0.33387012338728539 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: Superimposed noncomposite dead-load end rotation; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_comp_2 = -0.10256768362209159 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_comp_2 = -0.10256768362209159 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: Composite dead-load end rotation; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_live_2 = -0.13188986411607523 deg" mathlayout="on" showsteps="False">
+                            <expbody>BP_live_2 = -0.13188986411607523 deg</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: Full-span pedestrian live-load end rotation; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_bottom120_2 = -1.9366045184525982 in" mathlayout="on" showsteps="False">
+                            <expbody>BP_bottom120_2 = -1.9366045184525982 in</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: Bottom-fiber shortening at 120 days; saved Mathcad result.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_bottom240_2 = -2.0798779898700688 in" mathlayout="on" showsteps="False">
+                            <expbody>BP_bottom240_2 = -2.0798779898700688 in</expbody>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: Bottom-fiber shortening at 240 days; saved Mathcad result.</paragraph>
+                </section>
+                <embed spacingbefore="8" spacingafter="10">
+                    <table name="BPSavedInputs" capture="False" colwidths="1:260, 2:130, 3:130">
+                        <stylerule range="A1:C7" fontfamily="Times New Roman" fontsize="11" valueformat="RoundedNumber(6, 6, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;);" />
+                        <stylerule range="A1:C1" fontweight="bold" background="#DCE7F3" />
+                        <row>
+                            <c capture="False"><textvalue>Saved beam result</textvalue></c>
+                            <c capture="False"><textvalue>Span 1</textvalue></c>
+                            <c capture="False"><textvalue>Span 2</textvalue></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Release camber slope (deg)</textvalue></c>
+                            <c capture="False" formula="BP_release_1 to deg"><num>0.3279121170659189 deg</num></c>
+                            <c capture="False" formula="BP_release_2 to deg"><num>0.3422850322913779 deg</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>120-day camber slope (deg)</textvalue></c>
+                            <c capture="False" formula="BP_day120_1 to deg"><num>0.755596762893407 deg</num></c>
+                            <c capture="False" formula="BP_day120_2 to deg"><num>0.7810020389312495 deg</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>240-day camber slope (deg)</textvalue></c>
+                            <c capture="False" formula="BP_day240_1 to deg"><num>0.8111268793668515 deg</num></c>
+                            <c capture="False" formula="BP_day240_2 to deg"><num>0.837964585319739 deg</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Noncomposite DL rotation (deg)</textvalue></c>
+                            <c capture="False" formula="BP_nc_1 to deg"><num>-0.35824471201898345 deg</num></c>
+                            <c capture="False" formula="BP_nc_2 to deg"><num>-0.3338701233872854 deg</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Composite DL rotation (deg)</textvalue></c>
+                            <c capture="False" formula="BP_comp_1 to deg"><num>-0.11005573249497685 deg</num></c>
+                            <c capture="False" formula="BP_comp_2 to deg"><num>-0.1025676836220916 deg</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Pedestrian LL rotation (deg)</textvalue></c>
+                            <c capture="False" formula="BP_live_1 to deg"><num>-0.14152390757021716 deg</num></c>
+                            <c capture="False" formula="BP_live_2 to deg"><num>-0.13188986411607523 deg</num></c>
+                        </row>
+                    </table>
+                </embed>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold" textcolor="#1766A0" keepwithnext="True">2. Signed pier rotations and stage envelope</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_grade_1 = (BridgeGeometry_2Beam.PGL_pier_elev-BridgeGeometry_2Beam.PGL_start_elev)/BridgeGeometry_2Beam.Span_1" mathlayout="on" showsteps="False">
+                        <expbody>BP_grade_1 = (BridgeGeometry_2Beam.PGL_pier_elev-BridgeGeometry_2Beam.PGL_start_elev)/BridgeGeometry_2Beam.Span_1</expbody>
+                        <expresult> = 0.00500</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1 profile grade, using the shared profile elevations and station span.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_grade_2 = (BridgeGeometry_2Beam.PGL_end_elev-BridgeGeometry_2Beam.PGL_pier_elev)/BridgeGeometry_2Beam.Span_2" mathlayout="on" showsteps="False">
+                        <expbody>BP_grade_2 = (BridgeGeometry_2Beam.PGL_end_elev-BridgeGeometry_2Beam.PGL_pier_elev)/BridgeGeometry_2Beam.Span_2</expbody>
+                        <expresult> = -0.00500</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2 profile grade; negative toward End Bent 2.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_angle_1 = Atan(BP_grade_1) to rad" mathlayout="on" showsteps="False">
+                        <expbody>BP_angle_1 = Atan(BP_grade_1) to rad</expbody>
+                        <expresult> = 0.00500 rad</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1 profile angle at a level seat.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_angle_2 = Atan(BP_grade_2) to rad" mathlayout="on" showsteps="False">
+                        <expbody>BP_angle_2 = Atan(BP_grade_2) to rad</expbody>
+                        <expresult> = -0.00500 rad</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2 profile angle at a level seat.</paragraph>
+                <section name="BPStageEquations" capture="False" hide="true">
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_bare120_1 = BP_angle_1-(BP_day120_1) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_bare120_1 = BP_angle_1-(BP_day120_1) to rad</expbody>
+                            <expresult> = -0.00819 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1 at pier: 120-day bare beam.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_nc120_1 = BP_angle_1-(BP_day120_1+BP_nc_1) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_nc120_1 = BP_angle_1-(BP_day120_1+BP_nc_1) to rad</expbody>
+                            <expresult> = -0.00194 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1 at pier: 120-day beam with noncomposite DL.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_full120_1 = BP_angle_1-(BP_day120_1+BP_nc_1+BP_comp_1) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_full120_1 = BP_angle_1-(BP_day120_1+BP_nc_1+BP_comp_1) to rad</expbody>
+                            <expresult> = -0.0000155 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1 at pier: 120-day full static service state.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_full240_1 = BP_angle_1-(BP_day240_1+BP_nc_1+BP_comp_1) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_full240_1 = BP_angle_1-(BP_day240_1+BP_nc_1+BP_comp_1) to rad</expbody>
+                            <expresult> = -0.000985 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1 at pier: 240-day full static service state.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_bare240_1 = BP_angle_1-(BP_day240_1) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_bare240_1 = BP_angle_1-(BP_day240_1) to rad</expbody>
+                            <expresult> = -0.00916 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1 at pier: 240-day bare beam bounding case.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_release_full_1 = BP_angle_1-(BP_release_1+BP_nc_1+BP_comp_1) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_release_full_1 = BP_angle_1-(BP_release_1+BP_nc_1+BP_comp_1) to rad</expbody>
+                            <expresult> = 0.00745 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1 at pier: Release camber with full DL bounding case.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_static_max_1 = Max(Abs(BP_bare240_1),Abs(BP_release_full_1)) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_static_max_1 = Max(Abs(BP_bare240_1),Abs(BP_release_full_1)) to rad</expbody>
+                            <expresult> = 0.00916 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: conservative envelope over release–240-day camber and zero–full superimposed DL.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_live_pier_1 = -BP_live_1 to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_live_pier_1 = -BP_live_1 to rad</expbody>
+                            <expresult> = 0.00247 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: signed cyclic rotation at the pier.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_opposite_1 = If(And(BP_full120_1*BP_live_pier_1 &lt;= 0 rad^2,BP_full240_1*BP_live_pier_1 &lt;= 0 rad^2),&quot;PASS&quot;,&quot;REVIEW DIRECTION&quot;)" mathlayout="on" showsteps="False">
+                            <expbody>BP_opposite_1 = If(And(BP_full120_1*BP_live_pier_1 &lt;= 0 rad^2,BP_full240_1*BP_live_pier_1 &lt;= 0 rad^2),"PASS","REVIEW DIRECTION")</expbody>
+                            <expresult> = PASS</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 1: check live load opposes both 120-day and 240-day full-static rotations.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_bare120_2 = BP_angle_2+(BP_day120_2) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_bare120_2 = BP_angle_2+(BP_day120_2) to rad</expbody>
+                            <expresult> = 0.00863 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2 at pier: 120-day bare beam.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_nc120_2 = BP_angle_2+(BP_day120_2+BP_nc_2) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_nc120_2 = BP_angle_2+(BP_day120_2+BP_nc_2) to rad</expbody>
+                            <expresult> = 0.00280 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2 at pier: 120-day beam with noncomposite DL.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_full120_2 = BP_angle_2+(BP_day120_2+BP_nc_2+BP_comp_2) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_full120_2 = BP_angle_2+(BP_day120_2+BP_nc_2+BP_comp_2) to rad</expbody>
+                            <expresult> = 0.00101 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2 at pier: 120-day full static service state.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_full240_2 = BP_angle_2+(BP_day240_2+BP_nc_2+BP_comp_2) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_full240_2 = BP_angle_2+(BP_day240_2+BP_nc_2+BP_comp_2) to rad</expbody>
+                            <expresult> = 0.00201 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2 at pier: 240-day full static service state.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_bare240_2 = BP_angle_2+(BP_day240_2) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_bare240_2 = BP_angle_2+(BP_day240_2) to rad</expbody>
+                            <expresult> = 0.00962 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2 at pier: 240-day bare beam bounding case.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_release_full_2 = BP_angle_2+(BP_release_2+BP_nc_2+BP_comp_2) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_release_full_2 = BP_angle_2+(BP_release_2+BP_nc_2+BP_comp_2) to rad</expbody>
+                            <expresult> = -0.00664 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2 at pier: Release camber with full DL bounding case.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_static_max_2 = Max(Abs(BP_bare240_2),Abs(BP_release_full_2)) to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_static_max_2 = Max(Abs(BP_bare240_2),Abs(BP_release_full_2)) to rad</expbody>
+                            <expresult> = 0.00962 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: conservative envelope over release–240-day camber and zero–full superimposed DL.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_live_pier_2 = BP_live_2 to rad" mathlayout="on" showsteps="False">
+                            <expbody>BP_live_pier_2 = BP_live_2 to rad</expbody>
+                            <expresult> = -0.00230 rad</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: signed cyclic rotation at the pier.</paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                        <dynexp formula="BP_opposite_2 = If(And(BP_full120_2*BP_live_pier_2 &lt;= 0 rad^2,BP_full240_2*BP_live_pier_2 &lt;= 0 rad^2),&quot;PASS&quot;,&quot;REVIEW DIRECTION&quot;)" mathlayout="on" showsteps="False">
+                            <expbody>BP_opposite_2 = If(And(BP_full120_2*BP_live_pier_2 &lt;= 0 rad^2,BP_full240_2*BP_live_pier_2 &lt;= 0 rad^2),"PASS","REVIEW DIRECTION")</expbody>
+                            <expresult> = PASS</expresult>
+                        </dynexp>
+                    </paragraph>
+                    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Span 2: check live load opposes both 120-day and 240-day full-static rotations.</paragraph>
+                </section>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Bare camber increases monotonically in the saved release, 30, 60, 90, 120 and 240-day results. The envelope includes the most adverse corners of that camber range and zero–full superimposed DL, even where the paired stages are not simultaneous construction cases. Service direction checks use the actual full-static combinations at 120 and 240 days.</paragraph>
+                <embed spacingbefore="8" spacingafter="10">
+                    <table name="BPStageResults" capture="False" colwidths="1:260, 2:130, 3:130">
+                        <stylerule range="A1:C7" fontfamily="Times New Roman" fontsize="11" valueformat="RoundedNumber(6, 6, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;);" />
+                        <stylerule range="A1:C1" fontweight="bold" background="#DCE7F3" />
+                        <row>
+                            <c capture="False"><textvalue>Signed rotation (rad)</textvalue></c>
+                            <c capture="False"><textvalue>Span 1 at pier</textvalue></c>
+                            <c capture="False"><textvalue>Span 2 at pier</textvalue></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>120-day bare beam</textvalue></c>
+                            <c capture="False" formula="BP_bare120_1 to rad"><num>-0.008188857382303093 rad</num></c>
+                            <c capture="False" formula="BP_bare120_2 to rad"><num>0.008629907128919399 rad</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>120-day + noncomposite DL</textvalue></c>
+                            <c capture="False" formula="BP_nc120_1 to rad"><num>-0.0019363076297129285 rad</num></c>
+                            <c capture="False" formula="BP_nc120_2 to rad"><num>0.0028027742017715466 rad</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>120-day + all static DL</textvalue></c>
+                            <c capture="False" formula="BP_full120_1 to rad"><num>-1.547273698146879E-05 rad</num></c>
+                            <c capture="False" formula="BP_full120_2 to rad"><num>0.0010126304164221854 rad</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>240-day + all static DL</textvalue></c>
+                            <c capture="False" formula="BP_full240_1 to rad"><num>-0.000984656103459016 rad</num></c>
+                            <c capture="False" formula="BP_full240_2 to rad"><num>0.002006814401221333 rad</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Absolute static envelope</textvalue></c>
+                            <c capture="False" formula="BP_static_max_1 to rad"><num>0.009158040748780641 rad</num></c>
+                            <c capture="False" formula="BP_static_max_2 to rad"><num>0.009624091113718546 rad</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Cyclic pedestrian LL</textvalue></c>
+                            <c capture="False" formula="BP_live_pier_1 to rad"><num>0.002470058157388417 rad</num></c>
+                            <c capture="False" formula="BP_live_pier_2 to rad"><num>-0.0023019123788334335 rad</num></c>
+                        </row>
+                    </table>
+                </embed>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_static_max = Max(BP_static_max_1,BP_static_max_2) to rad" mathlayout="on" showsteps="False">
+                        <expbody>BP_static_max = Max(BP_static_max_1,BP_static_max_2) to rad</expbody>
+                        <expresult> = 0.00962 rad</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Governing static rotation at the four pier bearings.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_cyclic_max = Max(Abs(BP_live_pier_1),Abs(BP_live_pier_2)) to rad" mathlayout="on" showsteps="False">
+                        <expbody>BP_cyclic_max = Max(Abs(BP_live_pier_1),Abs(BP_live_pier_2)) to rad</expbody>
+                        <expresult> = 0.00247 rad</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Governing cyclic rotation magnitude.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_static_ratio = BP_static_max/BP_static_limit" mathlayout="on" showsteps="False">
+                        <expbody>BP_static_ratio = BP_static_max/BP_static_limit</expbody>
+                        <expresult> = 0.770</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Static rotation demand / limit.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_cyclic_ratio = BP_cyclic_max/BP_cyclic_limit" mathlayout="on" showsteps="False">
+                        <expbody>BP_cyclic_ratio = BP_cyclic_max/BP_cyclic_limit</expbody>
+                        <expresult> = 0.618</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Cyclic rotation demand / limit.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_transverse_difference = Abs(BP_transverse_slope)*BridgeGeometry_2Beam.Bearing_pad_width to in" mathlayout="on" showsteps="False">
+                        <expbody>BP_transverse_difference = Abs(BP_transverse_slope)*BridgeGeometry_2Beam.Bearing_pad_width to in</expbody>
+                        <expresult> = 0 in</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Transverse height difference across the pad; SDG detailing trigger is 1/8 in.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_rotation_check = If(And(BP_static_ratio &lt;= 1,BP_cyclic_ratio &lt;= 1,BP_opposite_1 == &quot;PASS&quot;,BP_opposite_2 == &quot;PASS&quot;,BP_transverse_difference &lt; 1/8 in),&quot;PASS&quot;,&quot;REVIEW&quot;)" mathlayout="on" showsteps="False">
+                        <expbody>BP_rotation_check = If(And(BP_static_ratio &lt;= 1,BP_cyclic_ratio &lt;= 1,BP_opposite_1 == "PASS",BP_opposite_2 == "PASS",BP_transverse_difference &lt; 1/8 in),"PASS","REVIEW")</expbody>
+                        <expresult> = PASS</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Pier level-seat rotation screen, including the standard's cyclic-direction assumption.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold" textcolor="#1766A0" keepwithnext="True">3. Longitudinal movement screen and disposition</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_thermal = BridgeMovement.α_T*0.65*(BridgeMovement.T_high-BridgeMovement.T_low)*BridgeGeometry_2Beam.TotalSpan to in" mathlayout="on" showsteps="False">
+                        <expbody>BP_thermal = BridgeMovement.α_T*0.65*(BridgeMovement.T_high-BridgeMovement.T_low)*BridgeGeometry_2Beam.TotalSpan to in</expbody>
+                        <expresult> = 0.695 in</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">SPI thermal movement using the entire bridge length at one pad as a conservative bound; no 1.20 TU factor.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_creep = Abs(BP_bottom240_1-BP_bottom120_1)+Abs(BP_bottom240_2-BP_bottom120_2) to in" mathlayout="on" showsteps="False">
+                        <expbody>BP_creep = Abs(BP_bottom240_1-BP_bottom120_1)+Abs(BP_bottom240_2-BP_bottom120_2) to in</expbody>
+                        <expresult> = 0.288 in</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Conservative sum of both full bottom-fiber creep/shrinkage shortenings from 120 to 240 days.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_movement = BP_thermal+BP_creep to in" mathlayout="on" showsteps="False">
+                        <expbody>BP_movement = BP_thermal+BP_creep to in</expbody>
+                        <expresult> = 0.984 in</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Longitudinal thermal plus creep/shrinkage movement bound.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_movement_ratio = BP_movement/BridgeGeometry_2Beam.Bearing_pad_shearLimit" mathlayout="on" showsteps="False">
+                        <expbody>BP_movement_ratio = BP_movement/BridgeGeometry_2Beam.Bearing_pad_shearLimit</expbody>
+                        <expresult> = 0.984</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Longitudinal movement demand / selected Type F shear-deflection limit.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_movement_check = If(BP_movement_ratio &lt;= 1,&quot;PASS&quot;,&quot;FAIL&quot;)" mathlayout="on" showsteps="False">
+                        <expbody>BP_movement_check = If(BP_movement_ratio &lt;= 1,"PASS","FAIL")</expbody>
+                        <expresult> = PASS</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Thermal/creep movement screen; wind-induced or other lateral shear is additional.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_type_check = If(And(BridgeGeometry_2Beam.Bearing_pad_type == &quot;F&quot;,BridgeGeometry_2Beam.Bearing_pad_G == 110 psi,BridgeGeometry_2Beam.Bearing_pad_length == 10 in,BridgeGeometry_2Beam.Bearing_pad_width == 32 in,BridgeGeometry_2Beam.Bearing_pad_thickness == 2.5625 in,BridgeGeometry_2Beam.Bearing_pad_skew == 0 deg),&quot;PASS&quot;,&quot;REVIEW PAD&quot;)" mathlayout="on" showsteps="False">
+                        <expbody>BP_type_check = If(And(BridgeGeometry_2Beam.Bearing_pad_type == "F",BridgeGeometry_2Beam.Bearing_pad_G == 110 psi,BridgeGeometry_2Beam.Bearing_pad_length == 10 in,BridgeGeometry_2Beam.Bearing_pad_width == 32 in,BridgeGeometry_2Beam.Bearing_pad_thickness == 2.5625 in,BridgeGeometry_2Beam.Bearing_pad_skew == 0 deg),"PASS","REVIEW PAD")</expbody>
+                        <expresult> = PASS</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Confirm the pad selection and orientation used by this check.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="5" spacingafter="0" keepwithnext="True">
+                    <dynexp formula="BP_level_seat_result = If(And(BP_type_check == &quot;PASS&quot;,BP_rotation_check == &quot;PASS&quot;,BP_movement_check == &quot;PASS&quot;,Check_TypeF_B1 == &quot;✓ PASS&quot;,Check_TypeF_B2 == &quot;✓ PASS&quot;,Check_TypeF_B3 == &quot;✓ PASS&quot;,Check_TypeF_B4 == &quot;✓ PASS&quot;),&quot;LEVEL PIER SEATS - SCREEN PASSES&quot;,&quot;LEVEL PIER SEATS - REVIEW REQUIRED&quot;)" mathlayout="on" showsteps="False">
+                        <expbody>BP_level_seat_result = If(And(BP_type_check == "PASS",BP_rotation_check == "PASS",BP_movement_check == "PASS",Check_TypeF_B1 == "✓ PASS",Check_TypeF_B2 == "✓ PASS",Check_TypeF_B3 == "✓ PASS",Check_TypeF_B4 == "✓ PASS"),"LEVEL PIER SEATS - SCREEN PASSES","LEVEL PIER SEATS - REVIEW REQUIRED")</expbody>
+                        <expresult> = LEVEL PIER SEATS - SCREEN PASSES</expresult>
+                    </dynexp>
+                </paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold">Conditional seat-slope disposition for the selected saved beam results and stated transverse assumption.</paragraph>
+                <embed spacingbefore="8" spacingafter="10">
+                    <table name="BPCheckSummary" capture="False" colwidths="1:180, 2:220, 3:120">
+                        <stylerule range="A1:C8" fontfamily="Times New Roman" fontsize="11" valueformat="RoundedNumber(6, 6, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;);" />
+                        <stylerule range="A1:C1" fontweight="bold" background="#DCE7F3" />
+                        <row>
+                            <c capture="False"><textvalue>Check</textvalue></c>
+                            <c capture="False"><textvalue>Demand</textvalue></c>
+                            <c capture="False"><textvalue>Limit / result</textvalue></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Static rotation (rad)</textvalue></c>
+                            <c capture="False" formula="BP_static_max to rad"><num>0.009624091113718546 rad</num></c>
+                            <c capture="False" formula="BP_static_limit to rad"><num>0.0125 rad</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Cyclic rotation (rad)</textvalue></c>
+                            <c capture="False" formula="BP_cyclic_max to rad"><num>0.002470058157388417 rad</num></c>
+                            <c capture="False" formula="BP_cyclic_limit to rad"><num>0.004 rad</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Span 1 cyclic direction</textvalue></c>
+                            <c capture="False" formula="BP_opposite_1"><textvalue>PASS</textvalue></c>
+                            <c capture="False"><textvalue>Opposite static</textvalue></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Span 2 cyclic direction</textvalue></c>
+                            <c capture="False" formula="BP_opposite_2"><textvalue>PASS</textvalue></c>
+                            <c capture="False"><textvalue>Opposite static</textvalue></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Thermal + creep (in)</textvalue></c>
+                            <c capture="False" formula="BP_movement to in"><num>0.9836206717330463 in</num></c>
+                            <c capture="False" formula="BridgeGeometry_2Beam.Bearing_pad_shearLimit to in"><num>1 in</num></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Pier seat rotation</textvalue></c>
+                            <c capture="False" formula="BP_rotation_check"><textvalue>PASS</textvalue></c>
+                            <c capture="False"><textvalue>SPI 400-510</textvalue></c>
+                        </row>
+                        <row>
+                            <c capture="False"><textvalue>Disposition</textvalue></c>
+                            <c capture="False" formula="BP_level_seat_result"><textvalue>LEVEL PIER SEATS - SCREEN PASSES</textvalue></c>
+                            <c capture="False"><textvalue>Conditional screen</textvalue></c>
+                        </row>
+                    </table>
+                </embed>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Level longitudinal pier seats satisfy the checks when the live disposition above passes. This is conditional on the selected saved beam-design results, level transverse beam bottoms and the existing standard pad construction. Span 1's 120-day static slope is close to zero; confirm the rotation sign after any grade or beam-analysis revision. Native beam-analysis currency and current load reconciliation remain open. Complete combined wind/lateral shear, uplift/contact and final support/plate detailing before final bearing acceptance. The movement screen alone does not establish combined shear adequacy.</paragraph>
+                <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">The same conclusion is not extended to the end bents: the beam grade adds to upward camber there, whereas it partially cancels camber at this pier. Retain separate end-bent checks.</paragraph>
+            </section>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Design scope: the Type F gravity screening does not establish combined wind, shear, movement or rotation adequacy. SPI limits include 0.0125-radian static and 0.004-radian cyclic rotation. Check the adopted seat/plate slope and required movement, including creep and shrinkage and applicable lateral actions. The Bridge Movement module remains a thermal-movement calculation, not a complete bearing shear-deflection check.</paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Seat detailing: the 6-in pedestal and Type F pad place the cap top 8-9/16 in below the adopted beam soffit when no separate plate is present. Cap elevations reference the fixed low-beam soffit. Resolve individual seat grades and any separate plates in the final detail.</paragraph>
             <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">
