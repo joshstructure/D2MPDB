@@ -1,0 +1,266 @@
+{
+  "date": "2026-10-20",
+  "decision": "D-068",
+  "authorization": "User instruction, 20 October 2026: \"Yes, re-export the registered project reports so the project_current copies carry the cards.\"",
+  "scope": "Re-export of the seven registered calculation reports from their unchanged selected cases with the current packages, adding definition and citation cards. No case, input, FBMP export, journal, tracker row or engineering disposition changed. Pile reports also receive the dated case copy, check CSV and Pile Data Table that the pile --check expects beside a report.",
+  "generator": {
+    "script": "project_current/coherence/evidence/2026-10-20-report-cards/adopt_reports.py",
+    "repository_commit": "a866e6b",
+    "cards": "definition and citation cards (report_cards; commits 18b47cb and a866e6b)",
+    "python": "3.12.14",
+    "generated": "2026-10-20 17:50 UTC",
+    "note": "Reports embed their generation time (and the pile reports random figure ids), so a rerun gives new bytes. scripts/export_project_cap_reports.py --check and scripts/export_project_pile_reports.py --check verify the registered reports."
+  },
+  "reports": [
+    {
+      "source_id": "PIER-REPORT",
+      "path": "project_current/cap_design/pier/Pier Cap Design 10-20.html",
+      "sha256": "4d88de794d684b955a62a2445ed23c49490000f70190aac7e0fbb816762b1925",
+      "bytes": 25169382,
+      "previous": {
+        "path": "project_current/cap_design/pier/Pier Cap Design 10-19.html",
+        "sha256": "e49d579c0186e7c2617828d236cb982adb92122345493a097e7c352df2f3a701",
+        "retained_unchanged": true
+      },
+      "case": {
+        "source_id": "PIER-CASE",
+        "path": "project_current/cap_design/pier/selected_case.json",
+        "sha256_registered": "0192dc9d9bef7718fc1d8944ce55b90278c46bbf0458decf1e8be6752c7bed9b",
+        "sha256_now": "0192dc9d9bef7718fc1d8944ce55b90278c46bbf0458decf1e8be6752c7bed9b",
+        "unchanged": true
+      },
+      "check_register_vs_previous": {
+        "rows_old": 3494,
+        "rows_new": 3494,
+        "equal": true,
+        "only_in_old": [],
+        "only_in_new": []
+      },
+      "cards": {
+        "definition_cards": true,
+        "citation_data": true
+      },
+      "embedded_case_equals_saved": true,
+      "schematic_problems": []
+    },
+    {
+      "source_id": "EB-REPORT",
+      "path": "project_current/cap_design/end_bents/End Bent 1 Cap Design 10-20.html",
+      "sha256": "90419411042ac1d30b220b2aade5e71ea771b094009b538c4c16340946e35818",
+      "bytes": 22117604,
+      "previous": {
+        "path": "project_current/cap_design/end_bents/End Bent 1 Cap Design 10-19.html",
+        "sha256": "6a42c16b0595ac16070608abd5d129a6152803693cb06a870b3168685c52e7a1",
+        "retained_unchanged": true
+      },
+      "case": {
+        "source_id": "EB-CASE",
+        "path": "project_current/cap_design/end_bents/selected_case.json",
+        "sha256_registered": "898b3e134b286b7a5a8f3eaf96f3c2996e1400e11206195dc0ea2448d750274f",
+        "sha256_now": "898b3e134b286b7a5a8f3eaf96f3c2996e1400e11206195dc0ea2448d750274f",
+        "unchanged": true
+      },
+      "check_register_vs_previous": {
+        "rows_old": 2432,
+        "rows_new": 2432,
+        "equal": true,
+        "only_in_old": [],
+        "only_in_new": []
+      },
+      "cards": {
+        "definition_cards": true,
+        "citation_data": true
+      },
+      "embedded_case_equals_saved": true,
+      "schematic_problems": []
+    },
+    {
+      "source_id": "EB2-REPORT",
+      "path": "project_current/cap_design/end_bent_2/End Bent 2 Cap Design 10-20.html",
+      "sha256": "90bb9ed881d4e095b0eade2dca7d6c4a351674f3aadfdd2b71a35752a3e56071",
+      "bytes": 22202227,
+      "previous": {
+        "path": "project_current/cap_design/end_bent_2/End Bent 2 Cap Design 10-19.html",
+        "sha256": "3405297e0d4c410b28be90f86f4fbcee1f3ea7db065e2851377a9435a6425605",
+        "retained_unchanged": true
+      },
+      "case": {
+        "source_id": "EB2-CASE",
+        "path": "project_current/cap_design/end_bent_2/selected_case.json",
+        "sha256_registered": "4592c02435231cd9d9e4bb2c0682062a6613196e99c69d7fd046fda4d58372f5",
+        "sha256_now": "4592c02435231cd9d9e4bb2c0682062a6613196e99c69d7fd046fda4d58372f5",
+        "unchanged": true
+      },
+      "check_register_vs_previous": {
+        "rows_old": 2484,
+        "rows_new": 2484,
+        "equal": true,
+        "only_in_old": [],
+        "only_in_new": []
+      },
+      "cards": {
+        "definition_cards": true,
+        "citation_data": true
+      },
+      "embedded_case_equals_saved": true,
+      "schematic_problems": []
+    },
+    {
+      "source_id": "PILE-EB1-REPORT",
+      "path": "project_current/pile_design/end_bent_1/End Bent 1 Pile Design 10-20.html",
+      "sha256": "0b09cb5517286d72847697a36c3b2fab6a76a9816ae5837c8a8be01d0a75b41b",
+      "bytes": 15216824,
+      "previous": {
+        "path": "project_current/pile_design/end_bent_1/End Bent 1 Pile Design 10-19.html",
+        "sha256": "470bc14a2027d66e25e298080aa3482bf6ca92d37ab8fd716167ce69ff570e42",
+        "retained_unchanged": true
+      },
+      "case": {
+        "source_id": "PILE-EB1-CASE",
+        "path": "project_current/pile_design/end_bent_1/selected_case.json",
+        "sha256_registered": "b733ea1396f5e715920935268f36a11ff20a764ee04c40da4ca0167607666440",
+        "sha256_now": "b733ea1396f5e715920935268f36a11ff20a764ee04c40da4ca0167607666440",
+        "unchanged": true
+      },
+      "check_register_vs_previous": {
+        "rows_old": 21,
+        "rows_new": 21,
+        "equal": true,
+        "only_in_old": [],
+        "only_in_new": []
+      },
+      "cards": {
+        "definition_cards": true,
+        "citation_data": true
+      },
+      "companions": {
+        "dated_case": "project_current/pile_design/end_bent_1/End Bent 1 Pile Design 10-20.json",
+        "selected_case": "project_current/pile_design/end_bent_1/selected_case.json",
+        "checks_csv": "project_current/pile_design/end_bent_1/End Bent 1 Pile Design 10-20 checks.csv",
+        "data_table_xlsx": "project_current/pile_design/end_bent_1/End Bent 1 Pile Data Table 10-20.xlsx"
+      },
+      "check_csv_equals_10_19": true
+    },
+    {
+      "source_id": "PILE-EB2-REPORT",
+      "path": "project_current/pile_design/end_bent_2/End Bent 2 Pile Design 10-20.html",
+      "sha256": "8c2240cda3d11f2a544ee45da4126c3d07e32a71666ae5d4a53b0596d9b32816",
+      "bytes": 15216676,
+      "previous": {
+        "path": "project_current/pile_design/end_bent_2/End Bent 2 Pile Design 10-19.html",
+        "sha256": "e9d0253756825f015971a3d54645ba66a4d6b2538faf76daa8e1ced403947591",
+        "retained_unchanged": true
+      },
+      "case": {
+        "source_id": "PILE-EB2-CASE",
+        "path": "project_current/pile_design/end_bent_2/selected_case.json",
+        "sha256_registered": "a74e7d6078314a87ef96c133a0fbf147cc0c8bbf2caa2002de3259bfeddc77bf",
+        "sha256_now": "a74e7d6078314a87ef96c133a0fbf147cc0c8bbf2caa2002de3259bfeddc77bf",
+        "unchanged": true
+      },
+      "check_register_vs_previous": {
+        "rows_old": 21,
+        "rows_new": 21,
+        "equal": true,
+        "only_in_old": [],
+        "only_in_new": []
+      },
+      "cards": {
+        "definition_cards": true,
+        "citation_data": true
+      },
+      "companions": {
+        "dated_case": "project_current/pile_design/end_bent_2/End Bent 2 Pile Design 10-20.json",
+        "selected_case": "project_current/pile_design/end_bent_2/selected_case.json",
+        "checks_csv": "project_current/pile_design/end_bent_2/End Bent 2 Pile Design 10-20 checks.csv",
+        "data_table_xlsx": "project_current/pile_design/end_bent_2/End Bent 2 Pile Data Table 10-20.xlsx"
+      },
+      "check_csv_equals_10_19": true
+    },
+    {
+      "source_id": "PILE-PIER-REPORT",
+      "path": "project_current/pile_design/pier/Pier Pile Design 10-20.html",
+      "sha256": "1910578a150b7ae1568e97237f57f30693e61f051399fd050324b3e68d95a07c",
+      "bytes": 15084837,
+      "previous": {
+        "path": "project_current/pile_design/pier/Pier Pile Design 10-19.html",
+        "sha256": "e3880f74db02b4bc997a4efc92688d6b8439360f3cf116c830a8cb0de1701a59",
+        "retained_unchanged": true
+      },
+      "case": {
+        "source_id": "PILE-PIER-CASE",
+        "path": "project_current/pile_design/pier/selected_case.json",
+        "sha256_registered": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c",
+        "sha256_now": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c",
+        "unchanged": true
+      },
+      "check_register_vs_previous": {
+        "rows_old": 19,
+        "rows_new": 19,
+        "equal": true,
+        "only_in_old": [],
+        "only_in_new": []
+      },
+      "cards": {
+        "definition_cards": true,
+        "citation_data": true
+      },
+      "companions": {
+        "dated_case": "project_current/pile_design/pier/Pier Pile Design 10-20.json",
+        "selected_case": "project_current/pile_design/pier/selected_case.json",
+        "checks_csv": "project_current/pile_design/pier/Pier Pile Design 10-20 checks.csv",
+        "data_table_xlsx": "project_current/pile_design/pier/Pier Pile Data Table 10-20.xlsx"
+      },
+      "check_csv_equals_10_19": true
+    },
+    {
+      "source_id": "BACKWALL-REPORT",
+      "path": "project_current/cap_design/backwall/Backwall Design 10-20.html",
+      "sha256": "2ddd1476fded843cba9b25097198457cc2387e1d3a274411bef7d16ed33eca8b",
+      "bytes": 14395718,
+      "previous": {
+        "path": "project_current/cap_design/backwall/Backwall Design 10-19.html",
+        "sha256": "6ed9ebb7bd2d2b536cddd289b04bbfcb1e8b566858239e40d88a2a7fb9d74768",
+        "retained_unchanged": true
+      },
+      "case": {
+        "source_id": "BACKWALL-CASE",
+        "path": "project_current/cap_design/backwall/selected_case.json",
+        "sha256_registered": "01e76c5a263af986e0d7e154039cec4c351bea29403dd9bfd2cbee7b16bab597",
+        "sha256_now": "01e76c5a263af986e0d7e154039cec4c351bea29403dd9bfd2cbee7b16bab597",
+        "unchanged": true
+      },
+      "check_register_vs_previous": {
+        "rows_old": 16,
+        "rows_new": 16,
+        "equal": true,
+        "only_in_old": [],
+        "only_in_new": []
+      },
+      "cards": {
+        "definition_cards": true,
+        "citation_data": true
+      }
+    }
+  ],
+  "register_rows_updated": [
+    "PIER-REPORT",
+    "EB-REPORT",
+    "EB2-REPORT",
+    "PILE-EB1-REPORT",
+    "PILE-EB2-REPORT",
+    "PILE-PIER-REPORT",
+    "BACKWALL-REPORT"
+  ],
+  "readmes_updated": [
+    "project_current/cap_design/pier/README.md",
+    "project_current/cap_design/end_bents/README.md",
+    "project_current/cap_design/end_bent_2/README.md",
+    "project_current/pile_design/end_bent_1/README.md",
+    "project_current/pile_design/end_bent_2/README.md",
+    "project_current/pile_design/pier/README.md",
+    "project_current/cap_design/backwall/README.md",
+    "project_current/README.md"
+  ],
+  "limitations": "Report formatting change only. Every pending item, failed check and open coherence item of the 19 October reports remains. Selection is not engineering acceptance. Code excerpts in the reports are copyrighted pages for the internal calculation record."
+}

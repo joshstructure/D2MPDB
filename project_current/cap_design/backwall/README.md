@@ -1,6 +1,6 @@
 # Current backwall and cheek-wall calculation
 
-The [19 October report](Backwall%20Design%2010-19.html) and
+The [20 October report](Backwall%20Design%2010-20.html) and
 [selected case](selected_case.json) are the paired outputs of the
 [backwall notebook](../../../End_Bent_Backwall_Design.ipynb) executed on
 19 October 2026. D-057 selects these files as current project sources.
@@ -33,3 +33,5 @@ see `end_bent_walls/bpad/journal/`.
 The [16 October report](Backwall%20Design%2010-16.html) (D-037/D-038) and the
 [12 October report](Backwall%20Design%2010-12.html) are preserved as history.
 Source selection does not close COH-013, COH-023, COH-024 or COH-028.
+
+D-068 (20 October): the report was re-exported from the unchanged saved case with the current package, adding definition and citation cards (report_cards; commits 18b47cb and a866e6b). Results are unchanged; the 19 October report is retained. See the [receipt](../../coherence/evidence/2026-10-20-report-cards/source_receipt.json).

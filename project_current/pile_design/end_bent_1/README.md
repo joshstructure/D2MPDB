@@ -1,6 +1,6 @@
 # End Bent 1 current pile design
 
-The [19 October report](End%20Bent%201%20Pile%20Design%2010-19.html) and [dated JSON](End%20Bent%201%20Pile%20Design%2010-19.json) are selected under D-054.
+The [20 October report](End%20Bent%201%20Pile%20Design%2010-20.html) and [dated JSON](End%20Bent%201%20Pile%20Design%2010-19.json) are selected under D-054.
 `selected_case.json` is byte-identical to the dated JSON. The [check register](End%20Bent%201%20Pile%20Design%2010-19%20checks.csv)
 and [Pile Data Table](End%20Bent%201%20Pile%20Data%20Table%2010-19.xlsx) come from the same case.
 
@@ -24,3 +24,5 @@ The Blockpad edition of this report is in the journal under task T015
 embeds its generation time, so a rerun gives new bytes. `--check` regenerates the report from the saved case and compares.
 Calculation, source and preservation checks are in the
 [receipt](../../coherence/evidence/2026-10-19-pile-reports/source_receipt.json).
+
+D-068 (20 October): the report was re-exported from the unchanged saved case with the current package, adding definition and citation cards (report_cards; commits 18b47cb and a866e6b). Results are unchanged; the 19 October report is retained. See the [receipt](../../coherence/evidence/2026-10-20-report-cards/source_receipt.json).

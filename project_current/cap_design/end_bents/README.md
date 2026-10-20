@@ -1,6 +1,6 @@
 # End Bent 1 current cap design
 
-The [19 October report](End%20Bent%201%20Cap%20Design%2010-19.html) and
+The [20 October report](End%20Bent%201%20Cap%20Design%2010-20.html) and
 [dated JSON](End%20Bent%201%20Cap%20Design%2010-19.json) are selected under D-051.
 `selected_case.json` is byte-identical to the dated JSON.
 
@@ -19,3 +19,5 @@ The previous selected case is [archived](archive/2026-10-19-before-fbmp-rerun/se
 The [17 October report](End%20Bent%201%20Cap%20Design%2010-17.html) and earlier
 reports remain as historical snapshots. Calculation, source and preservation
 checks are in the [receipt](../../coherence/evidence/2026-10-19-cap-rerun/source_receipt.json).
+
+D-068 (20 October): the report was re-exported from the unchanged saved case with the current package, adding definition and citation cards (report_cards; commits 18b47cb and a866e6b). Results are unchanged; the 19 October report is retained. See the [receipt](../../coherence/evidence/2026-10-20-report-cards/source_receipt.json).
