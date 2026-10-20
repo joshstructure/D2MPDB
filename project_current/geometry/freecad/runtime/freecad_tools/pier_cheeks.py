@@ -1,19 +1,20 @@
 """Editable solid pier cheek walls with shallow chamfered exterior recesses.
 
-Reuses the adopted Arch rebar paths, quantities and schedule helpers. This is
-a continuous centered mat study; cap anchorage is explicitly unmodeled,
-not an approved connection or reinforcement design.
+Reuses the adopted Arch rebar paths, quantities and schedule helpers.
+Optional straight vertical development uses the verified LRFD calculator;
+joint transfer and wall capacity remain separate design checks.
 """
 import json,math
 import FreeCAD as App
 import Part
-from . import bridge,cap_cages as cap,design_steel as steel,cheek_hooks as hooks
+from . import bridge,cap_cages as cap,design_steel as steel,cheek_hooks as hooks,pedestal_ubars as development
 from .mse import Serializable,prop
 from .geometry import bounds,length,result,pair
 
 IN=25.4;FT=304.8;TOL=.0254
 HOSTS=('BridgeCheekPier1','BridgeCheekPier2')
 LIMITS='Continuous centered mat behind a shallow exterior recess. Cap anchorage and structural design NOT CONFIGURED.'
+DEVELOPED_LIMITS='Straight vertical development into cap evaluated to AASHTO LRFD 10th ed. 5.10.8.2.1. Joint transfer and wall structural design remain separate checks.'
 
 def dimensions(host):
     cb=bounds(hooks.local(host.Cap.Shape,host.PGL.Frame))
@@ -62,8 +63,9 @@ def layout(inp):
     d=dimensions(inp.Host);cv=inp.Cover.Value
     dv=cap.BAR_DIAMETER[inp.VerticalBar]*IN;dh=cap.BAR_DIAMETER[inp.HorizontalBar]*IN
     sign=-1 if inp.Host.BeamIndex==0 else 1
-    nv=d['y']+d['t']/2+sign*dh/2;nh=d['y']+d['t']/2-sign*dv/2
-    if (d['t']-dv-dh)/2-d['depth']<cv:raise ValueError('Centered mat violates recessed face cover')
+    offset=getattr(inp,'MatOffset',App.Units.Quantity('0 in')).Value
+    nv=d['y']+d['t']/2+sign*dh/2+offset;nh=d['y']+d['t']/2-sign*dv/2+offset
+    if (d['t']-dv-dh)/2-abs(offset)-d['depth']<cv:raise ValueError('Mat violates recessed face cover')
     xs=steel.stations(d['x']+cv+dv/2,d['x']+d['w']-cv-dv/2,inp.VerticalSpacing.Value)
     zs=steel.stations(d['z']+cv+dh/2,d['z']+d['h']-cv-dh/2,inp.HorizontalSpacing.Value)
     rows={}
@@ -71,31 +73,90 @@ def layout(inp):
         if App.Vector(*points[0]).distanceToPoint(App.Vector(*points[1]))<=0:raise ValueError('Non-positive bar length')
         rows[ident]=dict(id=ident,kind=kind,bar=bar,diameter=diameter/IN,
                         family=family,points=[tuple(v/IN for v in p) for p in points],segments=[('line',0,1)])
+    shifts=json.loads(getattr(inp,'VerticalStationOffsetsJSON','{}'))
+    if set(shifts)-{f'MV{i:02}' for i in range(1,len(xs)+1)}:raise ValueError('Unknown vertical station offset')
+    xs=[x+length(shifts.get(f'MV{i:02}','0 in')) for i,x in enumerate(xs,1)]
+    if min(xs)<d['x']+cv+dv/2-TOL or max(xs)>d['x']+d['w']-cv-dv/2+TOL:raise ValueError('Vertical station outside wall cover')
+    if any(b-a<dv+TOL or b-a>inp.VerticalSpacing.Value+TOL for a,b in zip(xs,xs[1:])):raise ValueError('Vertical stations violate spacing')
     for i,x in enumerate(xs,1):
         lo,hi=d['z']+cv+dv/2,d['z']+d['h']-cv-dv/2
         add(f'MV{i:02}','wall_vertical',inp.VerticalBar,dv,[(x,nv,lo),(x,nv,hi)],'Continuous centered vertical')
     for i,z in enumerate(zs,1):
         lo,hi=d['x']+cv+dh/2,d['x']+d['w']-cv-dh/2
         add(f'MH{i:02}','wall_horizontal',inp.HorizontalBar,dh,[(lo,nh,z),(hi,nh,z)],'Continuous centered horizontal')
+    if getattr(inp,'DevelopIntoCap',False):
+        calc=development_info(inp,rows)
+        for ident,detail in calc['by_bar'].items():
+            row=rows[ident];row['points'][0]=(row['points'][0][0],row['points'][0][1],d['z']/IN-detail['provided_in'])
+            row.update(required_development_in=detail['required_in'],provided_embedment_in=detail['provided_in'])
     return rows
+
+def development_info(inp,rows):
+    cb=bounds(hooks.local(inp.Cap.Shape,inp.PGL.Frame));rows={k:r for k,r in rows.items() if r['kind']=='wall_vertical'}
+    if len(rows)<2:raise ValueError('Development requires measured vertical spacing')
+    increment=inp.EmbedmentIncrement.Value/IN
+    if increment<=0:raise ValueError('Embedment increment must be positive')
+    details={}
+    for ident,row in rows.items():
+        x,y,_=row['points'][0];db=row['diameter'];rad=db/2
+        side=min(x-cb.XMin/IN,cb.XMax/IN-x,y-cb.YMin/IN,cb.YMax/IN-y)
+        if side-rad+TOL/IN<inp.CapCover.Value/IN:raise ValueError('Developed bar violates cap side cover: '+ident)
+        gap=min(math.hypot(x-r['points'][0][0],y-r['points'][0][1]) for k,r in rows.items() if k!=ident)
+        calc=development.development(db,inp.YieldStrength.getValueAs('ksi').Value,inp.ConcreteStrength.getValueAs('ksi').Value,min(side,gap/2),inp.DensityFactor,inp.Coating)
+        provided=math.ceil((calc['required_in']-1e-10)/increment)*increment
+        if cb.ZLength/IN-provided+TOL/IN<inp.CapCover.Value/IN:raise ValueError('Development does not fit cap bottom cover')
+        calc.update(provided_in=provided,minimum_side_center_cover_in=side,nearest_developed_bar_centers_in=gap)
+        details[ident]=calc
+    return dict(by_bar=details,required_in=max(v['required_in'] for v in details.values()),provided_in=max(v['provided_in'] for v in details.values()),basis=DEVELOPED_LIMITS)
+
+def configure_development(doc,source,settings,source_hash):
+    """Opt in on existing native walls; no document save or hidden cage edits."""
+    for name in HOSTS:
+        host=doc.getObject(name);inp=doc.getObject('Steel'+name+'Inputs');cfg=settings[name]
+        for typ,key,value in [
+          ('App::PropertyBool','DevelopIntoCap',True),('App::PropertyLength','CapCover',str(source['inputs']['C_s'])+' in'),
+          ('App::PropertyDistance','MatOffset',cfg['mat_offset']),('App::PropertyString','VerticalStationOffsetsJSON',json.dumps(cfg['vertical_offsets'])),
+          ('App::PropertyLength','EmbedmentIncrement','1 in'),('App::PropertyPressure','ConcreteStrength',str(source['inputs']['fc'])+' ksi'),
+          ('App::PropertyPressure','YieldStrength',str(source['inputs']['fy'])+' ksi'),('App::PropertyFloat','DensityFactor',source['lrfd_checks']['density_factor']),
+          ('App::PropertyString','Coating',source['lrfd_checks']['coating']),('App::PropertyString','DevelopmentJSON','{}'),
+          ('App::PropertyLength','RequiredDevelopment','0 in'),('App::PropertyLength','ProvidedEmbedment','0 in'),
+          ('App::PropertyString','DevelopmentSourceSHA256',source_hash),('App::PropertyString','VerticalMark','4E1'),('App::PropertyString','HorizontalMark','4E2')]:prop(inp,typ,key,value,'Cap development')
+        inp.ScheduleNote=DEVELOPED_LIMITS;inp.Limitations=DEVELOPED_LIMITS
+        inp.MatConfiguration='One tangent #4 mat, maximum 10 in spacing. Editable offset clears cap steel. Verticals are straight and developed below the cap top.'
+        host.DetailingStatus=DEVELOPED_LIMITS
+    refresh(doc,rebuild_hosts=False)
 
 class InputsProxy(Serializable):
     def __init__(self,obj):obj.Proxy=self
     def execute(self,obj):
-        obj.CageFrame=obj.PGL.Frame;obj.LayoutJSON=json.dumps(layout(obj))
-        if obj.AutoSync:steel.sync_wall(obj)
+        obj.CageFrame=obj.PGL.Frame;rows=layout(obj);obj.LayoutJSON=json.dumps(rows)
+        if getattr(obj,'DevelopIntoCap',False):
+            calc=development_info(obj,rows);obj.DevelopmentJSON=json.dumps(calc)
+            obj.RequiredDevelopment=str(calc['required_in'])+' in';obj.ProvidedEmbedment=str(calc['provided_in'])+' in'
+        if obj.AutoSync:
+            q=obj.Document.getObject(obj.Prefix+'Quantities')
+            # Existing bars already depend on these analytic rows. Re-link only
+            # when the set changes; reassigning duplicate labels renumbers them.
+            if q is None or [b.Name for b in q.Bars]!=[obj.Prefix+k for k in rows]:steel.sync_wall(obj)
 
-def refresh(doc):
+def refresh(doc,rebuild_hosts=True):
     for name in HOSTS:
-        host=doc.getObject(name);host.Proxy.execute(host)
-        inp=doc.getObject('Steel'+name+'Inputs');inp.Proxy.execute(inp)
+        host=doc.getObject(name)
+        if rebuild_hosts:host.Proxy.execute(host)
+        else:host.purgeTouched()
+        inp=doc.getObject('Steel'+name+'Inputs')
+        hooks.refresh(inp)
         q=doc.getObject(inp.Prefix+'Quantities')
+        # Preserve adopted marks across regeneration; configured mats use SDM marks.
         for rb in q.Bars:
-            rb.Base.Proxy.execute(rb.Base);rb.Proxy.execute(rb)
-        q.Proxy.execute(q)
-        # Descriptive review marks avoid colliding with the adopted FDOT register.
-        for rb in q.Bars:rb.Mark='PC'+str(host.BeamIndex+1)+'-'+rb.Base.BarID
+            if 'VerticalMark' in inp.PropertiesList:rb.Mark=inp.VerticalMark if rb.Base.BarID.startswith('MV') else inp.HorizontalMark
         steel.write_wall_schedule(inp,doc.getObject(inp.Prefix+'Schedule'),q.Bars)
+        if getattr(inp,'DevelopIntoCap',False):
+            sh=doc.getObject(inp.Prefix+'Schedule')
+            sh.set('I1','Ld required (in)');sh.set('J1','Cap embed (in)')
+            for i,rb in enumerate(q.Bars,2):
+                if rb.Base.BarID.startswith('MV'):
+                    sh.set('I'+str(i),'='+inp.Name+'.RequiredDevelopment/(1 in)');sh.set('J'+str(i),'='+inp.Name+'.ProvidedEmbedment/(1 in)')
     for obj in doc.Objects:obj.purgeTouched()
     schedules=[doc.getObject('Steel'+n+'Schedule') for n in HOSTS]
     for sh in schedules:sh.touch()
@@ -173,11 +234,21 @@ def validate(doc):
             if vol>0:conflicts.append(dict(other=othername,volume_mm3=vol))
         checks.append(result(name+'_concrete_intersections',not conflicts,conflicts=conflicts))
         checks+=steel.wall_geometry_checks(inp)
+        developed=getattr(inp,'DevelopIntoCap',False)
+        coverhost=shape.fuse(capshape).removeSplitter() if developed else shape
+        calc=development_info(inp,json.loads(inp.LayoutJSON)) if developed else None
+        capfaces=[f for f in capshape.Faces if not all(abs(v.Point.z-bounds(capshape).ZMax)<TOL for v in f.Vertexes)]
         covers=[];locals=[];vertical=[];horizontal=[]
         for rb in q.Bars:
             s=hooks.local(rb.Shape,inp.CageFrame);rbb=bounds(s);locals.append(rbb)
-            cv=hooks.solid_cover(s,shape,minimum=inp.Cover.Value)
+            cv=hooks.solid_cover(s,coverhost,minimum=inp.Cover.Value)
             checks.append(dict(cv,name=rb.Name+'_cover'));covers.append(cv['cover_in'])
+            if developed and rb.Base.BarID.startswith('MV'):
+                embedded=bounds(capshape).ZMax-rbb.ZMin;detail=calc['by_bar'][rb.Base.BarID]
+                segment=s.common(capshape);sidecover=min(segment.distToShape(f)[0] for f in capfaces)
+                checks.append(result(rb.Name+'_cap_cover',sidecover+TOL>=inp.CapCover.Value,cover_in=sidecover/IN,required_in=inp.CapCover.Value/IN))
+                checks.append(result(rb.Name+'_straight_development',embedded+TOL>=detail['required_in']*IN and abs(embedded-detail['provided_in']*IN)<TOL,required_in=detail['required_in'],provided_in=embedded/IN,cb_in=detail['cb_in']))
+                checks.append(result(rb.Name+'_crosses_joint',rbb.ZMin<d['z'] and rbb.ZMax>d['z'] and len(rb.Base.Shape.Edges)==1))
             target=vertical if rb.Base.BarID.startswith('MV') else horizontal
             target.append((rbb.XMin+rbb.XMax)/2 if target is vertical else (rbb.ZMin+rbb.ZMax)/2)
             for othername,os,ob in steelcache:
@@ -191,12 +262,21 @@ def validate(doc):
             vals=sorted(set(round(v,7) for v in values));spacing=[b-a for a,b in zip(vals,vals[1:])]
             checks.append(result(name+'_'+direction+'_max_spacing',bool(spacing) and max(spacing)<=pitch+TOL,maximum_in=max(spacing)/IN))
         lo=min(v.YMin for v in locals);hi=max(v.YMax for v in locals)
-        checks.append(result(name+'_centered_tangent_mat',abs((lo+hi)/2-(d['y']+d['t']/2))<TOL and abs(hi-lo-IN)<TOL,face_cover_in=[(lo-d['y'])/IN,(d['y']+d['t']-hi)/IN]))
+        offset=getattr(inp,'MatOffset',App.Units.Quantity('0 in')).Value
+        checks.append(result(name+'_tangent_mat_position',abs((lo+hi)/2-(d['y']+d['t']/2+offset))<TOL and abs(hi-lo-IN)<TOL,offset_in=offset/IN,face_cover_in=[(lo-d['y'])/IN,(d['y']+d['t']-hi)/IN]))
         sh=doc.getObject(inp.Prefix+'Schedule')
         checks.append(result(name+'_schedule',sh.BarNames==[b.Name for b in q.Bars] and float(sh.get('D'+str(sh.TotalRow)))==q.TotalBars and abs(float(sh.get('G'+str(sh.TotalRow)))-q.TotalSteelLength.Value/FT)<1e-7))
-        checks.append(result(name+'_continuous_mat',all(len(r['points'])==2 and abs((r['points'][1][2]-r['points'][0][2] if r['kind']=='wall_vertical' else r['points'][1][0]-r['points'][0][0])*IN-(d['h'] if r['kind']=='wall_vertical' else d['w'])+2*inp.Cover.Value+r['diameter']*IN)<TOL for r in json.loads(inp.LayoutJSON).values())))
+        continuous=True
+        for r in json.loads(inp.LayoutJSON).values():
+            verticalrow=r['kind']=='wall_vertical';actual=(r['points'][1][2]-r['points'][0][2] if verticalrow else r['points'][1][0]-r['points'][0][0])*IN
+            expected=d['h']-inp.Cover.Value-r['diameter']*IN/2+r['provided_embedment_in']*IN if developed and verticalrow else (d['h'] if verticalrow else d['w'])-2*inp.Cover.Value-r['diameter']*IN
+            continuous=continuous and len(r['points'])==2 and abs(actual-expected)<TOL
+        checks.append(result(name+'_continuous_mat',continuous))
+        if developed:
+            checks.append(result(name+'_development_metadata',json.loads(inp.DevelopmentJSON)==calc and abs(inp.RequiredDevelopment.Value-calc['required_in']*IN)<TOL and abs(inp.ProvidedEmbedment.Value-calc['provided_in']*IN)<TOL))
+            checks.append(result(name+'_development_schedule',all(abs(float(sh.get(('I' if col=='required_in' else 'J')+str(i)))-calc[col])<1e-7 for i,b in enumerate(q.Bars,2) if b.Base.BarID.startswith('MV') for col in ('required_in','provided_in'))))
         measurements.append(dict(wall=name,bars=q.TotalBars,concrete_ft3=shape.Volume/FT**3,steel_length_ft=q.TotalSteelLength.Value/FT,steel_weight_lb=q.NominalSteelWeightLb,minimum_cover_in=min(covers),recess_in=[d['ow']/IN,d['oh']/IN,d['depth']/IN],chamfer_in=d['ch']/IN,remaining_panel_in=(ys[-1]-ys[0])/IN,borders_in=[(d['ox']-d['x'])/IN,(d['oz']-d['z'])/IN],top_elevation_ft=(d['z']+d['h'])/FT))
         print(name,'validated',q.TotalBars,'bars',flush=True)
     clashes=[p for p in pairs if p['status']=='FAIL']
     checks.append(result('new_pier_steel_intersections',not clashes,checked_pairs=len(pairs),clashes=clashes))
-    return dict(checks=checks,failures=[c for c in checks if c['status']=='FAIL'],measurements=measurements,limitations=LIMITS)
+    return dict(checks=checks,failures=[c for c in checks if c['status']=='FAIL'],measurements=measurements,limitations=DEVELOPED_LIMITS if all(getattr(doc.getObject('Steel'+n+'Inputs'),'DevelopIntoCap',False) for n in HOSTS) else LIMITS)

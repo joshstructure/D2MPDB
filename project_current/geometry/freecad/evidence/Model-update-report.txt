@@ -1,3 +1,15 @@
+D-061 - PIER CHEEK VERTICAL DEVELOPMENT, 19 OCTOBER 2026
+
+Develop all twelve #4 pier cheek verticals straight 12 in into the cap; coordinate mat stations with existing cap reinforcement. Each 4E1 bar is now 57.75 in long. Required straight tension development is 12 in, governed by the code minimum; selected materials are 5.5-ksi normalweight concrete and uncoated Grade 60 steel. The existing verified LRFD calculator is reused with zero Ktr, clamping and excess-steel credit.
+
+Outer verticals move inward 1 in to maintain 3 in cap cover. MV05 moves -1/2 in to clear a cap longitudinal, and wall 1 mat moves outward 5/8 in to clear the cap stirrup. Bar count and 10 in maximum spacing are preserved. Wall cover remains at least 2 in. All concrete, cap cage, adopted bar marks and opposite-wall horizontal bars retain their exact geometry; 2138 objects remain protected. Total pier cheek steel is 101.25 ft / 67.635 lb.
+
+All 139 scoped physical checks, native edit/restore and cold reopen pass. No cheek steel intersections were found against the 674-bar modeled reinforcement inventory. Signed mat offsets use native PropertyDistance. Editable material/development inputs update bar paths and linked schedules.
+
+Straight tension development checked for the selected 5.5-ksi concrete and uncoated Grade 60 bars. Joint transfer and wall capacity are separate checks. Notebook, calculation, journal-quantity and drawing reconciliation remain downstream; tracker responses and unrelated sources are unchanged. The proposed Type 10 hook for pier 4E1 in the D-060 drawing schedule is superseded by this straight model detail; other supports are unchanged.
+
+PREVIOUS UPDATES (historical)
+
 D-060 — SDM BAR MARKS FOR THE PIER CHEEK WALLS, 19 OCTOBER 2026
 
 Write the SDM 4.3 bar marks of the D-059 pier cheek wall mats into the Mark property of their 24 native rebars (review marks PC1-/PC2- to 4E1 verticals and 4E2 horizontals) and re-letter the 32 pier pedestal bars from 4E1/4E2 to 4F1/4F2, so the pier uses E for cheek walls and F for pedestals as the end bents do.

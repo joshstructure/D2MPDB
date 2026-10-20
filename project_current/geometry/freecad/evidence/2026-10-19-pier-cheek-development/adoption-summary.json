@@ -1,0 +1,100 @@
+{
+  "status": "ADOPTED_EXACT_VERIFIED_CANDIDATE",
+  "decision": "D-061",
+  "date": "2026-10-19",
+  "model": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+  "model_sha256": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43",
+  "previous_model_sha256": "4f85c1fe05f8715462856ba1874e38de52b6a30dcdef4536f8aaf184abfb8725",
+  "objects": 2188,
+  "protected_existing_objects": 2138,
+  "scope": "Develop all twelve #4 pier cheek verticals straight 12 in into the cap; coordinate mat stations with existing cap reinforcement.",
+  "settings": {
+    "BridgeCheekPier1": {
+      "mat_offset": "-0.625 in",
+      "vertical_offsets": {
+        "MV01": "1 in",
+        "MV05": "-0.5 in",
+        "MV06": "-1 in"
+      }
+    },
+    "BridgeCheekPier2": {
+      "mat_offset": "0 in",
+      "vertical_offsets": {
+        "MV01": "1 in",
+        "MV05": "-0.5 in",
+        "MV06": "-1 in"
+      }
+    }
+  },
+  "measurements": [
+    {
+      "wall": "BridgeCheekPier1",
+      "bars": 12,
+      "concrete_ft3": 15.628580729166597,
+      "steel_length_ft": 50.624999999999964,
+      "steel_weight_lb": 33.817499999999974,
+      "minimum_cover_in": 1.9999999999999714,
+      "recess_in": [
+        30.0,
+        30.0,
+        0.7499999999999999
+      ],
+      "chamfer_in": 0.7499999999999999,
+      "remaining_panel_in": 11.249999999999982,
+      "borders_in": [
+        8.999999999999943,
+        9.000000000000014
+      ],
+      "top_elevation_ft": 47.764939909758915
+    },
+    {
+      "wall": "BridgeCheekPier2",
+      "bars": 12,
+      "concrete_ft3": 15.62858072916662,
+      "steel_length_ft": 50.624999999999964,
+      "steel_weight_lb": 33.817499999999974,
+      "minimum_cover_in": 1.9999999999999714,
+      "recess_in": [
+        30.0,
+        30.0,
+        0.7499999999999999
+      ],
+      "chamfer_in": 0.7499999999999999,
+      "remaining_panel_in": 11.25,
+      "borders_in": [
+        8.999999999999943,
+        9.000000000000014
+      ],
+      "top_elevation_ft": 47.764939909758915
+    }
+  ],
+  "total_bars": 24,
+  "verticals": 12,
+  "vertical_mark": "4E1",
+  "horizontal_mark": "4E2",
+  "vertical_length_in": 57.75,
+  "provided_embedment_in": 12,
+  "minimum_cap_cover_in": 3,
+  "minimum_wall_cover_in": 2,
+  "maximum_spacing_in": 10,
+  "total_steel_length_ft": 101.25,
+  "total_steel_weight_lb": 67.635,
+  "physical_checks_passed": 139,
+  "clash_check": {
+    "name": "new_pier_steel_intersections",
+    "status": "PASS",
+    "checked_pairs": 100,
+    "clashes": []
+  },
+  "native_edit_restore": true,
+  "cold_reopen": true,
+  "all_concrete_unchanged": true,
+  "cap_cage_unchanged": true,
+  "opposite_wall_horizontal_geometry_unchanged": true,
+  "all_marks_preserved": true,
+  "scope_limits": "Straight tension development checked for the selected 5.5-ksi concrete and uncoated Grade 60 bars. Joint transfer and wall capacity are separate checks. Notebook, calculation, journal-quantity and drawing reconciliation remain downstream; tracker responses and unrelated sources are unchanged. The proposed Type 10 hook for pier 4E1 in the D-060 drawing schedule is superseded by this straight model detail; other supports are unchanged.",
+  "backups": [
+    "archive/B4-before-pier-cheek-development-20261019.FCStd",
+    "archive/B4-before-pier-cheek-development-record-20261019.zip"
+  ]
+}
