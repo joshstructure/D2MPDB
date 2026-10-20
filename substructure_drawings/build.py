@@ -1,4 +1,4 @@
-"""Build the end bent and pier DXF (one file, 11 sheets) from the snapshot.
+"""Build the end bent and pier DXF (one file, 13 sheets) from the snapshot.
 
 Usage: see ``scripts/build_substructure_dxf.py``.  The drawing rules are in
 ``STYLE_GUIDE.md`` (rule ids such as D5, E1 in the comments below).
@@ -22,7 +22,7 @@ except ModuleNotFoundError as err:   # the annotation checker module is new; bui
         raise
     anno_check = None
 
-GENERATOR_VERSION = "2.5.0"
+GENERATOR_VERSION = "2.6.0"
 DXF_NAME = "B4_Substructure_EndBents_Pier.dxf"
 
 INFO = {
@@ -55,8 +55,9 @@ MAIN = (DRAW[0], DRAW[1], 12.15, DRAW[3])
 # with the end view), then the details (EB: (1 OF 3) sections A-A and B-B with
 # the pedestal details, (2 OF 3) section C-C and the cheek views D-D and E-E,
 # (3 OF 3) the cheek wall sections F-F and G-G and details "A" and "B"; pier:
-# sections with the pedestal details), then the bar list.
-SHEETS = (("EB1", 4), ("PIER", 3), ("EB2", 4), ("BARS", 1))
+# (1 OF 3) sections, (2 OF 3) the pedestal details, (3 OF 3) the cheek wall
+# view E-E and sections F-F and G-G, D-059), then the bar list.
+SHEETS = (("EB1", 4), ("PIER", 4), ("EB2", 4), ("BARS", 1))
 # TOP OF PEDESTAL ELEVATIONS table: column widths (BEAM NO., corners A-D), in
 PED_COLS = [0.85, 0.7, 0.7, 0.7, 0.7]
 NOTES_W = 5.0     # NOTES column beside a LEGEND column (sample B1-17), in
@@ -308,7 +309,12 @@ class Composer:
         zb = (s.cap_bot - 2.0, s.wall_bot + 0.5, 0.7, s.wall_bot - 1.25) if s.kind == "PIER" else None
         elev = b.elevation(zone, zb)
         b.draw_legend(elev)
-        ev = b.end_view(zone, "D", zb) if s.kind == "PIER" else None
+        if s.kind != "PIER":
+            ev = None
+        elif s.cheeks:   # D-059: the whole cheek wall face; the wall cut 0.6 ft under the cap (no height for more)
+            ev = b.end_view(zone, "D", z_clip=s.cap_bot - 0.6)
+        else:
+            ev = b.end_view(zone, "D", zb)
         L = -min(plan.local_bbox[0], elev.local_bbox[0])
         R = max(plan.local_bbox[2], elev.local_bbox[2])
         width = (L + R) / zone.sf * 12
@@ -323,12 +329,15 @@ class Composer:
         self.check(sh, elev)
         if ev:  # beside the elevation, bottom-aligned with it (FDOT pier sheet, VIEW A-A)
             pb = self.paper_bbox(elev)
-            self.place_tl(ev, pb[2] + 0.3, pb[1] + self.paper_size(ev)[1])
+            # (D-059: the end view with the cheek wall face is taller than the
+            # elevation; it stands on the window bottom, under the notes)
+            yb = min(pb[1], DRAW[1] + 0.05) if s.cheeks else pb[1]
+            self.place_tl(ev, pb[2] + 0.3, yb + self.paper_size(ev)[1])
             self.check(sh, ev, DRAW)
-        self._pe_tables(sh, s, b, top=DRAW[3] - 0.05)
+        self._pe_tables(sh, s, b, top=DRAW[3] - 0.05, ev=ev)
         self.finish(sh)
 
-    def _pe_tables(self, sh, s, b, top):
+    def _pe_tables(self, sh, s, b, top, ev=None):
         x = RIGHT_COL
         rows = [(l, fdot.elev(z)) for l, d, u, z in b.elev_points]
         y1 = sh.table(x, top, "TABLE OF\\PELEVATIONS", [("POINT", "ELEVATION")], rows, [0.55, 0.85])
@@ -349,6 +358,13 @@ class Composer:
             # have it once in the drawings per bent and in this case on the
             # next sheet"); here only the reference to it
             notes.append("FOR THE SOIL REINFORCEMENT (%s) LEGEND, SEE SHEET %s." % (DELTA, nums[1]))
+        elif s.cheeks:   # D-059: the cheek wall sheet
+            notes.append("FOR SECTIONS A-A, B-B AND C-C, SEE SHEET %s. FOR PEDESTAL DETAILS, SEE SHEET %s. FOR "
+                         "VIEW E-E AND THE CHEEK WALL SECTIONS F-F AND G-G, SEE SHEET %s. FOR LOCATION OF VIEWS "
+                         "D-D AND E-E, SEE PLAN." % (nums[1], nums[2], nums[3]))
+            notes.append("THE CHEEK WALLS ARE SHOWN BROKEN IN THE ELEVATION AND WHOLE IN VIEW D-D AND ON SHEET %s."
+                         % nums[3])
+            notes.append("PIER WALL IS PROVISIONAL (3'-0\" THICK); ITS REINFORCEMENT IS NOT SHOWN.")
         else:
             notes.append("FOR SECTIONS A-A, B-B AND C-C, SEE SHEET %s. FOR PEDESTAL DETAILS, SEE SHEET %s. FOR "
                          "LOCATION OF VIEW D-D, SEE PLAN." % (nums[1], nums[2]))
@@ -361,6 +377,16 @@ class Composer:
                 notes.append("MODEL CHECK (REMOVE BEFORE ISSUE): %s IS %.3f IN THE CAD MODEL AND %.3f IN THE SELECTED "
                              "GEOMETRY CAD TABLES; RECONCILE BEFORE ISSUE." % (q["check"].upper(), q["model"], q["reference"]))
         sh.notes(x, y - 0.3, "NOTES:", notes, width_in=3.7)
+        # the pier end view stands under the notes (D-059: with the cheek
+        # wall face it is taller than before): it keeps 0.2 in under them
+        # (the end bent plans' right-end labels run close to the column by
+        # design, so this is not a general block check)
+        if ev is not None:
+            nb = sh.notes_bottom(y - 0.3, notes, 3.7)
+            top_ev = self.paper_bbox(ev)[3]
+            if top_ev > nb - 0.2:
+                self.warnings.append("%s / %s runs within 0.2 in of the notes (top %.2f, notes bottom %.2f)" %
+                                     (sh.number, ev.name, top_ev, nb))
 
     # -------------------------------------------------------------- details
     def _ped_table(self, sh, s, x, y_top):
@@ -616,15 +642,18 @@ class Composer:
         self.finish(sh)
 
     def pier_details(self):
-        """(1 OF 2): sections A-A, B-B and C-C in one row with their titles
-        on one baseline (E5) and the notes below; (2 OF 2): the pedestal plan
+        """(1 OF 3): sections A-A, B-B and C-C in one row with their titles
+        on one baseline (E5) and the notes below; (2 OF 3): the pedestal plan
         and elevation with the pedestal table (E1: the three sections with
         the common dimension rows of V18 fill the sheet height, so the
-        pedestal details go to a further sheet instead of being squeezed)."""
+        pedestal details go to a further sheet instead of being squeezed);
+        (3 OF 3, D-059): the cheek wall view E-E with its sections F-F and
+        G-G, as the end bents' cheek wall sheets."""
         s = self.sup["PIER"]
         nums = self.numbers["PIER"]
         b = Builder(s, self.doc)
-        sh = self.new_sheet(nums[1], "PIER DETAILS (1 OF 2)")
+        of = "(%%d OF %d)" % (3 if s.cheeks else 2)
+        sh = self.new_sheet(nums[1], "PIER DETAILS " + of % 1)
         z = sh.zone(DRAW, "3/4")
         va = b.section(z, "between_piles", "A", "(SECTION BETWEEN PILES)")
         vb = b.section(z, "at_pile", "B", "(SECTION AT PILES)")
@@ -644,9 +673,9 @@ class Composer:
         sh.notes(x_n, y, "NOTES:", items, width_in=w_n)
         self.check_block(sh, "notes", (x_n, nb, x_n + w_n, y))
         self.finish(sh)
-        # (2 OF 2): pedestal plan at the left, elevation beside it, the table
+        # (2 OF 3): pedestal plan at the left, elevation beside it, the table
         # right of the elevation, the notes under the table
-        sh = self.new_sheet(nums[2], "PIER DETAILS (2 OF 2)")
+        sh = self.new_sheet(nums[2], "PIER DETAILS " + of % 2)
         z = sh.zone(DRAW, "3/4")
         pp = b.pedestal_plan(z, s.pedestals[0])
         pe = b.pedestal_elevation(z, s.pedestals[0])
@@ -670,6 +699,46 @@ class Composer:
         sh.notes(xt, y - 0.25, "NOTES:", items, width_in=w_n)
         self.check_block(sh, "pedestal table", (xt, y, xt + wt, y_t), margin=0.2)
         self.check_block(sh, "notes", (xt, nb, xt + w_n, y - 0.25))
+        self.finish(sh)
+        if s.cheeks:
+            self._pier_cheek_sheet(s, nums, b)
+
+    def _pier_cheek_sheet(self, s, nums, b):
+        # (3 OF 3, D-059): VIEW E-E (the left cheek wall's outside face with
+        # its recessed panel and bars, 3/8") at the left carrying the flags
+        # of F-F and G-G (D8), the two sections (3/4") beside it, the notes
+        # under the sections
+        sh = self.new_sheet(nums[3], "PIER DETAILS (3 OF 3)")
+        top = DRAW[3] - 0.05
+        c = s.cheeks[0]
+        z2 = sh.zone(DRAW, "3/8")
+        ve = b.cheek_view(z2, c, "E", cuts=details.cheek_cut_marks(b, c))
+        self.place_tl(ve, DRAW[0] + 0.1, top)
+        xs = self.paper_bbox(ve)[2] + 0.3
+        z2.window = (DRAW[0], DRAW[1], xs, DRAW[3])
+        self.check(sh, ve)
+        z = sh.zone((xs, DRAW[1], DRAW[2], DRAW[3]), "3/4")
+        vf = details.pier_cheek_section(b, z, c, "F", "side")
+        vg = details.pier_cheek_section(b, z, c, "G", "top")
+        bottom = self.row(sh, [vf, vg], top, xs + 0.1, DRAW[2], gap=0.4)
+        y = min(bottom, self.paper_bbox(ve)[1]) - 0.3
+        x_n = xs + 0.2
+        w_n = DRAW[2] - 0.1 - x_n
+        items = [
+            "FOR LOCATION OF VIEW E-E, SEE SHEET %s (PLAN). SECTIONS F-F AND G-G ARE LOCATED IN VIEW E-E." % nums[0],
+            "VIEW E-E AND SECTIONS F-F AND G-G SHOW THE LEFT CHEEK WALL; THE RIGHT CHEEK WALL IS SIMILAR "
+            "(MIRRORED). THE RECESSED PANEL IS ON THE OUTSIDE FACE OF EACH CHEEK WALL; THE INSIDE FACE IS FLAT.",
+            "CAP REINFORCEMENT IS NOT SHOWN IN SECTION F-F FOR CLARITY.",
+            "CHEEK WALLS ARE CAST ON THE CAP; THE CAP TOP IS A CONSTRUCTION JOINT.",
+            # D-059: "cap anchorage and structural design remain unconfigured"
+            # (the model's mats stop at the cap top); C9, D11: drawn as
+            # modelled and reported
+            "MODEL CHECK (REMOVE BEFORE ISSUE): THE CHEEK WALL REINFORCEMENT STOPS AT THE CAP TOP IN THE CAD MODEL "
+            "(NO ANCHORAGE INTO THE CAP); DETAIL THE ANCHORAGE AND ADD IT TO THE MODEL.",
+            self.bar_list_ref()]
+        nb = sh.notes_bottom(y, items, w_n)
+        sh.notes(x_n, y, "NOTES:", items, width_in=w_n)
+        self.check_block(sh, "notes", (x_n, nb, x_n + w_n, y))
         self.finish(sh)
 
     # -------------------------------------------------------------- bar list

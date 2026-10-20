@@ -72,6 +72,7 @@ class Support:
         self._piles()
         self._beams()
         self._pedestals()
+        self._cheeks()
         if self.kind == "EB":
             self._walls()
         else:
@@ -168,15 +169,25 @@ class Support:
         top = sorted(((self.u(v[0]), v[2]) for v in front if v[2] > self.cap_top + 0.01), key=lambda t: t[0])
         self.backwall_top = top                       # (u, z) along FFBW top edge
         self.backwall_bb = b
+        self.outer_u = (self.cheeks[0]["u_lo"], self.cheeks[-1]["u_hi"])
+
+    def _cheeks(self):
+        """Cheek walls, left to right in u: the end bents' beyond the cap
+        ends (with their lugs under the cap), the pier's (D-059) on the cap
+        top inside its ends.  ``tag`` names the wall's bar group and WWR
+        group (SteelBridgeCheekEB11Bars, WWRCheekEB11 for BridgeCheekEB11)."""
         self.cheeks = []
         for n, m in self.by_role("cheek").items():
             cb = m["bb_ft"]
             uc = self.u((cb[0] + cb[3]) / 2)
-            self.cheeks.append({"name": n, "u_lo": min(self.u(cb[0]), self.u(cb[3])), "u_hi": max(self.u(cb[0]), self.u(cb[3])),
+            self.cheeks.append({"name": n, "tag": n.replace("BridgeCheek", ""),
+                                "u_lo": min(self.u(cb[0]), self.u(cb[3])), "u_hi": max(self.u(cb[0]), self.u(cb[3])),
                                 "u": uc, "side": "left" if uc < 0 else "right", "top": cb[5], "bot": cb[2], "bb": cb,
                                 "xmin_side": cb[3] <= self.cap_bb[0] + 0.01, "vertices": m["vertices_ft"]})
         self.cheeks.sort(key=lambda c: c["u"])
-        self.outer_u = (self.cheeks[0]["u_lo"], self.cheeks[-1]["u_hi"])
+
+    def cheek_bars(self, cheek):
+        return [b for b in self.bars if b["family"] == "cheek" and b["group"].endswith(cheek["tag"] + "Bars")]
 
     def _pier_wall(self):
         w = list(self.by_role("pier_wall").values())[0]
@@ -185,7 +196,7 @@ class Support:
         self.wall_u = sorted((self.u(b[0]), self.u(b[3])))
         self.wall_top, self.wall_bot = b[5], b[2]
         self.wall_thk = b[4] - b[1]
-        self.outer_u = tuple(self.cap_u)
+        self.outer_u = tuple(self.cap_u)   # (the pier cheek walls stand inside the cap ends)
 
     # ------------------------------------------------------------- reinforcement
     def bars_of(self, mark=None, family=None, subtype=None):

@@ -81,6 +81,10 @@ STRUCTURES = {
         "concrete": {
             "cap": ["BridgeCapPier"],
             "pier_wall": ["BridgePierWallSolid"],
+            # D-059 (2026-10-19): two 4 x 4 ft x 12 in cheek walls on the cap
+            # ends (3 in inset) with a 30 x 30 in recessed panel (3/4 in deep,
+            # 3/4 in chamfer) on the outside face
+            "cheek": ["BridgeCheekPier1", "BridgeCheekPier2"],
             "pedestal": ["BridgePedestalPierB1", "BridgePedestalPierB2"],
             "pad": ["BridgePadPierS1B1", "BridgePadPierS2B1", "BridgePadPierS1B2", "BridgePadPierS2B2"],
             "pile_steel": ["BridgePilePierP1", "BridgePilePierP2", "BridgePilePierP3", "BridgePilePierP4"],
@@ -90,6 +94,7 @@ STRUCTURES = {
         },
         "bar_groups": {
             "cap": ["CagePierBars"],
+            "cheek": ["SteelBridgeCheekPier1Bars", "SteelBridgeCheekPier2Bars"],
             "pedestal": ["PedSteelPierB1Bars", "PedSteelPierB2Bars"],
         },
         "wwr": [],
@@ -347,10 +352,11 @@ def run():
                 cb = get(n).Shape.BoundBox
                 left = cb.XMax <= cap.XMin + 1.0
                 parts = {"cheek": [(n, get(n).Shape)]}
-                # Include the cap/backwall ends within 1 ft of the cheek for context.
+                # Include the cap/backwall ends within 1 ft of the cheek for
+                # context (the pier has no backwall).
                 for role in ("cap", "backwall"):
                     items = []
-                    for m, s in conc[role]:
+                    for m, s in conc.get(role, []):
                         c = clip_box(s, xmax=cap.XMin + FT) if left else clip_box(s, xmin=cap.XMax - FT)
                         if c is not None:
                             items.append((m, c))
@@ -366,20 +372,29 @@ def run():
         # backwall height seen from above (coordinates (u, v) of the plan
         # frame).  Each shows the cut face and SECTION_DEPTH_FT beyond it,
         # within 3 ft of the cheek.
+        # Pier cheek walls (D-059, no backwall): the vertical cut through the
+        # recessed panel (3 in off the wall's middle toward the viewer, so the
+        # 1'-3" beyond the cut stays inside the 30 in panel: no panel side
+        # edge coincides with the clip) and the horizontal cut at 0.55 of the
+        # wall height, for the same reason.
         if "cheek" in cfg["concrete"]:
             S["cheek_sections"] = {}
-            bw = get(cfg["concrete"]["backwall"][0]).Shape.BoundBox
-            ffbw_y = bw.YMin if e1[0] > 0 else bw.YMax   # backwall face toward the bridge
-            y_cut = ffbw_y - e1[0] * FT
-            y_far = y_cut + e1[0] * SECTION_DEPTH_FT * FT   # beyond the cut, away from the viewer
-            z_cut = cap.ZMax + 0.5 * (bw.ZMax - cap.ZMax)
+            bw = get(cfg["concrete"]["backwall"][0]).Shape.BoundBox if "backwall" in cfg["concrete"] else None
             for n in cfg["concrete"]["cheek"]:
                 cb = get(n).Shape.BoundBox
                 left = cb.XMax <= cap.XMin + 1.0
+                if bw is not None:
+                    ffbw_y = bw.YMin if e1[0] > 0 else bw.YMax   # backwall face toward the bridge
+                    y_cut = ffbw_y - e1[0] * FT
+                    z_cut = cap.ZMax + 0.5 * (bw.ZMax - cap.ZMax)
+                else:
+                    y_cut = (cb.YMin + cb.YMax) / 2 - e1[0] * 0.25 * FT
+                    z_cut = cap.ZMax + 0.55 * (cb.ZMax - cap.ZMax)
+                y_far = y_cut + e1[0] * SECTION_DEPTH_FT * FT   # beyond the cut, away from the viewer
                 xr = (cb.XMin - 3 * FT, cb.XMax + 3 * FT)
                 side_parts, top_parts = {}, {}
                 for role in ("cheek", "cap", "backwall"):
-                    for m, s in conc[role]:
+                    for m, s in conc.get(role, []):
                         c = clip_box(s, xmin=xr[0], xmax=xr[1], ymin=min(y_cut, y_far), ymax=max(y_cut, y_far))
                         if c is not None:
                             side_parts.setdefault(role, []).append((m, c))

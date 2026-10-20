@@ -14,8 +14,11 @@ End bents                         Pier
   B  cap stirrups / hoops           B  cap stirrups / hoops
   C  cap U-bars between piles       C  cap U-bars between piles
   D  backwall bars                  D  cap end U-bars
-  E  cheek wall bars                E  pedestal U-bars
-  F  pedestal U-bars
+  E  cheek wall bars                E  cheek wall bars (D-059)
+  F  pedestal U-bars                F  pedestal U-bars
+
+(The pier pedestal bars were 4E1/4E2 before the pier cheek walls of D-059,
+2026-10-19; E now names the cheek wall bars of both supports.)
 
 Bars that differ only by length within a backwall vertical series share one
 mark with a varying length (bar list shows each length and count), the
@@ -42,7 +45,8 @@ FAMILIES = {
         ("B", "cap_trans", ["hoop", "open"]),
         ("C", "cap_added", ["u"]),
         ("D", "cap_end", ["horiz", "vert"]),
-        ("E", "pedestal", ["x", "y"]),
+        ("E", "cheek", ["vert", "horiz"]),
+        ("F", "pedestal", ["x", "y"]),
     ],
 }
 VARYING = {("EB", "backwall", "vert")}

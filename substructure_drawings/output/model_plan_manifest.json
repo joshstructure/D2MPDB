@@ -2,9 +2,9 @@
  "generator": "substructure_drawings.model_plan",
  "version": "1.0.0",
  "dxf": "B4_Model_Plan.dxf",
- "dxf_sha256": "607d8ecd06a1f32a69f70bf6057f83212ea4a12bb32e30d4282677daf4803767",
- "snapshot_sha256": "4f42701dd047c5c3b001cf78004ad5c609e47f558bdc06013a33873213260437",
- "model_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df",
+ "dxf_sha256": "55eb8b944a3d9814268bcea2bdc854387a326ad6b363f10230263d7725316e39",
+ "snapshot_sha256": "e7303dc07364fb7b5491fa88b41e5e10e924746fe5ee0199038954b022b10e09",
+ "model_sha256": "4f85c1fe05f8715462856ba1874e38de52b6a30dcdef4536f8aaf184abfb8725",
  "units": "international feet ($INSUNITS=2); model space 1:1 in the plan frame",
  "frame": {
   "e1": [
@@ -102,7 +102,9 @@
    "BridgeCheekEB11",
    "BridgeCheekEB12",
    "BridgeCheekEB21",
-   "BridgeCheekEB22"
+   "BridgeCheekEB22",
+   "BridgeCheekPier1",
+   "BridgeCheekPier2"
   ],
   "closure": [
    "ClosureSlabEB1",
@@ -273,9 +275,9 @@
   "PileConc_h": 19,
   "PileSteel_h": 8,
   "Rebar_h": 55,
-  "SubStrConc": 14,
-  "SubStrConc2": 26,
-  "SubStrConc2_h": 75,
+  "SubStrConc": 18,
+  "SubStrConc2": 34,
+  "SubStrConc2_h": 81,
   "SubStrConc_h": 19,
   "SupstrConc": 14,
   "SupstrConc3_h": 21,
@@ -301,7 +303,7 @@
   "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
  },
  "symbology_audit": {
-  "entities": 1368,
+  "entities": 1386,
   "not_on_fdot_level": [],
   "not_by_level": [],
   "documented_overrides": {
@@ -352,8 +354,8 @@
  "extraction_log": [
   "CopingB7AtCheek has no valid shape; CopingB7BentJoint is drawn in its place",
   "BarrierB7AtCheek has no valid shape; BarrierB7BentJoint is drawn in its place",
-  "136 objects chosen, 28 skipped",
-  "projection 85 s (4008 edges)",
-  "total 95 s"
+  "138 objects chosen, 28 skipped",
+  "projection 73 s (4048 edges)",
+  "total 80 s"
  ]
 }

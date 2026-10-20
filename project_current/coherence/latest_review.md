@@ -1,31 +1,32 @@
 # Latest project coherence review
 
-Checked at 2026-10-19T21:38:25.291387+00:00. **15 outstanding items remain.**
+Checked at 2026-10-20T00:26:27.015977+00:00. **15 outstanding items remain.**
 
 The [workbook](Coherence_Tracker.xlsx) owns item status and responses. This report is a generated view.
 The initial findings were carried forward from the latest adopted pier/end-bent reviews plus source-inventory gaps.
 Previously resolved decisions were excluded. This run did not perform native calculations or a complete engineering review.
 
 Registered sources: 37. Tracker items: 28.
-Automatic results: 3 changed, 9 error, 51 match, 4 missing, 12 review.
+Automatic results: 3 changed, 9 error, 51 match, 4 missing, 13 review.
 
 ## Files and relationships needing attention
 
 | Check | Status | Finding |
 | --- | --- | --- |
+| SOURCE:JOURNAL | CHANGED | File differs from the registered revision; review its consumers before adoption. |
 | SOURCE:CAP-TOOL | CHANGED | File differs from the registered revision; review its consumers before adoption. |
 | SOURCE:MCAD-DAT1 | MISSING | Registered file is absent. |
 | SOURCE:PSB-S1 | MISSING | No source file has been selected. |
 | SOURCE:MCAD-DAT2 | MISSING | Registered file is absent. |
 | SOURCE:PSB-S2 | MISSING | No source file has been selected. |
-| SOURCE:BACKWALL-TOOL | CHANGED | File differs from the registered revision; review its consumers before adoption. |
 | SOURCE:PILE-TOOL | CHANGED | File differs from the registered revision; review its consumers before adoption. |
+| DEP:GEOMETRY:JOURNAL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S1:MCAD-DAT1 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S1:PSB-S1 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S2:MCAD-DAT2 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S2:PSB-S2 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
-| DEP:BACKWALL-REPORT:BACKWALL-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
-| DEP:BACKWALL-CASE:BACKWALL-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
+| DEP:CAD-MODEL:JOURNAL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
+| DEP:BACKWALL-TOOL:JOURNAL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:PILE-EB1-REPORT:PILE-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:PILE-EB1-CASE:PILE-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:PILE-EB2-REPORT:PILE-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |

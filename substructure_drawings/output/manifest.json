@@ -1,10 +1,10 @@
 {
  "generator": "substructure_drawings.build",
- "version": "2.5.0",
+ "version": "2.6.0",
  "dxf": "B4_Substructure_EndBents_Pier.dxf",
- "dxf_sha256": "eadd77d30f494751c1bc043cf7545aeaac1b7959a20218b058ecf003d6d301e6",
- "snapshot_sha256": "3c9602f2917d3e93114489f07ed55255cf4d77c8651f7a3d86517ad8a6ebd941",
- "model_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df",
+ "dxf_sha256": "ff572370b45c4cdab2c556657de07921ea09994156099aff5db50a5b49c09a3c",
+ "snapshot_sha256": "f8992f3e60e2ffa9ce4d0ed93442f3ffd0087dc7653c1d8b63d2490f7fbfd8b1",
+ "model_sha256": "4f85c1fe05f8715462856ba1874e38de52b6a30dcdef4536f8aaf184abfb8725",
  "units": "international feet ($INSUNITS=2); model space 1:1",
  "station_reference": {
   "FFBW End Bent 1": 1593.22
@@ -55,32 +55,41 @@
   },
   {
    "number": "B4-6",
-   "title": "PIER DETAILS (1 OF 2)",
-   "layout": "B4-6 PIER DETAILS (1 OF 2)",
+   "title": "PIER DETAILS (1 OF 3)",
+   "layout": "B4-6 PIER DETAILS (1 OF 3)",
    "scales": [
     "3/4\" = 1'-0\""
    ]
   },
   {
    "number": "B4-7",
-   "title": "PIER DETAILS (2 OF 2)",
-   "layout": "B4-7 PIER DETAILS (2 OF 2)",
+   "title": "PIER DETAILS (2 OF 3)",
+   "layout": "B4-7 PIER DETAILS (2 OF 3)",
    "scales": [
     "3/4\" = 1'-0\""
    ]
   },
   {
    "number": "B4-8",
+   "title": "PIER DETAILS (3 OF 3)",
+   "layout": "B4-8 PIER DETAILS (3 OF 3)",
+   "scales": [
+    "3/8\" = 1'-0\"",
+    "3/4\" = 1'-0\""
+   ]
+  },
+  {
+   "number": "B4-9",
    "title": "END BENT 2",
-   "layout": "B4-8 END BENT 2",
+   "layout": "B4-9 END BENT 2",
    "scales": [
     "3/8\" = 1'-0\""
    ]
   },
   {
-   "number": "B4-9",
+   "number": "B4-10",
    "title": "END BENT 2 DETAILS (1 OF 3)",
-   "layout": "B4-9 END BENT 2 DETAILS (1 OF 3)",
+   "layout": "B4-10 END BENT 2 DETAILS (1 OF 3)",
    "scales": [
     "3/4\" = 1'-0\"",
     "1\" = 1'-0\"",
@@ -88,26 +97,26 @@
    ]
   },
   {
-   "number": "B4-10",
+   "number": "B4-11",
    "title": "END BENT 2 DETAILS (2 OF 3)",
-   "layout": "B4-10 END BENT 2 DETAILS (2 OF 3)",
+   "layout": "B4-11 END BENT 2 DETAILS (2 OF 3)",
    "scales": [
     "3/8\" = 1'-0\"",
     "3/4\" = 1'-0\""
    ]
   },
   {
-   "number": "B4-11",
+   "number": "B4-12",
    "title": "END BENT 2 DETAILS (3 OF 3)",
-   "layout": "B4-11 END BENT 2 DETAILS (3 OF 3)",
+   "layout": "B4-12 END BENT 2 DETAILS (3 OF 3)",
    "scales": [
     "3/4\" = 1'-0\""
    ]
   },
   {
-   "number": "B4-12",
+   "number": "B4-13",
    "title": "REINFORCING BAR LIST",
-   "layout": "B4-12 REINFORCING BAR LIST",
+   "layout": "B4-13 REINFORCING BAR LIST",
    "scales": [
     "3/4\" = 1'-0\""
    ]
@@ -115,24 +124,24 @@
  ],
  "levels_used": {
   "BaseLineSurveyPGL": 6,
-  "BearingPadMisc": 181,
+  "BearingPadMisc": 180,
   "CL_Major": 26,
-  "CL_Minor": 57,
-  "Dimension": 600,
-  "Leader": 685,
+  "CL_Minor": 55,
+  "Dimension": 632,
+  "Leader": 709,
   "Patterning": 1008,
   "PileConc": 48,
   "PileConc_h": 160,
-  "PileSteel": 37,
-  "PileSteel_h": 175,
-  "Rebar": 1683,
+  "PileSteel": 29,
+  "PileSteel_h": 147,
+  "Rebar": 1719,
   "Rebar2": 102,
-  "SubStrConc": 328,
-  "SubStrConc2": 358,
-  "SubStrConc2_h": 28,
-  "SubStrConc_h": 175,
-  "Symbols": 157,
-  "TextStructures": 427,
+  "SubStrConc": 340,
+  "SubStrConc2": 438,
+  "SubStrConc2_h": 68,
+  "SubStrConc_h": 167,
+  "Symbols": 173,
+  "TextStructures": 454,
   "WallConc": 16,
   "WallMSEPanel": 2
  },
@@ -149,11 +158,11 @@
   "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
  },
  "symbology_audit": {
-  "entities": 11543,
+  "entities": 12037,
   "not_on_fdot_level": [],
   "not_by_level": [],
   "documented_overrides": {
-   "BearingPadMisc linetype DGN2 (hidden pad edges; no FDOT hidden level)": 36
+   "BearingPadMisc linetype DGN2 (hidden pad edges; no FDOT hidden level)": 68
   },
   "layers": [
    "0",
@@ -425,6 +434,26 @@
    "4E1": {
     "size": 4,
     "des": "E1",
+    "description": "CHEEK WALL VERTICAL",
+    "count": 12,
+    "lengths_in": {
+     "44": 12
+    },
+    "varies": false
+   },
+   "4E2": {
+    "size": 4,
+    "des": "E2",
+    "description": "CHEEK WALL HORIZONTAL",
+    "count": 12,
+    "lengths_in": {
+     "44": 12
+    },
+    "varies": false
+   },
+   "4F1": {
+    "size": 4,
+    "des": "F1",
     "description": "PEDESTAL, TRANSVERSE",
     "count": 16,
     "lengths_in": {
@@ -432,9 +461,9 @@
     },
     "varies": false
    },
-   "4E2": {
+   "4F2": {
     "size": 4,
-    "des": "E2",
+    "des": "F2",
     "description": "PEDESTAL, LONGITUDINAL",
     "count": 16,
     "lengths_in": {

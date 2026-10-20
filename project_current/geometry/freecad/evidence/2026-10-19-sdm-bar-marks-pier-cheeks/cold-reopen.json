@@ -1,0 +1,158 @@
+{
+  "status": "PASS",
+  "model_sha256": "4f85c1fe05f8715462856ba1874e38de52b6a30dcdef4536f8aaf184abfb8725",
+  "previous_model_sha256": "14db08f0313de0566e984d58d36397830ee13e1dce91d75738e2d61d77c9db8c",
+  "objects": 2188,
+  "bars_marked": 494,
+  "distinct_marks": [
+    "4D2",
+    "4E1",
+    "4E2",
+    "4E3",
+    "4E4",
+    "4F1",
+    "4F2",
+    "5B1",
+    "5B2",
+    "5C",
+    "5D1",
+    "5D2",
+    "6A1",
+    "6A3",
+    "6B1",
+    "6B2",
+    "8A2",
+    "9A2"
+  ],
+  "pier_marks": [
+    "4E1",
+    "4E2",
+    "4F1",
+    "4F2",
+    "5B1",
+    "5B2",
+    "5C",
+    "5D1",
+    "5D2",
+    "6A1",
+    "6A3",
+    "9A2"
+  ],
+  "register_failures_before": 112,
+  "register_failures_after": 0,
+  "changed_properties": {
+    "Mark": 56,
+    "schedule cell A": 56,
+    "cells": 4
+  },
+  "changed_objects": {
+    "schedule cell A": [
+      "PedSteelPierB1Schedule",
+      "PedSteelPierB1Schedule",
+      "PedSteelPierB1Schedule",
+      "PedSteelPierB1Schedule",
+      "PedSteelPierB1Schedule",
+      "PedSteelPierB1Schedule",
+      "PedSteelPierB1Schedule",
+      "PedSteelPierB1Schedule",
+      "PedSteelPierB1Schedule",
+      "PedSteelPierB1Schedule",
+      "PedSteelPierB1Schedule",
+      "PedSteelPierB1Schedule",
+      "PedSteelPierB1Schedule",
+      "PedSteelPierB1Schedule",
+      "PedSteelPierB1Schedule",
+      "PedSteelPierB1Schedule",
+      "PedSteelPierB2Schedule",
+      "PedSteelPierB2Schedule",
+      "PedSteelPierB2Schedule",
+      "PedSteelPierB2Schedule",
+      "PedSteelPierB2Schedule",
+      "PedSteelPierB2Schedule",
+      "PedSteelPierB2Schedule",
+      "PedSteelPierB2Schedule",
+      "PedSteelPierB2Schedule",
+      "PedSteelPierB2Schedule",
+      "PedSteelPierB2Schedule",
+      "PedSteelPierB2Schedule",
+      "PedSteelPierB2Schedule",
+      "PedSteelPierB2Schedule",
+      "PedSteelPierB2Schedule",
+      "PedSteelPierB2Schedule",
+      "SteelBridgeCheekPier1Schedule",
+      "SteelBridgeCheekPier1Schedule",
+      "SteelBridgeCheekPier1Schedule",
+      "SteelBridgeCheekPier1Schedule",
+      "SteelBridgeCheekPier1Schedule",
+      "SteelBridgeCheekPier1Schedule",
+      "SteelBridgeCheekPier1Schedule",
+      "SteelBridgeCheekPier1Schedule",
+      "SteelBridgeCheekPier1Schedule",
+      "SteelBridgeCheekPier1Schedule",
+      "SteelBridgeCheekPier1Schedule",
+      "SteelBridgeCheekPier1Schedule",
+      "SteelBridgeCheekPier2Schedule",
+      "SteelBridgeCheekPier2Schedule",
+      "SteelBridgeCheekPier2Schedule",
+      "SteelBridgeCheekPier2Schedule",
+      "SteelBridgeCheekPier2Schedule",
+      "SteelBridgeCheekPier2Schedule",
+      "SteelBridgeCheekPier2Schedule",
+      "SteelBridgeCheekPier2Schedule",
+      "SteelBridgeCheekPier2Schedule",
+      "SteelBridgeCheekPier2Schedule",
+      "SteelBridgeCheekPier2Schedule",
+      "SteelBridgeCheekPier2Schedule"
+    ],
+    "cells": [
+      "PedSteelPierB1Schedule",
+      "PedSteelPierB2Schedule",
+      "SteelBridgeCheekPier1Schedule",
+      "SteelBridgeCheekPier2Schedule"
+    ]
+  },
+  "geometry_placements_expressions_dependencies_labels_preserved": true,
+  "all_other_property_values_preserved": true,
+  "controller_types_preserved": true,
+  "check_statuses": {
+    "CheekSteelChecks": [
+      "PASS",
+      null,
+      "Standard #4 90deg hook geometry verified. Development / connection capacity NOT VERIFIED."
+    ],
+    "CheekLugWWRChecks": [
+      "PASS",
+      null,
+      null
+    ],
+    "WallSteelChecks": [
+      "FAIL",
+      null,
+      null
+    ],
+    "PedestalSteelChecks": [
+      "GEOMETRY PASS; DEVELOPMENT FAIL",
+      null,
+      null
+    ],
+    "CageEB1Checks": [
+      null,
+      "PASS",
+      "FAIL"
+    ],
+    "CagePierChecks": [
+      null,
+      "PASS",
+      "FAIL"
+    ],
+    "CageEB2Checks": [
+      null,
+      "PASS",
+      "FAIL"
+    ]
+  },
+  "invalid_objects": [],
+  "touched_objects": [],
+  "wwr_wire_marks_unchanged": 180,
+  "validation": "Cold-opened the prior archive and the delivery in FreeCAD 1.1.3 with the pinned controllers. Compared native shape hashes, placements, expressions, dependencies, labels, controller types, check statuses and every other readable property value of all 2188 objects. No recompute or save."
+}

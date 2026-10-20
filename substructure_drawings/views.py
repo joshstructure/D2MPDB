@@ -348,6 +348,25 @@ def edge_points(rec):
     return [(c[0] + r * math.cos(a), c[1] + r * math.sin(a)) for a in (0, math.pi / 2, math.pi, 1.5 * math.pi)]
 
 
+def recess_box(edges, outline, fn=None, tol=0.05):
+    """The recessed panel of a pier cheek wall face (D-059) in a view of the
+    face: the box of the cheek edges lying strictly inside the wall's
+    ``outline`` (x0, y0, x1, y1), or None.  ``fn`` maps edge points first."""
+    xs, ys = [], []
+    for r in edges:
+        if r["role"] != "cheek" or not r["vis"]:
+            continue
+        for p in edge_points(r):
+            if fn:
+                p = fn(p)
+            if outline[0] + tol < p[0] < outline[2] - tol and outline[1] + tol < p[1] < outline[3] - tol:
+                xs.append(p[0])
+                ys.append(p[1])
+    if not xs:
+        return None
+    return (min(xs), min(ys), max(xs), max(ys))
+
+
 def extents(edges, roles=None):
     pts = [p for r in edges if roles is None or r["role"] in roles for p in edge_points(r)]
     return (min(p[0] for p in pts), min(p[1] for p in pts), max(p[0] for p in pts), max(p[1] for p in pts))
@@ -1158,6 +1177,16 @@ class Builder:
             look = (1, 0) if s.e1 > 0 else (-1, 0)
             xc = (uL - 0.4 * k) if look[0] > 0 else (uR + 0.4 * k)   # the wedge clear of the cap end
             v.section_cut((xc, vf - 0.15 * k), (xc, vb + 0.15 * k), "D", look)
+            if s.cheeks:
+                # D-059: VIEW E-E, the outside face of the left cheek wall
+                # seen from the left end of the plan (D-D at the right end
+                # shows the right wall's face); the flag line between the
+                # cap end and the transverse dimension column
+                # (0.4 k beyond the cap end, as D-D at the other end: the wall
+                # stands inside the cap end, and a flag at the wall's face
+                # would reach the spacing rows' extension lines there, A13)
+                xe = uL - 0.4 * k
+                v.section_cut((xe, vf - 0.3 * k), (xe, vb + 0.3 * k), "E", (1, 0))
         # V2: the right end's column of labels, now that the flags are drawn:
         # rows at least 2.1 th apart, none within 0.3 k of a flag box (the
         # text column starts 0.25 k beyond a flag, so a row keeps the rest of
@@ -1188,16 +1217,27 @@ class Builder:
         return v
 
     # ------------------------------------------------------- elevation
-    def _broken(self, v, edges, z_break):
+    def _broken(self, v, edges, z_break, top_of=None):
         """Broken view: the band z_lo..z_hi is removed and the part below is
-        raised to leave ``gap``; nothing below z_clip is drawn."""
+        raised to leave ``gap``; nothing below z_clip is drawn.  ``top_of``
+        (role -> z) cuts the edges of a role at that height (the pier cheek
+        wall stubs, D-059)."""
         z_hi, z_lo, gap, z_clip = z_break
         shift = (z_hi - z_lo) - gap
         v.xform = lambda p: (p[0], p[1] + shift) if p[1] <= z_lo + 1e-9 else p
         for rec in drop_coincident_hidden(edges):
             layer, lt = layer_for(rec)
-            v.record(rec, layer, lt, (-1e4, z_hi, 1e4, 1e4))
+            v.record(rec, layer, lt, (-1e4, z_hi, 1e4, (top_of or {}).get(rec["role"], 1e4)))
             v.record(rec, layer, lt, (-1e4, z_clip, 1e4, z_lo))
+
+    def cheek_stub(self):
+        """Pier cheek walls (D-059) in the elevation: drawn 1 ft above the cap
+        and broken (D12).  The sheet has no height for the 4 ft walls under
+        the stirrup row (the row would rise 3.4 ft, the elevation then runs
+        over the title block); the end view beside the elevation and the
+        (3 OF 3) sheet show them whole.  None for an end bent."""
+        s = self.s
+        return (s.cap_top + 1.0) if (s.kind == "PIER" and s.cheeks) else None
 
     @staticmethod
     def _break_lines(v, z_break, x0, x1):
@@ -1217,8 +1257,9 @@ class Builder:
         v = View(self.doc, zone, s.key + " ELEVATION")
         th, k = v.th, IN * v.sf
         z_pile = s.cap_bot - pile_show if not z_break else z_break[3]
+        stub = self.cheek_stub()
         if z_break:
-            self._broken(v, S["elev"], z_break)
+            self._broken(v, S["elev"], z_break, top_of={"cheek": stub} if stub else None)
         else:
             # (the cheek lugs reach 0.5 ft under the cap: they are drawn whole,
             # D12; only the piles are cut at the window bottom, where their
@@ -1244,6 +1285,10 @@ class Builder:
         if z_break:
             self._break_lines(v, z_break, s.wall_u[0] - 0.5, s.wall_u[1] + 0.5)
         z_top = extents(S["elev"])[3]
+        if stub:
+            for c in s.cheeks:
+                v.break_line((c["u_lo"] - 0.06 * k, stub), (c["u_hi"] + 0.06 * k, stub))
+            z_top = min(z_top, stub)
         z_pgl = (max(t[1] for t in s.backwall_top) + 0.48 * k) if s.kind == "EB" else s.cap_top + 0.9
         # the PGL stops at the cap bottom, leaving the space below the cap to
         # the pile embedment value (A1)
@@ -1558,7 +1603,15 @@ class Builder:
             z_row = None
             zt = max(z for _, _, _, z in self.elev_points) if self.elev_points else s.cap_top
             z_up = max(zt, s.cap_top + 0.6) + 0.45 * k
-            chain_dims(v, xs, texts, s.cap_top, z_up)
+            # D-059: the pier cheek wall stubs (``cheek_stub``, 1 ft, broken)
+            # stand under the end runs of the row: the extension lines of
+            # the points under a stub rise from its break, not through its
+            # face (B3); the sheet notes say where the walls are shown whole
+            # (a leader from the right stub crossed the PT. B leader, A11)
+            stub = self.cheek_stub()
+            yo = [stub if (stub and any(c["u_lo"] - 1e-6 <= x <= c["u_hi"] + 1e-6 for c in s.cheeks)) else s.cap_top
+                  for x in xs]
+            chain_dims(v, xs, texts, yo, z_up)
         self._ext_below = ext_below
         self._below_boxes = []   # boxes of the callouts under the cap (the embedment value keeps off them)
         self.notes.append("STIRRUP SPACING IS DIMENSIONED TO BAR CENTERLINES.")
@@ -2523,20 +2576,31 @@ class Builder:
         cv = S["cheek_views"][cheek["name"]]
         v = View(self.doc, zone, "%s VIEW %s" % (s.key, letter))
         th, k = v.th, IN * v.sf
-        draw_edges(v, cv["edges"])
+        pier = s.kind == "PIER"   # D-059: a pier cheek wall (no lug, no WWR, a recessed panel on the face)
+        if pier:
+            # the cap end under the wall is cut 1 ft below its top with a
+            # break line (D12), so the bar rows under the view clear it
+            z_base = s.cap_top - 1.0
+            cap_e = [r for r in cv["edges"] if r["role"] == "cap"]
+            draw_edges(v, [r for r in cv["edges"] if r["role"] != "cap"])
+            draw_edges(v, cap_e, box=(-1e4, z_base, 1e4, 1e4))
+            if cap_e:
+                ce = extents(cap_e)
+                v.break_line((ce[0] - 0.06 * k, z_base), (ce[2] + 0.06 * k, z_base))
+        else:
+            draw_edges(v, cv["edges"])
         sgn = -1 if cv["side"] == "left" else 1
 
         def fn(p):
             return (sgn * (p[1] - s.y0), p[2])
-        num = cheek["name"][-2:]
-        bars = [b for b in s.bars if b["family"] == "cheek" and b["group"].endswith(num + "Bars")]
+        bars = s.cheek_bars(cheek)
         verts = sorted((b for b in bars if b["subtype"] == "vert"), key=lambda b: fn(b["pts"][0])[0])
         hors = sorted((b for b in bars if b["subtype"] == "horiz"), key=lambda b: b["pts"][0][2])
         xs_v = [fn(b["pts"][0])[0] for b in verts]
         zs_h = [b["pts"][0][2] for b in hors]
         x0, z0, x1, z1 = extents(cv["edges"], ("cheek",))
         # WWR limits: light diagonal hatch, about 0.1 in apart on paper
-        w = [b for b in S["wwr"] if b["group"].endswith(num)]
+        w = [b for b in S["wwr"] if b["group"].endswith(cheek["tag"])]
         for part in ("Bottom", "Side"):
             ws = [b for b in w if part in b["name"]]
             if not ws:
@@ -2554,8 +2618,10 @@ class Builder:
         for b in (verts[0], verts[-1], hors[0], hors[-1]):
             draw_bar3(v, b, fn)   # B13: hooks and legs seen end-on are dots, not notched stubs
         mv, mh = verts[0]["mark"], hors[0]["mark"]
-        # bottom: vertical bar series, overall width
-        yb = z0 - 0.4 * k
+        if not pier:
+            z_base = z0
+        # bottom: vertical bar series, overall width (under the cap stub of a pier wall)
+        yb = z_base - 0.4 * k
         xs, texts = run_chain([(xs_v, series_text(xs_v, mv))], (x0, x1))
         chain_dims(v, xs, texts, z0, yb)
         v.dim((x0, z0), (x1, z0), yb - 0.3 * k - z0, step=0.125)
@@ -2567,44 +2633,69 @@ class Builder:
         v.dim((out, z0), (out, z1), -(xr + sgn * 0.3 * k - out), 90, step=0.125)
         inner = x0 if sgn > 0 else x1
         xl = inner - sgn * 0.3 * k
-        # the lug value beside its column at the lug's mid height (B7), clear
-        # of the bottom row's pulled-out values
-        v.dim((inner, z0), (inner, s.cap_bot), -(xl - inner), 90, fdot.ft_in(s.cap_bot - z0) + "\\PLUG",
-              loc=(xl - sgn * 0.3 * k, (z0 + s.cap_bot) / 2))
-        # labels inside the wall face (clear of the shaded WWR band), as on the sample sheets
-        wx = [fn(p)[0] for b in w if "Side" in b["name"] for p in barlib.polyline3(b, 10.0)]
-        band = (min(wx), max(wx)) if wx else (x0, x0)
-        right = (band[0] + band[1]) / 2 < (x0 + x1) / 2      # free face right of the band
-        al, d = ("left", 1) if right else ("right", -1)
-        xin = band[1] + 0.06 * k if right else band[0] - 0.06 * k
-        zm = (s.cap_bot + z1) / 2
-        # labels outside the inner face (the side away from the dimension
-        # columns, beyond the lug column; A1: not over the bars, the lug or
-        # the dimensions), as on sample sheet B1-19
         d_in = -sgn
         al_in = "left" if d_in > 0 else "right"
         x_edge = inner + d_in * 0.5 * k
-        # B5 (markup "Minimize the leaders crossing line work if you can just
-        # shift the annotations a bit"): the WWR leader is one horizontal piece
-        # from the band's edge nearest the label (tip 0.1 k inside the hatch)
-        # out to the label column, so it crosses nothing but the wall face
-        z_sh = zm - 0.6
-        x_tip = band[1] - 0.1 * k if d_in > 0 else band[0] + 0.1 * k
-        txt_sh = "SHADED AREA\\PSHOWS LIMITS\\POF WWR\\P(SEE NOTE %d)" % wwr_note
-        v.leader([(x_tip, z_sh), (x_edge, z_sh)], txt_sh, al_in)
-        # END BENT CAP at least 2.5 text heights clear of the four-line text above
-        z_cap = s.cap_bot + 0.6 + 0.15 * k
-        z_cap = min(z_cap, z_sh + 0.5 * th - (1 + 3 * fdot.LINE_PITCH) * th - 3.0 * th)
-        v.leader([(inner - d_in * 0.15, s.cap_bot + 0.6), (x_edge, z_cap)], "END BENT CAP", al_in)
-        um = xs_v[0] if right else xs_v[-1]          # a drawn (first or last) vertical bar
-        v.leader([(um, zm + 0.9), (um + d * 0.2 * k, zm + 0.9 + 0.15 * k)], mv, al)
-        hz = zs_h[-1]                                 # the top (drawn) horizontal bar
-        v.leader([(xin + d * 0.1, hz), (xin + d * 0.3 * k, hz - 0.2 * k)], mh, al)
+        if not pier:
+            # the lug value beside its column at the lug's mid height (B7), clear
+            # of the bottom row's pulled-out values
+            v.dim((inner, z0), (inner, s.cap_bot), -(xl - inner), 90, fdot.ft_in(s.cap_bot - z0) + "\\PLUG",
+                  loc=(xl - sgn * 0.3 * k, (z0 + s.cap_bot) / 2))
+            # labels inside the wall face (clear of the shaded WWR band), as on the sample sheets
+            wx = [fn(p)[0] for b in w if "Side" in b["name"] for p in barlib.polyline3(b, 10.0)]
+            band = (min(wx), max(wx)) if wx else (x0, x0)
+            right = (band[0] + band[1]) / 2 < (x0 + x1) / 2      # free face right of the band
+            al, d = ("left", 1) if right else ("right", -1)
+            xin = band[1] + 0.06 * k if right else band[0] - 0.06 * k
+            zm = (s.cap_bot + z1) / 2
+            # labels outside the inner face (the side away from the dimension
+            # columns, beyond the lug column; A1: not over the bars, the lug or
+            # the dimensions), as on sample sheet B1-19
+            # B5 (markup "Minimize the leaders crossing line work if you can just
+            # shift the annotations a bit"): the WWR leader is one horizontal piece
+            # from the band's edge nearest the label (tip 0.1 k inside the hatch)
+            # out to the label column, so it crosses nothing but the wall face
+            z_sh = zm - 0.6
+            x_tip = band[1] - 0.1 * k if d_in > 0 else band[0] + 0.1 * k
+            txt_sh = "SHADED AREA\\PSHOWS LIMITS\\POF WWR\\P(SEE NOTE %d)" % wwr_note
+            v.leader([(x_tip, z_sh), (x_edge, z_sh)], txt_sh, al_in)
+            # END BENT CAP at least 2.5 text heights clear of the four-line text above
+            z_cap = s.cap_bot + 0.6 + 0.15 * k
+            z_cap = min(z_cap, z_sh + 0.5 * th - (1 + 3 * fdot.LINE_PITCH) * th - 3.0 * th)
+            v.leader([(inner - d_in * 0.15, s.cap_bot + 0.6), (x_edge, z_cap)], "END BENT CAP", al_in)
+            um = xs_v[0] if right else xs_v[-1]          # a drawn (first or last) vertical bar
+            v.leader([(um, zm + 0.9), (um + d * 0.2 * k, zm + 0.9 + 0.15 * k)], mv, al)
+            hz = zs_h[-1]                                 # the top (drawn) horizontal bar
+            v.leader([(xin + d * 0.1, hz), (xin + d * 0.3 * k, hz - 0.2 * k)], mh, al)
+        else:
+            # pier cheek wall (D-059): the face carries the recessed panel
+            # outline, so no label sits on the face (A1); every callout is in
+            # one column beyond the inner end (the panel, the two bar series,
+            # the cap), tips at the bars, the panel edge and the cap face;
+            # the panel's size is dimensioned in sections F-F and G-G
+            rec = recess_box(cv["edges"], (x0, z0, x1, z1), fn=None)
+            items = []
+            um = xs_v[-1] if d_in > 0 else xs_v[0]       # the drawn vertical bar nearest the column
+            zt = z0 + 0.72 * (z1 - z0)
+            items.append(([(um, zt)], mv, zt + 0.2 * k))
+            hz = zs_h[-1]                                 # the top (drawn) horizontal bar
+            items.append(([(inner - d_in * 0.3, hz)], mh, hz + 0.1 * k))
+            if rec:
+                # tip low on the panel edge nearest the column, so the
+                # leader keeps under the G-G flag at mid height (A13)
+                xr = rec[2] if d_in > 0 else rec[0]
+                zr = rec[1] + 0.35
+                items.append(([(xr, zr)], "%s\" RECESSED PANEL\\P(SEE SECTIONS F-F AND G-G)" % fdot.ft_in(0.75 / 12.0)
+                              .rstrip("\""), zr - 0.2 * k))
+            z_cap = s.cap_top - 0.6
+            items.append(([(inner - d_in * 0.15, z_cap)], "PIER CAP", z_cap - 0.1 * k))
+            avoid = [(cuts["top"]["z"] - 0.3 * k, cuts["top"]["z"] + 0.3 * k)] if cuts and cuts.get("top") else []
+            callouts(v, items, x_edge, d_in, avoid=avoid)
         # D8: flags of the cheek wall sections (vertical cut F-F at the top and
         # bottom, horizontal cut G-G at both sides, looking down)
         if cuts:
             m = 0.25 * k   # the flags' ticks end at the concrete outline
-            far = 1.05 * k   # beyond the two dimension columns (A1: flags never on a dimension)
+            far = 1.05 * k + (z0 - z_base)   # beyond the two dimension columns (A1: flags never on a dimension)
             if cuts.get("side"):
                 c = cuts["side"]
                 v.section_cut((c["x"], z0 - far), (c["x"], z1 + m), c.get("letter", "F"), tuple(c["look"]))
@@ -2796,8 +2887,7 @@ class Builder:
         best = None
         for c in s.cheeks:
             lo, hi = sorted((s.S["concrete"][c["name"]]["bb_ft"][0], s.S["concrete"][c["name"]]["bb_ft"][3]))
-            num = c["name"][-2:]
-            ch = [b for b in s.bars_of(family="cheek", subtype="vert") if b["group"].endswith(num + "Bars")]
+            ch = [b for b in s.cheek_bars(c) if b["subtype"] == "vert"]
             for b in bw:
                 if not lo <= b["pts"][0][0] <= hi or not ch:
                     continue
@@ -2941,7 +3031,11 @@ class Builder:
         return v
 
     # ----------------------------------------------------------- end view
-    def end_view(self, zone, letter, z_break=None):
+    def end_view(self, zone, letter, z_break=None, z_clip=None):
+        """End view of the support.  ``z_break`` breaks the pier wall;
+        ``z_clip`` (D-059, with the cheek walls) cuts the view there with a
+        break line across the wall instead: the sheet has no height for the
+        4 ft walls over the wall and piles beside the notes."""
         s = self.s
         S = s.S
         v = View(self.doc, zone, "%s VIEW %s" % (s.key, letter))
@@ -2950,26 +3044,33 @@ class Builder:
             self._broken(v, S["end_view"]["edges"], z_break)
             ex = extents(S["end_view"]["edges"])
             self._break_lines(v, z_break, ex[0] - 0.4, ex[2] + 0.4)
+        elif z_clip is not None:
+            draw_edges(v, S["end_view"]["edges"], box=(-1e4, z_clip, 1e4, 1e4))
+            ws = sorted((-s.wall_bb[4], -s.wall_bb[1]))
+            v.break_line((ws[0] - 0.06 * k, z_clip), (ws[1] + 0.06 * k, z_clip))
         else:
             draw_edges(v, S["end_view"]["edges"])
         T = v.xform or (lambda p: p)
         cs = s.cap_s
         ccl = (cs[0] + cs[1]) / 2
-        zc = z_break[3] if z_break else S["pile_clip_z_ft"]
+        zc = z_break[3] if z_break else (z_clip if z_clip is not None else S["pile_clip_z_ft"])
         keep, v.xform = v.xform, None
         zcd = T((0, zc))[1]
         # D12: the piles are cut at the window bottom, so their break lobes (the
         # piles of one end view overlap: one break for the group)
         pil = [r for r in S["end_view"]["edges"] if r["role"] in ("pile_steel", "pile_conc") and r["vis"]]
-        if pil:
+        if pil and z_clip is None:
             pe = extents(pil)
             if pe[1] <= zc + 0.01 and pe[3] > zc + 0.05:
                 kind = "pipe" if pil[0]["role"] == "pile_steel" else "square"
                 v.pile_break((pe[0] + pe[2]) / 2, zcd, pe[2] - pe[0], kind, "PileSteel" if kind == "pipe" else "PileConc")
         # the centerline, broken through the wall-width text band at the bottom
         # (A1); its label above the cap-width dimension row
-        y_wd = T((0, s.wall_bot))[1] - 0.35 * k if s.kind == "PIER" else None
-        y_cw = s.cap_top + 0.6 + 0.35 * k   # the cap-width dimension row above the pedestals
+        y_wd = T((0, s.wall_bot if z_clip is None else z_clip))[1] - 0.35 * k if s.kind == "PIER" else None
+        # D-059: the near cheek wall's face covers the cap top and the
+        # pedestals; the width row sits above the wall top instead
+        z_ref = max([s.cap_top] + [c["top"] for c in s.cheeks])
+        y_cw = z_ref + (0.25 * k if s.cheeks else 0.6 + 0.35 * k)   # the width dimension row above the pedestals / wall
         # B7 (markup "Extend the centerline and point to it because this looks
         # like we are pointing to the dim text"): one continuous piece above the
         # cap-width dimension row, the leader's tip at its top end.  V19 (a stub
@@ -2983,11 +3084,23 @@ class Builder:
         vline_gapped(v, ccl, zcd - 0.2 * k, z_cl_top, bands, "CL_Major")
         v.xform = keep
         v.leader([(ccl, z_cl_top), (ccl + 0.3 * k, z_cl_top + 0.15 * k)], self.cl_name(), "left", cl=True)
-        v.dim((cs[0], s.cap_top), (cs[1], s.cap_top), 0.35 * k + 0.6, step=0.125)
+        if s.cheeks:
+            # the cheek wall's width at its top (the cap width is on the
+            # plan); the wall named with a leader to its face, clear of the
+            # recessed panel (A1)
+            cw = sorted((-s.cheeks[0]["bb"][1], -s.cheeks[0]["bb"][4]))
+            v.dim((cw[0], z_ref), (cw[1], z_ref), y_cw - z_ref, step=0.125)
+            zc = s.cap_top + 0.35
+            v.leader([(cw[1], zc), (cw[1] + 0.3 * k, zc + 0.15 * k)], "CHEEK WALL\\P(SEE VIEW E-E)", "left")
+        else:
+            v.dim((cs[0], s.cap_top), (cs[1], s.cap_top), y_cw - s.cap_top, step=0.125)
         if s.kind == "PIER":
             ws = (-s.wall_bb[4], -s.wall_bb[1])
-            v.dim(T((ws[0], s.wall_bot)), T((ws[1], s.wall_bot)), -0.35 * k, step=0.125)
+            zw = s.wall_bot if z_clip is None else z_clip   # the wall thickness at its bottom, or at the break
+            v.dim(T((ws[0], zw)), T((ws[1], zw)), -0.35 * k, step=0.125)
             for b in s.bearings:
+                if s.cheeks:   # the bearings lie hidden behind the cheek wall face
+                    break
                 v.line((b["s"], s.cap_top - 0.2), (b["s"], s.cap_top + 0.9), "CL_Minor")
         v.title((ccl, zcd - 0.6 * k), "VIEW %s-%s" % (letter, letter), "(END VIEW)", subject_cx=ccl)
         return v

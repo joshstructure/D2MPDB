@@ -1,3 +1,15 @@
+D-060 — SDM BAR MARKS FOR THE PIER CHEEK WALLS, 19 OCTOBER 2026
+
+Write the SDM 4.3 bar marks of the D-059 pier cheek wall mats into the Mark property of their 24 native rebars (review marks PC1-/PC2- to 4E1 verticals and 4E2 horizontals) and re-letter the 32 pier pedestal bars from 4E1/4E2 to 4F1/4F2, so the pier uses E for cheek walls and F for pedestals as the end bents do.
+
+Cold-opened the prior archive and the delivery in FreeCAD 1.1.3 with the pinned controllers. Compared native shape hashes, placements, expressions, dependencies, labels, controller types, check statuses and every other readable property value of all 2188 objects. No recompute or save.
+
+The pier_cheeks controller gives its bars PC<n>-<id> review marks when it refreshes; the other controllers their <support>-<id> defaults. After a regeneration, rebuild the DXF snapshot and rerun substructure_drawings/freecad_marks.py.
+
+Naming only. No physical geometry, reinforcement, quantities or calculation inputs change. The substructure DXF and model plan snapshots are re-extracted from this model so their registers record the model marks. The D-059 follow-ups (cheek wall cap anchorage and structural design) remain open.
+
+Evidence: 2026-10-19-sdm-bar-marks-pier-cheeks/update-summary.json
+
 D-059 — PIER CHEEK WALLS WITH SHALLOW RELIEF, 19 OCTOBER 2026
 
 Two solid 48 x 48 x 12 in pier cheek walls sit on the cap, with their outside faces inset 3 in from the cap ends. Each outward face has a centered 30 x 30 in panel recessed 3/4 in, with a 3/4 x 3/4 in 45-degree perimeter chamfer. The flat recess floor is 28.5 in square; solid thickness behind it is 11.25 in. Inside faces remain flat.

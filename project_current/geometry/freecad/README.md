@@ -1,5 +1,9 @@
 # Current FreeCAD bridge model
 
+## D-060: SDM bar marks for the pier cheek walls, 19 October 2026
+
+The 24 D-059 pier cheek wall bars carry their FDOT SDM 4.3 marks (4E1 verticals, 4E2 horizontals) in their **Mark** property, and the 32 pier pedestal bars are re-lettered 4F1/4F2 (E names the cheek walls of every support, F the pedestals). The schedules follow. The marks come from the bar-mark register of the generated [end bent and pier DXF](../../../substructure_drawings/README.md) (generator 2.6.0, which adds the pier cheek walls to the sheets). Geometry, quantities, controllers and saved view records are preserved; cold reopen verified. See [D-060 evidence](evidence/2026-10-19-sdm-bar-marks-pier-cheeks/update-summary.json). Cap anchorage and structural design of the cheek walls remain unconfigured.
+
 ## D-059: pier cheek walls, 19 October 2026
 
 Two solid 4 ft x 4 ft x 12 in pier cheeks, inset 3 in from the cap ends, with centered 30 in square shallow exterior panels. Recess depth and perimeter chamfer are 3/4 in. Continuous centered #4 mats match the existing cheek bar size and 10 in maximum spacing; 24 bars total. The user approved the visual review and requested this model be pushed. All 99 scoped physical checks, native edits and cold reopen pass. See [adoption and dimensions](evidence/2026-10-19-pier-cheek-relief/adoption-summary.json) and [preview](evidence/2026-10-19-pier-cheek-relief/Pier%20cheek%20walls%20-%20Recessed%20panel.png). Cap anchorage and structural design remain unconfigured; downstream notebook/calculation/quantity/drawing reconciliation remains.

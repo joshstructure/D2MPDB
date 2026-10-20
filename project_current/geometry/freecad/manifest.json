@@ -3,8 +3,8 @@
   "authority": "Current editable FreeCAD geometry and modeled quantities; engineering acceptance remains separate",
   "model": {
     "path": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-    "sha256": "14db08f0313de0566e984d58d36397830ee13e1dce91d75738e2d61d77c9db8c",
-    "bytes": 7045632,
+    "sha256": "4f85c1fe05f8715462856ba1874e38de52b6a30dcdef4536f8aaf184abfb8725",
+    "bytes": 7045425,
     "objects": 2188
   },
   "source_revision": "01a1fcc34d6345ceacf96245bcf0c931d118a1ab",
@@ -178,7 +178,7 @@
     "evidence/delivery-helper-fingerprints.json": "2eda36676cc40916485c708e385818c6e99ead3be41e5754a55bc5e772e58c62",
     "evidence/final-reopen-verification.json": "fde89e9b9c8bb47433a964e3d0b3faedcb00c201b8ada10b348c086e4bfaeec9",
     "evidence/final-save.json": "7767f925bccdf426225cf1d4269ce59919cdcf71267f7c56c7484547f758e946",
-    "evidence/Model-update-report.txt": "07191d4d6181d2ace6f578a3aa9d86bcd182f81dfeb8d7cebdba88ce91e90ef3",
+    "evidence/Model-update-report.txt": "8e7d0c70f682685eec6bc14ad97b17489f4900797895ce8f90cc2b811711cef5",
     "evidence/opener-verification.json": "7cfd370f32a419bd160ce2f914df4e861372addcab97d9e64896fb6135d40fdf",
     "evidence/portable-verification.json": "5daa7dfc49c7f7b11c641a51d2e425ce853dc08ee134356c02746d93d028ec36",
     "evidence/session-checkpoint.json": "c22fc947838b3ed99425beeab12c10e80b62b12be04d01444f2a0677135096c5",
@@ -418,18 +418,24 @@
     "evidence/2026-10-19-pier-cheek-relief/Pier cheek walls - Recessed panel.png": "6b0d92a7eabd5cde670997588fedc230e7ef5835a13475e0c1988e93a08de500",
     "evidence/2026-10-19-pier-cheek-relief/review-verification.json": "585b9fd78840641b69b32d62f02073017fcfb4c3806b43274e83067ffb8f376e",
     "evidence/2026-10-19-pier-cheek-relief/Supplied pier detail.png": "0a24cf19cc5cb5cdd57187f054bb779c41a36edccf82518e0fd30c4ef1c69e1c",
-    "evidence/2026-10-19-pier-cheek-relief/installed-verification.json": "d1b37b83991eabe140cf3879cbc66b87c0c29b00431ea21c23ab3e942e84fd0f"
+    "evidence/2026-10-19-pier-cheek-relief/installed-verification.json": "d1b37b83991eabe140cf3879cbc66b87c0c29b00431ea21c23ab3e942e84fd0f",
+    "evidence/2026-10-19-sdm-bar-marks-pier-cheeks/cold-reopen.json": "fe892650f2ba74fb898533643c5d7d4553670a5cebe80886962369eccfc79462",
+    "evidence/2026-10-19-sdm-bar-marks-pier-cheeks/mark-changes.json": "1794d68adfb3b998881c3421bcecd42162a514415af7bf4130fe0c216afbba20",
+    "evidence/2026-10-19-sdm-bar-marks-pier-cheeks/native-preservation.json": "b3b3b5772607080dde504c3ebc5d787d2889d1f2188c037facc266db661b6cb7",
+    "evidence/2026-10-19-sdm-bar-marks-pier-cheeks/native-update.json": "3adc00a0067814f07fcad35fdeeae914f88d0644a847f3e3c313169a97705a86",
+    "evidence/2026-10-19-sdm-bar-marks-pier-cheeks/sdm-bar-marks.csv": "715fbaa97c7ff14aea8bdde59ea3a39aeaeb1d096dda6e69309033157354b23f",
+    "evidence/2026-10-19-sdm-bar-marks-pier-cheeks/update-summary.json": "12ccaf5760eddf8de67e0594bc9f1fea4e24ced465bd583867b4700ff5dddfe3"
   },
   "known_review_status": "0 new WWR overlaps; 14 existing U-bar/hoop pairs Deferred in COH-025. Four cheek spacing findings Open in COH-024; 29 cap/backwall and 4 backwall internal overlaps and other existing findings retained.",
   "portability_verification": "Cold native reopen and live dependency test PASS; 172 accepted-trial solid matches; all 1677 prior native object/view records exact. Previous standalone GUI loader limitation retained.",
   "updated_on": "2026-10-17",
   "current_update": {
     "date": "2026-10-19",
-    "decision": "D-059",
-    "scope": "Add two solid pier cheek walls with shallow chamfered exterior relief and matching continuous centered #4 mats.",
-    "summary": "evidence/2026-10-19-pier-cheek-relief/adoption-summary.json",
-    "previous_model_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df",
-    "follow_up": "Model geometry adopted after user visual review. Pier cheek cap anchorage and structural design remain unconfigured; geometry-notebook, calculation, journal-quantity and drawing reconciliation remain downstream work. Existing unrelated findings and tracker statuses/responses are preserved."
+    "decision": "D-060",
+    "scope": "Write the SDM 4.3 bar marks of the D-059 pier cheek wall mats into the Mark property of their 24 native rebars (review marks PC1-/PC2- to 4E1 verticals and 4E2 horizontals) and re-letter the 32 pier pedestal bars from 4E1/4E2 to 4F1/4F2, so the pier uses E for cheek walls and F for pedestals as the end bents do.",
+    "summary": "evidence/2026-10-19-sdm-bar-marks-pier-cheeks/update-summary.json",
+    "previous_model_sha256": "14db08f0313de0566e984d58d36397830ee13e1dce91d75738e2d61d77c9db8c",
+    "follow_up": "Naming only; the D-059 follow-ups (cheek wall cap anchorage, structural design, notebook/calculation/quantity reconciliation) remain. Rerun freecad_marks after a bar regeneration."
   },
   "archive_files": {
     "archive/B4-before-pedestal-ubars-20261012.FCStd": "e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118",
@@ -473,15 +479,17 @@
     "archive/B4-before-backwall-vertical-coordination-20261019.FCStd": "a831dec89084195338e78bef19bf014cd71421c9138e5ba0471479a5f6d6ed27",
     "archive/B4-before-backwall-vertical-coordination-record-20261019.zip": "dbc432c6d68a67f401cc99723dc7d779c13666c8150c6cfea8df1ffabadac2a8",
     "archive/B4-before-pier-cheek-relief-20261019.FCStd": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df",
-    "archive/B4-before-pier-cheek-relief-record-20261019.zip": "9239115616af73a9d12224d069a51c1e475d50aba54003799b12c26c43237767"
+    "archive/B4-before-pier-cheek-relief-record-20261019.zip": "9239115616af73a9d12224d069a51c1e475d50aba54003799b12c26c43237767",
+    "archive/B4-before-sdm-bar-marks-pier-cheeks-20261019.FCStd": "14db08f0313de0566e984d58d36397830ee13e1dce91d75738e2d61d77c9db8c",
+    "archive/B4-before-sdm-bar-marks-pier-cheeks-record-20261019.zip": "c80eebaa610f0be64f6aae8faeb8b45cf6c6a78d2ec251f0c478288dc474fcc0"
   },
   "previous_update": {
     "date": "2026-10-19",
-    "decision": "D-055",
-    "scope": "Remove doubled backwall verticals; move end vertical pairs inside cheek hooks at all four corners; clear remaining verticals from cap stirrups.",
-    "summary": "evidence/2026-10-19-backwall-vertical-coordination/adoption-summary.json",
-    "previous_model_sha256": "a831dec89084195338e78bef19bf014cd71421c9138e5ba0471479a5f6d6ed27",
-    "follow_up": "Scoped geometric coordination only. Existing unrelated findings, schematic dowel/anchorage basis, and broader calculation/drawing reconciliation remain. Tracker statuses and responses unchanged."
+    "decision": "D-059",
+    "scope": "Add two solid pier cheek walls with shallow chamfered exterior relief and matching continuous centered #4 mats.",
+    "summary": "evidence/2026-10-19-pier-cheek-relief/adoption-summary.json",
+    "previous_model_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df",
+    "follow_up": "Model geometry adopted after user visual review. Pier cheek cap anchorage and structural design remain unconfigured; geometry-notebook, calculation, journal-quantity and drawing reconciliation remain downstream work. Existing unrelated findings and tracker statuses/responses are preserved."
   },
   "extra_macros": {
     "Show_Elevations.FCMacro": "f27415eb7d8fe05a5ff8d05a01a5298b36ac1d3cf987ec8738ed541d085a3fc4",

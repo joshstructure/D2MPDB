@@ -173,38 +173,62 @@ END BENT 1,8A2,8,A2,CAP BOTTOM,CageEB1Long06,EB1 Bottom row 1 #8 Long06,8A2,245.
 END BENT 1,8A2,8,A2,CAP BOTTOM,CageEB1Long07,EB1 Bottom row 1 #8 Long07,8A2,245.000,245
 END BENT 1,8A2,8,A2,CAP BOTTOM,CageEB1Long08,EB1 Bottom row 1 #8 Long08,8A2,245.000,245
 END BENT 1,8A2,8,A2,CAP BOTTOM,CageEB1Long09,EB1 Bottom row 1 #8 Long09,8A2,245.000,245
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB1X01,Pier pedestal 1 X U-bars @ 6.0 in maximum,4E1,71.249,71
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB1X02,Pier pedestal 1 X U-bars @ 6.0 in maximum008,4E1,71.249,71
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB1X03,Pier pedestal 1 X U-bars @ 6.0 in maximum009,4E1,71.249,71
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB1X04,Pier pedestal 1 X U-bars @ 6.0 in maximum010,4E1,71.249,71
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB1X05,Pier pedestal 1 X U-bars @ 6.0 in maximum011,4E1,71.249,71
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB1X06,Pier pedestal 1 X U-bars @ 6.0 in maximum012,4E1,71.249,71
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB1X07,Pier pedestal 1 X U-bars @ 6.0 in maximum013,4E1,71.249,71
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB1X08,Pier pedestal 1 X U-bars @ 6.0 in maximum014,4E1,71.249,71
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X01,Pier pedestal 2 X U-bars @ 6.0 in maximum,4E1,71.249,71
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X02,Pier pedestal 2 X U-bars @ 6.0 in maximum008,4E1,71.249,71
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X03,Pier pedestal 2 X U-bars @ 6.0 in maximum009,4E1,71.249,71
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X04,Pier pedestal 2 X U-bars @ 6.0 in maximum010,4E1,71.249,71
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X05,Pier pedestal 2 X U-bars @ 6.0 in maximum011,4E1,71.249,71
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X06,Pier pedestal 2 X U-bars @ 6.0 in maximum012,4E1,71.249,71
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X07,Pier pedestal 2 X U-bars @ 6.0 in maximum013,4E1,71.249,71
-PIER,4E1,4,E1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X08,Pier pedestal 2 X U-bars @ 6.0 in maximum014,4E1,71.249,71
-PIER,4E2,4,E2,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y01,Pier pedestal 1 Y U-bars @ 6.0 in maximum,4E2,66.374,66
-PIER,4E2,4,E2,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y02,Pier pedestal 1 Y U-bars @ 6.0 in maximum008,4E2,66.374,66
-PIER,4E2,4,E2,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y03,Pier pedestal 1 Y U-bars @ 6.0 in maximum009,4E2,66.374,66
-PIER,4E2,4,E2,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y04,Pier pedestal 1 Y U-bars @ 6.0 in maximum010,4E2,66.374,66
-PIER,4E2,4,E2,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y05,Pier pedestal 1 Y U-bars @ 6.0 in maximum011,4E2,66.374,66
-PIER,4E2,4,E2,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y06,Pier pedestal 1 Y U-bars @ 6.0 in maximum012,4E2,66.374,66
-PIER,4E2,4,E2,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y07,Pier pedestal 1 Y U-bars @ 6.0 in maximum013,4E2,66.374,66
-PIER,4E2,4,E2,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y08,Pier pedestal 1 Y U-bars @ 6.0 in maximum014,4E2,66.374,66
-PIER,4E2,4,E2,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y01,Pier pedestal 2 Y U-bars @ 6.0 in maximum,4E2,66.374,66
-PIER,4E2,4,E2,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y02,Pier pedestal 2 Y U-bars @ 6.0 in maximum008,4E2,66.374,66
-PIER,4E2,4,E2,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y03,Pier pedestal 2 Y U-bars @ 6.0 in maximum009,4E2,66.374,66
-PIER,4E2,4,E2,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y04,Pier pedestal 2 Y U-bars @ 6.0 in maximum010,4E2,66.374,66
-PIER,4E2,4,E2,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y05,Pier pedestal 2 Y U-bars @ 6.0 in maximum011,4E2,66.374,66
-PIER,4E2,4,E2,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y06,Pier pedestal 2 Y U-bars @ 6.0 in maximum012,4E2,66.374,66
-PIER,4E2,4,E2,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y07,Pier pedestal 2 Y U-bars @ 6.0 in maximum013,4E2,66.374,66
-PIER,4E2,4,E2,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y08,Pier pedestal 2 Y U-bars @ 6.0 in maximum014,4E2,66.374,66
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier1MV01,Pier cheek left - solid with recessed panel Continuous centered vertical #4,4E1,43.500,44
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier1MV02,Pier cheek left - solid with recessed panel Continuous centered vertical #026,4E1,43.500,44
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier1MV03,Pier cheek left - solid with recessed panel Continuous centered vertical #027,4E1,43.500,44
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier1MV04,Pier cheek left - solid with recessed panel Continuous centered vertical #028,4E1,43.500,44
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier1MV05,Pier cheek left - solid with recessed panel Continuous centered vertical #029,4E1,43.500,44
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier1MV06,Pier cheek left - solid with recessed panel Continuous centered vertical #030,4E1,43.500,44
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier2MV01,Pier cheek right - solid with recessed panel Continuous centered vertical #4,4E1,43.500,44
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier2MV02,Pier cheek right - solid with recessed panel Continuous centered vertical #026,4E1,43.500,44
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier2MV03,Pier cheek right - solid with recessed panel Continuous centered vertical #027,4E1,43.500,44
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier2MV04,Pier cheek right - solid with recessed panel Continuous centered vertical #028,4E1,43.500,44
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier2MV05,Pier cheek right - solid with recessed panel Continuous centered vertical #029,4E1,43.500,44
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier2MV06,Pier cheek right - solid with recessed panel Continuous centered vertical #030,4E1,43.500,44
+PIER,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekPier1MH01,Pier cheek left - solid with recessed panel Continuous centered horizontal #4,4E2,43.500,44
+PIER,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekPier1MH02,Pier cheek left - solid with recessed panel Continuous centered horizontal #026,4E2,43.500,44
+PIER,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekPier1MH03,Pier cheek left - solid with recessed panel Continuous centered horizontal #027,4E2,43.500,44
+PIER,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekPier1MH04,Pier cheek left - solid with recessed panel Continuous centered horizontal #028,4E2,43.500,44
+PIER,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekPier1MH05,Pier cheek left - solid with recessed panel Continuous centered horizontal #029,4E2,43.500,44
+PIER,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekPier1MH06,Pier cheek left - solid with recessed panel Continuous centered horizontal #030,4E2,43.500,44
+PIER,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekPier2MH01,Pier cheek right - solid with recessed panel Continuous centered horizontal #4,4E2,43.500,44
+PIER,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekPier2MH02,Pier cheek right - solid with recessed panel Continuous centered horizontal #026,4E2,43.500,44
+PIER,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekPier2MH03,Pier cheek right - solid with recessed panel Continuous centered horizontal #027,4E2,43.500,44
+PIER,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekPier2MH04,Pier cheek right - solid with recessed panel Continuous centered horizontal #028,4E2,43.500,44
+PIER,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekPier2MH05,Pier cheek right - solid with recessed panel Continuous centered horizontal #029,4E2,43.500,44
+PIER,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekPier2MH06,Pier cheek right - solid with recessed panel Continuous centered horizontal #030,4E2,43.500,44
+PIER,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelPierB1X01,Pier pedestal 1 X U-bars @ 6.0 in maximum,4F1,71.249,71
+PIER,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelPierB1X02,Pier pedestal 1 X U-bars @ 6.0 in maximum008,4F1,71.249,71
+PIER,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelPierB1X03,Pier pedestal 1 X U-bars @ 6.0 in maximum009,4F1,71.249,71
+PIER,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelPierB1X04,Pier pedestal 1 X U-bars @ 6.0 in maximum010,4F1,71.249,71
+PIER,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelPierB1X05,Pier pedestal 1 X U-bars @ 6.0 in maximum011,4F1,71.249,71
+PIER,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelPierB1X06,Pier pedestal 1 X U-bars @ 6.0 in maximum012,4F1,71.249,71
+PIER,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelPierB1X07,Pier pedestal 1 X U-bars @ 6.0 in maximum013,4F1,71.249,71
+PIER,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelPierB1X08,Pier pedestal 1 X U-bars @ 6.0 in maximum014,4F1,71.249,71
+PIER,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X01,Pier pedestal 2 X U-bars @ 6.0 in maximum,4F1,71.249,71
+PIER,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X02,Pier pedestal 2 X U-bars @ 6.0 in maximum008,4F1,71.249,71
+PIER,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X03,Pier pedestal 2 X U-bars @ 6.0 in maximum009,4F1,71.249,71
+PIER,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X04,Pier pedestal 2 X U-bars @ 6.0 in maximum010,4F1,71.249,71
+PIER,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X05,Pier pedestal 2 X U-bars @ 6.0 in maximum011,4F1,71.249,71
+PIER,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X06,Pier pedestal 2 X U-bars @ 6.0 in maximum012,4F1,71.249,71
+PIER,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X07,Pier pedestal 2 X U-bars @ 6.0 in maximum013,4F1,71.249,71
+PIER,4F1,4,F1,"PEDESTAL, TRANSVERSE",PedSteelPierB2X08,Pier pedestal 2 X U-bars @ 6.0 in maximum014,4F1,71.249,71
+PIER,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y01,Pier pedestal 1 Y U-bars @ 6.0 in maximum,4F2,66.374,66
+PIER,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y02,Pier pedestal 1 Y U-bars @ 6.0 in maximum008,4F2,66.374,66
+PIER,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y03,Pier pedestal 1 Y U-bars @ 6.0 in maximum009,4F2,66.374,66
+PIER,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y04,Pier pedestal 1 Y U-bars @ 6.0 in maximum010,4F2,66.374,66
+PIER,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y05,Pier pedestal 1 Y U-bars @ 6.0 in maximum011,4F2,66.374,66
+PIER,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y06,Pier pedestal 1 Y U-bars @ 6.0 in maximum012,4F2,66.374,66
+PIER,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y07,Pier pedestal 1 Y U-bars @ 6.0 in maximum013,4F2,66.374,66
+PIER,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelPierB1Y08,Pier pedestal 1 Y U-bars @ 6.0 in maximum014,4F2,66.374,66
+PIER,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y01,Pier pedestal 2 Y U-bars @ 6.0 in maximum,4F2,66.374,66
+PIER,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y02,Pier pedestal 2 Y U-bars @ 6.0 in maximum008,4F2,66.374,66
+PIER,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y03,Pier pedestal 2 Y U-bars @ 6.0 in maximum009,4F2,66.374,66
+PIER,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y04,Pier pedestal 2 Y U-bars @ 6.0 in maximum010,4F2,66.374,66
+PIER,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y05,Pier pedestal 2 Y U-bars @ 6.0 in maximum011,4F2,66.374,66
+PIER,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y06,Pier pedestal 2 Y U-bars @ 6.0 in maximum012,4F2,66.374,66
+PIER,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y07,Pier pedestal 2 Y U-bars @ 6.0 in maximum013,4F2,66.374,66
+PIER,4F2,4,F2,"PEDESTAL, LONGITUDINAL",PedSteelPierB2Y08,Pier pedestal 2 Y U-bars @ 6.0 in maximum014,4F2,66.374,66
 PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R1_1,Pier R1 hoop #5 Trans_R1_1,5B1,152.129,152
 PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R1_2,Pier R1 hoop #5 Trans_R1_2,5B1,152.129,152
 PIER,5B1,5,B1,CAP HOOP,CagePierTrans_R1_3,Pier R1 hoop #5 Trans_R1_3,5B1,152.129,152

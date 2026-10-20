@@ -29,7 +29,7 @@ from collections import OrderedDict
 from . import bars as barlib
 from . import cad, fdot
 from .cad import View, clip_segment
-from .views import draw_edges, edge_points, extents, mark_list, run_chain, series_text, text_w
+from .views import draw_edges, edge_points, extents, mark_list, run_chain, series_text, text_w  # noqa: F401
 
 IN = 1.0 / 12.0
 WWR_DIA_IN = 0.134   # W1.4 wire
@@ -352,8 +352,7 @@ def _lug_u(edges, u_out, d, level, axis):
 
 
 def _cheek_bars(s, cheek):
-    num = cheek["name"][-2:]
-    return [x for x in s.bars if x["family"] == "cheek" and x["group"].endswith(num + "Bars")], num
+    return s.cheek_bars(cheek), cheek["tag"]
 
 
 # ============================================================== SECTION F-F
@@ -694,6 +693,130 @@ def cheek_section_top(b, zone, cheek, letter, wwr_note=2):
         v.leader([tip, knee, (knee[0] + d * 0.12 * k, knee[1])], "WWR (SEE NOTE %d)" % wwr_note, al_in)
         break
     _title_below(v, (u_out + u_in) / 2, "SECTION %s-%s" % (letter, letter), "(THROUGH CHEEK WALL AND BACKWALL)")
+    return v
+
+
+# ============================================ pier cheek wall sections (D-059)
+def pier_cheek_section(b, zone, cheek, letter, which):
+    """SECTION F-F (``which`` "side": the vertical cut through the recessed
+    panel seen as the elevation is seen) or SECTION G-G ("top": the
+    horizontal cut at 0.55 of the wall height seen from above) through a
+    pier cheek wall: the 12 in wall with the 3/4 in recess and its chamfers
+    on the outside face, the bars seen end-on as dots and the nearest bar in
+    the cut plane as a bar; in F-F the cap end under the wall, cut 1'-3"
+    below its top and 1'-6" inside the wall (break lines, D12).  Columns on
+    the outer side (B3): the panel (9", 2'-6", 9"), the bar series, the
+    overall 4'-0"; the thickness over the top; the callouts in a column on
+    the inner side; the recess named with a leader off the face (A1).
+    Scale: the zone's (3/4" = 1'-0")."""
+    s = b.s
+    S = s.S
+    sec = S["cheek_sections"][cheek["name"]]
+    depth = S["section_depth_ft"]
+    side = which == "side"
+    v = View(b.doc, zone, "%s SECTION %s" % (s.key, letter))
+    th, k = v.th, IN * v.sf
+    d, u_out, u_in = _cheek_frame(cheek)
+    edges = _clean(sec["side_edges" if side else "top_edges"])
+    if side:
+        lo, hi = cheek["bot"], cheek["top"]
+        reach = 1.5
+        z_cap = s.cap_top - 1.25
+        box = _box(u_out - d * 0.3, u_in + d * reach, z_cap, hi + 0.35 * k)
+    else:
+        ys = [p[1] for r in edges for p in edge_points(r)]
+        lo, hi = min(ys), max(ys)
+        box = _box(u_out - d * 0.3, u_in + d * 0.3, lo - 0.5, hi + 0.5)
+    draw_edges(v, edges, box=box, hidden=False)
+    if side:
+        cap = [p for r in edges if r["vis"] and r["role"] == "cap" for p in edge_points(r)]
+        if cap:
+            x_end = min(cap, key=lambda p: d * p[0])[0]   # the cap end beyond the wall's outer face
+            xr = u_in + d * reach
+            v.break_line((xr, z_cap - 0.06 * k), (xr, s.cap_top + 0.06 * k))
+            v.break_line((x_end - d * 0.06 * k, z_cap), (xr + d * 0.06 * k, z_cap))
+    # the recess: the face points strictly between the wall's ends
+    face = sorted({round(p[1], 4) for r in edges if r["role"] == "cheek" for p in edge_points(r)
+                   if abs(p[0] - u_out) < 0.005 and lo + 0.05 < p[1] < hi - 0.05})
+    # ------------------------------------------------------------ bars
+    cb, _ = _cheek_bars(s, cheek)
+    if side:
+        c = sec["y_cut_ft"]
+        sd = 1.0 if s.e1 > 0 else -1.0
+        dots, shapes = cut_bars(cb, 1, c, c, c + sd * depth, s.P_elev)
+        shapes = _nearest(shapes, 1, c)
+    else:
+        c = sec["z_cut_ft"]
+        dots, shapes = cut_bars(cb, 2, c, c - depth, c, s.P_plan)
+        shapes = _nearest(shapes, 2, c)
+    for mark, ps in dots.items():
+        for p, r in ps:
+            v.dot(p, r)
+    for bar, pts in shapes:
+        _bar(v, pts, bar["dia_in"])
+    # ------------------------------------------------------ dimensions
+    x1 = u_out - d * 0.35 * k
+    x2 = x1 - d * (0.35 if d > 0 else 0.45) * k   # (a right wall: the texts of both columns share the channel, A2)
+    x3 = x2 - d * 0.3 * k
+    if len(face) >= 2:
+        _chain(v, [(u_out, lo), (u_out, face[0]), (u_out, face[-1]), (u_out, hi)], None, x1, vertical=True, step=0.125)
+    rows = OrderedDict()
+    for mark, ps in dots.items():
+        for p, r in ps:
+            rows.setdefault(round(p[1], 4), []).append((p, r, mark))
+    rows = OrderedDict(sorted(rows.items()))
+    feat = {}
+    for y, ds in rows.items():
+        p, r, _ = min(ds, key=lambda t: d * (t[0][0] - u_out))
+        feat[y] = (p[0] - d * r, p[1])           # outer edge of the outermost dot
+    if rows:
+        ys_r = list(rows)
+        xs, texts = run_chain([(ys_r, series_text(ys_r, _marks(m for y in ys_r for _, _, m in rows[y])))], (lo, hi))
+        pts = [(u_out, y) if (abs(y - lo) < 1e-9 or abs(y - hi) < 1e-9) else feat.get(round(y, 4), (u_out, y))
+               for y in xs]
+        _chain(v, pts, texts, x2, vertical=True)
+    v.dim((u_out, lo), (u_out, hi), u_out - x3, 90, step=0.125)
+    v.dim((u_out, hi), (u_in, hi), 0.3 * k, 0, step=0.125)   # the wall thickness over the top
+    # the recess named: tip at the chamfer corner nearest the top, the text
+    # above the view on the outer side, over the dimension columns (A1)
+    if len(face) >= 2:
+        tip = (u_out, face[-1])
+        knee = (u_out - d * 0.2 * k, hi + 0.55 * k)
+        v.leader([tip, knee, (knee[0] - d * 0.12 * k, knee[1])],
+                 "%s\" RECESSED PANEL,\\P%s\" x %s\" CHAMFER (TYP.)" % tuple(fdot.ft_in(0.75 / 12.0).rstrip("\"")
+                                                                           for _ in range(3)),
+                 "right" if d > 0 else "left")
+    # ------------------------------------------------------- callouts
+    x_col = u_in + d * 0.45 * k
+    land = 0.14 * k
+    items = []
+    ys_r = list(rows)
+    if ys_r:
+        mid = (lo + hi) / 2
+        near = [y for y in ys_r if abs(y - mid) <= 0.6] or [min(ys_r, key=lambda y: abs(y - mid))]
+        tips = [max((p for p, _, _ in rows[y]), key=lambda p: d * p[0]) for y in near]
+        marks = _marks(m for y in near for _, _, m in rows[y])
+        items.append((tips, marks, sum(y for y in near) / len(near)))
+    for bar, pts in shapes:      # the in-plane bar: tip between the dots, away from the column's other rows
+        r = bar["dia_in"] / 24.0
+        ylo, yhi = min(p[1] for p in pts) + 0.1, max(p[1] for p in pts) - 0.1
+        yt = lo + 0.8 * (hi - lo)
+        for p, _, _ in [t for y in ys_r for t in rows[y]]:
+            if abs(p[1] - yt) < 0.12:
+                yt = p[1] + 0.15
+        yt = max(ylo, min(yhi, yt))
+        ub = max(p[0] for p in pts) if d > 0 else min(p[0] for p in pts)
+        tip = (ub + d * r, yt)
+        dx = abs(x_col - d * land - tip[0])
+        items.append(([tip], bar["mark"], yt + dx * math.tan(math.radians(30))))
+        break
+    if side:
+        # the cap named from under its stub (its text would sit on the drawn
+        # cap beside the column, A1); the tip under the wall, so the leader
+        # runs at about 50 degrees to the column, not straight down (A3)
+        items.append(([(u_in - d * 0.3, s.cap_top - 0.3)], "PIER CAP", z_cap - 0.35 * k))
+    _column(v, items, x_col, d)
+    _title_below(v, (u_out + u_in) / 2, "SECTION %s-%s" % (letter, letter), "(THROUGH CHEEK WALL)")
     return v
 
 

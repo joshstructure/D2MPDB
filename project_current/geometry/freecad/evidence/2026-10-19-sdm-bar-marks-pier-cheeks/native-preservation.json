@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "before_sha256": "14db08f0313de0566e984d58d36397830ee13e1dce91d75738e2d61d77c9db8c",
+  "model_sha256": "4f85c1fe05f8715462856ba1874e38de52b6a30dcdef4536f8aaf184abfb8725",
+  "native_saved_sha256": "e6c201ebdaaf75c549cf5a8a332a5b31ed427d6e0116d2d27d78abe9176f310c",
+  "objects": 2188,
+  "changed_properties": {
+    "Mark": 56,
+    "cells": 4
+  },
+  "mark_values_changed": 56,
+  "schedule_cells_changed": 56,
+  "schedule_sheets_changed": [
+    "PedSteelPierB1Schedule",
+    "PedSteelPierB2Schedule",
+    "SteelBridgeCheekPier1Schedule",
+    "SteelBridgeCheekPier2Schedule"
+  ],
+  "schedule_json_marks_changed": 0,
+  "unchanged_archive_members": 8892,
+  "gui_document_unchanged": true,
+  "method": "Native FreeCAD change on a disposable copy; delivery edits only the mark values and the schedule cell text in the registered archive (as the D-042 job). All other object, view and resource bytes kept.",
+  "not_transplanted": "Console-save Visibility/_GroupTouched records, attribute escaping and last-digit volume recalculations in NativeSaved are presentation or numerical-noise artifacts and were not adopted."
+}

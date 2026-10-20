@@ -15,7 +15,8 @@ Inputs are environment variables so the call works with ``freecadcmd``:
 What is drawn is what the model itself calls finished:
 
 * the bridge assembly groups (decks, beams, haunches, bearings, pedestals,
-  caps, piles, pier wall, end bent backwalls and cheek walls, deck barriers),
+  caps, piles, pier wall, end bent backwalls and cheek walls, deck barriers)
+  and the pier cheek walls group (D-059),
 * ``MSEAssembly.FinishedConcrete`` (the mitred MSE wall panels and the walking
   slabs; the leveling footings are left out, they lie under the walls),
 * ``MSECopingsAndBarriers.FinishedDetails`` (copings, barriers, plinths and
@@ -52,7 +53,8 @@ STATION = (0, -1, 0)
 # name fragments of objects that are not finished components
 SKIP = ("Envelope", "Check", "Schedule", "Source", "JointTools", "Nominal")
 BRIDGE_GROUPS = ["BridgeDecks", "BridgeBeams", "BridgeHaunches", "BridgeBearings", "BridgePedestals", "BridgeCaps",
-                 "BridgePiles", "BridgePierWall", "BridgeEndBentWalls", "BridgeRailings"]
+                 "BridgePiles", "BridgePierWall", "BridgeEndBentWalls", "BridgeRailings",
+                 "PierCheekWalls"]   # D-059: the pier cheek walls are a root group of their own
 FINISHED_LISTS = [("MSEAssembly", "FinishedConcrete"), ("MSECopingsAndBarriers", "FinishedDetails")]
 OTHER_GROUPS = ["EndBentWeatherClosure", "BackwallGeotechnicalStraps"]
 # role by object name (first match), then by words in the name

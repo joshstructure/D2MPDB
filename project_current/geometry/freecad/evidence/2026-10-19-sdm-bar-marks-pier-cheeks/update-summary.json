@@ -1,0 +1,89 @@
+{
+  "decision": "D-060",
+  "date": "2026-10-19",
+  "status": "ADOPTED_IN_PROJECT_SOURCE",
+  "model_sha256": "4f85c1fe05f8715462856ba1874e38de52b6a30dcdef4536f8aaf184abfb8725",
+  "previous_model_sha256": "14db08f0313de0566e984d58d36397830ee13e1dce91d75738e2d61d77c9db8c",
+  "scope": "Write the SDM 4.3 bar marks of the D-059 pier cheek wall mats into the Mark property of their 24 native rebars (review marks PC1-/PC2- to 4E1 verticals and 4E2 horizontals) and re-letter the 32 pier pedestal bars from 4E1/4E2 to 4F1/4F2, so the pier uses E for cheek walls and F for pedestals as the end bents do.",
+  "convention": "SDM January 2026 4.3.C-E and 4.3.10.B as D-042. End bents: A cap longitudinal, B cap stirrups/hoops, C cap U-bars between piles, D backwall, E cheek walls, F pedestals. Pier: A, B, C as above, D cap end U-bars, E cheek walls (D-059), F pedestals.",
+  "mark_source": "substructure_drawings/output/bar_mark_register.csv (copied here as sdm-bar-marks.csv), generated from model 14db08f0 with the FDOT end bent and pier DXF (generator 2.6.0); drawings and model share one mapping.",
+  "marks_by_support": {
+    "END BENT 1": {
+      "4D2": 10,
+      "4E1": 10,
+      "4E2": 6,
+      "4E3": 6,
+      "4E4": 10,
+      "4F1": 16,
+      "4F2": 10,
+      "5C": 9,
+      "5D1": 44,
+      "6A1": 5,
+      "6A3": 8,
+      "6B1": 20,
+      "6B2": 16,
+      "8A2": 4
+    },
+    "PIER": {
+      "4E1": 12,
+      "4E2": 12,
+      "4F1": 16,
+      "4F2": 16,
+      "5B1": 24,
+      "5B2": 24,
+      "5C": 15,
+      "5D1": 4,
+      "5D2": 6,
+      "6A1": 5,
+      "6A3": 8,
+      "9A2": 4
+    },
+    "END BENT 2": {
+      "4D2": 10,
+      "4E1": 10,
+      "4E2": 8,
+      "4E3": 6,
+      "4E4": 8,
+      "4F1": 16,
+      "4F2": 10,
+      "5C": 9,
+      "5D1": 44,
+      "6A1": 5,
+      "6A3": 8,
+      "6B1": 20,
+      "6B2": 16,
+      "8A2": 4
+    }
+  },
+  "mark_changes": {
+    "4E1 -> 4F1": 16,
+    "4E2 -> 4F2": 16,
+    "PC1 -> 4E2": 6,
+    "PC1 -> 4E1": 6,
+    "PC2 -> 4E2": 6,
+    "PC2 -> 4E1": 6
+  },
+  "changed": {
+    "mark_properties": 56,
+    "schedule_cells": 56,
+    "schedule_sheets": [
+      "PedSteelPierB1Schedule",
+      "PedSteelPierB2Schedule",
+      "SteelBridgeCheekPier1Schedule",
+      "SteelBridgeCheekPier2Schedule"
+    ],
+    "schedule_json_mark_fields": 0
+  },
+  "unchanged": "Every other bar mark (398), the lug WWR wire designations (180), labels, geometry, placements, expressions, dependencies, controllers, quantities, check statuses and all other property values; all view records and other archive members.",
+  "verification": "Cold-opened the prior archive and the delivery in FreeCAD 1.1.3 with the pinned controllers. Compared native shape hashes, placements, expressions, dependencies, labels, controller types, check statuses and every other readable property value of all 2188 objects. No recompute or save.",
+  "source_preservation": "Native FreeCAD change on a disposable copy; delivery edits only the mark values and the schedule cell text in the registered archive (as the D-042 job). All other object, view and resource bytes kept.",
+  "regeneration_note": "The pier_cheeks controller gives its bars PC<n>-<id> review marks when it refreshes; the other controllers their <support>-<id> defaults. After a regeneration, rebuild the DXF snapshot and rerun substructure_drawings/freecad_marks.py.",
+  "downstream_review": "Naming only. No physical geometry, reinforcement, quantities or calculation inputs change. The substructure DXF and model plan snapshots are re-extracted from this model so their registers record the model marks. The D-059 follow-ups (cheek wall cap anchorage and structural design) remain open.",
+  "tracker_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
+  "tracker_disposition": "Byte-identical; existing statuses, responses and outstanding findings retained.",
+  "backups": [
+    "archive/B4-before-sdm-bar-marks-pier-cheeks-20261019.FCStd",
+    "archive/B4-before-sdm-bar-marks-pier-cheeks-record-20261019.zip"
+  ],
+  "job": "CAD_AI/reports/sdm-bar-marks-pier-cheeks-20261019 (native_update.py, prepare_delivery.py, verify_native.py, finalize_delivery.py)"
+}

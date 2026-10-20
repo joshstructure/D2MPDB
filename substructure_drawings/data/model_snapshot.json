@@ -1,10 +1,10 @@
 {
  "log": [
   "EB1: 149 plan, 245 elev edges, 174 bars, 90 wwr",
-  "PIER: 132 plan, 272 elev edges, 122 bars, 0 wwr",
+  "PIER: 172 plan, 326 elev edges, 146 bars, 0 wwr",
   "EB2: 149 plan, 245 elev edges, 174 bars, 90 wwr"
  ],
- "model_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df",
+ "model_sha256": "4f85c1fe05f8715462856ba1874e38de52b6a30dcdef4536f8aaf184abfb8725",
  "schema": 2,
  "station_direction": [
   0,
@@ -102120,6 +102120,702 @@
      "amount": 1,
      "bbox_err_mm": 0.0,
      "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -102.490862,
+         -101.465963,
+         43.95244
+        ],
+        [
+         -102.490862,
+         -101.465963,
+         47.57744
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier1Bars",
+     "label": "Pier cheek left - solid with recessed panel Continuous centered vertical #4",
+     "length_in": 43.5,
+     "mark_model": "4E1",
+     "name": "SteelBridgeCheekPier1MV01"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -102.490845,
+         -102.299296,
+         43.95244
+        ],
+        [
+         -102.490845,
+         -102.299296,
+         47.57744
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier1Bars",
+     "label": "Pier cheek left - solid with recessed panel Continuous centered vertical #026",
+     "length_in": 43.5,
+     "mark_model": "4E1",
+     "name": "SteelBridgeCheekPier1MV02"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -102.490828,
+         -103.13263,
+         43.95244
+        ],
+        [
+         -102.490828,
+         -103.13263,
+         47.57744
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier1Bars",
+     "label": "Pier cheek left - solid with recessed panel Continuous centered vertical #027",
+     "length_in": 43.5,
+     "mark_model": "4E1",
+     "name": "SteelBridgeCheekPier1MV03"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -102.490811,
+         -103.965963,
+         43.95244
+        ],
+        [
+         -102.490811,
+         -103.965963,
+         47.57744
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier1Bars",
+     "label": "Pier cheek left - solid with recessed panel Continuous centered vertical #028",
+     "length_in": 43.5,
+     "mark_model": "4E1",
+     "name": "SteelBridgeCheekPier1MV04"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -102.490794,
+         -104.799296,
+         43.95244
+        ],
+        [
+         -102.490794,
+         -104.799296,
+         47.57744
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier1Bars",
+     "label": "Pier cheek left - solid with recessed panel Continuous centered vertical #029",
+     "length_in": 43.5,
+     "mark_model": "4E1",
+     "name": "SteelBridgeCheekPier1MV05"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -102.490788,
+         -105.090963,
+         43.95244
+        ],
+        [
+         -102.490788,
+         -105.090963,
+         47.57744
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier1Bars",
+     "label": "Pier cheek left - solid with recessed panel Continuous centered vertical #030",
+     "length_in": 43.5,
+     "mark_model": "4E1",
+     "name": "SteelBridgeCheekPier1MV06"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -102.449196,
+         -101.465962,
+         43.95244
+        ],
+        [
+         -102.449121,
+         -105.090962,
+         43.95244
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier1Bars",
+     "label": "Pier cheek left - solid with recessed panel Continuous centered horizontal #4",
+     "length_in": 43.5,
+     "mark_model": "4E2",
+     "name": "SteelBridgeCheekPier1MH01"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -102.449196,
+         -101.465962,
+         44.785773
+        ],
+        [
+         -102.449121,
+         -105.090962,
+         44.785773
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier1Bars",
+     "label": "Pier cheek left - solid with recessed panel Continuous centered horizontal #026",
+     "length_in": 43.5,
+     "mark_model": "4E2",
+     "name": "SteelBridgeCheekPier1MH02"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -102.449196,
+         -101.465962,
+         45.619107
+        ],
+        [
+         -102.449121,
+         -105.090962,
+         45.619107
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier1Bars",
+     "label": "Pier cheek left - solid with recessed panel Continuous centered horizontal #027",
+     "length_in": 43.5,
+     "mark_model": "4E2",
+     "name": "SteelBridgeCheekPier1MH03"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -102.449196,
+         -101.465962,
+         46.45244
+        ],
+        [
+         -102.449121,
+         -105.090962,
+         46.45244
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier1Bars",
+     "label": "Pier cheek left - solid with recessed panel Continuous centered horizontal #028",
+     "length_in": 43.5,
+     "mark_model": "4E2",
+     "name": "SteelBridgeCheekPier1MH04"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -102.449196,
+         -101.465962,
+         47.285773
+        ],
+        [
+         -102.449121,
+         -105.090962,
+         47.285773
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier1Bars",
+     "label": "Pier cheek left - solid with recessed panel Continuous centered horizontal #029",
+     "length_in": 43.5,
+     "mark_model": "4E2",
+     "name": "SteelBridgeCheekPier1MH05"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -102.449196,
+         -101.465962,
+         47.57744
+        ],
+        [
+         -102.449121,
+         -105.090962,
+         47.57744
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier1Bars",
+     "label": "Pier cheek left - solid with recessed panel Continuous centered horizontal #030",
+     "length_in": 43.5,
+     "mark_model": "4E2",
+     "name": "SteelBridgeCheekPier1MH06"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -84.782529,
+         -101.465597,
+         43.95244
+        ],
+        [
+         -84.782529,
+         -101.465597,
+         47.57744
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier2Bars",
+     "label": "Pier cheek right - solid with recessed panel Continuous centered vertical #4",
+     "length_in": 43.5,
+     "mark_model": "4E1",
+     "name": "SteelBridgeCheekPier2MV01"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -84.782512,
+         -102.298931,
+         43.95244
+        ],
+        [
+         -84.782512,
+         -102.298931,
+         47.57744
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier2Bars",
+     "label": "Pier cheek right - solid with recessed panel Continuous centered vertical #026",
+     "length_in": 43.5,
+     "mark_model": "4E1",
+     "name": "SteelBridgeCheekPier2MV02"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -84.782495,
+         -103.132264,
+         43.95244
+        ],
+        [
+         -84.782495,
+         -103.132264,
+         47.57744
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier2Bars",
+     "label": "Pier cheek right - solid with recessed panel Continuous centered vertical #027",
+     "length_in": 43.5,
+     "mark_model": "4E1",
+     "name": "SteelBridgeCheekPier2MV03"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -84.782477,
+         -103.965597,
+         43.95244
+        ],
+        [
+         -84.782477,
+         -103.965597,
+         47.57744
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier2Bars",
+     "label": "Pier cheek right - solid with recessed panel Continuous centered vertical #028",
+     "length_in": 43.5,
+     "mark_model": "4E1",
+     "name": "SteelBridgeCheekPier2MV04"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -84.78246,
+         -104.798931,
+         43.95244
+        ],
+        [
+         -84.78246,
+         -104.798931,
+         47.57744
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier2Bars",
+     "label": "Pier cheek right - solid with recessed panel Continuous centered vertical #029",
+     "length_in": 43.5,
+     "mark_model": "4E1",
+     "name": "SteelBridgeCheekPier2MV05"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -84.782454,
+         -105.090597,
+         43.95244
+        ],
+        [
+         -84.782454,
+         -105.090597,
+         47.57744
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier2Bars",
+     "label": "Pier cheek right - solid with recessed panel Continuous centered vertical #030",
+     "length_in": 43.5,
+     "mark_model": "4E1",
+     "name": "SteelBridgeCheekPier2MV06"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -84.824196,
+         -101.465598,
+         43.95244
+        ],
+        [
+         -84.824121,
+         -105.090598,
+         43.95244
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier2Bars",
+     "label": "Pier cheek right - solid with recessed panel Continuous centered horizontal #4",
+     "length_in": 43.5,
+     "mark_model": "4E2",
+     "name": "SteelBridgeCheekPier2MH01"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -84.824196,
+         -101.465598,
+         44.785773
+        ],
+        [
+         -84.824121,
+         -105.090598,
+         44.785773
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier2Bars",
+     "label": "Pier cheek right - solid with recessed panel Continuous centered horizontal #026",
+     "length_in": 43.5,
+     "mark_model": "4E2",
+     "name": "SteelBridgeCheekPier2MH02"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -84.824196,
+         -101.465598,
+         45.619107
+        ],
+        [
+         -84.824121,
+         -105.090598,
+         45.619107
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier2Bars",
+     "label": "Pier cheek right - solid with recessed panel Continuous centered horizontal #027",
+     "length_in": 43.5,
+     "mark_model": "4E2",
+     "name": "SteelBridgeCheekPier2MH03"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -84.824196,
+         -101.465598,
+         46.45244
+        ],
+        [
+         -84.824121,
+         -105.090598,
+         46.45244
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier2Bars",
+     "label": "Pier cheek right - solid with recessed panel Continuous centered horizontal #028",
+     "length_in": 43.5,
+     "mark_model": "4E2",
+     "name": "SteelBridgeCheekPier2MH04"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -84.824196,
+         -101.465598,
+         47.285773
+        ],
+        [
+         -84.824121,
+         -105.090598,
+         47.285773
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier2Bars",
+     "label": "Pier cheek right - solid with recessed panel Continuous centered horizontal #029",
+     "length_in": 43.5,
+     "mark_model": "4E2",
+     "name": "SteelBridgeCheekPier2MH05"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
+     "component": "cheek",
+     "dia_in": 0.5,
+     "edges": [
+      {
+       "p": [
+        [
+         -84.824196,
+         -101.465598,
+         47.57744
+        ],
+        [
+         -84.824121,
+         -105.090598,
+         47.57744
+        ]
+       ],
+       "t": "L"
+      }
+     ],
+     "group": "SteelBridgeCheekPier2Bars",
+     "label": "Pier cheek right - solid with recessed panel Continuous centered horizontal #030",
+     "length_in": 43.5,
+     "mark_model": "4E2",
+     "name": "SteelBridgeCheekPier2MH06"
+    },
+    {
+     "amount": 1,
+     "bbox_err_mm": 0.0,
+     "centerline_source": "placement*base",
      "component": "pedestal",
      "dia_in": 0.5,
      "edges": [
@@ -102234,7 +102930,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 X U-bars @ 6.0 in maximum",
      "length_in": 71.24851,
-     "mark_model": "4E1",
+     "mark_model": "4F1",
      "name": "PedSteelPierB1X01"
     },
     {
@@ -102355,7 +103051,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 X U-bars @ 6.0 in maximum008",
      "length_in": 71.24851,
-     "mark_model": "4E1",
+     "mark_model": "4F1",
      "name": "PedSteelPierB1X02"
     },
     {
@@ -102476,7 +103172,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 X U-bars @ 6.0 in maximum009",
      "length_in": 71.24851,
-     "mark_model": "4E1",
+     "mark_model": "4F1",
      "name": "PedSteelPierB1X03"
     },
     {
@@ -102597,7 +103293,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 X U-bars @ 6.0 in maximum010",
      "length_in": 71.24851,
-     "mark_model": "4E1",
+     "mark_model": "4F1",
      "name": "PedSteelPierB1X04"
     },
     {
@@ -102718,7 +103414,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 X U-bars @ 6.0 in maximum011",
      "length_in": 71.24851,
-     "mark_model": "4E1",
+     "mark_model": "4F1",
      "name": "PedSteelPierB1X05"
     },
     {
@@ -102839,7 +103535,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 X U-bars @ 6.0 in maximum012",
      "length_in": 71.24851,
-     "mark_model": "4E1",
+     "mark_model": "4F1",
      "name": "PedSteelPierB1X06"
     },
     {
@@ -102960,7 +103656,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 X U-bars @ 6.0 in maximum013",
      "length_in": 71.24851,
-     "mark_model": "4E1",
+     "mark_model": "4F1",
      "name": "PedSteelPierB1X07"
     },
     {
@@ -103081,7 +103777,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 Y U-bars @ 6.0 in maximum",
      "length_in": 66.37351,
-     "mark_model": "4E2",
+     "mark_model": "4F2",
      "name": "PedSteelPierB1Y01"
     },
     {
@@ -103202,7 +103898,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 Y U-bars @ 6.0 in maximum008",
      "length_in": 66.37351,
-     "mark_model": "4E2",
+     "mark_model": "4F2",
      "name": "PedSteelPierB1Y02"
     },
     {
@@ -103323,7 +104019,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 Y U-bars @ 6.0 in maximum009",
      "length_in": 66.37351,
-     "mark_model": "4E2",
+     "mark_model": "4F2",
      "name": "PedSteelPierB1Y03"
     },
     {
@@ -103444,7 +104140,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 Y U-bars @ 6.0 in maximum010",
      "length_in": 66.37351,
-     "mark_model": "4E2",
+     "mark_model": "4F2",
      "name": "PedSteelPierB1Y04"
     },
     {
@@ -103565,7 +104261,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 Y U-bars @ 6.0 in maximum011",
      "length_in": 66.37351,
-     "mark_model": "4E2",
+     "mark_model": "4F2",
      "name": "PedSteelPierB1Y05"
     },
     {
@@ -103686,7 +104382,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 Y U-bars @ 6.0 in maximum012",
      "length_in": 66.37351,
-     "mark_model": "4E2",
+     "mark_model": "4F2",
      "name": "PedSteelPierB1Y06"
     },
     {
@@ -103807,7 +104503,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 Y U-bars @ 6.0 in maximum013",
      "length_in": 66.37351,
-     "mark_model": "4E2",
+     "mark_model": "4F2",
      "name": "PedSteelPierB1Y07"
     },
     {
@@ -103928,7 +104624,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 X U-bars @ 6.0 in maximum014",
      "length_in": 71.24851,
-     "mark_model": "4E1",
+     "mark_model": "4F1",
      "name": "PedSteelPierB1X08"
     },
     {
@@ -104049,7 +104745,7 @@
      "group": "PedSteelPierB1Bars",
      "label": "Pier pedestal 1 Y U-bars @ 6.0 in maximum014",
      "length_in": 66.37351,
-     "mark_model": "4E2",
+     "mark_model": "4F2",
      "name": "PedSteelPierB1Y08"
     },
     {
@@ -104170,7 +104866,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 X U-bars @ 6.0 in maximum",
      "length_in": 71.24851,
-     "mark_model": "4E1",
+     "mark_model": "4F1",
      "name": "PedSteelPierB2X01"
     },
     {
@@ -104291,7 +104987,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 X U-bars @ 6.0 in maximum008",
      "length_in": 71.24851,
-     "mark_model": "4E1",
+     "mark_model": "4F1",
      "name": "PedSteelPierB2X02"
     },
     {
@@ -104412,7 +105108,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 X U-bars @ 6.0 in maximum009",
      "length_in": 71.24851,
-     "mark_model": "4E1",
+     "mark_model": "4F1",
      "name": "PedSteelPierB2X03"
     },
     {
@@ -104533,7 +105229,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 X U-bars @ 6.0 in maximum010",
      "length_in": 71.24851,
-     "mark_model": "4E1",
+     "mark_model": "4F1",
      "name": "PedSteelPierB2X04"
     },
     {
@@ -104654,7 +105350,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 X U-bars @ 6.0 in maximum011",
      "length_in": 71.24851,
-     "mark_model": "4E1",
+     "mark_model": "4F1",
      "name": "PedSteelPierB2X05"
     },
     {
@@ -104775,7 +105471,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 X U-bars @ 6.0 in maximum012",
      "length_in": 71.24851,
-     "mark_model": "4E1",
+     "mark_model": "4F1",
      "name": "PedSteelPierB2X06"
     },
     {
@@ -104896,7 +105592,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 X U-bars @ 6.0 in maximum013",
      "length_in": 71.24851,
-     "mark_model": "4E1",
+     "mark_model": "4F1",
      "name": "PedSteelPierB2X07"
     },
     {
@@ -105017,7 +105713,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 Y U-bars @ 6.0 in maximum",
      "length_in": 66.37351,
-     "mark_model": "4E2",
+     "mark_model": "4F2",
      "name": "PedSteelPierB2Y01"
     },
     {
@@ -105138,7 +105834,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 Y U-bars @ 6.0 in maximum008",
      "length_in": 66.37351,
-     "mark_model": "4E2",
+     "mark_model": "4F2",
      "name": "PedSteelPierB2Y02"
     },
     {
@@ -105259,7 +105955,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 Y U-bars @ 6.0 in maximum009",
      "length_in": 66.37351,
-     "mark_model": "4E2",
+     "mark_model": "4F2",
      "name": "PedSteelPierB2Y03"
     },
     {
@@ -105380,7 +106076,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 Y U-bars @ 6.0 in maximum010",
      "length_in": 66.37351,
-     "mark_model": "4E2",
+     "mark_model": "4F2",
      "name": "PedSteelPierB2Y04"
     },
     {
@@ -105501,7 +106197,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 Y U-bars @ 6.0 in maximum011",
      "length_in": 66.37351,
-     "mark_model": "4E2",
+     "mark_model": "4F2",
      "name": "PedSteelPierB2Y05"
     },
     {
@@ -105622,7 +106318,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 Y U-bars @ 6.0 in maximum012",
      "length_in": 66.37351,
-     "mark_model": "4E2",
+     "mark_model": "4F2",
      "name": "PedSteelPierB2Y06"
     },
     {
@@ -105743,7 +106439,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 Y U-bars @ 6.0 in maximum013",
      "length_in": 66.37351,
-     "mark_model": "4E2",
+     "mark_model": "4F2",
      "name": "PedSteelPierB2Y07"
     },
     {
@@ -105864,7 +106560,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 X U-bars @ 6.0 in maximum014",
      "length_in": 71.24851,
-     "mark_model": "4E1",
+     "mark_model": "4F1",
      "name": "PedSteelPierB2X08"
     },
     {
@@ -105985,7 +106681,7 @@
      "group": "PedSteelPierB2Bars",
      "label": "Pier pedestal 2 Y U-bars @ 6.0 in maximum014",
      "length_in": 66.37351,
-     "mark_model": "4E2",
+     "mark_model": "4F2",
      "name": "PedSteelPierB2Y08"
     }
    ],
@@ -105997,6 +106693,3898 @@
     -101.278082,
     43.76494
    ],
+   "cheek_sections": {
+    "BridgeCheekPier1": {
+     "side": "right",
+     "side_edges": [
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.333338,
+         43.76494
+        ],
+        [
+         9.333338,
+         44.51494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         8.333338,
+         43.76494
+        ],
+        [
+         9.333338,
+         43.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         8.333313,
+         43.76494
+        ],
+        [
+         8.333313,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         8.333313,
+         47.76494
+        ],
+        [
+         8.333338,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.333338,
+         44.51494
+        ],
+        [
+         9.317714,
+         44.530564
+        ],
+        [
+         9.30209,
+         44.546188
+        ],
+        [
+         9.286466,
+         44.561813
+        ],
+        [
+         9.270838,
+         44.57744
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         8.333338,
+         43.76494
+        ],
+        [
+         8.333338,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         8.333338,
+         47.76494
+        ],
+        [
+         9.333338,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.333338,
+         47.01494
+        ],
+        [
+         9.333338,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.333338,
+         47.01494
+        ],
+        [
+         9.317714,
+         46.999316
+        ],
+        [
+         9.30209,
+         46.983691
+        ],
+        [
+         9.286466,
+         46.968067
+        ],
+        [
+         9.270838,
+         46.95244
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.270838,
+         44.57744
+        ],
+        [
+         9.270838,
+         46.95244
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         8.333338,
+         47.76494
+        ],
+        [
+         8.333313,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         9.583338,
+         40.76494
+        ],
+        [
+         9.583338,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         8.294958,
+         40.76494
+        ],
+        [
+         9.583338,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         8.294958,
+         40.76494
+        ],
+        [
+         7.499983,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         7.499983,
+         40.76494
+        ],
+        [
+         6.705042,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         5.333292,
+         40.76494
+        ],
+        [
+         6.705042,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         5.333292,
+         43.76494
+        ],
+        [
+         9.583338,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         5.333292,
+         40.76494
+        ],
+        [
+         5.333292,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         8.294958,
+         40.76494
+        ],
+        [
+         8.294958,
+         41.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         6.705042,
+         41.76494
+        ],
+        [
+         8.294958,
+         41.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         6.705042,
+         40.76494
+        ],
+        [
+         6.705042,
+         41.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         8.294958,
+         41.76494
+        ],
+        [
+         7.499983,
+         41.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         7.499983,
+         41.76494
+        ],
+        [
+         6.705042,
+         41.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.333338,
+         43.76494
+        ],
+        [
+         9.333313,
+         43.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.333313,
+         43.76494
+        ],
+        [
+         9.333313,
+         44.51494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.333338,
+         44.51494
+        ],
+        [
+         9.333313,
+         44.51494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         8.333338,
+         43.76494
+        ],
+        [
+         8.333313,
+         43.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         8.333313,
+         43.76494
+        ],
+        [
+         9.333313,
+         43.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         8.333338,
+         47.76494
+        ],
+        [
+         9.333313,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.333313,
+         47.01494
+        ],
+        [
+         9.333313,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.333313,
+         47.01494
+        ],
+        [
+         9.317688,
+         46.999316
+        ],
+        [
+         9.302064,
+         46.983691
+        ],
+        [
+         9.28644,
+         46.968067
+        ],
+        [
+         9.270813,
+         46.95244
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.270813,
+         44.57744
+        ],
+        [
+         9.270813,
+         46.95244
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.333313,
+         44.51494
+        ],
+        [
+         9.317688,
+         44.530564
+        ],
+        [
+         9.302064,
+         44.546188
+        ],
+        [
+         9.28644,
+         44.561813
+        ],
+        [
+         9.270813,
+         44.57744
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.270838,
+         44.57744
+        ],
+        [
+         9.270813,
+         44.57744
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.333338,
+         47.76494
+        ],
+        [
+         9.333313,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.333313,
+         47.01494
+        ],
+        [
+         9.333338,
+         47.01494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.270813,
+         46.95244
+        ],
+        [
+         9.270838,
+         46.95244
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         9.583338,
+         40.76494
+        ],
+        [
+         9.583313,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         9.583313,
+         40.76494
+        ],
+        [
+         9.583313,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         9.583338,
+         43.76494
+        ],
+        [
+         9.583313,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         8.294958,
+         40.76494
+        ],
+        [
+         8.333333,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         8.333333,
+         40.76494
+        ],
+        [
+         8.294958,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         6.705042,
+         40.76494
+        ],
+        [
+         6.666667,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         6.666667,
+         40.76494
+        ],
+        [
+         6.705042,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         5.333292,
+         40.76494
+        ],
+        [
+         9.583313,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         5.333292,
+         40.76494
+        ],
+        [
+         5.333292,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         5.333292,
+         43.76494
+        ],
+        [
+         9.583313,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         8.294958,
+         41.76494
+        ],
+        [
+         8.333333,
+         41.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         8.333333,
+         41.76494
+        ],
+        [
+         8.294958,
+         41.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         6.705042,
+         41.76494
+        ],
+        [
+         6.666667,
+         41.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         6.666667,
+         41.76494
+        ],
+        [
+         6.705042,
+         41.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         8.333333,
+         40.76494
+        ],
+        [
+         8.333333,
+         41.25994
+        ],
+        [
+         8.333333,
+         41.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         6.666667,
+         41.76494
+        ],
+        [
+         6.666667,
+         41.26994
+        ],
+        [
+         6.666667,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      }
+     ],
+     "top_edges": [
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         8.333375,
+         -1.999828
+        ],
+        [
+         9.333375,
+         -1.999807
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.333375,
+         -1.999807
+        ],
+        [
+         9.333359,
+         -1.249807
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         8.333375,
+         -1.999828
+        ],
+        [
+         8.333292,
+         2.000172
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         8.333292,
+         2.000172
+        ],
+        [
+         9.333292,
+         2.000193
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.333308,
+         1.250193
+        ],
+        [
+         9.333292,
+         2.000193
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.333308,
+         1.250193
+        ],
+        [
+         9.317684,
+         1.234568
+        ],
+        [
+         9.30206,
+         1.218943
+        ],
+        [
+         9.286436,
+         1.203319
+        ],
+        [
+         9.270809,
+         1.187691
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.270858,
+         -1.187309
+        ],
+        [
+         9.270809,
+         1.187691
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.333359,
+         -1.249807
+        ],
+        [
+         9.317735,
+         -1.234183
+        ],
+        [
+         9.30211,
+         -1.218559
+        ],
+        [
+         9.286485,
+         -1.202936
+        ],
+        [
+         9.270858,
+         -1.187309
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.328656,
+         1.245541
+        ],
+        [
+         9.328621,
+         1.245506
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         8.333375,
+         -1.999828
+        ],
+        [
+         9.333375,
+         -1.999807
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.333375,
+         -1.999807
+        ],
+        [
+         9.333359,
+         -1.249807
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         8.333375,
+         -1.999828
+        ],
+        [
+         8.333292,
+         2.000172
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         8.333292,
+         2.000172
+        ],
+        [
+         9.333292,
+         2.000193
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.333308,
+         1.250193
+        ],
+        [
+         9.333292,
+         2.000193
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.333308,
+         1.250193
+        ],
+        [
+         9.328656,
+         1.245541
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.328621,
+         1.245506
+        ],
+        [
+         9.320413,
+         1.237298
+        ],
+        [
+         9.317684,
+         1.234568
+        ],
+        [
+         9.30206,
+         1.218944
+        ],
+        [
+         9.286436,
+         1.203319
+        ],
+        [
+         9.270809,
+         1.187691
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.270858,
+         -1.187309
+        ],
+        [
+         9.270809,
+         1.187691
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         9.333359,
+         -1.249807
+        ],
+        [
+         9.317735,
+         -1.234183
+        ],
+        [
+         9.30211,
+         -1.21856
+        ],
+        [
+         9.286486,
+         -1.202936
+        ],
+        [
+         9.270858,
+         -1.187309
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      }
+     ],
+     "y_cut_ft": -103.028462,
+     "z_cut_ft": 45.96494
+    },
+    "BridgeCheekPier2": {
+     "side": "right",
+     "side_edges": [
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -8.333328,
+         43.76494
+        ],
+        [
+         -8.333328,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333328,
+         43.76494
+        ],
+        [
+         -8.333328,
+         43.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333354,
+         43.76494
+        ],
+        [
+         -9.333354,
+         44.51494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333354,
+         44.51494
+        ],
+        [
+         -9.31773,
+         44.530564
+        ],
+        [
+         -9.302106,
+         44.546188
+        ],
+        [
+         -9.286481,
+         44.561813
+        ],
+        [
+         -9.270854,
+         44.57744
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.270854,
+         44.57744
+        ],
+        [
+         -9.270854,
+         46.95244
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333354,
+         47.01494
+        ],
+        [
+         -9.31773,
+         46.999316
+        ],
+        [
+         -9.302106,
+         46.983691
+        ],
+        [
+         -9.286481,
+         46.968067
+        ],
+        [
+         -9.270854,
+         46.95244
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333354,
+         47.01494
+        ],
+        [
+         -9.333354,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333354,
+         47.76494
+        ],
+        [
+         -9.333328,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333328,
+         47.76494
+        ],
+        [
+         -9.333354,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333328,
+         47.76494
+        ],
+        [
+         -8.333328,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333328,
+         43.76494
+        ],
+        [
+         -9.333328,
+         44.51494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333328,
+         44.51494
+        ],
+        [
+         -9.317704,
+         44.530564
+        ],
+        [
+         -9.30208,
+         44.546188
+        ],
+        [
+         -9.286455,
+         44.561813
+        ],
+        [
+         -9.270828,
+         44.57744
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.270828,
+         44.57744
+        ],
+        [
+         -9.270828,
+         46.95244
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333328,
+         47.01494
+        ],
+        [
+         -9.317704,
+         46.999316
+        ],
+        [
+         -9.30208,
+         46.983691
+        ],
+        [
+         -9.286455,
+         46.968067
+        ],
+        [
+         -9.270828,
+         46.95244
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333328,
+         47.01494
+        ],
+        [
+         -9.333328,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333328,
+         44.51494
+        ],
+        [
+         -9.333354,
+         44.51494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.270828,
+         44.57744
+        ],
+        [
+         -9.270854,
+         44.57744
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.270854,
+         46.95244
+        ],
+        [
+         -9.270828,
+         46.95244
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333354,
+         47.01494
+        ],
+        [
+         -9.333328,
+         47.01494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -9.583328,
+         43.76494
+        ],
+        [
+         -9.583354,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -9.583354,
+         43.76494
+        ],
+        [
+         -9.583328,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -9.583328,
+         43.76494
+        ],
+        [
+         -5.333292,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -9.583328,
+         40.76494
+        ],
+        [
+         -9.583354,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -9.583354,
+         40.76494
+        ],
+        [
+         -9.583354,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -9.583328,
+         40.76494
+        ],
+        [
+         -9.583328,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -9.583354,
+         40.76494
+        ],
+        [
+         -9.583328,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -7.500017,
+         40.76494
+        ],
+        [
+         -6.705059,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -5.333292,
+         40.76494
+        ],
+        [
+         -5.333292,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -6.705059,
+         40.76494
+        ],
+        [
+         -5.333292,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -6.705059,
+         40.76494
+        ],
+        [
+         -6.705059,
+         41.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -8.294941,
+         41.76494
+        ],
+        [
+         -6.705059,
+         41.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -8.294941,
+         40.76494
+        ],
+        [
+         -8.294941,
+         41.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -9.583328,
+         40.76494
+        ],
+        [
+         -8.294941,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -6.705059,
+         40.76494
+        ],
+        [
+         -7.500017,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -7.500017,
+         40.76494
+        ],
+        [
+         -8.294941,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -6.705059,
+         41.76494
+        ],
+        [
+         -7.500017,
+         41.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -7.500017,
+         41.76494
+        ],
+        [
+         -8.294941,
+         41.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -8.333328,
+         43.76494
+        ],
+        [
+         -8.333354,
+         43.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -8.333354,
+         43.76494
+        ],
+        [
+         -8.333354,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -8.333328,
+         47.76494
+        ],
+        [
+         -8.333354,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333328,
+         43.76494
+        ],
+        [
+         -9.333354,
+         43.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333354,
+         43.76494
+        ],
+        [
+         -8.333354,
+         43.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333328,
+         47.76494
+        ],
+        [
+         -8.333354,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -9.583328,
+         43.76494
+        ],
+        [
+         -5.333292,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -9.583328,
+         40.76494
+        ],
+        [
+         -7.500017,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -6.705059,
+         40.76494
+        ],
+        [
+         -5.333292,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -5.333292,
+         40.76494
+        ],
+        [
+         -5.333292,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -6.705059,
+         40.76494
+        ],
+        [
+         -6.666667,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -6.666667,
+         40.76494
+        ],
+        [
+         -6.705059,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -8.294941,
+         40.76494
+        ],
+        [
+         -8.333333,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -8.333333,
+         40.76494
+        ],
+        [
+         -8.294941,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -6.705059,
+         41.76494
+        ],
+        [
+         -6.666667,
+         41.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -6.666667,
+         41.76494
+        ],
+        [
+         -6.705059,
+         41.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -8.294941,
+         41.76494
+        ],
+        [
+         -8.333333,
+         41.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -8.333333,
+         41.76494
+        ],
+        [
+         -8.294941,
+         41.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -6.666667,
+         40.76494
+        ],
+        [
+         -6.666667,
+         41.25994
+        ],
+        [
+         -6.666667,
+         41.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -8.333333,
+         41.76494
+        ],
+        [
+         -8.333333,
+         41.26994
+        ],
+        [
+         -8.333333,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      }
+     ],
+     "top_edges": [
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333292,
+         -2.000193
+        ],
+        [
+         -8.333292,
+         -2.000172
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -8.333292,
+         -2.000172
+        ],
+        [
+         -8.333375,
+         1.999828
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333292,
+         -2.000193
+        ],
+        [
+         -9.333308,
+         -1.250193
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333308,
+         -1.250193
+        ],
+        [
+         -9.317684,
+         -1.234568
+        ],
+        [
+         -9.30206,
+         -1.218943
+        ],
+        [
+         -9.286436,
+         -1.203319
+        ],
+        [
+         -9.270809,
+         -1.187691
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.270809,
+         -1.187691
+        ],
+        [
+         -9.270858,
+         1.187309
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333359,
+         1.249807
+        ],
+        [
+         -9.317735,
+         1.234183
+        ],
+        [
+         -9.30211,
+         1.218559
+        ],
+        [
+         -9.286485,
+         1.202936
+        ],
+        [
+         -9.270858,
+         1.187309
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333359,
+         1.249807
+        ],
+        [
+         -9.333375,
+         1.999807
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333375,
+         1.999807
+        ],
+        [
+         -8.333375,
+         1.999828
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333308,
+         -1.250193
+        ],
+        [
+         -9.331787,
+         -1.248672
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.272379,
+         1.18883
+        ],
+        [
+         -9.270858,
+         1.187309
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333292,
+         -2.000193
+        ],
+        [
+         -8.333292,
+         -2.000172
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -8.333292,
+         -2.000172
+        ],
+        [
+         -8.333375,
+         1.999828
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333292,
+         -2.000193
+        ],
+        [
+         -9.333308,
+         -1.250193
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.331787,
+         -1.248672
+        ],
+        [
+         -9.317684,
+         -1.234568
+        ],
+        [
+         -9.30206,
+         -1.218944
+        ],
+        [
+         -9.286436,
+         -1.203319
+        ],
+        [
+         -9.270809,
+         -1.187691
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.270809,
+         -1.187691
+        ],
+        [
+         -9.270858,
+         1.187309
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333359,
+         1.249807
+        ],
+        [
+         -9.317735,
+         1.234183
+        ],
+        [
+         -9.30211,
+         1.21856
+        ],
+        [
+         -9.286486,
+         1.202936
+        ],
+        [
+         -9.272379,
+         1.18883
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333359,
+         1.249807
+        ],
+        [
+         -9.333375,
+         1.999807
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -9.333375,
+         1.999807
+        ],
+        [
+         -8.333375,
+         1.999828
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      }
+     ],
+     "y_cut_ft": -103.028098,
+     "z_cut_ft": 45.96494
+    }
+   },
+   "cheek_views": {
+    "BridgeCheekPier1": {
+     "edges": [
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         1.999828,
+         43.76494
+        ],
+        [
+         1.999828,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         -2.000172,
+         43.76494
+        ],
+        [
+         -2.000193,
+         43.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         -2.000193,
+         43.76494
+        ],
+        [
+         -2.000193,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         -2.000172,
+         47.76494
+        ],
+        [
+         -2.000193,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         1.999828,
+         47.76494
+        ],
+        [
+         -2.000172,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         -2.000193,
+         47.76494
+        ],
+        [
+         -2.000172,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         -1.999802,
+         43.76494
+        ],
+        [
+         -2.000172,
+         43.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         -2.000172,
+         43.76494
+        ],
+        [
+         -2.000172,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         -2.000193,
+         43.76494
+        ],
+        [
+         -2.000172,
+         43.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         2.000198,
+         40.76494
+        ],
+        [
+         2.000198,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         2.000198,
+         43.76494
+        ],
+        [
+         -1.999802,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -1.999823,
+         43.76494
+        ],
+        [
+         -1.999802,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -1.999823,
+         43.76494
+        ],
+        [
+         -1.999802,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         2.000198,
+         40.76494
+        ],
+        [
+         -1.999802,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -1.999802,
+         40.76494
+        ],
+        [
+         -1.999802,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -1.999823,
+         40.76494
+        ],
+        [
+         -1.999802,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -1.999823,
+         40.76494
+        ],
+        [
+         -1.999802,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -1.999823,
+         40.76494
+        ],
+        [
+         -1.999823,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         1.999807,
+         43.76494
+        ],
+        [
+         1.999807,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         1.999807,
+         47.76494
+        ],
+        [
+         1.999828,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         1.999807,
+         43.76494
+        ],
+        [
+         1.999828,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         1.999807,
+         43.76494
+        ],
+        [
+         -2.000172,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         1.999807,
+         47.76494
+        ],
+        [
+         -2.000172,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         1.249807,
+         47.01494
+        ],
+        [
+         1.249807,
+         44.51494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         -1.250193,
+         47.01494
+        ],
+        [
+         1.249807,
+         47.01494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         -1.250193,
+         44.51494
+        ],
+        [
+         -1.250193,
+         47.01494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         1.249807,
+         44.51494
+        ],
+        [
+         -1.250193,
+         44.51494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         1.999828,
+         43.76494
+        ],
+        [
+         -1.999802,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         1.249807,
+         44.51494
+        ],
+        [
+         1.187309,
+         44.57744
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         1.187309,
+         46.95244
+        ],
+        [
+         1.187309,
+         44.57744
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         1.249807,
+         47.01494
+        ],
+        [
+         1.187309,
+         46.95244
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         -1.187691,
+         46.95244
+        ],
+        [
+         1.187309,
+         46.95244
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         -1.250193,
+         47.01494
+        ],
+        [
+         -1.187691,
+         46.95244
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         -1.187691,
+         44.57744
+        ],
+        [
+         -1.187691,
+         46.95244
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         -1.250193,
+         44.51494
+        ],
+        [
+         -1.187691,
+         44.57744
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier1",
+       "p": [
+        [
+         1.187309,
+         44.57744
+        ],
+        [
+         -1.187691,
+         44.57744
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         2.000177,
+         43.76494
+        ],
+        [
+         2.000198,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         2.000177,
+         40.76494
+        ],
+        [
+         2.000198,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         2.000177,
+         40.76494
+        ],
+        [
+         2.000177,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -1.999802,
+         43.76494
+        ],
+        [
+         2.000177,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -1.999802,
+         40.76494
+        ],
+        [
+         2.000177,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      }
+     ],
+     "side": "right"
+    },
+    "BridgeCheekPier2": {
+     "edges": [
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         2.000193,
+         43.76494
+        ],
+        [
+         2.000193,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -1.999807,
+         43.76494
+        ],
+        [
+         -1.999828,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -1.999828,
+         43.76494
+        ],
+        [
+         -1.999828,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -1.999807,
+         47.76494
+        ],
+        [
+         -1.999828,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         2.000193,
+         47.76494
+        ],
+        [
+         -1.999807,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -1.999828,
+         47.76494
+        ],
+        [
+         -1.999807,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -1.999802,
+         43.76494
+        ],
+        [
+         -1.999807,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -1.999807,
+         43.76494
+        ],
+        [
+         -1.999807,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         1.250193,
+         47.01494
+        ],
+        [
+         1.250193,
+         44.51494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -1.249807,
+         47.01494
+        ],
+        [
+         1.250193,
+         47.01494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -1.249807,
+         44.51494
+        ],
+        [
+         -1.249807,
+         47.01494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         1.250193,
+         44.51494
+        ],
+        [
+         -1.249807,
+         44.51494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -1.999828,
+         43.76494
+        ],
+        [
+         -1.999807,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         1.250193,
+         44.51494
+        ],
+        [
+         1.187691,
+         44.57744
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         1.187691,
+         46.95244
+        ],
+        [
+         1.187691,
+         44.57744
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         1.250193,
+         47.01494
+        ],
+        [
+         1.187691,
+         46.95244
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -1.187309,
+         46.95244
+        ],
+        [
+         1.187691,
+         46.95244
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -1.249807,
+         47.01494
+        ],
+        [
+         -1.187309,
+         46.95244
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -1.187309,
+         44.57744
+        ],
+        [
+         -1.187309,
+         46.95244
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         -1.249807,
+         44.51494
+        ],
+        [
+         -1.187309,
+         44.57744
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         1.187691,
+         44.57744
+        ],
+        [
+         -1.187309,
+         44.57744
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         2.000198,
+         40.76494
+        ],
+        [
+         2.000198,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         2.000198,
+         43.76494
+        ],
+        [
+         -1.999802,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -1.999823,
+         43.76494
+        ],
+        [
+         -1.999802,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -1.999823,
+         43.76494
+        ],
+        [
+         -1.999807,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         2.000198,
+         40.76494
+        ],
+        [
+         -1.999802,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -1.999802,
+         40.76494
+        ],
+        [
+         -1.999802,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -1.999823,
+         40.76494
+        ],
+        [
+         -1.999802,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -1.999823,
+         40.76494
+        ],
+        [
+         -1.999802,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -1.999823,
+         40.76494
+        ],
+        [
+         -1.999823,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 1
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         2.000172,
+         43.76494
+        ],
+        [
+         2.000172,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         2.000172,
+         47.76494
+        ],
+        [
+         2.000193,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         2.000172,
+         43.76494
+        ],
+        [
+         2.000193,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         2.000172,
+         43.76494
+        ],
+        [
+         -1.999807,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCheekPier2",
+       "p": [
+        [
+         2.000172,
+         47.76494
+        ],
+        [
+         -1.999807,
+         47.76494
+        ]
+       ],
+       "role": "cheek",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         2.000193,
+         43.76494
+        ],
+        [
+         -1.999802,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         2.000177,
+         43.76494
+        ],
+        [
+         2.000198,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         2.000177,
+         40.76494
+        ],
+        [
+         2.000198,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         2.000177,
+         40.76494
+        ],
+        [
+         2.000177,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -1.999807,
+         43.76494
+        ],
+        [
+         2.000177,
+         43.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      },
+      {
+       "obj": "BridgeCapPier",
+       "p": [
+        [
+         -1.999802,
+         40.76494
+        ],
+        [
+         2.000177,
+         40.76494
+        ]
+       ],
+       "role": "cap",
+       "t": "P",
+       "vis": 0
+      }
+     ],
+     "side": "right"
+    }
+   },
    "concrete": {
     "BridgeCapPier": {
      "bb_ft": [
@@ -106089,6 +110677,194 @@
        -84.053284,
        -105.278082,
        43.76494
+      ]
+     ]
+    },
+    "BridgeCheekPier1": {
+     "bb_ft": [
+      -102.970033,
+      -105.278473,
+      43.76494,
+      -101.96995,
+      -101.278452,
+      47.76494
+     ],
+     "label": "Pier cheek left - solid with recessed panel",
+     "role": "cheek",
+     "vertices_ft": [
+      [
+       -102.970033,
+       -101.278473,
+       43.76494
+      ],
+      [
+       -102.970033,
+       -101.278473,
+       47.76494
+      ],
+      [
+       -102.970017,
+       -102.028473,
+       44.51494
+      ],
+      [
+       -102.970017,
+       -102.028473,
+       47.01494
+      ],
+      [
+       -102.969966,
+       -104.528473,
+       44.51494
+      ],
+      [
+       -102.969966,
+       -104.528473,
+       47.01494
+      ],
+      [
+       -102.96995,
+       -105.278473,
+       43.76494
+      ],
+      [
+       -102.96995,
+       -105.278473,
+       47.76494
+      ],
+      [
+       -102.907516,
+       -102.090971,
+       44.57744
+      ],
+      [
+       -102.907516,
+       -102.090971,
+       46.95244
+      ],
+      [
+       -102.907467,
+       -104.465971,
+       44.57744
+      ],
+      [
+       -102.907467,
+       -104.465971,
+       46.95244
+      ],
+      [
+       -101.970033,
+       -101.278452,
+       43.76494
+      ],
+      [
+       -101.970033,
+       -101.278452,
+       47.76494
+      ],
+      [
+       -101.96995,
+       -105.278452,
+       43.76494
+      ],
+      [
+       -101.96995,
+       -105.278452,
+       47.76494
+      ]
+     ]
+    },
+    "BridgeCheekPier2": {
+     "bb_ft": [
+      -85.303366,
+      -105.278108,
+      43.76494,
+      -84.303284,
+      -101.278088,
+      47.76494
+     ],
+     "label": "Pier cheek right - solid with recessed panel",
+     "role": "cheek",
+     "vertices_ft": [
+      [
+       -85.303366,
+       -101.278108,
+       43.76494
+      ],
+      [
+       -85.303366,
+       -101.278108,
+       47.76494
+      ],
+      [
+       -85.303284,
+       -105.278108,
+       43.76494
+      ],
+      [
+       -85.303284,
+       -105.278108,
+       47.76494
+      ],
+      [
+       -84.365849,
+       -102.090589,
+       44.57744
+      ],
+      [
+       -84.365849,
+       -102.090589,
+       46.95244
+      ],
+      [
+       -84.3658,
+       -104.465589,
+       44.57744
+      ],
+      [
+       -84.3658,
+       -104.465589,
+       46.95244
+      ],
+      [
+       -84.303366,
+       -101.278088,
+       43.76494
+      ],
+      [
+       -84.303366,
+       -101.278088,
+       47.76494
+      ],
+      [
+       -84.303351,
+       -102.028088,
+       44.51494
+      ],
+      [
+       -84.303351,
+       -102.028088,
+       47.01494
+      ],
+      [
+       -84.303299,
+       -104.528088,
+       44.51494
+      ],
+      [
+       -84.303299,
+       -104.528088,
+       47.01494
+      ],
+      [
+       -84.303284,
+       -105.278088,
+       43.76494
+      ],
+      [
+       -84.303284,
+       -105.278088,
+       47.76494
       ]
      ]
     },
@@ -107004,6 +111780,358 @@
       ]
      ],
      "role": "pier_wall",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333375,
+       43.76494
+      ],
+      [
+       9.333375,
+       47.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333375,
+       47.76494
+      ],
+      [
+       8.333375,
+       47.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       8.333375,
+       43.76494
+      ],
+      [
+       8.333375,
+       47.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333375,
+       43.76494
+      ],
+      [
+       8.333375,
+       43.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       8.333375,
+       47.76494
+      ],
+      [
+       8.333292,
+       47.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       8.333375,
+       47.76494
+      ],
+      [
+       8.333292,
+       47.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       8.333292,
+       43.76494
+      ],
+      [
+       8.333292,
+       47.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -8.333292,
+       43.76494
+      ],
+      [
+       -8.333292,
+       47.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -8.333292,
+       47.76494
+      ],
+      [
+       -9.333292,
+       47.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333292,
+       43.76494
+      ],
+      [
+       -9.333292,
+       47.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -8.333292,
+       43.76494
+      ],
+      [
+       -9.333292,
+       43.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333292,
+       47.76494
+      ],
+      [
+       -9.333375,
+       47.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333292,
+       47.76494
+      ],
+      [
+       -9.333375,
+       47.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333375,
+       43.76494
+      ],
+      [
+       -9.333375,
+       47.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333308,
+       47.01494
+      ],
+      [
+       -9.333308,
+       44.51494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333359,
+       47.01494
+      ],
+      [
+       -9.333308,
+       47.01494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333359,
+       44.51494
+      ],
+      [
+       -9.333359,
+       47.01494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333308,
+       44.51494
+      ],
+      [
+       -9.333359,
+       44.51494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333308,
+       44.51494
+      ],
+      [
+       -9.333292,
+       44.514955
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333308,
+       47.01494
+      ],
+      [
+       -9.333292,
+       47.014924
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333359,
+       47.01494
+      ],
+      [
+       -9.333292,
+       47.014873
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333359,
+       44.51494
+      ],
+      [
+       -9.333292,
+       44.515007
+      ]
+     ],
+     "role": "cheek",
      "t": "P",
      "vis": 1
     },
@@ -109148,6 +114276,518 @@
       ]
      ],
      "role": "pier_wall",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333375,
+       43.76494
+      ],
+      [
+       9.333292,
+       43.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333292,
+       43.76494
+      ],
+      [
+       9.333292,
+       47.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333375,
+       47.76494
+      ],
+      [
+       9.333292,
+       47.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333359,
+       47.01494
+      ],
+      [
+       9.333359,
+       44.51494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333308,
+       47.01494
+      ],
+      [
+       9.333359,
+       47.01494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333308,
+       44.51494
+      ],
+      [
+       9.333308,
+       47.01494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333359,
+       44.51494
+      ],
+      [
+       9.333308,
+       44.51494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333292,
+       47.76494
+      ],
+      [
+       8.333375,
+       47.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       8.333375,
+       43.76494
+      ],
+      [
+       8.333292,
+       43.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333292,
+       43.76494
+      ],
+      [
+       8.333292,
+       43.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333359,
+       44.51494
+      ],
+      [
+       9.270858,
+       44.57744
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.270858,
+       46.95244
+      ],
+      [
+       9.270858,
+       44.57744
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333359,
+       47.01494
+      ],
+      [
+       9.270858,
+       46.95244
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.270809,
+       46.95244
+      ],
+      [
+       9.270858,
+       46.95244
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333308,
+       47.01494
+      ],
+      [
+       9.270809,
+       46.95244
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.270809,
+       44.57744
+      ],
+      [
+       9.270809,
+       46.95244
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333308,
+       44.51494
+      ],
+      [
+       9.270809,
+       44.57744
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.270858,
+       44.57744
+      ],
+      [
+       9.270809,
+       44.57744
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -8.333292,
+       43.76494
+      ],
+      [
+       -8.333375,
+       43.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -8.333375,
+       43.76494
+      ],
+      [
+       -8.333375,
+       47.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -8.333292,
+       47.76494
+      ],
+      [
+       -8.333375,
+       47.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -8.333375,
+       47.76494
+      ],
+      [
+       -9.333292,
+       47.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333292,
+       43.76494
+      ],
+      [
+       -9.333375,
+       43.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -8.333375,
+       43.76494
+      ],
+      [
+       -9.333375,
+       43.76494
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333292,
+       44.514955
+      ],
+      [
+       -9.270809,
+       44.57744
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.270809,
+       46.95244
+      ],
+      [
+       -9.270809,
+       44.57744
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333292,
+       47.014924
+      ],
+      [
+       -9.270809,
+       46.95244
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.270858,
+       46.95244
+      ],
+      [
+       -9.270809,
+       46.95244
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333292,
+       47.014873
+      ],
+      [
+       -9.270858,
+       46.95244
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.270858,
+       44.57744
+      ],
+      [
+       -9.270858,
+       46.95244
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333292,
+       44.515007
+      ],
+      [
+       -9.270858,
+       44.57744
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.270809,
+       44.57744
+      ],
+      [
+       -9.270858,
+       44.57744
+      ]
+     ],
+     "role": "cheek",
      "t": "P",
      "vis": 0
     },
@@ -111682,7 +117322,7 @@
         43.76494
        ],
        [
-        101.278228,
+        101.278108,
         43.76494
        ]
       ],
@@ -111787,14 +117427,62 @@
       "vis": 1
      },
      {
-      "obj": "BridgePedestalPierB1",
+      "obj": "BridgeCheekPier1",
       "p": [
        [
-        101.278405,
+        101.278473,
         43.76494
        ],
        [
-        101.278333,
+        101.278473,
+        47.76494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        101.278473,
+        47.76494
+       ],
+       [
+        101.278452,
+        47.76494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        101.278452,
+        43.76494
+       ],
+       [
+        101.278452,
+        47.76494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgePedestalPierB1",
+      "p": [
+       [
+        101.278473,
+        43.76494
+       ],
+       [
+        101.278452,
         43.76494
        ]
       ],
@@ -111806,87 +117494,7 @@
       "obj": "BridgePedestalPierB1",
       "p": [
        [
-        101.278333,
-        43.76494
-       ],
-       [
-        101.278333,
-        44.259764
-       ]
-      ],
-      "role": "pedestal",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePedestalPierB1",
-      "p": [
-       [
-        101.278333,
-        44.259764
-       ],
-       [
-        101.278405,
-        44.259764
-       ]
-      ],
-      "role": "pedestal",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePedestalPierB1",
-      "p": [
-       [
-        101.278405,
-        44.259764
-       ],
-       [
-        101.278405,
-        43.76494
-       ]
-      ],
-      "role": "pedestal",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePedestalPierB1",
-      "p": [
-       [
-        101.278333,
-        44.259764
-       ],
-       [
-        101.98673,
-        44.263026
-       ]
-      ],
-      "role": "pedestal",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePedestalPierB1",
-      "p": [
-       [
-        101.278333,
-        43.76494
-       ],
-       [
-        101.278405,
-        43.76494
-       ]
-      ],
-      "role": "pedestal",
-      "t": "L",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePedestalPierB1",
-      "p": [
-       [
-        101.278405,
+        101.278473,
         43.76494
        ],
        [
@@ -111895,19 +117503,435 @@
        ]
       ],
       "role": "pedestal",
-      "t": "L",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        105.278473,
+        43.76494
+       ],
+       [
+        105.278473,
+        47.76494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        101.278473,
+        47.76494
+       ],
+       [
+        105.278473,
+        47.76494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        102.028473,
+        47.01494
+       ],
+       [
+        102.028473,
+        44.51494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        104.528473,
+        47.01494
+       ],
+       [
+        102.028473,
+        47.01494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        104.528473,
+        44.51494
+       ],
+       [
+        104.528473,
+        47.01494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        102.028473,
+        44.51494
+       ],
+       [
+        104.528473,
+        44.51494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        101.278452,
+        47.76494
+       ],
+       [
+        101.278473,
+        47.76494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
       "vis": 1
      },
      {
       "obj": "BridgePedestalPierB1",
       "p": [
        [
-        102.820072,
-        44.266863
+        101.278452,
+        43.76494
        ],
        [
-        102.820072,
+        101.278473,
         43.76494
+       ]
+      ],
+      "role": "pedestal",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        102.028473,
+        44.51494
+       ],
+       [
+        102.090971,
+        44.57744
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        102.090971,
+        46.95244
+       ],
+       [
+        102.090971,
+        44.57744
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        102.028473,
+        47.01494
+       ],
+       [
+        102.090971,
+        46.95244
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        104.465971,
+        46.95244
+       ],
+       [
+        102.090971,
+        46.95244
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        104.528473,
+        47.01494
+       ],
+       [
+        104.465971,
+        46.95244
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        104.465971,
+        44.57744
+       ],
+       [
+        104.465971,
+        46.95244
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        104.528473,
+        44.51494
+       ],
+       [
+        104.465971,
+        44.57744
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        102.090971,
+        44.57744
+       ],
+       [
+        104.465971,
+        44.57744
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier2",
+      "p": [
+       [
+        101.278108,
+        43.76494
+       ],
+       [
+        101.278108,
+        47.76494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier2",
+      "p": [
+       [
+        101.278108,
+        47.76494
+       ],
+       [
+        101.278088,
+        47.76494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier2",
+      "p": [
+       [
+        101.278088,
+        43.76494
+       ],
+       [
+        101.278088,
+        47.76494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCapPier",
+      "p": [
+       [
+        101.278108,
+        43.76494
+       ],
+       [
+        101.278088,
+        43.76494
+       ]
+      ],
+      "role": "cap",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgePedestalPierB2",
+      "p": [
+       [
+        101.278108,
+        43.76494
+       ],
+       [
+        101.278228,
+        43.76494
+       ]
+      ],
+      "role": "pedestal",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier2",
+      "p": [
+       [
+        101.278108,
+        47.76494
+       ],
+       [
+        101.278473,
+        47.76494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCheekPier2",
+      "p": [
+       [
+        101.278088,
+        47.76494
+       ],
+       [
+        101.278108,
+        47.76494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgeCapPier",
+      "p": [
+       [
+        101.278088,
+        43.76494
+       ],
+       [
+        101.278108,
+        43.76494
+       ]
+      ],
+      "role": "cap",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgePedestalPierB1",
+      "p": [
+       [
+        101.278405,
+        43.76494
+       ],
+       [
+        101.278333,
+        43.76494
+       ]
+      ],
+      "role": "pedestal",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgePedestalPierB1",
+      "p": [
+       [
+        101.278333,
+        43.76494
+       ],
+       [
+        101.278333,
+        44.259764
+       ]
+      ],
+      "role": "pedestal",
+      "t": "P",
+      "vis": 1
+     },
+     {
+      "obj": "BridgePedestalPierB1",
+      "p": [
+       [
+        101.278333,
+        44.259764
+       ],
+       [
+        101.278405,
+        44.259764
        ]
       ],
       "role": "pedestal",
@@ -111922,55 +117946,7 @@
         44.259764
        ],
        [
-        102.820072,
-        44.266863
-       ]
-      ],
-      "role": "pedestal",
-      "t": "L",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePedestalPierB1",
-      "p": [
-       [
-        102.820063,
-        44.266863
-       ],
-       [
-        102.820072,
-        44.266863
-       ]
-      ],
-      "role": "pedestal",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePedestalPierB1",
-      "p": [
-       [
-        102.820055,
-        44.266863
-       ],
-       [
-        102.820062,
-        44.266863
-       ]
-      ],
-      "role": "pedestal",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePedestalPierB1",
-      "p": [
-       [
-        103.736738,
-        44.266259
-       ],
-       [
-        103.736738,
+        101.278405,
         43.76494
        ]
       ],
@@ -111982,28 +117958,12 @@
       "obj": "BridgePedestalPierB1",
       "p": [
        [
-        102.820072,
-        44.266863
+        101.278333,
+        44.259764
        ],
        [
-        103.736738,
-        44.266259
-       ]
-      ],
-      "role": "pedestal",
-      "t": "L",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePedestalPierB1",
-      "p": [
-       [
-        105.278405,
-        44.261378
-       ],
-       [
-        105.278405,
-        43.76494
+        101.278473,
+        44.259764
        ]
       ],
       "role": "pedestal",
@@ -112014,12 +117974,44 @@
       "obj": "BridgePedestalPierB1",
       "p": [
        [
-        103.736738,
-        44.266259
+        101.278333,
+        43.76494
        ],
        [
-        105.278405,
-        44.261378
+        101.278405,
+        43.76494
+       ]
+      ],
+      "role": "pedestal",
+      "t": "L",
+      "vis": 1
+     },
+     {
+      "obj": "BridgePedestalPierB1",
+      "p": [
+       [
+        101.278405,
+        43.76494
+       ],
+       [
+        101.278473,
+        43.76494
+       ]
+      ],
+      "role": "pedestal",
+      "t": "L",
+      "vis": 1
+     },
+     {
+      "obj": "BridgePedestalPierB1",
+      "p": [
+       [
+        101.278405,
+        44.259764
+       ],
+       [
+        101.278473,
+        44.259764
        ]
       ],
       "role": "pedestal",
@@ -112098,8 +118090,8 @@
         44.259764
        ],
        [
-        101.986552,
-        44.263026
+        101.278473,
+        44.259765
        ]
       ],
       "role": "pedestal",
@@ -112142,576 +118134,16 @@
       "obj": "BridgePedestalPierB2",
       "p": [
        [
-        102.819894,
-        44.266862
-       ],
-       [
-        102.819894,
-        44.266862
-       ]
-      ],
-      "role": "pedestal",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePedestalPierB2",
-      "p": [
-       [
         101.278228,
         44.259764
        ],
        [
-        101.98673,
-        44.263026
+        101.278473,
+        44.259765
        ]
       ],
       "role": "pedestal",
       "t": "L",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePedestalPierB2",
-      "p": [
-       [
-        102.820042,
-        44.266863
-       ],
-       [
-        102.820049,
-        44.266863
-       ]
-      ],
-      "role": "pedestal",
-      "t": "L",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B1",
-      "p": [
-       [
-        101.98673,
-        44.476567
-       ],
-       [
-        101.986675,
-        44.476567
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B1",
-      "p": [
-       [
-        102.820063,
-        44.480405
-       ],
-       [
-        102.820008,
-        44.480405
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B1",
-      "p": [
-       [
-        101.98673,
-        44.476567
-       ],
-       [
-        102.820063,
-        44.480405
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B1",
-      "p": [
-       [
-        101.986675,
-        44.476567
-       ],
-       [
-        102.820008,
-        44.480405
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B1",
-      "p": [
-       [
-        102.820063,
-        44.480405
-       ],
-       [
-        102.820063,
-        44.266863
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B1",
-      "p": [
-       [
-        102.820008,
-        44.480405
-       ],
-       [
-        102.820008,
-        44.480405
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B1",
-      "p": [
-       [
-        101.98673,
-        44.263026
-       ],
-       [
-        101.986675,
-        44.263026
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B1",
-      "p": [
-       [
-        102.820063,
-        44.266863
-       ],
-       [
-        101.98673,
-        44.263026
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B1",
-      "p": [
-       [
-        101.98673,
-        44.263026
-       ],
-       [
-        101.986675,
-        44.263026
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B1",
-      "p": [
-       [
-        101.98673,
-        44.263026
-       ],
-       [
-        101.98673,
-        44.476567
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B1",
-      "p": [
-       [
-        101.986675,
-        44.263026
-       ],
-       [
-        101.986675,
-        44.476567
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS2B1",
-      "p": [
-       [
-        103.73673,
-        44.479801
-       ],
-       [
-        103.736675,
-        44.479801
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS2B1",
-      "p": [
-       [
-        103.73673,
-        44.479801
-       ],
-       [
-        104.570063,
-        44.477162
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS2B1",
-      "p": [
-       [
-        103.736675,
-        44.479801
-       ],
-       [
-        103.73673,
-        44.479801
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS2B1",
-      "p": [
-       [
-        104.570063,
-        44.477162
-       ],
-       [
-        104.570063,
-        44.263621
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS2B1",
-      "p": [
-       [
-        103.73673,
-        44.266259
-       ],
-       [
-        103.73673,
-        44.479801
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS2B1",
-      "p": [
-       [
-        103.736675,
-        44.266259
-       ],
-       [
-        103.736675,
-        44.479801
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B2",
-      "p": [
-       [
-        101.986552,
-        44.476567
-       ],
-       [
-        101.986497,
-        44.476567
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B2",
-      "p": [
-       [
-        102.819886,
-        44.480405
-       ],
-       [
-        102.819831,
-        44.480405
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B2",
-      "p": [
-       [
-        101.986552,
-        44.476567
-       ],
-       [
-        102.819886,
-        44.480405
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B2",
-      "p": [
-       [
-        101.986497,
-        44.476567
-       ],
-       [
-        102.819831,
-        44.480405
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B2",
-      "p": [
-       [
-        102.819886,
-        44.480405
-       ],
-       [
-        102.819886,
-        44.480404
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B2",
-      "p": [
-       [
-        102.819831,
-        44.480405
-       ],
-       [
-        102.819831,
-        44.480405
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B2",
-      "p": [
-       [
-        101.986552,
-        44.263026
-       ],
-       [
-        101.986497,
-        44.263026
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B2",
-      "p": [
-       [
-        101.98673,
-        44.263026
-       ],
-       [
-        101.986552,
-        44.263026
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B2",
-      "p": [
-       [
-        101.986552,
-        44.263026
-       ],
-       [
-        101.986497,
-        44.263026
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B2",
-      "p": [
-       [
-        101.986552,
-        44.263026
-       ],
-       [
-        101.986552,
-        44.476567
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS1B2",
-      "p": [
-       [
-        101.986497,
-        44.263026
-       ],
-       [
-        101.986497,
-        44.476567
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS2B2",
-      "p": [
-       [
-        103.736552,
-        44.479801
-       ],
-       [
-        103.736497,
-        44.479801
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS2B2",
-      "p": [
-       [
-        103.736552,
-        44.479801
-       ],
-       [
-        103.73673,
-        44.4798
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS2B2",
-      "p": [
-       [
-        103.736497,
-        44.479801
-       ],
-       [
-        103.736552,
-        44.479801
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS2B2",
-      "p": [
-       [
-        103.736552,
-        44.266259
-       ],
-       [
-        103.736552,
-        44.479801
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
-      "vis": 1
-     },
-     {
-      "obj": "BridgePadPierS2B2",
-      "p": [
-       [
-        103.736497,
-        44.266259
-       ],
-       [
-        103.736497,
-        44.479801
-       ]
-      ],
-      "role": "pad",
-      "t": "P",
       "vis": 1
      },
      {
@@ -112866,7 +118298,7 @@
       "obj": "BridgePedestalPierB1",
       "p": [
        [
-        101.278228,
+        101.278108,
         43.76494
        ],
        [
@@ -113842,8 +119274,424 @@
       "obj": "BridgePedestalPierB1",
       "p": [
        [
-        101.98673,
-        44.263026
+        101.278478,
+        43.76494
+       ],
+       [
+        105.278473,
+        43.76494
+       ]
+      ],
+      "role": "pedestal",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        101.278473,
+        47.76494
+       ],
+       [
+        105.278452,
+        47.76494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        105.278473,
+        47.76494
+       ],
+       [
+        105.278452,
+        47.76494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePedestalPierB1",
+      "p": [
+       [
+        101.278473,
+        43.76494
+       ],
+       [
+        105.278452,
+        43.76494
+       ]
+      ],
+      "role": "pedestal",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        105.278452,
+        43.76494
+       ],
+       [
+        105.278452,
+        47.76494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgeCapPier",
+      "p": [
+       [
+        105.278473,
+        43.76494
+       ],
+       [
+        105.278452,
+        43.76494
+       ]
+      ],
+      "role": "cap",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePedestalPierB1",
+      "p": [
+       [
+        101.278228,
+        43.76494
+       ],
+       [
+        105.278108,
+        43.76494
+       ]
+      ],
+      "role": "pedestal",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgeCheekPier2",
+      "p": [
+       [
+        105.278108,
+        43.76494
+       ],
+       [
+        105.278108,
+        47.76494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        101.278473,
+        47.76494
+       ],
+       [
+        105.278108,
+        47.76494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        101.278108,
+        47.76494
+       ],
+       [
+        105.278088,
+        47.76494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        105.278108,
+        47.76494
+       ],
+       [
+        105.278088,
+        47.76494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePedestalPierB1",
+      "p": [
+       [
+        101.278108,
+        43.76494
+       ],
+       [
+        105.278088,
+        43.76494
+       ]
+      ],
+      "role": "pedestal",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgeCheekPier2",
+      "p": [
+       [
+        105.278088,
+        43.76494
+       ],
+       [
+        105.278088,
+        47.76494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgeCheekPier2",
+      "p": [
+       [
+        102.028088,
+        47.01494
+       ],
+       [
+        102.028088,
+        44.51494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        104.528088,
+        47.01494
+       ],
+       [
+        102.028088,
+        47.01494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgeCheekPier2",
+      "p": [
+       [
+        104.528088,
+        44.51494
+       ],
+       [
+        104.528088,
+        47.01494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        102.028088,
+        44.51494
+       ],
+       [
+        104.528088,
+        44.51494
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePedestalPierB1",
+      "p": [
+       [
+        105.278108,
+        43.76494
+       ],
+       [
+        105.278088,
+        43.76494
+       ]
+      ],
+      "role": "pedestal",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgeCheekPier2",
+      "p": [
+       [
+        102.028088,
+        44.51494
+       ],
+       [
+        102.090589,
+        44.57744
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgeCheekPier2",
+      "p": [
+       [
+        102.090589,
+        46.95244
+       ],
+       [
+        102.090589,
+        44.57744
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgeCheekPier2",
+      "p": [
+       [
+        102.028088,
+        47.01494
+       ],
+       [
+        102.090589,
+        46.95244
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        104.465589,
+        46.95244
+       ],
+       [
+        102.090589,
+        46.95244
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgeCheekPier2",
+      "p": [
+       [
+        104.528088,
+        47.01494
+       ],
+       [
+        104.465589,
+        46.95244
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgeCheekPier2",
+      "p": [
+       [
+        104.465589,
+        44.57744
+       ],
+       [
+        104.465589,
+        46.95244
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgeCheekPier2",
+      "p": [
+       [
+        104.528088,
+        44.51494
+       ],
+       [
+        104.465589,
+        44.57744
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgeCheekPier1",
+      "p": [
+       [
+        102.090589,
+        44.57744
+       ],
+       [
+        104.465589,
+        44.57744
+       ]
+      ],
+      "role": "cheek",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePedestalPierB1",
+      "p": [
+       [
+        101.278473,
+        44.259764
        ],
        [
         102.819999,
@@ -113890,12 +119738,44 @@
       "obj": "BridgePedestalPierB1",
       "p": [
        [
-        101.278478,
+        101.278473,
         43.76494
        ],
        [
         102.820072,
         43.76494
+       ]
+      ],
+      "role": "pedestal",
+      "t": "L",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePedestalPierB1",
+      "p": [
+       [
+        102.820072,
+        44.266863
+       ],
+       [
+        102.820072,
+        43.76494
+       ]
+      ],
+      "role": "pedestal",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePedestalPierB1",
+      "p": [
+       [
+        101.278473,
+        44.259764
+       ],
+       [
+        102.820072,
+        44.266863
        ]
       ],
       "role": "pedestal",
@@ -113910,7 +119790,7 @@
         44.266863
        ],
        [
-        102.820063,
+        102.820072,
         44.266863
        ]
       ],
@@ -113923,22 +119803,6 @@
       "p": [
        [
         102.819999,
-        44.266863
-       ],
-       [
-        102.820055,
-        44.266863
-       ]
-      ],
-      "role": "pedestal",
-      "t": "P",
-      "vis": 0
-     },
-     {
-      "obj": "BridgePedestalPierB1",
-      "p": [
-       [
-        102.820062,
         44.266863
        ],
        [
@@ -113992,6 +119856,38 @@
        [
         103.736738,
         43.76494
+       ]
+      ],
+      "role": "pedestal",
+      "t": "L",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePedestalPierB1",
+      "p": [
+       [
+        103.736738,
+        44.266259
+       ],
+       [
+        103.736738,
+        43.76494
+       ]
+      ],
+      "role": "pedestal",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePedestalPierB1",
+      "p": [
+       [
+        102.820072,
+        44.266863
+       ],
+       [
+        103.736738,
+        44.266259
        ]
       ],
       "role": "pedestal",
@@ -114098,6 +119994,22 @@
       "obj": "BridgePedestalPierB1",
       "p": [
        [
+        105.278405,
+        44.261378
+       ],
+       [
+        105.278405,
+        43.76494
+       ]
+      ],
+      "role": "pedestal",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePedestalPierB1",
+      "p": [
+       [
         103.736738,
         43.76494
        ],
@@ -114111,11 +120023,27 @@
       "vis": 0
      },
      {
+      "obj": "BridgePedestalPierB1",
+      "p": [
+       [
+        103.736738,
+        44.266259
+       ],
+       [
+        105.278405,
+        44.261378
+       ]
+      ],
+      "role": "pedestal",
+      "t": "L",
+      "vis": 0
+     },
+     {
       "obj": "BridgePedestalPierB2",
       "p": [
        [
-        101.986552,
-        44.263026
+        101.278473,
+        44.259765
        ],
        [
         102.819822,
@@ -114183,22 +120111,6 @@
        ],
        [
         102.819894,
-        44.266862
-       ]
-      ],
-      "role": "pedestal",
-      "t": "P",
-      "vis": 0
-     },
-     {
-      "obj": "BridgePedestalPierB2",
-      "p": [
-       [
-        102.819894,
-        44.266862
-       ],
-       [
-        102.819894,
         43.76494
        ]
       ],
@@ -114210,8 +120122,8 @@
       "obj": "BridgePedestalPierB2",
       "p": [
        [
-        101.98673,
-        44.263026
+        101.278473,
+        44.259765
        ],
        [
         102.819894,
@@ -114323,22 +120235,6 @@
       "p": [
        [
         102.819894,
-        44.266863
-       ],
-       [
-        102.820042,
-        44.266863
-       ]
-      ],
-      "role": "pedestal",
-      "t": "L",
-      "vis": 0
-     },
-     {
-      "obj": "BridgePedestalPierB2",
-      "p": [
-       [
-        102.820049,
         44.266863
        ],
        [
@@ -114492,6 +120388,70 @@
       ],
       "role": "pedestal",
       "t": "L",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePadPierS1B1",
+      "p": [
+       [
+        101.98673,
+        44.476567
+       ],
+       [
+        101.986675,
+        44.476567
+       ]
+      ],
+      "role": "pad",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePadPierS1B1",
+      "p": [
+       [
+        102.820063,
+        44.480405
+       ],
+       [
+        102.820008,
+        44.480405
+       ]
+      ],
+      "role": "pad",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePadPierS1B1",
+      "p": [
+       [
+        101.98673,
+        44.476567
+       ],
+       [
+        102.820063,
+        44.480405
+       ]
+      ],
+      "role": "pad",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePadPierS1B1",
+      "p": [
+       [
+        101.986675,
+        44.476567
+       ],
+       [
+        102.820008,
+        44.480405
+       ]
+      ],
+      "role": "pad",
+      "t": "P",
       "vis": 0
      },
      {
@@ -114514,6 +120474,22 @@
       "obj": "BridgePadPierS1B1",
       "p": [
        [
+        102.820063,
+        44.480405
+       ],
+       [
+        102.820063,
+        44.266863
+       ]
+      ],
+      "role": "pad",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePadPierS1B1",
+      "p": [
+       [
         102.820008,
         44.480405
        ],
@@ -114530,12 +120506,92 @@
       "obj": "BridgePadPierS1B1",
       "p": [
        [
-        102.820008,
+        101.98673,
+        44.263026
+       ],
+       [
+        101.986675,
+        44.263026
+       ]
+      ],
+      "role": "pad",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePadPierS1B1",
+      "p": [
+       [
+        102.820063,
         44.266863
        ],
        [
         101.98673,
         44.263026
+       ]
+      ],
+      "role": "pad",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePadPierS1B1",
+      "p": [
+       [
+        102.820008,
+        44.266863
+       ],
+       [
+        101.986675,
+        44.263026
+       ]
+      ],
+      "role": "pad",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePadPierS1B1",
+      "p": [
+       [
+        101.98673,
+        44.263026
+       ],
+       [
+        101.98673,
+        44.476567
+       ]
+      ],
+      "role": "pad",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePadPierS1B1",
+      "p": [
+       [
+        101.986675,
+        44.263026
+       ],
+       [
+        101.986675,
+        44.476567
+       ]
+      ],
+      "role": "pad",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePadPierS2B1",
+      "p": [
+       [
+        103.73673,
+        44.479801
+       ],
+       [
+        103.736675,
+        44.479801
        ]
       ],
       "role": "pad",
@@ -114563,6 +120619,22 @@
       "p": [
        [
         103.73673,
+        44.479801
+       ],
+       [
+        104.570063,
+        44.477162
+       ]
+      ],
+      "role": "pad",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePadPierS2B1",
+      "p": [
+       [
+        103.736675,
         44.479801
        ],
        [
@@ -114595,7 +120667,7 @@
       "p": [
        [
         104.570063,
-        44.263621
+        44.477162
        ],
        [
         104.570063,
@@ -114679,7 +120751,7 @@
        ],
        [
         103.73673,
-        44.266259
+        44.479801
        ]
       ],
       "role": "pad",
@@ -114695,7 +120767,71 @@
        ],
        [
         103.736675,
-        44.266259
+        44.479801
+       ]
+      ],
+      "role": "pad",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePadPierS1B2",
+      "p": [
+       [
+        101.986552,
+        44.476567
+       ],
+       [
+        101.986497,
+        44.476567
+       ]
+      ],
+      "role": "pad",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePadPierS1B2",
+      "p": [
+       [
+        102.819886,
+        44.480405
+       ],
+       [
+        102.819831,
+        44.480405
+       ]
+      ],
+      "role": "pad",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePadPierS1B2",
+      "p": [
+       [
+        101.986552,
+        44.476567
+       ],
+       [
+        102.819886,
+        44.480405
+       ]
+      ],
+      "role": "pad",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePadPierS1B2",
+      "p": [
+       [
+        101.986497,
+        44.476567
+       ],
+       [
+        102.819831,
+        44.480405
        ]
       ],
       "role": "pad",
@@ -114723,7 +120859,7 @@
       "p": [
        [
         102.819886,
-        44.480404
+        44.480405
        ],
        [
         102.819886,
@@ -114754,11 +120890,27 @@
       "obj": "BridgePadPierS1B2",
       "p": [
        [
+        101.986552,
+        44.263026
+       ],
+       [
+        101.986497,
+        44.263026
+       ]
+      ],
+      "role": "pad",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePadPierS1B2",
+      "p": [
+       [
         102.819886,
         44.266863
        ],
        [
-        101.98673,
+        101.986552,
         44.263026
        ]
       ],
@@ -114774,8 +120926,56 @@
         44.266863
        ],
        [
+        101.986497,
+        44.263026
+       ]
+      ],
+      "role": "pad",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePadPierS1B2",
+      "p": [
+       [
         101.986552,
         44.263026
+       ],
+       [
+        101.986552,
+        44.476567
+       ]
+      ],
+      "role": "pad",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePadPierS1B2",
+      "p": [
+       [
+        101.986497,
+        44.263026
+       ],
+       [
+        101.986497,
+        44.476567
+       ]
+      ],
+      "role": "pad",
+      "t": "P",
+      "vis": 0
+     },
+     {
+      "obj": "BridgePadPierS2B2",
+      "p": [
+       [
+        103.736552,
+        44.479801
+       ],
+       [
+        103.736497,
+        44.479801
        ]
       ],
       "role": "pad",
@@ -114802,8 +121002,8 @@
       "obj": "BridgePadPierS2B2",
       "p": [
        [
-        103.73673,
-        44.4798
+        103.736552,
+        44.479801
        ],
        [
         104.569886,
@@ -114818,7 +121018,7 @@
       "obj": "BridgePadPierS2B2",
       "p": [
        [
-        103.736552,
+        103.736497,
         44.479801
        ],
        [
@@ -114935,7 +121135,7 @@
        ],
        [
         103.736552,
-        44.266259
+        44.479801
        ]
       ],
       "role": "pad",
@@ -114951,7 +121151,7 @@
        ],
        [
         103.736497,
-        44.266259
+        44.479801
        ]
       ],
       "role": "pad",
@@ -116413,6 +122613,22 @@
        -1.999802
       ],
       [
+       9.333375,
+       -1.999807
+      ]
+     ],
+     "role": "cap",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCapPier",
+     "p": [
+      [
+       8.333375,
+       -1.999828
+      ],
+      [
        6.041708,
        -1.999875
       ]
@@ -116443,6 +122659,22 @@
       [
        -6.041625,
        -2.000125
+      ],
+      [
+       -8.333292,
+       -2.000172
+      ]
+     ],
+     "role": "cap",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCapPier",
+     "p": [
+      [
+       -9.333292,
+       -2.000193
       ],
       [
        -9.583292,
@@ -116493,6 +122725,22 @@
        2.000198
       ],
       [
+       9.333292,
+       2.000193
+      ]
+     ],
+     "role": "cap",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCapPier",
+     "p": [
+      [
+       8.333292,
+       2.000172
+      ],
+      [
        6.041625,
        2.000125
       ]
@@ -116525,11 +122773,155 @@
        1.999875
       ],
       [
+       -8.333375,
+       1.999828
+      ]
+     ],
+     "role": "cap",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCapPier",
+     "p": [
+      [
+       -9.333375,
+       1.999807
+      ],
+      [
        -9.583375,
        1.999802
       ]
      ],
      "role": "cap",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333375,
+       -1.999807
+      ],
+      [
+       8.333375,
+       -1.999828
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333375,
+       -1.999807
+      ],
+      [
+       9.333292,
+       2.000193
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       8.333375,
+       -1.999828
+      ],
+      [
+       8.333292,
+       2.000172
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333292,
+       2.000193
+      ],
+      [
+       8.333292,
+       2.000172
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -8.333292,
+       -2.000172
+      ],
+      [
+       -9.333292,
+       -2.000193
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -8.333292,
+       -2.000172
+      ],
+      [
+       -8.333375,
+       1.999828
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333292,
+       -2.000193
+      ],
+      [
+       -9.333375,
+       1.999807
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 1
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -8.333375,
+       1.999828
+      ],
+      [
+       -9.333375,
+       1.999807
+      ]
+     ],
+     "role": "cheek",
      "t": "P",
      "vis": 1
     },
@@ -117177,6 +123569,22 @@
      "obj": "BridgeCapPier",
      "p": [
       [
+       9.333375,
+       -1.999807
+      ],
+      [
+       8.333375,
+       -1.999828
+      ]
+     ],
+     "role": "cap",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCapPier",
+     "p": [
+      [
        6.041708,
        -1.999875
       ],
@@ -117209,6 +123617,22 @@
      "obj": "BridgeCapPier",
      "p": [
       [
+       -8.333292,
+       -2.000172
+      ],
+      [
+       -9.333292,
+       -2.000193
+      ]
+     ],
+     "role": "cap",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCapPier",
+     "p": [
+      [
        9.583375,
        -1.999802
       ],
@@ -117231,6 +123655,22 @@
       [
        9.583292,
        2.000198
+      ]
+     ],
+     "role": "cap",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCapPier",
+     "p": [
+      [
+       9.333292,
+       2.000193
+      ],
+      [
+       8.333292,
+       2.000172
       ]
      ],
      "role": "cap",
@@ -117273,6 +123713,22 @@
      "obj": "BridgeCapPier",
      "p": [
       [
+       -8.333375,
+       1.999828
+      ],
+      [
+       -9.333375,
+       1.999807
+      ]
+     ],
+     "role": "cap",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCapPier",
+     "p": [
+      [
        -9.583292,
        -2.000198
       ],
@@ -128370,6 +134826,390 @@
       ]
      ],
      "role": "pile_steel",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333375,
+       -1.999807
+      ],
+      [
+       8.333375,
+       -1.999828
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333375,
+       -1.999807
+      ],
+      [
+       9.333292,
+       2.000193
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333308,
+       1.250193
+      ],
+      [
+       9.333359,
+       -1.249807
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333359,
+       -1.249807
+      ],
+      [
+       9.333308,
+       1.250193
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       8.333375,
+       -1.999828
+      ],
+      [
+       8.333292,
+       2.000172
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333292,
+       2.000193
+      ],
+      [
+       8.333292,
+       2.000172
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333359,
+       -1.249807
+      ],
+      [
+       9.270858,
+       -1.187309
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333359,
+       -1.249807
+      ],
+      [
+       9.270858,
+       -1.187309
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.270809,
+       1.187691
+      ],
+      [
+       9.270858,
+       -1.187309
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333308,
+       1.250193
+      ],
+      [
+       9.270809,
+       1.187691
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.333308,
+       1.250193
+      ],
+      [
+       9.270809,
+       1.187691
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier1",
+     "p": [
+      [
+       9.270858,
+       -1.187309
+      ],
+      [
+       9.270809,
+       1.187691
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -8.333292,
+       -2.000172
+      ],
+      [
+       -9.333292,
+       -2.000193
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -8.333292,
+       -2.000172
+      ],
+      [
+       -8.333375,
+       1.999828
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333292,
+       -2.000193
+      ],
+      [
+       -9.333375,
+       1.999807
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333359,
+       1.249807
+      ],
+      [
+       -9.333308,
+       -1.250193
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333308,
+       -1.250193
+      ],
+      [
+       -9.333359,
+       1.249807
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -8.333375,
+       1.999828
+      ],
+      [
+       -9.333375,
+       1.999807
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333308,
+       -1.250193
+      ],
+      [
+       -9.270809,
+       -1.187691
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333308,
+       -1.250193
+      ],
+      [
+       -9.270809,
+       -1.187691
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.270858,
+       1.187309
+      ],
+      [
+       -9.270809,
+       -1.187691
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333359,
+       1.249807
+      ],
+      [
+       -9.270858,
+       1.187309
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.333359,
+       1.249807
+      ],
+      [
+       -9.270858,
+       1.187309
+      ]
+     ],
+     "role": "cheek",
+     "t": "P",
+     "vis": 0
+    },
+    {
+     "obj": "BridgeCheekPier2",
+     "p": [
+      [
+       -9.270809,
+       -1.187691
+      ],
+      [
+       -9.270858,
+       1.187309
+      ]
+     ],
+     "role": "cheek",
      "t": "P",
      "vis": 0
     },

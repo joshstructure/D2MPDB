@@ -1,9 +1,10 @@
 # End bent and pier DXF (FDOT format)
 
-**Generator 2.5.0 (19 October 2026)** rebuilds this DXF from the model with
-revision D-055 (D-044 weather closure and copings, D-045 strap references,
+**Generator 2.6.0 (19 October 2026)** rebuilds this DXF from the model with
+revision D-060 (D-044 weather closure and copings, D-045 strap references,
 D-046 cheek hooks, D-047 pedestal edge bars, D-048 backwall extensions, D-053
-simplified backwall tops, D-055 backwall vertical coordination) and applies
+simplified backwall tops, D-055 backwall vertical coordination, D-059 pier
+cheek walls, D-060 their bar marks) and applies
 the engineer's review markups of
 2026-10-17, 18 and 19 (three rounds), which are distilled into
 [`STYLE_GUIDE.md`](STYLE_GUIDE.md) (every drawing rule has an id there). The
@@ -33,7 +34,16 @@ markups dimension the pedestal side cover inside the pedestal, drop the
 cheek sections' cover values, give each strap stub its own break line, call
 out the bottom-bar pair beside a cut pile with one two-arrow leader
 ("2~8A2 (EF)"), move the pile and strap labels out from between the views,
-space the (1 OF 3) sections apart, and add the tips-apart check A21.
+space the (1 OF 3) sections apart, and add the tips-apart check A21. 2.6.0
+draws the pier cheek walls of D-059 (two 4 x 4 ft x 12 in walls on the cap
+top, 3 in inside its ends, with a 30 in square panel recessed 3/4 in with a
+3/4 in chamfer on the outside face, and a centred #4 mat): in the plan, as
+1 ft stubs with break lines in the elevation (the sheet has no height for the
+full walls under the stirrup row), whole in the end view D-D (now cut 0.6 ft
+under the cap) and on a new sheet PIER DETAILS (3 OF 3) with view E-E and the
+sections F-F and G-G through the panel; the mats are 4E1/4E2 and the pier
+pedestal bars move to 4F1/4F2 (E = cheek walls, F = pedestals on every
+support, D-060 writes the marks into the model).
 
 [`output/B4_Substructure_EndBents_Pier.dxf`](output/B4_Substructure_EndBents_Pier.dxf)
 is one DXF with plans, elevations (concrete and reinforcement together),
@@ -57,11 +67,12 @@ represent engineering acceptance.
 | B4-2 | End Bent 1 details (1 of 3): sections A-A (between piles), B-B (at piles) with the keyed construction joint, reinforcing strap with its embedment, bar embedment, closure slab and coping; beside them detail "A" (construction joint) over detail "B" (backwall V-groove and geotextile fabric); strap legend and notes | 3/4", 1-1/2", 1" |
 | B4-3 | End Bent 1 details (2 of 3): section C-C (at CL beam); views D-D and E-E (cheek walls, WWR limits; D-D carries the flags of sections F-F and G-G); notes and the strap legend | 3/4", 3/8" |
 | B4-4 | End Bent 1 details (3 of 3): section F-F (vertical, through the cheek wall) and section G-G (horizontal, through the cheek wall and backwall, monolithic); pedestal plan and elevation; top of pedestal elevations; notes | 3/4" |
-| B4-5 | Pier plan; broken elevation (looking ahead station) with the reinforcement; end view D-D; tables, notes | 3/8" |
-| B4-6 | Pier details (1 of 2): sections A-A, B-B, C-C on one row with a common top; notes | 3/4" |
-| B4-7 | Pier details (2 of 2): pedestal plan and elevation; top of pedestal elevations under the elevation; notes | 3/4" |
-| B4-8 to B4-11 | End Bent 2, as End Bent 1 (looking ahead station; B4-9 and B4-10 are laid out as the mirror images of B4-2 and B4-3) | |
-| B4-12 | Reinforcing bar list on the FDOT bar list form | |
+| B4-5 | Pier plan with the cheek walls; broken elevation (looking ahead station) with the reinforcement, the cheek walls as 1 ft stubs with break lines; end view D-D (the cheek wall face with its recessed panel, cut under the cap); tables, notes | 3/8" |
+| B4-6 | Pier details (1 of 3): sections A-A, B-B, C-C on one row with a common top; notes | 3/4" |
+| B4-7 | Pier details (2 of 3): pedestal plan and elevation; top of pedestal elevations under the elevation; notes | 3/4" |
+| B4-8 | Pier details (3 of 3): view E-E (left cheek wall, the recessed panel and the bars; carries the flags of F-F and G-G), section F-F (vertical, through the panel, the cap stub under the wall) and section G-G (horizontal, through the panel); notes | 3/8", 3/4" |
+| B4-9 to B4-12 | End Bent 2, as End Bent 1 (looking ahead station; B4-10 and B4-11 are laid out as the mirror images of B4-2 and B4-3) | |
+| B4-13 | Reinforcing bar list on the FDOT bar list form | |
 
 Model space holds every view at full size (1:1, international feet,
 `$INSUNITS = 2`), with annotation sized for the sheet scale. Each paper-space
@@ -91,7 +102,8 @@ It has no clock time, so rebuilds stay byte-identical.
   has that application; otherwise numbers run from 1 with no gaps. End bents use
   A cap longitudinal, B cap stirrups and hoops, C cap U-bars between piles,
   D backwall, E cheek walls and F pedestals. The pier uses A to C as above, D cap
-  end U-bars and E pedestals. Backwall verticals that differ only in length with
+  end U-bars, E cheek walls (D-059) and F pedestals (4E1/4E2 before D-060).
+  Backwall verticals that differ only in length with
   the crowned top share one mark (5D1, VARIES). Each length and its count are listed in the bar
   list notes. [`output/bar_mark_register.csv`](output/bar_mark_register.csv)
   maps every native FreeCAD bar (object name, label, current model `Mark`) to
@@ -99,9 +111,12 @@ It has no clock time, so rebuilds stay byte-identical.
   properties, and the schedules follow them. Controllers give any bar they
   regenerate their default mark. After a regeneration, rebuild with
   `--extract`, then apply [`freecad_marks.py`](freecad_marks.py) through
-  the CAD_AI update workflow (job example:
-  `CAD_AI/reports/sdm-bar-marks-20261016`). The test fails until the model
-  and the drawings agree again.
+  the CAD_AI update workflow (job examples:
+  `CAD_AI/reports/sdm-bar-marks-20261016` for D-042 and
+  `CAD_AI/reports/sdm-bar-marks-pier-cheeks-20261019` for D-060: native step on
+  a disposable copy, text-level delivery into the registered archive, cold
+  reopen, then archive, evidence, manifest, register and decision). The test
+  fails until the model and the drawings agree again.
 - **Sheet configuration (FDOT sample).** Each support has one plan and
   elevation sheet: plan at the top, elevation below it showing the concrete
   and the reinforcement together, table of elevations (POINT, ELEVATION) and
@@ -317,7 +332,7 @@ snapshot or the generator output no longer match.
 
 | Module | Role |
 |---|---|
-| `freecad_extract.py` | Read-only FreeCAD side: writes the snapshot (projections, sections, bars, WWR, strap context, cheek wall sections) |
+| `freecad_extract.py` | Read-only FreeCAD side: writes the snapshot (projections, sections, bars, WWR, strap context, cheek wall views and sections; the pier cheek walls are cut through their recessed panel, having no backwall to cut by) |
 | `fc_hlr.py` | Hidden-line projection helpers shared by the FreeCAD-side extractors (frames, edge records, HLR with role tagging, clip box) |
 | `freecad_plan_extract.py` | Read-only FreeCAD side of the whole-model plan: the finished components projected looking down |
 | `model_plan.py` | The whole-model plan DXF (`B4_Model_Plan.dxf`, sheet P-1) |
@@ -328,7 +343,7 @@ snapshot or the generator output no longer match.
 | `anno_check.py` | Deterministic annotation layout checks (STYLE_GUIDE A19): one function per measurable rule, findings carry the rule id |
 | `strap_loads.py` | The Δ legend text with the tie-back loads from `data/strap_loads.json` (`scripts/export_strap_loads.py`, backwall design calc) |
 | `views.py` | Plan, elevation, sections A-A to C-C, cheek wall views, pedestal views, end view |
-| `details.py` | Cheek wall sections F-F and G-G, section flags, detail "A" (construction joint) and detail "B" (geotextile) |
+| `details.py` | Cheek wall sections F-F and G-G (end bents, and `pier_cheek_section` for the pier walls), section flags, detail "A" (construction joint) and detail "B" (geotextile) |
 | `sheets.py` | Paper-space border, title block, tables and notes |
 | `build.py` | Sheet composition (E1), layout checks, symbology audit, outputs and manifest |
 | `freecad_marks.py` | Writes the SDM bar marks back into the FreeCAD model |
@@ -458,5 +473,12 @@ are not made again:
   review 2026-10-19), but the model carries them straight, so the list shows
   Type 1 and carries a "MODEL CHECK" note until the model has the legs. The
   backwall verticals 5D1 and horizontals 4D2 are straight bars, Type 1.
+- The pier cheek wall mats (D-059) stop at the cap top in the model: the
+  cheek wall cap anchorage and structural design are not configured ("cap
+  anchorage remains unconfigured", D-059). Sheet B4-8 carries a "MODEL CHECK"
+  note, and the bar list's Type 10 note names the pier 4E1 too.
+- The pier elevation shows the cheek walls as 1 ft stubs with break lines
+  (E7): at 3/8" the sheet has no height for the stirrup row above 4 ft walls.
+  View D-D and sheet B4-8 show them whole.
 - Existing coordination findings in the model remain open, as the FreeCAD
   README records (COH-024/025). The drawings show the model as it is.

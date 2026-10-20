@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "before_sha256": "14db08f0313de0566e984d58d36397830ee13e1dce91d75738e2d61d77c9db8c",
+  "objects": 2188,
+  "invalid_before": [],
+  "touched_before": [],
+  "invalid_after": [],
+  "source_state_unchanged": true,
+  "verify_failures": [],
+  "probe_cell": {
+    "sheet": "PedSteelPierB1Schedule",
+    "content": "'4F1",
+    "value": "4F1"
+  },
+  "bars_changed": 56,
+  "bars_already_marked": 438,
+  "schedule_cells_changed": 56,
+  "schedules": [
+    "PedSteelPierB1Schedule",
+    "PedSteelPierB2Schedule",
+    "SteelBridgeCheekPier1Schedule",
+    "SteelBridgeCheekPier2Schedule"
+  ],
+  "quantities_refreshed": [],
+  "groups_untouched": [
+    "PedSteelPierB1",
+    "PedSteelPierB2",
+    "SteelBridgeCheekPier1",
+    "SteelBridgeCheekPier2"
+  ],
+  "pending_objects_after": [],
+  "native_saved_sha256": "e6c201ebdaaf75c549cf5a8a332a5b31ed427d6e0116d2d27d78abe9176f310c"
+}

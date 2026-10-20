@@ -1,7 +1,7 @@
 {
-  "checked_at_utc": "2026-10-19T21:38:25.291387+00:00",
+  "checked_at_utc": "2026-10-20T00:26:27.015977+00:00",
   "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
-  "register_sha256": "26bc36634eb384fe731bba38f95a66bc61b879372d3a26637c77920c797d2ed9",
+  "register_sha256": "daf6818c939eb0fce60cc70e781d4d622a4e073b57672ab59d2c0d6eebdc3d54",
   "tracker_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
   "source_count": 37,
   "item_count": 28,
@@ -13,23 +13,23 @@
     "Awaiting source": 1
   },
   "check_counts": {
-    "MATCH": 51,
     "CHANGED": 3,
+    "MATCH": 51,
     "MISSING": 4,
-    "REVIEW": 12,
+    "REVIEW": 13,
     "ERROR": 9
   },
   "checks": [
     {
       "check_id": "SOURCE:JOURNAL",
-      "status": "MATCH",
-      "detail": "Exact registered bytes are present.",
+      "status": "CHANGED",
+      "detail": "File differs from the registered revision; review its consumers before adoption.",
       "source_ids": [
         "JOURNAL"
       ],
       "path": "journal/D2_I95_Project_Journal.bpad",
-      "expected_sha256": "855e2cecf27db3de141d037a33dfce060014cc00b6f4c180326172b0e4acf1db",
-      "actual_sha256": "855e2cecf27db3de141d037a33dfce060014cc00b6f4c180326172b0e4acf1db"
+      "expected_sha256": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50",
+      "actual_sha256": "542fba20a8efa3fe75c6210901d77b0a4e9bcfc8f075ef934c6e8a0add6ceff5"
     },
     {
       "check_id": "SOURCE:GEOMETRY",
@@ -226,8 +226,8 @@
         "CAD-MODEL"
       ],
       "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-      "expected_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df",
-      "actual_sha256": "d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df"
+      "expected_sha256": "4f85c1fe05f8715462856ba1874e38de52b6a30dcdef4536f8aaf184abfb8725",
+      "actual_sha256": "4f85c1fe05f8715462856ba1874e38de52b6a30dcdef4536f8aaf184abfb8725"
     },
     {
       "check_id": "SOURCE:CAD-RUNTIME",
@@ -237,8 +237,8 @@
         "CAD-RUNTIME"
       ],
       "path": "project_current/geometry/freecad/manifest.json",
-      "expected_sha256": "9e8ab2821428062a7cf861c441548156a0762dc116064f819bc7aba594f37c18",
-      "actual_sha256": "9e8ab2821428062a7cf861c441548156a0762dc116064f819bc7aba594f37c18"
+      "expected_sha256": "8c3c73a9c20613003641689126c32b2d93338d0ca9bf14ea00b95e2ed7f7602a",
+      "actual_sha256": "8c3c73a9c20613003641689126c32b2d93338d0ca9bf14ea00b95e2ed7f7602a"
     },
     {
       "check_id": "SOURCE:CAD-REPORT",
@@ -248,19 +248,19 @@
         "CAD-REPORT"
       ],
       "path": "project_current/geometry/freecad/evidence/Model-update-report.txt",
-      "expected_sha256": "8503651894b3b173c5ee43d606a52dbc5d6eb00a543121cb967e3c66bc2f18f0",
-      "actual_sha256": "8503651894b3b173c5ee43d606a52dbc5d6eb00a543121cb967e3c66bc2f18f0"
+      "expected_sha256": "8e7d0c70f682685eec6bc14ad97b17489f4900797895ce8f90cc2b811711cef5",
+      "actual_sha256": "8e7d0c70f682685eec6bc14ad97b17489f4900797895ce8f90cc2b811711cef5"
     },
     {
       "check_id": "SOURCE:BACKWALL-TOOL",
-      "status": "CHANGED",
-      "detail": "File differs from the registered revision; review its consumers before adoption.",
+      "status": "MATCH",
+      "detail": "Registered text content matches after CRLF/LF normalization.",
       "source_ids": [
         "BACKWALL-TOOL"
       ],
       "path": "End_Bent_Backwall_Design.ipynb",
-      "expected_sha256": "48bab4c3f7cc9dc445908021012083e88cb988e17af09620366e70f6a5da35d9",
-      "actual_sha256": "279061f0247e5318a375481b7a70bca6463783f997704683c44a6362b37d4a05"
+      "expected_sha256": "e63bcc5990f435615f1216aa861ce2a148dba7e6a3d065174531e0b5fec85809",
+      "actual_sha256": "e63bcc5990f435615f1216aa861ce2a148dba7e6a3d065174531e0b5fec85809"
     },
     {
       "check_id": "SOURCE:EB2-REPORT",
@@ -302,9 +302,9 @@
       "source_ids": [
         "BACKWALL-REPORT"
       ],
-      "path": "project_current/cap_design/backwall/Backwall Design 10-16.html",
-      "expected_sha256": "a02563223df9e8039b8771978d755cefd038e4c0335401d37bb9244fdd28e5bb",
-      "actual_sha256": "a02563223df9e8039b8771978d755cefd038e4c0335401d37bb9244fdd28e5bb"
+      "path": "project_current/cap_design/backwall/Backwall Design 10-19.html",
+      "expected_sha256": "6ed9ebb7bd2d2b536cddd289b04bbfcb1e8b566858239e40d88a2a7fb9d74768",
+      "actual_sha256": "6ed9ebb7bd2d2b536cddd289b04bbfcb1e8b566858239e40d88a2a7fb9d74768"
     },
     {
       "check_id": "SOURCE:BACKWALL-CASE",
@@ -314,8 +314,8 @@
         "BACKWALL-CASE"
       ],
       "path": "project_current/cap_design/backwall/selected_case.json",
-      "expected_sha256": "ac075073306e06f252404d0c26e73b975cad2ee18373e011ef0946ae1c20d0e1",
-      "actual_sha256": "ac075073306e06f252404d0c26e73b975cad2ee18373e011ef0946ae1c20d0e1"
+      "expected_sha256": "01e76c5a263af986e0d7e154039cec4c351bea29403dd9bfd2cbee7b16bab597",
+      "actual_sha256": "01e76c5a263af986e0d7e154039cec4c351bea29403dd9bfd2cbee7b16bab597"
     },
     {
       "check_id": "SOURCE:MSE-DETAIL-DXF",
@@ -428,6 +428,15 @@
       "actual_sha256": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c"
     },
     {
+      "check_id": "DEP:GEOMETRY:JOURNAL",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "GEOMETRY",
+        "JOURNAL"
+      ]
+    },
+    {
       "check_id": "DEP:MCAD-S1:MCAD-DAT1",
       "status": "REVIEW",
       "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
@@ -464,21 +473,21 @@
       ]
     },
     {
-      "check_id": "DEP:BACKWALL-REPORT:BACKWALL-TOOL",
+      "check_id": "DEP:CAD-MODEL:JOURNAL",
       "status": "REVIEW",
       "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
       "source_ids": [
-        "BACKWALL-REPORT",
-        "BACKWALL-TOOL"
+        "CAD-MODEL",
+        "JOURNAL"
       ]
     },
     {
-      "check_id": "DEP:BACKWALL-CASE:BACKWALL-TOOL",
+      "check_id": "DEP:BACKWALL-TOOL:JOURNAL",
       "status": "REVIEW",
       "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
       "source_ids": [
-        "BACKWALL-CASE",
-        "BACKWALL-TOOL"
+        "BACKWALL-TOOL",
+        "JOURNAL"
       ]
     },
     {
@@ -538,7 +547,7 @@
     {
       "check_id": "JOURNAL:acceptance",
       "status": "MATCH",
-      "detail": "Journal matches acceptance receipt T016. Review scope remains as recorded.",
+      "detail": "Journal matches acceptance receipt T018. Review scope remains as recorded.",
       "source_ids": [
         "JOURNAL"
       ]

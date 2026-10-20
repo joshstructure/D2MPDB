@@ -613,6 +613,16 @@ symbol at page scale.
   circled pile numbers.  Markups 2026-10-19: "Shift up a bit to create
   space between drawing and title" (round 3), "Shift note down to make
   space between it and the number" (round 4).
+- **E7 A member the sheet cannot hold is broken, named and shown whole
+  elsewhere.**  The pier cheek walls (D-059, 4 ft above the cap at its ends)
+  would put the stirrup row 3.4 ft higher and the elevation over the title
+  block at 3/8", and the end view with them over the notes; the elevation
+  draws them as 1 ft stubs with a break line (D12), the stirrup row's
+  extension lines rise from the stub tops (B3), the end view shows the wall
+  face whole and is cut 0.6 ft under the cap instead (its wall thickness
+  dimensioned at the break), the sheet notes say where the walls are shown
+  whole, and the (3 OF 3) sheet carries view E-E and sections F-F and G-G.
+  The layout check warns when the end view runs within 0.2" of the notes.
 
 ## F. Symbology
 
