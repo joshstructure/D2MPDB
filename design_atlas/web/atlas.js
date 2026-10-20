@@ -26,6 +26,15 @@
   }
   function unitText(unit) { return unit==='unitless'?'':(unit||'').replace('kip*ft','kip·ft'); }
   const roleNames={received:'Received input',defined:'Local setting',derived:'Derived / formula',unknown:'Origin unconfirmed'};
+  // Assumptions-and-gaps register: hand-edited entries pinned to related nodes by the build.
+  const assumptions=data.assumptions||{present:false,entries:[],counts:{total:0,open:0,stale:0,flagged:0},path:'project_current/coherence/assumptions.json'};
+  const entryById=new Map(assumptions.entries.map(e=>[e.id,e]));
+  const entriesAt=id=>assumptions.entries.filter(e=>e.node_ids.includes(id));
+  const magnitudeText=e=>{const m=e.magnitude||{};if(m.value===null||m.value===undefined)return 'not sized';return format(m.value)+(m.unit&&m.unit!=='unitless'?' '+unitText(m.unit):'');};
+  const dispositionText=e=>{const d=e.disposition||{};return [d.status,d.decision,d.on].filter(Boolean).join(' · ');};
+  const entryState=e=>e.stale?'Basis stale':e.open?'Open':(e.disposition?.status==='closed'?'Closed':'Accepted');
+  const entryBadge=e=>badge(e.stale?'stale':e.open?'open':e.disposition?.status==='closed'?'closed':'accepted',entryState(e)+(e.stale?' · '+e.stale_sources.join(', '):''));
+  const flagText=n=>n.assumption_flags?'\n'+n.assumption_flags+' open or stale assumption'+(n.assumption_flags>1?'s':''):'';
   const originNode=v=>v.origins[state.selected]?state.selected:v.primary_node||(v.node_ids.includes('PIER-CASE')?'PIER-CASE':v.node_ids[0]);
   const originOf=v=>v.origins[originNode(v)];
   function snapshot() {return {...state, query:$('value-search').value,category:$('value-category').value,scroll:window.scrollY,tableScroll:document.querySelector('.value-table-wrap').scrollTop,detailScroll:$('value-detail').scrollTop};}
@@ -103,9 +112,9 @@
   data.nodes.forEach(n=>{
     const el=document.createElement('button');el.type='button';el.className='map-node';el.dataset.node=n.id;
     el.style.left=positions[n.id][0]+'px';el.style.top=positions[n.id][1]+'px';
-    el.innerHTML=`<span class="node-id">${escape(n.id)}<i class="node-dot ${escape(n.status)}"></i></span><span class="node-name">${escape(n.short_title||n.title)}</span><span class="node-status">${escape(prettyStatus[n.status]||n.status)}${n.value_count?' · '+n.value_count+' values':''}</span>`;
-    el.setAttribute('aria-label',n.title+', '+(prettyStatus[n.status]||n.status));
-    el.title=n.title+'\n'+(prettyStatus[n.status]||n.status)+(n.value_count?' · '+n.value_count+' values':'');
+    el.innerHTML=`<span class="node-id">${escape(n.id)}${n.assumption_flags?`<i class="node-flag" aria-hidden="true">${n.assumption_flags}</i>`:''}<i class="node-dot ${escape(n.status)}"></i></span><span class="node-name">${escape(n.short_title||n.title)}</span><span class="node-status">${escape(prettyStatus[n.status]||n.status)}${n.value_count?' · '+n.value_count+' values':''}</span>`;
+    el.setAttribute('aria-label',n.title+', '+(prettyStatus[n.status]||n.status)+flagText(n).replace('\n',', '));
+    el.title=n.title+'\n'+(prettyStatus[n.status]||n.status)+(n.value_count?' · '+n.value_count+' values':'')+flagText(n);
     el.addEventListener('click',()=>selectNode(n.id));
     $('map-nodes').appendChild(el);nodeElements.set(n.id,el);
   });
@@ -121,7 +130,7 @@
     nodeElements.forEach((el,id)=>{
       el.style.left=positions[id][0]+'px';el.style.top=positions[id][1]+'px';
       const n=byId.get(id);
-      el.title=n.title+'\n'+(prettyStatus[n.status]||n.status)+(n.value_count?' · '+n.value_count+' values':'')+(state.layout==='impact'?'\n'+layout.metrics[id]+' distinct downstream sources':'');
+      el.title=n.title+'\n'+(prettyStatus[n.status]||n.status)+(n.value_count?' · '+n.value_count+' values':'')+flagText(n)+(state.layout==='impact'?'\n'+layout.metrics[id]+' distinct downstream sources':'');
     });
     data.edges.forEach((e,i)=>{const path=edgePath(e,i);edgeElements.get(e.id).setAttribute('d',path);hitElements.get(e.id).setAttribute('d',path);});
     $('layout-description').textContent=layout.description;
@@ -297,6 +306,7 @@
     }
     $('trace-body').querySelectorAll('[data-source]').forEach(el=>el.onclick=()=>selectNode(el.dataset.source));
     const issues=data.issues.filter(i=>i.node_ids.includes(node.id)&&!['Closed','Not applicable'].includes(i.Status));
+    const entries=entriesAt(node.id);
     $('source-detail').innerHTML=badge(node.status)+'<p>'+escape(node.detail)+'</p>'+
       (node.registered_status?'<p><strong>Selection:</strong> '+escape(node.registered_status)+'</p>':'')+
       (node.path?'<code>'+escape(node.path)+'</code>':'')+
@@ -304,9 +314,76 @@
       (issues.length?'<p>'+issues.length+' open or deferred tracker items reference this source.</p>':'')+
       '<button class="quiet" id="inspect-source">Inspect source record ↗</button>'+
       '<details><summary>Inspect connected paths</summary>'+data.edges.filter(e=>e.source===node.id||e.target===node.id).map(e=>
-        `<p><button class="quiet" data-inspect-edge="${escape(e.id)}">${escape(e.source)} → ${escape(e.target)}<br>${escape(e.label)}</button></p>`).join('')+'</details>';
+        `<p><button class="quiet" data-inspect-edge="${escape(e.id)}">${escape(e.source)} → ${escape(e.target)}<br>${escape(e.label)}</button></p>`).join('')+'</details>'+
+      '<div class="assumption-section"><h4>Assumptions & gaps'+(entries.length?' · '+entries.length:'')+'</h4>'+
+      (entries.length?entries.map(e=>assumptionCard(e,node.id)).join(''):'<p>No register entry names this source.</p>')+
+      '<button class="quiet" id="draft-assumption">Draft assumption ↗</button></div>';
     $('inspect-source').onclick=()=>showNodeEvidence(node);
     $('source-detail').querySelectorAll('[data-inspect-edge]').forEach(b=>b.onclick=()=>selectEdge(data.edges.find(e=>e.id===b.dataset.inspectEdge)));
+    bindAssumptionCards($('source-detail'));
+    $('draft-assumption').onclick=()=>openDraft(node.id);
+  }
+  function assumptionCard(e,here) {
+    return `<div class="assumption-card${e.stale?' stale':e.open?' open':''}" data-assumption-card="${escape(e.id)}"><strong>${escape(e.id)}</strong> ${badge('kind',e.kind)}${entryBadge(e)}<p>${escape(e.statement)}</p>`+
+      `<p><strong>Magnitude:</strong> ${escape(magnitudeText(e))}${e.magnitude?.sized_by?' · '+escape(e.magnitude.sized_by):''}</p><p><strong>Where:</strong> ${escape(e.where||'')}</p>`+
+      `<p><strong>Disposition:</strong> ${escape(dispositionText(e))}${e.owner?' · '+escape(e.owner):''}${e.coherence_items?.length?' · '+escape(e.coherence_items.join(', ')):''}</p>`+
+      (e.stale?'<div class="gap-note">Basis moved in the source register: '+escape(e.stale_sources.join(', '))+'. The judgment was not re-made; re-check it and record new basis hashes.</div>':'')+
+      `<div class="step-actions"><button class="quiet" data-assumption-evidence="${escape(e.id)}">Inspect record ↗</button>${e.node_ids.filter(id=>id!==here&&byId.has(id)).map(id=>`<button class="quiet" data-assumption-node="${escape(id)}">${escape(byId.get(id).short_title||byId.get(id).title)} ↗</button>`).join('')}</div></div>`;
+  }
+  function bindAssumptionCards(container) {
+    container.querySelectorAll('[data-assumption-evidence]').forEach(b=>b.onclick=()=>showAssumption(entryById.get(b.dataset.assumptionEvidence)));
+    container.querySelectorAll('[data-assumption-node]').forEach(b=>b.onclick=()=>{selectNode(b.dataset.assumptionNode);centerOn(b.dataset.assumptionNode);});
+  }
+  function showAssumption(e) {
+    const hashes=Object.entries(e.basis||{}).map(([id,recorded])=>id+': recorded '+recorded+(e.current_basis?.[id]&&e.current_basis[id]!==recorded?' · now '+e.current_basis[id]:' · current')).join('\n');
+    showEvidence({...e.evidence,note:(e.evidence?.note||'')+'\n\nBasis hashes\n'+hashes},e.id+' · '+entryState(e));
+  }
+  function openEntry(id) {
+    const e=entryById.get(id);if(!e)return;
+    const target=e.node_ids.find(n=>byId.has(n));if(!target)return;
+    selectNode(target);centerOn(target);
+    const card=$('source-detail').querySelector('[data-assumption-card="'+id+'"]');
+    if(card){card.scrollIntoView({block:'nearest'});card.classList.add('selected');}
+  }
+  // Draft an entry for the register. The page cannot write the file: it produces JSON with the current hashes filled in.
+  const KINDS=['assumption','gap','placeholder','judgment'],DISPOSITIONS=['pending','accepted-negligible','closed'];
+  const nextEntryId=()=>'A-'+String(Math.max(0,...assumptions.entries.map(e=>parseInt(String(e.id).replace(/^A-/,''),10)||0))+1).padStart(3,'0');
+  const registerSources=()=>data.nodes.filter(n=>n.registered_sha256!==undefined).map(n=>({id:n.id,title:n.title,path:n.path,sha:n.registered_sha256||''}));
+  function openDraft(nodeId) {
+    const now=new Date(),node=byId.get(nodeId),today=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
+    const sources=registerSources(),preset=new Set(sources.filter(s=>s.id===nodeId||(node?.path&&s.path===node.path)).map(s=>s.id));
+    const field=(label,input,wide=false)=>`<label${wide?' class="span"':''}>${label}</label>${wide?'<div class="span">'+input+'</div>':input}`;
+    $('assumption-content').innerHTML=`<p class="draft-note">An entry is a recorded human statement. Fill in the fields, make the JSON, then paste it into the <code>entries</code> list of <code>${escape(assumptions.path)}</code> and rebuild the atlas. Hashes are the register's current SHA-256 for each basis source; the atlas marks the entry stale when any of them moves.</p>`+
+      `<form class="assumption-draft" id="assumption-form">`+
+      field('Id','<input name="id" value="'+escape(nextEntryId())+'" required pattern="A-\\d{3,}">')+
+      field('Kind','<select name="kind">'+KINDS.map(k=>'<option value="'+k+'"'+(k==='gap'?' selected':'')+'>'+k+'</option>').join('')+'</select>')+
+      field('Statement','<textarea name="statement" required placeholder="What is assumed, missing, placeholder or judged, in one or two sentences"></textarea>')+
+      field('Where it bites','<input name="where" required placeholder="Journal module, model, report or node">')+
+      field('Related nodes','<input name="nodes" value="'+escape(nodeId)+'" required placeholder="Atlas node ids, comma-separated">')+
+      field('Magnitude','<div class="row"><input name="value" type="number" step="any" placeholder="value (blank = not sized)"><input name="unit" placeholder="unit"></div>')+
+      field('Sized by','<input name="sized_by" required placeholder="How the magnitude was sized, against what">')+
+      field('Disposition','<div class="row"><select name="status">'+DISPOSITIONS.map(d=>'<option value="'+d+'">'+d+'</option>').join('')+'</select><input name="decision" placeholder="D-0xx" pattern="(D-\\d{3,})?"><input name="on" type="date" value="'+today+'" required></div>')+
+      field('Owner','<input name="owner" required placeholder="Who owns the judgment">')+
+      field('Coherence items','<input name="coherence_items" placeholder="COH-### ids, comma-separated">')+
+      field('References','<input name="references" placeholder="Repository paths, comma-separated">')+
+      field('Basis sources','<div class="basis-grid">'+sources.filter(s=>s.sha).map(s=>`<label><input type="checkbox" name="basis" value="${escape(s.id)}"${preset.has(s.id)?' checked':''}> ${escape(s.id)} <code>${escape(s.sha.slice(0,12))}</code></label>`).join('')+'</div>',true)+
+      `<div class="span row"><button type="submit" class="primary">Make JSON</button><button type="button" class="quiet" id="copy-draft" hidden>Copy JSON</button><span id="draft-status" class="draft-note"></span></div></form><textarea id="draft-output" class="draft-output" readonly hidden aria-label="Assumption entry JSON"></textarea>`;
+    $('assumption-form').onsubmit=event=>{
+      event.preventDefault();
+      const f=new FormData(event.target),list=key=>String(f.get(key)||'').split(',').map(s=>s.trim()).filter(Boolean);
+      const basis={};f.getAll('basis').forEach(id=>{const s=sources.find(x=>x.id===id);if(s)basis[id]=s.sha;});
+      if(!Object.keys(basis).length){$('draft-status').textContent='Choose at least one basis source.';return;}
+      const value=String(f.get('value')||'').trim();
+      const entry={id:String(f.get('id')).trim(),kind:f.get('kind'),statement:String(f.get('statement')).trim(),where:String(f.get('where')).trim(),nodes:list('nodes'),
+        magnitude:{value:value===''?null:Number(value),unit:String(f.get('unit')||'').trim(),sized_by:String(f.get('sized_by')).trim()},
+        disposition:{status:f.get('status'),decision:String(f.get('decision')||'').trim(),on:f.get('on')},owner:String(f.get('owner')).trim(),
+        coherence_items:list('coherence_items'),basis,references:list('references')};
+      const unknown=entry.nodes.filter(id=>!byId.has(id));
+      $('draft-status').textContent=unknown.length?'Unknown node ids: '+unknown.join(', ')+'. The build rejects entries that name nodes it cannot find.':'Paste this entry into the register, then rebuild.';
+      $('draft-output').value=JSON.stringify(entry,null,2);$('draft-output').hidden=false;$('copy-draft').hidden=false;
+    };
+    $('copy-draft').onclick=()=>{$('draft-output').select();navigator.clipboard?.writeText($('draft-output').value).then(()=>{$('draft-status').textContent='Copied.';},()=>{$('draft-status').textContent='Select the text and copy it.';});};
+    $('assumption-dialog').showModal();
   }
   function selectNode(id,openValues=false,valueId=null) {
     navigate(()=>{state.selected=id;if(valueId)state.value=valueId;state.edge=null;resetFilters();state.parameterFocus=false;state.overview=false;state.traceCollapsed=false;
@@ -335,9 +412,14 @@
   function renderDirectory() {
     const q=$('source-search').value.trim().toLowerCase();
     const matches=data.nodes.filter(n=>(n.id+' '+n.title+' '+n.path).toLowerCase().includes(q));
+    const entries=assumptions.entries.filter(e=>(e.id+' '+e.kind+' '+e.statement+' '+(e.where||'')+' '+dispositionText(e)+' '+(e.coherence_items||[]).join(' ')).toLowerCase().includes(q));
     $('source-results').hidden=!directoryOpen&&!q;
-    $('source-results').innerHTML=matches.map(n=>`<button data-source="${escape(n.id)}">${escape(n.title)}<small>${escape(n.id)} · ${escape(prettyStatus[n.status]||n.status)}</small></button>`).join('')||'<p>No matching sources.</p>';
-    $('source-results').querySelectorAll('button').forEach(b=>b.onclick=()=>{selectNode(b.dataset.source);centerOn(b.dataset.source);directoryOpen=false;$('source-search').value='';renderDirectory();});
+    $('source-results').innerHTML=(entries.length?`<div class="directory-group">Assumptions & gaps · ${entries.length}${assumptions.counts.flagged?' · '+assumptions.counts.flagged+' open or stale':''}</div>`+
+        entries.map(e=>`<button class="entry" data-entry="${escape(e.id)}">${escape(e.id)} · ${escape(e.statement)}<small>${escape(e.kind)} · ${escape(entryState(e))} · ${escape(magnitudeText(e))}</small></button>`).join(''):'')+
+      `<div class="directory-group">Sources · ${matches.length}</div>`+
+      (matches.map(n=>`<button data-source="${escape(n.id)}">${escape(n.title)}${n.assumption_flags?' <i class="node-flag" aria-hidden="true">'+n.assumption_flags+'</i>':''}<small>${escape(n.id)} · ${escape(prettyStatus[n.status]||n.status)}</small></button>`).join('')||'<p>No matching sources.</p>');
+    $('source-results').querySelectorAll('button[data-source]').forEach(b=>b.onclick=()=>{selectNode(b.dataset.source);centerOn(b.dataset.source);directoryOpen=false;$('source-search').value='';renderDirectory();});
+    $('source-results').querySelectorAll('button[data-entry]').forEach(b=>b.onclick=()=>{openEntry(b.dataset.entry);directoryOpen=false;$('source-search').value='';renderDirectory();});
   }
   $('source-search').oninput=renderDirectory;
   $('sources-button').onclick=()=>{directoryOpen=!directoryOpen;renderDirectory();};
@@ -431,21 +513,25 @@
     if($('open-original'))$('open-original').href=new URL('../../'+evidence.path,location.href).href;
     if(!$('evidence-dialog').open)$('evidence-dialog').showModal();
   }
-  $('close-evidence').onclick=()=>$('evidence-dialog').close();$('close-about').onclick=()=>$('about-dialog').close();
-  [$('about-dialog'),$('evidence-dialog')].forEach(dialog=>dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}}));
+  $('close-evidence').onclick=()=>$('evidence-dialog').close();$('close-about').onclick=()=>$('about-dialog').close();$('close-assumption').onclick=()=>$('assumption-dialog').close();
+  [$('about-dialog'),$('evidence-dialog'),$('assumption-dialog')].forEach(dialog=>dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}}));
   $('about-button').onclick=()=>{
     const issues=data.issues.filter(i=>i.node_ids.some(id=>id.startsWith('PIER'))&&!['Closed','Not applicable'].includes(i.Status));
     $('about-content').innerHTML='<div class="about-grid"><div><h3>Map coverage</h3><p>'+escape(data.coverage.map)+'</p><h3>Value coverage</h3><p>'+escape(data.coverage.values)+'</p></div><div><h3>Snapshot</h3><p>'+escape(new Date(data.generated_at).toLocaleString())+'</p><p>Repository revision<br><code>'+escape(data.repository_revision)+'</code></p><a href="atlas-data.json" download>Download the evidence snapshot</a></div></div>'+
       '<h3>What the statuses mean</h3><p>Fingerprint match means a file matches its registered revision. Input matches means a literal worksheet input agrees after unit conversion. Recorded means the source states a relationship. None of these statuses establishes engineering approval.</p>'+
       '<h3>Current boundaries</h3><ul>'+data.coverage.limits.map(l=>'<li>'+escape(l)+'</li>').join('')+'</ul>'+
       '<h3>Pier-related tracker records</h3><p>Read directly from the current coherence workbook. No issue status was changed by the atlas.</p>'+
-      issues.map(i=>'<div class="issue-card"><strong>'+escape(i['Item ID'])+' · '+escape(i.Item)+'</strong> '+badge('recorded',i.Status)+'<p>'+escape(i.Finding)+'</p><p><strong>Next action:</strong> '+escape(i['Next action'])+'</p><code>Coherence items!A'+escape(i._row)+':M'+escape(i._row)+'</code></div>').join('');
+      issues.map(i=>'<div class="issue-card"><strong>'+escape(i['Item ID'])+' · '+escape(i.Item)+'</strong> '+badge('recorded',i.Status)+'<p>'+escape(i.Finding)+'</p><p><strong>Next action:</strong> '+escape(i['Next action'])+'</p><code>Coherence items!A'+escape(i._row)+':M'+escape(i._row)+'</code></div>').join('')+
+      '<h3>Assumptions & gaps register</h3>'+(assumptions.present?'<p>'+assumptions.counts.total+' entries in <code>'+escape(assumptions.path)+'</code>: '+assumptions.counts.open+' open, '+assumptions.counts.stale+' stale. Entries are human judgments pinned to register hashes; stale means a basis source moved in the register since the judgment, not that it was re-made.</p>'+
+        assumptions.entries.filter(e=>e.flagged).map(e=>'<div class="issue-card"><strong>'+escape(e.id)+' · '+escape(e.kind)+'</strong> '+entryBadge(e)+'<p>'+escape(e.statement)+'</p><p><strong>Magnitude:</strong> '+escape(magnitudeText(e))+' · <strong>Disposition:</strong> '+escape(dispositionText(e))+'</p><button class="quiet" data-about-entry="'+escape(e.id)+'">Show on map ↗</button></div>').join(''):
+        '<p>No register is present at <code>'+escape(assumptions.path)+'</code>.</p>');
+    $('about-content').querySelectorAll('[data-about-entry]').forEach(b=>b.onclick=()=>{$('about-dialog').close();openEntry(b.dataset.aboutEntry);});
     $('about-dialog').showModal();
   };
   const dt=new Date(data.generated_at);
   $('snapshot-time').textContent=dt.toLocaleString(undefined,{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'});
   $('footer-snapshot').textContent='D2 · '+dt.toLocaleDateString()+' snapshot';
-  $('summary').innerHTML='<div><strong>'+data.nodes.length+'</strong><span>source nodes</span></div><div><strong>'+data.values.length+'</strong><span>extracted values</span></div><div><strong>'+data.edges.length+'</strong><span>connections</span></div>';
+  $('summary').innerHTML='<div><strong>'+data.nodes.length+'</strong><span>source nodes</span></div><div><strong>'+data.values.length+'</strong><span>extracted values</span></div><div><strong>'+assumptions.counts.flagged+'</strong><span>open or stale assumptions</span></div><div><strong>'+data.edges.length+'</strong><span>connections</span></div>';
   $('source-count').textContent='('+data.nodes.length+')';
   document.querySelector('.brand').onclick=e=>{e.preventDefault();overview();};
   history.scrollRestoration='manual';

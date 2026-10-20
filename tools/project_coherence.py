@@ -24,6 +24,121 @@ CLOSED = {'Closed', 'Not applicable'}
 HEADERS = ['Item ID', 'Status', 'Area', 'Item', 'Finding', 'Next action',
            'Your response', 'Owner', 'Due date', 'Resolution / evidence',
            'Source references', 'Last reviewed']
+# Assumptions-and-gaps register: hand-edited, committed, never generated.
+ASSUMPTIONS = 'project_current/coherence/assumptions.json'
+ASSUMPTION_SCHEMA = 'd2mpdb.assumptions-register'
+ASSUMPTION_KINDS = ('assumption', 'gap', 'placeholder', 'judgment')
+DISPOSITIONS = ('accepted-negligible', 'pending', 'closed')
+OPEN_DISPOSITIONS = {'pending'}
+
+
+def read_assumptions(path):
+    """Read the register without reinterpreting it. Absent file -> None."""
+    path = Path(path)
+    if not path.is_file(): return None
+    data = json.loads(path.read_text(encoding='utf-8-sig'))
+    if not isinstance(data, dict) or data.get('schema') != ASSUMPTION_SCHEMA or data.get('schema_version') != 1:
+        raise ValueError('Unsupported assumptions register schema: ' + str(path))
+    if not isinstance(data.get('entries'), list) or not all(isinstance(e, dict) for e in data['entries']):
+        raise ValueError('Assumptions register entries must be a list of objects.')
+    return data
+
+
+def assumption_state(entry, sources):
+    """Compare an entry's recorded basis hashes with the current register.
+
+    Stale means the register now adopts a different revision of a basis source
+    than the one the entry was judged against. A source that is on disk but
+    differs from its registered revision is reported by SOURCE checks, not here.
+    """
+    registered = {s['source_id']: (s.get('sha256') or '').lower() for s in sources}
+    basis = entry.get('basis') if isinstance(entry.get('basis'), dict) else {}
+    current, stale, unknown = {}, [], []
+    for key, recorded in basis.items():
+        if key not in registered:
+            unknown.append(key); continue
+        current[key] = registered[key] or None
+        if (str(recorded) if recorded is not None else '').lower() != registered[key]:
+            stale.append(key)
+    status = (entry.get('disposition') or {}).get('status') if isinstance(entry.get('disposition'), dict) else None
+    return dict(stale=bool(stale), stale_sources=sorted(stale), unknown_sources=sorted(unknown),
+                current_basis=current, open=status in OPEN_DISPOSITIONS)
+
+
+def assumption_checks(register, sources, items):
+    """Validate the register and report stale entries; nothing is re-judged."""
+    results = []
+    if register is None: return results
+    entries = register['entries']
+    counts = Counter(str(e.get('id', '')) for e in entries)
+    source_ids = {s['source_id'] for s in sources}
+    item_ids = {i['Item ID'] for i in items}
+    for entry in entries:
+        key = str(entry.get('id', ''))
+        reasons = []
+        if not re.fullmatch(r'A-\d{3,}', key): reasons.append('Set a stable A-### ID.')
+        if counts[key] > 1: reasons.append('Duplicate entry ID.')
+        if entry.get('kind') not in ASSUMPTION_KINDS: reasons.append('Choose a kind: ' + ', '.join(ASSUMPTION_KINDS) + '.')
+        for field in ('statement', 'where', 'owner'):
+            if not str(entry.get(field) or '').strip(): reasons.append('Missing ' + field + '.')
+        nodes = entry.get('nodes')
+        if not isinstance(nodes, list) or not nodes or not all(isinstance(n, str) and n for n in nodes):
+            reasons.append('Name at least one atlas node id in nodes.')
+        magnitude = entry.get('magnitude')
+        if not isinstance(magnitude, dict) or not str(magnitude.get('sized_by') or '').strip():
+            reasons.append('Magnitude needs value, unit and sized_by.')
+        elif magnitude.get('value') is not None and not isinstance(magnitude.get('value'), (int, float)):
+            reasons.append('Magnitude value must be a number or null.')
+        disposition = entry.get('disposition')
+        if not isinstance(disposition, dict) or disposition.get('status') not in DISPOSITIONS:
+            reasons.append('Choose a disposition status: ' + ', '.join(DISPOSITIONS) + '.')
+        else:
+            decision = str(disposition.get('decision') or '')
+            if decision and not re.fullmatch(r'D-\d{3,}', decision): reasons.append('Decision reference must look like D-0xx.')
+            if disposition['status'] != 'pending' and not decision: reasons.append('A settled disposition needs its decision reference.')
+            on = str(disposition.get('on') or '')
+            try: datetime.strptime(on, '%Y-%m-%d')
+            except ValueError: reasons.append('Disposition date must be YYYY-MM-DD.')
+        coh = entry.get('coherence_items', [])
+        if not isinstance(coh, list): reasons.append('coherence_items must be a list.')
+        else:
+            for ref in coh:
+                if ref not in item_ids: reasons.append('Unknown tracker item ' + str(ref) + '.')
+        basis = entry.get('basis')
+        if not isinstance(basis, dict) or not basis: reasons.append('Basis must map at least one register source id to its SHA-256.')
+        else:
+            for src, digest in basis.items():
+                if src not in source_ids: reasons.append('Unknown basis source ' + str(src) + '.')
+                elif not re.fullmatch(r'[a-fA-F0-9]{64}', str(digest or '')): reasons.append('Basis ' + src + ' needs the 64-hex SHA-256 it was judged against.')
+        state = assumption_state(entry, sources)
+        if reasons:
+            results.append(dict(check_id='ASSUMPTION:' + (key or '?'), status='ERROR', detail=' '.join(reasons),
+                                source_ids=[s for s in (basis or {}) if s in source_ids] if isinstance(basis, dict) else [], entry_id=key))
+        elif state['stale']:
+            results.append(dict(check_id='ASSUMPTION:' + key, status='REVIEW',
+                                detail='Basis moved in the register (' + ', '.join(state['stale_sources']) + '); re-judge the entry and record new basis hashes.',
+                                source_ids=sorted(basis), entry_id=key))
+        else:
+            results.append(dict(check_id='ASSUMPTION:' + key, status='MATCH', detail='Basis hashes equal the current register.',
+                                source_ids=sorted(basis), entry_id=key))
+    return results
+
+
+def assumption_summary(register, sources):
+    entries = []
+    for entry in (register or {}).get('entries', []):
+        entries.append({**entry, **assumption_state(entry, sources)})
+    entries.sort(key=lambda e: (not e['stale'], not e['open'], str(e.get('id', ''))))
+    return dict(present=register is not None, count=len(entries), open=sum(e['open'] for e in entries),
+                stale=sum(e['stale'] for e in entries), entries=entries)
+
+
+def magnitude_text(entry):
+    m = entry.get('magnitude') if isinstance(entry.get('magnitude'), dict) else {}
+    value = m.get('value')
+    if value is None: return 'not sized'
+    unit = str(m.get('unit') or '').strip()
+    return (f'{value:g}' if isinstance(value, (int, float)) else str(value)) + (' ' + unit if unit and unit != 'unitless' else '')
 
 
 def digest(path):
@@ -285,14 +400,19 @@ def run(root):
     workbook=hub/'coherence/Coherence_Tracker.xlsx'
     items=read_tracker(workbook)
     checks+=tracker_checks(items)
+    register=read_assumptions(root/ASSUMPTIONS)
+    checks+=assumption_checks(register,sources,items)
+    assumptions=assumption_summary(register,sources)
     outstanding=[i for i in items if i['Status'] not in CLOSED]
     totals=dict(Counter(c['status'] for c in checks))
     return dict(checked_at_utc=datetime.now(timezone.utc).isoformat(),
-        scope='Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.',
+        scope='Exact source identity, file relationships, selected geometry, issue-log completeness and the assumptions register; no native design reruns.',
         register_sha256=digest(hub/'source_register.csv'),tracker_sha256=digest(workbook),
+        assumptions_sha256=digest(root/ASSUMPTIONS) if register is not None else None,
         source_count=len(sources),item_count=len(items),outstanding_count=len(outstanding),
         status_counts=dict(Counter(i['Status'] for i in items)),check_counts=totals,
-        checks=checks,items=items)
+        assumption_counts={k:assumptions[k] for k in ('count','open','stale')},
+        checks=checks,items=items,assumptions=assumptions)
 
 
 def escape(s): return str(s).replace('|','\\|').replace('\n',' ')
@@ -301,9 +421,10 @@ def escape(s): return str(s).replace('|','\\|').replace('\n',' ')
 def write_report(root, result):
     out=root/'project_current/coherence'
     out.mkdir(parents=True,exist_ok=True)
-    (out/'machine_checks.json').write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+    # Generated views are committed with LF endings on every platform.
+    (out/'machine_checks.json').write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n',encoding='utf-8',newline='\n')
     with (out/'items_snapshot.csv').open('w',newline='',encoding='utf-8') as f:
-        w=csv.DictWriter(f,fieldnames=HEADERS,extrasaction='ignore');w.writeheader();w.writerows(result['items'])
+        w=csv.DictWriter(f,fieldnames=HEADERS,extrasaction='ignore',lineterminator='\n');w.writeheader();w.writerows(result['items'])
     lines=['# Latest project coherence review','',
         f'Checked at {result["checked_at_utc"]}. **{result["outstanding_count"]} outstanding items remain.**','',
         'The [workbook](Coherence_Tracker.xlsx) owns item status and responses. This report is a generated view.',
@@ -320,6 +441,21 @@ def write_report(root, result):
     for item in result['items']:
         if item['Status'] not in CLOSED:
             lines.append('| '+' | '.join(escape(item[k]) for k in ('Item ID','Status','Item','Next action'))+' |')
+    assumptions=result.get('assumptions') or {}
+    lines+=['','## Assumptions and gaps','']
+    if not assumptions.get('present'):
+        lines.append('No assumptions register is present at `'+ASSUMPTIONS+'`.')
+    else:
+        lines+=[f'The [register]({Path(ASSUMPTIONS).name}) records {assumptions["count"]} entries: **{assumptions["open"]} open** (pending disposition) and **{assumptions["stale"]} stale** (basis moved in the source register since the judgment).',
+            'Open and stale entries are listed below; accepted entries stay in the register and in the design atlas. This check never re-judges an entry.','',
+            '| ID | Kind | State | Statement | Magnitude | Decision |','| --- | --- | --- | --- | --- | --- |']
+        listed=[e for e in assumptions['entries'] if e['open'] or e['stale']]
+        for e in listed:
+            state=' / '.join(s for s,flag in (('stale: '+', '.join(e['stale_sources']),e['stale']),('open',e['open'])) if flag)
+            disposition=e.get('disposition') if isinstance(e.get('disposition'),dict) else {}
+            decision=' '.join(str(disposition.get(k) or '') for k in ('status','decision','on')).strip()
+            lines.append('| '+' | '.join(escape(x) for x in (e.get('id',''),e.get('kind',''),state,e.get('statement',''),magnitude_text(e),decision))+' |')
+        if not listed: lines.append('| Register entries | — | current | Every entry is settled and its basis hashes equal the register. | — | — |')
     lines+=['','## Verified scope','',
         '- Present-source identity is compared with the source register. Only registered notebook CRLF/LF endings are normalized; native/report files use exact bytes.',
         '- Current journal identity is compared with its existing acceptance receipt; that receipt keeps its original scope.',
@@ -327,9 +463,10 @@ def write_report(root, result):
         '- Selected notebook cap widths, depths, pile counts/sizes/spacings, embedment and lengths are compared with saved cases.',
         '- Mathcad XML readability is checked. Its formulas and external inputs are not recalculated.',
         '- Tracker IDs, statuses, required descriptions and closure evidence are checked.',
+        '- Assumptions-register entries are validated (stable IDs, kinds, dispositions, registered basis sources, tracker references) and their recorded basis hashes are compared with the current register. A moved basis is reported for re-judgment, never re-judged here.',
         '- Detailed results and exact source/tracker fingerprints are in [machine_checks.json](machine_checks.json).','',
         'Automatic matches do not resolve the outstanding workbook items. Responses and original source documents are unchanged.','']
-    (out/'latest_review.md').write_text('\n'.join(lines),encoding='utf-8')
+    (out/'latest_review.md').write_text('\n'.join(lines),encoding='utf-8',newline='\n')
 
 
 def main():
@@ -342,7 +479,7 @@ def main():
         if args.write_report: write_report(args.root.resolve(),result)
     except (OSError, ValueError, KeyError, StopIteration, zipfile.BadZipFile, ET.ParseError) as e:
         print('Coherence check could not complete: '+str(e),file=sys.stderr); return 1
-    print(json.dumps({k:result[k] for k in ('source_count','item_count','outstanding_count','status_counts','check_counts')},indent=2))
+    print(json.dumps({k:result[k] for k in ('source_count','item_count','outstanding_count','status_counts','check_counts','assumption_counts')},indent=2))
     if any(c['status'] in {'ERROR','CHANGED'} for c in result['checks']): return 1
     if result['outstanding_count'] or any(c['status']!='MATCH' for c in result['checks']): return 2
     return 0

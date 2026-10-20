@@ -12,6 +12,7 @@ design-completion status.
 | Outstanding items and responses | [Coherence tracker](coherence/Coherence_Tracker.xlsx) |
 | Latest baseline/check report | [Latest review](coherence/latest_review.md) |
 | Exact source revisions and missing files | [Source register](source_register.csv) |
+| Small gaps, placeholders, assumptions and judgments | [Assumptions register](coherence/assumptions.json) — one entry per item with its magnitude, disposition and the register hashes it was judged against; shown in the design atlas and checked by the coherence review |
 | Recorded decisions and ownership | [Decisions](decisions.md) |
 | Native project journal | [D2 I-95 Project Journal](../journal/D2_I95_Project_Journal.bpad) with [References](../journal/References/) |
 | Current editable FreeCAD model and live quantities | [Open the bridge model](geometry/freecad/README.md) — square bridge edges, end-bent MSE copings, 2% closure slabs and seven schematic geotechnical straps per backwall (D-044/D-045), plus fitted standard cheek horizontal hooks (D-046); calculation/detailing reconciliation remains open |
@@ -80,6 +81,9 @@ silently reinterpreted or modified by this setup.
    previous responses and the distinction between original evidence and your
    instructions. Blank table rows are ready for additions. Counts and dropdowns
    cover 1,000 item rows (9-1008); extend those ranges if the log grows beyond that.
+   A small gap, placeholder, assumption or judgment that does not need a tracker
+   row goes in the [assumptions register](coherence/assumptions.json) instead
+   (see [Assumptions and gaps register](#assumptions-and-gaps-register)).
 4. Run the check from the repository root:
 
    ```powershell
@@ -101,6 +105,32 @@ and `items_snapshot.csv`. It **does not edit the workbook**, accept new hashes,
 rerun native design applications, or automatically close engineering findings.
 Changed sources trigger a review of their registered consumers. Dependency lists
 are an initial inventory, not proof that unlisted calculations are independent.
+
+### Assumptions and gaps register
+
+`coherence/assumptions.json` records the small engineering gaps, placeholders,
+assumptions and judgments in one hand-edited, committed file (schema
+`d2mpdb.assumptions-register`, version 1). Each entry has a stable `A-###` id,
+a kind (`assumption`, `gap`, `placeholder`, `judgment`), the statement, where it
+bites, the atlas nodes it is pinned to, the magnitude the judgment rests on
+(`value`, `unit`, `sized_by`), the disposition (`accepted-negligible`, `pending`
+or `closed` with its `D-0xx` decision and date), the owner, related `COH-###`
+ids, reference paths, and `basis`: the register source ids with the SHA-256
+each was judged against. The register keeps the magnitude only; the engineering
+values stay with the journal and the reports that own them.
+
+To add an entry, draft it in the design atlas (**Draft assumption** on the
+related source fills in the current register hashes), paste it into `entries`,
+and run the coherence check. The check validates ids, kinds, dispositions,
+basis sources and tracker references, and reports an entry as **stale** when
+the source register now adopts a different revision of a basis source; stale
+and open entries are listed in `latest_review.md`. Re-check a stale entry and
+record the new hashes with a dated disposition; never refresh the hashes to
+silence the finding. The design atlas shows the entries on their nodes with
+open-or-stale badges, and editing the register makes the hosted atlas
+`refresh_required`. The 19 October seed (A-001 to A-011) carries the D-062
+load-review items, the pipe-pile grade reconciliation, the MSE side-wall
+criterion and the pile-report prerequisites.
 
 The register's `hash_basis` is `exact_bytes` for native files, reports and case
 data. The two repository notebooks use `lf_text`, normalizing only Windows/Unix

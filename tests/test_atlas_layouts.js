@@ -27,6 +27,25 @@ assert(local.positions.F[0]>local.positions.D[0]);
 assert.deepEqual(layouts.create(graph,'neighborhood').positions,layouts.create(graph).positions);
 assert.deepEqual(layouts.create(graph,'invalid').positions,layouts.create(graph).positions);
 
+// Assumptions grouping: stale basis, then open entries, then accepted, then none; busiest card first within a group.
+const flagged={nodes:[
+  Object.assign(node('NONE'),{assumption_total:0,assumption_open:0,assumption_stale:0,assumption_flags:0}),
+  Object.assign(node('ACCEPTED'),{assumption_total:2,assumption_open:0,assumption_stale:0,assumption_flags:0}),
+  Object.assign(node('OPEN-ONE'),{assumption_total:1,assumption_open:1,assumption_stale:0,assumption_flags:1}),
+  Object.assign(node('OPEN-TWO'),{assumption_total:3,assumption_open:2,assumption_stale:0,assumption_flags:2}),
+  Object.assign(node('STALE'),{assumption_total:1,assumption_open:0,assumption_stale:1,assumption_flags:1}),
+  node('PLAIN')
+],edges:[link('STALE','OPEN-ONE')]};
+assert(layouts.modes.some(m=>m.id==='assumptions'),'assumptions layout is offered');
+const grouped=layouts.create(flagged,'assumptions');
+assert(grouped.positions.STALE[0]<grouped.positions['OPEN-TWO'][0],'stale basis is left of open entries');
+assert.equal(grouped.positions['OPEN-TWO'][0],grouped.positions['OPEN-ONE'][0],'open entries share a column');
+assert(grouped.positions['OPEN-TWO'][1]<grouped.positions['OPEN-ONE'][1],'more flags sort first within a group');
+assert(grouped.positions['OPEN-ONE'][0]<grouped.positions.ACCEPTED[0],'accepted entries follow open ones');
+assert(grouped.positions.ACCEPTED[0]<grouped.positions.NONE[0],'sources without entries come last');
+assert.equal(grouped.positions.NONE[0],grouped.positions.PLAIN[0],'missing counts mean no recorded entry');
+assert.deepEqual(grouped.labels.map(l=>l.text),['Stale basis · 1','Open entries · 2','Accepted entries · 1','No recorded entries · 2']);
+
 // Validate actual path segments, including long links and wrapped groups, against every card.
 function validate(data,mode,selected) {
   const result=layouts.create(data,mode,selected),entries=Object.entries(result.positions);
@@ -58,7 +77,7 @@ function validate(data,mode,selected) {
 }
 const wide={nodes:Array.from({length:45},(_,i)=>node('SOURCE-'+i,stages[i%5],'match')),edges:[]};
 wide.edges=wide.nodes.slice(1).map((n,i)=>link(wide.nodes[i].id,n.id));
-for(const data of [graph,wide])for(const mode of layouts.modes)validate(data,mode.id,data.nodes[2].id);
+for(const data of [graph,wide,flagged])for(const mode of layouts.modes)validate(data,mode.id,data.nodes[2].id);
 const snapshot=process.argv[2]||path.join(__dirname,'../design_atlas/dist/atlas-data.json');
 if(fs.existsSync(snapshot)) {
   const data=JSON.parse(fs.readFileSync(snapshot,'utf8'));
@@ -66,6 +85,9 @@ if(fs.existsSync(snapshot)) {
   for(const n of data.nodes)validate(data,'neighborhood',n.id);
   const defaults=layouts.create(data);
   stages.forEach((stage,col)=>data.nodes.filter(n=>n.stage===stage).sort((a,b)=>a.title.localeCompare(b.title,undefined,{numeric:true})||a.id.localeCompare(b.id)).forEach((n,row)=>assert.deepEqual(defaults.positions[n.id],[35+col*270,75+row*135])));
-  console.log('Snapshot: all seven layouts, all selected neighborhoods, default positions and connection routes verified.');
+  const flaggedNodes=data.nodes.filter(n=>n.assumption_flags>0);
+  const byAssumption=layouts.create(data,'assumptions');
+  for(const n of flaggedNodes)for(const other of data.nodes)if(!(other.assumption_total>0))assert(byAssumption.positions[n.id][0]<byAssumption.positions[other.id][0],n.id+': flagged source precedes '+other.id);
+  console.log('Snapshot: all '+layouts.modes.length+' layouts, all selected neighborhoods, default positions, assumption grouping ('+flaggedNodes.length+' flagged sources) and connection routes verified.');
 }
-console.log('Atlas layout tests passed: cycles, direction, distinct impact, disconnected sources, wrapping and route clearance.');
+console.log('Atlas layout tests passed: cycles, direction, distinct impact, disconnected sources, assumption grouping, wrapping and route clearance.');

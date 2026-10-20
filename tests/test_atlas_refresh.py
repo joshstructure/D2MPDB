@@ -62,6 +62,12 @@ class RefreshTests(unittest.TestCase):
         self.assertNotIn('source.json', after['files'])
         self.assertNotEqual(before['digest'], after['digest'])
 
+    def test_assumptions_register_edits_trigger_refresh(self):
+        before = r.inventory(self.root)
+        self.assertIn(r.build.ASSUMPTIONS, before['files'])
+        self.put(r.build.ASSUMPTIONS, '{"schema":"d2mpdb.assumptions-register","schema_version":1,"entries":[]}')
+        self.assertEqual(r.changed_paths(before, r.inventory(self.root)), [r.build.ASSUMPTIONS])
+
     def test_inventory_refuses_external_or_traversal_paths(self):
         for path in ('../outside.json', 'C:/outside.json'):
             self.put(r.build.REGISTRY, 'source_id,path\nTEST,' + path + '\n')

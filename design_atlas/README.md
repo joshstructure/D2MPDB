@@ -49,7 +49,19 @@ The existing site is
   **Basis**, **Analysis**, **Design**, **Detailing**, **Deliverables**.
   **Component × stage** uses component rows and stage columns; **File role**
   groups journals, inputs, tools, models, cases and reports; **Evidence gaps**
-  groups the recorded source statuses, with gaps first.
+  groups the recorded source statuses, with gaps first; **Assumptions** groups
+  sources by their assumptions-and-gaps register entries, stale basis first,
+  then open entries, then accepted entries, then sources with none.
+- **Assumptions & gaps** come from the hand-edited register
+  `project_current/coherence/assumptions.json` (see
+  [Assumptions-and-gaps register](#assumptions-and-gaps-register)). Each entry
+  appears as a card on every related source in pane 02, in the source
+  directory's **Assumptions & gaps** group, and in **Coverage & sources**. A
+  card badge counts the open or stale entries at that source. **Inspect record**
+  opens the entry with its recorded and current basis hashes. **Draft
+  assumption** opens a form that emits a JSON entry with the current register
+  hashes filled in; the page cannot write the file, so paste the entry into the
+  register and rebuild.
 - **Flow** orders all non-context relationships from source to use, keeping
   feedback cycles in the same column. **Impact** groups the number of distinct
   downstream sources reachable through those relationships; this is connectivity,
@@ -124,7 +136,8 @@ The detailed adapter reads:
 - the selected report's embedded case, compared structurally to the JSON;
 - the preserved prior XML's pile-head node Z values;
 - the generated 17 October pier Mathcad file, mapping CSV and provenance receipt;
-- the current coherence workbook, without changing any cells.
+- the current coherence workbook, without changing any cells;
+- the assumptions-and-gaps register, compared with the current register hashes.
 - the native journal’s `FBMPPier` and `FBMPEndBent` node-entry tables, including
   cell formulas, saved results, unit definitions and exact table/cell locators.
 
@@ -157,10 +170,41 @@ The generated Mathcad sheet is an unregistered output, and its receipt records
 no native recalculation. No issued PDF is connected. Matching inputs do not
 establish design approval or validate unlinked source history.
 
+## Assumptions-and-gaps register
+
+`project_current/coherence/assumptions.json` (schema `d2mpdb.assumptions-register`,
+version 1) is the one place for small engineering gaps, placeholders,
+assumptions and judgments that used to be scattered across decision prose,
+notebook pending lists, journal text and tracker rows. It is hand-edited and
+committed; nothing generates it. An entry records:
+
+- `id` (stable `A-###`), `kind` (`assumption`, `gap`, `placeholder` or `judgment`);
+- `statement` and `where` it bites (journal module, model, report);
+- `nodes`: the atlas node ids the entry is pinned to;
+- `magnitude`: `value`, `unit` and `sized_by`, the one quantity the judgment
+  rests on. Engineering values the journal owns are not duplicated here;
+- `disposition`: `status` (`accepted-negligible`, `pending` or `closed`), the
+  decision reference `D-0xx` and the date; `owner`;
+- `coherence_items`: related `COH-###` ids; `references`: repository paths;
+- `basis`: register source ids mapped to the SHA-256 each was judged against.
+
+`build.py` attaches the entries to their nodes, counts open or stale entries on
+each node, and marks an entry **stale** when the source register now adopts a
+different revision of any basis source (the current register hash differs from
+the recorded one). A stale badge means the basis moved, never that the judgment
+was re-made; re-check the entry and record the new hashes. A file on disk that
+differs from its registered revision is reported by the source checks, not by
+the register. `tools/project_coherence.py` validates the file (unique ids,
+kinds, dispositions, registered basis sources with 64-hex hashes, known COH ids)
+and lists open and stale entries in `latest_review.md`. The register is a
+refresh-gate input: editing it makes the hosted atlas `refresh_required`. The
+build rejects entries that name atlas nodes it cannot find.
+
 ## Validation
 
 ```powershell
 .venv\Scripts\python.exe -m unittest tests.test_design_atlas -v
+.venv\Scripts\python.exe -m unittest tests.test_project_coherence tests.test_atlas_refresh -v
 node --check design_atlas/web/atlas.js
 node --check design_atlas/web/layouts.js
 node tests/test_atlas_layouts.js

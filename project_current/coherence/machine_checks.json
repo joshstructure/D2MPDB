@@ -1,8 +1,9 @@
 {
-  "checked_at_utc": "2026-10-20T01:57:53.642674+00:00",
-  "scope": "Exact source identity, file relationships, selected geometry and issue-log completeness; no native design reruns.",
+  "checked_at_utc": "2026-10-20T02:14:45.078570+00:00",
+  "scope": "Exact source identity, file relationships, selected geometry, issue-log completeness and the assumptions register; no native design reruns.",
   "register_sha256": "4bb7eb23b216166b00328146a09309559398f906cdc8e1d8ec496283e1e24a0d",
   "tracker_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
+  "assumptions_sha256": "2d7ed24138b1dc2a73581745984cc6f29ce0f59c6aea7fc7bffbbc7ed0b52130",
   "source_count": 37,
   "item_count": 28,
   "outstanding_count": 15,
@@ -14,10 +15,15 @@
   },
   "check_counts": {
     "CHANGED": 3,
-    "MATCH": 51,
+    "MATCH": 62,
     "MISSING": 4,
     "REVIEW": 13,
     "ERROR": 9
+  },
+  "assumption_counts": {
+    "count": 11,
+    "open": 3,
+    "stale": 0
   },
   "checks": [
     {
@@ -792,6 +798,125 @@
       "detail": "Closed / not-applicable item requires resolution evidence.",
       "source_ids": [],
       "issue_id": "COH-020"
+    },
+    {
+      "check_id": "ASSUMPTION:A-001",
+      "status": "MATCH",
+      "detail": "Basis hashes equal the current register.",
+      "source_ids": [
+        "EB-XML",
+        "EB2-XML",
+        "JOURNAL",
+        "PIER-XML"
+      ],
+      "entry_id": "A-001"
+    },
+    {
+      "check_id": "ASSUMPTION:A-002",
+      "status": "MATCH",
+      "detail": "Basis hashes equal the current register.",
+      "source_ids": [
+        "CAD-MODEL",
+        "JOURNAL",
+        "PIER-XML"
+      ],
+      "entry_id": "A-002"
+    },
+    {
+      "check_id": "ASSUMPTION:A-003",
+      "status": "MATCH",
+      "detail": "Basis hashes equal the current register.",
+      "source_ids": [
+        "BACKWALL-CASE",
+        "EB-XML",
+        "EB2-XML",
+        "JOURNAL"
+      ],
+      "entry_id": "A-003"
+    },
+    {
+      "check_id": "ASSUMPTION:A-004",
+      "status": "MATCH",
+      "detail": "Basis hashes equal the current register.",
+      "source_ids": [
+        "BACKWALL-CASE",
+        "EB-XML",
+        "EB2-XML"
+      ],
+      "entry_id": "A-004"
+    },
+    {
+      "check_id": "ASSUMPTION:A-005",
+      "status": "MATCH",
+      "detail": "Basis hashes equal the current register.",
+      "source_ids": [
+        "EB-XML",
+        "EB2-XML",
+        "JOURNAL"
+      ],
+      "entry_id": "A-005"
+    },
+    {
+      "check_id": "ASSUMPTION:A-006",
+      "status": "MATCH",
+      "detail": "Basis hashes equal the current register.",
+      "source_ids": [
+        "EB-XML",
+        "EB2-XML"
+      ],
+      "entry_id": "A-006"
+    },
+    {
+      "check_id": "ASSUMPTION:A-007",
+      "status": "MATCH",
+      "detail": "Basis hashes equal the current register.",
+      "source_ids": [
+        "CAD-MODEL",
+        "PIER-XML"
+      ],
+      "entry_id": "A-007"
+    },
+    {
+      "check_id": "ASSUMPTION:A-008",
+      "status": "MATCH",
+      "detail": "Basis hashes equal the current register.",
+      "source_ids": [
+        "EB2-XML",
+        "JOURNAL"
+      ],
+      "entry_id": "A-008"
+    },
+    {
+      "check_id": "ASSUMPTION:A-009",
+      "status": "MATCH",
+      "detail": "Basis hashes equal the current register.",
+      "source_ids": [
+        "JOURNAL",
+        "PIER-XML",
+        "PILE-PIER-CASE"
+      ],
+      "entry_id": "A-009"
+    },
+    {
+      "check_id": "ASSUMPTION:A-010",
+      "status": "MATCH",
+      "detail": "Basis hashes equal the current register.",
+      "source_ids": [
+        "CAD-MODEL",
+        "JOURNAL"
+      ],
+      "entry_id": "A-010"
+    },
+    {
+      "check_id": "ASSUMPTION:A-011",
+      "status": "MATCH",
+      "detail": "Basis hashes equal the current register.",
+      "source_ids": [
+        "PILE-EB1-CASE",
+        "PILE-EB2-CASE",
+        "PILE-PIER-CASE"
+      ],
+      "entry_id": "A-011"
     }
   ],
   "items": [
@@ -1215,5 +1340,495 @@
       "Last reviewed": "2026-10-16",
       "_row": 36
     }
-  ]
+  ],
+  "assumptions": {
+    "present": true,
+    "count": 11,
+    "open": 3,
+    "stale": 0,
+    "entries": [
+      {
+        "id": "A-009",
+        "kind": "assumption",
+        "statement": "The pier pipe pile is checked with ASTM A252 Grade 3 (Fy = 45 ksi) in the pile design while the FBMP pier model uses 60 ksi; the reconciliation is pending.",
+        "where": "Pier pile design case and report; journal PileDesignPier and FoundationModeling modules; pier FBMP model pile material.",
+        "nodes": [
+          "PILE-PIER-CASE",
+          "PILE-PIER-REPORT",
+          "PIER-XML",
+          "JOURNAL-CALC-PileDesignPier",
+          "JOURNAL-CALC-FoundationModeling"
+        ],
+        "magnitude": {
+          "value": 15,
+          "unit": "ksi",
+          "sized_by": "Difference between the 60 ksi FBMP pile material and the 45 ksi design grade (D-050, D-056)."
+        },
+        "disposition": {
+          "status": "pending",
+          "decision": "D-050",
+          "on": "2026-10-19"
+        },
+        "owner": "Project user",
+        "coherence_items": [],
+        "basis": {
+          "PILE-PIER-CASE": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c",
+          "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+          "JOURNAL": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50"
+        },
+        "references": [
+          "project_current/decisions.md",
+          "PILE_DESIGN.md"
+        ],
+        "stale": false,
+        "stale_sources": [],
+        "unknown_sources": [],
+        "current_basis": {
+          "PILE-PIER-CASE": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c",
+          "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+          "JOURNAL": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50"
+        },
+        "open": true
+      },
+      {
+        "id": "A-010",
+        "kind": "judgment",
+        "statement": "The MSE exclusion side walls re-extracted from the D-055 model sit at the 24-in criterion within 0.0002 in, so two of four side-wall rows read SHORTFALL by their last digits (T016).",
+        "where": "Journal MSE Wall Exclusion module; CAD model MSE wall lines; MSE detail drawing.",
+        "nodes": [
+          "JOURNAL-CALC-MSEWallExclusion",
+          "CAD-MODEL",
+          "MSE-DETAIL-DXF"
+        ],
+        "magnitude": {
+          "value": 0.0002,
+          "unit": "in",
+          "sized_by": "Side-wall offset 114 in from the pile rows against the 24-in clear criterion, as recorded by the T016 re-extraction."
+        },
+        "disposition": {
+          "status": "pending",
+          "decision": "D-056",
+          "on": "2026-10-19"
+        },
+        "owner": "Project user",
+        "coherence_items": [
+          "COH-023"
+        ],
+        "basis": {
+          "JOURNAL": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50",
+          "CAD-MODEL": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43"
+        },
+        "references": [
+          "project_current/decisions.md",
+          "tasks/T016/plan.md"
+        ],
+        "stale": false,
+        "stale_sources": [],
+        "unknown_sources": [],
+        "current_basis": {
+          "JOURNAL": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50",
+          "CAD-MODEL": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43"
+        },
+        "open": true
+      },
+      {
+        "id": "A-011",
+        "kind": "gap",
+        "statement": "The 19 October pile design reports carry pending prerequisites: the downdrag source documentation, scour, the minimum tip elevation and the pile-to-cap connection (with pipe steel grade, corrosion allowance, drivability and environment classification).",
+        "where": "End Bent 1, End Bent 2 and Pier pile design reports and cases; journal pile design modules.",
+        "nodes": [
+          "PILE-EB1-REPORT",
+          "PILE-EB2-REPORT",
+          "PILE-PIER-REPORT",
+          "PILE-EB1-CASE",
+          "PILE-EB2-CASE",
+          "PILE-PIER-CASE"
+        ],
+        "magnitude": {
+          "value": null,
+          "unit": "",
+          "sized_by": "Not a load difference: unconfirmed inputs (15, 15 and 16 pending entries per report under D-054)."
+        },
+        "disposition": {
+          "status": "pending",
+          "decision": "D-054",
+          "on": "2026-10-19"
+        },
+        "owner": "Project user",
+        "coherence_items": [
+          "COH-028"
+        ],
+        "basis": {
+          "PILE-EB1-CASE": "b733ea1396f5e715920935268f36a11ff20a764ee04c40da4ca0167607666440",
+          "PILE-EB2-CASE": "a74e7d6078314a87ef96c133a0fbf147cc0c8bbf2caa2002de3259bfeddc77bf",
+          "PILE-PIER-CASE": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c"
+        },
+        "references": [
+          "project_current/coherence/evidence/2026-10-19-pile-reports/source_receipt.json",
+          "PILE_DESIGN.md"
+        ],
+        "stale": false,
+        "stale_sources": [],
+        "unknown_sources": [],
+        "current_basis": {
+          "PILE-EB1-CASE": "b733ea1396f5e715920935268f36a11ff20a764ee04c40da4ca0167607666440",
+          "PILE-EB2-CASE": "a74e7d6078314a87ef96c133a0fbf147cc0c8bbf2caa2002de3259bfeddc77bf",
+          "PILE-PIER-CASE": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c"
+        },
+        "open": true
+      },
+      {
+        "id": "A-001",
+        "kind": "gap",
+        "statement": "The bearing dead load entered in the three FBMP fixed-run exports is the pre-T014 journal value (92.07 kip per bearing). The post-T014 journal haunch volumes raise End Bent 1 to 92.473 kip (+0.40 kip) and lower End Bent 2 by 0.38 kip, with a net +0.03 kip at the pier.",
+        "where": "FBMP nodal loads at end-bent nodes 15 and 34 and the pier bearing rows; journal FBMPEndBent and FBMPPier entry tables.",
+        "nodes": [
+          "EB-XML",
+          "EB2-XML",
+          "PIER-XML",
+          "JOURNAL-EB-ENTRY",
+          "JOURNAL-PIER-ENTRY"
+        ],
+        "magnitude": {
+          "value": 0.4,
+          "unit": "kip",
+          "sized_by": "Export DC FZ 92.07 kip against the T018-recalculated journal FBMPEndBent value 92.473 kip (0.4% of the bearing dead load)."
+        },
+        "disposition": {
+          "status": "accepted-negligible",
+          "decision": "D-062",
+          "on": "2026-10-19"
+        },
+        "owner": "Project user",
+        "coherence_items": [
+          "COH-004"
+        ],
+        "basis": {
+          "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
+          "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
+          "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+          "JOURNAL": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50"
+        },
+        "references": [
+          "project_current/coherence/evidence/2026-10-19-fbmp-load-review/fbmp_load_review.md"
+        ],
+        "stale": false,
+        "stale_sources": [],
+        "unknown_sources": [],
+        "current_basis": {
+          "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
+          "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
+          "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+          "JOURNAL": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50"
+        },
+        "open": false
+      },
+      {
+        "id": "A-002",
+        "kind": "gap",
+        "statement": "The D-059 pier cheek walls (48 x 48 x 12 in at each cap end, 4 ft above the cap top) add exposed area outside the 230-in pier face that is not in the pier FBMP model: about +1.92 kip transverse and +0.48 kip longitudinal direct wind at Strength III.",
+        "where": "Pier FBMP direct-wind nodal loads (node 49 transverse, nodes 117/83 longitudinal); journal FenceWind direct-pier terms; CAD model pier cheek walls.",
+        "nodes": [
+          "PIER-XML",
+          "CAD-MODEL",
+          "JOURNAL-CALC-FenceWind",
+          "JOURNAL-PIER-ENTRY"
+        ],
+        "magnitude": {
+          "value": 1.92,
+          "unit": "kip",
+          "sized_by": "2 x 16 ft2 transverse (and 2 x 4 ft2 longitudinal) cheek-wall area at p_sub_III = 0.060 ksf; about 3% of the 56.5 kip total transverse wind on the pier."
+        },
+        "disposition": {
+          "status": "accepted-negligible",
+          "decision": "D-062",
+          "on": "2026-10-19"
+        },
+        "owner": "Project user",
+        "coherence_items": [
+          "COH-005"
+        ],
+        "basis": {
+          "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+          "CAD-MODEL": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43",
+          "JOURNAL": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50"
+        },
+        "references": [
+          "project_current/coherence/evidence/2026-10-19-fbmp-load-review/fbmp_load_review.md",
+          "project_current/geometry/freecad/evidence/2026-10-19-pier-cheek-relief/adoption-summary.json"
+        ],
+        "stale": false,
+        "stale_sources": [],
+        "unknown_sources": [],
+        "current_basis": {
+          "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+          "CAD-MODEL": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43",
+          "JOURNAL": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50"
+        },
+        "open": false
+      },
+      {
+        "id": "A-003",
+        "kind": "judgment",
+        "statement": "The end-bent bearing eccentricity and longitudinal-wind moments about the transverse axis (MX = 0 in both end-bent exports; 23.0 kip-ft DC, 7.2 kip-ft PL and up to 31.8 kip-ft wind per bearing in the journal entry table) are carried by the backwall tie-back straps of the backwall design (D-057), not by the pile row.",
+        "where": "End-bent FBMP nodal loads at nodes 15 and 34 (y = 0 on the centered pile line); journal FBMPEndBent MX rows; backwall report strap loads.",
+        "nodes": [
+          "EB-XML",
+          "EB2-XML",
+          "JOURNAL-EB-ENTRY",
+          "BACKWALL-CASE",
+          "BACKWALL-REPORT",
+          "JOURNAL-CALC-EndBentBackwallDesign"
+        ],
+        "magnitude": {
+          "value": 31.8,
+          "unit": "kip*ft",
+          "sized_by": "Largest per-bearing MX in the journal FBMPEndBent table (WS1, bearing eccentricity plus longitudinal-wind arm); DC 23.017 and PL 7.246 kip-ft from the 3-in bearing eccentricity."
+        },
+        "disposition": {
+          "status": "accepted-negligible",
+          "decision": "D-062",
+          "on": "2026-10-19"
+        },
+        "owner": "Project user",
+        "coherence_items": [
+          "COH-004"
+        ],
+        "basis": {
+          "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
+          "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
+          "BACKWALL-CASE": "01e76c5a263af986e0d7e154039cec4c351bea29403dd9bfd2cbee7b16bab597",
+          "JOURNAL": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50"
+        },
+        "references": [
+          "project_current/coherence/evidence/2026-10-19-fbmp-load-review/fbmp_load_review.md",
+          "project_current/coherence/evidence/2026-10-19-backwall-rerun/source_receipt.json"
+        ],
+        "stale": false,
+        "stale_sources": [],
+        "unknown_sources": [],
+        "current_basis": {
+          "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
+          "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
+          "BACKWALL-CASE": "01e76c5a263af986e0d7e154039cec4c351bea29403dd9bfd2cbee7b16bab597",
+          "JOURNAL": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50"
+        },
+        "open": false
+      },
+      {
+        "id": "A-004",
+        "kind": "gap",
+        "statement": "Backwall self-weight (77.77 ft3, 11.67 kip per end bent) and the landing weights (111.5 / 88.6 ft3, 16.7 / 13.3 kip, 50% bearing on the backwalls per D-016) are not in the end-bent FBMP models; the strap pile-head equilibrium force of the backwall report is likewise unmodeled.",
+        "where": "End-bent FBMP nodal loads; end-bent pile design cases that read those exports.",
+        "nodes": [
+          "EB-XML",
+          "EB2-XML",
+          "BACKWALL-CASE",
+          "PILE-EB1-CASE",
+          "PILE-EB2-CASE"
+        ],
+        "magnitude": {
+          "value": 11.67,
+          "unit": "kip",
+          "sized_by": "Backwall volume 77.770 ft3 from the D-057 case x 0.150 kcf, per end bent; landings 16.7 / 13.3 kip with half on the backwalls."
+        },
+        "disposition": {
+          "status": "accepted-negligible",
+          "decision": "D-062",
+          "on": "2026-10-19"
+        },
+        "owner": "Project user",
+        "coherence_items": [
+          "COH-004",
+          "COH-028"
+        ],
+        "basis": {
+          "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
+          "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
+          "BACKWALL-CASE": "01e76c5a263af986e0d7e154039cec4c351bea29403dd9bfd2cbee7b16bab597"
+        },
+        "references": [
+          "project_current/coherence/evidence/2026-10-19-fbmp-load-review/fbmp_load_review.md"
+        ],
+        "stale": false,
+        "stale_sources": [],
+        "unknown_sources": [],
+        "current_basis": {
+          "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
+          "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
+          "BACKWALL-CASE": "01e76c5a263af986e0d7e154039cec4c351bea29403dd9bfd2cbee7b16bab597"
+        },
+        "open": false
+      },
+      {
+        "id": "A-005",
+        "kind": "gap",
+        "statement": "End-bent direct wind is not modeled; the journal entry table notes it needs end-bent geometry. A fully exposed cap front and backwall face (about 60 + 78 ft2) would give about 8 kip longitudinal at Strength III, but the closure slab and deck end cover most of that strip and the MSE returns shield the ends.",
+        "where": "End-bent FBMP nodal loads; journal FBMPEndBent and FenceWind modules.",
+        "nodes": [
+          "EB-XML",
+          "EB2-XML",
+          "JOURNAL-EB-ENTRY",
+          "JOURNAL-CALC-FenceWind"
+        ],
+        "magnitude": {
+          "value": 8,
+          "unit": "kip",
+          "sized_by": "Upper bound: fully exposed cap front plus backwall face (about 138 ft2) at p_sub_III = 0.060 ksf; actual exposure is much smaller."
+        },
+        "disposition": {
+          "status": "accepted-negligible",
+          "decision": "D-062",
+          "on": "2026-10-19"
+        },
+        "owner": "Project user",
+        "coherence_items": [
+          "COH-005"
+        ],
+        "basis": {
+          "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
+          "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
+          "JOURNAL": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50"
+        },
+        "references": [
+          "project_current/coherence/evidence/2026-10-19-fbmp-load-review/fbmp_load_review.md"
+        ],
+        "stale": false,
+        "stale_sources": [],
+        "unknown_sources": [],
+        "current_basis": {
+          "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
+          "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
+          "JOURNAL": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50"
+        },
+        "open": false
+      },
+      {
+        "id": "A-006",
+        "kind": "placeholder",
+        "statement": "The 3.00 kip DC loads at end-bent nodes 7 and 4 are placeholders for unmodeled concrete, the only such entries in the end-bent exports; one of them sits on the head of pile 4.",
+        "where": "End-bent FBMP nodal loads (nodes 7 and 4); backwall design basis (BACKWALL_DESIGN.md).",
+        "nodes": [
+          "EB-XML",
+          "EB2-XML",
+          "JOURNAL-EB-ENTRY",
+          "PILE-EB1-CASE",
+          "PILE-EB2-CASE"
+        ],
+        "magnitude": {
+          "value": 3.0,
+          "unit": "kip",
+          "sized_by": "Placeholder value as entered; compare with the unmodeled backwall gravity of A-004 (11.67 kip per end bent)."
+        },
+        "disposition": {
+          "status": "accepted-negligible",
+          "decision": "D-062",
+          "on": "2026-10-19"
+        },
+        "owner": "Project user",
+        "coherence_items": [
+          "COH-004",
+          "COH-028"
+        ],
+        "basis": {
+          "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
+          "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e"
+        },
+        "references": [
+          "project_current/coherence/evidence/2026-10-19-fbmp-load-review/fbmp_load_review.md",
+          "BACKWALL_DESIGN.md"
+        ],
+        "stale": false,
+        "stale_sources": [],
+        "unknown_sources": [],
+        "current_basis": {
+          "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
+          "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e"
+        },
+        "open": false
+      },
+      {
+        "id": "A-007",
+        "kind": "placeholder",
+        "statement": "The 3.00 kip DC loads at pier nodes 5 and 44 are placeholders that now stand for the D-059 pier cheek walls, 2.34 kip each (31.26 ft3 total), within the placeholder value.",
+        "where": "Pier FBMP nodal loads (nodes 5 and 44); CAD model pier cheek walls.",
+        "nodes": [
+          "PIER-XML",
+          "CAD-MODEL",
+          "JOURNAL-PIER-ENTRY"
+        ],
+        "magnitude": {
+          "value": 2.34,
+          "unit": "kip",
+          "sized_by": "Cheek-wall weight from the D-059 adoption summary (15.63 ft3 x 0.150 kcf each) against the 3.00 kip placeholder."
+        },
+        "disposition": {
+          "status": "accepted-negligible",
+          "decision": "D-062",
+          "on": "2026-10-19"
+        },
+        "owner": "Project user",
+        "coherence_items": [
+          "COH-004"
+        ],
+        "basis": {
+          "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+          "CAD-MODEL": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43"
+        },
+        "references": [
+          "project_current/coherence/evidence/2026-10-19-fbmp-load-review/fbmp_load_review.md",
+          "project_current/geometry/freecad/evidence/2026-10-19-pier-cheek-relief/adoption-summary.json"
+        ],
+        "stale": false,
+        "stale_sources": [],
+        "unknown_sources": [],
+        "current_basis": {
+          "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+          "CAD-MODEL": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43"
+        },
+        "open": false
+      },
+      {
+        "id": "A-008",
+        "kind": "gap",
+        "statement": "The End Bent 2 export carries the End Bent 1 bearing loads (92.07 / 28.98 kip) instead of the journal's span-2 tributary values (89.967 / 28.323 kip), which is 2.3% conservative.",
+        "where": "End Bent 2 FBMP nodal loads; End Bent 2 cap and pile cases that read the export.",
+        "nodes": [
+          "EB2-XML",
+          "EB2-CASE",
+          "PILE-EB2-CASE",
+          "JOURNAL-EB-ENTRY"
+        ],
+        "magnitude": {
+          "value": 2.3,
+          "unit": "%",
+          "sized_by": "Export bearing DC 92.07 kip against the journal span-2 tributary 89.967 kip."
+        },
+        "disposition": {
+          "status": "accepted-negligible",
+          "decision": "D-062",
+          "on": "2026-10-19"
+        },
+        "owner": "Project user",
+        "coherence_items": [
+          "COH-004"
+        ],
+        "basis": {
+          "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
+          "JOURNAL": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50"
+        },
+        "references": [
+          "project_current/coherence/evidence/2026-10-19-fbmp-load-review/fbmp_load_review.md"
+        ],
+        "stale": false,
+        "stale_sources": [],
+        "unknown_sources": [],
+        "current_basis": {
+          "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
+          "JOURNAL": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50"
+        },
+        "open": false
+      }
+    ]
+  }
 }

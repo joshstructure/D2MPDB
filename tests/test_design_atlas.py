@@ -6,9 +6,11 @@ from pathlib import Path
 import unittest
 import xml.etree.ElementTree as ET
 
-from design_atlas.build import build_data, quantity, sheet_definition, validate, ROOT, CASE, SHEET, RECEIPT, sha
+from design_atlas.build import build_data, quantity, sheet_definition, validate, ROOT, CASE, SHEET, RECEIPT, sha, ASSUMPTIONS
+from design_atlas.assumptions import attach_assumptions
 from design_atlas.origins import classify
 from design_atlas.journal import cell_text, stored_value
+from design_atlas import refresh
 
 
 class LiteralWorksheetTests(unittest.TestCase):
@@ -208,6 +210,80 @@ class ProjectAtlasTests(unittest.TestCase):
     def test_schema_rejects_dangling_sources(self):
         data=copy.deepcopy(self.data);data['edges'][0]['source']='unknown'
         with self.assertRaises(ValueError):validate(data)
+
+    # Assumptions-and-gaps register: attached as recorded, pinned to nodes, stale by register hash.
+    def register_rows(self):
+        with (ROOT/'project_current/source_register.csv').open(encoding='utf-8-sig',newline='') as handle:
+            return list(csv.DictReader(handle))
+
+    def test_assumptions_register_is_attached_to_related_nodes(self):
+        summary=self.data['assumptions']
+        self.assertTrue(summary['present'])
+        self.assertEqual(summary['path'],ASSUMPTIONS)
+        self.assertEqual(len(self.data['documents'][ASSUMPTIONS]['sha256']),64)
+        recorded=json.loads((ROOT/ASSUMPTIONS).read_text(encoding='utf-8-sig'))['entries']
+        self.assertEqual({e['id'] for e in summary['entries']},{e['id'] for e in recorded})
+        self.assertGreaterEqual(len(recorded),11)
+        nodes={n['id']:n for n in self.data['nodes']}
+        for entry in summary['entries']:
+            self.assertTrue(entry['node_ids'])
+            self.assertTrue(all(n in nodes for n in entry['node_ids']))
+            self.assertEqual(entry['evidence']['path'],ASSUMPTIONS)
+            self.assertIn(entry['id'],entry['evidence']['locator'])
+            self.assertEqual(entry['open'],entry['disposition']['status']=='pending')
+            self.assertEqual(entry['flagged'],entry['open'] or entry['stale'])
+        for node in nodes.values():
+            related=[e for e in summary['entries'] if node['id'] in e['node_ids']]
+            self.assertEqual(node['assumption_total'],len(related))
+            self.assertEqual(node['assumption_flags'],sum(e['flagged'] for e in related))
+        self.assertEqual(summary['counts']['total'],len(summary['entries']))
+        self.assertEqual(self.data['checks']['assumptions'],summary['counts'])
+        # Open and stale entries lead every listing.
+        flags=[e['flagged'] for e in summary['entries']]
+        self.assertEqual(flags,sorted(flags,reverse=True))
+
+    def test_seeded_judgments_keep_their_recorded_disposition(self):
+        entries={e['id']:e for e in self.data['assumptions']['entries']}
+        self.assertEqual(entries['A-001']['disposition']['decision'],'D-062')
+        self.assertEqual(entries['A-001']['magnitude'],{'value':0.4,'unit':'kip','sized_by':entries['A-001']['magnitude']['sized_by']})
+        self.assertFalse(entries['A-001']['stale'])
+        self.assertIn('EB-XML',entries['A-001']['basis'])
+        self.assertEqual(entries['A-009']['disposition']['status'],'pending')
+        self.assertTrue(entries['A-009']['open'])
+
+    def test_assumption_staleness_follows_register_hashes(self):
+        data=copy.deepcopy(self.data)
+        rows=self.register_rows()
+        moved=next(r for r in rows if r['source_id']=='EB-XML')
+        moved['sha256']='0'*64
+        proof=lambda path,locator,value,note='': {'path':path,'locator':locator,'excerpt':'','note':note}
+        summary=attach_assumptions(data,ROOT,rows,proof)
+        stale={e['id'] for e in summary['entries'] if e['stale']}
+        expected={e['id'] for e in self.data['assumptions']['entries'] if 'EB-XML' in e['basis']}
+        self.assertTrue(expected)
+        self.assertEqual(stale,expected)
+        for e in summary['entries']:
+            if e['stale']:
+                self.assertEqual(e['stale_sources'],['EB-XML'])
+                self.assertEqual(e['current_basis']['EB-XML'],'0'*64)
+        self.assertEqual(summary['counts']['stale'],len(expected))
+        self.assertTrue(all(e['stale'] for e in summary['entries'][:len(expected)]))
+        nodes={n['id']:n for n in data['nodes']}
+        self.assertEqual(nodes['EB-XML']['assumption_stale'],len([e for e in summary['entries'] if e['stale'] and 'EB-XML' in e['node_ids']]))
+        self.assertGreater(nodes['EB-XML']['assumption_flags'],self.data['nodes'][[n['id'] for n in self.data['nodes']].index('EB-XML')]['assumption_flags'])
+        validate(data)
+
+    def test_assumption_validation_rejects_unknown_nodes_and_sources(self):
+        data=copy.deepcopy(self.data);data['assumptions']['entries'][0]['node_ids']=['NO-SUCH-NODE']
+        with self.assertRaisesRegex(ValueError,'unknown atlas node'):validate(data)
+        data=copy.deepcopy(self.data);data['assumptions']['entries'][0]['unknown_sources']=['NO-SUCH-SOURCE']
+        with self.assertRaisesRegex(ValueError,'unregistered basis'):validate(data)
+        data=copy.deepcopy(self.data);data['assumptions']['entries'][1]['id']=data['assumptions']['entries'][0]['id']
+        with self.assertRaisesRegex(ValueError,'Duplicate'):validate(data)
+
+    def test_assumptions_register_is_a_watched_refresh_input(self):
+        self.assertIn(ASSUMPTIONS,refresh.FIXED_INPUTS)
+        self.assertIn(ASSUMPTIONS,refresh.inventory(ROOT)['files'])
 
 
 if __name__=='__main__':unittest.main()

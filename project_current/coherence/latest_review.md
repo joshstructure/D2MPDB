@@ -1,13 +1,13 @@
 # Latest project coherence review
 
-Checked at 2026-10-20T01:57:53.642674+00:00. **15 outstanding items remain.**
+Checked at 2026-10-20T02:14:45.078570+00:00. **15 outstanding items remain.**
 
 The [workbook](Coherence_Tracker.xlsx) owns item status and responses. This report is a generated view.
 The initial findings were carried forward from the latest adopted pier/end-bent reviews plus source-inventory gaps.
 Previously resolved decisions were excluded. This run did not perform native calculations or a complete engineering review.
 
 Registered sources: 37. Tracker items: 28.
-Automatic results: 3 changed, 9 error, 51 match, 4 missing, 13 review.
+Automatic results: 3 changed, 9 error, 62 match, 4 missing, 13 review.
 
 ## Files and relationships needing attention
 
@@ -63,6 +63,17 @@ Automatic results: 3 changed, 9 error, 51 match, 4 missing, 13 review.
 | COH-026 | Open | Coping and MSE wall overlaps | Agree concrete ownership and trim the coping/wall interfaces. Recheck concrete quantities and contact geometry. |
 | COH-028 | Open | Rerun final FBMP with current pile heads | Rerun the final pier, End Bent 1 and End Bent 2 FBMP analyses with pile-head nodes at the notebook cutoffs: pier 41.764940 ft (Z -501.18 in), EB1 41.237692 ft (Z -494.85 in), EB2 41.249692 ft (Z -495.00 in). Confirm pile length, tip and soil inputs, and rerun minimum-tip variants still in use. Regenerate the cap reports and cases, then submit the exports under COH-013. |
 
+## Assumptions and gaps
+
+The [register](assumptions.json) records 11 entries: **3 open** (pending disposition) and **0 stale** (basis moved in the source register since the judgment).
+Open and stale entries are listed below; accepted entries stay in the register and in the design atlas. This check never re-judges an entry.
+
+| ID | Kind | State | Statement | Magnitude | Decision |
+| --- | --- | --- | --- | --- | --- |
+| A-009 | assumption | open | The pier pipe pile is checked with ASTM A252 Grade 3 (Fy = 45 ksi) in the pile design while the FBMP pier model uses 60 ksi; the reconciliation is pending. | 15 ksi | pending D-050 2026-10-19 |
+| A-010 | judgment | open | The MSE exclusion side walls re-extracted from the D-055 model sit at the 24-in criterion within 0.0002 in, so two of four side-wall rows read SHORTFALL by their last digits (T016). | 0.0002 in | pending D-056 2026-10-19 |
+| A-011 | gap | open | The 19 October pile design reports carry pending prerequisites: the downdrag source documentation, scour, the minimum tip elevation and the pile-to-cap connection (with pipe steel grade, corrosion allowance, drivability and environment classification). | not sized | pending D-054 2026-10-19 |
+
 ## Verified scope
 
 - Present-source identity is compared with the source register. Only registered notebook CRLF/LF endings are normalized; native/report files use exact bytes.
@@ -71,6 +82,7 @@ Automatic results: 3 changed, 9 error, 51 match, 4 missing, 13 review.
 - Selected notebook cap widths, depths, pile counts/sizes/spacings, embedment and lengths are compared with saved cases.
 - Mathcad XML readability is checked. Its formulas and external inputs are not recalculated.
 - Tracker IDs, statuses, required descriptions and closure evidence are checked.
+- Assumptions-register entries are validated (stable IDs, kinds, dispositions, registered basis sources, tracker references) and their recorded basis hashes are compared with the current register. A moved basis is reported for re-judgment, never re-judged here.
 - Detailed results and exact source/tracker fingerprints are in [machine_checks.json](machine_checks.json).
 
 Automatic matches do not resolve the outstanding workbook items. Responses and original source documents are unchanged.

@@ -20,7 +20,7 @@ import sys
 from design_atlas import build
 
 ASSETS = ('index.html', 'atlas.css', 'atlas.js', 'layouts.js', 'dataset.js', 'atlas-data.json')
-FIXED_INPUTS = (build.REGISTRY, build.TRACKER, build.SHEET, build.MAPPING, build.RECEIPT,
+FIXED_INPUTS = (build.REGISTRY, build.TRACKER, build.SHEET, build.MAPPING, build.RECEIPT, build.ASSUMPTIONS,
                 'design_atlas/manual_links.json', 'design_atlas/site.json', 'tools/project_coherence.py')
 
 

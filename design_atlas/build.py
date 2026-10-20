@@ -18,10 +18,11 @@ import shutil
 import subprocess
 import xml.etree.ElementTree as ET
 
-from tools.project_coherence import report_case, source_checks, read_tracker
+from tools.project_coherence import report_case, source_checks, read_tracker, ASSUMPTIONS
 from design_atlas.origins import classify
 from design_atlas.journal import extract_journal
 from design_atlas.journal_calcs import extract_calculations
+from design_atlas.assumptions import attach_assumptions, validate_assumptions
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = Path(__file__).parent / 'web'
@@ -425,7 +426,7 @@ def build_data(root=ROOT):
         'documents':documents,'issues':issues,'fingerprints':fingerprints,
         'checks':{'report_case_equal':same,'required_xml_present':xml_match,
                   'mathcad_receipt_matches':receipt_ok,'sheet_comparisons':dict(Counter(v['sheet_status'] for v in values))},
-        'coverage':{'map':'All registered sources, named current journal calculation modules, and explicitly identified pier-cap gaps.',
+        'coverage':{'map':'All registered sources, named current journal calculation modules, explicitly identified pier-cap gaps, and the assumptions-and-gaps register pinned to its related sources.',
                     'values':'Pier and End Bent 1 trails, mapped Mathcad inputs, and the registered journal’s named calculation definitions, saved spreadsheet cells, and FBMP entry tables. Journal literals and saved results are read without recalculation. Formula inputs link to unambiguous native definitions.',
                     'limits':['No native solver was run.',('The matching pier XML and issued PDF remain unlinked.' if not xml_match else 'No issued PDF is linked; the retained audit is not independently re-extracted.'),
                               'Registered dependencies describe relationships, not proven parameter transfers.',
@@ -436,6 +437,10 @@ def build_data(root=ROOT):
     # Detect concurrent edits during ingestion instead of publishing mixed bytes.
     from design_atlas.end_bent import extend_end_bent
     extend_end_bent(result, root, LABELS, category)
+    # The hand-edited assumptions register is attached last so every node exists.
+    if (root/ASSUMPTIONS).is_file(): document(ASSUMPTIONS)
+    attach_assumptions(result, root, register, evidence)
+    result['coverage']['limits'].append('Assumptions-register entries are recorded human judgments pinned to register hashes; a stale badge means the basis moved, not that the judgment was re-made.')
     changed=[p for p,digest in fingerprints.items() if not (root/p).is_file() or sha(root/p)!=digest]
     if changed: raise RuntimeError('Sources changed during atlas build: '+', '.join(changed))
     validate(result)
@@ -463,6 +468,7 @@ def validate(data):
             if origin['kind'] not in {'received','defined','derived','unknown'}: raise ValueError('Unknown origin role')
             if origin.get('from_node') and origin['from_node'] not in ids: raise ValueError('Unresolved origin source')
             if any(e['path'] not in data['documents'] for e in origin['evidence']): raise ValueError('Untracked origin evidence')
+    validate_assumptions(data)
     json.dumps(data,allow_nan=False)
 
 

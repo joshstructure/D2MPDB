@@ -8,6 +8,7 @@
     {id:'flow',label:'Flow',description:'Recorded source-to-use links run left to right. Sources in a feedback cycle share a step; context-only links do not set the order.'},
     {id:'role',label:'File role',description:'Sources grouped by their role: journals, inputs, tools, models, saved cases and reports.'},
     {id:'evidence',label:'Evidence gaps',description:'Sources grouped by their recorded status, with gaps and changed revisions first. Line colors still show the status of each handoff.'},
+    {id:'assumptions',label:'Assumptions',description:'Sources grouped by their assumptions-and-gaps register entries: stale basis first, then open entries, then accepted entries, then sources with no recorded entry. Card badges count open or stale entries.'},
     {id:'impact',label:'Impact',description:'Groups count distinct downstream sources reachable through recorded links, excluding context-only links. Connectivity does not establish engineering risk.'},
     {id:'neighborhood',label:'Neighborhood',description:'Upstream sources, feedback links and downstream uses arranged around your selected component. All other sources remain on the map.'}
   ];
@@ -86,6 +87,12 @@
     if(mode==='evidence') {
       const statuses={missing:'Source missing',changed:'Revision changed',mismatch:'Conflict',unmapped:'Unmapped / read error',error:'Unmapped / read error',match:'Fingerprint match'};
       groups(['Source missing','Revision changed','Conflict','Unmapped / read error','Recorded / unconfirmed','Fingerprint match'],n=>statuses[n.status]||'Recorded / unconfirmed');
+    }
+    if(mode==='assumptions') {
+      // Register counts are attached by the build; sources without them have no entry.
+      const band=n=>(n.assumption_stale||0)>0?'Stale basis':(n.assumption_open||0)>0?'Open entries':(n.assumption_total||0)>0?'Accepted entries':'No recorded entries';
+      groups(['Stale basis','Open entries','Accepted entries','No recorded entries'],band,
+        (a,b)=>(b.assumption_flags||0)-(a.assumption_flags||0)||(b.assumption_total||0)-(a.assumption_total||0)||alphabetical(a,b));
     }
     if(['flow','impact','neighborhood'].includes(mode)) {
       const reach=reachability(nodes,data.edges);

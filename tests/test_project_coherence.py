@@ -6,7 +6,8 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from tools.project_coherence import source_checks, safe_value, tracker_checks, HEADERS
+from tools.project_coherence import (source_checks, safe_value, tracker_checks, HEADERS, read_assumptions,
+                                     assumption_checks, assumption_state, assumption_summary, write_report, ASSUMPTION_SCHEMA)
 
 
 class SourceChecks(unittest.TestCase):
@@ -90,6 +91,88 @@ class TrackerChecks(unittest.TestCase):
 
     def test_missing_status_is_not_treated_as_closed(self):
         self.assertIn('valid status',tracker_checks([self.item(Status='')])[0]['detail'])
+
+
+class AssumptionChecks(unittest.TestCase):
+    digest_a=hashlib.sha256(b'a').hexdigest()
+    digest_b=hashlib.sha256(b'b').hexdigest()
+
+    def setUp(self):
+        self.sources=[dict(source_id='A',path='a.dat',status='Current',sha256=self.digest_a,depends_on=''),
+                      dict(source_id='B',path='b.dat',status='Current',sha256=self.digest_b,depends_on='')]
+        self.items=[{h:'recorded' for h in HEADERS}|{'Item ID':'COH-001','Status':'Open'}]
+
+    def entry(self,**updates):
+        e=dict(id='A-001',kind='gap',statement='A small gap.',where='Model',nodes=['A'],
+               magnitude=dict(value=0.4,unit='kip',sized_by='Compared with the journal value.'),
+               disposition=dict(status='accepted-negligible',decision='D-062',on='2026-10-19'),
+               owner='Project user',coherence_items=['COH-001'],basis={'A':self.digest_a},references=[])
+        e.update(updates)
+        return e
+
+    def register(self,*entries):
+        return dict(schema=ASSUMPTION_SCHEMA,schema_version=1,note='',entries=list(entries))
+
+    def test_current_basis_matches(self):
+        result=assumption_checks(self.register(self.entry()),self.sources,self.items)
+        self.assertEqual([r['status'] for r in result],['MATCH'])
+        self.assertEqual(result[0]['check_id'],'ASSUMPTION:A-001')
+
+    def test_moved_register_hash_marks_entry_stale_without_rejudging(self):
+        self.sources[0]['sha256']=self.digest_b
+        state=assumption_state(self.entry(),self.sources)
+        self.assertTrue(state['stale']); self.assertEqual(state['stale_sources'],['A'])
+        self.assertEqual(state['current_basis'],{'A':self.digest_b})
+        result=assumption_checks(self.register(self.entry()),self.sources,self.items)
+        self.assertEqual(result[0]['status'],'REVIEW')
+        self.assertIn('re-judge',result[0]['detail'])
+        self.assertEqual(self.entry()['disposition']['status'],'accepted-negligible')
+
+    def test_hash_comparison_ignores_case(self):
+        self.assertFalse(assumption_state(self.entry(basis={'A':self.digest_a.upper()}),self.sources)['stale'])
+
+    def test_unknown_source_tracker_item_and_duplicate_id_are_errors(self):
+        for bad in (dict(basis={'Z':self.digest_a}),dict(coherence_items=['COH-999']),dict(kind='guess'),
+                    dict(disposition=dict(status='closed',decision='',on='2026-10-19')),dict(nodes=[]),
+                    dict(magnitude=dict(value='big',unit='kip',sized_by='x')),dict(disposition=dict(status='pending',decision='D-050',on='19 Oct'))):
+            result=assumption_checks(self.register(self.entry(**bad)),self.sources,self.items)
+            self.assertEqual(result[0]['status'],'ERROR',bad)
+        result=assumption_checks(self.register(self.entry(),self.entry()),self.sources,self.items)
+        self.assertTrue(all(r['status']=='ERROR' and 'Duplicate' in r['detail'] for r in result))
+
+    def test_pending_entries_need_no_decision_but_are_open(self):
+        pending=self.entry(id='A-002',disposition=dict(status='pending',decision='',on='2026-10-19'))
+        self.assertEqual(assumption_checks(self.register(pending),self.sources,self.items)[0]['status'],'MATCH')
+        self.sources[1]['sha256']=self.digest_a
+        stale=self.entry(id='A-003',basis={'B':self.digest_b})
+        summary=assumption_summary(self.register(self.entry(),pending,stale),self.sources)
+        self.assertEqual([e['id'] for e in summary['entries']],['A-003','A-002','A-001'])
+        self.assertEqual((summary['count'],summary['open'],summary['stale']),(3,1,1))
+
+    def test_report_lists_open_and_stale_entries_only(self):
+        self.sources[1]['sha256']=self.digest_a
+        summary=assumption_summary(self.register(self.entry(),self.entry(id='A-002',disposition=dict(status='pending',decision='',on='2026-10-19')),
+                                                 self.entry(id='A-003',basis={'B':self.digest_b})),self.sources)
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            write_report(root,dict(checked_at_utc='now',outstanding_count=0,source_count=2,item_count=1,check_counts={'MATCH':1},
+                                   checks=[],items=[],assumptions=summary))
+            text=(root/'project_current/coherence/latest_review.md').read_text(encoding='utf-8')
+        self.assertIn('## Assumptions and gaps',text)
+        self.assertIn('| A-002 | gap | open |',text)
+        self.assertIn('| A-003 | gap | stale: B |',text)
+        self.assertNotIn('| A-001 |',text)
+        self.assertIn('0.4 kip',text)
+
+    def test_schema_is_checked_and_absent_register_is_allowed(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path=Path(temp)/'assumptions.json'
+            self.assertIsNone(read_assumptions(path))
+            self.assertEqual(assumption_checks(None,self.sources,self.items),[])
+            path.write_text('{"schema":"other","schema_version":1,"entries":[]}',encoding='utf-8')
+            with self.assertRaises(ValueError): read_assumptions(path)
+            path.write_text('{"schema":"'+ASSUMPTION_SCHEMA+'","schema_version":1,"entries":[]}',encoding='utf-8')
+            self.assertEqual(read_assumptions(path)['entries'],[])
 
 
 if __name__=='__main__': unittest.main()
