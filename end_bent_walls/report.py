@@ -345,6 +345,12 @@ def build_report(e, title=None):
            '<p>Inputs use the 16 October reviewed project snapshot embedded in the notebook. The available FBMP XML predates the selected cap cases. Current journal bytes match accepted T009 but differ from the older source-register entry. These limitations remain visible below.</p>')
         + f'<ul>{conf}</ul>')))
     body = ''.join(parts) + REPORT_SCRIPT
+    try:
+        from report_cards import cards_html, cite_data, prose_pieces
+    except ImportError:  # portable package built without the cards module
+        pass
+    else:
+        body += cards_html(cite_data(REFERENCES, extra_pieces=prose_pieces(body)))
     script = f'<script type="text/javascript">{plotly.offline.get_plotlyjs()}</script>'
     return (f'<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
             f'<title>{html.escape(title)}</title><style>{STYLE}</style>{script}</head><body>{body}</body></html>')

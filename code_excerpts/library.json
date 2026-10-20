@@ -1,0 +1,16 @@
+{
+  "library_dir": "../code_library",
+  "note": "Code PDFs stay outside the repository (copyrighted, large). Override the folder with the D2MPDB_CODE_LIBRARY environment variable. 'pages' limits bookmark lookups to one volume of a combined PDF (0-based start, exclusive end).",
+  "codes": {
+    "LRFD": {"file": "LRFD_10th_2024.pdf", "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)"},
+    "SDG": {"file": "SDM_2026.pdf", "edition": "FDOT Structures Manual, Volume 1: Structures Design Guidelines (January 2026)", "pages": [11, 431]},
+    "SDM": {"file": "SDM_2026.pdf", "edition": "FDOT Structures Manual, Volume 2: Structures Detailing Manual (January 2026)", "pages": [431, 760]},
+    "AASHTO Guide Spec. Pedestrian Bridges": {"file": "PedGuide_2009.pdf", "edition": "AASHTO LRFD Guide Specifications for the Design of Pedestrian Bridges (2009)", "scanned": true}
+  },
+  "citation_sources": [
+    {"references": "end_bent_walls/data/references.json"},
+    {"references": "pile_design/data/references.json"},
+    {"scan": ["pier_cap/*.py"]}
+  ],
+  "journal_references": "journal/References"
+}

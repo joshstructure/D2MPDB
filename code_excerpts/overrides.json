@@ -1,0 +1,13 @@
+{
+  "note": "Hand entries the automatic search cannot make. 'manual': scanned pages (rect in displayed page points, 0-based page). 'journal': reuse GetRefs one-page excerpts from journal/References. 'skip': pieces that are not code provisions.",
+  "manual": {
+    "AASHTO Guide Spec. Pedestrian Bridges 3.1": {"page": 8, "rect": [60, 445, 300, 535], "title": "3.1—Pedestrian Loading (PL)", "printed": "2"}
+  },
+  "journal": {
+    "SDG 2.4.1, Table 2.4.1-1": ["SDG 2.4.1.A.pdf", "SDG Table 2.4.1-1.pdf"],
+    "SDG 2.7.1, Table 2.7.1-1": ["SDG 2.7.1 - Table 2.7.1-1.pdf"]
+  },
+  "skip": {
+    "MCAD-S1 q_PL": "Project Mathcad sheet (template input), not a code provision."
+  }
+}

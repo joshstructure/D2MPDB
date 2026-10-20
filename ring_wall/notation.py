@@ -103,8 +103,10 @@ def term(name):
 def symbol(name):
     label = term(name)[0]
     base, sep, sub = label.partition('_')
-    main = '<mi>'+escape(base)+'</mi>'
-    return '<msub>'+main+'<mtext>'+escape(sub)+'</mtext></msub>' if sep else main
+    attr = ' data-var="'+escape(name)+'"'  # report_cards hooks
+    if sep:
+        return '<msub'+attr+'><mi>'+escape(base)+'</mi><mtext>'+escape(sub)+'</mtext></msub>'
+    return '<mi'+attr+'>'+escape(base)+'</mi>'
 
 
 def number(value):

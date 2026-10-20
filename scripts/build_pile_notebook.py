@@ -161,6 +161,8 @@ print("Output scrolling disabled for future cell executions.")
 def package_files(repo):
     files = [*repo.glob('pile_design/*.py'), *repo.glob('pile_design/data/*.json'), *repo.glob('pile_design/mathcad/*.png'),
              *repo.glob('pier_cap/*.py'), *repo.glob('pier_cap/data/*.json'),
+             *repo.glob('report_cards/*.py'), *repo.glob('report_cards/*.js'), *repo.glob('report_cards/*.css'),
+             *repo.glob('code_excerpts/excerpts.json'),
              repo / 'scripts' / 'mathcad_sheet.py', repo / 'scripts' / 'mathcad_plot.py', repo / 'scripts' / 'bpad_sheet.py',
              repo / 'cap_mathcad' / 'templates' / 'psbeam_check_summary_plot.bin', repo / 'cap_mathcad' / 'templates' / 'psbeam_check_summary_plot.json',
              repo / 'requirements-pier-cap-colab.txt']

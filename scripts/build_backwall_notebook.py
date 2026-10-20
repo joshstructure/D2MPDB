@@ -164,6 +164,8 @@ def package_files(repo):
     """The package: end_bent_walls, the shared pier_cap engine, and the scripts the distilled Blockpad export imports."""
     return sorted([*repo.glob('end_bent_walls/*.py'), *repo.glob('end_bent_walls/data/*.json'),
                    *repo.glob('pier_cap/*.py'), *repo.glob('pier_cap/data/*.json'), repo / 'requirements-pier-cap-colab.txt',
+                   *repo.glob('report_cards/*.py'), *repo.glob('report_cards/*.js'), *repo.glob('report_cards/*.css'),
+                   *repo.glob('code_excerpts/excerpts.json'),
                    *[repo / 'scripts' / name for name in EMBEDDED_SCRIPTS if (repo / 'scripts' / name).is_file()]])
 
 

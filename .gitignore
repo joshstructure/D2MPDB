@@ -13,4 +13,6 @@ tasks/*/working.bpad
 tasks/*/References/
 tasks/*/components/
 workflow/integration.lock
+# One-page excerpt PDFs are rebuilt from the code library (scripts/build_code_excerpts.py); the page images are tracked.
+code_excerpts/References/
 workflow/history/*/previous.bpad

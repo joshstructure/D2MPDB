@@ -22,8 +22,11 @@ def symbol(name):
     else:
         glyph = GREEK.get(base, base)
     subs = [GREEK.get(s, s) for s in subs]
-    main = tag('mi', glyph)
-    return '<msub>' + main + tag('mtext', ','.join(subs)) + '</msub>' if subs else main
+    # data-var lets the report cards (report_cards/cards.js) find every use and the definition of a symbol.
+    attr = f' data-var="{escape(name)}"'
+    if subs:
+        return f'<msub{attr}>' + tag('mi', glyph) + tag('mtext', ','.join(subs)) + '</msub>'
+    return f'<mi{attr}>{escape(glyph)}</mi>'
 
 
 def expression(ast, engine=None, units=None, substitute=False, units_only=False):

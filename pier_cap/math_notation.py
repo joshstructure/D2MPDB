@@ -37,8 +37,12 @@ def symbol(name):
         return '<mrow><mo>∑</mo>'+symbol('Av')+'</mrow>'
     base = parts[0]
     suffix = ([subs[base]] if base in subs else [])+parts[1:]
-    main = tag('mi', greek.get(base, special.get(base, base)))
-    return '<msub>'+main+tag('mtext', ','.join(suffix))+'</msub>' if suffix else main
+    # data-var lets the report cards (report_cards/cards.js) find every use and the definition of a symbol.
+    attr = ' data-var="'+escape(name)+'"'
+    glyph = greek.get(base, special.get(base, base))
+    if suffix:
+        return '<msub'+attr+'>'+tag('mi', glyph)+tag('mtext', ','.join(suffix))+'</msub>'
+    return '<mi'+attr+'>'+escape(str(glyph))+'</mi>'
 
 
 def fenced(body):

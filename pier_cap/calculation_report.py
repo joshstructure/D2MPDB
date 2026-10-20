@@ -419,7 +419,13 @@ def calculation_report(case=None, *, evaluation=None, search_result=None, search
     parts.append('<details class="section" id="provenance"><summary>Snapshot provenance and calculation basis</summary><p>This cap report uses the notebook’s C005 formula set and current coordinate/detailing checks. It is not a recalculation by Mathcad or Blockpad. The imported pile analysis and minimum-tip review, when loaded, are exported separately in the full bundle.</p><p>Formula captions and check bases identify inherited source relations and adopted assumptions. The actual-cage LRFD module identifies its verified 10th-edition articles and FDOT 2026 criteria separately; this does not verify every inherited C005 relation against that edition. Displayed values use six significant figures; comparisons use full precision.</p><p class="meta">Case SHA-256 (canonical JSON): '+case_hash+'<br>Formula definition SHA-256: '+formula_hash+'</p><p>Report formatting basis: BPAD_Ref_V5.txt, §16 (guide v11). Snapshot is fixed at export; regenerate after editing the notebook inputs.</p><details class="working raw-source"><summary>Current case inputs and source record (omitted from print)</summary><pre class="meta">'+escape(json.dumps(e.case,indent=2,ensure_ascii=False))+'</pre></details></details>')
     from plotly.offline import get_plotlyjs
     body = number_tables('\n'.join(parts), report=True)
-    return body+'\n'+'\n'.join(['</main>',*r.figures,'<script>'+get_plotlyjs()+'</script>','<script>'+JS+'</script></body></html>'])
+    # Definition cards for every data-var symbol; citation cards for the prose code references in this report.
+    try:
+        from report_cards import cards_html, cite_data, prose_pieces
+        cards = cards_html(cite_data(None, extra_pieces=prose_pieces(body)))
+    except ImportError:  # portable package built without the cards module
+        cards = ''
+    return body+'\n'+'\n'.join(['</main>',*r.figures,'<script>'+get_plotlyjs()+'</script>','<script>'+JS+'</script>',cards,'</body></html>'])
 
 
 def write_calculation_report(case, path, **kwargs):

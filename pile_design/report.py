@@ -440,6 +440,12 @@ def build_report(e, title=None):
     parts.append(_report_section('pending', tail[4][1], _pending_section(e)))
     parts.append(_report_section('sources', tail[5][1], _sources_section(e)))
     body = ''.join(parts) + REPORT_SCRIPT
+    try:
+        from report_cards import cards_html, cite_data, prose_pieces
+    except ImportError:  # portable package built without the cards module
+        pass
+    else:
+        body += cards_html(cite_data(REFERENCES, extra_pieces=prose_pieces(body)))
     script = f'<script type="text/javascript">{plotly.offline.get_plotlyjs()}</script>'
     return (f'<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
             f'<title>{html.escape(title)}</title><style>{STYLE}</style>{script}</head><body>{body}</body></html>')

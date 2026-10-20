@@ -17,6 +17,8 @@ def build(repo, *, preserve_outputs=False):
     notebook = json.loads(original_text)
     buffer = io.BytesIO()
     files = sorted([*repo.glob('pier_cap/*.py'), *repo.glob('pier_cap/data/*.json'),
+                    *repo.glob('report_cards/*.py'), *repo.glob('report_cards/*.js'), *repo.glob('report_cards/*.css'),
+                    *repo.glob('code_excerpts/excerpts.json'),
                     *(repo/'scripts'/name for name in EMBEDDED_SCRIPTS if (repo/'scripts'/name).is_file()),
                     repo/'requirements-pier-cap-colab.txt'])
     with zipfile.ZipFile(buffer, 'w', zipfile.ZIP_DEFLATED) as package:
