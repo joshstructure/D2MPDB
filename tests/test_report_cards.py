@@ -68,6 +68,14 @@ class CardAssets(unittest.TestCase):
         self.assertNotIn('<script id="cite-data"', html)
         self.assertIsNone(report_cards.cite_data({}, store=ROOT / 'nonexistent'))
 
+    def test_cited_page_files_select_each_calculations_pages(self):
+        backwall = report_cards.cited_page_files(ROOT, references=['end_bent_walls/data/references.json'], scan=['end_bent_walls/*.py'])
+        cap = report_cards.cited_page_files(ROOT, scan=['pier_cap/*.py'])
+        self.assertTrue(any(p.name.startswith('SDM_12.3.F') for p in backwall))
+        self.assertTrue(all(p.is_file() and p.parent == STORE / 'pages' for p in backwall + cap))
+        self.assertLess(len(cap), len(backwall))
+        self.assertEqual(report_cards.cited_page_files(ROOT / 'nonexistent', scan=['pier_cap/*.py']), [])
+
     def test_cite_data_embeds_crops_once_per_page(self):
         refs = {'strap_plans': {'code': 'SDM', 'article': '12.3.F', 'governs': 'Plan note'},
                 'load_factors': {'code': 'LRFD', 'article': '3.4.1, Tables 3.4.1-1 and 3.4.1-2', 'governs': 'Load factors'}}
@@ -102,6 +110,25 @@ class ReportsCarryCards(unittest.TestCase):
         self.assertIn(' data-var="', html)
         data = json.loads(html.split('<script id="cite-data" type="application/report-cards+json">', 1)[1].split('</script>', 1)[0].replace('<\\/', '</'))
         self.assertIn('LRFD 5.6.4.4, Eqs. 5.6.4.4-1 and -2', data['cites'])
+
+    def test_portable_backwall_package_builds_cards_with_excerpt_images(self):
+        """A Colab-style extracted package (no repository) still embeds the excerpt crops."""
+        import base64, io, subprocess, tempfile, zipfile
+        from scripts.build_backwall_notebook import NOTEBOOK, SETUP_ID
+        notebook = json.loads((ROOT / NOTEBOOK).read_text(encoding='utf-8'))
+        source = ''.join(next(c for c in notebook['cells'] if c.get('id') == SETUP_ID)['source'])
+        package = base64.b64decode(source.split('PACKAGE = "', 1)[1].split('"', 1)[0])
+        with tempfile.TemporaryDirectory() as folder:
+            zipfile.ZipFile(io.BytesIO(package)).extractall(folder)
+            code = ('import sys; sys.path.insert(0, %r)\n'
+                    'from end_bent_walls.model import evaluate\n'
+                    'from end_bent_walls.report import build_report\n'
+                    'html = build_report(evaluate())\n'
+                    'print("CARDS", "report-cards-script" in html, "CROPS", html.count("data:image/png;base64,"))\n') % folder
+            run = subprocess.run([sys.executable, '-I', '-c', code], cwd=folder, capture_output=True, text=True, timeout=900)
+            self.assertEqual(run.returncode, 0, run.stderr[-2000:])
+            self.assertIn('CARDS True', run.stdout)
+            self.assertRegex(run.stdout, r'CROPS [1-9]\d')
 
     def test_cap_report(self):
         from tests.case_fixtures import default_case

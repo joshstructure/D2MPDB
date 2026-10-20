@@ -126,6 +126,39 @@ def cite_data(references: dict | None = None, extra_pieces=(), *, store: Path | 
     return {'cites': cites, 'pages': pages, 'version': data.get('version', ''), 'built': data.get('built', '')}
 
 
+def cited_page_files(root, references=(), scan=()) -> list[Path]:
+    """Store page images (crop + full) for the provisions a calculation cites.
+
+    Used by the portable-notebook builders so Colab-built reports carry the excerpt images:
+    ``references`` are references.json paths and ``scan`` glob patterns of sources with prose
+    citations, both relative to ``root``. Returns nothing when ``root`` has no excerpt store.
+    """
+    root = Path(root)
+    store = root / 'code_excerpts'
+    data = load_store(store)
+    if not data:
+        return []
+    wanted: list[str] = []
+    for rel in references:
+        path = root / rel
+        if path.is_file():
+            for piece in pieces(json.loads(path.read_text(encoding='utf-8'))):
+                if piece not in wanted:
+                    wanted.append(piece)
+    for pattern in scan:
+        for path in sorted(root.glob(pattern)):
+            for piece in prose_pieces(path.read_text(encoding='utf-8', errors='replace')):
+                if piece not in wanted:
+                    wanted.append(piece)
+    files = set()
+    for piece in wanted:
+        for pg in data['cites'].get(piece, {}).get('pages', []):
+            for key in ('crop', 'full'):
+                if pg.get(key) and (store / pg[key]).is_file():
+                    files.add(store / pg[key])
+    return sorted(files)
+
+
 def cards_html(cites: dict | None = None) -> str:
     """The HTML to append before ``</body>``: citation data (if any), stylesheet and script."""
     css, js = assets()

@@ -160,12 +160,24 @@ print("Output scrolling disabled for future cell executions.")
 EMBEDDED_SCRIPTS = ('__init__.py', 'bpad_sheet.py', 'mathcad_sheet.py', 'build_backwall_mathcad.py', 'build_backwall_bpad.py')
 
 
+def cited_pages(repo):
+    """Excerpt page images for the provisions this calculation cites, so Colab-built reports show them in the citation cards."""
+    import sys
+    if str(repo) not in sys.path:
+        sys.path.insert(0, str(repo))
+    try:
+        from report_cards import cited_page_files
+    except ImportError:
+        return []
+    return cited_page_files(repo, references=['end_bent_walls/data/references.json'], scan=['end_bent_walls/*.py'])
+
+
 def package_files(repo):
-    """The package: end_bent_walls, the shared pier_cap engine, and the scripts the distilled Blockpad export imports."""
+    """The package: end_bent_walls, the shared pier_cap engine, the report cards and the scripts the distilled Blockpad export imports."""
     return sorted([*repo.glob('end_bent_walls/*.py'), *repo.glob('end_bent_walls/data/*.json'),
                    *repo.glob('pier_cap/*.py'), *repo.glob('pier_cap/data/*.json'), repo / 'requirements-pier-cap-colab.txt',
                    *repo.glob('report_cards/*.py'), *repo.glob('report_cards/*.js'), *repo.glob('report_cards/*.css'),
-                   *repo.glob('code_excerpts/excerpts.json'),
+                   *repo.glob('code_excerpts/excerpts.json'), *cited_pages(repo),
                    *[repo / 'scripts' / name for name in EMBEDDED_SCRIPTS if (repo / 'scripts' / name).is_file()]])
 
 

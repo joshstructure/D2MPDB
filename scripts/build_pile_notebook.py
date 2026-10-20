@@ -158,11 +158,23 @@ print("Output scrolling disabled for future cell executions.")
         'nbformat': 4, 'nbformat_minor': 5}
 
 
+def cited_pages(repo):
+    """Excerpt page images for the provisions this calculation cites, so Colab-built reports show them in the citation cards."""
+    import sys
+    if str(repo) not in sys.path:
+        sys.path.insert(0, str(repo))
+    try:
+        from report_cards import cited_page_files
+    except ImportError:
+        return []
+    return cited_page_files(repo, references=['pile_design/data/references.json'], scan=['pile_design/*.py'])
+
+
 def package_files(repo):
     files = [*repo.glob('pile_design/*.py'), *repo.glob('pile_design/data/*.json'), *repo.glob('pile_design/mathcad/*.png'),
              *repo.glob('pier_cap/*.py'), *repo.glob('pier_cap/data/*.json'),
              *repo.glob('report_cards/*.py'), *repo.glob('report_cards/*.js'), *repo.glob('report_cards/*.css'),
-             *repo.glob('code_excerpts/excerpts.json'),
+             *repo.glob('code_excerpts/excerpts.json'), *cited_pages(repo),
              repo / 'scripts' / 'mathcad_sheet.py', repo / 'scripts' / 'mathcad_plot.py', repo / 'scripts' / 'bpad_sheet.py',
              repo / 'cap_mathcad' / 'templates' / 'psbeam_check_summary_plot.bin', repo / 'cap_mathcad' / 'templates' / 'psbeam_check_summary_plot.json',
              repo / 'requirements-pier-cap-colab.txt']

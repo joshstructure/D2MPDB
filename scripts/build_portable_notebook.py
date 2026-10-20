@@ -11,6 +11,18 @@ import zipfile
 EMBEDDED_SCRIPTS = ('__init__.py', 'bpad_sheet.py', 'mathcad_sheet.py', 'mathcad_plot.py', 'build_cap_mathcad.py', 'build_cap_bpad.py')
 
 
+def cited_pages(repo):
+    """Excerpt page images for the provisions the cap report cites, so Colab-built reports show them in the citation cards."""
+    import sys
+    if str(repo) not in sys.path:
+        sys.path.insert(0, str(repo))
+    try:
+        from report_cards import cited_page_files
+    except ImportError:
+        return []
+    return cited_page_files(repo, scan=['pier_cap/*.py'])
+
+
 def build(repo, *, preserve_outputs=False):
     path = repo / 'Cap_and_Pile_Design.ipynb'
     original_text = path.read_text(encoding='utf-8')
@@ -18,7 +30,7 @@ def build(repo, *, preserve_outputs=False):
     buffer = io.BytesIO()
     files = sorted([*repo.glob('pier_cap/*.py'), *repo.glob('pier_cap/data/*.json'),
                     *repo.glob('report_cards/*.py'), *repo.glob('report_cards/*.js'), *repo.glob('report_cards/*.css'),
-                    *repo.glob('code_excerpts/excerpts.json'),
+                    *repo.glob('code_excerpts/excerpts.json'), *cited_pages(repo),
                     *(repo/'scripts'/name for name in EMBEDDED_SCRIPTS if (repo/'scripts'/name).is_file()),
                     repo/'requirements-pier-cap-colab.txt'])
     with zipfile.ZipFile(buffer, 'w', zipfile.ZIP_DEFLATED) as package:
