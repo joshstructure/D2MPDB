@@ -357,8 +357,8 @@ class SubstructureDxfTests(unittest.TestCase):
         self.assertEqual(self.manifest["annotation_overlaps"], [])
         self.assertEqual(self.manifest["layout_warnings"], [])
         rules = self.manifest["anno_rules_checked"]
-        for rule in ("A1", "A2", "A3", "A10", "A11", "A12", "A13", "A14", "A21", "A23", "B9", "B11", "B12",
-                     "D3", "D12", "D13", "D15", "E5"):
+        for rule in ("A1", "A2", "A3", "A10", "A11", "A12", "A13", "A14", "A21", "A23", "A24", "B9", "B11",
+                     "B12", "D3", "D12", "D13", "D15", "E5"):
             self.assertIn(rule, rules, rule)
 
     def test_leader_through_text_check(self):
@@ -388,6 +388,23 @@ class SubstructureDxfTests(unittest.TestCase):
         v.segs = [((0.0, 1.15), (3.0, 1.15), "Dimension", 3)]
         self.assertEqual([r for r, _ in anno_check.leader_through_text(v)], ["A23"])
         self.assertIn("A23", anno_check.RULES)
+
+    def test_tip_near_break_check(self):
+        """A24: a leader tip within 0.15 in of a break line is a finding (the
+        pedestal plan's centerline tips once sat on the break line); a
+        pointer's is not, nor a tip 0.3 in away."""
+        from substructure_drawings import anno_check
+
+        class FakeView:
+            sf = 16.0      # 3/4" = 1'-0": one paper inch is 1.333 ft
+            breaks = [((2.0, 0.0), (2.0, 4.0))]
+            leaders = [{"kind": "leader", "tips": [(2.08, 1.0)], "text": "CL CAP", "call": 1},
+                       {"kind": "pointer", "tips": [(2.08, 2.0)], "text": "9\"", "call": 2},
+                       {"kind": "leader", "tips": [(2.5, 3.0)], "text": "CL BEARING", "call": 3}]
+        found = anno_check.tip_near_break(FakeView())
+        self.assertEqual([r for r, _ in found], ["A24"])
+        self.assertIn("CL CAP", found[0][1])
+        self.assertIn("A24", anno_check.RULES)
 
     def test_dimension_blocks_have_no_zero_length_lines_and_masked_text(self):
         """Rules F and B2: ezdxf's zero-length lines in the dimension blocks

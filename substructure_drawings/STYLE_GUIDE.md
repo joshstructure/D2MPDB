@@ -219,6 +219,25 @@ symbol at page scale.
   dimension's own extension and dimension lines (its value sits on them).
   Placement: the embedment value stands on the cap-end side of the bar,
   the leader's tip under the wall on the other side.
+- **A24 A tip stands clear of break lines; the line it names runs past the
+  break.**  A leader that points at a centerline or an edge where the view
+  is broken points at a stretch that continues beyond the break line: the
+  centerlines of the pedestal plans run 0.35" past the break line on the
+  label side and the tips sit 0.05" short of their ends (0.1" and on the
+  break before).  Checked: a tip of a leader, fan or parallel leader within
+  0.12" of a break line or pile break lobe is a finding (the project's
+  break-proximity distance, as D12 and D15).  A stub shorter than two tip
+  distances (the plan's 0.3 ft strap and coping stubs behind the cap, whose
+  small break lines are exempt from the check) takes its tip at the root,
+  on the face it leaves.  The check also moved three older tips: the
+  coping callout of the end bent plans points at 0.3 of the drawn strip
+  (0.17" off its break, still under the slab's tip), the pier elevation's pile description
+  stands 0.3" above the pile break with the circled pile numbers on the
+  left of the piles, and the pier's Section B-B pile label starts 0.13"
+  above the pile break.  Markup 2026-10-19
+  (round 6, B4-12 pedestal plan): "Extend these centerlines a bit and so the
+  leader arrows of the anno are so close to the breakline so that it's more
+  clear".
 
 ## B. Dimensions
 
@@ -827,3 +846,10 @@ Markups on the round-4 sheets, 2026-10-19 round 5:
 | B4-1 elevation | Move 1 (the 1'-0" (MIN.) embedment value) to make room for the other anno and adjust the leaders | B7, A2 | embedment dimension in the pile nearest the PGL, value in the run space at the PGL; the pile description's leader keeps the outboard spaces |
 | B4-12 bar list | Should Bar B2 be a type 5 not a type 11 | C6 | yes: the open stirrups 6B2/5B2 are Type 5 (B = height, C = width, D = E = feet), no hook style |
 | B4-12 bar list | Check the other types closely, there are other wrong ones: C should be an 11, E1 and E4 are type 10s, E3 is type 11; D1 and D2 are straight bars | C6 | 90° end legs are legs, not hooks: 5C, 4E3, pier 5D1/5D2 Type 11; 4E4 Type 10; 4E1 straight in the model → MODEL CHECK note on the bar list (Type 10 intended); backwall 5D1/4D2 Type 1 |
+
+Markups on the 2.6.0 sheets (pier cheek walls, D-059 to D-061), 2026-10-19 round 6:
+
+| Where | Comment (engineer's words) | Rule | Resolution |
+|---|---|---|---|
+| B4-8 Section F-F | Did you run an anno overlap minimizer helper? We need something because I see a huge anno overlap | A23 | the PIER CAP leader ran through the 1'-0" embedment value: value moved to the cap-end side of the bar; new check A23 (no leader, pointer or dimension line through another annotation's text) in every build |
+| B4-12 pedestal plan | Extend these centerlines a bit and so the leader arrows of the anno are so close to the breakline so that it's more clear | A24 | CL CAP / CL PIER and CL BEARING run 0.35" past the break line, tips 0.05" short of their ends (all three pedestal plans); new check A24 (no tip within 0.12" of a break line), which also moved the coping and pile tips off their breaks (the strap tips go to the stubs' roots) |

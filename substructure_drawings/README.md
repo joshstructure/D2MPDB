@@ -48,7 +48,12 @@ support, D-060 writes the marks into the model). With D-061 (the verticals
 developed 1'-0" into the cap) Section F-F dimensions the embedment, and the
 check A23 (no leader, pointer or dimension line through another
 annotation's text) joins the build after that value and the PIER CAP leader
-once collided.
+once collided; A24 (no leader tip within 0.12" of a break line) follows the
+pedestal plan markup ("extend these centerlines a bit"): the pedestal plans'
+centerlines run 0.35" past their break, and the pier elevation's pile
+description, the pier's Section B-B pile label (now beside the cap under
+its bottom, since every route to the centerline-label row crossed the 4"
+value) and the end bent plans' coping callouts moved off their breaks.
 
 [`output/B4_Substructure_EndBents_Pier.dxf`](output/B4_Substructure_EndBents_Pier.dxf)
 is one DXF with plans, elevations (concrete and reinforcement together),

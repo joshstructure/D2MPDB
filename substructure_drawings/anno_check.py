@@ -60,6 +60,12 @@ A21   callout tips apart             a tip of one leader, fan or parallel       
                                      leader lies under 0.1 k from a tip of
                                      another callout (pointers of pulled
                                      values are not callouts)
+A24   tip near a break line          a tip of a leader, fan or parallel leader   TIP_BREAK_K
+                                     lies under 0.12 k from a break line or a
+                                     pile break lobe (the line it points at
+                                     runs on past the break instead); the
+                                     small break lines of context stubs are
+                                     exempt (a stub takes its tip at the root)
 B9    pulled value clearance         the box of a pulled-out dimension value     PULLED_CLEAR_TH
                                      is under 0.5 th from a Dimension segment
                                      other than its own pointer
@@ -128,6 +134,7 @@ JOIN_TOL = 0.005         # an outline end is met by a segment that ends or passe
 OUTLINE_CLIP_TOL = 0.01  # an outline end this close (feet) to a recorded window cut is D12's, not D13's (D13)
 TIP_APART_K = 0.1        # tips of two different callouts are at least this far apart, paper inches (A21)
 BREAK_CLIP_K = 0.12      # an edge running on this far (paper inches) past a break line on both sides is drawn whole (D15)
+TIP_BREAK_K = 0.12       # a leader tip keeps this far (paper inches) from a break line (A24; the strap stubs are 0.35 ft)
 
 # levels
 LINEWORK_SKIP = ("Patterning", "Symbols")         # hatch patterns; symbols drawn around their own letters
@@ -137,8 +144,8 @@ LEADER_LINE_EXACT = ("Rebar", "Rebar2", "BearingPadMisc")   # with the prefixes:
 CLIP_EXACT = ("Rebar2",)                                    # with the prefixes: the levels of D12
 OUTLINE_PREFIXES = ("SubStrConc", "PileConc", "PileSteel")  # the concrete outline levels of D13
 
-RULES = ("A1", "A2", "A3", "A10", "A11", "A12", "A13", "A14", "A21", "A23", "B9", "B11", "B12", "D3", "D12",
-         "D13", "D15", "E5")
+RULES = ("A1", "A2", "A3", "A10", "A11", "A12", "A13", "A14", "A21", "A23", "A24", "B9", "B11", "B12", "D3",
+         "D12", "D13", "D15", "E5")
 
 
 # ------------------------------------------------------------------ geometry
@@ -806,6 +813,30 @@ def tips_apart(view):
     return out
 
 
+def tip_near_break(view):
+    """A24: the tip of a leader, fan or parallel leader (not a pointer)
+    lies within 0.12 k of a break line or pile break lobe, so the reader
+    cannot tell whether it points at the member or at the break (the
+    pedestal plan's centerline tips once sat on the break line: "Extend
+    these centerlines a bit ... so that it's more clear")."""
+    k = view.sf / 12.0
+    need = TIP_BREAK_K * k
+    out = []
+    # (the small break lines of the plan's context stubs are exempt: a stub
+    # shorter than two tip distances takes its tip at its root)
+    small = set(getattr(view, "small_breaks", []))
+    breaks = [(a, b) for a, b in view.breaks if (a, b) not in small]
+    if not breaks:
+        return out
+    for r in view.leaders:
+        if r["kind"] == "pointer" or not r["tips"]:
+            continue
+        d = min(point_seg_dist(t, a, b) for t in r["tips"] for a, b in breaks)
+        if d < need * (1.0 - 1e-6):
+            out.append(("A24", "[A24] tip of '%s' %.2f in from a break line" % (_name(r["text"]), d / k)))
+    return out
+
+
 def title_centred(view):
     """E5: the title sits on the centre of its subject."""
     spec = view.title_spec
@@ -821,7 +852,7 @@ def title_centred(view):
 CHECKS = (text_over_linework, leader_through_symbol, leader_through_text, text_clearance, acute_bends, fan_direction,
           leader_crossings, fan_spread, leader_over_linework, leader_along_line, pulled_clearance,
           pointer_gap, dimension_beside_line, short_centerlines, clipped_without_break, break_without_clip,
-          open_outlines, tips_apart, title_centred)
+          open_outlines, tips_apart, tip_near_break, title_centred)
 
 
 def check_view(view):

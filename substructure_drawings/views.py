@@ -84,6 +84,9 @@ def small_break(v, p, q, zk=0.05):
            (m[0] + ux * z / 2 - nx * z, m[1] + uy * z / 2 - ny * z), (m[0] + ux * z, m[1] + uy * z), q]
     v.pl(pts, "Symbols")
     v._note_break(pts)
+    # (A24 exempts these: a stub shorter than two tip distances, 0.24",
+    # cannot hold a tip 0.12" off its break, so the tip sits at its root)
+    v.small_breaks.extend(v.breaks[-(len(pts) - 1):])
 
 
 def draw_bar(v, pts, dia_in):
@@ -883,9 +886,13 @@ class Builder:
         # (the slab fully and the start of the front coping, 2.2 ft in front of
         # the cap; the side copings beside the cheeks; 4" stubs of the copings
         # behind the cheeks and of the straps, under the label rows: sheet room)
-        ctx_boxes = {"closure": (uL - 1.5, vf - 1.5, uR + 1.5, vb + 0.3),
-                     "coping": (uL - 1.5, vf - 1.5, uR + 1.5, vb + 0.3),
-                     "strap": (uL, vb - 0.01, uR, vb + 0.3)}
+        # (the stubs behind the cap are 0.3 ft, as long as the label row r1
+        # above allows; the strap tip sits at the stub's root on the cap
+        # face, and the stub's break is a small one, which A24 exempts)
+        back = vb + 0.3
+        ctx_boxes = {"closure": (uL - 1.5, vf - 1.5, uR + 1.5, back),
+                     "coping": (uL - 1.5, vf - 1.5, uR + 1.5, back),
+                     "strap": (uL, vb - 0.01, uR, back)}
         cx_lo = v_bot
         for role, cb in ctx_boxes.items():
             recs = [r for r in ctx if r["role"] == role]
@@ -941,7 +948,7 @@ class Builder:
                         out.append([a, b])
                 return out
             for a, b in _merged(cut["back"]):
-                small_break(v, (a - 0.08 * k, vb + 0.3), (b + 0.08 * k, vb + 0.3))
+                small_break(v, (a - 0.08 * k, back), (b + 0.08 * k, back))
             for a, b in _merged(cut["front"]):
                 small_break(v, (a - 0.08 * k, vf - 1.5), (b + 0.08 * k, vf - 1.5))
             for key, xb in (("left", uL - 1.5), ("right", uR + 1.5)):
@@ -988,10 +995,13 @@ class Builder:
                 # (the rows of these two go under the flags, set below; the
                 # slab's tip in the upper part of the drawn slab, the coping's
                 # in the lower part of its strip, so the two leaders do not cross)
+                # (A24: the coping tip at 0.3 of the strip, 0.12" or more
+                # off the strip's break line at its front end and still under
+                # the slab's tip, so the two leaders do not cross, A11)
                 if o["role"] == "closure":
                     right.append(([(u1 - 0.8, hi - 0.3 * (hi - lo))], "4\" CLOSURE SLAB", lo))
                 elif o["role"] == "coping" and ou[0] > 0:
-                    right.append(([((max(ou[0], 0.0) + min(ou[1], uR)) / 2, lo + 0.17 * (hi - lo))], "COPING", lo - 0.6))
+                    right.append(([((max(ou[0], 0.0) + min(ou[1], uR)) / 2, lo + 0.3 * (hi - lo))], "COPING", lo - 0.6))
         # -------------------------------------------- centerlines and beams
         v.line((uL - ext, v_cl), (uR + ext, v_cl), "CL_Major")
         pile_h = 0.45   # V3 / D3 (markup "All centerlines should be dashed"): pile centerlines 0.45 ft past the pile
@@ -1116,7 +1126,8 @@ class Builder:
             # left between the PT. B knee and the PGL (A1)
             u_s = max(u for u in us if u < -0.5) if any(u < -0.5 for u in us) else us[0]
             knee = (u_s - 0.12 * k, y_r2)
-            v.leader([(u_s, vb + 0.25), knee, (knee[0] - 0.12 * k, knee[1])], txt, "right")
+            # the tip at the stub's root on the cap face, clear of the stub's break (A24)
+            v.leader([(u_s, vb + 0.03), knee, (knee[0] - 0.12 * k, knee[1])], txt, "right")
         # PGL (A1: kept out of the spacing rows below the beam lines)
         v.line((0, y_lo), (0, y_pgl), "BaseLineSurveyPGL")
         v.text((-0.4 * th, y_pgl - 0.6 * th), "PGL", None, "MIDDLE_RIGHT")
@@ -1279,7 +1290,10 @@ class Builder:
             v.pile_break(p["u"], zp, w, p["shape"], "PileSteel" if p["shape"] == "pipe" else "PileConc")
             v.line((p["u"], s.cap_bot + 0.6), (p["u"], zp - 0.12 * k), "CL_Minor")
             if z_break:   # pier: beside the pile bottom (the end bent numbers go under the stirrup row)
-                circles.append((p["u"] + w / 2 + 0.16 * k, zp + 0.1 * k))
+                # (A24: on the left of each pile, so the pile description's
+                # leader on the right of the last pile keeps its tip 0.3 k
+                # above the pile break instead of dropping under the circle)
+                circles.append((p["u"] - w / 2 - 0.16 * k, zp + 0.2 * k))
                 v.circled_number(circles[-1], p["no"])
         v.xform = keep
         if z_break:
@@ -1378,8 +1392,8 @@ class Builder:
         # circled pile number by 0.15 k
         if circles:
             knee = (uR + 0.55 * k, zp - 0.35 * k)
-            zd = zp + 0.12 * k
-            while zd > zp - 0.2 * k and any(_seg_dist(c, (xe, zd), knee) < 0.15 * k for c in circles):
+            zd = zp + 0.3 * k   # (A24: 0.3 k above the pile break lobe)
+            while zd > zp + 0.12 * k and any(_seg_dist(c, (xe, zd), knee) < 0.15 * k for c in circles):
                 zd -= 0.02 * k
         else:
             # end bent: no circled numbers beside the piles.  The tip stands on
@@ -2319,18 +2333,38 @@ class Builder:
             lab_end = (x_front + fs * 0.2 * k, z_cll)
             lead_calls = anno_check._leader_calls(v)
             lead_segs = [(p, q) for p, q, layer, call in v.segs if layer == "Leader" or call in lead_calls]
-            best = (-1.0, z_lo + 0.08 * k)
-            dz = 0.08
-            while z_lo + dz * k <= s.cap_bot - 0.12 * k:
-                tz = z_lo + dz * k
-                a, b = v._X((side_x, tz)), v._X(lab_end)
-                gap = min((_seg_gap(a, b, p, q) for p, q in lead_segs), default=1e9)
-                if gap >= 0.12 * k:
-                    best = (gap, tz)
-                    break
-                if gap > best[0]:
-                    best = (gap, tz)
-                dz += 0.02
+            # (A23: the piece keeps out of every text box too, inset as the check insets them)
+            boxes = [anno_check._inset(box, anno_check.INSET_TH * th) for box, _lab in v.texts]
+
+            def search(end):
+                """(gap, tip z) of the clearest tip height on the pile face
+                for a piece to ``end``: the first height (from 0.13 k above
+                the break, A24, up to 0.12 k under the cap) keeping 0.12 k
+                from every leader and pointer and out of every text box,
+                else the widest gap (-1 when every height runs through a
+                text)."""
+                best = (-1.0, z_lo + 0.13 * k)
+                dz = 0.13
+                while z_lo + dz * k <= s.cap_bot - 0.12 * k:
+                    tz = z_lo + dz * k
+                    a, b = v._X((side_x, tz)), v._X(end)
+                    gap = min((_seg_gap(a, b, p, q) for p, q in lead_segs), default=1e9)
+                    clear = all(anno_check.seg_box_dist(a, b, bx) > 0 for bx in boxes)
+                    if gap >= 0.12 * k and clear:
+                        return (gap, tz)
+                    if clear and gap > best[0]:
+                        best = (gap, tz)
+                    dz += 0.02
+                return best
+            best = search(lab_end)
+            if best[0] < 0:
+                # A23 (the pier: the piece to the centerline label's row
+                # crossed the bottom row's 4" value beside the pile from
+                # every height): the label goes beside the cap under its
+                # bottom, just above the pile break level, so the piece
+                # runs nearly level over the row's values
+                lab_end = (x_front + fs * 0.2 * k, z_lo + 0.1 * k)
+                best = search(lab_end)
             v.leader([(side_x, best[1]), lab_end], desc, al_f)
         # above: overall and the splits at the backwall face, bearings and
         # centerline, each extension line reaching its feature (B3): the cap
@@ -2756,8 +2790,13 @@ class Builder:
         v.line((ped["u"], box[1] - 0.2 * k), (ped["u"], box[3] + 0.1 * k), "CL_Minor")
         v.leader([(ped["u"], box[1] - 0.12 * k), (ped["u"] + 0.3 * k, box[1] - 0.12 * k)], "BEAM", "left", cl=True)
         v_cl = s.piles[0]["v"] if s.kind == "EB" else 0.0
-        v.line((box[0] - 0.1 * k, v_cl), (box[2] + 0.1 * k, v_cl), "CL_Major")
-        lab_x = box[2] + 0.1 * k
+        # the centerlines run 0.35 k past the break line on the label side
+        # (0.1 k before), so their leader tips, 0.05 k short of the line
+        # ends, stand clear of the break line (markup 2026-10-19, "Extend
+        # these centerlines a bit ... so that it's more clear")
+        ext = 0.35 * k
+        v.line((box[0] - 0.1 * k, v_cl), (box[2] + ext, v_cl), "CL_Major")
+        lab_x = box[2] + ext
         cl_lab = "CAP" if s.kind == "EB" else "PIER"
         # V20 (the CL PIER label too close to CL BEARING, A2): the
         # centerline labels are rows of one column, each leader from its line
@@ -2766,7 +2805,7 @@ class Builder:
         cl_items = [([(lab_x - 0.05 * k, v_cl)], CL + " " + cl_lab, v_cl + 0.18 * k)]
         for br in s.bearings:
             if vv[0] - 0.01 < br["v"] < vv[1] + 0.01:
-                v.line((uu[0] - 0.2, br["v"]), (box[2] + 0.1 * k, br["v"]), "CL_Minor")
+                v.line((uu[0] - 0.2, br["v"]), (box[2] + ext, br["v"]), "CL_Minor")
                 cl_items.append(([(lab_x - 0.05 * k, br["v"])], CL + " BEARING", br["v"] - 0.18 * k))
         cl_rows = callouts(v, cl_items, lab_x + 0.29 * k, 1)
         x_lab = lab_x + 0.29 * k + 0.4 * th + max(text_extent(it[1], th) for it in cl_items)   # right end of the labels

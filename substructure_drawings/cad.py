@@ -358,6 +358,7 @@ class View:
         self.leaders = []
         self.dims = []
         self.breaks = []
+        self.small_breaks = []   # the (p, q) segments of ``views.small_break`` (context stubs; A24 exempts them)
         self.clips = []
         self.centerlines = []
         self.symbols = []
