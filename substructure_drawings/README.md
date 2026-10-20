@@ -1,10 +1,11 @@
 # End bent and pier DXF (FDOT format)
 
 **Generator 2.6.0 (19 October 2026)** rebuilds this DXF from the model with
-revision D-060 (D-044 weather closure and copings, D-045 strap references,
+revision D-061 (D-044 weather closure and copings, D-045 strap references,
 D-046 cheek hooks, D-047 pedestal edge bars, D-048 backwall extensions, D-053
 simplified backwall tops, D-055 backwall vertical coordination, D-059 pier
-cheek walls, D-060 their bar marks) and applies
+cheek walls, D-060 their bar marks, D-061 their verticals developed 1'-0"
+into the cap) and applies
 the engineer's review markups of
 2026-10-17, 18 and 19 (three rounds), which are distilled into
 [`STYLE_GUIDE.md`](STYLE_GUIDE.md) (every drawing rule has an id there). The
@@ -70,7 +71,7 @@ represent engineering acceptance.
 | B4-5 | Pier plan with the cheek walls; broken elevation (looking ahead station) with the reinforcement, the cheek walls as 1 ft stubs with break lines; end view D-D (the cheek wall face with its recessed panel, cut under the cap); tables, notes | 3/8" |
 | B4-6 | Pier details (1 of 3): sections A-A, B-B, C-C on one row with a common top; notes | 3/4" |
 | B4-7 | Pier details (2 of 3): pedestal plan and elevation; top of pedestal elevations under the elevation; notes | 3/4" |
-| B4-8 | Pier details (3 of 3): view E-E (left cheek wall, the recessed panel and the bars; carries the flags of F-F and G-G), section F-F (vertical, through the panel, the cap stub under the wall) and section G-G (horizontal, through the panel); notes | 3/8", 3/4" |
+| B4-8 | Pier details (3 of 3): view E-E (left cheek wall, the recessed panel and the bars; carries the flags of F-F and G-G), section F-F (vertical, through the panel, the cap stub under the wall with the 1'-0" embedment of the verticals, D-061) and section G-G (horizontal, through the panel); notes | 3/8", 3/4" |
 | B4-9 to B4-12 | End Bent 2, as End Bent 1 (looking ahead station; B4-10 and B4-11 are laid out as the mirror images of B4-2 and B4-3) | |
 | B4-13 | Reinforcing bar list on the FDOT bar list form | |
 
@@ -473,10 +474,14 @@ are not made again:
   review 2026-10-19), but the model carries them straight, so the list shows
   Type 1 and carries a "MODEL CHECK" note until the model has the legs. The
   backwall verticals 5D1 and horizontals 4D2 are straight bars, Type 1.
-- The pier cheek wall mats (D-059) stop at the cap top in the model: the
-  cheek wall cap anchorage and structural design are not configured ("cap
-  anchorage remains unconfigured", D-059). Sheet B4-8 carries a "MODEL CHECK"
-  note, and the bar list's Type 10 note names the pier 4E1 too.
+- Resolved 2026-10-19 with model decision D-061 (pier cheek vertical
+  development): the pier cheek wall verticals 4E1 run straight 1'-0" into
+  the cap (57¾" bars, the outer bars 1" inward for the cap cover). Section
+  F-F dimensions the embedment and note 5 of sheet B4-8 states it; the
+  "MODEL CHECK" anchorage note of 2.6.0 is silent (`Support.cheek_embedment`),
+  and the bar list's Type 10 note names the end bent cheek verticals only
+  (D-061 supersedes the Type 10 for the pier). The cheek wall structural
+  design remains separate.
 - The pier elevation shows the cheek walls as 1 ft stubs with break lines
   (E7): at 3/8" the sheet has no height for the stirrup row above 4 ft walls.
   View D-D and sheet B4-8 show them whole.

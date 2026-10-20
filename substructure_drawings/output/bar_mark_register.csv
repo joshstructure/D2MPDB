@@ -173,18 +173,18 @@ END BENT 1,8A2,8,A2,CAP BOTTOM,CageEB1Long06,EB1 Bottom row 1 #8 Long06,8A2,245.
 END BENT 1,8A2,8,A2,CAP BOTTOM,CageEB1Long07,EB1 Bottom row 1 #8 Long07,8A2,245.000,245
 END BENT 1,8A2,8,A2,CAP BOTTOM,CageEB1Long08,EB1 Bottom row 1 #8 Long08,8A2,245.000,245
 END BENT 1,8A2,8,A2,CAP BOTTOM,CageEB1Long09,EB1 Bottom row 1 #8 Long09,8A2,245.000,245
-PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier1MV01,Pier cheek left - solid with recessed panel Continuous centered vertical #4,4E1,43.500,44
-PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier1MV02,Pier cheek left - solid with recessed panel Continuous centered vertical #026,4E1,43.500,44
-PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier1MV03,Pier cheek left - solid with recessed panel Continuous centered vertical #027,4E1,43.500,44
-PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier1MV04,Pier cheek left - solid with recessed panel Continuous centered vertical #028,4E1,43.500,44
-PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier1MV05,Pier cheek left - solid with recessed panel Continuous centered vertical #029,4E1,43.500,44
-PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier1MV06,Pier cheek left - solid with recessed panel Continuous centered vertical #030,4E1,43.500,44
-PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier2MV01,Pier cheek right - solid with recessed panel Continuous centered vertical #4,4E1,43.500,44
-PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier2MV02,Pier cheek right - solid with recessed panel Continuous centered vertical #026,4E1,43.500,44
-PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier2MV03,Pier cheek right - solid with recessed panel Continuous centered vertical #027,4E1,43.500,44
-PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier2MV04,Pier cheek right - solid with recessed panel Continuous centered vertical #028,4E1,43.500,44
-PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier2MV05,Pier cheek right - solid with recessed panel Continuous centered vertical #029,4E1,43.500,44
-PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier2MV06,Pier cheek right - solid with recessed panel Continuous centered vertical #030,4E1,43.500,44
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier1MV01,Pier cheek left - solid with recessed panel Continuous centered vertical #4,4E1,57.750,58
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier1MV02,Pier cheek left - solid with recessed panel Continuous centered vertical #026,4E1,57.750,58
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier1MV03,Pier cheek left - solid with recessed panel Continuous centered vertical #027,4E1,57.750,58
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier1MV04,Pier cheek left - solid with recessed panel Continuous centered vertical #028,4E1,57.750,58
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier1MV05,Pier cheek left - solid with recessed panel Continuous centered vertical #029,4E1,57.750,58
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier1MV06,Pier cheek left - solid with recessed panel Continuous centered vertical #030,4E1,57.750,58
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier2MV01,Pier cheek right - solid with recessed panel Continuous centered vertical #4,4E1,57.750,58
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier2MV02,Pier cheek right - solid with recessed panel Continuous centered vertical #026,4E1,57.750,58
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier2MV03,Pier cheek right - solid with recessed panel Continuous centered vertical #027,4E1,57.750,58
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier2MV04,Pier cheek right - solid with recessed panel Continuous centered vertical #028,4E1,57.750,58
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier2MV05,Pier cheek right - solid with recessed panel Continuous centered vertical #029,4E1,57.750,58
+PIER,4E1,4,E1,CHEEK WALL VERTICAL,SteelBridgeCheekPier2MV06,Pier cheek right - solid with recessed panel Continuous centered vertical #030,4E1,57.750,58
 PIER,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekPier1MH01,Pier cheek left - solid with recessed panel Continuous centered horizontal #4,4E2,43.500,44
 PIER,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekPier1MH02,Pier cheek left - solid with recessed panel Continuous centered horizontal #026,4E2,43.500,44
 PIER,4E2,4,E2,CHEEK WALL HORIZONTAL,SteelBridgeCheekPier1MH03,Pier cheek left - solid with recessed panel Continuous centered horizontal #027,4E2,43.500,44

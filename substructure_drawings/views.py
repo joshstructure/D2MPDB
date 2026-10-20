@@ -2578,9 +2578,10 @@ class Builder:
         th, k = v.th, IN * v.sf
         pier = s.kind == "PIER"   # D-059: a pier cheek wall (no lug, no WWR, a recessed panel on the face)
         if pier:
-            # the cap end under the wall is cut 1 ft below its top with a
-            # break line (D12), so the bar rows under the view clear it
-            z_base = s.cap_top - 1.0
+            # the cap end under the wall is cut 1 ft below its top (0.3 ft
+            # under the embedded verticals of D-061) with a break line
+            # (D12), so the bar rows under the view clear it
+            z_base = s.cap_top - max(1.0, s.cheek_embedment(cheek) + 0.3)
             cap_e = [r for r in cv["edges"] if r["role"] == "cap"]
             draw_edges(v, [r for r in cv["edges"] if r["role"] != "cap"])
             draw_edges(v, cap_e, box=(-1e4, z_base, 1e4, 1e4))

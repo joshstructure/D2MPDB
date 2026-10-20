@@ -2,9 +2,9 @@
  "generator": "substructure_drawings.build",
  "version": "2.6.0",
  "dxf": "B4_Substructure_EndBents_Pier.dxf",
- "dxf_sha256": "ff572370b45c4cdab2c556657de07921ea09994156099aff5db50a5b49c09a3c",
- "snapshot_sha256": "f8992f3e60e2ffa9ce4d0ed93442f3ffd0087dc7653c1d8b63d2490f7fbfd8b1",
- "model_sha256": "4f85c1fe05f8715462856ba1874e38de52b6a30dcdef4536f8aaf184abfb8725",
+ "dxf_sha256": "1e93c6317198590a9a1ab96951c5b7703698271d573e8c9f2cc72bc08f1866d7",
+ "snapshot_sha256": "7fb6b21ea2aecc20159a02c03cb6c2b945d3a96b6205e340d512ba4724b547ce",
+ "model_sha256": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43",
  "units": "international feet ($INSUNITS=2); model space 1:1",
  "station_reference": {
   "FFBW End Bent 1": 1593.22
@@ -127,7 +127,7 @@
   "BearingPadMisc": 180,
   "CL_Major": 26,
   "CL_Minor": 55,
-  "Dimension": 632,
+  "Dimension": 633,
   "Leader": 709,
   "Patterning": 1008,
   "PileConc": 48,
@@ -158,7 +158,7 @@
   "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
  },
  "symbology_audit": {
-  "entities": 12037,
+  "entities": 12040,
   "not_on_fdot_level": [],
   "not_by_level": [],
   "documented_overrides": {
@@ -437,7 +437,7 @@
     "description": "CHEEK WALL VERTICAL",
     "count": 12,
     "lengths_in": {
-     "44": 12
+     "58": 12
     },
     "varies": false
    },

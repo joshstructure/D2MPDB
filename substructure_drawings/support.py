@@ -189,6 +189,15 @@ class Support:
     def cheek_bars(self, cheek):
         return [b for b in self.bars if b["family"] == "cheek" and b["group"].endswith(cheek["tag"] + "Bars")]
 
+    def cheek_embedment(self, cheek):
+        """How far the cheek wall verticals reach below the cap top (feet),
+        0 when they stop at the cap top (the pier walls of D-059) and more
+        when they are developed into the cap (D-061: 1'-0" straight)."""
+        verts = [b for b in self.cheek_bars(cheek) if b["subtype"] == "vert"]
+        if not verts:
+            return 0.0
+        return max(0.0, self.cap_top - min(p[2] for b in verts for p in b["pts"]))
+
     def _pier_wall(self):
         w = list(self.by_role("pier_wall").values())[0]
         b = w["bb_ft"]

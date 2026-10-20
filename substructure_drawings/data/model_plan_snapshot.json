@@ -87991,10 +87991,10 @@
   "CopingB7AtCheek has no valid shape; CopingB7BentJoint is drawn in its place",
   "BarrierB7AtCheek has no valid shape; BarrierB7BentJoint is drawn in its place",
   "138 objects chosen, 28 skipped",
-  "projection 73 s (4048 edges)",
-  "total 80 s"
+  "projection 65 s (4048 edges)",
+  "total 72 s"
  ],
- "model_sha256": "4f85c1fe05f8715462856ba1874e38de52b6a30dcdef4536f8aaf184abfb8725",
+ "model_sha256": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43",
  "objects": {
   "A_ApproachSlab": {
    "bb_ft": [

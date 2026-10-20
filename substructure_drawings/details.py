@@ -718,10 +718,11 @@ def pier_cheek_section(b, zone, cheek, letter, which):
     th, k = v.th, IN * v.sf
     d, u_out, u_in = _cheek_frame(cheek)
     edges = _clean(sec["side_edges" if side else "top_edges"])
+    embed = s.cheek_embedment(cheek)   # D-061: the verticals developed 1'-0" into the cap
     if side:
         lo, hi = cheek["bot"], cheek["top"]
         reach = 1.5
-        z_cap = s.cap_top - 1.25
+        z_cap = s.cap_top - max(1.25, embed + 0.35)
         box = _box(u_out - d * 0.3, u_in + d * reach, z_cap, hi + 0.35 * k)
     else:
         ys = [p[1] for r in edges for p in edge_points(r)]
@@ -777,6 +778,16 @@ def pier_cheek_section(b, zone, cheek, letter, which):
         _chain(v, pts, texts, x2, vertical=True)
     v.dim((u_out, lo), (u_out, hi), u_out - x3, 90, step=0.125)
     v.dim((u_out, hi), (u_in, hi), 0.3 * k, 0, step=0.125)   # the wall thickness over the top
+    if side and embed > 0.05:
+        # the embedment of the vertical into the cap, dimensioned beside
+        # its leg inside the cap stub (as the backwall dowels' in the end
+        # bent sections), the line 0.3 k inboard of the bar
+        for bar, pts in shapes:
+            ub = max(p[0] for p in pts) if d > 0 else min(p[0] for p in pts)
+            zb = min(p[1] for p in pts)
+            r = bar["dia_in"] / 24.0
+            v.dim((ub + d * r, s.cap_top), (ub + d * r, zb), -d * 0.3 * k, 90, fdot.ft_in(s.cap_top - zb), step=0.125)
+            break
     # the recess named: tip at the chamfer corner nearest the top, the text
     # above the view on the outer side, over the dimension columns (A1)
     if len(face) >= 2:

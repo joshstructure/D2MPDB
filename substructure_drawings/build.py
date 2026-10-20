@@ -724,15 +724,19 @@ class Composer:
         y = min(bottom, self.paper_bbox(ve)[1]) - 0.3
         x_n = xs + 0.2
         w_n = DRAW[2] - 0.1 - x_n
+        embed = s.cheek_embedment(c)
+        verts = [x for x in s.cheek_bars(c) if x["subtype"] == "vert"]
         items = [
             "FOR LOCATION OF VIEW E-E, SEE SHEET %s (PLAN). SECTIONS F-F AND G-G ARE LOCATED IN VIEW E-E." % nums[0],
             "VIEW E-E AND SECTIONS F-F AND G-G SHOW THE LEFT CHEEK WALL; THE RIGHT CHEEK WALL IS SIMILAR "
             "(MIRRORED). THE RECESSED PANEL IS ON THE OUTSIDE FACE OF EACH CHEEK WALL; THE INSIDE FACE IS FLAT.",
             "CAP REINFORCEMENT IS NOT SHOWN IN SECTION F-F FOR CLARITY.",
             "CHEEK WALLS ARE CAST ON THE CAP; THE CAP TOP IS A CONSTRUCTION JOINT.",
-            # D-059: "cap anchorage and structural design remain unconfigured"
-            # (the model's mats stop at the cap top); C9, D11: drawn as
-            # modelled and reported
+            # D-061: the verticals are developed straight into the cap (the
+            # D-059 model's mats stopped at the cap top: MODEL CHECK note
+            # until then); C9, D11: drawn as modelled and reported
+            ("CHEEK WALL VERTICALS %s ARE EMBEDDED %s (MIN.) INTO THE CAP, STRAIGHT; SEE SECTION F-F."
+             % (verts[0]["mark"], fdot.ft_in(embed))) if embed > 0.05 else
             "MODEL CHECK (REMOVE BEFORE ISSUE): THE CHEEK WALL REINFORCEMENT STOPS AT THE CAP TOP IN THE CAD MODEL "
             "(NO ANCHORAGE INTO THE CAP); DETAIL THE ANCHORAGE AND ADD IT TO THE MODEL.",
             self.bar_list_ref()]
@@ -794,11 +798,13 @@ class Composer:
                  ("VARYING LENGTHS: " + " ".join(foot)) if foot else "",
                  "PILES AND THE CHEEK LUG WELDED WIRE REINFORCEMENT ARE NOT INCLUDED IN THIS LIST."]
         # engineer's review 2026-10-19 ("E1 and E4 are type 10s"; the backwall
-        # D1/D2 are straight bars): the cheek wall verticals are L-bars, but
-        # the CAD model carries them straight, so the list follows the model
-        # (Type 1) and says so until the model has the legs (D11: no invented
-        # geometry)
-        straight_l = sorted({"%s %s" % (s.title, mark) for s in self.sup.values() for mark, e in s.table.items()
+        # D1/D2 are straight bars): the end bent cheek wall verticals are
+        # L-bars, but the CAD model carries them straight, so the list follows
+        # the model (Type 1) and says so until the model has the legs (D11: no
+        # invented geometry).  The pier cheek wall verticals are developed
+        # straight into the cap (D-061, which supersedes the Type 10 for them).
+        straight_l = sorted({"%s %s" % (s.title, mark) for s in self.sup.values() if s.kind == "EB"
+                             for mark, e in s.table.items()
                              if e["family"] == "cheek" and e["subtype"] == "vert"
                              and barlib.shape_name(e) == "STRAIGHT"})
         if straight_l:

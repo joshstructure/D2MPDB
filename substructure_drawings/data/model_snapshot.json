@@ -4,7 +4,7 @@
   "PIER: 172 plan, 326 elev edges, 146 bars, 0 wwr",
   "EB2: 149 plan, 245 elev edges, 174 bars, 90 wwr"
  ],
- "model_sha256": "4f85c1fe05f8715462856ba1874e38de52b6a30dcdef4536f8aaf184abfb8725",
+ "model_sha256": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43",
  "schema": 2,
  "station_direction": [
   0,
@@ -102126,13 +102126,13 @@
       {
        "p": [
         [
-         -102.490862,
-         -101.465963,
-         43.95244
+         -102.542944,
+         -101.549297,
+         42.76494
         ],
         [
-         -102.490862,
-         -101.465963,
+         -102.542944,
+         -101.549297,
          47.57744
         ]
        ],
@@ -102141,7 +102141,7 @@
      ],
      "group": "SteelBridgeCheekPier1Bars",
      "label": "Pier cheek left - solid with recessed panel Continuous centered vertical #4",
-     "length_in": 43.5,
+     "length_in": 57.75,
      "mark_model": "4E1",
      "name": "SteelBridgeCheekPier1MV01"
     },
@@ -102155,13 +102155,13 @@
       {
        "p": [
         [
-         -102.490845,
-         -102.299296,
-         43.95244
+         -102.542928,
+         -102.299297,
+         42.76494
         ],
         [
-         -102.490845,
-         -102.299296,
+         -102.542928,
+         -102.299297,
          47.57744
         ]
        ],
@@ -102170,7 +102170,7 @@
      ],
      "group": "SteelBridgeCheekPier1Bars",
      "label": "Pier cheek left - solid with recessed panel Continuous centered vertical #026",
-     "length_in": 43.5,
+     "length_in": 57.75,
      "mark_model": "4E1",
      "name": "SteelBridgeCheekPier1MV02"
     },
@@ -102184,13 +102184,13 @@
       {
        "p": [
         [
-         -102.490828,
-         -103.13263,
-         43.95244
+         -102.542911,
+         -103.132631,
+         42.76494
         ],
         [
-         -102.490828,
-         -103.13263,
+         -102.542911,
+         -103.132631,
          47.57744
         ]
        ],
@@ -102199,7 +102199,7 @@
      ],
      "group": "SteelBridgeCheekPier1Bars",
      "label": "Pier cheek left - solid with recessed panel Continuous centered vertical #027",
-     "length_in": 43.5,
+     "length_in": 57.75,
      "mark_model": "4E1",
      "name": "SteelBridgeCheekPier1MV03"
     },
@@ -102213,13 +102213,13 @@
       {
        "p": [
         [
-         -102.490811,
-         -103.965963,
-         43.95244
+         -102.542894,
+         -103.965964,
+         42.76494
         ],
         [
-         -102.490811,
-         -103.965963,
+         -102.542894,
+         -103.965964,
          47.57744
         ]
        ],
@@ -102228,7 +102228,7 @@
      ],
      "group": "SteelBridgeCheekPier1Bars",
      "label": "Pier cheek left - solid with recessed panel Continuous centered vertical #028",
-     "length_in": 43.5,
+     "length_in": 57.75,
      "mark_model": "4E1",
      "name": "SteelBridgeCheekPier1MV04"
     },
@@ -102242,13 +102242,13 @@
       {
        "p": [
         [
-         -102.490794,
-         -104.799296,
-         43.95244
+         -102.542878,
+         -104.757631,
+         42.76494
         ],
         [
-         -102.490794,
-         -104.799296,
+         -102.542878,
+         -104.757631,
          47.57744
         ]
        ],
@@ -102257,7 +102257,7 @@
      ],
      "group": "SteelBridgeCheekPier1Bars",
      "label": "Pier cheek left - solid with recessed panel Continuous centered vertical #029",
-     "length_in": 43.5,
+     "length_in": 57.75,
      "mark_model": "4E1",
      "name": "SteelBridgeCheekPier1MV05"
     },
@@ -102271,13 +102271,13 @@
       {
        "p": [
         [
-         -102.490788,
-         -105.090963,
-         43.95244
+         -102.542873,
+         -105.007631,
+         42.76494
         ],
         [
-         -102.490788,
-         -105.090963,
+         -102.542873,
+         -105.007631,
          47.57744
         ]
        ],
@@ -102286,7 +102286,7 @@
      ],
      "group": "SteelBridgeCheekPier1Bars",
      "label": "Pier cheek left - solid with recessed panel Continuous centered vertical #030",
-     "length_in": 43.5,
+     "length_in": 57.75,
      "mark_model": "4E1",
      "name": "SteelBridgeCheekPier1MV06"
     },
@@ -102300,13 +102300,13 @@
       {
        "p": [
         [
-         -102.449196,
-         -101.465962,
+         -102.501279,
+         -101.465963,
          43.95244
         ],
         [
-         -102.449121,
-         -105.090962,
+         -102.501204,
+         -105.090963,
          43.95244
         ]
        ],
@@ -102329,13 +102329,13 @@
       {
        "p": [
         [
-         -102.449196,
-         -101.465962,
+         -102.501279,
+         -101.465963,
          44.785773
         ],
         [
-         -102.449121,
-         -105.090962,
+         -102.501204,
+         -105.090963,
          44.785773
         ]
        ],
@@ -102358,13 +102358,13 @@
       {
        "p": [
         [
-         -102.449196,
-         -101.465962,
+         -102.501279,
+         -101.465963,
          45.619107
         ],
         [
-         -102.449121,
-         -105.090962,
+         -102.501204,
+         -105.090963,
          45.619107
         ]
        ],
@@ -102387,13 +102387,13 @@
       {
        "p": [
         [
-         -102.449196,
-         -101.465962,
+         -102.501279,
+         -101.465963,
          46.45244
         ],
         [
-         -102.449121,
-         -105.090962,
+         -102.501204,
+         -105.090963,
          46.45244
         ]
        ],
@@ -102416,13 +102416,13 @@
       {
        "p": [
         [
-         -102.449196,
-         -101.465962,
+         -102.501279,
+         -101.465963,
          47.285773
         ],
         [
-         -102.449121,
-         -105.090962,
+         -102.501204,
+         -105.090963,
          47.285773
         ]
        ],
@@ -102445,13 +102445,13 @@
       {
        "p": [
         [
-         -102.449196,
-         -101.465962,
+         -102.501279,
+         -101.465963,
          47.57744
         ],
         [
-         -102.449121,
-         -105.090962,
+         -102.501204,
+         -105.090963,
          47.57744
         ]
        ],
@@ -102474,13 +102474,13 @@
       {
        "p": [
         [
-         -84.782529,
-         -101.465597,
-         43.95244
+         -84.782527,
+         -101.548931,
+         42.76494
         ],
         [
-         -84.782529,
-         -101.465597,
+         -84.782527,
+         -101.548931,
          47.57744
         ]
        ],
@@ -102489,7 +102489,7 @@
      ],
      "group": "SteelBridgeCheekPier2Bars",
      "label": "Pier cheek right - solid with recessed panel Continuous centered vertical #4",
-     "length_in": 43.5,
+     "length_in": 57.75,
      "mark_model": "4E1",
      "name": "SteelBridgeCheekPier2MV01"
     },
@@ -102505,7 +102505,7 @@
         [
          -84.782512,
          -102.298931,
-         43.95244
+         42.76494
         ],
         [
          -84.782512,
@@ -102518,7 +102518,7 @@
      ],
      "group": "SteelBridgeCheekPier2Bars",
      "label": "Pier cheek right - solid with recessed panel Continuous centered vertical #026",
-     "length_in": 43.5,
+     "length_in": 57.75,
      "mark_model": "4E1",
      "name": "SteelBridgeCheekPier2MV02"
     },
@@ -102534,7 +102534,7 @@
         [
          -84.782495,
          -103.132264,
-         43.95244
+         42.76494
         ],
         [
          -84.782495,
@@ -102547,7 +102547,7 @@
      ],
      "group": "SteelBridgeCheekPier2Bars",
      "label": "Pier cheek right - solid with recessed panel Continuous centered vertical #027",
-     "length_in": 43.5,
+     "length_in": 57.75,
      "mark_model": "4E1",
      "name": "SteelBridgeCheekPier2MV03"
     },
@@ -102563,7 +102563,7 @@
         [
          -84.782477,
          -103.965597,
-         43.95244
+         42.76494
         ],
         [
          -84.782477,
@@ -102576,7 +102576,7 @@
      ],
      "group": "SteelBridgeCheekPier2Bars",
      "label": "Pier cheek right - solid with recessed panel Continuous centered vertical #028",
-     "length_in": 43.5,
+     "length_in": 57.75,
      "mark_model": "4E1",
      "name": "SteelBridgeCheekPier2MV04"
     },
@@ -102590,13 +102590,13 @@
       {
        "p": [
         [
-         -84.78246,
-         -104.798931,
-         43.95244
+         -84.782461,
+         -104.757264,
+         42.76494
         ],
         [
-         -84.78246,
-         -104.798931,
+         -84.782461,
+         -104.757264,
          47.57744
         ]
        ],
@@ -102605,7 +102605,7 @@
      ],
      "group": "SteelBridgeCheekPier2Bars",
      "label": "Pier cheek right - solid with recessed panel Continuous centered vertical #029",
-     "length_in": 43.5,
+     "length_in": 57.75,
      "mark_model": "4E1",
      "name": "SteelBridgeCheekPier2MV05"
     },
@@ -102619,13 +102619,13 @@
       {
        "p": [
         [
-         -84.782454,
-         -105.090597,
-         43.95244
+         -84.782456,
+         -105.007264,
+         42.76494
         ],
         [
-         -84.782454,
-         -105.090597,
+         -84.782456,
+         -105.007264,
          47.57744
         ]
        ],
@@ -102634,7 +102634,7 @@
      ],
      "group": "SteelBridgeCheekPier2Bars",
      "label": "Pier cheek right - solid with recessed panel Continuous centered vertical #030",
-     "length_in": 43.5,
+     "length_in": 57.75,
      "mark_model": "4E1",
      "name": "SteelBridgeCheekPier2MV06"
     },
