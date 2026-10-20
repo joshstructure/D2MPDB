@@ -1,6 +1,6 @@
 {
   "inputs": {
-    "digest": "0a895909f64f63cdeea3d48d2dba483aa2b3108b446f604901a2553756abee41",
+    "digest": "c10a493f2c34e642601e4aeeaa9bb7e1fd74f0616f20ababab26f602a1484b19",
     "files": {
       "Bridge_Geometry_2 Beam_V2.ipynb": "349d464afddc653dfe52808be44faea951f874ac6199026ea771f176f3e02751",
       "Cap_and_Pile_Design.ipynb": "bc8c9e9ec7eda5103e8f967cbb4344f9c3c69a7145a9e2296dc325ec1560cc98",
@@ -24,7 +24,7 @@
       "exports/cap-mathcad-20261017/Pier Cap - Cap Design.xmcd": "ca3326deef56c0abe058e3959389cf417fece3b2be95752c1ca0fcd0134f35e6",
       "exports/cap-mathcad-20261017/Pier Cap - Input Mapping.csv": "3ee0e5d94eb39021130ac71fbc1ad13bb264a6c9e3c5293e8c2d08b9389acef2",
       "exports/cap-mathcad-20261017/Source and verification record.json": "79d468fdcde2debc4f4a2017b41f089113a05ce8627cdf59042ea6657d122633",
-      "journal/D2_I95_Project_Journal.bpad": "1a890d58c67ffba2edd60b3ab6ea14bbf7c7ad49c6e427451f2c32b97ebc262c",
+      "journal/D2_I95_Project_Journal.bpad": "39674378a62fa24184f43176914b2cca538cb64de015345cb29d911fc80747ce",
       "project_current/cap_design/backwall/Backwall Design 10-19.html": "6ed9ebb7bd2d2b536cddd289b04bbfcb1e8b566858239e40d88a2a7fb9d74768",
       "project_current/cap_design/backwall/selected_case.json": "01e76c5a263af986e0d7e154039cec4c351bea29403dd9bfd2cbee7b16bab597",
       "project_current/cap_design/end_bent_2/End Bent 2 Cap Design 10-19.html": "3405297e0d4c410b28be90f86f4fbcee1f3ea7db065e2851377a9435a6425605",
@@ -41,9 +41,9 @@
       "project_current/fbmp/pier/Pier_Fixed.XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
       "project_current/fbmp/pier/Pier_MinTip.XML": "a3210e99418f8b56d7b6a475a9db6edab152cceb77f0300f6f7245d27dee93cb",
       "project_current/geometry/details/B4 Pedestrian Bridge - Working.dxf": "dcf8bfdb441372e08a24c903f88cd3c3d772bb1f2ccce8f0eb35859fd6d8ea07",
-      "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43",
-      "project_current/geometry/freecad/evidence/Model-update-report.txt": "e545523540cc70a55b4e5684ac8f8fce375d94bcae5dbbb50241260814ada17a",
-      "project_current/geometry/freecad/manifest.json": "3cb05fd62c57327c6334904cecc1bd656aca017b624b65a4863533d7890a054b",
+      "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
+      "project_current/geometry/freecad/evidence/Model-update-report.txt": "f4899b16c22c832bcfbf5d3d6ce9d31e17e9a3f9ad4de840af4ec6bb4a86fc1c",
+      "project_current/geometry/freecad/manifest.json": "f24b5ed2d718284d05613f551b3815b1f1771fcc2346c9414d81c5a7ac317782",
       "project_current/geometry/reports/Bridge_Geometry_Interactive_Report_physical_v2_622e5ca1bf.html": "23642af61597dd7444ca0634f0ef8e5c552fc633da23fd63d48165b065263022",
       "project_current/geometry/tables/B4_Geometry_CAD_Tables.xlsx": "7ae68ec09a308fe6eda6df52d28eb402e61dec18033c219b411c551a51f14977",
       "project_current/mathcad/PedestrianBridge2Beam_Span1.dat": null,
@@ -56,7 +56,7 @@
       "project_current/pile_design/end_bent_2/selected_case.json": "a74e7d6078314a87ef96c133a0fbf147cc0c8bbf2caa2002de3259bfeddc77bf",
       "project_current/pile_design/pier/Pier Pile Design 10-19.html": "e3880f74db02b4bc997a4efc92688d6b8439360f3cf116c830a8cb0de1701a59",
       "project_current/pile_design/pier/selected_case.json": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c",
-      "project_current/source_register.csv": "774379fda69669632b487271795d9a98b0b94b7bcda37ea9ae34d3629411fef7",
+      "project_current/source_register.csv": "bf8b96fe0de7ddbb83eccb160b2eb5c859f88439957ee39d9d3c985125450b1b",
       "tools/project_coherence.py": "6b4dbafcd1597f3917cc224b609030668ca19d872a482fda74f482e439911e06"
     }
   },
@@ -65,13 +65,13 @@
     "atlas.css": "ccfbb88e033c5d8169b2229f685c38087034aab9c7cd6ebac97f75a9d5b3b800",
     "atlas.js": "1a79217804c8930b2cda7e6f84abd1b9a43776e57bb28f7a937f42a495d2d6f7",
     "layouts.js": "96c48408d9fa1526a1a83f7c45f06c1b24ad52e58e808f733f9f95f72c973dc4",
-    "dataset.js": "1bcccc887e4c180b49d470e16d664d6fb52fb6207e94a980216ac3e41d11a00e",
-    "atlas-data.json": "1e5e520e307ad2f6f0bf041d81a1ec002d74d3985f638f9dac71766306375f9e"
+    "dataset.js": "ff8500a9be45b128c272666bb13927c5c878bdb55312392c94792aead8647131",
+    "atlas-data.json": "7fbcba25494954fc291f42823ff54876038aa076dc7b435a0a90be27faa9ec84"
   },
   "counts": {
     "nodes": 71,
     "edges": 178,
-    "values": 5671
+    "values": 5682
   },
   "checks": {
     "report_case_equal": true,
@@ -81,21 +81,21 @@
       "match": 34,
       "not mapped": 79,
       "mismatch": 7,
-      "not applicable": 5433
+      "not applicable": 5444
     },
     "end_bent_report_case_equal": true,
     "end_bent_required_xml_present": true,
     "assumptions": {
       "total": 11,
       "open": 3,
-      "stale": 7,
-      "flagged": 8
+      "stale": 8,
+      "flagged": 9
     }
   },
-  "commit_sha": "32e651dc59f5035be3df60679580d5a740bf7c4e",
+  "commit_sha": "3313877e2ab67092eb4b14aed81320690c20109b",
   "project_id": "appgprj_6ad3a58e2f6481918bbe0d09bd7007f5",
-  "deployment_id": "appgdep_6ad77d87eac88191b597b19943eef608",
-  "version_id": "appgprj_6ad3a58e2f6481918bbe0d09bd7007f5~appgver_a10b09eed3948191abe456d17f69a0c4",
-  "published_at": "2026-10-20T14:42:35.697106+00:00",
+  "deployment_id": "appgdep_6ad7872a7c94819180d4550799170a81",
+  "version_id": "appgprj_6ad3a58e2f6481918bbe0d09bd7007f5~appgver_53971d64bc888191be70c12374559418",
+  "published_at": "2026-10-20T15:23:53.957609+00:00",
   "url": "https://d2-pier-cap-design-atlas.ochrebee15.chatgpt.site"
 }
