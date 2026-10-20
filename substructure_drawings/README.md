@@ -44,7 +44,11 @@ full walls under the stirrup row), whole in the end view D-D (now cut 0.6 ft
 under the cap) and on a new sheet PIER DETAILS (3 OF 3) with view E-E and the
 sections F-F and G-G through the panel; the mats are 4E1/4E2 and the pier
 pedestal bars move to 4F1/4F2 (E = cheek walls, F = pedestals on every
-support, D-060 writes the marks into the model).
+support, D-060 writes the marks into the model). With D-061 (the verticals
+developed 1'-0" into the cap) Section F-F dimensions the embedment, and the
+check A23 (no leader, pointer or dimension line through another
+annotation's text) joins the build after that value and the PIER CAP leader
+once collided.
 
 [`output/B4_Substructure_EndBents_Pier.dxf`](output/B4_Substructure_EndBents_Pier.dxf)
 is one DXF with plans, elevations (concrete and reinforcement together),

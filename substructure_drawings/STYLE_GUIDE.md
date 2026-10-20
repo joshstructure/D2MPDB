@@ -208,6 +208,17 @@ symbol at page scale.
   back-side dimension columns just under the strap's level, its leader to
   the strap's free end passing under the series text of the first column.
   Markups 2026-10-19 (round 4): "Move to a better spot" (both).
+- **A23 No leader, pointer or dimension line runs through a text.**  A1
+  keeps linework out of text boxes but leaves the Leader and Dimension
+  levels to their own rules, and none of those compared a leader with
+  another annotation's text: the PIER CAP leader of the pier's Section F-F
+  started under the 1'-0" embedment value (markup 2026-10-19, "I see a huge
+  anno overlap").  Checked: a leader, pointer or dimension segment that runs
+  through a text box inset 0.15 th, or ends inside it, is a finding, except
+  a leader's own pieces (its landing stops 0.4 th short of its text) and a
+  dimension's own extension and dimension lines (its value sits on them).
+  Placement: the embedment value stands on the cap-end side of the bar,
+  the leader's tip under the wall on the other side.
 
 ## B. Dimensions
 

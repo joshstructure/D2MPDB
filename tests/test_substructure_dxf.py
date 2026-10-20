@@ -357,9 +357,37 @@ class SubstructureDxfTests(unittest.TestCase):
         self.assertEqual(self.manifest["annotation_overlaps"], [])
         self.assertEqual(self.manifest["layout_warnings"], [])
         rules = self.manifest["anno_rules_checked"]
-        for rule in ("A1", "A2", "A3", "A10", "A11", "A12", "A13", "A14", "A21", "B9", "B11", "B12",
+        for rule in ("A1", "A2", "A3", "A10", "A11", "A12", "A13", "A14", "A21", "A23", "B9", "B11", "B12",
                      "D3", "D12", "D13", "D15", "E5"):
             self.assertIn(rule, rules, rule)
+
+    def test_leader_through_text_check(self):
+        """A23: a leader through another annotation's text box is a finding;
+        the leader's own text and a dimension's own lines are not (the PIER
+        CAP leader of Section F-F once started under the embedment value)."""
+        from substructure_drawings import anno_check
+
+        class FakeView:
+            th = 0.2
+            _pointer_calls = set()
+
+            def __init__(self):
+                self.texts = [((1.0, 1.0, 2.0, 1.3), "1'-0\"")]
+                self.segs = [((1.5, 1.1), (3.0, 0.2), "Leader", 7)]
+                self.leaders = []
+                self.dims = []
+        v = FakeView()
+        self.assertEqual([r for r, _ in anno_check.leader_through_text(v)], ["A23"])
+        v.leaders = [{"box": v.texts[0][0], "call": 7}]            # its own leader
+        self.assertEqual(anno_check.leader_through_text(v), [])
+        v.leaders = []
+        v.segs = [((1.0, 1.0), (2.0, 1.0), "Dimension", 3)]         # a dimension's own line under its value
+        v.dims = [{"box": v.texts[0][0], "p1": (1.0, 0.0), "f1": (1.0, 1.0), "p2": (2.0, 0.0), "f2": (2.0, 1.0)}]
+        self.assertEqual(anno_check.leader_through_text(v), [])
+        v.dims = []                                                 # another dimension's line through it
+        v.segs = [((0.0, 1.15), (3.0, 1.15), "Dimension", 3)]
+        self.assertEqual([r for r, _ in anno_check.leader_through_text(v)], ["A23"])
+        self.assertIn("A23", anno_check.RULES)
 
     def test_dimension_blocks_have_no_zero_length_lines_and_masked_text(self):
         """Rules F and B2: ezdxf's zero-length lines in the dimension blocks

@@ -24,6 +24,10 @@ A13   leader through a symbol        a leader, pointer or dimension segment     
                                      runs through the box of a circled number    SHORT_TH
                                      ("circle N") or a section flag ("flag X"),
                                      the same inset and minimum piece as A1
+A23   leader through text            a leader, pointer or dimension segment      INSET_TH,
+                                     runs through a text box inset 0.15 th or    SHORT_TH
+                                     ends inside it, other than the leader's
+                                     own text and a dimension's own lines
 A2    text over text                 two text boxes inset 0.15 th overlap        INSET_TH
 A2    text buffer                    the edge-to-edge gap of two text boxes, or  BUFFER_TH
                                      of a text and a symbol box, is below
@@ -133,8 +137,8 @@ LEADER_LINE_EXACT = ("Rebar", "Rebar2", "BearingPadMisc")   # with the prefixes:
 CLIP_EXACT = ("Rebar2",)                                    # with the prefixes: the levels of D12
 OUTLINE_PREFIXES = ("SubStrConc", "PileConc", "PileSteel")  # the concrete outline levels of D13
 
-RULES = ("A1", "A2", "A3", "A10", "A11", "A12", "A13", "A14", "A21", "B9", "B11", "B12", "D3", "D12", "D13",
-         "D15", "E5")
+RULES = ("A1", "A2", "A3", "A10", "A11", "A12", "A13", "A14", "A21", "A23", "B9", "B11", "B12", "D3", "D12",
+         "D13", "D15", "E5")
 
 
 # ------------------------------------------------------------------ geometry
@@ -278,6 +282,45 @@ def leader_through_symbol(view):
                     kinds.append(kind)
         if kinds:
             out.append(("A13", "[A13] %s through %s" % ("/".join(kinds), label)))
+    return out
+
+
+def leader_through_text(view):
+    """A23: a leader, pointer or dimension segment through a text box other
+    than its own.  A leader's own pieces (its landing stops 0.4 th short of
+    its text) and a dimension's own extension and dimension lines (its value
+    sits on them) are exempt; everything else that runs through a text box
+    inset 0.15 th, or ends inside it, is a finding (the PIER CAP leader of
+    Section F-F once started under the embedment value, 2026-10-19)."""
+    m, short = INSET_TH * view.th, SHORT_TH * view.th
+    calls = _leader_calls(view)
+    own_calls = {}
+    for r in view.leaders:
+        own_calls.setdefault(r["box"], set()).add(r["call"])
+    own_segs = {}
+
+    def key(p, q):
+        return tuple(sorted((tuple(round(c, 6) for c in p), tuple(round(c, 6) for c in q))))
+    for dd in view.dims:
+        own_segs.setdefault(dd["box"], set()).update(
+            {key(dd["p1"], dd["f1"]), key(dd["p2"], dd["f2"]), key(dd["f1"], dd["f2"])})
+    segs = [s for s in view.segs if s[2] in LEADER_LAYERS or s[3] in calls]
+    out = []
+    for tbox, label in view.texts:
+        box = _inset(tbox, m)
+        if box[2] <= box[0] or box[3] <= box[1]:
+            continue
+        mine_c, mine_s = own_calls.get(tbox, set()), own_segs.get(tbox, set())
+        kinds = []
+        for p, q, layer, call in segs:
+            if call in mine_c or key(p, q) in mine_s:
+                continue
+            if _runs_through(p, q, box, short):
+                kind = "pointer" if call in view._pointer_calls else ("dimension line" if layer == "Dimension" else "leader")
+                if kind not in kinds:
+                    kinds.append(kind)
+        if kinds:
+            out.append(("A23", "[A23] %s through '%s'" % ("/".join(kinds), _name(label))))
     return out
 
 
@@ -775,7 +818,7 @@ def title_centred(view):
     return []
 
 
-CHECKS = (text_over_linework, leader_through_symbol, text_clearance, acute_bends, fan_direction,
+CHECKS = (text_over_linework, leader_through_symbol, leader_through_text, text_clearance, acute_bends, fan_direction,
           leader_crossings, fan_spread, leader_over_linework, leader_along_line, pulled_clearance,
           pointer_gap, dimension_beside_line, short_centerlines, clipped_without_break, break_without_clip,
           open_outlines, tips_apart, title_centred)

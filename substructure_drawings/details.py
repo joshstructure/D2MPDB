@@ -781,12 +781,14 @@ def pier_cheek_section(b, zone, cheek, letter, which):
     if side and embed > 0.05:
         # the embedment of the vertical into the cap, dimensioned beside
         # its leg inside the cap stub (as the backwall dowels' in the end
-        # bent sections), the line 0.3 k inboard of the bar
+        # bent sections): the line 0.3 k OUTBOARD of the bar, toward the
+        # cap end, its value between the two; inboard it sat under the
+        # PIER CAP leader's tip (A22)
         for bar, pts in shapes:
-            ub = max(p[0] for p in pts) if d > 0 else min(p[0] for p in pts)
+            ub = min(p[0] for p in pts) if d > 0 else max(p[0] for p in pts)
             zb = min(p[1] for p in pts)
             r = bar["dia_in"] / 24.0
-            v.dim((ub + d * r, s.cap_top), (ub + d * r, zb), -d * 0.3 * k, 90, fdot.ft_in(s.cap_top - zb), step=0.125)
+            v.dim((ub - d * r, s.cap_top), (ub - d * r, zb), d * 0.3 * k, 90, fdot.ft_in(s.cap_top - zb), step=0.125)
             break
     # the recess named: tip at the chamfer corner nearest the top, the text
     # above the view on the outer side, over the dimension columns (A1)
