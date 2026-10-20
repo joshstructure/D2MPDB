@@ -19,7 +19,20 @@ FRAME = (0.80, 0.30, 16.20, 10.70)          # inches
 TITLE_TOP = 1.10                           # top of title-block band
 DRAW = (0.95, 1.30, 16.05, 10.55)          # usable drawing window
 CLIP_MARGIN = 0.08                          # viewport clip beyond DRAW
-MODEL_PITCH_FT = 2000.0                    # model-space spacing between sheets
+# Model space (STYLE_GUIDE E9, 2026-10-20): everything is drawn 1:1 in feet;
+# each sheet's views stand together in one group (its zones side by side,
+# ZONE_GAP_FT apart) inside a labelled box, the groups MODEL_PITCH_FT apart
+# in one row, so the model can be imported into the DGN and each group placed
+# on its sheet at the scale wanted.  While the views are being placed the
+# zones sit at provisional origins (k * 600 ft up); ``Sheet.group_zones``
+# moves them together once the sheet is complete.
+MODEL_PITCH_FT = 60.0                      # model-space spacing between the sheet groups
+ZONE_GAP_FT = 2.0                          # between the zones of one group
+BOX_MARGIN_FT = 1.0                        # the group box beyond its zones
+# (the group label is the title style at the sheet's largest scale factor,
+# the zone notes the text style at their zone's scale: model-space text is
+# always an FDOT style height times an FDOT scale, as the symbology test
+# requires)
 
 
 class Zone:
@@ -27,15 +40,36 @@ class Zone:
 
     The zone's model-space region mirrors the paper window at the zone scale,
     so views placed by paper coordinates appear exactly there on the sheet.
+    ``views`` lists the views drawn in it (``cad.View`` registers itself), so
+    the zone can be moved as one piece (``Sheet.group_zones``).
     """
 
     def __init__(self, sheet, k, window, scale_key):
         self.sheet, self.window, self.scale_key = sheet, window, scale_key
         self.sf = fdot.SCALES[scale_key]
         self.model_origin = (sheet.index * MODEL_PITCH_FT, k * 600.0)
+        self.views = []
 
     def paper_to_model(self, px, py):
         return (self.model_origin[0] + px / 12.0 * self.sf, self.model_origin[1] + py / 12.0 * self.sf)
+
+    def footprint(self):
+        """The window's model-space box (x0, y0, x1, y1), feet."""
+        x0, y0 = self.paper_to_model(self.window[0], self.window[1])
+        x1, y1 = self.paper_to_model(self.window[2], self.window[3])
+        return (min(x0, x1), min(y0, y1), max(x0, x1), max(y0, y1))
+
+    def move_to(self, origin):
+        """Move the zone (its views' entities) to a new model origin."""
+        dx, dy = origin[0] - self.model_origin[0], origin[1] - self.model_origin[1]
+        if abs(dx) < 1e-12 and abs(dy) < 1e-12:
+            return
+        for v in self.views:
+            for e in v.ents:
+                e.translate(dx, dy, 0)
+            v.ox += dx
+            v.oy += dy
+        self.model_origin = (origin[0], origin[1])
 
 
 class Sheet:
@@ -114,6 +148,45 @@ class Sheet:
         self.ptext(p, s, None, "TOP_LEFT", "TextStructures", style=style)
         w = text_extent(s, h_in)
         self.pline([(p[0], p[1] - h_in * 1.25), (p[0] + w, p[1] - h_in * 1.25)], "TextStructures")
+
+    # ------------------------------------------------------- model groups
+    def group_zones(self):
+        """Gather the sheet's zones into one group in model space (E9): the
+        zones side by side in order, their footprints' tops aligned, 1:1 as
+        drawn, with a box around the group on the Border level and the
+        sheet's number and title above it; each zone's intended scale in its
+        lower-left corner.  Called once the views are placed and before the
+        viewports are made (their centres follow ``model_origin``).  A sheet
+        whose zones hold no view (the bar list: paper-space tables) gets no
+        group; ``group_box`` is the box drawn, or None."""
+        zones = [z for z in self.zones if z.views]   # (the bar list's zone holds no view: no empty box)
+        self.group_box = None
+        if not zones:
+            return
+        x = self.index * MODEL_PITCH_FT
+        y_top = 0.0
+        boxes = []
+        for z in zones:
+            fp = z.footprint()
+            w, h = fp[2] - fp[0], fp[3] - fp[1]
+            z.move_to((z.model_origin[0] + x - fp[0], z.model_origin[1] + (y_top - h) - fp[1]))
+            boxes.append(z.footprint())
+            x += w + ZONE_GAP_FT
+        msp = self.doc.modelspace()
+        bx0, by0 = min(b[0] for b in boxes) - BOX_MARGIN_FT, min(b[1] for b in boxes) - BOX_MARGIN_FT
+        bx1, by1 = max(b[2] for b in boxes) + BOX_MARGIN_FT, max(b[3] for b in boxes) + BOX_MARGIN_FT
+        self.group_box = (bx0, by0, bx1, by1)
+        msp.add_lwpolyline([(bx0, by0), (bx1, by0), (bx1, by1), (bx0, by1)], close=True,
+                           dxfattribs={"layer": "Border"})
+        label = fdot.font_text("SHEET %s  %s" % (self.number, self.title))
+        h = fdot.TEXT_STYLES[fdot.TITLE_STYLE][1] * max(z.sf for z in zones)
+        e = msp.add_text(label, height=h, dxfattribs={"layer": "Border", "style": fdot.TITLE_STYLE})
+        e.set_placement((bx0, by1 + 0.4 * h), align=TextEntityAlignment.BOTTOM_LEFT)
+        for z, b in zip(zones, boxes):
+            note = fdot.font_text(fdot.scale_label(z.scale_key))
+            hn = fdot.TEXT_STYLES[fdot.TEXT_STYLE][1] * z.sf
+            e = msp.add_text(note, height=hn, dxfattribs={"layer": "Border", "style": fdot.TEXT_STYLE})
+            e.set_placement((b[0], b[1] - 0.4 * hn), align=TextEntityAlignment.TOP_LEFT)
 
     # ---------------------------------------------------------- viewports
     def add_viewports(self):

@@ -11,7 +11,7 @@ from pathlib import Path
 
 from . import bars as barlib
 from . import cad, details, fdot, strap_loads
-from .sheets import DRAW, TITLE_TOP, Sheet
+from .sheets import DRAW, MODEL_PITCH_FT, TITLE_TOP, Sheet
 from .support import STATION_FFBW_EB1, Support
 from .views import DELTA, Builder, z_on_edges
 
@@ -290,6 +290,7 @@ class Composer:
 
     def finish(self, sheet):
         sheet.border()
+        sheet.group_zones()    # E9: the sheet's views together in one labelled model-space group
         sheet.add_viewports()
 
     def bar_list_ref(self):
@@ -945,10 +946,13 @@ def _write_outputs(snapshot_path, out_dir):
         "generator": "substructure_drawings.build", "version": GENERATOR_VERSION,
         "dxf": DXF_NAME, "dxf_sha256": sha256(dxf_path),
         "snapshot_sha256": sha256(snapshot_path), "model_sha256": snap["model_sha256"],
-        "units": "international feet ($INSUNITS=2); model space 1:1",
+        "units": "US survey feet ($INSUNITS=21; the model's feet, for the DGN import); model space 1:1, "
+                 "one labelled group per sheet %.0f ft apart" % MODEL_PITCH_FT,
         "station_reference": {"FFBW End Bent 1": STATION_FFBW_EB1},
         "sheets": [{"number": sh.number, "title": sh.title, "layout": sh.layout.name,
-                    "scales": [k + "\" = 1'-0\"" for k in sh.scales]} for sh in comp.sheets],
+                    "scales": [k + "\" = 1'-0\"" for k in sh.scales],
+                    "model_group": [round(c, 4) for c in sh.group_box] if getattr(sh, "group_box", None) else None}
+                   for sh in comp.sheets],
         "levels_used": dict(sorted(layers.items())),
         "level_source": fdot.LEVEL_TABLE,
         "cadd_manual": fdot.CADD_MANUAL,

@@ -8,6 +8,7 @@ After a generator change only:
 import csv
 import hashlib
 import json
+import math
 import os
 import re
 import sys
@@ -156,13 +157,67 @@ class SubstructureDxfTests(unittest.TestCase):
             self.assertEqual(self.doc.layers.get(name).dxf.linetype, "Continuous" if style == 0 else "DGN%d" % style)
 
     def test_units_sheets_and_viewports(self):
-        self.assertEqual(self.doc.header["$INSUNITS"], 2)
+        """$INSUNITS 21 (US survey feet) so the DXF lands 1:1 in the DGN
+        (master units survey feet); one viewport per zone."""
+        self.assertEqual(self.doc.header["$INSUNITS"], 21)
         sheets = [lay for lay in self.doc.layouts if lay.name != "Model"]
         self.assertEqual(len(sheets), len(self.manifest["sheets"]))
         for lay in sheets:
             vps = [v for v in lay.viewports() if v.dxf.id > 1]
             self.assertGreaterEqual(len(vps), 1, lay.name)
         self.assertEqual(self.manifest["layout_warnings"], [])
+
+    def test_model_space_groups_one_labelled_box_per_sheet(self):
+        """E9: every sheet with views has one group in model space, a box on
+        the Border level with "SHEET <number>  <title>" above it, the groups
+        in one row 60 ft apart; every viewport's centre lies inside its
+        sheet's box, so the sheets still show their views; the boxes do not
+        overlap."""
+        from substructure_drawings import sheets
+        msp = self.doc.modelspace()
+        labels = {e.dxf.text: e.dxf.insert for e in msp.query("TEXT[layer=='Border']") if e.dxf.text.startswith("SHEET ")}
+        boxes = [list(e.get_points("xy")) for e in msp.query("LWPOLYLINE[layer=='Border']") if e.closed]
+        with_views = [sh for sh in self.manifest["sheets"] if sh["model_group"]]
+        self.assertEqual(len(with_views), len(self.manifest["sheets"]) - 1)   # (the bar list is paper space only)
+        self.assertEqual(len(boxes), len(with_views))
+        self.assertEqual(len(labels), len(with_views))
+        rects = []
+        for sh in with_views:
+            key = "SHEET %s  %s" % (sh["number"], sh["title"])
+            self.assertIn(key, labels, key)
+            p = labels[key]
+            box = next((b for b in boxes if min(q[0] for q in b) - 1e-6 <= p[0] <= max(q[0] for q in b) + 1e-6
+                        and max(q[1] for q in b) <= p[1] + 1e-6 <= max(q[1] for q in b) + 1.0), None)
+            self.assertIsNotNone(box, key)
+            rects.append((sh, (min(q[0] for q in box), min(q[1] for q in box), max(q[0] for q in box), max(q[1] for q in box))))
+            lay = self.doc.layouts.get(sh["layout"])
+            for vp in lay.viewports():
+                if vp.dxf.id > 1:
+                    c = vp.dxf.view_center_point
+                    r = rects[-1][1]
+                    self.assertTrue(r[0] <= c[0] <= r[2] and r[1] <= c[1] <= r[3], "%s viewport centre %s outside %s" % (key, c, r))
+        for i, (_a, r) in enumerate(rects):
+            self.assertLess(r[2] - r[0], sheets.MODEL_PITCH_FT, "group wider than the pitch")
+            for _b, q in rects[i + 1:]:
+                self.assertTrue(r[2] <= q[0] or q[2] <= r[0] or r[3] <= q[1] or q[3] <= r[1], "groups overlap")
+
+    def test_double_line_bars_end_square(self):
+        """C8 (2026-10-20): a double-line bar ends in a straight cap across
+        the offset lines, not a semicircle (no bulge on any bar polyline)."""
+        class Zone:
+            sf = fdot.SCALES["3/4"]
+            model_origin = (0.0, 0.0)
+        doc = cad.new_document()
+        v = cad.View(doc, Zone(), "probe")
+        ents = v.bar([(0.0, 0.0), (3.0, 0.0), (3.0, 2.0)], 0.75)
+        self.assertEqual(len(ents), 4)
+        for e in ents:
+            if e.dxftype() == "LWPOLYLINE":
+                self.assertTrue(all(abs(b) < 1e-9 for _x, _y, _s, _e, b in e.get_points()), "bulge on a bar")
+        caps = [e for e in ents if e.dxftype() == "LINE"]
+        self.assertEqual(len(caps), 2)
+        for c in caps:
+            self.assertAlmostEqual(math.dist(c.dxf.start, c.dxf.end), 0.75 / 12.0, places=6)
 
     def test_model_checks_against_cad_tables(self):
         """Every cross-check of the model against the selected CAD tables

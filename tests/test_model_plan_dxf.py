@@ -95,7 +95,7 @@ class ModelPlanDxfTests(unittest.TestCase):
             self.assertIn(name, levels, name)
 
     def test_sheet(self):
-        self.assertEqual(self.doc.header["$INSUNITS"], 2)
+        self.assertEqual(self.doc.header["$INSUNITS"], 21)   # US survey feet, the DGN's master units (E9)
         sheets = [lay for lay in self.doc.layouts if lay.name != "Model"]
         self.assertEqual([lay.name for lay in sheets], [self.manifest["sheet"]["layout"]])
         self.assertGreaterEqual(len([v for v in sheets[0].viewports() if v.dxf.id > 1]), 1)

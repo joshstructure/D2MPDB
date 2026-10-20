@@ -257,6 +257,7 @@ class PlanComposer:
         sh.notes(xn, DRAW[3] - 0.2, "NOTES:", notes, width_in=wn)
         comp.check_block(sh, "notes", (xn, bottom, xn + wn, DRAW[3] - 0.2))
         sh.border()
+        sh.group_zones()   # E9: the plan in a labelled model-space group (one zone)
         sh.add_viewports()
         if "Layout1" in self.doc.layouts:   # ezdxf's default layout: the sheet is the only layout
             self.doc.layouts.delete("Layout1")
@@ -305,7 +306,7 @@ def _write_outputs(snapshot_path, out_dir):
         "generator": "substructure_drawings.model_plan", "version": GENERATOR_VERSION,
         "dxf": DXF_NAME, "dxf_sha256": sha256(dxf_path),
         "snapshot_sha256": sha256(snapshot_path), "model_sha256": snap["model_sha256"],
-        "units": "international feet ($INSUNITS=2); model space 1:1 in the plan frame",
+        "units": "US survey feet ($INSUNITS=21; the model's feet, for the DGN import); model space 1:1 in the plan frame",
         "frame": snap["frame"],
         "plan_extents_ft": {"u": [round(comp.extents[0], 3), round(comp.extents[2], 3)],
                             "v": [round(comp.extents[1], 3), round(comp.extents[3], 3)]},

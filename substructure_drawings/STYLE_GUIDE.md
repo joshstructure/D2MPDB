@@ -432,8 +432,11 @@ symbol at page scale.
   component, numbers from 1 without gaps, no I, O or Q); the FreeCAD rebar
   Mark properties carry the same marks (D-042), so marks are re-applied to
   the model after any cage change (`freecad_marks.py`).
-- **C8 Bar ends are round and end-on legs are dots.**  A double-line bar
-  (C1) ends in a semicircle, not a square cap; a leg or hook seen end-on in
+- **C8 Bar ends are square and end-on legs are dots.**  A double-line bar
+  (C1) ends in a straight cap square across its two lines (2026-10-20: "I
+  want real width rebar to end in a squared off end not a round end.  That's
+  how it's actually cut and also it's easier to dim to"; the ends were
+  semicircles before, after the FDOT sheets); a leg or hook seen end-on in
   a view (the projected length under 0.35 of the true length) is drawn as
   an end-on dot (C2) at its position, never as a notched stub of the
   projected bend (`views.draw_bar3`: pedestal plan and elevation, cheek
@@ -703,6 +706,22 @@ symbol at page scale.
   the placed subtitle.  Markups 2026-10-20: "More space between title
   underline and notes.  Create a consistent layout to be used for all
   titles and notes" (B4-4), "Spacing" (B4-7).
+- **E9 Model space is one labelled group per sheet, 1:1 in survey feet.**
+  The DXF declares US survey feet (`$INSUNITS` 21) so it imports 1:1 into
+  the project DGN (master units survey feet); the values are the model's
+  feet.  Everything is drawn at full size; the views of one sheet stand
+  together in one group (its zones side by side, 2 ft apart, tops aligned)
+  inside a box on the Border level labelled "SHEET <number>  <title>", each
+  zone's intended scale noted at its lower-left corner, the groups 60 ft
+  apart in one row (`sheets.Sheet.group_zones`, run before the viewports are
+  placed, which follow the moved zones).  The engineer places each group on
+  its DGN sheet at the scale wanted.  Request 2026-10-20: "I need the
+  drawings to import at the correct scale ... group the details together
+  but drawn at scale and put a box around them with a label to show what
+  sheet they correspond to ... Right now they are all spread out and its
+  hard to tell which go where.  I still want everything drawn 1 to 1."
+  Checked (tests): one box and label per sheet with views, every viewport
+  centre inside its sheet's box, no two boxes overlapping.
 
 ## F. Symbology
 
@@ -922,3 +941,5 @@ Markups on the 2.6.0 sheets ("Reinforcing Sheets.pdf"), 2026-10-20 round 7, with
 | B4-5 elevation, 20" Ø STEEL PIPE PILE (TYP.) | (clouded) | A26 | the label beside pile 4 under the PT. F row (it stood 3.7" away at the sheet's right); new check A26 |
 | B4-5 View D-D | (clouded, under the cheek wall) | D4 | the pedestals and pads behind the cheek wall face are not drawn (the clouded lines were the old pedestal top's seam faces; the hidden pads would have stood there next) |
 | B4-8 View E-E and Section F-F, PIER CAP | (clouded, both) | A27 | tips on the cap's drawn edges (E-E: the stub's side edge, level from the column; F-F: the end face beyond the wall, level from the outer side); the plan's slab and coping and the cheek views' WWR hatch take the arrowless area leader; the end bent cheek views' END BENT CAP tip moved to the cap face; new check A27 |
+| (DXF for the DGN) | For the dxfs I will be importing to a dgn whose master units are survey feet. I need the drawings to import at the correct scale. Also lets group the details together but drawn at scale and put a box around them with a label to show what sheet they correspond to as in the review set. Right now they are all spread out and its hard to tell which go where. I still want everything drawn 1 to 1. | E9 | $INSUNITS 21 (US survey feet) in both DXFs; one labelled group per sheet in model space, zones side by side with their scales noted, groups 60 ft apart; the paper-space sheets unchanged (their viewports follow the moved zones) |
+| (all double-line bars) | I want real width rebar to end in a squared off end not a round end. That's how it's actually cut and also it's easier to dim to | C8 | straight square caps on every double-line bar (`View._cap`), rule C8 reworded |

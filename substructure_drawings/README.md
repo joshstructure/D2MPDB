@@ -17,7 +17,14 @@ cap ends, "(PROVISIONAL)" leaves the pier wall label, the pier pile
 description stands beside its pile (A26), the pedestals and pads behind the
 pier cheek wall are not drawn in View D-D, and arrowheads point only at drawn
 lines while areas take the arrowless area leader (A27; the PIER CAP, END
-BENT CAP, closure slab, coping and WWR callouts).
+BENT CAP, closure slab, coping and WWR callouts). The same day, for the DGN
+import: both DXFs declare US survey feet (`$INSUNITS` 21, the project DGN's
+master units; the values are the model's feet, 1:1), and model space holds
+one labelled group per sheet ("SHEET B4-2  END BENT 1 DETAILS (1 OF 3)",
+a box on the Border level, the sheet's zones side by side with their
+intended scales noted, the groups 60 ft apart) instead of zones 600 ft
+apart (E9); and every double-line bar ends square, not round (C8: "that's
+how it's actually cut and also it's easier to dim to").
 
 **Generator 2.6.0 (19 October 2026)** rebuilt this DXF from the model with
 revision D-061 (D-044 weather closure and copings, D-045 strap references,

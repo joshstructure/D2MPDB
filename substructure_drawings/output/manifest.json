@@ -2,10 +2,10 @@
  "generator": "substructure_drawings.build",
  "version": "2.7.0",
  "dxf": "B4_Substructure_EndBents_Pier.dxf",
- "dxf_sha256": "15c820ff44ad6b8a85a5a35e192154f8be570a17897f3ed7631138a2814e16eb",
+ "dxf_sha256": "5ca776f3bffdc5dbb4f6c381b9c5af9e333647b2fa625f287197f30f5bac905c",
  "snapshot_sha256": "81238eed17856fb2a3ec3db7c5a5d37b694c62422ba19daa72e73ee69b5f3d53",
  "model_sha256": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
- "units": "international feet ($INSUNITS=2); model space 1:1",
+ "units": "US survey feet ($INSUNITS=21; the model's feet, for the DGN import); model space 1:1, one labelled group per sheet 60 ft apart",
  "station_reference": {
   "FFBW End Bent 1": 1593.22
  },
@@ -16,6 +16,12 @@
    "layout": "B4-1 END BENT 1",
    "scales": [
     "3/8\" = 1'-0\""
+   ],
+   "model_group": [
+    -1.0,
+    -25.6667,
+    41.2667,
+    1.0
    ]
   },
   {
@@ -26,6 +32,12 @@
     "3/4\" = 1'-0\"",
     "1\" = 1'-0\"",
     "1-1/2\" = 1'-0\""
+   ],
+   "model_group": [
+    59.0,
+    -13.3333,
+    86.3854,
+    1.0
    ]
   },
   {
@@ -35,6 +47,12 @@
    "scales": [
     "3/8\" = 1'-0\"",
     "3/4\" = 1'-0\""
+   ],
+   "model_group": [
+    119.0,
+    -25.6667,
+    155.2354,
+    1.0
    ]
   },
   {
@@ -43,6 +61,12 @@
    "layout": "B4-4 END BENT 1 DETAILS (3 OF 3)",
    "scales": [
     "3/4\" = 1'-0\""
+   ],
+   "model_group": [
+    179.0,
+    -13.3333,
+    201.1333,
+    1.0
    ]
   },
   {
@@ -51,6 +75,12 @@
    "layout": "B4-5 PIER",
    "scales": [
     "3/8\" = 1'-0\""
+   ],
+   "model_group": [
+    239.0,
+    -25.6667,
+    281.2667,
+    1.0
    ]
   },
   {
@@ -59,6 +89,12 @@
    "layout": "B4-6 PIER DETAILS (1 OF 3)",
    "scales": [
     "3/4\" = 1'-0\""
+   ],
+   "model_group": [
+    299.0,
+    -13.3333,
+    321.1333,
+    1.0
    ]
   },
   {
@@ -67,6 +103,12 @@
    "layout": "B4-7 PIER DETAILS (2 OF 3)",
    "scales": [
     "3/4\" = 1'-0\""
+   ],
+   "model_group": [
+    359.0,
+    -13.3333,
+    381.1333,
+    1.0
    ]
   },
   {
@@ -76,6 +118,12 @@
    "scales": [
     "3/8\" = 1'-0\"",
     "3/4\" = 1'-0\""
+   ],
+   "model_group": [
+    419.0,
+    -25.6667,
+    450.7262,
+    1.0
    ]
   },
   {
@@ -84,6 +132,12 @@
    "layout": "B4-9 END BENT 2",
    "scales": [
     "3/8\" = 1'-0\""
+   ],
+   "model_group": [
+    479.0,
+    -25.6667,
+    521.2667,
+    1.0
    ]
   },
   {
@@ -94,6 +148,12 @@
     "3/4\" = 1'-0\"",
     "1\" = 1'-0\"",
     "1-1/2\" = 1'-0\""
+   ],
+   "model_group": [
+    539.0,
+    -13.3333,
+    566.4758,
+    1.0
    ]
   },
   {
@@ -103,6 +163,12 @@
    "scales": [
     "3/8\" = 1'-0\"",
     "3/4\" = 1'-0\""
+   ],
+   "model_group": [
+    599.0,
+    -25.6667,
+    635.3401,
+    1.0
    ]
   },
   {
@@ -111,6 +177,12 @@
    "layout": "B4-12 END BENT 2 DETAILS (3 OF 3)",
    "scales": [
     "3/4\" = 1'-0\""
+   ],
+   "model_group": [
+    659.0,
+    -13.3333,
+    681.1333,
+    1.0
    ]
   },
   {
@@ -119,12 +191,14 @@
    "layout": "B4-13 REINFORCING BAR LIST",
    "scales": [
     "3/4\" = 1'-0\""
-   ]
+   ],
+   "model_group": null
   }
  ],
  "levels_used": {
   "BaseLineSurveyPGL": 6,
   "BearingPadMisc": 106,
+  "Border": 43,
   "CL_Major": 26,
   "CL_Minor": 55,
   "Dimension": 633,
@@ -158,7 +232,7 @@
   "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
  },
  "symbology_audit": {
-  "entities": 11813,
+  "entities": 11856,
   "not_on_fdot_level": [],
   "not_by_level": [],
   "documented_overrides": {},

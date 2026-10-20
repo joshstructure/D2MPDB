@@ -31,7 +31,11 @@ CAP_TH = 0.95
 
 def new_document():
     doc = ezdxf.new("R2010", setup=False)
-    doc.units = 2  # $INSUNITS feet (international), as the CAD_AI beam DXF
+    # $INSUNITS 21 = US survey feet (2026-10-20): the DXF is imported into a
+    # DGN whose master units are survey feet, and the declared unit makes it
+    # land 1:1 there.  The values are the model's feet (mm / 304.8); the 2 ppm
+    # between the two feet is far below any drawing tolerance.
+    doc.units = 21
     doc.header["$MEASUREMENT"] = 0
     doc.header["$LUNITS"] = 4  # architectural display
     doc.header["$LUPREC"] = 3
@@ -330,6 +334,8 @@ class View:
         self.ox = self.oy = 0.0
         self.xform = None
         self.ents = []
+        if hasattr(zone, "views"):
+            zone.views.append(self)   # (``Sheet.group_zones`` moves the zone's views together)
         self.th = self.style_h(fdot.TEXT_STYLE)
         self.local_bbox = [math.inf, math.inf, -math.inf, -math.inf]
         self.boxes = []   # local boxes of every primitive and text, for overlap checks
@@ -533,9 +539,10 @@ class View:
         single unbroken line at scales smaller than 1/2" = 1'-0" (the 3/8"
         plan and elevation), and double unbroken lines at the true bar width
         at 1/2" = 1'-0" and larger: the centreline offset by the bar radius to
-        each side with mitred corners (``offset_polyline``) and a semicircular
-        cap across each end, bulging away from the bar (round bar ends, as the
-        FDOT sheets draw them).  Returns the entities drawn."""
+        each side with mitred corners (``offset_polyline``) and a straight cap
+        square across each end (STYLE_GUIDE C8, 2026-10-20: a bar is cut
+        square, and a square end gives the dimension a point; the ends were
+        semicircles before).  Returns the entities drawn."""
         pts = list(pts)
         if len(pts) < 2:
             return []
@@ -564,16 +571,13 @@ class View:
         return out
 
     def _cap(self, a, b, outward, layer):
-        """Semicircle from ``a`` to ``b`` (a bar end, ``a`` / ``b`` on the two
-        offset lines) bulging toward ``outward`` (any length): a two-point
-        polyline with bulge magnitude 1.  A positive bulge arcs to the RIGHT of
-        the direction of travel a -> b (counter-clockwise arc), a negative one
-        to the left."""
-        t = (b[0] - a[0], b[1] - a[1])
-        if math.hypot(*outward) < 1e-12:
-            return self.line(a, b, layer)   # no direction to bulge toward
-        outward_is_left = t[0] * outward[1] - t[1] * outward[0] > 0
-        return self.pl([a, b], layer, bulges=[-1.0 if outward_is_left else 1.0])
+        """The square cap of a bar end: a straight line from ``a`` to ``b``
+        (the ends of the two offset lines).  ``outward`` (the direction
+        leaving the bar) is kept for the call sites; until 2026-10-20 the cap
+        was a semicircle bulging that way ("I want real width rebar to end in
+        a squared off end not a round end.  That's how it's actually cut and
+        also it's easier to dim to")."""
+        return self.line(a, b, layer)
 
     def circle(self, c, r, layer, ltype=None):
         self._track([(c[0] - r, c[1] - r), (c[0] + r, c[1] + r)])
