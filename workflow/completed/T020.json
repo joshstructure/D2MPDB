@@ -1,0 +1,29 @@
+{
+  "task": "T020",
+  "journal_sha256": "1a890d58c67ffba2edd60b3ab6ea14bbf7c7ad49c6e427451f2c32b97ebc262c",
+  "previous_sha256": "515256c187b7cac03afb47c6f92153441fdbb441ac6ef55799104ea85405de05",
+  "promoted": "2026-10-20T14:34:10.752134+00:00",
+  "review": {
+    "candidate_sha256": "1a890d58c67ffba2edd60b3ab6ea14bbf7c7ad49c6e427451f2c32b97ebc262c",
+    "reviewer": "Codex, documenting the authorized D-064 override on 20 October 2026",
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false,
+    "design_outcome": "unreviewed",
+    "external_analysis_disposition": "No rerun or change to external analysis. T019 saved results and all conditional limitations are inherited unchanged.",
+    "external_analysis_status": "unreviewed",
+    "inherited_issues_disposition": "All original formulas/caches and 278 protected components remain byte exact. Geometry implementation, elevation reconciliation and existing bearing/source checks remain open. Native recalculation, appearance and engineering review not performed for this documentary addition.",
+    "evidence_files": [
+      {
+        "path": "verification.json",
+        "sha256": "e2bd5177b41853d77638abc50dc004eeb3c04acf039b46f88f3a8f96fd247d47"
+      }
+    ]
+  },
+  "promotion_policy": {
+    "reviews_required": false,
+    "effective_date": "2026-10-16",
+    "basis": "User instructed that BPAD changes may proceed without mandatory native recalculation, appearance review or engineering review, until the user reinstates those requirements. Scope, dependency, exact-byte, reference-integrity and evidence checks remain mandatory."
+  },
+  "history": "workflow/history/1a890d58c67ffba2edd60b3ab6ea14bbf7c7ad49c6e427451f2c32b97ebc262c"
+}

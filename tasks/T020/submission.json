@@ -1,0 +1,31 @@
+{
+  "summary": "Record user-adopted D-064 level pier pedestal tops under Bearing Pads; explicitly distinguish adopted slopes from pending geometry implementation.",
+  "published_outputs": [
+    "BearingDesign.BP_pier_seat_override",
+    "BearingDesign.BP_pier_seat_longitudinal_slope",
+    "BearingDesign.BP_pier_seat_transverse_slope",
+    "BearingDesign.BP_pier_seat_override_scope",
+    "BearingDesign.BP_pier_seat_override_basis",
+    "BearingDesign.BP_pier_seat_geometry_status",
+    "BearingDesign.BP_pier_seat_elevation_status"
+  ],
+  "assumptions_and_conventions": [
+    "Zero rise/run in both directions; pier only.",
+    "No new top elevation selected; geometry files remain unchanged.",
+    "Existing T019 live checks and limitations govern applicability."
+  ],
+  "downstream_impact": [
+    "Notebook, B4 CAD table, native CAD model and drawings require coordinated implementation and elevation/interface reconciliation."
+  ],
+  "external_analysis": "No external rerun. Inherit T019 selected saved analysis and all its unresolved conditions; no final bearing acceptance.",
+  "checks_performed": [
+    "Exact-byte preservation of all existing journal content",
+    "Unique literal definitions and no new stored errors",
+    "Protected geometry/workbook fingerprints"
+  ],
+  "open_items": [
+    "Geometry implementation and final elevation reconciliation",
+    "T019 combined shear, uplift/contact, source/load reconciliation and final details",
+    "Native appearance and engineering review not performed for this documentary addition"
+  ]
+}

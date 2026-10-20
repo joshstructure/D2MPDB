@@ -1,0 +1,17 @@
+{
+  "decision": "D-064",
+  "task": "T020",
+  "date": "2026-10-20",
+  "previous_journal_sha256": "515256c187b7cac03afb47c6f92153441fdbb441ac6ef55799104ea85405de05",
+  "journal_sha256": "1a890d58c67ffba2edd60b3ab6ea14bbf7c7ad49c6e427451f2c32b97ebc262c",
+  "register_before_sha256": "479ac2d9624b491c01725cdfd464da7c5e48f34c8e133bfc0754639d88024078",
+  "register_after_sha256": "774379fda69669632b487271795d9a98b0b94b7bcda37ea9ae34d3629411fef7",
+  "other_source_records_unchanged": true,
+  "protected_files_sha256": {
+    "Bridge_Geometry_2 Beam_V2.ipynb": "349d464afddc653dfe52808be44faea951f874ac6199026ea771f176f3e02751",
+    "project_current/geometry/tables/B4_Geometry_CAD_Tables.xlsx": "7ae68ec09a308fe6eda6df52d28eb402e61dec18033c219b411c551a51f14977",
+    "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43",
+    "project_current/coherence/Coherence_Tracker.xlsx": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad"
+  },
+  "adoption": "D-064 / T020 (20 October 2026): user adopts level tops for the two pier pedestals, zero longitudinal and transverse slope, based on the conditional T019 check. Recorded under Bearing Pads / PierLevelSeatOverride. Notebook, B4 geometry table, CAD and drawings are unchanged and pending coordinated implementation; no new numeric top elevation is selected. Reconcile a common top elevation per pedestal and pad/beam interfaces. End bents excluded. Existing calculation, all cached results and other journal components preserved exactly; combined shear, uplift/contact, analysis currency/load reconciliation and final details remain open. No new native recalculation, visual or engineering review. See tasks/T020/verification.json and workflow/completed/T020.json."
+}

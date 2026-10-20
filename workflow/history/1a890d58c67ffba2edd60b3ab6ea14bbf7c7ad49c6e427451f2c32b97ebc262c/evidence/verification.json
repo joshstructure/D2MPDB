@@ -1,0 +1,36 @@
+{
+  "task": "T020",
+  "decision": "D-064",
+  "date": "2026-10-20",
+  "base_sha256": "515256c187b7cac03afb47c6f92153441fdbb441ac6ef55799104ea85405de05",
+  "candidate_sha256": "1a890d58c67ffba2edd60b3ab6ea14bbf7c7ad49c6e427451f2c32b97ebc262c",
+  "changed_component": "report:BearingDesign",
+  "protected_components_byte_exact": 278,
+  "original_report_restored_by_removing_addition": true,
+  "existing_formulas_and_caches_byte_exact": true,
+  "new_literal_design_definitions": {
+    "BP_pier_seat_override": "\"D-064: ADOPT LEVEL PIER PEDESTAL TOPS\"",
+    "BP_pier_seat_longitudinal_slope": "0",
+    "BP_pier_seat_transverse_slope": "0",
+    "BP_pier_seat_override_scope": "\"Pier only: two pedestals serving bearings B1/B2 and B3/B4\"",
+    "BP_pier_seat_override_basis": "\"T019 / D-063: BearingDesign.PierLevelSeatCheck; conditional on its live checks and stated assumptions\"",
+    "BP_pier_seat_geometry_status": "\"PENDING IMPLEMENTATION: bridge geometry notebook, B4 geometry tables, CAD and drawings\"",
+    "BP_pier_seat_elevation_status": "\"No new numeric top elevation selected; reconcile one common top elevation per pedestal and pad/beam interfaces in the geometry update\""
+  },
+  "new_stored_errors": 0,
+  "native_recalculation": false,
+  "native_visual_review": false,
+  "engineering_review": false,
+  "geometry_implementation": "pending",
+  "protected_files_sha256": {
+    "Bridge_Geometry_2 Beam_V2.ipynb": "349d464afddc653dfe52808be44faea951f874ac6199026ea771f176f3e02751",
+    "project_current/geometry/tables/B4_Geometry_CAD_Tables.xlsx": "7ae68ec09a308fe6eda6df52d28eb402e61dec18033c219b411c551a51f14977",
+    "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43",
+    "project_current/coherence/Coherence_Tracker.xlsx": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad"
+  },
+  "calculation_basis": {
+    "task": "T019",
+    "native_verification_sha256": "a46ce8acf455e6376477133dfdefc3ac1cd9823c21b04a3b94e6b176dc41360e",
+    "independent_check_sha256": "7aad84c82d27bd9ad7dc948dc9b47d7fea2a55d9805958632b3ffd53470f182f"
+  }
+}
